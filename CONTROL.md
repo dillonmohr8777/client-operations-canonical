@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-16T13:00:12.6439327+00:00`
-Queue revision: `16`
+Last reconciled: `2026-07-16T13:09:36.7902253+00:00`
+Queue revision: `17`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -72,7 +72,7 @@ No client outcome currently consumes a normal WIP slot.
 - `sys-20260715-0001` **Verify and convert the Agent OS Slack bridge to prepare-only intake** [done]. The live task and durable installer now use -PrepareOnly. A canary returned 0 with no new jobs, events, handoffs, completions, approvals, or notifications.
 - `sys-20260715-0002` **Replace substring routing with exact registry routing and outcome-level deduplication** [done]. The canonical intake bridge now accepts only exact active registry routes, quarantines mixed and false routes, suppresses normalized duplicates, and never promotes legacy Agent OS routing directly into the queue.
 - `sys-20260715-0003` **Update live bridge descriptions to match prepare-only behavior** [done]. The durable installer was rerun after the prepare-only change; live Gmail and Slack task descriptions now state that execution and notification are disabled during the manual pilot.
-- `sys-20260716-0004` **Map every authorized client login to an exact Bitwarden entry locator** [blocked]. Confirm the open vault is the primary Codex and Claude vault, then map exact item GUIDs through the visible vault UI and register exact bw://item/<guid> locators for each authorized active client system. Keep the secondary route separate and rotate its exposed password before reuse.
+- `sys-20260716-0004` **Map every authorized client login to an exact Bitwarden entry locator** [blocked]. Unlock the sole primary Bitwarden web vault in persistent Chrome, then map exact item GUIDs through the visible vault UI and register exact bw://item/<guid> locators for each authorized active client system. Do not use the retired secondary route.
 - `sys-20260716-0005` **Operationalize the single Marketing Chief control loop** [done]. A global Marketing Chief agent, executable workflow, deterministic ranking and control rendering, stale-safe queue mutations, bounded handoff validation and reconciliation, prediction feedback, live system-health probes, voice rules, and design QA now point to this canonical project.
 - `sys-20260716-0006` **Consolidate background observations without creating user-facing tasks** [done]. Gmail and Slack remain prepare-only and sync redacted metadata into canonical intake. The redundant morning preflight, daily brief, weekly closeout, Chrome watchdog, and standalone Slack Reply Watchdog remain disabled or paused.
 
@@ -80,13 +80,13 @@ No client outcome currently consumes a normal WIP slot.
 
 - **accessBroker:** `valid`
 - **agentOsSlackBridge:** `enabled-prepare-only-canonical-intake-sync`
-- **asOf:** `2026-07-16T13:00:12.6439327+00:00`
+- **asOf:** `2026-07-16T13:09:36.7902253+00:00`
 - **browserPolicy:** `persistent-remote-chrome-only-never-edge`
 - **canonicalIntake:** `live-exact-route-deduplicated-redacted-no-task-no-notification`
 - **canonicalRepository:** `dirty-user-work-preserved-no-outer-remote`
 - **clientRegistry:** `valid-partial-live`
 - **credentialBridge:** `v1.1.2-security-review-go-signed-cli-integrity-pinned-atomic-job-object-contained-sanitized-exact-account-locked-bootstrap-present-no-secret-output`
-- **credentialVault:** `primary-bitwarden-cli-authenticated-locked-google-login-item-user-confirmed-saved-secure-bootstrap-present-chrome-extension-installed-open-account-identity-unverified-exact-guid-mapping-pending`
+- **credentialVault:** `sole-primary-pollotharuler-cli-authenticated-locked-secure-bootstrap-present-chrome-identity-verified-web-vault-locked-exact-guid-mapping-pending-secondary-route-retired-capability-free`
 - **dailyBrief:** `disabled-manual-pilot`
 - **gmailAccess:** `read-connected-verified-password-hint-delivery-confirmed-without-body-read-send-and-auth-code-use-prohibited`
 - **gmailBridge:** `enabled-prepare-only-canonical-intake-sync`
@@ -97,9 +97,9 @@ No client outcome currently consumes a normal WIP slot.
 
 ## Live health probe
 
-- **As of:** `2026-07-16T13:00:36.2106791+00:00`
+- **As of:** `2026-07-16T13:09:58.7217118+00:00`
 - **Overall:** `healthy-with-human-gates`
-- **Queue:** revision `16`, `3` work items, normal `0/3`, emergency `0/1` active
+- **Queue:** revision `17`, `3` work items, normal `0/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `1/18` canonical clients registered, `2/50` systems verified, `0` exact Bitwarden item locators
@@ -111,7 +111,7 @@ No client outcome currently consumes a normal WIP slot.
   - `DillonAgentOS-DailyBrief`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
-- **Human gates:** `bitwarden_primary_vault_identity_confirmation`, `exact_bw_item_locator_mapping`, `secondary_exposed_password_rotation`
+- **Human gates:** `exact_bw_item_locator_mapping`, `secondary_exposed_password_rotation`
 
 ## Standing operating contract
 
