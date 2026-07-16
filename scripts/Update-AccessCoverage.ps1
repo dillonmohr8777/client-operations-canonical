@@ -61,9 +61,28 @@ $allVerified = @($allSystems | Where-Object { (Get-VerificationState $_.last_ver
 $allStale = @($allSystems | Where-Object { (Get-VerificationState $_.last_verified_at) -eq 'stale' })
 $allInvalidVerification = @($allSystems | Where-Object { (Get-VerificationState $_.last_verified_at) -in @('invalid','future') })
 $allExactItems = @($allSystems | Where-Object { [string]$_.secret_ref -match '^bw://item/[0-9a-fA-F-]{36}$' })
+$primaryVaultClientMatches = @($access.clients | Where-Object { $_.id -eq 'dillon-operations' })
+$primaryVaultSystems = @(if ($primaryVaultClientMatches.Count -eq 1) {
+    $primaryVaultClientMatches[0].systems | Where-Object {
+        $_.id -eq 'bitwarden-password-manager' -and
+        $_.account_role -eq 'primary-codex-and-claude-client-vault'
+    }
+}
+else { @() })
+$primaryChromeExtensionState = if ($primaryVaultSystems.Count -eq 1) { [string]$primaryVaultSystems[0].chrome_extension_state } else { 'unknown' }
+$primaryVaultIdentityStatus = switch ($primaryChromeExtensionState) {
+    'installed-and-vault-open-in-persistent-chrome-account-identity-unverified' { 'unverified'; break }
+    'installed-and-vault-open-in-persistent-chrome-primary-account-identity-verified' { 'verified'; break }
+    default { 'unknown' }
+}
+$credentialHumanGate = switch ($primaryVaultIdentityStatus) {
+    'unverified' { 'Confirm the open Bitwarden vault is the primary Codex/Claude vault before exact item mapping.'; break }
+    'verified' { 'Map exact Bitwarden item GUIDs.'; break }
+    default { 'Unlock the primary Bitwarden Chrome extension before exact item mapping.' }
+}
 
 $report = [pscustomobject][ordered]@{
-    schemaVersion = 1
+    schemaVersion = 2
     asOf = $now.ToString('o')
     privacy = 'non-secret-routing-metadata-only'
     summary = [pscustomobject]@{
@@ -81,7 +100,12 @@ $report = [pscustomobject][ordered]@{
     }
     priority = @($rows | Where-Object { $_.activeQueue } | Sort-Object clientId)
     clients = $rows.ToArray()
-    humanGate = 'Complete secure bootstrap enrollment and unlock the primary Bitwarden Chrome extension before exact item mapping.'
+    credentialVault = [pscustomobject][ordered]@{
+        primaryRouteCount = $primaryVaultSystems.Count
+        primaryChromeExtensionState = $primaryChromeExtensionState
+        primaryVaultIdentityStatus = $primaryVaultIdentityStatus
+    }
+    humanGate = $credentialHumanGate
     safety = 'No raw vault inventory, usernames, passwords, tokens, codes, cookies, account identifiers, or credential values were read or stored.'
 }
 

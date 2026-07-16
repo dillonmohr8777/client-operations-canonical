@@ -3,6 +3,7 @@ param(
     [string]$OutputPath,
     [string]$CredentialBridgePath,
     [string]$AccessBrokerScriptPath,
+    [string]$AccessCoveragePath,
     [ValidateRange(1,120)][int]$ExternalProbeTimeoutSeconds = 20,
     [switch]$NoWrite
 )
@@ -156,7 +157,7 @@ $queuePath = Join-Path $projectRoot 'queue\work-items.json'
 $queue = $null
 try { $queue = Get-Content -LiteralPath $queuePath -Raw -Encoding UTF8 | ConvertFrom-Json } catch { $warnings.Add('canonical queue is invalid JSON') }
 
-$accessCoveragePath = Join-Path $projectRoot 'state\access-coverage.json'
+$accessCoveragePath = if ([string]::IsNullOrWhiteSpace($AccessCoveragePath)) { Join-Path $projectRoot 'state\access-coverage.json' } else { [IO.Path]::GetFullPath($AccessCoveragePath) }
 $accessCoverage = $null
 if (Test-Path -LiteralPath $accessCoveragePath) {
     try { $accessCoverage = Get-Content -LiteralPath $accessCoveragePath -Raw -Encoding UTF8 | ConvertFrom-Json } catch { $warnings.Add('access coverage state is invalid JSON') }
@@ -169,7 +170,11 @@ if ($gitExit -ne 0) { $warnings.Add('git status failed') }
 
 $humanGates = New-Object System.Collections.Generic.List[string]
 if ($null -ne $bridge -and $bridge.human_action_required) { $humanGates.Add([string]$bridge.human_action_required) }
-$humanGates.Add('bitwarden_chrome_extension_unlock')
+switch ([string]$accessCoverage.credentialVault.primaryVaultIdentityStatus) {
+    'unverified' { $humanGates.Add('bitwarden_primary_vault_identity_confirmation'); break }
+    'verified' { break }
+    default { $humanGates.Add('bitwarden_chrome_extension_unlock') }
+}
 $humanGates.Add('exact_bw_item_locator_mapping')
 $humanGates.Add('secondary_exposed_password_rotation')
 
@@ -193,7 +198,7 @@ $health = [pscustomobject][ordered]@{
     }
     clientRegistry = [pscustomobject]@{ valid = -not$registryProbe.timedOut -and $registryExit -eq 0; timedOut=[bool]$registryProbe.timedOut; validation = (($registryTest -join ' ') -replace '\s+', ' ').Trim() }
     accessBroker = [pscustomobject]@{ valid = -not$accessTimedOut -and $accessExit -eq 0; timedOut=$accessTimedOut; validatorPresent = Test-Path -LiteralPath $accessScript }
-    accessCoverage = if ($null -eq $accessCoverage) { [pscustomobject]@{ valid = $false } } else { [pscustomobject]@{ valid = $true; summary = $accessCoverage.summary; priority = $accessCoverage.priority } }
+    accessCoverage = if ($null -eq $accessCoverage) { [pscustomobject]@{ valid = $false } } else { [pscustomobject]@{ valid = $true; summary = $accessCoverage.summary; priority = $accessCoverage.priority; credentialVault = $accessCoverage.credentialVault } }
     credentialBridge = [pscustomobject]@{
         present = Test-Path -LiteralPath $bridgeScript
         state = if ($null -eq $bridge) { 'unknown' } else { [string]$bridge.state }

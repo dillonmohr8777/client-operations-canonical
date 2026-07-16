@@ -1,7 +1,7 @@
 {
     "schemaVersion":  1,
-    "revision":  15,
-    "updatedAt":  "2026-07-16T07:27:15.9821606+00:00",
+    "revision":  16,
+    "updatedAt":  "2026-07-16T13:00:12.6439327+00:00",
     "updatedBy":  "marketing-chief",
     "mode":  "manual-pilot",
     "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
@@ -359,8 +359,8 @@
                               "id":  "sys-20260716-0004",
                               "title":  "Map every authorized client login to an exact Bitwarden entry locator",
                               "status":  "blocked",
-                              "risk":  "The primary Bitwarden CLI account is authenticated and the primary Google login item is saved, but live CredRead confirms the secure bootstrap is still absent. Exact credential reuse remains unavailable until that human enrollment prompt is completed, the installed Chrome extension is unlocked, and exact item GUIDs are mapped. The previously exposed secondary-account password must be rotated before that route is reused.",
-                              "nextAction":  "Complete the open Windows Credential Manager enrollment once, unlock the installed Bitwarden extension for the primary vault in persistent Chrome, map exact item GUIDs through the visible vault UI, and register exact bw://item/\u003cguid\u003e locators for each active client system."
+                              "risk":  "Secure bootstrap is present and the Bitwarden extension is installed and open in persistent Chrome, but the open vault has not yet been verified as the primary Codex and Claude vault. Exact client item locators remain unavailable until primary identity is confirmed and item GUIDs are mapped. The exposed secondary account password still requires rotation before that separate route is reused.",
+                              "nextAction":  "Confirm the open vault is the primary Codex and Claude vault, then map exact item GUIDs through the visible vault UI and register exact bw://item/\u003cguid\u003e locators for each authorized active client system. Keep the secondary route separate and rotate its exposed password before reuse."
                           },
                           {
                               "id":  "sys-20260716-0005",
@@ -378,7 +378,7 @@
                           }
                       ],
     "systemHealth":  {
-                         "asOf":  "2026-07-16T06:10:00Z",
+                         "asOf":  "2026-07-16T13:00:12.6439327+00:00",
                          "clientRegistry":  "valid-partial-live",
                          "gmailBridge":  "enabled-prepare-only-canonical-intake-sync",
                          "slackReplyWatchdog":  "paused-definitions-reconciled",
@@ -387,8 +387,8 @@
                          "weeklyCloseout":  "disabled-manual-pilot",
                          "morningOrchestrator":  "disabled-manual-pilot",
                          "accessBroker":  "valid",
-                         "credentialVault":  "primary-bitwarden-cli-authenticated-locked-google-login-item-user-confirmed-saved-secure-bootstrap-absent-human-enrollment-open-exact-guid-mapping-pending",
-                         "credentialBridge":  "v1.1.2-security-review-go-signed-cli-integrity-pinned-atomic-job-object-contained-sanitized-exact-account-locked-bootstrap-absent-no-secret-output",
+                         "credentialVault":  "primary-bitwarden-cli-authenticated-locked-google-login-item-user-confirmed-saved-secure-bootstrap-present-chrome-extension-installed-open-account-identity-unverified-exact-guid-mapping-pending",
+                         "credentialBridge":  "v1.1.2-security-review-go-signed-cli-integrity-pinned-atomic-job-object-contained-sanitized-exact-account-locked-bootstrap-present-no-secret-output",
                          "gmailAccess":  "read-connected-verified-password-hint-delivery-confirmed-without-body-read-send-and-auth-code-use-prohibited",
                          "canonicalRepository":  "dirty-user-work-preserved-no-outer-remote",
                          "browserPolicy":  "persistent-remote-chrome-only-never-edge",
