@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "worker-handoff.schema.json",
+  "title": "Marketing Chief Worker Handoff",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "handoffId",
+    "workItemId",
+    "expectedWorkItemVersion",
+    "clientId",
+    "workerRole",
+    "status",
+    "startedAt",
+    "finishedAt",
+    "summary",
+    "artifacts",
+    "evidence",
+    "verification",
+    "assumptions",
+    "risks",
+    "privacy",
+    "containsSecrets",
+    "containsDirectIdentifiers",
+    "containsRawCommunications",
+    "approvalGate",
+    "proposedTransition",
+    "canonicalWriteAttempted",
+    "externalActionAttempted"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "handoffId": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{7,159}$" },
+    "workItemId": { "type": "string", "pattern": "^wi-[A-Za-z0-9-]+$" },
+    "expectedWorkItemVersion": { "type": "integer", "minimum": 1 },
+    "clientId": { "type": ["string", "null"], "maxLength": 120 },
+    "workerRole": { "type": "string", "minLength": 2, "maxLength": 80 },
+    "status": { "enum": ["completed", "partially_completed", "blocked", "failed"] },
+    "startedAt": { "type": "string", "format": "date-time" },
+    "finishedAt": { "type": "string", "format": "date-time" },
+    "summary": { "type": "string", "minLength": 1, "maxLength": 4000 },
+    "artifacts": { "type": "array", "maxItems": 10, "items": { "type": "string", "maxLength": 1000 } },
+    "evidence": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "string",
+        "maxLength": 1000,
+        "allOf": [
+          { "not": { "pattern": "\\.\\." } },
+          { "pattern": "^(?:(?:clients|context|docs|intake|queue|schemas|state|tests|workflows)/[A-Za-z0-9._/ -]+|access-broker:[A-Za-z0-9._:/-]+|sha256:[0-9a-fA-F]{64}|source-commit:[0-9a-fA-F]{7,40}|agent-os-run:[A-Za-z0-9-]{8,100}/task\\.json)$" }
+        ]
+      }
+    },
+    "verification": { "type": "array", "maxItems": 10, "items": { "type": "string", "maxLength": 1000 } },
+    "assumptions": { "type": "array", "maxItems": 5, "items": { "type": "string", "maxLength": 1000 } },
+    "risks": { "type": "array", "maxItems": 5, "items": { "type": "string", "maxLength": 1000 } },
+    "privacy": { "const": "redacted" },
+    "containsSecrets": { "const": false },
+    "containsDirectIdentifiers": { "const": false },
+    "containsRawCommunications": { "const": false },
+    "approvalGate": { "enum": ["none", "explicit", "human_authentication"] },
+    "proposedTransition": { "enum": ["in_progress", "verification", "needs_approval", "executed", "observed", "done", "blocked", "deferred", "cancelled"] },
+    "canonicalWriteAttempted": { "const": false },
+    "externalActionAttempted": { "const": false }
+  }
+}

@@ -1,0 +1,99 @@
+[CmdletBinding()]
+param(
+    [string]$OutputPath,
+    [string]$AccessRegistryPath,
+    [ValidateRange(1, 365)][int]$VerificationFreshnessDays = 30,
+    [string]$AsOf,
+    [switch]$NoWrite
+)
+
+$ErrorActionPreference = 'Stop'
+$projectRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
+if ([string]::IsNullOrWhiteSpace($OutputPath)) { $OutputPath = Join-Path $projectRoot 'state\access-coverage.json' }
+$clientRegistryPath = Join-Path $projectRoot 'registry\clients.json'
+$queuePath = Join-Path $projectRoot 'queue\work-items.json'
+$accessRegistryPath = if ([string]::IsNullOrWhiteSpace($AccessRegistryPath)) { Join-Path $env:LOCALAPPDATA 'Codex\AccessBroker\registry.json' } else { [IO.Path]::GetFullPath($AccessRegistryPath) }
+$now = if ([string]::IsNullOrWhiteSpace($AsOf)) { [DateTimeOffset]::UtcNow } else { [DateTimeOffset]::Parse($AsOf) }
+
+function Get-VerificationState {
+    param($Value)
+    if ([string]::IsNullOrWhiteSpace([string]$Value)) { return 'missing' }
+    $parsed = [DateTimeOffset]::MinValue
+    if (-not [DateTimeOffset]::TryParse([string]$Value, [ref]$parsed)) { return 'invalid' }
+    $parsed = $parsed.ToUniversalTime()
+    if ($parsed -gt $now.AddMinutes(5)) { return 'future' }
+    if (($now - $parsed).TotalDays -gt $VerificationFreshnessDays) { return 'stale' }
+    return 'fresh'
+}
+
+$clients = Get-Content -LiteralPath $clientRegistryPath -Raw -Encoding UTF8 | ConvertFrom-Json
+$queue = Get-Content -LiteralPath $queuePath -Raw -Encoding UTF8 | ConvertFrom-Json
+$access = Get-Content -LiteralPath $accessRegistryPath -Raw -Encoding UTF8 | ConvertFrom-Json
+$activeQueueClients = @($queue.workItems | Where-Object { $_.status -notin @('done','cancelled') } | ForEach-Object { [string]$_.clientId } | Where-Object { $_ } | Select-Object -Unique)
+
+$rows = New-Object System.Collections.Generic.List[object]
+foreach ($client in @($clients.clients | Sort-Object id)) {
+    $brokerMatches = @($access.clients | Where-Object { $_.id -eq $client.id })
+    $systems = if ($brokerMatches.Count -eq 1) { @($brokerMatches[0].systems) } else { @() }
+    $verified = @($systems | Where-Object { (Get-VerificationState $_.last_verified_at) -eq 'fresh' })
+    $stale = @($systems | Where-Object { (Get-VerificationState $_.last_verified_at) -eq 'stale' })
+    $invalidVerification = @($systems | Where-Object { (Get-VerificationState $_.last_verified_at) -in @('invalid','future') })
+    $exactItems = @($systems | Where-Object { [string]$_.secret_ref -match '^bw://item/[0-9a-fA-F-]{36}$' })
+    $opaqueRoutes = @($systems | Where-Object { [string]$_.secret_ref -match '^(op|bws|bw|vault|aws-sm|azure-kv|gcp-sm|oauth|windows-credential|dpapi-bootstrap)://' })
+    $rows.Add([pscustomobject][ordered]@{
+        clientId = [string]$client.id
+        registryStatus = [string]$client.status
+        activeQueue = [string]$client.id -in $activeQueueClients
+        accessBrokerRecord = $brokerMatches.Count -eq 1
+        systemCount = $systems.Count
+        verifiedSystemCount = $verified.Count
+        staleVerificationCount = $stale.Count
+        invalidVerificationCount = $invalidVerification.Count
+        opaqueRouteCount = $opaqueRoutes.Count
+        exactBitwardenItemCount = $exactItems.Count
+        coverageState = if ($brokerMatches.Count -ne 1) { 'missing-client-route' } elseif ($systems.Count -eq 0) { 'no-systems' } elseif ($verified.Count -eq $systems.Count -and $exactItems.Count -gt 0) { 'verified-with-exact-item' } elseif ($verified.Count -gt 0) { 'partial-current' } elseif ($stale.Count -gt 0) { 'stale' } elseif ($invalidVerification.Count -gt 0) { 'invalid-verification' } else { 'unverified' }
+    })
+}
+
+$operationsClients = @($access.clients | Where-Object { $_.id -notin @($clients.clients.id) })
+$allSystems = @($access.clients | ForEach-Object { @($_.systems) })
+$allVerified = @($allSystems | Where-Object { (Get-VerificationState $_.last_verified_at) -eq 'fresh' })
+$allStale = @($allSystems | Where-Object { (Get-VerificationState $_.last_verified_at) -eq 'stale' })
+$allInvalidVerification = @($allSystems | Where-Object { (Get-VerificationState $_.last_verified_at) -in @('invalid','future') })
+$allExactItems = @($allSystems | Where-Object { [string]$_.secret_ref -match '^bw://item/[0-9a-fA-F-]{36}$' })
+
+$report = [pscustomobject][ordered]@{
+    schemaVersion = 1
+    asOf = $now.ToString('o')
+    privacy = 'non-secret-routing-metadata-only'
+    summary = [pscustomobject]@{
+        canonicalClientCount = @($clients.clients).Count
+        canonicalClientsWithAccessBrokerRecord = @($rows | Where-Object { $_.accessBrokerRecord }).Count
+        activeQueueClients = $activeQueueClients.Count
+        accessBrokerClientCount = @($access.clients).Count
+        registeredSystemCount = $allSystems.Count
+        verifiedSystemCount = $allVerified.Count
+        staleVerificationCount = $allStale.Count
+        invalidVerificationCount = $allInvalidVerification.Count
+        verificationFreshnessDays = $VerificationFreshnessDays
+        exactBitwardenItemCount = $allExactItems.Count
+        operationsOnlyClientCount = $operationsClients.Count
+    }
+    priority = @($rows | Where-Object { $_.activeQueue } | Sort-Object clientId)
+    clients = $rows.ToArray()
+    humanGate = 'Complete secure bootstrap enrollment and unlock the primary Bitwarden Chrome extension before exact item mapping.'
+    safety = 'No raw vault inventory, usernames, passwords, tokens, codes, cookies, account identifiers, or credential values were read or stored.'
+}
+
+if (-not $NoWrite) {
+    $directory = Split-Path -Parent $OutputPath
+    if (-not (Test-Path -LiteralPath $directory)) { New-Item -ItemType Directory -Path $directory -Force | Out-Null }
+    $temp = "$OutputPath.tmp.$([guid]::NewGuid().ToString('N'))"
+    try {
+        [IO.File]::WriteAllText($temp, (($report | ConvertTo-Json -Depth 20) + [Environment]::NewLine), [Text.UTF8Encoding]::new($false))
+        Move-Item -LiteralPath $temp -Destination $OutputPath -Force
+    }
+    finally { Remove-Item -LiteralPath $temp -Force -ErrorAction SilentlyContinue }
+}
+
+$report | ConvertTo-Json -Depth 20

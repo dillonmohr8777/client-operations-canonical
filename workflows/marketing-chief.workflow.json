@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 2,
+  "workflowId": "marketing-chief",
+  "title": "Dillon Marketing Chief",
+  "canonicalProject": "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+  "userFacingTasks": 1,
+  "concurrency": {
+    "maxWorkers": 3,
+    "maxDepth": 1,
+    "normalWip": 3,
+    "emergencyWip": 1,
+    "maxMakerVerifierCycles": 3
+  },
+  "authority": {
+    "canonicalWriter": "marketing-chief",
+    "sensorsMayMutateQueue": false,
+    "workersMayMutateQueue": false,
+    "externalDeliveryRequiresExplicitApproval": true,
+    "automaticActionClasses": [
+      "read_only_verification",
+      "local_research",
+      "local_draft",
+      "local_artifact",
+      "local_test"
+    ],
+    "approvalGatedActionClasses": [
+      "external_delivery",
+      "publishing",
+      "deployment",
+      "spend",
+      "account_change",
+      "destructive",
+      "human_authentication",
+      "business_decision"
+    ],
+    "humanAuthenticationGates": [
+      "mfa",
+      "one_time_code",
+      "captcha",
+      "passkey",
+      "push_approval",
+      "recovery",
+      "new_consent",
+      "master_password"
+    ]
+  },
+  "contextLoadOrder": [
+    "AGENTS.md",
+    "registry/clients.json",
+    "queue/work-items.json",
+    "intake/index.json",
+    "state/system-health.json",
+    "state/corrections.jsonl",
+    "context/marketing-context.md",
+    "context/DILLON_VOICE.md",
+    "context/DESIGN_STANDARD.md",
+    "clients/<client-id>/CLIENT.md",
+    "current-source-evidence"
+  ],
+  "intakeToQueue": {
+    "owner": "marketing-chief",
+    "list": "List pending observations with Get-PendingIntake.ps1 and retain indexGeneratedAtUtc.",
+    "inspect": "For every exact-routed pending observation, inspect the exact authorized source behind its opaque sourceLocator before inferring the current outcome or writing canonical state.",
+    "match": "Require exact sourceLocator equality with workItem.source.locator or one workItem.evidence.refs entry. Exactly one valid source-bound item may be linked; semantic, topic, or same-client similarity is insufficient.",
+    "create": "When no source-bound item exists, reread the current queue revision and call New-MarketingWorkItem.ps1 with SourceType intake, the exact opaque SourceLocator, that ExpectedQueueRevision, and a truthfully classified next action. Automatic classes are limited to genuinely local and reversible work.",
+    "promote": "After a successful create, call Resolve-IntakeObservation.ps1 with the returned workItemId and retained index generation timestamp. If one exact source-bound item already exists, promote directly to that item.",
+    "failClosed": "Never guess among multiple matches or override stale revisions. Acknowledge or quarantine unsupported, stale, ambiguous, inactive-client, or non-actionable observations with a recorded resolution.",
+    "approvalBoundary": "External delivery, publishing, deployment, spend, account changes, destructive work, human authentication, and business decisions retain their explicit approval gates. Intake materialization never authorizes or executes an external action."
+  },
+  "stages": [
+    {
+      "id": "observe",
+      "owner": "sensor-or-chief",
+      "input": "user message or redacted intake metadata",
+      "output": "observation",
+      "rule": "Sensors append safe retrievable source locators and redacted metadata only. They never create a user task, notify Dillon, or mutate canonical work."
+    },
+    {
+      "id": "normalize",
+      "owner": "marketing-chief",
+      "input": "observation",
+      "output": "deduplicated safe metadata, preliminary route signals, and preserved unknowns",
+      "rule": "Normalize safe metadata and remove duplicate notifications. Do not infer the requested outcome from redacted metadata; wait for exact route and source inspection."
+    },
+    {
+      "id": "route",
+      "owner": "client-router",
+      "input": "normalized observation",
+      "output": "one exact active client or quarantine",
+      "rule": "Require an exact unique registry match. Mixed, inactive, ambiguous, or bot-recipient work is quarantined."
+    },
+    {
+      "id": "materialize",
+      "owner": "marketing-chief",
+      "input": "exact-routed pending observation plus inspected authorized source",
+      "output": "one exact source-bound canonical work item or recorded intake disposition",
+      "rule": "Infer the current requested outcome only from the inspected source, then match by exact source locator. If one valid item exists, promote to it. If none exists, create with New-MarketingWorkItem.ps1 using the exact opaque SourceLocator, current queue revision, and truthful safe action class, then promote with Resolve-IntakeObservation.ps1. Never bypass approval gates or take an external action."
+    },
+    {
+      "id": "rank",
+      "owner": "marketing-chief",
+      "input": "canonical queue plus current evidence",
+      "output": "next automatic action, next Dillon decision, next unblock",
+      "rule": "Rank by priority, deadline, waiting-client risk, status, evidence freshness, confidence, and approval boundary."
+    },
+    {
+      "id": "plan",
+      "owner": "marketing-chief",
+      "input": "highest-ranked outcome",
+      "output": "bounded execution contract",
+      "rule": "Proceed only for an allowed automatic action class when routing and evidence are no older than 14 days, the action is local, reversible, same-client, directly implied, and not risky or approval-gated. Otherwise surface one decision or unblock."
+    },
+    {
+      "id": "execute",
+      "owner": "bounded-worker",
+      "input": "versioned work item and context slice",
+      "output": "bounded worker handoff",
+      "rule": "Workers build or verify artifacts but do not write canonical state or take external action."
+    },
+    {
+      "id": "evaluate",
+      "owner": "verifier",
+      "input": "artifact and definition of done",
+      "output": "fact, voice, design, risk, and live-state verdict",
+      "rule": "Inspect the actual output or rendered surface. File existence alone is never acceptance."
+    },
+    {
+      "id": "reconcile",
+      "owner": "marketing-chief",
+      "input": "validated non-stale worker handoff",
+      "output": "atomic queue update and deterministic CONTROL.md",
+      "rule": "Reject stale versions, invalid routes, secret-bearing handoffs, insufficient evidence, or unauthorized actions."
+    },
+    {
+      "id": "learn",
+      "owner": "marketing-chief",
+      "input": "Dillon decision, edit delta, or observed outcome",
+      "output": "redacted prediction, voice, design, or process correction",
+      "rule": "Record accept, modify, defer, and reject outcomes through Record-MarketingDecision.ps1, and persist only redacted validated correction deltas through Record-MarketingCorrection.ps1."
+    }
+  ],
+  "continueContract": {
+    "trigger": "continue",
+    "behavior": [
+      "refresh live system health",
+      "sync redacted intake",
+      "list exact-routed pending intake and inspect the exact authorized source behind each opaque locator",
+      "link the exact source-bound canonical work item when one exists; when none exists, create it with New-MarketingWorkItem.ps1 using the exact SourceLocator, current queue revision, and truthful safe action class",
+      "promote the observation with Resolve-IntakeObservation.ps1, or acknowledge or quarantine it with a recorded resolution when promotion is unsupported",
+      "load canonical context and corrections",
+      "rank canonical work",
+      "execute the highest safe automatic action within WIP limits",
+      "reconcile verified handoffs",
+      "present the result and at most one human-only decision"
+    ]
+  },
+  "successSignals": [
+    "accepted outcome per unit of usage",
+    "next-action acceptance rate",
+    "first-pass voice acceptance by channel",
+    "design review cycles per accepted artifact",
+    "zero mixed-client incidents",
+    "zero secret persistence incidents",
+    "zero external actions without approval",
+    "zero standalone watcher-created Codex tasks",
+    "recurring source outcomes remain observable after earlier occurrences are resolved"
+  ]
+}
