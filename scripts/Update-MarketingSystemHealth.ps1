@@ -175,7 +175,23 @@ switch ([string]$accessCoverage.credentialVault.primaryVaultIdentityStatus) {
     'verified' { break }
     default { $humanGates.Add('bitwarden_chrome_extension_unlock') }
 }
-$humanGates.Add('exact_bw_item_locator_mapping')
+$exactMappingKnown = $null -ne $accessCoverage -and $null -ne $accessCoverage.summary -and $null -ne $accessCoverage.summary.PSObject.Properties['exactBitwardenItemCount']
+$exactMappingCount = if ($exactMappingKnown) { [int]$accessCoverage.summary.exactBitwardenItemCount } else { 0 }
+$missingActiveExactRoutes = @(if ($null -eq $accessCoverage -or $null -eq $accessCoverage.priority) { @() } else { @($accessCoverage.priority | Where-Object { [int]$_.exactBitwardenItemCount -lt 1 }) })
+if (-not $exactMappingKnown -or $exactMappingCount -lt 1) {
+    $humanGates.Add('exact_bw_item_locator_mapping')
+}
+elseif ($missingActiveExactRoutes.Count -gt 0) {
+    $humanGates.Add('active_client_exact_bw_item_mapping')
+}
+$extensionTimeoutPolicy = if (
+    $null -ne $accessCoverage -and
+    $null -ne $accessCoverage.credentialVault -and
+    $null -ne $accessCoverage.credentialVault.PSObject.Properties['primaryExtensionTimeoutPolicy']
+) { [string]$accessCoverage.credentialVault.primaryExtensionTimeoutPolicy } else { 'unknown' }
+if ($extensionTimeoutPolicy -ne 'on-browser-restart-lock-pin-enabled-master-password-on-restart-disabled') {
+    $humanGates.Add('bitwarden_extension_timeout_policy_verification')
+}
 $humanGates.Add('secondary_exposed_password_rotation')
 
 $normalActiveCount = if ($null -eq $queue) { $null } else { @($queue.workItems | Where-Object { $_.lane -eq 'normal' -and $_.status -in @('in_progress','verification') }).Count }

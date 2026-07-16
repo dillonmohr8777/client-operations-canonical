@@ -1,7 +1,7 @@
 {
     "schemaVersion":  1,
-    "revision":  17,
-    "updatedAt":  "2026-07-16T13:09:36.7902253+00:00",
+    "revision":  18,
+    "updatedAt":  "2026-07-16T13:46:55.4864894+00:00",
     "updatedBy":  "marketing-chief",
     "mode":  "manual-pilot",
     "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
@@ -359,8 +359,8 @@
                               "id":  "sys-20260716-0004",
                               "title":  "Map every authorized client login to an exact Bitwarden entry locator",
                               "status":  "blocked",
-                              "risk":  "The sole authorized Bitwarden vault identity is confirmed in persistent Chrome and secure bootstrap is present. Exact client item locators remain unavailable until the currently locked primary web vault is unlocked and each authorized item GUID is mapped. The secondary vault route is retired and capability-free; its previously exposed credential still requires rotation or account closure outside Codex.",
-                              "nextAction":  "Unlock the sole primary Bitwarden web vault in persistent Chrome, then map exact item GUIDs through the visible vault UI and register exact bw://item/\u003cguid\u003e locators for each authorized active client system. Do not use the retired secondary route."
+                              "risk":  "Six exact Bitwarden item locators are bridge-validated and registered for the primary Google route plus Fagan, Bar Crawl, Kimberly James Bridal, NKCDC, and Omega. Hope Wellness Center still has no Hope-specific vault item. Omega is correctly reference-only because its mapped item is a secure note, not an autofill login. Extension timeout policy remains unverified, and the retired secondary route still requires password rotation or account closure.",
+                              "nextAction":  "Create or identify a Hope Wellness Center-specific login in the sole primary vault. In the Bitwarden Chrome extension, set vault timeout to On browser restart, timeout action to Lock, enable PIN unlock, and disable master-password-on-browser-restart for PIN. Rotate or close the retired secondary account. Keep Revive, Onsite, generic Wix, and generic Zapier items quarantined until uniquely routed."
                           },
                           {
                               "id":  "sys-20260716-0005",
@@ -378,7 +378,7 @@
                           }
                       ],
     "systemHealth":  {
-                         "asOf":  "2026-07-16T13:09:36.7902253+00:00",
+                         "asOf":  "2026-07-16T13:46:55.4864894+00:00",
                          "clientRegistry":  "valid-partial-live",
                          "gmailBridge":  "enabled-prepare-only-canonical-intake-sync",
                          "slackReplyWatchdog":  "paused-definitions-reconciled",
@@ -387,8 +387,8 @@
                          "weeklyCloseout":  "disabled-manual-pilot",
                          "morningOrchestrator":  "disabled-manual-pilot",
                          "accessBroker":  "valid",
-                         "credentialVault":  "sole-primary-pollotharuler-cli-authenticated-locked-secure-bootstrap-present-chrome-identity-verified-web-vault-locked-exact-guid-mapping-pending-secondary-route-retired-capability-free",
-                         "credentialBridge":  "v1.1.2-security-review-go-signed-cli-integrity-pinned-atomic-job-object-contained-sanitized-exact-account-locked-bootstrap-present-no-secret-output",
+                         "credentialVault":  "sole-primary-vault-identity-verified-six-exact-item-locators-registered-hope-specific-item-missing-extension-timeout-unverified-secondary-route-retired-rotation-pending",
+                         "credentialBridge":  "v1.1.2-security-review-go-signed-cli-integrity-pinned-sanitized-exact-item-resolution-locked-bootstrap-present-no-secret-output",
                          "gmailAccess":  "read-connected-verified-password-hint-delivery-confirmed-without-body-read-send-and-auth-code-use-prohibited",
                          "canonicalRepository":  "dirty-user-work-preserved-no-outer-remote",
                          "browserPolicy":  "persistent-remote-chrome-only-never-edge",

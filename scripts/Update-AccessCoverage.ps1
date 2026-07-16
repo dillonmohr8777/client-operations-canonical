@@ -34,7 +34,7 @@ $activeQueueClients = @($queue.workItems | Where-Object { $_.status -notin @('do
 $rows = New-Object System.Collections.Generic.List[object]
 foreach ($client in @($clients.clients | Sort-Object id)) {
     $brokerMatches = @($access.clients | Where-Object { $_.id -eq $client.id })
-    $systems = if ($brokerMatches.Count -eq 1) { @($brokerMatches[0].systems) } else { @() }
+    $systems = @(if ($brokerMatches.Count -eq 1) { @($brokerMatches[0].systems) } else { @() })
     $verified = @($systems | Where-Object { (Get-VerificationState $_.last_verified_at) -eq 'fresh' })
     $stale = @($systems | Where-Object { (Get-VerificationState $_.last_verified_at) -eq 'stale' })
     $invalidVerification = @($systems | Where-Object { (Get-VerificationState $_.last_verified_at) -in @('invalid','future') })
@@ -70,14 +70,32 @@ $primaryVaultSystems = @(if ($primaryVaultClientMatches.Count -eq 1) {
 }
 else { @() })
 $primaryChromeExtensionState = if ($primaryVaultSystems.Count -eq 1) { [string]$primaryVaultSystems[0].chrome_extension_state } else { 'unknown' }
+$primaryExtensionTimeoutPolicy = if ($primaryVaultSystems.Count -ne 1) {
+    'unknown'
+}
+elseif ($null -ne $primaryVaultSystems[0].PSObject.Properties['chrome_extension_timeout_policy']) {
+    [string]$primaryVaultSystems[0].chrome_extension_timeout_policy
+}
+else {
+    'unverified'
+}
 $primaryVaultIdentityStatus = switch ($primaryChromeExtensionState) {
     'installed-and-vault-open-in-persistent-chrome-account-identity-unverified' { 'unverified'; break }
     'installed-and-vault-open-in-persistent-chrome-primary-account-identity-verified' { 'verified'; break }
     default { 'unknown' }
 }
+$priorityMissingExactItems = @($rows | Where-Object { $_.activeQueue -and [int]$_.exactBitwardenItemCount -lt 1 })
 $credentialHumanGate = switch ($primaryVaultIdentityStatus) {
     'unverified' { 'Confirm the open Bitwarden vault is the primary Codex/Claude vault before exact item mapping.'; break }
-    'verified' { 'Map exact Bitwarden item GUIDs.'; break }
+    'verified' {
+        if ($priorityMissingExactItems.Count -gt 0) {
+            'Map an exact Bitwarden item for active clients: ' + (($priorityMissingExactItems.clientId | Sort-Object) -join ', ') + '.'
+        }
+        elseif ($allExactItems.Count -lt 1) { 'Map exact Bitwarden item GUIDs.' }
+        elseif ($primaryExtensionTimeoutPolicy -ne 'on-browser-restart-lock-pin-enabled-master-password-on-restart-disabled') { 'Verify the Bitwarden extension timeout policy.' }
+        else { $null }
+        break
+    }
     default { 'Unlock the primary Bitwarden Chrome extension before exact item mapping.' }
 }
 
@@ -104,6 +122,7 @@ $report = [pscustomobject][ordered]@{
         primaryRouteCount = $primaryVaultSystems.Count
         primaryChromeExtensionState = $primaryChromeExtensionState
         primaryVaultIdentityStatus = $primaryVaultIdentityStatus
+        primaryExtensionTimeoutPolicy = $primaryExtensionTimeoutPolicy
     }
     humanGate = $credentialHumanGate
     safety = 'No raw vault inventory, usernames, passwords, tokens, codes, cookies, account identifiers, or credential values were read or stored.'
