@@ -5,12 +5,14 @@
 > Mode: manual pilot.
 > External delivery, publishing, deployment, spend, access changes, and destructive actions require explicit approval.
 
-Last reconciled: `2026-07-16T04:25:43Z`
-Queue revision: `5`
+Last reconciled: `2026-07-16T04:37:06Z`
+Queue revision: `7`
 
 ## Predicted next actions
 
 **Next automatic action:** start the local NKCDC Phase Two deck build from the verified handoff. The Fagan lead reconciliation is complete and truthfully blocked at mailbox ownership and disposition verification. No client delivery will occur.
+
+**Current security handoff:** Bitwarden is open in persistent Chrome at its passkey prompt. Because a vault password was pasted into chat, treat it as exposed and rotate it before reuse. After the vault is unlocked, the Chief can map every client login to an exact non-secret `bw://` locator and stop repeating credential discovery.
 
 **Next Dillon decision:** review the completed Hope Wellness package before the July 16 noon meeting. Approve the final reel direction and the seven leadership decisions below, or identify the specific revisions required.
 
@@ -31,6 +33,13 @@ No worker is currently writing client deliverables. The normal work-in-progress 
 None.
 
 ## Waiting on Dillon
+
+### Credential continuity
+
+- Complete the Bitwarden passkey prompt in the open persistent Chrome tab and tell the Chief when the vault is unlocked.
+- Rotate the exposed Bitwarden password before reusing password-based login.
+- After unlock, Codex will inventory only entry names and opaque identifiers, map them to exact clients, and use autofill without storing or revealing credential values.
+- Gmail read-only retrieval is authorized for business context. Sending mail and silently using MFA, one-time codes, or recovery messages remain prohibited.
 
 ### Hope Wellness Center
 
@@ -70,6 +79,7 @@ Nothing has been sent or published.
 - Align HCM tracking remediation is a valid candidate, but ownership and a promised outcome are not yet verified.
 - The historical Agent OS prepared-job backlog requires exact routing and outcome-level deduplication before import.
 - Replace Agent OS substring routing and weak quality gates before either intake bridge is considered for reactivation.
+- After Bitwarden unlock, map every active client system to its exact vault entry metadata so a password screen cannot become a repeated rediscovery loop.
 
 ## Recent reviewable artifacts
 
@@ -86,6 +96,8 @@ Nothing has been sent or published.
 - Agent OS Daily Brief and Weekly Closeout: **disabled** during the manual pilot.
 - Daily Morning Orchestrator: **paused** during the manual pilot.
 - Access Broker: valid; the Fagan Gmail route is registered as persistent-Chrome-only, with no secret stored and no live-session claim.
+- Credential vault: Bitwarden is canonical. No CLI, desktop process, or unlocked machine session is currently available; the persistent Chrome tab is waiting at a passkey handoff.
+- Gmail: the connected profile was live-verified for read-only access. Search and retrieval are standing-authorized; sending, one-time-code use, recovery, and MFA consumption remain blocked for human confirmation.
 - Canonical repository: existing uncommitted Hope Wellness and Align HCM work was preserved. No outer remote is configured.
 - Browser account workflow: persistent authenticated remote Chrome only; never Edge unless Dillon explicitly overrides the rule.
 

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 5,
-  "updatedAt": "2026-07-16T04:25:43Z",
+  "revision": 7,
+  "updatedAt": "2026-07-16T04:37:06Z",
   "updatedBy": "marketing-chief",
   "mode": "manual-pilot",
   "canonicalProject": "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
@@ -286,10 +286,17 @@
       "status": "done",
       "risk": null,
       "result": "The durable installer was rerun after the prepare-only change; live Gmail and Slack task descriptions now state that execution and notification are disabled during the manual pilot."
+    },
+    {
+      "id": "sys-20260716-0004",
+      "title": "Map every authorized client login to an exact Bitwarden entry locator",
+      "status": "blocked",
+      "risk": "Codex cannot reuse vault credentials consistently until Bitwarden is unlocked and entry metadata can be mapped without exposing values.",
+      "nextAction": "After Dillon completes the open Bitwarden passkey handoff, inventory entry metadata only and register exact bw:// locators for each active client system."
     }
   ],
   "systemHealth": {
-    "asOf": "2026-07-16T04:25:43Z",
+    "asOf": "2026-07-16T04:37:06Z",
     "clientRegistry": "valid-partial-live",
     "gmailBridge": "enabled-prepare-only",
     "slackReplyWatchdog": "paused-definitions-reconciled",
@@ -297,7 +304,9 @@
     "dailyBrief": "disabled-manual-pilot",
     "weeklyCloseout": "disabled-manual-pilot",
     "morningOrchestrator": "paused-manual-pilot",
-    "accessBroker": "valid-fagan-gmail-route-registered-session-unverified",
+    "accessBroker": "valid",
+    "credentialVault": "bitwarden-canonical-passkey-handoff-required",
+    "gmailAccess": "read-connected-verified-send-and-auth-code-use-prohibited",
     "canonicalRepository": "dirty-user-work-preserved-no-outer-remote",
     "browserPolicy": "persistent-remote-chrome-only-never-edge"
   }

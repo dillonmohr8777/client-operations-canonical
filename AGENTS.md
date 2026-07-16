@@ -17,6 +17,7 @@
 - Increment the queue root `revision` and the changed work item's `version` on every accepted mutation, then regenerate `CONTROL.md` from the queue.
 - Canonical updates must be atomic and reversible. Preserve a backup before replacement and reject stale writes.
 - Store redacted summaries and source locators, never raw message bodies, credentials, cookies, codes, or unnecessary PII.
+- Before marking a password-required client task blocked, validate Access Broker, resolve the exact Bitwarden `bw://` locator, and attempt the supported autofill, passwordless, or passkey route in persistent Chrome. Raw vault values never enter canonical state. MFA, one-time codes, recovery, and provider consent remain human handoffs.
 - Automatic work is limited to local, reversible research, drafting, artifact creation, testing, verification, and state updates. External delivery, publishing, deployment, spend, account changes, and destructive actions still require explicit approval.
 
 Workers return one bounded JSON handoff to the Chief with: `schemaVersion`, `handoffId`, `workItemId`, `expectedWorkItemVersion`, `clientId`, `workerRole`, `status`, `startedAt`, `finishedAt`, `summary`, `artifacts`, `evidence`, `verification`, `assumptions`, `risks`, `approvalGate`, `proposedTransition`, `canonicalWriteAttempted`, and `externalActionAttempted`.
