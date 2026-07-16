@@ -97,13 +97,13 @@ No client outcome currently consumes a normal WIP slot.
 
 ## Live health probe
 
-- **As of:** `2026-07-16T07:35:56.9992640+00:00`
+- **As of:** `2026-07-16T12:35:32.6279863+00:00`
 - **Overall:** `healthy-with-human-gates`
 - **Queue:** revision `15`, `3` work items, normal `0/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `1/18` canonical clients registered, `2/50` systems verified, `0` exact Bitwarden item locators
-- **Credential bridge:** `locked`, secure bootstrap present `False`, review `go-no-critical-or-high-findings-integrity-verified`
+- **Credential bridge:** `locked`, secure bootstrap present `True`, review `go-no-critical-or-high-findings-integrity-verified`
 - **Scheduled mechanisms:**
   - `Codex-Morning-Orchestrator-Preflight`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-GmailBridge`: enabled `True`, state `Ready`, prepare-only `True`, last result `0`
@@ -111,7 +111,7 @@ No client outcome currently consumes a normal WIP slot.
   - `DillonAgentOS-DailyBrief`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
-- **Human gates:** `secure_bootstrap_enrollment`, `bitwarden_chrome_extension_unlock`, `exact_bw_item_locator_mapping`, `secondary_exposed_password_rotation`
+- **Human gates:** `bitwarden_chrome_extension_unlock`, `exact_bw_item_locator_mapping`, `secondary_exposed_password_rotation`
 
 ## Standing operating contract
 
