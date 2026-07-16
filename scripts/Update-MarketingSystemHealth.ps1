@@ -177,7 +177,10 @@ switch ([string]$accessCoverage.credentialVault.primaryVaultIdentityStatus) {
 }
 $exactMappingKnown = $null -ne $accessCoverage -and $null -ne $accessCoverage.summary -and $null -ne $accessCoverage.summary.PSObject.Properties['exactBitwardenItemCount']
 $exactMappingCount = if ($exactMappingKnown) { [int]$accessCoverage.summary.exactBitwardenItemCount } else { 0 }
-$missingActiveExactRoutes = @(if ($null -eq $accessCoverage -or $null -eq $accessCoverage.priority) { @() } else { @($accessCoverage.priority | Where-Object { [int]$_.exactBitwardenItemCount -lt 1 }) })
+$missingActiveExactRoutes = @(if ($null -eq $accessCoverage -or $null -eq $accessCoverage.priority) { @() } else { @($accessCoverage.priority | Where-Object {
+    $mappingRequired = if ($null -ne $_.PSObject.Properties['accessMappingRequired']) { [bool]$_.accessMappingRequired } else { $true }
+    $mappingRequired -and [int]$_.exactBitwardenItemCount -lt 1
+}) })
 if (-not $exactMappingKnown -or $exactMappingCount -lt 1) {
     $humanGates.Add('exact_bw_item_locator_mapping')
 }

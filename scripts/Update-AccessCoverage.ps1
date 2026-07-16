@@ -34,6 +34,7 @@ $activeQueueClients = @($queue.workItems | Where-Object { $_.status -notin @('do
 $rows = New-Object System.Collections.Generic.List[object]
 foreach ($client in @($clients.clients | Sort-Object id)) {
     $brokerMatches = @($access.clients | Where-Object { $_.id -eq $client.id })
+    $accessMappingRequired = if ($null -ne $client.PSObject.Properties['accessMappingRequired']) { [bool]$client.accessMappingRequired } else { $true }
     $systems = @(if ($brokerMatches.Count -eq 1) { @($brokerMatches[0].systems) } else { @() })
     $verified = @($systems | Where-Object { (Get-VerificationState $_.last_verified_at) -eq 'fresh' })
     $stale = @($systems | Where-Object { (Get-VerificationState $_.last_verified_at) -eq 'stale' })
@@ -44,6 +45,7 @@ foreach ($client in @($clients.clients | Sort-Object id)) {
         clientId = [string]$client.id
         registryStatus = [string]$client.status
         activeQueue = [string]$client.id -in $activeQueueClients
+        accessMappingRequired = $accessMappingRequired
         accessBrokerRecord = $brokerMatches.Count -eq 1
         systemCount = $systems.Count
         verifiedSystemCount = $verified.Count
@@ -84,7 +86,7 @@ $primaryVaultIdentityStatus = switch ($primaryChromeExtensionState) {
     'installed-and-vault-open-in-persistent-chrome-primary-account-identity-verified' { 'verified'; break }
     default { 'unknown' }
 }
-$priorityMissingExactItems = @($rows | Where-Object { $_.activeQueue -and [int]$_.exactBitwardenItemCount -lt 1 })
+$priorityMissingExactItems = @($rows | Where-Object { $_.activeQueue -and $_.accessMappingRequired -and [int]$_.exactBitwardenItemCount -lt 1 })
 $credentialHumanGate = switch ($primaryVaultIdentityStatus) {
     'unverified' { 'Confirm the open Bitwarden vault is the primary Codex/Claude vault before exact item mapping.'; break }
     'verified' {
