@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "evidenceId": "ev-fagan-lead-reconciliation-20260716",
+  "workItemId": "wi-20260715-0002",
+  "clientId": "fagan-painting",
+  "recordedAt": "2026-07-16T04:24:46.2925184Z",
+  "recordedBy": "marketing-chief",
+  "privacy": "redacted",
+  "sourceHandoff": {
+    "handoffId": "handoff-wi-20260715-0002-fagan-reconcile-20260716T040412Z",
+    "expectedWorkItemVersion": 1,
+    "workerRole": "reconciliation-verifier",
+    "status": "completed",
+    "canonicalWriteAttempted": false,
+    "externalActionAttempted": false
+  },
+  "findings": {
+    "uniqueLeadCount": 2,
+    "duplicateNotificationCount": 1,
+    "duplicateConfidence": "high-with-residual-preview-truncation-uncertainty",
+    "approvedDestinationAddressed": true,
+    "operationalReceiptVerified": false,
+    "responseOwner": "unknown",
+    "leadDisposition": "unknown",
+    "crmDeliveryVerified": false,
+    "conversionTrackingVerified": false
+  },
+  "localEvidence": [
+    {
+      "ref": "C:\\Users\\dillo\\Documents\\Codex\\2026-07-10\\i-see-that-all-of-my\\runs\\20260715-000647-c979fa44\\private\\source.json",
+      "supports": "First unique parser notification and intended canonical addressing."
+    },
+    {
+      "ref": "C:\\Users\\dillo\\Documents\\Codex\\2026-07-10\\i-see-that-all-of-my\\runs\\20260715-100901-df70f0ca\\private\\source.json",
+      "supports": "Second unique parser notification and intended canonical addressing."
+    },
+    {
+      "ref": "C:\\Users\\dillo\\Documents\\Codex\\2026-07-10\\i-see-that-all-of-my\\runs\\20260715-100804-0246193e\\private\\source.json",
+      "supports": "Forwarded packet is a high-confidence duplicate of the later direct notification."
+    },
+    {
+      "ref": "C:\\Users\\dillo\\Documents\\Codex\\2026-07-10\\i-see-that-all-of-my\\state\\agent-os.sqlite3",
+      "supports": "Job and handoff states do not prove receipt, assignment, disposition, CRM delivery, or conversion tracking."
+    }
+  ],
+  "chromeVerification": {
+    "browserPolicy": "persistent-remote-chrome-only-never-edge",
+    "authenticatedContext": "dillon-main-google-account",
+    "searchScope": "redacted Fagan destination search for July 14 through July 16",
+    "result": "Both direct notifications were visible in the authenticated source mailbox; no visible evidence proved a sent reply or lead disposition.",
+    "clientAccountLogin": {
+      "target": "canonical-fagan-google-account",
+      "reached": "password-gate",
+      "savedCredentialAutofilled": false,
+      "status": "human-password-manager-handoff",
+      "tabDisposition": "handoff"
+    }
+  },
+  "accessBroker": {
+    "clientId": "fagan-painting",
+    "systemId": "gmail-persistent-chrome",
+    "registryState": "valid",
+    "sessionVerified": false,
+    "allowedCapabilities": [
+      "authentication.presence.check",
+      "authentication.login",
+      "authentication.session.reuse",
+      "account.metadata.read",
+      "gmail.message.read"
+    ],
+    "prohibitedCapabilities": [
+      "gmail.message.send",
+      "credentials.reveal"
+    ]
+  },
+  "remainingUnknowns": [
+    "Whether either notification was accepted, opened, or processed in the canonical mailbox.",
+    "The named human response owner and response-time expectation.",
+    "Whether either prospect was contacted, qualified, scheduled, declined, or marked unreachable.",
+    "Whether matching CRM or Zapier destination records exist.",
+    "Whether either submission produced a valid deduplicated analytics or advertising lead event."
+  ],
+  "externalActionTaken": false
+}
