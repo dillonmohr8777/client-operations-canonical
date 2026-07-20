@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bridge — Dillon's AI + Front-End Execution Plan</title>
+<style>
+  @page { size: Letter; margin: 0.55in; }
+  :root {
+    --ink:#243044; --muted:#607086; --navy:#18283f; --teal:#0c8f87;
+    --mint:#dff6ef; --lav:#eee9ff; --gold:#f8df9e; --rose:#ffe8e6;
+    --line:#dbe4ee; --paper:#ffffff; --soft:#f5f8fb;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; color:var(--ink); background:var(--paper); font-family:Arial, Helvetica, sans-serif; font-size:10.2pt; line-height:1.42; }
+  h1,h2,h3 { margin:0; color:var(--navy); line-height:1.14; }
+  h1 { font-size:28pt; letter-spacing:-.6px; }
+  h2 { font-size:16pt; margin-bottom:8px; }
+  h3 { font-size:11.5pt; margin-bottom:5px; }
+  p { margin:0 0 7px; }
+  ul { margin:4px 0 0 18px; padding:0; }
+  li { margin:0 0 4px; }
+  .cover { min-height:9.3in; display:flex; flex-direction:column; justify-content:space-between; padding:20px 18px 24px; background:linear-gradient(145deg,#f4fffb 0%,#ffffff 47%,#f3efff 100%); border:1px solid var(--line); border-radius:20px; }
+  .eyebrow { color:var(--teal); font-weight:700; letter-spacing:1.4px; text-transform:uppercase; font-size:8.5pt; }
+  .cover-title { margin-top:26px; max-width:6.2in; }
+  .cover-title p { color:var(--muted); font-size:13pt; margin-top:12px; max-width:5.6in; }
+  .pill-row { display:flex; flex-wrap:wrap; gap:7px; margin-top:22px; }
+  .pill { border-radius:999px; padding:6px 10px; font-weight:700; font-size:8.5pt; background:var(--paper); border:1px solid var(--line); }
+  .pill.teal { background:var(--mint); border-color:#b8e7db; }
+  .pill.lav { background:var(--lav); border-color:#d8cff8; }
+  .cover-note { background:rgba(255,255,255,.82); border:1px solid var(--line); border-radius:14px; padding:13px 15px; max-width:6.8in; }
+  .cover-note strong { color:var(--navy); }
+  .meta { color:var(--muted); font-size:8.5pt; }
+  .page { page-break-before:always; padding-top:2px; }
+  .section-kicker { color:var(--teal); text-transform:uppercase; letter-spacing:1.1px; font-size:8pt; font-weight:700; margin-bottom:5px; }
+  .lead { font-size:11.5pt; color:#3d4c61; margin-bottom:12px; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; }
+  .card { border:1px solid var(--line); border-radius:13px; padding:11px 12px; background:var(--paper); break-inside:avoid; }
+  .card.soft { background:var(--soft); }
+  .card.mint { background:var(--mint); border-color:#b8e7db; }
+  .card.lav { background:var(--lav); border-color:#d8cff8; }
+  .card.gold { background:#fff8e8; border-color:#f1d992; }
+  .card.rose { background:var(--rose); border-color:#f2cac7; }
+  .role { font-size:13pt; font-weight:700; color:var(--navy); margin-bottom:2px; }
+  .role small { display:block; color:var(--teal); font-size:8.5pt; text-transform:uppercase; letter-spacing:.7px; margin-top:3px; }
+  .checklist { list-style:none; margin-left:0; }
+  .checklist li { position:relative; padding-left:18px; }
+  .checklist li:before { content:'□'; position:absolute; left:0; top:-1px; color:var(--teal); font-size:13pt; font-weight:700; }
+  .milestone { border:1px solid var(--line); border-radius:14px; padding:12px 13px; margin:0 0 10px; break-inside:avoid; }
+  .milestone-head { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:6px; }
+  .milestone-num { color:var(--paper); background:var(--teal); border-radius:10px; padding:5px 8px; font-weight:700; font-size:8.5pt; white-space:nowrap; }
+  .milestone h3 { font-size:13pt; flex:1; }
+  .tag { display:inline-block; padding:3px 7px; border-radius:999px; background:var(--soft); border:1px solid var(--line); color:var(--muted); font-size:8pt; font-weight:700; margin:3px 4px 0 0; }
+  .two-col { columns:2; column-gap:22px; }
+  .two-col > * { break-inside:avoid; }
+  .callout { border-left:4px solid var(--teal); background:var(--mint); padding:10px 12px; border-radius:0 11px 11px 0; margin:10px 0; }
+  .callout.gold { border-left-color:#d29c19; background:#fff8e8; }
+  .callout.rose { border-left-color:#d46a63; background:var(--rose); }
+  .table { width:100%; border-collapse:collapse; margin-top:5px; font-size:9pt; }
+  .table th { text-align:left; color:var(--paper); background:var(--navy); padding:7px 8px; }
+  .table td { vertical-align:top; padding:7px 8px; border:1px solid var(--line); }
+  .table tr:nth-child(even) td { background:var(--soft); }
+  .footer { margin-top:15px; padding-top:8px; border-top:1px solid var(--line); color:var(--muted); font-size:8pt; display:flex; justify-content:space-between; }
+  .small { font-size:8.8pt; color:var(--muted); }
+  .avoid-break { break-inside:avoid; }
+  .source { font-size:8.3pt; color:var(--muted); }
+</style>
+</head>
+<body>
+  <section class="cover">
+    <div>
+      <div class="eyebrow">Bridge Software Development · Internal Execution Plan</div>
+      <div class="cover-title">
+        <h1>Dillon’s AI + Front-End Execution Plan</h1>
+        <p>A clear, practical breakdown of what I will own, produce, coordinate, and verify while Bridge’s cannabis social-network MVP moves from discovery into build and launch readiness.</p>
+        <div class="pill-row">
+          <span class="pill teal">AI + Front End</span>
+          <span class="pill lav">MVP product build</span>
+          <span class="pill">Six-milestone working plan</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="cover-note"><strong>My role in one sentence:</strong> turn the client’s product idea and prototype feedback into a usable, role-based MVP experience, then help carry that experience through requirements, frontend implementation, integration, QA, and handoff.</div>
+      <p class="meta" style="margin-top:12px">Prepared for internal alignment · July 2026 · Client: Tori Patterson · Team: Mac, Melissa, Dillon, Miraj</p>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">01 · The assignment</div>
+    <h2>What I am responsible for</h2>
+    <p class="lead">Bridge is a new software app/site concept for the cannabis industry. My lane is the product experience: understand what the MVP needs to do, define how each user moves through it, and help turn that plan into a coherent, testable front end.</p>
+    <div class="grid2">
+      <div class="card mint"><div class="role">I own</div><small>AI + Front End</small><ul class="checklist"><li>Early MVP application map and user journey</li><li>Role-based flows for brand, retailer, dispensary, sales rep, and admin</li><li>Wireframe direction for core screens</li><li>Initial feature backlog with priority levels</li><li>Frontend requirements translated from prototype and client notes</li><li>AI-assisted development workflow using Claude, Codex, and Cursor</li></ul></div>
+      <div class="card lav"><div class="role">I co-own</div><small>With Miraj’s backend/dev team</small><ul class="checklist"><li>Front-end stack and component structure</li><li>Onboarding, verification, account, dashboard, listings, messaging, and admin flows</li><li>Data contracts and integration expectations</li><li>Acceptance criteria for Phase 2 build items</li><li>Compliance and research findings translated into UX decisions</li></ul></div>
+    </div>
+    <div class="callout"><strong>Shared target for Phase 1:</strong> a confirmed MVP feature list, platform architecture plan, milestone build plan, and open questions list for the client, legal, and compliance review.</div>
+    <h3>How my work fits the team</h3>
+    <table class="table">
+      <tr><th>Team member</th><th>Primary lane</th><th>Where I connect</th></tr>
+      <tr><td>Mac</td><td>Oversight and coordination</td><td>Escalations, prioritization, sign-off, and keeping the work aligned to the client relationship.</td></tr>
+      <tr><td>Melissa</td><td>Account management and client communications</td><td>Client questions, prototype walkthrough, research, compliance context, and feedback routing.</td></tr>
+      <tr><td>Miraj</td><td>Backend, development, and software</td><td>Architecture, database, verification requirements, repo/environment setup, APIs, and technical feasibility.</td></tr>
+      <tr><td>Dillon</td><td>AI and front end</td><td>Product experience, user flows, frontend requirements, UX decisions, implementation, and acceptance readiness.</td></tr>
+    </table>
+    <div class="footer"><span>Bridge · Dillon execution plan</span><span>Internal working document</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">02 · Immediate start</div>
+    <h2>Phase 1: Discovery, Requirements, and Architecture</h2>
+    <p class="lead">This is the confirmed starting point. The goal is to leave discovery with enough clarity that the team can build the right MVP instead of guessing at features, roles, or technical boundaries.</p>
+    <div class="grid2">
+      <div class="card soft"><h3>Before the prototype walkthrough</h3><ul class="checklist"><li>Review the contract and the project goal: a working MVP product.</li><li>Review the Phase 1 tracker and prepare a lightweight capture template.</li><li>Prepare questions about users, permissions, verification, listings, messaging, and admin controls.</li><li>Set up a note-taking and decision log workflow so product decisions do not disappear into meeting notes.</li><li>Coordinate with Miraj on what frontend decisions depend on backend architecture.</li></ul></div>
+      <div class="card soft"><h3>During the walkthrough and onboarding</h3><ul class="checklist"><li>Capture the product concept in the client’s language, including what Bridge must and must not do.</li><li>Record each user type, their objective, the actions they need, and the information they must provide.</li><li>Separate must-have MVP features from later ideas, nice-to-haves, and unresolved questions.</li><li>Identify compliance-sensitive points such as age gating, license status, jurisdiction, and business verification.</li><li>Confirm the happy path and the failure path for each important workflow.</li></ul></div>
+    </div>
+    <h3 style="margin-top:12px">Phase 1 outputs I will produce</h3>
+    <div class="grid3">
+      <div class="card mint"><h3>Product map</h3><p class="small">A concise description of the MVP, users, core objects, and the main journey from entry to value.</p></div>
+      <div class="card lav"><h3>Role matrix</h3><p class="small">What each role can see, create, edit, approve, message, and administer.</p></div>
+      <div class="card gold"><h3>Initial backlog</h3><p class="small">Prioritized feature list with acceptance criteria, dependencies, unknowns, and a recommended build order.</p></div>
+    </div>
+    <div class="callout gold"><strong>My Phase 1 handoff standard:</strong> someone who did not attend the walkthrough should be able to understand the user roles, core screens, MVP priorities, open questions, and frontend implications from my materials.</div>
+    <div class="footer"><span>Bridge · Phase 1</span><span>Discovery → usable requirements</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">03 · The six-milestone execution map</div>
+    <h2>How I will carry the work forward</h2>
+    <p class="lead">The shared Slack tracker confirms my Phase 1 responsibilities and Miraj’s backend lane. The remaining sections below turn my role into a practical six-milestone execution sequence that can be synchronized to the team’s detailed milestone brief during kickoff.</p>
+
+    <div class="milestone">
+      <div class="milestone-head"><div class="milestone-num">MILESTONE 1</div><h3>Discovery, Requirements, and Architecture</h3></div>
+      <span class="tag">confirmed starting phase</span><span class="tag">client + prototype</span><span class="tag">shared sign-off</span>
+      <ul class="checklist"><li>Attend the prototype walkthrough and capture UI/UX and product concept notes.</li><li>Define the five working roles: brand, retailer, dispensary, sales rep, and admin.</li><li>Own the early application map, user journey, initial feature backlog, and frontend requirements.</li><li>Align component and stack recommendations with Miraj’s database, architecture, and environment plan.</li><li>Turn compliance and research findings into concrete UX questions and decisions.</li></ul>
+      <p class="small"><strong>Exit evidence:</strong> MVP feature list, role matrix, first-pass application map, open questions, and clear handoff into product definition.</p>
+    </div>
+
+    <div class="milestone">
+      <div class="milestone-head"><div class="milestone-num">MILESTONE 2</div><h3>Product definition and UX system</h3></div>
+      <span class="tag">flows</span><span class="tag">wireframes</span><span class="tag">prioritization</span>
+      <ul class="checklist"><li>Convert discovery notes into a screen inventory and navigation model.</li><li>Map onboarding, verification, account setup, dashboard, listings, messaging, and admin flows.</li><li>Define the purpose, inputs, outputs, permissions, and edge cases for each core screen.</li><li>Draft wireframe direction with clear hierarchy, calls to action, form behavior, empty states, and error states.</li><li>Rank features as MVP-critical, important after launch, or future exploration.</li><li>Resolve contradictions before build by routing questions through Melissa and Mac to Tori.</li></ul>
+      <p class="small"><strong>Exit evidence:</strong> agreed user journeys, wireframe direction, role/permission assumptions, and a prioritized backlog ready for implementation.</p>
+    </div>
+
+    <div class="milestone">
+      <div class="milestone-head"><div class="milestone-num">MILESTONE 3</div><h3>Frontend foundation and AI-assisted workflow</h3></div>
+      <span class="tag">stack</span><span class="tag">components</span><span class="tag">developer workflow</span>
+      <ul class="checklist"><li>Recommend the frontend stack and component structure with Miraj.</li><li>Define route naming, shared layout, reusable components, form patterns, and responsive behavior.</li><li>Set up an AI-assisted workflow using Claude, Codex, and Cursor with clear review gates.</li><li>Establish how prompts, generated code, decisions, and reusable patterns will be documented.</li><li>Agree on API/data expectations, mock data shape, loading behavior, and error handling before screens depend on live services.</li><li>Keep secrets, client credentials, and compliance-sensitive data outside prompts, tickets, and unapproved tools.</li></ul>
+      <p class="small"><strong>Exit evidence:</strong> frontend plan, component conventions, working development workflow, integration assumptions, and a small vertical slice or screen skeleton.</p>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">04 · Build, integrate, prove</div>
+    <h2>The second half of my execution lane</h2>
+
+    <div class="milestone">
+      <div class="milestone-head"><div class="milestone-num">MILESTONE 4</div><h3>Core MVP frontend build</h3></div>
+      <span class="tag">implementation</span><span class="tag">role-aware UI</span><span class="tag">usable states</span>
+      <ul class="checklist"><li>Build the shared shell: navigation, page structure, responsive layout, notifications, and account context.</li><li>Implement onboarding and account setup with clear validation and recovery paths.</li><li>Implement verification-facing screens in coordination with Miraj’s technical requirements for EIN, business, license, jurisdiction, and status data.</li><li>Build role-aware dashboards and the first usable flows for listings, discovery, messaging, and admin review.</li><li>Handle loading, empty, error, success, permission-denied, and incomplete-profile states.</li><li>Keep the UI understandable for users who are not technical and consistent across all roles.</li><li>Maintain an implementation log: what is complete, what is blocked, what changed, and what needs client confirmation.</li></ul>
+      <p class="small"><strong>Exit evidence:</strong> core MVP screens are navigable, responsive, visually coherent, and connected to agreed mock or live data contracts.</p>
+    </div>
+
+    <div class="milestone">
+      <div class="milestone-head"><div class="milestone-num">MILESTONE 5</div><h3>Integration, QA, and acceptance readiness</h3></div>
+      <span class="tag">API integration</span><span class="tag">QA</span><span class="tag">acceptance criteria</span>
+      <ul class="checklist"><li>Connect the frontend to Miraj’s APIs/services as endpoints become available.</li><li>Verify that role permissions match the agreed role matrix and do not expose the wrong data or actions.</li><li>Test business verification and account states, including incomplete, pending, rejected, and approved paths.</li><li>Validate age-gating, jurisdiction, license status, and compliance-sensitive UI assumptions with the team before treating them as final.</li><li>Run responsive, cross-browser, keyboard, and basic accessibility checks.</li><li>Test forms, navigation, links, validation, loading states, errors, notifications, and message flows.</li><li>Turn failures into specific tickets with reproduction steps, expected behavior, actual behavior, severity, and owner.</li><li>Prepare a demo-ready path that shows the MVP’s value without relying on hidden manual fixes.</li></ul>
+      <p class="small"><strong>Exit evidence:</strong> acceptance checklist, prioritized bug list, tested primary journeys, and a clean demo path for internal/client review.</p>
+    </div>
+
+    <div class="milestone">
+      <div class="milestone-head"><div class="milestone-num">MILESTONE 6</div><h3>Launch readiness, documentation, and handoff</h3></div>
+      <span class="tag">release checklist</span><span class="tag">handoff</span><span class="tag">next backlog</span>
+      <ul class="checklist"><li>Confirm the agreed MVP scope and call out anything intentionally deferred.</li><li>Coordinate final frontend fixes, environment checks, and release sequencing with Miraj.</li><li>Prepare a short user-flow walkthrough for the client and internal team.</li><li>Document the app map, role behavior, component conventions, AI workflow, known limitations, and next-priority backlog.</li><li>Capture feedback as decisions or tickets instead of allowing vague “make it better” requests to become untracked scope.</li><li>Identify post-MVP improvements: deeper search, richer messaging, automation, analytics, moderation, and additional role capabilities.</li><li>Supply clean screenshots, notes, and outcomes that can support a future Bridge case study after approval.</li></ul>
+      <p class="small"><strong>Exit evidence:</strong> approved handoff notes, tested MVP walkthrough, known-issues list, deferred backlog, and clear ownership for the next phase.</p>
+    </div>
+    <div class="footer"><span>Bridge · Milestones 4–6</span><span>Build → prove → hand off</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">05 · How I will operate</div>
+    <h2>Working rhythm, dependencies, and guardrails</h2>
+    <div class="grid2">
+      <div class="card soft"><h3>My recurring operating rhythm</h3><ul class="checklist"><li><strong>Before a meeting:</strong> review the latest decisions, prepare questions, and know what must be decided.</li><li><strong>During a meeting:</strong> capture user needs, constraints, decisions, owners, and unresolved questions.</li><li><strong>After a meeting:</strong> update the application map, backlog, role matrix, and decision log.</li><li><strong>During build:</strong> work in small vertical slices, show progress early, and surface blockers quickly.</li><li><strong>Before handoff:</strong> verify the primary paths, record known limitations, and make the next action obvious.</li></ul></div>
+      <div class="card mint"><h3>What I need from the team</h3><ul class="checklist"><li><strong>From Tori:</strong> prototype access, product priorities, role definitions, compliance/legal direction, and timely decisions.</li><li><strong>From Melissa:</strong> organized client questions, research findings, meeting coordination, and feedback routing.</li><li><strong>From Miraj:</strong> architecture decisions, data models, API expectations, environment access, and technical constraints.</li><li><strong>From Mac:</strong> scope decisions, escalation support, priorities, and Phase 1 sign-off.</li></ul></div>
+    </div>
+    <h3 style="margin-top:13px">Boundaries that protect the project</h3>
+    <div class="grid2">
+      <div class="card rose"><ul class="checklist"><li>I will not make legal or regulatory determinations; I will surface questions and translate confirmed guidance into product behavior.</li><li>I will not place sensitive client credentials, business verification data, or personal information into AI prompts or unapproved systems.</li><li>I will not silently expand the MVP. New features become backlog items until scope and ownership are clear.</li><li>I will not treat a polished screen as complete until the workflow, permission model, error states, and acceptance criteria are also covered.</li></ul></div>
+      <div class="card gold"><ul class="checklist"><li>I will keep frontend decisions synchronized with Miraj’s backend and architecture work.</li><li>I will make assumptions visible and label them for confirmation.</li><li>I will use the bridge/remote-browser workflow only for approved, task-specific access and document what was changed.</li><li>I will report blockers with evidence, impact, and a proposed next step.</li></ul></div>
+    </div>
+    <div class="callout"><strong>Definition of done for my lane:</strong> the product can be explained in plain language, each role has a clear path, the frontend matches the agreed data and permission model, primary workflows are tested, and the team has a written backlog for what comes next.</div>
+    <div class="footer"><span>Bridge · Operating model</span><span>Clear work, visible decisions, clean handoffs</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">06 · Action list</div>
+    <h2>My immediate next steps</h2>
+    <p class="lead">This is the short list I can execute as soon as the internal and client onboarding times are confirmed.</p>
+    <div class="card mint">
+      <ul class="checklist">
+        <li>Review the approved Bridge agreement and the Phase 1 task tracker.</li>
+        <li>Join the internal team call and confirm the working sequence, owners, communication channel, and milestone gates.</li>
+        <li>Join the client onboarding/prototype walkthrough and capture the product concept, roles, workflows, and open questions.</li>
+        <li>Draft the first role matrix for brand, retailer, dispensary, sales rep, and admin.</li>
+        <li>Draft the early MVP application map covering onboarding, verification, account setup, dashboard, listings, messaging, and admin.</li>
+        <li>Turn the map into an initial prioritized backlog with acceptance criteria and dependencies.</li>
+        <li>Meet with Miraj to align frontend stack, component structure, data contracts, API assumptions, and environment needs.</li>
+        <li>Set up the Claude/Codex/Cursor workflow and document the review process for AI-assisted development.</li>
+        <li>Prepare wireframe direction and a small vertical slice that makes the intended experience tangible.</li>
+        <li>Review compliance and research implications with Melissa and Mac before locking sensitive UX decisions.</li>
+        <li>Keep the tracker current: mark completed work, record blockers, assign owners, and keep deferred ideas out of the MVP path.</li>
+      </ul>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="card lav"><h3>First deliverable package</h3><p class="small">Role matrix · MVP application map · prioritized backlog · open questions list · first-pass wireframe direction · frontend/architecture alignment notes.</p></div>
+      <div class="card soft"><h3>Success signal</h3><p class="small">The team and client can see exactly what Bridge is building, who it is for, how each role moves through it, what is included in the MVP, and what must be decided before build continues.</p></div>
+    </div>
+    <div class="callout gold"><strong>Bottom line:</strong> my job is to make the Bridge MVP understandable, usable, buildable, and testable — then keep that clarity intact as the project moves from idea to working product.</div>
+    <p class="source" style="margin-top:14px">Working basis: Bridge project channel, Phase 1 Task Tracker, and the team responsibility split shared in Slack. Detailed milestone names and gates should be synchronized with Miraj’s six-milestone brief during the internal kickoff.</p>
+    <div class="footer"><span>Bridge · Dillon execution plan</span><span>Ready for internal kickoff</span></div>
+  </section>
+</body>
+</html>

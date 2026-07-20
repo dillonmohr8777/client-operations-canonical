@@ -1,0 +1,1941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bridge — Dashboard & Feed</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* ── BRIDGE PURPLE PALETTE ── */
+  --leaf:#7C3AED;
+  --leaf-dk:#6D28D9;
+  --leaf-lt:#A78BFA;
+  --sage:#C4B5FD;
+  --mint:#EDE9FE;
+  --spring:#F5F3FF;
+  --forest:#4C1D95;
+  --canopy:#2E1065;
+  --fern:#8B5CF6;
+  --lime:#DDD6FE;
+  --amber:#D97706;
+  --amber-lt:#FFF3D0;
+  --white:#FFFFFF;
+  --stone50:#F8F7FF;
+  --stone100:#F0EDFF;
+  --stone200:#D4CCF7;
+  --stone400:#9B8FCC;
+  --stone600:#5E5299;
+  --tp:#1E0A3C;
+  --ts:#3B2A6B;
+  --tm:#7B68B5;
+  --border:rgba(124,58,237,.14);
+  --border-md:rgba(124,58,237,.28);
+  --r:6px;--r-md:10px;--r-lg:14px;--r-xl:20px;
+  --topbar:60px;--sidebar:72px;
+}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--tp);background:var(--stone50);font-size:14px}
+
+/* ── BRIDGE LOGO SVG INLINE ── */
+/* Three-arch bridge mark + wordmark, used as inline SVG throughout */
+
+/* ── TOPBAR ── */
+.topbar{
+  height:var(--topbar);background:var(--white);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 1.25rem;position:sticky;top:0;z-index:100;
+  grid-column:1/-1;
+}
+.topbar-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.topbar-wordmark{
+  font-family:'Inter',sans-serif;font-size:20px;font-weight:800;
+  color:var(--tp);letter-spacing:-0.02em;
+}
+.topbar-center{
+  display:flex;align-items:center;gap:8px;
+  background:var(--stone50);border:1px solid var(--border);
+  border-radius:var(--r-md);padding:8px 14px;width:300px;
+}
+.topbar-center input{
+  background:none;border:none;outline:none;
+  font-family:'Inter',sans-serif;font-size:13px;color:var(--tp);flex:1;
+}
+.topbar-center input::placeholder{color:var(--tm)}
+.topbar-right{display:flex;align-items:center;gap:8px}
+.icon-btn{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--stone50);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:15px;position:relative;transition:background .15s;
+}
+.icon-btn:hover{background:var(--stone100)}
+.notif-pip{
+  position:absolute;top:4px;right:4px;
+  width:8px;height:8px;border-radius:50%;
+  background:var(--leaf);border:1.5px solid var(--white);
+}
+.avatar-btn{
+  width:34px;height:34px;border-radius:50%;
+  background:linear-gradient(135deg,var(--leaf),var(--forest));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:11px;color:white;cursor:pointer;
+}
+
+/* ── APP LAYOUT ── */
+.app{display:grid;grid-template-columns:var(--sidebar) 1fr;grid-template-rows:var(--topbar) 1fr;height:100vh;overflow:hidden}
+
+/* ── SIDEBAR ICON RAIL ── */
+.sidebar{
+  background:var(--white);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;
+  padding:10px 0 0;overflow:visible;position:relative;z-index:40;
+}
+.nav-sep{width:32px;height:1px;background:var(--border);margin:5px 0}
+.nav-item{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:3px;width:54px;height:50px;border-radius:var(--r-md);
+  cursor:pointer;transition:all .15s;border:1.5px solid transparent;
+  position:relative;margin:2px 0;color:var(--tm);
+}
+.nav-item:hover{background:var(--spring);color:var(--forest)}
+.nav-item.active{background:var(--spring);border-color:var(--border-md);color:var(--leaf-dk)}
+.nav-icon{font-size:17px;line-height:1}
+.nav-label{font-size:9px;font-weight:600;color:inherit;text-align:center;white-space:nowrap}
+.nav-pip{
+  position:absolute;top:5px;right:5px;width:7px;height:7px;
+  border-radius:50%;background:var(--leaf);border:1.5px solid var(--white);
+}
+.nav-item::after{
+  content:attr(data-tip);position:absolute;left:calc(100% + 10px);top:50%;
+  transform:translateY(-50%);background:var(--canopy);color:white;
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:500;
+  padding:5px 10px;border-radius:var(--r);white-space:nowrap;
+  pointer-events:none;opacity:0;transition:opacity .15s;z-index:200;
+}
+.nav-item:hover::after{opacity:1}
+.sidebar-bottom{
+  margin-top:auto;padding:10px 0 12px;border-top:1px solid var(--border);
+  width:100%;display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.plan-chip{
+  display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;
+}
+.plan-dot{width:8px;height:8px;border-radius:50%;background:var(--leaf)}
+.plan-label{font-size:9px;font-weight:700;color:var(--leaf-dk)}
+
+/* ── MAIN ── */
+.main{overflow:hidden;display:flex;flex-direction:column}
+.page{display:none;flex:1;overflow:hidden;flex-direction:column}
+.page.active{display:flex}
+
+/* ── FEED PAGE LAYOUT ── */
+.feed-layout{
+  display:grid;grid-template-columns:1fr 340px;
+  gap:0;flex:1;overflow:hidden;
+}
+.feed-col{
+  overflow-y:auto;padding:1.25rem 1rem 2rem 1.5rem;
+  display:flex;flex-direction:column;gap:0;
+}
+.feed-col::-webkit-scrollbar{width:4px}
+.feed-col::-webkit-scrollbar-thumb{background:var(--stone200);border-radius:99px}
+.feed-aside{
+  border-left:1px solid var(--border);
+  overflow-y:auto;padding:1.25rem;
+  background:var(--white);
+  display:flex;flex-direction:column;gap:1.25rem;
+}
+.feed-aside::-webkit-scrollbar{width:4px}
+.feed-aside::-webkit-scrollbar-thumb{background:var(--stone200);border-radius:99px}
+
+/* ── GREETING HERO ── */
+.greeting-hero{
+  background:linear-gradient(135deg,var(--forest) 0%,#5B21B6 60%,#5B21B6 100%);
+  border-radius:var(--r-xl);
+  padding:1.5rem 1.75rem;
+  margin-bottom:1.25rem;
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.greeting-hero::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:200px;height:200px;border-radius:50%;
+  background:rgba(124,58,237,.12);pointer-events:none;
+}
+.greeting-hero::after{
+  content:'';position:absolute;bottom:-60px;left:60px;
+  width:160px;height:160px;border-radius:50%;
+  background:rgba(181,229,80,.07);pointer-events:none;
+}
+.greeting-name{
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-weight:800;color:var(--white);
+  letter-spacing:-0.01em;margin-bottom:4px;
+}
+.greeting-meta{
+  font-size:12px;color:var(--sage);
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.greeting-dot{width:3px;height:3px;border-radius:50%;background:var(--sage);opacity:.5}
+.greeting-live{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(124,58,237,.2);color:var(--mint);
+  border:1px solid rgba(124,58,237,.3);border-radius:99px;
+  font-size:11px;font-weight:600;padding:3px 9px;
+}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--leaf);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.greeting-stats{
+  display:flex;gap:16px;flex-shrink:0;
+}
+.g-stat{text-align:center}
+.g-stat-val{font-family:'Playfair Display',serif;font-size:22px;font-weight:800;color:var(--white);line-height:1}
+.g-stat-label{font-size:10px;color:var(--sage);margin-top:2px}
+
+/* ── FEED STATE SCOPE BAR ── */
+.feed-scope-bar{
+  display:flex;align-items:center;gap:8px;
+  padding:.75rem 0;margin-bottom:1rem;
+  border-bottom:1px solid var(--border);
+  overflow-x:auto;flex-shrink:0;
+}
+.feed-scope-bar::-webkit-scrollbar{display:none}
+.scope-btn{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  width:58px;height:52px;border-radius:var(--r-md);
+  border:1.5px solid var(--border);background:var(--white);
+  cursor:pointer;transition:all .18s;font-size:18px;flex-shrink:0;
+}
+.scope-btn .sl{font-size:9px;font-weight:700;color:var(--tm)}
+.scope-btn:hover{border-color:var(--leaf);background:var(--spring)}
+.scope-btn.active{border-color:var(--leaf);background:var(--spring)}
+.scope-btn.active .sl{color:var(--leaf-dk)}
+.scope-divider{width:1px;height:32px;background:var(--border);flex-shrink:0}
+.feed-filter-row{
+  display:flex;align-items:center;gap:6px;
+  margin-bottom:1.25rem;overflow-x:auto;flex-shrink:0;
+}
+.feed-filter-row::-webkit-scrollbar{display:none}
+.ff-chip{
+  flex-shrink:0;padding:5px 13px;border-radius:99px;
+  border:1px solid var(--border);background:var(--white);
+  font-size:12px;font-weight:500;color:var(--tm);cursor:pointer;white-space:nowrap;
+  transition:all .15s;
+}
+.ff-chip:hover{border-color:var(--leaf);color:var(--leaf-dk)}
+.ff-chip.active{background:var(--leaf);color:var(--white);border-color:var(--leaf)}
+
+/* ── POST CARDS ── */
+.post-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--r-xl);
+  overflow:hidden;
+  margin-bottom:14px;
+  transition:box-shadow .18s;
+}
+.post-card:hover{box-shadow:0 4px 24px rgba(124,58,237,.1)}
+
+/* Post type accent */
+.post-card.drop::before,
+.post-card.deal::before,
+.post-card.announce::before{
+  content:'';display:block;height:3px;
+}
+.post-card.drop::before{background:linear-gradient(90deg,var(--leaf),var(--lime))}
+.post-card.deal::before{background:linear-gradient(90deg,var(--fern),var(--leaf-lt))}
+.post-card.announce::before{background:linear-gradient(90deg,var(--forest),var(--leaf))}
+
+.post-header{
+  padding:12px 16px 10px;
+  display:flex;align-items:center;gap:10px;
+}
+.post-biz-av{
+  width:42px;height:42px;border-radius:var(--r-md);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:13px;flex-shrink:0;
+}
+.post-biz-name{font-size:14px;font-weight:700;color:var(--tp)}
+.post-biz-meta{font-size:11px;color:var(--tm);display:flex;align-items:center;gap:5px;margin-top:1px;flex-wrap:wrap}
+.post-meta-dot{width:2px;height:2px;border-radius:50%;background:var(--stone200)}
+.post-type-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  border-radius:99px;padding:2px 9px;
+  font-size:10px;font-weight:700;
+}
+.post-type-badge.drop{background:var(--mint);color:var(--forest)}
+.post-type-badge.deal{background:#FFF9E6;color:#8B6520}
+.post-type-badge.announce{background:var(--spring);color:var(--forest)}
+
+/* Post visual — full-width image area */
+.post-visual{
+  width:100%;
+  aspect-ratio:4/3;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+}
+.post-visual-inner{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+  transition:transform .3s;
+}
+.post-card:hover .post-visual-inner{transform:scale(1.01)}
+.post-visual-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 40%,rgba(30,10,60,.7) 100%);
+}
+.post-visual-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:14px 16px;color:white;
+}
+.post-visual-title{
+  font-family:'Playfair Display',serif;
+  font-size:18px;font-weight:800;line-height:1.2;
+  margin-bottom:4px;letter-spacing:-0.01em;
+}
+.post-visual-sub{font-size:12px;opacity:.85}
+.post-visual-price{
+  display:inline-block;
+  background:var(--leaf);color:white;
+  font-size:14px;font-weight:800;
+  border-radius:var(--r-md);padding:4px 12px;
+  margin-top:6px;
+}
+
+/* Post body text */
+.post-body{padding:12px 16px 0;font-size:13px;color:var(--ts);line-height:1.65}
+
+/* Post actions — NO likes, NO comments */
+.post-actions{
+  display:flex;align-items:center;gap:0;
+  padding:10px 12px;border-top:1px solid var(--border);margin-top:12px;
+}
+.post-action-btn{
+  display:flex;align-items:center;gap:6px;
+  background:none;border:none;
+  padding:7px 12px;border-radius:var(--r-md);
+  font-family:'Inter',sans-serif;font-size:12px;font-weight:500;
+  color:var(--tm);cursor:pointer;transition:all .15s;
+}
+.post-action-btn:hover{background:var(--spring);color:var(--leaf-dk)}
+.post-action-btn.repost-btn:hover{background:var(--mint);color:var(--forest)}
+.post-action-btn.reposted{color:var(--leaf-dk);font-weight:700}
+.post-action-btn.save-btn:hover{background:#FFF9E6;color:#8B6520}
+.repost-count{
+  font-size:11px;font-weight:700;
+  background:var(--spring);color:var(--leaf-dk);
+  border-radius:99px;padding:1px 7px;
+  border:1px solid var(--border-md);
+}
+.post-follow-btn{
+  margin-left:auto;
+  background:var(--spring);color:var(--leaf-dk);
+  border:1px solid var(--border-md);border-radius:99px;
+  padding:5px 14px;font-family:'Inter',sans-serif;
+  font-size:11px;font-weight:700;cursor:pointer;transition:all .15s;
+}
+.post-follow-btn:hover{background:var(--leaf);color:white;border-color:var(--leaf)}
+.post-follow-btn.following{background:var(--mint);color:var(--forest);border-color:var(--border-md)}
+
+/* State tag on post */
+.post-state-tag{
+  background:var(--stone50);color:var(--ts);
+  border:1px solid var(--border);border-radius:99px;
+  font-size:10px;font-weight:600;padding:2px 7px;
+}
+
+/* Repost banner (when viewing a reposted item) */
+.repost-banner{
+  display:flex;align-items:center;gap:7px;
+  padding:7px 16px;background:var(--spring);
+  border-bottom:1px solid var(--border);
+  font-size:11px;color:var(--ts);font-weight:500;
+}
+.repost-banner strong{color:var(--forest);font-weight:700}
+
+/* ── ASIDE CARDS ── */
+.aside-card{
+  background:var(--stone50);border:1px solid var(--border);
+  border-radius:var(--r-xl);overflow:hidden;
+}
+.aside-head{
+  padding:.875rem 1rem;border-bottom:1px solid var(--border);
+  background:var(--white);
+}
+.aside-head h3{
+  font-size:13px;font-weight:700;color:var(--tp);
+}
+.aside-body{padding:1rem}
+
+/* Who to follow */
+.follow-list{display:flex;flex-direction:column;gap:0}
+.follow-item{
+  display:flex;align-items:center;gap:9px;
+  padding:9px 0;border-bottom:1px solid var(--border);
+}
+.follow-item:last-child{border-bottom:none}
+.follow-av{
+  width:36px;height:36px;border-radius:var(--r-md);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:11px;flex-shrink:0;
+}
+.follow-name{font-size:12px;font-weight:700;color:var(--tp);line-height:1.3}
+.follow-type{font-size:10px;color:var(--tm)}
+.follow-btn{
+  margin-left:auto;flex-shrink:0;
+  background:var(--spring);color:var(--leaf-dk);
+  border:1px solid var(--border-md);border-radius:99px;
+  padding:4px 12px;font-family:'Inter',sans-serif;
+  font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .15s;
+}
+.follow-btn:hover{background:var(--leaf);color:white;border-color:var(--leaf)}
+.follow-btn.following{background:var(--mint);color:var(--forest)}
+
+/* Trending */
+.trending-list{display:flex;flex-direction:column;gap:0}
+.trending-item{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer;
+}
+.trending-item:last-child{border-bottom:none}
+.t-num{font-size:14px;font-weight:800;color:var(--stone200);width:18px;flex-shrink:0}
+.t-tag{font-size:13px;font-weight:700;color:var(--tp)}
+.t-count{font-size:11px;color:var(--tm);margin-left:auto}
+
+/* Promote CTA */
+.promote-card{
+  background:linear-gradient(135deg,var(--forest),#5B21B6);
+  border-radius:var(--r-xl);padding:1.25rem;color:white;
+}
+.promote-card h4{
+  font-family:'Playfair Display',serif;
+  font-size:16px;font-weight:800;margin-bottom:6px;
+}
+.promote-card p{font-size:12px;opacity:.85;line-height:1.65;margin-bottom:12px}
+.promote-btn{
+  width:100%;background:var(--lime);color:var(--forest);
+  border:none;border-radius:var(--r-md);
+  padding:10px;font-family:'Inter',sans-serif;
+  font-size:13px;font-weight:800;cursor:pointer;transition:opacity .15s;
+}
+.promote-btn:hover{opacity:.9}
+
+/* Rules reminder */
+.rules-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--r-xl);padding:1rem;
+}
+.rules-card h4{font-size:12px;font-weight:700;color:var(--tp);margin-bottom:.75rem;display:flex;align-items:center;gap:6px}
+.rule-row{display:flex;align-items:flex-start;gap:7px;margin-bottom:7px;font-size:11px;color:var(--ts);line-height:1.5}
+.rule-row:last-child{margin-bottom:0}
+.rule-icon{flex-shrink:0;font-size:13px;margin-top:0px}
+
+/* ── REPOST MODAL ── */
+.modal-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(30,10,60,.6);backdrop-filter:blur(8px);
+  z-index:200;align-items:center;justify-content:center;padding:1rem;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--white);border-radius:var(--r-xl);
+  width:100%;max-width:480px;
+  box-shadow:0 40px 100px rgba(0,0,0,.2);
+  animation:mi .2s ease;overflow:hidden;
+}
+@keyframes mi{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.modal-head{
+  background:linear-gradient(135deg,var(--forest),#5B21B6);
+  padding:1.5rem;
+}
+.modal-head h2{
+  font-family:'Playfair Display',serif;
+  font-size:19px;font-weight:800;color:var(--white);margin-bottom:4px;
+}
+.modal-head p{font-size:12px;color:var(--sage)}
+.modal-body{padding:1.25rem}
+.modal-preview{
+  background:var(--spring);border:1px solid var(--border-md);
+  border-radius:var(--r-lg);padding:12px 14px;
+  margin-bottom:1rem;display:flex;align-items:center;gap:10px;
+}
+.modal-preview-av{
+  width:36px;height:36px;border-radius:var(--r-md);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:11px;flex-shrink:0;
+}
+.modal-preview-name{font-size:13px;font-weight:700;color:var(--tp)}
+.modal-preview-title{font-size:12px;color:var(--ts);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.modal-note{
+  background:var(--mint);border:1px solid var(--border-md);
+  border-radius:var(--r-md);padding:10px 12px;
+  font-size:12px;color:var(--forest);line-height:1.6;margin-bottom:1rem;
+}
+.modal-note strong{font-weight:700}
+.modal-optional-note{
+  width:100%;border:1px solid var(--border-md);border-radius:var(--r-md);
+  padding:9px 12px;font-family:'Inter',sans-serif;font-size:13px;
+  color:var(--tp);resize:none;outline:none;min-height:72px;
+  line-height:1.55;background:var(--stone50);
+  transition:border-color .15s;
+}
+.modal-optional-note:focus{border-color:var(--leaf)}
+.modal-optional-note::placeholder{color:var(--tm)}
+.modal-footer{
+  padding:1rem 1.25rem;border-top:1px solid var(--border);
+  display:flex;gap:8px;justify-content:flex-end;
+  background:var(--stone50);
+}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:var(--r-md);font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .15s}
+.btn-leaf{background:var(--leaf);color:white}
+.btn-leaf:hover{background:var(--leaf-dk)}
+.btn-outline{background:transparent;border:1px solid var(--border-md);color:var(--ts)}
+.btn-outline:hover{border-color:var(--leaf);color:var(--leaf-dk)}
+
+/* ── DASHBOARD PAGE ── */
+.dash-scroll{flex:1;overflow-y:auto;padding:1.25rem 1.5rem 2rem}
+.dash-scroll::-webkit-scrollbar{width:4px}
+.dash-scroll::-webkit-scrollbar-thumb{background:var(--stone200);border-radius:99px}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.25rem}
+.stat-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--r-xl);padding:1.125rem 1.25rem;
+  position:relative;overflow:hidden;
+}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.stat-card.green::before{background:linear-gradient(90deg,var(--leaf),var(--lime))}
+.stat-card.fern::before{background:linear-gradient(90deg,var(--fern),var(--leaf-lt))}
+.stat-card.forest::before{background:linear-gradient(90deg,var(--forest),var(--leaf))}
+.sc-label{font-size:11px;font-weight:600;color:var(--tm);text-transform:uppercase;letter-spacing:.04em;margin-bottom:7px}
+.sc-val{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:var(--tp);line-height:1;margin-bottom:4px;letter-spacing:-0.02em}
+.sc-delta{font-size:11px;font-weight:600;color:var(--leaf-dk);display:flex;align-items:center;gap:3px}
+.two-col-dash{display:grid;grid-template-columns:1fr 300px;gap:1.25rem}
+.dash-main{display:flex;flex-direction:column;gap:1.25rem}
+.dash-side{display:flex;flex-direction:column;gap:1.25rem;position:sticky;top:0}
+.section-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden}
+.section-head{display:flex;align-items:center;justify-content:space-between;padding:.875rem 1.25rem;border-bottom:1px solid var(--border)}
+.section-title{font-size:13px;font-weight:700;color:var(--tp)}
+.section-link{font-size:12px;font-weight:600;color:var(--leaf-dk);cursor:pointer}
+.section-body{padding:1.25rem}
+
+/* Activity feed mini */
+.activity-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:10px 0;border-bottom:1px solid var(--border);
+}
+.activity-item:last-child{border-bottom:none}
+.act-av{
+  width:36px;height:36px;border-radius:var(--r-md);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:11px;flex-shrink:0;
+}
+.act-title{font-size:13px;font-weight:600;color:var(--tp);margin-bottom:2px}
+.act-sub{font-size:11px;color:var(--tm)}
+.act-time{font-size:10px;color:var(--tm);margin-left:auto;flex-shrink:0}
+
+/* My reposts on dash */
+.repost-mini{
+  display:flex;align-items:center;gap:10px;
+  padding:10px;background:var(--spring);border:1px solid var(--border-md);
+  border-radius:var(--r-md);margin-bottom:8px;
+}
+.repost-mini:last-child{margin-bottom:0}
+.repost-mini-av{width:32px;height:32px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10px;flex-shrink:0}
+.repost-mini-title{font-size:12px;font-weight:600;color:var(--tp);line-height:1.4}
+.repost-mini-biz{font-size:10px;color:var(--tm)}
+.repost-mini-remove{
+  margin-left:auto;flex-shrink:0;background:none;border:none;
+  font-size:14px;color:var(--stone200);cursor:pointer;transition:color .15s;
+}
+.repost-mini-remove:hover{color:var(--leaf-dk)}
+
+/* ── PROFILE TOGGLE PAGE ── */
+.profile-page{flex:1;overflow-y:auto}
+.profile-page::-webkit-scrollbar{width:4px}
+.profile-page::-webkit-scrollbar-thumb{background:var(--stone200);border-radius:99px}
+
+/* ── SCROLLBAR GLOBAL ── */
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--stone200);border-radius:99px}
+
+@media(max-width:900px){
+  .app{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .topbar-center{display:none}
+  .feed-layout{grid-template-columns:1fr}
+  .feed-aside{display:none}
+  .two-col-dash{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ══ TOPBAR ══ -->
+<header class="topbar">
+  <div style="display:flex;align-items:center;gap:14px">
+    <a class="topbar-logo" href="#">
+      <!-- Bridge logo: three concentric arches -->
+      <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer arch -->
+        <path d="M2 26 L2 16 Q2 2 18 2 Q34 2 34 16 L34 26" stroke="#A78BFA" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <!-- Middle arch -->
+        <path d="M7 26 L7 16 Q7 8 18 8 Q29 8 29 16 L29 26" stroke="#A78BFA" stroke-width="3" fill="none" stroke-linecap="round" opacity=".75"/>
+        <!-- Inner arch (doorway) -->
+        <path d="M12 26 L12 18 Q12 13 18 13 Q24 13 24 18 L24 26" stroke="#A78BFA" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".5"/>
+      </svg>
+      <span style="font-family:'Inter',sans-serif;font-size:19px;font-weight:800;color:var(--tp);letter-spacing:-0.02em">Bridge</span>
+    </a>
+    <span style="font-size:12px;color:var(--tm);font-weight:500;cursor:pointer">← Back</span>
+  </div>
+  <div class="topbar-center">
+    <span style="font-size:14px;color:var(--tm)">⌕</span>
+    <input placeholder="Search Bridge...">
+  </div>
+  <div class="topbar-right">
+    <div class="icon-btn" data-tip="Messages">✉<div class="notif-pip"></div></div>
+    <div class="icon-btn" data-tip="Notifications">🔔</div>
+    <div class="avatar-btn" onclick="showPage('profile',null)">JD</div>
+  </div>
+</header>
+
+<!-- ══ SIDEBAR ══ -->
+<nav class="sidebar">
+  <div class="nav-item active" onclick="showPage('dashboard',this)" data-tip="Home">
+    <span class="nav-icon">⊞</span><span class="nav-label">Home</span>
+  </div>
+  <div class="nav-item" onclick="showPage('feed',this)" data-tip="Feed">
+    <span class="nav-icon">◈</span><span class="nav-label">Feed</span>
+    <span class="nav-pip"></span>
+  </div>
+  <div class="nav-item" onclick="showPage('search',this)" data-tip="Browse">
+    <span class="nav-icon">⊙</span><span class="nav-label">Browse</span>
+  </div>
+  <div class="nav-sep"></div>
+  <div class="nav-item" onclick="showPage('profile',this)" data-tip="My Profile">
+    <span class="nav-icon">▣</span><span class="nav-label">Profile</span>
+  </div>
+  <div class="nav-item" onclick="showPage('reposts',this)" data-tip="My Reposts">
+    <span class="nav-icon">↺</span><span class="nav-label">Reposts</span>
+  </div>
+  <div class="nav-sep"></div>
+  <div class="nav-item" onclick="showPage('settings',this)" data-tip="Settings">
+    <span class="nav-icon">⚙</span><span class="nav-label">Settings</span>
+  </div>
+  <div class="sidebar-bottom">
+    <div class="plan-chip" data-tip="Free personal account">
+      <div class="plan-dot"></div>
+      <div class="plan-label">Free</div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ MAIN ══ -->
+<main class="main">
+
+<!-- ════════════ DASHBOARD PAGE ════════════ -->
+<div class="page active" id="page-dashboard">
+  <div class="dash-scroll">
+
+    <!-- Greeting -->
+    <div class="greeting-hero">
+      <div>
+        <div class="greeting-name">Welcome back, Jordan 👋</div>
+        <div class="greeting-meta">
+          <span>Personal account · Colorado</span>
+          <span class="greeting-dot"></span>
+          <span class="greeting-live"><span class="live-dot"></span>Feed live</span>
+        </div>
+      </div>
+      <div class="greeting-stats">
+        <div class="g-stat"><div class="g-stat-val">14</div><div class="g-stat-label">Following</div></div>
+        <div class="g-stat"><div class="g-stat-val">7</div><div class="g-stat-label">Reposts</div></div>
+        <div class="g-stat"><div class="g-stat-val">3</div><div class="g-stat-label">New drops</div></div>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="stat-row">
+      <div class="stat-card green">
+        <div class="sc-label">New posts today</div>
+        <div class="sc-val">12</div>
+        <div class="sc-delta">↑ 4 in Colorado</div>
+      </div>
+      <div class="stat-card fern">
+        <div class="sc-label">Brands following</div>
+        <div class="sc-val">14</div>
+        <div class="sc-delta">↑ 2 new this week</div>
+      </div>
+      <div class="stat-card forest">
+        <div class="sc-label">My reposts shared</div>
+        <div class="sc-val">7</div>
+        <div class="sc-delta">Helping spread the word</div>
+      </div>
+    </div>
+
+    <div class="two-col-dash">
+      <div class="dash-main">
+
+        <!-- Recent activity -->
+        <div class="section-card">
+          <div class="section-head">
+            <span class="section-title">Recent activity</span>
+            <span class="section-link" onclick="showPage('feed',null)">Go to feed →</span>
+          </div>
+          <div class="section-body" style="padding:0 1.25rem">
+            <div class="activity-item">
+              <div class="act-av" style="background:#EDE9FE;color:#4C1D95">GH</div>
+              <div style="flex:1">
+                <div class="act-title">Green Horizon Farms dropped new Sour Diesel</div>
+                <div class="act-sub">New product drop · Colorado · 2h ago</div>
+              </div>
+              <span class="act-time">2h</span>
+            </div>
+            <div class="activity-item">
+              <div class="act-av" style="background:#FFF9E6;color:#8B6520">MP</div>
+              <div style="flex:1">
+                <div class="act-title">Mountain Peak Dispensary posted a weekend deal</div>
+                <div class="act-sub">Deal · Denver, CO · 4h ago</div>
+              </div>
+              <span class="act-time">4h</span>
+            </div>
+            <div class="activity-item">
+              <div class="act-av" style="background:var(--spring);color:var(--forest)">SL</div>
+              <div style="flex:1">
+                <div class="act-title">Summit Labs announced same-day COA service</div>
+                <div class="act-sub">Announcement · Colorado Springs · Yesterday</div>
+              </div>
+              <span class="act-time">1d</span>
+            </div>
+            <div class="activity-item">
+              <div class="act-av" style="background:#EBF2F8;color:#185FA5">RC</div>
+              <div style="flex:1">
+                <div class="act-title">Rocky Crest Extracts launched live resin line</div>
+                <div class="act-sub">New product drop · Fort Collins, CO · 2d ago</div>
+              </div>
+              <span class="act-time">2d</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- My reposts preview -->
+        <div class="section-card">
+          <div class="section-head">
+            <span class="section-title">My reposts</span>
+            <span class="section-link" onclick="showPage('reposts',null)">View all →</span>
+          </div>
+          <div class="section-body">
+            <div class="repost-mini">
+              <div class="repost-mini-av" style="background:#EDE9FE;color:#4C1D95">GH</div>
+              <div>
+                <div class="repost-mini-title">Sour Diesel — Indoor Batch #SDF-0924</div>
+                <div class="repost-mini-biz">Green Horizon Farms · Reposted by you</div>
+              </div>
+              <button class="repost-mini-remove" onclick="this.closest('.repost-mini').style.opacity='.4'">✕</button>
+            </div>
+            <div class="repost-mini">
+              <div class="repost-mini-av" style="background:#FFF9E6;color:#8B6520">MP</div>
+              <div>
+                <div class="repost-mini-title">Weekend Flash Sale — 20% off all flower</div>
+                <div class="repost-mini-biz">Mountain Peak Dispensary · Reposted by you</div>
+              </div>
+              <button class="repost-mini-remove" onclick="this.closest('.repost-mini').style.opacity='.4'">✕</button>
+            </div>
+            <div style="text-align:center;padding:.75rem 0 0;font-size:12px;color:var(--tm)">Reposts appear on your public profile and help businesses reach more people.</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="dash-side">
+
+        <!-- Suggested brands -->
+        <div class="aside-card">
+          <div class="aside-head"><h3>Suggested brands</h3></div>
+          <div class="aside-body" style="padding:0 1rem">
+            <div class="follow-list">
+              <div class="follow-item">
+                <div class="follow-av" style="background:#EDE9FE;color:#4C1D95">GH</div>
+                <div><div class="follow-name">Green Horizon Farms</div><div class="follow-type">Cultivator · Denver, CO</div></div>
+                <button class="follow-btn">+ Follow</button>
+              </div>
+              <div class="follow-item">
+                <div class="follow-av" style="background:#FFF9E6;color:#8B6520">MP</div>
+                <div><div class="follow-name">Mountain Peak</div><div class="follow-type">Dispensary · Denver, CO</div></div>
+                <button class="follow-btn">+ Follow</button>
+              </div>
+              <div class="follow-item">
+                <div class="follow-av" style="background:var(--spring);color:var(--forest)">AS</div>
+                <div><div class="follow-name">Alpine Sun Greenhouse</div><div class="follow-type">Cultivator · Durango, CO</div></div>
+                <button class="follow-btn">+ Follow</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- About reposting -->
+        <div class="aside-card">
+          <div class="aside-head"><h3>How reposts work</h3></div>
+          <div class="aside-body">
+            <div class="rule-row"><span class="rule-icon">↺</span><span>Repost any business post to your personal profile — it spreads their reach instantly.</span></div>
+            <div class="rule-row"><span class="rule-icon">🔒</span><span>Reposts can't be edited. Attribution always stays with the original brand.</span></div>
+            <div class="rule-row"><span class="rule-icon">✅</span><span>Only verified business posts can be reposted — no personal posts.</span></div>
+            <div class="rule-row"><span class="rule-icon">🌿</span><span>Your followers see your reposts in their feed — helping good businesses go further.</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ FEED PAGE ════════════ -->
+<div class="page" id="page-feed">
+  <div class="feed-layout">
+    <div class="feed-col">
+
+      <!-- Scope + filters -->
+      <div style="flex-shrink:0">
+        <div class="feed-scope-bar">
+          <div class="scope-btn active" id="scope-mine" onclick="setScope('mine',this)" title="My State (CO)">
+            <span style="padding-top:6px">🌿</span>
+            <span class="sl">My State</span>
+          </div>
+          <div class="scope-btn" id="scope-pick" onclick="setScope('pick',this)" title="Choose state">
+            <span style="padding-top:6px">📍</span>
+            <span class="sl">Choose</span>
+          </div>
+          <div class="scope-btn" id="scope-all" onclick="setScope('all',this)" title="All states">
+            <span style="padding-top:6px">🌎</span>
+            <span class="sl">All States</span>
+          </div>
+          <div class="scope-divider"></div>
+          <div style="font-size:11px;color:var(--tm);font-weight:500;white-space:nowrap">📍 Colorado</div>
+        </div>
+        <div class="feed-filter-row">
+          <div class="ff-chip active" onclick="setFilter('all',this)">All posts</div>
+          <div class="ff-chip" onclick="setFilter('drop',this)">🌿 New drops</div>
+          <div class="ff-chip" onclick="setFilter('deal',this)">🏷 Deals</div>
+          <div class="ff-chip" onclick="setFilter('announce',this)">📣 Announcements</div>
+          <div class="ff-chip" onclick="setFilter('repost',this)">↺ Reposts</div>
+        </div>
+      </div>
+
+      <!-- ── POST 1: New Product Drop ── -->
+      <div class="post-card drop" data-type="drop" data-state="CO">
+        <div class="post-header">
+          <div class="post-biz-av" style="background:#EDE9FE;color:#4C1D95">GH</div>
+          <div style="flex:1">
+            <div class="post-biz-name">Green Horizon Farms</div>
+            <div class="post-biz-meta">
+              <span class="post-type-badge drop">🌿 New Drop</span>
+              <span class="post-meta-dot"></span>
+              <span>Denver, CO</span>
+              <span class="post-meta-dot"></span>
+              <span>2h ago</span>
+              <span class="post-state-tag">CO</span>
+            </div>
+          </div>
+          <button class="post-follow-btn" onclick="toggleFollow(this)">+ Follow</button>
+        </div>
+        <div class="post-visual">
+          <div class="post-visual-inner" style="background:linear-gradient(145deg,#1E0A3C 0%,#4C1D95 40%,#7C3AED 100%)">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.15">
+              <div style="width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,#b5e550,transparent)"></div>
+            </div>
+            <div style="position:relative;z-index:2;text-align:center">
+              <div style="font-size:52px;margin-bottom:8px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4))">🌿</div>
+              <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase">BATCH #SDF-1024 · INDOOR</div>
+            </div>
+            <div class="post-visual-overlay"></div>
+            <div class="post-visual-caption">
+              <div class="post-visual-title">Sour Diesel — New Batch</div>
+              <div class="post-visual-sub">THC 26.4% · COA verified · Limited availability</div>
+              <div class="post-visual-price">Now Available</div>
+            </div>
+          </div>
+        </div>
+        <div class="post-body">
+          Fresh batch of our Sour Diesel just hit the market. 26.4% THC, incredible terpene expression. Available at select Colorado dispensaries now — ask for us by name.
+        </div>
+        <div class="post-actions">
+          <button class="post-action-btn repost-btn" onclick="openRepostModal(this,'Green Horizon Farms','Sour Diesel — New Batch')">
+            ↺ Repost <span class="repost-count" id="rc1">48</span>
+          </button>
+          <button class="post-action-btn save-btn" onclick="toggleSave(this)">🔖 Save</button>
+          <button class="post-action-btn" onclick="sharePost()">↗ Share</button>
+        </div>
+      </div>
+
+      <!-- ── POST 2: Deal (reposted by a personal user) ── -->
+      <div class="post-card deal" data-type="deal" data-state="CO">
+        <div class="repost-banner">
+          <span>↺</span>
+          <span>Reposted by <strong>@sarahco</strong> — <em>"Great deal this weekend!"</em></span>
+        </div>
+        <div class="post-header">
+          <div class="post-biz-av" style="background:#FFF9E6;color:#8B6520">MP</div>
+          <div style="flex:1">
+            <div class="post-biz-name">Mountain Peak Dispensary</div>
+            <div class="post-biz-meta">
+              <span class="post-type-badge deal">🏷 Deal</span>
+              <span class="post-meta-dot"></span>
+              <span>Denver, CO</span>
+              <span class="post-meta-dot"></span>
+              <span>4h ago</span>
+              <span class="post-state-tag">CO</span>
+            </div>
+          </div>
+          <button class="post-follow-btn following" onclick="toggleFollow(this)">Following ✓</button>
+        </div>
+        <div class="post-visual">
+          <div class="post-visual-inner" style="background:linear-gradient(145deg,#3a2005 0%,#8b6520 50%,#d4a030 100%)">
+            <div style="position:relative;z-index:2;text-align:center">
+              <div style="font-size:42px;margin-bottom:8px">🏷</div>
+              <div style="font-family:'Inter',sans-serif;font-size:32px;font-weight:900;color:var(--lime);letter-spacing:-0.02em;text-shadow:0 2px 8px rgba(0,0,0,.4)">20% OFF</div>
+              <div style="font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.06em;text-transform:uppercase;margin-top:4px">All Flower · This Weekend Only</div>
+            </div>
+            <div class="post-visual-overlay"></div>
+            <div class="post-visual-caption">
+              <div class="post-visual-title">Weekend Flash Sale</div>
+              <div class="post-visual-sub">Sat & Sun only · All locations · No minimum</div>
+            </div>
+          </div>
+        </div>
+        <div class="post-body">
+          This weekend only — 20% off all flower at all three Mountain Peak locations across Denver Metro. No minimum purchase. In-store only.
+        </div>
+        <div class="post-actions">
+          <button class="post-action-btn repost-btn reposted" onclick="openRepostModal(this,'Mountain Peak Dispensary','Weekend Flash Sale')">
+            ↺ Reposted <span class="repost-count" id="rc2">112</span>
+          </button>
+          <button class="post-action-btn save-btn" onclick="toggleSave(this)">🔖 Save</button>
+          <button class="post-action-btn" onclick="sharePost()">↗ Share</button>
+        </div>
+      </div>
+
+      <!-- ── POST 3: Announcement ── -->
+      <div class="post-card announce" data-type="announce" data-state="CO">
+        <div class="post-header">
+          <div class="post-biz-av" style="background:var(--spring);color:var(--forest)">SL</div>
+          <div style="flex:1">
+            <div class="post-biz-name">Summit Labs Testing</div>
+            <div class="post-biz-meta">
+              <span class="post-type-badge announce">📣 Announcement</span>
+              <span class="post-meta-dot"></span>
+              <span>Colorado Springs, CO</span>
+              <span class="post-meta-dot"></span>
+              <span>Yesterday</span>
+              <span class="post-state-tag">CO</span>
+            </div>
+          </div>
+          <button class="post-follow-btn" onclick="toggleFollow(this)">+ Follow</button>
+        </div>
+        <div class="post-visual">
+          <div class="post-visual-inner" style="background:linear-gradient(145deg,#1E0A3C 0%,#4C1D95 60%,#52c97a 100%)">
+            <div style="position:relative;z-index:2;text-align:center;padding:0 2rem">
+              <div style="font-size:38px;margin-bottom:10px">🧪</div>
+              <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:white;line-height:1.2;margin-bottom:8px">Same-Day COA Results</div>
+              <div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--sage);letter-spacing:.04em">Starting March 1st · Drop off by 10 AM</div>
+            </div>
+            <div class="post-visual-overlay"></div>
+            <div class="post-visual-caption">
+              <div class="post-visual-title">Now offering same-day results</div>
+              <div class="post-visual-sub">Potency + terpene panels · ISO accredited · CO licensed</div>
+            </div>
+          </div>
+        </div>
+        <div class="post-body">
+          Big news — Summit Labs now offers same-day turnaround for potency and terpene panels for samples dropped before 10 AM. This is a first for Colorado. Book your slot.
+        </div>
+        <div class="post-actions">
+          <button class="post-action-btn repost-btn" onclick="openRepostModal(this,'Summit Labs Testing','Same-Day COA Results')">
+            ↺ Repost <span class="repost-count" id="rc3">29</span>
+          </button>
+          <button class="post-action-btn save-btn" onclick="toggleSave(this)">🔖 Save</button>
+          <button class="post-action-btn" onclick="sharePost()">↗ Share</button>
+        </div>
+      </div>
+
+      <!-- ── POST 4: New Drop (live resin) ── -->
+      <div class="post-card drop" data-type="drop" data-state="CO">
+        <div class="post-header">
+          <div class="post-biz-av" style="background:#EBF2F8;color:#185FA5">RC</div>
+          <div style="flex:1">
+            <div class="post-biz-name">Rocky Crest Extracts</div>
+            <div class="post-biz-meta">
+              <span class="post-type-badge drop">🌿 New Drop</span>
+              <span class="post-meta-dot"></span>
+              <span>Fort Collins, CO</span>
+              <span class="post-meta-dot"></span>
+              <span>2d ago</span>
+              <span class="post-state-tag">CO</span>
+            </div>
+          </div>
+          <button class="post-follow-btn" onclick="toggleFollow(this)">+ Follow</button>
+        </div>
+        <div class="post-visual">
+          <div class="post-visual-inner" style="background:linear-gradient(145deg,#05111f 0%,#0c3a5c 50%,#1a6b9a 100%)">
+            <div style="position:relative;z-index:2;text-align:center">
+              <div style="font-size:46px;margin-bottom:8px">🔬</div>
+              <div style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">2025 Collection</div>
+              <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:800;color:white;line-height:1.2">Live Resin<br>Series</div>
+            </div>
+            <div class="post-visual-overlay"></div>
+            <div class="post-visual-caption">
+              <div class="post-visual-title">6 new strains — fresh frozen</div>
+              <div class="post-visual-sub">Colorado-sourced · BHO process · Available wholesale</div>
+              <div class="post-visual-price">Available Now</div>
+            </div>
+          </div>
+        </div>
+        <div class="post-body">
+          Our 2025 live resin collection is here. 6 new Colorado-sourced strains, fresh-frozen process, terpene-forward. Ask your dispensary rep or find us on Bridge.
+        </div>
+        <div class="post-actions">
+          <button class="post-action-btn repost-btn" onclick="openRepostModal(this,'Rocky Crest Extracts','Live Resin Series — 2025 Collection')">
+            ↺ Repost <span class="repost-count" id="rc4">67</span>
+          </button>
+          <button class="post-action-btn save-btn" onclick="toggleSave(this)">🔖 Save</button>
+          <button class="post-action-btn" onclick="sharePost()">↗ Share</button>
+        </div>
+      </div>
+
+    </div><!-- /feed-col -->
+
+    <!-- ASIDE -->
+    <div class="feed-aside">
+
+      <!-- Promote card (for business users) -->
+      <div class="promote-card">
+        <h4>Reach more people</h4>
+        <p>Post a product drop, deal, or announcement to Bridge's verified feed. Consumers and followers see it instantly.</p>
+        <button class="promote-btn" onclick="showToast('Opens the post composer for your business')">+ Create a post</button>
+      </div>
+
+      <!-- Trending in CO -->
+      <div class="aside-card">
+        <div class="aside-head"><h3>Trending in Colorado</h3></div>
+        <div class="aside-body" style="padding:0 1rem">
+          <div class="trending-list">
+            <div class="trending-item"><span class="t-num">1</span><div><div class="t-tag">Sour Diesel</div><div style="font-size:10px;color:var(--tm)">48 reposts</div></div><span class="t-count">🔥</span></div>
+            <div class="trending-item"><span class="t-num">2</span><div><div class="t-tag">Weekend Deals</div><div style="font-size:10px;color:var(--tm)">112 reposts</div></div><span class="t-count">🔥</span></div>
+            <div class="trending-item"><span class="t-num">3</span><div><div class="t-tag">Live Resin</div><div style="font-size:10px;color:var(--tm)">67 reposts</div></div></div>
+            <div class="trending-item"><span class="t-num">4</span><div><div class="t-tag">Same-Day COA</div><div style="font-size:10px;color:var(--tm)">29 reposts</div></div></div>
+            <div class="trending-item"><span class="t-num">5</span><div><div class="t-tag">OG Kush</div><div style="font-size:10px;color:var(--tm)">18 reposts</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Brands to follow -->
+      <div class="aside-card">
+        <div class="aside-head"><h3>Brands near you</h3></div>
+        <div class="aside-body" style="padding:0 1rem">
+          <div class="follow-list">
+            <div class="follow-item">
+              <div class="follow-av" style="background:#EDE9FE;color:#4C1D95">GH</div>
+              <div><div class="follow-name">Green Horizon Farms</div><div class="follow-type">Cultivator · Denver</div></div>
+              <button class="follow-btn" onclick="toggleFollow(this)">+ Follow</button>
+            </div>
+            <div class="follow-item">
+              <div class="follow-av" style="background:var(--spring);color:var(--forest)">AS</div>
+              <div><div class="follow-name">Alpine Sun</div><div class="follow-type">Cultivator · Durango</div></div>
+              <button class="follow-btn" onclick="toggleFollow(this)">+ Follow</button>
+            </div>
+            <div class="follow-item">
+              <div class="follow-av" style="background:#F5C4B3;color:#712B13">HV</div>
+              <div><div class="follow-name">High Valley Pkg</div><div class="follow-type">Ancillary · Pueblo</div></div>
+              <button class="follow-btn" onclick="toggleFollow(this)">+ Follow</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feed rules reminder -->
+      <div class="rules-card">
+        <h4>🌿 Bridge feed rules</h4>
+        <div class="rule-row"><span class="rule-icon">✅</span><span>Graphics-only posts by verified businesses</span></div>
+        <div class="rule-row"><span class="rule-icon">✅</span><span>New drops, deals & announcements only</span></div>
+        <div class="rule-row"><span class="rule-icon">🚫</span><span>No comments, no likes, no debates</span></div>
+        <div class="rule-row"><span class="rule-icon">🚫</span><span>No personal posts in this feed</span></div>
+        <div class="rule-row"><span class="rule-icon">↺</span><span>Repost to spread a business's reach</span></div>
+      </div>
+
+    </div><!-- /feed-aside -->
+  </div>
+</div>
+
+<!-- ════════════ MY REPOSTS PAGE ════════════ -->
+<div class="page" id="page-reposts">
+  <div class="dash-scroll">
+    <div class="greeting-hero" style="margin-bottom:1.25rem">
+      <div>
+        <div class="greeting-name">My Reposts</div>
+        <div class="greeting-meta">
+          <span>Posts you've shared to your profile</span>
+          <span class="greeting-dot"></span>
+          <span>Helping brands spread further</span>
+        </div>
+      </div>
+      <div class="greeting-stats">
+        <div class="g-stat"><div class="g-stat-val">7</div><div class="g-stat-label">Total</div></div>
+        <div class="g-stat"><div class="g-stat-val">4</div><div class="g-stat-label">This month</div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:600px">
+      <!-- Repost items -->
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden">
+        <div class="repost-banner"><span>↺</span><span>You reposted · <strong>Green Horizon Farms</strong> · 2h ago</span></div>
+        <div style="padding:14px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:56px;height:56px;border-radius:var(--r-md);background:linear-gradient(135deg,#4C1D95,#7C3AED);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🌿</div>
+          <div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--tp);margin-bottom:3px">Sour Diesel — New Batch #SDF-1024</div><div style="font-size:12px;color:var(--tm)">New product drop · Denver, CO · 26.4% THC</div></div>
+          <button class="btn btn-outline" style="font-size:12px;padding:6px 12px" onclick="this.closest('[style]').style.opacity='.4';showToast('Repost removed from your profile')">Remove</button>
+        </div>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden">
+        <div class="repost-banner"><span>↺</span><span>You reposted · <strong>Mountain Peak Dispensary</strong> · 4h ago</span></div>
+        <div style="padding:14px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:56px;height:56px;border-radius:var(--r-md);background:linear-gradient(135deg,#3a2005,#d4a030);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🏷</div>
+          <div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--tp);margin-bottom:3px">Weekend Flash Sale — 20% off all flower</div><div style="font-size:12px;color:var(--tm)">Deal · Denver Metro · Sat & Sun only</div></div>
+          <button class="btn btn-outline" style="font-size:12px;padding:6px 12px" onclick="this.closest('[style]').style.opacity='.4';showToast('Repost removed from your profile')">Remove</button>
+        </div>
+      </div>
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden">
+        <div class="repost-banner"><span>↺</span><span>You reposted · <strong>Rocky Crest Extracts</strong> · 2d ago</span></div>
+        <div style="padding:14px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:56px;height:56px;border-radius:var(--r-md);background:linear-gradient(135deg,#0c3a5c,#1a6b9a);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🔬</div>
+          <div style="flex:1"><div style="font-size:14px;font-weight:700;color:var(--tp);margin-bottom:3px">Live Resin Series — 2025 Collection</div><div style="font-size:12px;color:var(--tm)">New product drop · Fort Collins, CO</div></div>
+          <button class="btn btn-outline" style="font-size:12px;padding:6px 12px" onclick="this.closest('[style]').style.opacity='.4';showToast('Repost removed from your profile')">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ PLACEHOLDER PAGES ════════════ -->
+<!-- BROWSE PAGE - full directory -->
+<div class="page" id="page-search">
+<style>
+.browse-hero{background:linear-gradient(135deg,var(--forest) 0%,#5B21B6 60%,#5B21B6 100%);padding:1.5rem 1.75rem;flex-shrink:0;position:relative;overflow:hidden}
+.browse-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:rgba(181,229,80,.09);pointer-events:none}
+.browse-hero-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:800;color:white;margin-bottom:4px}
+.browse-hero-sub{font-size:13px;color:var(--sage);margin-bottom:1.25rem}
+.bsearch-row{display:flex;align-items:center;gap:10px;max-width:640px}
+.bsearch-box{flex:1;display:flex;align-items:center;gap:8px;background:white;border-radius:var(--r-lg);padding:11px 16px}
+.bsearch-box input{flex:1;border:none;outline:none;font-family:"Inter",sans-serif;font-size:14px;color:var(--tp)}
+.bsearch-box input::placeholder{color:var(--tm)}
+.bsearch-btn{background:var(--lime);color:var(--forest);border:none;border-radius:var(--r-md);padding:11px 20px;font-family:"Inter",sans-serif;font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap}
+.bsearch-btn:hover{background:#a0d040}
+.bscope-row{display:flex;align-items:center;gap:8px;padding:.875rem 1.75rem;background:white;border-bottom:1px solid var(--border);flex-shrink:0}
+.bscope-btn{display:flex;flex-direction:column;align-items:center;gap:3px;width:60px;height:52px;border-radius:var(--r-md);border:1.5px solid var(--border);background:white;cursor:pointer;transition:all .18s;font-size:19px;flex-shrink:0;padding-top:6px}
+.bscope-btn .bsl{font-size:9px;font-weight:700;color:var(--tm)}
+.bscope-btn:hover,.bscope-btn.active{border-color:var(--leaf);background:var(--spring)}
+.bscope-btn.active .bsl{color:var(--leaf-dk)}
+.bscope-vdiv{width:1px;height:30px;background:var(--border)}
+.bbtype-wrap{position:relative}
+.bbtype-btn{display:flex;align-items:center;gap:7px;padding:8px 16px;border-radius:var(--r-md);border:1.5px solid var(--leaf);background:var(--leaf);color:white;font-family:"Inter",sans-serif;font-size:13px;font-weight:700;cursor:pointer;user-select:none}
+.bbtype-btn .bcaret{font-size:10px;transition:transform .18s}
+.bbtype-btn.open .bcaret{transform:rotate(180deg)}
+.bbtype-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;background:white;border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:0 16px 48px rgba(0,0,0,.12);min-width:240px;z-index:60;overflow:hidden}
+.bbtype-menu.open{display:block}
+.bbtype-item{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background .12s;position:relative}
+.bbtype-item:hover{background:var(--spring)}
+.bbtype-item.bsel{background:var(--spring);color:var(--leaf-dk)}
+.bbtype-item.bsel::after{content:"✓";position:absolute;right:14px;font-weight:700;color:var(--leaf-dk);font-size:12px}
+.bbtype-icon{font-size:18px;width:24px;text-align:center}
+.bbtype-name{font-size:13px;font-weight:600;color:var(--tp)}
+.bbtype-desc{font-size:11px;color:var(--tm)}
+.bbtype-sep{height:1px;background:var(--border);margin:4px 0}
+.bbtype-footer{padding:8px 14px;font-size:11px;color:var(--tm);border-top:1px solid var(--border);background:var(--stone50)}
+.bfselect{padding:7px 12px;border-radius:var(--r-md);border:1px solid var(--border);background:white;font-family:"Inter",sans-serif;font-size:12px;color:var(--ts);outline:none;cursor:pointer}
+.bresults-meta{display:flex;align-items:center;justify-content:space-between;padding:.625rem 1.75rem;flex-shrink:0}
+.bresults-meta span{font-size:12px;color:var(--tm);font-weight:500}
+.bgrid-wrap{flex:1;overflow-y:auto;padding:1.25rem 1.75rem 2rem}
+.bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:16px}
+.bcard{background:white;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;cursor:pointer;transition:all .2s}
+.bcard:hover{box-shadow:0 8px 32px rgba(124,58,237,.12);transform:translateY(-2px);border-color:var(--border-md)}
+.bcard-banner{height:76px;position:relative;display:flex;align-items:flex-end;padding:8px 12px}
+.bcard-typepill{background:rgba(255,255,255,.2);color:white;font-size:10px;font-weight:700;border-radius:99px;padding:3px 10px;backdrop-filter:blur(4px)}
+.bcard-statechip{position:absolute;top:8px;right:8px;background:rgba(124,58,237,.85);color:white;font-size:9px;font-weight:700;border-radius:99px;padding:3px 8px}
+.bcard-body{padding:0 14px 14px}
+.bcard-av{width:50px;height:50px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;border:3px solid white;margin-top:-25px;margin-bottom:8px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.bcard-name{font-size:14px;font-weight:700;color:var(--tp);margin-bottom:2px}
+.bcard-meta{font-size:12px;color:var(--tm);display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-bottom:7px}
+.bcard-mdot{width:3px;height:3px;border-radius:50%;background:var(--stone200)}
+.bcard-verified{display:inline-flex;align-items:center;gap:2px;background:var(--spring);color:var(--forest);font-size:10px;font-weight:700;border-radius:99px;padding:2px 7px}
+.bcard-desc{font-size:12px;color:var(--ts);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:10px}
+.bcard-foot{display:flex;align-items:center;justify-content:space-between;padding-top:9px;border-top:1px solid var(--border)}
+.bcard-stag{display:inline-flex;background:var(--stone50);border:1px solid var(--border);color:var(--ts);font-size:10px;font-weight:700;border-radius:99px;padding:3px 9px}
+.bcard-multi{background:var(--spring);border-color:var(--border-md);color:var(--forest)}
+.bcard-chat{font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px}
+.chat-y{background:var(--mint);color:var(--forest)}
+.chat-n{background:#FFF3D0;color:var(--amber)}
+.bcard-view{font-size:12px;font-weight:700;color:var(--leaf-dk);cursor:pointer}
+</style>
+
+  <div class="browse-hero">
+    <div class="browse-hero-title">Bridge Directory</div>
+    <div class="browse-hero-sub">Find any verified cannabis business — your industry white pages</div>
+    <div class="bsearch-row">
+      <div class="bsearch-box">
+        <span style="font-size:16px;color:var(--tm)">⌕</span>
+        <input id="bsrch" placeholder="Business name, product, city, or license type..." oninput="browseFilter()">
+      </div>
+      <button class="bsearch-btn">Search</button>
+    </div>
+  </div>
+
+  <div class="bscope-row">
+    <div class="bscope-btn active" id="bsc-mine" onclick="setBrowseScope(this,'mine')"><span>🌿</span><span class="bsl">My State</span></div>
+    <div class="bscope-btn" id="bsc-pick" onclick="showToast('State picker — choose states')"><span>📍</span><span class="bsl">Choose</span></div>
+    <div class="bscope-btn" id="bsc-all" onclick="setBrowseScope(this,'all')"><span>🌎</span><span class="bsl">All States</span></div>
+    <div class="bscope-vdiv"></div>
+    <div class="bbtype-wrap">
+      <div class="bbtype-btn" id="bbtype-btn" onclick="toggleBBtypeMenu()">
+        <span id="bbtype-label">🏢 All Business</span><span class="bcaret">▾</span>
+      </div>
+      <div class="bbtype-menu" id="bbtype-menu">
+        <div class="bbtype-item bsel" data-btype="all" onclick="selectBBtype(this)"><span class="bbtype-icon">🏢</span><div><div class="bbtype-name">All Business</div><div class="bbtype-desc">Every verified type</div></div></div>
+        <div class="bbtype-sep"></div>
+        <div class="bbtype-item" data-btype="cultivator" onclick="selectBBtype(this)"><span class="bbtype-icon">🌿</span><div><div class="bbtype-name">Cultivators</div><div class="bbtype-desc">Growers, farms & nurseries</div></div></div>
+        <div class="bbtype-item" data-btype="dispensary" onclick="selectBBtype(this)"><span class="bbtype-icon">🏪</span><div><div class="bbtype-name">Dispensaries</div><div class="bbtype-desc">Retail & delivery operators</div></div></div>
+        <div class="bbtype-item" data-btype="processor" onclick="selectBBtype(this)"><span class="bbtype-icon">⚗️</span><div><div class="bbtype-name">Processors</div><div class="bbtype-desc">Extraction & manufacturing</div></div></div>
+        <div class="bbtype-item" data-btype="lab" onclick="selectBBtype(this)"><span class="bbtype-icon">🧪</span><div><div class="bbtype-name">Testing Labs</div><div class="bbtype-desc">COA & compliance testing</div></div></div>
+        <div class="bbtype-item" data-btype="accessories" onclick="selectBBtype(this)"><span class="bbtype-icon">💨</span><div><div class="bbtype-name">Accessories</div><div class="bbtype-desc">Glass, vapes & gear</div></div></div>
+        <div class="bbtype-item" data-btype="packaging" onclick="selectBBtype(this)"><span class="bbtype-icon">📦</span><div><div class="bbtype-name">Packaging & Supplies</div><div class="bbtype-desc">Bags, jars, child-resistant</div></div></div>
+        <div class="bbtype-item" data-btype="swag" onclick="selectBBtype(this)"><span class="bbtype-icon">👕</span><div><div class="bbtype-name">Swag & Apparel</div><div class="bbtype-desc">Merch & branded clothing</div></div></div>
+        <div class="bbtype-item" data-btype="bank" onclick="selectBBtype(this)"><span class="bbtype-icon">🏦</span><div><div class="bbtype-name">Banking & Finance</div><div class="bbtype-desc">Cannabis-friendly financial</div></div></div>
+        <div class="bbtype-item" data-btype="legal" onclick="selectBBtype(this)"><span class="bbtype-icon">⚖️</span><div><div class="bbtype-name">Legal & Compliance</div><div class="bbtype-desc">Attorneys & consultants</div></div></div>
+        <div class="bbtype-item" data-btype="marketing" onclick="selectBBtype(this)"><span class="bbtype-icon">📣</span><div><div class="bbtype-name">Marketing & Media</div><div class="bbtype-desc">Agencies, design & film</div></div></div>
+        <div class="bbtype-item" data-btype="professional" onclick="selectBBtype(this)"><span class="bbtype-icon">👤</span><div><div class="bbtype-name">Industry Professionals</div><div class="bbtype-desc">Budtenders, managers, reps</div></div></div>
+        <div class="bbtype-footer">EIN-verified businesses only</div>
+      </div>
+    </div>
+    <select class="bfselect" onchange="browseFilter()"><option value="">All Regions</option><option value="denver">Denver Metro</option><option value="front">Front Range</option><option value="mountain">Mountain</option></select>
+    <select class="bfselect"><option>Sort: Recent</option><option>Sort: A–Z</option><option>Sort: Most Followed</option></select>
+    <div style="margin-left:auto;font-size:12px;color:var(--tm);white-space:nowrap">📍 Colorado</div>
+  </div>
+
+  <div class="bresults-meta">
+    <span id="bcount">Showing 6 businesses in Colorado</span>
+    <span>🔒 Messaging requires matching state license</span>
+  </div>
+
+  <div class="bgrid-wrap">
+    <div class="bgrid" id="bgrid">
+      <div class="bcard" data-btype="cultivator" data-bstate="CO">
+        <div class="bcard-banner" style="background:linear-gradient(135deg,#4C1D95,#7C3AED)"><span class="bcard-typepill">Cultivator</span><span class="bcard-statechip">🌿 Same State</span></div>
+        <div class="bcard-body"><div class="bcard-av" style="background:linear-gradient(135deg,#d4f5df,#a8d5b5);color:#4C1D95">GH</div><div class="bcard-name">Green Horizon Farms</div><div class="bcard-meta">Denver, CO <span class="bcard-mdot"></span> Est. 2018 <span class="bcard-verified">🌿 Verified</span></div><div class="bcard-desc">Indoor craft cultivator. Small-batch premium flower with COA on every batch. 14 active SKUs.</div><div class="bcard-foot"><span class="bcard-stag">CO</span><span class="bcard-chat chat-y">💬 Chat</span><span class="bcard-view" onclick="showPage('profile',null)">View →</span></div></div>
+      </div>
+      <div class="bcard" data-btype="dispensary" data-bstate="CO">
+        <div class="bcard-banner" style="background:linear-gradient(135deg,#4C1D95,#7C3AED)"><span class="bcard-typepill">Dispensary</span><span class="bcard-statechip">🌿 Same State</span></div>
+        <div class="bcard-body"><div class="bcard-av" style="background:linear-gradient(135deg,#C4B5FD,#8B5CF6);color:#2E1065">GG</div><div class="bcard-name">Green Gate Retail</div><div class="bcard-meta">Boulder, CO <span class="bcard-mdot"></span> Est. 2019 <span class="bcard-verified">🌿 Verified</span></div><div class="bcard-desc">Multi-location retailer across Boulder County. Actively sourcing from CO-licensed cultivators.</div><div class="bcard-foot"><span class="bcard-stag">CO</span><span class="bcard-chat chat-y">💬 Chat</span><span class="bcard-view">View →</span></div></div>
+      </div>
+      <div class="bcard" data-btype="processor" data-bstate="CO">
+        <div class="bcard-banner" style="background:linear-gradient(135deg,#3a2005,#d4a030)"><span class="bcard-typepill">Processor</span><span class="bcard-statechip">🌿 Same State</span></div>
+        <div class="bcard-body"><div class="bcard-av" style="background:linear-gradient(135deg,#fff3d0,#fac775);color:#633806">RC</div><div class="bcard-name">Rocky Crest Extracts</div><div class="bcard-meta">Ft. Collins, CO <span class="bcard-mdot"></span> Est. 2020 <span class="bcard-verified">🌿 Verified</span></div><div class="bcard-desc">BHO, rosin & live resin. Toll processing available. State-licensed MIP. 10,000 sq ft.</div><div class="bcard-foot"><span class="bcard-stag">CO</span><span class="bcard-chat chat-y">💬 Chat</span><span class="bcard-view">View →</span></div></div>
+      </div>
+      <div class="bcard" data-btype="lab" data-bstate="CO">
+        <div class="bcard-banner" style="background:linear-gradient(135deg,#26215c,#7f77dd)"><span class="bcard-typepill">Testing Lab</span><span class="bcard-statechip">🌿 Same State</span></div>
+        <div class="bcard-body"><div class="bcard-av" style="background:linear-gradient(135deg,#e6e4fc,#cecbf6);color:#26215c">SL</div><div class="bcard-name">Summit Labs Testing</div><div class="bcard-meta">Colo. Springs, CO <span class="bcard-mdot"></span> Est. 2016 <span class="bcard-verified">🌿 Verified</span></div><div class="bcard-desc">ISO-accredited. Potency, terpenes, pesticides, heavy metals. Same-day results available.</div><div class="bcard-foot"><span class="bcard-stag">CO</span><span class="bcard-chat chat-y">💬 Chat</span><span class="bcard-view">View →</span></div></div>
+      </div>
+      <div class="bcard" data-btype="packaging" data-bstate="CO,CA,MI">
+        <div class="bcard-banner" style="background:linear-gradient(135deg,#712b13,#d85a30)"><span class="bcard-typepill">Packaging</span><span class="bcard-statechip">🌿 Same State</span></div>
+        <div class="bcard-body"><div class="bcard-av" style="background:linear-gradient(135deg,#f5c4b3,#f0997b);color:#712b13">HV</div><div class="bcard-name">High Valley Packaging</div><div class="bcard-meta">Denver, CO <span class="bcard-mdot"></span> Est. 2018 <span class="bcard-verified">🌿 Verified</span></div><div class="bcard-desc">Child-resistant packaging. Custom printing, low MOQ. Operates in CO, CA & MI.</div><div class="bcard-foot"><span class="bcard-stag bcard-multi">CO · CA · MI</span><span class="bcard-chat chat-y">💬 Chat</span><span class="bcard-view">View →</span></div></div>
+      </div>
+      <div class="bcard" data-btype="dispensary" data-bstate="MI">
+        <div class="bcard-banner" style="background:linear-gradient(135deg,#4C1D95,#7C3AED)"><span class="bcard-typepill">Dispensary</span></div>
+        <div class="bcard-body"><div class="bcard-av" style="background:linear-gradient(135deg,#C4B5FD,#8B5CF6);color:#2E1065">GL</div><div class="bcard-name">Great Lakes Wellness</div><div class="bcard-meta">Detroit, MI <span class="bcard-mdot"></span> Est. 2020 <span class="bcard-verified">🌿 Verified</span></div><div class="bcard-desc">Michigan's fastest growing dispensary chain. 5 Detroit-area locations.</div><div class="bcard-foot"><span class="bcard-stag">MI</span><span class="bcard-chat chat-n">⚠ View only</span><span class="bcard-view">View →</span></div></div>
+      </div>
+    </div>
+    <div id="bempty" style="display:none;text-align:center;padding:3rem;color:var(--tm)"><div style="font-size:40px;opacity:.3;margin-bottom:12px">⊙</div><div style="font-size:15px;font-weight:700;color:var(--tp);margin-bottom:6px">No results</div><div style="font-size:13px">Try expanding your scope or adjusting filters</div></div>
+  </div>
+</div>
+
+
+<!-- PROFILE PAGE - 3 views: B2B Private, Public, Edit -->
+<div class="page" id="page-profile">
+<style>
+.pv-toggle{display:flex;align-items:center;gap:0;background:var(--stone100);border-radius:99px;padding:3px;border:1px solid var(--border)}
+.pvb{padding:7px 18px;border-radius:99px;border:none;font-family:"Inter",sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;background:transparent;color:var(--tm);white-space:nowrap}
+.pvb.ab2b{background:var(--forest);color:white}
+.pvb.apub{background:linear-gradient(135deg,var(--leaf),var(--lime));color:var(--forest)}
+.pvb.aedit{background:var(--amber);color:white}
+.pmb{display:flex;align-items:center;justify-content:center;gap:8px;padding:8px 1.5rem;font-size:12px;font-weight:600;flex-shrink:0}
+.pmb-b2b{background:var(--spring);color:var(--forest);border-bottom:1px solid var(--border-md)}
+.pmb-pub{background:linear-gradient(90deg,var(--forest),var(--leaf-dk));color:white}
+.pmb-edit{background:var(--amber-lt);color:var(--amber);border-bottom:1px solid #E8C08A}
+.pmdot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.7}
+.p-banner{height:170px;position:relative;overflow:hidden;flex-shrink:0;transition:height .35s}
+.p-banner.pub-h{height:190px}
+.p-id{background:white;border-bottom:1px solid var(--border);padding:0 1.75rem 1.25rem;flex-shrink:0}
+.p-av-row{display:flex;align-items:flex-end;justify-content:space-between;margin-top:-36px;margin-bottom:12px}
+.p-av{width:72px;height:72px;border-radius:50%;border:4px solid white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.p-name{font-family:"Playfair Display",serif;font-size:22px;font-weight:800;color:var(--tp);letter-spacing:-0.015em;margin-bottom:3px}
+.p-handle{font-size:13px;color:var(--tm);margin-bottom:7px}
+.p-badges{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:7px}
+.pb{display:inline-flex;align-items:center;gap:3px;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700}
+.pb-g{background:var(--mint);color:var(--forest);border:1px solid var(--border-md)}
+.pb-s{background:var(--stone50);color:var(--ts);border:1px solid var(--border)}
+.pb-m{background:var(--amber-lt);color:var(--amber);border:1px solid #E8C08A}
+.pb-p{background:var(--spring);color:var(--leaf-dk);border:1px solid var(--border-md)}
+.p-bio{font-size:13px;color:var(--ts);line-height:1.7;max-width:540px}
+.p-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 1.75rem;background:white;flex-shrink:0;overflow-x:auto}
+.p-tabs::-webkit-scrollbar{display:none}
+.ptb{padding:11px 16px;font-size:13px;font-weight:500;color:var(--tm);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1px;transition:all .15s;white-space:nowrap}
+.ptb:hover{color:var(--tp)}
+.ptb.active{color:var(--leaf-dk);border-bottom-color:var(--leaf-dk);font-weight:700}
+.p-scroll{flex:1;overflow-y:auto;padding:1.5rem 1.75rem 3rem}
+.p-scroll::-webkit-scrollbar{width:4px}
+.p-scroll::-webkit-scrollbar-thumb{background:var(--stone200);border-radius:99px}
+.p2col{display:grid;grid-template-columns:1fr 290px;gap:1.25rem;align-items:start}
+.pmain{display:flex;flex-direction:column;gap:1.25rem}
+.pside{display:flex;flex-direction:column;gap:1.25rem;position:sticky;top:0}
+.pc{background:white;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden}
+.pch{display:flex;align-items:center;justify-content:space-between;padding:.875rem 1.25rem;border-bottom:1px solid var(--border)}
+.pct{font-size:13px;font-weight:700;color:var(--tp)}
+.pcl{font-size:12px;font-weight:600;color:var(--leaf-dk);cursor:pointer}
+.pcb{padding:1.25rem}
+.ef{margin-bottom:.875rem}
+.ef:last-child{margin-bottom:0}
+.efl{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--ts);margin-bottom:5px}
+.efl .sb{background:var(--amber-lt);color:var(--amber);font-size:9px;font-weight:700;border-radius:99px;padding:1px 7px;border:1px solid #E8C08A}
+.efl .b2bb{background:var(--spring);color:var(--forest);font-size:9px;font-weight:700;border-radius:99px;padding:1px 7px;border:1px solid var(--border-md)}
+.efl .pubb{background:#EEEDFE;color:#534AB7;font-size:9px;font-weight:700;border-radius:99px;padding:1px 7px;border:1px solid #CECBF6}
+.ei{width:100%;padding:9px 12px;border:1px solid var(--border-md);border-radius:var(--r-md);font-family:"Inter",sans-serif;font-size:13px;color:var(--tp);background:var(--stone50);outline:none}
+.ei:focus{border-color:var(--leaf);background:white}
+.eta{width:100%;padding:9px 12px;border:1px solid var(--border-md);border-radius:var(--r-md);font-family:"Inter",sans-serif;font-size:13px;color:var(--tp);background:var(--stone50);outline:none;resize:vertical;min-height:72px;line-height:1.55}
+.eta:focus{border-color:var(--leaf);background:white}
+.e2c{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cr{display:flex;align-items:center;gap:10px;padding:10px;background:var(--stone50);border-radius:var(--r-md);margin-bottom:6px}
+.cr:last-child{margin-bottom:0}
+.cf{font-size:12px;color:var(--tm);width:130px;flex-shrink:0;font-weight:500}
+.mtbl{width:100%;border-collapse:collapse}
+.mtbl th{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--tm);padding:0 12px 10px;text-align:left;border-bottom:1px solid var(--border)}
+.mtbl td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:13px}
+.mtbl tr:last-child td{border-bottom:none}
+.pval{font-weight:700;color:var(--leaf-dk)}
+.stag{display:inline-block;border-radius:4px;padding:3px 8px;font-size:10px;font-weight:700}
+.sin{background:var(--mint);color:var(--forest)}
+.slow{background:#FFF3D0;color:var(--amber)}
+.smg{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:150px 150px;gap:8px;border-radius:var(--r-lg);overflow:hidden}
+.sgc{display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer;position:relative;overflow:hidden;transition:transform .2s}
+.sgc:hover{transform:scale(1.02)}
+.sgc:first-child{grid-row:1/-1}
+.sgl{position:absolute;bottom:7px;left:8px;background:rgba(30,10,60,.55);color:white;font-size:10px;font-weight:700;border-radius:99px;padding:2px 8px}
+.s3g{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sc{background:white;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;cursor:pointer;transition:all .18s}
+.sc:hover{box-shadow:0 4px 20px rgba(124,58,237,.1);transform:translateY(-2px)}
+.sth{height:90px;display:flex;align-items:center;justify-content:center;font-size:28px;position:relative}
+.sthn{position:absolute;top:6px;right:6px;background:rgba(255,255,255,.9);color:var(--forest);font-size:9px;font-weight:700;border-radius:99px;padding:2px 7px}
+.sbd{padding:8px 10px}
+.sbn{font-weight:700;font-size:12px;color:var(--tp);margin-bottom:1px}
+.sbt{font-size:10px;color:var(--tm);margin-bottom:5px}
+.sfb{width:100%;padding:6px;background:var(--leaf);color:white;border:none;border-radius:var(--r-md);font-family:"Inter",sans-serif;font-size:11px;font-weight:600;cursor:pointer}
+.tg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tc{background:var(--spring);border:1px solid var(--border-md);border-radius:var(--r-md);padding:.875rem}
+.tq{font-size:12px;color:var(--tp);line-height:1.65;font-style:italic;margin-bottom:7px}
+.ta{font-size:11px;font-weight:700;color:var(--forest)}
+.tr{font-size:10px;color:var(--tm)}
+.sm{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.si{background:var(--stone50);border-radius:var(--r-md);padding:10px;text-align:center}
+.si strong{display:block;font-family:"Playfair Display",serif;font-size:18px;font-weight:800;color:var(--leaf-dk)}
+.si span{font-size:11px;color:var(--tm)}
+.save-b{background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-top:1px solid var(--border);padding:12px 1.75rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+</style>
+
+  <div style="background:white;border-bottom:1px solid var(--border);padding:10px 1.75rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="font-size:12px;color:var(--tm);font-weight:600">View:</span>
+      <div class="pv-toggle">
+        <button class="pvb ab2b" id="pvb-b2b" onclick="setPView('b2b')">🔒 B2B</button>
+        <button class="pvb" id="pvb-pub" onclick="setPView('pub')">🌐 Public</button>
+        <button class="pvb" id="pvb-edit" onclick="setPView('edit')">✏ Edit</button>
+      </div>
+    </div>
+    <span style="font-size:12px;color:var(--tm)">Green Horizon Farms · Colorado</span>
+  </div>
+  <div class="pmb pmb-b2b" id="pmode-banner"><span class="pmdot"></span><span id="pmode-text">B2B Private — Only verified businesses on Bridge can view this</span></div>
+
+  <div class="p-banner" id="p-banner" style="background:linear-gradient(145deg,#1E0A3C,#4C1D95,#7C3AED)">
+    <div id="p-play" style="display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.5);align-items:center;justify-content:center;font-size:18px;cursor:pointer;color:white;backdrop-filter:blur(4px)">▶</div>
+  </div>
+
+  <div class="p-id">
+    <div class="p-av-row">
+      <div class="p-av" style="background:linear-gradient(135deg,#d4f5df,#a8d5b5);color:#4C1D95">GH</div>
+      <div id="pa-b2b" style="display:flex;gap:8px;align-items:center">
+        <button style="background:var(--leaf);color:white;border:none;border-radius:var(--r-md);padding:9px 18px;font-family:Inter,sans-serif;font-size:13px;font-weight:700;cursor:pointer">💬 Message</button>
+        <button onclick="showToast('Following Green Horizon Farms!')" style="background:var(--spring);color:var(--leaf-dk);border:1px solid var(--border-md);border-radius:99px;padding:8px 18px;font-family:Inter,sans-serif;font-size:13px;font-weight:700;cursor:pointer">+ Follow</button>
+      </div>
+      <div id="pa-pub" style="display:none;gap:8px;align-items:center">
+        <a href="#" style="display:flex;align-items:center;gap:5px;background:var(--stone50);border:1px solid var(--border);border-radius:99px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--ts);text-decoration:none">📸 Instagram</a>
+        <button onclick="showToast('Following Green Horizon Farms!')" style="background:linear-gradient(135deg,var(--leaf),var(--lime));color:var(--forest);border:none;border-radius:99px;padding:8px 18px;font-family:Inter,sans-serif;font-size:13px;font-weight:700;cursor:pointer">❤ Follow</button>
+      </div>
+      <div id="pa-edit" style="display:none;gap:8px;align-items:center">
+        <button onclick="savePro()" style="background:var(--leaf);color:white;border:none;border-radius:var(--r-md);padding:9px 18px;font-family:Inter,sans-serif;font-size:13px;font-weight:700;cursor:pointer">Save all changes</button>
+      </div>
+    </div>
+    <div class="p-name">Green Horizon Farms</div>
+    <div class="p-handle">Licensed Cultivator · Denver, Colorado · Est. 2018</div>
+    <div class="p-badges"><span class="pb pb-g">🌿 Bridge Verified</span><span class="pb pb-s">📍 Colorado</span><span class="pb pb-m" id="p-mode-badge">🔒 B2B Private</span></div>
+    <div class="p-bio" id="p-bio-b2b">Indoor craft cultivator · Small-batch premium flower · COA every batch · Seeking wholesale Q2 2025</div>
+    <div class="p-bio" id="p-bio-pub" style="display:none">We grow the good stuff. 🌿 Small-batch craft cannabis from Denver — where every plant gets the attention it deserves.</div>
+  </div>
+
+  <div class="p-tabs" id="p-tabs">
+    <div class="ptb active" onclick="setPTab(this,'pp-ov')">Overview</div>
+    <div class="ptb" onclick="setPTab(this,'pp-menu')">Live Menu</div>
+    <div class="ptb" onclick="setPTab(this,'pp-team')">Team & Reps</div>
+    <div class="ptb" onclick="setPTab(this,'pp-posts')">Bridge Posts</div>
+  </div>
+
+  <div class="p-scroll">
+    <div class="p2col">
+      <div class="pmain">
+
+        <div id="pp-ov">
+          <!-- B2B overview -->
+          <div id="b2b-ov" style="display:flex;flex-direction:column;gap:1.25rem">
+            <div class="pc"><div class="pch"><span class="pct">About</span></div><div class="pcb"><p style="font-size:14px;color:var(--ts);line-height:1.75">Colorado-licensed indoor cultivator. Small-batch, craft cannabis. All batches third-party tested with COAs. Currently supplying 12 dispensary partners across Colorado.</p></div></div>
+            <div class="pc"><div class="pch"><span class="pct">Who to contact</span></div><div class="pcb"><div class="cr"><span class="cf">Orders & Pricing</span><span style="font-size:13px;font-weight:500">Jake Morrison — <a href="#" style="color:var(--leaf-dk)">jake@greenhorizonfarms.com</a></span></div><div class="cr"><span class="cf">Compliance</span><span style="font-size:13px;font-weight:500">Sarah Chen — <a href="#" style="color:var(--leaf-dk)">compliance@greenhorizonfarms.com</a></span></div><div class="cr" style="margin-bottom:0"><span class="cf">General</span><span style="font-size:13px;font-weight:500"><a href="#" style="color:var(--leaf-dk)">info@greenhorizonfarms.com</a></span></div></div></div>
+            <div class="pc"><div class="pch"><span class="pct">Business details</span></div><div class="pcb"><div class="sm"><div class="si"><strong>2018</strong><span>Established</span></div><div class="si"><strong>14</strong><span>SKUs</span></div><div class="si"><strong>CO</strong><span>State</span></div><div class="si"><strong>12</strong><span>Partners</span></div></div></div></div>
+          </div>
+          <!-- Public story -->
+          <div id="pub-ov" style="display:none;flex-direction:column;gap:1.25rem">
+            <div class="pc"><div class="pch"><span class="pct">Gallery</span></div><div class="pcb"><div class="smg"><div class="sgc" style="background:linear-gradient(145deg,#1E0A3C,#4C1D95,#7C3AED);font-size:46px">🌿<span class="sgl">Our farm</span></div><div class="sgc" style="background:linear-gradient(145deg,#1a3a52,#2e5c7a)">💧<span class="sgl">Grow room</span></div><div class="sgc" style="background:linear-gradient(145deg,#3a2005,#d4a030)">☀<span class="sgl">Harvest</span></div><div class="sgc" style="background:linear-gradient(145deg,#26215c,#7f77dd)">🧪<span class="sgl">Lab</span></div><div class="sgc" style="background:linear-gradient(145deg,#712b13,#d85a30)">📦<span class="sgl">Pack</span></div></div></div></div>
+            <div class="pc"><div class="pch"><span class="pct">Our Story</span></div><div class="pcb"><p style="font-size:15px;color:var(--tp);line-height:1.8;font-weight:300">We started Green Horizon Farms in 2018 with one idea: cannabis deserves the same craft and care as fine wine. Small batches, grown with intention. Every batch third-party tested. If it doesn't meet our standards, it doesn't leave. 🌿</p></div></div>
+            <div class="pc"><div class="pch"><span class="pct">Our Strains</span><span style="font-size:12px;color:var(--tm)">All batches lab-tested ✓</span></div><div class="pcb"><div class="s3g"><div class="sc"><div class="sth" style="background:linear-gradient(145deg,#4C1D95,#7C3AED)">🌿<span class="sthn">26.4%</span></div><div class="sbd"><div class="sbn">Sour Diesel</div><div class="sbt">Sativa · Indoor</div><button class="sfb">📍 Find near me</button></div></div><div class="sc"><div class="sth" style="background:linear-gradient(145deg,#4C1D95,#7C3AED)">🌿<span class="sthn">22.1%</span></div><div class="sbd"><div class="sbn">Blue Dream</div><div class="sbt">Hybrid · GH</div><button class="sfb">📍 Find near me</button></div></div><div class="sc"><div class="sth" style="background:linear-gradient(145deg,#3a2005,#d4a030)">🌿<span class="sthn">28.7%</span></div><div class="sbd"><div class="sbn">OG Kush</div><div class="sbt">Hybrid · Premium</div><button class="sfb">📍 Find near me</button></div></div></div></div></div>
+            <div class="pc"><div class="pch"><span class="pct">What people are saying</span></div><div class="pcb"><div class="tg"><div class="tc"><p class="tq">"Best Sour Diesel I've had in years."</p><div class="ta">@denver.dankster</div><div class="tr">Verified consumer</div></div><div class="tc"><p class="tq">"Customers ask for Green Horizon by name."</p><div class="ta">Taylor S.</div><div class="tr">Budtender, Mile High</div></div></div></div></div>
+          </div>
+          <!-- Edit form -->
+          <div id="edit-ov" style="display:none;flex-direction:column;gap:1.25rem">
+            <div class="pc">
+              <div class="pch"><span class="pct">Shared content <span style="background:var(--amber-lt);color:var(--amber);font-size:10px;font-weight:700;border-radius:99px;padding:2px 9px;border:1px solid #E8C08A;margin-left:8px">✨ Saves to both views</span></span></div>
+              <div class="pcb">
+                <div style="background:var(--amber-lt);border:1px solid #E8C08A;border-radius:var(--r-md);padding:10px 12px;margin-bottom:1rem;font-size:12px;color:var(--amber);line-height:1.6"><strong>✨ Shared fields</strong> appear on both B2B and Public profiles. Edit once — updated everywhere.</div>
+                <div class="e2c"><div class="ef"><label class="efl">Display name <span class="sb">Shared</span></label><input class="ei" value="Green Horizon Farms"></div><div class="ef"><label class="efl">Year est. <span class="sb">Shared</span></label><input class="ei" type="number" value="2018"></div></div>
+                <div class="ef"><label class="efl">About us (shared) <span class="sb">Shared</span></label><textarea class="eta">Colorado-licensed indoor cultivator. Small-batch cannabis with a focus on terpene expression. All batches third-party tested.</textarea></div>
+                <div class="ef"><label class="efl">Product photos <span class="sb">Shared</span></label><div style="display:flex;gap:8px;margin-top:4px"><div style="width:68px;height:68px;border-radius:var(--r-md);background:linear-gradient(135deg,#d4f5df,#a8d5b5);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;border:1px solid var(--border)">🌿</div><div style="width:68px;height:68px;border-radius:var(--r-md);background:linear-gradient(135deg,#d4e8b8,#8abb44);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;border:1px solid var(--border)">🌿</div><div style="width:68px;height:68px;border-radius:var(--r-md);border:1.5px dashed var(--border-md);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--tm);cursor:pointer">+</div></div></div>
+                <div class="e2c"><div class="ef"><label class="efl">State <span class="sb">Shared</span></label><select class="ei"><option>Colorado</option><option>California</option></select></div><div class="ef"><label class="efl">Type <span class="sb">Shared</span></label><select class="ei"><option>Cultivator</option><option>Dispensary</option><option>Processor</option></select></div></div>
+                <div style="border-top:1px solid var(--border);margin-top:1rem;padding-top:1rem">
+                  <div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--tm);margin-bottom:10px">📝 Bridge posts — choose audience per post</div>
+                  <div style="background:white;border:1px solid var(--border-md);border-radius:var(--r-lg);overflow:hidden">
+                    <div style="padding:10px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between"><span style="font-size:11px;font-weight:700;color:var(--tm)">Compose post</span><select style="border:1px solid var(--border);border-radius:99px;padding:4px 10px;font-family:Inter,sans-serif;font-size:10px;font-weight:700;color:var(--ts);background:white;outline:none;cursor:pointer"><option>🔒 B2B Only</option><option>🌐 Public only</option><option>✨ Both</option></select></div>
+                    <textarea class="eta" style="border:none;border-radius:0;min-height:52px;background:white" placeholder="Write a post..."></textarea>
+                    <div style="padding:7px 12px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;background:var(--stone50)"><button onclick="showToast('Post submitted for compliance review')" style="background:var(--leaf);color:white;border:none;border-radius:var(--r-md);padding:7px 16px;font-family:Inter,sans-serif;font-size:12px;font-weight:700;cursor:pointer">Post now</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pc">
+              <div class="pch"><span class="pct">B2B private fields <span style="background:var(--spring);color:var(--forest);font-size:10px;font-weight:700;border-radius:99px;padding:2px 9px;border:1px solid var(--border-md);margin-left:8px">🔒 Wholesale buyers only</span></span></div>
+              <div class="pcb">
+                <div class="e2c"><div class="ef"><label class="efl">License # <span class="b2bb">B2B</span></label><input class="ei" placeholder="CO-MED-0001234"></div><div class="ef"><label class="efl">EIN (private) <span class="b2bb">B2B</span></label><input class="ei" value="••-•••••47" disabled style="opacity:.6;cursor:not-allowed"></div></div>
+                <div class="ef"><label class="efl">Wholesale about us <span class="b2bb">B2B</span></label><textarea class="eta">Actively seeking wholesale partners for Q2 2025. Minimum orders and pricing to connected accounts.</textarea></div>
+                <div class="e2c"><div class="ef"><label class="efl">Contact: Orders <span class="b2bb">B2B</span></label><input class="ei" value="jake@greenhorizonfarms.com"></div><div class="ef"><label class="efl">Contact: Compliance <span class="b2bb">B2B</span></label><input class="ei" value="compliance@greenhorizonfarms.com"></div></div>
+                <div class="e2c"><div class="ef"><label class="efl">Rep name <span class="b2bb">B2B</span></label><input class="ei" value="Jake Morrison"></div><div class="ef"><label class="efl">Rep region <span class="b2bb">B2B</span></label><select class="ei"><option>Denver Metro</option><option>Front Range</option></select></div></div>
+              </div>
+            </div>
+            <div class="pc">
+              <div class="pch"><span class="pct">Public consumer fields <span style="background:#EEEDFE;color:#534AB7;font-size:10px;font-weight:700;border-radius:99px;padding:2px 9px;border:1px solid #CECBF6;margin-left:8px">🌐 Consumers & fans</span></span></div>
+              <div class="pcb">
+                <div class="ef"><label class="efl">Brand tagline <span class="pubb">Public</span></label><input class="ei" value="We grow the good stuff. Small-batch craft cannabis from Denver."></div>
+                <div class="ef"><label class="efl">Brand story <span class="pubb">Public</span></label><textarea class="eta" rows="3">We started Green Horizon Farms in 2018...</textarea></div>
+                <div class="e2c"><div class="ef"><label class="efl">Instagram <span class="pubb">Public</span></label><input class="ei" placeholder="https://instagram.com/yourbrand"></div><div class="ef"><label class="efl">TikTok <span class="pubb">Public</span></label><input class="ei" placeholder="@yourbrand"></div></div>
+                <div class="ef"><label class="efl">Website <span class="pubb">Public</span></label><input class="ei" placeholder="https://yourbrand.com"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="pp-menu" style="display:none">
+          <div class="pc">
+            <div class="pch"><span class="pct">Live Wholesale Menu</span><span style="font-size:12px;color:var(--leaf-dk);font-weight:600">● Synced 4 min ago</span></div>
+            <table class="mtbl"><thead><tr><th>Product</th><th>Category</th><th>THC/CBD</th><th>Price</th><th>Status</th></tr></thead><tbody>
+              <tr><td><strong>Sour Diesel — Indoor</strong></td><td>Flower</td><td style="color:var(--tm)">26.4%</td><td class="pval">$1,400/lb</td><td><span class="stag sin">In Stock</span></td></tr>
+              <tr><td><strong>Blue Dream — GH</strong></td><td>Flower</td><td style="color:var(--tm)">22.1%</td><td class="pval">$1,100/lb</td><td><span class="stag sin">In Stock</span></td></tr>
+              <tr><td><strong>OG Kush — Premium</strong></td><td>Flower</td><td style="color:var(--tm)">28.7%</td><td class="pval">$1,650/lb</td><td><span class="stag sin">In Stock</span></td></tr>
+              <tr><td><strong>Wedding Cake Trim</strong></td><td>Trim</td><td style="color:var(--tm)">18.3%</td><td class="pval">$280/lb</td><td><span class="stag slow">Low Stock</span></td></tr>
+            </tbody></table>
+            <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--spring);border-top:1px solid var(--border);font-size:12px;color:var(--forest);font-weight:500"><span style="width:7px;height:7px;border-radius:50%;background:var(--leaf);animation:pulse 2s infinite;display:inline-block"></span>Auto-synced via LeafLink</div>
+          </div>
+        </div>
+
+        <div id="pp-team" style="display:none">
+          <div class="pc" style="margin-bottom:1.25rem">
+            <div class="pch"><span class="pct">Regional Representatives</span></div>
+            <table class="mtbl"><thead><tr><th>Name</th><th>Region</th><th>Email</th></tr></thead><tbody>
+              <tr><td><strong>Jake Morrison</strong></td><td><span style="background:var(--spring);color:var(--forest);font-size:10px;font-weight:700;border-radius:99px;padding:3px 8px;border:1px solid var(--border-md)">Denver Metro</span></td><td><a href="#" style="color:var(--leaf-dk);font-size:12px">jake@greenhorizonfarms.com</a></td></tr>
+              <tr><td><strong>Tanya Rivera</strong></td><td><span style="background:var(--spring);color:var(--forest);font-size:10px;font-weight:700;border-radius:99px;padding:3px 8px;border:1px solid var(--border-md)">Front Range</span></td><td><a href="#" style="color:var(--leaf-dk);font-size:12px">tanya@greenhorizonfarms.com</a></td></tr>
+            </tbody></table>
+          </div>
+          <div class="pc"><div class="pch"><span class="pct">Team Members</span></div><div class="pcb" style="display:flex;flex-wrap:wrap;gap:8px"><span style="background:var(--stone50);border:1px solid var(--border);border-radius:99px;padding:6px 16px;font-size:13px;font-weight:500">👤 Jake Morrison</span><span style="background:var(--stone50);border:1px solid var(--border);border-radius:99px;padding:6px 16px;font-size:13px;font-weight:500">👤 Sarah Chen</span><span style="background:var(--stone50);border:1px solid var(--border);border-radius:99px;padding:6px 16px;font-size:13px;font-weight:500">👤 Marcus Webb</span><span style="background:var(--stone50);border:1px solid var(--border);border-radius:99px;padding:6px 16px;font-size:13px;font-weight:500">👤 Tanya Rivera</span></div></div>
+        </div>
+
+        <div id="pp-posts" style="display:none">
+          <div class="pc" style="margin-bottom:12px;overflow:hidden"><div style="padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)"><span style="background:var(--mint);color:var(--forest);font-size:10px;font-weight:700;border-radius:99px;padding:3px 10px">🌿 New Drop</span><span style="font-size:11px;color:var(--tm)">2h ago</span><span style="margin-left:auto;font-size:12px;color:var(--tm);font-weight:600">↺ 48 reposts</span></div><div style="height:100px;background:linear-gradient(145deg,#1E0A3C,#4C1D95,#7C3AED);display:flex;align-items:center;justify-content:center;font-size:32px">🌿</div><div style="padding:10px 14px;font-size:13px;color:var(--ts)">Sour Diesel — New Batch. THC 26.4%, COA verified. Available at CO dispensaries now.</div></div>
+          <button onclick="showToast('Opens AI Post Designer')" style="width:100%;padding:12px;border-radius:var(--r-xl);border:1.5px dashed var(--border-md);background:transparent;font-family:Inter,sans-serif;font-size:13px;font-weight:600;color:var(--tm);cursor:pointer">✦ Create new post with AI Designer</button>
+        </div>
+
+      </div>
+      <div class="pside">
+        <div id="pa-b2b-s">
+          <div style="background:linear-gradient(135deg,var(--forest),#5B21B6);border-radius:var(--r-xl);padding:1.25rem;color:white;margin-bottom:1.25rem"><div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:800;margin-bottom:6px">Ready to Partner?</div><p style="font-size:12px;opacity:.85;line-height:1.65;margin-bottom:12px">Connect to view pricing and message the team.</p><button onclick="showToast('Connection request sent!')" style="background:rgba(255,255,255,.15);color:white;border:1.5px solid rgba(255,255,255,.3);border-radius:var(--r-md);padding:10px 16px;font-family:Inter,sans-serif;font-size:13px;font-weight:600;cursor:pointer;width:100%;margin-bottom:8px">🤝 Connect</button><button style="background:transparent;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2);border-radius:var(--r-md);padding:9px 16px;font-family:Inter,sans-serif;font-size:13px;font-weight:500;cursor:pointer;width:100%">💬 Message</button></div>
+          <div class="pc"><div class="pch"><span class="pct">Certifications</span></div><div class="pcb" style="padding:0 1.25rem"><div style="display:flex;align-items:center;gap:8px;font-size:13px;padding:8px 0;border-bottom:1px solid var(--border)">✅ State MED License</div><div style="display:flex;align-items:center;gap:8px;font-size:13px;padding:8px 0;border-bottom:1px solid var(--border)">✅ EIN Verified</div><div style="display:flex;align-items:center;gap:8px;font-size:13px;padding:8px 0">🌿 Bridge Verified</div></div></div>
+        </div>
+        <div id="pa-pub-s" style="display:none">
+          <div class="pc" style="text-align:center;margin-bottom:1.25rem"><div class="pcb"><div style="font-size:32px;margin-bottom:10px">🌿</div><div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:800;margin-bottom:6px">Love Our Flower?</div><div style="font-size:13px;color:var(--ts);margin-bottom:14px;line-height:1.6">Follow us for new drops & deals.</div><button onclick="showToast('Following Green Horizon!')" style="width:100%;background:linear-gradient(135deg,var(--leaf),var(--lime));color:var(--forest);border:none;border-radius:99px;padding:10px;font-family:Inter,sans-serif;font-size:13px;font-weight:700;cursor:pointer">+ Follow</button></div></div>
+          <div class="pc"><div class="pch"><span class="pct">Follow Us</span></div><div class="pcb"><div style="display:flex;gap:8px;flex-wrap:wrap"><a href="#" style="display:flex;align-items:center;gap:5px;background:var(--stone50);border:1px solid var(--border);border-radius:99px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--ts);text-decoration:none">📸 Instagram</a><a href="#" style="display:flex;align-items:center;gap:5px;background:var(--stone50);border:1px solid var(--border);border-radius:99px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--ts);text-decoration:none">🎵 TikTok</a></div></div></div>
+        </div>
+        <div id="pa-edit-s" style="display:none">
+          <div class="pc"><div class="pch"><span class="pct">Profile strength</span><span style="font-size:13px;font-weight:800;color:var(--leaf-dk)">72%</span></div><div class="pcb"><div style="height:6px;border-radius:99px;background:var(--stone100);margin-bottom:10px;overflow:hidden"><div style="width:72%;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--leaf),var(--lime))"></div></div><div style="display:flex;flex-direction:column;gap:7px;font-size:12px"><div style="display:flex;align-items:center;gap:7px"><span style="width:16px;height:16px;border-radius:50%;background:var(--mint);color:var(--forest);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0">✓</span>Business info complete</div><div style="display:flex;align-items:center;gap:7px"><span style="width:16px;height:16px;border-radius:50%;background:var(--mint);color:var(--forest);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0">✓</span>LeafLink connected</div><div style="display:flex;align-items:center;gap:7px"><span style="width:16px;height:16px;border-radius:50%;background:var(--stone100);color:var(--tm);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0">○</span><span style="color:var(--tm)">Add regional reps</span></div></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="save-b" id="p-save-bar" style="display:none">
+    <span style="font-size:12px;color:var(--tm)">Unsaved changes on this profile</span>
+    <div style="display:flex;gap:8px">
+      <button onclick="setPView('b2b')" style="background:transparent;border:1px solid var(--border-md);color:var(--ts);border-radius:var(--r-md);padding:9px 18px;font-family:Inter,sans-serif;font-size:13px;font-weight:600;cursor:pointer">Discard</button>
+      <button onclick="savePro()" style="background:var(--leaf);color:white;border:none;border-radius:var(--r-md);padding:9px 18px;font-family:Inter,sans-serif;font-size:13px;font-weight:700;cursor:pointer">Save all changes</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- SETTINGS PAGE -->
+<div class="page" id="page-settings">
+<style>
+.sl{display:grid;grid-template-columns:200px 1fr;flex:1;overflow:hidden}
+.sn{background:white;border-right:1px solid var(--border);overflow-y:auto;padding:1rem 0}
+.sn::-webkit-scrollbar{display:none}
+.snsl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tm);padding:1rem 1.25rem .5rem}
+.sni{display:flex;align-items:center;gap:10px;padding:9px 1.25rem;font-size:13px;font-weight:500;color:var(--ts);cursor:pointer;border-left:2.5px solid transparent;transition:all .15s}
+.sni:hover{background:var(--spring);color:var(--tp)}
+.sni.active{background:var(--spring);color:var(--leaf-dk);border-left-color:var(--leaf-dk);font-weight:600}
+.snii{font-size:15px;width:20px;text-align:center;flex-shrink:0}
+.sc2{overflow-y:auto;padding:1.5rem}
+.sc2::-webkit-scrollbar{width:4px}
+.sc2::-webkit-scrollbar-thumb{background:var(--stone200);border-radius:99px}
+.ss{display:none}
+.ss.active{display:block}
+.sst{font-family:"Playfair Display",serif;font-size:20px;font-weight:800;color:var(--tp);letter-spacing:-0.01em;margin-bottom:4px}
+.sss{font-size:13px;color:var(--tm);margin-bottom:1.5rem}
+.scd{background:white;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;margin-bottom:1.25rem}
+.scd:last-child{margin-bottom:0}
+.scdh{display:flex;align-items:center;justify-content:space-between;padding:.875rem 1.25rem;border-bottom:1px solid var(--border)}
+.scdt{font-size:13px;font-weight:700;color:var(--tp)}
+.scdb{padding:1.25rem}
+.sr{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--border)}
+.sr:last-child{border-bottom:none}
+.srl{font-size:13px;font-weight:500;color:var(--tp)}
+.srd{font-size:11px;color:var(--tm);margin-top:2px}
+.sright{flex-shrink:0;margin-left:1rem}
+.tgl{width:44px;height:24px;background:var(--stone200);border-radius:99px;position:relative;cursor:pointer;transition:background .2s;border:none;outline:none}
+.tgl::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:white;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.tgl.on{background:var(--leaf)}.tgl.on::after{transform:translateX(20px)}
+.ssel{padding:6px 12px;border-radius:var(--r-md);border:1px solid var(--border-md);background:var(--stone50);font-family:Inter,sans-serif;font-size:12px;color:var(--ts);outline:none;cursor:pointer}
+.dz{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
+.dz:last-child{border-bottom:none}
+.dzl{font-size:13px;font-weight:600;color:#C0392B}
+.dzd{font-size:11px;color:var(--tm);margin-top:2px}
+.dzb{background:#FEF0EF;color:#C0392B;border:1px solid #F5C6C3;border-radius:var(--r-md);padding:7px 14px;font-family:Inter,sans-serif;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}
+.pl{background:linear-gradient(135deg,var(--forest),#5B21B6);border-radius:var(--r-xl);padding:1.5rem;color:white;margin-bottom:1.25rem}
+.pl h3{font-family:"Playfair Display",serif;font-size:18px;font-weight:800;margin-bottom:4px}
+.pl p{font-size:13px;opacity:.85;margin-bottom:1rem}
+.plf{display:flex;flex-direction:column;gap:6px;margin-bottom:1.25rem}
+.plfi{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mint)}
+.plfi::before{content:"✓";font-weight:700;color:var(--lime)}
+.upb{background:var(--lime);color:var(--forest);border:none;border-radius:var(--r-md);padding:11px 20px;font-family:Inter,sans-serif;font-size:13px;font-weight:800;cursor:pointer}
+</style>
+
+  <div class="sl">
+    <nav class="sn">
+      <div class="snsl">Account</div>
+      <div class="sni active" onclick="setSS(this,'ss-acct')"><span class="snii">👤</span>Account Info</div>
+      <div class="sni" onclick="setSS(this,'ss-sec')"><span class="snii">🔒</span>Security</div>
+      <div class="sni" onclick="setSS(this,'ss-notif')"><span class="snii">🔔</span>Notifications</div>
+      <div class="sni" onclick="setSS(this,'ss-priv')"><span class="snii">🛡</span>Privacy</div>
+      <div class="snsl">Business</div>
+      <div class="sni" onclick="setSS(this,'ss-plan')"><span class="snii">⭐</span>Plan & Billing</div>
+      <div class="sni" onclick="setSS(this,'ss-api')"><span class="snii">🔗</span>Integrations</div>
+      <div class="sni" onclick="setSS(this,'ss-comp')"><span class="snii">⚖️</span>Compliance</div>
+      <div class="snsl">Support</div>
+      <div class="sni" onclick="showToast('Opening Help Center')"><span class="snii">❓</span>Help Center</div>
+      <div class="sni" onclick="showToast('Opening support chat')"><span class="snii">💬</span>Contact Support</div>
+      <div class="snsl">Danger Zone</div>
+      <div class="sni" onclick="setSS(this,'ss-danger')" style="color:#C0392B"><span class="snii">⚠</span>Danger Zone</div>
+    </nav>
+    <div class="sc2">
+      <div class="ss active" id="ss-acct"><div class="sst">Account information</div><div class="sss">Manage your business details and verification status.</div>
+        <div class="scd"><div class="scdh"><span class="scdt">Business details</span><button onclick="showToast('Changes saved')" style="background:var(--leaf);color:white;border:none;border-radius:var(--r-md);padding:7px 14px;font-family:Inter,sans-serif;font-size:12px;font-weight:600;cursor:pointer">Save</button></div><div class="scdb" style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div><label style="font-size:12px;font-weight:600;color:var(--ts);display:block;margin-bottom:5px">Legal name</label><input style="width:100%;padding:9px 12px;border:1px solid var(--border-md);border-radius:var(--r-md);font-family:Inter,sans-serif;font-size:13px;color:var(--tp);background:var(--stone50);outline:none" value="Green Horizon Farms LLC"></div><div><label style="font-size:12px;font-weight:600;color:var(--ts);display:block;margin-bottom:5px">Display name</label><input style="width:100%;padding:9px 12px;border:1px solid var(--border-md);border-radius:var(--r-md);font-family:Inter,sans-serif;font-size:13px;color:var(--tp);background:var(--stone50);outline:none" value="Green Horizon Farms"></div><div><label style="font-size:12px;font-weight:600;color:var(--ts);display:block;margin-bottom:5px">Email</label><input style="width:100%;padding:9px 12px;border:1px solid var(--border-md);border-radius:var(--r-md);font-family:Inter,sans-serif;font-size:13px;color:var(--tp);background:var(--stone50);outline:none" value="info@greenhorizonfarms.com"></div><div><label style="font-size:12px;font-weight:600;color:var(--ts);display:block;margin-bottom:5px">Phone</label><input style="width:100%;padding:9px 12px;border:1px solid var(--border-md);border-radius:var(--r-md);font-family:Inter,sans-serif;font-size:13px;color:var(--tp);background:var(--stone50);outline:none" placeholder="+1 (720) 000-0000"></div></div></div>
+        <div class="scd"><div class="scdh"><span class="scdt">Verification status</span></div><div class="scdb" style="padding:0 1.25rem"><div class="sr"><div><div class="srl">EIN verification</div><div class="srd">Verified against IRS · Never shown publicly</div></div><span style="background:var(--mint);color:var(--forest);font-size:11px;font-weight:700;border-radius:99px;padding:4px 12px">✓ Verified</span></div><div class="sr"><div><div class="srl">State license</div><div class="srd">CO-MED-0001234 · Active</div></div><span style="background:var(--mint);color:var(--forest);font-size:11px;font-weight:700;border-radius:99px;padding:4px 12px">✓ Active</span></div><div class="sr"><div><div class="srl">Bridge verification badge</div><div class="srd">🌿 Industry Verified — shows on your profile</div></div><span style="background:var(--mint);color:var(--forest);font-size:11px;font-weight:700;border-radius:99px;padding:4px 12px">✓ Active</span></div></div></div>
+      </div>
+      <div class="ss" id="ss-sec"><div class="sst">Security</div><div class="sss">Protect your Bridge business account.</div>
+        <div class="scd"><div class="scdh"><span class="scdt">Password & authentication</span></div><div class="scdb" style="padding:0 1.25rem"><div class="sr"><div><div class="srl">Password</div><div class="srd">Last changed 3 months ago</div></div><button onclick="showToast('Password change email sent')" style="background:var(--stone50);border:1px solid var(--border-md);border-radius:var(--r-md);padding:7px 14px;font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:var(--ts);cursor:pointer">Change</button></div><div class="sr"><div><div class="srl">Two-factor authentication</div><div class="srd">Strongly recommended</div></div><button class="tgl on" onclick="toggleBtn(this)"></button></div><div class="sr"><div><div class="srl">Login notifications</div></div><button class="tgl on" onclick="toggleBtn(this)"></button></div><div class="sr"><div><div class="srl">Active sessions</div><div class="srd">2 devices signed in</div></div><button onclick="showToast('All other sessions signed out')" style="background:var(--stone50);border:1px solid var(--border-md);border-radius:var(--r-md);padding:7px 14px;font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:var(--ts);cursor:pointer">Sign out all</button></div></div></div>
+        <div class="scd"><div class="scdh"><span class="scdt">Data & encryption</span></div><div class="scdb" style="padding:0 1.25rem"><div class="sr"><div><div class="srl">End-to-end encrypted messaging</div><div class="srd">Bridge cannot read your messages</div></div><span style="background:var(--mint);color:var(--forest);font-size:11px;font-weight:700;border-radius:99px;padding:4px 12px">Always on</span></div><div class="sr"><div><div class="srl">Data export</div><div class="srd">Download all your Bridge data</div></div><button onclick="showToast('Export requested — email incoming')" style="background:var(--stone50);border:1px solid var(--border-md);border-radius:var(--r-md);padding:7px 14px;font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:var(--ts);cursor:pointer">Request export</button></div><div class="sr"><div><div class="srl">Bridge data policy</div><div class="srd">We never sell your data. Zero ads.</div></div><a href="#" style="font-size:12px;font-weight:600;color:var(--leaf-dk);text-decoration:none">View →</a></div></div></div>
+      </div>
+      <div class="ss" id="ss-notif"><div class="sst">Notifications</div><div class="sss">Choose how Bridge notifies you.</div>
+        <div class="scd"><div class="scdh"><span class="scdt">Activity</span></div><div class="scdb" style="padding:0 1.25rem"><div class="sr"><div><div class="srl">New connection request</div></div><button class="tgl on" onclick="toggleBtn(this)"></button></div><div class="sr"><div><div class="srl">New message</div></div><button class="tgl on" onclick="toggleBtn(this)"></button></div><div class="sr"><div><div class="srl">Menu request</div></div><button class="tgl on" onclick="toggleBtn(this)"></button></div><div class="sr"><div><div class="srl">Post reposted</div></div><button class="tgl on" onclick="toggleBtn(this)"></button></div><div class="sr"><div><div class="srl">New follower</div></div><button class="tgl" onclick="toggleBtn(this)"></button></div><div class="sr"><div><div class="srl">Post compliance approved</div></div><button class="tgl on" onclick="toggleBtn(this)"></button></div></div></div>
+        <div class="scd"><div class="scdh"><span class="scdt">Channels</span></div><div class="scdb" style="padding:0 1.25rem"><div class="sr"><div><div class="srl">Push notifications</div></div><button class="tgl on" onclick="toggleBtn(this)"></button></div><div class="sr"><div><div class="srl">Email notifications</div></div><button class="tgl on" onclick="toggleBtn(this)"></button></div><div class="sr"><div><div class="srl">SMS notifications</div></div><button class="tgl" onclick="toggleBtn(this)"></button></div><div class="sr"><div><div class="srl">Email frequency</div></div><select class="ssel"><option>Instant</option><option>Daily digest</option><option>Weekly</option></select></div></div></div>
+      </div>
+      <div class="ss" id="ss-priv"><div class="sst">Privacy</div><div class="sss">Control who sees your information.</div>
+        <div class="scd"><div class="scdh"><span class="scdt">Profile visibility</span></div><div class="scdb" style="padding:0 1.25rem"><div class="sr"><div><div class="srl">Public profile (consumer view)</div></div><button class="tgl on" onclick="toggleBtn(this)"></button></div><div class="sr"><div><div class="srl">B2B profile (business view)</div></div><button class="tgl on" onclick="toggleBtn(this)"></button></div><div class="sr"><div><div class="srl">Show in directory search</div></div><button class="tgl on" onclick="toggleBtn(this)"></button></div></div></div>
+        <div class="scd"><div class="scdh"><span class="scdt">Messaging permissions</span></div><div class="scdb" style="padding:0 1.25rem"><div class="sr"><div><div class="srl">Who can message you</div></div><select class="ssel"><option>Storefronts only</option><option>All verified businesses</option><option>Connected only</option></select></div><div class="sr"><div><div class="srl">Read receipts</div></div><button class="tgl on" onclick="toggleBtn(this)"></button></div></div></div>
+      </div>
+      <div class="ss" id="ss-plan"><div class="sst">Plan & billing</div><div class="sss">Manage your Bridge subscription.</div>
+        <div class="pl"><h3>Pro Plan</h3><p>$79.99/month · Renews June 1, 2025</p><div class="plf"><div class="plfi">EIN-verified business profile (public + B2B)</div><div class="plfi">Post to Bridge news feed</div><div class="plfi">LeafLink menu sync</div><div class="plfi">Encrypted B2B messaging</div><div class="plfi">Up to 15 team members</div></div><button class="upb" onclick="showToast('Opening Enterprise plan')">Upgrade to Enterprise ($99.99/mo) →</button></div>
+        <div class="scd"><div class="scdh"><span class="scdt">Payment method</span><button onclick="showToast('Update payment')" style="background:var(--stone50);border:1px solid var(--border-md);border-radius:var(--r-md);padding:7px 14px;font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:var(--ts);cursor:pointer">Update</button></div><div class="scdb" style="padding:0 1.25rem"><div class="sr"><div><div class="srl">Visa ending ····4242</div><div class="srd">Expires 09/27</div></div><span style="background:var(--mint);color:var(--forest);font-size:11px;font-weight:700;border-radius:99px;padding:3px 9px">Primary</span></div></div></div>
+      </div>
+      <div class="ss" id="ss-api"><div class="sst">Integrations</div><div class="sss">Connect Bridge to your cannabis business tools.</div>
+        <div class="scd"><div class="scdh"><span class="scdt">LeafLink</span><span style="background:var(--mint);color:var(--forest);font-size:11px;font-weight:700;border-radius:99px;padding:3px 9px;border:1px solid var(--border-md)">● Connected</span></div><div class="scdb"><div style="display:flex;align-items:center;gap:8px;margin-bottom:1rem"><input style="flex:1;padding:9px 12px;border:1px solid var(--border-md);border-radius:var(--r-md);font-family:monospace;font-size:12px;color:var(--ts);background:var(--stone50);outline:none" value="sk_live_••••••••••••••••••••"><button onclick="showToast('API key revealed')" style="background:var(--stone50);border:1px solid var(--border-md);border-radius:var(--r-md);padding:8px 12px;font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:var(--ts);cursor:pointer">Reveal</button><button onclick="showToast('API key rotated')" style="background:var(--stone50);border:1px solid var(--border-md);border-radius:var(--r-md);padding:8px 12px;font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:var(--ts);cursor:pointer">Rotate</button></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div style="background:var(--spring);border:1px solid var(--border-md);border-radius:var(--r-md);padding:12px"><div style="font-size:11px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Menu sync</div><div style="font-size:13px;font-weight:600;color:var(--forest)">Every 5 min</div></div><div style="background:var(--spring);border:1px solid var(--border-md);border-radius:var(--r-md);padding:12px"><div style="font-size:11px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Photo sync</div><div style="font-size:13px;font-weight:600;color:var(--forest)">On change</div></div></div></div></div>
+      </div>
+      <div class="ss" id="ss-comp"><div class="sst">Compliance</div><div class="sss">Cannabis advertising requirements and policy agreements.</div>
+        <div class="scd"><div class="scdh"><span class="scdt">State advertising compliance</span></div><div class="scdb" style="padding:0 1.25rem"><div class="sr"><div><div class="srl">Colorado compliance agreement</div><div class="srd">MED Rules 4-130 through 4-140 · Signed Jan 12, 2025</div></div><span style="background:var(--mint);color:var(--forest);font-size:11px;font-weight:700;border-radius:99px;padding:3px 9px">Active</span></div><div class="sr"><div><div class="srl">21+ targeting requirement</div></div><button class="tgl on" onclick="toggleBtn(this)"></button></div><div class="sr"><div><div class="srl">Compliance review on posts</div></div><span style="background:var(--mint);color:var(--forest);font-size:11px;font-weight:700;border-radius:99px;padding:3px 9px">Always on</span></div></div></div>
+        <div class="scd"><div class="scdh"><span class="scdt">Legal notices</span></div><div class="scdb" style="display:flex;flex-direction:column;gap:8px"><a href="#" onclick="return false;showToast('Terms of Service')" style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--stone50);border-radius:var(--r-md);text-decoration:none;font-size:13px;font-weight:500;color:var(--tp)">Terms of Service <span style="color:var(--leaf-dk)">View →</span></a><a href="#" onclick="return false;" style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--stone50);border-radius:var(--r-md);text-decoration:none;font-size:13px;font-weight:500;color:var(--tp)">Privacy Policy <span style="color:var(--leaf-dk)">View →</span></a><a href="#" onclick="return false;" style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--stone50);border-radius:var(--r-md);text-decoration:none;font-size:13px;font-weight:500;color:var(--tp)">Cannabis Advertising Policy <span style="color:var(--leaf-dk)">View →</span></a></div></div>
+      </div>
+      <div class="ss" id="ss-danger"><div class="sst">Danger zone</div><div class="sss">Irreversible actions. Proceed carefully.</div>
+        <div class="scd" style="border-color:#F5C6C3"><div class="scdh" style="border-color:#F5C6C3"><span class="scdt" style="color:#C0392B">⚠ Destructive actions</span></div><div class="scdb" style="padding:0 1.25rem"><div class="dz"><div><div class="dzl">Deactivate profile</div><div class="dzd">Hides profile. Can be reactivated.</div></div><button class="dzb" onclick="showToast('Deactivation requires email confirmation')">Deactivate</button></div><div class="dz"><div><div class="dzl">Remove LeafLink</div><div class="dzd">Disconnects menu sync.</div></div><button class="dzb" onclick="showToast('LeafLink disconnected')">Disconnect</button></div><div class="dz"><div><div class="dzl">Delete all posts</div><div class="dzd">Permanently removes all Bridge posts.</div></div><button class="dzb" onclick="showToast('Requires email confirmation — sent')">Delete all posts</button></div><div class="dz"><div><div class="dzl">Delete account permanently</div><div class="dzd">Cannot be undone. All data deleted.</div></div><button class="dzb" style="border-color:#C0392B;color:#C0392B;background:#FEF0EF" onclick="showToast('Requires 2FA confirmation — check email')">Delete account</button></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<!-- ══ REPOST MODAL ══ -->
+<div class="modal-overlay" id="repost-modal" onclick="closeRepostOutside(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Repost to your profile</h2>
+      <p>This will appear on your public Bridge profile with full credit to the original brand.</p>
+    </div>
+    <div class="modal-body">
+      <div class="modal-preview" id="modal-preview">
+        <div class="modal-preview-av" id="modal-av" style="background:#EDE9FE;color:#4C1D95">GH</div>
+        <div>
+          <div class="modal-preview-name" id="modal-biz-name">Green Horizon Farms</div>
+          <div class="modal-preview-title" id="modal-post-title">Sour Diesel — New Batch</div>
+        </div>
+      </div>
+      <div class="modal-note">
+        🔒 <strong>Attribution is permanent.</strong> Reposts always show the original business name and cannot be edited. This protects brand integrity and prevents misinformation.
+      </div>
+      <label style="font-size:12px;font-weight:600;color:var(--ts);display:block;margin-bottom:6px">Add a note to your followers (optional)</label>
+      <textarea class="modal-optional-note" id="repost-note" placeholder="e.g. 'Great deal this weekend!' or 'Highly recommend this brand' — max 120 characters" maxlength="120"></textarea>
+      <div style="font-size:11px;color:var(--tm);margin-top:4px;text-align:right"><span id="char-count">0</span>/120</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeRepostModal()">Cancel</button>
+      <button class="btn btn-leaf" onclick="confirmRepost()">↺ Repost now</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TOAST ══ -->
+<div id="toast" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--forest);color:white;padding:12px 22px;border-radius:99px;font-size:13px;font-weight:600;z-index:300;box-shadow:0 8px 32px rgba(0,0,0,.2);font-family:'Inter',sans-serif;animation:mi .2s ease;white-space:nowrap"></div>
+
+<script>
+// ── PAGES ──
+function showPage(id, navEl) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const t = document.getElementById('page-' + id);
+  if (t) t.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (navEl) navEl.classList.add('active');
+}
+
+// ── FEED SCOPE ──
+function setScope(s, el) {
+  document.querySelectorAll('.scope-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  showToast(s === 'mine' ? 'Showing Colorado feed' : s === 'all' ? 'Showing all states' : 'Choose your state');
+}
+
+// ── FEED FILTER ──
+function setFilter(type, el) {
+  document.querySelectorAll('.ff-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.post-card').forEach(card => {
+    if (type === 'all') { card.style.display = 'block'; return; }
+    if (type === 'repost') { card.style.display = card.querySelector('.repost-banner') ? 'block' : 'none'; return; }
+    card.style.display = card.dataset.type === type ? 'block' : 'none';
+  });
+}
+
+// ── FOLLOW ──
+function toggleFollow(btn) {
+  const following = btn.classList.toggle('following');
+  btn.textContent = following ? 'Following ✓' : '+ Follow';
+  showToast(following ? 'Following! You\'ll see their posts in your feed.' : 'Unfollowed');
+}
+
+// ── SAVE ──
+function toggleSave(btn) {
+  const saved = btn.textContent.includes('Saved');
+  btn.textContent = saved ? '🔖 Save' : '🔖 Saved';
+  if (!saved) btn.style.color = 'var(--leaf-dk)';
+  else btn.style.color = '';
+  showToast(saved ? 'Removed from saved' : 'Post saved to your profile');
+}
+
+// ── SHARE ──
+function sharePost() { showToast('Copied link — share Bridge anywhere!'); }
+
+// ── REPOST MODAL ──
+var currentRepostBtn = null;
+
+function openRepostModal(btn, bizName, postTitle) {
+  currentRepostBtn = btn;
+  document.getElementById('modal-biz-name').textContent = bizName;
+  document.getElementById('modal-post-title').textContent = postTitle;
+  document.getElementById('repost-note').value = '';
+  document.getElementById('char-count').textContent = '0';
+  document.getElementById('repost-modal').classList.add('open');
+}
+
+document.getElementById('repost-note').addEventListener('input', function() {
+  document.getElementById('char-count').textContent = this.value.length;
+});
+
+function closeRepostModal() {
+  document.getElementById('repost-modal').classList.remove('open');
+}
+
+function closeRepostOutside(e) {
+  if (e.target === document.getElementById('repost-modal')) closeRepostModal();
+}
+
+function confirmRepost() {
+  closeRepostModal();
+  if (currentRepostBtn) {
+    currentRepostBtn.classList.add('reposted');
+    currentRepostBtn.innerHTML = '↺ Reposted ' + currentRepostBtn.querySelector('.repost-count').outerHTML;
+    const countEl = currentRepostBtn.querySelector('.repost-count');
+    if (countEl) countEl.textContent = parseInt(countEl.textContent) + 1;
+  }
+  showToast('✓ Reposted to your profile! Helping this brand reach further. 🌿');
+}
+
+// ── TOAST ──
+var toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.style.display = 'none'; }, 3000);
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeRepostModal(); });
+
+// ── Also wire up Settings nav item ──
+document.querySelectorAll('.nav-item').forEach(n => {
+  if (n.dataset.tip === 'Settings') {
+    n.onclick = function() { showPage('settings', this); };
+  }
+});
+
+// ── BROWSE PAGE ──
+var browseScope = 'mine', browseType = 'all';
+var MY_STATE = ['CO'];
+
+function setBrowseScope(el, scope) {
+  browseScope = scope;
+  ['bsc-mine','bsc-pick','bsc-all'].forEach(id => {
+    var b = document.getElementById(id);
+    if (b) b.classList.remove('active');
+  });
+  el.classList.add('active');
+  browseFilter();
+  showToast(scope === 'mine' ? '📍 Colorado' : scope === 'all' ? '🌎 All states' : 'Choose your state');
+}
+
+function toggleBBtypeMenu() {
+  var m = document.getElementById('bbtype-menu');
+  var b = document.getElementById('bbtype-btn');
+  if (!m) return;
+  var open = m.classList.toggle('open');
+  b.classList.toggle('open', open);
+  if (open) {
+    setTimeout(function() {
+      document.addEventListener('click', closeBBtypeMenu, {once: true});
+    }, 10);
+  }
+}
+function closeBBtypeMenu(e) {
+  var wrap = document.querySelector('.bbtype-wrap');
+  if (!wrap || !wrap.contains(e.target)) {
+    var m = document.getElementById('bbtype-menu');
+    var b = document.getElementById('bbtype-btn');
+    if (m) m.classList.remove('open');
+    if (b) b.classList.remove('open');
+  }
+}
+function selectBBtype(el) {
+  browseType = el.dataset.btype;
+  document.querySelectorAll('.bbtype-item').forEach(i => i.classList.remove('bsel'));
+  el.classList.add('bsel');
+  var icon = el.querySelector('.bbtype-icon').textContent;
+  var name = el.querySelector('.bbtype-name').textContent;
+  var lbl = document.getElementById('bbtype-label');
+  if (lbl) lbl.textContent = icon + ' ' + name;
+  var m = document.getElementById('bbtype-menu');
+  var b = document.getElementById('bbtype-btn');
+  if (m) m.classList.remove('open');
+  if (b) b.classList.remove('open');
+  browseFilter();
+}
+function browseFilter() {
+  var q = (document.getElementById('bsrch') || {value:''}).value.toLowerCase();
+  var cards = document.querySelectorAll('.bcard');
+  var vis = 0;
+  cards.forEach(function(card) {
+    var states = (card.dataset.bstate || '').split(',');
+    var type = card.dataset.btype || '';
+    var name = (card.querySelector('.bcard-name') || {textContent:''}).textContent.toLowerCase();
+    var stateOk = browseScope === 'all' ? true : states.some(s => MY_STATE.includes(s));
+    var typeOk = browseType === 'all' || type === browseType;
+    var qOk = !q || name.includes(q);
+    card.style.display = (stateOk && typeOk && qOk) ? 'block' : 'none';
+    if (stateOk && typeOk && qOk) vis++;
+  });
+  var cnt = document.getElementById('bcount');
+  if (cnt) cnt.textContent = 'Showing ' + vis + ' business' + (vis !== 1 ? 'es' : '') + (browseScope === 'mine' ? ' in Colorado' : browseScope === 'all' ? ' across all states' : '');
+  var empty = document.getElementById('bempty');
+  if (empty) empty.style.display = vis === 0 ? 'block' : 'none';
+}
+
+// ── PROFILE 3 VIEWS ──
+var currentPView = 'b2b';
+
+function setPView(mode) {
+  currentPView = mode;
+  var isPub = mode === 'pub';
+  var isEdit = mode === 'edit';
+  var isB2B = mode === 'b2b';
+
+  // Toggle buttons
+  ['pvb-b2b','pvb-pub','pvb-edit'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.className = 'pvb';
+    if (id === 'pvb-b2b' && isB2B) el.className += ' ab2b';
+    if (id === 'pvb-pub' && isPub) el.className += ' apub';
+    if (id === 'pvb-edit' && isEdit) el.className += ' aedit';
+  });
+
+  // Mode banner
+  var banner = document.getElementById('pmode-banner');
+  var bannerText = document.getElementById('pmode-text');
+  if (banner) {
+    banner.className = 'pmb ' + (isPub ? 'pmb-pub' : isEdit ? 'pmb-edit' : 'pmb-b2b');
+    if (bannerText) bannerText.textContent = isPub
+      ? 'Public Mode — Consumers and fans see this version'
+      : isEdit
+      ? 'Edit Mode — Changes save to both B2B and Public profiles'
+      : 'B2B Private — Only verified businesses on Bridge can view this';
+  }
+
+  // Banner height (pub gets taller for video)
+  var pBanner = document.getElementById('p-banner');
+  if (pBanner) pBanner.className = 'p-banner' + (isPub ? ' pub-h' : '');
+  var pPlay = document.getElementById('p-play');
+  if (pPlay) pPlay.style.display = isPub ? 'flex' : 'none';
+
+  // Actions row
+  var paB2B = document.getElementById('pa-b2b');
+  var paPub = document.getElementById('pa-pub');
+  var paEdit = document.getElementById('pa-edit');
+  if (paB2B) paB2B.style.display = isB2B ? 'flex' : 'none';
+  if (paPub) paPub.style.display = isPub ? 'flex' : 'none';
+  if (paEdit) paEdit.style.display = isEdit ? 'flex' : 'none';
+
+  // Bio
+  var bioB2B = document.getElementById('p-bio-b2b');
+  var bioPub = document.getElementById('p-bio-pub');
+  if (bioB2B) bioB2B.style.display = isPub ? 'none' : 'block';
+  if (bioPub) bioPub.style.display = isPub ? 'block' : 'none';
+
+  // Mode badge
+  var badge = document.getElementById('p-mode-badge');
+  if (badge) {
+    badge.textContent = isPub ? '🌐 Public' : isEdit ? '✏ Editing' : '🔒 B2B Private';
+    badge.className = 'pb ' + (isPub ? 'pb-p' : isEdit ? 'pb-m' : 'pb-m');
+  }
+
+  // Overview content (B2B vs Public vs Edit)
+  var b2bOv = document.getElementById('b2b-ov');
+  var pubOv = document.getElementById('pub-ov');
+  var editOv = document.getElementById('edit-ov');
+  if (b2bOv) b2bOv.style.display = isB2B ? 'flex' : 'none';
+  if (pubOv) pubOv.style.display = isPub ? 'flex' : 'none';
+  if (editOv) editOv.style.display = isEdit ? 'flex' : 'none';
+
+  // Side panel
+  var paB2Bs = document.getElementById('pa-b2b-s');
+  var paPubs = document.getElementById('pa-pub-s');
+  var paEdits = document.getElementById('pa-edit-s');
+  if (paB2Bs) paB2Bs.style.display = isB2B ? 'block' : 'none';
+  if (paPubs) paPubs.style.display = isPub ? 'block' : 'none';
+  if (paEdits) paEdits.style.display = isEdit ? 'block' : 'none';
+
+  // Tabs — pub gets different labels
+  var tabs = document.getElementById('p-tabs');
+  if (tabs) {
+    if (isPub) {
+      tabs.innerHTML = '<div class="ptb active" onclick="setPTab(this,\'pp-ov\')">Our Story</div><div class="ptb" onclick="setPTab(this,\'pp-menu\')">Products</div><div class="ptb" onclick="setPTab(this,\'pp-posts\')">Posts</div>';
+    } else if (isEdit) {
+      tabs.innerHTML = '<div class="ptb active" onclick="setPTab(this,\'pp-ov\')">Edit Profile</div><div class="ptb" onclick="setPTab(this,\'pp-menu\')">Live Menu</div><div class="ptb" onclick="setPTab(this,\'pp-team\')">Team</div><div class="ptb" onclick="setPTab(this,\'pp-posts\')">Posts</div>';
+    } else {
+      tabs.innerHTML = '<div class="ptb active" onclick="setPTab(this,\'pp-ov\')">Overview</div><div class="ptb" onclick="setPTab(this,\'pp-menu\')">Live Menu</div><div class="ptb" onclick="setPTab(this,\'pp-team\')">Team & Reps</div><div class="ptb" onclick="setPTab(this,\'pp-posts\')">Bridge Posts</div>';
+    }
+  }
+  // Reset to overview tab
+  ['pp-ov','pp-menu','pp-team','pp-posts'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = id === 'pp-ov' ? 'block' : 'none';
+  });
+
+  // Save bar
+  var saveBar = document.getElementById('p-save-bar');
+  if (saveBar) saveBar.style.display = isEdit ? 'flex' : 'none';
+}
+
+function setPTab(el, tabId) {
+  document.querySelectorAll('.ptb').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  ['pp-ov','pp-menu','pp-team','pp-posts'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = id === tabId ? 'block' : 'none';
+  });
+}
+
+function savePro() {
+  setPView('b2b');
+  showToast('✓ Profile saved — changes live on both B2B and Public views');
+}
+
+// ── SETTINGS ──
+function setSS(el, sectionId) {
+  document.querySelectorAll('.sni').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.ss').forEach(s => s.classList.remove('active'));
+  var target = document.getElementById(sectionId);
+  if (target) target.classList.add('active');
+}
+
+function toggleBtn(btn) {
+  btn.classList.toggle('on');
+  showToast(btn.classList.contains('on') ? 'Setting enabled' : 'Setting disabled');
+}
+</script>
+</body>
+</html>

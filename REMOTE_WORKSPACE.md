@@ -1,78 +1,100 @@
-# AHCM contributor workspace
+# DESKTOP and AHCM writer workspaces
 
-This private repository is the transport, backup, and contribution surface for Dillon's Canonical Client Operations project.
+This private repository is the shared transport, backup, and coordination surface for Dillon's Canonical Client Operations project.
 
-## Roles
+## Authorized writers
 
-- **Sole authoritative execution machine:** `DESKTOP-4AHKEC4`
-- **Writable canonical path:** `C:\Users\dillo\Documents\Codex\projects\client-operations`
-- **Canonical writer:** Marketing Chief on the authoritative machine
-- **AHCM-3LCQVF4:** authorized contributor workspace
+- **DESKTOP-4AHKEC4:** authorized execution machine and canonical-state writer host
+- **AHCM-3LCQVF4:** authorized execution machine and canonical-state writer host
+- **Logical canonical writer:** the Marketing Chief role, which may have authorized instances on both machines
 
-AHCM may:
+Neither machine must stop its gateway, scheduler, cron jobs, or Marketing Chief instance merely to allow the other machine to write. This is a coordinated multi-writer setup, not an authority migration.
+
+Both machines may:
 
 - read and use the complete private repository and Align submodule
-- research and create client-specific artifacts
-- edit non-canonical code, documentation, tests, designs, and deliverables
-- run local tests and verification
-- push proposed work to branches named `ahcm/<topic>`
-- open pull requests for review and merge on the authoritative desktop
+- run the Marketing Chief and supported canonical mutation scripts
+- reconcile validated worker handoffs into canonical state
+- research, create artifacts, test, and verify work
+- commit and push canonical updates to `main` after synchronizing
+- use topic branches and pull requests for non-canonical or review-heavy work
 
-AHCM must not:
+Both machines must:
 
-- run the Marketing Chief or another canonical queue writer
-- directly edit `queue/work-items.json` or `CONTROL.md`
-- edit canonical intake or append-only state ledgers
-- accept worker handoffs into canonical state
-- push directly to `main`
-- send, publish, deploy, spend, change accounts, or mutate live campaigns without exact current approval
-- treat an unmerged AHCM branch as canonical state
+- resolve the exact active client before changing client state
+- preserve approval gates for sends, publishing, deployment, spend, destructive actions, and account changes
+- use supported scripts rather than editing generated or append-only state manually
+- reject stale queue revisions
+- keep `queue/work-items.json`, `CONTROL.md`, and canonical ledgers consistent
+- avoid force-pushing or overwriting another writer's work
 
-## Clone on AHCM
+## Enable AHCM as a writer
+
+After pulling this policy on AHCM, remove the obsolete contributor-only pre-push hook and configure fast-forward-only pulls:
 
 ```powershell
-cd C:\Users\dillo\Documents\Codex\projects
-git clone --recurse-submodules https://github.com/dillonmohr8777/client-operations-canonical.git client-operations-contributor
-cd client-operations-contributor
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Install-AhcmContributorGuard.ps1
+cd C:\Users\dillo\Documents\Codex\projects\client-operations-contributor
+git fetch origin
+git pull --ff-only origin main
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Enable-AhcmWriter.ps1
 ```
 
-## Start contribution work
+The script removes only the legacy AHCM contributor guard. It leaves unrelated custom hooks untouched.
+
+## Canonical write protocol
+
+A filesystem lock or Windows mutex coordinates processes only on one machine. Cross-machine coordination therefore uses Git fast-forward history plus optimistic queue revisions.
+
+Before every canonical mutation:
 
 ```powershell
 git fetch origin
 git checkout main
 git pull --ff-only origin main
-git checkout -b ahcm/<short-topic>
 ```
 
-Make and verify the change, then:
+Then:
+
+1. Read the current `queue/work-items.json` revision.
+2. Run the supported mutation or handoff script with that expected revision.
+3. Regenerate and validate `CONTROL.md` and any required canonical projections.
+4. Stage only the intended canonical files.
+5. Commit with the queue revision or work-item identity in the message when useful.
+6. Push normally to `origin/main`.
+
+Example finish:
 
 ```powershell
-git add <specific-files>
-git commit -m "type: concise description"
-git push -u origin HEAD
-gh pr create --base main --title "type: concise description" --body "Summary, evidence, tests, and safety boundaries"
+git add queue/work-items.json CONTROL.md state/<required-ledger>.jsonl
+git commit -m "type: reconcile canonical work item"
+git push origin main
 ```
 
-The local guard rejects pushes to branches outside `ahcm/*` and rejects AHCM commits that touch protected canonical state.
+If pull cannot fast-forward, the expected revision is stale, or push is rejected:
 
-## Protected canonical state
+- do not force-push
+- do not overwrite the remote files
+- preserve the local attempted mutation or backup
+- fetch and reconcile the newer `origin/main`
+- rerun the supported mutation against the new queue revision
+- regenerate projections and push normally
 
-AHCM branches may not modify:
+Two machines may do local research and artifact work concurrently. Canonical commits are serialized by successful fast-forward pushes.
 
-- `queue/work-items.json`
-- `CONTROL.md`
-- `intake/`
-- `state/intake-sync.json`
-- `state/handoff-receipts.jsonl`
-- `state/queue-mutations.jsonl`
-- `state/corrections.jsonl`
-- `state/prediction-outcomes.jsonl`
+## Topic branches
 
-If AHCM research implies a queue change, include the proposed change and evidence in the pull-request description. The Marketing Chief on DESKTOP performs the canonical mutation after review.
+For non-canonical or review-heavy work, either machine may use a topic branch:
 
-## Update an existing AHCM clone
+```powershell
+git fetch origin
+git checkout main
+git pull --ff-only origin main
+git checkout -b <machine-or-topic>/<short-topic>
+```
+
+Then commit, push, and open a pull request. An unmerged branch is not canonical state.
+
+## Existing clone update
 
 ```powershell
 git fetch origin
@@ -81,14 +103,14 @@ git pull --ff-only origin main
 git submodule update --init --recursive
 ```
 
-Do not hard-reset a branch containing unsubmitted AHCM work.
+Do not hard-reset a branch containing unsubmitted work.
 
-## Deliberate authority migration
+## Shutdown or migration
 
-Changing the authoritative machine requires:
+Stopping a writer is not required for normal co-writer operation. If Dillon explicitly requests a machine shutdown, retirement, or authority migration:
 
-1. Dillon explicitly naming the new authoritative machine.
-2. Auditing cron jobs, gateways, scheduled tasks, and client automations on both computers.
-3. Preserving or migrating needed jobs before stopping the old writer.
-4. Verifying the final queue revision and repository commit on both machines.
-5. Updating this boundary in a reviewed commit.
+1. Audit its cron jobs, gateways, scheduled tasks, and client automations.
+2. Preserve or migrate anything still needed.
+3. Push and verify its final intended canonical commit.
+4. Confirm the remaining writer has the same queue revision and repository commit.
+5. Only then stop the requested services.

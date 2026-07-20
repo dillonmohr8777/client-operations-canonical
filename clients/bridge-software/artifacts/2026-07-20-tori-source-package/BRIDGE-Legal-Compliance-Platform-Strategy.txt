@@ -1,0 +1,29 @@
+BRIDGE Legal, Compliance & Platform Strategy
+Developer Reference - Version 1.0
+Purpose
+This document defines the compliance architecture for BRIDGE. It is not legal advice. The product should be engineered to comply with applicable laws and platform policies as they evolve.
+Federal Landscape
+Cannabis remains federally illegal in the United States despite many state legalization programs. BRIDGE should treat compliance as jurisdiction-specific and avoid assuming that a feature is lawful everywhere.
+Compliance by Design
+Implement a rules engine rather than hard-coding laws. Store state-specific configuration for age requirements, license categories, advertising restrictions, medical vs. adult-use, delivery rules, warnings, and geofencing so updates can be made without major software rewrites.
+Apple App Store
+Design the app to comply with Apple's App Review Guidelines. Cannabis-related functionality should be limited to legal jurisdictions, include age gating where appropriate, avoid facilitating unlawful activity, and respect privacy and local law. Features should be architected so they can be enabled or disabled by jurisdiction.
+Google Play
+Google Play has stricter policies regarding marijuana sales. The Android application should avoid implementing prohibited purchase or ordering workflows directly in the app. If commerce is ever supported, the architecture should allow compliant alternatives depending on platform policy.
+Why Dispensary Apps Exist
+Many dispensary apps focus on loyalty, education, profiles, and informational content while handling transactions through compliant workflows. BRIDGE should be designed so promotional, community, and discovery features remain valuable regardless of future policy changes.
+Business Verification
+Only verified licensed businesses receive verified profiles. Verify legal entity, EIN documentation, business registration, and applicable cannabis licenses before publishing a business page.
+Age & Location
+Use age gates, geolocation, and jurisdiction-aware experiences. The app should adapt based on user location and applicable local law.
+Content Moderation
+Implement reporting, moderation queues, impersonation protection, copyright handling, community guidelines, and verified badges.
+Privacy & Security
+Use encrypted connections, secure authentication, minimal data collection, and clear Privacy Policy and Terms of Service. Plan for state privacy laws and future expansion.
+Product Principles
+
+Trust over engagement. Connection over popularity. Discovery over distraction. Verified information over viral information. Businesses before influencers. Community over competition.
+Developer Takeaway
+Build BRIDGE as a configurable platform. Compliance should be data-driven, modular, and adaptable so policy and legal updates require configuration changes rather than rebuilding the application.
+
+

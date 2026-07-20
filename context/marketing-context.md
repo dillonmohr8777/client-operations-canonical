@@ -61,7 +61,7 @@ Verified from the July 15 audit and current system state:
 
 ## Differentiation of the target operating model
 
-- One pinned Marketing Chief task backed by one canonical local project.
+- One logical Marketing Chief control surface backed by one shared canonical project, with authorized writer instances on DESKTOP and AHCM.
 - One exact client registry and one stable client folder per client.
 - One versioned work queue, one human control view, and one append-only correction ledger.
 - Background sensors write redacted intake observations only. They never create user-facing tasks or mutate canonical work state.
@@ -132,7 +132,7 @@ These are evidence of useful operating patterns, not proof of current portfolio 
 
 ## Goals
 
-1. Dillon routinely manages one pinned Marketing Chief task, not a collection of worker tasks.
+1. Dillon routinely manages one logical Marketing Chief control surface, not a collection of competing worker command centers; authorized DESKTOP and AHCM instances share the same queue and rules.
 2. A new request resolves the exact client and loads current context before execution.
 3. Safe, local, directly implied work proceeds without another prompt.
 4. The system presents at most one meaningful Dillon decision at a time.

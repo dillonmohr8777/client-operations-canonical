@@ -195,7 +195,7 @@ No client outcome currently consumes a normal WIP slot.
 
 ## Live health probe
 
-- **As of:** `2026-07-19T20:36:29.1790450+00:00`
+- **As of:** `2026-07-20T12:03:40.5574504+00:00`
 - **Overall:** `degraded`
 - **Queue:** revision `124`, `30` work items, normal `0/3`, emergency `0/1` active
 - **Client registry:** `valid`

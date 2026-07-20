@@ -1,0 +1,139 @@
+BUSINESS VERIFICATION
+High-Level EIN & Business Verification Requirements A trusted network begins with verified businesses.
+Developer Strategy Document | Version 1.0 | July 2026
+
+1. Verification Objective
+Only legitimate, authorized cannabis businesses should be able to create and control a BRIDGE business profile. Verification should confirm three things:
+1. The business legally exists. Its legal name, registration and EIN documentation are consistent.
+2. The cannabis authorization is valid. Where a license is required, the business appears in the applicable state or tribal regulator database and is active.
+3. The applicant is authorized. The person requesting access can reasonably demonstrate that they own, manage or represent the business.
+
+2. Required Information and Documents
+
+Requirement Legal business identity
+
+Accepted Evidence
+Legal name, DBA, entity type, formation state, physical address and website.
+
+Verification Check
+Match against the relevant Secretary of State, corporation division or tribal registry.
+
+EIN confirmation
+
+IRS CP 575 / digital CP 575, Letter 147C, or other approved IRS EIN confirmation document.
+
+Legal name and EIN must match the application. EIN is stored securely and never displayed publicly.
+
+Cannabis license
+
+License number, license type, issuing jurisdiction, expiration date and licensed address.
+
+Confirm active status in the official state, local or tribal cannabis regulator database.
+
+Applicant authority
+
+Government-issued ID plus proof of role, such as company email, ownership record, license contact listing or authorization letter.
+
+Name, email domain and role must reasonably connect the applicant to the verified business.
+
+Contact ownership
+
+Verified business email and phone number; domain-based email preferred.
+
+One-time email and phone verification. Additional manual review for free email domains.
+
+Important: BRIDGE should collect only the minimum information required for verification. Full EIN documents and identity records must be encrypted, access-restricted, retained only as long as necessary, and excluded from public profiles.
+
+BRIDGE | High-Level EIN & Business Verification Requirements
+
+Page 2 of 5
+
+3. Step-by-Step Verification Workflow
+1 Business submits an application
+The applicant enters the legal business name, DBA, entity type, address, website, contact details, cannabis license information and requested profile administrators.
+2 Email and phone are confirmed
+BRIDGE sends one-time verification codes. A business-domain email is preferred; Gmail, Yahoo and similar addresses may trigger enhanced manual review.
+3 EIN evidence is reviewed
+The applicant uploads an IRS EIN confirmation document. BRIDGE compares the EIN and legal name against the application. The public profile never displays the EIN or the uploaded tax document.
+4 Legal entity is validated
+BRIDGE checks the appropriate Secretary of State, corporate registry or tribal registry to confirm that the entity exists and that its name and status are consistent with the application.
+5 Cannabis license is validated
+The license number, business name, address, license type and status are checked against the official regulator source for that jurisdiction. Non-plant-touching businesses may follow a separate verification path.
+6 Applicant authority is confirmed
+BRIDGE confirms that the applicant is an owner, listed license contact, employee with a verified company email or a representative holding a signed authorization from an authorized officer.
+7 Decision and profile control
+The application is approved, placed on hold for more information, or denied. Approved businesses receive a visible BRIDGE Verified badge and secure administrator access.
+8 Ongoing monitoring and renewal
+Licenses and business records are rechecked at least annually and when a license expires, ownership changes, a profile is reported, or BRIDGE detects conflicting information.
+
+BRIDGE | High-Level EIN & Business Verification Requirements
+
+Page 3 of 5
+
+4. Application Statuses
+
+STATUS Pending
+More Information Required
+Verified
+
+MEANING Application received and awaiting checks. A document, match or authorization is incomplete.
+Business, license and applicant authority have passed review.
+
+Suspended
+
+Verification expired, license became inactive or a material concern requires review.
+
+Denied
+
+The information could not be validated or appears fraudulent or unauthorized.
+
+PROFILE ACCESS
+No public business profile.
+No public profile until resolved.
+Profile may publish and use permitted business tools.
+Posting and promotions paused; profile may display a limited status notice.
+No business profile or administrator access.
+
+5. Fraud, Security and Governance Controls
+
+DUPLICATE PREVENTION
+
+Only one primary verified profile per legal business and licensed location, with a controlled process for brand parent pages and multi-location accounts.
+
+SENSITIVE-DATA PROTECTION
+
+Encrypt EIN and identity documents in transit and at rest. Limit employee access through role-based permissions and audit every document view.
+
+MANUAL REVIEW TRIGGERS Name or address mismatch, inactive license, recently formed entity, free email account, duplicate license, altered documents, conflicting administrators or regulator discipline.
+
+PROFILE OWNERSHIP DISPUTES
+
+Freeze high-risk changes and require re-verification. Maintain a documented appeal and account-recovery process.
+
+MATERIAL CHANGES
+
+Require re-verification for ownership, legal name, license number, licensed address, administrator or business-control changes.
+
+AUDIT TRAIL
+
+Record submission dates, verification source, reviewer, outcome, renewal date and every administrative change.
+
+BRIDGE | High-Level EIN & Business Verification Requirements
+
+Page 4 of 5
+
+6. Developer Acceptance Rules
+· A business profile cannot become publicly active until its verification status is Verified.
+· EINs and uploaded verification documents are never exposed through public APIs, profile pages, analytics exports or search results.
+· Verification records must support jurisdiction-specific rules because cannabis licensing differs by state, locality and tribal authority.
+· The system must support manual review, reviewer notes, document expiration, re-verification, suspension, appeals and an immutable audit history.
+· A verified badge confirms identity and licensing checks only. It is not an endorsement of products, conduct, financial condition or legal compliance beyond the checks performed.
+7. High-Level Source Basis
+This framework is based on standard U.S. business identity and licensing checks. The IRS identifies CP 575 and Letter 147C as EIN confirmation or verification documents. The U.S. Small Business Administration explains that most businesses register through state and local governments. State cannabis regulators, such as Michigan's Cannabis Regulatory Agency, provide official license-verification tools. BRIDGE should use the applicable official registry for each jurisdiction it enters.
+Reference sources: Internal Revenue Service - Employer Identification Number and CP 575 guidance; U.S. Small Business Administration - Register Your Business; Michigan Cannabis Regulatory Agency - Verify a License. Requirements must be reviewed by qualified privacy and legal counsel before production launch.
+
+BRIDGE | High-Level EIN & Business Verification Requirements
+
+Page 5 of 5
+
+

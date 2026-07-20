@@ -2,11 +2,12 @@
 
 ## Machine boundary
 
-- `DESKTOP-4AHKEC4` at `C:\Users\dillo\Documents\Codex\projects\client-operations` is the sole authoritative execution machine and writable Canonical Queue during the manual pilot.
-- `AHCM-3LCQVF4` is an authorized contributor workspace. It may read and use the full private repository, build client artifacts, research, test, and push proposed work only to `ahcm/*` branches for pull-request review.
-- AHCM must not run the Marketing Chief, directly mutate the Canonical Queue or generated control state, accept worker handoffs into canonical state, run account-changing workflows, or push directly to `main`.
-- A machine-role migration requires Dillon's explicit instruction, an audit of both machines' automations, and a deliberate writer handoff. Contributing through a branch never transfers canonical-writer authority.
-- See `REMOTE_WORKSPACE.md` and run `scripts/Install-AhcmContributorGuard.ps1` on AHCM after cloning.
+- `DESKTOP-4AHKEC4` and `AHCM-3LCQVF4` are both authorized execution machines and canonical-state writer hosts. Neither machine must stop its gateway, scheduler, or Marketing Chief jobs merely to let the other write.
+- The Marketing Chief remains one logical writer role even when instances run on both machines. Both instances must use the same Canonical Queue contract, exact client routing, approval gates, revision increments, deterministic `CONTROL.md` projection, and append-only ledger rules.
+- A local lock protects only processes on its own machine. Before any canonical mutation, fetch and fast-forward from `origin/main`, reread the current queue revision, and pass the expected revision to the supported mutation script. After the mutation, commit and push the exact canonical change promptly.
+- Never force-push or overwrite a rejected/non-fast-forward canonical update. Pull and reconcile the newer canonical state, rerun the mutation against its revision, regenerate projections, and then push normally.
+- Both machines may perform local work concurrently. Canonical writes are coordinated through optimistic queue revisions plus Git fast-forward history; external account changes remain subject to the exact approval rules below.
+- See `REMOTE_WORKSPACE.md`. On AHCM, run `scripts/Enable-AhcmWriter.ps1` after pulling this policy to remove the obsolete contributor-only hook.
 
 - Resolve every client through `registry/clients.json` before creating or updating client-specific work.
 - Use the global `client_router` specialist for names, aliases, contacts, domains, or Slack channels that need routing.
@@ -20,11 +21,11 @@
 ## Marketing Chief manual pilot
 
 - `queue/work-items.json` is the canonical machine state. `CONTROL.md` is its human-readable projection. `state/corrections.jsonl` is append-only learning state.
-- Load `context/marketing-context.md`, `context/DILLON_VOICE.md`, and `context/DESIGN_STANDARD.md` before planning consequential marketing work. Then load the exact client's context and current source evidence.
+- Load `context/DILLON_OPERATING_HISTORY.md`, `context/marketing-context.md`, `context/DILLON_VOICE.md`, and `context/DESIGN_STANDARD.md` before planning consequential marketing work. Then load the exact client's context and current source evidence.
 - When Dillon says `continue`, refresh redacted intake and live system health, inspect and materialize exact-routed pending intake through the intake-to-queue contract below, rank the queue, execute the highest safe automatic action within WIP limits, reconcile verified handoffs, and surface at most one human-only decision.
 - Use `scripts/Get-NextActions.ps1` for ranking, `scripts/Update-MarketingControl.ps1` for deterministic projection, `scripts/Test-MarketingHandoff.ps1` for validation, and `scripts/Accept-WorkerHandoff.ps1` for versioned reconciliation. Do not manually make `CONTROL.md` disagree with the queue.
 - Record Dillon's accept, modify, defer, or reject response to a predicted action with `scripts/Record-MarketingDecision.ps1`. Future ranking may use a bounded cross-item prior only after three comparable outcomes for the same client, prediction lane, and action class; exact current-item feedback always wins. Inspect learned patterns with `scripts/Get-PredictionLearning.ps1`. Record redacted voice, design, routing, process, context, and prediction deltas only through the locked `scripts/Record-MarketingCorrection.ps1`; never append that ledger manually. Read the mixed legacy-v1/current-v2 ledger through `scripts/Get-MarketingCorrections.ps1`, which validates and normalizes every line.
-- The Marketing Chief is the sole canonical-state writer during the manual pilot. Workers must not edit those three files.
+- The Marketing Chief role is the only canonical-state writer during the manual pilot, and authorized instances of that role may run on both DESKTOP and AHCM. Workers must not edit those three files directly.
 - A client work item may advance only when its registry record resolves uniquely and has `status: active`. A match to a `needs-confirmation` record remains quarantined even if the resolver reports a name match.
 - Increment the queue root `revision` and the changed work item's `version` on every accepted mutation, then regenerate `CONTROL.md` from the queue.
 - Canonical updates must be atomic and reversible. Preserve a backup before replacement and reject stale writes.
