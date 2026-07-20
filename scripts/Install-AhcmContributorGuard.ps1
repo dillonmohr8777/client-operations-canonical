@@ -38,15 +38,17 @@ do
       ;;
   esac
 
-  if [ "$remote_sha" = "$zero" ]; then
-    git fetch origin main >/dev/null 2>&1 || true
-    base=$(git merge-base "$local_sha" origin/main)
-  else
-    base="$remote_sha"
+  # Deleting an allowed AHCM branch cannot modify canonical state.
+  if [ "$local_sha" = "$zero" ]; then
+    continue
   fi
 
+  # Validate the complete contribution against main on every push. Fail closed
+  # if main cannot be fetched or the branch has no common ancestor with it.
+  git fetch origin main >/dev/null 2>&1
+  base=$(git merge-base "$local_sha" origin/main)
   changed=$(git diff --name-only "$base" "$local_sha")
-  blocked=$(printf '%s\n' "$changed" | grep -E '^(queue/work-items\.json|CONTROL\.md|intake/|state/intake-sync\.json|state/handoff-receipts\.jsonl|state/queue-mutations\.jsonl|state/corrections\.jsonl|state/prediction-outcomes\.jsonl)$' || true)
+  blocked=$(printf '%s\n' "$changed" | grep -E '^(queue/work-items\.json|CONTROL\.md|intake(/.*)?|state/intake-sync\.json|state/handoff-receipts\.jsonl|state/queue-mutations\.jsonl|state/corrections\.jsonl|state/prediction-outcomes\.jsonl)$' || true)
 
   if [ -n "$blocked" ]; then
     echo "Push blocked: AHCM contribution modifies protected canonical state:" >&2
