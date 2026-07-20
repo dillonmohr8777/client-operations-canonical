@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bridge — The Cannabis Social Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --leaf:#7C3AED;--leaf-dk:#6D28D9;--leaf-lt:#A78BFA;
+  --sage:#C4B5FD;--mint:#EDE9FE;--spring:#F5F3FF;
+  --forest:#4C1D95;--canopy:#2E1065;--fern:#8B5CF6;--lime:#DDD6FE;
+  --amber:#D97706;--amber-lt:#FFF3D0;
+  --white:#FFFFFF;
+  --stone50:#F8F7FF;--stone100:#F0EDFF;--stone200:#D4CCF7;
+  --stone400:#9B8FCC;--stone600:#5E5299;
+  --tp:#1E0A3C;--ts:#3B2A6B;--tm:#7B68B5;
+  --border:rgba(124,58,237,.14);--border-md:rgba(124,58,237,.28);
+  --r:6px;--r-md:10px;--r-lg:14px;--r-xl:20px;--r-pill:999px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--tp);background:var(--white);font-size:15px;line-height:1.6}
+
+/* ── AGE GATE ── */
+#age-gate{
+  position:fixed;inset:0;
+  background:linear-gradient(135deg,#1E0A3C,#2E1065);
+  z-index:9000;
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem;
+}
+.age-gate-box{
+  background:var(--white);
+  border-radius:var(--r-xl);
+  padding:2.5rem;
+  max-width:420px;width:100%;
+  text-align:center;
+  box-shadow:0 40px 100px rgba(0,0,0,.4);
+}
+.age-gate-leaf{font-size:52px;margin-bottom:1rem}
+.age-gate-box h2{
+  font-family:'Playfair Display',serif;
+  font-size:26px;font-weight:800;
+  color:var(--tp);margin-bottom:8px;
+}
+.age-gate-box p{font-size:14px;color:var(--tm);line-height:1.65;margin-bottom:1.5rem}
+.age-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.age-yes{
+  background:var(--leaf);color:var(--white);
+  border:none;border-radius:var(--r-md);
+  padding:14px;font-family:'Inter',sans-serif;
+  font-size:14px;font-weight:600;cursor:pointer;
+  transition:background .15s;
+}
+.age-yes:hover{background:var(--leaf-dk)}
+.age-no{
+  background:var(--stone100);color:var(--ts);
+  border:none;border-radius:var(--r-md);
+  padding:14px;font-family:'Inter',sans-serif;
+  font-size:14px;font-weight:600;cursor:pointer;
+}
+.age-legal{font-size:11px;color:var(--tm);margin-top:1rem;line-height:1.6}
+
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 2rem;
+  height:66px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;
+}
+.logo-mark{
+  width:38px;height:38px;border-radius:10px;
+  background:linear-gradient(135deg,var(--forest),var(--leaf));
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.logo-wordmark{
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-weight:800;
+  color:var(--tp);letter-spacing:-0.02em;
+}
+.logo-tagline{
+  font-size:10px;font-weight:600;color:var(--leaf);
+  letter-spacing:.06em;text-transform:uppercase;
+  line-height:1;margin-top:1px;
+}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:14px;font-weight:500;color:var(--ts);text-decoration:none;transition:color .15s}
+.nav-links a:hover{color:var(--leaf-dk)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:10px 22px;border-radius:var(--r-md);
+  font-family:'Inter',sans-serif;font-size:14px;font-weight:600;
+  cursor:pointer;border:none;transition:all .15s;text-decoration:none;
+}
+.btn-leaf{background:var(--leaf);color:var(--white)}
+.btn-leaf:hover{background:var(--leaf-dk)}
+.btn-outline{background:transparent;border:1.5px solid var(--border-md);color:var(--ts)}
+.btn-outline:hover{border-color:var(--leaf);color:var(--leaf-dk)}
+.btn-lg{padding:14px 32px;font-size:16px;border-radius:var(--r-lg)}
+.btn-xl{padding:16px 36px;font-size:17px;border-radius:var(--r-lg)}
+
+/* ── HERO ── */
+.hero-wrap{
+  background:linear-gradient(170deg,var(--spring) 0%,var(--white) 55%);
+  overflow:hidden;
+  position:relative;
+}
+.hero-wrap::before{
+  content:'';position:absolute;
+  top:-80px;right:-80px;
+  width:500px;height:500px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(124,58,237,.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero{
+  max-width:1100px;margin:0 auto;
+  padding:90px 2rem 80px;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:center;
+}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--mint);color:var(--forest);
+  border-radius:var(--r-pill);padding:6px 16px;
+  font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+.hero-pill-dot{width:7px;height:7px;border-radius:50%;background:var(--leaf);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(38px,5vw,58px);
+  font-weight:800;line-height:1.08;
+  letter-spacing:-0.025em;
+  color:var(--tp);
+  margin-bottom:1.25rem;
+}
+h1 em{font-style:normal;color:var(--leaf)}
+.hero-sub{
+  font-size:18px;color:var(--ts);
+  line-height:1.7;font-weight:300;
+  margin-bottom:2.25rem;max-width:460px;
+}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:2rem}
+.hero-trust{
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;color:var(--tm);font-weight:500;
+}
+.trust-sep{width:1px;height:14px;background:var(--border-md)}
+
+/* ── EARTH VISUAL (reused + adapted) ── */
+.earth-wrap{
+  width:100%;height:420px;
+  display:flex;align-items:center;justify-content:center;
+  filter:drop-shadow(0 0 48px rgba(124,58,237,.2));
+}
+
+/* ── SECURITY BADGE ── */
+.security-strip{
+  background:var(--forest);
+  padding:14px 2rem;
+  display:flex;align-items:center;justify-content:center;
+  gap:32px;flex-wrap:wrap;
+}
+.sec-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:600;color:var(--sage);
+  letter-spacing:.02em;
+}
+.sec-icon{font-size:16px}
+
+/* ── WHO IT'S FOR ── */
+.who-section{
+  max-width:1100px;margin:0 auto;
+  padding:80px 2rem;
+}
+.section-eyebrow{
+  font-size:12px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--leaf-dk);
+  margin-bottom:.875rem;
+}
+h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,4vw,42px);
+  font-weight:800;letter-spacing:-0.02em;
+  line-height:1.1;color:var(--tp);
+  margin-bottom:1rem;
+}
+.section-sub{font-size:17px;color:var(--ts);line-height:1.7;font-weight:300;max-width:560px}
+.who-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:20px;margin-top:3rem;
+}
+.who-card{
+  border-radius:var(--r-xl);padding:2rem;
+  position:relative;overflow:hidden;
+}
+.who-card.personal{
+  background:linear-gradient(145deg,var(--spring),var(--mint));
+  border:1.5px solid rgba(124,58,237,.2);
+}
+.who-card.business{
+  background:linear-gradient(145deg,var(--forest),#5B21B6);
+  color:var(--white);
+}
+.who-card-icon{font-size:36px;margin-bottom:1rem}
+.who-card h3{
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-weight:800;margin-bottom:.75rem;
+}
+.who-card.business h3{color:var(--white)}
+.who-card p{font-size:14px;line-height:1.7;color:var(--ts)}
+.who-card.business p{color:var(--sage)}
+.who-features{list-style:none;margin-top:1.25rem;display:flex;flex-direction:column;gap:8px}
+.who-features li{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:500;
+}
+.who-features li::before{content:'✓';font-weight:700;color:var(--leaf);flex-shrink:0}
+.who-card.business .who-features li::before{color:var(--lime)}
+.who-card.business .who-features li{color:var(--mint)}
+.who-card-badge{
+  position:absolute;top:16px;right:16px;
+  background:var(--leaf);color:var(--white);
+  font-size:10px;font-weight:700;letter-spacing:.05em;
+  border-radius:var(--r-pill);padding:4px 10px;
+  text-transform:uppercase;
+}
+.who-card.business .who-card-badge{background:var(--lime);color:var(--forest)}
+
+/* ── HOW IT WORKS ── */
+.how-section{
+  background:var(--spring);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:80px 2rem;
+}
+.how-inner{max-width:1100px;margin:0 auto}
+.how-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:24px;margin-top:3rem;
+}
+.how-card{
+  background:var(--white);border-radius:var(--r-xl);
+  padding:1.75rem;
+  border:1px solid var(--border);
+  transition:box-shadow .2s,transform .2s;
+}
+.how-card:hover{
+  box-shadow:0 12px 40px rgba(124,58,237,.12);
+  transform:translateY(-3px);
+}
+.how-num{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,var(--leaf),var(--fern));
+  color:var(--white);font-weight:800;font-size:15px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1rem;
+}
+.how-card h3{font-size:17px;font-weight:700;color:var(--tp);margin-bottom:.5rem}
+.how-card p{font-size:13px;color:var(--ts);line-height:1.7}
+
+/* ── NEWSFEED RULES ── */
+.feed-section{max-width:1100px;margin:0 auto;padding:80px 2rem}
+.feed-rules-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:16px;margin-top:2.5rem;
+}
+.feed-rule{
+  display:flex;align-items:flex-start;gap:12px;
+  background:var(--spring);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  padding:1.25rem;
+}
+.rule-icon{
+  width:36px;height:36px;border-radius:var(--r-md);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.rule-icon.green{background:var(--mint)}
+.rule-icon.red{background:#FEF0EF}
+.rule-label{font-weight:700;font-size:14px;margin-bottom:3px}
+.rule-label.no{color:#C0392B}
+.rule-label.yes{color:var(--forest)}
+.rule-desc{font-size:12px;color:var(--ts);line-height:1.6}
+
+/* ── PRIVACY / SECURITY SECTION ── */
+.security-section{
+  background:linear-gradient(135deg,var(--forest) 0%,#5B21B6 50%,#245c35 100%);
+  padding:80px 2rem;
+}
+.security-inner{max-width:1100px;margin:0 auto;text-align:center}
+.security-inner h2{color:var(--white)}
+.security-inner .section-eyebrow{color:var(--lime)}
+.security-inner .section-sub{color:var(--sage);max-width:600px;margin:0 auto}
+.security-cards{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:14px;margin-top:3rem;
+}
+.sec-card{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--r-lg);
+  padding:1.5rem 1.25rem;
+  text-align:center;
+  transition:background .2s;
+}
+.sec-card:hover{background:rgba(255,255,255,.12)}
+.sec-card-icon{font-size:28px;margin-bottom:.875rem}
+.sec-card h4{font-size:14px;font-weight:700;color:var(--white);margin-bottom:.5rem}
+.sec-card p{font-size:12px;color:var(--sage);line-height:1.65}
+
+/* ── PRICING ── */
+.pricing-section{padding:80px 2rem;background:var(--white)}
+.pricing-inner{max-width:1000px;margin:0 auto;text-align:center}
+.pricing-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:20px;margin-top:3rem;text-align:left;
+}
+.plan-card{
+  border-radius:var(--r-xl);
+  border:1.5px solid var(--border);
+  padding:2rem;
+  background:var(--white);
+  transition:box-shadow .2s;
+  position:relative;
+}
+.plan-card:hover{box-shadow:0 8px 40px rgba(124,58,237,.1)}
+.plan-card.featured{
+  border-color:var(--leaf);
+  background:linear-gradient(170deg,var(--spring),var(--white));
+}
+.plan-badge{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--leaf);color:var(--white);
+  font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  border-radius:var(--r-pill);padding:4px 14px;white-space:nowrap;
+}
+.plan-type{
+  font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--leaf-dk);margin-bottom:.5rem;
+}
+.plan-price{
+  font-family:'Playfair Display',serif;
+  font-size:44px;font-weight:800;letter-spacing:-0.03em;
+  color:var(--tp);line-height:1;margin-bottom:4px;
+}
+.plan-price sup{font-size:22px;vertical-align:super}
+.plan-price .plan-free{font-size:36px}
+.plan-per{font-size:13px;color:var(--tm);margin-bottom:1.5rem}
+.plan-divider{height:1px;background:var(--border);margin:1.25rem 0}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:1.75rem}
+.plan-features li{
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:13px;color:var(--ts);line-height:1.5;
+}
+.plan-features li::before{content:'✓';color:var(--leaf);font-weight:700;flex-shrink:0;margin-top:1px}
+.plan-features li.no::before{content:'–';color:var(--stone200)}
+.plan-features li.no{color:var(--tm)}
+.plan-cta{
+  width:100%;padding:13px;border-radius:var(--r-md);
+  font-family:'Inter',sans-serif;font-size:14px;font-weight:600;
+  cursor:pointer;border:none;transition:all .15s;
+}
+.plan-cta.leaf{background:var(--leaf);color:var(--white)}
+.plan-cta.leaf:hover{background:var(--leaf-dk)}
+.plan-cta.outline{background:transparent;border:1.5px solid var(--border-md);color:var(--ts)}
+.plan-cta.outline:hover{border-color:var(--leaf);color:var(--leaf-dk)}
+
+/* ── COMPLIANCE NOTE ── */
+.compliance-section{
+  background:linear-gradient(135deg,#1E0A3C,#2E1065);
+  padding:40px 2rem;
+}
+.compliance-inner{
+  max-width:900px;margin:0 auto;
+  display:flex;align-items:flex-start;gap:16px;
+}
+.compliance-icon{font-size:28px;flex-shrink:0;margin-top:2px}
+.compliance-text{font-size:13px;color:var(--sage);line-height:1.75}
+.compliance-text strong{color:var(--mint)}
+
+/* ── FOOTER ── */
+footer{background:linear-gradient(135deg,#1E0A3C,#2E1065);border-top:1px solid rgba(255,255,255,.06);padding:3rem 2rem}
+.footer-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;
+  gap:3rem;
+}
+.footer-brand-name{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:800;color:var(--white);
+  margin-bottom:.75rem;display:flex;align-items:center;gap:8px;
+}
+.footer-desc{font-size:13px;color:var(--stone400);line-height:1.7}
+.footer-col h4{
+  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--stone400);margin-bottom:.875rem;
+}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:8px}
+.footer-col ul li a{font-size:13px;color:var(--sage);text-decoration:none;opacity:.7;transition:opacity .15s}
+.footer-col ul li a:hover{opacity:1}
+.footer-bottom{
+  max-width:1100px;margin:2rem auto 0;
+  padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.07);
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:var(--stone400);opacity:.6;flex-wrap:wrap;gap:8px;
+}
+
+/* ── MODAL ── */
+.modal-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(10,30,15,.65);backdrop-filter:blur(8px);
+  z-index:500;align-items:center;justify-content:center;padding:1rem;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--white);border-radius:var(--r-xl);
+  width:100%;max-width:440px;
+  box-shadow:0 40px 100px rgba(0,0,0,.25);
+  overflow:hidden;animation:mi .22s ease;position:relative;
+}
+@keyframes mi{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.modal-head{
+  background:linear-gradient(135deg,var(--forest),#5B21B6);
+  padding:1.75rem;color:var(--white);
+}
+.modal-logo-row{
+  display:flex;align-items:center;gap:8px;
+  font-family:'Playfair Display',serif;font-size:18px;font-weight:800;
+  color:var(--white);margin-bottom:6px;
+}
+.modal-subtitle{font-size:13px;color:var(--sage);line-height:1.5}
+.modal-tabs{display:flex;background:rgba(255,255,255,.1);border-radius:var(--r-md);padding:3px;margin-top:1rem;gap:3px}
+.modal-tab{
+  flex:1;padding:8px;border-radius:10px;border:none;
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;
+  background:transparent;color:rgba(255,255,255,.7);transition:all .18s;
+}
+.modal-tab.active{background:var(--white);color:var(--forest)}
+.modal-body{padding:1.5rem}
+.form-group{margin-bottom:1rem}
+.form-group label{
+  display:block;font-size:12px;font-weight:600;
+  color:var(--ts);margin-bottom:5px;
+}
+.form-input,.form-select{
+  width:100%;padding:10px 13px;
+  border:1.5px solid #D4E8DA;border-radius:var(--r-md);
+  font-family:'Inter',sans-serif;font-size:14px;color:var(--tp);
+  background:var(--stone50);outline:none;transition:border-color .15s;
+}
+.form-input:focus,.form-select:focus{border-color:var(--leaf)}
+.form-helper{font-size:11px;color:var(--tm);margin-top:4px;line-height:1.5}
+.form-note{
+  background:var(--spring);border:1px solid var(--border-md);
+  border-radius:var(--r-md);padding:10px 12px;
+  font-size:12px;color:var(--ts);line-height:1.6;margin-bottom:1rem;
+}
+.form-note strong{color:var(--forest)}
+.modal-submit{
+  width:100%;padding:13px;border-radius:var(--r-md);
+  background:var(--leaf);color:var(--white);border:none;
+  font-family:'Inter',sans-serif;font-size:15px;font-weight:700;
+  cursor:pointer;transition:background .15s;margin-top:.25rem;
+}
+.modal-submit:hover{background:var(--leaf-dk)}
+.modal-footer-note{
+  text-align:center;font-size:12px;color:var(--tm);margin-top:1rem;
+}
+.modal-footer-note a{color:var(--leaf-dk);text-decoration:none;font-weight:600}
+.modal-close{
+  position:absolute;top:1.25rem;right:1.25rem;
+  background:rgba(255,255,255,.15);border:none;
+  width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:var(--white);cursor:pointer;transition:background .15s;
+}
+.modal-close:hover{background:rgba(255,255,255,.25)}
+
+/* ── STATE SELECTOR ── */
+.state-section{
+  background:var(--leaf);padding:56px 2rem;text-align:center;
+}
+.state-section h2{color:var(--white);margin-bottom:.75rem}
+.state-section p{color:rgba(255,255,255,.85);font-size:16px;margin-bottom:2rem}
+.state-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.state-row select{
+  padding:13px 20px;border-radius:var(--r-md);
+  border:none;font-size:15px;font-family:'Inter',sans-serif;
+  min-width:240px;background:var(--white);color:var(--tp);outline:none;cursor:pointer;
+}
+#state-result{font-size:14px;color:var(--white);margin-top:1rem;font-weight:600;opacity:0;transition:opacity .3s}
+
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--sage);border-radius:99px}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .how-grid{grid-template-columns:1fr 1fr}
+  .who-grid,.feed-rules-grid,.pricing-grid{grid-template-columns:1fr}
+  .security-cards{grid-template-columns:1fr 1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  nav .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ AGE GATE ══ -->
+<div id="age-gate">
+  <div class="age-gate-box">
+    <div class="age-gate-leaf">🌿</div>
+    <h2>Are you 21 or older?</h2>
+    <p>Bridge is a cannabis industry platform. You must be 21 years of age or older to enter. By continuing you confirm you meet the age requirement in your state.</p>
+    <div class="age-btns">
+      <button class="age-yes" onclick="enterSite()">Yes, I'm 21+</button>
+      <button class="age-no" onclick="denyEntry()">No, I'm under 21</button>
+    </div>
+    <p class="age-legal">This site uses a cookie to remember your age verification for 30 days. We do not sell or share personal data. See our <a href="#" style="color:var(--leaf-dk)">Privacy Policy</a>.</p>
+  </div>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="logo-mark">
+      <!-- Bridge logo placeholder — swap with uploaded SVG -->
+      <svg width="36" height="30" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M2 26 L2 16 Q2 2 18 2 Q34 2 34 16 L34 26" stroke="#A78BFA" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <path d="M7 26 L7 16 Q7 8 18 8 Q29 8 29 16 L29 26" stroke="#A78BFA" stroke-width="3" fill="none" stroke-linecap="round" opacity=".75"/>
+  <path d="M12 26 L12 18 Q12 13 18 13 Q24 13 24 18 L24 26" stroke="#A78BFA" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".5"/>
+</svg>
+    </div>
+    <div>
+      <div class="logo-wordmark">Bridge</div>
+      <div class="logo-tagline">Cannabis Social</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#who">Who it's for</a></li>
+    <li><a href="#feed">News feed</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#states">Coverage</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn btn-outline" onclick="openModal('login')">Sign in</button>
+    <button class="btn btn-leaf" onclick="openModal('register')">Join Bridge</button>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<div class="hero-wrap">
+  <div class="hero">
+    <div>
+      <div class="hero-pill"><span class="hero-pill-dot"></span>First-of-its-kind cannabis social platform</div>
+      <h1>The social platform cannabis has been <em>waiting for.</em></h1>
+      <p class="hero-sub">Connect as a consumer. Grow as a business. Bridge brings the cannabis community together — personally and professionally — in one verified, safe space.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-leaf btn-xl" onclick="openModal('register')">Create your profile</button>
+        <button class="btn btn-outline btn-xl" onclick="openModal('login')">Sign in</button>
+      </div>
+      <div class="hero-trust">
+        <span>🔒 21+ verified</span>
+        <span class="trust-sep"></span>
+        <span>🌿 EIN-verified businesses</span>
+        <span class="trust-sep"></span>
+        <span>✓ State licensed</span>
+      </div>
+    </div>
+    <div>
+      <!-- Earth ecosystem visual -->
+      <div class="earth-wrap">
+        <svg viewBox="0 0 480 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+          <defs>
+            <radialGradient id="spacebg2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#061409"/><stop offset="100%" stop-color="#020804"/></radialGradient>
+            <radialGradient id="earthg2" cx="50%" cy="45%" r="52%"><stop offset="0%" stop-color="#7C3AED"/><stop offset="35%" stop-color="#6D28D9"/><stop offset="70%" stop-color="#4C1D95"/><stop offset="100%" stop-color="#2E1065"/></radialGradient>
+            <radialGradient id="atmo2" cx="50%" cy="50%" r="50%"><stop offset="82%" stop-color="transparent"/><stop offset="90%" stop-color="rgba(124,58,237,0.18)"/><stop offset="100%" stop-color="transparent"/></radialGradient>
+            <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="rgba(124,58,237,0)"/><stop offset="50%" stop-color="rgba(111,217,138,0.65)"/><stop offset="100%" stop-color="rgba(124,58,237,0)"/></linearGradient>
+            <linearGradient id="lg2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="rgba(124,58,237,0)"/><stop offset="50%" stop-color="rgba(181,229,80,0.5)"/><stop offset="100%" stop-color="rgba(124,58,237,0)"/></linearGradient>
+            <filter id="glow2"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <rect width="480" height="420" fill="url(#spacebg2)" rx="20"/>
+          <!-- Stars -->
+          <g opacity=".7"><circle cx="24" cy="18" r=".8" fill="white" opacity=".6"/><circle cx="68" cy="42" r=".5" fill="white" opacity=".8"/><circle cx="112" cy="12" r="1" fill="white" opacity=".5"/><circle cx="310" cy="22" r=".9" fill="white" opacity=".6"/><circle cx="402" cy="38" r=".7" fill="white" opacity=".5"/><circle cx="446" cy="10" r="1" fill="white" opacity=".7"/><circle cx="14" cy="200" r=".7" fill="white" opacity=".6"/><circle cx="466" cy="210" r=".8" fill="white" opacity=".5"/><circle cx="44" cy="300" r=".9" fill="white" opacity=".4"/><circle cx="436" cy="310" r=".7" fill="white" opacity=".6"/><circle cx="200" cy="8" r=".6" fill="white" opacity=".9"/><circle cx="358" cy="14" r=".5" fill="white" opacity=".8"/></g>
+          <!-- Atmosphere -->
+          <circle cx="240" cy="210" r="165" fill="url(#atmo2)"/>
+          <!-- Earth -->
+          <circle cx="240" cy="210" r="148" fill="url(#earthg2)"/>
+          <!-- Continent shapes -->
+          <g opacity=".25"><ellipse cx="200" cy="175" rx="38" ry="22" fill="#8B5CF6" transform="rotate(-20 200 175)"/><ellipse cx="270" cy="190" rx="28" ry="18" fill="#8B5CF6" transform="rotate(10 270 190)"/><ellipse cx="185" cy="240" rx="22" ry="14" fill="#8B5CF6" transform="rotate(-35 185 240)"/><ellipse cx="295" cy="235" rx="32" ry="16" fill="#8B5CF6" transform="rotate(15 295 235)"/><ellipse cx="240" cy="260" rx="20" ry="12" fill="#7C3AED" transform="rotate(5 240 260)"/></g>
+          <!-- Grid lines -->
+          <g opacity=".07" stroke="#A78BFA" stroke-width=".8" fill="none"><ellipse cx="240" cy="210" rx="148" ry="40"/><ellipse cx="240" cy="210" rx="148" ry="80"/><ellipse cx="240" cy="210" rx="148" ry="120"/><line x1="240" y1="62" x2="240" y2="358"/><line x1="92" y1="210" x2="388" y2="210"/></g>
+          <!-- Rim -->
+          <circle cx="240" cy="210" r="148" fill="none" stroke="#A78BFA" stroke-width="1.5" opacity=".45"/>
+          <!-- Connection arcs -->
+          <g fill="none" stroke-width="1" opacity=".65">
+            <path d="M148,148 Q90,80 76,172" stroke="url(#lg1)"/>
+            <path d="M310,148 Q380,82 374,195" stroke="url(#lg2)"/>
+            <path d="M290,285 Q340,345 374,265" stroke="url(#lg1)"/>
+            <path d="M76,172 Q55,100 108,90" stroke="url(#lg2)"/>
+            <path d="M374,195 Q430,160 418,260" stroke="url(#lg1)"/>
+            <path d="M148,148 Q240,50 310,148" stroke="rgba(111,217,138,0.35)" stroke-width=".7"/>
+            <path d="M130,295 Q240,380 350,300" stroke="rgba(111,217,138,0.3)" stroke-width=".7"/>
+          </g>
+          <!-- Nodes -->
+          <g filter="url(#glow2)">
+            <circle cx="240" cy="210" r="10" fill="rgba(124,58,237,.15)"><animate attributeName="r" values="10;18;10" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.2;1" dur="3s" repeatCount="indefinite"/></circle>
+            <circle cx="240" cy="210" r="6" fill="#8B5CF6"/><circle cx="240" cy="210" r="3" fill="white"/>
+          </g>
+          <text x="250" y="207" font-family="Inter,sans-serif" font-size="8" font-weight="700" fill="white" opacity=".9">CO</text>
+          <g filter="url(#glow2)"><circle cx="76" cy="172" r="7" fill="rgba(124,58,237,.2)"><animate attributeName="r" values="7;13;7" dur="4s" begin=".5s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.1;1" dur="4s" begin=".5s" repeatCount="indefinite"/></circle><circle cx="76" cy="172" r="4.5" fill="#7C3AED"/><circle cx="76" cy="172" r="2" fill="#8B5CF6"/></g>
+          <text x="84" y="169" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="white" opacity=".85">CA</text>
+          <g filter="url(#glow2)"><circle cx="374" cy="195" r="7" fill="rgba(124,58,237,.2)"><animate attributeName="r" values="7;12;7" dur="3.5s" begin="1s" repeatCount="indefinite"/></circle><circle cx="374" cy="195" r="4.5" fill="#7C3AED"/><circle cx="374" cy="195" r="2" fill="#8B5CF6"/></g>
+          <text x="382" y="192" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="white" opacity=".85">MI</text>
+          <g filter="url(#glow2)"><circle cx="340" cy="285" r="5.5" fill="rgba(124,58,237,.2)"><animate attributeName="r" values="5.5;10;5.5" dur="4.5s" begin="1.5s" repeatCount="indefinite"/></circle><circle cx="340" cy="285" r="4" fill="#6D28D9"/><circle cx="340" cy="285" r="1.8" fill="#8B5CF6"/></g>
+          <text x="348" y="282" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="white" opacity=".85">IL</text>
+          <g filter="url(#glow2)"><circle cx="108" cy="90" r="5" fill="rgba(124,58,237,.2)"><animate attributeName="r" values="5;9;5" dur="5s" begin=".8s" repeatCount="indefinite"/></circle><circle cx="108" cy="90" r="3.5" fill="#6D28D9"/><circle cx="108" cy="90" r="1.6" fill="#8B5CF6"/></g>
+          <text x="116" y="87" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="white" opacity=".85">WA</text>
+          <g filter="url(#glow2)"><circle cx="418" cy="260" r="5" fill="rgba(124,58,237,.15)"><animate attributeName="r" values="5;9;5" dur="4.2s" begin="2.2s" repeatCount="indefinite"/></circle><circle cx="418" cy="260" r="3.5" fill="#4C1D95"/><circle cx="418" cy="260" r="1.5" fill="#8B5CF6"/></g>
+          <text x="426" y="257" font-family="Inter,sans-serif" font-size="7" font-weight="700" fill="white" opacity=".8">NY</text>
+          <!-- Data packets -->
+          <circle r="2" fill="#8B5CF6" opacity=".9"><animateMotion dur="4s" repeatCount="indefinite" path="M148,148 Q90,80 76,172"/><animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite"/></circle>
+          <circle r="1.8" fill="#8B5CF6" opacity=".85"><animateMotion dur="5s" repeatCount="indefinite" begin="1s" path="M310,148 Q380,82 374,195"/><animate attributeName="opacity" values="0;1;1;0" dur="5s" begin="1s" repeatCount="indefinite"/></circle>
+          <circle r="2" fill="white" opacity=".8"><animateMotion dur="3.5s" repeatCount="indefinite" begin="2s" path="M76,172 Q55,100 108,90"/><animate attributeName="opacity" values="0;1;1;0" dur="3.5s" begin="2s" repeatCount="indefinite"/></circle>
+          <circle r="1.6" fill="#8B5CF6" opacity=".9"><animateMotion dur="4.5s" repeatCount="indefinite" begin=".5s" path="M374,195 Q430,160 418,260"/><animate attributeName="opacity" values="0;.9;.9;0" dur="4.5s" begin=".5s" repeatCount="indefinite"/></circle>
+          <circle r="1.8" fill="#8B5CF6" opacity=".75"><animateMotion dur="6s" repeatCount="indefinite" begin="3s" path="M240,210 Q300,320 340,285"/><animate attributeName="opacity" values="0;.8;.8;0" dur="6s" begin="3s" repeatCount="indefinite"/></circle>
+          <text x="240" y="396" font-family="Inter,sans-serif" font-size="9" font-weight="600" fill="rgba(168,213,181,.45)" text-anchor="middle" letter-spacing="2">BRIDGE · CANNABIS SOCIAL NETWORK</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Security strip -->
+<div class="security-strip">
+  <div class="sec-item"><span class="sec-icon">🔒</span>End-to-end encrypted messaging</div>
+  <div class="sec-item"><span class="sec-icon">✅</span>21+ age-gated platform</div>
+  <div class="sec-item"><span class="sec-icon">🪪</span>EIN & license verified businesses</div>
+  <div class="sec-item"><span class="sec-icon">🔐</span>Zero data selling — ever</div>
+  <div class="sec-item"><span class="sec-icon">🛡️</span>State-compliant advertising</div>
+</div>
+
+<!-- ══ WHO IT'S FOR ══ -->
+<section class="who-section" id="who">
+  <div style="text-align:center;margin-bottom:0">
+    <div class="section-eyebrow">Two ways to be on Bridge</div>
+    <h2>For every person in cannabis.<br>For every business in cannabis.</h2>
+    <p class="section-sub" style="margin:0 auto">Whether you're a consumer, a fan, or a licensed operator — Bridge has a profile for you.</p>
+  </div>
+  <div class="who-grid">
+    <div class="who-card personal">
+      <div class="who-card-icon">👤</div>
+      <h3 style="color:var(--forest)">Personal Profile</h3>
+      <p>For consumers, enthusiasts, and anyone who is part of the cannabis community. Follow your favorite brands, discover new products, and stay informed — all in a verified, age-gated space.</p>
+      <ul class="who-features">
+        <li>Follow dispensaries & brands</li>
+        <li>View business menus & product drops</li>
+        <li>Browse deals and promotions</li>
+        <li>21+ verified account</li>
+        <li>Privacy controls — you choose who sees your profile</li>
+        <li>Always free</li>
+      </ul>
+      <div style="margin-top:1.5rem">
+        <button class="btn btn-leaf" onclick="openModal('register')">Create personal profile</button>
+      </div>
+    </div>
+    <div class="who-card business">
+      <div class="who-card-badge">EIN Verified</div>
+      <div class="who-card-icon">🏢</div>
+      <h3>Business Profile</h3>
+      <p>For licensed cannabis operators. Run a dual-mode profile — a public consumer-facing page and a private B2B wholesale view. Post promotions, product drops, and deals to your followers and the wider feed.</p>
+      <ul class="who-features">
+        <li>Public profile — consumers discover your brand</li>
+        <li>Private B2B view — wholesale buyers see pricing & reps</li>
+        <li>LeafLink menu sync (optional)</li>
+        <li>Post to the promotional news feed</li>
+        <li>Encrypted B2B messaging (storefronts only)</li>
+        <li>State-by-state coverage</li>
+      </ul>
+      <div style="margin-top:1.5rem">
+        <button class="btn" style="background:var(--lime);color:var(--forest)" onclick="openModal('register')">Create business profile</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="how-section" id="how">
+  <div class="how-inner">
+    <div class="section-eyebrow">Getting started</div>
+    <h2>Simple. Verified. Safe.</h2>
+    <p class="section-sub">Three steps to being on Bridge — whether you're a person or a business.</p>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-num">1</div>
+        <h3>Verify your identity</h3>
+        <p>Personal accounts confirm 21+ age. Business accounts verify their EIN against IRS records and provide a state license number. No anonymous profiles allowed.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-num">2</div>
+        <h3>Build your profile</h3>
+        <p>Consumers build a personal page. Businesses get a public brand page and a private B2B view — one profile, two audiences, one place to manage everything.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-num">3</div>
+        <h3>Connect & promote</h3>
+        <p>Consumers follow brands and discover deals. Businesses post product drops and promotions to their followers and the state-specific news feed. No spam. No noise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEWS FEED RULES ══ -->
+<section class="feed-section" id="feed">
+  <div class="section-eyebrow">The Bridge news feed</div>
+  <h2>A promotional feed.<br>Not a comment section.</h2>
+  <p class="section-sub">Bridge's feed is a curated, graphic-forward space for cannabis businesses to promote themselves — not a forum, not a gossip platform, not a popularity contest.</p>
+  <div class="feed-rules-grid">
+    <div class="feed-rule">
+      <div class="rule-icon green">✅</div>
+      <div>
+        <div class="rule-label yes">New product drops</div>
+        <div class="rule-desc">Businesses announce new strains, products, or lines with photos and details. Consumers and followers see it immediately.</div>
+      </div>
+    </div>
+    <div class="feed-rule">
+      <div class="rule-icon green">✅</div>
+      <div>
+        <div class="rule-label yes">Deals & promotions</div>
+        <div class="rule-desc">Weekly specials, discounts, limited-time offers — posted as graphics. State-compliant. Age-gated. Targeted to your market.</div>
+      </div>
+    </div>
+    <div class="feed-rule">
+      <div class="rule-icon green">✅</div>
+      <div>
+        <div class="rule-label yes">Brand announcements</div>
+        <div class="rule-desc">Grand openings, new locations, awards, harvest events, brand milestones — the things that matter to your community.</div>
+      </div>
+    </div>
+    <div class="feed-rule">
+      <div class="rule-icon green">✅</div>
+      <div>
+        <div class="rule-label yes">Graphics only</div>
+        <div class="rule-desc">Every post requires a visual. Bridge is a design-forward platform — your brand image is your voice.</div>
+      </div>
+    </div>
+    <div class="feed-rule">
+      <div class="rule-icon red">🚫</div>
+      <div>
+        <div class="rule-label no">No comments or likes</div>
+        <div class="rule-desc">Bridge is not a popularity contest. No comment sections, no like counts, no follower tallies. Just clean, professional promotion.</div>
+      </div>
+    </div>
+    <div class="feed-rule">
+      <div class="rule-icon red">🚫</div>
+      <div>
+        <div class="rule-label no">No personal posts in the feed</div>
+        <div class="rule-desc">The news feed is for verified businesses only. Consumer personal profiles are separate from the promotional feed.</div>
+      </div>
+    </div>
+    <div class="feed-rule">
+      <div class="rule-icon red">🚫</div>
+      <div>
+        <div class="rule-label no">No forums, questions, or debates</div>
+        <div class="rule-desc">This is not a Reddit or Facebook Group. Bridge is an informational platform — not a gossip hub, not a rumor mill.</div>
+      </div>
+    </div>
+    <div class="feed-rule">
+      <div class="rule-icon red">🚫</div>
+      <div>
+        <div class="rule-label no">No targeting minors</div>
+        <div class="rule-desc">All posts are subject to state cannabis advertising compliance. Businesses agree to platform content policies and confirm their posts comply with local law at time of posting.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECURITY & PRIVACY ══ -->
+<section class="security-section">
+  <div class="security-inner">
+    <div class="section-eyebrow">Your safety is the product</div>
+    <h2>Built with protection<br>at every layer.</h2>
+    <p class="section-sub" style="margin-top:.875rem">Bridge does not sell data, does not serve ads to third parties, and does not allow anonymous accounts. Here's how we protect you.</p>
+    <div class="security-cards">
+      <div class="sec-card">
+        <div class="sec-card-icon">🔒</div>
+        <h4>End-to-end encryption</h4>
+        <p>All business messages are end-to-end encrypted. No one — including Bridge — can read your conversations.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-card-icon">🪪</div>
+        <h4>Full identity verification</h4>
+        <p>21+ age gate for all users. EIN + state license verification for businesses. No anonymous accounts — ever.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-card-icon">🚫</div>
+        <h4>Zero data sales</h4>
+        <p>Bridge is subscription-funded. We will never sell, broker, or share your personal data with advertisers or third parties.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-card-icon">🛡️</div>
+        <h4>State-compliant content</h4>
+        <p>Business posts require a compliance acknowledgment confirming content meets state cannabis advertising laws. Posts are reviewed before going live.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-card-icon">🔐</div>
+        <h4>Granular privacy controls</h4>
+        <p>Personal users control who sees their profile — public, followers only, or fully private. Your data, your choice.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-card-icon">🏪</div>
+        <h4>Storefront-only messaging</h4>
+        <p>Only licensed storefront businesses can initiate conversations. Protects managers from unsolicited outreach and sales spam.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-card-icon">📋</div>
+        <h4>Audit-ready logs</h4>
+        <p>All business-to-business interactions are logged and exportable. Designed to hold up if a regulator ever asks questions.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-card-icon">⚖️</div>
+        <h4>Legal terms of use</h4>
+        <p>Robust Terms of Service, Content Policy, and Privacy Policy drafted with cannabis-specific compliance requirements. Available publicly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATE SELECTOR ══ -->
+<div class="state-section" id="states">
+  <h2 style="color:white">Available in your state?</h2>
+  <p>Bridge launches market by market. Check if we're live where you are.</p>
+  <div class="state-row">
+    <select onchange="checkState(this.value)">
+      <option value="">Select your state...</option>
+      <option value="CO">Colorado</option><option value="CA">California</option>
+      <option value="MI">Michigan</option><option value="IL">Illinois</option>
+      <option value="WA">Washington</option><option value="OR">Oregon</option>
+      <option value="NV">Nevada</option><option value="AZ">Arizona</option>
+      <option value="FL">Florida</option><option value="MA">Massachusetts</option>
+      <option value="NY">New York</option><option value="MO">Missouri</option>
+    </select>
+    <button class="btn" style="background:white;color:var(--forest);font-weight:700;font-size:15px;padding:13px 28px" onclick="openModal('register')">Join the waitlist →</button>
+  </div>
+  <p id="state-result"></p>
+</div>
+
+<!-- ══ PRICING ══ -->
+<section class="pricing-section" id="pricing">
+  <div class="pricing-inner">
+    <div class="section-eyebrow">Simple pricing</div>
+    <h2>Everyone starts free.</h2>
+    <p style="color:var(--ts);font-size:16px;margin-top:.75rem">Personal profiles are always free. Business accounts choose a plan based on how much they want to promote.</p>
+    <div class="pricing-grid">
+      <div class="plan-card">
+        <div class="plan-type">Personal</div>
+        <div class="plan-price"><span class="plan-free">Free</span></div>
+        <div class="plan-per">Always · Forever</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>21+ verified personal profile</li>
+          <li>Follow brands & dispensaries</li>
+          <li>View news feed deals & drops</li>
+          <li>Privacy controls</li>
+          <li class="no">Cannot post to the feed</li>
+          <li class="no">No B2B messaging</li>
+        </ul>
+        <button class="plan-cta outline" onclick="openModal('register')">Get started free</button>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge">Most popular</div>
+        <div class="plan-type">Business — Pro</div>
+        <div class="plan-price"><sup>$</sup>79<span style="font-size:22px">.99</span></div>
+        <div class="plan-per">per month · billed monthly</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>EIN-verified business profile</li>
+          <li>Public + private B2B profile views</li>
+          <li>Post to news feed (graphics)</li>
+          <li>LeafLink menu sync</li>
+          <li>Encrypted B2B messaging</li>
+          <li>Up to 15 team members</li>
+          <li>Asset & photo hub (5GB)</li>
+          <li>State-level feed targeting</li>
+        </ul>
+        <button class="plan-cta leaf" onclick="openModal('register')">Start Pro plan</button>
+      </div>
+      <div class="plan-card">
+        <div class="plan-type">Business — Enterprise</div>
+        <div class="plan-price"><sup>$</sup>99<span style="font-size:22px">.99</span></div>
+        <div class="plan-per">per month · billed monthly</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Everything in Pro, plus:</li>
+          <li>Unlimited team members</li>
+          <li>Priority feed placement</li>
+          <li>Multi-state profile coverage</li>
+          <li>25GB asset storage</li>
+          <li>Freelance marketplace posting</li>
+          <li>Dedicated account support</li>
+          <li>Compliance review on posts</li>
+        </ul>
+        <button class="plan-cta outline" onclick="openModal('register')">Start Enterprise</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COMPLIANCE NOTE ══ -->
+<div class="compliance-section">
+  <div class="compliance-inner">
+    <span class="compliance-icon">⚖️</span>
+    <div class="compliance-text">
+      <strong>Important compliance notice:</strong> Bridge operates in compliance with state cannabis advertising regulations. All business accounts must confirm that their content complies with applicable state laws at time of posting, including restrictions on targeting minors, health claims, and platform-specific rules. Cannabis is federally controlled — Bridge does not facilitate any federally illegal transactions. Bridge's legal team recommends all businesses consult with a cannabis compliance attorney in their state. Business accounts agree to Bridge's Terms of Service, Content Policy, and Cannabis Advertising Compliance Agreement upon registration.
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">
+        <div class="logo-mark" style="width:28px;height:28px;border-radius:7px">
+          <svg width="32" height="26" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M2 26 L2 16 Q2 2 18 2 Q34 2 34 16 L34 26" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <path d="M7 26 L7 16 Q7 8 18 8 Q29 8 29 16 L29 26" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" opacity=".75"/>
+  <path d="M12 26 L12 18 Q12 13 18 13 Q24 13 24 18 L24 26" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".5"/>
+</svg>
+        </div>
+        Bridge
+      </div>
+      <p class="footer-desc">The first social platform built exclusively for the cannabis community. Personal profiles, business profiles, promotional news feed. Age-verified. EIN-verified. State-licensed.</p>
+    </div>
+    <div class="footer-col"><h4>Platform</h4><ul><li><a href="#">Personal profiles</a></li><li><a href="#">Business profiles</a></li><li><a href="#">News feed</a></li><li><a href="#">B2B messaging</a></li><li><a href="#">LeafLink sync</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="#">About Bridge</a></li><li><a href="#">Pricing</a></li><li><a href="#">State coverage</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy policy</a></li><li><a href="#">Terms of service</a></li><li><a href="#">Content policy</a></li><li><a href="#">Cannabis compliance</a></li><li><a href="#">Data security</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Bridge Social Inc. All rights reserved. For 21+ verified users only.</span>
+    <span>Cannabis is legal in select states. Know your local laws.</span>
+  </div>
+</footer>
+
+<!-- ══ AUTH MODAL ══ -->
+<div class="modal-overlay" id="modal" onclick="closeOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <!-- LOGIN -->
+    <div id="view-login">
+      <div class="modal-head">
+        <div class="modal-logo-row">
+          <div class="logo-mark" style="width:28px;height:28px;border-radius:7px"><svg width="32" height="26" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M2 26 L2 16 Q2 2 18 2 Q34 2 34 16 L34 26" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <path d="M7 26 L7 16 Q7 8 18 8 Q29 8 29 16 L29 26" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" opacity=".75"/>
+  <path d="M12 26 L12 18 Q12 13 18 13 Q24 13 24 18 L24 26" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".5"/>
+</svg></div>
+          Bridge
+        </div>
+        <div class="modal-subtitle">Sign in to your Bridge account</div>
+        <div class="modal-tabs">
+          <button class="modal-tab active" onclick="setLoginMethod('email',this)">Email</button>
+          <button class="modal-tab" onclick="setLoginMethod('phone',this)">Phone / SMS</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div id="login-email">
+          <div class="form-group"><label>Email</label><input class="form-input" type="email" placeholder="you@email.com"></div>
+          <div class="form-group"><label>Password</label><input class="form-input" type="password" placeholder="••••••••"></div>
+        </div>
+        <div id="login-phone" style="display:none">
+          <div class="form-group"><label>Mobile number</label><input class="form-input" type="tel" placeholder="+1 (555) 000-0000"><div class="form-helper">We'll send a one-time verification code.</div></div>
+        </div>
+        <button class="modal-submit">Sign in</button>
+        <div class="modal-footer-note">Don't have an account? <a href="#" onclick="switchView('register');return false">Create one →</a></div>
+      </div>
+    </div>
+
+    <!-- REGISTER -->
+    <div id="view-register" style="display:none">
+      <div class="modal-head">
+        <div class="modal-logo-row"><div class="logo-mark" style="width:28px;height:28px;border-radius:7px"><svg width="32" height="26" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M2 26 L2 16 Q2 2 18 2 Q34 2 34 16 L34 26" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <path d="M7 26 L7 16 Q7 8 18 8 Q29 8 29 16 L29 26" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" opacity=".75"/>
+  <path d="M12 26 L12 18 Q12 13 18 13 Q24 13 24 18 L24 26" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".5"/>
+</svg></div>Bridge</div>
+        <div class="modal-subtitle">Create your Bridge account — cannabis-verified</div>
+        <div class="modal-tabs">
+          <button class="modal-tab active" onclick="setRegType('personal',this)">Personal (free)</button>
+          <button class="modal-tab" onclick="setRegType('business',this)">Business</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <!-- Age gate confirm -->
+        <div class="form-note">🔒 <strong>21+ required.</strong> By creating an account you confirm you are 21 years of age or older and that cannabis is legal in your state.</div>
+        <div id="personal-fields">
+          <div class="form-group"><label>Full name</label><input class="form-input" placeholder="Your name"></div>
+          <div class="form-group"><label>Date of birth (21+ verification)</label><input class="form-input" type="date" id="dob-field"></div>
+          <div class="form-group"><label>Email</label><input class="form-input" type="email" placeholder="you@email.com"></div>
+          <div class="form-group"><label>Password</label><input class="form-input" type="password" placeholder="Min. 8 characters"></div>
+          <div class="form-group"><label>State</label><select class="form-select"><option value="">Select your state...</option><option>Colorado</option><option>California</option><option>Michigan</option><option>Illinois</option><option>Washington</option><option>Oregon</option></select></div>
+        </div>
+        <div id="business-fields" style="display:none">
+          <div class="form-group"><label>Business display name</label><input class="form-input" placeholder="Your business name"></div>
+          <div class="form-group">
+            <label>Business type</label>
+            <select class="form-select" id="biz-type" onchange="showEIN(this.value)">
+              <option value="">Select type...</option>
+              <optgroup label="Licensed Operations">
+                <option value="lic">Cultivator</option><option value="lic">Dispensary / Retailer</option><option value="lic">Processor / MIP</option><option value="lic">Testing Laboratory</option><option value="lic">Distributor</option>
+              </optgroup>
+              <optgroup label="Cannabis-Adjacent Businesses">
+                <option value="adj">Packaging & Supplies</option><option value="adj">Swag & Apparel</option><option value="adj">Cannabis-Friendly Bank</option><option value="adj">Marketing Agency</option><option value="adj">Legal & Compliance</option>
+              </optgroup>
+              <optgroup label="Industry Professionals (Verified)">
+                <option value="pro">Budtender</option><option value="pro">General / Regional Manager</option><option value="pro">Sales Representative</option><option value="pro">Consultant</option><option value="pro">Photographer / Filmmaker</option><option value="pro">Graphic Designer</option><option value="pro">Web Developer</option>
+              </optgroup>
+            </select>
+          </div>
+          <div id="ein-wrap">
+            <div class="form-group"><label>EIN (Employer Identification Number)</label><input class="form-input" placeholder="XX-XXXXXXX" maxlength="10"><div class="form-helper">Verified against IRS records. Never shown publicly. Required for licensed businesses.</div></div>
+          </div>
+          <div id="pro-note" style="display:none" class="form-note">👤 <strong>Individual professional account.</strong> You'll verify your cannabis industry experience during onboarding. Individual pros can post to the feed and maintain a profile — B2B messaging is for storefronts only.</div>
+          <div class="form-group"><label>Primary state of operation</label><select class="form-select"><option value="">Select state...</option><option>Colorado</option><option>California</option><option>Michigan</option><option>Illinois</option><option>Washington</option></select></div>
+          <div class="form-group"><label>Business email</label><input class="form-input" type="email" placeholder="you@yourbusiness.com"></div>
+          <div class="form-group"><label>Password</label><input class="form-input" type="password" placeholder="Min. 8 characters"></div>
+        </div>
+        <button class="modal-submit" onclick="toPricing()">Continue →</button>
+        <div class="modal-footer-note">Already on Bridge? <a href="#" onclick="switchView('login');return false">Sign in →</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── AGE GATE ──
+(function(){
+  if(sessionStorage.getItem('bridge_age_ok')){
+    document.getElementById('age-gate').style.display='none';
+  }
+})();
+function enterSite(){
+  sessionStorage.setItem('bridge_age_ok','1');
+  var ag=document.getElementById('age-gate');
+  ag.style.opacity='0';ag.style.transition='opacity .4s';
+  setTimeout(function(){ag.style.display='none'},400);
+}
+function denyEntry(){
+  document.body.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:Inter,sans-serif;color:#333;font-size:18px;background:#f5f5f5;text-align:center;padding:2rem"><div><div style="font-size:48px;margin-bottom:1rem">🔒</div><p>This platform is for users 21 and older.<br>Please exit.</p></div></div>';
+}
+
+// ── MODAL ──
+function openModal(v){document.getElementById('modal').classList.add('open');switchView(v)}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+function closeOutside(e){if(e.target===document.getElementById('modal'))closeModal()}
+function switchView(v){
+  document.getElementById('view-login').style.display=v==='login'?'block':'none';
+  document.getElementById('view-register').style.display=v==='register'?'block':'none';
+}
+function setLoginMethod(m,btn){
+  document.querySelectorAll('#view-login .modal-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('login-email').style.display=m==='email'?'block':'none';
+  document.getElementById('login-phone').style.display=m==='phone'?'block':'none';
+}
+function setRegType(type,btn){
+  document.querySelectorAll('#view-register .modal-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('personal-fields').style.display=type==='personal'?'block':'none';
+  document.getElementById('business-fields').style.display=type==='business'?'block':'none';
+}
+function showEIN(val){
+  var isLic=val==='lic';var isPro=val==='pro';
+  document.getElementById('ein-wrap').style.display=isPro?'none':'block';
+  document.getElementById('pro-note').style.display=isPro?'block':'none';
+}
+function toPricing(){closeModal();document.getElementById('pricing').scrollIntoView({behavior:'smooth'})}
+const liveStates=['CO','CA','MI','IL','WA','OR'];
+function checkState(v){
+  if(!v)return;
+  var el=document.getElementById('state-result');
+  el.textContent=liveStates.includes(v)?'✓ Bridge is live in your state — create your profile now.':'Bridge is coming to your state soon — join the waitlist.';
+  el.style.opacity='1';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+// ── BUG CRAWL ──
+(function(){
+  var BUGS=['🐜','🐛','🦗','🪲','🕷️'];
+  var bug=null,x=0,y=0,vx=0,vy=0,angle=0,lastTime=0;
+  var paused=false,pauseTimer=0,rafId=null;
+  var mouseX=-999,mouseY=-999,fleeing=false;
+  var FLEE_DIST=80,FLEE_SPEED=5.5;
+  document.addEventListener('mousemove',function(e){mouseX=e.clientX;mouseY=e.clientY});
+  function spawnBug(){
+    if(bug)return;
+    bug=document.createElement('div');bug.className='bug';
+    bug.textContent=BUGS[Math.floor(Math.random()*BUGS.length)];
+    bug.style.cssText='position:fixed;z-index:99998;font-size:20px;pointer-events:none;user-select:none;line-height:1';
+    document.body.appendChild(bug);
+    x=80+Math.random()*(window.innerWidth-160);y=80+Math.random()*(window.innerHeight*.6);
+    var spd=1.4+Math.random()*1.2,dir=Math.random()*Math.PI*2;
+    vx=Math.cos(dir)*spd;vy=Math.sin(dir)*spd;lastTime=0;fleeing=false;
+    rafId=requestAnimationFrame(crawl);
+  }
+  function crawl(ts){
+    if(!bug)return;
+    var dt=lastTime?Math.min(ts-lastTime,40):16;lastTime=ts;
+    var bx=x+10,by=y+10,dx=bx-mouseX,dy=by-mouseY,dist=Math.sqrt(dx*dx+dy*dy);
+    if(dist<FLEE_DIST){
+      fleeing=true;paused=false;
+      var fa=Math.atan2(dy,dx),urgency=1+(FLEE_DIST-dist)/FLEE_DIST*2.5;
+      fa+=(Math.random()-.5)*.4;vx=Math.cos(fa)*FLEE_SPEED*urgency;vy=Math.sin(fa)*FLEE_SPEED*urgency;
+    } else {
+      if(fleeing&&dist>FLEE_DIST*1.6){
+        fleeing=false;var spd=1.4+Math.random()*1.2,norm=Math.sqrt(vx*vx+vy*vy);
+        if(norm>0){vx=(vx/norm)*spd;vy=(vy/norm)*spd;}
+      }
+      if(!fleeing){
+        if(paused){pauseTimer-=dt;if(pauseTimer<=0)paused=false;rafId=requestAnimationFrame(crawl);return;}
+        if(Math.random()<.025){var t=(Math.random()-.5)*.9,a=Math.atan2(vy,vx)+t,spd=Math.sqrt(vx*vx+vy*vy);vx=Math.cos(a)*spd;vy=Math.sin(a)*spd;}
+        if(Math.random()<.004){paused=true;pauseTimer=700+Math.random()*1400;rafId=requestAnimationFrame(crawl);return;}
+      }
+    }
+    x+=vx*(dt/16);y+=vy*(dt/16);
+    var W=window.innerWidth-36,H=window.innerHeight-36;
+    if(x<0){x=0;vx=Math.abs(vx);}if(x>W){x=W;vx=-Math.abs(vx);}
+    if(y<0){y=0;vy=Math.abs(vy);}if(y>H){y=H;vy=-Math.abs(vy);}
+    angle=Math.atan2(vy,vx)*180/Math.PI;
+    bug.style.left=x+'px';bug.style.top=y+'px';bug.style.transform='rotate('+angle+'deg)';
+    rafId=requestAnimationFrame(crawl);
+  }
+  function killBug(){if(rafId)cancelAnimationFrame(rafId);if(bug){bug.remove();bug=null;}lastTime=0;}
+  setTimeout(spawnBug,2000);
+  setInterval(function(){killBug();setTimeout(spawnBug,5000+Math.random()*5000);},18000+Math.random()*10000);
+  document.addEventListener('click',function(e){
+    if(!bug)return;
+    var bx=parseFloat(bug.style.left)+10,by=parseFloat(bug.style.top)+10;
+    if(Math.abs(e.clientX-bx)<34&&Math.abs(e.clientY-by)<34){
+      bug.textContent='💨';setTimeout(function(){killBug();setTimeout(spawnBug,2500);},350);
+    }
+  });
+})();
+</script>
+</body>
+</html>
