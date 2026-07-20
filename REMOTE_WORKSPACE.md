@@ -1,62 +1,94 @@
-# Remote workspace boundary
+# AHCM contributor workspace
 
-This private repository is the transport and backup for Dillon's Canonical Client Operations project.
+This private repository is the transport, backup, and contribution surface for Dillon's Canonical Client Operations project.
 
-## Authority
+## Roles
 
-- **Sole authoritative machine:** `DESKTOP-4AHKEC4`
-- **Sole writable canonical path:** `C:\Users\dillo\Documents\Codex\projects\client-operations`
+- **Sole authoritative execution machine:** `DESKTOP-4AHKEC4`
+- **Writable canonical path:** `C:\Users\dillo\Documents\Codex\projects\client-operations`
 - **Canonical writer:** Marketing Chief on the authoritative machine
-- **AHCM-3LCQVF4 role:** read-only context mirror unless Dillon explicitly performs a machine-role migration
+- **AHCM-3LCQVF4:** authorized contributor workspace
 
-A clone does not become a second queue. On AHCM or any other secondary machine, do not:
+AHCM may:
 
-- run the Marketing Chief
-- edit `queue/work-items.json`
-- regenerate or directly edit `CONTROL.md`
-- accept worker handoffs
-- run Gmail/Slack intake as a queue writer
-- send, publish, deploy, spend, change accounts, or mutate live campaigns from this mirror
-- treat a local change as canonical state
+- read and use the complete private repository and Align submodule
+- research and create client-specific artifacts
+- edit non-canonical code, documentation, tests, designs, and deliverables
+- run local tests and verification
+- push proposed work to branches named `ahcm/<topic>`
+- open pull requests for review and merge on the authoritative desktop
 
-## Safe AHCM clone
+AHCM must not:
 
-Run from a terminal on `AHCM-3LCQVF4`:
+- run the Marketing Chief or another canonical queue writer
+- directly edit `queue/work-items.json` or `CONTROL.md`
+- edit canonical intake or append-only state ledgers
+- accept worker handoffs into canonical state
+- push directly to `main`
+- send, publish, deploy, spend, change accounts, or mutate live campaigns without exact current approval
+- treat an unmerged AHCM branch as canonical state
+
+## Clone on AHCM
 
 ```powershell
 cd C:\Users\dillo\Documents\Codex\projects
-git clone https://github.com/dillonmohr8777/client-operations-canonical.git client-operations-reference
-cd client-operations-reference
-git remote set-url --push origin DISABLED
+git clone --recurse-submodules https://github.com/dillonmohr8777/client-operations-canonical.git client-operations-contributor
+cd client-operations-contributor
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Install-AhcmContributorGuard.ps1
 ```
 
-Create `.git\hooks\pre-push` with this content to fail closed:
-
-```sh
-#!/bin/sh
-echo "Push blocked: AHCM is a read-only Canonical Queue mirror."
-exit 1
-```
-
-Then tell Codex on AHCM:
-
-> Use this repository only as read-only agency context. `DESKTOP-4AHKEC4` remains the sole canonical writer and execution machine. Do not mutate the queue or run the Marketing Chief here. If work is needed, return a bounded proposed handoff for execution on the authoritative desktop.
-
-## Updating the mirror
+## Start contribution work
 
 ```powershell
 git fetch origin
-git reset --hard origin/main
+git checkout main
+git pull --ff-only origin main
+git checkout -b ahcm/<short-topic>
 ```
 
-This intentionally discards secondary-machine edits. Do not run it in the authoritative desktop repository.
+Make and verify the change, then:
 
-## Deliberate migration
+```powershell
+git add <specific-files>
+git commit -m "type: concise description"
+git push -u origin HEAD
+gh pr create --base main --title "type: concise description" --body "Summary, evidence, tests, and safety boundaries"
+```
 
-Changing the authoritative machine requires all of the following:
+The local guard rejects pushes to branches outside `ahcm/*` and rejects AHCM commits that touch protected canonical state.
 
-1. Dillon explicitly names the new authoritative machine.
-2. Cron jobs, gateway processes, scheduled tasks, and client-specific automations are audited on both machines.
-3. The old writer is stopped only after needed automations are preserved or migrated.
-4. The final queue revision and repository commit are verified on both sides.
-5. The machine-boundary documentation is updated in the same reviewed commit.
+## Protected canonical state
+
+AHCM branches may not modify:
+
+- `queue/work-items.json`
+- `CONTROL.md`
+- `intake/`
+- `state/intake-sync.json`
+- `state/handoff-receipts.jsonl`
+- `state/queue-mutations.jsonl`
+- `state/corrections.jsonl`
+- `state/prediction-outcomes.jsonl`
+
+If AHCM research implies a queue change, include the proposed change and evidence in the pull-request description. The Marketing Chief on DESKTOP performs the canonical mutation after review.
+
+## Update an existing AHCM clone
+
+```powershell
+git fetch origin
+git checkout main
+git pull --ff-only origin main
+git submodule update --init --recursive
+```
+
+Do not hard-reset a branch containing unsubmitted AHCM work.
+
+## Deliberate authority migration
+
+Changing the authoritative machine requires:
+
+1. Dillon explicitly naming the new authoritative machine.
+2. Auditing cron jobs, gateways, scheduled tasks, and client automations on both computers.
+3. Preserving or migrating needed jobs before stopping the old writer.
+4. Verifying the final queue revision and repository commit on both machines.
+5. Updating this boundary in a reviewed commit.

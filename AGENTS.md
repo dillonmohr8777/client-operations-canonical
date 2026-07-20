@@ -3,9 +3,10 @@
 ## Machine boundary
 
 - `DESKTOP-4AHKEC4` at `C:\Users\dillo\Documents\Codex\projects\client-operations` is the sole authoritative execution machine and writable Canonical Queue during the manual pilot.
-- Clones on `AHCM-3LCQVF4` or any other computer are read-only context mirrors. They must not run the Marketing Chief, mutate `queue/work-items.json`, regenerate `CONTROL.md`, accept worker handoffs, run account-changing workflows, or act as a second command center.
-- A machine-role migration requires Dillon's explicit instruction, an audit of both machines' automations, and a deliberate writer handoff. Syncing or cloning alone never transfers canonical-writer authority.
-- See `REMOTE_WORKSPACE.md` for the safe clone and no-push setup.
+- `AHCM-3LCQVF4` is an authorized contributor workspace. It may read and use the full private repository, build client artifacts, research, test, and push proposed work only to `ahcm/*` branches for pull-request review.
+- AHCM must not run the Marketing Chief, directly mutate the Canonical Queue or generated control state, accept worker handoffs into canonical state, run account-changing workflows, or push directly to `main`.
+- A machine-role migration requires Dillon's explicit instruction, an audit of both machines' automations, and a deliberate writer handoff. Contributing through a branch never transfers canonical-writer authority.
+- See `REMOTE_WORKSPACE.md` and run `scripts/Install-AhcmContributorGuard.ps1` on AHCM after cloning.
 
 - Resolve every client through `registry/clients.json` before creating or updating client-specific work.
 - Use the global `client_router` specialist for names, aliases, contacts, domains, or Slack channels that need routing.
