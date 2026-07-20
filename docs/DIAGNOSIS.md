@@ -43,3 +43,25 @@ The Chief refreshes live health and intake, loads the exact client context and c
 - Taste calibration before enough accepted and rejected examples exist.
 
 Those are intentional human gates. Repeating client routes, project locations, routine safe steps, and already stated operating preferences is not.
+
+## Current completion model
+
+This document explains the system; it is not another queue. `queue/work-items.json` and `CONTROL.md` remain the only current work authority.
+
+As of July 16, 2026, the coordination spine is operational: one project, one pinned Marketing Chief task, one exact registry, one versioned queue, one control projection, one correction ledger, one persistent Chrome rule, and one Bitwarden route. The registry has 19 routes: 17 active clients, Zen Spa retained as inactive historical context only, and Revive quarantined as `needs-confirmation`.
+
+The original fully paginated Gmail audit covered the original 18 routes and found 2,555 globally deduplicated messages across 897 distinct threads. Bridge Software was then resolved as a real active client and audited through a separate exact-route supplement covering 27 messages across 5 threads. The supplement remains separate because its evidence can overlap the original corpus. The older Bridge incident was an unrelated newsletter packet falsely routed by generic label matching, not evidence that the real client was fake. Dillon's email voice is evidence-backed from 1,032 sent messages across 452 threads.
+
+Slack history is also complete within the connector's visible scope. The redacted audit exhausted cursors across 106 visible conversations, found 1,232 Dillon-authored messages, and produced live evidence for 12 active clients. Public and private channel, DM, and group-DM read access was verified, as was `files:write`; no file was uploaded or shared and no Slack write was performed.
+
+Portfolio priority now has one canonical surface: `state/portfolio-priorities.json`. Bridge Software is the explicit highest-value client at rank 1, and VA Claims Edge is rank 2. `Get-NextActions.ps1` uses that value weighting only after route and lane eligibility. It cannot override due dates, evidence requirements, approvals, safety gates, or WIP limits. Economics and current strategy remain incomplete, so inferred ordering below those explicit priorities is a reviewable operating judgment, not a claim about revenue or profitability.
+
+The remaining work is no longer "build another system." It is to keep filling and testing the one system:
+
+1. Keep one managed communication-history block for each active client and never promote inactive, `needs-confirmation`, or mixed-client evidence.
+2. Expand Access Broker coverage from exact active need, not bulk credential scraping. An installed connector or stored locator is not considered verified access until a live probe passes.
+3. Build client-specific voice and design contracts from accepted and rejected work. The global Dillon voice is for operator communication; it must not flatten client brands.
+4. Record real accept, modify, defer, and reject outcomes so prediction quality can improve from evidence instead of another prompt rewrite.
+5. Add portfolio economics, scope, promises, owners, attribution, and KPI definitions only from current evidence. Unknowns stay explicit.
+
+The daily loop stays simple: Dillon uses the pinned Marketing Chief task and says `continue`. The Chief refreshes live health and intake, loads the exact client, completes the safest highest-value local action, and surfaces at most one decision that genuinely requires Dillon.

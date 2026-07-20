@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "clientId": "onsite-concrete-landscape",
+  "requesterRefs": ["registry-contact:onsite-concrete-landscape:0", "user:dillon"],
+  "loginIdentityRefs": ["access-broker:dillon-operations/google-ads-immohrtal-browser"],
+  "platforms": {
+    "google_ads": {
+      "enabledForPlanning": true,
+      "exactAccountRef": "access-broker:onsite-concrete-landscape/google-ads-production",
+      "exactAccountIdSha256": "295ff04226369a3d892bb5c963a8a719b929cf201672a6e1915a752ac7ad22ab",
+      "executionSurface": "persistent_chrome",
+      "launchBlueprintRef": "clients/onsite-concrete-landscape/paid-media/blueprints/google_ads.json"
+    },
+    "meta_ads": {
+      "enabledForPlanning": false,
+      "exactAccountRef": null,
+      "exactAccountIdSha256": null,
+      "executionSurface": "unconfigured",
+      "launchBlueprintRef": null
+    }
+  },
+  "locationPolicy": {
+    "scope": "approved_market",
+    "source": "Use only verified current service areas, beginning with the communication-established Vacaville market.",
+    "mixedBrandLocationsForbidden": true
+  },
+  "landingPage": {
+    "defaultMode": "reuse",
+    "sourceRef": null,
+    "stagingDeploymentRef": null,
+    "productionDeploymentRef": null,
+    "status": "partial"
+  },
+  "currentStateRules": [
+    "Use the July 16 live persistent-Chrome account mapping and reverify it before any provider mutation.",
+    "Reconcile form and call quality, disposition, and booked-job outcomes before scaling.",
+    "Do not count test submissions or phone clicks as qualified leads.",
+    "Keep concrete and landscaping intent separately inspectable."
+  ],
+  "providerReadinessRef": "state/ad-provider-readiness.json",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false
+}

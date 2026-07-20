@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "clientId": "replenish-7-eleven",
+  "requesterRefs": ["registry-contact:replenish-7-eleven:0", "user:dillon"],
+  "loginIdentityRefs": [
+    "access-broker:dillon-operations/google-ads-immohrtal-browser",
+    "access-broker:dillon-operations/meta-ads-immohrtal-browser"
+  ],
+  "platforms": {
+    "google_ads": {
+      "enabledForPlanning": true,
+      "exactAccountRef": "access-broker:replenish-7-eleven/google-ads-production",
+      "exactAccountIdSha256": "7b0da9c01b30c103520210de40015870f9920b8ecfab5342dfbc24e78127f8dd",
+      "executionSurface": "persistent_chrome",
+      "launchBlueprintRef": "clients/replenish-7-eleven/paid-media/blueprints/google_ads.json"
+    },
+    "meta_ads": {
+      "enabledForPlanning": false,
+      "exactAccountRef": null,
+      "exactAccountIdSha256": null,
+      "executionSurface": "unconfigured",
+      "launchBlueprintRef": null
+    }
+  },
+  "locationPolicy": {
+    "scope": "registered_brand_location",
+    "source": "Use only locations established by the exact current communication and verified against current client evidence.",
+    "mixedBrandLocationsForbidden": true
+  },
+  "landingPage": {
+    "defaultMode": "mirror",
+    "sourceRef": null,
+    "stagingDeploymentRef": null,
+    "productionDeploymentRef": null,
+    "status": "partial"
+  },
+  "currentStateRules": [
+    "The July 16 live read verified the shared child-account fingerprint used by this route and the separately routed Fresh Blends lane.",
+    "Preserve location-level campaign and landing-page separation.",
+    "Optimize for verified direction-intent or approved location conversion events.",
+    "Recover or rebuild canonical landing-page source before deployment.",
+    "Do not infer that a preview host controls the production destination."
+  ],
+  "providerReadinessRef": "state/ad-provider-readiness.json",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false
+}

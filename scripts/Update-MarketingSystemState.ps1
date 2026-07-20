@@ -2,8 +2,10 @@
 param(
     [Parameter(Mandatory = $true)][string]$SystemBacklogId,
     [Parameter(Mandatory = $true)][int]$ExpectedQueueRevision,
-    [Parameter(Mandatory = $true)][string]$Risk,
-    [Parameter(Mandatory = $true)][string]$NextAction,
+    [string]$Risk,
+    [string]$NextAction,
+    [ValidateSet('blocked','done')][string]$TargetStatus = 'blocked',
+    [string]$Result,
     [Parameter(Mandatory = $true)][string]$CredentialVaultState,
     [Parameter(Mandatory = $true)][string]$CredentialBridgeState,
     [ValidateSet('marketing-chief')][string]$Writer = 'marketing-chief',
@@ -33,13 +35,19 @@ else { $MutationLogPath = [IO.Path]::GetFullPath($MutationLogPath) }
 if ($SystemBacklogId -notmatch '^sys-[A-Za-z0-9][A-Za-z0-9-]{1,155}$') {
     throw 'SystemBacklogId must be a path-safe sys-* identifier.'
 }
-foreach ($field in @(
-    @{ Name = 'SystemBacklogId'; Value = $SystemBacklogId; Max = 160 },
-    @{ Name = 'Risk'; Value = $Risk; Max = 5000 },
-    @{ Name = 'NextAction'; Value = $NextAction; Max = 3000 },
-    @{ Name = 'CredentialVaultState'; Value = $CredentialVaultState; Max = 1000 },
+$requiredFields = @(
+    @{ Name = 'SystemBacklogId'; Value = $SystemBacklogId; Max = 160 }
+    @{ Name = 'CredentialVaultState'; Value = $CredentialVaultState; Max = 1000 }
     @{ Name = 'CredentialBridgeState'; Value = $CredentialBridgeState; Max = 1000 }
-)) {
+)
+if ($TargetStatus -eq 'done') {
+    $requiredFields += @{ Name = 'Result'; Value = $Result; Max = 5000 }
+}
+else {
+    $requiredFields += @{ Name = 'Risk'; Value = $Risk; Max = 5000 }
+    $requiredFields += @{ Name = 'NextAction'; Value = $NextAction; Max = 3000 }
+}
+foreach ($field in $requiredFields) {
     if ([string]::IsNullOrWhiteSpace([string]$field.Value)) { throw "$($field.Name) cannot be empty." }
     if (([string]$field.Value).Length -gt [int]$field.Max) { throw "$($field.Name) exceeds its length limit." }
     if (-not (Test-MarketingSafeText ([string]$field.Value))) {
@@ -65,15 +73,26 @@ try {
     $matches = @($queue.systemBacklog | Where-Object { $_.id -eq $SystemBacklogId })
     if ($matches.Count -ne 1) { throw 'System backlog item must resolve exactly once.' }
     $item = $matches[0]
-    if ([string]$item.status -ne 'blocked') {
-        throw 'This evidence-refresh transaction may only update a blocked system backlog item.'
+    $priorSystemBacklogStatus = [string]$item.status
+    if ($priorSystemBacklogStatus -ne 'blocked') {
+        throw 'This system-state transaction may only update or complete a blocked system backlog item.'
     }
     if ($null -eq $queue.systemHealth) { throw 'Queue systemHealth is missing.' }
 
     $priorClientVersions = @($queue.workItems | ForEach-Object { '{0}:{1}' -f $_.id, [int]$_.version })
     $now = [DateTimeOffset]::UtcNow.ToString('o')
-    $item.risk = $Risk.Trim()
-    $item.nextAction = $NextAction.Trim()
+    if ($TargetStatus -eq 'done') {
+        $item.status = 'done'
+        $item.risk = $null
+        $item | Add-Member -NotePropertyName result -NotePropertyValue $Result.Trim() -Force
+        if ($null -ne $item.PSObject.Properties['nextAction']) { $item.PSObject.Properties.Remove('nextAction') }
+    }
+    else {
+        $item.status = 'blocked'
+        $item.risk = $Risk.Trim()
+        $item.nextAction = $NextAction.Trim()
+        if ($null -ne $item.PSObject.Properties['result']) { $item.PSObject.Properties.Remove('result') }
+    }
     $queue.systemHealth.asOf = $now
     $queue.systemHealth.credentialVault = $CredentialVaultState.Trim()
     $queue.systemHealth.credentialBridge = $CredentialBridgeState.Trim()
@@ -99,6 +118,7 @@ try {
         [pscustomobject][ordered]@{
             status = 'would-update'
             systemBacklogId = [string]$item.id
+            priorSystemBacklogStatus = $priorSystemBacklogStatus
             systemBacklogStatus = [string]$item.status
             priorQueueRevision = $ExpectedQueueRevision
             queueRevision = [int]$queue.revision
@@ -134,6 +154,8 @@ try {
         recordedAt = $now
         action = 'system-state-update'
         systemBacklogId = [string]$item.id
+        priorSystemBacklogStatus = $priorSystemBacklogStatus
+        systemBacklogStatus = [string]$item.status
         priorQueueRevision = $ExpectedQueueRevision
         queueRevision = [int]$queue.revision
         writer = $Writer
@@ -151,6 +173,7 @@ try {
     [pscustomobject][ordered]@{
         status = 'updated'
         systemBacklogId = [string]$item.id
+        priorSystemBacklogStatus = $priorSystemBacklogStatus
         systemBacklogStatus = [string]$item.status
         priorQueueRevision = $ExpectedQueueRevision
         queueRevision = [int]$queue.revision

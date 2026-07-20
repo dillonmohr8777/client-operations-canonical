@@ -196,3 +196,187 @@ Never estimate or silently fill these gaps.
 | `clients/hope-wellness-center/CLIENT.md` | 2026-07-16 | Current deliverables, owner, and next action | High |
 | `clients/hope-wellness-center/deliverables/2026-07-15-hope-wellness-deeper-analysis.html` | 2026-07-15 | Website, positioning, competition, creative, compliance, measurement, and decision analysis | High for observed pages; medium for recommendations pending approval |
 | `clients/hope-wellness-center/deliverables/2026-07-15-hope-wellness-implementation-queue.csv` | 2026-07-15 | P0 to P2 action sequence, owners, and gates | High |
+
+<!-- BEGIN CLIENT-HISTORY-PROMOTION:v1 -->
+## Communication-derived operating context
+
+- Promotion schema: `client-history-context/v2`
+- Last updated from artifact set: 2026-07-16
+- Context role: redacted historical operating evidence; not canonical queue state, delivery authorization, or item-level message attribution
+- Canonical client ID: `hope-wellness-center`
+- Canonical display name: Hope Wellness Center
+- Registry status: `active`
+- Knowledge disposition: `current-client-eligible`
+- Privacy: names reduced to roles; no raw messages, snippets, contact details, message URLs, secrets, or one-to-one item/message claims
+- Gmail evidence confidence: high (0.95); Small but complete exact-domain record with current sent deliverables and two-way scheduling evidence.
+- Slack evidence confidence: high (0.94); The exact client channel was exhausted; the evidence set is smaller but direct.
+
+### Evidence coverage
+
+- Gmail: `complete-exact-registry-match`; 21 matched messages across 15 threads and 2 pages, 2026-06-10 through 2026-07-16; exact registry queries reached token exhaustion. Counts are client-query matches, not portfolio-unique totals.
+- Gmail artifact: `state/client-history-research/gmail-client-history-2026-07-16.json#client=hope-wellness-center`; SHA-256 `801A09576CEE647690982CA9EA851C67C992D328A96C09C986D1C7D8E0E3AE87`
+- Slack: `complete-live-evidence`; 16 Dillon-authored messages across 1 matched conversations and 0 important threads, 2026-06-10 through 2026-07-16; relevant cursors were exhausted within the connected user's visible scope.
+- Slack artifact: `state/client-history-research/slack-client-history-2026-07-16.json#client=hope-wellness-center`; SHA-256 `00F3C7F4E93C86CF499FC90F4A6F1310F8FA5DEAD1B348814A3AA11F0AF7FED2`
+
+### Identity and routing
+
+- Affiliation constraints: no explicit portfolio affiliation assertion is recorded; do not infer ownership from shared communication participants.
+- Gmail routing constraint: unknown; no additional Gmail routing constraint was recorded
+- Slack routing constraint: no additional Slack routing constraint was recorded
+
+### Key people and roles
+
+#### Gmail-derived roles
+
+- primary client stakeholder
+- account and meeting lead
+- therapist-video production coordinator
+- animation, analysis, SEO, and implementation-planning operator
+
+#### Slack-derived roles
+
+- Client stakeholder
+- Agency strategy and creative collaborators
+
+### Recurring work patterns
+
+#### Gmail-derived patterns
+
+- website and technical SEO analysis
+- state-page architecture
+- creative-system design
+- therapist video production
+- animation
+- measurement and implementation planning
+
+#### Slack-derived patterns
+
+- Visual identity system
+- Website audit
+- Animation and implementation planning
+
+### Communication-derived commitments and promises
+
+These inherit the enclosing client-record evidence scope. Re-read the cited source before treating any one item as current or message-specific.
+
+#### Gmail-derived commitments
+
+- Delivered a final 60-second vertical animation, deeper analysis PDF, and 15-item implementation queue.
+- Prepared a 30, 60, and 90 day roadmap and therapist production standards.
+- Video dress-rehearsal sessions were scheduled and invitations sent.
+
+#### Slack-derived commitments
+
+- Deliver deeper analysis, an implementation queue, animation, and supporting email before the team call.
+
+### Communication-derived decisions
+
+These are historical decision signals, not permission for sending, publishing, spend, account changes, or other external action.
+
+#### Gmail-derived decisions
+
+- The animation is complete and no longer a planning item.
+- Additional Google Business Profiles remain paused because Hope presents as telehealth-only and eligibility requires in-person customer contact.
+- Implementation should prioritize duplicate content, missing state-page architecture, and measurement.
+
+#### Slack-derived decisions
+
+- Use calm, human illustrations tied to trust, compassion, inclusion, and hope instead of generic stock imagery.
+
+### Campaigns and services
+
+#### Gmail-derived campaigns and services
+
+- technical SEO
+- content architecture
+- video production
+- creative systems
+- animation
+- measurement strategy
+
+#### Slack-derived campaigns and services
+
+- Brand visual system
+- Website audit
+- Service illustrations
+- Short-form animation
+
+### Metrics and tools
+
+#### Gmail-derived metric signals
+
+- 50 page URLs
+- 52 blog URLs
+- 8 likely duplicate pairs
+- 15-item implementation queue
+- 12-format creative system
+- 60-second vertical reel
+
+#### Gmail-derived tools mentioned
+
+- website sitemap audit
+- video production
+- Google Business Profile
+- Fireflies
+- Google Meet
+
+#### Slack-derived metrics and tools
+
+- A 17-illustration library, website audit, implementation queue, and 60-second animation
+
+### Dillon sent-email patterns
+
+- Support: 6 sent-message matches across 4 sent threads.
+- Scope: aggregate sent-email behavior for this client only; not raw quotes and not the client brand voice.
+
+#### Patterns
+
+- Hi [recipient] and team opening
+- Deliverable-led summary
+- Grouped audit findings
+- Upbeat and candid scheduling follow-up
+
+#### Watchouts
+
+- Do not revive the superseded multi-location GBP direction without eligibility proof.
+
+### Dillon Slack patterns
+
+- Support: 16 Dillon-authored messages across 1 matched conversations.
+- Scope: aggregate Dillon-authored Slack behavior for this client within visible audited conversations; not raw quotes and not the client brand voice.
+
+- Warm and brand-sensitive in creative rationale.
+- Proactive about sending completed work ahead of calls.
+
+### Current-state signals
+
+- Gmail last-known signal as of 2026-07-16 (basis: sent deliverables and received production scheduling): Core analysis and animation are complete; implementation prioritization and therapist video production are next.
+- Slack last-known signal as of 2026-07-16 within the audited visible scope (high, 0.94): The deeper analysis, implementation queue, and animation were complete and sent before the planned discussion.
+
+#### Potential Gmail open loops requiring source re-read
+
+- Obtain client review and prioritize the 15 implementation items.
+- Complete the therapist dress rehearsals and production sessions.
+- Confirm state-page, duplicate-content, and measurement owners.
+
+#### Potential Slack open loops requiring source re-read
+
+- Confirm client feedback.
+- Confirm whether the scheduled discussion produced new actions.
+
+#### Known unknowns
+
+- Item-level source mapping is unknown because the audit provenance is client-record scoped.
+- Slack facts inherit the enclosing client-row coverage and opaque locator set; they are not claimed as one-fact-to-one-message mappings.
+- Slack conclusions are authoritative only within conversations visible to the connected user and exclude deleted messages and inaccessible file bodies.
+- Any conflict with newer canonical queue or live-system evidence requires source re-read; this block does not overwrite that state.
+
+### Communication source ledger
+
+| Claim scope | Observed date or window | Confidence | Safe source locator |
+| --- | --- | --- | --- |
+| Gmail synthesized client record | 2026-06-10 through 2026-07-16 | high (0.95) | `state/client-history-research/gmail-client-history-2026-07-16.json#client=hope-wellness-center` |
+| Gmail last-known status signal | 2026-07-16 | high (0.95) | `state/client-history-research/gmail-client-history-2026-07-16.json#client=hope-wellness-center` |
+| Slack synthesized client record | 2026-06-10 through 2026-07-16 | high (0.94) | `state/client-history-research/slack-client-history-2026-07-16.json#client=hope-wellness-center` |
+| Slack last-known status signal | 2026-07-16 | high (0.94) | `state/client-history-research/slack-client-history-2026-07-16.json#client=hope-wellness-center` |
+<!-- END CLIENT-HISTORY-PROMOTION:v1 -->

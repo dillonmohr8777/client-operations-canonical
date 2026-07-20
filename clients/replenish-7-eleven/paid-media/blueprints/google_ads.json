@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "clientId": "replenish-7-eleven",
+  "platform": "google_ads",
+  "rosterRef": "registry/paid-media-roster.json",
+  "routeState": "active",
+  "patternStatus": "live-observed",
+  "sourceEvidence": {
+    "observedAt": "2026-07-16T19:35:10Z",
+    "sourceClasses": ["user", "gmail", "slack", "live_platform"],
+    "summary": "Persistent Chrome verified the exact Replenish child-account route and the account uses location-level Performance Max campaigns, Maximize conversions, location-specific preview pages, and a repeated asset family. The same child account also displays Fresh Blends Ice Box campaigns, but the routes remain separate. Live inspection found cross-location copy, an incorrect asset-group name, unrelated sitelinks and phone details, incomplete ad strength, no video, and missing audience signals, so this blueprint treats the old campaign as evidence to improve rather than a template to clone blindly.",
+    "liveAccountVerified": true,
+    "historicalOnly": false
+  },
+  "triggerContract": {
+    "triggerClasses": ["location_launch", "campaign_expansion", "campaign_restart"],
+    "requesterRefs": ["registry-contact:replenish-7-eleven:0", "user:dillon"],
+    "communicationImpliesFullBuild": true,
+    "requiredExtractedFacts": ["exact store or location", "approved offer", "launch date", "budget", "conversion goal", "landing-page destination"],
+    "unknownsBlockMutation": ["billing status", "location identity", "budget authority", "primary conversion action", "deployment route"]
+  },
+  "buildContract": {
+    "campaign": {
+      "type": "Performance Max",
+      "bidStrategy": "Maximize conversions",
+      "campaignNamingPattern": "Replenish | PMAX | {Location} | Consumer Foot Traffic",
+      "adGroupNamingPattern": "{Location}"
+    },
+    "budgetBaseline": {
+      "daily": 16.67,
+      "currency": "USD",
+      "basis": "Observed in current location campaigns; starting hypothesis only and never permission to spend.",
+      "observedAt": "2026-07-16T19:35:10Z",
+      "isSpendAuthority": false
+    },
+    "landingPage": {
+      "defaultMode": "mirror",
+      "onePerLocation": true,
+      "requiredSections": ["location identity", "product value proposition", "directions call to action", "store details", "trust and nutrition proof", "privacy-safe conversion path"],
+      "qa": ["mobile-first rendered review", "correct store and city everywhere", "no unrelated links or phone numbers", "Google tag and conversion test", "page speed and form or directions test"]
+    },
+    "tracking": {
+      "primaryEvent": "directions_click",
+      "secondaryEvents": ["store_detail_view", "outbound_map_click"],
+      "dedupRequired": true,
+      "utmPattern": "replenish_{location}_{campaign_type}"
+    },
+    "creative": {
+      "requiredAssets": ["15 location-safe headlines", "5 long headlines", "5 descriptions", "landscape images", "square images", "portrait images", "logo", "video or approved generated video"],
+      "copyRequirements": ["use the exact location in local copy", "preserve verified real-fruit claims", "remove stale city references", "use only Replenish and 7-Eleven destinations"]
+    }
+  },
+  "dailyOptimizationChecks": ["exact account and campaign readback", "delivery and budget pacing", "primary conversion recording", "location-level cost and direction intent", "search themes and audience signals", "asset strength and policy status", "landing-page and tag health", "change history and billing state"],
+  "antiRegressionRules": ["Never reuse Boca as another location's asset-group name or copy.", "Never attach sitelinks, domains, projects, services, or phone numbers from another business.", "Never blend Fresh Blends or Kwik Trip assets, campaigns, budgets, or reporting into this route.", "Do not enable a campaign until its primary conversion action records and its page passes rendered mobile QA.", "Historical budget and performance are evidence, not launch authority."],
+  "learningPolicy": {
+    "minimumComparableOutcomes": 3,
+    "successSignals": ["verified direction intent", "qualified store visits when available", "stable cost per verified primary action", "clean location-level attribution"],
+    "failureSignals": ["wrong location or cross-client asset", "unrecorded primary conversion", "billing or policy block", "page or tag failure"],
+    "decisionWeights": { "accept": 3, "modify": 1, "defer": -2, "reject": -4 }
+  },
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false
+}

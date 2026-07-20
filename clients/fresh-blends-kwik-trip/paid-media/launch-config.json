@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "clientId": "fresh-blends-kwik-trip",
+  "requesterRefs": ["registry-contact:fresh-blends-kwik-trip:0", "user:dillon"],
+  "loginIdentityRefs": [
+    "access-broker:dillon-operations/google-ads-immohrtal-browser",
+    "access-broker:dillon-operations/meta-ads-immohrtal-browser"
+  ],
+  "platforms": {
+    "google_ads": {
+      "enabledForPlanning": true,
+      "exactAccountRef": "access-broker:fresh-blends-kwik-trip/google-ads-production-shared",
+      "exactAccountIdSha256": "7b0da9c01b30c103520210de40015870f9920b8ecfab5342dfbc24e78127f8dd",
+      "executionSurface": "persistent_chrome",
+      "launchBlueprintRef": "clients/fresh-blends-kwik-trip/paid-media/blueprints/google_ads.json"
+    },
+    "meta_ads": {
+      "enabledForPlanning": false,
+      "exactAccountRef": null,
+      "exactAccountIdSha256": null,
+      "executionSurface": "unconfigured",
+      "launchBlueprintRef": null
+    }
+  },
+  "locationPolicy": {
+    "scope": "registered_brand_location",
+    "source": "Use only Kwik Trip locations established by the exact current communication and verified against current client evidence.",
+    "mixedBrandLocationsForbidden": true
+  },
+  "landingPage": {
+    "defaultMode": "mirror",
+    "sourceRef": null,
+    "stagingDeploymentRef": null,
+    "productionDeploymentRef": null,
+    "status": "unknown"
+  },
+  "currentStateRules": [
+    "The July 16 live read verified the shared child-account fingerprint used by this route and the separately routed Replenish lane.",
+    "Fresh Blends and Kwik Trip assets never enter the Replenish or 7-Eleven route.",
+    "The last-known paused campaign state is historical evidence and must be verified live before restart.",
+    "Build or verify the Fresh Blends landing destination before any campaign enablement."
+  ],
+  "providerReadinessRef": "state/ad-provider-readiness.json",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false
+}

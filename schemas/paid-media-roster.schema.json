@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "paid-media-roster.schema.json",
+  "title": "Exact Daily Paid Media Roster",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "title",
+    "timezone",
+    "purpose",
+    "authority",
+    "routePolicy",
+    "lanes"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "generatedAt": { "type": "string", "format": "date" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+    "timezone": { "const": "America/New_York" },
+    "purpose": { "type": "string", "minLength": 1, "maxLength": 1000 },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dailyReview",
+        "providerCallsByManifestGenerator",
+        "canonicalQueueMutationByManifestGenerator",
+        "externalMutation",
+        "historicalMetrics"
+      ],
+      "properties": {
+        "dailyReview": { "const": "read-only" },
+        "providerCallsByManifestGenerator": { "const": "forbidden" },
+        "canonicalQueueMutationByManifestGenerator": { "const": "forbidden" },
+        "externalMutation": { "const": "exact-active-authority-required" },
+        "historicalMetrics": { "const": "observations-never-authority" }
+      }
+    },
+    "routePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "exactRosterOnly",
+        "unlistedClientPlatformRoutes",
+        "activeCanonicalClientRequired",
+        "paidMediaConfigRequired",
+        "opaqueAccountReferenceRequired",
+        "missingOrInvalidState"
+      ],
+      "properties": {
+        "exactRosterOnly": { "const": true },
+        "unlistedClientPlatformRoutes": { "const": "blocked" },
+        "activeCanonicalClientRequired": { "const": true },
+        "paidMediaConfigRequired": { "const": true },
+        "opaqueAccountReferenceRequired": { "const": true },
+        "missingOrInvalidState": { "const": "fail-closed" }
+      }
+    },
+    "lanes": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/lane" }
+    }
+  },
+  "$defs": {
+    "lane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "order",
+        "laneId",
+        "clientId",
+        "platform",
+        "configPath",
+        "active",
+        "expectedDeliveryState",
+        "channelSpecificReview",
+        "currentStateAsOf",
+        "currentStateNote",
+        "reviewFocus",
+        "metricsPolicy"
+      ],
+      "properties": {
+        "order": { "type": "integer", "minimum": 1, "maximum": 8 },
+        "laneId": {
+          "type": "string",
+          "pattern": "^(?:google-ads|meta-ads)--[a-z0-9][a-z0-9-]{1,79}$"
+        },
+        "clientId": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{1,79}$"
+        },
+        "platform": { "enum": ["google-ads", "meta-ads"] },
+        "configPath": {
+          "type": "string",
+          "pattern": "^clients/[a-z0-9][a-z0-9-]{1,79}/paid-media/launch-config\\.json$"
+        },
+        "active": { "const": true },
+        "expectedDeliveryState": {
+          "enum": ["active", "paused-by-client", "paused-unless-live-readback", "unknown-requires-readback"]
+        },
+        "channelSpecificReview": {
+          "enum": ["search-terms-and-negatives", "creative-fatigue-and-placements"]
+        },
+        "currentStateAsOf": { "type": "string", "format": "date" },
+        "currentStateNote": { "type": "string", "minLength": 1, "maxLength": 1200 },
+        "reviewFocus": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 300 }
+        },
+        "metricsPolicy": { "const": "historical-observations-never-authority" }
+      }
+    }
+  }
+}

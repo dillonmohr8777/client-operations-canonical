@@ -103,6 +103,7 @@ function Get-SafeQuarantineReason {
   $allowed = @(
     'ambiguous-client',
     'client-status-not-active',
+    'exact-source-identity-required',
     'known-false-or-cross-client-route',
     'unresolved-client',
     'missing-current-outcome',
@@ -200,6 +201,50 @@ function Resolve-ExactClient {
     return [pscustomobject]@{ Client = $null; Reason = 'known-false-or-cross-client-route' }
   }
   return [pscustomobject]@{ Client = $null; Reason = 'unresolved-client' }
+}
+
+function Test-ExactSourceIdentityForClient {
+  param(
+    [Parameter(Mandatory = $true)][object]$Task,
+    [Parameter(Mandatory = $true)][object]$Client
+  )
+
+  $routingPolicy = Get-OptionalProperty $Client 'intakeRouting'
+  $requiresExactSource = $false
+  if ($null -ne $routingPolicy) {
+    $requiresExactSource = [bool](Get-OptionalProperty $routingPolicy 'requireExactSourceIdentity' $false)
+  }
+  if (-not $requiresExactSource) { return $true }
+
+  $allowed = @{}
+  foreach ($contact in @($Client.contacts)) {
+    $email = Normalize-Identity (Get-OptionalProperty $contact 'email')
+    if (-not [string]::IsNullOrWhiteSpace($email)) {
+      $allowed[$email] = $true
+      $allowed['email:' + $email] = $true
+    }
+  }
+  foreach ($domainValue in @($Client.emailDomains)) {
+    $domain = Normalize-Identity $domainValue
+    if (-not [string]::IsNullOrWhiteSpace($domain)) {
+      $allowed[$domain] = $true
+      $allowed['domain:' + $domain] = $true
+    }
+  }
+  foreach ($channelValue in @($Client.slackChannels)) {
+    $channel = Normalize-Identity $channelValue
+    if (-not [string]::IsNullOrWhiteSpace($channel)) {
+      $allowed[$channel] = $true
+      $allowed['slack:' + $channel] = $true
+      $allowed['slack-channel:' + $channel] = $true
+    }
+  }
+
+  foreach ($sourceKeyValue in @((Get-OptionalProperty $Task 'source_identity_keys' @()))) {
+    $sourceKey = Normalize-Identity $sourceKeyValue
+    if (-not [string]::IsNullOrWhiteSpace($sourceKey) -and $allowed.ContainsKey($sourceKey)) { return $true }
+  }
+  return $false
 }
 
 function Get-SourceRecord {
@@ -477,6 +522,10 @@ try {
     $reason = [string]$resolution.Reason
     $clientId = $null
     if ($null -ne $resolution.Client) { $clientId = [string]$resolution.Client.id }
+    if ([string]::IsNullOrWhiteSpace($reason) -and $null -ne $resolution.Client -and -not (Test-ExactSourceIdentityForClient -Task $task -Client $resolution.Client)) {
+      $reason = 'exact-source-identity-required'
+      $clientId = $null
+    }
     $normalizedOutcome = Normalize-OutcomeText (Get-OptionalProperty $task 'requested_output')
     if ([string]::IsNullOrWhiteSpace($reason) -and [string]::IsNullOrWhiteSpace($normalizedOutcome)) { $reason = 'missing-current-outcome' }
     if ([string]::IsNullOrWhiteSpace($reason) -and [string](Get-OptionalProperty $task 'safe_execution') -ne 'local_deliverable_only') { $reason = 'unsafe-execution-mode' }

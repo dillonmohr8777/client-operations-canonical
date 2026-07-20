@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "handoffId": "va-claims-phase-two-preflight-20260717",
+  "workItemId": "wi-20260717-0011",
+  "expectedWorkItemVersion": 4,
+  "clientId": "va-claims-edge",
+  "workerRole": "frontend-integration-preflight",
+  "status": "partially_completed",
+  "startedAt": "2026-07-18T00:04:00Z",
+  "finishedAt": "2026-07-18T00:22:16Z",
+  "summary": "The blocked Phase 2 UI package received an additional integration preflight. The session control is functional by default, the design contract matches the shipped dark tokens, developer acceptance checks are documented, and a clean review archive is ready.",
+  "artifacts": [
+    "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff",
+    "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/developer-checklist.md",
+    "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preflight-report.md",
+    "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/obaid-handoff-draft.txt",
+    "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/verify-package.ps1",
+    "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/review-renders/dashboard-desktop.png",
+    "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff-review-bundle.zip"
+  ],
+  "evidence": [
+    "clients/va-claims-edge/evidence/2026-07-17-obaid-phase-two-ui-handoff.md",
+    "clients/va-claims-edge/deliverables/2026-07-16-initial-signup-wireframe"
+  ],
+  "verification": [
+    "The expanded package verifier passed 45 assertions across 14 required files.",
+    "The default application-shell session control now calls Supabase sign out, redirects to login, and exposes pending and recoverable error states.",
+    "The application-shell override preserves compatibility with existing application-specific session cleanup.",
+    "Primary text, muted text, primary button, and cyan accent contrast checks meet the documented minimum.",
+    "All production and preview image elements declare intrinsic dimensions.",
+    "Login, dashboard, and responsive Chrome renders were regenerated and visually inspected after the preflight changes.",
+    "The review archive contains only the intended source, assets, documents, verifier, and renders.",
+    "No repository, authentication environment, deployment, or external communication was changed."
+  ],
+  "assumptions": [
+    "The private application uses the Supabase client and route structure described in the development handoff."
+  ],
+  "risks": [
+    "A real repository build and live authentication test remain necessary because the exact package versions, middleware, and application cleanup are unavailable locally.",
+    "The package must remain on a review branch until the developer confirms the data adapters and preview environment."
+  ],
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false,
+  "approvalGate": "none",
+  "proposedTransition": "blocked",
+  "canonicalWriteAttempted": false,
+  "externalActionAttempted": false
+}

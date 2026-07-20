@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "clientId": "align-hcm",
+  "name": "Align HCM Competitor Press Watchdog",
+  "mode": "private-read-only-osint",
+  "lookbackDays": 120,
+  "maxItemsPerSource": 20,
+  "market": "en-US",
+  "watches": [
+    {
+      "id": "hrchitect",
+      "name": "HRchitect",
+      "kind": "direct-competitor",
+      "tier": 1,
+      "platforms": ["UKG"],
+      "domains": ["hrchitect.com"],
+      "sources": [
+        {
+          "id": "hrchitect-press-feed",
+          "type": "rss",
+          "url": "https://hrchitect.com/category/press-release/feed/",
+          "dateMeaning": "published"
+        }
+      ]
+    },
+    {
+      "id": "paytech",
+      "name": "PayTech",
+      "kind": "direct-competitor",
+      "tier": 1,
+      "platforms": ["UKG"],
+      "domains": ["paytech.com"],
+      "sources": [
+        {
+          "id": "paytech-official-search",
+          "type": "bing-web",
+          "query": "site:paytech.com (UKG OR implementation OR partnership OR award OR announces OR launches)",
+          "dateMeaning": "search-index"
+        }
+      ]
+    },
+    {
+      "id": "predictivehr",
+      "name": "PredictiveHR",
+      "kind": "direct-competitor",
+      "tier": 1,
+      "platforms": ["UKG"],
+      "domains": ["predictivehr.com"],
+      "sources": [
+        {
+          "id": "predictivehr-news-feed",
+          "type": "rss",
+          "url": "https://predictivehr.com/news/feed/",
+          "dateMeaning": "published"
+        }
+      ]
+    },
+    {
+      "id": "onactuate",
+      "name": "OnActuate",
+      "kind": "direct-competitor",
+      "tier": 1,
+      "platforms": ["Dayforce"],
+      "domains": ["onactuate.com"],
+      "sources": [
+        {
+          "id": "onactuate-feed",
+          "type": "rss",
+          "url": "https://www.onactuate.com/feed/",
+          "dateMeaning": "published"
+        }
+      ]
+    },
+    {
+      "id": "silver-cloud",
+      "name": "Silver Cloud",
+      "kind": "direct-competitor",
+      "tier": 1,
+      "platforms": ["Dayforce", "HiBob"],
+      "domains": ["silvercloudhr.co.uk"],
+      "sources": [
+        {
+          "id": "silver-cloud-official-search",
+          "type": "bing-web",
+          "query": "site:silvercloudhr.co.uk (Dayforce OR HiBob OR implementation OR launch OR partnership OR award)",
+          "dateMeaning": "search-index"
+        }
+      ]
+    },
+    {
+      "id": "dch-advisors",
+      "name": "DCH Advisors",
+      "kind": "direct-competitor",
+      "tier": 1,
+      "platforms": ["Dayforce"],
+      "domains": ["dchadvisors.com"],
+      "sources": [
+        {
+          "id": "dch-official-search",
+          "type": "bing-web",
+          "query": "site:dchadvisors.com (Dayforce OR implementation OR launch OR partnership OR award)",
+          "dateMeaning": "search-index"
+        }
+      ]
+    },
+    {
+      "id": "clearpath-hcm",
+      "name": "ClearPath HCM",
+      "kind": "direct-competitor",
+      "tier": 1,
+      "platforms": ["HiBob", "UKG"],
+      "domains": ["clearpathhcm.com"],
+      "sources": [
+        {
+          "id": "clearpath-blog-feed",
+          "type": "rss",
+          "url": "https://www.clearpathhcm.com/blog-feed.xml",
+          "dateMeaning": "published"
+        }
+      ]
+    },
+    {
+      "id": "phase-3",
+      "name": "Phase 3",
+      "kind": "direct-competitor",
+      "tier": 2,
+      "platforms": ["Dayforce"],
+      "domains": ["phase3.co.uk"],
+      "sources": [
+        {
+          "id": "phase3-official-search",
+          "type": "bing-web",
+          "query": "site:phase3.co.uk (Dayforce OR implementation OR launch OR partnership OR award)",
+          "dateMeaning": "search-index"
+        }
+      ]
+    },
+    {
+      "id": "ukg-ecosystem",
+      "name": "UKG ecosystem",
+      "kind": "platform-ecosystem",
+      "tier": 1,
+      "platforms": ["UKG"],
+      "domains": ["ukg.com"],
+      "sources": [
+        {
+          "id": "ukg-partner-news-search",
+          "type": "bing-web",
+          "query": "site:ukg.com/company/newsroom (partner OR partnership OR implementation OR services)",
+          "dateMeaning": "search-index"
+        }
+      ]
+    },
+    {
+      "id": "dayforce-ecosystem",
+      "name": "Dayforce ecosystem",
+      "kind": "platform-ecosystem",
+      "tier": 1,
+      "platforms": ["Dayforce"],
+      "domains": ["dayforce.com"],
+      "sources": [
+        {
+          "id": "dayforce-partner-news-search",
+          "type": "bing-web",
+          "query": "site:dayforce.com (partner network OR partner award OR services delivery partner OR implementation partner)",
+          "dateMeaning": "search-index"
+        }
+      ]
+    },
+    {
+      "id": "hibob-ecosystem",
+      "name": "HiBob ecosystem",
+      "kind": "platform-ecosystem",
+      "tier": 1,
+      "platforms": ["HiBob"],
+      "domains": ["hibob.com"],
+      "sources": [
+        {
+          "id": "hibob-news-search",
+          "type": "bing-web",
+          "query": "site:hibob.com/news (partner OR partnership OR launches OR expands OR award OR acquisition)",
+          "dateMeaning": "search-index"
+        }
+      ]
+    }
+  ]
+}

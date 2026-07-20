@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "clientId": "onsite-concrete-landscape",
+  "platform": "google_ads",
+  "rosterRef": "registry/paid-media-roster.json",
+  "routeState": "active",
+  "patternStatus": "live-observed",
+  "sourceEvidence": {
+    "observedAt": "2026-07-16T19:35:10Z",
+    "sourceClasses": ["user", "gmail", "live_platform"],
+    "summary": "Persistent Chrome verified the exact Onsite Google Ads route and an active Smart campaign named Onsite Concrete & Landscape. The live read showed an observed $4.39 daily budget, a $133 monthly maximum, two web conversions, and incomplete conversion setup. Those settings and metrics are readback evidence, not spend authority; conversion completion, lead quality, deduplication, disposition, and booked-job outcomes remain the gates before scaling.",
+    "liveAccountVerified": true,
+    "historicalOnly": false
+  },
+  "triggerContract": {
+    "triggerClasses": ["campaign_launch", "campaign_expansion", "campaign_restart"],
+    "requesterRefs": ["registry-contact:onsite-concrete-landscape:0", "user:dillon"],
+    "communicationImpliesFullBuild": true,
+    "requiredExtractedFacts": ["service", "market", "approved budget", "estimate destination", "conversion goal", "schedule"],
+    "unknownsBlockMutation": ["budget authority", "qualified estimate definition", "call quality evidence", "completed conversion setup", "deployment route"]
+  },
+  "buildContract": {
+    "campaign": {
+      "type": "Smart campaign; PMax or Search only after conversion validation and an approved rebuild",
+      "bidStrategy": "Maximize conversions after primary-event validation",
+      "campaignNamingPattern": "Onsite Concrete & Landscape",
+      "adGroupNamingPattern": "{Service} | {Intent} | {Market}"
+    },
+    "budgetBaseline": {
+      "daily": 4.39,
+      "currency": "USD",
+      "basis": "Observed on the active Smart campaign with a $133 monthly maximum; this is a read-only baseline and never permission to spend.",
+      "observedAt": "2026-07-16T19:35:10Z",
+      "isSpendAuthority": false
+    },
+    "landingPage": {
+      "defaultMode": "reuse",
+      "onePerLocation": false,
+      "requiredSections": ["concrete or landscaping service fit", "Vacaville and service-area relevance", "local project proof", "estimate call to action", "phone path", "trust proof"],
+      "qa": ["mobile form and phone test", "correct market and service", "source identifiers preserved", "page speed", "test lead exclusion"]
+    },
+    "tracking": {
+      "primaryEvent": "qualified_estimate",
+      "secondaryEvents": ["contact_form", "phone_call", "estimate_start"],
+      "dedupRequired": true,
+      "utmPattern": "onsite_google_{service}_{market}_{campaign_type}"
+    },
+    "creative": {
+      "requiredAssets": ["service-specific headlines", "local-intent descriptions", "approved project imagery", "logo", "call and lead extensions"],
+      "copyRequirements": ["distinguish concrete and landscaping needs", "use verified Vacaville coverage", "avoid unsupported price, schedule, or warranty claims"]
+    }
+  },
+  "dailyOptimizationChecks": ["exact account and active Smart campaign readback", "budget pacing against the observed daily and monthly caps", "conversion-setup completion", "form and connected-call quality", "conversion deduplication", "available search-intent evidence", "landing-page and phone-path health", "change history"],
+  "antiRegressionRules": ["Do not count a phone click as a connected or qualified call.", "Do not count test submissions as customer leads.", "Do not treat the two observed web conversions as qualified estimates before disposition.", "Do not scale while conversion setup remains incomplete.", "Keep concrete and landscaping intent separately inspectable."],
+  "learningPolicy": {
+    "minimumComparableOutcomes": 3,
+    "successSignals": ["qualified estimate", "booked job when available", "connected relevant call", "verified form lead"],
+    "failureSignals": ["test lead", "duplicate conversion", "unqualified call", "broken landing or attribution path"],
+    "decisionWeights": { "accept": 3, "modify": 1, "defer": -2, "reject": -4 }
+  },
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false
+}

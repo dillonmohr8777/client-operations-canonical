@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "clientId": "fagan-painting",
+  "platform": "meta_ads",
+  "rosterRef": "registry/paid-media-roster.json",
+  "routeState": "active",
+  "patternStatus": "live-observed",
+  "sourceEvidence": {
+    "observedAt": "2026-07-16T19:43:00Z",
+    "sourceClasses": ["user", "gmail", "slack", "live_platform"],
+    "summary": "Persistent Chrome verified the exact Fagan Meta ad-account route and six campaigns. The primary new campaign was in draft and another campaign was off; neither state was changed. Those states are readback evidence only. Full current delivery, ownership, disposition, deduplicated conversion evidence, and closed-loop lead handling still require reconciliation before scaling or claiming results.",
+    "liveAccountVerified": true,
+    "historicalOnly": false
+  },
+  "triggerContract": {
+    "triggerClasses": ["campaign_launch", "campaign_expansion", "campaign_restart"],
+    "requesterRefs": ["registry-contact:fagan-painting:0", "user:dillon"],
+    "communicationImpliesFullBuild": true,
+    "requiredExtractedFacts": ["painting service", "service area", "offer", "approved budget", "lead path", "schedule"],
+    "unknownsBlockMutation": ["budget authority", "full six-campaign delivery state", "lead owner", "deduplicated event flow"]
+  },
+  "buildContract": {
+    "campaign": {
+      "type": "Lead generation or website conversions",
+      "bidStrategy": "Highest volume after primary-event validation",
+      "campaignNamingPattern": "Fagan | Meta | {Service} | {Market} | {Offer}",
+      "adGroupNamingPattern": "{Audience} | {CreativeAngle} | {LandingVariant}"
+    },
+    "budgetBaseline": {
+      "daily": null,
+      "currency": "USD",
+      "basis": "Historical test budgets exist, but no current daily amount is authority.",
+      "observedAt": null,
+      "isSpendAuthority": false
+    },
+    "landingPage": {
+      "defaultMode": "reuse",
+      "onePerLocation": false,
+      "requiredSections": ["project and service fit", "service area", "local project proof", "estimate call to action", "phone path", "trust proof"],
+      "qa": ["mobile form and phone test", "browser and server event deduplication", "source identifiers preserved", "test and solicitation filtering", "variant-specific rendered review"]
+    },
+    "tracking": {
+      "primaryEvent": "qualified_estimate",
+      "secondaryEvents": ["lead", "form_submit", "phone_intent"],
+      "dedupRequired": true,
+      "utmPattern": "fagan_meta_{service}_{market}_{variant}"
+    },
+    "creative": {
+      "requiredAssets": ["square project asset", "vertical project asset", "primary text variants", "headline variants", "approved call to action"],
+      "copyRequirements": ["lead with project type and service area", "use real approved project proof", "set a clear estimate expectation", "avoid unsupported price or schedule promises"]
+    }
+  },
+  "dailyOptimizationChecks": ["exact account and all six campaign states", "draft and off campaign preservation", "budget pacing", "qualified estimate and dedup evidence", "lead owner and disposition", "creative fatigue and frequency", "placement quality", "landing-page variant performance", "change history"],
+  "antiRegressionRules": ["Never publish the observed draft campaign without exact current authority.", "Never enable the observed off campaign without exact current authority.", "Never attribute a lead to Meta without preserved campaign or click evidence.", "Never count tests, solicitations, reactions, or duplicate notifications as qualified leads.", "Do not treat a phone-intent click as a connected call.", "Do not scale until current delivery and closed-loop lead handling are verified."],
+  "learningPolicy": {
+    "minimumComparableOutcomes": 3,
+    "successSignals": ["qualified estimate", "connected relevant call", "booked estimate", "clean deduplicated Meta attribution"],
+    "failureSignals": ["test or solicitation", "duplicate event", "unowned lead", "broken source retention"],
+    "decisionWeights": { "accept": 3, "modify": 1, "defer": -2, "reject": -4 }
+  },
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false
+}

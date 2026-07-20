@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "clientId": "fresh-blends-kwik-trip",
+  "platform": "google_ads",
+  "rosterRef": "registry/paid-media-roster.json",
+  "routeState": "paused",
+  "patternStatus": "live-observed",
+  "sourceEvidence": {
+    "observedAt": "2026-07-16T19:35:10Z",
+    "sourceClasses": ["user", "gmail", "slack", "live_platform"],
+    "summary": "Persistent Chrome verified the exact Fresh Blends route for Kwik Trip Ice Box campaigns. Store-level Performance Max campaigns named for Kwik Trip store numbers are visible inside the same child account that also contains Replenish campaigns, but the client routes remain separate. The observed Ice Box campaigns were paused, so restart and budget state require fresh exact readback.",
+    "liveAccountVerified": true,
+    "historicalOnly": false
+  },
+  "triggerContract": {
+    "triggerClasses": ["location_launch", "campaign_expansion", "campaign_restart"],
+    "requesterRefs": ["registry-contact:fresh-blends-kwik-trip:0", "user:dillon"],
+    "communicationImpliesFullBuild": true,
+    "requiredExtractedFacts": ["exact Kwik Trip store number", "Ice Box location details", "approved budget", "launch or restart date", "conversion goal", "landing destination"],
+    "unknownsBlockMutation": ["fresh campaign status", "store identity", "budget authority", "primary conversion action", "deployment route"]
+  },
+  "buildContract": {
+    "campaign": {
+      "type": "Performance Max",
+      "bidStrategy": "Maximize conversions after primary-event validation",
+      "campaignNamingPattern": "Fresh Blends x Kwik Trip #{Store} | Ice Box | PMax",
+      "adGroupNamingPattern": "Kwik Trip #{Store} | Ice Box"
+    },
+    "budgetBaseline": {
+      "daily": null,
+      "currency": "USD",
+      "basis": "No current per-store budget was verified; recover it from live readback and current client direction.",
+      "observedAt": null,
+      "isSpendAuthority": false
+    },
+    "landingPage": {
+      "defaultMode": "mirror",
+      "onePerLocation": true,
+      "requiredSections": ["Kwik Trip store identity", "Ice Box product value", "store directions", "availability details", "product proof", "privacy-safe conversion path"],
+      "qa": ["mobile-first rendered review", "correct store number everywhere", "no Replenish or 7-Eleven content", "Google tag and conversion test", "page speed and directions test"]
+    },
+    "tracking": {
+      "primaryEvent": "directions_click",
+      "secondaryEvents": ["store_detail_view", "outbound_map_click"],
+      "dedupRequired": true,
+      "utmPattern": "fresh_blends_kwik_trip_{store}_ice_box_pmax"
+    },
+    "creative": {
+      "requiredAssets": ["store-safe headlines", "Ice Box long headlines", "product descriptions", "landscape images", "square images", "portrait images", "approved logo", "video or approved generated video"],
+      "copyRequirements": ["use the exact Kwik Trip store number", "center the Ice Box product", "remove stale store references", "use only Fresh Blends and Kwik Trip destinations"]
+    }
+  },
+  "dailyOptimizationChecks": ["exact account and store-campaign readback", "paused or active status", "budget pacing", "primary conversion recording", "store-level direction intent", "search themes and audience signals", "asset strength and policy status", "landing-page and tag health"],
+  "antiRegressionRules": ["Never blend Fresh Blends or Kwik Trip assets, stores, budgets, or reporting into Replenish.", "Never use Replenish or 7-Eleven pages, sitelinks, copy, or conversion actions for an Ice Box campaign.", "Do not restart an observed paused campaign without current authority and readback.", "Historical account co-location does not make the brands interchangeable."],
+  "learningPolicy": {
+    "minimumComparableOutcomes": 3,
+    "successSignals": ["verified store direction intent", "clean store-level attribution", "stable cost per verified action", "qualified Ice Box engagement when available"],
+    "failureSignals": ["wrong store or cross-brand asset", "unrecorded primary conversion", "paused-state mismatch", "page or tag failure"],
+    "decisionWeights": { "accept": 3, "modify": 1, "defer": -2, "reject": -4 }
+  },
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false
+}

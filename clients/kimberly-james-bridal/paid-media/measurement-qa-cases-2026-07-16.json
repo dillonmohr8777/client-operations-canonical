@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "clientId": "kimberly-james-bridal",
+  "platform": "google_ads",
+  "status": "local-specification-only",
+  "primaryEvent": "appointment_request",
+  "secondaryEvents": ["schedule_start", "form_submit", "phone_click"],
+  "requiredTestMarkers": ["qa_run_id", "is_test", "environment"],
+  "cases": [
+    {
+      "id": "KJB-GA-QA-01",
+      "scenario": "A paid mobile journey opens the scheduler without completing it.",
+      "expectedPrimaryCount": 0,
+      "expectedSecondaryEvents": ["schedule_start"],
+      "proof": "Source fields and the opaque journey key survive the scheduler handoff."
+    },
+    {
+      "id": "KJB-GA-QA-02",
+      "scenario": "One controlled production appointment request commits successfully.",
+      "expectedPrimaryCount": 1,
+      "expectedSecondaryEvents": ["schedule_start", "form_submit"],
+      "proof": "One scheduler request ID joins to one downstream row and one primary event."
+    },
+    {
+      "id": "KJB-GA-QA-03",
+      "scenario": "The success state is refreshed after a committed appointment request.",
+      "expectedPrimaryCount": 0,
+      "expectedSecondaryEvents": [],
+      "proof": "The existing request and event IDs are reused and no second event is created."
+    },
+    {
+      "id": "KJB-GA-QA-04",
+      "scenario": "The browser returns to the form and repeats the same submission.",
+      "expectedPrimaryCount": 0,
+      "expectedSecondaryEvents": [],
+      "proof": "The repeated submission resolves to the canonical request dedupe key."
+    },
+    {
+      "id": "KJB-GA-QA-05",
+      "scenario": "A webhook or transport process retries a committed request.",
+      "expectedPrimaryCount": 0,
+      "expectedSecondaryEvents": [],
+      "proof": "Retry delivery reuses the immutable event ID and downstream upsert key."
+    },
+    {
+      "id": "KJB-GA-QA-06",
+      "scenario": "A controlled QA submission carries a QA run ID and is_test true.",
+      "expectedPrimaryCount": 0,
+      "expectedSecondaryEvents": [],
+      "proof": "The record is visible as test evidence but excluded from lead, appointment, booking, and Google outcome totals."
+    },
+    {
+      "id": "KJB-GA-QA-07",
+      "scenario": "A form receipt succeeds but the scheduler never commits an appointment request.",
+      "expectedPrimaryCount": 0,
+      "expectedSecondaryEvents": ["form_submit"],
+      "proof": "No scheduler request ID exists and no primary event is eligible."
+    },
+    {
+      "id": "KJB-GA-QA-08",
+      "scenario": "A visitor selects the phone action without a verified conversation or appointment.",
+      "expectedPrimaryCount": 0,
+      "expectedSecondaryEvents": ["phone_click"],
+      "proof": "The diagnostic click remains secondary and no downstream disposition is inferred."
+    },
+    {
+      "id": "KJB-GA-QA-09",
+      "scenario": "Two distinct real appointment requests commit successfully.",
+      "expectedPrimaryCount": 2,
+      "expectedSecondaryEvents": ["schedule_start", "form_submit"],
+      "proof": "Two unique request IDs produce two canonical rows with no shared dedupe key."
+    },
+    {
+      "id": "KJB-GA-QA-10",
+      "scenario": "An existing appointment is rescheduled, cancelled, or dispositioned.",
+      "expectedPrimaryCount": 0,
+      "expectedSecondaryEvents": [],
+      "proof": "The original appointment ID persists and only its status changes."
+    },
+    {
+      "id": "KJB-GA-QA-11",
+      "scenario": "A production request arrives without source fields or a usable dedupe key.",
+      "expectedPrimaryCount": 0,
+      "expectedSecondaryEvents": [],
+      "proof": "The record is quarantined as unresolved and is not force-attributed to Google."
+    },
+    {
+      "id": "KJB-GA-QA-12",
+      "scenario": "The same-window summary is rebuilt from source snapshots.",
+      "expectedPrimaryCount": 0,
+      "expectedSecondaryEvents": [],
+      "proof": "Every count difference has an allowed variance category, evidence reference, and owner role; unknowns remain open."
+    }
+  ],
+  "passConditions": [
+    "Every case has retained local evidence without raw prospect data.",
+    "One eligible real appointment request creates exactly one primary conversion candidate.",
+    "Tests, retries, refreshes, repeated submissions, and status changes create no additional primary conversions.",
+    "Secondary events remain diagnostic and do not influence the primary appointment count.",
+    "The same-window summary and record crosswalk explain every variance or leave it explicitly unresolved."
+  ],
+  "approvalBoundary": "Execution of any live test or configuration change requires exact current approval and before-state capture.",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false
+}

@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hope Wellness Center — Deeper Growth, Creative & Video Analysis</title>
+  <style>
+    :root {
+      --navy: #234b93;
+      --navy-dark: #142c58;
+      --green: #74c05c;
+      --green-dark: #407a36;
+      --sky: #edf5fb;
+      --mist: #f5f8f6;
+      --ink: #17243a;
+      --muted: #607087;
+      --line: #d8e2eb;
+      --warn: #fff3dc;
+      --danger: #fff0ef;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html { font-size: 10.5pt; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #e9eef3;
+      font-family: Inter, Aptos, "Segoe UI", Arial, sans-serif;
+      line-height: 1.48;
+    }
+    .report { max-width: 920px; margin: 0 auto; background: var(--white); }
+    .page { padding: 0.72in 0.72in 0.68in; position: relative; }
+    .cover {
+      min-height: 11in;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 88% 12%, rgba(116,192,92,.35) 0 13%, transparent 14%),
+        radial-gradient(circle at 95% 26%, rgba(237,245,251,.15) 0 21%, transparent 22%),
+        linear-gradient(145deg, var(--navy-dark), var(--navy) 68%, #2d64ad);
+    }
+    .cover::after {
+      content: "";
+      position: absolute;
+      width: 5.8in;
+      height: 5.8in;
+      right: -2.9in;
+      bottom: -2.7in;
+      border-radius: 50%;
+      border: 30px solid rgba(116,192,92,.32);
+    }
+    .eyebrow { font-size: 8.5pt; letter-spacing: .18em; text-transform: uppercase; font-weight: 800; }
+    .cover h1 { max-width: 720px; margin: .28in 0 .12in; font-size: 39pt; line-height: 1.04; letter-spacing: -.035em; }
+    .cover .subtitle { max-width: 650px; color: #eaf3ff; font-size: 15pt; line-height: 1.45; }
+    .cover .promise { max-width: 650px; padding: 16px 19px; border-left: 4px solid var(--green); background: rgba(255,255,255,.09); font-size: 12pt; }
+    .cover-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; position: relative; z-index: 1; }
+    .cover-meta div { padding-top: 10px; border-top: 1px solid rgba(255,255,255,.32); }
+    h2 { margin: 0 0 12px; color: var(--navy-dark); font-size: 24pt; line-height: 1.12; letter-spacing: -.025em; break-after: avoid; }
+    h3 { margin: 22px 0 8px; color: var(--navy); font-size: 15pt; line-height: 1.25; break-after: avoid; }
+    h4 { margin: 15px 0 6px; color: var(--ink); font-size: 11.5pt; break-after: avoid; }
+    p { margin: 0 0 10px; }
+    ul, ol { margin: 7px 0 12px 20px; padding: 0; }
+    li { margin: 4px 0; }
+    a { color: var(--navy); }
+    .section-label { color: var(--green-dark); font-size: 8.5pt; letter-spacing: .16em; text-transform: uppercase; font-weight: 800; }
+    .lede { margin: 0 0 20px; color: #33455f; font-size: 13pt; line-height: 1.52; }
+    .rule { height: 4px; width: 58px; margin: 10px 0 20px; background: var(--green); border-radius: 9px; }
+    .callout { margin: 14px 0; padding: 14px 16px; border-left: 4px solid var(--green); background: var(--mist); break-inside: avoid; }
+    .callout.warn { border-color: #e5a631; background: var(--warn); }
+    .callout.risk { border-color: #d65c52; background: var(--danger); }
+    .callout strong { display: block; margin-bottom: 4px; color: var(--navy-dark); }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .card { padding: 14px; border: 1px solid var(--line); border-radius: 9px; background: var(--white); break-inside: avoid; }
+    .card .kicker { color: var(--green-dark); font-size: 8pt; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .card .big { margin: 3px 0; color: var(--navy); font-size: 25pt; font-weight: 800; line-height: 1; }
+    .card h4 { margin-top: 4px; }
+    table { width: 100%; margin: 10px 0 18px; border-collapse: collapse; font-size: 9pt; break-inside: auto; }
+    th { padding: 8px 9px; color: var(--white); background: var(--navy); text-align: left; vertical-align: top; }
+    td { padding: 8px 9px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    tr { break-inside: avoid; }
+    .priority { display: inline-block; min-width: 30px; padding: 2px 6px; border-radius: 12px; color: white; background: var(--navy); font-size: 7.5pt; font-weight: 800; text-align: center; }
+    .priority.p0 { background: #bc443c; }
+    .priority.p1 { background: #d88c23; }
+    .priority.p2 { background: var(--green-dark); }
+    .status { display: inline-block; padding: 2px 7px; border: 1px solid #9cc892; border-radius: 12px; color: #315f2b; background: #eff8ec; font-size: 8pt; font-weight: 700; }
+    .score { display: flex; gap: 7px; align-items: center; }
+    .bar { flex: 1; height: 7px; overflow: hidden; border-radius: 8px; background: #e7edf2; }
+    .bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--navy), var(--green)); }
+    .quote { margin: 14px 0; padding: 18px 20px; border-radius: 10px; color: var(--white); background: var(--navy-dark); font-size: 15pt; line-height: 1.42; break-inside: avoid; }
+    .small { color: var(--muted); font-size: 8.5pt; }
+    .mono { font-family: Consolas, "SFMono-Regular", monospace; font-size: 8.5pt; }
+    .footer-note { margin-top: 26px; padding-top: 10px; border-top: 1px solid var(--line); color: var(--muted); font-size: 8pt; }
+    .page-break { break-before: page; page-break-before: always; }
+    .avoid-break { break-inside: avoid; }
+    .timeline { position: relative; margin: 10px 0 18px; padding-left: 28px; }
+    .timeline::before { content: ""; position: absolute; left: 8px; top: 7px; bottom: 7px; width: 2px; background: #b9cde0; }
+    .timeline-item { position: relative; margin: 0 0 13px; }
+    .timeline-item::before { content: ""; position: absolute; left: -25px; top: 4px; width: 11px; height: 11px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px #edf6ea; }
+    .wireframe { display: grid; gap: 8px; margin: 12px 0 18px; }
+    .wireframe div { padding: 10px 12px; border: 1px dashed #9fb4c9; border-radius: 7px; background: #f9fbfd; }
+    .wireframe b { color: var(--navy); }
+    @page { size: Letter; margin: 0; }
+    @media print {
+      body { background: white; }
+      .report { max-width: none; }
+      .page { min-height: 10.95in; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+<main class="report">
+  <section class="page cover">
+    <div>
+      <div class="eyebrow">The Hope Wellness Center</div>
+      <h1>Deeper Growth, Creative &amp; Video Analysis</h1>
+      <p class="subtitle">The promised strategic layer behind the visual kit: a live website and search audit, competitive positioning, a practical content system, therapist-video standards, and a prioritized 90-day implementation plan.</p>
+      <div class="promise"><strong>Core recommendation:</strong> Make Hope the clearest human-scale, multi-state telehealth option for patients who want psychiatric evaluation, medication management, therapy, and condition-specific care in one trusted system.</div>
+    </div>
+    <div class="cover-meta">
+      <div><span class="eyebrow">Prepared</span><br>July 15, 2026</div>
+      <div><span class="eyebrow">Prepared by</span><br>Momentum 360 for The Hope Wellness Center</div>
+      <div><span class="eyebrow">Status</span><br>Ready for leadership review</div>
+      <div><span class="eyebrow">Primary owner</span><br>Dillon / Momentum 360</div>
+    </div>
+  </section>
+
+  <section class="page page-break">
+    <div class="section-label">Executive diagnosis</div>
+    <h2>Hope has the right ingredients. The website does not yet assemble them into one obvious reason to choose the practice.</h2>
+    <div class="rule"></div>
+    <p class="lede">The strongest growth opportunity is not “more content” in the abstract. It is alignment: search language, trust proof, state availability, provider authority, booking flow, and the new visual system should all tell the same story within the first screen and continue that story through conversion.</p>
+
+    <div class="grid-3">
+      <div class="card"><div class="kicker">Current sitemap</div><div class="big">50</div><p>page URLs, including a substantial service foundation.</p></div>
+      <div class="card"><div class="kicker">Current blog sitemap</div><div class="big">52</div><p>post URLs, with eight likely duplicate “-2” pairs to review.</p></div>
+      <div class="card"><div class="kicker">Licensed footprint stated</div><div class="big">5</div><p>states: MA, RI, NY, CO, and AZ.</p></div>
+    </div>
+
+    <h3>The central mismatch</h3>
+    <p>The homepage title is currently <em>“Outpatient Mental Health Clinic”</em> and its H1 is the warm brand line <em>“Helping you find comfort, peace of mind, and hope!”</em> The emotional language is strong, but it does not immediately answer the highest-intent questions: What care is offered? Is it online? Is it available in my state? Can I book?</p>
+
+    <div class="quote">Keep the warmth as the emotional promise. Move service, telehealth, and state clarity into the headline and trust strip.</div>
+
+    <h3>Recommended positioning</h3>
+    <p><strong>Primary:</strong> Compassionate online mental health care that connects psychiatric evaluation, medication management, and therapy across five licensed states.</p>
+    <p><strong>Proof:</strong> A real clinical team, condition-specific care, convenient secure video visits, clear provider credentials, and a direct path to availability.</p>
+    <p><strong>Difference:</strong> More personal than a national directory, broader than a solo prescriber, and more coordinated than a collection of disconnected service pages.</p>
+
+    <div class="callout warn">
+      <strong>Critical compliance correction</strong>
+      Hope’s website describes the practice as telehealth-only and says it does not offer in-person sessions. Google’s current Business Profile rules require in-person customer contact and list online-only businesses as ineligible. Do not create additional state profiles until Hope’s real-world operating model and eligibility have been documented. This supersedes the earlier automatic “add profiles” recommendation.
+    </div>
+  </section>
+
+  <section class="page page-break">
+    <div class="section-label">Promise closure</div>
+    <h2>What was promised, what is now complete, and what still requires access or approval</h2>
+    <div class="rule"></div>
+    <table>
+      <thead><tr><th>Promised workstream</th><th>Delivered in this analysis</th><th>Status / boundary</th></tr></thead>
+      <tbody>
+        <tr><td>10–20 creative and design directions</td><td>A coherent visual territory plus 12 reusable campaign/content formats, mapped to purpose, channel, and CTA.</td><td><span class="status">Strategy complete</span><br>Additional rendered concepts remain production work.</td></tr>
+        <tr><td>Animated / talking character concepts</td><td>A 60-second brand-reel system, motion rules, cutdown plan, logo protection, and modular 10-second story structure.</td><td><span class="status">Handoff ready</span><br>Final animation export remains production.</td></tr>
+        <tr><td>Website / landing-page ideas</td><td>Recommended homepage hierarchy, state architecture, service-page model, CTA structure, and conversion events.</td><td><span class="status">Complete</span></td></tr>
+        <tr><td>Regional competitor research</td><td>Current comparison against LifeStance, Luminous Vitality, Form Psychiatry, and Evolve Psychiatry.</td><td><span class="status">Current as of 7/15</span></td></tr>
+        <tr><td>SEMrush / technical and on-page review</td><td>Live observable audit of titles, descriptions, H1s, sitemap structure, location coverage, indexable utility pages, and likely duplicate posts.</td><td><strong>Partial by design:</strong> proprietary SEMrush metrics such as keyword volume, difficulty, backlink gaps, and current rankings remain pending authenticated platform access.</td></tr>
+        <tr><td>Therapist-shot video process</td><td>Dress-rehearsal checklist, capture specifications, script structures, naming conventions, QA, consent, and repurposing plan.</td><td><span class="status">Ready for rehearsal</span></td></tr>
+        <tr><td>Practical priorities</td><td>P0–P2 queue, owners, decision gates, measurement plan, and 30/60/90-day sequencing.</td><td><span class="status">Ready for approval</span></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Evidence standard used</h3>
+    <div class="grid-2">
+      <div class="card"><h4>Confirmed current</h4><p>Live Hope website, robots file, Rank Math page/post sitemaps, selected page metadata and headings, current competitor pages, and current Google/HHS/SAMHSA policy sources.</p></div>
+      <div class="card"><h4>Internal working evidence</h4><p>June 11–12 creative/website promise, July 2 and July 13 PDF handoff emails, July 15 meeting agenda, therapist rehearsal correspondence, and the July visual kit.</p></div>
+      <div class="card"><h4>Not inferred</h4><p>No search volumes, rankings, traffic, lead totals, insurance participation, provider availability, or conversion rates were invented.</p></div>
+      <div class="card"><h4>Still to verify</h4><p>GA4/GSC baselines, SEMrush dataset, accepted plans by state and clinician, Google Business Profile eligibility, booking completion data, and state-specific service availability.</p></div>
+    </div>
+  </section>
+
+  <section class="page page-break">
+    <div class="section-label">Live website audit</div>
+    <h2>Priority findings</h2>
+    <div class="rule"></div>
+    <table>
+      <thead><tr><th>Priority</th><th>Finding</th><th>Why it matters</th><th>Recommended action</th></tr></thead>
+      <tbody>
+        <tr><td><span class="priority p0">P0</span></td><td>The contact page still visibly contains “Can you change the section:” immediately before SMS consent copy.</td><td>It signals unfinished work at the moment of highest trust and intent.</td><td>Remove the note, re-read the entire consent block, and test desktop/mobile submission.</td></tr>
+        <tr><td><span class="priority p0">P0</span></td><td>The contact-page meta description begins with emergency/crisis language rather than contact or scheduling value.</td><td>Search snippets may look alarming or irrelevant to non-crisis patients.</td><td>Rewrite the description around appointments, states served, phone, and telehealth. Keep crisis language clearly visible on-page.</td></tr>
+        <tr><td><span class="priority p0">P0</span></td><td><span class="mono">/2526-2/</span> has a blank title prefix and presents a booking-service technical-difficulty message.</td><td>A temporary utility page is indexable in the primary sitemap and weakens quality signals.</td><td>If obsolete, 301 redirect to the live booking/contact path. If temporarily needed, add a descriptive title and <span class="mono">noindex</span>.</td></tr>
+        <tr><td><span class="priority p1">P1</span></td><td>Homepage H1 is emotional but not descriptive; title is broad.</td><td>Visitors and search engines must infer telehealth, services, and geography.</td><td>Use a service-and-state-led H1; retain the current line as the subhead or campaign line.</td></tr>
+        <tr><td><span class="priority p1">P1</span></td><td>The page sitemap contains 16 Boston-targeted URLs and only three Rhode-Island-slug URLs, with none for New York, Colorado, or Arizona.</td><td>Site architecture does not reflect the full footprint stated on the homepage/footer.</td><td>Build unique state hubs first; add state/service pages only when clinically accurate and materially distinct.</td></tr>
+        <tr><td><span class="priority p1">P1</span></td><td>The post sitemap contains eight likely duplicate topic pairs, where both base and “-2” slugs are present.</td><td>Potential duplication can split links, confuse canonical selection, and dilute content maintenance.</td><td>Compare each pair, choose the keeper, merge unique value, 301 the duplicate, and update internal links.</td></tr>
+        <tr><td><span class="priority p1">P1</span></td><td>Medical content needs stronger visible authorship, review, and update signals.</td><td>Mental-health content is high-trust content; readers need to know who wrote and reviewed it.</td><td>Add clinician author/reviewer, credentials, reviewed date, sources, and a bounded medical disclaimer.</td></tr>
+        <tr><td><span class="priority p2">P2</span></td><td>Boston pages can imply a physical local presence unless telehealth framing is explicit.</td><td>A telehealth-only practice should not create location ambiguity.</td><td>State “online care for Massachusetts residents, including Boston” above the fold; avoid office/location implications.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>What is already working</strong>
+      Hope has real service depth: medication management, psychiatric evaluations, psychotherapy/counseling, ADHD, anxiety, depression, bipolar care, psychological testing, genetic testing, MAT/Suboxone-related content, adolescent mental health, and more. The fastest lift comes from organizing and proving this depth, not rebuilding everything.
+    </div>
+  </section>
+
+  <section class="page page-break">
+    <div class="section-label">Conversion architecture</div>
+    <h2>Recommended homepage and landing-page system</h2>
+    <div class="rule"></div>
+    <p class="lede">The homepage should answer five questions in order: What do you do? Where can I receive care? Can I trust you? Is this right for me? What should I do next?</p>
+
+    <h3>Preferred first-screen copy</h3>
+    <div class="quote"><strong>H1:</strong> Online Psychiatry, Therapy &amp; Medication Management in RI, MA, NY, CO &amp; AZ<br><br><strong>Subhead:</strong> Personalized mental health care rooted in compassion, trust, and clinical expertise — delivered through secure video visits.</div>
+    <p class="small">Clinical review required before publishing “psychiatry” or any specific service/state combination. If the provider mix makes that wording too broad, use: “Online Mental Health Care, Psychiatric Evaluations &amp; Medication Management…”</p>
+
+    <h3>Page hierarchy</h3>
+    <div class="wireframe">
+      <div><b>1. Hero</b> — descriptive H1, human promise, primary “Check availability” CTA, secondary “Meet our providers” CTA, exact logo and calm visual.</div>
+      <div><b>2. Trust strip</b> — telehealth-only, states served, secure video care, verified insurance/payment language, direct phone.</div>
+      <div><b>3. Choose a care path</b> — evaluation, medication management, therapy, and substance-use care with plain-language “who this is for.”</div>
+      <div><b>4. How it works</b> — check state/insurance, select or match with provider, attend secure video visit.</div>
+      <div><b>5. Conditions and needs</b> — ADHD, anxiety, depression, bipolar disorder, trauma, and other verified areas.</div>
+      <div><b>6. Meet the team</b> — credentials, licensed states, focus, ages served, availability, and one human introduction video.</div>
+      <div><b>7. Cost and insurance clarity</b> — verified plan language, self-pay pathway, and “coverage varies by plan/provider” guardrail.</div>
+      <div><b>8. Frequently asked questions</b> — first visit, prescriptions, telehealth setup, emergencies, state eligibility, refills, and privacy.</div>
+      <div><b>9. Final CTA</b> — “Find the right next step” with phone and online option; crisis resources remain separate and unmistakable.</div>
+    </div>
+
+    <h3>CTA language</h3>
+    <table>
+      <thead><tr><th>Use</th><th>Avoid</th><th>Reason</th></tr></thead>
+      <tbody>
+        <tr><td>Check availability</td><td>Get cured / feel better now</td><td>Specific, low-pressure, and does not promise an outcome.</td></tr>
+        <tr><td>Find a provider</td><td>Best psychiatrist near me</td><td>Patient-centered and credible.</td></tr>
+        <tr><td>Schedule a first appointment</td><td>Start treatment instantly</td><td>Accurate expectation-setting.</td></tr>
+        <tr><td>See services available in your state</td><td>Available everywhere</td><td>Protects state/licensure accuracy.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="page page-break">
+    <div class="section-label">Search architecture</div>
+    <h2>Build state authority without creating thin doorway pages</h2>
+    <div class="rule"></div>
+    <p class="lede">The right sequence is state hub first, then the smallest set of service/state pages that can be genuinely unique. A copied template with the state name swapped is not a durable strategy.</p>
+
+    <h3>Recommended state hub model</h3>
+    <table>
+      <thead><tr><th>Page</th><th>Primary intent</th><th>Required unique proof</th><th>Primary CTA</th></tr></thead>
+      <tbody>
+        <tr><td>Online mental health care in Rhode Island</td><td>Telehealth psychiatry / therapy RI</td><td>RI-licensed providers, services, verified plans, state resources, appointment pathway.</td><td>Check RI availability</td></tr>
+        <tr><td>Online mental health care in Massachusetts</td><td>Telehealth psychiatry / medication MA</td><td>Statewide framing, Boston context without implying an office, MA-licensed providers.</td><td>Check MA availability</td></tr>
+        <tr><td>Online mental health care in New York</td><td>Online psychiatry / therapy NY</td><td>NY-specific provider and plan coverage; services actually available.</td><td>Check NY availability</td></tr>
+        <tr><td>Online mental health care in Colorado</td><td>Telehealth psychiatry CO</td><td>CO provider/licensure and scheduling proof.</td><td>Check CO availability</td></tr>
+        <tr><td>Online mental health care in Arizona</td><td>Telehealth psychiatry AZ</td><td>AZ provider/licensure and scheduling proof.</td><td>Check AZ availability</td></tr>
+      </tbody>
+    </table>
+
+    <h3>High-intent page queue</h3>
+    <table>
+      <thead><tr><th>Tier</th><th>Intent cluster</th><th>Best destination</th><th>Content requirement</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Online psychiatry + state</td><td>State hub or psychiatry/state page</td><td>Provider type, evaluation process, prescribing boundaries, eligibility.</td></tr>
+        <tr><td>1</td><td>Medication management + state</td><td>Medication/state page</td><td>What happens in visits, monitoring, conditions, refill boundaries.</td></tr>
+        <tr><td>1</td><td>Psychiatric evaluation + state</td><td>Evaluation/state page</td><td>Who it helps, what to expect, next steps, documentation limits.</td></tr>
+        <tr><td>1</td><td>ADHD / anxiety / depression + state</td><td>Condition/state page only where justified</td><td>Condition-specific pathway, provider expertise, therapy/med options.</td></tr>
+        <tr><td>1</td><td>Suboxone / buprenorphine / MAT + state</td><td>Clinically reviewed SUD landing page</td><td>Current federal/state rules, program process, eligibility, safety, no guarantees.</td></tr>
+        <tr><td>2</td><td>Insurance + service + state</td><td>Verified insurance hub</td><td>Only confirmed plans; clarify plan/provider variation and verification step.</td></tr>
+        <tr><td>2</td><td>First appointment / therapy vs medication</td><td>Education cluster</td><td>Clinician-reviewed, plain language, strong internal links.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout risk">
+      <strong>Controlled-substance content is time-sensitive</strong>
+      Federal telemedicine flexibilities currently run through December 31, 2026, and buprenorphine has additional permanent pathways and safeguards. Every ADHD stimulant, Suboxone, or controlled-medication page must be reviewed against current federal and patient-location state rules before publication. Use “may be available when clinically appropriate and legally permitted,” not blanket promises.
+    </div>
+  </section>
+
+  <section class="page page-break">
+    <div class="section-label">Technical and content quality</div>
+    <h2>Specific cleanup plan</h2>
+    <div class="rule"></div>
+    <div class="grid-2">
+      <div class="card">
+        <h4>Indexation and canonicals</h4>
+        <ul>
+          <li>Audit the eight base/“-2” post pairs.</li>
+          <li>Confirm each page’s self-canonical and indexability.</li>
+          <li>Merge/redirect duplicates and refresh internal links.</li>
+          <li>Remove or noindex temporary utility/error pages.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Metadata</h4>
+        <ul>
+          <li>Rewrite homepage title around online care and core services.</li>
+          <li>Fix contact meta description.</li>
+          <li>Make the Rhode Island services title descriptive.</li>
+          <li>Keep titles honest about telehealth-only delivery.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Medical trust</h4>
+        <ul>
+          <li>Visible author and clinical reviewer.</li>
+          <li>Credentials and licensed states.</li>
+          <li>Published/updated/reviewed dates.</li>
+          <li>Primary clinical sources and editorial policy.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Structured data</h4>
+        <ul>
+          <li>Use Organization/MedicalOrganization data that matches reality.</li>
+          <li>Add Person data on provider pages.</li>
+          <li>Add BreadcrumbList and valid FAQ markup where visible.</li>
+          <li>Do not mark up fake locations or unavailable services.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Potential duplicate-post groups found in the live sitemap</h3>
+    <p>Each topic below appears with both a base slug and a “-2” variant. This indicates a consolidation audit, not proof that the body copy is identical.</p>
+    <div class="grid-2 small">
+      <ul>
+        <li>Understanding sexual dysfunction</li>
+        <li>Treatments for post-traumatic stress disorder</li>
+        <li>Signs of mental health issues</li>
+        <li>How to talk about mental health</li>
+      </ul>
+      <ul>
+        <li>Anxiety disorder: psychiatric and holistic strategies</li>
+        <li>Types of sleep disorders</li>
+        <li>12 coping mechanisms for ADHD</li>
+        <li>Types and treatments of anxiety disorders</li>
+      </ul>
+    </div>
+
+    <h3>Content governance</h3>
+    <p>Every article needs one owner, one primary intent, one CTA, a clinical reviewer, and a review date. Publish fewer, stronger pages first.</p>
+  </section>
+
+  <section class="page page-break">
+    <div class="section-label">Competitive landscape</div>
+    <h2>The gap Hope can own</h2>
+    <div class="rule"></div>
+    <table>
+      <thead><tr><th>Competitor</th><th>What the market sees quickly</th><th>Strategic lesson for Hope</th><th>Opening</th></tr></thead>
+      <tbody>
+        <tr><td><strong>LifeStance — Rhode Island</strong></td><td>Provider directory, state/city architecture, telehealth and in-person options, provider filters, insurance detail, online booking.</td><td>Searchers value immediate provider and insurance clarity.</td><td>Hope can feel less institutional and make coordinated care more understandable.</td></tr>
+        <tr><td><strong>Luminous Vitality — Massachusetts</strong></td><td>Founder-led authority, prominent credentials, Boston telepsychiatry, clear visit expectations, and transparent self-pay fees.</td><td>Specific expertise and operational transparency build trust.</td><td>Hope can offer broader team/service continuity and insurance pathways.</td></tr>
+        <tr><td><strong>Form Psychiatry — Massachusetts</strong></td><td>“Next-day psychiatry,” insurance coverage, fast online scheduling, thorough evaluations, and careful medication management.</td><td>Speed plus insurance is a sharp conversion proposition.</td><td>Hope can compete with warmth, breadth, and a more complete therapy-plus-medication story.</td></tr>
+        <tr><td><strong>Evolve Psychiatry — RI/CT/MA</strong></td><td>Simple regional telehealth positioning and medication-management emphasis.</td><td>Regional clarity can be communicated with very little copy.</td><td>Hope’s five-state footprint and creative system can be more distinctive.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Recommended competitive statement</h3>
+    <div class="quote">A human, coordinated telehealth practice for people who want more than a directory and more continuity than a single-service provider.</div>
+
+    <h3>Do not compete on</h3>
+    <ul>
+      <li>Unverified “same day” or “next day” access.</li>
+      <li>“Best” or superlative clinical claims without defensible evidence.</li>
+      <li>Blanket promises about prescriptions, controlled medications, or insurance.</li>
+      <li>Fake local-office signals for a telehealth-only practice.</li>
+    </ul>
+
+    <div class="callout warn">
+      <strong>Earlier competitor reference to revalidate</strong>
+      The July PDF referenced “Klinic” for Rhode Island online Suboxone competition. That specific official comparison was not reconfirmed in the current research pass. Remove it from client-facing claims until the exact entity and current page are verified.
+    </div>
+  </section>
+
+  <section class="page page-break">
+    <div class="section-label">Creative system</div>
+    <h2>Turn the 11 illustrations into 12 repeatable content formats</h2>
+    <div class="rule"></div>
+    <p class="lede">The visual library becomes valuable when it behaves like a system. Each format below can be produced as a 7–12 second motion post, a static carousel, a story, and a website module.</p>
+    <table>
+      <thead><tr><th>#</th><th>Format</th><th>Core message</th><th>Best assets</th><th>CTA</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>One-breath reset</td><td>A small pause can be a real first step.</td><td>Meditation / gentle stretch</td><td>Save for later</td></tr>
+        <tr><td>2</td><td>Self-compassion reminder</td><td>Talk to yourself like someone worth helping.</td><td>Self-compassion</td><td>Share with someone</td></tr>
+        <tr><td>3</td><td>Journal prompt</td><td>One question for reflection.</td><td>Journaling</td><td>Try the prompt</td></tr>
+        <tr><td>4</td><td>Small routine, real progress</td><td>Consistency can start small.</td><td>Dog walk / daily routine</td><td>Choose one step</td></tr>
+        <tr><td>5</td><td>Movement and mood</td><td>Gentle movement can support wellbeing.</td><td>Jogging / volleyball</td><td>Read the guide</td></tr>
+        <tr><td>6</td><td>Rest is part of care</td><td>Recovery is not wasted time.</td><td>Rest and recovery</td><td>Save this reminder</td></tr>
+        <tr><td>7</td><td>What to expect</td><td>Explain the first telehealth appointment.</td><td>Balance + interface graphics</td><td>Check availability</td></tr>
+        <tr><td>8</td><td>Therapy vs medication</td><td>Plain-language comparison, without prescribing.</td><td>Two-scene illustration</td><td>Explore care options</td></tr>
+        <tr><td>9</td><td>Meet your therapist</td><td>Warm 10–20 second provider introduction.</td><td>Therapist footage + illustrated frame</td><td>View profile</td></tr>
+        <tr><td>10</td><td>Condition explainer</td><td>One accurate myth/fact or symptom boundary.</td><td>Focus / reflection</td><td>Learn more</td></tr>
+        <tr><td>11</td><td>Available in your state</td><td>Telehealth availability with clear limitations.</td><td>State typography + routine scenes</td><td>See state services</td></tr>
+        <tr><td>12</td><td>Hope in 60 seconds</td><td>Brand emotion, service clarity, five-state reach.</td><td>All 11 illustrations + exact logo</td><td>Visit the website</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Design rules</h3>
+    <div class="grid-3">
+      <div class="card"><h4>Calm pace</h4><p>Use breathing room, eased motion, and purposeful pauses. Avoid frantic zooms or trend effects that undermine trust.</p></div>
+      <div class="card"><h4>Exact brand</h4><p>Use the supplied logo unchanged. Never regenerate, morph, redraw, or place it in 3D perspective.</p></div>
+      <div class="card"><h4>Clinical restraint</h4><p>Illustrations support the message; they do not depict diagnoses, outcomes, or guaranteed transformation.</p></div>
+    </div>
+  </section>
+
+  <section class="page page-break">
+    <div class="section-label">60-second animation</div>
+    <h2>A soothing progression from pause to possibility</h2>
+    <div class="rule"></div>
+    <p class="lede">The reel should make the brand promise felt. It should not attempt to explain the SEO plan. The emotional arc is: breath → compassion → reflection → balance → rest → movement → confidence → hope.</p>
+    <table>
+      <thead><tr><th>Time</th><th>Visual</th><th>Motion / transition</th><th>On-screen line</th></tr></thead>
+      <tbody>
+        <tr><td>0–5s</td><td>Soft blue field; meditation scene resolves from drifting shapes.</td><td>Slow parallax, subtle breath scale.</td><td>Take a breath.</td></tr>
+        <tr><td>5–12s</td><td>Self-compassion and journaling.</td><td>Heart/leaf wipe; journal page becomes next frame.</td><td>Care can begin with one small step.</td></tr>
+        <tr><td>12–20s</td><td>Gentle stretch and balance.</td><td>Foreground leaves create depth; body motion stays minimal.</td><td>Support for the way you feel, think, and move forward.</td></tr>
+        <tr><td>20–28s</td><td>Rest and recovery.</td><td>Scene settles; objects disappear softly into negative space.</td><td>Psychiatric evaluations • Medication management • Therapy</td></tr>
+        <tr><td>28–40s</td><td>Jogging, daily routine, active wellness.</td><td>Path match-cut; dog lead or ball motivates transitions.</td><td>Personalized care through secure video visits.</td></tr>
+        <tr><td>40–50s</td><td>Focus, drive, playful confidence.</td><td>2.5D depth; volleyball becomes circular state/brand graphic.</td><td>Available to eligible patients in MA, RI, NY, CO &amp; AZ.</td></tr>
+        <tr><td>50–56s</td><td>Montage resolves into open sky and leaf shapes.</td><td>Gentle disappearing transition; music opens.</td><td>Comfort. Peace of mind. Hope.</td></tr>
+        <tr><td>56–60s</td><td>Exact logo and website.</td><td>Static logo; only background breath motion.</td><td>thehopewellnesscenter.com</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Deliverable stack</h3>
+    <ul>
+      <li>One 60-second 9:16 master, 1080 × 1920, 30 fps.</li>
+      <li>Six 7–12 second cutdowns, each with one message and one CTA.</li>
+      <li>One silent-captioned version and one music-led version.</li>
+      <li>One 16:9 website cut using the same source scenes.</li>
+      <li>Separate clean end card so the logo is never AI-generated.</li>
+    </ul>
+    <div class="callout">
+      <strong>Production handoff already prepared</strong>
+      The full image pack, exact logo, 60-second Claude prompt, timeline JSON, asset manifest, source PDF, and contact sheet are already organized in the separate reel handoff package. This analysis defines how that reel fits the larger growth system.
+    </div>
+  </section>
+
+  <section class="page page-break">
+    <div class="section-label">Therapist-shot video</div>
+    <h2>Dress-rehearsal and capture standard</h2>
+    <div class="rule"></div>
+    <p class="lede">The upcoming three rehearsal sessions should produce repeatable proof, not just camera tests. Each participant should leave with a validated setup, one approved introduction, and a clear next recording assignment.</p>
+
+    <h3>Rehearsal checklist</h3>
+    <table>
+      <thead><tr><th>Area</th><th>Pass standard</th><th>Common failure to catch</th></tr></thead>
+      <tbody>
+        <tr><td>Framing</td><td>Vertical 9:16; eye line upper third; chest-up; clean headroom; lens at eye level.</td><td>Looking down at a laptop, excessive space, cropped hair, unstable tripod.</td></tr>
+        <tr><td>Light</td><td>Face is brighter than background; soft window or key light 30–45° off camera.</td><td>Backlighting, overhead shadows, mixed color temperatures.</td></tr>
+        <tr><td>Sound</td><td>Quiet room, phone 2–4 feet away or approved mic, test playback on headphones.</td><td>HVAC hum, echo, notifications, low volume.</td></tr>
+        <tr><td>Background</td><td>Simple, warm, uncluttered, no patient information, no distracting artwork.</td><td>Visible documents, doors opening, personal/clinical identifiers.</td></tr>
+        <tr><td>Wardrobe</td><td>Solid mid-tone colors; brand-friendly navy, blue, sage, cream; natural styling.</td><td>Fine patterns, pure white against a bright wall, noisy jewelry, logos.</td></tr>
+        <tr><td>Delivery</td><td>One thought per take; conversational pace; 2-second handles before/after.</td><td>Reading a paragraph, jargon, rushing, clinical promises.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Capture specification</h3>
+    <ul>
+      <li>Primary: vertical 4K/30 fps if the phone supports it; 1080p/30 minimum.</li>
+      <li>Clean lens, airplane/do-not-disturb mode, exposure/focus locked on the face.</li>
+      <li>Record three takes: natural, shorter, and one with a warmer opening.</li>
+      <li>If time allows, record a second horizontal 4K take for website use.</li>
+      <li>File name: <span class="mono">YYYYMMDD_provider_topic_take01_vertical.mov</span>.</li>
+    </ul>
+
+    <h3>Three script templates</h3>
+    <div class="grid-3">
+      <div class="card"><div class="kicker">10 seconds</div><h4>Warm introduction</h4><p>“Hi, I’m [name]. I help [audience] work through [need] with a practical, compassionate approach.”</p></div>
+      <div class="card"><div class="kicker">20 seconds</div><h4>What to expect</h4><p>“Your first visit is a chance for us to understand what has been happening, what matters to you, and what kind of support may fit. We’ll talk through next steps together.”</p></div>
+      <div class="card"><div class="kicker">30 seconds</div><h4>One useful insight</h4><p>“A common misconception about [topic] is [myth]. What we actually look for is [bounded explanation]. If this sounds familiar, an evaluation can help clarify the next step.”</p></div>
+    </div>
+
+    <div class="callout risk"><strong>Safety and consent</strong>No patient information, patient stories, individualized medical advice, guaranteed outcomes, or unreviewed prescription claims. Obtain written provider likeness/content approval before public use. Clinical content receives a named reviewer before publishing.</div>
+  </section>
+
+  <section class="page page-break">
+    <div class="section-label">Measurement</div>
+    <h2>Measure the patient journey, not page count</h2>
+    <div class="rule"></div>
+    <p class="lede">Success is a verified increase in qualified appointment actions from the right states and services. Traffic is a leading indicator, not the final outcome.</p>
+    <table>
+      <thead><tr><th>Stage</th><th>Primary measures</th><th>Source</th><th>Decision enabled</th></tr></thead>
+      <tbody>
+        <tr><td>Visibility</td><td>Non-brand impressions, average position, indexed pages by state/service.</td><td>Google Search Console</td><td>Which intent clusters are gaining eligibility and relevance?</td></tr>
+        <tr><td>Engagement</td><td>State page views, provider views, service-depth engagement, video completion.</td><td>GA4 / video platform</td><td>Which content helps patients understand fit?</td></tr>
+        <tr><td>Intent</td><td>Appointment clicks, phone clicks, form starts, booking starts.</td><td>GA4 events / call tracking</td><td>Where is the funnel creating or losing intent?</td></tr>
+        <tr><td>Conversion</td><td>Form submits, booking completions, qualified inquiries by state/service.</td><td>Booking system / CRM</td><td>Which pages and campaigns create real demand?</td></tr>
+        <tr><td>Quality</td><td>Eligibility match, accepted plan match, attended first visit where permissible.</td><td>Operations / CRM</td><td>Are marketing promises attracting the right patients?</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Required event names</h3>
+    <p class="mono">appointment_click · booking_start · booking_complete · contact_form_start · contact_form_submit · phone_click · provider_view · state_page_engagement · video_50 · video_complete</p>
+
+    <h3>Baseline rules</h3>
+    <ul>
+      <li>Capture the prior 28 and 90 days before major page changes.</li>
+      <li>Segment by state, service landing page, device, source/medium, and new/returning user.</li>
+      <li>Annotate each release date so performance changes can be attributed.</li>
+      <li>Report lead and conversion counts as whole integers.</li>
+      <li>Do not combine paid, organic, referral, and direct performance into one unsupported result.</li>
+    </ul>
+
+    <div class="callout warn"><strong>June performance report</strong>The July 16 agenda references a June performance report, but its verified KPI dataset is not contained in the visual-kit PDF. Keep that report as a separate evidence source and reconcile dates, channels, and conversion definitions before adding its numbers to this analysis.</div>
+  </section>
+
+  <section class="page page-break">
+    <div class="section-label">Implementation</div>
+    <h2>30 / 60 / 90-day roadmap</h2>
+    <div class="rule"></div>
+    <div class="timeline">
+      <div class="timeline-item"><h4>Within 48 hours — trust and index hygiene</h4><p>Remove the contact-page note; rewrite contact metadata; resolve <span class="mono">/2526-2/</span>; capture analytics baseline; document current booking path; pause new Google profiles pending eligibility review.</p></div>
+      <div class="timeline-item"><h4>Within 7 days — conversion foundation</h4><p>Approve positioning/H1; produce homepage wireframe; inventory provider credentials and licensed states; audit the eight duplicate-post pairs; finalize the therapist capture checklist and first scripts.</p></div>
+      <div class="timeline-item"><h4>Within 30 days — launch the first connected system</h4><p>Publish refreshed homepage and contact flow; launch Rhode Island and Massachusetts state hubs; add authorship/review to top medical pages; export the 60-second reel and first six cutdowns; instrument booking events.</p></div>
+      <div class="timeline-item"><h4>Within 60 days — expand proven intent</h4><p>Launch accurate New York, Colorado, and Arizona state hubs after provider/service validation; improve provider profiles; publish the first clinically reviewed content cluster; consolidate duplicate posts.</p></div>
+      <div class="timeline-item"><h4>Within 90 days — optimize from qualified demand</h4><p>Review GSC/GA4/CRM results by state and service; expand only the pages and content formats that drive qualified appointment actions; refresh underperforming titles/CTAs; decide whether additional service/state pages are justified.</p></div>
+    </div>
+
+    <h3>Ownership</h3>
+    <table>
+      <thead><tr><th>Workstream</th><th>Accountable owner</th><th>Clinical / operational approver</th><th>Next action</th></tr></thead>
+      <tbody>
+        <tr><td>Strategy and sequencing</td><td>Dillon / Momentum 360</td><td>Hope leadership</td><td>Approve P0/P1 queue at the next review.</td></tr>
+        <tr><td>Website / SEO implementation</td><td>Named web owner</td><td>Hope leadership + clinical reviewer</td><td>Fix contact and utility page first.</td></tr>
+        <tr><td>Clinical accuracy</td><td>Named Hope clinician</td><td>Hope leadership</td><td>Validate services, states, credentials, prescribing and insurance language.</td></tr>
+        <tr><td>Therapist video</td><td>Video coordinator</td><td>Featured provider + clinical reviewer</td><td>Run three dress-rehearsal sessions and approve setup.</td></tr>
+        <tr><td>AI animation</td><td>Momentum 360 / Claude production</td><td>Hope brand approver</td><td>Produce first draft from the existing handoff package.</td></tr>
+        <tr><td>Measurement</td><td>Analytics owner</td><td>Operations lead</td><td>Verify events and June reporting definitions.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="page page-break">
+    <div class="section-label">Decision page</div>
+    <h2>What leadership needs to decide</h2>
+    <div class="rule"></div>
+    <ol class="lede">
+      <li><strong>Positioning:</strong> approve the service/state-led homepage headline and keep “comfort, peace of mind, and hope” as the emotional promise.</li>
+      <li><strong>State accuracy:</strong> confirm which providers, services, ages, and insurance pathways are available in each of the five states.</li>
+      <li><strong>Google profile eligibility:</strong> document whether Hope has any genuine staffed, signed, patient-facing or customer-contact location. If not, do not create state profiles.</li>
+      <li><strong>Website owner:</strong> name the person who can publish the P0 fixes and confirm completion.</li>
+      <li><strong>Clinical reviewer:</strong> name one accountable reviewer for service, condition, medication, and SUD content.</li>
+      <li><strong>Video direction:</strong> approve the soothing illustrated brand reel and the first three therapist script formats.</li>
+      <li><strong>Measurement source:</strong> identify the June report source and agree on the conversion definition before performance claims are combined.</li>
+    </ol>
+
+    <div class="grid-2">
+      <div class="card"><div class="kicker">Status</div><h4>Analysis complete</h4><p>The promised deeper strategic work has been assembled and prioritized.</p></div>
+      <div class="card"><div class="kicker">Next action</div><h4>Leadership review</h4><p>Approve the seven decisions above, then move the P0 items into implementation.</p></div>
+      <div class="card"><div class="kicker">Primary owner</div><h4>Dillon / Momentum 360</h4><p>Coordinate review, owners, and the first implementation sprint.</p></div>
+      <div class="card"><div class="kicker">Immediate win</div><h4>Fix the conversion surface</h4><p>Contact page, utility page, homepage message, and analytics baseline.</p></div>
+    </div>
+
+    <h3>Source notes</h3>
+    <p class="small">Internal sources: June 11–12 creative and website next-steps promise; July 2 and July 13 visual-kit delivery messages; July 15 meeting agenda and therapist rehearsal correspondence; <em>The Hope Wellness Center Brand Visual Kit &amp; Website Growth Plan</em>, July 2026.</p>
+    <p class="small">Live sources reviewed July 15, 2026: <a href="https://thehopewellnesscenter.com/">Hope homepage</a>, <a href="https://thehopewellnesscenter.com/contact/">contact page</a>, <a href="https://thehopewellnesscenter.com/page-sitemap.xml">page sitemap</a>, <a href="https://thehopewellnesscenter.com/post-sitemap.xml">post sitemap</a>, <a href="https://support.google.com/business/answer/13763036?hl=en">Google Business Profile eligibility</a>, <a href="https://lifestance.com/provider/psychiatrist/ri/psychiatrist/">LifeStance Rhode Island</a>, <a href="https://luminousvitalitybh.com/">Luminous Vitality</a>, <a href="https://formpsych.com/">Form Psychiatry</a>, <a href="https://www.evolveri.com/">Evolve Psychiatry</a>, <a href="https://www.hhs.gov/press-room/dea-telemedicine-extension-2026.html">HHS/DEA 2026 extension</a>, and <a href="https://www.samhsa.gov/substance-use/treatment/statutes-regulations-guidelines/buprenorphine-telemedicine-prescribing">SAMHSA buprenorphine telemedicine guidance</a>.</p>
+  </section>
+</main>
+</body>
+</html>

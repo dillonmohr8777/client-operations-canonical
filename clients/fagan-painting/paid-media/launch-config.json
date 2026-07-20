@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "clientId": "fagan-painting",
+  "requesterRefs": ["registry-contact:fagan-painting:0", "user:dillon"],
+  "loginIdentityRefs": ["access-broker:dillon-operations/meta-ads-immohrtal-browser"],
+  "platforms": {
+    "google_ads": {
+      "enabledForPlanning": false,
+      "exactAccountRef": null,
+      "exactAccountIdSha256": null,
+      "executionSurface": "unconfigured",
+      "launchBlueprintRef": null
+    },
+    "meta_ads": {
+      "enabledForPlanning": true,
+      "exactAccountRef": "access-broker:fagan-painting/meta-ads-production",
+      "exactAccountIdSha256": "3143855d5a6af0b9b4e45c72032ef033ff91177da453f988d6626fc7ed365c8f",
+      "executionSurface": "persistent_chrome",
+      "launchBlueprintRef": "clients/fagan-painting/paid-media/blueprints/meta_ads.json"
+    }
+  },
+  "locationPolicy": {
+    "scope": "approved_market",
+    "source": "Use only verified current painting service areas and approved project evidence.",
+    "mixedBrandLocationsForbidden": true
+  },
+  "landingPage": {
+    "defaultMode": "reuse",
+    "sourceRef": null,
+    "stagingDeploymentRef": null,
+    "productionDeploymentRef": null,
+    "status": "partial"
+  },
+  "currentStateRules": [
+    "Use the July 16 live persistent-Chrome Meta account mapping and reverify it before any provider mutation.",
+    "Keep the primary new campaign in draft and the observed off campaign unchanged unless exact authority covers a change.",
+    "Closed-loop lead ownership and deduplicated attribution are required before scaling.",
+    "Never classify tests, solicitations, or duplicate notifications as qualified leads.",
+    "A phone-intent click is not a connected call."
+  ],
+  "providerReadinessRef": "state/ad-provider-readiness.json",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false
+}

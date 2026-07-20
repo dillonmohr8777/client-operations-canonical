@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "clientId": "shadow-heating-cooling",
+  "platform": "meta_ads",
+  "rosterRef": "registry/paid-media-roster.json",
+  "routeState": "active",
+  "patternStatus": "communication-observed",
+  "sourceEvidence": {
+    "observedAt": "2026-07-16T19:10:05Z",
+    "sourceClasses": ["user", "gmail", "slack"],
+    "summary": "Shadow Heating and Cooling currently runs Meta lead ads. Recent communication evidence reports active delivery and improving lead quality, while qualification, contact, closure, pacing, and current account readback remain the gates before any scale decision.",
+    "liveAccountVerified": false,
+    "historicalOnly": false
+  },
+  "triggerContract": {
+    "triggerClasses": ["campaign_launch", "campaign_expansion", "campaign_restart"],
+    "requesterRefs": ["registry-contact:shadow-heating-cooling:0", "user:dillon"],
+    "communicationImpliesFullBuild": true,
+    "requiredExtractedFacts": ["HVAC service", "service area", "offer", "approved budget", "lead destination", "schedule"],
+    "unknownsBlockMutation": ["exact ad account", "budget authority", "current billing and delivery", "qualified lead definition", "follow-up owner"]
+  },
+  "buildContract": {
+    "campaign": {
+      "type": "Lead generation",
+      "bidStrategy": "Highest volume after primary-event validation",
+      "campaignNamingPattern": "Shadow | Meta | {Service} | {Market} | {Offer}",
+      "adGroupNamingPattern": "{Audience} | {CreativeAngle}"
+    },
+    "budgetBaseline": {
+      "daily": 5,
+      "currency": "USD",
+      "basis": "Historical seven-day report baseline; not current spend authority.",
+      "observedAt": "2026-07-13T23:59:59Z",
+      "isSpendAuthority": false
+    },
+    "landingPage": {
+      "defaultMode": "reuse",
+      "onePerLocation": false,
+      "requiredSections": ["HVAC problem and service fit", "service area", "seasonal offer", "lead call to action", "phone path", "trust proof"],
+      "qa": ["mobile form and phone test", "pixel and event test", "source identifiers preserved", "offer and service-area review", "page speed"]
+    },
+    "tracking": {
+      "primaryEvent": "qualified_lead",
+      "secondaryEvents": ["lead", "form_submit", "phone_intent"],
+      "dedupRequired": true,
+      "utmPattern": "shadow_meta_{service}_{market}_{offer}"
+    },
+    "creative": {
+      "requiredAssets": ["square service asset", "vertical service asset", "primary text variants", "headline variants", "approved call to action"],
+      "copyRequirements": ["lead with the seasonal HVAC need", "state the exact service area", "make follow-up expectations clear", "avoid unsupported pricing or availability claims"]
+    }
+  },
+  "dailyOptimizationChecks": ["exact account and delivery readback", "budget pacing", "qualified and contacted lead rate", "closure feedback", "creative fatigue and frequency", "placement quality", "landing-page or lead-form health", "billing and change history"],
+  "antiRegressionRules": ["Do not scale from platform result count alone.", "Do not report a lead as qualified or closed without business feedback.", "Keep the current Meta-only roster separate from historical Google billing evidence.", "Maintain controlled frequency and verify contact ownership."],
+  "learningPolicy": {
+    "minimumComparableOutcomes": 3,
+    "successSignals": ["qualified HVAC lead", "contacted lead", "booked service", "stable qualified cost per lead"],
+    "failureSignals": ["unqualified lead", "uncontacted lead", "creative fatigue", "billing or delivery interruption"],
+    "decisionWeights": { "accept": 3, "modify": 1, "defer": -2, "reject": -4 }
+  },
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false
+}

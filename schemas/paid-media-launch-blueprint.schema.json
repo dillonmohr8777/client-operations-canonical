@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "paid-media-launch-blueprint.schema.json",
+  "title": "Client and platform specific paid-media launch blueprint",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "clientId", "platform", "rosterRef", "routeState",
+    "patternStatus", "sourceEvidence", "triggerContract", "buildContract",
+    "dailyOptimizationChecks", "antiRegressionRules", "learningPolicy",
+    "privacy", "containsSecrets", "containsDirectIdentifiers", "containsRawCommunications"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "clientId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,119}$" },
+    "platform": { "enum": ["google_ads", "meta_ads"] },
+    "rosterRef": { "const": "registry/paid-media-roster.json" },
+    "routeState": { "enum": ["active", "paused", "blocked", "planning"] },
+    "patternStatus": { "enum": ["live-observed", "communication-observed", "needs-live-capture"] },
+    "sourceEvidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["observedAt", "sourceClasses", "summary", "liveAccountVerified", "historicalOnly"],
+      "properties": {
+        "observedAt": { "type": "string", "format": "date-time" },
+        "sourceClasses": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["user", "gmail", "slack", "live_platform"] } },
+        "summary": { "type": "string", "minLength": 10, "maxLength": 1500 },
+        "liveAccountVerified": { "type": "boolean" },
+        "historicalOnly": { "type": "boolean" }
+      }
+    },
+    "triggerContract": {
+      "type": "object", "additionalProperties": false,
+      "required": ["triggerClasses", "requesterRefs", "communicationImpliesFullBuild", "requiredExtractedFacts", "unknownsBlockMutation"],
+      "properties": {
+        "triggerClasses": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["location_launch", "campaign_launch", "campaign_expansion", "campaign_restart"] } },
+        "requesterRefs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^(?:registry-contact:[a-z0-9-]+:[0-9]+|user:dillon)$" } },
+        "communicationImpliesFullBuild": { "const": true },
+        "requiredExtractedFacts": { "$ref": "#/$defs/shortStrings" },
+        "unknownsBlockMutation": { "$ref": "#/$defs/shortStrings" }
+      }
+    },
+    "buildContract": {
+      "type": "object", "additionalProperties": false,
+      "required": ["campaign", "budgetBaseline", "landingPage", "tracking", "creative"],
+      "properties": {
+        "campaign": {
+          "type": "object", "additionalProperties": false,
+          "required": ["type", "bidStrategy", "campaignNamingPattern", "adGroupNamingPattern"],
+          "properties": {
+            "type": { "type": ["string", "null"], "maxLength": 100 },
+            "bidStrategy": { "type": ["string", "null"], "maxLength": 100 },
+            "campaignNamingPattern": { "type": "string", "minLength": 3, "maxLength": 240 },
+            "adGroupNamingPattern": { "type": ["string", "null"], "maxLength": 240 }
+          }
+        },
+        "budgetBaseline": {
+          "type": "object", "additionalProperties": false,
+          "required": ["daily", "currency", "basis", "observedAt", "isSpendAuthority"],
+          "properties": {
+            "daily": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+            "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+            "basis": { "type": "string", "minLength": 3, "maxLength": 500 },
+            "observedAt": { "type": ["string", "null"], "format": "date-time" },
+            "isSpendAuthority": { "const": false }
+          }
+        },
+        "landingPage": {
+          "type": "object", "additionalProperties": false,
+          "required": ["defaultMode", "onePerLocation", "requiredSections", "qa"],
+          "properties": {
+            "defaultMode": { "enum": ["reuse", "mirror", "build"] },
+            "onePerLocation": { "type": "boolean" },
+            "requiredSections": { "$ref": "#/$defs/shortStrings" },
+            "qa": { "$ref": "#/$defs/shortStrings" }
+          }
+        },
+        "tracking": {
+          "type": "object", "additionalProperties": false,
+          "required": ["primaryEvent", "secondaryEvents", "dedupRequired", "utmPattern"],
+          "properties": {
+            "primaryEvent": { "type": "string", "pattern": "^[a-z][a-z0-9_]{1,79}$" },
+            "secondaryEvents": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]{1,79}$" } },
+            "dedupRequired": { "const": true },
+            "utmPattern": { "type": "string", "minLength": 3, "maxLength": 180 }
+          }
+        },
+        "creative": {
+          "type": "object", "additionalProperties": false,
+          "required": ["requiredAssets", "copyRequirements"],
+          "properties": {
+            "requiredAssets": { "$ref": "#/$defs/shortStrings" },
+            "copyRequirements": { "$ref": "#/$defs/shortStrings" }
+          }
+        }
+      }
+    },
+    "dailyOptimizationChecks": { "$ref": "#/$defs/shortStrings" },
+    "antiRegressionRules": { "$ref": "#/$defs/shortStrings" },
+    "learningPolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["minimumComparableOutcomes", "successSignals", "failureSignals", "decisionWeights"],
+      "properties": {
+        "minimumComparableOutcomes": { "type": "integer", "minimum": 3 },
+        "successSignals": { "$ref": "#/$defs/shortStrings" },
+        "failureSignals": { "$ref": "#/$defs/shortStrings" },
+        "decisionWeights": {
+          "type": "object", "additionalProperties": false,
+          "required": ["accept", "modify", "defer", "reject"],
+          "properties": { "accept": { "const": 3 }, "modify": { "const": 1 }, "defer": { "const": -2 }, "reject": { "const": -4 } }
+        }
+      }
+    },
+    "privacy": { "const": "redacted" },
+    "containsSecrets": { "const": false },
+    "containsDirectIdentifiers": { "const": false },
+    "containsRawCommunications": { "const": false }
+  },
+  "$defs": {
+    "shortStrings": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 2, "maxLength": 260 } }
+  }
+}

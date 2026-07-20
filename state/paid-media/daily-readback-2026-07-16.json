@@ -1,0 +1,213 @@
+{
+  "schemaVersion": 1,
+  "readbackId": "paid-media-daily-readback-2026-07-16",
+  "manifestRef": "state/paid-media/daily-review-2026-07-16.json",
+  "reviewDate": "2026-07-16",
+  "timezone": "America/New_York",
+  "observedAt": "2026-07-16T16:15:59.1881433-04:00",
+  "status": "completed-with-one-route-blocker-and-partial-checks",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false,
+  "providerMutationAttempted": false,
+  "canonicalQueueMutationAttempted": false,
+  "externalActionAttempted": false,
+  "summary": {
+    "laneCount": 8,
+    "exactAccountReadbackCount": 7,
+    "fullyBlockedLaneCount": 1,
+    "materialCandidateCount": 5,
+    "routineLaneCount": 2
+  },
+  "lanes": [
+    {
+      "reviewKey": "2026-07-16::google-ads--kimberly-james-bridal",
+      "clientId": "kimberly-james-bridal",
+      "platform": "google-ads",
+      "readbackStatus": "exact-account-current",
+      "observations": [
+        "The primary account was verified and the cancelled duplicate remained excluded.",
+        "The enabled Performance Max campaign showed a 20 dollar daily budget for the June 16 through July 15 window.",
+        "The live table showed 1154 clicks, 54814 impressions, 585.42 dollars of cost, and zero conversions."
+      ],
+      "materialCandidate": {
+        "candidateId": "pmf-20260716-kjb-google-tracking",
+        "findingClass": "tracking-or-dedup-failure",
+        "severity": "high",
+        "confidence": "high-on-platform-gap-low-on-root-cause",
+        "summary": "Current delivery and spend are present while the platform reports zero conversions; the appointment path must be reconciled before optimization.",
+        "recommendedActionClass": "local_artifact",
+        "approvalGate": "explicit-for-any-live-change",
+        "evidenceRefs": [
+          "clients/kimberly-james-bridal/paid-media/correction-packet-2026-07-16-google-conversion-tracking.md"
+        ]
+      }
+    },
+    {
+      "reviewKey": "2026-07-16::google-ads--replenish-7-eleven",
+      "clientId": "replenish-7-eleven",
+      "platform": "google-ads",
+      "readbackStatus": "exact-account-current",
+      "observations": [
+        "The exact shared child account was verified and Replenish remained separated from Fresh Blends.",
+        "Four Replenish location campaigns were enabled in the visible table and two were paused; each retained its own observed daily budget.",
+        "The Miami campaign retained Boca naming or copy, unrelated destinations or phone details were still attached, and asset completeness remained deficient."
+      ],
+      "campaignStateReadback": [
+        {
+          "observedName": "Replenish | PMAX | Boca | Consumer Foot Traffic",
+          "state": "paused"
+        },
+        {
+          "observedName": "Replenish | PMAX | Coral Springs | Consumer Foot Traffic",
+          "state": "enabled"
+        },
+        {
+          "observedName": "Replenish | PMAX | Miami 56 | Consumer Foot Traffic",
+          "state": "enabled"
+        },
+        {
+          "observedName": "Pampano Campaign",
+          "state": "enabled",
+          "note": "Exact interface spelling; canonical location spelling requires verification."
+        },
+        {
+          "observedName": "Replenish | PMAX | Carmel Mountain 19223 | Consumer Foot Traffic",
+          "state": "enabled"
+        },
+        {
+          "observedName": "Howard Camaign",
+          "state": "paused",
+          "note": "Exact interface spelling; canonical campaign and location naming require verification."
+        }
+      ],
+      "materialCandidate": {
+        "candidateId": "pmf-20260716-replenish-location-isolation",
+        "findingClass": "landing-page-failure",
+        "severity": "high",
+        "confidence": "high",
+        "summary": "Current location assets are cross-contaminated and include unrelated destination or phone details, creating a material relevance and routing risk.",
+        "recommendedActionClass": "local_artifact",
+        "approvalGate": "explicit-for-any-live-change",
+        "evidenceRefs": [
+          "clients/replenish-7-eleven/paid-media/correction-packet-2026-07-16-location-assets.md"
+        ]
+      }
+    },
+    {
+      "reviewKey": "2026-07-16::google-ads--fresh-blends-kwik-trip",
+      "clientId": "fresh-blends-kwik-trip",
+      "platform": "google-ads",
+      "readbackStatus": "exact-account-current",
+      "observations": [
+        "The exact shared child account was verified and Fresh Blends remained separated from Replenish.",
+        "The four named Kwik Trip Ice Box campaigns visible in the table were paused.",
+        "No current evidence supported a new material finding or a state change."
+      ],
+      "materialCandidate": null
+    },
+    {
+      "reviewKey": "2026-07-16::google-ads--omega-landscaping",
+      "clientId": "omega-landscaping",
+      "platform": "google-ads",
+      "readbackStatus": "exact-account-current",
+      "observations": [
+        "The enabled Performance Max campaign showed a 50 dollar daily budget, 27396 impressions, 785 clicks, 1491.65 dollars of cost, and 13 conversions.",
+        "The conversion split visible in the account was eight calls from ads and five form submissions.",
+        "Seven Search campaigns remained paused."
+      ],
+      "materialCandidate": {
+        "candidateId": "pmf-20260716-omega-qualified-outcomes",
+        "findingClass": "stale-or-missing-readback",
+        "severity": "medium",
+        "confidence": "high-on-missing-disposition-low-on-lead-quality",
+        "summary": "Thirteen platform actions lack same-window qualified-lead disposition, so platform CPA cannot yet be treated as qualified-lead economics.",
+        "recommendedActionClass": "local_research",
+        "approvalGate": "explicit-for-any-live-change",
+        "evidenceRefs": [
+          "clients/omega-landscaping/paid-media/correction-packet-2026-07-16-qualified-lead-reconciliation.md"
+        ]
+      }
+    },
+    {
+      "reviewKey": "2026-07-16::google-ads--onsite-concrete-landscape",
+      "clientId": "onsite-concrete-landscape",
+      "platform": "google-ads",
+      "readbackStatus": "exact-account-current-with-interface-overlay",
+      "observations": [
+        "The exact account route loaded in persistent Chrome, but an ad-blocker overlay prevented a second metric-table read.",
+        "The same-day verified account readback showed the active Smart campaign, a 4.39 dollar daily budget, a 133 dollar monthly maximum, two web conversions, and incomplete conversion setup.",
+        "The observed conversions were not reconciled to qualified estimates."
+      ],
+      "materialCandidate": {
+        "candidateId": "pmf-20260716-onsite-conversion-setup",
+        "findingClass": "tracking-or-dedup-failure",
+        "severity": "high",
+        "confidence": "high-on-setup-gap-low-on-event-quality",
+        "summary": "Conversion setup is incomplete and current web actions are not reconciled to unique qualified estimates.",
+        "recommendedActionClass": "local_artifact",
+        "approvalGate": "explicit-for-any-live-change",
+        "evidenceRefs": [
+          "clients/onsite-concrete-landscape/paid-media/correction-packet-2026-07-16-conversion-deduplication.md"
+        ]
+      }
+    },
+    {
+      "reviewKey": "2026-07-16::meta-ads--fagan-painting",
+      "clientId": "fagan-painting",
+      "platform": "meta-ads",
+      "readbackStatus": "exact-account-current",
+      "observations": [
+        "The exact Fagan account showed six campaigns and nine unpublished changes.",
+        "The primary Traffic and Leads campaign remained in draft and no campaign state was changed.",
+        "Two unique website leads and one confirmed duplicate notification remain without verified owner, disposition, CRM record, or deduplicated conversion outcome."
+      ],
+      "materialCandidate": {
+        "candidateId": "pmf-20260716-fagan-closed-loop",
+        "findingClass": "tracking-or-dedup-failure",
+        "severity": "high",
+        "confidence": "high",
+        "summary": "Lead transport is repaired, but current inquiries still lack closed-loop ownership, disposition, CRM, and deduplicated conversion proof.",
+        "recommendedActionClass": "read_only_verification",
+        "approvalGate": "human-or-exact-client-system-route-required",
+        "dedupeWorkItemId": "wi-20260715-0002",
+        "evidenceRefs": [
+          "clients/fagan-painting/evidence/2026-07-16-website-lead-read-only-verification.json",
+          "clients/fagan-painting/paid-media/correction-packet-2026-07-16-meta-closed-loop-leads.md"
+        ]
+      }
+    },
+    {
+      "reviewKey": "2026-07-16::meta-ads--shadow-heating-cooling",
+      "clientId": "shadow-heating-cooling",
+      "platform": "meta-ads",
+      "readbackStatus": "blocked-fail-closed",
+      "observations": [
+        "The exact opaque Meta account reference is still absent from the canonical route.",
+        "No alternate account was guessed and no unrostered optimization was attempted."
+      ],
+      "materialCandidate": null
+    },
+    {
+      "reviewKey": "2026-07-16::meta-ads--kimberly-james-bridal",
+      "clientId": "kimberly-james-bridal",
+      "platform": "meta-ads",
+      "readbackStatus": "exact-account-current-with-partial-table-read",
+      "observations": [
+        "The exact KJB Meta account showed four campaigns, an opportunity score of 95, and four unpublished changes.",
+        "The campaign table remained in a loading state during the final refresh; same-day earlier readback showed website traffic and retargeting active and the Leads carousel in draft.",
+        "No current evidence supported a provider change or a distinct material candidate beyond the cross-channel appointment measurement work."
+      ],
+      "materialCandidate": null
+    }
+  ],
+  "artifactRefs": [
+    "state/paid-media/daily-review-workflow-audit-2026-07-16.md",
+    "clients/kimberly-james-bridal/paid-media/correction-packet-2026-07-16-google-conversion-tracking.md",
+    "clients/onsite-concrete-landscape/paid-media/correction-packet-2026-07-16-conversion-deduplication.md",
+    "clients/replenish-7-eleven/paid-media/correction-packet-2026-07-16-location-assets.md",
+    "clients/omega-landscaping/paid-media/correction-packet-2026-07-16-qualified-lead-reconciliation.md",
+    "clients/fagan-painting/paid-media/correction-packet-2026-07-16-meta-closed-loop-leads.md"
+  ]
+}

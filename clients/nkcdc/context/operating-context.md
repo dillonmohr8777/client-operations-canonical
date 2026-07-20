@@ -226,3 +226,186 @@ Never estimate or silently fill these gaps.
 | `C:\Users\dillo\Documents\Codex\2026-07-15\cross-reference-with-what-mack-just\README.md` | 2026-07-15 | Handoff status and source-of-truth boundaries | High |
 | `C:\Users\dillo\Documents\Codex\2026-07-15\cross-reference-with-what-mack-just\source\NKCDC-Strategy-Overview.pdf` and page renders | July 2026 | Existing visual language and misframed source deck | High for visual reference; copy is superseded where the handoff says so |
 | `C:\Users\dillo\Documents\Codex\2026-07-15\find-this-come-up-with-a\dillon-os-main\01_Clients\NKCDC\` redacted client notes | evidence through 2026-04-15 | Historical tax-prep scope, audience, and launch dependencies | Medium; older point-in-time context |
+
+<!-- BEGIN CLIENT-HISTORY-PROMOTION:v1 -->
+## Communication-derived operating context
+
+- Promotion schema: `client-history-context/v2`
+- Last updated from artifact set: 2026-07-16
+- Context role: redacted historical operating evidence; not canonical queue state, delivery authorization, or item-level message attribution
+- Canonical client ID: `nkcdc`
+- Canonical display name: NKCDC
+- Registry status: `active`
+- Knowledge disposition: `current-client-eligible`
+- Privacy: names reduced to roles; no raw messages, snippets, contact details, message URLs, secrets, or one-to-one item/message claims
+- Gmail evidence confidence: high-history-medium-current-outcome (0.89); Complete history supports the pause, but the decisive meeting outcome is absent.
+- Slack evidence confidence: high (0.98); The exact registry channel and a public launch update were reviewed.
+
+### Evidence coverage
+
+- Gmail: `complete-exact-registry-match`; 124 matched messages across 48 threads and 7 pages, 2026-04-02 through 2026-07-15; exact registry queries reached token exhaustion. Counts are client-query matches, not portfolio-unique totals.
+- Gmail artifact: `state/client-history-research/gmail-client-history-2026-07-16.json#client=nkcdc`; SHA-256 `801A09576CEE647690982CA9EA851C67C992D328A96C09C986D1C7D8E0E3AE87`
+- Slack: `complete-live-evidence`; 90 Dillon-authored messages across 2 matched conversations and 0 important threads, 2026-04-03 through 2026-07-15; relevant cursors were exhausted within the connected user's visible scope.
+- Slack artifact: `state/client-history-research/slack-client-history-2026-07-16.json#client=nkcdc`; SHA-256 `00F3C7F4E93C86CF499FC90F4A6F1310F8FA5DEAD1B348814A3AA11F0AF7FED2`
+
+### Identity and routing
+
+- Affiliation constraints: no explicit portfolio affiliation assertion is recorded; do not infer ownership from shared communication participants.
+- Gmail routing constraint: unknown; no additional Gmail routing constraint was recorded
+- Slack routing constraint: no additional Slack routing constraint was recorded
+
+### Key people and roles
+
+#### Gmail-derived roles
+
+- primary client stakeholder
+- client team stakeholders
+- contract and relationship stakeholder
+- paid-media and reporting operator
+
+#### Slack-derived roles
+
+- Client stakeholder
+- Agency principal and renewal reviewer
+- Paid-media and content collaborators
+
+### Recurring work patterns
+
+#### Gmail-derived patterns
+
+- Google and Meta paid media
+- lead sheets
+- weekly reports
+- landing-page strategy
+- retention and contract planning
+
+#### Slack-derived patterns
+
+- Google and Meta acquisition
+- Business-tax landing page and tracking
+- Broader website and content scope planning
+
+### Communication-derived commitments and promises
+
+These inherit the enclosing client-record evidence scope. Re-read the cited source before treating any one item as current or message-specific.
+
+#### Gmail-derived commitments
+
+- Keep paid media paused while the contract path is unresolved.
+- Provide a recommendations PDF and a clear owner/timing path after the next-steps conversation.
+- Do not reactivate campaigns automatically.
+
+#### Slack-derived commitments
+
+- Prepare a broader renewal offer and PDF.
+- Schedule a client conversation and stay flexible on timing.
+- Continue helping beyond ads if broader scope is supported.
+
+### Communication-derived decisions
+
+These are historical decision signals, not permission for sending, publishing, spend, account changes, or other external action.
+
+#### Gmail-derived decisions
+
+- Following the July 8 decision, paid ads remain paused and NKCDC is excluded from the active dashboard cycle.
+- The July 15 next-steps call was intended to resolve relationship, scope, contract, owners, and timing.
+
+#### Slack-derived decisions
+
+- Turn off Performance Max and move to Search-first.
+- Tighten forms around business ownership, location fit, need, timeline, and contact method.
+- Frame renewal around broader website and content needs, not only tax prep.
+
+### Campaigns and services
+
+#### Gmail-derived campaigns and services
+
+- Google Search
+- Meta Ads
+- lead generation
+- landing-page optimization
+- retention strategy
+
+#### Slack-derived campaigns and services
+
+- Business-tax and business-help Search
+- Meta lead forms
+- Landing pages, organic content, monitoring, and renewal planning
+
+### Metrics and tools
+
+#### Gmail-derived metric signals
+
+- Internal July 6-12 closeout Draft: 347 impressions, 10 clicks, $89.74 spend, and 1 tracked conversion; historical context only.
+
+#### Gmail-derived tools mentioned
+
+- Google Ads
+- Meta Ads
+- Google Sheets
+- Google Meet
+- PDF reporting
+
+#### Slack-derived metrics and tools
+
+- Google Search, Meta, GTM, GA4, call-click tracking, Netlify, and PDF reporting
+- Latest detailed week: 41 clicks, two conversions, $40.04 spend, $20.02 CPA, and 20.92% CTR.
+
+### Dillon sent-email patterns
+
+- Support: 50 sent-message matches across 24 sent threads.
+- Scope: aggregate sent-email behavior for this client only; not raw quotes and not the client brand voice.
+
+#### Patterns
+
+- Patient and appreciative
+- Lead-count updates tied to qualification
+- Explicit pause and approval language
+- Practical contract follow-up
+
+#### Watchouts
+
+- Do not infer the outcome of the July 15 call from the calendar event alone.
+
+### Dillon Slack patterns
+
+- Support: 90 Dillon-authored messages across 2 matched conversations.
+- Scope: aggregate Dillon-authored Slack behavior for this client within visible audited conversations; not raw quotes and not the client brand voice.
+
+- Collaborative on scope while advocating for the larger opportunity.
+- Candid about slow client responses and whether leads produced outcomes.
+
+### Current-state signals
+
+- Gmail current external status: unknown as of 2026-07-15; the newest basis is internal Draft or calendar evidence and is not promoted as current.
+- Internal-only signal retained for context: Ads remain paused pending a contract and relationship decision; a next-steps call was scheduled, but Gmail does not record its outcome.
+- Slack last-known signal as of 2026-07-15 within the audited visible scope (high, 0.98): A broader renewal proposal was being finalized after a strong internal call while Search and lead tracking remained active.
+
+#### Potential Gmail open loops requiring source re-read
+
+- Capture the actual outcome of the July 15 next-steps call.
+- Resolve contract scope, ownership, and timeline before any restart.
+- Keep closeout metrics separate from a recommendation to resume spend.
+
+#### Potential Slack open loops requiring source re-read
+
+- Secure agreement on broader renewal scope.
+- Get a client response.
+- Confirm whether higher-intent Search creates real outcomes.
+
+#### Known unknowns
+
+- Item-level source mapping is unknown because the audit provenance is client-record scoped.
+- Slack facts inherit the enclosing client-row coverage and opaque locator set; they are not claimed as one-fact-to-one-message mappings.
+- Slack conclusions are authoritative only within conversations visible to the connected user and exclude deleted messages and inaccessible file bodies.
+- Any conflict with newer canonical queue or live-system evidence requires source re-read; this block does not overwrite that state.
+
+### Communication source ledger
+
+| Claim scope | Observed date or window | Confidence | Safe source locator |
+| --- | --- | --- | --- |
+| Gmail synthesized client record | 2026-04-02 through 2026-07-15 | high-history-medium-current-outcome (0.89) | `state/client-history-research/gmail-client-history-2026-07-16.json#client=nkcdc` |
+| Gmail last-known status signal | 2026-07-15 | high-history-medium-current-outcome (0.89) | `state/client-history-research/gmail-client-history-2026-07-16.json#client=nkcdc` |
+| Slack synthesized client record | 2026-04-03 through 2026-07-15 | high (0.98) | `state/client-history-research/slack-client-history-2026-07-16.json#client=nkcdc` |
+| Slack last-known status signal | 2026-07-15 | high (0.98) | `state/client-history-research/slack-client-history-2026-07-16.json#client=nkcdc` |
+<!-- END CLIENT-HISTORY-PROMOTION:v1 -->

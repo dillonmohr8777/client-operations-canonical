@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "clientId": "omega-landscaping",
+  "requesterRefs": ["registry-contact:omega-landscaping:0", "user:dillon"],
+  "loginIdentityRefs": ["access-broker:dillon-operations/google-ads-immohrtal-browser"],
+  "platforms": {
+    "google_ads": {
+      "enabledForPlanning": true,
+      "exactAccountRef": "access-broker:omega-landscaping/google-ads-production",
+      "exactAccountIdSha256": "992c826a566017a47b1daa69e5b104f16708eec911e0f7048c6fca3d55d03b8e",
+      "executionSurface": "persistent_chrome",
+      "launchBlueprintRef": "clients/omega-landscaping/paid-media/blueprints/google_ads.json"
+    },
+    "meta_ads": {
+      "enabledForPlanning": false,
+      "exactAccountRef": null,
+      "exactAccountIdSha256": null,
+      "executionSurface": "unconfigured",
+      "launchBlueprintRef": null
+    }
+  },
+  "locationPolicy": {
+    "scope": "approved_market",
+    "source": "Use only verified current service areas and exact landscaping or concrete intent.",
+    "mixedBrandLocationsForbidden": true
+  },
+  "landingPage": {
+    "defaultMode": "reuse",
+    "sourceRef": null,
+    "stagingDeploymentRef": null,
+    "productionDeploymentRef": null,
+    "status": "partial"
+  },
+  "currentStateRules": [
+    "Use the July 16 live persistent-Chrome account mapping and reverify it before any provider mutation.",
+    "Treat traffic efficiency and raw tracked actions as hypotheses until lead quality is verified.",
+    "Use irrelevant calls and search terms to tighten local intent.",
+    "Separate landscaping and concrete intent in campaigns, pages, and reporting."
+  ],
+  "providerReadinessRef": "state/ad-provider-readiness.json",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false
+}

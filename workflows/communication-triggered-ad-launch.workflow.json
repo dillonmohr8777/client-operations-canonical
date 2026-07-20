@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "workflowId": "communication-triggered-ad-launch",
+  "title": "Communication to terminal ad launch",
+  "owner": "marketing-chief",
+  "triggerSources": ["gmail", "slack", "user"],
+  "terminalEntrypoint": "scripts/Invoke-AdLaunch.ps1",
+  "routeRules": {
+    "exactActiveClientRequired": true,
+    "exactRequesterRequired": true,
+    "genericPersonNameIsNeverEnough": true,
+    "sourceLocatorRequired": true,
+    "mixedClientLaunchesForbidden": true,
+    "paidMediaRosterRef": "registry/paid-media-roster.json",
+    "miaExamples": {
+      "registry-contact:replenish-7-eleven:0": "replenish-7-eleven",
+      "registry-contact:fresh-blends-kwik-trip:0": "fresh-blends-kwik-trip"
+    },
+    "brandSeparation": [
+      "Replenish and 7-Eleven work stays under replenish-7-eleven.",
+      "Fresh Blends and Kwik Trip work stays under fresh-blends-kwik-trip.",
+      "A request that does not establish which route applies is quarantined.",
+      "Shared provider-account visibility never permits cross-client assets, pages, budgets, conversions, or reporting."
+    ]
+  },
+  "inferenceContract": {
+    "communicationIsAWorkTrigger": true,
+    "communicationIsSpendAuthorityOnlyInsideActiveEnvelope": true,
+    "inferFullDeliverableChain": [
+      "load the exact client and platform launch blueprint",
+      "location and market manifest",
+      "offer and campaign objective",
+      "landing-page reuse, mirror, or build decision",
+      "client-specific landing page and mobile QA",
+      "creative and copy variants",
+      "conversion event and UTM plan",
+      "campaign, budget, ad-group, targeting, and ad manifests",
+      "validate-only provider call",
+      "paused provider object creation",
+      "live enable or schedule",
+      "provider readback and observation"
+    ],
+    "unknownsThatBlockExternalMutation": [
+      "client route",
+      "requester authorization",
+      "platform account",
+      "location identity",
+      "budget",
+      "schedule",
+      "conversion event",
+      "landing-page destination",
+      "active authority envelope"
+    ]
+  },
+  "stages": [
+    { "id": "observe", "output": "opaque source locator and redacted observation", "externalMutation": false },
+    { "id": "inspect", "output": "full authorized source interpretation", "externalMutation": false },
+    { "id": "route", "output": "one exact active client and requester reference", "externalMutation": false },
+    { "id": "request", "output": "schema-valid ad-launch request", "externalMutation": false },
+    { "id": "build", "output": "landing page, creative, copy, tracking, and campaign packet", "externalMutation": false },
+    { "id": "qa", "output": "mobile, speed, tracking, fact, brand, and policy verdict", "externalMutation": false },
+    { "id": "validate", "output": "provider validate-only success", "externalMutation": false },
+    { "id": "create_paused", "output": "paused provider resources and rollback manifest", "externalMutation": true, "requires": "active client authority or specific Dillon approval" },
+    { "id": "enable", "output": "enabled or scheduled campaign", "externalMutation": true, "requires": "active client authority or specific Dillon approval" },
+    { "id": "readback", "output": "exact provider state, budget, URLs, tracking, and schedule", "externalMutation": false },
+    { "id": "observe_and_learn", "output": "performance evidence and redacted prediction outcome", "externalMutation": false }
+  ],
+  "safety": {
+    "validateOnlyFirst": true,
+    "createPausedFirst": true,
+    "noRemoveOperations": true,
+    "noAccountOwnershipChanges": true,
+    "failClosedOutsideEnvelope": true,
+    "oneShortApprovalCardWhenNeeded": true,
+    "providerReadbackRequired": true,
+    "rollbackManifestRequired": true,
+    "secretsRemainInApprovedStores": true
+  },
+  "providerState": {
+    "googleAds": "Current roster: KJB, Replenish, Omega, Onsite, and Fresh Blends for Kwik Trip Ice Box campaigns. Persistent Chrome live-verified all five child-account mappings on July 16. Replenish and Fresh Blends remain separate routes over one shared child account, and the cancelled KJB duplicate is excluded. Terminal mutation remains blocked by incomplete provider operations and draft-only authority.",
+    "metaAds": "Current roster: Fagan, Shadow Heating, and KJB. Persistent Chrome live-verified exact Fagan and KJB ad-account routes on July 16 without changing campaign state. Shadow is not visible in the current portfolio and remains unmapped. Terminal provider operations and live mutation remain blocked.",
+    "landingPage": "Netlify staging is partial; canonical source is missing and the current production host route is unmapped"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ad-launch-request.schema.json",
+  "title": "Communication-triggered ad launch request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "requestId", "createdAt", "clientId", "source",
+    "triggerClass", "platforms", "locations", "objective", "offer",
+    "landingPage", "tracking", "budget", "schedule", "accountRefs", "blueprintRefs",
+    "authorityRef", "currentEvidenceAt", "state", "privacy",
+    "containsSecrets", "containsDirectIdentifiers", "containsRawCommunications"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "requestId": { "type": "string", "pattern": "^alr-[a-z0-9-]{8,100}$" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "clientId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,119}$" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["channel", "locator", "requesterRef", "observedAt"],
+      "properties": {
+        "channel": { "enum": ["gmail", "slack", "user"] },
+        "locator": {
+          "type": "string",
+          "pattern": "^(?:gmail-message:[A-Za-z0-9_-]{6,200}|slack-message:[A-Za-z0-9._:/-]{6,300}|user-instruction:[A-Za-z0-9._:-]{6,200})$"
+        },
+        "requesterRef": { "type": "string", "pattern": "^(?:registry-contact:[a-z0-9-]+:[0-9]+|user:dillon)$" },
+        "observedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "triggerClass": { "enum": ["location_launch", "campaign_launch", "campaign_expansion", "campaign_restart"] },
+    "platforms": {
+      "type": "array", "minItems": 1, "maxItems": 2, "uniqueItems": true,
+      "items": { "enum": ["google_ads", "meta_ads"] }
+    },
+    "locations": {
+      "type": "array", "minItems": 1, "maxItems": 250,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["key", "label", "scope"],
+        "properties": {
+          "key": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,79}$" },
+          "label": { "type": "string", "minLength": 2, "maxLength": 160 },
+          "scope": { "enum": ["registered_brand_location", "approved_market"] }
+        }
+      }
+    },
+    "objective": { "type": "string", "minLength": 2, "maxLength": 500 },
+    "offer": { "type": ["string", "null"], "maxLength": 500 },
+    "landingPage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mode", "deploymentEnvironment", "artifactRef", "destinationRef"],
+      "properties": {
+        "mode": { "enum": ["reuse", "mirror", "build"] },
+        "deploymentEnvironment": { "enum": ["staging", "production"] },
+        "artifactRef": { "type": ["string", "null"], "pattern": "^clients/[A-Za-z0-9._/ -]+$" },
+        "destinationRef": { "type": ["string", "null"], "pattern": "^(?:access-broker|deployment):[A-Za-z0-9._:/-]+$" }
+      }
+    },
+    "tracking": {
+      "type": "object", "additionalProperties": false,
+      "required": ["conversionEvent", "utmCampaign"],
+      "properties": {
+        "conversionEvent": { "type": "string", "pattern": "^[a-z][a-z0-9_]{1,79}$" },
+        "utmCampaign": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{1,120}$" }
+      }
+    },
+    "budget": {
+      "type": "object", "additionalProperties": false,
+      "required": ["currency", "daily", "total"],
+      "properties": {
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+        "daily": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+        "total": { "type": ["number", "null"], "exclusiveMinimum": 0 }
+      }
+    },
+    "schedule": {
+      "type": "object", "additionalProperties": false,
+      "required": ["startAt", "endAt", "timezone"],
+      "properties": {
+        "startAt": { "type": ["string", "null"], "format": "date-time" },
+        "endAt": { "type": ["string", "null"], "format": "date-time" },
+        "timezone": { "type": "string", "minLength": 3, "maxLength": 80 }
+      }
+    },
+    "accountRefs": {
+      "type": "array", "maxItems": 2, "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^access-broker:[A-Za-z0-9._:/-]+$" }
+    },
+    "blueprintRefs": {
+      "type": "array", "minItems": 1, "maxItems": 2, "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^clients/[A-Za-z0-9._/ -]+/paid-media/blueprints/(?:google_ads|meta_ads)\\.json$" }
+    },
+    "authorityRef": { "type": "string", "pattern": "^clients/[A-Za-z0-9._/ -]+/paid-media/launch-authority\\.json$" },
+    "currentEvidenceAt": { "type": "string", "format": "date-time" },
+    "state": { "enum": ["captured", "building", "qa", "ready_for_paused_create", "ready_to_enable", "enabled", "observing", "blocked", "cancelled"] },
+    "privacy": { "const": "redacted" },
+    "containsSecrets": { "const": false },
+    "containsDirectIdentifiers": { "const": false },
+    "containsRawCommunications": { "const": false }
+  }
+}

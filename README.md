@@ -13,6 +13,7 @@ The Marketing Chief operating loop is running as a manual pilot. Open `CONTROL.m
 - `intake/`: redacted, exact-routed observations from background sensors
 - `context/`: durable marketing, voice, design, and client-context contracts
 - `workflows/marketing-chief.workflow.json`: the executable orchestration contract
+- `workflows/communication-triggered-ad-launch.workflow.json`: Gmail, Slack, or user request to terminal launch contract
 
 The Marketing Chief is the only writer to canonical state during the pilot. Focused workers may research, build, or verify, but they return bounded handoff JSON and never update the queue themselves. Background schedules may only sync safe intake metadata. External delivery and human authentication remain gated.
 
@@ -41,19 +42,51 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Test-Marketing
 
 Canonical writes use optimistic queue and work-item revisions, one exclusive lock, same-volume temporary files, deterministic rendering, and rollback backups. New work is captured through `New-MarketingWorkItem.ps1`; existing work changes through `Update-MarketingQueue.ps1`; bounded worker results are validated by `Test-MarketingHandoff.ps1` and reconciled by `Accept-WorkerHandoff.ps1`.
 
-Prediction outcomes are recorded through `Record-MarketingDecision.ps1`. Voice, design, routing, process, context, and prediction lessons are appended only through the locked and redaction-validating `Record-MarketingCorrection.ps1`.
+Prediction outcomes are recorded through `Record-MarketingDecision.ps1`. `Get-NextActions.ps1` applies an intentionally small learned prior only after three cross-item outcomes match the same client, prediction lane, and action class; exact feedback on the current work-item version and action still controls suppression or replacement. `Get-PredictionLearning.ps1` shows which patterns have enough evidence to be active. Voice, design, routing, process, context, and prediction lessons are appended only through the locked and redaction-validating `Record-MarketingCorrection.ps1`.
 
 `CONTROL.md` is regenerated automatically inside those locked mutations. A standalone repair render requires `-ExpectedQueueRevision`; `-Check` is the safe direct status command. `Get-NextActions.ps1` is read-only and never patches the control file.
+
+## Communication to terminal ad launch
+
+An exact current-client Gmail, Slack, or direct user request can now trigger the whole paid-media deliverable chain: location interpretation, landing-page reuse or build, creative and copy, conversion tracking, UTMs, campaign and ad-group manifests, provider validation, paused creation, enablement, live readback, and observation. The durable contract is `workflows/communication-triggered-ad-launch.workflow.json`.
+
+Current platform eligibility lives only in `registry/paid-media-roster.json`. Google Ads has five exact client lanes: KJB, Replenish, Omega, Onsite, and Fresh Blends for Kwik Trip Ice Box campaigns. Meta Ads has three: Fagan, Shadow Heating, and KJB. Persistent Chrome live-verified every Google child-account mapping on July 16. KJB Google is enabled, not paused; the cancelled KJB duplicate is excluded. The observed Fresh Blends Ice Box campaigns remain paused unless a fresh exact-account readback proves otherwise.
+
+The terminal entry points are:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\New-AdLaunchRequest.ps1 <exact redacted request parameters>
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Invoke-AdLaunch.ps1 -RequestPath <request.json> -Mode Plan
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Invoke-AdLaunch.ps1 -RequestPath <request.json> -Mode Validate -ProviderPacketPath <work\...\provider-packet.json>
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Invoke-AdLaunch.ps1 -RequestPath <request.json> -Mode CreatePaused -ProviderPacketPath <work\...\provider-packet.json>
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Invoke-AdLaunch.ps1 -RequestPath <request.json> -Mode Enable -ProviderPacketPath <work\...\provider-packet.json>
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Invoke-AdLaunch.ps1 -RequestPath <request.json> -Mode Readback -ProviderPacketPath <work\...\provider-packet.json>
+```
+
+The redacted request is canonical client state and is bound to the exact per-client, per-platform blueprint under `clients/<client-id>/paid-media/blueprints/`. Exact provider arguments and account identifiers stay in the ignored `work/` runtime area. Every provider packet is phase-restricted: validation requires validate-only operations, paused creation rejects enabled or removal operations, enablement accepts updates only, and remove/delete tools are prohibited.
+
+The client authority file is the one-time operating envelope. It must name the exact requester route, platform account reference, allowed trigger and location scopes, deployment environments, budget ceilings, location ceiling, permissions, QA requirements, approval evidence, and expiration. A draft file still lets the Chief build and QA locally but cannot deploy, create provider objects, enable campaigns, or spend.
+
+Mia is deliberately not one blended route. The Replenish address maps to `replenish-7-eleven`; the Fresh Blends address maps to `fresh-blends-kwik-trip`. Fresh Blends owns the Kwik Trip Ice Box campaign lane. A generic name match is insufficient, and the two clients' locations, landing pages, campaign states, accounts, assets, conversions, and budgets never cross even when the provider displays them inside one child account.
+
+The daily optimization workflow runs once per America/New_York day during the Marketing Chief `continue` contract. It reviews every roster lane for account/session state, delivery and pacing, tracking and deduplication, landing-page health, search terms or creative fatigue, placement quality, change history, and readback freshness. It never creates a competing queue or changes a provider by itself. Only a material, source-backed finding is promoted into `queue/work-items.json`.
+
+Provider readiness is separate from connection discovery and lives in `state/ad-provider-readiness.json`. As verified on July 16, 2026, persistent Chrome can switch through the authorized Google Ads account list and read all five exact current child accounts. The project now holds opaque account references plus normalized account fingerprints; Replenish and Fresh Blends remain separate routes even though both appear in one child account. Persistent Chrome also live-verified exact Fagan and KJB Meta ad accounts; Shadow is not visible in the current Meta portfolio and remains unmapped. Terminal provider operations and all live mutation are still blocked by incomplete execution coverage and draft-only client authority. Netlify CLI is installed and authenticated for previews, but canonical client landing-page source is unmapped and the current Replenish production host is not mapped to that preview route. `Test-AdProviderReadiness.ps1` therefore keeps live mutation closed while local build and read-only browser review remain available.
 
 ## Structure
 
 - `registry/clients.json`: canonical client and alias index
+- `registry/paid-media-roster.json`: exact current Google Ads and Meta Ads eligibility lanes
 - `clients/<client-id>/`: stable home for each client
 - `scripts/Resolve-Client.ps1`: resolve a name, alias, domain, or contact
 - `scripts/Test-ClientRegistry.ps1`: validate IDs, folders, and safe schema
 - `.codex/environments/environment.toml`: safe setup and routing actions
 
-The current registry is based on a live communication scan covering 463 Gmail message records observed between June 2 and July 15, 2026, existing verified HubSpot routes, and Slack-draft evidence. Gmail pagination back to April 16 is still in progress. Complete Slack channel and DM enumeration is blocked until the Slack connector receives channel, private-channel, group-DM, and DM read scopes.
+The current registry contains 20 records: 18 active clients, `zen-spa-tropicana` retained as inactive historical context only, and `revive-systems` quarantined as `needs-confirmation`. The original fully paginated Gmail audit remains the fixed 18-route base across 189 search pages, 2,555 globally deduplicated messages, and 897 distinct threads from July 21, 2025 through July 16, 2026. Two exact-route supplements add the later-promoted clients: Bridge covers 27 messages across 5 threads, and Onsite Concrete & Landscape covers 3 messages in 1 thread. Supplement counts stay separate from the base because a supplement message or thread may also match a base client query; together, the exact-route artifacts cover all 20 current registry routes without inventing a combined mailbox total. BOK Law Firm, AMI Commercial Cleaning, and Cindy May Christmas remain explicitly separate from Momentum 360.
+
+Bridge Software is a real active client, is portfolio rank 1, and requires exact source identity for intake routing. VA Claims Edge is rank 2. The older Bridge incident was an unrelated newsletter packet falsely routed by generic label matching; it was not evidence that the actual Bridge client was fake. Canonical portfolio ordering lives in `state/portfolio-priorities.json`. `Get-NextActions.ps1` applies portfolio value only after exact route and lane eligibility, so rank never bypasses due dates, evidence requirements, approvals, safety gates, or WIP limits. Economics and current client strategy remain incomplete, so inferred ranks below the two explicit priorities are reviewable operating judgments rather than profitability claims.
+
+The redacted Slack audit is complete within the workspace's visible scope. It exhausted cursors across 106 visible conversations, found 1,232 Dillon-authored messages, and produced live evidence for 12 active clients. Public-channel, private-channel, DM, and group-DM read access was verified, and `files:write` passed a live capability probe. No file was uploaded or shared and no Slack write was performed.
 
 ## Routing policy
 
@@ -64,4 +97,4 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Resolve-Client
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Resolve-Client.ps1 -List
 ```
 
-One client gets one canonical folder. New work belongs there unless the match is ambiguous or the client is not active. `Resolve-Client.ps1` rejects a blank resolution request, requires `-List` for inventory mode, returns only the minimal routing fields, and returns `blocked-inactive-client` with exit code `3` for a unique `needs-confirmation` match. Callers must require `status: resolved`, not merely exit code `0`, before client work begins.
+One client gets one canonical folder. New work belongs there unless the match is ambiguous or the client is not active. `Resolve-Client.ps1` rejects a blank resolution request, requires `-List` for inventory mode, returns only the minimal routing fields, and returns `blocked-inactive-client` with exit code `3` for a unique inactive or `needs-confirmation` match. Callers must require `status: resolved`, not merely exit code `0`, before client work begins.

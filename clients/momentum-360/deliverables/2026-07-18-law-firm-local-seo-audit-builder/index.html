@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="theme-color" content="#071426">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23071426'/%3E%3Cpath d='M14 42V22h8l10 11 10-11h8v20h-8V32L32 43 22 32v10z' fill='%23f3c83b'/%3E%3C/svg%3E">
+    <title>Momentum Digital | Law Firm Local SEO Audit</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body data-start-mode="audit">
+    <a class="skip-link" href="#builder">Skip to audit builder</a>
+    <main class="app-shell">
+      <section class="controls" id="builder" aria-labelledby="builder-title">
+        <div class="controls-heading">
+          <span class="brand-kicker">Momentum Digital</span>
+          <h1 id="builder-title">Law Firm Local SEO Audit</h1>
+          <p>Check a law firm website, add the real local-pack screenshot, and export one client-ready PDF.</p>
+        </div>
+
+        <nav class="mode-switch" aria-label="One-pager mode">
+          <a href="/" data-mode-link="audit" aria-current="page">Audit</a>
+          <a href="/ranker/" data-mode-link="ranker">Ranker</a>
+        </nav>
+
+        <form id="audit-form" novalidate>
+          <div class="field-grid">
+            <label>
+              <span>City</span>
+              <input id="city" name="city" value="Philadelphia" autocomplete="address-level2" required>
+            </label>
+            <label>
+              <span>Practice area</span>
+              <select id="practice" name="practice">
+                <option>Personal Injury</option>
+                <option>Criminal Defense</option>
+                <option>Family Law</option>
+                <option>Estate Planning</option>
+                <option>Employment Law</option>
+                <option>Business Law</option>
+                <option>Immigration Law</option>
+                <option>Real Estate Law</option>
+              </select>
+            </label>
+          </div>
+
+          <label>
+            <span>Firm name</span>
+            <input id="firm" name="firm" value="YOUR LAW FIRM" placeholder="Example Law Group" autocomplete="organization">
+          </label>
+
+          <label>
+            <span>Website to check</span>
+            <input id="website" name="website" type="url" placeholder="https://examplelawfirm.com" inputmode="url">
+          </label>
+
+          <label>
+            <span>Google Business Profile URL <small>optional</small></span>
+            <input id="profile-url" name="profileUrl" type="url" placeholder="https://maps.google.com/..." inputmode="url">
+          </label>
+
+          <div class="screenshot-field">
+            <div>
+              <span class="field-label">Local-pack screenshot <small>recommended</small></span>
+              <p>Use the real search or Maps screenshot so the PDF communicates the opportunity immediately.</p>
+            </div>
+            <div class="file-actions">
+              <label class="file-button" for="screenshot">Choose image</label>
+              <input id="screenshot" name="screenshot" type="file" accept="image/png,image/jpeg,image/webp">
+              <button class="text-button" id="clear-screenshot" type="button" hidden>Remove</button>
+            </div>
+          </div>
+
+          <div class="primary-actions">
+            <button class="primary-button" id="run-audit" type="submit">Run live site check</button>
+            <button class="secondary-button" id="download-pdf" type="button">Download PDF</button>
+          </div>
+        </form>
+
+        <div class="status-panel" id="status-panel" data-state="empty" aria-live="polite">
+          <strong id="status-title">Ready for a real website check</strong>
+          <p id="status-copy">Enter a public law-firm website. No model key or CRM connection is required.</p>
+        </div>
+
+        <p class="control-note">This tool checks public website signals only. Google placement is never guaranteed and no profile is changed.</p>
+      </section>
+
+      <section class="preview-stage" aria-label="PDF preview">
+        <article class="print-sheet" id="print-sheet">
+          <header class="sheet-header">
+            <div class="sheet-brand">
+              <img src="/assets/momentum-logo.png" alt="" width="74" height="74">
+              <div>
+                <strong>Momentum <span>Digital</span></strong>
+                <small>Authority local marketing</small>
+              </div>
+            </div>
+            <div class="sheet-tag">Law firm growth brief</div>
+          </header>
+
+          <section class="sheet-hero">
+            <div class="hero-copy">
+              <p class="hero-kicker" id="preview-practice">Personal Injury</p>
+              <h2 id="preview-title">Local SEO audit for lawyers in <span>Philadelphia</span></h2>
+              <p id="preview-summary">See the website and local-profile signals that can strengthen visibility, trust, and qualified consultations.</p>
+            </div>
+            <figure class="expert-card">
+              <img src="/assets/mac-frederick.jpg" alt="Mac Frederick" width="210" height="210">
+              <figcaption><strong>Mac Frederick</strong><span>Ex-Google local SEO expert</span></figcaption>
+            </figure>
+          </section>
+
+          <section class="map-proof" id="map-proof">
+            <div class="map-placeholder" id="map-placeholder" aria-hidden="true">
+              <div class="road road-one"></div>
+              <div class="road road-two"></div>
+              <div class="road road-three"></div>
+              <div class="map-marker"><span>1</span></div>
+            </div>
+            <img id="screenshot-preview" alt="Uploaded local search or Maps screenshot" hidden>
+            <div class="local-card">
+              <span>Illustrative local-pack target</span>
+              <strong id="preview-firm">YOUR LAW FIRM</strong>
+              <p><b id="preview-city">Philadelphia</b> · <span id="preview-practice-card">Personal Injury</span></p>
+              <div class="stars" aria-label="Five star illustration">★★★★★</div>
+            </div>
+          </section>
+
+          <section class="score-row">
+            <div class="score-lockup">
+              <div class="score-ring"><strong id="score-value">--</strong><span>/100</span></div>
+              <div><small>Website readiness</small><strong id="score-label">Awaiting check</strong></div>
+            </div>
+            <p id="audit-observation">Add the website and run the live check to replace this preview with verified technical findings.</p>
+          </section>
+
+          <section class="finding-grid" id="finding-grid">
+            <article data-status="pending"><span>01</span><h3>Search foundation</h3><p>Title, description, headings, canonical URL, and mobile setup.</p></article>
+            <article data-status="pending"><span>02</span><h3>Local relevance</h3><p>City, practice-area, contact, and structured-data signals.</p></article>
+            <article data-status="pending"><span>03</span><h3>Profile opportunity</h3><p>Use the uploaded screenshot to make the local visibility gap obvious.</p></article>
+            <article data-status="pending"><span>04</span><h3>Next action</h3><p>Prioritize the few fixes most likely to improve clarity and conversion.</p></article>
+          </section>
+
+          <section class="sheet-cta">
+            <div><small id="cta-kicker">Your next local growth move</small><strong id="cta-title">Get the law-firm local SEO action plan</strong></div>
+            <a id="profile-link" href="https://www.needmomentum.com" rel="noopener">needmomentum.com</a>
+          </section>
+
+          <footer class="sheet-footer">
+            <div><span>Direct line</span><strong>215-876-2954</strong></div>
+            <div><span>Secure intake</span><strong>hi@needmomentum.com</strong></div>
+            <div><span>Web strategy</span><strong>needmomentum.com</strong></div>
+            <p>Illustrative strategy material. Search and Maps rankings vary and no placement is guaranteed.</p>
+          </footer>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

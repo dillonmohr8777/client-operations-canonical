@@ -43,7 +43,7 @@ Verified from the July 15 audit and current system state:
 
 - Work was organized around dated conversations instead of stable business identity.
 - Multiple partial control centers existed without one authoritative queue.
-- Loose routing produced duplicates, false clients, and low-value artifacts.
+- Loose routing produced duplicates, false-routed packets, and low-value artifacts. The older Bridge incident was an unrelated newsletter packet caught by generic label matching; it did not mean the real Bridge Software client was fake.
 - Voice was represented mainly as adjectives and punctuation rules rather than accepted examples and edit deltas.
 - Design taste was scattered across projects rather than encoded as reusable references, anti-references, and QA criteria.
 - Reporting containers often matured faster than tracking, attribution, and follow-up integrity.
@@ -67,7 +67,7 @@ Verified from the July 15 audit and current system state:
 - Background sensors write redacted intake observations only. They never create user-facing tasks or mutate canonical work state.
 - The Chief alone reconciles bounded worker handoffs into canonical state.
 - Every consequential output is judged against outcome, evidence, voice, design, risk, and live readback.
-- External messages, publishing, deployment, spend, permissions, and destructive changes remain approval-gated.
+- External messages, publishing, deployment, spend, permissions, and destructive changes remain approval-gated. A client-specific standing authority is reusable explicit approval only inside its exact requester, account, action, budget, location, schedule, and expiration limits. Missing or conflicting fields fail closed while the local deliverable continues to be built.
 
 ## Switching dynamics
 
@@ -89,12 +89,18 @@ The recurring requests are direct:
 - "Why can't you know my voice more?"
 - Predict the next action instead of waiting for another literal instruction.
 - Build the requested outcome first and interrupt only for a real blocker.
+- Treat exact current-client Gmail or Slack requests as work triggers. For paid media, predict and build the whole downstream package, including the location landing page when needed, instead of waiting for Dillon to enumerate campaign, creative, tracking, and deployment subtasks.
+- Use the exact paid-media roster rather than inferring channel eligibility from old reports: Google Ads is KJB, Replenish, Omega, Onsite, and Fresh Blends for Kwik Trip Ice Box campaigns; Meta Ads is Fagan, Shadow Heating, and KJB. Preserve a separate client and platform blueprint for every lane.
+- Treat the July 16 persistent-Chrome Google account readback as the current routing baseline: KJB, Replenish, Fresh Blends, Omega, and Onsite are all exact-account mapped; KJB Google is enabled and its cancelled duplicate is excluded; Replenish and Fresh Blends remain separate client lanes despite sharing one child account.
+- Treat the July 16 persistent-Chrome Meta readback as the current routing baseline for Fagan and KJB. Fagan's primary new campaign remained in draft and another campaign remained off; KJB's website traffic and retargeting campaigns were active while its Leads carousel remained in draft. Shadow is not visible in the current Meta portfolio and stays fail-closed until an exact account route is found.
+- Inspect every paid-media lane once per operating day. Rank only material delivery, pacing, tracking, lead-quality, landing-page, search-term, creative-fatigue, placement, billing, or change-history findings into the one Marketing Chief queue.
+- Learn from repeated accept, modify, defer, reject, and observed performance outcomes so future same-client predictions improve without letting one anecdote become a global rule.
 
 Use plain language. Lead with the outcome. Be candid when a step did not work. Never substitute reassuring wording for live verification.
 
 ## Brand voice
 
-Global Dillon voice: thoughtful, confident, warm, direct, practical, conversational, and context-aware.
+Global Dillon voice is now grounded in 1,032 sent client messages across 452 threads, not only adjectives. The recurring shape is a short `Hi` or relationship-appropriate `Hey`, the result or current state first, the minimum useful evidence, practical interpretation, and one concrete ask or checkpoint. Thanks, encouragement, and selective enthusiasm carry warmth; uncertainty, draft state, and modeled versus verified metrics are named directly.
 
 This is an operator voice, not a universal client brand voice. Client-facing campaign copy must load the client's own audience, offer, proof, relationship, voice, and design contract first.
 
@@ -106,13 +112,21 @@ Design quality comes from a reference-backed contract and rendered evaluation, n
 
 Detailed criteria live in `DESIGN_STANDARD.md`.
 
+## Portfolio priority
+
+Canonical priority lives in `state/portfolio-priorities.json`. Bridge Software is a real active client and the explicit highest-value account at rank 1. VA Claims Edge is rank 2. Bridge intake requires exact source identity so the real client cannot be confused with generic uses of the word "bridge." Zen Spa is inactive and historical-only; Revive remains `needs-confirmation` and excluded from active ranking.
+
+`Get-NextActions.ps1` considers portfolio value only after exact client routing and lane eligibility. Priority cannot bypass due dates, evidence requirements, approvals, safety gates, or WIP limits. Revenue, margin, retention risk, scope cost, and current strategy are not yet complete, so ranks below the two explicit priorities are inferred operating judgments and must remain easy to revise.
+
 ## Proof already in the system
 
-- The canonical registry contains 18 client records with stable client folders.
+- The canonical registry contains 19 client records: 17 active, Zen Spa inactive and historical-only, and Revive quarantined as `needs-confirmation`.
 - The queue, control view, and correction ledger are active under this project.
 - Prior Align HCM work demonstrates evidence ledgers, conservative attribution, fact checking, a design system, rendered review, and PDF production.
 - Prior Hope Wellness work demonstrates live audit, compliance correction, strategic prioritization, and an implementation queue.
 - Paid-media work has preserved brand separation and surfaced KPI integrity problems instead of inventing inaccessible data.
+- The July 16 original Gmail audit fully paginated the original 18 routes and found 2,555 globally deduplicated messages across 897 threads. A separate exact Bridge supplement covers 27 messages across 5 threads because overlap with the original corpus is possible. Together, the artifacts cover the 19 current registry routes without overstating an aggregate message count.
+- The redacted Slack audit exhausted cursors across 106 visible conversations, found 1,232 Dillon-authored messages, and produced live evidence for 12 active clients. Public and private channel, DM, group-DM, and `files:write` capabilities were live-probed. No file was uploaded or shared and no Slack write was performed.
 
 These are evidence of useful operating patterns, not proof of current portfolio profitability or campaign performance.
 
@@ -125,6 +139,8 @@ These are evidence of useful operating patterns, not proof of current portfolio 
 5. Suggested-next-action acceptance improves through recorded accept, modify, defer, and reject outcomes.
 6. First-pass voice acceptance and design review rounds improve through retrieved corrections and accepted examples.
 7. Mixed-client incidents, secret persistence, false automation-health claims, and stale KPIs presented as current remain zero.
+8. Communication-triggered launches move from exact source to reviewable landing page, campaign packet, and provider validation without Dillon manually coordinating the intermediate steps.
+9. Every active paid-media lane receives one daily review, while paused lanes remain visible without being restarted and non-roster clients never enter ad optimization.
 
 ## Known unknowns
 
@@ -133,6 +149,6 @@ Do not pretend these are known until current business evidence is reviewed:
 - Client revenue, margin, service cost, scope creep, renewal risk, and concentration risk.
 - Dillon's own pipeline, pricing, capacity, and portfolio strategy.
 - Current campaign ROI, creative win rates, and client satisfaction across the full portfolio.
-- A complete ICP, offer, proof library, voice corpus, and design contract for most individual clients.
+- A complete ICP, offer, proof library, accepted/rejected edit corpus, and design contract for most individual clients.
 
 Those gaps should become explicit client-context work, not conversational assumptions.

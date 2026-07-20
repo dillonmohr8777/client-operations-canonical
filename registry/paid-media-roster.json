@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-16",
+  "title": "Exact Daily Paid Media Roster",
+  "timezone": "America/New_York",
+  "purpose": "Fail-closed roster for one read-only paid-media review per America/New_York day during the Marketing Chief continue loop.",
+  "authority": {
+    "dailyReview": "read-only",
+    "providerCallsByManifestGenerator": "forbidden",
+    "canonicalQueueMutationByManifestGenerator": "forbidden",
+    "externalMutation": "exact-active-authority-required",
+    "historicalMetrics": "observations-never-authority"
+  },
+  "routePolicy": {
+    "exactRosterOnly": true,
+    "unlistedClientPlatformRoutes": "blocked",
+    "activeCanonicalClientRequired": true,
+    "paidMediaConfigRequired": true,
+    "opaqueAccountReferenceRequired": true,
+    "missingOrInvalidState": "fail-closed"
+  },
+  "lanes": [
+    {
+      "order": 1,
+      "laneId": "google-ads--kimberly-james-bridal",
+      "clientId": "kimberly-james-bridal",
+      "platform": "google-ads",
+      "configPath": "clients/kimberly-james-bridal/paid-media/launch-config.json",
+      "active": true,
+      "expectedDeliveryState": "active",
+      "channelSpecificReview": "search-terms-and-negatives",
+      "currentStateAsOf": "2026-07-16",
+      "currentStateNote": "Persistent Chrome verified the primary KJB account and excluded a cancelled duplicate. Campaign #1 was enabled as Performance Max at an observed $20 per day, with 54,814 impressions, $585.42 spend, and zero conversions in the last 30 days. This supersedes stale pause context but does not authorize a provider change.",
+      "reviewFocus": [
+        "Confirm the primary account and keep the cancelled duplicate excluded.",
+        "Investigate enabled delivery with zero recorded conversions before any optimization recommendation.",
+        "Keep conversion tracking, appointment quality, and landing-page health observable without treating current spend as authority."
+      ],
+      "metricsPolicy": "historical-observations-never-authority"
+    },
+    {
+      "order": 2,
+      "laneId": "google-ads--replenish-7-eleven",
+      "clientId": "replenish-7-eleven",
+      "platform": "google-ads",
+      "configPath": "clients/replenish-7-eleven/paid-media/launch-config.json",
+      "active": true,
+      "expectedDeliveryState": "unknown-requires-readback",
+      "channelSpecificReview": "search-terms-and-negatives",
+      "currentStateAsOf": "2026-07-16",
+      "currentStateNote": "Persistent Chrome verified the exact Replenish child-account mapping. The same child account displays separately routed Fresh Blends Ice Box campaigns; client evidence, assets, budgets, locations, conversions, and recommendations must remain separate. Billing and delivery still require a current readback before any recommendation.",
+      "reviewFocus": [
+        "Keep every location campaign and its budget separately attributable.",
+        "Verify billing health and current pause or restart state.",
+        "Reject historical delivery or conversion metrics as activation authority."
+      ],
+      "metricsPolicy": "historical-observations-never-authority"
+    },
+    {
+      "order": 3,
+      "laneId": "google-ads--fresh-blends-kwik-trip",
+      "clientId": "fresh-blends-kwik-trip",
+      "platform": "google-ads",
+      "configPath": "clients/fresh-blends-kwik-trip/paid-media/launch-config.json",
+      "active": true,
+      "expectedDeliveryState": "paused-unless-live-readback",
+      "channelSpecificReview": "search-terms-and-negatives",
+      "currentStateAsOf": "2026-07-16",
+      "currentStateNote": "Persistent Chrome verified the Fresh Blends route inside the same child account that also displays Replenish. Ice Box Performance Max campaigns #1110, #1161, #573, and #633 were observed paused, so the lane remains paused unless a fresh exact-account readback proves otherwise. Shared child-account visibility never permits cross-client blending.",
+      "reviewFocus": [
+        "Match campaign names exactly to Fresh Blends x Kwik Trip #{Store} | Ice Box | PMax.",
+        "Verify every store campaign remains paused unless current live readback proves a different approved state.",
+        "Keep Fresh Blends campaign, conversion, location, and budget evidence separate from Replenish even inside a shared child account."
+      ],
+      "metricsPolicy": "historical-observations-never-authority"
+    },
+    {
+      "order": 4,
+      "laneId": "google-ads--omega-landscaping",
+      "clientId": "omega-landscaping",
+      "platform": "google-ads",
+      "configPath": "clients/omega-landscaping/paid-media/launch-config.json",
+      "active": true,
+      "expectedDeliveryState": "active",
+      "channelSpecificReview": "search-terms-and-negatives",
+      "currentStateAsOf": "2026-07-16",
+      "currentStateNote": "Persistent Chrome verified the exact Omega account. Omega Landscaping & Concrete | Colorado Springs | PMax was enabled at an observed $50 per day with 13 conversions, while seven Search campaigns were paused. Platform state and conversions remain evidence only; lead quality gates optimization and budget recommendations.",
+      "reviewFocus": [
+        "Verify the enabled Colorado Springs Performance Max campaign and keep the seven observed Search campaigns separately attributable.",
+        "Reconcile the 13 observed platform conversions to qualified lead outcomes.",
+        "Review search intent and negative-keyword opportunities.",
+        "Hold budget recommendations when lead quality or disposition is unverified."
+      ],
+      "metricsPolicy": "historical-observations-never-authority"
+    },
+    {
+      "order": 5,
+      "laneId": "google-ads--onsite-concrete-landscape",
+      "clientId": "onsite-concrete-landscape",
+      "platform": "google-ads",
+      "configPath": "clients/onsite-concrete-landscape/paid-media/launch-config.json",
+      "active": true,
+      "expectedDeliveryState": "active",
+      "channelSpecificReview": "search-terms-and-negatives",
+      "currentStateAsOf": "2026-07-16",
+      "currentStateNote": "Persistent Chrome verified the exact Onsite account and an active Smart campaign at an observed $4.39 per day with a $133 monthly maximum. Two web conversions were visible, but conversion setup was incomplete, so lead quality and deduplication remain gates before any optimization or budget recommendation.",
+      "reviewFocus": [
+        "Verify the active Smart campaign, daily pacing, monthly cap, and available search-intent evidence.",
+        "Complete conversion setup and reconcile lead quality before treating the two observed web conversions as outcomes.",
+        "Verify deduplication across forms, calls, CRM, and imported conversions."
+      ],
+      "metricsPolicy": "historical-observations-never-authority"
+    },
+    {
+      "order": 6,
+      "laneId": "meta-ads--fagan-painting",
+      "clientId": "fagan-painting",
+      "platform": "meta-ads",
+      "configPath": "clients/fagan-painting/paid-media/launch-config.json",
+      "active": true,
+      "expectedDeliveryState": "unknown-requires-readback",
+      "channelSpecificReview": "creative-fatigue-and-placements",
+      "currentStateAsOf": "2026-07-16",
+      "currentStateNote": "Persistent Chrome verified the exact Fagan Meta ad account and six campaigns. The primary new campaign was in draft and another campaign was off; no state was changed. Attribution, full delivery, and closed-loop lead disposition remain gates because platform lead counts are not business outcomes.",
+      "reviewFocus": [
+        "Verify all six campaign states while preserving the observed draft and off states unless exact authority covers a change.",
+        "Reconcile Meta events to received, owned, contacted, qualified, and closed lead states.",
+        "Review creative fatigue, frequency, and placement concentration.",
+        "Block budget recommendations when attribution or follow-up ownership is unresolved."
+      ],
+      "metricsPolicy": "historical-observations-never-authority"
+    },
+    {
+      "order": 7,
+      "laneId": "meta-ads--shadow-heating-cooling",
+      "clientId": "shadow-heating-cooling",
+      "platform": "meta-ads",
+      "configPath": "clients/shadow-heating-cooling/paid-media/launch-config.json",
+      "active": true,
+      "expectedDeliveryState": "unknown-requires-readback",
+      "channelSpecificReview": "creative-fatigue-and-placements",
+      "currentStateAsOf": "2026-07-16",
+      "currentStateNote": "Meta Ads optimization is gated by verified lead quality. Platform volume or cost alone cannot authorize a scaling recommendation.",
+      "reviewFocus": [
+        "Reconcile lead quality and service-area fit.",
+        "Review creative fatigue, frequency, and placement quality.",
+        "Keep scaling recommendations blocked when downstream lead outcomes are missing."
+      ],
+      "metricsPolicy": "historical-observations-never-authority"
+    },
+    {
+      "order": 8,
+      "laneId": "meta-ads--kimberly-james-bridal",
+      "clientId": "kimberly-james-bridal",
+      "platform": "meta-ads",
+      "configPath": "clients/kimberly-james-bridal/paid-media/launch-config.json",
+      "active": true,
+      "expectedDeliveryState": "active",
+      "channelSpecificReview": "creative-fatigue-and-placements",
+      "currentStateAsOf": "2026-07-16",
+      "currentStateNote": "Persistent Chrome verified the exact KJB Meta ad account and four campaigns. Website Carousel Traffic and Website Retargeting were active, while a Leads carousel was in draft; no state was changed. Appointment-outcome and tracking gates still apply, and Meta evidence remains separate from Google.",
+      "reviewFocus": [
+        "Verify active website traffic and retargeting delivery while preserving the observed Leads carousel draft unless exact authority covers a change.",
+        "Reconcile lead events to booked and qualified appointments.",
+        "Verify pixel, form, CRM, and appointment tracking continuity.",
+        "Review creative fatigue and placements without inferring authority over the separate Google lane."
+      ],
+      "metricsPolicy": "historical-observations-never-authority"
+    }
+  ]
+}

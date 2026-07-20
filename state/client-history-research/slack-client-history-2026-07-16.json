@@ -1,0 +1,1623 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "slack-client-history-audit",
+  "generatedAtUtc": "2026-07-16T16:41:09.7204985Z",
+  "promotionInputAmendedAtUtc": "2026-07-16T19:09:00Z",
+  "promotionInputAmendment": "Added the newly confirmed active Onsite registry route as a zero-evidence row. No Slack fact or message was attributed to the client.",
+  "privacy": {
+    "redacted": true,
+    "containsSecrets": false,
+    "containsRawCommunications": false,
+    "containsDirectIdentifiers": false,
+    "storesOpaqueSlackLocatorsOnly": true,
+    "authorEvidencePolicy": "Only Dillon-authored messages support promoted facts; other replies were read only to resolve thread status."
+  },
+  "source": {
+    "registry": "registry/clients.json",
+    "registryGeneratedAtUtc": "2026-07-16T14:31:03.3067568Z",
+    "workspaceName": "Momentum Digital Agency",
+    "teamId": "T066HGS7N",
+    "connector": "native Slack app tools",
+    "authedUserRole": "AI Marketing Director / Account Manager"
+  },
+  "status": "complete",
+  "auditPolicy": {
+    "requestedCoverage": "all visible public channels, private channels, DMs, and group DMs",
+    "inventory": "all visible conversations, including archived inventory entries, with cursor exhaustion",
+    "evidence": "Dillon-authored messages only",
+    "channelHistory": "20 results per page until cursor exhaustion for each routed client channel",
+    "fallback": "exact client names and registry aliases across every conversation type",
+    "routing": "promote active canonical clients only; preserve inactive history; quarantine unresolved or needs-confirmation routes",
+    "writesAllowed": false
+  },
+  "coverage": {
+    "workspaceIdentityVerified": true,
+    "authedUserIdentityVerified": true,
+    "conversationInventoryEstablished": true,
+    "intendedConversationTypes": [
+      "public_channel",
+      "private_channel",
+      "im",
+      "mpim"
+    ],
+    "visibleConversationCounts": {
+      "public_channel": 3,
+      "private_channel": 30,
+      "im": 54,
+      "mpim": 19
+    },
+    "visibleConversationsTotal": 106,
+    "inventoryPagesRead": 1,
+    "inventoryCursorExhausted": true,
+    "exhaustivelyPaginatedChannelStreams": 13,
+    "canonicalEvidenceConversations": 29,
+    "relevantConversationsReviewed": 29,
+    "uniqueSearchQueries": 37,
+    "searchExecutions": 38,
+    "searchRequests": 94,
+    "duplicatePreflightPagesExcludedFromEvidenceCounts": 1,
+    "aliasFallbackQueries": 24,
+    "aliasFallbackPages": 28,
+    "aliasResultRowsReviewed": 209,
+    "dillonAuthoredMessagesReviewed": 1232,
+    "importantThreadsRead": 5,
+    "threadRepliesRead": 18,
+    "oldestDillonMessageAtUtc": "2026-01-30T23:17:51.708Z",
+    "newestDillonMessageAtUtc": "2026-07-16T16:37:50.264Z",
+    "allRelevantCursorsExhausted": true,
+    "authoritativeWithinVisibleDillonAuthoredScope": true,
+    "authoritativeWorkspaceWideConclusionsPossible": false,
+    "limitations": [
+      "Content not visible to the connected Slack user cannot be audited.",
+      "Deleted messages and inaccessible file bodies are outside this artifact.",
+      "Inactive and needs-confirmation clients are preserved but not promoted."
+    ]
+  },
+  "connectorChecks": [
+    {
+      "operation": "slack_list_workspaces",
+      "capability": "workspace",
+      "result": "success"
+    },
+    {
+      "operation": "slack_list_user_conversations",
+      "conversationType": "public_channel",
+      "scope": "channels:read",
+      "visibleCount": 3,
+      "result": "success"
+    },
+    {
+      "operation": "slack_list_user_conversations",
+      "conversationType": "private_channel",
+      "scope": "groups:read",
+      "visibleCount": 30,
+      "result": "success"
+    },
+    {
+      "operation": "slack_list_user_conversations",
+      "conversationType": "im",
+      "scope": "im:read",
+      "visibleCount": 54,
+      "result": "success"
+    },
+    {
+      "operation": "slack_list_user_conversations",
+      "conversationType": "mpim",
+      "scope": "mpim:read",
+      "visibleCount": 19,
+      "result": "success"
+    },
+    {
+      "operation": "slack_files_write_probe",
+      "capability": "files:write",
+      "result": "success",
+      "fileUploadedOrShared": false
+    }
+  ],
+  "blocker": null,
+  "portfolioPriorities": [
+    {
+      "priorityRank": 1,
+      "clientId": "bridge-software",
+      "route": "resolved-active",
+      "routingConfidence": 0.99
+    },
+    {
+      "priorityRank": 2,
+      "clientId": "va-claims-edge",
+      "route": "resolved-active",
+      "routingConfidence": 0.99
+    },
+    {
+      "clientId": "zen-spa-tropicana",
+      "route": "inactive-historical-only"
+    }
+  ],
+  "summary": {
+    "canonicalClientRecords": 20,
+    "activeClientRecords": 18,
+    "inactiveClientRecords": 1,
+    "needsConfirmationClientRecords": 1,
+    "clientsWithLiveSlackEvidence": 13,
+    "activeClientsWithLiveSlackEvidence": 12,
+    "inactiveHistoricalClientsWithEvidence": 1,
+    "activeClientsWithoutPromotableSlackEvidence": 6,
+    "quarantinedClients": 1,
+    "distinctCanonicalEvidenceConversations": 29,
+    "dillonAuthoredMessagesReviewed": 1232,
+    "importantThreadsRead": 5,
+    "dillonSlackVoicePatterns": [
+      "Short, warm acknowledgements for coordination; longer structured updates for client status.",
+      "Substantive updates usually lead with completion state, then verified metrics, interpretation, and the next move.",
+      "Candid caveats appear when attribution, lead quality, access, or delivery is not fully verified.",
+      "Concrete follow-up promises and direct requests for collaborator review are frequent.",
+      "Internal Slack is energetic and conversational while recurring performance reports are polished and scan-friendly.",
+      "Verified platform metrics are kept separate from modeled planning values and unproven business outcomes."
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "align-hcm",
+      "displayName": "Align HCM",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "slackAuditStatus": "no-promotable-dillon-authored-evidence",
+      "matchedConversations": [],
+      "coverage": {
+        "conversationTypes": [],
+        "messageCount": 0,
+        "threadCount": 0,
+        "oldestMessageAt": null,
+        "newestMessageAt": null
+      },
+      "keyPeopleAndRoles": [],
+      "recurringWork": [],
+      "commitmentsAndPromises": [],
+      "decisions": [],
+      "campaignsAndServices": [],
+      "metricsAndTools": [],
+      "dillonVoiceAndTonePatterns": [],
+      "openLoops": [],
+      "lastKnownStatusFromSlack": null,
+      "confidence": {
+        "level": "none",
+        "score": 0,
+        "rationale": "Exact-name and alias searches returned no safely attributable Dillon-authored Slack evidence."
+      },
+      "opaqueLocators": {
+        "channelIds": [],
+        "messageIds": [],
+        "threadIds": []
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "momentum-360",
+      "displayName": "Momentum 360",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "slackAuditStatus": "complete-live-evidence",
+      "matchedConversations": [
+        {
+          "conversationId": "C0245CEKF16",
+          "type": "public_channel",
+          "routingBasis": "exact agency operations channel"
+        },
+        {
+          "conversationId": "C06CL0R09A4",
+          "type": "private_channel",
+          "routingBasis": "exact agency marketing channel"
+        },
+        {
+          "conversationId": "C04HXSVN2CS",
+          "type": "private_channel",
+          "routingBasis": "exact agency product update"
+        },
+        {
+          "conversationId": "D0A6ECLQ0S1",
+          "type": "im",
+          "routingBasis": "exact agency-name evidence"
+        },
+        {
+          "conversationId": "C0BE7BARSDB",
+          "type": "mpim",
+          "routingBasis": "exact agency website implementation"
+        },
+        {
+          "conversationId": "D0AHHTJR6TT",
+          "type": "im",
+          "routingBasis": "exact agency landing-page review"
+        },
+        {
+          "conversationId": "C066HKJ2E",
+          "type": "public_channel",
+          "routingBasis": "exact agency operating-system update"
+        },
+        {
+          "conversationId": "C0223RR7R6D",
+          "type": "private_channel",
+          "routingBasis": "exact account-management rollout"
+        },
+        {
+          "conversationId": "C1DEJDQ7Q",
+          "type": "private_channel",
+          "routingBasis": "exact agency creative work"
+        }
+      ],
+      "coverage": {
+        "conversationTypes": [
+          "public_channel",
+          "private_channel",
+          "im",
+          "mpim"
+        ],
+        "messageCount": 91,
+        "threadCount": 0,
+        "oldestMessageAt": "2026-01-30T23:17:51.708Z",
+        "newestMessageAt": "2026-07-11T12:46:00.839Z"
+      },
+      "keyPeopleAndRoles": [
+        "Agency principal and final reviewer",
+        "Growth, account-management, and operations collaborators",
+        "Technical implementation collaborators"
+      ],
+      "recurringWork": [
+        "Agency landing pages and website conversion paths",
+        "HubSpot attribution, chat, forms, and call-source integration",
+        "AI reporting, account-manager tooling, and productized service concepts"
+      ],
+      "commitmentsAndPromises": [
+        "Deliver reviewable iterations with approval checkpoints.",
+        "Keep risky sends, publishing, spend, and account changes behind human review.",
+        "Provide QA evidence and a human-handoff path for AI tools."
+      ],
+      "decisions": [
+        "Use HubSpot as the central reporting layer while keeping web chat and phone-call capture separate.",
+        "Treat call-routing changes as an admin-access task even though call data already reaches reporting.",
+        "Pilot the agency AI product with a small founding cohort before broader rollout."
+      ],
+      "campaignsAndServices": [
+        "Agency website conversion",
+        "CRM and call attribution",
+        "AI specialist command center and GBP automation",
+        "Internal reporting enablement"
+      ],
+      "metricsAndTools": [
+        "HubSpot and live chat",
+        "CallRail and Voice Assist attribution",
+        "Netlify, Zapier, React, Next.js, TypeScript, and OpenAI Responses API",
+        "Slack evidence reported 2,677 call records visible to the CRM attribution layer."
+      ],
+      "dillonVoiceAndTonePatterns": [
+        "Idea-forward and enthusiastic, then practical about implementation.",
+        "Documents corrections when live-system evidence changes the interpretation.",
+        "Uses polished launch summaries and brief conversational follow-ups."
+      ],
+      "openLoops": [
+        "Call-platform admin access is still required for routing and after-hours settings.",
+        "AI product cohort, pricing, and rollout remain approval decisions.",
+        "Some landing-page iterations still need final sign-off."
+      ],
+      "lastKnownStatusFromSlack": "The agency chatbot and CRM path were live, call data was reaching attribution, and the AI product was live as a reviewable offer.",
+      "confidence": {
+        "level": "high",
+        "score": 0.96,
+        "rationale": "Multiple exact agency channels and exact-name messages were reviewed across the available range."
+      },
+      "opaqueLocators": {
+        "channelIds": [
+          "C0245CEKF16",
+          "C06CL0R09A4",
+          "C04HXSVN2CS",
+          "D0A6ECLQ0S1",
+          "C0BE7BARSDB",
+          "D0AHHTJR6TT"
+        ],
+        "messageIds": [
+          "1783773960.839019",
+          "1783193726.365649",
+          "1782925388.556649",
+          "1781806763.315209"
+        ],
+        "threadIds": []
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "kimberly-james-bridal",
+      "displayName": "Kimberly James Bridal",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "slackAuditStatus": "complete-live-evidence",
+      "matchedConversations": [
+        {
+          "conversationId": "C0530MVK371",
+          "type": "private_channel",
+          "routingBasis": "exact named client channel"
+        },
+        {
+          "conversationId": "C0AUP26T2H5",
+          "type": "mpim",
+          "routingBasis": "exact reporting-tool evidence"
+        },
+        {
+          "conversationId": "D0AGQGYHM5M",
+          "type": "im",
+          "routingBasis": "exact access and ad-status evidence"
+        },
+        {
+          "conversationId": "C0223RR7R6D",
+          "type": "private_channel",
+          "routingBasis": "exact website work"
+        },
+        {
+          "conversationId": "D0A87KHFGAV",
+          "type": "im",
+          "routingBasis": "exact project-priority evidence"
+        }
+      ],
+      "coverage": {
+        "conversationTypes": [
+          "private_channel",
+          "im",
+          "mpim"
+        ],
+        "messageCount": 175,
+        "threadCount": 0,
+        "oldestMessageAt": "2026-03-12T17:07:21.090Z",
+        "newestMessageAt": "2026-07-16T00:10:04.606Z"
+      },
+      "keyPeopleAndRoles": [
+        "Client owner and lead follow-up decision maker",
+        "Agency principal and billing reviewer",
+        "Creative and automation collaborators"
+      ],
+      "recurringWork": [
+        "Google and Meta reporting",
+        "Lead-quality and appointment attribution",
+        "Landing-page, FAQ, SEO, and scheduling improvements"
+      ],
+      "commitmentsAndPromises": [
+        "Provide requested spend numbers promptly.",
+        "Report lead quality and appointment outcomes after follow-up.",
+        "Verify submit events, source fields, and scheduling handoff end to end."
+      ],
+      "decisions": [
+        "Pause Google advertising while continuing Meta on the confirmed monthly budget.",
+        "Judge Meta by qualified conversations and booked appointments, not raw form count.",
+        "Use the dedicated appointment page and FAQ as the paid-traffic path."
+      ],
+      "campaignsAndServices": [
+        "Google Performance Max and future Search",
+        "Meta lead forms",
+        "Website FAQ, appointment page, SEO, and GBP support"
+      ],
+      "metricsAndTools": [
+        "Google Ads, Meta Ads, Squarespace, scheduling workflow, Zapier, and Netlify reporting",
+        "Latest detailed week: 14,598 Google impressions, 365 clicks, and no tracked conversions.",
+        "Same week: 1,851 Meta impressions and no form leads; confirmed Meta monthly budget was $500."
+      ],
+      "dillonVoiceAndTonePatterns": [
+        "Candid about spam, attribution uncertainty, and appointment outcomes.",
+        "Energetic when lead quality improves and quick to promise follow-up.",
+        "Metrics-first reports with conversational internal updates."
+      ],
+      "openLoops": [
+        "Confirm whether qualified conversations become appointments.",
+        "Complete conversion-path and source-attribution QA.",
+        "Review Meta delivery before budget increases.",
+        "Decide when the paused Google campaign should resume."
+      ],
+      "lastKnownStatusFromSlack": "Google was paused, Meta remained active on the confirmed budget, the advertising credit was received, and lead quality was being monitored.",
+      "confidence": {
+        "level": "high",
+        "score": 0.98,
+        "rationale": "The exact client channel and exact-name matches across other conversation types were exhaustively reviewed."
+      },
+      "opaqueLocators": {
+        "channelIds": [
+          "C0530MVK371",
+          "C0AUP26T2H5",
+          "D0AGQGYHM5M",
+          "C0223RR7R6D",
+          "D0A87KHFGAV"
+        ],
+        "messageIds": [
+          "1784160604.606269",
+          "1784145817.351839",
+          "1784058483.516109",
+          "1783981577.041759"
+        ],
+        "threadIds": []
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "bok-law-firm",
+      "displayName": "BOK Law Firm",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "slackAuditStatus": "no-promotable-dillon-authored-evidence",
+      "matchedConversations": [],
+      "coverage": {
+        "conversationTypes": [],
+        "messageCount": 0,
+        "threadCount": 0,
+        "oldestMessageAt": null,
+        "newestMessageAt": null
+      },
+      "keyPeopleAndRoles": [],
+      "recurringWork": [],
+      "commitmentsAndPromises": [],
+      "decisions": [],
+      "campaignsAndServices": [],
+      "metricsAndTools": [],
+      "dillonVoiceAndTonePatterns": [],
+      "openLoops": [],
+      "lastKnownStatusFromSlack": null,
+      "confidence": {
+        "level": "none",
+        "score": 0,
+        "rationale": "Exact-name and alias searches returned no safely attributable Dillon-authored Slack evidence."
+      },
+      "opaqueLocators": {
+        "channelIds": [],
+        "messageIds": [],
+        "threadIds": []
+      },
+      "routingConstraint": "Independent portfolio client; not a Momentum 360 sub-client; portfolio owner remains unknown."
+    },
+    {
+      "clientId": "fagan-painting",
+      "displayName": "Fagan Painting",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "slackAuditStatus": "complete-live-evidence",
+      "matchedConversations": [
+        {
+          "conversationId": "C0AMD2E444E",
+          "type": "private_channel",
+          "routingBasis": "exact named client channel"
+        },
+        {
+          "conversationId": "D0B2GPKUGGZ",
+          "type": "im",
+          "routingBasis": "exact landing-page evidence"
+        }
+      ],
+      "coverage": {
+        "conversationTypes": [
+          "private_channel",
+          "im"
+        ],
+        "messageCount": 40,
+        "threadCount": 0,
+        "oldestMessageAt": "2026-05-27T16:37:32.161Z",
+        "newestMessageAt": "2026-07-15T16:16:10.283Z"
+      },
+      "keyPeopleAndRoles": [
+        "Client-side project contact",
+        "Agency landing-page collaborator",
+        "Agency account team"
+      ],
+      "recurringWork": [
+        "Paid-ad reporting",
+        "Landing-page A/B testing",
+        "Form and phone-lead verification"
+      ],
+      "commitmentsAndPromises": [
+        "Continue the comparison long enough for a reliable read.",
+        "Report only legitimate inquiries and confirmed phone leads.",
+        "Keep form and follow-up handoffs clean."
+      ],
+      "decisions": [
+        "Use two landing-page paths as an active A/B test.",
+        "Limit the client-facing lead record to verified legitimate inquiries."
+      ],
+      "campaignsAndServices": [
+        "Painting estimate acquisition",
+        "Paid-ad variant testing",
+        "Landing-page conversion work"
+      ],
+      "metricsAndTools": [
+        "Paid advertising, website forms, call tracking, and Netlify reporting",
+        "Latest verified lead record: three legitimate inquiries, including two forms and one phone lead.",
+        "A short test window used a $1,000 budget across multiple variants."
+      ],
+      "dillonVoiceAndTonePatterns": [
+        "Celebratory and teammate-oriented when results improve.",
+        "Explains testing logic plainly and separates design preference from conversion evidence."
+      ],
+      "openLoops": [
+        "Let the test accumulate enough data.",
+        "Keep valid form and phone handoffs attributed cleanly."
+      ],
+      "lastKnownStatusFromSlack": "Three verified inquiries were recorded and landing-page and creative tests remained active.",
+      "confidence": {
+        "level": "high",
+        "score": 0.95,
+        "rationale": "The exact client channel and exact-name DM evidence were reviewed with cursor exhaustion."
+      },
+      "opaqueLocators": {
+        "channelIds": [
+          "C0AMD2E444E",
+          "D0B2GPKUGGZ"
+        ],
+        "messageIds": [
+          "1784132161.183049",
+          "1784072854.065029",
+          "1783975965.405669",
+          "1783974532.577409"
+        ],
+        "threadIds": []
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "replenish-7-eleven",
+      "displayName": "Replenish / 7-Eleven",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "slackAuditStatus": "complete-live-evidence-shared-channel-separated",
+      "matchedConversations": [
+        {
+          "conversationId": "C0A8XE76XGR",
+          "type": "private_channel",
+          "routingBasis": "shared channel with explicit brand-separated evidence"
+        },
+        {
+          "conversationId": "D0A6ECLQ0S1",
+          "type": "im",
+          "routingBasis": "exact landing-page evidence"
+        }
+      ],
+      "coverage": {
+        "conversationTypes": [
+          "private_channel",
+          "im"
+        ],
+        "messageCount": 150,
+        "threadCount": 0,
+        "oldestMessageAt": "2026-03-23T17:45:13.365Z",
+        "newestMessageAt": "2026-07-13T21:39:48.404Z"
+      },
+      "keyPeopleAndRoles": [
+        "Client-side multi-location contact",
+        "Agency principal",
+        "Agency reporting team"
+      ],
+      "recurringWork": [
+        "Multi-location Google campaigns",
+        "City and store reporting",
+        "Separate PDF, presentation, and dashboard packages"
+      ],
+      "commitmentsAndPromises": [
+        "Maintain brand-separated client materials.",
+        "Use city performance to guide budget and creative decisions.",
+        "Keep verified metrics distinct from modeled direction-click values."
+      ],
+      "decisions": [
+        "Launch four additional location campaigns from the approved framework.",
+        "Operate seven active city campaigns while keeping Replenish separate from Fresh Blends.",
+        "Use location traffic and direction intent as the optimization view."
+      ],
+      "campaignsAndServices": [
+        "7-Eleven location advertising",
+        "Multi-city Performance Max rollout",
+        "Location pages and direction-intent reporting"
+      ],
+      "metricsAndTools": [
+        "Google Ads, Performance Max, GBP, Get Directions reporting, Netlify, PDF, and presentations",
+        "Latest update: seven active campaigns, 41,538 impressions, 1,357 clicks, $694.71 spend, and $0.51 CPC.",
+        "The 323 direction clicks and $2.15 cost were explicitly modeled planning values."
+      ],
+      "dillonVoiceAndTonePatterns": [
+        "Precise about measurement type and brand boundaries.",
+        "Dense KPI summaries followed by direct operational interpretation."
+      ],
+      "openLoops": [
+        "Finish review for location assets still under platform review.",
+        "Use the next complete city window for budget and creative decisions."
+      ],
+      "lastKnownStatusFromSlack": "Seven city campaigns were active and reporting was current, with location optimization next and brand separation preserved.",
+      "confidence": {
+        "level": "high",
+        "score": 0.97,
+        "rationale": "The shared channel was exhausted and exact client-name searches isolated Replenish evidence."
+      },
+      "opaqueLocators": {
+        "channelIds": [
+          "C0A8XE76XGR",
+          "D0A6ECLQ0S1"
+        ],
+        "messageIds": [
+          "1783978788.404229",
+          "1783956966.400029",
+          "1783438484.153449",
+          "1783395465.086929"
+        ],
+        "threadIds": []
+      },
+      "routingConstraint": "Shares a Slack channel with Fresh Blends; facts remain brand-separated."
+    },
+    {
+      "clientId": "fresh-blends-kwik-trip",
+      "displayName": "Fresh Blends / Kwik Trip",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "slackAuditStatus": "complete-live-evidence-shared-channel-separated",
+      "matchedConversations": [
+        {
+          "conversationId": "C0A8XE76XGR",
+          "type": "private_channel",
+          "routingBasis": "shared channel with explicit brand-separated evidence"
+        },
+        {
+          "conversationId": "D0A6ECLQ0S1",
+          "type": "im",
+          "routingBasis": "exact landing-page evidence"
+        }
+      ],
+      "coverage": {
+        "conversationTypes": [
+          "private_channel",
+          "im"
+        ],
+        "messageCount": 150,
+        "threadCount": 1,
+        "oldestMessageAt": "2026-03-23T17:37:27.923Z",
+        "newestMessageAt": "2026-07-13T21:39:48.404Z"
+      },
+      "keyPeopleAndRoles": [
+        "Client-side multi-location contact",
+        "Agency principal",
+        "Agency reporting team"
+      ],
+      "recurringWork": [
+        "Kwik Trip location advertising",
+        "Store-level direction reporting",
+        "Separate reports and presentations"
+      ],
+      "commitmentsAndPromises": [
+        "Keep Fresh Blends reporting separate from Replenish.",
+        "Restart comparisons only after a complete future delivery window."
+      ],
+      "decisions": [
+        "Confirm the campaign pause and preserve a clean baseline.",
+        "Use store-level direction efficiency to identify scale and tune-up candidates."
+      ],
+      "campaignsAndServices": [
+        "Kwik Trip store campaigns",
+        "Fresh Blends landing page",
+        "Store-intent reporting"
+      ],
+      "metricsAndTools": [
+        "Google Ads, Performance Max, Get Directions reporting, Netlify, PDF, and presentations",
+        "Last complete June report: $2,000 spend, 204,969 impressions, 738 direction clicks, and $2.71 cost per direction.",
+        "Campaign pause confirmed July 9."
+      ],
+      "dillonVoiceAndTonePatterns": [
+        "Explains why a pause changes the next valid reporting window.",
+        "Keeps the shared account narrative separate by brand."
+      ],
+      "openLoops": [
+        "Wait for a complete future delivery window.",
+        "Confirm any restart and its location scope."
+      ],
+      "lastKnownStatusFromSlack": "Fresh Blends campaigns were paused and reporting remained separate from active Replenish work.",
+      "confidence": {
+        "level": "high",
+        "score": 0.97,
+        "rationale": "The shared channel, a KPI thread, and exact-name evidence were reviewed with brand separation."
+      },
+      "opaqueLocators": {
+        "channelIds": [
+          "C0A8XE76XGR",
+          "D0A6ECLQ0S1"
+        ],
+        "messageIds": [
+          "1783978788.404229",
+          "1783395465.086929",
+          "1781538678.197269",
+          "1778445100.819889"
+        ],
+        "threadIds": [
+          "1781538678.197269"
+        ]
+      },
+      "routingConstraint": "Shares a Slack channel with Replenish; facts remain brand-separated."
+    },
+    {
+      "clientId": "nkcdc",
+      "displayName": "NKCDC",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "slackAuditStatus": "complete-live-evidence",
+      "matchedConversations": [
+        {
+          "conversationId": "C0AQB2TF1AB",
+          "type": "private_channel",
+          "routingBasis": "exact registry and named client channel"
+        },
+        {
+          "conversationId": "C066HKJ2E",
+          "type": "public_channel",
+          "routingBasis": "exact launch-packet evidence"
+        }
+      ],
+      "coverage": {
+        "conversationTypes": [
+          "private_channel",
+          "public_channel"
+        ],
+        "messageCount": 90,
+        "threadCount": 0,
+        "oldestMessageAt": "2026-04-03T17:30:51.738Z",
+        "newestMessageAt": "2026-07-15T20:25:50.222Z"
+      },
+      "keyPeopleAndRoles": [
+        "Client stakeholder",
+        "Agency principal and renewal reviewer",
+        "Paid-media and content collaborators"
+      ],
+      "recurringWork": [
+        "Google and Meta acquisition",
+        "Business-tax landing page and tracking",
+        "Broader website and content scope planning"
+      ],
+      "commitmentsAndPromises": [
+        "Prepare a broader renewal offer and PDF.",
+        "Schedule a client conversation and stay flexible on timing.",
+        "Continue helping beyond ads if broader scope is supported."
+      ],
+      "decisions": [
+        "Turn off Performance Max and move to Search-first.",
+        "Tighten forms around business ownership, location fit, need, timeline, and contact method.",
+        "Frame renewal around broader website and content needs, not only tax prep."
+      ],
+      "campaignsAndServices": [
+        "Business-tax and business-help Search",
+        "Meta lead forms",
+        "Landing pages, organic content, monitoring, and renewal planning"
+      ],
+      "metricsAndTools": [
+        "Google Search, Meta, GTM, GA4, call-click tracking, Netlify, and PDF reporting",
+        "Latest detailed week: 41 clicks, two conversions, $40.04 spend, $20.02 CPA, and 20.92% CTR."
+      ],
+      "dillonVoiceAndTonePatterns": [
+        "Collaborative on scope while advocating for the larger opportunity.",
+        "Candid about slow client responses and whether leads produced outcomes."
+      ],
+      "openLoops": [
+        "Secure agreement on broader renewal scope.",
+        "Get a client response.",
+        "Confirm whether higher-intent Search creates real outcomes."
+      ],
+      "lastKnownStatusFromSlack": "A broader renewal proposal was being finalized after a strong internal call while Search and lead tracking remained active.",
+      "confidence": {
+        "level": "high",
+        "score": 0.98,
+        "rationale": "The exact registry channel and a public launch update were reviewed."
+      },
+      "opaqueLocators": {
+        "channelIds": [
+          "C0AQB2TF1AB",
+          "C066HKJ2E"
+        ],
+        "messageIds": [
+          "1784147150.222259",
+          "1784128687.872489",
+          "1783536593.556939",
+          "1783374463.077749"
+        ],
+        "threadIds": []
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "zen-spa-tropicana",
+      "displayName": "Zen Spa at Tropicana",
+      "registryStatus": "inactive",
+      "promotionEligibility": "historical-only-excluded-from-promotion",
+      "slackAuditStatus": "complete-historical-evidence-not-for-active-promotion",
+      "matchedConversations": [
+        {
+          "conversationId": "C0B3HBCR8AZ",
+          "type": "private_channel",
+          "routingBasis": "exact named historical client channel"
+        },
+        {
+          "conversationId": "D0B04M9JEPP",
+          "type": "im",
+          "routingBasis": "exact historical content-shoot evidence"
+        }
+      ],
+      "coverage": {
+        "conversationTypes": [
+          "private_channel",
+          "im"
+        ],
+        "messageCount": 231,
+        "threadCount": 1,
+        "oldestMessageAt": "2026-05-13T16:03:42.370Z",
+        "newestMessageAt": "2026-07-16T00:20:30.322Z"
+      },
+      "keyPeopleAndRoles": [
+        "Former client owner",
+        "Agency handoff team",
+        "External provider-verification owners"
+      ],
+      "recurringWork": [
+        "Website restoration",
+        "Directory and account handoff",
+        "Opening content planning"
+      ],
+      "commitmentsAndPromises": [
+        "Consolidate provider actions into one handoff.",
+        "Remove remaining agency access.",
+        "Document client-controlled verification steps."
+      ],
+      "decisions": [
+        "Treat the engagement as completed handoff, not active promotion.",
+        "Retain history while excluding the client from ranking.",
+        "Leave provider verification with the former client or provider owners."
+      ],
+      "campaignsAndServices": [
+        "Website restoration",
+        "Directory and account recovery",
+        "Content-shoot planning",
+        "Provider verification handoff"
+      ],
+      "metricsAndTools": [
+        "Squarespace, business-profile and directory providers, consolidated PDF handoff, and shoot planning"
+      ],
+      "dillonVoiceAndTonePatterns": [
+        "Direct and boundary-conscious during handoff.",
+        "Separates completed agency work from client or provider responsibilities."
+      ],
+      "openLoops": [
+        "Provider verification remained outside agency control.",
+        "Final contributor-access revocation needs independent confirmation if later material."
+      ],
+      "lastKnownStatusFromSlack": "Website restoration and handoff were complete; remaining actions belonged to the former client or providers.",
+      "confidence": {
+        "level": "high",
+        "score": 0.98,
+        "rationale": "The exact channel, exact-name DM evidence, and a relevant thread were reviewed; registry now marks the client inactive."
+      },
+      "opaqueLocators": {
+        "channelIds": [
+          "C0B3HBCR8AZ",
+          "D0B04M9JEPP"
+        ],
+        "messageIds": [
+          "1784154460.212809",
+          "1784079712.921619",
+          "1782852385.315159",
+          "1782225563.511919"
+        ],
+        "threadIds": [
+          "1782852385.315159"
+        ]
+      },
+      "routingConstraint": "Inactive as of 2026-07-16; preserve history and do not promote or rank."
+    },
+    {
+      "clientId": "hope-wellness-center",
+      "displayName": "Hope Wellness Center",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "slackAuditStatus": "complete-live-evidence",
+      "matchedConversations": [
+        {
+          "conversationId": "C092MVBN8SV",
+          "type": "private_channel",
+          "routingBasis": "exact named client channel"
+        }
+      ],
+      "coverage": {
+        "conversationTypes": [
+          "private_channel"
+        ],
+        "messageCount": 16,
+        "threadCount": 0,
+        "oldestMessageAt": "2026-06-10T18:11:08.548Z",
+        "newestMessageAt": "2026-07-16T14:24:42.592Z"
+      },
+      "keyPeopleAndRoles": [
+        "Client stakeholder",
+        "Agency strategy and creative collaborators"
+      ],
+      "recurringWork": [
+        "Visual identity system",
+        "Website audit",
+        "Animation and implementation planning"
+      ],
+      "commitmentsAndPromises": [
+        "Deliver deeper analysis, an implementation queue, animation, and supporting email before the team call."
+      ],
+      "decisions": [
+        "Use calm, human illustrations tied to trust, compassion, inclusion, and hope instead of generic stock imagery."
+      ],
+      "campaignsAndServices": [
+        "Brand visual system",
+        "Website audit",
+        "Service illustrations",
+        "Short-form animation"
+      ],
+      "metricsAndTools": [
+        "A 17-illustration library, website audit, implementation queue, and 60-second animation"
+      ],
+      "dillonVoiceAndTonePatterns": [
+        "Warm and brand-sensitive in creative rationale.",
+        "Proactive about sending completed work ahead of calls."
+      ],
+      "openLoops": [
+        "Confirm client feedback.",
+        "Confirm whether the scheduled discussion produced new actions."
+      ],
+      "lastKnownStatusFromSlack": "The deeper analysis, implementation queue, and animation were complete and sent before the planned discussion.",
+      "confidence": {
+        "level": "high",
+        "score": 0.94,
+        "rationale": "The exact client channel was exhausted; the evidence set is smaller but direct."
+      },
+      "opaqueLocators": {
+        "channelIds": [
+          "C092MVBN8SV"
+        ],
+        "messageIds": [
+          "1784211882.592879",
+          "1782919034.318429",
+          "1781380028.650549"
+        ],
+        "threadIds": []
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "omega-landscaping",
+      "displayName": "Omega Landscaping and Concrete",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "slackAuditStatus": "complete-live-evidence",
+      "matchedConversations": [
+        {
+          "conversationId": "C09DP3AMNQ7",
+          "type": "private_channel",
+          "routingBasis": "exact named client channel"
+        },
+        {
+          "conversationId": "D0AEZ0EKDLJ",
+          "type": "im",
+          "routingBasis": "exact onboarding evidence"
+        }
+      ],
+      "coverage": {
+        "conversationTypes": [
+          "private_channel",
+          "im"
+        ],
+        "messageCount": 67,
+        "threadCount": 1,
+        "oldestMessageAt": "2026-02-16T16:04:12.311Z",
+        "newestMessageAt": "2026-07-13T15:23:17.423Z"
+      },
+      "keyPeopleAndRoles": [
+        "Client owner",
+        "Agency account and paid-media team",
+        "Website and tracking collaborators"
+      ],
+      "recurringWork": [
+        "Performance Max and Search planning",
+        "Call and form attribution",
+        "High-intent service targeting and dashboards"
+      ],
+      "commitmentsAndPromises": [
+        "Tighten attribution and local high-intent coverage.",
+        "Review call quality before scaling.",
+        "Use client feedback to shape Search."
+      ],
+      "decisions": [
+        "Keep Performance Max as the current demand engine.",
+        "Build Search around direct local intent after call review.",
+        "Add structured search themes, audience signals, and a local custom segment."
+      ],
+      "campaignsAndServices": [
+        "Landscaping and concrete lead generation",
+        "Performance Max",
+        "Planned Search",
+        "Website conversion and attribution"
+      ],
+      "metricsAndTools": [
+        "Google Ads, search themes, audience signals, calls, forms, and Netlify reporting",
+        "Latest week: 5,476 impressions, 197 clicks, 3.60% CTR, $328.70 spend, $1.67 CPC, and three conversions."
+      ],
+      "dillonVoiceAndTonePatterns": [
+        "Metrics-forward about traffic efficiency versus lead quality.",
+        "Uses client feedback as the gate before scale."
+      ],
+      "openLoops": [
+        "Validate call and form quality.",
+        "Tighten attribution and decide Search structure.",
+        "Confirm remaining website access needs without storing credentials."
+      ],
+      "lastKnownStatusFromSlack": "Traffic efficiency improved and three conversions were recorded, with attribution and high-intent Search as the next focus.",
+      "confidence": {
+        "level": "high",
+        "score": 0.97,
+        "rationale": "The exact channel, onboarding DM, and one important thread were reviewed."
+      },
+      "opaqueLocators": {
+        "channelIds": [
+          "C09DP3AMNQ7",
+          "D0AEZ0EKDLJ"
+        ],
+        "messageIds": [
+          "1783956197.423159",
+          "1783452601.352189",
+          "1782159013.092079",
+          "1782157586.109829"
+        ],
+        "threadIds": [
+          "1781186715.234489"
+        ]
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "shadow-heating-cooling",
+      "displayName": "Shadow Heating and Cooling",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "slackAuditStatus": "complete-live-evidence",
+      "matchedConversations": [
+        {
+          "conversationId": "C06TQALM4JF",
+          "type": "private_channel",
+          "routingBasis": "exact named client channel"
+        },
+        {
+          "conversationId": "D0A6ECLQ0S1",
+          "type": "im",
+          "routingBasis": "exact historical setup evidence"
+        }
+      ],
+      "coverage": {
+        "conversationTypes": [
+          "private_channel",
+          "im"
+        ],
+        "messageCount": 97,
+        "threadCount": 1,
+        "oldestMessageAt": "2026-02-09T20:29:26.248Z",
+        "newestMessageAt": "2026-07-14T22:15:14.493Z"
+      },
+      "keyPeopleAndRoles": [
+        "Client owner and lead follow-up owner",
+        "Agency account lead",
+        "Agency principal"
+      ],
+      "recurringWork": [
+        "Meta lead generation",
+        "Lead qualification and outreach",
+        "Website build and local-search support"
+      ],
+      "commitmentsAndPromises": [
+        "Keep the client informed about new leads and quality.",
+        "Continue outreach when email response is weak.",
+        "Verify viability before using results client-facing."
+      ],
+      "decisions": [
+        "Use extra form questions to improve quality.",
+        "Keep the summer service angle while performance is strong.",
+        "Use quality as the gate before spend increases."
+      ],
+      "campaignsAndServices": [
+        "Local HVAC Meta leads",
+        "Website redesign and launch",
+        "Local search and Google submission",
+        "Outbound follow-up"
+      ],
+      "metricsAndTools": [
+        "Meta lead forms, website conversion paths, Google indexing, local search, and Netlify reporting",
+        "Latest seven-day update: four leads from $57.60 spend at $14.40 CPL.",
+        "A prior stronger week reported 15 leads from $66.16 at $4.41 CPL."
+      ],
+      "dillonVoiceAndTonePatterns": [
+        "Highly energetic around lead gains but candid about closures.",
+        "Protective of client sentiment and quick to offer direct follow-up."
+      ],
+      "openLoops": [
+        "Confirm whether leads become completed work.",
+        "Decide whether quality supports scaling.",
+        "Maintain direct outreach when email fails."
+      ],
+      "lastKnownStatusFromSlack": "The website was live and submitted to Google, the client was happy, and Meta lead quality was improving though closure remained open.",
+      "confidence": {
+        "level": "high",
+        "score": 0.98,
+        "rationale": "The exact client channel, exact-name DM evidence, and a lead-quality thread were reviewed."
+      },
+      "opaqueLocators": {
+        "channelIds": [
+          "C06TQALM4JF",
+          "D0A6ECLQ0S1"
+        ],
+        "messageIds": [
+          "1784067314.493189",
+          "1783975672.258599",
+          "1783348708.455969",
+          "1782447164.267269"
+        ],
+        "threadIds": [
+          "1782447164.267269"
+        ]
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "va-claims-edge",
+      "displayName": "VA Claims Edge",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "priorityRank": 2,
+      "slackAuditStatus": "complete-live-evidence",
+      "matchedConversations": [
+        {
+          "conversationId": "C0AU6GMGY73",
+          "type": "private_channel",
+          "routingBasis": "exact named client channel"
+        },
+        {
+          "conversationId": "D0A8UQQ27D1",
+          "type": "im",
+          "routingBasis": "exact design-sprint evidence"
+        }
+      ],
+      "coverage": {
+        "conversationTypes": [
+          "private_channel",
+          "im"
+        ],
+        "messageCount": 64,
+        "threadCount": 0,
+        "oldestMessageAt": "2026-06-10T12:49:04.029Z",
+        "newestMessageAt": "2026-07-16T16:37:50.264Z"
+      },
+      "keyPeopleAndRoles": [
+        "Client product stakeholders",
+        "Agency product and UX lead",
+        "Development collaborator"
+      ],
+      "recurringWork": [
+        "Role-based product UX",
+        "Client portal and booking flow",
+        "Wireframes, phase documents, and implementation support"
+      ],
+      "commitmentsAndPromises": [
+        "Deliver the end-user wireframe on the promised timeline.",
+        "Add the initial sign-up step.",
+        "Stay involved through implementation, visual QA, role testing, and launch readiness."
+      ],
+      "decisions": [
+        "Use the portal as a review prototype, not production.",
+        "Cover booking, claim progress, secure files, and messaging in one experience.",
+        "Use approved flows and reusable components as development source of truth."
+      ],
+      "campaignsAndServices": [
+        "Product discovery",
+        "End-user portal UX",
+        "Wireframing",
+        "Implementation and QA support"
+      ],
+      "metricsAndTools": [
+        "Netlify review prototype, role-based workflows, secure-file and messaging states, UX handoff documents, React-oriented component planning"
+      ],
+      "dillonVoiceAndTonePatterns": [
+        "Collaborative and encouraging with developers.",
+        "Clearly labels prototypes and asks approval questions.",
+        "Uses concrete delivery commitments and progress reassurance."
+      ],
+      "openLoops": [
+        "Approve the wireframe direction.",
+        "Add and review sign-up.",
+        "Translate the approved prototype into production planning."
+      ],
+      "lastKnownStatusFromSlack": "The clickable end-user wireframe was complete, the team was ahead of schedule, and sign-up was the next addition.",
+      "confidence": {
+        "level": "high",
+        "score": 0.99,
+        "rationale": "The exact channel and design DM were reviewed; the route is exact and active."
+      },
+      "opaqueLocators": {
+        "channelIds": [
+          "C0AU6GMGY73",
+          "D0A8UQQ27D1"
+        ],
+        "messageIds": [
+          "1784219870.264109",
+          "1784219799.199119",
+          "1784160784.655389",
+          "1784127124.715859"
+        ],
+        "threadIds": []
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "bercos-popcorn",
+      "displayName": "Bercos Popcorn",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "slackAuditStatus": "no-promotable-dillon-authored-evidence",
+      "matchedConversations": [],
+      "coverage": {
+        "conversationTypes": [],
+        "messageCount": 0,
+        "threadCount": 0,
+        "oldestMessageAt": null,
+        "newestMessageAt": null
+      },
+      "keyPeopleAndRoles": [],
+      "recurringWork": [],
+      "commitmentsAndPromises": [],
+      "decisions": [],
+      "campaignsAndServices": [],
+      "metricsAndTools": [],
+      "dillonVoiceAndTonePatterns": [],
+      "openLoops": [],
+      "lastKnownStatusFromSlack": null,
+      "confidence": {
+        "level": "none",
+        "score": 0,
+        "rationale": "Exact-name and alias searches returned no safely attributable Dillon-authored Slack evidence."
+      },
+      "opaqueLocators": {
+        "channelIds": [],
+        "messageIds": [],
+        "threadIds": []
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "ami-cleaning",
+      "displayName": "AMI Cleaning",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "slackAuditStatus": "no-promotable-dillon-authored-evidence",
+      "matchedConversations": [],
+      "coverage": {
+        "conversationTypes": [],
+        "messageCount": 0,
+        "threadCount": 0,
+        "oldestMessageAt": null,
+        "newestMessageAt": null
+      },
+      "keyPeopleAndRoles": [],
+      "recurringWork": [],
+      "commitmentsAndPromises": [],
+      "decisions": [],
+      "campaignsAndServices": [],
+      "metricsAndTools": [],
+      "dillonVoiceAndTonePatterns": [],
+      "openLoops": [],
+      "lastKnownStatusFromSlack": null,
+      "confidence": {
+        "level": "none",
+        "score": 0,
+        "rationale": "Exact-name and alias searches returned no safely attributable Dillon-authored Slack evidence."
+      },
+      "opaqueLocators": {
+        "channelIds": [],
+        "messageIds": [],
+        "threadIds": []
+      },
+      "routingConstraint": "Independent portfolio client; not a Momentum 360 sub-client; portfolio owner remains unknown."
+    },
+    {
+      "clientId": "cindy-may-christmas",
+      "displayName": "Cindy May Christmas",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "slackAuditStatus": "no-promotable-dillon-authored-evidence",
+      "matchedConversations": [],
+      "coverage": {
+        "conversationTypes": [],
+        "messageCount": 0,
+        "threadCount": 0,
+        "oldestMessageAt": null,
+        "newestMessageAt": null
+      },
+      "keyPeopleAndRoles": [],
+      "recurringWork": [],
+      "commitmentsAndPromises": [],
+      "decisions": [],
+      "campaignsAndServices": [],
+      "metricsAndTools": [],
+      "dillonVoiceAndTonePatterns": [],
+      "openLoops": [],
+      "lastKnownStatusFromSlack": null,
+      "confidence": {
+        "level": "none",
+        "score": 0,
+        "rationale": "Exact-name and alias searches returned no safely attributable Dillon-authored Slack evidence."
+      },
+      "opaqueLocators": {
+        "channelIds": [],
+        "messageIds": [],
+        "threadIds": []
+      },
+      "routingConstraint": "Independent portfolio client; not a Momentum 360 sub-client; portfolio owner remains unknown."
+    },
+    {
+      "clientId": "bar-crawl-usa",
+      "displayName": "Bar Crawl USA",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "slackAuditStatus": "complete-live-evidence",
+      "matchedConversations": [
+        {
+          "conversationId": "C0AEGE1V5KR",
+          "type": "private_channel",
+          "routingBasis": "exact named client channel"
+        },
+        {
+          "conversationId": "D0AHHTJR6TT",
+          "type": "im",
+          "routingBasis": "exact account evidence"
+        },
+        {
+          "conversationId": "D0A6ECLQ0S1",
+          "type": "im",
+          "routingBasis": "exact campaign and landing-page evidence"
+        }
+      ],
+      "coverage": {
+        "conversationTypes": [
+          "private_channel",
+          "im"
+        ],
+        "messageCount": 196,
+        "threadCount": 0,
+        "oldestMessageAt": "2026-02-13T18:34:46.591Z",
+        "newestMessageAt": "2026-07-06T22:02:39.691Z"
+      },
+      "keyPeopleAndRoles": [
+        "Client owner and event-inventory authority",
+        "Agency account lead",
+        "SEO and advertising collaborators"
+      ],
+      "recurringWork": [
+        "WordPress event-page SEO",
+        "City and theme landing pages",
+        "Paid-event reporting"
+      ],
+      "commitmentsAndPromises": [
+        "Use live website inventory as source of truth.",
+        "Keep edits inside the safe SEO layer unless event details are confirmed.",
+        "Cross-check inventory before the next build cycle."
+      ],
+      "decisions": [
+        "Pivot from an assumed city list to confirmed live events.",
+        "Prioritize organic WordPress work while no ads run.",
+        "Do not alter checkout, dates, prices, venues, widgets, or source event data without confirmation."
+      ],
+      "campaignsAndServices": [
+        "Halloween and holiday SEO",
+        "City and theme pages",
+        "Paid-event campaigns",
+        "On-page optimization"
+      ],
+      "metricsAndTools": [
+        "WordPress, AIOSEO, SEMrush, Google Ads, GA4, landing pages, and event tracking",
+        "Ten priority pages had SEO updates before the confirmed-inventory pivot.",
+        "Historical Slack reported strong paid ticket volume; no ads were running at latest status."
+      ],
+      "dillonVoiceAndTonePatterns": [
+        "Detailed and protective of source-of-truth boundaries.",
+        "Candid internally and explicit about risky website limits.",
+        "Shifts from paid reporting to operational SEO when campaign state changes."
+      ],
+      "openLoops": [
+        "Confirm final event inventory.",
+        "Build only supported pages.",
+        "Reassess paid media when event scope is confirmed."
+      ],
+      "lastKnownStatusFromSlack": "No ads were running; immediate priority was WordPress work limited to confirmed Halloween inventory.",
+      "confidence": {
+        "level": "high",
+        "score": 0.98,
+        "rationale": "The exact channel and exact-name DM evidence were reviewed across the available range."
+      },
+      "opaqueLocators": {
+        "channelIds": [
+          "C0AEGE1V5KR",
+          "D0AHHTJR6TT",
+          "D0A6ECLQ0S1"
+        ],
+        "messageIds": [
+          "1783375359.691559",
+          "1782830304.528299",
+          "1782783186.358249",
+          "1777653665.734279"
+        ],
+        "threadIds": []
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "bridge-software",
+      "displayName": "Bridge Software",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "priorityRank": 1,
+      "slackAuditStatus": "complete-live-evidence",
+      "matchedConversations": [
+        {
+          "conversationId": "C0BGWRK03B2",
+          "type": "private_channel",
+          "routingBasis": "exact registry Slack channel"
+        },
+        {
+          "conversationId": "C0B1CVD1EJF",
+          "type": "mpim",
+          "routingBasis": "exact proposal and project-name evidence"
+        },
+        {
+          "conversationId": "D0B6F3J423F",
+          "type": "im",
+          "routingBasis": "exact proposal-review evidence"
+        }
+      ],
+      "coverage": {
+        "conversationTypes": [
+          "private_channel",
+          "mpim",
+          "im"
+        ],
+        "messageCount": 22,
+        "threadCount": 1,
+        "oldestMessageAt": "2026-06-02T13:54:11.734Z",
+        "newestMessageAt": "2026-07-14T18:19:27.010Z"
+      },
+      "keyPeopleAndRoles": [
+        "Client owner and product approver",
+        "Agency UX and product lead",
+        "Backend and frontend implementation collaborators",
+        "Agency principal and project reviewer"
+      ],
+      "recurringWork": [
+        "MVP scope and role definition",
+        "User flows, screen inventory, wireframes, and high-fidelity design",
+        "Reusable component handoff, visual QA, acceptance testing, and launch support"
+      ],
+      "commitmentsAndPromises": [
+        "Produce multiple design directions for client review without shipping raw AI output.",
+        "Refine approved UX into responsive production-ready components.",
+        "Stay involved through implementation, role testing, critical-path QA, and launch readiness."
+      ],
+      "decisions": [
+        "Use a six-milestone process from discovery through launch.",
+        "Validate low-fidelity flows before visual polish.",
+        "Use Next.js, React, and TypeScript unless backend integration supports a better choice.",
+        "Keep approval and acceptance criteria explicit at every handoff."
+      ],
+      "campaignsAndServices": [
+        "Directory MVP",
+        "Gated profiles and verification administration",
+        "Role-based product UX",
+        "Future social and network expansion"
+      ],
+      "metricsAndTools": [
+        "Proposal budget: $45,000.",
+        "Next.js, React, TypeScript, Supabase/Postgres, AWS, reusable design components, and acceptance criteria.",
+        "Dedicated client channel and exact canonical registry route."
+      ],
+      "dillonVoiceAndTonePatterns": [
+        "Detailed, systems-oriented, and collaborative with technical partners.",
+        "Sets clear ownership and review checkpoints.",
+        "Explains where AI accelerates work and where human design judgment remains required."
+      ],
+      "openLoops": [
+        "Confirm final MVP scope, roles, and priority journeys.",
+        "Resolve React delivery versus UX review ownership.",
+        "Approve the first flow map, screen inventory, and wireframe direction.",
+        "Align frontend handoff with backend APIs and verification states."
+      ],
+      "lastKnownStatusFromSlack": "The execution and UX process was defined, scheduling was active, and client approval of the first design direction remained the next major gate.",
+      "confidence": {
+        "level": "high",
+        "score": 0.99,
+        "rationale": "The exact registry channel, explicit project-name proposal evidence, and a proposal-review thread establish an unambiguous active route."
+      },
+      "opaqueLocators": {
+        "channelIds": [
+          "C0BGWRK03B2",
+          "C0B1CVD1EJF",
+          "D0B6F3J423F"
+        ],
+        "messageIds": [
+          "1780438163.708539",
+          "1783787258.243399",
+          "1783785544.117789",
+          "1783712691.859469"
+        ],
+        "threadIds": [
+          "1780619241.083689"
+        ]
+      },
+      "routingConstraint": "Exact active child-client route under the Momentum 360 portfolio; keep separate from Momentum 360."
+    },
+    {
+      "clientId": "onsite-concrete-landscape",
+      "displayName": "Onsite Concrete & Landscape",
+      "registryStatus": "active",
+      "promotionEligibility": "active",
+      "slackAuditStatus": "no-promotable-dillon-authored-evidence",
+      "matchedConversations": [],
+      "coverage": {
+        "conversationTypes": [],
+        "messageCount": 0,
+        "threadCount": 0,
+        "oldestMessageAt": null,
+        "newestMessageAt": null
+      },
+      "keyPeopleAndRoles": [],
+      "recurringWork": [],
+      "commitmentsAndPromises": [],
+      "decisions": [],
+      "campaignsAndServices": [],
+      "metricsAndTools": [],
+      "dillonVoiceAndTonePatterns": [],
+      "openLoops": [],
+      "lastKnownStatusFromSlack": null,
+      "confidence": {
+        "level": "none",
+        "score": 0,
+        "rationale": "The completed visible-scope Slack audit contains no exact Onsite route or safely attributable Dillon-authored evidence; no Slack facts are promoted."
+      },
+      "opaqueLocators": {
+        "channelIds": [],
+        "messageIds": [],
+        "threadIds": []
+      },
+      "routingConstraint": "No Slack source identity is registered. Route only through exact canonical Gmail or direct user evidence until an exact Slack route is verified."
+    },
+    {
+      "clientId": "revive-systems",
+      "displayName": "Revive Systems",
+      "registryStatus": "needs-confirmation",
+      "promotionEligibility": "quarantined",
+      "slackAuditStatus": "quarantined-before-message-read",
+      "matchedConversations": [],
+      "coverage": {
+        "conversationTypes": [],
+        "messageCount": 0,
+        "threadCount": 0,
+        "oldestMessageAt": null,
+        "newestMessageAt": null
+      },
+      "keyPeopleAndRoles": [],
+      "recurringWork": [],
+      "commitmentsAndPromises": [],
+      "decisions": [],
+      "campaignsAndServices": [],
+      "metricsAndTools": [],
+      "dillonVoiceAndTonePatterns": [],
+      "openLoops": [],
+      "lastKnownStatusFromSlack": null,
+      "confidence": {
+        "level": "none",
+        "score": 0,
+        "rationale": "Message history was intentionally not promoted because the registry route is not active."
+      },
+      "opaqueLocators": {
+        "channelIds": [],
+        "messageIds": [],
+        "threadIds": []
+      },
+      "routingConstraint": "Registry status is needs-confirmation; all Slack evidence remains quarantined."
+    }
+  ]
+}

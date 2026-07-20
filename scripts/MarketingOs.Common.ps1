@@ -14,6 +14,15 @@ function Test-MarketingSafeText {
     param([AllowNull()][string]$Value)
     if ([string]::IsNullOrWhiteSpace($Value)) { return $true }
 
+    # Intake locators are opaque canonical references, not payment-card data.
+    # Scrub the exact approved shape before generic secret-pattern checks so a
+    # timestamped run id cannot be misclassified as a 13-19 digit card number.
+    $safeCandidate = [regex]::Replace(
+        $Value,
+        '(?i)agent-os-run:[A-Za-z0-9][A-Za-z0-9_-]{5,79}/task\.json',
+        'SAFE_AGENT_OS_LOCATOR'
+    )
+
     $badPatterns = @(
         '(?i)-----BEGIN [A-Z ]*PRIVATE KEY-----',
         '(?i)(password|passwd|api[_ -]?key|access[_ -]?token|refresh[_ -]?token|session[_ -]?cookie|recovery[_ -]?code|one[_ -]?time[_ -]?code)\s*[:=]',
@@ -27,9 +36,9 @@ function Test-MarketingSafeText {
         '(?im)^\s*(from|to|cc|bcc|subject|reply-to)\s*:',
         '(?i)\b(otp|verification code|security code|login code)\s*[:#-]?\s*\d{4,8}\b'
     )
-    foreach ($pattern in $badPatterns) { if ($Value -match $pattern) { return $false } }
+    foreach ($pattern in $badPatterns) { if ($safeCandidate -match $pattern) { return $false } }
 
-    $scrubbed = [regex]::Replace($Value, '(?i)sha256:[0-9a-f]{64}', 'SAFEHASH')
+    $scrubbed = [regex]::Replace($safeCandidate, '(?i)sha256:[0-9a-f]{64}', 'SAFEHASH')
     $scrubbed = [regex]::Replace($scrubbed, '(?i)\b[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\b', 'SAFEGUID')
     foreach ($match in [regex]::Matches($scrubbed, '\S+')) {
         $token = $match.Value.Trim('"', "'", '`', ',', ';', ':', '.', '(', ')', '[', ']', '{', '}', '<', '>')

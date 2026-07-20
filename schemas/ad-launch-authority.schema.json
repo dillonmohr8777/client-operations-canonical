@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ad-launch-authority.schema.json",
+  "title": "Client-specific standing ad launch authority",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "clientId", "status", "authorizedRequesterRefs",
+    "allowedPlatforms", "allowedTriggerClasses", "allowedAccountRefs",
+    "allowedLocationScopes", "allowedDeploymentEnvironments", "permissions",
+    "limits", "requirements", "approvedBy", "approvedAt", "expiresAt",
+    "approvalRef", "privacy", "containsSecrets", "containsDirectIdentifiers",
+    "containsRawCommunications"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "clientId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,119}$" },
+    "status": { "enum": ["draft", "active", "suspended", "revoked", "expired"] },
+    "authorizedRequesterRefs": {
+      "type": "array", "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^(?:registry-contact:[a-z0-9-]+:[0-9]+|user:dillon)$" }
+    },
+    "allowedPlatforms": { "type": "array", "uniqueItems": true, "items": { "enum": ["google_ads", "meta_ads"] } },
+    "allowedTriggerClasses": { "type": "array", "uniqueItems": true, "items": { "enum": ["location_launch", "campaign_launch", "campaign_expansion", "campaign_restart"] } },
+    "allowedAccountRefs": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^access-broker:[A-Za-z0-9._:/-]+$" } },
+    "allowedLocationScopes": { "type": "array", "uniqueItems": true, "items": { "enum": ["registered_brand_location", "approved_market"] } },
+    "allowedDeploymentEnvironments": { "type": "array", "uniqueItems": true, "items": { "enum": ["staging", "production"] } },
+    "permissions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["buildLocalArtifacts", "deployLandingPage", "createPausedObjects", "enableCampaigns", "adjustBudget"],
+      "properties": {
+        "buildLocalArtifacts": { "type": "boolean" },
+        "deployLandingPage": { "type": "boolean" },
+        "createPausedObjects": { "type": "boolean" },
+        "enableCampaigns": { "type": "boolean" },
+        "adjustBudget": { "type": "boolean" }
+      }
+    },
+    "limits": {
+      "type": "object", "additionalProperties": false,
+      "required": ["currency", "maxDailyPerCampaign", "maxTotalPerRequest", "maxLocationsPerRequest"],
+      "properties": {
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+        "maxDailyPerCampaign": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+        "maxTotalPerRequest": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+        "maxLocationsPerRequest": { "type": ["integer", "null"], "minimum": 1, "maximum": 250 }
+      }
+    },
+    "requirements": {
+      "type": "object", "additionalProperties": false,
+      "required": ["validateOnlyFirst", "createPausedFirst", "trackingQa", "landingPageQa", "liveReadback", "rollbackPlan", "maxEvidenceAgeHours"],
+      "properties": {
+        "validateOnlyFirst": { "const": true },
+        "createPausedFirst": { "const": true },
+        "trackingQa": { "const": true },
+        "landingPageQa": { "const": true },
+        "liveReadback": { "const": true },
+        "rollbackPlan": { "const": true },
+        "maxEvidenceAgeHours": { "type": "integer", "minimum": 1, "maximum": 168 }
+      }
+    },
+    "approvedBy": { "type": ["string", "null"], "enum": ["dillon", null] },
+    "approvedAt": { "type": ["string", "null"], "format": "date-time" },
+    "expiresAt": { "type": ["string", "null"], "format": "date-time" },
+    "approvalRef": { "type": ["string", "null"], "pattern": "^(?:user-instruction:[A-Za-z0-9._:-]{6,200}|state/[A-Za-z0-9._/ -]+)$" },
+    "privacy": { "const": "redacted" },
+    "containsSecrets": { "const": false },
+    "containsDirectIdentifiers": { "const": false },
+    "containsRawCommunications": { "const": false }
+  }
+}

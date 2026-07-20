@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070b18">
+  <title>VA Claims Edge Phase 2 UI review</title>
+  <meta name="description" content="Local, nonfunctional UI review for the VA Claims Edge Phase 2 login and operations dashboard.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../src/app/globals.css?v=2">
+  <script src="preview.js?v=2" defer></script>
+</head>
+<body>
+  <section data-preview-screen="login">
+    <main class="login-page">
+      <a class="skip-link" href="#preview-login-form">Skip to sign in</a>
+      <div class="login-shell">
+        <section class="login-story" aria-labelledby="preview-login-title">
+          <img class="login-ribbon" src="../public/shield-motion-ribbons.png" width="1672" height="941" alt="" aria-hidden="true">
+          <div class="login-brand"><span class="brand-logo-plaque"><img src="../public/va-claims-edge-logo.png" width="1280" height="952" alt="VA Claims Edge, Get an Edge!"><small>Secure client portal</small></span></div>
+          <div class="login-story-copy">
+            <p class="eyebrow">Your claim. One clear path.</p>
+            <h1 id="preview-login-title">Welcome back to your claim journey.</h1>
+            <p>Follow progress, respond to requests, and stay connected with your advisor in one protected workspace.</p>
+          </div>
+          <ul class="trust-points" aria-label="Portal benefits">
+            <li><span aria-hidden="true">01</span><div><strong>See your next step</strong><p>Know the current stage and what moves your claim forward.</p></div></li>
+            <li><span aria-hidden="true">02</span><div><strong>Keep files together</strong><p>Review requests and shared documents in one protected place.</p></div></li>
+            <li><span aria-hidden="true">03</span><div><strong>Reach your advisor</strong><p>Keep important updates connected to your claim.</p></div></li>
+          </ul>
+        </section>
+        <section class="login-panel" aria-labelledby="preview-sign-in-heading">
+          <div class="login-form-wrap">
+            <p class="eyebrow">Secure portal access</p>
+            <h2 id="preview-sign-in-heading">Sign in to continue</h2>
+            <p class="form-intro">Use the email address connected to your VA Claims Edge account.</p>
+            <form id="preview-login-form">
+              <label class="field"><span>Email address</span><input type="email" autocomplete="email" inputmode="email" value="review@example.com" required></label>
+              <label class="field"><span>Password</span><span class="password-field"><input id="preview-password" type="password" autocomplete="current-password" value="reviewonly" required><button id="preview-reveal" type="button" class="reveal-button" aria-pressed="false">Show</button></span></label>
+              <div class="form-alert" id="preview-login-note" role="status" hidden><strong>Review only</strong><span>This local preview does not authenticate or transmit information.</span></div>
+              <button class="primary-button" type="submit"><span>Sign in securely</span><span aria-hidden="true">Continue</span></button>
+            </form>
+            <p class="support-copy">Need help with access? Contact your VA Claims Edge advisor.</p>
+            <div class="security-note"><span aria-hidden="true"></span> Protected account access</div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </section>
+
+  <section data-preview-screen="dashboard" hidden>
+    <div class="app-frame">
+      <a class="skip-link" href="#preview-main">Skip to main content</a>
+      <button class="sidebar-scrim" type="button" aria-label="Close navigation" data-open="false"></button>
+      <aside class="sidebar" id="preview-navigation" data-open="false" aria-label="Primary navigation">
+        <div class="sidebar-brand"><span class="brand-logo-plaque"><img src="../public/va-claims-edge-logo.png" width="1280" height="952" alt="VA Claims Edge, Get an Edge!"><small>Operations portal</small></span></div>
+        <nav class="sidebar-nav">
+          <span class="nav-label">Workspace</span>
+          <a href="#" aria-current="page"><span class="nav-glyph" aria-hidden="true">DB</span><span>Dashboard</span></a>
+          <a href="#"><span class="nav-glyph" aria-hidden="true">CL</span><span>Clients</span></a>
+          <a href="#"><span class="nav-glyph" aria-hidden="true">PL</span><span>Pipeline</span></a>
+          <a href="#"><span class="nav-glyph" aria-hidden="true">NT</span><span>Notes</span></a>
+          <a href="#"><span class="nav-glyph" aria-hidden="true">ST</span><span>Settings</span></a>
+        </nav>
+        <div class="sidebar-footer"><span class="user-avatar" aria-hidden="true">TM</span><span class="user-summary"><strong>Team member</strong><small>Authorized workspace</small></span><button class="text-button" id="preview-signout" type="button" aria-describedby="preview-signout-note">Sign out</button><p class="sidebar-alert" id="preview-signout-note" role="status" hidden>Review only. No session was changed.</p></div>
+      </aside>
+      <div class="app-column">
+        <img class="shell-ribbon" src="../public/shield-motion-ribbons.png" width="1672" height="941" alt="" aria-hidden="true">
+        <header class="topbar"><button id="preview-menu" type="button" class="menu-button" aria-expanded="false" aria-controls="preview-navigation"><span>Menu</span></button><div class="topbar-context"><span>VA Claims Edge</span><strong>Claim operations</strong></div><div class="environment-pill"><span aria-hidden="true"></span> Secure workspace</div></header>
+        <main id="preview-main" class="app-main">
+          <header class="page-heading"><div><p class="eyebrow">Operations overview</p><h1>Today&apos;s claim activity is ready.</h1><p>Review attention items first, then move active claims toward their next documented step.</p></div><div class="sample-label">UI structure / Sample data</div></header>
+
+          <div data-dashboard-state="ready">
+            <section class="summary-grid" aria-label="Claim summary">
+              <article class="summary-card"><span class="status-dot info"></span><p>Active clients</p><strong>24</strong><small>Sample data</small></article>
+              <article class="summary-card"><span class="status-dot warning"></span><p>Needs attention</p><strong>6</strong><small>Sample data</small></article>
+              <article class="summary-card"><span class="status-dot success"></span><p>Milestones this week</p><strong>9</strong><small>Sample data</small></article>
+              <article class="summary-card"><span class="status-dot"></span><p>Awaiting documents</p><strong>4</strong><small>Sample data</small></article>
+            </section>
+            <section class="dashboard-grid">
+              <article class="panel client-panel">
+                <div class="panel-heading"><div><p class="eyebrow">Priority workspace</p><h2>Clients needing review</h2></div><a href="#">View all clients</a></div>
+                <div class="table-wrap"><table><thead><tr><th>Client</th><th>Stage</th><th>Next action</th><th>Updated</th></tr></thead><tbody>
+                  <tr><th><a href="#">Sample claimant A</a><small>SAMPLE-1042</small></th><td><span class="status-badge info">Evidence review</span></td><td>Review uploaded records</td><td>Today</td></tr>
+                  <tr><th><a href="#">Sample claimant B</a><small>SAMPLE-1038</small></th><td><span class="status-badge warning">Action needed</span></td><td>Request missing document</td><td>Yesterday</td></tr>
+                  <tr><th><a href="#">Sample claimant C</a><small>SAMPLE-1029</small></th><td><span class="status-badge success">Submitted</span></td><td>Monitor status</td><td>2 days ago</td></tr>
+                  <tr><th><a href="#">Sample claimant D</a><small>SAMPLE-1017</small></th><td><span class="status-badge">Intake</span></td><td>Complete eligibility review</td><td>3 days ago</td></tr>
+                </tbody></table></div>
+              </article>
+              <aside class="panel next-panel"><div class="panel-heading"><div><p class="eyebrow">Next best action</p><h2>Start with attention items</h2></div></div><p>Six sample records need a document request or review decision. Open the client list to confirm the source before taking action.</p><a class="secondary-button" href="#">Review attention items</a><div class="rule-note"><strong>Data rule</strong><span>Never infer a claim status from missing data. Show unknown and request verification.</span></div></aside>
+            </section>
+            <section class="panel pipeline-panel"><div class="panel-heading"><div><p class="eyebrow">Claim pipeline</p><h2>Work by stage</h2></div><a href="#">Open pipeline</a></div><div class="pipeline-grid">
+              <article><span>01</span><div><p>Intake</p><strong>5</strong><small>Initial review</small></div></article>
+              <article><span>02</span><div><p>Evidence</p><strong>8</strong><small>Records in progress</small></div></article>
+              <article><span>03</span><div><p>Ready</p><strong>3</strong><small>Final quality check</small></div></article>
+              <article><span>04</span><div><p>Submitted</p><strong>8</strong><small>Monitoring status</small></div></article>
+            </div></section>
+          </div>
+
+          <section class="state-panel loading-state" data-dashboard-state="loading" hidden aria-live="polite" aria-busy="true"><div class="state-copy"><p class="eyebrow">Secure workspace</p><h2>Loading claim activity</h2><p>We are retrieving the latest authorized workspace data.</p></div><div class="skeleton-grid" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="skeleton-table" aria-hidden="true"><span></span><span></span><span></span><span></span></div></section>
+          <section class="state-panel" data-dashboard-state="empty" hidden><span class="state-mark" aria-hidden="true"><img src="../public/va-claims-edge-logo.png" width="1280" height="952" alt=""></span><p class="eyebrow">Workspace ready</p><h2>No client activity yet</h2><p>Summary cards, client attention items, and pipeline stages will appear after the first authorized records are added.</p><a class="secondary-button" href="#">Open clients</a></section>
+          <section class="state-panel error" data-dashboard-state="error" hidden role="alert"><span class="state-mark" aria-hidden="true">!</span><p class="eyebrow">Protected session</p><h2>Claim activity could not be loaded</h2><p>Your session is still protected. Try again, and contact the system administrator if the problem continues.</p><button class="secondary-button" type="button">Try again</button></section>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <nav class="preview-toolbar" aria-label="Preview controls">
+    <button type="button" data-show="login" aria-pressed="true">Login</button>
+    <button type="button" data-show="ready" aria-pressed="false">Dashboard</button>
+    <button type="button" data-show="loading" aria-pressed="false">Loading</button>
+    <button type="button" data-show="empty" aria-pressed="false">Empty</button>
+    <button type="button" data-show="error" aria-pressed="false">Error</button>
+  </nav>
+</body>
+</html>

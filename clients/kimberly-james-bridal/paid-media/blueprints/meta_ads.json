@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "clientId": "kimberly-james-bridal",
+  "platform": "meta_ads",
+  "rosterRef": "registry/paid-media-roster.json",
+  "routeState": "active",
+  "patternStatus": "live-observed",
+  "sourceEvidence": {
+    "observedAt": "2026-07-16T19:43:00Z",
+    "sourceClasses": ["user", "gmail", "slack", "live_platform"],
+    "summary": "Persistent Chrome verified the exact KJB Meta ad-account route and four campaigns. Website Carousel Traffic and Website Retargeting were active, while a Leads carousel was in draft; no state was changed. Those campaign states are readback evidence only. Appointment-path QA, qualified-conversation feedback, creative iteration, tracking, and billing remain the optimization gates.",
+    "liveAccountVerified": true,
+    "historicalOnly": false
+  },
+  "triggerContract": {
+    "triggerClasses": ["campaign_launch", "campaign_expansion", "campaign_restart"],
+    "requesterRefs": ["registry-contact:kimberly-james-bridal:0", "user:dillon"],
+    "communicationImpliesFullBuild": true,
+    "requiredExtractedFacts": ["offer", "audience", "creative direction", "approved budget", "appointment destination", "schedule"],
+    "unknownsBlockMutation": ["budget authority", "pixel and conversion event", "lead form or website path", "billing state"]
+  },
+  "buildContract": {
+    "campaign": {
+      "type": "Website traffic, retargeting, or lead generation based on the exact objective",
+      "bidStrategy": "Highest volume",
+      "campaignNamingPattern": "KJB | Meta | {Offer} | {Audience}",
+      "adGroupNamingPattern": "{Audience} | {CreativeAngle}"
+    },
+    "budgetBaseline": {
+      "daily": 10,
+      "currency": "USD",
+      "basis": "Historical communicated daily budget; not current spend authority.",
+      "observedAt": "2026-07-12T23:59:59Z",
+      "isSpendAuthority": false
+    },
+    "landingPage": {
+      "defaultMode": "reuse",
+      "onePerLocation": false,
+      "requiredSections": ["bridal appointment value", "size-inclusive reassurance", "gown and boutique proof", "appointment call to action", "visit details", "frequently asked questions"],
+      "qa": ["mobile appointment completion", "pixel and event test", "source fields preserved", "test submission excluded", "brand and factual review"]
+    },
+    "tracking": {
+      "primaryEvent": "appointment_request",
+      "secondaryEvents": ["lead", "schedule_start", "phone_click"],
+      "dedupRequired": true,
+      "utmPattern": "kjb_meta_{offer}_{audience}"
+    },
+    "creative": {
+      "requiredAssets": ["square image or video", "vertical story asset", "primary text variants", "headline variants", "approved call to action"],
+      "copyRequirements": ["lead with the bridal shopping outcome", "use approved inclusive language", "make the appointment step concrete", "avoid unsupported urgency or inventory claims"]
+    }
+  },
+  "dailyOptimizationChecks": ["exact account and four-campaign delivery readback", "active traffic and retargeting campaign continuity", "draft Leads carousel preservation", "budget pacing", "lead and appointment event flow", "qualified-conversation feedback", "creative fatigue and frequency", "placement quality", "landing-page completion", "billing and change history"],
+  "antiRegressionRules": ["Do not publish the observed Leads carousel draft without exact current authority.", "Do not count tests as leads or appointments.", "Do not judge Meta on raw forms alone when appointment outcomes are available.", "Do not increase spend until delivery, tracking, and qualified lead quality are reconciled.", "Keep Meta and Google campaign evidence distinct."],
+  "learningPolicy": {
+    "minimumComparableOutcomes": 3,
+    "successSignals": ["qualified bridal conversation", "booked appointment", "verified appointment request", "stable qualified cost per result"],
+    "failureSignals": ["test event", "unqualified or spam lead", "creative fatigue", "broken appointment handoff"],
+    "decisionWeights": { "accept": 3, "modify": 1, "defer": -2, "reject": -4 }
+  },
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false
+}

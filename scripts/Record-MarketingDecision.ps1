@@ -10,6 +10,12 @@ param(
     [string]$Decision,
     [string]$ReplacementAction,
     [string]$Reason,
+    [ValidateSet('user','gmail','slack','system','other')]
+    [string]$SourceChannel = 'user',
+    [ValidatePattern('^[a-z][a-z0-9_]{1,79}$')]
+    [string]$TriggerClass = 'direct_instruction',
+    [ValidatePattern('^[a-z][a-z0-9_]{1,79}$')]
+    [string]$OutcomeClass = 'preference_feedback',
     [string]$QueuePath,
     [string]$LedgerPath,
     [ValidateSet('dillon','marketing-chief')]
@@ -33,8 +39,12 @@ if (-not (Test-MarketingSafeText $ReplacementAction) -or -not (Test-MarketingSaf
     throw 'Decision text contains secret, direct-identifier, or raw-communication material. Record a redacted lesson or locator instead.'
 }
 
+$execution = if ($null -ne $item[0].execution) { $item[0].execution } else { $null }
+$actionClass = if ($null -ne $execution -and $execution.PSObject.Properties.Name -contains 'actionClass') { [string]$execution.actionClass } else { 'unknown' }
+if ($actionClass -notmatch '^[a-z][a-z0-9_]{1,79}$') { throw 'Work-item action class is invalid for learning.' }
+
 $entry = [pscustomobject][ordered]@{
-    schemaVersion = 2
+    schemaVersion = 3
     predictionOutcomeId = ('po-{0}-{1}' -f ([DateTimeOffset]::UtcNow.ToString('yyyyMMddHHmmss')), ([guid]::NewGuid().ToString('N').Substring(0, 8)))
     recordedAt = [DateTimeOffset]::UtcNow.ToString('o')
     queueRevision = [int]$queue.revision
@@ -42,12 +52,19 @@ $entry = [pscustomobject][ordered]@{
     workItemVersion = [int]$item[0].version
     clientId = [string]$item[0].clientId
     predictionLane = $PredictionLane
+    actionClass = $actionClass
+    sourceChannel = $SourceChannel
+    triggerClass = $TriggerClass
+    outcomeClass = $OutcomeClass
     decision = $Decision
     predictedAction = [string]$item[0].nextAction
     replacementAction = if ([string]::IsNullOrWhiteSpace($ReplacementAction)) { $null } else { $ReplacementAction.Trim() }
     reason = if ([string]::IsNullOrWhiteSpace($Reason)) { $null } else { $Reason.Trim() }
     actor = $Actor
     privacy = 'redacted'
+    containsSecrets = $false
+    containsDirectIdentifiers = $false
+    containsRawCommunications = $false
 }
 
 $ledgerDirectory = Split-Path -Parent $LedgerPath

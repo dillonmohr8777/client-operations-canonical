@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "clientId": "omega-landscaping",
+  "platform": "google_ads",
+  "rosterRef": "registry/paid-media-roster.json",
+  "routeState": "active",
+  "patternStatus": "live-observed",
+  "sourceEvidence": {
+    "observedAt": "2026-07-16T19:35:10Z",
+    "sourceClasses": ["user", "gmail", "slack", "live_platform"],
+    "summary": "Persistent Chrome verified the exact Omega Google Ads route. Omega Landscaping & Concrete | Colorado Springs | PMax was enabled at an observed $50 per day with 13 conversions, while seven Search campaigns were paused. Those settings and metrics are readback evidence, not spend or change authority; qualified lead quality, irrelevant-call reduction, search-intent structure, and attribution remain the decision gates.",
+    "liveAccountVerified": true,
+    "historicalOnly": false
+  },
+  "triggerContract": {
+    "triggerClasses": ["campaign_launch", "campaign_expansion", "campaign_restart"],
+    "requesterRefs": ["registry-contact:omega-landscaping:0", "user:dillon"],
+    "communicationImpliesFullBuild": true,
+    "requiredExtractedFacts": ["service", "market", "approved budget", "lead destination", "conversion goal", "schedule"],
+    "unknownsBlockMutation": ["budget authority", "qualified lead definition", "call and form destination", "approved service radius"]
+  },
+  "buildContract": {
+    "campaign": {
+      "type": "Performance Max plus high-intent Search",
+      "bidStrategy": "Maximize conversions after primary-event validation",
+      "campaignNamingPattern": "Omega Landscaping & Concrete | {Market} | {CampaignType}",
+      "adGroupNamingPattern": "{Service} | {Intent} | {Market}"
+    },
+    "budgetBaseline": {
+      "daily": 50,
+      "currency": "USD",
+      "basis": "Observed on the enabled Colorado Springs Performance Max campaign; this is a read-only baseline and never permission to spend.",
+      "observedAt": "2026-07-16T19:35:10Z",
+      "isSpendAuthority": false
+    },
+    "landingPage": {
+      "defaultMode": "reuse",
+      "onePerLocation": false,
+      "requiredSections": ["service and market fit", "local project proof", "estimate call to action", "service detail", "trust proof", "contact path"],
+      "qa": ["mobile form and phone test", "correct service area", "source and click identifiers preserved", "page speed", "unique local proof"]
+    },
+    "tracking": {
+      "primaryEvent": "qualified_lead",
+      "secondaryEvents": ["form_submit", "phone_call", "estimate_start"],
+      "dedupRequired": true,
+      "utmPattern": "omega_google_{service}_{market}_{campaign_type}"
+    },
+    "creative": {
+      "requiredAssets": ["service-specific headlines", "local-intent descriptions", "approved project imagery", "logo", "call and lead extensions"],
+      "copyRequirements": ["separate landscaping and concrete intent", "use exact service-area language", "avoid unsupported pricing or timing promises"]
+    }
+  },
+  "dailyOptimizationChecks": ["exact account and delivery readback", "budget pacing", "qualified primary conversions", "search terms and negative keywords", "call quality and wrong-company inquiries", "PMax search themes and audience signals", "landing-page health", "change history"],
+  "antiRegressionRules": ["Do not scale from traffic efficiency or the observed 13 platform conversions alone.", "Do not count an unreviewed tracked action as a qualified opportunity.", "Use irrelevant supplier and wrong-company calls to tighten search intent.", "Keep the seven observed paused Search campaigns paused unless current exact authority covers a change.", "Keep landscaping and concrete service intent visible in reporting and page routing."],
+  "learningPolicy": {
+    "minimumComparableOutcomes": 3,
+    "successSignals": ["qualified estimate opportunity", "connected relevant call", "verified form lead", "improving qualified cost per lead"],
+    "failureSignals": ["supplier or wrong-company inquiry", "duplicate conversion", "unqualified call", "broken source attribution"],
+    "decisionWeights": { "accept": 3, "modify": 1, "defer": -2, "reject": -4 }
+  },
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false
+}

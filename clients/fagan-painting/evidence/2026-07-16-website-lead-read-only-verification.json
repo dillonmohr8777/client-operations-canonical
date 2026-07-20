@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "evidenceId": "ev-fagan-website-lead-read-only-verification-20260716",
+  "workItemId": "wi-20260715-0002",
+  "clientId": "fagan-painting",
+  "recordedAt": "2026-07-16T20:15:18.1013846Z",
+  "recordedBy": "fagan-lead-verifier",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false,
+  "searchScope": {
+    "mailboxClass": "connected-operator-mailbox",
+    "connectedMailboxIsCanonicalClientMailbox": false,
+    "window": "2026-07-14 through 2026-07-16",
+    "subjectSearches": [
+      {
+        "class": "direct-lead-notification",
+        "resultCount": 9,
+        "paginationExhausted": true
+      },
+      {
+        "class": "forwarded-website-estimate-notification",
+        "resultCount": 2,
+        "paginationExhausted": true
+      }
+    ],
+    "exactFingerprintSearches": [
+      {
+        "leadIndex": 1,
+        "resultCount": 3,
+        "paginationExhausted": true
+      },
+      {
+        "leadIndex": 2,
+        "resultCount": 4,
+        "paginationExhausted": true
+      }
+    ],
+    "fullBodyReadCount": 10,
+    "broadSearchUse": "Shortlisting only; no completeness claim was based on the broad first page."
+  },
+  "findings": {
+    "uniqueLeadCount": 2,
+    "uniqueLeadEvidence": {
+      "contactEmailFingerprintsDistinct": true,
+      "contactPhoneFingerprintsDistinct": true
+    },
+    "duplicateNotification": {
+      "count": 1,
+      "duplicatesLeadIndex": 2,
+      "classification": "confirmed-duplicate-forward",
+      "basis": [
+        "Full body read completed.",
+        "The contact email fingerprint matches lead 2 exactly.",
+        "The contact phone fingerprint matches lead 2 exactly.",
+        "The forward arrived in a separate thread 25 minutes after the direct notification."
+      ]
+    },
+    "approvedDestination": {
+      "bothDirectNotificationsAddressedCanonicalRoute": true,
+      "operationalReceiptVerified": false,
+      "reason": "Recipient metadata proves intended routing, while the connected mailbox is the operator mailbox and cannot prove processing in the canonical client mailbox."
+    },
+    "humanHandling": {
+      "responseOwner": "unknown",
+      "lead1Disposition": "unknown",
+      "lead2Disposition": "unknown",
+      "matchingSentResponseFound": false,
+      "matchingDraftsAreDispositionEvidence": false
+    },
+    "crmAndZapier": {
+      "exactAuthorizedCrmRouteRegistered": false,
+      "matchingCrmRecordVerified": false,
+      "matchingZapierRunRecordVerified": false,
+      "agentJobEvidenceIsDestinationProof": false,
+      "separateMetaRepairEvidenceMatchesTheseLeadFingerprints": false,
+      "note": "The current Meta routing test and recovered lead packet concern a separate lead path and cannot establish handling for these website lead fingerprints."
+    },
+    "localAutomationState": [
+      {
+        "leadIndex": 1,
+        "agentJob": "agent-os-run:20260715-000647-c979fa44/task.json",
+        "status": "running-stale",
+        "eventRecordPresent": false,
+        "handoffDraftPresent": false
+      },
+      {
+        "leadIndex": 2,
+        "agentJob": "agent-os-run:20260715-100901-df70f0ca/task.json",
+        "status": "completed",
+        "eventRecordPresent": true,
+        "handoffDraftPresent": true
+      },
+      {
+        "leadIndex": 2,
+        "agentJob": "agent-os-run:20260715-100804-0246193e/task.json",
+        "status": "completed-duplicate-processing",
+        "eventRecordPresent": true,
+        "handoffDraftPresent": true
+      }
+    ],
+    "conversionTrackingVerified": false
+  },
+  "opaqueGmailEvidence": [
+    "gmail://message/19f63d38529ca576",
+    "gmail://message/19f63d6cfa70c688",
+    "gmail://message/19f63d344e8e946f",
+    "gmail://message/19f65bc99e5aa93a",
+    "gmail://message/19f65d3be4ac128c",
+    "gmail://message/19f661d0ce5b5a9a",
+    "gmail://message/19f661c04273e9cc"
+  ],
+  "stateRecommendation": {
+    "proposedTransition": "blocked",
+    "reason": "The duplicate is now confirmed, but canonical mailbox processing, a human response owner, lead dispositions, and matching CRM or Zapier destination records remain unverified."
+  },
+  "canonicalWriteAttempted": false,
+  "externalActionAttempted": false
+}

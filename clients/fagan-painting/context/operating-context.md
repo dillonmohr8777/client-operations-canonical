@@ -142,3 +142,187 @@ Never estimate or silently fill these gaps.
 | `C:\Users\dillo\Documents\Codex\2026-07-12\did-you-get-a-chance-to\outputs\reports\Fagan_Attribution_Audit_2026-06-22_to_2026-07-12.md` | updated 2026-07-13 | Historical delivery, attribution defects, production repair, and proof boundaries | High for recorded audit window; current live status unknown |
 | `C:\Users\dillo\Documents\Codex\2026-07-12\my-vault-is-apparently-very-behind\vault-cleanup-staging\01_Clients\Fagan Painting\overview.md` | 2026-07-12 | Operating summary and pre-scale posture | Medium; superseded where newer evidence differs |
 | `C:\Users\dillo\Documents\Codex\2026-07-12\check-on-fagan-paining-spending-for\fagan_account_check_2026-07-12.md` | 2026-07-12 | Website scope and then-current billing block | Medium; point-in-time evidence only |
+
+<!-- BEGIN CLIENT-HISTORY-PROMOTION:v1 -->
+## Communication-derived operating context
+
+- Promotion schema: `client-history-context/v2`
+- Last updated from artifact set: 2026-07-16
+- Context role: redacted historical operating evidence; not canonical queue state, delivery authorization, or item-level message attribution
+- Canonical client ID: `fagan-painting`
+- Canonical display name: Fagan Painting
+- Registry status: `active`
+- Knowledge disposition: `current-client-eligible`
+- Privacy: names reduced to roles; no raw messages, snippets, contact details, message URLs, secrets, or one-to-one item/message claims
+- Gmail evidence confidence: high (0.93); Complete exact-contact history with recent metrics and explicit attribution qualifiers.
+- Slack evidence confidence: high (0.95); The exact client channel and exact-name DM evidence were reviewed with cursor exhaustion.
+
+### Evidence coverage
+
+- Gmail: `complete-exact-registry-match`; 144 matched messages across 44 threads and 8 pages, 2026-05-27 through 2026-07-15; exact registry queries reached token exhaustion. Counts are client-query matches, not portfolio-unique totals.
+- Gmail artifact: `state/client-history-research/gmail-client-history-2026-07-16.json#client=fagan-painting`; SHA-256 `801A09576CEE647690982CA9EA851C67C992D328A96C09C986D1C7D8E0E3AE87`
+- Slack: `complete-live-evidence`; 40 Dillon-authored messages across 2 matched conversations and 0 important threads, 2026-05-27 through 2026-07-15; relevant cursors were exhausted within the connected user's visible scope.
+- Slack artifact: `state/client-history-research/slack-client-history-2026-07-16.json#client=fagan-painting`; SHA-256 `00F3C7F4E93C86CF499FC90F4A6F1310F8FA5DEAD1B348814A3AA11F0AF7FED2`
+
+### Identity and routing
+
+- Affiliation constraints: no explicit portfolio affiliation assertion is recorded; do not infer ownership from shared communication participants.
+- Gmail routing constraint: unknown; no additional Gmail routing constraint was recorded
+- Slack routing constraint: no additional Slack routing constraint was recorded
+
+### Key people and roles
+
+#### Gmail-derived roles
+
+- painting-business client and lead-quality reporter
+- account and meeting coordinator
+- agency stakeholder
+- paid-media, SEO, and lead-tracking operator
+
+#### Slack-derived roles
+
+- Client-side project contact
+- Agency landing-page collaborator
+- Agency account team
+
+### Recurring work patterns
+
+#### Gmail-derived patterns
+
+- Meta lead generation
+- lead alerts and lead sheet
+- SEO and service-page planning
+- weekly reporting
+- landing-page and conversion-path validation
+
+#### Slack-derived patterns
+
+- Paid-ad reporting
+- Landing-page A/B testing
+- Form and phone-lead verification
+
+### Communication-derived commitments and promises
+
+These inherit the enclosing client-record evidence scope. Re-read the cited source before treating any one item as current or message-specific.
+
+#### Gmail-derived commitments
+
+- Keep the campaign in validation while forms, calls, lead events, and delivery are checked end to end.
+- Review North Hills and commercial painting page hierarchy before any site changes.
+- Continue qualifying and reporting website and phone opportunities.
+
+#### Slack-derived commitments
+
+- Continue the comparison long enough for a reliable read.
+- Report only legitimate inquiries and confirmed phone leads.
+- Keep form and follow-up handoffs clean.
+
+### Communication-derived decisions
+
+These are historical decision signals, not permission for sending, publishing, spend, account changes, or other external action.
+
+#### Gmail-derived decisions
+
+- Classify two website leads as confirmed and two phone inquiries as high-confidence Meta-influenced, not platform-confirmed.
+- Do not scale or change site structure until tracking and page scope are reviewed.
+
+#### Slack-derived decisions
+
+- Use two landing-page paths as an active A/B test.
+- Limit the client-facing lead record to verified legitimate inquiries.
+
+### Campaigns and services
+
+#### Gmail-derived campaigns and services
+
+- Meta Ads
+- painting estimate lead generation
+- local SEO
+- service pages
+- lead routing
+
+#### Slack-derived campaigns and services
+
+- Painting estimate acquisition
+- Paid-ad variant testing
+- Landing-page conversion work
+
+### Metrics and tools
+
+#### Gmail-derived metric signals
+
+- June 22-July 12: 13,204 impressions, 275 clicks, $379.80 spend, $1.38 blended CPC.
+- Working result: 2 confirmed website leads plus 2 high-confidence Meta-influenced phone inquiries.
+- Cost per confirmed website lead: $189.90; working blended cost per qualified opportunity: about $94.95.
+- July 6-12: 4,476 impressions and $180.11 spend.
+
+#### Gmail-derived tools mentioned
+
+- Meta Ads
+- Google Sheets
+- WordPress
+- website forms
+- lead alerts
+
+#### Slack-derived metrics and tools
+
+- Paid advertising, website forms, call tracking, and Netlify reporting
+- Latest verified lead record: three legitimate inquiries, including two forms and one phone lead.
+- A short test window used a $1,000 budget across multiple variants.
+
+### Dillon sent-email patterns
+
+- Support: 41 sent-message matches across 17 sent threads.
+- Scope: aggregate sent-email behavior for this client only; not raw quotes and not the client brand voice.
+
+#### Patterns
+
+- Celebrates real lead activity
+- Explains attribution caveats
+- Translates media cost into business opportunity
+- Uses short reactions for acknowledgement
+
+#### Watchouts
+
+- Do not promote inferred phone attribution to platform-confirmed conversion status.
+
+### Dillon Slack patterns
+
+- Support: 40 Dillon-authored messages across 2 matched conversations.
+- Scope: aggregate Dillon-authored Slack behavior for this client within visible audited conversations; not raw quotes and not the client brand voice.
+
+- Celebratory and teammate-oriented when results improve.
+- Explains testing logic plainly and separates design preference from conversion evidence.
+
+### Current-state signals
+
+- Gmail last-known signal as of 2026-07-15 (basis: sent report, received lead notifications, and internal drafts): Meta is producing qualified opportunity signals; validation and SEO structure review remain in progress before scaling.
+- Slack last-known signal as of 2026-07-15 within the audited visible scope (high, 0.95): Three verified inquiries were recorded and landing-page and creative tests remained active.
+
+#### Potential Gmail open loops requiring source re-read
+
+- Confirm end-to-end tracking and source retention for calls and forms.
+- Review proposed site hierarchy and conversion paths before publishing new pages.
+- Continue lead-quality feedback and negative/vendor-message filtering.
+
+#### Potential Slack open loops requiring source re-read
+
+- Let the test accumulate enough data.
+- Keep valid form and phone handoffs attributed cleanly.
+
+#### Known unknowns
+
+- Item-level source mapping is unknown because the audit provenance is client-record scoped.
+- Slack facts inherit the enclosing client-row coverage and opaque locator set; they are not claimed as one-fact-to-one-message mappings.
+- Slack conclusions are authoritative only within conversations visible to the connected user and exclude deleted messages and inaccessible file bodies.
+- Any conflict with newer canonical queue or live-system evidence requires source re-read; this block does not overwrite that state.
+
+### Communication source ledger
+
+| Claim scope | Observed date or window | Confidence | Safe source locator |
+| --- | --- | --- | --- |
+| Gmail synthesized client record | 2026-05-27 through 2026-07-15 | high (0.93) | `state/client-history-research/gmail-client-history-2026-07-16.json#client=fagan-painting` |
+| Gmail last-known status signal | 2026-07-15 | high (0.93) | `state/client-history-research/gmail-client-history-2026-07-16.json#client=fagan-painting` |
+| Slack synthesized client record | 2026-05-27 through 2026-07-15 | high (0.95) | `state/client-history-research/slack-client-history-2026-07-16.json#client=fagan-painting` |
+| Slack last-known status signal | 2026-07-15 | high (0.95) | `state/client-history-research/slack-client-history-2026-07-16.json#client=fagan-painting` |
+<!-- END CLIENT-HISTORY-PROMOTION:v1 -->

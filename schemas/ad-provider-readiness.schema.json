@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ad-provider-readiness.schema.json",
+  "title": "Paid-media provider readiness",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "observedAt", "providers", "landingPageDeployment", "privacy", "containsSecrets", "containsDirectIdentifiers"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "observedAt": { "type": "string", "format": "date-time" },
+    "providers": {
+      "type": "object", "additionalProperties": false,
+      "required": ["google_ads", "meta_ads"],
+      "properties": {
+        "google_ads": { "$ref": "#/$defs/readiness" },
+        "meta_ads": { "$ref": "#/$defs/readiness" }
+      }
+    },
+    "landingPageDeployment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["staging", "production"],
+      "properties": {
+        "staging": { "$ref": "#/$defs/readiness" },
+        "production": { "$ref": "#/$defs/readiness" }
+      }
+    },
+    "privacy": { "const": "redacted" },
+    "containsSecrets": { "const": false },
+    "containsDirectIdentifiers": { "const": false }
+  },
+  "$defs": {
+    "readiness": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "verifiedCapabilities", "blockers", "requiresLiveProbe"],
+      "properties": {
+        "status": { "enum": ["ready", "partial", "blocked", "unknown"] },
+        "verifiedCapabilities": { "type": "array", "uniqueItems": true, "items": { "type": "string", "maxLength": 160 } },
+        "blockers": { "type": "array", "uniqueItems": true, "items": { "type": "string", "maxLength": 300 } },
+        "requiresLiveProbe": { "type": "boolean" }
+      }
+    }
+  }
+}

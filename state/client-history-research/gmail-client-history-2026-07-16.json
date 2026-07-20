@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "gmail-client-history-audit",
+  "generatedAtUtc": "2026-07-16T16:08:04.3942540Z",
+  "privacy": {
+    "redacted": true,
+    "containsSecrets": false,
+    "containsOneTimeCodes": false,
+    "containsRawCommunications": false,
+    "containsMessageSnippets": false,
+    "containsAttachmentContent": false,
+    "containsDirectContactDetails": false,
+    "containsUnnecessaryPii": false,
+    "containsLimitedBusinessNamesForRequestedPeopleAndRoles": true,
+    "storesOpaqueGmailLocatorsOnly": true
+  },
+  "source": {
+    "registry": "registry/clients.json",
+    "registryGeneratedAtUtc": "2026-07-16T14:31:03.3067568Z",
+    "connector": "native Gmail app tools",
+    "mailboxIdentityVerified": true,
+    "mailboxRole": "Dillon authorized business mailbox",
+    "mailboxAddressStored": false
+  },
+  "status": "complete-exact-registry-match",
+  "auditPolicy": {
+    "searchOrder": "exact registry domains or exact registry contacts first; aliases only if exact keys were insufficient",
+    "queryTemplate": "in:anywhere -in:spam -in:trash {from:(<registry-match-key>) to:(<registry-match-key>) cc:(<registry-match-key>) bcc:(<registry-match-key>)}",
+    "literalContactAddressesStored": false,
+    "pageSize": 20,
+    "pagination": "continued with next_page_token until token exhaustion for every client query",
+    "shortlistThenRead": true,
+    "attachmentBodiesOpened": false,
+    "writesAllowed": false,
+    "mailboxMutationsPerformed": false
+  },
+  "coverage": {
+    "canonicalRegistryRecordsAudited": 18,
+    "activeRecordsEligibleForCurrentClientKnowledge": 17,
+    "needsConfirmationRecordsQuarantined": 1,
+    "searchPagesRead": 189,
+    "summedPerClientMessageMatches": 3561,
+    "summedPerClientUniqueThreadCounts": 1195,
+    "globallyDeduplicatedMessages": 2555,
+    "globallyDeduplicatedThreads": 897,
+    "oldestMatchedMessageDate": "2025-07-21",
+    "newestMatchedMessageDate": "2026-07-16",
+    "allExactQueriesReachedTokenExhaustion": true,
+    "connectorErrors": 0,
+    "connectorRetries": 0,
+    "countingCaveat": "Client counts are message-level exact-query matches and include relevant Sent, Inbox, Draft, and calendar traffic. Agency and multi-party messages can match more than one client query, so summed client counts are not portfolio-unique totals."
+  },
+  "limitations": [
+    "Exact registry-key coverage cannot discover mail conducted exclusively through an unregistered address or an alias that never used the registered domain or contact.",
+    "Search results are message-level; thread counts are unique thread IDs within each client query.",
+    "Drafts are internal state only and are never represented as client-approved or client-delivered facts.",
+    "Calendar invitations and automated notifications are included when they match the exact client key and are labeled as such in interpretation.",
+    "Attachments were inventoried by metadata only and were not opened.",
+    "Momentum 360 domain correspondence contains agency operations and some client-party threads; those messages are treated as agency context and do not reclassify another portfolio client."
+  ],
+  "provenanceModel": {
+    "granularity": "client-record",
+    "itemLevelOneToOneLocatorMapping": false,
+    "inheritanceRule": "Synthesized people, work, decision, metric, voice, and open-loop items inherit the enclosing client's coverage window, confidence, and opaque locator set. They must not be represented as individually mapped to one source message unless a later promotion pass performs and records that mapping.",
+    "promotionSafety": "If item-granular provenance is required, decline or re-read the cited opaque Gmail threads; never fabricate an item-to-message relationship."
+  },
+  "portfolioRouting": {
+    "promotionRule": "Only registry records with status active may become current-client knowledge.",
+    "quarantinedClientIds": [
+      "revive-systems"
+    ],
+    "independentCurrentClientsNotMomentum360": [
+      "cindy-may-christmas",
+      "bok-law-firm",
+      "ami-cleaning"
+    ],
+    "independentClientGuard": "Cindy May Christmas, BOK Law Firm, and AMI Cleaning are current clients but are not Momentum 360 clients. Never nest, blend, or label them under Momentum 360.",
+    "defaultRelationshipGuard": "Do not infer a Momentum 360 relationship for any other client solely because Momentum staff appeared in a Gmail thread."
+  },
+  "aggregateDillonSentVoice": {
+    "scope": "globally deduplicated sent-message evidence from the 17 active client queries; revive-systems excluded",
+    "evidence": {
+      "activeClients": 17,
+      "uniqueSentMessages": 1032,
+      "uniqueSentThreads": 452,
+      "snippetSignalCountsAreLowerBounds": true,
+      "openingsBeginningWithHi": 343,
+      "openingsBeginningWithHey": 261,
+      "reactionOnlyAcknowledgements": 161,
+      "messagesWithExclamationSignal": 476,
+      "messagesWithQuestionSignal": 95,
+      "messagesWithThanksSignal": 243,
+      "messagesWithAttachmentOrDeliverySignal": 158,
+      "messagesWithApologySignal": 54,
+      "messagesWithLetMeKnowSignal": 53
+    },
+    "openings": "Hi is the dominant client-service opening; Hey rises with established, informal relationships. Delivery notes often move directly from greeting to the result or attachment. Formal time-of-day greetings are uncommon.",
+    "sentenceRhythm": "Typical rhythm is short greeting, clear result, grouped facts or KPI bullets, interpretation, then one next action. Brief acknowledgements can be a single sentence or a reaction; complex handoffs become longer checklist-style paragraphs.",
+    "directness": "Dillon usually leads with what is live, finished, paused, changed, or needed. He distinguishes verified metrics from modeled or inferred outcomes when the underlying evidence has been reconciled.",
+    "warmth": "The voice is appreciative, encouraging, and celebratory. Thanks, positive reinforcement, exclamation marks, and lightweight emoji reactions are common, especially after client approval or a lead win.",
+    "asks": "The strongest asks are concrete and singular: confirm a budget, review an asset, provide access, choose a direction, supply a link, or report lead quality. The ask usually follows enough context for the recipient to act immediately.",
+    "followUps": "Follow-ups restate the current state, owner, constraint, and next checkpoint. When access or source data is missing, Dillon often keeps work paused and explains what evidence will unlock the next step.",
+    "closings": "Longer messages commonly close with thanks and the DM or Dillon Mohr Marketing Specialist signature. Short thread acknowledgements may close without a full sign-off or use a Gmail reaction.",
+    "punctuation": "Exclamation marks are frequent and questions are comparatively selective. KPI and handoff messages use bullets, colons, parentheses, and dash-style separators; casual threads contain more contractions and conversational punctuation.",
+    "revisionTendencies": "Dillon replaces stale attachments, marks duplicate or stale drafts explicitly, corrects source-of-truth errors, and rewrites broad claims after verification. Revised drafts sometimes remain unsent, so Draft versus Sent status must always be preserved.",
+    "antiPatterns": [
+      "Do not promote a Draft as a delivered commitment or decision.",
+      "Watch for a later internal correction that conflicts with an earlier sent message, especially channel recommendations or KPI attribution.",
+      "Avoid duplicate, stale, test, or do-not-send artifacts even when they are newer than the live thread.",
+      "Avoid blending clients, brands, cities, or verified and modeled metrics in one conclusion.",
+      "Keep personal explanations, typos, repeated signatures, and reaction-only messages out of formal client-history summaries.",
+      "Verify source and math before repeating a confident performance claim."
+    ]
+  },
+  "summary": {
+    "currentClientKnowledgeRecords": 17,
+    "quarantinedAuditRecords": 1,
+    "clientsWithCompleteExactMatchCoverage": 18,
+    "clientsWithConnectorBlockers": 0,
+    "promotionReady": true,
+    "promotionConstraint": "Promote active records only and preserve every client as a separate knowledge object."
+  },
+  "clients": [
+    {
+      "clientId": "align-hcm",
+      "displayName": "Align HCM",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "current client; Momentum 360 relationship not inferred",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[align-hcm].emailDomains[0]"],
+        "queryTemplate": "exact domain across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 1,
+        "messageMatches": 9,
+        "uniqueThreads": 9,
+        "oldestDate": "2026-02-23",
+        "newestDate": "2026-07-11"
+      },
+      "keyPeopleAndRoles": [
+        "Dillon Mohr: authorized operator and content producer",
+        "Menatalla Maher: business-card subject and likely Align stakeholder; role not established in Gmail"
+      ],
+      "recurringWork": [
+        "HR technology content packages and blog production",
+        "UKG and Workday buyer-guide assets",
+        "business cards, headshots, and screen-recording/video assets"
+      ],
+      "commitmentsAndPromises": [
+        "Delivered a latest-only content package with additional UKG PDFs.",
+        "Delivered 18 finalized blog drafts as separate DOCX files with formatting and metadata polish."
+      ],
+      "decisions": [
+        "The June 8 latest-only package superseded older content-package material.",
+        "The reviewed blog set used embedded links, varied lengths, title-case sections, consumer pain-point framing, and meta-description comments."
+      ],
+      "campaignsAndServices": ["content strategy", "SEO blog production", "sales enablement", "brand collateral"],
+      "metricsLinksAndTools": {
+        "metrics": ["18 finalized blog drafts"],
+        "linksMentioned": ["Google Drive delivery link; private URL not stored"],
+        "tools": ["Google Drive", "DOCX", "PDF", "screen recording"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 7, "sentThreadMatches": 7},
+        "patterns": ["Concise delivery-first notes", "Specific package/version naming", "Minimal ask when the purpose is file handoff"],
+        "watchouts": ["Most mail is self-routed, so acceptance and stakeholder reaction are not established."]
+      },
+      "openLoops": [
+        "Confirm acceptance and next production priority for the delivered content and collateral.",
+        "Determine whether the July 11 Dayforce Discover exhibitor manual creates a new Align workstream."
+      ],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-11",
+        "basis": "sent delivery history plus a received self-forward",
+        "state": "Major content and collateral packages were delivered; the latest mailbox item is a Dayforce Discover exhibitor manual with no documented follow-up."
+      },
+      "confidence": {"level": "medium", "score": 0.72, "rationale": "Exact search is complete, but the small record is dominated by self-routed delivery mail rather than client replies."},
+      "opaqueLocators": {
+        "messageIds": ["19f4eb1cfa931bdb", "19ead710b33bace3", "19e5b72b874dcbec"],
+        "threadIds": ["19f4eb1cfa931bdb", "19ead710b33bace3", "19e5b729a0286374"]
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "momentum-360",
+      "displayName": "Momentum 360",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "agency-level client and operating context",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[momentum-360].emailDomains[0]", "registry.clients[momentum-360].emailDomains[1]"],
+        "queryTemplate": "two exact domains across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 67,
+        "messageMatches": 1333,
+        "uniqueThreads": 481,
+        "oldestDate": "2025-12-18",
+        "newestDate": "2026-07-16"
+      },
+      "keyPeopleAndRoles": [
+        "Mac Frederick: founder and CEO",
+        "Sean Boyle: agency leader and account stakeholder",
+        "Melissa Silber: operations leader and training coordinator",
+        "Jason Fallon: vice president of sales",
+        "Beth Kann: director or account-management stakeholder",
+        "John Belaska: account and campaign collaborator",
+        "Dillon Mohr: marketing specialist, AI trainer, producer, and client-work operator"
+      ],
+      "recurringWork": [
+        "multi-client account delivery and reporting",
+        "AI, Codex, Fable, GBP, lead-reporting, and ads training",
+        "sales and account-management coordination",
+        "website, paid media, SEO, CRM, and creative production",
+        "new product and software concept development"
+      ],
+      "commitmentsAndPromises": [
+        "Recurring operations and AI training continued, with a July 22 AI and Fable session scheduled."
+      ],
+      "decisions": [
+        "Do not activate a deactivated HubSpot Leads object solely because of an automated notice; change it only if Leads is intentionally part of the workflow and an admin approves.",
+        "Treat agency-domain mail as Momentum operations context without reclassifying the client named in a multi-party thread."
+      ],
+      "campaignsAndServices": ["agency operations", "AI enablement", "HubSpot", "sales enablement", "client delivery", "web and software prototyping"],
+      "metricsLinksAndTools": {
+        "metrics": ["481 matched agency threads", "recurring weekly training and operations cadence"],
+        "linksMentioned": ["needmomentum.com", "private proposal and onboarding links not stored"],
+        "tools": ["HubSpot", "Codex", "Fable", "Claude", "Google Ads", "GBP", "Google Meet", "Fireflies"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 480, "sentThreadMatches": 212},
+        "patterns": ["Warm and high-energy internal coordination", "Quick ownership statements", "Detailed scope breakdowns for new projects", "Frequent reaction acknowledgements"],
+        "watchouts": ["Agency-domain results overlap named client threads; preserve client attribution.", "Casual enthusiasm can outrun a formal scope if an approval gate is not restated."]
+      },
+      "openLoops": [
+        "Confirm whether the Momentum HubSpot agent should ever use the Leads object.",
+        "Run the scheduled July 22 AI and Fable training and capture any resulting operational decisions."
+      ],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-16",
+        "basis": "sent, received, and calendar evidence",
+        "state": "Agency operations are active across client delivery, internal AI enablement, and new product work; no single cross-client status should replace the separate client records."
+      },
+      "confidence": {"level": "high-with-routing-caveat", "score": 0.88, "rationale": "Deep exact-domain history is complete, but agency threads naturally overlap other clients and require strict attribution."},
+      "opaqueLocators": {
+        "messageIds": ["19f44a7113934dc9", "19f048dca882e1ab", "19f669366721b3ef"],
+        "threadIds": ["19e6a5791432651c", "19f01ecf7c891251", "19f669366721b3ef"]
+      },
+      "routingConstraint": "Never absorb BOK Law Firm, AMI Cleaning, or Cindy May Christmas into Momentum 360."
+    },
+    {
+      "clientId": "kimberly-james-bridal",
+      "displayName": "Kimberly James Bridal",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "current client; Momentum 360 relationship not inferred",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[kimberly-james-bridal].emailDomains[0]"],
+        "queryTemplate": "exact domain across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 18,
+        "messageMatches": 345,
+        "uniqueThreads": 92,
+        "oldestDate": "2026-03-12",
+        "newestDate": "2026-07-15"
+      },
+      "keyPeopleAndRoles": [
+        "Kimberly Iraci: boutique owner and primary decision-maker",
+        "Dillon Mohr: paid-media, website, reporting, and lead-flow operator",
+        "Mac Frederick, Sean Boyle, and Melissa Silber: agency stakeholders copied on selected decisions"
+      ],
+      "recurringWork": ["Meta and Google Ads", "lead and appointment tracking", "landing pages and FAQ/SEO pages", "creative review", "weekly and monthly reporting"],
+      "commitmentsAndPromises": [
+        "Dillon committed to verify submit events, webhook/source fields, and appointment routing end to end.",
+        "Kimberly committed to call recent leads after noting that follow-up had not occurred recently.",
+        "Dillon said the channel plan would focus on Meta for now after Kimberly asked to cancel Google."
+      ],
+      "decisions": [
+        "The latest client-expressed channel preference is to stop or pause Google and focus on Meta for now.",
+        "A later internal Draft recommends not canceling Google outright; because it was not sent, it is an unresolved internal revision rather than a client decision.",
+        "A routing test must not be counted as a lead or booking."
+      ],
+      "campaignsAndServices": ["Google Search", "Meta lead generation", "appointment landing pages", "FAQ and size-inclusive SEO pages", "lead sheet follow-up"],
+      "metricsLinksAndTools": {
+        "metrics": [
+          "July 6-12 Google: $173.04 spend, 14,598 impressions, 365 clicks, 2.50% CTR, $0.47 average CPC, 0 tracked conversions.",
+          "July 6-12 Meta: $63.41 spend, 1,064 reach, 1,851 impressions, 0 form leads; delivery below half of the $10 daily budget.",
+          "Combined verified spend: $236.45; an internal correction Draft records 0 verified leads and 0 verified bookings."
+        ],
+        "linksMentioned": ["https://kimberly-james-bridal-2026-06-06.netlify.app", "https://www.kimberlyjamesbridal.com/faq"],
+        "tools": ["Google Ads", "Meta Ads", "Squarespace", "Poppy Bridal", "Google Sheets", "webhooks"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 155, "sentThreadMatches": 57},
+        "patterns": ["Warm Hi or Hi Kim opening", "Recommendation followed by a concrete choice", "KPI blocks tied to booked appointments rather than raw form volume", "Enthusiastic approval and fast follow-up"],
+        "watchouts": ["Conflicting sent and draft channel guidance must be reconciled before reuse.", "Do not count tests as leads."]
+      },
+      "openLoops": [
+        "Respond to the July 15 question about small Facebook card charges after verifying them in Meta billing.",
+        "Confirm whether Google was actually paused or canceled and document the final approved channel mix.",
+        "Complete lead follow-up and connect ad source through to booked appointment status.",
+        "Reconcile the unsent KPI correction with any dashboard or client-facing record."
+      ],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-15",
+        "basis": "received client questions plus earlier sent and draft evidence",
+        "state": "Client prefers Meta for now, lead follow-up is incomplete, tracking still needs end-to-end verification, and the newest unanswered item concerns Facebook charges."
+      },
+      "confidence": {"level": "high", "score": 0.95, "rationale": "Large complete exact-domain history with recent two-way threads; remaining ambiguity is explicitly isolated to sent-versus-draft conflict."},
+      "opaqueLocators": {
+        "messageIds": ["19f5d832bbcfb9ce", "19f621b635bd5a5e", "19f66c8d84482bfb", "19f62228e41bb41e"],
+        "threadIds": ["19f5d83130359c30", "19f6178d4d68a182", "19f66c8d84482bfb", "19f6167d50f81425"]
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "bok-law-firm",
+      "displayName": "BOK Law Firm",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "independent current client; not a Momentum 360 client",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[bok-law-firm].emailDomains[0]"],
+        "queryTemplate": "exact domain across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 26,
+        "messageMatches": 503,
+        "uniqueThreads": 189,
+        "oldestDate": "2025-07-21",
+        "newestDate": "2026-07-14"
+      },
+      "keyPeopleAndRoles": [
+        "Dorothy O'Neil: attorney and frequent content approver",
+        "Rachael Bowe: attorney and recognition/content stakeholder",
+        "Aleksandra Kocelko: attorney and founding-member stakeholder",
+        "Karen Yun-Lutz: website and media collaborator",
+        "Dillon Mohr: independent marketing and content operator"
+      ],
+      "recurringWork": ["weekly social content", "blogs and legal service pages", "podcast pages", "website updates", "presentations", "invoices and awards content"],
+      "commitmentsAndPromises": [
+        "Remove Pittsburgh-only positioning and represent the firm's full western Pennsylvania service area.",
+        "Prepare Best Lawyers recognition content for the morning of August 20 with each attorney's exact distinction.",
+        "Continue weekly content review and rapid copy/image revisions."
+      ],
+      "decisions": [
+        "Geographic copy must not limit the firm to Pittsburgh or Allegheny County.",
+        "Recognition content is embargoed until August 20 and must preserve different designations for Dorothy versus Rachael and Aleksandra."
+      ],
+      "campaignsAndServices": ["organic social", "legal content marketing", "website SEO", "podcast promotion", "awards and recognition", "presentation design"],
+      "metricsLinksAndTools": {
+        "metrics": ["503 matched messages across 189 threads", "weekly content is the most recurrent subject family"],
+        "linksMentioned": ["boklawfirm.com pages", "shared headshot folder; private URL not stored"],
+        "tools": ["Wix", "PowerPoint", "Word", "podcast assets", "social reporting"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 262, "sentThreadMatches": 133},
+        "patterns": ["Often opens Hey or Hi all", "Fast acknowledgement and revision", "Friendly exclamation-heavy tone", "Concise delivery notes for weekly content"],
+        "watchouts": ["Legal geography, titles, distinctions, and embargo dates require exact verification before publication."]
+      },
+      "openLoops": [
+        "Verify that the July 14 weekly content was revised from Pittsburgh-only language to western Pennsylvania.",
+        "Build and obtain approval for the August 20 Best Lawyers posts without early publication.",
+        "Keep recognition copy separate by attorney distinction."
+      ],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-14",
+        "basis": "received revision request and sent commitment",
+        "state": "Weekly content remains active; a geographic correction is pending and August 20 recognition content is queued under an embargo."
+      },
+      "confidence": {"level": "high", "score": 0.95, "rationale": "Long, complete two-way history with clear recent requests and owners."},
+      "opaqueLocators": {
+        "messageIds": ["19f61e98f8915f98", "19f617b40aef3172", "19f62d26c0a5023a"],
+        "threadIds": ["19f616cd7333ee73", "19f60cc814b54f73", "19f62d2496accc3d"]
+      },
+      "routingConstraint": "Independent current client. Never label or nest under Momentum 360."
+    },
+    {
+      "clientId": "fagan-painting",
+      "displayName": "Fagan Painting",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "current client; Momentum 360 relationship not inferred",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[fagan-painting].contacts[0].email"],
+        "queryTemplate": "exact registry contact across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 8,
+        "messageMatches": 144,
+        "uniqueThreads": 44,
+        "oldestDate": "2026-05-27",
+        "newestDate": "2026-07-15"
+      },
+      "keyPeopleAndRoles": ["James: painting-business client and lead-quality reporter", "Phil: account and meeting coordinator", "Mac Frederick: agency stakeholder", "Dillon Mohr: paid-media, SEO, and lead-tracking operator"],
+      "recurringWork": ["Meta lead generation", "lead alerts and lead sheet", "SEO and service-page planning", "weekly reporting", "landing-page and conversion-path validation"],
+      "commitmentsAndPromises": [
+        "Keep the campaign in validation while forms, calls, lead events, and delivery are checked end to end.",
+        "Review North Hills and commercial painting page hierarchy before any site changes.",
+        "Continue qualifying and reporting website and phone opportunities."
+      ],
+      "decisions": [
+        "Classify two website leads as confirmed and two phone inquiries as high-confidence Meta-influenced, not platform-confirmed.",
+        "Do not scale or change site structure until tracking and page scope are reviewed."
+      ],
+      "campaignsAndServices": ["Meta Ads", "painting estimate lead generation", "local SEO", "service pages", "lead routing"],
+      "metricsLinksAndTools": {
+        "metrics": [
+          "June 22-July 12: 13,204 impressions, 275 clicks, $379.80 spend, $1.38 blended CPC.",
+          "Working result: 2 confirmed website leads plus 2 high-confidence Meta-influenced phone inquiries.",
+          "Cost per confirmed website lead: $189.90; working blended cost per qualified opportunity: about $94.95.",
+          "July 6-12: 4,476 impressions and $180.11 spend."
+        ],
+        "linksMentioned": ["private Google Sheets lead tracker; URL not stored"],
+        "tools": ["Meta Ads", "Google Sheets", "WordPress", "website forms", "lead alerts"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 41, "sentThreadMatches": 17},
+        "patterns": ["Celebrates real lead activity", "Explains attribution caveats", "Translates media cost into business opportunity", "Uses short reactions for acknowledgement"],
+        "watchouts": ["Do not promote inferred phone attribution to platform-confirmed conversion status."]
+      },
+      "openLoops": [
+        "Confirm end-to-end tracking and source retention for calls and forms.",
+        "Review proposed site hierarchy and conversion paths before publishing new pages.",
+        "Continue lead-quality feedback and negative/vendor-message filtering."
+      ],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-15",
+        "basis": "sent report, received lead notifications, and internal drafts",
+        "state": "Meta is producing qualified opportunity signals; validation and SEO structure review remain in progress before scaling."
+      },
+      "confidence": {"level": "high", "score": 0.93, "rationale": "Complete exact-contact history with recent metrics and explicit attribution qualifiers."},
+      "opaqueLocators": {
+        "messageIds": ["19f5d26c575b75e9", "19f617c6bfe8d6ab", "19f66f4f4a1e58c0"],
+        "threadIds": ["19f5d21188316d85", "19ecc8d3bd9c60f2", "19f66f4f4a1e58c0"]
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "replenish-7-eleven",
+      "displayName": "Replenish / 7-Eleven",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "current client; keep separate from Fresh Blends / Kwik Trip",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[replenish-7-eleven].emailDomains[0]"],
+        "queryTemplate": "exact domain across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 10,
+        "messageMatches": 190,
+        "uniqueThreads": 63,
+        "oldestDate": "2026-03-23",
+        "newestDate": "2026-07-14"
+      },
+      "keyPeopleAndRoles": ["Mia Lange: managing partner and primary client decision-maker", "Sean Boyle: agency stakeholder copied on billing and activation", "Dillon Mohr: Google Ads, reporting, landing-page, and optimization operator"],
+      "recurringWork": ["Google Ads by city and store", "clicked-directions reporting", "landing pages", "weekly KPI decks", "billing and campaign activation", "scale planning"],
+      "commitmentsAndPromises": [
+        "Keep Replenish and 7-Eleven reporting separate from Fresh Blends and Kwik Trip.",
+        "Keep location and brand budgets distinct and approval-gated.",
+        "Provide city-level verified CPC and separately labeled modeled direction cost."
+      ],
+      "decisions": [
+        "Boca was paused in the July 13 report; the July 14 update says all South Florida campaigns are now paused.",
+        "Verified Google CPC and modeled clicked-directions cost must remain separate measurements.",
+        "Billing must be resolved before any activation or spend continuation."
+      ],
+      "campaignsAndServices": ["Google Ads", "7-Eleven city campaigns", "store-direction intent", "landing pages", "weekly and monthly reporting"],
+      "metricsLinksAndTools": {
+        "metrics": [
+          "July 6-12 across 8 campaigns: 41,538 impressions, 1,357 clicks, $694.71 spend, verified $0.51 CPC.",
+          "Approved model: 323 clicked directions, $2.15 modeled average cost per direction, 20.4% modeled improvement.",
+          "The next-day update records all South Florida campaigns paused near their threshold."
+        ],
+        "linksMentioned": ["https://7eleven.getreplenish.com", "private KPI PowerPoint and dashboards; URLs not stored"],
+        "tools": ["Google Ads", "PowerPoint", "Google Meet", "landing pages"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 87, "sentThreadMatches": 36},
+        "patterns": ["Hi Mia opening", "Exact KPI blocks", "Positive scale language", "Clear separation of verified and modeled measures", "Short billing asks"],
+        "watchouts": ["Do not blend Fresh Blends data or imply modeled directions are provider-verified conversions."]
+      },
+      "openLoops": [
+        "Confirm whether the replacement billing method was added and the outstanding balance cleared.",
+        "Document which non-South-Florida campaigns remain active after the July 14 pause.",
+        "Require explicit approval before reactivating paused cities or changing budgets."
+      ],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-14",
+        "basis": "sent KPI and pause updates plus received billing response",
+        "state": "South Florida campaigns are paused; performance reporting is current, while billing and any restart remain unresolved."
+      },
+      "confidence": {"level": "high", "score": 0.94, "rationale": "Complete two-way domain history with recent sent KPI records and explicit pause language."},
+      "opaqueLocators": {
+        "messageIds": ["19f61f6bfdd99d11", "19f5cf1d7bf16ef2", "19f5768086a9a723"],
+        "threadIds": ["19f61f6bfdd99d11", "19f5cc4d57de2dd4", "19d4bcf534e3451c"]
+      },
+      "routingConstraint": "Never blend with Fresh Blends / Kwik Trip."
+    },
+    {
+      "clientId": "fresh-blends-kwik-trip",
+      "displayName": "Fresh Blends / Kwik Trip",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "current client; keep separate from Replenish / 7-Eleven",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[fresh-blends-kwik-trip].emailDomains[0]"],
+        "queryTemplate": "exact domain across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 5,
+        "messageMatches": 81,
+        "uniqueThreads": 36,
+        "oldestDate": "2026-03-23",
+        "newestDate": "2026-07-13"
+      },
+      "keyPeopleAndRoles": ["Mia Lange: chief brand officer and primary client decision-maker", "Dillon Mohr: Google Ads and performance-report operator", "Sean Boyle: agency stakeholder"],
+      "recurringWork": ["Kwik Trip Ice Box Google campaigns", "store-level CPC and directions analysis", "weekly and monthly decks", "creative specs", "SEO and landing pages"],
+      "commitmentsAndPromises": [
+        "Keep Fresh Blends reporting separate from Replenish.",
+        "Add verified campaign start dates to future reports.",
+        "Withhold weekly KPI claims when a complete platform-delivery source is unavailable."
+      ],
+      "decisions": [
+        "Scale store 1161, protect store 633, and tune store 573 based on the June 29 analysis.",
+        "The latest internal Draft records the Fresh Blends / Kwik Trip campaigns paused July 9 and refuses estimates; that pause is not shown as a client-confirmed sent decision."
+      ],
+      "campaignsAndServices": ["Google Ads", "Kwik Trip store campaigns", "clicked-directions optimization", "creative specs", "SEO"],
+      "metricsLinksAndTools": {
+        "metrics": [
+          "June 29 report: 186,685 impressions, 3,588 clicks, 1.92% CTR, $1,836.31 spend, $0.51 blended CPC.",
+          "574 Get Directions at $3.20 blended cost per direction.",
+          "Store 1161: $0.46 CPC and 151 directions; store 633: 156 directions and 3.08% CTR; store 573: $3.69 cost per direction."
+        ],
+        "linksMentioned": ["private interactive reports and meeting recap; URLs not stored"],
+        "tools": ["Google Ads", "PowerPoint", "Fireflies", "Google Meet"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 33, "sentThreadMatches": 20},
+        "patterns": ["Hi Mia opening", "Benchmark-led explanation", "Store-by-store actions", "Explicit brand separation"],
+        "watchouts": ["Latest pause appears only in Draft state and must not be presented as a client-confirmed instruction."]
+      },
+      "openLoops": [
+        "Verify the exact pause state in Google Ads and confirm it with the client.",
+        "Restore weekly reporting only from a complete live source.",
+        "Confirm exact first-spend date and preserve separate Fresh Blends reporting."
+      ],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-13",
+        "basis": "earlier sent performance report plus latest internal Draft",
+        "state": "The latest internal state says campaigns are paused and KPI reporting is withheld pending complete source data; the last external acknowledgement predates that pause."
+      },
+      "confidence": {"level": "high-history-medium-current-status", "score": 0.87, "rationale": "Exact-domain history is complete and metrics are strong, but the newest pause exists only in an unsent Draft."},
+      "opaqueLocators": {
+        "messageIds": ["19f140c8410616a7", "19f5d0514f7d95fa", "19f38360dc98fdb2"],
+        "threadIds": ["19f140971e25a1f1", "19f5d0514f7d95fa", "19ecc4d93c36db93"]
+      },
+      "routingConstraint": "Never blend with Replenish / 7-Eleven."
+    },
+    {
+      "clientId": "nkcdc",
+      "displayName": "NKCDC",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "current client; Momentum 360 relationship not inferred",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[nkcdc].emailDomains[0]"],
+        "queryTemplate": "exact domain across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 7,
+        "messageMatches": 124,
+        "uniqueThreads": 48,
+        "oldestDate": "2026-04-02",
+        "newestDate": "2026-07-15"
+      },
+      "keyPeopleAndRoles": ["Anthony Miller: primary client stakeholder", "Tess Watts and Mikey Boyd: client team stakeholders", "Mac Frederick: contract and relationship stakeholder", "Dillon Mohr: paid-media and reporting operator"],
+      "recurringWork": ["Google and Meta paid media", "lead sheets", "weekly reports", "landing-page strategy", "retention and contract planning"],
+      "commitmentsAndPromises": [
+        "Keep paid media paused while the contract path is unresolved.",
+        "Provide a recommendations PDF and a clear owner/timing path after the next-steps conversation.",
+        "Do not reactivate campaigns automatically."
+      ],
+      "decisions": [
+        "Following the July 8 decision, paid ads remain paused and NKCDC is excluded from the active dashboard cycle.",
+        "The July 15 next-steps call was intended to resolve relationship, scope, contract, owners, and timing."
+      ],
+      "campaignsAndServices": ["Google Search", "Meta Ads", "lead generation", "landing-page optimization", "retention strategy"],
+      "metricsLinksAndTools": {
+        "metrics": ["Internal July 6-12 closeout Draft: 347 impressions, 10 clicks, $89.74 spend, and 1 tracked conversion; historical context only."],
+        "linksMentioned": ["public tax-prep intake landing page", "private lead sheet and recommendations PDF; URLs not stored"],
+        "tools": ["Google Ads", "Meta Ads", "Google Sheets", "Google Meet", "PDF reporting"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 50, "sentThreadMatches": 24},
+        "patterns": ["Patient and appreciative", "Lead-count updates tied to qualification", "Explicit pause and approval language", "Practical contract follow-up"],
+        "watchouts": ["Do not infer the outcome of the July 15 call from the calendar event alone."]
+      },
+      "openLoops": [
+        "Capture the actual outcome of the July 15 next-steps call.",
+        "Resolve contract scope, ownership, and timeline before any restart.",
+        "Keep closeout metrics separate from a recommendation to resume spend."
+      ],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-15",
+        "basis": "calendar and internal Draft evidence after prior client threads",
+        "state": "Ads remain paused pending a contract and relationship decision; a next-steps call was scheduled, but Gmail does not record its outcome."
+      },
+      "confidence": {"level": "high-history-medium-current-outcome", "score": 0.89, "rationale": "Complete history supports the pause, but the decisive meeting outcome is absent."},
+      "opaqueLocators": {
+        "messageIds": ["19f5c1c840007dc9", "19f62726061724cb", "19f433c40127aeb1"],
+        "threadIds": ["19f5c1c840007dc9", "19f5c1ba3274171c", "19ecd18ab47fd62d"]
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "zen-spa-tropicana",
+      "displayName": "Zen Spa at Tropicana",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "current client; Momentum 360 relationship not inferred",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[zen-spa-tropicana].emailDomains[0]"],
+        "queryTemplate": "exact domain across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 9,
+        "messageMatches": 162,
+        "uniqueThreads": 51,
+        "oldestDate": "2026-04-02",
+        "newestDate": "2026-07-16"
+      },
+      "keyPeopleAndRoles": ["Ambika Vig: client and confirmed Squarespace site owner", "Jenny McClain Miller: creative/video collaborator", "Mac Frederick and Sean Boyle: agency stakeholders", "Dillon Mohr: website, listings, forms, content, and handoff operator"],
+      "recurringWork": ["Squarespace website build and QA", "10% offer popup and form routing", "content calendar and social creative", "Google Business Profile and directory handoff", "booking and coupon automation"],
+      "commitmentsAndPromises": [
+        "Complete a final live QA pass and deliver a consolidated site/account handoff.",
+        "Revoke remaining contributor access after the client had a review window.",
+        "Keep listings status explicit as live versus staged."
+      ],
+      "decisions": [
+        "Ambika is the Squarespace site owner and most public content is natively editable; the homepage has an editability exception documented in the handoff.",
+        "The site, popup, signup form, lead routing, and coupon automation were tested and handed off.",
+        "Dillon does not retain access to social accounts."
+      ],
+      "campaignsAndServices": ["website design", "local SEO and directories", "lead capture", "coupon automation", "social creative", "booking integration"],
+      "metricsLinksAndTools": {
+        "metrics": ["10% first-service promotional flow", "popup configured around a 30-second appearance in the final test"],
+        "linksMentioned": ["https://www.zenspatropicana.com", "private handoff PDF; URL not stored"],
+        "tools": ["Squarespace", "Google Business Profile", "Bing Places", "Hotfrog", "Boulevard", "email routing"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 65, "sentThreadMatches": 28},
+        "patterns": ["Warm Hi Ambika opening", "Exhaustive operational checklist", "Explicit ownership and access boundaries", "Clear final-handoff language"],
+        "watchouts": ["Differentiate completed live work from directory tasks that still require client acceptance or provider support."]
+      },
+      "openLoops": [
+        "Ambika must finish any owner invitations and directory actions documented in the handoff.",
+        "Provide the Hotfrog ID or profile screenshot requested by support.",
+        "Confirm the site, forms, booking links, domain, billing, and access after contributor removal."
+      ],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-16",
+        "basis": "sent final handoff plus received directory-support request",
+        "state": "Website and native lead flow are live and handed off; remaining work is client-side account acceptance and a Hotfrog support response."
+      },
+      "confidence": {"level": "high", "score": 0.96, "rationale": "Complete exact-domain history with detailed final sent handoff and a precise latest support request."},
+      "opaqueLocators": {
+        "messageIds": ["19f68b504bbb851e", "19f6791178d593cd", "19f6b86461075e91"],
+        "threadIds": ["19f688188bbc2153", "19f67910849fff83", "19f6b86461075e91"]
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "hope-wellness-center",
+      "displayName": "Hope Wellness Center",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "current client; Momentum 360 relationship not inferred",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[hope-wellness-center].emailDomains[0]"],
+        "queryTemplate": "exact domain across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 2,
+        "messageMatches": 21,
+        "uniqueThreads": 15,
+        "oldestDate": "2026-06-10",
+        "newestDate": "2026-07-16"
+      },
+      "keyPeopleAndRoles": ["Joseph: primary client stakeholder", "John Belaska: account and meeting lead", "Jenny McClain Miller: therapist-video production coordinator", "Dillon Mohr: animation, analysis, SEO, and implementation-planning operator"],
+      "recurringWork": ["website and technical SEO analysis", "state-page architecture", "creative-system design", "therapist video production", "animation", "measurement and implementation planning"],
+      "commitmentsAndPromises": [
+        "Delivered a final 60-second vertical animation, deeper analysis PDF, and 15-item implementation queue.",
+        "Prepared a 30, 60, and 90 day roadmap and therapist production standards.",
+        "Video dress-rehearsal sessions were scheduled and invitations sent."
+      ],
+      "decisions": [
+        "The animation is complete and no longer a planning item.",
+        "Additional Google Business Profiles remain paused because Hope presents as telehealth-only and eligibility requires in-person customer contact.",
+        "Implementation should prioritize duplicate content, missing state-page architecture, and measurement."
+      ],
+      "campaignsAndServices": ["technical SEO", "content architecture", "video production", "creative systems", "animation", "measurement strategy"],
+      "metricsLinksAndTools": {
+        "metrics": ["50 page URLs", "52 blog URLs", "8 likely duplicate pairs", "15-item implementation queue", "12-format creative system", "60-second vertical reel"],
+        "linksMentioned": ["analysis PDF and final reel attachments; no private URLs stored"],
+        "tools": ["website sitemap audit", "video production", "Google Business Profile", "Fireflies", "Google Meet"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 6, "sentThreadMatches": 4},
+        "patterns": ["Hi Joseph and team opening", "Deliverable-led summary", "Grouped audit findings", "Upbeat and candid scheduling follow-up"],
+        "watchouts": ["Do not revive the superseded multi-location GBP direction without eligibility proof."]
+      },
+      "openLoops": [
+        "Obtain client review and prioritize the 15 implementation items.",
+        "Complete the therapist dress rehearsals and production sessions.",
+        "Confirm state-page, duplicate-content, and measurement owners."
+      ],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-16",
+        "basis": "sent deliverables and received production scheduling",
+        "state": "Core analysis and animation are complete; implementation prioritization and therapist video production are next."
+      },
+      "confidence": {"level": "high", "score": 0.95, "rationale": "Small but complete exact-domain record with current sent deliverables and two-way scheduling evidence."},
+      "opaqueLocators": {
+        "messageIds": ["19f6b507f6dcf4d2", "19f6b9f6bb2f07d0", "19f66de190b9ccd0"],
+        "threadIds": ["19f6b507f6dcf4d2", "19f66475b4636c6d"]
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "omega-landscaping",
+      "displayName": "Omega Landscaping and Concrete",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "current client; Momentum 360 relationship not inferred",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[omega-landscaping].emailDomains[0]"],
+        "queryTemplate": "exact domain across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 5,
+        "messageMatches": 95,
+        "uniqueThreads": 16,
+        "oldestDate": "2026-02-17",
+        "newestDate": "2026-07-13"
+      },
+      "keyPeopleAndRoles": ["David Granados: owner and sales lead", "Dulces Granados: client-side account contact", "Christian Tippens: GoHighLevel and ads integration collaborator", "John Belaska: account collaborator", "Dillon Mohr: paid-media optimization and reporting operator"],
+      "recurringWork": ["Google Ads optimization", "weekly reports", "lead-quality review", "Meta and GoHighLevel integration", "search-term exclusions", "website access"],
+      "commitmentsAndPromises": [
+        "Monitor whether irrelevant supplier and wrong-company calls decline after targeting changes.",
+        "Keep spend controlled while conversion quality is validated.",
+        "Finish GoHighLevel integration after Facebook Page management access is granted."
+      ],
+      "decisions": [
+        "Treat July 6-12 as a positive efficiency week but do not make larger budget changes solely from traffic efficiency.",
+        "Facebook Page management access, not just ad-account access, is required for the Meta-to-GoHighLevel connection."
+      ],
+      "campaignsAndServices": ["Google Search", "Meta Ads integration", "GoHighLevel", "local lead generation", "negative-keyword and search-intent optimization"],
+      "metricsLinksAndTools": {
+        "metrics": ["July 6-12: 5,476 impressions, 197 clicks, $328.70 spend, $1.67 CPC, 3 tracked actions: 1 call and 2 forms.", "Click volume up 22.4%, spend down 2.7%, CPC improved 20.5%."],
+        "linksMentioned": ["https://omega-landscaping-2026-06-06.netlify.app"],
+        "tools": ["Google Ads", "Meta Ads", "GoHighLevel", "Facebook Page", "Netlify dashboard"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 21, "sentThreadMatches": 8},
+        "patterns": ["Practical Hi David opening", "Efficiency metrics followed by business interpretation", "Requests concrete examples of bad calls", "Cautious scale language"],
+        "watchouts": ["Traffic efficiency does not by itself prove qualified lead quality."]
+      },
+      "openLoops": [
+        "Grant Christian Facebook Page management access and verify the GoHighLevel integration.",
+        "Continue collecting examples of irrelevant calls and tighten intent filters.",
+        "Validate the three tracked actions as qualified opportunities before scaling."
+      ],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-13",
+        "basis": "sent performance update plus earlier access thread",
+        "state": "Google efficiency is improving with three tracked actions; Meta/GHL page access and lead-quality validation remain open."
+      },
+      "confidence": {"level": "high", "score": 0.92, "rationale": "Complete domain history with exact recent metrics and a clearly identified integration gap."},
+      "opaqueLocators": {
+        "messageIds": ["19f5d7bd05c82247", "19efa53727048ffd", "19c6c544e531d6ca"],
+        "threadIds": ["19f5bf3396029cd7", "19ea5383c73d87d0", "19c6c544e531d6ca"]
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "shadow-heating-cooling",
+      "displayName": "Shadow Heating and Cooling",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "current client; Momentum 360 relationship not inferred",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[shadow-heating-cooling].contacts[0].email"],
+        "queryTemplate": "exact registry contact across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 1,
+        "messageMatches": 15,
+        "uniqueThreads": 13,
+        "oldestDate": "2026-02-09",
+        "newestDate": "2026-07-13"
+      },
+      "keyPeopleAndRoles": ["Mike: primary client contact", "Mac Frederick: agency reviewer", "Sean Boyle: account stakeholder", "Dillon Mohr: paid-media and reporting operator"],
+      "recurringWork": ["Meta lead generation", "Google Ads billing and delivery", "weekly dashboards", "lead-quality improvement", "local service-area targeting"],
+      "commitmentsAndPromises": ["Keep reporting centered on the channel that actually delivered leads.", "Monitor Meta lead quality and controlled frequency.", "Escalate Google billing or delivery issues rather than presenting missing delivery as performance."],
+      "decisions": ["Meta is the active lead engine; Google did not show meaningful June delivery.", "The July seven-day Meta campaign was active at the time of the report."],
+      "campaignsAndServices": ["Meta lead ads", "Google Ads", "HVAC local lead generation", "weekly reporting"],
+      "metricsLinksAndTools": {
+        "metrics": [
+          "Latest seven-day Meta view: 4 leads, $14.40 CPL, $57.60 spend, 1,693 reach, 3,177 impressions, 1.88 frequency, $5 daily budget.",
+          "June Meta: $186.61 spend, 8,425 impressions, 4,302 reach, 23 reported results, $8.11 cost per result."
+        ],
+        "linksMentioned": ["https://shadow-hvac-2026-05-31-report.netlify.app"],
+        "tools": ["Meta Ads", "Google Ads", "Netlify dashboard"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 7, "sentThreadMatches": 6},
+        "patterns": ["Informal Hey Mike opening", "Short outcome-first reporting", "Positive but channel-specific interpretation"],
+        "watchouts": ["Do not assume the older Google billing pause was resolved without a live account check."]
+      },
+      "openLoops": ["Verify current Google billing and delivery state.", "Confirm Meta leads are qualified and contacted.", "Maintain Meta pacing without extrapolating June result counts into current performance."],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-13",
+        "basis": "sent Meta performance update",
+        "state": "Meta is active and producing leads at a positive reported cost; Google recovery and lead-quality confirmation remain unverified."
+      },
+      "confidence": {"level": "medium-high", "score": 0.88, "rationale": "Exact-contact history is complete and recent Meta metrics are clear, but client replies and current Google state are sparse."},
+      "opaqueLocators": {
+        "messageIds": ["19f5d7552d64834b", "19f3964b6e4c347e", "19de55fbd3f0d520"],
+        "threadIds": ["19f35a26cab8b844", "19f3635702521099", "19de55fbd3f0d520"]
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "va-claims-edge",
+      "displayName": "VA Claims Edge",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "current client; Momentum 360 relationship not inferred",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[va-claims-edge].emailDomains[0]"],
+        "queryTemplate": "exact domain across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 3,
+        "messageMatches": 53,
+        "uniqueThreads": 9,
+        "oldestDate": "2026-05-30",
+        "newestDate": "2026-07-13"
+      },
+      "keyPeopleAndRoles": ["David Fisher: client and product owner", "James Frederick: project coordinator", "OB: web and backend developer", "Mac Frederick: commercial and contract stakeholder", "Dillon Mohr: UX, prototype, and client-communication operator"],
+      "recurringWork": ["custom claims software", "UX wireframes", "Phase 2 backend development", "secure login and data architecture", "staging and kickoff meetings"],
+      "commitmentsAndPromises": [
+        "Prepare a basic backend demo by the July 25 preparation window.",
+        "Give David full access to project systems and preserve his software ownership.",
+        "Invite the developer through Anthropic organization membership instead of sharing credentials."
+      ],
+      "decisions": [
+        "The claim journey and design system should be understandable and agreed before Phase 3 automation.",
+        "Anthropic access should use a direct Developer-role organization invitation, not forwarded magic links or shared login credentials."
+      ],
+      "campaignsAndServices": ["software product design", "UX", "backend architecture", "secure authentication", "email and AI integration"],
+      "metricsLinksAndTools": {
+        "metrics": ["Backend demo target: July 25", "Phase 2 staging prototype is reviewable"],
+        "linksMentioned": ["https://vace-wireframes.netlify.app"],
+        "tools": ["Vercel", "Supabase", "GitHub", "Resend", "Anthropic", "Netlify"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 13, "sentThreadMatches": 3},
+        "patterns": ["Collaborative milestone framing", "Reassuring ownership language", "Clear prototype links", "Security-conscious access guidance"],
+        "watchouts": ["A July 13 consolidated progress message is Draft-only and should not be treated as delivered."]
+      },
+      "openLoops": ["Deliver and review the backend demo.", "Confirm intake workflow, status terminology, and tables.", "Complete the secure Anthropic organization invitation.", "Lock the design system before Phase 3."],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-13",
+        "basis": "received project recap and access response plus internal Draft",
+        "state": "Phase 2 is underway toward a backend demo; secure tool access and the final decision set remain open."
+      },
+      "confidence": {"level": "high", "score": 0.92, "rationale": "Compact but deep project threads establish scope, owners, milestones, and secure-access choices."},
+      "opaqueLocators": {
+        "messageIds": ["19f5bf332ba19a18", "19f47f1124163070", "19f5c4b465933c70"],
+        "threadIds": ["19f5bf332ba19a18", "19f47f1124163070"]
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "bercos-popcorn",
+      "displayName": "Bercos Popcorn",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "current client; Momentum 360 relationship not inferred",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[bercos-popcorn].emailDomains[0]"],
+        "queryTemplate": "exact domain across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 1,
+        "messageMatches": 7,
+        "uniqueThreads": 1,
+        "oldestDate": "2026-06-02",
+        "newestDate": "2026-07-08"
+      },
+      "keyPeopleAndRoles": ["Matt Bercovitz: client and website stakeholder", "Mac Frederick: agency founder and relationship lead", "Melissa Silber: operations stakeholder", "Aaron: SEO account manager", "Dillon Mohr: AI marketing and website advisor"],
+      "recurringWork": ["Shopify launch readiness", "Google Business Profile recovery", "SEO", "marketing integration", "conversion and tracking planning"],
+      "commitmentsAndPromises": [
+        "Dillon offered a quick audit and prioritized launch checklist once a current site or staging link is available.",
+        "Matt said the development team expected the site to be ready by the end of July."
+      ],
+      "decisions": ["The external development team owns the immediate site finish; Dillon's audit and marketing work should wait for the handoff or link.", "Do not duplicate the developer's launch work without a new request."],
+      "campaignsAndServices": ["Shopify", "SEO", "GBP reinstatement", "email and SMS integration", "GA4 and Search Console", "retargeting"],
+      "metricsLinksAndTools": {
+        "metrics": ["One seven-message client thread", "Website target communicated as end of July"],
+        "linksMentioned": ["Current or staging Shopify link requested but not supplied in the audited thread"],
+        "tools": ["Shopify", "Google Business Profile", "GA4", "Search Console", "email/SMS", "ads pixels"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 3, "sentThreadMatches": 1},
+        "patterns": ["High-energy Hey Matt opening", "Persuasive credibility framing", "Detailed scope menu", "Low-friction offer to audit"],
+        "watchouts": ["Keep proof claims and proposed scope proportional to an approved engagement."]
+      },
+      "openLoops": ["Receive site-completion or staging confirmation from Matt.", "Run a launch/SEO/conversion audit only after the current build is available.", "Clarify whether ongoing work together is formally continuing."],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-08",
+        "basis": "two-way thread",
+        "state": "The site remained with the development team and was expected by month-end; agency support is waiting on the finished site or a new handoff."
+      },
+      "confidence": {"level": "high-for-thread-limited-scope", "score": 0.91, "rationale": "Every exact-domain message is in one fully read thread with a clear latest state."},
+      "opaqueLocators": {
+        "messageIds": ["19f18fd41e15c8de", "19f3c9c58480bbde", "19f41ef4fda9f0d8"],
+        "threadIds": ["19e890b2df4eb09f"]
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "ami-cleaning",
+      "displayName": "AMI Cleaning",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "independent current client; not a Momentum 360 client",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[ami-cleaning].emailDomains[0]"],
+        "queryTemplate": "exact domain across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 4,
+        "messageMatches": 68,
+        "uniqueThreads": 32,
+        "oldestDate": "2026-04-28",
+        "newestDate": "2026-07-13"
+      },
+      "keyPeopleAndRoles": ["Corinne: director of sales and primary marketing contact", "Russ: director of operations and payment/approval stakeholder", "Dillon Mohr: independent website, HubSpot, email, and SEO operator"],
+      "recurringWork": ["website redesign and launch", "HubSpot audit and contact upload", "email campaigns and list sourcing", "SEO and Search Console", "form routing", "monthly hours and deliverables"],
+      "commitmentsAndPromises": [
+        "Continue backend cleanup and website growth work after launch.",
+        "Finish routing WordPress form submissions into AMI HubSpot once secure access or a form identifier is provided.",
+        "Start list acquisition with a smaller test rather than a large unvalidated purchase."
+      ],
+      "decisions": ["The new AMI website is live and is the current production site.", "WordPress stores CRM-ready lead fields; HubSpot direct routing remains a separate pending step.", "Email prospecting should begin with a controlled 1,500-3,000 contact test range."],
+      "campaignsAndServices": ["WordPress website", "HubSpot CRM", "email marketing", "SEO", "Search Console", "commercial-cleaning lead capture"],
+      "metricsLinksAndTools": {
+        "metrics": ["Google Search Console began recording impressions for the new site on July 3", "recommended initial purchased-list test: 1,500-3,000 contacts"],
+        "linksMentioned": ["https://ami-cleaning.com", "private report attachments; URLs not stored"],
+        "tools": ["WordPress", "HubSpot", "Google Search Console", "Bluehost", "Outlook"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 32, "sentThreadMatches": 18},
+        "patterns": ["Enthusiastic Hi Corinne and Russ opening", "Explains the site as a growth system", "Pairs technical delivery with a next-step ask", "Warm payment acknowledgement"],
+        "watchouts": ["Keep access recovery secure and do not confuse WordPress lead storage with completed HubSpot delivery."]
+      },
+      "openLoops": ["Complete secure HubSpot form routing.", "Verify production leads reach the correct CRM owner.", "Continue SEO and email-campaign work from the new live site and controlled test list."],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-13",
+        "basis": "sent live-site report plus earlier internal access Draft",
+        "state": "The new website is live and visible to Google; direct HubSpot form routing still needs a secure access step."
+      },
+      "confidence": {"level": "high", "score": 0.92, "rationale": "Complete exact-domain history with clear production launch evidence and a separately labeled Draft access need."},
+      "opaqueLocators": {
+        "messageIds": ["19f5ddb1b7ec3aed", "19f30285100f3e10", "19e8ebc1bf3d8696"],
+        "threadIds": ["19f5ddb1b7ec3aed", "19f26117e94ca7b0", "19e8ebc1bf3d8696"]
+      },
+      "routingConstraint": "Independent current client. Never label or nest under Momentum 360."
+    },
+    {
+      "clientId": "cindy-may-christmas",
+      "displayName": "Cindy May Christmas",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "independent current client; not a Momentum 360 client",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[cindy-may-christmas].emailDomains[0]"],
+        "queryTemplate": "exact domain across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 3,
+        "messageMatches": 56,
+        "uniqueThreads": 14,
+        "oldestDate": "2026-06-08",
+        "newestDate": "2026-07-13"
+      },
+      "keyPeopleAndRoles": ["Cindy May: owner, brand lead, and final content approver", "Margaret: review collaborator", "Dillon Mohr: independent website builder and implementation operator"],
+      "recurringWork": ["brand onboarding and asset intake", "website and recipe-page build", "approved-copy implementation", "invoices", "social and Shopify setup planning", "Google Drive asset management"],
+      "commitmentsAndPromises": [
+        "Use the July 9 package as the source of truth and not the superseded June 30 homepage document.",
+        "Build the approved pages and preserve locked copy across desktop and mobile.",
+        "Hold the Watch First button and newsletter form until Cindy supplies their final destinations."
+      ],
+      "decisions": [
+        "The July 9 homepage revision and complete package are approved and final.",
+        "Watch First remains an unlinked placeholder until the brand video is ready before September 1.",
+        "Newsletter signup stays unconnected until a platform is chosen and connection details are supplied."
+      ],
+      "campaignsAndServices": ["brand website", "recipe and method pages", "Shopify planning", "Pinterest and Facebook planning", "newsletter capture", "asset implementation"],
+      "metricsLinksAndTools": {
+        "metrics": ["Brand-video destination expected before September 1"],
+        "linksMentioned": ["Google Drive asset package and concept URLs; private URLs not stored"],
+        "tools": ["Google Drive", "Shopify", "Pinterest", "Facebook", "newsletter platform pending"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 32, "sentThreadMatches": 12},
+        "patterns": ["Structured Hi Cindy opening", "Restates approvals and source of truth", "Page-by-page checklist", "Warm appreciation without altering locked copy"],
+        "watchouts": ["Do not activate placeholders, social accounts, or newsletter routing before Cindy provides the required final details."]
+      },
+      "openLoops": ["Build the pages from the approved July 9 package.", "Receive the brand-video destination before September 1.", "Receive newsletter-platform connection details and the remaining photo map.", "Keep social and Shopify setup within the approved scope and prerequisites."],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-13",
+        "basis": "two-way approved-package thread",
+        "state": "The full website package is approved and implementation-ready; only named placeholders and remaining asset/platform details are waiting on Cindy."
+      },
+      "confidence": {"level": "high", "score": 0.96, "rationale": "Complete exact-domain record with explicit final approvals, supersession rules, and open items."},
+      "opaqueLocators": {
+        "messageIds": ["19f485b7b0f89087", "19f5b7ee92972da5", "19f5ddcf55ad6744"],
+        "threadIds": ["19f485b7b0f89087"]
+      },
+      "routingConstraint": "Independent current client. Never label or nest under Momentum 360."
+    },
+    {
+      "clientId": "bar-crawl-usa",
+      "displayName": "Bar Crawl USA",
+      "registryStatus": "active",
+      "knowledgeDisposition": "current-client-eligible",
+      "portfolioRelationship": "current client; Momentum 360 relationship not inferred",
+      "gmailAuditStatus": "complete-exact-registry-match",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[bar-crawl-usa].emailDomains[0]"],
+        "queryTemplate": "exact domain across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 14,
+        "messageMatches": 265,
+        "uniqueThreads": 66,
+        "oldestDate": "2026-02-13",
+        "newestDate": "2026-07-15"
+      },
+      "keyPeopleAndRoles": ["Andy Zirger: owner and primary client decision-maker", "Mac Frederick: agency stakeholder", "Melissa Silber: operations stakeholder", "Dillon Mohr: paid-media, SEO, landing-page, and reporting operator"],
+      "recurringWork": ["Google and Meta event campaigns", "ticket-sales reporting", "city and themed landing pages", "WordPress SEO", "Eventbrite access", "schema and event inventory"],
+      "commitmentsAndPromises": [
+        "Use the live Boos and Booze page as the only current Halloween-inventory source.",
+        "Do not build or optimize cities without a live or confirmed Halloween event.",
+        "Apply SEO recommendations only after validating live WordPress records and destinations."
+      ],
+      "decisions": [
+        "Disregard the city list in the earlier July 6 email.",
+        "The rebuilt July 14 SEO audit replaces the previous attachment.",
+        "Live event inventory and public schema outrank memory or prior lists."
+      ],
+      "campaignsAndServices": ["Google Ads", "Meta Ads", "event landing pages", "WordPress SEO", "schema", "Eventbrite", "ticket-sales reporting"],
+      "metricsLinksAndTools": {
+        "metrics": ["12 live Halloween event records found in the current inventory", "one Birmingham schema year appears as 2065", "Atlanta organization schema lists the wrong state"],
+        "linksMentioned": ["https://barcrawlusa.com/boos-booze-halloween-bar-crawl/"],
+        "tools": ["WordPress", "Google Ads", "Meta Ads", "GA4", "Conversions API", "Eventbrite", "schema validation"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 124, "sentThreadMatches": 43},
+        "patterns": ["Established Hey Andy opening", "Owns and corrects mistakes directly", "Source-of-truth and replacement language", "Actionable SEO and campaign summaries"],
+        "watchouts": ["Never reuse an old city list or outdated event record without live validation."]
+      },
+      "openLoops": ["Correct the Birmingham year and Atlanta state schema errors.", "Map all approved live Halloween destinations before page work.", "Apply prioritized on-page SEO and internal links to active event paths.", "Keep unconfirmed cities on hold."],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-15",
+        "basis": "sent correction and replacement audit plus agency acknowledgement",
+        "state": "A corrected live-inventory audit is now the source of truth; implementation and schema fixes remain next."
+      },
+      "confidence": {"level": "high", "score": 0.96, "rationale": "Large complete history with explicit recent correction, replacement artifact, and acknowledgement."},
+      "opaqueLocators": {
+        "messageIds": ["19f5e5618fb4ca65", "19f5e5c106a0e3c8", "19f5bfd113d1dd3c"],
+        "threadIds": ["19f5e5618fb4ca65", "19f5e5c106a0e3c8", "19f5bfd113d1dd3c"]
+      },
+      "routingConstraint": null
+    },
+    {
+      "clientId": "revive-systems",
+      "displayName": "Revive Systems",
+      "registryStatus": "needs-confirmation",
+      "knowledgeDisposition": "quarantined-not-current-client",
+      "portfolioRelationship": "unresolved; excluded from current-client conclusions",
+      "gmailAuditStatus": "complete-exact-registry-contact-match-but-routing-unconfirmed",
+      "coverage": {
+        "matchKeyRefs": ["registry.clients[revive-systems].contacts[0].email"],
+        "queryTemplate": "exact registry contact across from/to/cc/bcc with in:anywhere and spam/trash exclusions",
+        "pages": 5,
+        "messageMatches": 90,
+        "uniqueThreads": 16,
+        "oldestDate": "2026-05-20",
+        "newestDate": "2026-07-15"
+      },
+      "keyPeopleAndRoles": ["Mike Over: contact associated with the possible Revive Systems route", "Mac Frederick and Beth Kann: agency stakeholders", "Dillon Mohr: website, funnel, SEO, and lead-planning correspondent"],
+      "recurringWork": ["website and men's funnel direction", "GoHighLevel pages", "SEO", "Google Ads access", "lead-generation planning", "3 in 30 offer"],
+      "commitmentsAndPromises": ["Internal correspondence proposes a concrete 3 in 30 funnel and tracking plan before spending limited ad budget.", "A draft support response would troubleshoot the Google Ads app and account selection."],
+      "decisions": ["No routing or current-client decision is promoted from this record.", "Draft correspondence suggests avoiding ad spend until landing path and tracking are ready."],
+      "campaignsAndServices": ["website", "GoHighLevel", "SEO", "Google Ads", "lead funnel", "content repurposing"],
+      "metricsLinksAndTools": {
+        "metrics": ["The contact reported no current leads or booked calls in the latest substantive exchange; exact business status is not promoted."],
+        "linksMentioned": ["https://revive-systems.com", "blog link received; URL not stored"],
+        "tools": ["GoHighLevel", "Google Ads", "Google app", "website funnel"]
+      },
+      "dillonSentVoice": {
+        "support": {"sentMessageMatches": 47, "sentThreadMatches": 13, "includedInActiveVoiceAggregate": false},
+        "patterns": ["Highly informal and empathetic", "Brotherly reassurance", "Protective of limited budget", "Promises a concrete rather than vague update"],
+        "watchouts": ["Do not treat familiarity as proof of canonical client identity or active status.", "Avoid exposing personal hardship from the thread."]
+      },
+      "openLoops": ["Resolve the canonical registry identity and active-client decision first.", "Only after routing confirmation, resolve Google Ads/GoHighLevel access and formalize the lead plan."],
+      "lastKnownStatusFromGmail": {
+        "asOf": "2026-07-15",
+        "basis": "exact-contact correspondence retained for quarantine only",
+        "state": "Substantive website and lead-planning correspondence exists, but it is excluded from current-client knowledge until the registry route is confirmed."
+      },
+      "confidence": {"level": "high-content-low-routing", "score": 0.55, "rationale": "Exact-contact search is complete, but the registry itself marks the route needs-confirmation."},
+      "opaqueLocators": {
+        "messageIds": ["19f623c59dc607f3", "19f5899532fee37d", "19f6840340b034bf"],
+        "threadIds": ["19f3ea0fde8472c5", "19f4d7ff006fefd9", "19f6840340b034bf"]
+      },
+      "routingConstraint": "Quarantine. Do not promote as a current client or merge into any active client record until registry status becomes active after explicit resolution."
+    }
+  ]
+}

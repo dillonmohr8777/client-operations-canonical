@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "clientId": "shadow-heating-cooling",
+  "requesterRefs": ["registry-contact:shadow-heating-cooling:0", "user:dillon"],
+  "loginIdentityRefs": ["access-broker:dillon-operations/meta-ads-immohrtal-browser"],
+  "platforms": {
+    "google_ads": {
+      "enabledForPlanning": false,
+      "exactAccountRef": null,
+      "exactAccountIdSha256": null,
+      "executionSurface": "unconfigured",
+      "launchBlueprintRef": null
+    },
+    "meta_ads": {
+      "enabledForPlanning": true,
+      "exactAccountRef": null,
+      "exactAccountIdSha256": null,
+      "executionSurface": "persistent_chrome",
+      "launchBlueprintRef": "clients/shadow-heating-cooling/paid-media/blueprints/meta_ads.json"
+    }
+  },
+  "locationPolicy": {
+    "scope": "approved_market",
+    "source": "Use only verified current HVAC service areas and approved seasonal offers.",
+    "mixedBrandLocationsForbidden": true
+  },
+  "landingPage": {
+    "defaultMode": "reuse",
+    "sourceRef": null,
+    "stagingDeploymentRef": null,
+    "productionDeploymentRef": null,
+    "status": "partial"
+  },
+  "currentStateRules": [
+    "Meta is the only current paid-media lane for this client.",
+    "Use qualified, contacted, and closed outcomes as the scale gate.",
+    "Verify current billing and delivery before relying on historical lead counts."
+  ],
+  "providerReadinessRef": "state/ad-provider-readiness.json",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false
+}

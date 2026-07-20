@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "handoffId": "va-claims-phase-two-ui-handoff-20260717",
+  "workItemId": "wi-20260717-0011",
+  "expectedWorkItemVersion": 2,
+  "clientId": "va-claims-edge",
+  "workerRole": "frontend-design-builder-verifier",
+  "status": "partially_completed",
+  "startedAt": "2026-07-17T23:30:00Z",
+  "finishedAt": "2026-07-17T23:55:11Z",
+  "summary": "A production-shaped Phase 2 UI integration package now covers the branded login, locked design contract, authenticated application shell, and dashboard states. Direct application to the private source repository remains blocked by access.",
+  "artifacts": [
+    "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/design-system.md",
+    "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/globals.css",
+    "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/login/page.js",
+    "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/dashboard/page.js",
+    "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preview/index.html",
+    "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/review-renders/login-desktop.png",
+    "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/review-renders/dashboard-desktop.png"
+  ],
+  "evidence": [
+    "clients/va-claims-edge/evidence/2026-07-17-obaid-phase-two-ui-handoff.md",
+    "clients/va-claims-edge/deliverables/2026-07-16-initial-signup-wireframe"
+  ],
+  "verification": [
+    "The local package verifier passed 24 assertions across 11 required files.",
+    "The packaged logo and shield-ribbon asset hashes match the approved signup sources exactly.",
+    "The Supabase password-auth boundary remains present and the package does not change database or middleware behavior.",
+    "Ready, loading, empty, and error states remain independently reviewable and sample values are labeled.",
+    "Desktop and responsive Chrome renders were visually inspected with no overflow or incomplete entrance states.",
+    "No source repository, deployment, authentication account, or external communication was changed."
+  ],
+  "assumptions": [
+    "The existing application continues to use the standard Supabase password sign-in method and dashboard route described in the development handoff."
+  ],
+  "risks": [
+    "The developer must confirm the Supabase export shape, redirect behavior, middleware contract, and stylesheet merge against the current private repository.",
+    "Direct integration cannot be verified until the currently authenticated GitHub account has explicit repository access."
+  ],
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false,
+  "approvalGate": "none",
+  "proposedTransition": "blocked",
+  "canonicalWriteAttempted": false,
+  "externalActionAttempted": false
+}

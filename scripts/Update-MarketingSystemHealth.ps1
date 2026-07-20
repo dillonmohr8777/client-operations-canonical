@@ -4,6 +4,9 @@ param(
     [string]$CredentialBridgePath,
     [string]$AccessBrokerScriptPath,
     [string]$AccessCoveragePath,
+    [string]$GmailHistoryPath,
+    [string[]]$GmailSupplementPath,
+    [string]$SlackHistoryPath,
     [ValidateRange(1,120)][int]$ExternalProbeTimeoutSeconds = 20,
     [switch]$NoWrite
 )
@@ -13,6 +16,15 @@ $projectRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 if ([string]::IsNullOrWhiteSpace($OutputPath)) { $OutputPath = Join-Path $projectRoot 'state\system-health.json' }
 
 $warnings = New-Object System.Collections.Generic.List[string]
+$healthAsOf = [DateTimeOffset]::UtcNow
+
+function Test-ValidNonFutureTimestamp {
+    param($Value)
+    if ([string]::IsNullOrWhiteSpace([string]$Value)) { return $false }
+    $parsed = [DateTimeOffset]::MinValue
+    if (-not [DateTimeOffset]::TryParse([string]$Value, [ref]$parsed)) { return $false }
+    return $parsed.ToUniversalTime() -le $healthAsOf.ToUniversalTime()
+}
 
 function Invoke-BoundedPowerShellProbe {
     param(
@@ -98,6 +110,12 @@ $registryTest=($registryProbe.stdout+([Environment]::NewLine)+$registryProbe.std
 $registryExit=$registryProbe.exitCode
 if($registryProbe.timedOut){$warnings.Add('canonical client registry validation timed out')}
 elseif($registryExit-ne0){$warnings.Add('canonical client registry validation failed')}
+$registryPath = Join-Path $projectRoot 'registry\clients.json'
+$registry = $null
+if (Test-Path -LiteralPath $registryPath -PathType Leaf) {
+    try { $registry = Get-Content -LiteralPath $registryPath -Raw -Encoding UTF8 | ConvertFrom-Json } catch { $warnings.Add('canonical client registry is invalid JSON') }
+}
+else { $warnings.Add('canonical client registry is missing') }
 
 $accessScript = if([string]::IsNullOrWhiteSpace($AccessBrokerScriptPath)){'C:\Users\dillo\.codex\plugins\cache\personal\access-broker\0.1.0+codex.20260711232132\skills\access-broker\scripts\access-broker.ps1'}else{[IO.Path]::GetFullPath($AccessBrokerScriptPath)}
 $accessOutput = $null
@@ -164,11 +182,137 @@ if (Test-Path -LiteralPath $accessCoveragePath) {
 }
 else { $warnings.Add('access coverage state is missing') }
 
+$gmailHistoryPath = if ([string]::IsNullOrWhiteSpace($GmailHistoryPath)) { Join-Path $projectRoot 'state\client-history-research\gmail-client-history-2026-07-16.json' } else { [IO.Path]::GetFullPath($GmailHistoryPath) }
+$defaultGmailSupplementPaths = @(
+    (Join-Path $projectRoot 'state\client-history-research\gmail-bridge-software-history-2026-07-16.json'),
+    (Join-Path $projectRoot 'state\client-history-research\gmail-onsite-concrete-landscape-history-2026-07-16.json')
+)
+$gmailSupplementPaths = if ($null -eq $GmailSupplementPath -or @($GmailSupplementPath).Count -eq 0) {
+    @($defaultGmailSupplementPaths)
+}
+else {
+    @($GmailSupplementPath | Where-Object { -not [string]::IsNullOrWhiteSpace([string]$_) } | ForEach-Object { [IO.Path]::GetFullPath([string]$_) })
+}
+$slackHistoryPath = if ([string]::IsNullOrWhiteSpace($SlackHistoryPath)) { Join-Path $projectRoot 'state\client-history-research\slack-client-history-2026-07-16.json' } else { [IO.Path]::GetFullPath($SlackHistoryPath) }
+$gmailHistory = $null
+$gmailSupplementDocuments = New-Object System.Collections.Generic.List[object]
+$slackHistory = $null
+if (Test-Path -LiteralPath $gmailHistoryPath -PathType Leaf) {
+    try { $gmailHistory = Get-Content -LiteralPath $gmailHistoryPath -Raw -Encoding UTF8 | ConvertFrom-Json } catch { $warnings.Add('Gmail client-history audit is invalid JSON') }
+}
+else { $warnings.Add('Gmail client-history audit is missing') }
+foreach ($gmailSupplementPath in @($gmailSupplementPaths)) {
+    $supplementDocument = $null
+    if (Test-Path -LiteralPath $gmailSupplementPath -PathType Leaf) {
+        try { $supplementDocument = Get-Content -LiteralPath $gmailSupplementPath -Raw -Encoding UTF8 | ConvertFrom-Json } catch { $warnings.Add("Gmail client-history supplement is invalid JSON: $([IO.Path]::GetFileName($gmailSupplementPath))") }
+    }
+    else { $warnings.Add("Gmail client-history supplement is missing: $([IO.Path]::GetFileName($gmailSupplementPath))") }
+    $gmailSupplementDocuments.Add([pscustomobject][ordered]@{ path = $gmailSupplementPath; document = $supplementDocument })
+}
+if (Test-Path -LiteralPath $slackHistoryPath -PathType Leaf) {
+    try { $slackHistory = Get-Content -LiteralPath $slackHistoryPath -Raw -Encoding UTF8 | ConvertFrom-Json } catch { $warnings.Add('Slack client-history audit is invalid JSON') }
+}
+else { $warnings.Add('Slack client-history audit is missing') }
+
+$gmailHistoryPrivacySafe = (
+    $null -ne $gmailHistory -and
+    [int]$gmailHistory.schemaVersion -eq 1 -and
+    [string]$gmailHistory.artifactType -ceq 'gmail-client-history-audit' -and
+    [bool]$gmailHistory.privacy.redacted -and
+    -not [bool]$gmailHistory.privacy.containsSecrets -and
+    -not [bool]$gmailHistory.privacy.containsOneTimeCodes -and
+    -not [bool]$gmailHistory.privacy.containsRawCommunications -and
+    -not [bool]$gmailHistory.privacy.containsMessageSnippets -and
+    -not [bool]$gmailHistory.privacy.containsAttachmentContent -and
+    -not [bool]$gmailHistory.privacy.containsDirectContactDetails -and
+    -not [bool]$gmailHistory.privacy.containsUnnecessaryPii -and
+    [bool]$gmailHistory.privacy.storesOpaqueGmailLocatorsOnly
+)
+$slackHistoryPrivacySafe = (
+    $null -ne $slackHistory -and
+    [int]$slackHistory.schemaVersion -eq 1 -and
+    [string]$slackHistory.artifactType -ceq 'slack-client-history-audit' -and
+    [bool]$slackHistory.privacy.redacted -and
+    -not [bool]$slackHistory.privacy.containsSecrets -and
+    -not [bool]$slackHistory.privacy.containsRawCommunications -and
+    -not [bool]$slackHistory.privacy.containsDirectIdentifiers -and
+    [bool]$slackHistory.privacy.storesOpaqueSlackLocatorsOnly
+)
+$baseGmailClientIds = @(if ($null -eq $gmailHistory -or $null -eq $gmailHistory.clients) { @() } else { @($gmailHistory.clients | ForEach-Object { [string]$_.clientId } | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | Select-Object -Unique) })
+$declaredSupplementClientIds = @($gmailSupplementDocuments | Where-Object { $null -ne $_.document } | ForEach-Object { [string]$_.document.client.clientId } | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
+$duplicateSupplementClientIds = @($declaredSupplementClientIds | Group-Object | Where-Object { $_.Count -gt 1 } | ForEach-Object { [string]$_.Name })
+$gmailSupplementRows = New-Object System.Collections.Generic.List[object]
+foreach ($supplementRecord in $gmailSupplementDocuments.ToArray()) {
+    $gmailSupplement = $supplementRecord.document
+    $clientId = if ($null -eq $gmailSupplement) { '' } else { [string]$gmailSupplement.client.clientId }
+    $registryMatches = @(if ($null -eq $registry -or [string]::IsNullOrWhiteSpace($clientId)) { @() } else { @($registry.clients | Where-Object { [string]$_.id -ceq $clientId }) })
+    $supplementPrivacySafe = (
+        $null -ne $gmailSupplement -and
+        [int]$gmailSupplement.schemaVersion -eq 1 -and
+        [string]$gmailSupplement.artifactType -ceq 'gmail-client-history-supplement' -and
+        [string]$gmailSupplement.status -ceq 'complete-exact-new-client-route' -and
+        [bool]$gmailSupplement.privacy.redacted -and
+        -not [bool]$gmailSupplement.privacy.containsSecrets -and
+        -not [bool]$gmailSupplement.privacy.containsOneTimeCodes -and
+        -not [bool]$gmailSupplement.privacy.containsRawCommunications -and
+        -not [bool]$gmailSupplement.privacy.containsMessageSnippets -and
+        -not [bool]$gmailSupplement.privacy.containsAttachmentContent -and
+        -not [bool]$gmailSupplement.privacy.containsDirectContactDetails -and
+        -not [bool]$gmailSupplement.privacy.containsUnnecessaryPii -and
+        [bool]$gmailSupplement.privacy.storesOpaqueGmailLocatorsOnly -and
+        [bool]$gmailSupplement.source.mailboxIdentityVerified -and
+        -not [string]::IsNullOrWhiteSpace($clientId) -and
+        [string]$gmailSupplement.source.registryRecord -ceq $clientId -and
+        [string]$gmailSupplement.coverage.canonicalClientId -ceq $clientId -and
+        [string]$gmailSupplement.client.registryStatus -ceq 'active' -and
+        [int]$gmailSupplement.summary.currentClientKnowledgeRecords -eq 1 -and
+        [int]$gmailSupplement.coverage.messageMatches -gt 0 -and
+        [int]$gmailSupplement.coverage.uniqueThreads -gt 0 -and
+        [int]$gmailSupplement.coverage.uniqueThreads -le [int]$gmailSupplement.coverage.messageMatches -and
+        $registryMatches.Count -eq 1 -and
+        [string]$registryMatches[0].status -ceq 'active' -and
+        $clientId -notin $baseGmailClientIds -and
+        $clientId -notin $duplicateSupplementClientIds
+    )
+    $gmailSupplementRows.Add([pscustomobject][ordered]@{
+        clientId = $clientId
+        file = [IO.Path]::GetFileName([string]$supplementRecord.path)
+        valid = $supplementPrivacySafe
+        status = if ($null -eq $gmailSupplement) { 'missing' } else { [string]$gmailSupplement.status }
+        currentClientKnowledgeRecords = if ($null -eq $gmailSupplement) { 0 } else { [int]$gmailSupplement.summary.currentClientKnowledgeRecords }
+        messages = if ($null -eq $gmailSupplement) { 0 } else { [int]$gmailSupplement.coverage.messageMatches }
+        threads = if ($null -eq $gmailSupplement) { 0 } else { [int]$gmailSupplement.coverage.uniqueThreads }
+    })
+    if ($null -ne $gmailSupplement -and -not $supplementPrivacySafe) {
+        $warningId = if ([string]::IsNullOrWhiteSpace($clientId)) { [IO.Path]::GetFileName([string]$supplementRecord.path) } else { $clientId }
+        $warnings.Add("Gmail client-history supplement failed exact-route, privacy, or schema validation: $warningId")
+    }
+}
+$registryClientIds = @(if ($null -eq $registry) { @() } else { @($registry.clients | ForEach-Object { [string]$_.id } | Select-Object -Unique) })
+$validSupplementClientIds = @($gmailSupplementRows | Where-Object { $_.valid } | ForEach-Object { [string]$_.clientId } | Select-Object -Unique)
+$coveredGmailClientIds = @($baseGmailClientIds + $validSupplementClientIds | Select-Object -Unique)
+$gmailExactRegistryCoverage = (
+    $null -ne $registry -and
+    $baseGmailClientIds.Count -eq [int]$gmailHistory.coverage.canonicalRegistryRecordsAudited -and
+    @($registryClientIds | Where-Object { $_ -notin $coveredGmailClientIds }).Count -eq 0 -and
+    @($coveredGmailClientIds | Where-Object { $_ -notin $registryClientIds }).Count -eq 0
+)
+$gmailSupplementSetValid = (
+    $gmailSupplementRows.Count -gt 0 -and
+    @($gmailSupplementRows | Where-Object { -not $_.valid }).Count -eq 0 -and
+    $gmailExactRegistryCoverage
+)
+if ($gmailSupplementRows.Count -eq 0) { $warnings.Add('Gmail client-history supplements are missing') }
+elseif (-not $gmailExactRegistryCoverage) { $warnings.Add('Gmail base audit plus exact-route supplements do not cover the canonical registry exactly once') }
+if ($null -ne $gmailHistory -and -not $gmailHistoryPrivacySafe) { $warnings.Add('Gmail client-history audit failed privacy or schema validation') }
+if ($null -ne $slackHistory -and -not $slackHistoryPrivacySafe) { $warnings.Add('Slack client-history audit failed privacy or schema validation') }
+
 $gitOutput = & git -C $projectRoot status --porcelain 2>$null
 $gitExit = $LASTEXITCODE
 if ($gitExit -ne 0) { $warnings.Add('git status failed') }
 
 $humanGates = New-Object System.Collections.Generic.List[string]
+$deferredActions = New-Object System.Collections.Generic.List[string]
 if ($null -ne $bridge -and $bridge.human_action_required) { $humanGates.Add([string]$bridge.human_action_required) }
 switch ([string]$accessCoverage.credentialVault.primaryVaultIdentityStatus) {
     'unverified' { $humanGates.Add('bitwarden_primary_vault_identity_confirmation'); break }
@@ -195,15 +339,73 @@ $extensionTimeoutPolicy = if (
 if ($extensionTimeoutPolicy -ne 'on-browser-restart-lock-pin-enabled-master-password-on-restart-disabled') {
     $humanGates.Add('bitwarden_extension_timeout_policy_verification')
 }
-$humanGates.Add('secondary_exposed_password_rotation')
+$secondaryRoute = if (
+    $null -ne $accessCoverage -and
+    $null -ne $accessCoverage.credentialVault -and
+    $null -ne $accessCoverage.credentialVault.PSObject.Properties['secondaryRoute']
+) { $accessCoverage.credentialVault.secondaryRoute } else { $null }
+$requiredSecondaryProhibitions = @('authentication.login','vault.autofill','credential.reference.read')
+$secondaryProhibitions = @(if ($null -eq $secondaryRoute) { @() } else { @($secondaryRoute.prohibitedCapabilities | ForEach-Object { [string]$_ }) })
+$secondaryRouteIsExactlyRetiredAndProhibited = (
+    $null -ne $secondaryRoute -and
+    [int]$secondaryRoute.routeCount -eq 1 -and
+    [string]$secondaryRoute.id -ceq 'bitwarden-secondary-dillon-account' -and
+    [string]$secondaryRoute.service -ceq 'bitwarden' -and
+    [string]$secondaryRoute.accountRole -ceq 'secondary-bitwarden-account' -and
+    [string]$secondaryRoute.authMethod -ceq 'disabled-retired-route' -and
+    [string]$secondaryRoute.accessState -ceq 'retired-by-owner-do-not-use' -and
+    [string]$secondaryRoute.usePolicy -ceq 'prohibited-sole-authorized-vault-is-pollotharuler' -and
+    [int]$secondaryRoute.allowedCapabilityCount -eq 0 -and
+    @($requiredSecondaryProhibitions | Where-Object { $_ -notin $secondaryProhibitions }).Count -eq 0 -and
+    (Test-ValidNonFutureTimestamp $secondaryRoute.retiredAt)
+)
+$secondaryRemediationIsDeferred = (
+    $secondaryRouteIsExactlyRetiredAndProhibited -and
+    [string]$secondaryRoute.remediationStatus -ceq 'deferred-by-owner' -and
+    (Test-ValidNonFutureTimestamp $secondaryRoute.remediationDeferredAt)
+)
+if ($secondaryRemediationIsDeferred) {
+    $deferredActions.Add('secondary_exposed_password_rotation')
+}
+else {
+    $humanGates.Add('secondary_exposed_password_rotation')
+}
+
+$requiredSlackReadScopes = @('channels:read','groups:read','im:read','mpim:read')
+$observedSlackScopes = @(if ($null -eq $slackHistory -or $null -eq $slackHistory.blocker) { @() } else { @($slackHistory.blocker.requiredScopes | ForEach-Object { [string]$_ }) })
+$slackScopeBlockerVerified = (
+    $slackHistoryPrivacySafe -and
+    [string]$slackHistory.status -ceq 'blocked' -and
+    [string]$slackHistory.blocker.type -ceq 'insufficient_scope' -and
+    [string]$slackHistory.blocker.reason -ceq 'slack_missing_scope' -and
+    @($requiredSlackReadScopes | Where-Object { $_ -notin $observedSlackScopes }).Count -eq 0
+)
+$visibleRequiredSlackReadScopes = [string[]]@()
+if ($slackScopeBlockerVerified) {
+    $visibleRequiredSlackReadScopes = [string[]]$requiredSlackReadScopes
+    $humanGates.Add('slack_connector_scope_upgrade')
+}
+$successfulSlackConnectorChecks = @(if ($null -eq $slackHistory -or $null -eq $slackHistory.connectorChecks) { @() } else { @($slackHistory.connectorChecks | Where-Object { [string]$_.result -ceq 'success' }) })
+$verifiedSlackReadScopes = @($successfulSlackConnectorChecks | ForEach-Object { [string]$_.scope } | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | Select-Object -Unique)
+$slackFilesWriteProbe = @($successfulSlackConnectorChecks | Where-Object { [string]$_.capability -ceq 'files:write' -and -not [bool]$_.fileUploadedOrShared })
+$slackCompleteVerified = (
+    $slackHistoryPrivacySafe -and
+    [string]$slackHistory.status -ceq 'complete' -and
+    $null -eq $slackHistory.blocker -and
+    [bool]$slackHistory.coverage.workspaceIdentityVerified -and
+    [bool]$slackHistory.coverage.conversationInventoryEstablished -and
+    [bool]$slackHistory.coverage.allRelevantCursorsExhausted -and
+    @($requiredSlackReadScopes | Where-Object { $_ -notin $verifiedSlackReadScopes }).Count -eq 0 -and
+    $slackFilesWriteProbe.Count -gt 0
+)
 
 $normalActiveCount = if ($null -eq $queue) { $null } else { @($queue.workItems | Where-Object { $_.lane -eq 'normal' -and $_.status -in @('in_progress','verification') }).Count }
 $emergencyActiveCount = if ($null -eq $queue) { $null } else { @($queue.workItems | Where-Object { $_.lane -eq 'emergency' -and $_.status -in @('in_progress','verification') }).Count }
 
 $health = [pscustomobject][ordered]@{
     schemaVersion = 2
-    asOf = [DateTimeOffset]::UtcNow.ToString('o')
-    overall = if ($warnings.Count -eq 0 -and $humanGates.Count -eq 0) { 'healthy' } elseif ($warnings.Count -eq 0) { 'healthy-with-human-gates' } else { 'degraded' }
+    asOf = $healthAsOf.ToString('o')
+    overall = if ($warnings.Count -gt 0) { 'degraded' } elseif ($humanGates.Count -gt 0) { 'healthy-with-human-gates' } elseif ($deferredActions.Count -gt 0) { 'healthy-with-deferred-actions' } else { 'healthy' }
     canonicalProject = $projectRoot
     queue = [pscustomobject]@{
         valid = $null -ne $queue
@@ -218,6 +420,45 @@ $health = [pscustomobject][ordered]@{
     clientRegistry = [pscustomobject]@{ valid = -not$registryProbe.timedOut -and $registryExit -eq 0; timedOut=[bool]$registryProbe.timedOut; validation = (($registryTest -join ' ') -replace '\s+', ' ').Trim() }
     accessBroker = [pscustomobject]@{ valid = -not$accessTimedOut -and $accessExit -eq 0; timedOut=$accessTimedOut; validatorPresent = Test-Path -LiteralPath $accessScript }
     accessCoverage = if ($null -eq $accessCoverage) { [pscustomobject]@{ valid = $false } } else { [pscustomobject]@{ valid = $true; summary = $accessCoverage.summary; priority = $accessCoverage.priority; credentialVault = $accessCoverage.credentialVault } }
+    communicationResearch = [pscustomobject][ordered]@{
+        gmail = [pscustomobject][ordered]@{
+            valid = $gmailHistoryPrivacySafe -and $gmailSupplementSetValid
+            status = if ($gmailHistoryPrivacySafe -and $gmailSupplementSetValid) { 'complete-exact-registry-plus-supplements' } elseif ($null -eq $gmailHistory) { 'missing' } else { [string]$gmailHistory.status }
+            baseStatus = if ($null -eq $gmailHistory) { 'missing' } else { [string]$gmailHistory.status }
+            supplementStatus = if ($gmailSupplementRows.Count -eq 0) { 'missing' } elseif ($gmailSupplementSetValid) { 'complete-exact-new-client-routes' } else { 'invalid-or-incomplete' }
+            supplementCount = $gmailSupplementRows.Count
+            supplements = $gmailSupplementRows.ToArray()
+            canonicalClientsAudited = if ($null -eq $registry) { 0 } else { @($registry.clients).Count }
+            activeClientsPromotable = if ($null -eq $registry) { 0 } else { @($registry.clients | Where-Object { $_.status -eq 'active' }).Count }
+            inactiveClientsPreserved = if ($null -eq $registry) { 0 } else { @($registry.clients | Where-Object { $_.status -eq 'inactive' }).Count }
+            quarantinedClients = if ($null -eq $registry) { 0 } else { @($registry.clients | Where-Object { $_.status -eq 'needs-confirmation' }).Count }
+            baseCanonicalClientsAudited = if ($null -eq $gmailHistory) { 0 } else { [int]$gmailHistory.coverage.canonicalRegistryRecordsAudited }
+            supplementalClientsAudited = [int](($gmailSupplementRows | Where-Object { $_.valid } | Measure-Object -Property currentClientKnowledgeRecords -Sum).Sum)
+            globallyDeduplicatedMessages = if ($null -eq $gmailHistory) { 0 } else { [int]$gmailHistory.coverage.globallyDeduplicatedMessages }
+            globallyDeduplicatedThreads = if ($null -eq $gmailHistory) { 0 } else { [int]$gmailHistory.coverage.globallyDeduplicatedThreads }
+            supplementalMessages = [int](($gmailSupplementRows | Where-Object { $_.valid } | Measure-Object -Property messages -Sum).Sum)
+            supplementalThreads = [int](($gmailSupplementRows | Where-Object { $_.valid } | Measure-Object -Property threads -Sum).Sum)
+            combinedCorpusMessages = $null
+            combinedCorpusThreads = $null
+            countingNote = 'Exact-route supplement counts are aggregated only within the supplement set and remain separate from the original globally deduplicated base corpus because a supplement message or thread may also match a base client query.'
+        }
+        slack = [pscustomobject][ordered]@{
+            valid = $slackHistoryPrivacySafe
+            status = if ($null -eq $slackHistory) { 'missing' } else { [string]$slackHistory.status }
+            workspaceIdentityVerified = if ($null -eq $slackHistory) { $false } else { [bool]$slackHistory.coverage.workspaceIdentityVerified }
+            conversationInventoryEstablished = if ($null -eq $slackHistory) { $false } else { [bool]$slackHistory.coverage.conversationInventoryEstablished }
+            scopeUpgradeRequired = $slackScopeBlockerVerified
+            requiredReadScopes = @($visibleRequiredSlackReadScopes)
+            readScopesVerified = $slackCompleteVerified
+            verifiedReadScopes = if ($slackCompleteVerified) { @($verifiedSlackReadScopes) } else { @() }
+            allRelevantCursorsExhausted = if ($null -eq $slackHistory) { $false } else { [bool]$slackHistory.coverage.allRelevantCursorsExhausted }
+            visibleConversationsTotal = if ($null -eq $slackHistory) { 0 } else { [int]$slackHistory.coverage.visibleConversationsTotal }
+            dillonAuthoredMessagesReviewed = if ($null -eq $slackHistory) { 0 } else { [int]$slackHistory.coverage.dillonAuthoredMessagesReviewed }
+            requestedUploadScope = 'files:write'
+            requestedUploadScopeBasis = if ($slackCompleteVerified) { 'live-probe-passed-no-file-created-or-shared' } else { 'connector-upload-endpoint-requirement-not-yet-live-probed' }
+            filesWriteLiveProbeVerified = $slackCompleteVerified
+        }
+    }
     credentialBridge = [pscustomobject]@{
         present = Test-Path -LiteralPath $bridgeScript
         state = if ($null -eq $bridge) { 'unknown' } else { [string]$bridge.state }
@@ -235,6 +476,7 @@ $health = [pscustomobject][ordered]@{
     browserPolicy = 'persistent-remote-chrome-only-never-edge'
     repository = [pscustomobject]@{ gitAvailable = $gitExit -eq 0; dirty = @($gitOutput).Count -gt 0; uncommittedPathCount = @($gitOutput).Count }
     humanGates = @($humanGates | Select-Object -Unique)
+    deferredActions = @($deferredActions | Select-Object -Unique)
     warnings = @($warnings)
 }
 

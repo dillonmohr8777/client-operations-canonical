@@ -187,6 +187,12 @@ if (Test-Path -LiteralPath $HealthPath -PathType Leaf) {
         $coverage = $liveHealth.accessCoverage.summary
         Add-Line $builder ('- **Access coverage:** `{0}/{1}` canonical clients registered, `{2}/{3}` systems verified, `{4}` exact Bitwarden item locators' -f $coverage.canonicalClientsWithAccessBrokerRecord, $coverage.canonicalClientCount, $coverage.verifiedSystemCount, $coverage.registeredSystemCount, $coverage.exactBitwardenItemCount)
     }
+    if ($null -ne $liveHealth.communicationResearch) {
+        $gmailResearch = $liveHealth.communicationResearch.gmail
+        $slackResearch = $liveHealth.communicationResearch.slack
+        Add-Line $builder ('- **Gmail client history:** `{0}` records audited, `{1}` active promoted, `{2}` quarantined; `{3}` distinct messages across `{4}` threads' -f $gmailResearch.canonicalClientsAudited, $gmailResearch.activeClientsPromotable, $gmailResearch.quarantinedClients, $gmailResearch.globallyDeduplicatedMessages, $gmailResearch.globallyDeduplicatedThreads)
+        Add-Line $builder ('- **Slack client history:** `{0}`; conversation inventory established `{1}`; scope upgrade required `{2}`; requested upload scope `{3}`' -f $slackResearch.status, $slackResearch.conversationInventoryEstablished, $slackResearch.scopeUpgradeRequired, $slackResearch.requestedUploadScope)
+    }
     Add-Line $builder ('- **Credential bridge:** `{0}`, secure bootstrap present `{1}`, review `{2}`' -f $liveHealth.credentialBridge.state, $liveHealth.credentialBridge.credentialPresent, $liveHealth.credentialBridge.securityReview)
     Add-Line $builder '- **Scheduled mechanisms:**'
     foreach ($task in @($liveHealth.scheduledTasks)) {
@@ -194,6 +200,10 @@ if (Test-Path -LiteralPath $HealthPath -PathType Leaf) {
     }
     if (@($liveHealth.humanGates).Count -gt 0) {
         Add-Line $builder ('- **Human gates:** {0}' -f (@($liveHealth.humanGates | ForEach-Object { '`' + $_ + '`' }) -join ', '))
+    }
+    $visibleDeferredActions = @($liveHealth.deferredActions | Where-Object { -not [string]::IsNullOrWhiteSpace([string]$_) })
+    if ($visibleDeferredActions.Count -gt 0) {
+        Add-Line $builder ('- **Deferred actions:** {0}' -f (@($visibleDeferredActions | ForEach-Object { '`' + $_ + '`' }) -join ', '))
     }
     if (@($liveHealth.warnings).Count -gt 0) {
         Add-Line $builder ('- **Warnings:** {0}' -f (@($liveHealth.warnings) -join '; '))

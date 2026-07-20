@@ -16,6 +16,18 @@
     "sensorsMayMutateQueue": false,
     "workersMayMutateQueue": false,
     "externalDeliveryRequiresExplicitApproval": true,
+    "standingClientSpecificAuthorityCountsAsExplicitApproval": true,
+    "standingAuthorityRequirements": [
+      "exact active client",
+      "exact authorized requester",
+      "exact platform account reference",
+      "allowed action and trigger class",
+      "budget and location ceilings",
+      "schedule and expiration",
+      "validate-only first",
+      "paused creation first",
+      "live readback and rollback plan"
+    ],
     "automaticActionClasses": [
       "read_only_verification",
       "local_research",
@@ -54,6 +66,8 @@
     "context/marketing-context.md",
     "context/DILLON_VOICE.md",
     "context/DESIGN_STANDARD.md",
+    "registry/paid-media-roster.json and workflows/daily-paid-media-optimization.workflow.json for the once-per-day paid-media lane",
+    "workflows/communication-triggered-ad-launch.workflow.json when paid media is implied",
     "clients/<client-id>/CLIENT.md",
     "current-source-evidence"
   ],
@@ -97,11 +111,18 @@
       "rule": "Infer the current requested outcome only from the inspected source, then match by exact source locator. If one valid item exists, promote to it. If none exists, create with New-MarketingWorkItem.ps1 using the exact opaque SourceLocator, current queue revision, and truthful safe action class, then promote with Resolve-IntakeObservation.ps1. Never bypass approval gates or take an external action."
     },
     {
+      "id": "daily-paid-media-review",
+      "owner": "marketing-chief",
+      "input": "exact paid-media roster and today's deterministic review manifest",
+      "output": "eight reviewed or explicitly fail-closed client-platform lanes and zero or more material-finding candidates",
+      "rule": "Run once per America/New_York day through Get-DailyPaidMediaReview.ps1. Inspect exact accounts read-only only when routing is ready. Routine variance stays in the daily artifact; only a current source-backed material finding can become a canonical work item. The manifest never mutates providers or the queue."
+    },
+    {
       "id": "rank",
       "owner": "marketing-chief",
       "input": "canonical queue plus current evidence",
       "output": "next automatic action, next Dillon decision, next unblock",
-      "rule": "Rank by priority, deadline, waiting-client risk, status, evidence freshness, confidence, and approval boundary."
+      "rule": "Rank by priority, deadline, waiting-client risk, status, evidence freshness, confidence, approval boundary, and bounded comparable-outcome priors. Apply a learned prior only after three cross-item outcomes match client, prediction lane, and action class; exact current-item feedback wins."
     },
     {
       "id": "plan",
@@ -136,7 +157,7 @@
       "owner": "marketing-chief",
       "input": "Dillon decision, edit delta, or observed outcome",
       "output": "redacted prediction, voice, design, or process correction",
-      "rule": "Record accept, modify, defer, and reject outcomes through Record-MarketingDecision.ps1, and persist only redacted validated correction deltas through Record-MarketingCorrection.ps1."
+      "rule": "Record accept, modify, defer, and reject outcomes through Record-MarketingDecision.ps1 with source, trigger, outcome, and action-class metadata. Summarize comparable patterns through Get-PredictionLearning.ps1, and persist only redacted validated correction deltas through Record-MarketingCorrection.ps1."
     }
   ],
   "continueContract": {
@@ -148,7 +169,9 @@
       "link the exact source-bound canonical work item when one exists; when none exists, create it with New-MarketingWorkItem.ps1 using the exact SourceLocator, current queue revision, and truthful safe action class",
       "promote the observation with Resolve-IntakeObservation.ps1, or acknowledge or quarantine it with a recorded resolution when promotion is unsupported",
       "load canonical context and corrections",
+      "run or verify today's eight-lane paid-media review and materialize only current material findings through the Chief's normal source-bound queue contract",
       "rank canonical work",
+      "when an inspected communication implies paid-media launch work, materialize the exact client request and run the communication-triggered ad-launch workflow through the furthest locally safe or explicitly authorized terminal phase",
       "execute the highest safe automatic action within WIP limits",
       "reconcile verified handoffs",
       "present the result and at most one human-only decision"
@@ -163,6 +186,7 @@
     "zero secret persistence incidents",
     "zero external actions without approval",
     "zero standalone watcher-created Codex tasks",
-    "recurring source outcomes remain observable after earlier occurrences are resolved"
+    "recurring source outcomes remain observable after earlier occurrences are resolved",
+    "exactly eight paid-media lanes are reviewed or explicitly fail closed once per Eastern day, with no unrostered optimization"
   ]
 }

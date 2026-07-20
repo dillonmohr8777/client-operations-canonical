@@ -53,7 +53,7 @@ foreach ($client in @($clients.clients | Sort-Object id)) {
         invalidVerificationCount = $invalidVerification.Count
         opaqueRouteCount = $opaqueRoutes.Count
         exactBitwardenItemCount = $exactItems.Count
-        coverageState = if ($brokerMatches.Count -ne 1) { 'missing-client-route' } elseif ($systems.Count -eq 0) { 'no-systems' } elseif ($verified.Count -eq $systems.Count -and $exactItems.Count -gt 0) { 'verified-with-exact-item' } elseif ($verified.Count -gt 0) { 'partial-current' } elseif ($stale.Count -gt 0) { 'stale' } elseif ($invalidVerification.Count -gt 0) { 'invalid-verification' } else { 'unverified' }
+        coverageState = if (-not $accessMappingRequired) { 'not-required' } elseif ($brokerMatches.Count -ne 1) { 'missing-client-route' } elseif ($systems.Count -eq 0) { 'no-systems' } elseif ($verified.Count -eq $systems.Count -and $exactItems.Count -gt 0) { 'verified-with-exact-item' } elseif ($verified.Count -gt 0) { 'partial-current' } elseif ($stale.Count -gt 0) { 'stale' } elseif ($invalidVerification.Count -gt 0) { 'invalid-verification' } else { 'unverified' }
     })
 }
 
@@ -71,6 +71,15 @@ $primaryVaultSystems = @(if ($primaryVaultClientMatches.Count -eq 1) {
     }
 }
 else { @() })
+$secondaryVaultSystems = @(if ($primaryVaultClientMatches.Count -eq 1) {
+    $primaryVaultClientMatches[0].systems | Where-Object {
+        $_.id -eq 'bitwarden-secondary-dillon-account' -and
+        $_.service -eq 'bitwarden' -and
+        $_.account_role -eq 'secondary-bitwarden-account'
+    }
+}
+else { @() })
+$secondaryVaultSystem = if ($secondaryVaultSystems.Count -eq 1) { $secondaryVaultSystems[0] } else { $null }
 $primaryChromeExtensionState = if ($primaryVaultSystems.Count -eq 1) { [string]$primaryVaultSystems[0].chrome_extension_state } else { 'unknown' }
 $primaryExtensionTimeoutPolicy = if ($primaryVaultSystems.Count -ne 1) {
     'unknown'
@@ -125,6 +134,20 @@ $report = [pscustomobject][ordered]@{
         primaryChromeExtensionState = $primaryChromeExtensionState
         primaryVaultIdentityStatus = $primaryVaultIdentityStatus
         primaryExtensionTimeoutPolicy = $primaryExtensionTimeoutPolicy
+        secondaryRoute = [pscustomobject][ordered]@{
+            routeCount = $secondaryVaultSystems.Count
+            id = if ($null -eq $secondaryVaultSystem) { $null } else { [string]$secondaryVaultSystem.id }
+            service = if ($null -eq $secondaryVaultSystem) { $null } else { [string]$secondaryVaultSystem.service }
+            accountRole = if ($null -eq $secondaryVaultSystem) { $null } else { [string]$secondaryVaultSystem.account_role }
+            authMethod = if ($null -eq $secondaryVaultSystem) { $null } else { [string]$secondaryVaultSystem.auth_method }
+            accessState = if ($null -eq $secondaryVaultSystem) { $null } else { [string]$secondaryVaultSystem.access_state }
+            usePolicy = if ($null -eq $secondaryVaultSystem) { $null } else { [string]$secondaryVaultSystem.use_policy }
+            retiredAt = if ($null -eq $secondaryVaultSystem) { $null } else { [string]$secondaryVaultSystem.retired_at }
+            allowedCapabilityCount = if ($null -eq $secondaryVaultSystem) { 0 } else { @($secondaryVaultSystem.allowed_capabilities).Count }
+            prohibitedCapabilities = if ($null -eq $secondaryVaultSystem) { @() } else { @($secondaryVaultSystem.prohibited_capabilities | ForEach-Object { [string]$_ }) }
+            remediationStatus = if ($null -eq $secondaryVaultSystem) { $null } else { [string]$secondaryVaultSystem.remediation_status }
+            remediationDeferredAt = if ($null -eq $secondaryVaultSystem) { $null } else { [string]$secondaryVaultSystem.remediation_deferred_at }
+        }
     }
     humanGate = $credentialHumanGate
     safety = 'No raw vault inventory, usernames, passwords, tokens, codes, cookies, account identifiers, or credential values were read or stored.'

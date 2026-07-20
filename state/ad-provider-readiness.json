@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-07-16T19:43:00+00:00",
+  "providers": {
+    "google_ads": {
+      "status": "blocked",
+      "verifiedCapabilities": [
+        "authorized toolkit connection is discoverable",
+        "accessible-customer inventory is readable",
+        "campaign and ad-group mutation tools are exposed",
+        "persistent Chrome can open the authorized Google Ads account switcher and exact child accounts",
+        "all five current Google lanes have live-verified child-account fingerprints and registered Access Broker routes",
+        "Replenish and Fresh Blends use separate client routes over one shared child-account fingerprint",
+        "the primary KJB account is mapped and the cancelled duplicate is explicitly excluded"
+      ],
+      "blockers": [
+        "terminal or API execution still requires a verified manager login-customer header even though persistent-Chrome account reads work",
+        "budget, geo-targeting, ad, asset, and Performance Max operations are incomplete",
+        "no draft authority file permits campaign creation, enablement, budget changes, or another live mutation",
+        "the exact current Google Ads roster is KJB, Replenish, Omega, Onsite, and Fresh Blends for Kwik Trip Ice Box campaigns; no other client is eligible"
+      ],
+      "requiresLiveProbe": true
+    },
+    "meta_ads": {
+      "status": "blocked",
+      "verifiedCapabilities": [
+        "persistent Chrome can open the authorized Meta Ads portfolio and exact ad accounts",
+        "Fagan is live-mapped to its exact ad account with six campaigns visible",
+        "KJB is live-mapped to its exact ad account with four campaigns visible",
+        "Fagan draft and off states plus KJB active and draft states were read without mutation"
+      ],
+      "blockers": [
+        "the terminal Meta provider OAuth and complete mutation surface have not passed a live probe even though persistent-Chrome reads work",
+        "Shadow Heating is not visible in the current Meta portfolio and has no exact account mapping",
+        "no draft authority file permits campaign publishing, enablement, budget changes, or another live mutation",
+        "no other client is eligible for the current Meta optimization or launch lane"
+      ],
+      "requiresLiveProbe": true
+    }
+  },
+  "landingPageDeployment": {
+    "staging": {
+      "status": "partial",
+      "verifiedCapabilities": [
+        "Netlify CLI is installed and authenticated",
+        "existing preview sites are discoverable"
+      ],
+      "blockers": [
+        "canonical client landing-page source and build directories are not mapped"
+      ],
+      "requiresLiveProbe": true
+    },
+    "production": {
+      "status": "blocked",
+      "verifiedCapabilities": [],
+      "blockers": [
+        "the current Replenish production host is not mapped to the Netlify preview route",
+        "production deployment ownership and rollback path are not registered"
+      ],
+      "requiresLiveProbe": true
+    }
+  },
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false
+}

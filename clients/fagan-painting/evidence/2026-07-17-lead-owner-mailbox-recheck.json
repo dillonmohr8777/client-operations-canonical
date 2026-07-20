@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "evidenceId": "ev-fagan-lead-owner-mailbox-recheck-20260717",
+  "workItemId": "wi-20260715-0002",
+  "clientId": "fagan-painting",
+  "recordedAt": "2026-07-18T02:59:54.2943517+00:00",
+  "recordedBy": "marketing-chief",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false,
+  "scope": {
+    "mode": "read-only-verification",
+    "gmail": "Re-read the seven existing opaque Gmail evidence messages as five deduplicated threads in the connected operator mailbox.",
+    "slack": "Read the exact private Fagan project channel from 2026-07-14 through the latest available message.",
+    "access": "Validated the Fagan Access Broker route and checked the sanitized Bitwarden bridge state without reading a credential."
+  },
+  "findings": {
+    "uniqueLeadCount": 2,
+    "duplicateNotificationCount": 1,
+    "duplicateClassification": "confirmed-duplicate-forward",
+    "responseOwner": {
+      "status": "verified",
+      "canonicalRepresentation": "client-side lead owner",
+      "sourceHandling": "The source identifies the individual; the canonical artifact retains the role only."
+    },
+    "mailboxThreadState": {
+      "relevantLeadThreads": 2,
+      "eachContainsOriginalNotification": true,
+      "eachContainsUnsentDraft": true,
+      "sentFollowupFound": false,
+      "laterThreadActivityFound": false
+    },
+    "lead1Disposition": "unknown",
+    "lead2Disposition": "unknown",
+    "matchingCrmRecordVerified": false,
+    "matchingZapierRecordVerified": false,
+    "conversionTrackingVerified": false
+  },
+  "accessState": {
+    "registryValid": true,
+    "systemId": "gmail-persistent-chrome",
+    "capability": "gmail.message.read",
+    "bitwardenBridgeState": "locked",
+    "bootstrapCredentialPresent": true,
+    "exactMailboxCredentialLocatorRegistered": false,
+    "canonicalMailboxReadCompleted": false,
+    "humanGate": "Exact authorized client mailbox session or password-manager route is still required for processing evidence beyond the operator mailbox."
+  },
+  "verifiedConclusions": [
+    "The apparent extra notification remains one duplicate rather than a third unique lead.",
+    "A client-side owner is responsible for lead follow-up.",
+    "Neither relevant Gmail thread contains a sent follow-up or later reply in the connected operator mailbox.",
+    "The individual outcomes of both leads remain unverified."
+  ],
+  "stateRecommendation": {
+    "proposedTransition": "blocked",
+    "reason": "Ownership is now verified, but both lead dispositions and canonical mailbox or downstream CRM handling remain unverified."
+  },
+  "externalActionTaken": false
+}

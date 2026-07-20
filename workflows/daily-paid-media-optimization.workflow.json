@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "workflowId": "daily-paid-media-optimization",
+  "title": "Daily Paid Media Optimization Lane",
+  "canonicalProject": "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+  "trigger": {
+    "owner": "marketing-chief",
+    "event": "continue",
+    "cadence": "once-per-America/New_York-day",
+    "deduplicationKey": "paid-media-daily-review::<reviewDate>",
+    "scheduleCreatesUserTask": false
+  },
+  "sources": {
+    "exactRoster": "registry/paid-media-roster.json",
+    "clientRegistry": "registry/clients.json",
+    "paidMediaConfigs": "clients/<client-id>/paid-media/launch-config.json plus the exact platform blueprint",
+    "manifestGenerator": "scripts/Get-DailyPaidMediaReview.ps1",
+    "dailyManifest": "state/paid-media/daily-review-<yyyy-MM-dd>.json"
+  },
+  "authority": {
+    "manifestGeneratorCallsProviders": false,
+    "manifestGeneratorMutatesCanonicalQueue": false,
+    "workersUseReadOnlyProviderAccess": true,
+    "historicalMetricsAuthorizeAction": false,
+    "materialFindingCandidateAuthorizesAction": false,
+    "externalMutationRequiresExactActiveAuthority": true,
+    "exactActiveAuthorityRequirements": [
+      "exact active canonical client",
+      "exact rostered platform lane",
+      "exact opaque platform account reference",
+      "exact authorized requester and approval source",
+      "exact allowed action and trigger class",
+      "budget, geography, campaign, and duration limits",
+      "validate-only preflight",
+      "live post-action readback",
+      "rollback plan"
+    ],
+    "alwaysHumanGates": [
+      "mfa",
+      "one-time code",
+      "captcha",
+      "passkey",
+      "push approval",
+      "account recovery",
+      "new provider consent",
+      "master password"
+    ]
+  },
+  "exactLanes": [
+    "google-ads--kimberly-james-bridal",
+    "google-ads--replenish-7-eleven",
+    "google-ads--fresh-blends-kwik-trip",
+    "google-ads--omega-landscaping",
+    "google-ads--onsite-concrete-landscape",
+    "meta-ads--fagan-painting",
+    "meta-ads--shadow-heating-cooling",
+    "meta-ads--kimberly-james-bridal"
+  ],
+  "dailyChecks": [
+    "session and exact account",
+    "delivery and budget pacing",
+    "conversion tracking and deduplication",
+    "landing-page health",
+    "Google search terms and negatives or Meta creative fatigue and placements",
+    "change history",
+    "budget recommendation",
+    "live-readback freshness"
+  ],
+  "stages": [
+    {
+      "id": "deduplicate-day",
+      "owner": "marketing-chief",
+      "input": "America/New_York review date",
+      "output": "one daily review key",
+      "rule": "Run once for the Eastern calendar day during continue. Repeated continues reuse or check the deterministic manifest instead of creating another review task."
+    },
+    {
+      "id": "build-manifest",
+      "owner": "manifest-generator",
+      "input": "exact paid-media roster, canonical client registry, and route configs",
+      "output": "eight-lane deterministic review manifest",
+      "rule": "Read local non-secret metadata only. Never call Google, Meta, Gmail, Slack, or another provider. Never read or emit a raw secret. Never mutate the canonical queue. Missing registry, inactive client, missing config, invalid config, or missing opaque account reference blocks that lane closed. Fresh Blends and Replenish remain separate even when visible in the same child account."
+    },
+    {
+      "id": "read-only-review",
+      "owner": "bounded-paid-media-worker",
+      "input": "one eligible lane from the manifest",
+      "output": "timestamped redacted readback and check results",
+      "rule": "Use the persistent Chrome or approved read-only connector only after exact account verification. Read delivery, pacing, tracking, destinations, channel-specific evidence, change history, and downstream outcome quality. No provider mutation is allowed."
+    },
+    {
+      "id": "evaluate-materiality",
+      "owner": "verifier",
+      "input": "current exact-account readback",
+      "output": "no material finding or one redacted material-finding candidate",
+      "rule": "Historical metrics are observations, never authority. A candidate needs current evidence, medium or greater severity, an outcome implication, confidence, and a concrete local or approval-gated next action. Routine variance remains in the daily artifact and never enters the canonical queue."
+    },
+    {
+      "id": "materialize-candidate",
+      "owner": "marketing-chief",
+      "input": "validated material-finding candidate",
+      "output": "zero or one exact source-bound canonical work item",
+      "rule": "The Chief deduplicates by exact manifest review key and evidence locator, verifies the active client route, classifies the truthful action class, and creates a work item only for a material anomaly. The worker and manifest generator never write the queue."
+    },
+    {
+      "id": "recommend",
+      "owner": "marketing-chief",
+      "input": "verified material finding",
+      "output": "local recommendation or one approval request",
+      "rule": "Research, analysis, drafts, and local artifacts may proceed automatically. Budget changes, pauses, restarts, campaign edits, targeting, bids, creatives, destinations, tracking configuration, publishing, and account changes remain external mutations."
+    },
+    {
+      "id": "mutate-external-platform",
+      "owner": "authorized-executor",
+      "input": "separate exact active authority and verified execution contract",
+      "output": "validated change, live readback, and rollback evidence",
+      "rule": "Do not execute from a daily manifest or finding candidate alone. Fail closed unless every exact authority requirement is current and satisfied."
+    }
+  ],
+  "materialFindingPolicy": {
+    "queueThreshold": "medium-or-greater current business or measurement impact",
+    "queueCandidateClasses": [
+      "account-or-session-mismatch",
+      "unexpected-delivery-state",
+      "material-pacing-anomaly",
+      "tracking-or-dedup-failure",
+      "landing-page-failure",
+      "material-channel-waste-or-fatigue",
+      "unexplained-change",
+      "material-budget-recommendation",
+      "stale-or-missing-readback"
+    ],
+    "neverMaterialize": [
+      "routine daily metric movement without a current threshold breach",
+      "historical metric observations without live readback",
+      "unverified platform recommendations",
+      "duplicate findings already bound to the same review key and evidence locator",
+      "unlisted client or platform routes"
+    ]
+  },
+  "successSignals": [
+    "exactly eight reviewed or explicitly fail-closed lanes per Eastern day",
+    "zero unlisted client-platform routes",
+    "zero provider calls from the manifest generator",
+    "zero raw secrets in manifests or logs",
+    "zero queue items for routine non-material variance",
+    "zero external mutations without exact active authority",
+    "every recommendation states readback freshness and outcome-quality limits"
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "generated": "2026-07-16T20:20:00-04:00",
+  "privacy": "Aggregate and sanitized. No names, email addresses, form values, contact IDs, credentials, or private account links.",
+  "clients": {
+    "ami": {
+      "name": "AMI Commercial Cleaning",
+      "eyebrow": "Current GA4 pull · Property 544090354",
+      "title": "The new site is getting traffic. Now finish the lead tracking.",
+      "source": "GA4 snapshot · pulled Jul 16, 2026",
+      "defaultRange": "launch",
+      "ranges": {
+        "7d": {
+          "label": "Last 7 days",
+          "period": "Jul 10–16",
+          "kpis": [
+            {"label": "Active users", "value": "64", "note": "63 new users"},
+            {"label": "Sessions", "value": "65", "note": "10 engaged"},
+            {"label": "Page views", "value": "71", "note": "1.09 per session"},
+            {"label": "Lead event", "value": "1", "note": "generate_lead fired once"},
+            {"label": "Engagement", "value": "15.4%", "note": "GA4 engaged sessions"},
+            {"label": "GA4 key events", "value": "0", "note": "generate_lead is not marked yet"}
+          ]
+        },
+        "launch": {
+          "label": "Since tracking started",
+          "period": "Jul 11–16",
+          "kpis": [
+            {"label": "Active users", "value": "64", "note": "63 new users"},
+            {"label": "Sessions", "value": "65", "note": "tracking began Jul 11"},
+            {"label": "Page views", "value": "71", "note": "10 indexed paths viewed"},
+            {"label": "Lead event", "value": "1", "note": "one form_submit and generate_lead"},
+            {"label": "Organic sessions", "value": "8", "note": "7 active users"},
+            {"label": "GA4 key events", "value": "0", "note": "mark generate_lead next"}
+          ]
+        }
+      },
+      "alert": {"tone": "warn", "text": "GA4 saw one lead event, but it is not counted as a key event yet. Mark generate_lead as a key event, then confirm the same lead reaches HubSpot."},
+      "chart": {
+        "title": "Sessions and page views",
+        "note": "Daily GA4 activity. Tracking begins July 11 in this view.",
+        "type": "line",
+        "series": [
+          {"label": "Jul 11", "sessions": 2, "views": 2},
+          {"label": "Jul 12", "sessions": 10, "views": 12},
+          {"label": "Jul 13", "sessions": 14, "views": 17},
+          {"label": "Jul 14", "sessions": 10, "views": 10},
+          {"label": "Jul 15", "sessions": 11, "views": 11},
+          {"label": "Jul 16", "sessions": 18, "views": 19}
+        ]
+      },
+      "breakdown": {
+        "title": "Sessions by channel",
+        "columns": ["Channel", "Sessions", "Users"],
+        "rows": [
+          ["Direct", "55", "55"],
+          ["Organic Search", "8", "7"],
+          ["Unassigned", "3", "3"],
+          ["Referral", "1", "1"]
+        ]
+      },
+      "detail": {
+        "title": "What people viewed and what happened next",
+        "columns": ["Page or event", "Type", "Volume", "What it means"],
+        "rows": [
+          ["Homepage", "Page", "61 views", "Most visits and lead activity start here"],
+          ["Medical offices", "Page", "2 views", "Too early to judge; keep watching"],
+          ["form_start", "Event", "1", "One visitor started the form"],
+          ["form_submit", "Event", "1", "GA4 recorded one form submission"],
+          ["generate_lead", "Event", "1", "Mark this as a GA4 key event"],
+          ["Organic Search", "Channel", "8 sessions", "Build out pages that match real searches"]
+        ]
+      },
+      "status": [
+        {"label": "GA4 stream", "state": "Live", "tone": "good", "detail": "G-LKE0ZTG564 · ami-cleaning.com"},
+        {"label": "Lead event", "state": "Firing", "tone": "good", "detail": "form_submit and generate_lead observed"},
+        {"label": "Key-event setup", "state": "Open", "tone": "warn", "detail": "Conversions still report zero"},
+        {"label": "Search Console", "state": "Not connected here", "tone": "warn", "detail": "The current connection does not include AMI"}
+      ]
+    },
+    "shadow": {
+      "name": "Shadow Heating & Cooling",
+      "eyebrow": "Current Netlify pull · Meta checked Jul 13",
+      "title": "The ads are bringing in leads. The site still cannot show what happens next.",
+      "source": "Netlify checked live · Meta snapshot checked Jul 13",
+      "defaultRange": "7d",
+      "ranges": {
+        "7d": {
+          "label": "Latest 7 days",
+          "period": "Verified Jul 13",
+          "kpis": [
+            {"label": "Meta leads", "value": "4", "note": "verified result"},
+            {"label": "Cost per lead", "value": "$14.40", "note": "$5 daily budget"},
+            {"label": "Spend", "value": "$57.60", "note": "seven-day window"},
+            {"label": "Impressions", "value": "3,177", "note": "1.88 frequency"},
+            {"label": "Reach", "value": "1,693", "note": "paid audience"},
+            {"label": "Stored form leads", "value": "0", "note": "Netlify retained count"}
+          ]
+        },
+        "june": {
+          "label": "June view",
+          "period": "Historical verified month",
+          "kpis": [
+            {"label": "Reported results", "value": "23", "note": "Meta platform result"},
+            {"label": "Cost per result", "value": "$8.11", "note": "platform-reported"},
+            {"label": "Spend", "value": "$186.61", "note": "June Meta"},
+            {"label": "Impressions", "value": "8,425", "note": "June delivery"},
+            {"label": "Reach", "value": "4,302", "note": "June delivery"},
+            {"label": "Website tracking", "value": "Pending", "note": "GA4, GTM, and Pixel are missing"}
+          ]
+        }
+      },
+      "alert": {"tone": "warn", "text": "Meta reports four leads. The website has no GA4, GTM, or Meta Pixel, so it cannot yet show which visits or actions came from those ads."},
+      "chart": {
+        "title": "Latest Meta results",
+        "note": "Seven-day Meta snapshot. Leads are shown at 100× so the small number stays visible.",
+        "type": "funnel",
+        "series": [
+          {"label": "Reach", "value": 1693},
+          {"label": "Impressions", "value": 3177},
+          {"label": "Leads ×100", "value": 400}
+        ]
+      },
+      "breakdown": {
+        "title": "What is connected",
+        "columns": ["Layer", "State", "Evidence"],
+        "rows": [
+          ["Meta Ads", "Verified", "4 leads · $14.40 CPL"],
+          ["Netlify production", "Live", "Ready deploy · Jul 14"],
+          ["Netlify forms", "Live", "2 registered forms"],
+          ["Website analytics", "Missing", "No GA4, GTM, or Pixel"],
+          ["Search Console", "Unverified", "Property exists but is not verified"]
+        ]
+      },
+      "detail": {
+        "title": "What the site is recording",
+        "columns": ["Signal", "Current state", "Last check", "What to do next"],
+        "rows": [
+          ["Production deploy", "Ready", "Jul 14", "Ready for analytics installation"],
+          ["Contact form", "Registered", "Last signal Jul 15", "Test storage and email notifications"],
+          ["Service request", "Registered", "No retained submissions", "Submit a test and confirm where it goes"],
+          ["Meta lead engine", "Active at last check", "Jul 13", "Check lead quality before raising spend"],
+          ["Google Search Console", "Unverified", "Jul 16", "Verify after the tracking setup is complete"]
+        ]
+      },
+      "status": [
+        {"label": "Netlify site", "state": "Live", "tone": "good", "detail": "shadow-heating.com · production ready"},
+        {"label": "Forms", "state": "2 registered", "tone": "good", "detail": "contact + service-request"},
+        {"label": "Website tracking", "state": "Missing", "tone": "crit", "detail": "Install GA4/GTM/Pixel"},
+        {"label": "Meta data", "state": "Checked Jul 13", "tone": "warn", "detail": "Verified snapshot, not a live API pull"}
+      ]
+    }
+  }
+}

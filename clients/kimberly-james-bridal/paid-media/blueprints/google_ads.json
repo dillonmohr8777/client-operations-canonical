@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "clientId": "kimberly-james-bridal",
+  "platform": "google_ads",
+  "rosterRef": "registry/paid-media-roster.json",
+  "routeState": "active",
+  "patternStatus": "live-observed",
+  "sourceEvidence": {
+    "observedAt": "2026-07-16T19:35:10Z",
+    "sourceClasses": ["user", "gmail", "slack", "live_platform"],
+    "summary": "Persistent Chrome verified the primary KJB Google Ads account and excluded a cancelled duplicate account. Campaign #1 was enabled as Performance Max at an observed $20 per day, with 54,814 impressions, $585.42 spend, and zero conversions in the last 30 days. This live read supersedes stale pause context, but the delivery and metrics are evidence only; tracking and appointment quality remain the first optimization gates.",
+    "liveAccountVerified": true,
+    "historicalOnly": false
+  },
+  "triggerContract": {
+    "triggerClasses": ["campaign_launch", "campaign_restart", "campaign_expansion"],
+    "requesterRefs": ["registry-contact:kimberly-james-bridal:0", "user:dillon"],
+    "communicationImpliesFullBuild": true,
+    "requiredExtractedFacts": ["campaign intent", "approved budget", "appointment destination", "conversion goal", "schedule"],
+    "unknownsBlockMutation": ["budget authority", "real appointment event flow", "approved optimization action"]
+  },
+  "buildContract": {
+    "campaign": {
+      "type": "Performance Max",
+      "bidStrategy": null,
+      "campaignNamingPattern": "KJB | Google | {CampaignType} | {Intent}",
+      "adGroupNamingPattern": "{Intent} | {Market}"
+    },
+    "budgetBaseline": {
+      "daily": 20,
+      "currency": "USD",
+      "basis": "Observed on the enabled primary-account Performance Max campaign; this is a read-only baseline and never permission to spend.",
+      "observedAt": "2026-07-16T19:35:10Z",
+      "isSpendAuthority": false
+    },
+    "landingPage": {
+      "defaultMode": "reuse",
+      "onePerLocation": false,
+      "requiredSections": ["bridal appointment value", "size-inclusive reassurance", "designer and gown proof", "appointment call to action", "location and visit details", "frequently asked questions"],
+      "qa": ["mobile appointment completion", "source fields preserved", "test submission excluded from reporting", "page speed", "brand and factual review"]
+    },
+    "tracking": {
+      "primaryEvent": "appointment_request",
+      "secondaryEvents": ["form_submit", "phone_click", "schedule_start"],
+      "dedupRequired": true,
+      "utmPattern": "kjb_google_{intent}_{campaign_type}"
+    },
+    "creative": {
+      "requiredAssets": ["intent-specific headlines", "appointment-focused descriptions", "approved bridal imagery", "logo", "extensions tied to the appointment path"],
+      "copyRequirements": ["speak to real bridal shopping intent", "use approved size-inclusive language", "avoid unsupported inventory or appointment claims"]
+    }
+  },
+  "dailyOptimizationChecks": ["confirm the primary KJB account and exclude the cancelled duplicate", "enabled campaign and budget readback", "zero-conversion investigation", "conversion action recording", "search terms and negatives", "appointment-page health", "test-event exclusion", "change history"],
+  "antiRegressionRules": ["Do not pause, restart, or otherwise change Google from stale pause context or an internal draft.", "Do not optimize toward appointments until real appointment conversion rows are verified.", "Never count routing tests as leads or bookings.", "Never route work to the cancelled KJB duplicate account.", "Keep KJB Google and Meta reporting distinct even when the destination page is shared."],
+  "learningPolicy": {
+    "minimumComparableOutcomes": 3,
+    "successSignals": ["verified appointment request", "qualified bridal conversation", "booked appointment", "clean source-to-booking attribution"],
+    "failureSignals": ["test event counted", "clicks without appointment flow", "unapproved restart", "broken scheduling handoff"],
+    "decisionWeights": { "accept": 3, "modify": 1, "defer": -2, "reject": -4 }
+  },
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false
+}
