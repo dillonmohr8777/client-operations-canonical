@@ -3,23 +3,23 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-19T20:36:19.4311052+00:00`
-Queue revision: `124`
+Last reconciled: `2026-07-21T14:10:22.4252298+00:00`
+Queue revision: `125`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
 ## Predicted next actions
 
-**Next automatic action:** No automatic action is currently eligible.
+**Next automatic action:** **Implement Obaid's Phase 2 VA Claims UI handoff** (`wi-20260717-0011`, score 230): Await Obaid's auth and protected-route test on the new review branch, then reconcile the result and run the applicable integration checks before any merge. Why: P0, portfolio rank 2 (critical), no evidenced deadline, current evidence, status in_progress.
 
-**Next Dillon decision:** **Implement the Momentum caller auto-response workflow** (`wi-20260718-0003`, score 194): At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation. Why: P1, portfolio rank 3 (strategic), due within 24 hours, current evidence, status needs_approval, action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
+**Next Dillon decision:** **Implement the Momentum caller auto-response workflow** (`wi-20260718-0003`, score 204): At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation. Why: P1, portfolio rank 3 (strategic), overdue, current evidence, status needs_approval, action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
 
-**Next unblock:** **Implement Obaid's Phase 2 VA Claims UI handoff** (`wi-20260717-0011`, score 210): Await confirmation of authorized private-repository access, then apply the verified UI package on a review branch and run the integration checks. Why: P0, portfolio rank 2 (critical), no evidenced deadline, current evidence, status blocked.
+**Next unblock:** **Reconcile two Fagan Painting website leads** (`wi-20260715-0002`, score 145): Verify mailbox processing, the named response owner, and lead-level disposition through the approved Fagan mailbox, CRM, or Zapier records before any prospect contact. Why: P0, portfolio rank 10 (standard), no evidenced deadline, current evidence, status blocked, next action contains gated action language.
 <!-- marketing-chief:predictions:end -->
 
-## Active execution (normal 0/3; emergency 0/1)
+## Active execution (normal 1/3; emergency 0/1)
 
-No client outcome currently consumes a normal WIP slot.
+- `wi-20260717-0011` Implement Obaid's Phase 2 VA Claims UI handoff: Await Obaid's auth and protected-route test on the new review branch, then reconcile the result and run the applicable integration checks before any merge.
 
 ## Commitment queue
 
@@ -46,7 +46,7 @@ No client outcome currently consumes a normal WIP slot.
 | `wi-20260717-0008` | `momentum-360` | Deepen M360 Orbit knowledge and define the Momentum pipeline plan | Done | P2 | Verify the completed local package across all four specialist chapters, governance, pipeline architecture, evaluation controls, and the frozen-site boundary. | No evidenced deadline |
 | `wi-20260717-0009` | `align-hcm` | Build Align HCM attribution model with bounded parallel research | Done | P1 | On the weekend execution window, the Marketing Chief should spawn up to three bounded lead agents in parallel: one for first-party HubSpot and repository evidence mapping, one for current attribution-method research and model comparison, and one for privacy, validation, and adversarial review. Each lead may spawn bounded subagents only for non-overlapping source families, must return the canonical redacted handoff contract, and must not mutate the queue. Reconcile results into one local attribution artifact. Use dillonmohr8777/align-hcm-lead-intelligence as private evidence, treat the blocked traffic endpoint as unavailable until reverified, keep direct proof separate from temporal and modeled influence, expose no lead-level private data, and take no external action. | 2026-07-19 23:59 -04:00 |
 | `wi-20260717-0010` | `revive-systems` | Add data tracking and analysis to Revive review blog | Done | P1 | Revise the marked checklist in the local Revive article source to explicitly add data tracking and analysis, regenerate the matching HTML and PDF review files, and verify the rendered change. | No evidenced deadline |
-| `wi-20260717-0011` | `va-claims-edge` | Implement Obaid's Phase 2 VA Claims UI handoff | Blocked | P0 | Await confirmation of authorized private-repository access, then apply the verified UI package on a review branch and run the integration checks. | No evidenced deadline |
+| `wi-20260717-0011` | `va-claims-edge` | Implement Obaid's Phase 2 VA Claims UI handoff | In Progress | P0 | Await Obaid's auth and protected-route test on the new review branch, then reconcile the result and run the applicable integration checks before any merge. | No evidenced deadline |
 | `wi-20260718-0001` | `bigorange-marketing` | Confirm BigOrange paid-trial scope and compensation | Needs Approval | P1 | After the Paula interview, reconcile the written pilot scope, hours, rate or fixed fee, start date, payment timing, and approved access route into local review artifacts; do not begin, invoice, publish, or send until the terms are confirmed. | 2026-07-24 23:59 -04:00 |
 | `wi-20260718-0002` | `momentum-360` | Prepare the July 20 Momentum AI review | Done | P1 | Build and verify a redacted local decision packet from current canonical artifacts and communication evidence. | 2026-07-20 14:30 -04:00 |
 | `wi-20260718-0003` | `momentum-360` | Implement the Momentum caller auto-response workflow | Needs Approval | P1 | At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation. | 2026-07-20 15:00 -04:00 |
@@ -150,8 +150,6 @@ No client outcome currently consumes a normal WIP slot.
 
 - **Reconcile two Fagan Painting website leads:** Verify mailbox processing, the named response owner, and lead-level disposition through the approved Fagan mailbox, CRM, or Zapier records before any prospect contact.
   Current evidence: A fresh read-only recheck verified the client-side response owner and confirmed that both relevant operator-mailbox threads still contain unsent drafts with no sent follow-up or later activity. Both individual lead dispositions remain unverified, and the exact client mailbox route still requires a human authentication handoff.
-- **Implement Obaid's Phase 2 VA Claims UI handoff:** Await confirmation of authorized private-repository access, then apply the verified UI package on a review branch and run the integration checks.
-  Current evidence: An isolated Netlify review site is live at https://va-claims-edge-phase-two-review.netlify.app and was verified for branded assets, all five interactive UI states, mobile stacking, zero horizontal overflow, downloadable handoff availability, and noindex protections. The staging publish did not modify the live Vercel application, Supabase, authentication, or the private GitHub repository. Repository integration remains blocked pending authorized private-repository access.
 
 ## Intake quarantine
 
@@ -195,7 +193,7 @@ No client outcome currently consumes a normal WIP slot.
 
 ## Live health probe
 
-- **As of:** `2026-07-21T12:08:06.2490035+00:00`
+- **As of:** `2026-07-21T14:08:42.6115992+00:00`
 - **Overall:** `degraded`
 - **Queue:** revision `124`, `30` work items, normal `0/3`, emergency `0/1` active
 - **Client registry:** `valid`
