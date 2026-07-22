@@ -1,0 +1,51 @@
+{
+    "schemaVersion":  1,
+    "handoffId":  "handoff-mgr-pilot-va-claims-20260721",
+    "workItemId":  "wi-20260717-0011",
+    "expectedWorkItemVersion":  8,
+    "clientId":  "va-claims-edge",
+    "workerRole":  "bounded-worker",
+    "status":  "completed",
+    "startedAt":  "2026-07-21T20:52:47.8562058+00:00",
+    "finishedAt":  "2026-07-21T20:56:07.8050046+00:00",
+    "summary":  "The graph-backed local pilot verified the integrated VA Claims Phase 2 worktree across all six definition-of-done checks. Package verification, lint, responsive visual review, authentication-boundary review, and a production build with safe placeholder configuration passed. No queue mutation or external action occurred.",
+    "artifacts":  [
+                      "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/design-system.md",
+                      "clients/va-claims-edge/workspace/vace-platform/src/app/globals.css",
+                      "clients/va-claims-edge/workspace/vace-platform/src/app/login/page.js",
+                      "clients/va-claims-edge/workspace/vace-platform/src/app/components/AppShell.js",
+                      "clients/va-claims-edge/workspace/vace-platform/src/app/dashboard/page.js",
+                      "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preview/index.html",
+                      "clients/va-claims-edge/workspace/vace-platform/qa-login-desktop.png",
+                      "clients/va-claims-edge/workspace/vace-platform/qa-login-mobile.png",
+                      "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preflight-report.md",
+                      "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/obaid-handoff-draft.txt"
+                  ],
+    "evidence":  [
+                     "clients/va-claims-edge/evidence/2026-07-17-obaid-phase-two-ui-handoff.md",
+                     "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/verify-package.ps1",
+                     "state/execution-graphs/wi-20260717-0011/mgr-pilot-va-claims-20260721/execution-graph.json",
+                     "sha256:F93993BAECFCFB8E9C64E7BB94D7285A4540A101F4CBD5C4B57B9FAE0086BA2A"
+                 ],
+    "verification":  [
+                         "All six graph verifier nodes completed independently.",
+                         "Package verifier passed 45 assertions across 14 files.",
+                         "ESLint passed.",
+                         "Next.js production build passed with safe non-secret placeholder configuration.",
+                         "Desktop and mobile login captures were visually inspected."
+                     ],
+    "assumptions":  [
+                        "The deployment environment will provide its authorized Supabase configuration through the approved secret path."
+                    ],
+    "risks":  [
+                  "An unconfigured local production build fails until the required Supabase URL and anonymous client key are supplied; no secret was recovered or exposed during this pilot."
+              ],
+    "privacy":  "redacted",
+    "containsSecrets":  false,
+    "containsDirectIdentifiers":  false,
+    "containsRawCommunications":  false,
+    "approvalGate":  "none",
+    "proposedTransition":  "done",
+    "canonicalWriteAttempted":  false,
+    "externalActionAttempted":  false
+}

@@ -2,6 +2,7 @@
 param(
     [Parameter(Mandatory = $true)]
     [string]$HandoffPath,
+    [string]$ProjectRoot,
     [string]$QueuePath,
     [string]$RegistryPath,
     [ValidateSet('Json', 'Text')]
@@ -9,7 +10,8 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$projectRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
+if ([string]::IsNullOrWhiteSpace($ProjectRoot)) { $ProjectRoot = Join-Path $PSScriptRoot '..' }
+$projectRoot = [IO.Path]::GetFullPath($ProjectRoot).TrimEnd('\')
 . (Join-Path $PSScriptRoot 'MarketingOs.Common.ps1')
 if ([string]::IsNullOrWhiteSpace($QueuePath)) { $QueuePath = Join-Path $projectRoot 'queue\work-items.json' }
 if ([string]::IsNullOrWhiteSpace($RegistryPath)) { $RegistryPath = Join-Path $projectRoot 'registry\clients.json' }

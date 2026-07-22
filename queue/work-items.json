@@ -1,7 +1,7 @@
 {
     "schemaVersion":  1,
-    "revision":  125,
-    "updatedAt":  "2026-07-21T14:10:22.4252298+00:00",
+    "revision":  147,
+    "updatedAt":  "2026-07-22T19:58:19.3325574+00:00",
     "updatedBy":  "marketing-chief",
     "mode":  "manual-pilot",
     "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
@@ -1904,7 +1904,7 @@
                       },
                       {
                           "id":  "wi-20260717-0011",
-                          "version":  7,
+                          "version":  9,
                           "dedupeKey":  "va-claims-edge:2026-07-17:phase-two-ui-integration",
                           "scope":  "client",
                           "clientId":  "va-claims-edge",
@@ -1922,7 +1922,7 @@
                                          "observedAt":  "2026-07-17T23:35:37.9804433+00:00",
                                          "redactedSummary":  "The active developer requested four frontend deliverables before Phase 3: login, design tokens, application shell, and dashboard structure."
                                      },
-                          "status":  "in_progress",
+                          "status":  "done",
                           "lane":  "normal",
                           "emergencyRationale":  null,
                           "priority":  {
@@ -1930,13 +1930,13 @@
                                            "rationale":  "The developer is actively building Phase 2 and needs the design contract locked before backend work proceeds into Phase 3."
                                        },
                           "owner":  "marketing-chief",
-                          "nextAction":  "Await Obaid\u0027s auth and protected-route test on the new review branch, then reconcile the result and run the applicable integration checks before any merge.",
+                          "nextAction":  "Review the local integrated branch and QA evidence. Keep GitHub push, Vercel deployment, merge, and external handoff pending explicit approval.",
                           "execution":  {
                                             "actionClass":  "local_test",
                                             "automaticEligible":  true,
                                             "externalAction":  false,
                                             "reversible":  true,
-                                            "classifiedAt":  "2026-07-21T14:10:22.4252298+00:00"
+                                            "classifiedAt":  "2026-07-21T19:39:42.7392257+00:00"
                                         },
                           "definitionOfDone":  [
                                                    "A reusable token and component contract covers color, typography, spacing, states, responsiveness, and reduced motion.",
@@ -1949,11 +1949,14 @@
                           "dueAt":  null,
                           "reviewAt":  null,
                           "evidence":  {
-                                           "asOf":  "2026-07-18T00:22:47.8552232+00:00",
+                                           "asOf":  "2026-07-22T12:06:03.7905749+00:00",
                                            "freshness":  "current",
                                            "refs":  [
                                                         "clients/va-claims-edge/evidence/2026-07-17-obaid-phase-two-ui-handoff.md",
-                                                        "clients/va-claims-edge/deliverables/2026-07-16-initial-signup-wireframe"
+                                                        "clients/va-claims-edge/deliverables/2026-07-16-initial-signup-wireframe",
+                                                        "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/verify-package.ps1",
+                                                        "state/execution-graphs/wi-20260717-0011/mgr-pilot-va-claims-20260721/execution-graph.json",
+                                                        "sha256:F93993BAECFCFB8E9C64E7BB94D7285A4540A101F4CBD5C4B57B9FAE0086BA2A"
                                                     ]
                                        },
                           "approval":  {
@@ -1982,16 +1985,39 @@
                                                "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preflight-report.md",
                                                "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/obaid-handoff-draft.txt",
                                                "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/verify-package.ps1",
-                                               "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff-review-bundle.zip"
+                                               "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff-review-bundle.zip",
+                                               "clients/va-claims-edge/workspace/vace-platform/src/app/globals.css",
+                                               "clients/va-claims-edge/workspace/vace-platform/src/app/login/page.js",
+                                               "clients/va-claims-edge/workspace/vace-platform/src/app/components/AppShell.js",
+                                               "clients/va-claims-edge/workspace/vace-platform/src/app/dashboard/page.js",
+                                               "clients/va-claims-edge/workspace/vace-platform/qa-login-desktop.png",
+                                               "clients/va-claims-edge/workspace/vace-platform/qa-login-mobile.png"
                                            ],
                           "outcome":  {
-                                          "status":  "in_progress",
-                                          "verifiedAt":  "2026-07-21T14:10:22.4252298+00:00",
-                                          "summary":  "Authorized GitHub access was verified for the exact private repository, and the requested review branch was created from the current main branch and pushed. No application files, authentication behavior, protected routes, production systems, or merge state were changed. Obaid\u0027s announced auth and protected-route test is the remaining validation step.",
+                                          "status":  "completed",
+                                          "verifiedAt":  "2026-07-22T12:06:03.7905749+00:00",
+                                          "summary":  "The graph-backed local pilot verified the integrated VA Claims Phase 2 worktree across all six definition-of-done checks. Package verification, lint, responsive visual review, authentication-boundary review, and a production build with safe placeholder configuration passed. No queue mutation or external action occurred.",
+                                          "handoffId":  "handoff-mgr-pilot-va-claims-20260721",
+                                          "handoffContentSha256":  "19B8ED409BC8C34B522A7F15800AC06BB511E39A6A05EFA2B9DD8338DB830F97",
+                                          "workerRole":  "bounded-worker",
+                                          "verification":  [
+                                                               "All six graph verifier nodes completed independently.",
+                                                               "Package verifier passed 45 assertions across 14 files.",
+                                                               "ESLint passed.",
+                                                               "Next.js production build passed with safe non-secret placeholder configuration.",
+                                                               "Desktop and mobile login captures were visually inspected."
+                                                           ],
+                                          "assumptions":  [
+                                                              "The deployment environment will provide its authorized Supabase configuration through the approved secret path."
+                                                          ],
+                                          "risks":  [
+                                                        "An unconfigured local production build fails until the required Supabase URL and anonymous client key are supplied; no secret was recovered or exposed during this pilot."
+                                                    ],
+                                          "privacy":  "redacted",
                                           "externalActionTaken":  false
                                       },
                           "createdAt":  "2026-07-17T23:35:37.9804433+00:00",
-                          "updatedAt":  "2026-07-21T14:10:22.4252298+00:00"
+                          "updatedAt":  "2026-07-22T12:06:03.7905749+00:00"
                       },
                       {
                           "id":  "wi-20260718-0001",
@@ -2717,6 +2743,346 @@
                                       },
                           "createdAt":  "2026-07-19T20:32:05.5136511+00:00",
                           "updatedAt":  "2026-07-19T20:36:19.4311052+00:00"
+                      },
+                      {
+                          "id":  "wi-20260721-0001",
+                          "version":  5,
+                          "dedupeKey":  "kimberly-james-bridal:2026-07-21:identify-converting-ad-and-landing-page",
+                          "scope":  "client",
+                          "clientId":  "kimberly-james-bridal",
+                          "routing":  {
+                                          "status":  "resolved",
+                                          "matchedBy":  "registry-resolver",
+                                          "registryStatus":  "active",
+                                          "verifiedAt":  "2026-07-21T17:39:18.5646325+00:00"
+                                      },
+                          "title":  "Reconcile KJB converting ad and landing page",
+                          "requestedOutcome":  "Identify the exact Google or Meta ad and landing page associated with the booked appointment and prepare a concise review answer.",
+                          "source":  {
+                                         "type":  "slack",
+                                         "locator":  "clients/kimberly-james-bridal/evidence/2026-07-21-slack-intake-review.md",
+                                         "observedAt":  "2026-07-21T17:39:18.5646325+00:00",
+                                         "redactedSummary":  "Mac asked which new ad and landing page produced a conversion; stored platform evidence is stale and the current account readback is pending."
+                                     },
+                          "status":  "done",
+                          "lane":  "normal",
+                          "emergencyRationale":  null,
+                          "priority":  {
+                                           "level":  "P0",
+                                           "rationale":  "A current paid-media attribution question is waiting on exact evidence before any optimization conclusion."
+                                       },
+                          "owner":  "marketing-chief",
+                          "nextAction":  "Meta read-only account and campaign are verified; restore the authorized Google Ads account readback, then match the appointment to platform, ad or asset, landing-page URL, cost, timestamp, and booking evidence; retain the response as a local draft until reconciled.",
+                          "execution":  {
+                                            "actionClass":  "local_draft",
+                                            "automaticEligible":  true,
+                                            "externalAction":  false,
+                                            "reversible":  true,
+                                            "classifiedAt":  "2026-07-21T17:43:45.9075427+00:00"
+                                        },
+                          "definitionOfDone":  [
+                                                   "The exact active Google Ads and Meta Ads accounts are read back through authorized read-only routes.",
+                                                   "The converting platform, campaign, ad or asset, landing-page URL, date, spend, and conversion event are identified.",
+                                                   "The platform event is reconciled to a booked appointment without exposing private lead data.",
+                                                   "A concise local response draft is ready and no external message or campaign change occurs."
+                                               ],
+                          "dueAt":  null,
+                          "reviewAt":  null,
+                          "evidence":  {
+                                           "asOf":  "2026-07-21T18:10:50.7194549+00:00",
+                                           "freshness":  "current",
+                                           "refs":  [
+                                                        "clients/kimberly-james-bridal/evidence/2026-07-21-slack-intake-review.md"
+                                                    ]
+                                       },
+                          "approval":  {
+                                           "tier":  "automatic",
+                                           "action":  "Local reversible work only.",
+                                           "status":  "not_required",
+                                           "approvalRef":  null
+                                       },
+                          "dependencies":  [
+
+                                           ],
+                          "assumptions":  [
+
+                                          ],
+                          "confidence":  0.95,
+                          "artifactRefs":  [
+                                               "clients/kimberly-james-bridal/deliverables/2026-07-21-google-vs-meta-conversion-follow-up-draft.md"
+                                           ],
+                          "outcome":  {
+                                          "status":  "completed",
+                                          "verifiedAt":  "2026-07-21T18:10:50.7194549+00:00",
+                                          "summary":  "The KJB conversion source, campaign and asset unit, landing page, reporting window, spend, platform CPL, and first-party request evidence are reconciled in a concise unsent response.",
+                                          "handoffId":  "kjb-conversion-reconcile-done-20260721",
+                                          "handoffContentSha256":  "F68DB9B5DAE283F0667592FDD86C1D9B917C834C0A48F486F90487046B7BA66B",
+                                          "workerRole":  "paid-media-evidence-verifier",
+                                          "verification":  [
+                                                               "Google produced one website lead submission at a platform CPL of 277.42 dollars.",
+                                                               "Meta produced landing-page views and no leads, so Meta CPL is undefined.",
+                                                               "Performance Max is identified at campaign and asset-group level without inventing a fixed creative.",
+                                                               "No message or campaign change occurred."
+                                                           ],
+                                          "assumptions":  [
+
+                                                          ],
+                                          "risks":  [
+                                                        "Final boutique confirmation is outside the available ad-platform and request-sheet evidence."
+                                                    ],
+                                          "privacy":  "redacted",
+                                          "externalActionTaken":  false
+                                      },
+                          "createdAt":  "2026-07-21T17:39:18.5646325+00:00",
+                          "updatedAt":  "2026-07-21T18:10:50.7194549+00:00"
+                      },
+                      {
+                          "id":  "wi-20260721-0002",
+                          "version":  4,
+                          "dedupeKey":  "momentum-360:2026-07-21:ai-tech-news-next-steps-and-check-in",
+                          "scope":  "client",
+                          "clientId":  "momentum-360",
+                          "routing":  {
+                                          "status":  "resolved",
+                                          "matchedBy":  "registry-resolver",
+                                          "registryStatus":  "active",
+                                          "verifiedAt":  "2026-07-21T17:39:20.4766866+00:00"
+                                      },
+                          "title":  "Prepare AI Tech News next steps and check-in packet",
+                          "requestedOutcome":  "Turn the new-design delivery into a review-ready QA checklist, decision list, and check-in response draft.",
+                          "source":  {
+                                         "type":  "slack",
+                                         "locator":  "clients/momentum-360/deliverables/2026-07-21-ai-tech-news-follow-up.md",
+                                         "observedAt":  "2026-07-21T17:39:20.4766866+00:00",
+                                         "redactedSummary":  "Melissa asked for next steps and a check-in after the new AI Tech News designs were delivered."
+                                     },
+                          "status":  "done",
+                          "lane":  "normal",
+                          "emergencyRationale":  null,
+                          "priority":  {
+                                           "level":  "P1",
+                                           "rationale":  "The team is waiting for a concrete review path after a design delivery, but no external release is authorized."
+                                       },
+                          "owner":  "marketing-chief",
+                          "nextAction":  "Run the local QA and handoff checklist, record final decisions and owners, and keep the check-in response unsent until participants and timing are confirmed.",
+                          "execution":  {
+                                            "actionClass":  "local_artifact",
+                                            "automaticEligible":  true,
+                                            "externalAction":  false,
+                                            "reversible":  true,
+                                            "classifiedAt":  "2026-07-21T17:39:20.4766866+00:00"
+                                        },
+                          "definitionOfDone":  [
+                                                   "The page-set, copy, imagery, responsive, link, form, and analytics checks are listed.",
+                                                   "Open decisions have an owner and a review question.",
+                                                   "A concise local check-in response draft is ready.",
+                                                   "No public release, deployment, or message delivery occurs."
+                                               ],
+                          "dueAt":  null,
+                          "reviewAt":  null,
+                          "evidence":  {
+                                           "asOf":  "2026-07-21T18:10:57.5863411+00:00",
+                                           "freshness":  "current",
+                                           "refs":  [
+                                                        "clients/momentum-360/deliverables/2026-07-21-ai-tech-news-follow-up.md"
+                                                    ]
+                                       },
+                          "approval":  {
+                                           "tier":  "automatic",
+                                           "action":  "Local reversible work only.",
+                                           "status":  "not_required",
+                                           "approvalRef":  null
+                                       },
+                          "dependencies":  [
+
+                                           ],
+                          "assumptions":  [
+
+                                          ],
+                          "confidence":  0.9,
+                          "artifactRefs":  [
+                                               "clients/momentum-360/deliverables/2026-07-21-ai-tech-news-follow-up.md"
+                                           ],
+                          "outcome":  {
+                                          "status":  "completed",
+                                          "verifiedAt":  "2026-07-21T18:10:57.5863411+00:00",
+                                          "summary":  "The AI Tech News next-step packet is complete with live links, current QA, owners, decision questions, calendar options, and a concise unsent response.",
+                                          "handoffId":  "ai-tech-pilots-done-20260721",
+                                          "handoffContentSha256":  "A932A52103AD6A70A60E3C6926ADD543B8544A9A65E66EC76FEB9273F3344FBC",
+                                          "workerRole":  "web-pilot-qa-verifier",
+                                          "verification":  [
+                                                               "The review hub is not represented as a replacement for separate client links.",
+                                                               "Google Maps-first sourcing direction is preserved.",
+                                                               "No public release, deployment, Slack message, or calendar event occurred."
+                                                           ],
+                                          "assumptions":  [
+
+                                                          ],
+                                          "risks":  [
+
+                                                    ],
+                                          "privacy":  "redacted",
+                                          "externalActionTaken":  false
+                                      },
+                          "createdAt":  "2026-07-21T17:39:20.4766866+00:00",
+                          "updatedAt":  "2026-07-21T18:10:57.5863411+00:00"
+                      },
+                      {
+                          "id":  "wi-20260721-0003",
+                          "version":  9,
+                          "dedupeKey":  "momentum-360:2026-07-21:sean-organic-webinar-acquisition-system",
+                          "scope":  "client",
+                          "clientId":  "momentum-360",
+                          "routing":  {
+                                          "status":  "resolved",
+                                          "matchedBy":  "registry-resolver",
+                                          "registryStatus":  "active",
+                                          "verifiedAt":  "2026-07-21T17:39:21.8819111+00:00"
+                                      },
+                          "title":  "Prepare Sean organic webinar acquisition system brief",
+                          "requestedOutcome":  "Prepare a meeting-ready low-cost webinar acquisition system map and pilot decision packet for Sean.",
+                          "source":  {
+                                         "type":  "slack",
+                                         "locator":  "clients/momentum-360/deliverables/2026-07-21-sean-webinar-acquisition-discovery-brief.md",
+                                         "observedAt":  "2026-07-21T17:39:21.8819111+00:00",
+                                         "redactedSummary":  "Sean asked for help recreating an expensive growth program organically; a related voice note proposed an audience-to-webinar-to-offer system."
+                                     },
+                          "status":  "done",
+                          "lane":  "normal",
+                          "emergencyRationale":  null,
+                          "priority":  {
+                                           "level":  "P1",
+                                           "rationale":  "A strategy call is already arranged for the next day and the proposed system has material consent, tool, measurement, and owner decisions."
+                                       },
+                          "owner":  "marketing-chief",
+                          "nextAction":  "Review the upgraded live Momentum workshop prototype; no Slack or email delivery has been made.",
+                          "execution":  {
+                                            "actionClass":  "deployment",
+                                            "automaticEligible":  false,
+                                            "externalAction":  true,
+                                            "reversible":  false,
+                                            "classifiedAt":  "2026-07-21T22:19:26.1036507+00:00"
+                                        },
+                          "definitionOfDone":  [
+                                                   "The audience, offer, webinar, registration, reminder, calendar, replay, and conversion flow are mapped.",
+                                                   "Consent and calendar-insertion safeguards are explicit.",
+                                                   "The call decisions have owners, success criteria, and approval gates.",
+                                                   "No audience upload, calendar insertion, message send, account change, or paid spend occurs."
+                                               ],
+                          "dueAt":  null,
+                          "reviewAt":  null,
+                          "evidence":  {
+                                           "asOf":  "2026-07-21T18:11:59.0340953+00:00",
+                                           "freshness":  "current",
+                                           "refs":  [
+                                                        "clients/momentum-360/deliverables/2026-07-21-sean-webinar-acquisition-discovery-brief.md"
+                                                    ]
+                                       },
+                          "approval":  {
+                                           "tier":  "explicit",
+                                           "action":  "Local reversible work only.",
+                                           "status":  "approved",
+                                           "approvalRef":  "user:2026-07-21:deploy-any-to-netlify"
+                                       },
+                          "dependencies":  [
+
+                                           ],
+                          "assumptions":  [
+
+                                          ],
+                          "confidence":  0.9,
+                          "artifactRefs":  [
+                                               "clients/momentum-360/deliverables/2026-07-21-sean-webinar-acquisition-discovery-brief.md",
+                                               "clients/momentum-360/deliverables/2026-07-21-sean-webinar-pilot/index.html",
+                                               "clients/momentum-360/deliverables/2026-07-21-sean-webinar-pilot/styles.css",
+                                               "clients/momentum-360/deliverables/2026-07-21-sean-webinar-pilot/script.js",
+                                               "clients/momentum-360/deliverables/2026-07-21-sean-webinar-pilot/event-schema.json",
+                                               "clients/momentum-360/deliverables/2026-07-21-sean-webinar-pilot/owner-checklist.md"
+                                           ],
+                          "outcome":  {
+                                          "status":  "done",
+                                          "verifiedAt":  "2026-07-21T22:19:26.1036507+00:00",
+                                          "summary":  "Epic Design UI/UX pass completed and deployed to Netlify: explicit 2.5D depth stack, branded Mac and Sean hero, premium liquid-glass treatments, session rail, form completion guidance, accessible motion control, mobile conversion dock, optimized 58 KB WebP hero, and production QA. Live URL: https://momentum-workshop-pilot.netlify.app. Deploy ID: 6a5ff04979fd30eb09a50065.",
+                                          "externalActionTaken":  false
+                                      },
+                          "createdAt":  "2026-07-21T17:39:21.8819111+00:00",
+                          "updatedAt":  "2026-07-21T22:19:26.1036507+00:00"
+                      },
+                      {
+                          "id":  "wi-20260722-0001",
+                          "version":  2,
+                          "dedupeKey":  "va-claims-edge:2026-07-22:phase-two-production-deployment",
+                          "scope":  "client",
+                          "clientId":  "va-claims-edge",
+                          "routing":  {
+                                          "status":  "resolved",
+                                          "matchedBy":  "registry-resolver",
+                                          "registryStatus":  "active",
+                                          "verifiedAt":  "2026-07-22T19:58:18.0291339+00:00"
+                                      },
+                          "title":  "Deploy the VA Claims Phase 2 portal release",
+                          "requestedOutcome":  "Publish the reviewed Phase 2 portal styling from commit 14bcdba to the existing VA Claims production Vercel project and verify the live alias.",
+                          "source":  {
+                                         "type":  "user",
+                                         "locator":  "clients/va-claims-edge/evidence/2026-07-22-vercel-release-attempt.md",
+                                         "observedAt":  "2026-07-22T19:58:18.0291339+00:00",
+                                         "redactedSummary":  "Dillon granted full approval for the exact VA Claims Vercel access request and deployment; the access request is now pending an owner because the team is at its member limit."
+                                     },
+                          "status":  "blocked",
+                          "lane":  "normal",
+                          "emergencyRationale":  null,
+                          "priority":  {
+                                           "level":  "P0",
+                                           "rationale":  "VA Claims Edge is portfolio rank 2, the reviewed release is already on the production-connected main branch, and the remaining blocker is exact provider access."
+                                       },
+                          "owner":  "marketing-chief",
+                          "nextAction":  "A VA Claims Vercel owner must free a member seat or increase capacity and approve the pending dillonmohr8777 request; then redeploy commit 14bcdba and verify the public alias.",
+                          "execution":  {
+                                            "actionClass":  "deployment",
+                                            "automaticEligible":  false,
+                                            "externalAction":  true,
+                                            "reversible":  false,
+                                            "classifiedAt":  "2026-07-22T19:58:19.3325574+00:00"
+                                        },
+                          "definitionOfDone":  [
+                                                   "The approved Git commit 14bcdba is accepted by the production-connected VA Claims Vercel project.",
+                                                   "The production deployment completes successfully and identifies commit 14bcdba.",
+                                                   "The public alias vaclaims-portal.vercel.app serves the approved Phase 2 login and passes readback.",
+                                                   "No client message or unrelated account, billing, member, or production change occurs."
+                                               ],
+                          "dueAt":  null,
+                          "reviewAt":  null,
+                          "evidence":  {
+                                           "asOf":  "2026-07-22T19:58:18.0291339+00:00",
+                                           "freshness":  "current",
+                                           "refs":  [
+                                                        "clients/va-claims-edge/evidence/2026-07-22-vercel-release-attempt.md"
+                                                    ]
+                                       },
+                          "approval":  {
+                                           "tier":  "explicit",
+                                           "action":  "Request exact VA Claims Vercel team access, deploy commit 14bcdba to the existing production project, and verify the current live alias.",
+                                           "status":  "approved",
+                                           "approvalRef":  "user:2026-07-22:full-approval"
+                                       },
+                          "dependencies":  [
+
+                                           ],
+                          "assumptions":  [
+
+                                          ],
+                          "confidence":  0.99,
+                          "artifactRefs":  [
+
+                                           ],
+                          "outcome":  {
+                                          "status":  "blocked",
+                                          "verifiedAt":  "2026-07-22T19:58:19.3325574+00:00",
+                                          "summary":  "The exact Vercel team access request was submitted under Dillon approval. Vercel reports that an owner must approve it and that the VA Claims team has reached its member limit; the new production deployment therefore remains blocked and the existing live site is unchanged.",
+                                          "externalActionTaken":  false
+                                      },
+                          "createdAt":  "2026-07-22T19:58:18.0291339+00:00",
+                          "updatedAt":  "2026-07-22T19:58:19.3325574+00:00"
                       }
                   ],
     "intakeQuarantine":  [

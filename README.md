@@ -21,6 +21,19 @@ The Marketing Chief is the only writer to canonical state during the pilot. Focu
 
 In the pinned task, Dillon can say `continue`. The Chief then refreshes safe intake and live health, loads corrections and exact client context, ranks the queue, completes the highest safe local action, reconciles verified worker handoffs, and returns the result plus at most one human-only decision.
 
+### Graph-backed execution
+
+Nontrivial automatic work now runs through a persistent, version-bound execution graph under `state/execution-graphs/<work-item-id>/<graph-run-id>/`. The graph connects the exact queue item, active client, source evidence, artifacts, approval boundary, worker step, one verifier per definition-of-done check, bounded handoff, and Chief reconciliation. It improves context continuity, provenance, restartability, and QA without becoming another queue.
+
+The graph is prepare-only evidence. It cannot mutate `queue/work-items.json`, write durable memory, authorize external action, or replace `Accept-WorkerHandoff.ps1`. Exact queue and work-item versions remain authoritative, and semantic retrieval can suggest context but cannot bind work.
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\New-MarketingExecutionGraph.ps1 -WorkItemId <wi-id> -ExpectedQueueRevision <revision> -ExpectedWorkItemVersion <version>
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Test-MarketingExecutionGraph.ps1 -GraphPath <state\execution-graphs\...\execution-graph.json>
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Update-MarketingExecutionGraph.ps1 -GraphPath <graph.json> -ExpectedGraphRevision <revision> -NodeId <ready-node> -Status completed -Actor <role> -Summary <safe-summary>
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\New-MarketingGraphHandoff.ps1 -GraphPath <graph.json> -ExpectedGraphRevision <revision> -WorkerRole <role> -Status completed -ProposedTransition <transition> -Summary <safe-summary>
+```
+
 ### Intake-to-queue contract
 
 Pending intake is not merely summarized. The Chief lists safe metadata with `Get-PendingIntake.ps1`, inspects the exact authorized source behind each exact-routed observation's opaque locator, and verifies the current outcome and active client before queue work is linked or created.

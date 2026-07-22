@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "marketing-execution-graph.schema.json",
+  "title": "Marketing Chief Versioned Execution Graph",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "graphRunId",
+    "graphRevision",
+    "workflowId",
+    "createdAt",
+    "updatedAt",
+    "status",
+    "queueSnapshot",
+    "workItem",
+    "scope",
+    "retrieval",
+    "nodes",
+    "edges",
+    "knowledgeGraph",
+    "handoffContract",
+    "blockers",
+    "warnings",
+    "trace",
+    "attestations"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "graphRunId": { "type": "string", "pattern": "^mgr-[A-Za-z0-9][A-Za-z0-9_-]{7,151}$" },
+    "graphRevision": { "type": "integer", "minimum": 1 },
+    "workflowId": { "const": "marketing-chief-execution-graph" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "status": { "enum": ["planned", "running", "blocked", "failed", "handoff_ready", "completed", "stale"] },
+    "queueSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["locator", "revision", "sha256", "capturedAt"],
+      "properties": {
+        "locator": { "const": "queue/work-items.json" },
+        "revision": { "type": "integer", "minimum": 0 },
+        "sha256": { "type": "string", "pattern": "^[0-9A-F]{64}$" },
+        "capturedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "workItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "expectedVersion",
+        "contentSha256",
+        "clientId",
+        "title",
+        "status",
+        "lane",
+        "priority",
+        "actionClass",
+        "nextAction",
+        "definitionOfDone",
+        "sourceLocator",
+        "evidenceRefs",
+        "artifactRefs",
+        "dependencies",
+        "approval"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^wi-[A-Za-z0-9-]+$" },
+        "expectedVersion": { "type": "integer", "minimum": 1 },
+        "contentSha256": { "type": "string", "pattern": "^[0-9A-F]{64}$" },
+        "clientId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,119}$" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "status": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "lane": { "enum": ["normal", "emergency"] },
+        "priority": { "enum": ["P0", "P1", "P2", "P3"] },
+        "actionClass": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "nextAction": { "type": "string", "minLength": 1, "maxLength": 3000 },
+        "definitionOfDone": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": { "type": "string", "minLength": 1, "maxLength": 1000 }
+        },
+        "sourceLocator": { "$ref": "#/$defs/safeLocator" },
+        "evidenceRefs": { "$ref": "#/$defs/locatorArray" },
+        "artifactRefs": { "$ref": "#/$defs/locatorArray" },
+        "dependencies": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "anyOf": [
+              { "type": "string", "pattern": "^wi-[A-Za-z0-9-]+$" },
+              { "$ref": "#/$defs/safeLocator" }
+            ]
+          }
+        },
+        "approval": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["tier", "status", "gate"],
+          "properties": {
+            "tier": { "enum": ["automatic", "explicit"] },
+            "status": { "enum": ["pending", "approved", "rejected", "not_required"] },
+            "gate": { "enum": ["none", "explicit", "human_authentication"] }
+          }
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonicalProject",
+        "clientRoot",
+        "graphLocator",
+        "canonicalWriteAllowed",
+        "externalActionAllowed",
+        "durableMemoryWriteAllowed",
+        "privacy"
+      ],
+      "properties": {
+        "canonicalProject": { "type": "string", "minLength": 3, "maxLength": 500 },
+        "clientRoot": { "type": "string", "pattern": "^clients/[a-z0-9][a-z0-9-]{1,119}$" },
+        "graphLocator": { "type": "string", "pattern": "^state/execution-graphs/wi-[A-Za-z0-9-]+/mgr-[A-Za-z0-9_-]+/execution-graph\\.json$" },
+        "canonicalWriteAllowed": { "const": false },
+        "externalActionAllowed": { "const": false },
+        "durableMemoryWriteAllowed": { "const": false },
+        "privacy": { "const": "redacted" }
+      }
+    },
+    "retrieval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy", "exactBindingRequired", "semanticBindingAllowed", "sourceCount", "artifactCount"],
+      "properties": {
+        "strategy": { "const": "exact-plus-graph" },
+        "exactBindingRequired": { "const": true },
+        "semanticBindingAllowed": { "const": false },
+        "sourceCount": { "type": "integer", "minimum": 1, "maximum": 20 },
+        "artifactCount": { "type": "integer", "minimum": 0, "maximum": 50 }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 20,
+      "items": { "$ref": "#/$defs/executionNode" }
+    },
+    "edges": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 60,
+      "items": { "$ref": "#/$defs/edge" }
+    },
+    "knowledgeGraph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["nodes", "edges", "nodeCount", "edgeCount"],
+      "properties": {
+        "nodes": { "type": "array", "minItems": 4, "maxItems": 100, "items": { "$ref": "#/$defs/knowledgeNode" } },
+        "edges": { "type": "array", "minItems": 3, "maxItems": 200, "items": { "$ref": "#/$defs/edge" } },
+        "nodeCount": { "type": "integer", "minimum": 4, "maximum": 100 },
+        "edgeCount": { "type": "integer", "minimum": 3, "maximum": 200 }
+      }
+    },
+    "handoffContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "validator", "reconciler", "expectedWorkItemVersion", "approvalGate", "graphEvidence"],
+      "properties": {
+        "schema": { "const": "schemas/worker-handoff.schema.json" },
+        "validator": { "const": "scripts/Test-MarketingHandoff.ps1" },
+        "reconciler": { "const": "scripts/Accept-WorkerHandoff.ps1" },
+        "expectedWorkItemVersion": { "type": "integer", "minimum": 1 },
+        "approvalGate": { "enum": ["none", "explicit", "human_authentication"] },
+        "graphEvidence": { "$ref": "#/$defs/safeLocator" }
+      }
+    },
+    "blockers": { "type": "array", "maxItems": 10, "items": { "type": "string", "minLength": 1, "maxLength": 1000 } },
+    "warnings": { "type": "array", "maxItems": 10, "items": { "type": "string", "minLength": 1, "maxLength": 1000 } },
+    "trace": { "type": "array", "minItems": 1, "maxItems": 200, "items": { "$ref": "#/$defs/traceEvent" } },
+    "attestations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["canonicalWriteAttempted", "externalActionAttempted", "durableMemoryWriteAttempted", "containsSecrets", "containsDirectIdentifiers", "containsRawCommunications"],
+      "properties": {
+        "canonicalWriteAttempted": { "const": false },
+        "externalActionAttempted": { "const": false },
+        "durableMemoryWriteAttempted": { "const": false },
+        "containsSecrets": { "const": false },
+        "containsDirectIdentifiers": { "const": false },
+        "containsRawCommunications": { "const": false }
+      }
+    }
+  },
+  "$defs": {
+    "safeLocator": {
+      "type": "string",
+      "maxLength": 1000,
+      "allOf": [
+        { "not": { "pattern": "\\.\\." } },
+        { "pattern": "^(?:(?:clients|context|docs|intake|queue|schemas|state|tests|workflows)/[A-Za-z0-9._/ -]+|access-broker:[A-Za-z0-9._:/-]+|sha256:[0-9a-fA-F]{64}|source-commit:[0-9a-fA-F]{7,40}|agent-os-run:[A-Za-z0-9-]{8,100}/task\\.json)$" }
+      ]
+    },
+    "locatorArray": {
+      "type": "array",
+      "maxItems": 50,
+      "items": { "$ref": "#/$defs/safeLocator" }
+    },
+    "executionNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "owner", "status", "task", "requires", "produces", "attempts", "maxAttempts", "approvalGate", "output"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,79}$" },
+        "kind": { "enum": ["scope_guard", "source_intake", "context_retrieval", "worker_execution", "verification", "approval_gate", "handoff_assembly", "chief_reconciliation"] },
+        "owner": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "status": { "enum": ["pending", "ready", "running", "completed", "failed", "blocked"] },
+        "task": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "requires": { "type": "array", "maxItems": 15, "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,79}$" } },
+        "produces": { "type": "array", "maxItems": 15, "items": { "type": "string", "minLength": 1, "maxLength": 120 } },
+        "attempts": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "maxAttempts": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "approvalGate": { "enum": ["none", "explicit", "human_authentication"] },
+        "output": {
+          "type": ["object", "null"],
+          "properties": {
+            "summary": { "type": "string", "maxLength": 4000 },
+            "artifacts": { "$ref": "#/$defs/locatorArray" },
+            "evidence": { "$ref": "#/$defs/locatorArray" },
+            "verification": { "type": "array", "maxItems": 10, "items": { "type": "string", "maxLength": 1000 } }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from", "relation", "to"],
+      "properties": {
+        "from": { "type": "string", "minLength": 1, "maxLength": 180 },
+        "relation": { "type": "string", "pattern": "^[a-z][a-z0-9_]{1,79}$" },
+        "to": { "type": "string", "minLength": 1, "maxLength": 180 }
+      }
+    },
+    "knowledgeNode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "label"],
+      "properties": {
+        "id": { "type": "string", "minLength": 2, "maxLength": 180 },
+        "type": { "enum": ["queue", "client", "work_item", "source", "evidence", "artifact", "definition", "approval"] },
+        "label": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "locator": { "anyOf": [{ "$ref": "#/$defs/safeLocator" }, { "type": "null" }] }
+      }
+    },
+    "traceEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eventId", "at", "actor", "nodeId", "fromStatus", "toStatus", "summary"],
+      "properties": {
+        "eventId": { "type": "string", "pattern": "^evt-[A-Za-z0-9_-]{8,159}$" },
+        "at": { "type": "string", "format": "date-time" },
+        "actor": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "nodeId": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,79}$" },
+        "fromStatus": { "type": ["string", "null"], "maxLength": 40 },
+        "toStatus": { "type": "string", "maxLength": 40 },
+        "summary": { "type": "string", "minLength": 1, "maxLength": 1000 }
+      }
+    }
+  }
+}

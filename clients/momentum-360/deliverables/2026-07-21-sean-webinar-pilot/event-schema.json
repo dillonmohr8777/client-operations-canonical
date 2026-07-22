@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "events": [
+    {"name":"webinar_page_view","required":["anonymous_session_id","occurred_at","source"]},
+    {"name":"webinar_registration","required":["contact_id","occurred_at","consent_version","source"]},
+    {"name":"calendar_action","required":["contact_id","occurred_at","calendar_type"]},
+    {"name":"webinar_attendance","required":["contact_id","occurred_at","attendance_minutes"]},
+    {"name":"webinar_cta_click","required":["contact_id","occurred_at","destination"]},
+    {"name":"strategy_call_booked","required":["contact_id","occurred_at","booking_id"]},
+    {"name":"qualified_opportunity","required":["contact_id","occurred_at","qualification_status"]},
+    {"name":"unsubscribe","required":["contact_id","occurred_at","source"]},
+    {"name":"spam_complaint","required":["contact_id","occurred_at","source"]}
+  ],
+  "privacy": {
+    "minimumNecessaryData": true,
+    "calendarInsertion": "explicit-user-action-only",
+    "retentionPolicy": "must-be-approved-before-activation"
+  }
+}

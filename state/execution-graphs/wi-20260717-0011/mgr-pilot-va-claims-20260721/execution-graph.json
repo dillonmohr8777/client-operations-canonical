@@ -1,0 +1,987 @@
+{
+    "schemaVersion":  1,
+    "graphRunId":  "mgr-pilot-va-claims-20260721",
+    "graphRevision":  8,
+    "workflowId":  "marketing-chief-execution-graph",
+    "createdAt":  "2026-07-21T20:52:47.8562058+00:00",
+    "updatedAt":  "2026-07-21T20:56:09.2043515+00:00",
+    "status":  "handoff_ready",
+    "queueSnapshot":  {
+                          "locator":  "queue/work-items.json",
+                          "revision":  142,
+                          "sha256":  "0AF635349B7394D4127DDF8E63D0BA271FCDF5EB833F8CF871745745AF3968E6",
+                          "capturedAt":  "2026-07-21T20:52:47.8562058+00:00"
+                      },
+    "workItem":  {
+                     "id":  "wi-20260717-0011",
+                     "expectedVersion":  8,
+                     "contentSha256":  "171AB46DAF3A1253A717841F1D2DC37D95D9E20681F0D676D12FCE4F3B2982BB",
+                     "clientId":  "va-claims-edge",
+                     "title":  "Implement Obaid\u0027s Phase 2 VA Claims UI handoff",
+                     "status":  "verification",
+                     "lane":  "normal",
+                     "priority":  "P0",
+                     "actionClass":  "local_test",
+                     "nextAction":  "Review the local integrated branch and QA evidence. Keep GitHub push, Vercel deployment, merge, and external handoff pending explicit approval.",
+                     "definitionOfDone":  [
+                                              "A reusable token and component contract covers color, typography, spacing, states, responsiveness, and reduced motion.",
+                                              "The login page source preserves the existing authentication behavior through a documented adapter boundary.",
+                                              "The application shell includes an accessible responsive sidebar, topbar, and main content region.",
+                                              "The dashboard source includes summary cards, a client table, a pipeline view, and honest loading, empty, and error states.",
+                                              "A standalone visual preview and automated local verification pass without using real claimant data.",
+                                              "The handoff identifies exact target paths and the private-repository access dependency without taking an external action."
+                                          ],
+                     "sourceLocator":  "clients/va-claims-edge/evidence/2026-07-17-obaid-phase-two-ui-handoff.md",
+                     "evidenceRefs":  [
+                                          "clients/va-claims-edge/evidence/2026-07-17-obaid-phase-two-ui-handoff.md",
+                                          "clients/va-claims-edge/deliverables/2026-07-16-initial-signup-wireframe"
+                                      ],
+                     "artifactRefs":  [
+                                          "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/design-system.md",
+                                          "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/globals.css",
+                                          "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/login/page.js",
+                                          "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/dashboard/page.js",
+                                          "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preview/index.html",
+                                          "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/review-renders/login-desktop.png",
+                                          "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/review-renders/dashboard-desktop.png",
+                                          "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff",
+                                          "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/developer-checklist.md",
+                                          "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preflight-report.md",
+                                          "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/obaid-handoff-draft.txt",
+                                          "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/verify-package.ps1",
+                                          "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff-review-bundle.zip"
+                                      ],
+                     "dependencies":  [
+
+                                      ],
+                     "approval":  {
+                                      "tier":  "automatic",
+                                      "status":  "not_required",
+                                      "gate":  "none"
+                                  }
+                 },
+    "scope":  {
+                  "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+                  "clientRoot":  "clients/va-claims-edge",
+                  "graphLocator":  "state/execution-graphs/wi-20260717-0011/mgr-pilot-va-claims-20260721/execution-graph.json",
+                  "canonicalWriteAllowed":  false,
+                  "externalActionAllowed":  false,
+                  "durableMemoryWriteAllowed":  false,
+                  "privacy":  "redacted"
+              },
+    "retrieval":  {
+                      "strategy":  "exact-plus-graph",
+                      "exactBindingRequired":  true,
+                      "semanticBindingAllowed":  false,
+                      "sourceCount":  2,
+                      "artifactCount":  13
+                  },
+    "nodes":  [
+                  {
+                      "id":  "scope-guard",
+                      "kind":  "scope_guard",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Validate immutable queue, work-item, client, and project scope.",
+                      "requires":  [
+
+                                   ],
+                      "produces":  [
+                                       "scoped_work_item"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Queue revision, work-item version, exact client route, and safety scope were validated.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "queue/work-items.json",
+                                                      "clients/va-claims-edge/evidence/2026-07-17-obaid-phase-two-ui-handoff.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Queue revision 142 captured.",
+                                                          "Work-item version 8 captured.",
+                                                          "Client route va-claims-edge resolved exactly once and is active."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "source-intake",
+                      "kind":  "source_intake",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Capture safe exact source and evidence locators.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "provenance_slice"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Exact source and evidence locators were captured without raw communications.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/evidence/2026-07-17-obaid-phase-two-ui-handoff.md",
+                                                      "clients/va-claims-edge/deliverables/2026-07-16-initial-signup-wireframe"
+                                                  ],
+                                     "verification":  [
+                                                          "Evidence freshness evaluated at 2026-07-21T20:52:47.8562058+00:00."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "context-retrieval",
+                      "kind":  "context_retrieval",
+                      "owner":  "marketing-chief-context-loader",
+                      "status":  "completed",
+                      "task":  "Assemble the exact bounded context slice required by this item.",
+                      "requires":  [
+                                       "source-intake"
+                                   ],
+                      "produces":  [
+                                       "worker_context"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Bounded client, source, artifact, dependency, and definition-of-done context was assembled.",
+                                     "artifacts":  [
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/design-system.md",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/globals.css",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/login/page.js",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/dashboard/page.js",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preview/index.html",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/review-renders/login-desktop.png",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/review-renders/dashboard-desktop.png",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/developer-checklist.md",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preflight-report.md",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/obaid-handoff-draft.txt",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/verify-package.ps1",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff-review-bundle.zip"
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/evidence/2026-07-17-obaid-phase-two-ui-handoff.md",
+                                                      "clients/va-claims-edge/deliverables/2026-07-16-initial-signup-wireframe"
+                                                  ],
+                                     "verification":  [
+                                                          "Definition-of-done checks: 6.",
+                                                          "Artifact references: 13."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "worker-execution",
+                      "kind":  "worker_execution",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Review the local integrated branch and QA evidence. Keep GitHub push, Vercel deployment, merge, and external handoff pending explicit approval.",
+                      "requires":  [
+                                       "context-retrieval"
+                                   ],
+                      "produces":  [
+                                       "local_artifacts",
+                                       "worker_evidence"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "The approved Phase 2 design was integrated into the exact private Next.js repository locally. Supabase authentication and protected routing were preserved, Next.js 16 proxy migration was completed, sample-only dashboard states were retained, lint and production build passed, and desktop and responsive login captures were verified. No push, merge, Vercel change, or external handoff occurred in this run.",
+                                     "artifacts":  [
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/design-system.md",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/globals.css",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/login/page.js",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/dashboard/page.js",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preview/index.html",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/review-renders/login-desktop.png",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/review-renders/dashboard-desktop.png",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/developer-checklist.md",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preflight-report.md",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/obaid-handoff-draft.txt",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/verify-package.ps1",
+                                                       "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff-review-bundle.zip"
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/evidence/2026-07-17-obaid-phase-two-ui-handoff.md",
+                                                      "clients/va-claims-edge/deliverables/2026-07-16-initial-signup-wireframe"
+                                                  ],
+                                     "verification":  [
+
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-01",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "A reusable token and component contract covers color, typography, spacing, states, responsiveness, and reduced motion.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_01"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Reusable design tokens and component behavior cover color, typography, spacing, interaction states, responsiveness, focus visibility, and reduced motion.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/design-system.md",
+                                                      "clients/va-claims-edge/workspace/vace-platform/src/app/globals.css"
+                                                  ],
+                                     "verification":  [
+                                                          "Token and behavior markers were inspected in the integrated worktree and design contract."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-02",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "The login page source preserves the existing authentication behavior through a documented adapter boundary.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_02"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "The integrated login uses the existing Supabase password authentication boundary and documents the source-to-target adapter mapping.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/workspace/vace-platform/src/app/login/page.js",
+                                                      "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/integration-map.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Supabase signInWithPassword binding and documented adapter boundary were confirmed."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-03",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "The application shell includes an accessible responsive sidebar, topbar, and main content region.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_03"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "The integrated application shell includes responsive sidebar, topbar, main content semantics, accessible controls, and the preserved sign-out path.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/workspace/vace-platform/src/app/components/AppShell.js",
+                                                      "clients/va-claims-edge/workspace/vace-platform/src/app/dashboard/layout.js"
+                                                  ],
+                                     "verification":  [
+                                                          "Responsive shell regions, accessible control markers, and sign-out behavior were inspected."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-04",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "The dashboard source includes summary cards, a client table, a pipeline view, and honest loading, empty, and error states.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_04"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "The dashboard includes summary cards, client and pipeline views, sample-only content, and explicit loading, ready, empty, and error states.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/workspace/vace-platform/src/app/dashboard/page.js"
+                                                  ],
+                                     "verification":  [
+                                                          "Dashboard structures and all required honest states were inspected in source."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-05",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "A standalone visual preview and automated local verification pass without using real claimant data.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_05"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Standalone previews and responsive login captures exist. The package verifier passed 45 assertions, lint passed, and the production build passed with safe local placeholder Supabase configuration.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preview/index.html",
+                                                      "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/verify-package.ps1",
+                                                      "clients/va-claims-edge/workspace/vace-platform/qa-login-desktop.png",
+                                                      "clients/va-claims-edge/workspace/vace-platform/qa-login-mobile.png"
+                                                  ],
+                                     "verification":  [
+                                                          "Package verification passed 45 assertions across 14 files.",
+                                                          "ESLint passed.",
+                                                          "Next.js production build passed with non-secret local placeholder configuration.",
+                                                          "Desktop and mobile login captures were visually inspected."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-06",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "The handoff identifies exact target paths and the private-repository access dependency without taking an external action.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_06"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "The handoff documents exact target paths and the private repository boundary while keeping push, deployment, merge, and external handoff outside this local run.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/integration-map.md",
+                                                      "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preflight-report.md",
+                                                      "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/obaid-handoff-draft.txt"
+                                                  ],
+                                     "verification":  [
+                                                          "Exact target paths, private repository dependency, and external-action gates were confirmed in the handoff documents."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "approval-gate",
+                      "kind":  "approval_gate",
+                      "owner":  "marketing-chief",
+                      "status":  "completed",
+                      "task":  "Enforce the exact action-class and approval boundary.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "approval_verdict"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "This graph permits local reversible work only; no external action is authorized.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+
+                                                  ],
+                                     "verification":  [
+                                                          "Action class: local_test.",
+                                                          "Approval tier/status: automatic/not_required."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "handoff-assembly",
+                      "kind":  "handoff_assembly",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Assemble a schema-valid redacted worker handoff from completed graph outputs.",
+                      "requires":  [
+                                       "verify-01",
+                                       "verify-02",
+                                       "verify-03",
+                                       "verify-04",
+                                       "verify-05",
+                                       "verify-06",
+                                       "approval-gate"
+                                   ],
+                      "produces":  [
+                                       "worker_handoff"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "state/worker-handoffs/handoff-mgr-pilot-va-claims-20260721.json",
+                                                      "sha256:19B8ED409BC8C34B522A7F15800AC06BB511E39A6A05EFA2B9DD8338DB830F97"
+                                                  ],
+                                     "verification":  [
+
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "chief-reconciliation",
+                      "kind":  "chief_reconciliation",
+                      "owner":  "marketing-chief",
+                      "status":  "ready",
+                      "task":  "Revalidate live queue and item state, then accept or reject the handoff through the supported canonical mutation path.",
+                      "requires":  [
+                                       "handoff-assembly"
+                                   ],
+                      "produces":  [
+                                       "canonical_receipt"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  }
+              ],
+    "edges":  [
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "source-intake"
+                  },
+                  {
+                      "from":  "source-intake",
+                      "relation":  "precedes",
+                      "to":  "context-retrieval"
+                  },
+                  {
+                      "from":  "context-retrieval",
+                      "relation":  "precedes",
+                      "to":  "worker-execution"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-01"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-02"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-03"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-04"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-05"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-06"
+                  },
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "approval-gate"
+                  },
+                  {
+                      "from":  "verify-01",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-02",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-03",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-04",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-05",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-06",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "approval-gate",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "handoff-assembly",
+                      "relation":  "precedes",
+                      "to":  "chief-reconciliation"
+                  }
+              ],
+    "knowledgeGraph":  {
+                           "nodes":  [
+                                         {
+                                             "id":  "queue:canonical",
+                                             "type":  "queue",
+                                             "label":  "Canonical queue revision 142",
+                                             "locator":  "queue/work-items.json"
+                                         },
+                                         {
+                                             "id":  "client:va-claims-edge",
+                                             "type":  "client",
+                                             "label":  "va-claims-edge",
+                                             "locator":  "clients/va-claims-edge"
+                                         },
+                                         {
+                                             "id":  "work-item:wi-20260717-0011",
+                                             "type":  "work_item",
+                                             "label":  "Implement Obaid\u0027s Phase 2 VA Claims UI handoff",
+                                             "locator":  "clients/va-claims-edge/evidence/2026-07-17-obaid-phase-two-ui-handoff.md"
+                                         },
+                                         {
+                                             "id":  "approval:none",
+                                             "type":  "approval",
+                                             "label":  "automatic/not_required/none",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "evidence:dafbc3b47f6abff1",
+                                             "type":  "evidence",
+                                             "label":  "clients/va-claims-edge/evidence/2026-07-17-obaid-phase-two-ui-handoff.md",
+                                             "locator":  "clients/va-claims-edge/evidence/2026-07-17-obaid-phase-two-ui-handoff.md"
+                                         },
+                                         {
+                                             "id":  "evidence:6c4b7980d490c9ea",
+                                             "type":  "evidence",
+                                             "label":  "clients/va-claims-edge/deliverables/2026-07-16-initial-signup-wireframe",
+                                             "locator":  "clients/va-claims-edge/deliverables/2026-07-16-initial-signup-wireframe"
+                                         },
+                                         {
+                                             "id":  "artifact:ef0b1eb66dfd4232",
+                                             "type":  "artifact",
+                                             "label":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/design-system.md",
+                                             "locator":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/design-system.md"
+                                         },
+                                         {
+                                             "id":  "artifact:a8a65869e5d547e1",
+                                             "type":  "artifact",
+                                             "label":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/globals.css",
+                                             "locator":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/globals.css"
+                                         },
+                                         {
+                                             "id":  "artifact:1a5be69b7c12c171",
+                                             "type":  "artifact",
+                                             "label":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/login/page.js",
+                                             "locator":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/login/page.js"
+                                         },
+                                         {
+                                             "id":  "artifact:aa9fff0404f53b55",
+                                             "type":  "artifact",
+                                             "label":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/dashboard/page.js",
+                                             "locator":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/src/app/dashboard/page.js"
+                                         },
+                                         {
+                                             "id":  "artifact:ca918c783b7ebd5d",
+                                             "type":  "artifact",
+                                             "label":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preview/index.html",
+                                             "locator":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preview/index.html"
+                                         },
+                                         {
+                                             "id":  "artifact:4ca5b2cdf1ba3719",
+                                             "type":  "artifact",
+                                             "label":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/review-renders/login-desktop.png",
+                                             "locator":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/review-renders/login-desktop.png"
+                                         },
+                                         {
+                                             "id":  "artifact:56051784350f08ff",
+                                             "type":  "artifact",
+                                             "label":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/review-renders/dashboard-desktop.png",
+                                             "locator":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/review-renders/dashboard-desktop.png"
+                                         },
+                                         {
+                                             "id":  "artifact:c1f0a96117ac85ce",
+                                             "type":  "artifact",
+                                             "label":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff",
+                                             "locator":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff"
+                                         },
+                                         {
+                                             "id":  "artifact:1dd52bb3a43e697c",
+                                             "type":  "artifact",
+                                             "label":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/developer-checklist.md",
+                                             "locator":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/developer-checklist.md"
+                                         },
+                                         {
+                                             "id":  "artifact:535465d47f274042",
+                                             "type":  "artifact",
+                                             "label":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preflight-report.md",
+                                             "locator":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/preflight-report.md"
+                                         },
+                                         {
+                                             "id":  "artifact:9c4908e8516173be",
+                                             "type":  "artifact",
+                                             "label":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/obaid-handoff-draft.txt",
+                                             "locator":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/obaid-handoff-draft.txt"
+                                         },
+                                         {
+                                             "id":  "artifact:720ebcc0f8f99bed",
+                                             "type":  "artifact",
+                                             "label":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/verify-package.ps1",
+                                             "locator":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/verify-package.ps1"
+                                         },
+                                         {
+                                             "id":  "artifact:f37648c80b25d196",
+                                             "type":  "artifact",
+                                             "label":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff-review-bundle.zip",
+                                             "locator":  "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff-review-bundle.zip"
+                                         },
+                                         {
+                                             "id":  "definition:01",
+                                             "type":  "definition",
+                                             "label":  "A reusable token and component contract covers color, typography, spacing, states, responsiveness, and reduced motion.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:02",
+                                             "type":  "definition",
+                                             "label":  "The login page source preserves the existing authentication behavior through a documented adapter boundary.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:03",
+                                             "type":  "definition",
+                                             "label":  "The application shell includes an accessible responsive sidebar, topbar, and main content region.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:04",
+                                             "type":  "definition",
+                                             "label":  "The dashboard source includes summary cards, a client table, a pipeline view, and honest loading, empty, and error states.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:05",
+                                             "type":  "definition",
+                                             "label":  "A standalone visual preview and automated local verification pass without using real claimant data.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:06",
+                                             "type":  "definition",
+                                             "label":  "The handoff identifies exact target paths and the private-repository access dependency without taking an external action.",
+                                             "locator":  null
+                                         }
+                                     ],
+                           "edges":  [
+                                         {
+                                             "from":  "queue:canonical",
+                                             "relation":  "contains",
+                                             "to":  "work-item:wi-20260717-0011"
+                                         },
+                                         {
+                                             "from":  "client:va-claims-edge",
+                                             "relation":  "owns",
+                                             "to":  "work-item:wi-20260717-0011"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "governed_by",
+                                             "to":  "approval:none"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:dafbc3b47f6abff1"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:6c4b7980d490c9ea"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "produces",
+                                             "to":  "artifact:ef0b1eb66dfd4232"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "produces",
+                                             "to":  "artifact:a8a65869e5d547e1"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "produces",
+                                             "to":  "artifact:1a5be69b7c12c171"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "produces",
+                                             "to":  "artifact:aa9fff0404f53b55"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "produces",
+                                             "to":  "artifact:ca918c783b7ebd5d"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "produces",
+                                             "to":  "artifact:4ca5b2cdf1ba3719"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "produces",
+                                             "to":  "artifact:56051784350f08ff"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "produces",
+                                             "to":  "artifact:c1f0a96117ac85ce"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "produces",
+                                             "to":  "artifact:1dd52bb3a43e697c"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "produces",
+                                             "to":  "artifact:535465d47f274042"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "produces",
+                                             "to":  "artifact:9c4908e8516173be"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "produces",
+                                             "to":  "artifact:720ebcc0f8f99bed"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "produces",
+                                             "to":  "artifact:f37648c80b25d196"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "requires",
+                                             "to":  "definition:01"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "requires",
+                                             "to":  "definition:02"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "requires",
+                                             "to":  "definition:03"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "requires",
+                                             "to":  "definition:04"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "requires",
+                                             "to":  "definition:05"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260717-0011",
+                                             "relation":  "requires",
+                                             "to":  "definition:06"
+                                         }
+                                     ],
+                           "nodeCount":  25,
+                           "edgeCount":  24
+                       },
+    "handoffContract":  {
+                            "schema":  "schemas/worker-handoff.schema.json",
+                            "validator":  "scripts/Test-MarketingHandoff.ps1",
+                            "reconciler":  "scripts/Accept-WorkerHandoff.ps1",
+                            "expectedWorkItemVersion":  8,
+                            "approvalGate":  "none",
+                            "graphEvidence":  "state/execution-graphs/wi-20260717-0011/mgr-pilot-va-claims-20260721/execution-graph.json"
+                        },
+    "blockers":  [
+
+                 ],
+    "warnings":  [
+
+                 ],
+    "trace":  [
+                  {
+                      "eventId":  "evt-9b372e2b68df4a54ab77ba6887325779",
+                      "at":  "2026-07-21T20:52:47.8562058+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "scope-guard",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-897d1b762d52490087c7d690ea17eb50",
+                      "at":  "2026-07-21T20:52:47.8562058+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "source-intake",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-36fdbf39af0e40fd9fa9c4f8506844d2",
+                      "at":  "2026-07-21T20:52:47.8562058+00:00",
+                      "actor":  "marketing-chief-context-loader",
+                      "nodeId":  "context-retrieval",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-d72de46abdf449b188d6cd08c1bcbcda",
+                      "at":  "2026-07-21T20:52:47.8562058+00:00",
+                      "actor":  "queue-state-import",
+                      "nodeId":  "worker-execution",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-b08ffd5bcf0549bba02a2f9153194f47",
+                      "at":  "2026-07-21T20:52:47.8562058+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "approval-gate",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-1f7177cc19f543a38e8ddee0169b79f1",
+                      "at":  "2026-07-21T20:55:25.7314743+00:00",
+                      "actor":  "independent-verifier",
+                      "nodeId":  "verify-01",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Reusable design tokens and component behavior cover color, typography, spacing, interaction states, responsiveness, focus visibility, and reduced motion."
+                  },
+                  {
+                      "eventId":  "evt-82f47872815a460b9f799027ad53528e",
+                      "at":  "2026-07-21T20:55:27.1676510+00:00",
+                      "actor":  "independent-verifier",
+                      "nodeId":  "verify-02",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "The integrated login uses the existing Supabase password authentication boundary and documents the source-to-target adapter mapping."
+                  },
+                  {
+                      "eventId":  "evt-05ba9514ef20493bbdc76ad0f924f0c3",
+                      "at":  "2026-07-21T20:55:28.6033792+00:00",
+                      "actor":  "independent-verifier",
+                      "nodeId":  "verify-03",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "The integrated application shell includes responsive sidebar, topbar, main content semantics, accessible controls, and the preserved sign-out path."
+                  },
+                  {
+                      "eventId":  "evt-b3867d29cc49495d9556a8431bd9d797",
+                      "at":  "2026-07-21T20:55:30.0333358+00:00",
+                      "actor":  "independent-verifier",
+                      "nodeId":  "verify-04",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "The dashboard includes summary cards, client and pipeline views, sample-only content, and explicit loading, ready, empty, and error states."
+                  },
+                  {
+                      "eventId":  "evt-9d3ae4a2e2c547eb8d10d5f0137c9a63",
+                      "at":  "2026-07-21T20:55:31.4495364+00:00",
+                      "actor":  "independent-verifier",
+                      "nodeId":  "verify-05",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Standalone previews and responsive login captures exist. The package verifier passed 45 assertions, lint passed, and the production build passed with safe local placeholder Supabase configuration."
+                  },
+                  {
+                      "eventId":  "evt-bd72de4653004c8c857cad705638321c",
+                      "at":  "2026-07-21T20:55:32.9219613+00:00",
+                      "actor":  "independent-verifier",
+                      "nodeId":  "verify-06",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "The handoff documents exact target paths and the private repository boundary while keeping push, deployment, merge, and external handoff outside this local run."
+                  },
+                  {
+                      "eventId":  "evt-c130679824ae4ad9b27a48a81354fcac",
+                      "at":  "2026-07-21T20:56:09.2043515+00:00",
+                      "actor":  "bounded-worker",
+                      "nodeId":  "handoff-assembly",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation."
+                  }
+              ],
+    "attestations":  {
+                         "canonicalWriteAttempted":  false,
+                         "externalActionAttempted":  false,
+                         "durableMemoryWriteAttempted":  false,
+                         "containsSecrets":  false,
+                         "containsDirectIdentifiers":  false,
+                         "containsRawCommunications":  false
+                     }
+}

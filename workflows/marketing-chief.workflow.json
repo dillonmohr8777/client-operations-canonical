@@ -60,6 +60,7 @@
     "AGENTS.md",
     "registry/clients.json",
     "queue/work-items.json",
+    "workflows/marketing-chief-execution-graph.workflow.json for nontrivial automatic execution",
     "intake/index.json",
     "state/system-health.json",
     "state/corrections.jsonl",
@@ -80,6 +81,22 @@
     "promote": "After a successful create, call Resolve-IntakeObservation.ps1 with the returned workItemId and retained index generation timestamp. If one exact source-bound item already exists, promote directly to that item.",
     "failClosed": "Never guess among multiple matches or override stale revisions. Acknowledge or quarantine unsupported, stale, ambiguous, inactive-client, or non-actionable observations with a recorded resolution.",
     "approvalBoundary": "External delivery, publishing, deployment, spend, account changes, destructive work, human authentication, and business decisions retain their explicit approval gates. Intake materialization never authorizes or executes an external action."
+  },
+  "executionGraph": {
+    "workflow": "workflows/marketing-chief-execution-graph.workflow.json",
+    "schema": "schemas/marketing-execution-graph.schema.json",
+    "storage": "state/execution-graphs/<work-item-id>/<graph-run-id>/execution-graph.json",
+    "create": "For each nontrivial highest-ranked automatic action, call New-MarketingExecutionGraph.ps1 with the current queue revision and exact work-item version before worker execution.",
+    "resume": "Validate the saved graph against the current queue, exact work-item content, active client route, approval state, and dependency status before every resume or node update.",
+    "verify": "Create one independent verifier node for every definition-of-done check. Handoff assembly stays pending until all verifier nodes and the approval gate are complete.",
+    "reconcile": "The graph and worker handoff are noncanonical evidence. Only the Marketing Chief may accept the validated handoff through the canonical versioned queue mutation path.",
+    "boundaries": [
+      "never becomes a second queue",
+      "never mutates canonical state",
+      "never authorizes an external action",
+      "never binds work by semantic similarity alone",
+      "never stores secrets, direct identifiers, or raw communications"
+    ]
   },
   "stages": [
     {
@@ -128,29 +145,29 @@
       "id": "plan",
       "owner": "marketing-chief",
       "input": "highest-ranked outcome",
-      "output": "bounded execution contract",
-      "rule": "Proceed only for an allowed automatic action class when routing and evidence are no older than 14 days, the action is local, reversible, same-client, directly implied, and not risky or approval-gated. Otherwise surface one decision or unblock."
+      "output": "version-bound execution graph or one surfaced decision or unblock",
+      "rule": "Proceed only for an allowed automatic action class when routing and evidence are no older than 14 days, the action is local, reversible, same-client, directly implied, and not risky or approval-gated. For nontrivial work, generate and validate a persistent execution graph bound to the current queue revision and exact work-item version. Otherwise surface one decision or unblock."
     },
     {
       "id": "execute",
       "owner": "bounded-worker",
-      "input": "versioned work item and context slice",
-      "output": "bounded worker handoff",
-      "rule": "Workers build or verify artifacts but do not write canonical state or take external action."
+      "input": "validated version-bound execution graph and exact context slice",
+      "output": "graph node outputs and bounded worker handoff",
+      "rule": "Workers execute only ready graph nodes whose dependencies are complete. They build or verify artifacts but do not write canonical state, durable memory, or take external action."
     },
     {
       "id": "evaluate",
       "owner": "verifier",
-      "input": "artifact and definition of done",
-      "output": "fact, voice, design, risk, and live-state verdict",
-      "rule": "Inspect the actual output or rendered surface. File existence alone is never acceptance."
+      "input": "actual artifact plus one exact definition-of-done verifier node",
+      "output": "versioned fact, voice, design, risk, or live-state verdict on that node",
+      "rule": "Inspect the actual output or rendered surface. File existence alone is never acceptance. Every definition-of-done check must have one completed independent verifier node before handoff assembly."
     },
     {
       "id": "reconcile",
       "owner": "marketing-chief",
-      "input": "validated non-stale worker handoff",
+      "input": "validated non-stale graph-backed worker handoff",
       "output": "atomic queue update and deterministic CONTROL.md",
-      "rule": "Reject stale versions, invalid routes, secret-bearing handoffs, insufficient evidence, or unauthorized actions."
+      "rule": "Revalidate the graph and handoff, then reject stale versions, invalid routes, incomplete verifier coverage, secret-bearing handoffs, insufficient evidence, or unauthorized actions. The Marketing Chief remains the only canonical writer."
     },
     {
       "id": "learn",
@@ -172,7 +189,7 @@
       "run or verify today's eight-lane paid-media review and materialize only current material findings through the Chief's normal source-bound queue contract",
       "rank canonical work",
       "when an inspected communication implies paid-media launch work, materialize the exact client request and run the communication-triggered ad-launch workflow through the furthest locally safe or explicitly authorized terminal phase",
-      "execute the highest safe automatic action within WIP limits",
+    "generate or resume a validated execution graph for the highest safe nontrivial automatic action, then execute only ready dependency-satisfied nodes within WIP limits",
       "reconcile verified handoffs",
       "present the result and at most one human-only decision"
     ]

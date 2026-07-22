@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "workflowId": "marketing-chief-execution-graph",
+  "title": "Marketing Chief Versioned Execution and Evidence Graph",
+  "canonicalProject": "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+  "trigger": {
+    "owner": "marketing-chief",
+    "event": "ranked work selected for bounded execution or verification",
+    "generator": "scripts/New-MarketingExecutionGraph.ps1",
+    "validator": "scripts/Test-MarketingExecutionGraph.ps1",
+    "updater": "scripts/Update-MarketingExecutionGraph.ps1",
+    "handoffBuilder": "scripts/New-MarketingGraphHandoff.ps1"
+  },
+  "storage": {
+    "root": "state/execution-graphs",
+    "layout": "state/execution-graphs/<work-item-id>/<graph-run-id>/execution-graph.json",
+    "persistent": true,
+    "canonicalQueue": false,
+    "containsRedactedMetadataOnly": true
+  },
+  "pattern": {
+    "type": "orchestrator-with-evaluator-dag",
+    "maxWorkers": 3,
+    "maxDepth": 1,
+    "maxAttemptsPerNode": 3,
+    "parallelism": "Only independent verification nodes may fan out. Dependency-bound work remains sequential."
+  },
+  "authority": {
+    "canonicalWriter": "marketing-chief",
+    "generatorMayMutateQueue": false,
+    "validatorMayMutateQueue": false,
+    "updaterMayMutateQueue": false,
+    "workerMayMutateQueue": false,
+    "handoffBuilderMayMutateQueue": false,
+    "externalActionFromGraphAllowed": false,
+    "durableMemoryPromotionFromGraphAllowed": false,
+    "queueMutationPath": "scripts/Accept-WorkerHandoff.ps1 or another supported Marketing Chief mutation script after live stale-state validation",
+    "externalActionBoundary": "A graph may identify or stage an approval-gated action, but it never authorizes or executes that action."
+  },
+  "retrievalPolicy": {
+    "binding": "Exact client, work-item, source-locator, and artifact references are authoritative.",
+    "graphUse": "Traverse client, work item, evidence, artifact, definition-of-done, approval, handoff, and outcome relationships for bounded context.",
+    "semanticUse": "Semantic or keyword similarity may suggest context only. It may not bind intake, deduplicate canonical work, select a client, satisfy evidence, or authorize a mutation.",
+    "contextLimit": "Pass locators and targeted artifacts between nodes, never the full portfolio or raw communications."
+  },
+  "stages": [
+    {
+      "id": "scope-guard",
+      "owner": "graph-generator",
+      "input": "queue revision, work-item version, registry route",
+      "output": "immutable graph scope",
+      "rule": "Require one exact active client and an unchanged work-item version. Record queue and work-item hashes."
+    },
+    {
+      "id": "source-intake",
+      "owner": "graph-generator",
+      "input": "safe opaque source and evidence locators",
+      "output": "provenance nodes",
+      "rule": "Store redacted summaries and safe locators only. Reject secrets, direct identifiers, raw communications, path traversal, and cross-client artifact paths."
+    },
+    {
+      "id": "context-retrieval",
+      "owner": "bounded-worker",
+      "input": "exact scoped graph",
+      "output": "targeted context slice",
+      "rule": "Load only the exact client context, evidence, artifacts, dependencies, and definition of done needed for the selected item."
+    },
+    {
+      "id": "worker-execution",
+      "owner": "bounded-worker",
+      "input": "versioned item and targeted context",
+      "output": "local reversible artifacts and evidence",
+      "rule": "No queue write or external action. Respect action class, approval state, WIP lane, project boundary, and node attempt limit."
+    },
+    {
+      "id": "definition-verification",
+      "owner": "verifier",
+      "input": "one explicit definition-of-done check and actual output",
+      "output": "pass/fail evidence",
+      "rule": "Create one independently traceable verifier node per definition-of-done check. File existence alone is insufficient."
+    },
+    {
+      "id": "approval-gate",
+      "owner": "marketing-chief",
+      "input": "action class, approval state, and exact authority",
+      "output": "continue locally or block",
+      "rule": "Automatic local work may proceed. External delivery, publishing, deployment, spend, account changes, destructive work, human authentication, and business decisions fail closed without exact current approval."
+    },
+    {
+      "id": "handoff-assembly",
+      "owner": "bounded-worker",
+      "input": "completed worker and verifier nodes",
+      "output": "schema-valid worker handoff",
+      "rule": "Emit the existing bounded redacted handoff contract and include the graph locator and content hash as evidence."
+    },
+    {
+      "id": "chief-reconciliation",
+      "owner": "marketing-chief",
+      "input": "validated handoff plus current queue state",
+      "output": "accepted mutation or stale-safe rejection",
+      "rule": "Reread current queue revision and item version under the canonical lock. Only the Chief may accept the handoff, increment revisions, regenerate CONTROL.md, and record the receipt."
+    }
+  ],
+  "resumePolicy": {
+    "stateSource": "execution-graph.json",
+    "traceSource": "graph trace entries",
+    "resumeRule": "Resume only ready nodes whose dependencies are complete and whose live work-item content hash still matches.",
+    "staleRule": "If the work-item version or content changes, stop and generate a new graph. An unrelated queue revision advance is recorded but does not invalidate an unchanged item.",
+    "retryRule": "A failed node may return to ready only while attempts remain. Approval-blocked nodes cannot be retried into execution."
+  },
+  "successSignals": [
+    "zero graph-created canonical queue mutations",
+    "zero graph-triggered external actions",
+    "zero cross-client provenance edges",
+    "every completed handoff traces to one unchanged work-item version",
+    "every definition-of-done check has an explicit verifier node",
+    "every accepted handoff retains graph locator and content hash evidence",
+    "continue can resume safe work without redoing completed verified nodes",
+    "stale or approval-gated work fails closed"
+  ]
+}

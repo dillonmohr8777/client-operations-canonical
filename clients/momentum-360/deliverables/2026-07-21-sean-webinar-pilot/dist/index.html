@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#071632" />
+    <meta
+      name="description"
+      content="A live Momentum 360 workshop for owners building a repeatable local growth system."
+    />
+    <title>Momentum 360 Growth Workshop</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" as="image" href="assets/mac-sean-momentum-glass-hero.webp" type="image/webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }</style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+    <header class="site-header" id="siteHeader">
+      <div class="shell header-inner">
+        <a
+          class="brand-lockup"
+          href="#top"
+          data-route="register"
+          aria-label="Momentum 360 Growth Workshop home"
+        >
+          <span class="brand-mark"
+            ><img src="assets/momentum-360-logo.png" alt="Momentum 360"
+          /></span>
+          <span class="brand-copy"
+            ><strong>MOMENTUM <em>360</em></strong
+            ><small>GROWTH WORKSHOP</small></span
+          >
+        </a>
+        <nav class="desktop-nav" aria-label="Primary navigation">
+          <a href="#workshop">The workshop</a>
+          <a href="#system">The system</a>
+          <button type="button" data-route="operator">Operator studio</button>
+          <a class="nav-cta" href="#register">Reserve a seat</a>
+        </nav>
+        <button class="motion-toggle" id="motionToggle" type="button" aria-pressed="false">
+          <span aria-hidden="true">&#9678;</span><b>Motion on</b>
+        </button>
+        <button
+          class="menu-button"
+          id="menuButton"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobileNav"
+        >
+          <span></span><span></span><span></span
+          ><b class="sr-only">Open menu</b>
+        </button>
+      </div>
+      <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+        <a href="#workshop">The workshop</a><a href="#system">The system</a
+        ><button type="button" data-route="operator">Operator studio</button
+        ><a href="#register">Reserve a seat</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="view active" data-view="register">
+        <section class="scene hero" id="top" aria-labelledby="workshop-title">
+          <div class="hero-grid" data-depth="0" aria-hidden="true"></div>
+          <div class="hero-atmosphere" data-depth="1" aria-hidden="true"><i></i><i></i></div>
+          <div class="hero-glass-rails" data-depth="2" aria-hidden="true"><i></i><i></i></div>
+          <div class="shell hero-layout" data-depth="4">
+            <div class="hero-copy reveal" data-depth="4">
+              <p class="eyebrow">
+                <span class="live-dot"></span> LIVE OWNER WORKSHOP
+              </p>
+              <h1 id="workshop-title">
+                Build a business.<br /><span>That grows</span><br /><span
+                  >without you.</span
+                >
+              </h1>
+              <p class="hero-lede">
+                Turn local attention into qualified conversations with a growth
+                system your team can run every week.
+              </p>
+              <div class="session-rail" aria-label="Next session information">
+                <span class="session-status"><i aria-hidden="true"></i> NEXT SESSION</span>
+                <strong id="rail-date">Thursday, August 6</strong>
+                <span id="rail-time">12:00 PM ET</span>
+                <span class="host-chip">WITH MAC + SEAN</span>
+              </div>
+              <div class="hero-actions">
+                <a class="button button-primary" href="#register"
+                  >Reserve your seat <span aria-hidden="true">↗</span></a
+                ><a class="button button-ghost" href="#system"
+                  >See the system</a
+                >
+              </div>
+              <div class="hero-meta">
+                <span><b>60</b> minutes</span><span><b>3</b> systems</span
+                ><span><b>1</b> live Q&amp;A</span>
+              </div>
+            </div>
+
+            <aside class="founder-portrait reveal" data-depth="3" aria-label="Mac Frederick and Sean Boyle of Momentum 360">
+              <div class="founder-frame">
+                <img
+                  src="assets/mac-sean-momentum-glass-hero.webp"
+                  alt="Mac Frederick and Sean Boyle, Momentum 360 founders"
+                  width="800"
+                  height="1251"
+                  fetchpriority="high"
+                  decoding="async"
+                />
+                <div class="glass-badge">
+                  <span>THE FOUNDERS</span>
+                  <strong>MAC + SEAN</strong>
+                </div>
+                <div class="glass-session">
+                  <div>
+                    <span>NEXT LIVE SESSION</span>
+                    <strong id="hero-date">Thursday, August 6</strong>
+                    <p id="hero-time">12:00 PM ET</p>
+                  </div>
+                  <b>FREE PILOT</b>
+                </div>
+              </div>
+              <div class="founder-credit">
+                <span>MOMENTUM 360</span>
+                <span>BUILD IT. SYSTEMIZE IT. SCALE IT.</span>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section
+          class="scene registration-section"
+          id="register"
+          aria-labelledby="register-title"
+        >
+          <div class="shell">
+            <div class="command-frame reveal">
+              <div class="command-topbar">
+                <span class="terminal-dots" aria-hidden="true"
+                  ><i></i><i></i><i></i></span
+                ><span>MOMENTUM 360 / WORKSHOP REGISTRATION</span
+                ><span>LOCAL PROTOTYPE</span>
+              </div>
+              <div class="command-layout">
+                <div class="command-intro">
+                  <p class="section-label">RESERVE YOUR SEAT</p>
+                  <h2 id="register-title">
+                    Put your growth constraint on the board.
+                  </h2>
+                  <p>
+                    Bring one real offer, one real bottleneck, and the team
+                    responsible for moving it. Leave with a weekly operating
+                    rhythm you can use immediately.
+                  </p>
+                  <div class="signal-list">
+                    <span><b>01</b> No automatic calendar insertion</span
+                    ><span><b>02</b> No messages sent by this prototype</span
+                    ><span><b>03</b> Your test data stays in this browser</span>
+                  </div>
+                </div>
+                <form id="registration" class="registration-form" novalidate>
+                  <div class="form-progress" aria-live="polite">
+                    <div><span>YOUR REGISTRATION</span><b id="formProgressText">0 of 6 complete</b></div>
+                    <span class="form-progress-track" aria-hidden="true"><i id="formProgressBar"></i></span>
+                  </div>
+                  <div class="form-step"><span>01</span><div><b>Your details</b><small>Where to hold the seat.</small></div></div>
+                  <div class="field-row">
+                    <label
+                      >First name<input
+                        name="first_name"
+                        autocomplete="given-name"
+                        required /></label
+                    ><label
+                      >Last name<input
+                        name="last_name"
+                        autocomplete="family-name"
+                        required
+                    /></label>
+                  </div>
+                  <label
+                    >Work email<input
+                      name="email"
+                      type="email"
+                      autocomplete="email"
+                      required
+                  /></label>
+                  <label
+                    >Company<input
+                      name="company"
+                      autocomplete="organization"
+                      required
+                  /></label>
+                  <label
+                    >Biggest growth constraint<select
+                      name="constraint"
+                      required
+                    >
+                      <option value="">Choose one</option>
+                      <option>Generating qualified demand</option>
+                      <option>Converting leads</option>
+                      <option>Retaining customers</option>
+                      <option>Building repeatable operations</option>
+                    </select></label
+                  >
+                  <div class="form-step consent-step"><span>02</span><div><b>Your choices</b><small>You stay in control of follow-up.</small></div></div>
+                  <label class="consent"
+                    ><input name="reminders" type="checkbox" required /><span
+                      ><strong>Workshop updates</strong>Email me the
+                      confirmation, reminders, and replay. I can opt out at any
+                      time.</span
+                    ></label
+                  >
+                  <label class="consent"
+                    ><input
+                      name="calendar_consent"
+                      type="checkbox"
+                      required
+                    /><span
+                      ><strong>Optional calendar step</strong>Show calendar
+                      choices after registration. Do not add an event
+                      automatically.</span
+                    ></label
+                  >
+                  <button
+                    class="button button-primary command-submit"
+                    type="submit"
+                  >
+                    <span>Register for the workshop</span
+                    ><span aria-hidden="true">→</span>
+                  </button>
+                  <p id="form-error" class="form-error" role="alert" hidden>
+                    Please complete each field and consent choice.
+                  </p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="scene proof-section" aria-label="Momentum 360 recognition">
+          <div class="shell proof-inner">
+            <div class="proof-copy">
+              <small>BUILT BY A REAL AGENCY</small
+              ><strong
+                >Momentum 360 serves businesses across all 50 states and 10
+                countries.</strong
+              >
+            </div>
+            <div class="badge-row">
+              <img
+                src="assets/badges/google-partner.webp"
+                alt="Google Partner"
+              /><img src="assets/badges/inc-5000.png" alt="Inc. 5000" /><img
+                src="assets/badges/philly-100.png"
+                alt="Philadelphia 100"
+              /><img
+                src="assets/badges/rankwatch-2024.png"
+                alt="RankWatch Top Agency 2024"
+              /><img
+                src="assets/badges/best-of-pennsylvania.webp"
+                alt="Best of Pennsylvania"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="scene system-section"
+          id="system"
+          aria-labelledby="system-title"
+        >
+          <div class="shell">
+            <div class="section-heading reveal">
+              <p class="section-label">THE WORKSHOP SYSTEM</p>
+              <h2 id="system-title">
+                A growth rhythm, not another pile of tactics.
+              </h2>
+              <p>
+                Every part of the session moves from a live business signal to
+                an owner, an action, and a measurable next step.
+              </p>
+            </div>
+            <div class="system-track reveal">
+              <article data-depth="2">
+                <span>01</span><b>SIGNAL</b>
+                <h3>Name the real constraint.</h3>
+                <p>
+                  Start with the bottleneck your team can observe and measure.
+                </p>
+                <small>INPUT / THE BOTTLENECK</small>
+              </article>
+              <article data-depth="3">
+                <span>02</span><b>ROUTE</b>
+                <h3>Choose the next move.</h3>
+                <p>
+                  Connect audience, offer, channel, and ownership in one
+                  operating map.
+                </p>
+                <small>DECISION / THE OWNER</small>
+              </article>
+              <article data-depth="4">
+                <span>03</span><b>RHYTHM</b>
+                <h3>Run it every week.</h3>
+                <p>
+                  Build the scorecard and cadence that turn activity into
+                  learning.
+                </p>
+                <small>OUTPUT / THE RHYTHM</small>
+              </article>
+            </div>
+            <div class="workshop-callout" id="workshop">
+              <div>
+                <span>LIVE WORKING SESSION</span>
+                <h2>Bring the mess.<br />Leave with the system.</h2>
+              </div>
+              <a class="button button-primary" href="#register"
+                >Reserve a free seat</a
+              >
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section
+        class="view confirmation-view"
+        data-view="confirmation"
+        aria-labelledby="confirmation-title"
+        hidden
+      >
+        <div class="confirmation-shell">
+          <a class="brand-lockup" href="#register" data-route="register"
+            ><span class="brand-mark"
+              ><img
+                src="assets/momentum-360-logo.png"
+                alt="Momentum 360" /></span
+            ><span class="brand-copy"
+              ><strong>MOMENTUM <em>360</em></strong
+              ><small>GROWTH WORKSHOP</small></span
+            ></a
+          >
+          <div class="confirmation-card">
+            <p class="eyebrow">
+              <span class="live-dot"></span> REGISTRATION STORED LOCALLY
+            </p>
+            <h2 id="confirmation-title">Your seat is on the board.</h2>
+            <p id="confirmation-copy">
+              Choose a calendar action only if you want one. Nothing has been
+              inserted automatically.
+            </p>
+            <dl class="event-ticket">
+              <div>
+                <dt>Workshop</dt>
+                <dd id="ticket-title">
+                  Build a Business That Grows Without You
+                </dd>
+              </div>
+              <div>
+                <dt>Date</dt>
+                <dd id="ticket-date">Thursday, August 6</dd>
+              </div>
+              <div>
+                <dt>Time</dt>
+                <dd id="ticket-time">12:00 PM ET · 60 minutes</dd>
+              </div>
+            </dl>
+            <div class="confirmation-actions">
+              <a
+                id="google-calendar"
+                class="button button-primary"
+                target="_blank"
+                rel="noopener"
+                >Open Google Calendar</a
+              ><button
+                id="download-ics"
+                class="button button-ghost"
+                type="button"
+              >
+                Download ICS file
+              </button>
+            </div>
+            <button class="text-action" data-route="register" type="button">
+              Back to workshop
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="view operator-view"
+        data-view="operator"
+        aria-labelledby="studio-title"
+        hidden
+      >
+        <div class="shell operator-shell">
+          <header class="operator-heading">
+            <button class="text-action" data-route="register" type="button">
+              ← Back to workshop
+            </button>
+            <p class="eyebrow">
+              <span class="live-dot"></span> OPERATOR STUDIO
+            </p>
+            <h2 id="studio-title">Workshop pilot command.</h2>
+            <p>
+              Configure the event and simulate the attendee flow without
+              contacting anyone.
+            </p>
+          </header>
+          <section class="metric-strip">
+            <article>
+              <span>PAGE VISITS</span><strong>248</strong
+              ><small>Sample baseline</small>
+            </article>
+            <article>
+              <span>REGISTRATIONS</span
+              ><strong id="registration-count">32</strong
+              ><small>Includes local tests</small>
+            </article>
+            <article>
+              <span>REGISTRATION RATE</span
+              ><strong id="conversion-rate">12.9%</strong
+              ><small>Target: 15%</small>
+            </article>
+            <article>
+              <span>ATTENDANCE TARGET</span><strong>45%</strong
+              ><small>Reminder sequence on</small>
+            </article>
+          </section>
+          <div class="studio-grid">
+            <form id="event-config" class="studio-panel config-panel">
+              <div class="panel-heading">
+                <div>
+                  <span>EVENT SETTINGS</span>
+                  <h2>Workshop details</h2>
+                </div>
+                <small id="save-status">Saved locally</small>
+              </div>
+              <label
+                >Workshop title<input
+                  name="title"
+                  value="Build a Business That Grows Without You"
+                  required
+              /></label>
+              <div class="field-row">
+                <label
+                  >Date<input
+                    name="date"
+                    type="date"
+                    value="2026-08-06"
+                    required /></label
+                ><label
+                  >Start time<input
+                    name="time"
+                    type="time"
+                    value="12:00"
+                    required
+                /></label>
+              </div>
+              <div class="field-row">
+                <label
+                  >Duration<select name="duration">
+                    <option value="45">45 minutes</option>
+                    <option value="60" selected>60 minutes</option>
+                    <option value="90">90 minutes</option>
+                  </select></label
+                ><label
+                  >Timezone<select name="timezone">
+                    <option value="America/New_York">Eastern Time</option>
+                    <option value="America/Chicago">Central Time</option>
+                    <option value="America/Denver">Mountain Time</option>
+                    <option value="America/Los_Angeles">Pacific Time</option>
+                  </select></label
+                >
+              </div>
+              <label
+                >Meeting URL<input
+                  name="meeting_url"
+                  type="url"
+                  value="https://example.com/pilot-room"
+                  required /></label
+              ><label
+                >Host name<input
+                  name="host"
+                  value="Sean and Mac"
+                  required /></label
+              ><button class="button button-primary" type="submit">
+                Save and update workshop
+              </button>
+            </form>
+            <section class="studio-panel reminder-panel">
+              <div class="panel-heading">
+                <div>
+                  <span>SEQUENCE SIMULATOR</span>
+                  <h2>Reminder timeline</h2>
+                </div>
+                <small>NO DELIVERY</small>
+              </div>
+              <div class="timeline">
+                <article>
+                  <span>NOW</span>
+                  <div>
+                    <strong>Confirmation</strong>
+                    <p>Seat details and optional calendar actions.</p>
+                  </div>
+                  <button type="button" data-preview="confirmation">
+                    Preview
+                  </button>
+                </article>
+                <article>
+                  <span>24H</span>
+                  <div>
+                    <strong>Preparation reminder</strong>
+                    <p>Bring one offer and one growth constraint.</p>
+                  </div>
+                  <button type="button" data-preview="24-hour">Preview</button>
+                </article>
+                <article>
+                  <span>1H</span>
+                  <div>
+                    <strong>Starting soon</strong>
+                    <p>Meeting link and concise agenda.</p>
+                  </div>
+                  <button type="button" data-preview="1-hour">Preview</button>
+                </article>
+                <article>
+                  <span>+2H</span>
+                  <div>
+                    <strong>Replay and next step</strong>
+                    <p>Replay placeholder and optional call.</p>
+                  </div>
+                  <button type="button" data-preview="replay">Preview</button>
+                </article>
+              </div>
+            </section>
+            <section class="studio-panel registrants-panel">
+              <div class="panel-heading">
+                <div>
+                  <span>BROWSER ONLY</span>
+                  <h2>Test registrations</h2>
+                </div>
+                <button id="clear-tests" class="text-action" type="button">
+                  Clear tests
+                </button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Company</th>
+                      <th>Constraint</th>
+                      <th>Consent</th>
+                    </tr>
+                  </thead>
+                  <tbody id="registrant-rows">
+                    <tr class="empty-row">
+                      <td colspan="4">No local test registrations yet.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <aside class="studio-panel readiness-panel">
+              <span>ACTIVATION GATE</span>
+              <h2>Still requires approval</h2>
+              <ul>
+                <li>Email service and sender domain</li>
+                <li>Audience source and lawful basis</li>
+                <li>Analytics and CRM destination</li>
+                <li>Final meeting URL and host schedule</li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="mobile-conversion-dock" id="mobileDock" aria-label="Workshop registration shortcut">
+      <div><span>NEXT LIVE SESSION</span><strong id="dock-date">Thu, Aug 6 · 12 PM ET</strong></div>
+      <a class="button button-primary" href="#register">Reserve free seat</a>
+    </aside>
+
+    <dialog id="message-preview">
+      <button class="dialog-close" type="button" aria-label="Close preview">
+        ×
+      </button>
+      <p class="section-label">MESSAGE PREVIEW</p>
+      <h2 id="preview-subject">Confirmation</h2>
+      <div id="preview-body"></div>
+      <div class="dialog-note">Simulation only. No message is sent.</div>
+    </dialog>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
