@@ -4,6 +4,7 @@ param()
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 . (Join-Path $PSScriptRoot 'MarketingChief.SitesBridgeCredential.ps1')
+. (Join-Path $PSScriptRoot 'MarketingOs.Common.ps1')
 
 $checks = New-Object System.Collections.Generic.List[object]
 function Add-Check {
@@ -51,6 +52,12 @@ try {
         $syncSource -match 'DedupeKey = "sites-intent:\$intentId"' -and
         $syncSource -match 'SourceLocator = "sites-intent:\$intentId"' -and
         $syncSource -match 'Get-ExistingIntentWorkItem'
+    )
+    Add-Check 'version-bound Studio intent locators are safe graph evidence' (
+        Test-MarketingSafeLocator 'sites-intent:6c665734-ab1f-4f2b-986e-f7d92ab0b193'
+    )
+    Add-Check 'malformed Studio intent locators remain rejected' (
+        -not (Test-MarketingSafeLocator 'sites-intent:not-a-version-bound-id')
     )
     Add-Check 'owner intent completion preserves consequential approval gates' (
         $syncSource -match 'Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval'

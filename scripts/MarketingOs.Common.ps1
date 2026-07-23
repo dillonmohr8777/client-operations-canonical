@@ -65,6 +65,7 @@ function Test-MarketingSafeLocator {
     if ($Value -match '^sha256:[0-9a-fA-F]{64}$') { return $true }
     if ($Value -match '^source-commit:[0-9a-fA-F]{7,40}$') { return $true }
     if ($Value -match '^agent-os-run:[A-Za-z0-9-]{8,100}/task\.json$') { return $true }
+    if ($Value -match '^sites-intent:[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$') { return $true }
     return $false
 }
 
