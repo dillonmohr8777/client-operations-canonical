@@ -12,10 +12,10 @@ colors:
   slate-blue: "#8fa0ba"
 typography:
   display:
-    fontFamily: "Syne, Segoe UI, Arial, sans-serif"
+    fontFamily: "Space Grotesk, Segoe UI, Arial, sans-serif"
     fontSize: "clamp(3.6rem, 8vw, 6rem)"
     fontWeight: 700
-    lineHeight: 1.04
+    lineHeight: 1.08
     letterSpacing: "-0.03em"
   body:
     fontFamily: "DM Sans, Segoe UI, Arial, sans-serif"
@@ -92,10 +92,10 @@ Midnight navy owns the environment. Momentum blue and horizon cyan define optica
 
 ## Typography
 
-**Display Font:** Syne with system sans fallback  
+**Display Font:** Space Grotesk with system sans fallback
 **Body Font:** DM Sans with system sans fallback
 
-**Character:** Syne's architectural display lettering creates a distinct founder-stage voice. The body face stays warm and efficient through long operational passages.
+**Character:** Space Grotesk gives the workshop a clean, modern operator voice with open counters and reliable descenders. The body face stays warm and efficient through long operational passages.
 
 ### Hierarchy
 

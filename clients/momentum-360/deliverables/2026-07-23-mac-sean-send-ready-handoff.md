@@ -7,8 +7,8 @@ Status: Production experience ready; audience delivery waiting on four launch fa
 ## Production workshop
 
 - Live URL: https://momentum-workshop-pilot.netlify.app
-- Production deploy: `6a624cf699ac3c7bd0f91952`
-- Previous known rollback deploy: `6a6243ea51cca13a15bbe4ce`
+- Production deploy: `6a6250880b58be88b639179b`
+- Previous known rollback deploy: `6a624cf699ac3c7bd0f91952`
 - Netlify form: `workshop-registration`
 - Registration test: verified end to end in production with identity, company,
   growth constraint, event metadata, registration timestamp, and UTM attribution
@@ -18,8 +18,9 @@ The experience now includes:
 
 - a founder-led Mac and Sean hero with close portrait framing;
 - an extended founder story and workshop-system narrative;
-- solid Momentum gold display headlines on every navy section with safe
-  descender spacing at desktop and mobile widths;
+- Space Grotesk Momentum gold display headlines on every navy section with
+  open descenders, clean edge rendering, and safe spacing at desktop and
+  mobile widths;
 - plain-language workshop outcomes built around one bottleneck, one offer,
   one lead path, and one 30-day scorecard;
 - a continuous five-logo recognition swipe with reduced-motion fallback;

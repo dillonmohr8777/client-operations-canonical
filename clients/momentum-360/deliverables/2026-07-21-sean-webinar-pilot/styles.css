@@ -12,7 +12,7 @@
   --slate: #8fa0ba;
   --line: rgba(151, 188, 239, 0.17);
   --line-strong: rgba(151, 188, 239, 0.3);
-  --display: "Syne", "Segoe UI", Arial, sans-serif;
+  --display: "Space Grotesk", "Segoe UI", Arial, sans-serif;
   --body: "DM Sans", "Segoe UI", Arial, sans-serif;
   --shell: min(1180px, calc(100% - 48px));
   --shadow: 0 38px 110px rgba(0, 5, 18, 0.42);
@@ -78,8 +78,9 @@ h1,
 h2,
 h3 {
   overflow: visible;
-  padding-bottom: 0.12em;
+  padding-bottom: 0.2em;
   text-wrap: balance;
+  font-synthesis: none;
 }
 img {
   max-width: 100%;
@@ -1736,7 +1737,7 @@ dialog::backdrop {
 .system-track article:hover { z-index: 2; background: rgba(16,51,105,.42); transform: translateY(-7px); }
 .system-track article > span { position: relative; z-index: 2; display: inline-block; color: var(--cyan); background: transparent; border: 0; font-size: .72rem; letter-spacing: .12em; }
 .system-track article > small { display:block; margin-top:28px; color:#5f7697; font-family:var(--display); font-size:.54rem; letter-spacing:.1em; }
-.workshop-callout { position:relative; overflow:hidden; background: linear-gradient(115deg,#0b224b,#0d2f65); box-shadow:0 28px 90px rgba(0,5,18,.28); }
+.workshop-callout { position:relative; overflow:visible; background: linear-gradient(115deg,#0b224b,#0d2f65); box-shadow:0 28px 90px rgba(0,5,18,.28); }
 .workshop-callout::after { content:none; }
 .workshop-callout > * { position:relative; z-index:1; }
 
@@ -2630,9 +2631,7 @@ dialog::backdrop {
 .faq-heading h2,
 .closing-glass h2 {
   color: var(--gold);
-  text-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.14),
-    0 18px 38px rgba(0, 4, 18, 0.42);
+  text-shadow: 0 14px 30px rgba(0, 4, 18, 0.34);
 }
 
 .hero h1,
@@ -2649,9 +2648,19 @@ dialog::backdrop {
 .calendar-copy h2,
 .faq-heading h2,
 .closing-glass h2 {
-  line-height: 1.04;
-  letter-spacing: -0.03em;
-  padding-bottom: 0.14em;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  padding-bottom: 0.22em;
+}
+
+.workshop-callout > div {
+  min-width: 0;
+  padding-bottom: 0.12em;
+}
+
+.workshop-callout h2 {
+  margin-bottom: 0;
+  padding-bottom: 0.26em;
 }
 
 .outcomes-statement h2 {
@@ -2749,7 +2758,7 @@ dialog::backdrop {
   .calendar-copy h2,
   .faq-heading h2,
   .closing-glass h2 {
-    line-height: 1.06;
+    line-height: 1.1;
   }
   .agenda-chapter strong,
   .system-track h3,
