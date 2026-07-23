@@ -56,6 +56,45 @@
       "master_password"
     ]
   },
+  "capabilities": {
+    "omniRouteGateway": {
+      "skill": "$omniroute-gateway",
+      "controller": "C:\\Users\\dillo\\.codex\\skills\\omniroute-gateway\\scripts\\Invoke-OmniRoute.ps1",
+      "dashboard": "http://127.0.0.1:20128",
+      "apiBaseUrl": "http://127.0.0.1:20128/v1",
+      "protectedDataDirectory": "C:\\Users\\dillo\\AppData\\Local\\Codex\\OmniRoute",
+      "activation": "Use only when model or provider routing, quota visibility, fallback combinations, compression, an OpenAI-compatible local endpoint, or OmniRoute MCP is relevant.",
+      "preflight": [
+        "run Status read-only",
+        "run Doctor read-only",
+        "verify port 20128 listens only on 127.0.0.1",
+        "require zero Doctor failures before relying on the gateway"
+      ],
+      "defaultClientPolicy": "Keep normal Codex and OpenAI authentication unchanged. Use a separate OmniRoute profile or launcher only after a healthy provider, a scoped endpoint key, and Dillon's explicit request are all verified.",
+      "approvalGates": [
+        "connect or import a provider account",
+        "change a default model, route, combo, quota, compression policy, or client configuration",
+        "enable OmniRoute MCP mutation tools",
+        "enable Cloud Endpoint, Cloud Sync, Cloud Tasks, tunnels, or LAN or public binding",
+        "expose, inspect, copy, or persist provider tokens, OAuth material, endpoint keys, cookies, or stored credentials"
+      ],
+      "queuePolicy": "Material OmniRoute work uses the existing Marketing Chief queue, action classes, execution graph, and approval gates. Gateway observations never create a second queue, project, control center, or autonomous task source.",
+      "integrationBaseline": {
+        "verifiedAt": "2026-07-23",
+        "version": "3.8.48",
+        "running": true,
+        "httpStatus": 200,
+        "loopbackOnly": true,
+        "doctorFailures": 0,
+        "connectedProviderAccounts": 0,
+        "productionDependencyAudit": {
+          "critical": 0,
+          "high": 6,
+          "moderate": 4
+        }
+      }
+    }
+  },
   "contextLoadOrder": [
     "AGENTS.md",
     "registry/clients.json",
@@ -65,6 +104,7 @@
     "state/system-health.json",
     "state/corrections.jsonl",
     "context/marketing-context.md",
+    "C:\\Users\\dillo\\.codex\\skills\\omniroute-gateway\\SKILL.md when OmniRoute is relevant",
     "context/DILLON_VOICE.md",
     "context/DESIGN_STANDARD.md",
     "registry/paid-media-roster.json and workflows/daily-paid-media-optimization.workflow.json for the once-per-day paid-media lane",
@@ -186,6 +226,7 @@
       "link the exact source-bound canonical work item when one exists; when none exists, create it with New-MarketingWorkItem.ps1 using the exact SourceLocator, current queue revision, and truthful safe action class",
       "promote the observation with Resolve-IntakeObservation.ps1, or acknowledge or quarantine it with a recorded resolution when promotion is unsupported",
       "load canonical context and corrections",
+      "when OmniRoute is relevant, run its Status and Doctor preflight and remain read-only unless the exact configuration or account change is explicitly approved",
       "run or verify today's eight-lane paid-media review and materialize only current material findings through the Chief's normal source-bound queue contract",
       "rank canonical work",
       "when an inspected communication implies paid-media launch work, materialize the exact client request and run the communication-triggered ad-launch workflow through the furthest locally safe or explicitly authorized terminal phase",

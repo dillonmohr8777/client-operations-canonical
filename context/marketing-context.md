@@ -69,6 +69,14 @@ Verified from the July 15 audit and current system state:
 - Every consequential output is judged against outcome, evidence, voice, design, risk, and live readback.
 - External messages, publishing, deployment, spend, permissions, and destructive changes remain approval-gated. A client-specific standing authority is reusable explicit approval only inside its exact requester, account, action, budget, location, schedule, and expiration limits. Missing or conflicting fields fail closed while the local deliverable continues to be built.
 
+## Local AI routing capability
+
+OmniRoute is an optional local Marketing Chief capability, not a replacement control plane. Use `$omniroute-gateway` when provider or model routing, quota visibility, fallback combinations, compression, an OpenAI-compatible local endpoint, or OmniRoute MCP is directly relevant. The Chief must inspect live Status and Doctor results first and verify loopback-only binding before relying on it.
+
+The non-secret routes are `http://127.0.0.1:20128` for the dashboard and `http://127.0.0.1:20128/v1` for the API. Normal Codex and OpenAI authentication stays unchanged until a healthy provider, a scoped endpoint key, and an explicit Dillon request support a separate OmniRoute client profile. Provider connection, model or route changes, compression policy changes, MCP mutations, cloud features, tunnels, and LAN or public exposure are never inferred from installation alone.
+
+The 2026-07-23 integration baseline verified OmniRoute `3.8.48`, HTTP 200, loopback-only port `20128`, and zero Doctor failures. No provider account was connected. The production dependency audit reported 6 high and 4 moderate advisories and no critical advisories, so the version remains pinned and update work requires provenance, lifecycle-script, dependency-audit, backup, liveness, loopback, and MCP-handshake review. OmniRoute status belongs in the existing Chief evidence and queue conventions; it never creates another queue, project, or control center.
+
 ## Switching dynamics
 
 **Push:** repeated prompting, lost context, duplicate sessions, uncertain credentials, inconsistent work quality, and anxiety about what is actually active.

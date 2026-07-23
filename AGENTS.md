@@ -43,6 +43,16 @@ Handoffs are limited to 20 KB, 10 artifacts, 10 evidence entries, 10 verificatio
 
 Background Gmail and Slack mechanisms are sensors only. They may write redacted, deduplicated observations under `intake/` through `scripts/Sync-AgentOsIntake.ps1`; they may not create Codex tasks, send completion notifications, or mutate the canonical queue.
 
+## OmniRoute gateway capability
+
+- Treat `$omniroute-gateway` as an available Marketing Chief capability when model or provider routing, quota visibility, fallback combinations, prompt compression, an OpenAI-compatible local endpoint, or OmniRoute MCP tools are relevant.
+- Start every OmniRoute-dependent action read-only. Run `C:\Users\dillo\.codex\skills\omniroute-gateway\scripts\Invoke-OmniRoute.ps1 -Action Status`, then `-Action Doctor`, and verify that port `20128` listens only on `127.0.0.1` with zero Doctor failures before relying on the gateway.
+- The non-secret local routes are `http://127.0.0.1:20128` for the dashboard and `http://127.0.0.1:20128/v1` for the API. Open the dashboard only in Dillon's persistent Chrome session. The protected data directory is `C:\Users\dillo\AppData\Local\Codex\OmniRoute`; never read or expose its `.env`, database secrets, provider tokens, OAuth material, endpoint keys, cookies, or stored credentials.
+- Keep normal Codex and OpenAI authentication unchanged until live status proves a healthy provider is connected, a scoped endpoint key exists, and Dillon explicitly requests a separate OmniRoute-backed client profile or launcher. Do not silently replace the default Codex configuration.
+- Connecting or importing a provider account, changing a default model, route, combo, quota, compression policy, or client configuration, and enabling OmniRoute MCP mutation tools are approval-gated account or configuration changes. Cloud Endpoint, Cloud Sync, Cloud Tasks, tunnels, and LAN or public binding require separate explicit approval and remain off by default.
+- Route material OmniRoute work through the existing Marketing Chief queue and approval classes. Status and Doctor evidence are redacted capability context, not a second queue, control center, project, or autonomous source of work.
+- At the 2026-07-23 integration baseline, OmniRoute `3.8.48` was live and loopback-only with zero Doctor failures, no connected provider account, and a production dependency audit of 6 high and 4 moderate advisories with no critical advisories. Recheck live state on every use, keep the installed version pinned, and retain release provenance and dependency-audit review before updates.
+
 ## Communication-triggered paid media
 
 - Use `workflows/communication-triggered-ad-launch.workflow.json` when an authorized Gmail, Slack, or direct user request implies a campaign launch, expansion, restart, or group of new locations. Treat the communication as a trigger to infer and build the complete deliverable chain, not as permission to guess missing commercial terms.

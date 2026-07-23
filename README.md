@@ -21,6 +21,17 @@ The Marketing Chief is the only writer to canonical state during the pilot. Focu
 
 In the pinned task, Dillon can say `continue`. The Chief then refreshes safe intake and live health, loads corrections and exact client context, ranks the queue, completes the highest safe local action, reconciles verified worker handoffs, and returns the result plus at most one human-only decision.
 
+## OmniRoute capability
+
+The Marketing Chief can use the installed `$omniroute-gateway` capability for model or provider routing, quotas, fallback combinations, compression, an OpenAI-compatible local endpoint, and OmniRoute MCP when a task actually requires it. It is part of this operating system, not another queue or control center.
+
+Every OmniRoute-dependent action begins with the controller's read-only `Status` and `Doctor` checks plus loopback verification. The dashboard is `http://127.0.0.1:20128`; the API base is `http://127.0.0.1:20128/v1`. Normal Codex and OpenAI authentication remains the default. Provider connection, model or route changes, client reconfiguration, MCP mutations, cloud features, tunnels, and public or LAN exposure require explicit approval.
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\dillo\.codex\skills\omniroute-gateway\scripts\Invoke-OmniRoute.ps1 -Action Status
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\dillo\.codex\skills\omniroute-gateway\scripts\Invoke-OmniRoute.ps1 -Action Doctor
+```
+
 ### Graph-backed execution
 
 Nontrivial automatic work now runs through a persistent, version-bound execution graph under `state/execution-graphs/<work-item-id>/<graph-run-id>/`. The graph connects the exact queue item, active client, source evidence, artifacts, approval boundary, worker step, one verifier per definition-of-done check, bounded handoff, and Chief reconciliation. It improves context continuity, provenance, restartability, and QA without becoming another queue.
