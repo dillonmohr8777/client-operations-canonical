@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-23T05:37:08.5609451+00:00`
-Queue revision: `159`
+Last reconciled: `2026-07-23T14:11:48.7131487+00:00`
+Queue revision: `160`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -12,7 +12,7 @@ Mode: `manual-pilot`
 
 **Next automatic action:** No automatic action is currently eligible.
 
-**Next Dillon decision:** **Implement the Momentum caller auto-response workflow** (`wi-20260718-0003`, score 204): At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation. Why: P1, portfolio rank 3 (strategic), overdue, current evidence, status needs_approval, action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
+**Next Dillon decision:** **Implement the Momentum caller auto-response workflow** (`wi-20260718-0003`, score 208): At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation. Why: P1, portfolio rank 3 (strategic), overdue, current evidence, status ready, action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
 
 **Next unblock:** **Approve controlled KJB Search launch swap** (`wi-20260723-0002`, score 170): Dillon must complete the visible Google Ads Confirm it is you gate in the preserved KJB Chrome tab; then correct the remaining ad validation issue, publish Search, attach and verify the staged negatives, pause Performance Max, and verify the final serving state. Why: P0, portfolio rank 4 (strategic), no evidenced deadline, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; next action contains gated action language; approval state is not exactly automatic and not_required.
 <!-- marketing-chief:predictions:end -->
@@ -49,7 +49,7 @@ No client outcome currently consumes a normal WIP slot.
 | `wi-20260717-0011` | `va-claims-edge` | Implement Obaid's Phase 2 VA Claims UI handoff | Done | P0 | Review the local integrated branch and QA evidence. Keep GitHub push, Vercel deployment, merge, and external handoff pending explicit approval. | No evidenced deadline |
 | `wi-20260718-0001` | `bigorange-marketing` | Confirm BigOrange paid-trial scope and compensation | Needs Approval | P1 | At the confirmed July 27 working session, clarify and document the pilot scope, hours, pricing, start date, payment timing, and authorized access route. Do not begin, invoice, publish, send, or change accounts until the terms and exact access are confirmed. | 2026-07-27 13:00 -04:00 |
 | `wi-20260718-0002` | `momentum-360` | Prepare the July 20 Momentum AI review | Done | P1 | Build and verify a redacted local decision packet from current canonical artifacts and communication evidence. | 2026-07-20 14:30 -04:00 |
-| `wi-20260718-0003` | `momentum-360` | Implement the Momentum caller auto-response workflow | Needs Approval | P1 | At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation. | 2026-07-20 15:00 -04:00 |
+| `wi-20260718-0003` | `momentum-360` | Implement the Momentum caller auto-response workflow | Ready | P1 | At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation. | 2026-07-20 15:00 -04:00 |
 | `wi-20260718-0004` | `momentum-360` | Prepare the July 22 Momentum AI and Fable training | Done | P1 | Build and verify the local training packet from approved Momentum examples and non-secret access prerequisites. | 2026-07-22 15:30 -04:00 |
 | `wi-20260718-0005` | `align-hcm` | Prepare Align Dayforce Discover exhibitor readiness | Done | P1 | Build and verify a local deadline and decision packet from the manual, marking each unknown, owner, dependency, and review date. | 2026-08-14 17:00 -04:00 |
 | `wi-20260718-0006` | `momentum-360` | Finish Mac law-firm local SEO audit builder | Done | P1 | Recover the current visual contract, implement the missing local audit and screenshot workflow in canonical local source, then verify both modes and PDF output. | No evidenced deadline |
@@ -138,20 +138,6 @@ No client outcome currently consumes a normal WIP slot.
 - Any WordPress or Semrush access route is mapped only through an authorized, revocable account path.
 - No external delivery, publishing, invoicing, account change, or client-system write occurs before explicit confirmation.
 
-### Implement the Momentum caller auto-response workflow
-
-**Decision:** Approve the exact Momentum CallRail and HubSpot caller auto-response configuration before any workflow or account change.
-
-**Next action:** At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation.
-
-**Definition of done:**
-
-- The exact CallRail and HubSpot accounts and eligible phone numbers are verified.
-- Approved copy, opt-out, hours, routing, suppression, owner, and rollback rules are documented.
-- Explicit implementation approval is recorded.
-- The approved workflow is configured and tested without exposing credentials or contacting unintended recipients.
-- Readback evidence and rollback instructions are preserved in the client record.
-
 ## Blocked or at risk
 
 - **Reconcile two Fagan Painting website leads:** Verify mailbox processing, the named response owner, and lead-level disposition through the approved Fagan mailbox, CRM, or Zapier records before any prospect contact.
@@ -201,8 +187,8 @@ No client outcome currently consumes a normal WIP slot.
 
 ## Live health probe
 
-- **As of:** `2026-07-23T12:15:03.3656580+00:00`
-- **Overall:** `healthy-with-human-gates`
+- **As of:** `2026-07-23T14:10:13.9497773+00:00`
+- **Overall:** `degraded`
 - **Queue:** revision `159`, `36` work items, normal `0/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
@@ -217,10 +203,11 @@ No client outcome currently consumes a normal WIP slot.
   - `DillonAgentOS-DailyBrief`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
-  - `MarketingChief-DailyCalibration`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
-  - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
+  - `MarketingChief-DailyCalibration`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
+  - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `1`
 - **Human gates:** `active_client_exact_bw_item_mapping`
 - **Deferred actions:** `secondary_exposed_password_rotation`
+- **Warnings:** MarketingChief-SitesBridge last result is 1
 
 ## Standing operating contract
 
