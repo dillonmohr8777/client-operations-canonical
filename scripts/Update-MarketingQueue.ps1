@@ -10,6 +10,7 @@ param(
     [string]$OutcomeSummary,
     [ValidateSet('','pending','approved','rejected','not_required')][string]$ApprovalStatus='',
     [string]$ApprovalRef,
+    [switch]$ExternalActionTaken,
     [string]$DueAt,
     [switch]$ClearDue,
     [ValidateSet('marketing-chief')][string]$Writer='marketing-chief',
@@ -26,7 +27,7 @@ if([string]::IsNullOrWhiteSpace($QueuePath)){$QueuePath=Join-Path $projectRoot '
 if([string]::IsNullOrWhiteSpace($ControlPath)){$ControlPath=Join-Path $projectRoot 'CONTROL.md'}
 if([string]::IsNullOrWhiteSpace($RegistryPath)){$RegistryPath=Join-Path $projectRoot 'registry\clients.json'}
 
-$hasMutation=-not [string]::IsNullOrWhiteSpace($Status) -or -not [string]::IsNullOrWhiteSpace($Priority) -or $PSBoundParameters.ContainsKey('NextAction') -or -not [string]::IsNullOrWhiteSpace($ActionClass) -or $PSBoundParameters.ContainsKey('OutcomeSummary') -or -not [string]::IsNullOrWhiteSpace($ApprovalStatus) -or $PSBoundParameters.ContainsKey('ApprovalRef') -or $PSBoundParameters.ContainsKey('DueAt') -or $ClearDue
+$hasMutation=-not [string]::IsNullOrWhiteSpace($Status) -or -not [string]::IsNullOrWhiteSpace($Priority) -or $PSBoundParameters.ContainsKey('NextAction') -or -not [string]::IsNullOrWhiteSpace($ActionClass) -or $PSBoundParameters.ContainsKey('OutcomeSummary') -or -not [string]::IsNullOrWhiteSpace($ApprovalStatus) -or $PSBoundParameters.ContainsKey('ApprovalRef') -or $ExternalActionTaken -or $PSBoundParameters.ContainsKey('DueAt') -or $ClearDue
 if(-not $hasMutation){throw 'At least one mutation field is required.'}
 if($ClearDue -and $PSBoundParameters.ContainsKey('DueAt')){throw 'Use either DueAt or ClearDue, not both.'}
 if($PSBoundParameters.ContainsKey('NextAction') -and [string]::IsNullOrWhiteSpace($ActionClass)){throw 'ActionClass is required whenever NextAction is supplied.'}
@@ -71,6 +72,12 @@ try{
     if($targetApproval-eq'pending' -and $targetStatus-notin@('needs_approval','blocked','deferred','cancelled')){throw 'Pending approval cannot advance to an execution state.'}
     if($targetApproval-eq'not_required' -and $approvalTier-ne'automatic'){throw 'Only automatic-tier work may use approval status not_required.'}
     $newOutcomeProvided=$PSBoundParameters.ContainsKey('OutcomeSummary')-and-not[string]::IsNullOrWhiteSpace($OutcomeSummary)
+    if($ExternalActionTaken){
+        if(-not$externalClass){throw 'ExternalActionTaken is valid only for an external action class.'}
+        if($targetApproval-ne'approved'){throw 'ExternalActionTaken requires recorded explicit approval.'}
+        if(-not$newOutcomeProvided){throw 'ExternalActionTaken requires a verified OutcomeSummary.'}
+        if($targetStatus-notin@('verification','executed','observed','done')){throw 'ExternalActionTaken requires a verification or completion status.'}
+    }
     $existingOutcomeStatus=if($null-ne$item.outcome){[string]$item.outcome.status}else{''}
     $existingOutcomeSummary=if($null-ne$item.outcome){[string]$item.outcome.summary}else{''}
     $existingOutcomeVerified=$existingOutcomeStatus-in@('completed','verification','verified')-and-not[string]::IsNullOrWhiteSpace($existingOutcomeSummary)
@@ -93,7 +100,7 @@ try{
     if(-not[string]::IsNullOrWhiteSpace($ApprovalStatus)){$item.approval.status=$ApprovalStatus}
     elseif(-not$automaticClass -and [string]$item.approval.status-eq'not_required'){$item.approval.status='pending'}
     if($PSBoundParameters.ContainsKey('ApprovalRef')){$item.approval.approvalRef=if([string]::IsNullOrWhiteSpace($ApprovalRef)){$null}else{$ApprovalRef.Trim()}}
-    if($PSBoundParameters.ContainsKey('OutcomeSummary')){$item.outcome=[pscustomobject]@{status=$targetStatus;verifiedAt=$now;summary=$OutcomeSummary.Trim();externalActionTaken=$false}}
+    if($PSBoundParameters.ContainsKey('OutcomeSummary')){$item.outcome=[pscustomobject]@{status=$targetStatus;verifiedAt=$now;summary=$OutcomeSummary.Trim();externalActionTaken=[bool]$ExternalActionTaken}}
     if($ClearDue){$item.dueAt=$null}elseif($PSBoundParameters.ContainsKey('DueAt')){$item.dueAt=$DueAt}
     $item.version=[int]$item.version+1;$item.updatedAt=$now;$queue.revision=[int]$queue.revision+1;$queue.updatedAt=$now;$queue.updatedBy=$Writer
 
@@ -101,12 +108,12 @@ try{
     [IO.File]::WriteAllText($queueTemp,(($queue|ConvertTo-Json -Depth 100)+[Environment]::NewLine),[Text.UTF8Encoding]::new($false))
     & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'Update-MarketingControl.ps1') -QueuePath $queueTemp -OutputPath $controlTemp -AsOf $now -InternalRender|Out-Null
     if($LASTEXITCODE-ne0-or-not(Test-Path -LiteralPath $controlTemp)){throw 'CONTROL rendering failed; canonical state was not changed.'}
-    if($DryRun){[pscustomobject]@{status='would-update';workItemId=$item.id;workItemVersion=$item.version;queueRevision=$queue.revision;targetStatus=$targetStatus;actionClass=$targetClass}|ConvertTo-Json -Compress;return}
+    if($DryRun){[pscustomobject]@{status='would-update';workItemId=$item.id;workItemVersion=$item.version;queueRevision=$queue.revision;targetStatus=$targetStatus;actionClass=$targetClass;externalActionTaken=[bool]$ExternalActionTaken}|ConvertTo-Json -Compress;return}
 
     $backupRoot=Join-Path $projectRoot 'backups';$backupDirectory=Resolve-MarketingChildPath -Root $backupRoot -Child("{0}-update-{1}"-f[DateTimeOffset]::UtcNow.ToString('yyyyMMddTHHmmssZ'),$item.id)
     New-Item -ItemType Directory -Path $backupDirectory -Force|Out-Null;Copy-Item -LiteralPath $QueuePath -Destination(Join-Path $backupDirectory 'work-items.json')-Force;Copy-Item -LiteralPath $ControlPath -Destination(Join-Path $backupDirectory 'CONTROL.md')-Force
     try{Move-Item -LiteralPath $queueTemp -Destination $QueuePath -Force;Move-Item -LiteralPath $controlTemp -Destination $ControlPath -Force}catch{Copy-Item -LiteralPath(Join-Path $backupDirectory 'work-items.json')-Destination $QueuePath -Force;Copy-Item -LiteralPath(Join-Path $backupDirectory 'CONTROL.md')-Destination $ControlPath -Force;throw}
-    $mutation=[pscustomobject][ordered]@{schemaVersion=1;mutationId=('qm-'+[guid]::NewGuid().ToString('N'));recordedAt=$now;action='update';workItemId=$item.id;clientId=$item.clientId;priorQueueRevision=$ExpectedQueueRevision;queueRevision=[int]$queue.revision;priorWorkItemVersion=$ExpectedWorkItemVersion;workItemVersion=[int]$item.version;writer=$Writer;externalActionTaken=$false;backup=$backupDirectory}
+    $mutation=[pscustomobject][ordered]@{schemaVersion=1;mutationId=('qm-'+[guid]::NewGuid().ToString('N'));recordedAt=$now;action='update';workItemId=$item.id;clientId=$item.clientId;priorQueueRevision=$ExpectedQueueRevision;queueRevision=[int]$queue.revision;priorWorkItemVersion=$ExpectedWorkItemVersion;workItemVersion=[int]$item.version;writer=$Writer;externalActionTaken=[bool]$ExternalActionTaken;backup=$backupDirectory}
     $auditRecorded=$true;try{[IO.File]::AppendAllText((Join-Path $projectRoot 'state\queue-mutations.jsonl'),(($mutation|ConvertTo-Json -Compress -Depth 10)+[Environment]::NewLine),[Text.UTF8Encoding]::new($false))}catch{$auditRecorded=$false}
     [pscustomobject]@{status='updated';workItemId=$item.id;workItemVersion=$item.version;queueRevision=$queue.revision;auditRecorded=$auditRecorded}|ConvertTo-Json -Compress
 }finally{
