@@ -30,6 +30,31 @@ try {
         (Select-String -LiteralPath $configPath -SimpleMatch $token -Quiet)
     )
     Add-Check 'non-secret bridge config does not contain the credential' (-not $configContainsToken)
+    $syncPath = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot 'Sync-MarketingChiefSitesBridge.ps1'))
+    $syncSource = Get-Content -LiteralPath $syncPath -Raw -Encoding UTF8
+    $parseTokens = $null
+    $parseErrors = $null
+    [void][Management.Automation.Language.Parser]::ParseFile($syncPath, [ref]$parseTokens, [ref]$parseErrors)
+    Add-Check 'bridge script parses after owner-intent expansion' (@($parseErrors).Count -eq 0)
+    Add-Check 'owner intents remain backward compatible before the site upgrade' (
+        $syncSource -match 'PSObject\.Properties\[''ownerIntents''\]' -and
+        $syncSource -match 'processedOwnerIntents'
+    )
+    Add-Check 'owner intent modes map only to reversible local action classes' (
+        $syncSource -match '''analyze''\s*\{\s*return ''local_research''' -and
+        $syncSource -match '''prepare''\s*\{\s*return ''local_artifact''' -and
+        $syncSource -match '''execute_safe''\s*\{\s*return ''local_test''' -and
+        $syncSource -match '''draft_for_approval''\s*\{\s*return ''local_draft''' -and
+        $syncSource -match '''monitor''\s*\{\s*return ''read_only_verification'''
+    )
+    Add-Check 'owner intents use exact idempotent source and dedupe bindings' (
+        $syncSource -match 'DedupeKey = "sites-intent:\$intentId"' -and
+        $syncSource -match 'SourceLocator = "sites-intent:\$intentId"' -and
+        $syncSource -match 'Get-ExistingIntentWorkItem'
+    )
+    Add-Check 'owner intent completion preserves consequential approval gates' (
+        $syncSource -match 'Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval'
+    )
 }
 finally {
     Remove-MarketingChiefSitesCredential -Target $target

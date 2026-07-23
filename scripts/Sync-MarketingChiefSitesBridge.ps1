@@ -175,6 +175,49 @@ function Resolve-Operator {
     Invoke-MachinePost -ApiUrl $machineApi -Token $token -DispatchToken $dispatchToken -Body $body | Out-Null
 }
 
+function Resolve-OwnerIntent {
+    param(
+        [Parameter(Mandatory = $true)][object]$Intent,
+        [Parameter(Mandatory = $true)][ValidateSet('acknowledged','completed','failed','superseded')][string]$State,
+        [Parameter(Mandatory = $true)][string]$Summary,
+        [AllowNull()][string]$SafeResultRef
+    )
+    if ($DryRun) { return }
+    $body = [ordered]@{
+        action = 'resolve-intent'
+        id = [string]$Intent.id
+        state = $State
+        resolutionSummary = $Summary
+        safeResultRef = $SafeResultRef
+    }
+    Invoke-MachinePost -ApiUrl $machineApi -Token $token -DispatchToken $dispatchToken -Body $body | Out-Null
+}
+
+function Get-IntentActionClass {
+    param([Parameter(Mandatory = $true)][string]$Mode)
+    switch ($Mode) {
+        'analyze' { return 'local_research' }
+        'prepare' { return 'local_artifact' }
+        'execute_safe' { return 'local_test' }
+        'draft_for_approval' { return 'local_draft' }
+        'monitor' { return 'read_only_verification' }
+        default { throw 'The hosted owner intent mode is unsupported.' }
+    }
+}
+
+function Get-ExistingIntentWorkItem {
+    param([Parameter(Mandatory = $true)][string]$IntentId)
+    $queue = Read-JsonFile -Path $queuePath
+    if ($null -eq $queue) { throw 'Canonical queue is unavailable.' }
+    $dedupeKey = "sites-intent:$IntentId"
+    $matches = @($queue.workItems | Where-Object { [string]$_.dedupeKey -ceq $dedupeKey })
+    if ($matches.Count -gt 1) { throw 'Multiple canonical work items claim the same hosted owner intent.' }
+    [pscustomobject]@{
+        queue = $queue
+        item = if ($matches.Count -eq 1) { $matches[0] } else { $null }
+    }
+}
+
 if (-not (Test-Path -LiteralPath $ConfigPath -PathType Leaf)) {
     throw "Hosted sync config not found: $ConfigPath"
 }
@@ -196,18 +239,24 @@ if ($null -eq $state) {
         updatedAt = [DateTimeOffset]::UtcNow.ToString('o')
         processedChoices = @()
         processedOperatorRequests = @()
+        processedOwnerIntents = @()
         lastSnapshotRevision = $null
         lastSnapshotAt = $null
         lastRunStatus = 'new'
     }
 }
 if ([int]$state.schemaVersion -ne 1) { throw 'Hosted sync state schema is unsupported.' }
+if ($null -eq $state.PSObject.Properties['processedOwnerIntents']) {
+    Add-Member -InputObject $state -MemberType NoteProperty -Name processedOwnerIntents -Value @()
+}
 $processedChoiceIds = @($state.processedChoices | ForEach-Object { [string]$_.id })
 $processedRequestIds = @($state.processedOperatorRequests | ForEach-Object { [string]$_.id })
+$processedIntentIds = @($state.processedOwnerIntents | ForEach-Object { [string]$_.id })
 
 try {
     $remote = Invoke-MachineGet -ApiUrl $machineApi -Token $token -DispatchToken $dispatchToken
     if ([int]$remote.schemaVersion -ne 1) { throw 'Hosted machine response schema is unsupported.' }
+    $remoteOwnerIntents = if ($null -ne $remote.PSObject.Properties['ownerIntents']) { @($remote.ownerIntents) } else { @() }
 
     foreach ($choice in @($remote.hostedChoices)) {
         if ([string]$choice.id -in $processedChoiceIds) { continue }
@@ -383,6 +432,99 @@ try {
         Write-BridgeLog -Event 'operator-request' -Status $resolutionState -Detail ([string]$request.workItemId)
     }
 
+    foreach ($intent in @($remoteOwnerIntents | Where-Object { [string]$_.state -ceq 'queued' })) {
+        if ([string]$intent.id -in $processedIntentIds) { continue }
+        $intentId = [string]$intent.id
+        $existingBinding = Get-ExistingIntentWorkItem -IntentId $intentId
+        if ($null -ne $existingBinding.item) {
+            $existingWorkItemId = [string]$existingBinding.item.id
+            Resolve-OwnerIntent -Intent $intent -State completed `
+                -Summary 'The exact client-routed instruction is already present in the canonical Marketing Chief queue.' `
+                -SafeResultRef ("queue-item:{0}" -f $existingWorkItemId)
+            $state.processedOwnerIntents = @($state.processedOwnerIntents) + [pscustomobject]@{
+                id = $intentId
+                status = 'completed-existing'
+                processedAt = [DateTimeOffset]::UtcNow.ToString('o')
+                safeResultRef = "queue-item:$existingWorkItemId"
+            }
+            Write-BridgeLog -Event 'owner-intent' -Status 'completed-existing' -Detail $existingWorkItemId
+            continue
+        }
+        if (-not $EnableCanonicalWrites) {
+            Write-BridgeLog -Event 'owner-intent' -Status 'deferred' -Detail 'canonical_writes_disabled'
+            continue
+        }
+        $writeReady = Test-CanonicalWriteReady
+        if (-not $writeReady.ready) {
+            Write-BridgeLog -Event 'owner-intent' -Status 'deferred' -Detail $writeReady.reason
+            continue
+        }
+
+        try {
+            $queue = Read-JsonFile -Path $queuePath
+            if ($null -eq $queue) { throw 'Canonical queue is unavailable.' }
+            $actionClass = Get-IntentActionClass -Mode ([string]$intent.mode)
+            $workItemArgs = @{
+                Client = [string]$intent.clientId
+                DedupeKey = "sites-intent:$intentId"
+                Title = [string]$intent.title
+                RequestedOutcome = [string]$intent.instruction
+                SourceType = 'user'
+                SourceLocator = "sites-intent:$intentId"
+                SourceSummary = 'Authenticated owner instruction captured in the private Marketing Chief Studio.'
+                Priority = [string]$intent.priority
+                PriorityRationale = "Owner-set $([string]$intent.priority) priority in the private Marketing Chief Studio."
+                NextAction = [string]$intent.instruction
+                ActionClass = $actionClass
+                DefinitionOfDone = @(
+                    'Complete the requested local outcome and record allowlisted evidence.',
+                    'Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.',
+                    'Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.'
+                )
+                ApprovalTier = 'automatic'
+                ApprovalAction = 'Local reversible preparation only. Any consequential external action remains separately approval-gated.'
+                ExpectedQueueRevision = [int]$queue.revision
+            }
+            if (-not [string]::IsNullOrWhiteSpace([string]$intent.dueAt)) {
+                $workItemArgs.DueAt = [string]$intent.dueAt
+            }
+            if ($DryRun) { $workItemArgs.DryRun = $true }
+            $createdOutput = & (Join-Path $PSScriptRoot 'New-MarketingWorkItem.ps1') @workItemArgs
+            $created = (($createdOutput -join [Environment]::NewLine) | ConvertFrom-Json)
+            $workItemId = [string]$created.workItemId
+            if ([string]::IsNullOrWhiteSpace($workItemId)) { throw 'The canonical work-item writer returned no work-item identifier.' }
+            if (-not $DryRun) {
+                Publish-CanonicalPaths -Paths @(
+                    'queue/work-items.json',
+                    'CONTROL.md',
+                    'state/queue-mutations.jsonl'
+                ) -Message "Capture private Studio instruction for $([string]$intent.clientId)"
+            }
+            Resolve-OwnerIntent -Intent $intent -State completed `
+                -Summary 'Captured the exact owner instruction as a governed client-routed canonical work item. No external action was performed.' `
+                -SafeResultRef ("queue-item:{0}" -f $workItemId)
+            $state.processedOwnerIntents = @($state.processedOwnerIntents) + [pscustomobject]@{
+                id = $intentId
+                status = if ($DryRun) { 'would-create' } else { 'completed' }
+                processedAt = [DateTimeOffset]::UtcNow.ToString('o')
+                safeResultRef = "queue-item:$workItemId"
+            }
+            Write-BridgeLog -Event 'owner-intent' -Status 'completed' -Detail $workItemId
+        }
+        catch {
+            $safeFailure = ConvertTo-SafeBridgeMessage $_.Exception.Message
+            Resolve-OwnerIntent -Intent $intent -State failed `
+                -Summary ("The instruction could not enter the canonical queue safely: {0}" -f $safeFailure) `
+                -SafeResultRef ("sites-request:{0}" -f $intentId)
+            $state.processedOwnerIntents = @($state.processedOwnerIntents) + [pscustomobject]@{
+                id = $intentId
+                status = 'failed'
+                processedAt = [DateTimeOffset]::UtcNow.ToString('o')
+            }
+            Write-BridgeLog -Event 'owner-intent' -Status 'failed' -Detail $safeFailure
+        }
+    }
+
     $snapshot = Invoke-RestMethod -Uri ([string]$config.localStudioUrl) -Method Get -TimeoutSec 60 -UseBasicParsing
     if (
         [int]$snapshot.schemaVersion -ne 2 -or
@@ -411,6 +553,7 @@ try {
         clientCount = @($snapshot.clients).Count
         hostedChoiceCount = @($remote.hostedChoices).Count
         queuedOperatorRequestCount = @($remote.operatorRequests | Where-Object { [string]$_.state -ceq 'queued' }).Count
+        queuedOwnerIntentCount = @($remoteOwnerIntents | Where-Object { [string]$_.state -ceq 'queued' }).Count
         credentialSource = 'Windows Credential Manager (machine and Sites dispatch credentials)'
         containsSecrets = $false
         containsRawCommunications = $false
