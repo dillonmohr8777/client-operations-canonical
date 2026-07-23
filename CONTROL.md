@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-23T18:16:45.5433105+00:00`
-Queue revision: `175`
+Last reconciled: `2026-07-23T21:14:23.2231158+00:00`
+Queue revision: `176`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -66,6 +66,7 @@ Mode: `manual-pilot`
 | `wi-20260723-0004` | `align-hcm` | Finish Align August 2026 production package | Ready | P1 | Using the verified Align repository, render and inspect AN01 through AN06 as final MP4s, create the Beumer and Troon static assets, cut the two remaining Maher and Brent podcast recuts, and assemble QA evidence. Preserve Joann and Moe as recording dependent gates. Keep every output local for owner review. | No evidenced deadline |
 | `wi-20260723-0005` | `align-hcm` | Finish Align HCM HubSpot Customer Agent | Verification | P1 | Verify the working live agent against the prepared acceptance suite from the authenticated Align HubSpot computer, then record its knowledge-source sync, human handoff, channel, credit, and activation evidence. | No evidenced deadline |
 | `wi-20260723-0006` | `momentum-360` | Complete Mac AI operations and Slack enablement bundle | Blocked | P1 | Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity. | No evidenced deadline |
+| `wi-20260723-0007` | `align-hcm` | Full completion of deliverables | Ready | P1 | Check and see that all deliverables were done today | No evidenced deadline |
 
 ## Waiting on Dillon
 
