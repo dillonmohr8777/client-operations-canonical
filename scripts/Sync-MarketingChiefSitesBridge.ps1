@@ -2,6 +2,7 @@
 param(
     [string]$ConfigPath,
     [switch]$EnableCanonicalWrites,
+    [switch]$ForceBackup,
     [switch]$DryRun
 )
 
@@ -16,6 +17,7 @@ if ([string]::IsNullOrWhiteSpace($ConfigPath)) {
 $statePath = Join-Path $projectRoot 'state\hosted-sync-state.json'
 $logPath = Join-Path $projectRoot 'state\hosted-sync.log.jsonl'
 $queuePath = Join-Path $projectRoot 'queue\work-items.json'
+$backupRoot = 'C:\Users\dillo\AppData\Local\Codex\MarketingChief\SitesBackups'
 
 function Read-JsonFile {
     param([Parameter(Mandatory = $true)][string]$Path)
@@ -67,6 +69,115 @@ function Write-StateFile {
     }
     finally {
         Remove-Item -LiteralPath $temp -Force -ErrorAction SilentlyContinue
+    }
+}
+
+function Write-HostedBackup {
+    param(
+        [Parameter(Mandatory = $true)][object]$Remote,
+        [Parameter(Mandatory = $true)][object]$LocalSnapshot
+    )
+    if (-not (Test-Path -LiteralPath $backupRoot -PathType Container)) {
+        New-Item -ItemType Directory -Path $backupRoot -Force | Out-Null
+    }
+
+    $capturedAt = [DateTimeOffset]::Now
+    $latestPath = Join-Path $backupRoot 'latest.json'
+    $latest = Read-JsonFile -Path $latestPath
+    $slotKey = $capturedAt.ToString('yyyyMMdd-HH')
+    $scheduledHour = $capturedAt.Hour -in @(9, 17)
+    if (
+        -not $ForceBackup -and
+        $null -ne $latest -and
+        (-not $scheduledHour -or [string]$latest.slotKey -ceq $slotKey)
+    ) {
+        return [pscustomobject]@{
+            path = [string]$latest.path
+            contentHash = [string]$latest.contentHash
+            changed = $false
+            status = if ($scheduledHour) { 'current-slot-exists' } else { 'not-due' }
+        }
+    }
+
+    $content = [pscustomobject][ordered]@{
+        schemaVersion = 1
+        remoteD1 = $Remote
+        localSnapshot = $LocalSnapshot
+    }
+    $contentJson = $content | ConvertTo-Json -Depth 100 -Compress
+    if ($contentJson -match '(?i)(?:bw://item/|authorization["'']?\s*[:=]\s*["'']?bearer|password\s*[:=]|api[_-]?key\s*[:=]|secret\s*[:=])') {
+        throw 'The hosted backup contains prohibited secret-shaped data.'
+    }
+
+    $bytes = [Text.UTF8Encoding]::new($false).GetBytes($contentJson)
+    $sha256 = [Security.Cryptography.SHA256]::Create()
+    try {
+        $hash = ([BitConverter]::ToString($sha256.ComputeHash($bytes)) -replace '-', '').ToLowerInvariant()
+    }
+    finally {
+        $sha256.Dispose()
+    }
+
+    if ($null -ne $latest -and [string]$latest.contentHash -ceq $hash) {
+        return [pscustomobject]@{
+            path = [string]$latest.path
+            contentHash = $hash
+            changed = $false
+            status = 'unchanged'
+        }
+    }
+
+    $fileName = '{0}-{1}.json' -f $capturedAt.ToUniversalTime().ToString('yyyyMMddTHHmmssfffZ'), $hash.Substring(0, 12)
+    $backupPath = Join-Path $backupRoot $fileName
+    $tempPath = "$backupPath.tmp.$([guid]::NewGuid().ToString('N'))"
+    try {
+        [IO.File]::WriteAllText(
+            $tempPath,
+            (($content | Add-Member -MemberType NoteProperty -Name capturedAt -Value $capturedAt.ToString('o') -PassThru |
+                ConvertTo-Json -Depth 100) + [Environment]::NewLine),
+            [Text.UTF8Encoding]::new($false)
+        )
+        Move-Item -LiteralPath $tempPath -Destination $backupPath -Force
+    }
+    finally {
+        Remove-Item -LiteralPath $tempPath -Force -ErrorAction SilentlyContinue
+    }
+
+    $manifest = [pscustomobject][ordered]@{
+        schemaVersion = 1
+        capturedAt = $capturedAt.ToString('o')
+        slotKey = $slotKey
+        path = $backupPath
+        contentHash = $hash
+        queueRevision = [int]$LocalSnapshot.queue.revision
+    }
+    $manifestTemp = "$latestPath.tmp.$([guid]::NewGuid().ToString('N'))"
+    try {
+        [IO.File]::WriteAllText(
+            $manifestTemp,
+            (($manifest | ConvertTo-Json) + [Environment]::NewLine),
+            [Text.UTF8Encoding]::new($false)
+        )
+        Move-Item -LiteralPath $manifestTemp -Destination $latestPath -Force
+    }
+    finally {
+        Remove-Item -LiteralPath $manifestTemp -Force -ErrorAction SilentlyContinue
+    }
+
+    $retentionFloor = [DateTime]::UtcNow.AddDays(-90)
+    Get-ChildItem -LiteralPath $backupRoot -Filter '*.json' -File |
+        Where-Object { $_.Name -ne 'latest.json' -and $_.LastWriteTimeUtc -lt $retentionFloor } |
+        ForEach-Object {
+            if ([IO.Path]::GetDirectoryName($_.FullName) -ceq $backupRoot) {
+                Remove-Item -LiteralPath $_.FullName -Force
+            }
+        }
+
+    [pscustomobject]@{
+        path = $backupPath
+        contentHash = $hash
+        changed = $true
+        status = 'created'
     }
 }
 
@@ -561,6 +672,9 @@ try {
         }
         $state.lastSnapshotRevision = [int]$syncResult.snapshot.queueRevision
         $state.lastSnapshotAt = [DateTimeOffset]::UtcNow.ToString('o')
+        $backup = Write-HostedBackup -Remote $remote -LocalSnapshot $snapshot
+        Write-BridgeLog -Event 'hosted-backup' -Status $backup.status `
+            -Detail ("queue:{0};hash:{1}" -f [int]$snapshot.queue.revision, $backup.contentHash.Substring(0, 12))
     }
     $state.lastRunStatus = if ($DryRun) { 'dry-run-ok' } else { 'ok' }
     Write-StateFile -State $state
@@ -572,6 +686,7 @@ try {
         hostedChoiceCount = @($remote.hostedChoices).Count
         queuedOperatorRequestCount = @($remote.operatorRequests | Where-Object { [string]$_.state -ceq 'queued' }).Count
         queuedOwnerIntentCount = @($remoteOwnerIntents | Where-Object { [string]$_.state -ceq 'queued' }).Count
+        backupRoot = $backupRoot
         credentialSource = 'Windows Credential Manager (machine and Sites dispatch credentials)'
         containsSecrets = $false
         containsRawCommunications = $false

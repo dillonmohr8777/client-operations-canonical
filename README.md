@@ -32,6 +32,12 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\dillo\.codex\sk
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\dillo\.codex\skills\omniroute-gateway\scripts\Invoke-OmniRoute.ps1 -Action Doctor
 ```
 
+## Hosted Studio storage, backup, and access
+
+The Marketing Chief Operator Studio uses ChatGPT Sites for authenticated hosting and source-version archives, plus Cloudflare D1 for durable snapshots, choices, operator requests, owner intents, training runs, and evaluations. Its access policy remains custom owner-only until Dillon supplies the exact active workspace user email to invite; an invitation never implies permission to send, publish, spend, change accounts, or bypass the canonical Marketing Chief writer.
+
+The hidden `MarketingChief-SitesBridge` task runs every 15 minutes. In addition to synchronizing the allowlisted Windows snapshot, it writes an independent, secret-screened backup of the hosted D1 payload and current local snapshot at the 9 AM and 5 PM America/New_York backup slots. Backups are deduplicated, retained for 90 days, and stored under the ACL-protected `C:\Users\dillo\AppData\Local\Codex\MarketingChief\SitesBackups` directory. The bridge never stores its machine or Sites dispatch credentials in those backup files.
+
 ### Graph-backed execution
 
 Nontrivial automatic work now runs through a persistent, version-bound execution graph under `state/execution-graphs/<work-item-id>/<graph-run-id>/`. The graph connects the exact queue item, active client, source evidence, artifacts, approval boundary, worker step, one verifier per definition-of-done check, bounded handoff, and Chief reconciliation. It improves context continuity, provenance, restartability, and QA without becoming another queue.
