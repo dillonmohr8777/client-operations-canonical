@@ -26,6 +26,18 @@ function Test-ValidNonFutureTimestamp {
     return $parsed.ToUniversalTime() -le $healthAsOf.ToUniversalTime()
 }
 
+function Get-OptionalProperty {
+    param(
+        $InputObject,
+        [Parameter(Mandatory = $true)][string]$Name,
+        $DefaultValue = $null
+    )
+    if ($null -eq $InputObject -or $null -eq $InputObject.PSObject.Properties[$Name]) {
+        return $DefaultValue
+    }
+    return $InputObject.PSObject.Properties[$Name].Value
+}
+
 function Invoke-BoundedPowerShellProbe {
     param(
         [Parameter(Mandatory=$true)][string]$ScriptPath,
@@ -395,8 +407,11 @@ if ($slackScopeBlockerVerified) {
     $humanGates.Add('slack_connector_scope_upgrade')
 }
 $successfulSlackConnectorChecks = @(if ($null -eq $slackHistory -or $null -eq $slackHistory.connectorChecks) { @() } else { @($slackHistory.connectorChecks | Where-Object { [string]$_.result -ceq 'success' }) })
-$verifiedSlackReadScopes = @($successfulSlackConnectorChecks | ForEach-Object { [string]$_.scope } | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | Select-Object -Unique)
-$slackFilesWriteProbe = @($successfulSlackConnectorChecks | Where-Object { [string]$_.capability -ceq 'files:write' -and -not [bool]$_.fileUploadedOrShared })
+$verifiedSlackReadScopes = @($successfulSlackConnectorChecks | ForEach-Object { [string](Get-OptionalProperty -InputObject $_ -Name 'scope' -DefaultValue '') } | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | Select-Object -Unique)
+$slackFilesWriteProbe = @($successfulSlackConnectorChecks | Where-Object {
+    [string](Get-OptionalProperty -InputObject $_ -Name 'capability' -DefaultValue '') -ceq 'files:write' -and
+    -not [bool](Get-OptionalProperty -InputObject $_ -Name 'fileUploadedOrShared' -DefaultValue $false)
+})
 $slackCompleteVerified = (
     $slackHistoryPrivacySafe -and
     [string]$slackHistory.status -ceq 'complete' -and

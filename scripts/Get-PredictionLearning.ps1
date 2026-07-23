@@ -9,6 +9,18 @@ $ErrorActionPreference = 'Stop'
 if ([string]::IsNullOrWhiteSpace($LedgerPath)) { $LedgerPath = Join-Path $PSScriptRoot '..\state\prediction-outcomes.jsonl' }
 if ($MinimumSamples -lt 1) { throw 'MinimumSamples must be at least 1.' }
 
+function Get-OptionalProperty {
+    param(
+        $InputObject,
+        [Parameter(Mandatory = $true)][string]$Name,
+        $DefaultValue = $null
+    )
+    if ($null -eq $InputObject -or $null -eq $InputObject.PSObject.Properties[$Name]) {
+        return $DefaultValue
+    }
+    return $InputObject.PSObject.Properties[$Name].Value
+}
+
 $entries = @()
 if (Test-Path -LiteralPath $LedgerPath -PathType Leaf) {
     foreach ($line in @(Get-Content -LiteralPath $LedgerPath -Encoding UTF8)) {
@@ -20,10 +32,15 @@ if (Test-Path -LiteralPath $LedgerPath -PathType Leaf) {
 }
 
 $groups = @($entries | Where-Object {
-    -not [string]::IsNullOrWhiteSpace([string]$_.clientId) -and
-    -not [string]::IsNullOrWhiteSpace([string]$_.predictionLane) -and
-    -not [string]::IsNullOrWhiteSpace([string]$_.actionClass)
-} | Group-Object { '{0}|{1}|{2}' -f $_.clientId,$_.predictionLane,$_.actionClass })
+    -not [string]::IsNullOrWhiteSpace([string](Get-OptionalProperty -InputObject $_ -Name 'clientId' -DefaultValue '')) -and
+    -not [string]::IsNullOrWhiteSpace([string](Get-OptionalProperty -InputObject $_ -Name 'predictionLane' -DefaultValue '')) -and
+    -not [string]::IsNullOrWhiteSpace([string](Get-OptionalProperty -InputObject $_ -Name 'actionClass' -DefaultValue ''))
+} | Group-Object {
+    '{0}|{1}|{2}' -f
+        [string](Get-OptionalProperty -InputObject $_ -Name 'clientId' -DefaultValue ''),
+        [string](Get-OptionalProperty -InputObject $_ -Name 'predictionLane' -DefaultValue ''),
+        [string](Get-OptionalProperty -InputObject $_ -Name 'actionClass' -DefaultValue '')
+})
 
 $patterns = foreach ($group in $groups) {
     $parts = $group.Name -split '\|',3
