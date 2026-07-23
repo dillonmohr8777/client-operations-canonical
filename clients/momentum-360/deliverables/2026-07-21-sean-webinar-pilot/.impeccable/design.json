@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-23T15:30:00-04:00",
+  "title": "Design System: Momentum 360 Growth Workshop",
+  "extensions": {
+    "colorMeta": {
+      "midnight-stage": {
+        "role": "neutral",
+        "displayName": "Midnight Stage",
+        "canonical": "#041027",
+        "tonalRamp": ["#020711", "#041027", "#10264a", "#28466d", "#526e91", "#8298b4", "#bac7d7", "#eef3f8"]
+      },
+      "momentum-blue": {
+        "role": "primary",
+        "displayName": "Momentum Blue",
+        "canonical": "#2f82ff",
+        "tonalRamp": ["#041a3f", "#082f72", "#0b4da8", "#176bdc", "#2f82ff", "#70a9ff", "#b3d0ff", "#edf5ff"]
+      },
+      "founder-gold": {
+        "role": "secondary",
+        "displayName": "Founder Gold",
+        "canonical": "#f2b63d",
+        "tonalRamp": ["#2e1c02", "#5c3906", "#8e5d0c", "#be831a", "#f2b63d", "#f7cf7b", "#fae4b2", "#fff7e7"]
+      },
+      "horizon-cyan": {
+        "role": "tertiary",
+        "displayName": "Horizon Cyan",
+        "canonical": "#7be7ff",
+        "tonalRamp": ["#05272f", "#0a4b59", "#167184", "#2d9db2", "#7be7ff", "#a7efff", "#d2f7ff", "#f2fdff"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Founder Display",
+        "purpose": "Monumental hero and chapter statements."
+      },
+      "body": {
+        "displayName": "Operating Copy",
+        "purpose": "Readable workshop explanation, form, and consent language."
+      }
+    },
+    "shadows": [
+      {
+        "name": "founder-stage",
+        "value": "0 44px 110px rgba(0, 4, 17, 0.5)",
+        "purpose": "Separates portrait stages from the midnight environment."
+      },
+      {
+        "name": "interactive-lift",
+        "value": "0 18px 42px rgba(0, 5, 22, 0.34)",
+        "purpose": "Appears only when an interactive control changes plane."
+      }
+    ],
+    "motion": [
+      {
+        "name": "momentum-ease",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Primary exponential ease for optical and spatial transitions."
+      },
+      {
+        "name": "chapter-scrub",
+        "value": "scroll-linked",
+        "purpose": "Moves the workshop timeline horizontally while the story remains legible."
+      }
+    ],
+    "breakpoints": [
+      { "name": "compact", "value": "520px" },
+      { "name": "mobile", "value": "760px" },
+      { "name": "tablet", "value": "980px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Workshop Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Gold decision control for registration and calendar commitment.",
+      "html": "<button class=\"ds-button-primary\">Reserve your seat</button>",
+      "css": ".ds-button-primary{min-height:48px;padding:15px 22px;color:#09152b;background:#f2b63d;border:0;border-radius:8px;font:700 14px 'Syne',sans-serif;box-shadow:0 10px 26px rgba(0,5,22,.28);transition:transform .28s cubic-bezier(.16,1,.3,1),box-shadow .28s cubic-bezier(.16,1,.3,1)}.ds-button-primary:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(0,5,22,.34)}.ds-button-primary:focus-visible{outline:3px solid #7be7ff;outline-offset:3px}.ds-button-primary:active{transform:translateY(0)}"
+    },
+    {
+      "name": "Optical Glass Panel",
+      "kind": "custom",
+      "description": "Functional Liquid Glass used only over founder imagery or active environment.",
+      "html": "<section class=\"ds-glass\"><span>MAC + SEAN</span><strong>Build the weekly rhythm.</strong></section>",
+      "css": ".ds-glass{display:grid;gap:12px;padding:32px;color:#f4f7fb;background:linear-gradient(130deg,rgba(21,55,109,.62),rgba(4,19,46,.42)),rgba(5,19,44,.46);border:1px solid rgba(176,214,255,.24);border-radius:14px;box-shadow:0 30px 72px rgba(0,5,22,.44);backdrop-filter:blur(26px) saturate(1.35)}.ds-glass span{color:#7be7ff;font:700 10px 'Syne',sans-serif;letter-spacing:.12em}.ds-glass strong{font:700 34px/1 'Syne',sans-serif}.ds-glass:focus-within{outline:3px solid #7be7ff;outline-offset:3px}"
+    },
+    {
+      "name": "Workshop Input",
+      "kind": "input",
+      "description": "Dark inset registration field with persistent label and clear focus recovery.",
+      "html": "<label class=\"ds-field\">Work email<input type=\"email\" placeholder=\"you@company.com\"></label>",
+      "css": ".ds-field{display:grid;gap:8px;color:#dce7f7;font:600 12px 'DM Sans',sans-serif}.ds-field input{min-height:48px;padding:0 14px;color:#f4f7fb;background:#041027;border:1px solid rgba(151,188,239,.24);border-radius:8px;font:400 16px 'DM Sans',sans-serif}.ds-field input:focus{border-color:#7be7ff;outline:3px solid rgba(123,231,255,.2);outline-offset:1px}.ds-field input::placeholder{color:#8298b4}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Founder Command Stage",
+    "overview": "The experience combines a founder keynote, a live operating room, and premium optical glass. Mac and Sean are the human anchor that moves visitors from ambition to a concrete weekly system.",
+    "keyCharacteristics": [
+      "Founder imagery at editorial scale with deliberate close crops.",
+      "Deep navy fields interrupted by cyan optics and controlled gold signals.",
+      "Scroll-led chapters with one horizontal system sequence and one cinematic registration close."
+    ],
+    "rules": [
+      {
+        "name": "The Gold Decision Rule",
+        "body": "Gold appears where the visitor commits, confirms, or reads an essential event fact.",
+        "section": "colors"
+      },
+      {
+        "name": "The Physical Glass Rule",
+        "body": "Every blurred surface must reveal, magnify, or separate something behind it.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do let one portrait, statement, or system interaction dominate each scene.",
+      "Do provide static and reduced-motion fallbacks for every authored motion."
+    ],
+    "donts": [
+      "Don't invent testimonials, performance numbers, or approved event details.",
+      "Don't let motion hide core content or block registration."
+    ]
+  }
+}

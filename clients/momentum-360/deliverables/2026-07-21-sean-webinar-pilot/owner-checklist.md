@@ -12,7 +12,7 @@
 ## Dillon
 
 - Replace prototype date and meeting-link placeholders.
-- Connect the form to an approved destination with a consent timestamp.
+- Verify the Netlify `workshop-registration` submission in the live site dashboard.
 - Configure confirmation, reminder, replay, unsubscribe, and suppression handling.
 - Map the event schema into the approved analytics destination.
 - Test desktop, mobile, form validation, calendar links, time zone, reminders, and booking attribution.
@@ -22,7 +22,7 @@
 - Exact permissioned audience and invitation count.
 - Sender identity and message copy.
 - Webinar date and calendar details.
-- Privacy language, retention period, and unsubscribe route.
+- Retention period and unsubscribe route. The page already links Momentum Digital's published privacy policy.
 - Production deployment and any paid budget.
 
 ## QA acceptance

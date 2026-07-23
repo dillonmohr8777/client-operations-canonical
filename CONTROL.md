@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-23T15:05:48.7264423+00:00`
-Queue revision: `168`
+Last reconciled: `2026-07-23T15:57:58.0087594+00:00`
+Queue revision: `170`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -57,14 +57,14 @@ Mode: `manual-pilot`
 | `wi-20260719-0001` | `revive-systems` | Prepare Revive ads-readiness response | Done | P1 | Create a local unsent readiness assessment and response draft from current Revive evidence, keeping ad activation and external delivery out of scope. | No evidenced deadline |
 | `wi-20260721-0001` | `kimberly-james-bridal` | Reconcile KJB converting ad and landing page | Done | P0 | Meta read-only account and campaign are verified; restore the authorized Google Ads account readback, then match the appointment to platform, ad or asset, landing-page URL, cost, timestamp, and booking evidence; retain the response as a local draft until reconciled. | No evidenced deadline |
 | `wi-20260721-0002` | `momentum-360` | Prepare AI Tech News next steps and check-in packet | Done | P1 | Run the local QA and handoff checklist, record final decisions and owners, and keep the check-in response unsent until participants and timing are confirmed. | No evidenced deadline |
-| `wi-20260721-0003` | `momentum-360` | Prepare Sean organic webinar acquisition system brief | Done | P1 | Review the upgraded live Momentum workshop prototype; no Slack or email delivery has been made. | No evidenced deadline |
+| `wi-20260721-0003` | `momentum-360` | Prepare Sean organic webinar acquisition system brief | Done | P1 | Confirm the final live date, real meeting URL, invitation sender, and permissioned audience, then approve the exact Slack or email invitation before distribution. | No evidenced deadline |
 | `wi-20260722-0001` | `va-claims-edge` | Deploy the VA Claims Phase 2 portal release | Done | P0 | Reconcile the authorized VA Claims production deployment and independent public readback into the canonical verified outcome. | No evidenced deadline |
 | `wi-20260723-0001` | `kimberly-james-bridal` | Apply Mac KJB Search draft controls | Done | P0 | Draft-control work is complete; the separately gated launch swap is tracked in wi-20260723-0002. | No evidenced deadline |
 | `wi-20260723-0002` | `kimberly-james-bridal` | Approve controlled KJB Search launch swap | Blocked | P0 | Dillon must complete the visible Google Ads Confirm it is you gate in the preserved KJB Chrome tab; then correct the remaining ad validation issue, publish Search, attach and verify the staged negatives, pause Performance Max, and verify the final serving state. | No evidenced deadline |
 | `wi-20260723-0003` | `momentum-360` | Finish Momentum decision-ready execution bundle | Verification | P1 | Using current canonical Momentum evidence, create one local decision ready bundle covering the caller response trigger and copy questions, opt out behavior, routing checklist, test and rollback plan, AI Tech News business facts and first three prospect decisions, and Google Places prerequisites. Keep every output local for owner review. | No evidenced deadline |
 | `wi-20260723-0004` | `align-hcm` | Finish Align August 2026 production package | Ready | P1 | Using the verified Align repository, render and inspect AN01 through AN06 as final MP4s, create the Beumer and Troon static assets, cut the two remaining Maher and Brent podcast recuts, and assemble QA evidence. Preserve Joann and Moe as recording dependent gates. Keep every output local for owner review. | No evidenced deadline |
 | `wi-20260723-0005` | `align-hcm` | Finish Align HCM HubSpot Customer Agent | Blocked | P1 | Resume from the other computer that has the authenticated Align HubSpot portal. In portal 242825734, audit and configure Customer Agent knowledge, guidance, testing, human handoff, channels, credits, and activation state using the prepared configuration package. | No evidenced deadline |
-| `wi-20260723-0006` | `momentum-360` | Complete Mac AI operations and Slack enablement bundle | Blocked | P1 | Have the authorized account owner complete QRTIGER and PostGrid account authentication, provide the approved sender and mail template, and explicitly approve any test mail before activation. | No evidenced deadline |
+| `wi-20260723-0006` | `momentum-360` | Complete Mac AI operations and Slack enablement bundle | Blocked | P1 | Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity. | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -157,19 +157,6 @@ Mode: `manual-pilot`
 - The intended live chat channel, working hours, credit state, and human assignment route are verified.
 - Any activation or publication result is recorded with exact evidence and no client boundary crossing.
 
-### Complete Mac AI operations and Slack enablement bundle
-
-**Decision:** Complete vendor authentication and approve the exact sender, template, budget, and test recipient before any direct mail is sent.
-
-**Next action:** Have the authorized account owner complete QRTIGER and PostGrid account authentication, provide the approved sender and mail template, and explicitly approve any test mail before activation.
-
-**Definition of done:**
-
-- The 32-row QR and direct-mail control sheet is prepared with outbound mail disabled.
-- Draft QR and direct-mail workflows are saved and remain off until vendor authentication.
-- AI inside Slack is verified with a successful test response.
-- A focused reusable walkthrough is rendered and technically verified.
-
 ## Blocked or at risk
 
 - **Reconcile two Fagan Painting website leads:** Verify mailbox processing, the named response owner, and lead-level disposition through the approved Fagan mailbox, CRM, or Zapier records before any prospect contact.
@@ -177,8 +164,8 @@ Mode: `manual-pilot`
 - **Approve controlled KJB Search launch swap:** Dillon must complete the visible Google Ads Confirm it is you gate in the preserved KJB Chrome tab; then correct the remaining ad validation issue, publish Search, attach and verify the staged negatives, pause Performance Max, and verify the final serving state.
   Current evidence: Publication was approved and the exact KJB draft was reopened in authenticated Chrome. Google Ads presented a human identity confirmation gate and a remaining ad validation issue. No campaign was published or paused and no spend state changed.
 - **Finish Align HCM HubSpot Customer Agent:** Resume from the other computer that has the authenticated Align HubSpot portal. In portal 242825734, audit and configure Customer Agent knowledge, guidance, testing, human handoff, channels, credits, and activation state using the prepared configuration package.
-- **Complete Mac AI operations and Slack enablement bundle:** Have the authorized account owner complete QRTIGER and PostGrid account authentication, provide the approved sender and mail template, and explicitly approve any test mail before activation.
-  Current evidence: Prepared the 32-row control sheet with mail disabled, saved the QR and direct-mail Zap drafts off, verified Slackbot AI with a successful live test, and rendered a verified 1080p four-minute-thirty-seven-second walkthrough. Vendor authentication and mail approval remain pending; no mail was sent.
+- **Complete Mac AI operations and Slack enablement bundle:** Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity.
+  Current evidence: The 32-row controlled direct-mail sheet, unpublished QRTIGER and PostGrid Zap drafts, verified Slackbot AI response, and narrated 1080p walkthrough are complete. QRTIGER is staged at its Google account chooser and PostGrid still requires a human CAPTCHA, terms acceptance, and account details. All 32 mail rows remain suppressed and no mail or spend occurred.
 
 ## Intake quarantine
 

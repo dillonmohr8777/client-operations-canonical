@@ -66,7 +66,7 @@ Current state:
 - Unpublished
 - Off
 - No test run performed
-- QRTIGER connection incomplete
+- QRTIGER connection incomplete; the login is staged at Google's account chooser
 
 Activation gate:
 
@@ -147,3 +147,12 @@ The local walkthrough is 4 minutes 37 seconds, 1920 by 1080, and includes eight 
 8. Run one test postcard.
 9. Record provider IDs and outcomes in the campaign sheet.
 10. Only then consider enabling a production batch.
+
+## Workshop follow-through
+
+Mac and Sean's production workshop experience was upgraded and deployed at
+https://momentum-workshop-pilot.netlify.app. The live Netlify registration form
+was verified end to end, consent-first calendar links were verified, and all
+synthetic submissions were removed after QA. The audience invitation remains
+unsent until the final date, meeting URL, sender, and permissioned audience are
+confirmed.

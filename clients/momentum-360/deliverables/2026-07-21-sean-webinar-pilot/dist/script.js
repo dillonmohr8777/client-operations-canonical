@@ -28,9 +28,10 @@ document.querySelectorAll("[data-route]").forEach((control) =>
   }),
 );
 
-registrationForm.addEventListener("submit", (event) => {
+registrationForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!registrationForm.checkValidity()) {
+    error.textContent = "Please complete each required field.";
     error.hidden = false;
     registrationForm.reportValidity();
     return;
@@ -47,14 +48,56 @@ registrationForm.addEventListener("submit", (event) => {
     calendarConsent: form.get("calendar_consent") === "on",
     createdAt: new Date().toISOString(),
   };
+  const hostedSubmission = isHostedSubmission();
+  const calendarWindow = record.calendarConsent
+    ? window.open("about:blank", "_blank")
+    : null;
+  if (calendarWindow) {
+    calendarWindow.opener = null;
+  }
+  try {
+    if (hostedSubmission) {
+      await submitRegistration(form);
+    }
+  } catch {
+    calendarWindow?.close();
+    error.textContent =
+      "We could not save your registration. Please try again in a moment.";
+    error.hidden = false;
+    return;
+  }
+  if (calendarWindow) {
+    calendarWindow.location.href = googleCalendarUrl();
+  }
   registrations = [record, ...registrations].slice(0, 25);
-  write(KEYS.registrations, registrations);
+  if (!hostedSubmission) {
+    write(KEYS.registrations, registrations);
+  }
   error.hidden = true;
-  updateConfirmation(record.firstName);
+  updateConfirmation(record.firstName, record.calendarConsent);
   updateMetrics();
   renderRegistrants();
   showView("confirmation");
 });
+
+function isHostedSubmission() {
+  return (
+    registrationForm.dataset.submitMode === "netlify" &&
+    !["localhost", "127.0.0.1"].includes(window.location.hostname)
+  );
+}
+
+async function submitRegistration(formData) {
+  formData.set("form-name", registrationForm.getAttribute("name"));
+  const response = await fetch(registrationForm.action, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(formData).toString(),
+  });
+  if (!response.ok) {
+    throw new Error(`Registration failed with ${response.status}`);
+  }
+}
 
 configForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -87,6 +130,7 @@ document
 setupShell();
 setupReveal();
 setupExperience();
+setupAgendaExperience();
 setupFormProgress();
 setupMobileDock();
 hydrateConfig();
@@ -96,15 +140,22 @@ updateMetrics();
 showView(window.location.hash === "#operator" ? "operator" : "register");
 
 function showView(name) {
-  views.forEach((view) => {
-    const active = view.dataset.view === name;
-    view.hidden = !active;
-    view.classList.toggle("active", active);
-  });
-  document.querySelector("#mobileNav").classList.remove("open");
-  document.querySelector("#menuButton").setAttribute("aria-expanded", "false");
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  document.querySelector("#mobileDock")?.classList.toggle("hidden", name !== "register");
+  const updateView = () => {
+    views.forEach((view) => {
+      const active = view.dataset.view === name;
+      view.hidden = !active;
+      view.classList.toggle("active", active);
+    });
+    document.querySelector("#mobileNav").classList.remove("open");
+    document.querySelector("#menuButton").setAttribute("aria-expanded", "false");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    document.querySelector("#mobileDock")?.classList.toggle("hidden", name !== "register");
+  };
+  if (document.startViewTransition) {
+    document.startViewTransition(updateView);
+  } else {
+    updateView();
+  }
 }
 
 function hydrateConfig() {
@@ -127,12 +178,19 @@ function updateEventDetails() {
   document.querySelector("#ticket-date").textContent = date;
   document.querySelector("#ticket-time").textContent =
     `${time} ${zone} · ${eventConfig.duration} minutes`;
+  const orbitDate = new Date(`${eventConfig.date}T12:00:00`);
+  document.querySelector("#orbit-month").textContent = orbitDate
+    .toLocaleDateString("en-US", { month: "short" })
+    .toUpperCase();
+  document.querySelector("#orbit-day").textContent = String(orbitDate.getDate()).padStart(2, "0");
   document.querySelector("#google-calendar").href = googleCalendarUrl();
 }
 
-function updateConfirmation(firstName) {
+function updateConfirmation(firstName, calendarRequested = false) {
   document.querySelector("#confirmation-copy").textContent =
-    `${firstName}, choose a calendar action only if you want one. Nothing has been inserted automatically.`;
+    calendarRequested
+      ? `${firstName}, your Google Calendar review has opened. Confirm the event there, or use either calendar action below.`
+      : `${firstName}, your seat is ready. Use either calendar action below if you want the event on your calendar.`;
   updateEventDetails();
 }
 
@@ -271,6 +329,101 @@ function setupExperience() {
     motionToggle.setAttribute("aria-pressed", String(off));
     motionToggle.querySelector("b").textContent = off ? "Motion off" : "Motion on";
   }
+}
+
+function setupAgendaExperience() {
+  const root = document.documentElement;
+  const agenda = document.querySelector(".agenda-section");
+  const viewport = document.querySelector(".agenda-viewport");
+  const track = document.querySelector("#agendaTrack");
+  const progress = document.querySelector("#agendaProgress");
+  if (
+    !agenda ||
+    !viewport ||
+    !track ||
+    root.classList.contains("no-motion") ||
+    !window.gsap ||
+    !window.ScrollTrigger ||
+    innerWidth <= 760
+  ) {
+    return;
+  }
+
+  window.gsap.registerPlugin(window.ScrollTrigger);
+  root.classList.add("motion-enhanced");
+  const distance = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
+  window.gsap.to(track, {
+    x: () => -distance(),
+    ease: "none",
+    scrollTrigger: {
+      trigger: agenda,
+      start: "top top",
+      end: () => `+=${Math.max(1100, distance() * 1.35)}`,
+      pin: true,
+      scrub: 0.85,
+      invalidateOnRefresh: true,
+      anticipatePin: 1,
+      onUpdate: (self) => {
+        progress.style.transform = `scaleX(${self.progress})`;
+      },
+    },
+  });
+
+  window.gsap.to(".founder-story-lead", {
+    opacity: 0.18,
+    y: -120,
+    filter: "blur(6px)",
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".founder-story",
+      start: "top top",
+      end: "35% top",
+      scrub: true,
+    },
+  });
+  window.gsap.fromTo(
+    ".founder-beat-mac .founder-crop",
+    { clipPath: "polygon(42% 0, 100% 0, 96% 100%, 36% 94%)" },
+    {
+      clipPath: "polygon(4% 0, 100% 0, 96% 100%, 0 94%)",
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".founder-beat-mac",
+        start: "top 85%",
+        end: "center 42%",
+        scrub: true,
+      },
+    },
+  );
+  window.gsap.fromTo(
+    ".founder-beat-sean .founder-crop",
+    { clipPath: "polygon(0 0, 58% 3%, 62% 94%, 4% 100%)" },
+    {
+      clipPath: "polygon(0 0, 96% 3%, 100% 94%, 4% 100%)",
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".founder-beat-sean",
+        start: "top 85%",
+        end: "center 42%",
+        scrub: true,
+      },
+    },
+  );
+  window.gsap.fromTo(
+    ".closing-portrait",
+    { scale: 1.03, filter: "saturate(.78) contrast(1.03) brightness(.78)" },
+    {
+      scale: 1.13,
+      filter: "saturate(.98) contrast(1.05) brightness(.92)",
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".closing-portal",
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+      },
+    },
+  );
 }
 
 function setupFormProgress() {

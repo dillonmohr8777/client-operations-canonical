@@ -1,4 +1,11 @@
 <!doctype html>
+<!--
+  THESIS: A founder-led command stage turns one messy growth constraint into a weekly operating system; it refuses the anonymous webinar-template hero.
+  OWN-WORLD: Midnight navy, founder gold, optical cyan, close-cropped portraiture, and functional Liquid Glass.
+  STORY: Meet Mac and Sean, see the system work, understand the hour, register intentionally, and choose the calendar action.
+  FIRST VIEWPORT: A monumental statement at left and a close founder portrait occupying the right half, with the date and primary action always visible.
+  FORM: Cinematic founder story extending the incumbent Momentum 360 world, with one horizontal operating-system sequence and progressive-enhancement motion.
+-->
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -14,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -42,8 +49,9 @@
           >
         </a>
         <nav class="desktop-nav" aria-label="Primary navigation">
-          <a href="#workshop">The workshop</a>
+          <a href="#hosts">The founders</a>
           <a href="#system">The system</a>
+          <a href="#agenda">The hour</a>
           <button type="button" data-route="operator">Operator studio</button>
           <a class="nav-cta" href="#register">Reserve a seat</a>
         </nav>
@@ -62,7 +70,8 @@
         </button>
       </div>
       <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-        <a href="#workshop">The workshop</a><a href="#system">The system</a
+        <a href="#hosts">The founders</a><a href="#system">The system</a
+        ><a href="#agenda">The hour</a
         ><button type="button" data-route="operator">Operator studio</button
         ><a href="#register">Reserve a seat</a>
       </nav>
@@ -149,7 +158,7 @@
                 <span class="terminal-dots" aria-hidden="true"
                   ><i></i><i></i><i></i></span
                 ><span>MOMENTUM 360 / WORKSHOP REGISTRATION</span
-                ><span>LOCAL PROTOTYPE</span>
+                ><span>CONSENT-FIRST PILOT</span>
               </div>
               <div class="command-layout">
                 <div class="command-intro">
@@ -163,12 +172,26 @@
                     rhythm you can use immediately.
                   </p>
                   <div class="signal-list">
-                    <span><b>01</b> No automatic calendar insertion</span
-                    ><span><b>02</b> No messages sent by this prototype</span
-                    ><span><b>03</b> Your test data stays in this browser</span>
+                    <span><b>01</b> You control the calendar action</span
+                    ><span><b>02</b> Reminders require your permission</span
+                    ><span><b>03</b> Every follow-up has an opt-out</span>
                   </div>
                 </div>
-                <form id="registration" class="registration-form" novalidate>
+                <form
+                  id="registration"
+                  class="registration-form"
+                  name="workshop-registration"
+                  method="POST"
+                  action="/"
+                  data-netlify="true"
+                  data-submit-mode="netlify"
+                  netlify-honeypot="bot-field"
+                  novalidate
+                >
+                  <input type="hidden" name="form-name" value="workshop-registration" />
+                  <p class="bot-field" aria-hidden="true">
+                    <label>Leave this field empty <input name="bot-field" /></label>
+                  </p>
                   <div class="form-progress" aria-live="polite">
                     <div><span>YOUR REGISTRATION</span><b id="formProgressText">0 of 6 complete</b></div>
                     <span class="form-progress-track" aria-hidden="true"><i id="formProgressBar"></i></span>
@@ -214,7 +237,7 @@
                   >
                   <div class="form-step consent-step"><span>02</span><div><b>Your choices</b><small>You stay in control of follow-up.</small></div></div>
                   <label class="consent"
-                    ><input name="reminders" type="checkbox" required /><span
+                    ><input name="reminders" type="checkbox" /><span
                       ><strong>Workshop updates</strong>Email me the
                       confirmation, reminders, and replay. I can opt out at any
                       time.</span
@@ -224,11 +247,10 @@
                     ><input
                       name="calendar_consent"
                       type="checkbox"
-                      required
                     /><span
-                      ><strong>Optional calendar step</strong>Show calendar
-                      choices after registration. Do not add an event
-                      automatically.</span
+                      ><strong>Open my calendar next</strong>After I register,
+                      open Google Calendar so I can review and add the event.
+                      Nothing is inserted without my final click.</span
                     ></label
                   >
                   <button
@@ -238,8 +260,18 @@
                     <span>Register for the workshop</span
                     ><span aria-hidden="true">→</span>
                   </button>
+                  <p class="form-privacy">
+                    We use your details to administer this workshop. Email
+                    updates are optional. Review Momentum Digital's
+                    <a
+                      href="https://www.needmomentum.com/privacy-policy/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Privacy Policy</a
+                    >.
+                  </p>
                   <p id="form-error" class="form-error" role="alert" hidden>
-                    Please complete each field and consent choice.
+                    Please complete each required field.
                   </p>
                 </form>
               </div>
@@ -270,6 +302,56 @@
                 src="assets/badges/best-of-pennsylvania.webp"
                 alt="Best of Pennsylvania"
               />
+            </div>
+          </div>
+        </section>
+
+        <section class="scene founder-story" id="hosts" aria-labelledby="hosts-title">
+          <div class="founder-story-media" aria-hidden="true">
+            <img
+              src="assets/mac-sean-instagram-editorial-source.jpg"
+              alt=""
+              width="1440"
+              height="1800"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="founder-story-wash"></div>
+          </div>
+          <div class="shell founder-story-shell">
+            <div class="founder-story-lead reveal">
+              <span class="story-kicker">MAC + SEAN / IN THE ROOM</span>
+              <h2 id="hosts-title">Operators teaching owners.</h2>
+              <p>
+                This is not a polished lecture about somebody else’s business.
+                The hour starts with the constraint on your desk and builds the
+                system around it.
+              </p>
+            </div>
+            <div class="founder-story-beats">
+              <article class="founder-beat founder-beat-mac reveal">
+                <div class="founder-crop founder-crop-mac" aria-hidden="true"></div>
+                <div class="founder-glass">
+                  <span>MAC FREDERICK</span>
+                  <h3>Position the offer.</h3>
+                  <p>
+                    Pressure-test what the market should understand, who the
+                    offer is for, and the sales criteria that keep the next move
+                    honest.
+                  </p>
+                </div>
+              </article>
+              <article class="founder-beat founder-beat-sean reveal">
+                <div class="founder-crop founder-crop-sean" aria-hidden="true"></div>
+                <div class="founder-glass">
+                  <span>SEAN BOYLE</span>
+                  <h3>Make the system usable.</h3>
+                  <p>
+                    Turn the framework into a message, community rhythm, and
+                    owner follow-up that can run after the workshop ends.
+                  </p>
+                </div>
+              </article>
             </div>
           </div>
         </section>
@@ -329,6 +411,169 @@
             </div>
           </div>
         </section>
+
+        <section class="scene agenda-section" id="agenda" aria-labelledby="agenda-title">
+          <div class="shell agenda-shell">
+            <div class="agenda-intro reveal">
+              <span class="story-kicker">THE 60-MINUTE BUILD</span>
+              <h2 id="agenda-title">One hour. One constraint. One operating rhythm.</h2>
+              <p>
+                The session moves forward like a working room, not a slide deck.
+                Each chapter produces the input the next chapter needs.
+              </p>
+              <a class="button button-ghost" href="#register">Bring your constraint</a>
+            </div>
+            <div class="agenda-viewport">
+              <div class="agenda-track" id="agendaTrack">
+                <article class="agenda-chapter">
+                  <span>00—10</span>
+                  <strong>Expose the constraint</strong>
+                  <p>Name the bottleneck the team can actually observe.</p>
+                  <small>LEAVE WITH / A SHARED PROBLEM</small>
+                </article>
+                <article class="agenda-chapter">
+                  <span>10—25</span>
+                  <strong>Sharpen the offer</strong>
+                  <p>Connect the right audience, promise, proof, and decision.</p>
+                  <small>LEAVE WITH / A CLEAR MESSAGE</small>
+                </article>
+                <article class="agenda-chapter">
+                  <span>25—40</span>
+                  <strong>Route the demand</strong>
+                  <p>Choose the channel, owner, handoff, and measurable action.</p>
+                  <small>LEAVE WITH / AN OWNER MAP</small>
+                </article>
+                <article class="agenda-chapter">
+                  <span>40—50</span>
+                  <strong>Install the rhythm</strong>
+                  <p>Define the weekly scorecard, review, and next experiment.</p>
+                  <small>LEAVE WITH / A WEEKLY CADENCE</small>
+                </article>
+                <article class="agenda-chapter">
+                  <span>50—60</span>
+                  <strong>Make it yours</strong>
+                  <p>Use live Q&amp;A to pressure-test the system against reality.</p>
+                  <small>LEAVE WITH / THE NEXT MOVE</small>
+                </article>
+              </div>
+            </div>
+            <div class="agenda-progress" aria-hidden="true"><i id="agendaProgress"></i></div>
+          </div>
+        </section>
+
+        <section class="scene outcomes-section" aria-labelledby="outcomes-title">
+          <div class="shell outcomes-shell">
+            <div class="outcomes-statement reveal">
+              <span class="story-kicker">WHAT LEAVES THE ROOM</span>
+              <h2 id="outcomes-title">Not notes. A system your team can see.</h2>
+            </div>
+            <div class="outcome-board reveal">
+              <div class="outcome-line">
+                <span>01</span><strong>Constraint map</strong
+                ><p>The signal, the consequence, and the evidence.</p>
+              </div>
+              <div class="outcome-line">
+                <span>02</span><strong>Offer decision</strong
+                ><p>The audience, promise, proof, and next action.</p>
+              </div>
+              <div class="outcome-line">
+                <span>03</span><strong>Owner route</strong
+                ><p>Who moves the work, where it goes, and when it returns.</p>
+              </div>
+              <div class="outcome-line">
+                <span>04</span><strong>Weekly rhythm</strong
+                ><p>The scorecard, review, and experiment that keep it moving.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="scene calendar-section" aria-labelledby="calendar-title">
+          <div class="shell calendar-shell">
+            <div class="calendar-orbit" aria-hidden="true">
+              <div class="orbit-date">
+                <span id="orbit-month">AUG</span><strong id="orbit-day">06</strong>
+              </div>
+              <i></i><i></i><i></i>
+            </div>
+            <div class="calendar-copy reveal">
+              <span class="story-kicker">CALENDAR, WITH CONSENT</span>
+              <h2 id="calendar-title">Register once. Review the event. Add it yourself.</h2>
+              <p>
+                If you choose the calendar option, registration opens a
+                pre-filled Google Calendar event for review. The final add stays
+                in your hands. An ICS file remains available for Outlook, Apple
+                Calendar, and other calendar apps.
+              </p>
+              <div class="calendar-steps">
+                <span><b>1</b> Register</span>
+                <span><b>2</b> Review</span>
+                <span><b>3</b> Add</span>
+              </div>
+              <a class="button button-primary" href="#register">Reserve and add</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="scene faq-section" aria-labelledby="faq-title">
+          <div class="shell faq-shell">
+            <div class="faq-heading reveal">
+              <span class="story-kicker">BEFORE YOU JOIN</span>
+              <h2 id="faq-title">Bring the real version.</h2>
+              <p>Short answers for owners who want to know exactly what the hour is.</p>
+            </div>
+            <div class="faq-list reveal">
+              <details>
+                <summary>Who is this workshop for?</summary>
+                <p>
+                  Owners and operators of local service businesses who have an
+                  active offer, a visible growth constraint, and a team that
+                  needs a repeatable next move.
+                </p>
+              </details>
+              <details>
+                <summary>What should I bring?</summary>
+                <p>
+                  Bring one current offer, the bottleneck slowing it down, and
+                  any signal your team already uses to judge progress.
+                </p>
+              </details>
+              <details>
+                <summary>Will anything be added to my calendar automatically?</summary>
+                <p>
+                  No. If you opt in, Google Calendar opens with the workshop
+                  details prepared. You review and add it yourself, or download
+                  the ICS file.
+                </p>
+              </details>
+              <details>
+                <summary>What happens after the workshop?</summary>
+                <p>
+                  Registrants who request updates receive the approved replay
+                  and next-step sequence, with an unsubscribe route in every
+                  production message.
+                </p>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <section class="scene closing-portal" aria-label="Workshop registration">
+          <div class="closing-portrait" aria-hidden="true"></div>
+          <div class="shell closing-shell">
+            <div class="closing-glass reveal">
+              <span class="story-kicker">THE NEXT MOVE IS THE WORK</span>
+              <h2>Bring one constraint.<br />Build the rhythm together.</h2>
+              <p>
+                A focused owner workshop with Mac and Sean. No silent calendar
+                insertion. No generic tactics. One system your team can run.
+              </p>
+              <a class="button button-primary" href="#register"
+                >Reserve your seat <span aria-hidden="true">↗</span></a
+              >
+            </div>
+          </div>
+        </section>
       </section>
 
       <section
@@ -350,7 +595,7 @@
           >
           <div class="confirmation-card">
             <p class="eyebrow">
-              <span class="live-dot"></span> REGISTRATION STORED LOCALLY
+              <span class="live-dot"></span> REGISTRATION RECEIVED
             </p>
             <h2 id="confirmation-title">Your seat is on the board.</h2>
             <p id="confirmation-copy">
