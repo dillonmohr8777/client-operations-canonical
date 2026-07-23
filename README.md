@@ -25,11 +25,12 @@ In the pinned task, Dillon can say `continue`. The Chief then refreshes safe int
 
 The Marketing Chief can use the installed `$omniroute-gateway` capability for model or provider routing, quotas, fallback combinations, compression, an OpenAI-compatible local endpoint, and OmniRoute MCP when a task actually requires it. It is part of this operating system, not another queue or control center.
 
-Every OmniRoute-dependent action begins with the controller's read-only `Status` and `Doctor` checks plus loopback verification. The dashboard is `http://127.0.0.1:20128`; the API base is `http://127.0.0.1:20128/v1`. Normal Codex and OpenAI authentication remains the default. Provider connection, model or route changes, client reconfiguration, MCP mutations, cloud features, tunnels, and public or LAN exposure require explicit approval.
+Every OmniRoute-dependent action begins with the controller's read-only `Status` and `Doctor` checks plus loopback verification. Run `Mcp` when MCP availability matters; it performs a direct stdio initialize and list-tools handshake. The dashboard is `http://127.0.0.1:20128`; the API base is `http://127.0.0.1:20128/v1`. Normal Codex and OpenAI authentication remains the default. Provider connection, model or route changes, client reconfiguration, MCP mutations, cloud features, tunnels, and public or LAN exposure require explicit approval.
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\dillo\.codex\skills\omniroute-gateway\scripts\Invoke-OmniRoute.ps1 -Action Status
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\dillo\.codex\skills\omniroute-gateway\scripts\Invoke-OmniRoute.ps1 -Action Doctor
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\dillo\.codex\skills\omniroute-gateway\scripts\Invoke-OmniRoute.ps1 -Action Mcp
 ```
 
 ## Hosted Studio storage, backup, and access
@@ -37,6 +38,8 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\dillo\.codex\sk
 The Marketing Chief Operator Studio uses ChatGPT Sites for authenticated hosting and source-version archives, plus Cloudflare D1 for durable snapshots, choices, operator requests, owner intents, training runs, and evaluations. Its access policy remains custom owner-only until Dillon supplies the exact active workspace user email to invite; an invitation never implies permission to send, publish, spend, change accounts, or bypass the canonical Marketing Chief writer.
 
 The hidden `MarketingChief-SitesBridge` task runs every 15 minutes. In addition to synchronizing the allowlisted Windows snapshot, it writes an independent, secret-screened backup of the hosted D1 payload and current local snapshot at the 9 AM and 5 PM America/New_York backup slots. Backups are deduplicated, retained for 90 days, and stored under the ACL-protected `C:\Users\dillo\AppData\Local\Codex\MarketingChief\SitesBackups` directory. The bridge never stores its machine or Sites dispatch credentials in those backup files.
+
+The active Codex automation `marketing-chief-twice-daily-brief` runs at 9 AM and 5 PM America/New_York. It verifies OmniRoute Status, Doctor, MCP, release and advisory state plus Sites deployment, access, storage, recent Worker errors, bridge health, and backup freshness, then sends only material deltas to the existing Marketing Chief task. It does not create another task or authorize account, provider, routing, access, public exposure, spend, or external-delivery changes.
 
 ### Graph-backed execution
 

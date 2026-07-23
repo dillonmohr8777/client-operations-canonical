@@ -67,8 +67,10 @@
       "preflight": [
         "run Status read-only",
         "run Doctor read-only",
+        "run Mcp read-only when MCP availability matters",
         "verify port 20128 listens only on 127.0.0.1",
-        "require zero Doctor failures before relying on the gateway"
+        "require zero Doctor failures before relying on the gateway",
+        "require a successful direct stdio initialize and list-tools handshake before relying on MCP"
       ],
       "defaultClientPolicy": "Keep normal Codex and OpenAI authentication unchanged. Use a separate OmniRoute profile or launcher only after a healthy provider, a scoped endpoint key, and Dillon's explicit request are all verified.",
       "approvalGates": [
@@ -86,6 +88,9 @@
         "httpStatus": 200,
         "loopbackOnly": true,
         "doctorFailures": 0,
+        "mcpConnected": true,
+        "mcpToolCount": 99,
+        "mcpPackagedDefectRepair": "Local missing-undici repair; reverify after every reinstall or update.",
         "connectedProviderAccounts": 0,
         "productionDependencyAudit": {
           "critical": 0,
@@ -139,6 +144,19 @@
         "verify the MarketingChief-SitesBridge task result",
         "verify the latest protected backup manifest without reading payload contents"
       ]
+    },
+    "twiceDailyOperationalBrief": {
+      "automationId": "marketing-chief-twice-daily-brief",
+      "status": "ACTIVE",
+      "schedule": "09:00 and 17:00 America/New_York",
+      "deliveryTarget": "existing pinned Marketing Chief task only",
+      "evidenceChecks": [
+        "OmniRoute Status, Doctor, Mcp, official version, and advisories",
+        "Sites deployment, source alignment, access, storage, and recent Worker errors",
+        "MarketingChief-SitesBridge health and latest protected backup manifest"
+      ],
+      "outputPolicy": "Deliver only material deltas, blockers, security advisories, required human decisions, and one recommended next action.",
+      "authorityBoundary": "Read-only evidence collection plus the explicitly authorized delivery to the existing Marketing Chief task. No account, provider, routing, invitation, access, public exposure, spend, or other external action is authorized."
     }
   },
   "contextLoadOrder": [
@@ -151,6 +169,7 @@
     "state/corrections.jsonl",
     "context/marketing-context.md",
     "C:\\Users\\dillo\\.codex\\skills\\omniroute-gateway\\SKILL.md when OmniRoute is relevant",
+    "C:\\Users\\dillo\\.codex\\automations\\marketing-chief-twice-daily-brief\\automation.toml when evaluating the scheduled operational brief",
     "context/DILLON_VOICE.md",
     "context/DESIGN_STANDARD.md",
     "registry/paid-media-roster.json and workflows/daily-paid-media-optimization.workflow.json for the once-per-day paid-media lane",
@@ -272,7 +291,7 @@
       "link the exact source-bound canonical work item when one exists; when none exists, create it with New-MarketingWorkItem.ps1 using the exact SourceLocator, current queue revision, and truthful safe action class",
       "promote the observation with Resolve-IntakeObservation.ps1, or acknowledge or quarantine it with a recorded resolution when promotion is unsupported",
       "load canonical context and corrections",
-      "when OmniRoute is relevant, run its Status and Doctor preflight and remain read-only unless the exact configuration or account change is explicitly approved",
+      "when OmniRoute is relevant, run its Status, Doctor, and MCP preflight as applicable and remain read-only unless the exact configuration or account change is explicitly approved",
       "run or verify today's eight-lane paid-media review and materialize only current material findings through the Chief's normal source-bound queue contract",
       "rank canonical work",
       "when an inspected communication implies paid-media launch work, materialize the exact client request and run the communication-triggered ad-launch workflow through the furthest locally safe or explicitly authorized terminal phase",
