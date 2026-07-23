@@ -1,0 +1,604 @@
+{
+    "schemaVersion":  1,
+    "graphRunId":  "mgr-sites-c0658892115c468e8302c926f4a90e4f",
+    "graphRevision":  6,
+    "workflowId":  "marketing-chief-execution-graph",
+    "createdAt":  "2026-07-23T14:15:47.4655825+00:00",
+    "updatedAt":  "2026-07-23T14:20:05.8192343+00:00",
+    "status":  "handoff_ready",
+    "queueSnapshot":  {
+                          "locator":  "queue/work-items.json",
+                          "revision":  162,
+                          "sha256":  "6BAB8D5E9E69B37EDE00AAC585D597BA650184EAA4C0854D4B1D43BC0233643A",
+                          "capturedAt":  "2026-07-23T14:15:47.4655825+00:00"
+                      },
+    "workItem":  {
+                     "id":  "wi-20260723-0003",
+                     "expectedVersion":  1,
+                     "contentSha256":  "7D4A3CE83F29A673E7103A16186127596899391BEF9545037806A4B3062D25E7",
+                     "clientId":  "momentum-360",
+                     "title":  "Finish Momentum decision-ready execution bundle",
+                     "status":  "ready",
+                     "lane":  "normal",
+                     "priority":  "P1",
+                     "actionClass":  "local_artifact",
+                     "nextAction":  "Using current canonical Momentum evidence, create one local decision ready bundle covering the caller response trigger and copy questions, opt out behavior, routing checklist, test and rollback plan, AI Tech News business facts and first three prospect decisions, and Google Places prerequisites. Keep every output local for owner review.",
+                     "definitionOfDone":  [
+                                              "Complete the requested local outcome and record allowlisted evidence.",
+                                              "Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.",
+                                              "Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval."
+                                          ],
+                     "sourceLocator":  "sites-intent:e115dd64-9b09-4a85-84cb-80c0b78b3d84",
+                     "evidenceRefs":  [
+                                          "sites-intent:e115dd64-9b09-4a85-84cb-80c0b78b3d84"
+                                      ],
+                     "artifactRefs":  [
+
+                                      ],
+                     "dependencies":  [
+
+                                      ],
+                     "approval":  {
+                                      "tier":  "automatic",
+                                      "status":  "not_required",
+                                      "gate":  "none"
+                                  }
+                 },
+    "scope":  {
+                  "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+                  "clientRoot":  "clients/momentum-360",
+                  "graphLocator":  "state/execution-graphs/wi-20260723-0003/mgr-sites-c0658892115c468e8302c926f4a90e4f/execution-graph.json",
+                  "canonicalWriteAllowed":  false,
+                  "externalActionAllowed":  false,
+                  "durableMemoryWriteAllowed":  false,
+                  "privacy":  "redacted"
+              },
+    "retrieval":  {
+                      "strategy":  "exact-plus-graph",
+                      "exactBindingRequired":  true,
+                      "semanticBindingAllowed":  false,
+                      "sourceCount":  1,
+                      "artifactCount":  0
+                  },
+    "nodes":  [
+                  {
+                      "id":  "scope-guard",
+                      "kind":  "scope_guard",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Validate immutable queue, work-item, client, and project scope.",
+                      "requires":  [
+
+                                   ],
+                      "produces":  [
+                                       "scoped_work_item"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Queue revision, work-item version, exact client route, and safety scope were validated.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "queue/work-items.json",
+                                                      "sites-intent:e115dd64-9b09-4a85-84cb-80c0b78b3d84"
+                                                  ],
+                                     "verification":  [
+                                                          "Queue revision 162 captured.",
+                                                          "Work-item version 1 captured.",
+                                                          "Client route momentum-360 resolved exactly once and is active."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "source-intake",
+                      "kind":  "source_intake",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Capture safe exact source and evidence locators.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "provenance_slice"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Exact source and evidence locators were captured without raw communications.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "sites-intent:e115dd64-9b09-4a85-84cb-80c0b78b3d84"
+                                                  ],
+                                     "verification":  [
+                                                          "Evidence freshness evaluated at 2026-07-23T14:15:47.4655825+00:00."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "context-retrieval",
+                      "kind":  "context_retrieval",
+                      "owner":  "marketing-chief-context-loader",
+                      "status":  "completed",
+                      "task":  "Assemble the exact bounded context slice required by this item.",
+                      "requires":  [
+                                       "source-intake"
+                                   ],
+                      "produces":  [
+                                       "worker_context"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Bounded client, source, artifact, dependency, and definition-of-done context was assembled.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "sites-intent:e115dd64-9b09-4a85-84cb-80c0b78b3d84"
+                                                  ],
+                                     "verification":  [
+                                                          "Definition-of-done checks: 3.",
+                                                          "Artifact references: 0."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "worker-execution",
+                      "kind":  "worker_execution",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Using current canonical Momentum evidence, create one local decision ready bundle covering the caller response trigger and copy questions, opt out behavior, routing checklist, test and rollback plan, AI Tech News business facts and first three prospect decisions, and Google Places prerequisites. Keep every output local for owner review.",
+                      "requires":  [
+                                       "context-retrieval"
+                                   ],
+                      "produces":  [
+                                       "local_artifacts",
+                                       "worker_evidence"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Created the bounded Momentum decision bundle for owner review.",
+                                     "artifacts":  [
+                                                       "clients/momentum-360/deliverables/2026-07-23-decision-ready-execution-bundle.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/momentum-360/deliverables/2026-07-17-callrail-hubspot-auto-response-open-loop.md",
+                                                      "clients/momentum-360/deliverables/2026-07-21-ai-tech-news-follow-up.md",
+                                                      "clients/momentum-360/deliverables/2026-07-16-reporting-os-and-maps-status.md"
+                                                  ],
+                                     "verification":  [
+
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-01",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Complete the requested local outcome and record allowlisted evidence.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_01"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Confirmed the requested decision sections are present in the local artifact.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/momentum-360/deliverables/2026-07-23-decision-ready-execution-bundle.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Artifact exists and contains caller trigger, copy, opt out behavior, routing, test, rollback, prospect, and Places sections."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-02",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_02"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Confirmed the artifact stays within the Momentum client route and contains no secrets or raw communications.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/momentum-360/deliverables/2026-07-23-decision-ready-execution-bundle.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Artifact locator is within clients/momentum-360 and contains no credential values or direct-identifier records."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-03",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_03"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Confirmed consequential activity remains gated for owner review.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/momentum-360/deliverables/2026-07-23-decision-ready-execution-bundle.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Artifact states that activation, delivery, account changes, and outreach remain pending owner approval."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "approval-gate",
+                      "kind":  "approval_gate",
+                      "owner":  "marketing-chief",
+                      "status":  "completed",
+                      "task":  "Enforce the exact action-class and approval boundary.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "approval_verdict"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "This graph permits local reversible work only; no external action is authorized.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+
+                                                  ],
+                                     "verification":  [
+                                                          "Action class: local_artifact.",
+                                                          "Approval tier/status: automatic/not_required."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "handoff-assembly",
+                      "kind":  "handoff_assembly",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Assemble a schema-valid redacted worker handoff from completed graph outputs.",
+                      "requires":  [
+                                       "verify-01",
+                                       "verify-02",
+                                       "verify-03",
+                                       "approval-gate"
+                                   ],
+                      "produces":  [
+                                       "worker_handoff"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "state/worker-handoffs/handoff-70b1ec4e6dc84fa7a643c169f7010dff.json",
+                                                      "sha256:93AD0F02257243D802B6837D6C4691DF4E3FDFB29CA1F7FB60B79445D399DD9E"
+                                                  ],
+                                     "verification":  [
+
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "chief-reconciliation",
+                      "kind":  "chief_reconciliation",
+                      "owner":  "marketing-chief",
+                      "status":  "ready",
+                      "task":  "Revalidate live queue and item state, then accept or reject the handoff through the supported canonical mutation path.",
+                      "requires":  [
+                                       "handoff-assembly"
+                                   ],
+                      "produces":  [
+                                       "canonical_receipt"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  }
+              ],
+    "edges":  [
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "source-intake"
+                  },
+                  {
+                      "from":  "source-intake",
+                      "relation":  "precedes",
+                      "to":  "context-retrieval"
+                  },
+                  {
+                      "from":  "context-retrieval",
+                      "relation":  "precedes",
+                      "to":  "worker-execution"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-01"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-02"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-03"
+                  },
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "approval-gate"
+                  },
+                  {
+                      "from":  "verify-01",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-02",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-03",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "approval-gate",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "handoff-assembly",
+                      "relation":  "precedes",
+                      "to":  "chief-reconciliation"
+                  }
+              ],
+    "knowledgeGraph":  {
+                           "nodes":  [
+                                         {
+                                             "id":  "queue:canonical",
+                                             "type":  "queue",
+                                             "label":  "Canonical queue revision 162",
+                                             "locator":  "queue/work-items.json"
+                                         },
+                                         {
+                                             "id":  "client:momentum-360",
+                                             "type":  "client",
+                                             "label":  "momentum-360",
+                                             "locator":  "clients/momentum-360"
+                                         },
+                                         {
+                                             "id":  "work-item:wi-20260723-0003",
+                                             "type":  "work_item",
+                                             "label":  "Finish Momentum decision-ready execution bundle",
+                                             "locator":  "sites-intent:e115dd64-9b09-4a85-84cb-80c0b78b3d84"
+                                         },
+                                         {
+                                             "id":  "approval:none",
+                                             "type":  "approval",
+                                             "label":  "automatic/not_required/none",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "evidence:732a11765eac7528",
+                                             "type":  "evidence",
+                                             "label":  "sites-intent:e115dd64-9b09-4a85-84cb-80c0b78b3d84",
+                                             "locator":  "sites-intent:e115dd64-9b09-4a85-84cb-80c0b78b3d84"
+                                         },
+                                         {
+                                             "id":  "definition:01",
+                                             "type":  "definition",
+                                             "label":  "Complete the requested local outcome and record allowlisted evidence.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:02",
+                                             "type":  "definition",
+                                             "label":  "Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:03",
+                                             "type":  "definition",
+                                             "label":  "Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.",
+                                             "locator":  null
+                                         }
+                                     ],
+                           "edges":  [
+                                         {
+                                             "from":  "queue:canonical",
+                                             "relation":  "contains",
+                                             "to":  "work-item:wi-20260723-0003"
+                                         },
+                                         {
+                                             "from":  "client:momentum-360",
+                                             "relation":  "owns",
+                                             "to":  "work-item:wi-20260723-0003"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0003",
+                                             "relation":  "governed_by",
+                                             "to":  "approval:none"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0003",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:732a11765eac7528"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0003",
+                                             "relation":  "requires",
+                                             "to":  "definition:01"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0003",
+                                             "relation":  "requires",
+                                             "to":  "definition:02"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0003",
+                                             "relation":  "requires",
+                                             "to":  "definition:03"
+                                         }
+                                     ],
+                           "nodeCount":  8,
+                           "edgeCount":  7
+                       },
+    "handoffContract":  {
+                            "schema":  "schemas/worker-handoff.schema.json",
+                            "validator":  "scripts/Test-MarketingHandoff.ps1",
+                            "reconciler":  "scripts/Accept-WorkerHandoff.ps1",
+                            "expectedWorkItemVersion":  1,
+                            "approvalGate":  "none",
+                            "graphEvidence":  "state/execution-graphs/wi-20260723-0003/mgr-sites-c0658892115c468e8302c926f4a90e4f/execution-graph.json"
+                        },
+    "blockers":  [
+
+                 ],
+    "warnings":  [
+
+                 ],
+    "trace":  [
+                  {
+                      "eventId":  "evt-52977f729bd84b798fccb2af1ca13d92",
+                      "at":  "2026-07-23T14:15:47.4655825+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "scope-guard",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-75746bb702514ec4a66b3beb42cc6907",
+                      "at":  "2026-07-23T14:15:47.4655825+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "source-intake",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-c6fd7977840f42f686e10201b8cc0d3f",
+                      "at":  "2026-07-23T14:15:47.4655825+00:00",
+                      "actor":  "marketing-chief-context-loader",
+                      "nodeId":  "context-retrieval",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-00c724f60d1642dd828597a91f1b6d49",
+                      "at":  "2026-07-23T14:15:47.4655825+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "approval-gate",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-0aa88e66338f406ca84ccdb290af4259",
+                      "at":  "2026-07-23T14:18:44.8034826+00:00",
+                      "actor":  "marketing-operator",
+                      "nodeId":  "worker-execution",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Created the bounded Momentum decision bundle for owner review."
+                  },
+                  {
+                      "eventId":  "evt-2a38ec6fea874d84b15482a4b4dbd33f",
+                      "at":  "2026-07-23T14:18:46.3052556+00:00",
+                      "actor":  "marketing-verifier",
+                      "nodeId":  "verify-01",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Confirmed the requested decision sections are present in the local artifact."
+                  },
+                  {
+                      "eventId":  "evt-6158051616fb4c3897288cc84d3b471c",
+                      "at":  "2026-07-23T14:18:47.7994584+00:00",
+                      "actor":  "privacy-verifier",
+                      "nodeId":  "verify-02",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Confirmed the artifact stays within the Momentum client route and contains no secrets or raw communications."
+                  },
+                  {
+                      "eventId":  "evt-6808d387ef24466cb9ba1a69deed16c9",
+                      "at":  "2026-07-23T14:18:49.2953080+00:00",
+                      "actor":  "boundary-verifier",
+                      "nodeId":  "verify-03",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Confirmed consequential activity remains gated for owner review."
+                  },
+                  {
+                      "eventId":  "evt-60f63ab11d044e7ab933c2f6609c9a39",
+                      "at":  "2026-07-23T14:20:05.8192343+00:00",
+                      "actor":  "marketing-operator",
+                      "nodeId":  "handoff-assembly",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation."
+                  }
+              ],
+    "attestations":  {
+                         "canonicalWriteAttempted":  false,
+                         "externalActionAttempted":  false,
+                         "durableMemoryWriteAttempted":  false,
+                         "containsSecrets":  false,
+                         "containsDirectIdentifiers":  false,
+                         "containsRawCommunications":  false
+                     }
+}

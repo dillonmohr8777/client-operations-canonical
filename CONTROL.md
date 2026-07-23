@@ -3,23 +3,23 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-23T14:13:31.2672447+00:00`
-Queue revision: `162`
+Last reconciled: `2026-07-23T14:20:08.5930335+00:00`
+Queue revision: `164`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
 ## Predicted next actions
 
-**Next automatic action:** **Finish Momentum decision-ready execution bundle** (`wi-20260723-0003`, score 158): Using current canonical Momentum evidence, create one local decision ready bundle covering the caller response trigger and copy questions, opt out behavior, routing checklist, test and rollback plan, AI Tech News business facts and first three prospect decisions, and Google Places prerequisites. Keep every output local for owner review. Why: P1, portfolio rank 3 (strategic), no evidenced deadline, current evidence, status ready.
+**Next automatic action:** **Finish Momentum decision-ready execution bundle** (`wi-20260723-0003`, score 162): Using current canonical Momentum evidence, create one local decision ready bundle covering the caller response trigger and copy questions, opt out behavior, routing checklist, test and rollback plan, AI Tech News business facts and first three prospect decisions, and Google Places prerequisites. Keep every output local for owner review. Why: P1, portfolio rank 3 (strategic), no evidenced deadline, current evidence, status verification.
 
 **Next Dillon decision:** **Implement the Momentum caller auto-response workflow** (`wi-20260718-0003`, score 208): At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation. Why: P1, portfolio rank 3 (strategic), overdue, current evidence, status ready, action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
 
 **Next unblock:** **Approve controlled KJB Search launch swap** (`wi-20260723-0002`, score 170): Dillon must complete the visible Google Ads Confirm it is you gate in the preserved KJB Chrome tab; then correct the remaining ad validation issue, publish Search, attach and verify the staged negatives, pause Performance Max, and verify the final serving state. Why: P0, portfolio rank 4 (strategic), no evidenced deadline, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; next action contains gated action language; approval state is not exactly automatic and not_required.
 <!-- marketing-chief:predictions:end -->
 
-## Active execution (normal 0/3; emergency 0/1)
+## Active execution (normal 1/3; emergency 0/1)
 
-No client outcome currently consumes a normal WIP slot.
+- `wi-20260723-0003` Finish Momentum decision-ready execution bundle: Using current canonical Momentum evidence, create one local decision ready bundle covering the caller response trigger and copy questions, opt out behavior, routing checklist, test and rollback plan, AI Tech News business facts and first three prospect decisions, and Google Places prerequisites. Keep every output local for owner review.
 
 ## Commitment queue
 
@@ -61,7 +61,7 @@ No client outcome currently consumes a normal WIP slot.
 | `wi-20260722-0001` | `va-claims-edge` | Deploy the VA Claims Phase 2 portal release | Done | P0 | Reconcile the authorized VA Claims production deployment and independent public readback into the canonical verified outcome. | No evidenced deadline |
 | `wi-20260723-0001` | `kimberly-james-bridal` | Apply Mac KJB Search draft controls | Done | P0 | Draft-control work is complete; the separately gated launch swap is tracked in wi-20260723-0002. | No evidenced deadline |
 | `wi-20260723-0002` | `kimberly-james-bridal` | Approve controlled KJB Search launch swap | Blocked | P0 | Dillon must complete the visible Google Ads Confirm it is you gate in the preserved KJB Chrome tab; then correct the remaining ad validation issue, publish Search, attach and verify the staged negatives, pause Performance Max, and verify the final serving state. | No evidenced deadline |
-| `wi-20260723-0003` | `momentum-360` | Finish Momentum decision-ready execution bundle | Ready | P1 | Using current canonical Momentum evidence, create one local decision ready bundle covering the caller response trigger and copy questions, opt out behavior, routing checklist, test and rollback plan, AI Tech News business facts and first three prospect decisions, and Google Places prerequisites. Keep every output local for owner review. | No evidenced deadline |
+| `wi-20260723-0003` | `momentum-360` | Finish Momentum decision-ready execution bundle | Verification | P1 | Using current canonical Momentum evidence, create one local decision ready bundle covering the caller response trigger and copy questions, opt out behavior, routing checklist, test and rollback plan, AI Tech News business facts and first three prospect decisions, and Google Places prerequisites. Keep every output local for owner review. | No evidenced deadline |
 | `wi-20260723-0004` | `align-hcm` | Finish Align August 2026 production package | Ready | P1 | Using the verified Align repository, render and inspect AN01 through AN06 as final MP4s, create the Beumer and Troon static assets, cut the two remaining Maher and Brent podcast recuts, and assemble QA evidence. Preserve Joann and Moe as recording dependent gates. Keep every output local for owner review. | No evidenced deadline |
 
 ## Waiting on Dillon
@@ -189,9 +189,9 @@ No client outcome currently consumes a normal WIP slot.
 
 ## Live health probe
 
-- **As of:** `2026-07-23T14:10:13.9497773+00:00`
+- **As of:** `2026-07-23T14:15:11.5649702+00:00`
 - **Overall:** `degraded`
-- **Queue:** revision `159`, `36` work items, normal `0/3`, emergency `0/1` active
+- **Queue:** revision `162`, `38` work items, normal `0/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `8/21` canonical clients registered, `2/65` systems verified, `6` exact Bitwarden item locators
