@@ -17,6 +17,11 @@
   --shell: min(1180px, calc(100% - 48px));
   --shadow: 0 38px 110px rgba(0, 5, 18, 0.42);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-snap: 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --motion-ui: 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-gentle: 720ms cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-lively: 520ms cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-ambient: 3800ms ease-in-out;
 }
 
 * {
@@ -343,10 +348,10 @@ select:focus-visible {
   text-decoration: none;
   white-space: nowrap;
   transition:
-    transform 0.2s var(--ease),
-    background 0.2s var(--ease),
-    color 0.2s var(--ease),
-    border-color 0.2s var(--ease);
+    transform var(--motion-snap),
+    background var(--motion-snap),
+    color var(--motion-snap),
+    border-color var(--motion-snap);
 }
 .button:active {
   transform: scale(0.98);
@@ -810,6 +815,28 @@ select:focus-visible {
   width: 100%;
   justify-content: space-between;
   margin-top: 8px;
+  overflow: hidden;
+}
+.command-submit .submit-label,
+.command-submit .submit-glyph {
+  transition: transform var(--motion-ui), opacity var(--motion-ui);
+}
+.command-submit[data-state="loading"] .submit-glyph {
+  animation: submit-pulse 900ms ease-in-out infinite alternate;
+}
+.command-submit[data-state="success"] {
+  color: #05172f;
+  background: var(--cyan);
+}
+.command-submit[data-state="error"] {
+  color: #fff;
+  background: #a93442;
+}
+.command-submit:disabled {
+  cursor: wait;
+}
+@keyframes submit-pulse {
+  to { transform: scale(1.24); opacity: 0.56; }
 }
 .bot-field {
   display: none !important;
@@ -1864,18 +1891,36 @@ dialog::backdrop {
 }
 .founder-crop {
   min-height: 560px;
-  background-image: url("assets/mac-sean-momentum-glass-hero.webp");
-  background-repeat: no-repeat;
-  background-size: 210% auto;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  background: #071a39;
   box-shadow: 0 44px 110px rgba(0, 4, 17, 0.5);
   clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 94%);
 }
-.founder-crop-mac {
-  background-position: 10% 9%;
+.founder-crop img {
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  object-position: 50% 22%;
+  transform: scale(1.015);
+  transition: transform var(--motion-gentle), filter var(--motion-gentle);
+}
+.founder-beat:hover .founder-crop img {
+  transform: scale(1.045);
+  filter: saturate(1.04) contrast(1.02);
+}
+.founder-crop-mac img {
+  object-position: 50% 18%;
 }
 .founder-crop-sean {
-  background-position: 90% 9%;
   clip-path: polygon(0 0, 96% 3%, 100% 94%, 4% 100%);
+}
+.founder-crop-sean img {
+  object-position: 50% 19%;
 }
 .founder-glass {
   width: min(460px, 105%);
@@ -1902,17 +1947,32 @@ dialog::backdrop {
   font-weight: 700;
   letter-spacing: 0.12em;
 }
-.founder-glass h3 {
-  margin: 16px 0 18px;
+.founder-role {
+  margin: 8px 0 0;
+  color: var(--gold);
   font-family: var(--display);
-  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.founder-glass h3 {
+  margin: 22px 0 18px;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 3.6vw, 3.15rem);
   line-height: 0.98;
   letter-spacing: -0.03em;
 }
-.founder-glass p {
+.founder-glass > p:not(.founder-role) {
   max-width: 44ch;
   margin: 0;
   color: #bcc9dc;
+}
+.founder-glass .founder-workshop-note {
+  margin-top: 20px;
+  padding-top: 18px;
+  color: #e6eef9;
+  border-top: 1px solid rgba(123, 231, 255, 0.2);
+  font-size: 0.9rem;
 }
 
 .agenda-section {
@@ -2036,6 +2096,66 @@ dialog::backdrop {
   transform: scaleX(0);
   transform-origin: left;
   background: linear-gradient(90deg, var(--blue), var(--cyan), var(--gold));
+}
+.agenda-controls {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+.agenda-step {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  color: var(--paper);
+  background: rgba(11, 34, 75, 0.88);
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  box-shadow: 0 12px 26px rgba(0, 5, 22, 0.24);
+  transition:
+    transform var(--motion-snap),
+    color var(--motion-snap),
+    border-color var(--motion-snap),
+    opacity var(--motion-snap);
+}
+.agenda-step:hover:not(:disabled) {
+  color: var(--cyan);
+  border-color: rgba(123, 231, 255, 0.58);
+  transform: translateY(-2px);
+}
+.agenda-step:active:not(:disabled) {
+  transform: scale(0.94);
+}
+.agenda-step:disabled {
+  cursor: default;
+  opacity: 0.32;
+}
+.agenda-dots {
+  min-width: 102px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.agenda-dots i {
+  width: 7px;
+  height: 7px;
+  display: block;
+  background: #4c6180;
+  border-radius: 50%;
+  transform: scale(0.82);
+  transition:
+    width var(--motion-ui),
+    background var(--motion-ui),
+    transform var(--motion-ui);
+}
+.agenda-dots i.is-active {
+  width: 24px;
+  background: var(--gold);
+  border-radius: 4px;
+  transform: scale(1);
 }
 
 .outcomes-section {
@@ -2385,7 +2505,9 @@ dialog::backdrop {
   .founder-story-lead h2 { max-width: 8ch; }
   .founder-crop {
     min-height: 480px;
-    background-size: 220% auto;
+  }
+  .founder-crop img {
+    min-height: 480px;
   }
   .founder-glass {
     padding: 28px;
@@ -2408,7 +2530,16 @@ dialog::backdrop {
     width: min(340px, 82vw);
     min-height: 360px;
     scroll-snap-align: start;
+    opacity: 0.62;
+    transform: scale(0.965);
+    transition: transform var(--motion-gentle), opacity var(--motion-gentle);
   }
+  .agenda-chapter.is-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .agenda-controls { display: flex; }
+  .agenda-progress { display: none; }
   .outcome-line {
     grid-template-columns: 44px 1fr;
   }

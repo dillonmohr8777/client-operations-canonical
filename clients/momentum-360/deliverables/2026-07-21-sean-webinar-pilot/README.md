@@ -10,10 +10,12 @@ registrant selects the optional updates checkbox.
 
 - Responsive attendee registration and confirmation views.
 - Founder-led story sequence with close-cropped Mac and Sean portraiture.
+- Canonical individual, branded founder portraits for Sean and Mac with documented identity and crop rules.
 - Scroll-controlled desktop agenda and native swipe agenda on mobile.
+- Mobile agenda controls and a shared purpose-based motion theme adapted from Motion UI principles.
 - Explicit email reminder and calendar consent controls.
 - Optional one-click Google Calendar review plus an ICS download.
-- Netlify registration capture with a honeypot and a linked Momentum Digital privacy policy.
+- Netlify registration capture with duplicate-click protection, clear submit states, a honeypot, event metadata, page/referrer attribution, UTM fields, and a linked Momentum Digital privacy policy.
 - Operator event configuration with local persistence.
 - Funnel scorecard, test-registration table, and safe reminder simulator.
 - Original workshop hero artwork under `assets/`.

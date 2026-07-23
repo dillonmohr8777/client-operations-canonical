@@ -13,6 +13,7 @@
 
 - Replace prototype date and meeting-link placeholders.
 - Verify the Netlify `workshop-registration` submission in the live site dashboard.
+- Confirm each production submission includes attendee identity, company, growth constraint, email-reminder choice, calendar choice, event details, registration ID, page/referrer, and available UTM attribution.
 - Configure confirmation, reminder, replay, unsubscribe, and suppression handling.
 - Map the event schema into the approved analytics destination.
 - Test desktop, mobile, form validation, calendar links, time zone, reminders, and booking attribution.
@@ -28,7 +29,7 @@
 ## QA acceptance
 
 - No event appears on a calendar without the registrant clicking an add action.
-- No registration or reminder is sent without explicit consent.
+- No reminder or replay email is sent unless the registrant selects workshop updates.
 - Suppressed and unsubscribed contacts cannot be invited.
 - Test registrations appear once in the approved system and carry source attribution.
 - Every KPI can be calculated from separate funnel events.

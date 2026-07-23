@@ -189,11 +189,23 @@
                   novalidate
                 >
                   <input type="hidden" name="form-name" value="workshop-registration" />
+                  <input type="hidden" name="registration_id" />
+                  <input type="hidden" name="registration_status" value="registered" />
+                  <input type="hidden" name="registered_at" />
+                  <input type="hidden" name="event_title" />
+                  <input type="hidden" name="event_date" />
+                  <input type="hidden" name="event_time" />
+                  <input type="hidden" name="event_timezone" />
+                  <input type="hidden" name="page_url" />
+                  <input type="hidden" name="referrer" />
+                  <input type="hidden" name="utm_source" />
+                  <input type="hidden" name="utm_medium" />
+                  <input type="hidden" name="utm_campaign" />
                   <p class="bot-field" aria-hidden="true">
                     <label>Leave this field empty <input name="bot-field" /></label>
                   </p>
                   <div class="form-progress" aria-live="polite">
-                    <div><span>YOUR REGISTRATION</span><b id="formProgressText">0 of 6 complete</b></div>
+                    <div><span>YOUR REGISTRATION</span><b id="formProgressText">0 of 5 complete</b></div>
                     <span class="form-progress-track" aria-hidden="true"><i id="formProgressBar"></i></span>
                   </div>
                   <div class="form-step"><span>01</span><div><b>Your details</b><small>Where to hold the seat.</small></div></div>
@@ -256,9 +268,10 @@
                   <button
                     class="button button-primary command-submit"
                     type="submit"
+                    data-state="idle"
                   >
-                    <span>Register for the workshop</span
-                    ><span aria-hidden="true">→</span>
+                    <span class="submit-label">Register for the workshop</span
+                    ><span class="submit-glyph" aria-hidden="true">→</span>
                   </button>
                   <p class="form-privacy">
                     We use your details to administer this workshop. Email
@@ -320,35 +333,67 @@
           </div>
           <div class="shell founder-story-shell">
             <div class="founder-story-lead reveal">
-              <span class="story-kicker">MAC + SEAN / IN THE ROOM</span>
-              <h2 id="hosts-title">Operators teaching owners.</h2>
+              <span class="story-kicker">MAC + SEAN / BUILT IN THE WORK</span>
+              <h2 id="hosts-title">Two founders. One next move.</h2>
               <p>
-                This is not a polished lecture about somebody else’s business.
-                The hour starts with the constraint on your desk and builds the
-                system around it.
+                Momentum’s process is direct: listen to what is blocking
+                growth, choose the next channel, launch it, test it, and keep
+                what works. Mac and Sean bring that same owner-level clarity
+                into the room.
               </p>
             </div>
             <div class="founder-story-beats">
               <article class="founder-beat founder-beat-mac reveal">
-                <div class="founder-crop founder-crop-mac" aria-hidden="true"></div>
+                <figure class="founder-crop founder-crop-mac">
+                  <img
+                    src="assets/mac-frederick-founder-bio-v1.webp"
+                    alt="Mac Frederick, founder and managing partner of Momentum 360"
+                    width="1122"
+                    height="1402"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
                 <div class="founder-glass">
                   <span>MAC FREDERICK</span>
-                  <h3>Position the offer.</h3>
+                  <p class="founder-role">FOUNDER &amp; MANAGING PARTNER</p>
+                  <h3>Find the demand. Make the offer easy to choose.</h3>
                   <p>
-                    Pressure-test what the market should understand, who the
-                    offer is for, and the sales criteria that keep the next move
-                    honest.
+                    Mac founded Momentum after working with small businesses at
+                    Google. His lane is search, positioning, and the practical
+                    marketing decisions that turn visibility into qualified
+                    opportunities.
+                  </p>
+                  <p class="founder-workshop-note">
+                    In the workshop: identify the clearest growth lever and
+                    pressure-test the offer behind it.
                   </p>
                 </div>
               </article>
               <article class="founder-beat founder-beat-sean reveal">
-                <div class="founder-crop founder-crop-sean" aria-hidden="true"></div>
+                <figure class="founder-crop founder-crop-sean">
+                  <img
+                    src="assets/sean-boyle-founder-bio-v1.webp"
+                    alt="Sean Boyle, co-founder and managing partner of Momentum 360"
+                    width="1122"
+                    height="1402"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
                 <div class="founder-glass">
                   <span>SEAN BOYLE</span>
-                  <h3>Make the system usable.</h3>
+                  <p class="founder-role">CO-FOUNDER &amp; MANAGING PARTNER</p>
+                  <h3>Turn the next move into a system.</h3>
                   <p>
-                    Turn the framework into a message, community rhythm, and
-                    owner follow-up that can run after the workshop ends.
+                    Sean grew through Momentum from sales intern to managing
+                    partner, learning the operation from the inside out. His
+                    lane is execution: connecting the message, follow-up, and
+                    team rhythm so momentum survives Monday morning.
+                  </p>
+                  <p class="founder-workshop-note">
+                    In the workshop: turn the plan into a repeatable weekly
+                    action your team can actually run.
                   </p>
                 </div>
               </article>
@@ -458,6 +503,16 @@
               </div>
             </div>
             <div class="agenda-progress" aria-hidden="true"><i id="agendaProgress"></i></div>
+            <div class="agenda-controls" aria-label="Workshop chapters">
+              <button type="button" class="agenda-step" id="agendaPrev" aria-label="Previous workshop chapter">
+                <span aria-hidden="true">←</span>
+              </button>
+              <div class="agenda-dots" id="agendaDots" aria-hidden="true"></div>
+              <button type="button" class="agenda-step" id="agendaNext" aria-label="Next workshop chapter">
+                <span aria-hidden="true">→</span>
+              </button>
+              <span class="sr-only" id="agendaStatus" aria-live="polite"></span>
+            </div>
           </div>
         </section>
 

@@ -7,10 +7,11 @@ Status: Production experience ready; audience delivery waiting on four launch fa
 ## Production workshop
 
 - Live URL: https://momentum-workshop-pilot.netlify.app
-- Production deploy: `6a623917f1c16fb93c1ccf11`
+- Production deploy: `6a6243ea51cca13a15bbe4ce`
 - Previous known rollback deploy: `6a5ff04979fd30eb09a50065`
 - Netlify form: `workshop-registration`
-- Registration test: verified end to end in production
+- Registration test: verified end to end in production with identity, company,
+  growth constraint, event metadata, registration timestamp, and UTM attribution
 - QA cleanup: all synthetic production submissions deleted
 
 The experience now includes:
@@ -49,6 +50,16 @@ campaign rows remain suppressed.
 3. Exact permissioned audience.
 4. Invitation sender and approved invitation copy.
 
+## Calendar request clarified from Slack
+
+Sean's July 21 audio described adding the webinar to a target audience's Google
+Calendars automatically. That is the requested acquisition mechanic; it is not a
+request to put registrants into Mac's or Sean's private calendars. The production
+path keeps the same low-friction outcome without unsolicited calendar insertion:
+the prospect registers and explicitly consents, the registration is captured,
+and the attendee can then receive the approved host-event invitation. Activation
+still requires the four launch facts above.
+
 ## Slack draft for Mac and Sean
 
 @mac @Sean the upgraded workshop experience is live and the registration path is
@@ -67,4 +78,3 @@ I also finished the AI in Slack walkthrough and verified Slackbot with a live
 controlled test. The QR and direct-mail automations are staged and still off;
 QRTIGER and PostGrid need their account-authentication steps completed before
 we can run a controlled test.
-

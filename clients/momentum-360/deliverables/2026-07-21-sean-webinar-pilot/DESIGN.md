@@ -12,7 +12,7 @@ colors:
   slate-blue: "#8fa0ba"
 typography:
   display:
-    fontFamily: "Space Grotesk, Segoe UI, Arial, sans-serif"
+    fontFamily: "Syne, Segoe UI, Arial, sans-serif"
     fontSize: "clamp(3.6rem, 8vw, 6rem)"
     fontWeight: 700
     lineHeight: 0.88
@@ -30,6 +30,12 @@ spacing:
   compact: "8px"
   control: "16px"
   section: "96px"
+motion:
+  snap: "160ms cubic-bezier(0.2, 0.8, 0.2, 1)"
+  ui: "320ms cubic-bezier(0.16, 1, 0.3, 1)"
+  gentle: "720ms cubic-bezier(0.16, 1, 0.3, 1)"
+  lively: "520ms cubic-bezier(0.22, 1, 0.36, 1)"
+  ambient: "3800ms ease-in-out"
 components:
   button-primary:
     backgroundColor: "{colors.founder-gold}"
@@ -149,6 +155,23 @@ The fixed header compresses into a glass command strip after leaving the hero. M
 ### Founder Stage
 
 Close-cropped Mac and Sean imagery occupies at least half the first viewport on desktop and becomes the dominant visual before the first mobile CTA. Optical rails and glass captions respond to scroll but never obscure faces.
+
+#### Canonical founder portraits
+
+- `assets/sean-boyle-founder-bio-v1.webp` is Sean Boyle. Preserve his tan quarter-zip, warm gold edge light, deep navy command-room background, and close editorial crop.
+- `assets/mac-frederick-founder-bio-v1.webp` is Mac Frederick. Preserve his white patterned shirt, blue architectural horizon, restrained gold beam, and centered editorial crop.
+- Never swap these identities or regenerate them merely to change layout. Use `object-fit: cover` and tune `object-position` per breakpoint.
+- The portraits may be used individually in bios, speaker panels, workshop promotion, and founder-led proof. Use the paired image only when Mac and Sean share equal narrative weight.
+
+### Motion language
+
+The motion system follows five purpose-named tempos inspired by Motion UI's centralized approach: `snap` for press feedback, `ui` for controls and state changes, `gentle` for large surfaces and portraits, `lively` for a single success beat, and `ambient` for guarded background motion.
+
+- Prefer transform and opacity so motion stays compositor-friendly.
+- Scroll-driven movement must stop outside its scene and never block native swipe.
+- Mobile chapter navigation combines scroll snap, previous/next controls, an active indicator, and an announced chapter label.
+- Registration exposes idle, loading, success, and recoverable error states without moving the form out from under the visitor.
+- Reduced motion removes transforms and continuous animation while keeping content and state legible.
 
 ## Do's and Don'ts
 

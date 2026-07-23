@@ -11,6 +11,15 @@ const defaults = {
   meeting_url: "https://example.com/pilot-room",
   host: "Sean and Mac",
 };
+const MOTION = {
+  stagger: 0.08,
+  snap: 0.16,
+  ui: 0.32,
+  gentle: 0.72,
+  lively: 0.52,
+  ambient: 3.8,
+  enter: 24,
+};
 let eventConfig = read(KEYS.event, defaults);
 let registrations = read(KEYS.registrations, []);
 
@@ -19,6 +28,7 @@ const registrationForm = document.querySelector("#registration");
 const configForm = document.querySelector("#event-config");
 const error = document.querySelector("#form-error");
 const previewDialog = document.querySelector("#message-preview");
+const submitButton = registrationForm.querySelector(".command-submit");
 
 document.querySelectorAll("[data-route]").forEach((control) =>
   control.addEventListener("click", (event) => {
@@ -31,6 +41,7 @@ document.querySelectorAll("[data-route]").forEach((control) =>
 registrationForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!registrationForm.checkValidity()) {
+    setSubmitState("error", "Check the required fields", "!");
     error.textContent = "Please complete each required field.";
     error.hidden = false;
     registrationForm.reportValidity();
@@ -48,6 +59,19 @@ registrationForm.addEventListener("submit", async (event) => {
     calendarConsent: form.get("calendar_consent") === "on",
     createdAt: new Date().toISOString(),
   };
+  const search = new URLSearchParams(window.location.search);
+  form.set("registration_id", record.id);
+  form.set("registration_status", "registered");
+  form.set("registered_at", record.createdAt);
+  form.set("event_title", eventConfig.title);
+  form.set("event_date", eventConfig.date);
+  form.set("event_time", eventConfig.time);
+  form.set("event_timezone", eventConfig.timezone);
+  form.set("page_url", window.location.href);
+  form.set("referrer", document.referrer || "direct");
+  ["utm_source", "utm_medium", "utm_campaign"].forEach((key) =>
+    form.set(key, clean(search.get(key))),
+  );
   const hostedSubmission = isHostedSubmission();
   const calendarWindow = record.calendarConsent
     ? window.open("about:blank", "_blank")
@@ -55,12 +79,14 @@ registrationForm.addEventListener("submit", async (event) => {
   if (calendarWindow) {
     calendarWindow.opener = null;
   }
+  setSubmitState("loading", "Saving your seat", "…");
   try {
     if (hostedSubmission) {
       await submitRegistration(form);
     }
   } catch {
     calendarWindow?.close();
+    setSubmitState("error", "Try registration again", "↻");
     error.textContent =
       "We could not save your registration. Please try again in a moment.";
     error.hidden = false;
@@ -77,8 +103,17 @@ registrationForm.addEventListener("submit", async (event) => {
   updateConfirmation(record.firstName, record.calendarConsent);
   updateMetrics();
   renderRegistrants();
+  setSubmitState("success", "Seat reserved", "✓");
   showView("confirmation");
 });
+
+function setSubmitState(state, label, glyph) {
+  submitButton.dataset.state = state;
+  submitButton.disabled = state === "loading" || state === "success";
+  registrationForm.setAttribute("aria-busy", String(state === "loading"));
+  submitButton.querySelector(".submit-label").textContent = label;
+  submitButton.querySelector(".submit-glyph").textContent = glyph;
+}
 
 function isHostedSubmission() {
   return (
@@ -130,6 +165,7 @@ document
 setupShell();
 setupReveal();
 setupExperience();
+setupAgendaControls();
 setupAgendaExperience();
 setupFormProgress();
 setupMobileDock();
@@ -150,6 +186,9 @@ function showView(name) {
     document.querySelector("#menuButton").setAttribute("aria-expanded", "false");
     window.scrollTo({ top: 0, behavior: "smooth" });
     document.querySelector("#mobileDock")?.classList.toggle("hidden", name !== "register");
+    if (name === "register" && submitButton.dataset.state === "success") {
+      setSubmitState("idle", "Register for the workshop", "→");
+    }
   };
   if (document.startViewTransition) {
     document.startViewTransition(updateView);
@@ -300,23 +339,23 @@ function setupExperience() {
 
   if (!motionOff && window.gsap) {
     window.gsap.from(".hero-copy > *", {
-      y: 22,
+      y: MOTION.enter,
       opacity: 0,
-      duration: 0.8,
-      stagger: 0.08,
+      duration: MOTION.gentle,
+      stagger: MOTION.stagger,
       ease: "power3.out",
       delay: 0.12,
     });
     window.gsap.from(".founder-portrait", {
       x: 32,
       scale: 0.97,
-      duration: 1,
+      duration: MOTION.gentle,
       ease: "power3.out",
       delay: 0.2,
     });
     window.gsap.to(".founder-portrait", {
       y: -7,
-      duration: 3.8,
+      duration: MOTION.ambient,
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut",
@@ -329,6 +368,75 @@ function setupExperience() {
     motionToggle.setAttribute("aria-pressed", String(off));
     motionToggle.querySelector("b").textContent = off ? "Motion off" : "Motion on";
   }
+}
+
+function setupAgendaControls() {
+  const viewport = document.querySelector(".agenda-viewport");
+  const chapters = [...document.querySelectorAll(".agenda-chapter")];
+  const previous = document.querySelector("#agendaPrev");
+  const next = document.querySelector("#agendaNext");
+  const dots = document.querySelector("#agendaDots");
+  const status = document.querySelector("#agendaStatus");
+  if (!viewport || !chapters.length || !previous || !next || !dots || !status) {
+    return;
+  }
+
+  dots.replaceChildren(
+    ...chapters.map(() => {
+      const dot = document.createElement("i");
+      return dot;
+    }),
+  );
+  const dotItems = [...dots.children];
+  let activeIndex = 0;
+  let ticking = false;
+
+  const update = () => {
+    const viewportCenter = viewport.scrollLeft + viewport.clientWidth / 2;
+    activeIndex = chapters.reduce((closest, chapter, index) => {
+      const chapterCenter = chapter.offsetLeft + chapter.offsetWidth / 2;
+      const closestCenter =
+        chapters[closest].offsetLeft + chapters[closest].offsetWidth / 2;
+      return Math.abs(chapterCenter - viewportCenter) <
+        Math.abs(closestCenter - viewportCenter)
+        ? index
+        : closest;
+    }, 0);
+    chapters.forEach((chapter, index) =>
+      chapter.classList.toggle("is-active", index === activeIndex),
+    );
+    dotItems.forEach((dot, index) =>
+      dot.classList.toggle("is-active", index === activeIndex),
+    );
+    previous.disabled = activeIndex === 0;
+    next.disabled = activeIndex === chapters.length - 1;
+    status.textContent = `Workshop chapter ${activeIndex + 1} of ${chapters.length}: ${chapters[activeIndex].querySelector("strong").textContent}`;
+    ticking = false;
+  };
+
+  const goTo = (index) => {
+    const target = Math.max(0, Math.min(chapters.length - 1, index));
+    viewport.scrollTo({
+      left: chapters[target].offsetLeft - viewport.offsetLeft,
+      behavior: document.documentElement.classList.contains("no-motion")
+        ? "auto"
+        : "smooth",
+    });
+  };
+
+  previous.addEventListener("click", () => goTo(activeIndex - 1));
+  next.addEventListener("click", () => goTo(activeIndex + 1));
+  viewport.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    },
+    { passive: true },
+  );
+  addEventListener("resize", update, { passive: true });
+  update();
 }
 
 function setupAgendaExperience() {
@@ -429,6 +537,10 @@ function setupAgendaExperience() {
 function setupFormProgress() {
   const required = [...registrationForm.querySelectorAll("[required]")];
   const update = () => {
+    if (submitButton.dataset.state === "error") {
+      setSubmitState("idle", "Register for the workshop", "→");
+      error.hidden = true;
+    }
     const complete = required.filter((field) =>
       field.type === "checkbox" ? field.checked : field.value.trim() && field.checkValidity(),
     ).length;

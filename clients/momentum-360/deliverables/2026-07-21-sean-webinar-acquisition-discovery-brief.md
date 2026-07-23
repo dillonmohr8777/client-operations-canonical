@@ -7,6 +7,15 @@ Status: pilot system and prototype complete; no external activation
 
 Build a permission-based webinar funnel around owned audiences and the Skool community. Do not silently add events to third-party calendars. Calendar placement happens only after explicit registration through a Google Calendar link or downloaded ICS file.
 
+Sean's July 21 Slack audio confirms the original growth concept: place the webinar
+on a target audience's Google Calendars automatically, then use the session to
+pitch the growth offer. That message is the source of truth for the intended
+mechanic. The production interpretation is an explicit registration and calendar
+consent flow because unsolicited calendar insertion is not an acceptable launch
+path. A registrant can receive an automatic invite from the approved host event
+after the event date, meeting URL, sender account, and permissioned audience are
+confirmed.
+
 The declined July 21 `Sean x Dillon` calendar event means no completed discovery call can be claimed. The pilot below uses reversible assumptions so progress does not depend on another meeting.
 
 ## Pilot assumptions

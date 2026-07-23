@@ -37,7 +37,7 @@ Preserve the Momentum 360 name, corporate logo, Mac and Sean imagery, navy/gold/
 ## Evidence on Hand
 
 - Real Momentum 360 logo and recognition badges in `assets/`.
-- Real Mac and Sean portrait imagery in `assets/mac-sean-instagram-editorial-source.jpg` and `assets/mac-sean-momentum-glass-hero.webp`.
+- Canonical individual founder portraits in `assets/sean-boyle-founder-bio-v1.webp` and `assets/mac-frederick-founder-bio-v1.webp`, plus the established paired founder imagery.
 - Existing registration, confirmation, Google Calendar, ICS, operator, event-schema, and QA implementations.
 - No approved testimonials, customer results, final webinar date, production meeting URL, or audience list; future work must not fabricate them.
 

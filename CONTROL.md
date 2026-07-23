@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-23T15:57:58.0087594+00:00`
-Queue revision: `170`
+Last reconciled: `2026-07-23T16:45:56.6548889+00:00`
+Queue revision: `171`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -57,7 +57,7 @@ Mode: `manual-pilot`
 | `wi-20260719-0001` | `revive-systems` | Prepare Revive ads-readiness response | Done | P1 | Create a local unsent readiness assessment and response draft from current Revive evidence, keeping ad activation and external delivery out of scope. | No evidenced deadline |
 | `wi-20260721-0001` | `kimberly-james-bridal` | Reconcile KJB converting ad and landing page | Done | P0 | Meta read-only account and campaign are verified; restore the authorized Google Ads account readback, then match the appointment to platform, ad or asset, landing-page URL, cost, timestamp, and booking evidence; retain the response as a local draft until reconciled. | No evidenced deadline |
 | `wi-20260721-0002` | `momentum-360` | Prepare AI Tech News next steps and check-in packet | Done | P1 | Run the local QA and handoff checklist, record final decisions and owners, and keep the check-in response unsent until participants and timing are confirmed. | No evidenced deadline |
-| `wi-20260721-0003` | `momentum-360` | Prepare Sean organic webinar acquisition system brief | Done | P1 | Confirm the final live date, real meeting URL, invitation sender, and permissioned audience, then approve the exact Slack or email invitation before distribution. | No evidenced deadline |
+| `wi-20260721-0003` | `momentum-360` | Prepare Sean organic webinar acquisition system brief | Done | P1 | Confirm the final live date, real meeting URL, invitation sender, and exact permissioned audience; then activate an explicit-consent attendee invite and reminder workflow. Do not use unsolicited calendar insertion. | No evidenced deadline |
 | `wi-20260722-0001` | `va-claims-edge` | Deploy the VA Claims Phase 2 portal release | Done | P0 | Reconcile the authorized VA Claims production deployment and independent public readback into the canonical verified outcome. | No evidenced deadline |
 | `wi-20260723-0001` | `kimberly-james-bridal` | Apply Mac KJB Search draft controls | Done | P0 | Draft-control work is complete; the separately gated launch swap is tracked in wi-20260723-0002. | No evidenced deadline |
 | `wi-20260723-0002` | `kimberly-james-bridal` | Approve controlled KJB Search launch swap | Blocked | P0 | Dillon must complete the visible Google Ads Confirm it is you gate in the preserved KJB Chrome tab; then correct the remaining ad validation issue, publish Search, attach and verify the staged negatives, pause Performance Max, and verify the final serving state. | No evidenced deadline |
