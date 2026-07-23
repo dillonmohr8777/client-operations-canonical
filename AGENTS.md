@@ -53,6 +53,14 @@ Background Gmail and Slack mechanisms are sensors only. They may write redacted,
 - Route material OmniRoute work through the existing Marketing Chief queue and approval classes. Status and Doctor evidence are redacted capability context, not a second queue, control center, project, or autonomous source of work.
 - At the 2026-07-23 integration baseline, OmniRoute `3.8.48` was live and loopback-only with zero Doctor failures, no connected provider account, and a production dependency audit of 6 high and 4 moderate advisories with no critical advisories. Recheck live state on every use, keep the installed version pinned, and retain release provenance and dependency-audit review before updates.
 
+## Marketing Chief Operator Studio
+
+- Treat ChatGPT Sites project `appgprj_6a61488852308191ba5cfb03ff59178f` and `https://dillon-marketing-chief.dillonmohr8777.chatgpt.site` as the one hosted Marketing Chief Operator Studio. It mirrors allowlisted canonical state and never becomes another queue or writer.
+- Use the Sites connector to inspect or change hosting, saved versions, runtime environment, deployment, or access. Read the exact `.openai/hosting.json` first and never expose the Sites bypass bearer token or machine-sync credential.
+- Preserve custom owner-only access by default. Invite only an exact active workspace user email that Dillon names, and never infer public access, workspace-wide access, or an invitee from nearby context. Site access does not authorize sending, publishing, spend, account changes, or canonical queue mutation.
+- Treat D1 as the durable hosted state for snapshots, choices, operator requests, owner intents, training runs, and evaluations. The hidden `MarketingChief-SitesBridge` remains the only Windows handoff and writes independent secret-screened backups at the 9 AM and 5 PM America/New_York slots under the ACL-protected `C:\Users\dillo\AppData\Local\Codex\MarketingChief\SitesBackups` directory.
+- Verify live URL, deployed version and source commit, access policy, recent Worker errors, bridge task result, and the latest backup manifest before claiming the Studio is live, private, synchronized, or backed up.
+
 ## Communication-triggered paid media
 
 - Use `workflows/communication-triggered-ad-launch.workflow.json` when an authorized Gmail, Slack, or direct user request implies a campaign launch, expansion, restart, or group of new locations. Treat the communication as a trigger to infer and build the complete deliverable chain, not as permission to guess missing commercial terms.
