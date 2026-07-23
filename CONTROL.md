@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-23T17:36:26.3666662+00:00`
-Queue revision: `173`
+Last reconciled: `2026-07-23T18:16:45.5433105+00:00`
+Queue revision: `175`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -17,9 +17,10 @@ Mode: `manual-pilot`
 **Next unblock:** **Approve controlled KJB Search launch swap** (`wi-20260723-0002`, score 170): Dillon must complete the visible Google Ads Confirm it is you gate in the preserved KJB Chrome tab; then correct the remaining ad validation issue, publish Search, attach and verify the staged negatives, pause Performance Max, and verify the final serving state. Why: P0, portfolio rank 4 (strategic), no evidenced deadline, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; next action contains gated action language; approval state is not exactly automatic and not_required.
 <!-- marketing-chief:predictions:end -->
 
-## Active execution (normal 1/3; emergency 0/1)
+## Active execution (normal 2/3; emergency 0/1)
 
 - `wi-20260723-0003` Finish Momentum decision-ready execution bundle: Using current canonical Momentum evidence, create one local decision ready bundle covering the caller response trigger and copy questions, opt out behavior, routing checklist, test and rollback plan, AI Tech News business facts and first three prospect decisions, and Google Places prerequisites. Keep every output local for owner review.
+- `wi-20260723-0005` Finish Align HCM HubSpot Customer Agent: Verify the working live agent against the prepared acceptance suite from the authenticated Align HubSpot computer, then record its knowledge-source sync, human handoff, channel, credit, and activation evidence.
 
 ## Commitment queue
 
@@ -63,7 +64,7 @@ Mode: `manual-pilot`
 | `wi-20260723-0002` | `kimberly-james-bridal` | Approve controlled KJB Search launch swap | Blocked | P0 | Dillon must complete the visible Google Ads Confirm it is you gate in the preserved KJB Chrome tab; then correct the remaining ad validation issue, publish Search, attach and verify the staged negatives, pause Performance Max, and verify the final serving state. | No evidenced deadline |
 | `wi-20260723-0003` | `momentum-360` | Finish Momentum decision-ready execution bundle | Verification | P1 | Using current canonical Momentum evidence, create one local decision ready bundle covering the caller response trigger and copy questions, opt out behavior, routing checklist, test and rollback plan, AI Tech News business facts and first three prospect decisions, and Google Places prerequisites. Keep every output local for owner review. | No evidenced deadline |
 | `wi-20260723-0004` | `align-hcm` | Finish Align August 2026 production package | Ready | P1 | Using the verified Align repository, render and inspect AN01 through AN06 as final MP4s, create the Beumer and Troon static assets, cut the two remaining Maher and Brent podcast recuts, and assemble QA evidence. Preserve Joann and Moe as recording dependent gates. Keep every output local for owner review. | No evidenced deadline |
-| `wi-20260723-0005` | `align-hcm` | Finish Align HCM HubSpot Customer Agent | Blocked | P1 | Resume from the other computer that has the authenticated Align HubSpot portal. In portal 242825734, audit and configure Customer Agent knowledge, guidance, testing, human handoff, channels, credits, and activation state using the prepared configuration package. | No evidenced deadline |
+| `wi-20260723-0005` | `align-hcm` | Finish Align HCM HubSpot Customer Agent | Verification | P1 | Verify the working live agent against the prepared acceptance suite from the authenticated Align HubSpot computer, then record its knowledge-source sync, human handoff, channel, credit, and activation evidence. | No evidenced deadline |
 | `wi-20260723-0006` | `momentum-360` | Complete Mac AI operations and Slack enablement bundle | Blocked | P1 | Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity. | No evidenced deadline |
 
 ## Waiting on Dillon
@@ -142,28 +143,12 @@ Mode: `manual-pilot`
 - Any WordPress or Semrush access route is mapped only through an authorized, revocable account path.
 - No external delivery, publishing, invoicing, account change, or client-system write occurs before explicit confirmation.
 
-### Finish Align HCM HubSpot Customer Agent
-
-**Decision:** Dillon completes Microsoft sign-in and approves controlled Customer Agent configuration in the Align portal.
-
-**Next action:** Resume from the other computer that has the authenticated Align HubSpot portal. In portal 242825734, audit and configure Customer Agent knowledge, guidance, testing, human handoff, channels, credits, and activation state using the prepared configuration package.
-
-**Definition of done:**
-
-- The browser and connector both identify portal 242825734.
-- Approved Align website sources are synced without private or customer data.
-- Agent identity, tone, scope, refusal, and escalation guidance are configured.
-- Representative implementation, training, integration, SmartCare, unsupported-claim, and human-handoff tests pass.
-- The intended live chat channel, working hours, credit state, and human assignment route are verified.
-- Any activation or publication result is recorded with exact evidence and no client boundary crossing.
-
 ## Blocked or at risk
 
 - **Reconcile two Fagan Painting website leads:** Verify mailbox processing, the named response owner, and lead-level disposition through the approved Fagan mailbox, CRM, or Zapier records before any prospect contact.
   Current evidence: A fresh read-only recheck verified the client-side response owner and confirmed that both relevant operator-mailbox threads still contain unsent drafts with no sent follow-up or later activity. Both individual lead dispositions remain unverified, and the exact client mailbox route still requires a human authentication handoff.
 - **Approve controlled KJB Search launch swap:** Dillon must complete the visible Google Ads Confirm it is you gate in the preserved KJB Chrome tab; then correct the remaining ad validation issue, publish Search, attach and verify the staged negatives, pause Performance Max, and verify the final serving state.
   Current evidence: Publication was approved and the exact KJB draft was reopened in authenticated Chrome. Google Ads presented a human identity confirmation gate and a remaining ad validation issue. No campaign was published or paused and no spend state changed.
-- **Finish Align HCM HubSpot Customer Agent:** Resume from the other computer that has the authenticated Align HubSpot portal. In portal 242825734, audit and configure Customer Agent knowledge, guidance, testing, human handoff, channels, credits, and activation state using the prepared configuration package.
 - **Complete Mac AI operations and Slack enablement bundle:** Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity.
   Current evidence: The 32-row controlled direct-mail sheet, unpublished QRTIGER and PostGrid Zap drafts, verified Slackbot AI response, and narrated 1080p walkthrough are complete. QRTIGER is staged at its Google account chooser and PostGrid still requires a human CAPTCHA, terms acceptance, and account details. All 32 mail rows remain suppressed and no mail or spend occurred.
 
