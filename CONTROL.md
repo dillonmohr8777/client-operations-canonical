@@ -3,14 +3,14 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-23T14:11:48.7131487+00:00`
-Queue revision: `160`
+Last reconciled: `2026-07-23T14:13:25.2036878+00:00`
+Queue revision: `161`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
 ## Predicted next actions
 
-**Next automatic action:** No automatic action is currently eligible.
+**Next automatic action:** **Finish Momentum decision-ready execution bundle** (`wi-20260723-0003`, score 158): Using current canonical Momentum evidence, create one local decision ready bundle covering the caller response trigger and copy questions, opt out behavior, routing checklist, test and rollback plan, AI Tech News business facts and first three prospect decisions, and Google Places prerequisites. Keep every output local for owner review. Why: P1, portfolio rank 3 (strategic), no evidenced deadline, current evidence, status ready.
 
 **Next Dillon decision:** **Implement the Momentum caller auto-response workflow** (`wi-20260718-0003`, score 208): At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation. Why: P1, portfolio rank 3 (strategic), overdue, current evidence, status ready, action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
 
@@ -61,6 +61,7 @@ No client outcome currently consumes a normal WIP slot.
 | `wi-20260722-0001` | `va-claims-edge` | Deploy the VA Claims Phase 2 portal release | Done | P0 | Reconcile the authorized VA Claims production deployment and independent public readback into the canonical verified outcome. | No evidenced deadline |
 | `wi-20260723-0001` | `kimberly-james-bridal` | Apply Mac KJB Search draft controls | Done | P0 | Draft-control work is complete; the separately gated launch swap is tracked in wi-20260723-0002. | No evidenced deadline |
 | `wi-20260723-0002` | `kimberly-james-bridal` | Approve controlled KJB Search launch swap | Blocked | P0 | Dillon must complete the visible Google Ads Confirm it is you gate in the preserved KJB Chrome tab; then correct the remaining ad validation issue, publish Search, attach and verify the staged negatives, pause Performance Max, and verify the final serving state. | No evidenced deadline |
+| `wi-20260723-0003` | `momentum-360` | Finish Momentum decision-ready execution bundle | Ready | P1 | Using current canonical Momentum evidence, create one local decision ready bundle covering the caller response trigger and copy questions, opt out behavior, routing checklist, test and rollback plan, AI Tech News business facts and first three prospect decisions, and Google Places prerequisites. Keep every output local for owner review. | No evidenced deadline |
 
 ## Waiting on Dillon
 
