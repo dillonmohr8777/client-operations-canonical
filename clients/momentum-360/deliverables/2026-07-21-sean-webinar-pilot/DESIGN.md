@@ -15,7 +15,7 @@ typography:
     fontFamily: "Syne, Segoe UI, Arial, sans-serif"
     fontSize: "clamp(3.6rem, 8vw, 6rem)"
     fontWeight: 700
-    lineHeight: 0.88
+    lineHeight: 1.04
     letterSpacing: "-0.03em"
   body:
     fontFamily: "DM Sans, Segoe UI, Arial, sans-serif"
@@ -62,7 +62,7 @@ Liquid Glass is used as a lens for information, controls, and transitions. It re
 **Key Characteristics:**
 
 - Founder imagery at editorial scale with deliberate close crops.
-- Deep navy fields interrupted by cyan optics and controlled gold signals.
+- Deep navy fields interrupted by cyan optics and decisive gold headlines.
 - Scroll-led chapters with one horizontal system sequence and one cinematic registration close.
 - Command language for operations, restrained language for trust and consent.
 
@@ -76,7 +76,7 @@ Midnight navy owns the environment. Momentum blue and horizon cyan define optica
 
 ### Secondary
 
-- **Founder Gold:** Marks dates, live signals, primary actions, and moments requiring commitment.
+- **Founder Gold:** Owns display headlines on navy, dates, primary actions, and moments requiring commitment.
 
 ### Tertiary
 
@@ -99,7 +99,7 @@ Midnight navy owns the environment. Momentum blue and horizon cyan define optica
 
 ### Hierarchy
 
-- **Display:** Heavy, tightly tracked, and capped at 6rem for hero and chapter statements.
+- **Display:** Heavy, safely led for descenders, tracked no tighter than -0.04em, and capped at 6rem for hero and chapter statements.
 - **Headline:** Bold, compact, and balanced across two to four lines.
 - **Title:** Semibold, direct, and used for steps or decisions.
 - **Body:** Comfortable 1rem to 1.15rem copy with a 65–75ch maximum measure.
@@ -169,6 +169,8 @@ The motion system follows five purpose-named tempos inspired by Motion UI's cent
 
 - Prefer transform and opacity so motion stays compositor-friendly.
 - Scroll-driven movement must stop outside its scene and never block native swipe.
+- Recognition logos use one continuous horizontal swipe with a static reduced-motion fallback.
+- Operational outputs may rise, sharpen, and settle as they enter the viewport; motion reinforces sequence and never hides the registration path.
 - Mobile chapter navigation combines scroll snap, previous/next controls, an active indicator, and an announced chapter label.
 - Registration exposes idle, loading, success, and recoverable error states without moving the form out from under the visitor.
 - Reduced motion removes transforms and continuous animation while keeping content and state legible.

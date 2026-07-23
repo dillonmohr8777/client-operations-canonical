@@ -16,7 +16,7 @@ The workshop converts permissioned Momentum 360 audiences into qualified registr
 
 ## Positioning
 
-This is a working owner workshop, not a generic webinar funnel. Visitors bring one real growth constraint and leave with a weekly operating system their team can run.
+This is a working owner workshop, not a generic webinar funnel. Visitors bring one measurable growth bottleneck and leave with four practical documents: a priority, an offer statement, a lead path, and a 30-day scorecard.
 
 ## Operating Context
 
@@ -43,7 +43,7 @@ Preserve the Momentum 360 name, corporate logo, Mac and Sean imagery, navy/gold/
 
 ## Product Principles
 
-- Demonstrate the operating system instead of repeating marketing claims.
+- Name the concrete decision, document, or action produced by every workshop chapter.
 - Make trust, consent, and the next action obvious.
 - Let Mac and Sean feel present throughout the experience.
 - Keep the attendee journey simple even when the visual presentation is ambitious.

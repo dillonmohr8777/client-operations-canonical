@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-23T16:45:56.6548889+00:00`
-Queue revision: `171`
+Last reconciled: `2026-07-23T17:19:40.8144611+00:00`
+Queue revision: `172`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->

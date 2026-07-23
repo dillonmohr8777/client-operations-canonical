@@ -298,7 +298,14 @@ function setupShell() {
 }
 
 function setupReveal() {
-  const elements = document.querySelectorAll(".reveal");
+  const popTargets = document.querySelectorAll(
+    ".system-track article, .outcome-line, .calendar-event-card, .faq-list details",
+  );
+  popTargets.forEach((element, index) => {
+    element.classList.add("scroll-pop");
+    element.style.setProperty("--reveal-delay", `${(index % 5) * 70}ms`);
+  });
+  const elements = document.querySelectorAll(".reveal, .scroll-pop");
   if (!("IntersectionObserver" in window)) return;
   document.documentElement.classList.add("reveal-ready");
   const observer = new IntersectionObserver(

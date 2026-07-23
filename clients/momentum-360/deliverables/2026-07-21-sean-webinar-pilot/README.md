@@ -11,6 +11,8 @@ registrant selects the optional updates checkbox.
 - Responsive attendee registration and confirmation views.
 - Founder-led story sequence with close-cropped Mac and Sean portraiture.
 - Canonical individual, branded founder portraits for Sean and Mac with documented identity and crop rules.
+- Concrete workshop outcomes: one priority, one offer statement, one lead path, and one 30-day scorecard.
+- Continuous five-logo recognition swipe with a static reduced-motion fallback.
 - Scroll-controlled desktop agenda and native swipe agenda on mobile.
 - Mobile agenda controls and a shared purpose-based motion theme adapted from Motion UI principles.
 - Explicit email reminder and calendar consent controls.
@@ -38,3 +40,6 @@ email.
 - Automated browser checks confirmed operator navigation, registration,
   confirmation, responsive swipe behavior, local QA persistence, and Google
   Calendar URL generation.
+- The July 23 clarity pass confirmed gold-on-navy display hierarchy, intact
+  descenders at desktop and mobile widths, no decorative process line or
+  calendar orbit, and a successful five-field local registration.
