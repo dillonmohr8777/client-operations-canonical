@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-22T19:58:19.3325574+00:00`
-Queue revision: `147`
+Last reconciled: `2026-07-23T01:53:49.0310859+00:00`
+Queue revision: `153`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -47,7 +47,7 @@ No client outcome currently consumes a normal WIP slot.
 | `wi-20260717-0009` | `align-hcm` | Build Align HCM attribution model with bounded parallel research | Done | P1 | On the weekend execution window, the Marketing Chief should spawn up to three bounded lead agents in parallel: one for first-party HubSpot and repository evidence mapping, one for current attribution-method research and model comparison, and one for privacy, validation, and adversarial review. Each lead may spawn bounded subagents only for non-overlapping source families, must return the canonical redacted handoff contract, and must not mutate the queue. Reconcile results into one local attribution artifact. Use dillonmohr8777/align-hcm-lead-intelligence as private evidence, treat the blocked traffic endpoint as unavailable until reverified, keep direct proof separate from temporal and modeled influence, expose no lead-level private data, and take no external action. | 2026-07-19 23:59 -04:00 |
 | `wi-20260717-0010` | `revive-systems` | Add data tracking and analysis to Revive review blog | Done | P1 | Revise the marked checklist in the local Revive article source to explicitly add data tracking and analysis, regenerate the matching HTML and PDF review files, and verify the rendered change. | No evidenced deadline |
 | `wi-20260717-0011` | `va-claims-edge` | Implement Obaid's Phase 2 VA Claims UI handoff | Done | P0 | Review the local integrated branch and QA evidence. Keep GitHub push, Vercel deployment, merge, and external handoff pending explicit approval. | No evidenced deadline |
-| `wi-20260718-0001` | `bigorange-marketing` | Confirm BigOrange paid-trial scope and compensation | Needs Approval | P1 | After the Paula interview, reconcile the written pilot scope, hours, rate or fixed fee, start date, payment timing, and approved access route into local review artifacts; do not begin, invoice, publish, or send until the terms are confirmed. | 2026-07-24 23:59 -04:00 |
+| `wi-20260718-0001` | `bigorange-marketing` | Confirm BigOrange paid-trial scope and compensation | Needs Approval | P1 | At the confirmed July 27 working session, clarify and document the pilot scope, hours, pricing, start date, payment timing, and authorized access route. Do not begin, invoice, publish, send, or change accounts until the terms and exact access are confirmed. | 2026-07-27 13:00 -04:00 |
 | `wi-20260718-0002` | `momentum-360` | Prepare the July 20 Momentum AI review | Done | P1 | Build and verify a redacted local decision packet from current canonical artifacts and communication evidence. | 2026-07-20 14:30 -04:00 |
 | `wi-20260718-0003` | `momentum-360` | Implement the Momentum caller auto-response workflow | Needs Approval | P1 | At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation. | 2026-07-20 15:00 -04:00 |
 | `wi-20260718-0004` | `momentum-360` | Prepare the July 22 Momentum AI and Fable training | Done | P1 | Build and verify the local training packet from approved Momentum examples and non-secret access prerequisites. | 2026-07-22 15:30 -04:00 |
@@ -59,6 +59,8 @@ No client outcome currently consumes a normal WIP slot.
 | `wi-20260721-0002` | `momentum-360` | Prepare AI Tech News next steps and check-in packet | Done | P1 | Run the local QA and handoff checklist, record final decisions and owners, and keep the check-in response unsent until participants and timing are confirmed. | No evidenced deadline |
 | `wi-20260721-0003` | `momentum-360` | Prepare Sean organic webinar acquisition system brief | Done | P1 | Review the upgraded live Momentum workshop prototype; no Slack or email delivery has been made. | No evidenced deadline |
 | `wi-20260722-0001` | `va-claims-edge` | Deploy the VA Claims Phase 2 portal release | Blocked | P0 | A VA Claims Vercel owner must free a member seat or increase capacity and approve the pending dillonmohr8777 request; then redeploy commit 14bcdba and verify the public alias. | No evidenced deadline |
+| `wi-20260723-0001` | `kimberly-james-bridal` | Apply Mac KJB Search draft controls | Done | P0 | Draft-control work is complete; the separately gated launch swap is tracked in wi-20260723-0002. | No evidenced deadline |
+| `wi-20260723-0002` | `kimberly-james-bridal` | Approve controlled KJB Search launch swap | Needs Approval | P0 | Await Dillon explicit approval, then create the Search campaign without incremental spend, attach and verify all staged campaign negatives, pause Performance Max, and verify the final serving and budget state. | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -121,7 +123,7 @@ No client outcome currently consumes a normal WIP slot.
 
 **Decision:** Confirm the final BigOrange pilot scope and compensation before execution or invoicing.
 
-**Next action:** After the Paula interview, reconcile the written pilot scope, hours, rate or fixed fee, start date, payment timing, and approved access route into local review artifacts; do not begin, invoice, publish, or send until the terms are confirmed.
+**Next action:** At the confirmed July 27 working session, clarify and document the pilot scope, hours, pricing, start date, payment timing, and authorized access route. Do not begin, invoice, publish, send, or change accounts until the terms and exact access are confirmed.
 
 **Reviewable artifacts:**
 
@@ -149,6 +151,16 @@ No client outcome currently consumes a normal WIP slot.
 - Explicit implementation approval is recorded.
 - The approved workflow is configured and tested without exposing credentials or contacting unintended recipients.
 - Readback evidence and rollback instructions are preserved in the client record.
+
+### Approve controlled KJB Search launch swap
+
+**Decision:** Publish the reviewed KJB Search campaign, attach and verify the staged negative list, pause the live Performance Max campaign, and permit the unchanged daily budget to move to Search without overlap.
+
+**Next action:** Await Dillon explicit approval, then create the Search campaign without incremental spend, attach and verify all staged campaign negatives, pause Performance Max, and verify the final serving and budget state.
+
+**Definition of done:**
+
+- The reviewed Search campaign is created in the resolved primary KJB Ads account; all staged campaign negatives are attached and read back; Performance Max is paused before Search can spend, with no overlap; and final campaign controls, geography, budget, and serving state are verified.
 
 ## Blocked or at risk
 
@@ -199,9 +211,9 @@ No client outcome currently consumes a normal WIP slot.
 
 ## Live health probe
 
-- **As of:** `2026-07-22T19:52:35.9258713+00:00`
-- **Overall:** `degraded`
-- **Queue:** revision `145`, `33` work items, normal `0/3`, emergency `0/1` active
+- **As of:** `2026-07-23T03:38:19.4574232+00:00`
+- **Overall:** `healthy-with-human-gates`
+- **Queue:** revision `153`, `36` work items, normal `0/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `8/21` canonical clients registered, `2/65` systems verified, `6` exact Bitwarden item locators
@@ -215,9 +227,10 @@ No client outcome currently consumes a normal WIP slot.
   - `DillonAgentOS-DailyBrief`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
+  - `MarketingChief-DailyCalibration`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
+  - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
 - **Human gates:** `active_client_exact_bw_item_mapping`
 - **Deferred actions:** `secondary_exposed_password_rotation`
-- **Warnings:** Gmail base audit plus exact-route supplements do not cover the canonical registry exactly once
 
 ## Standing operating contract
 

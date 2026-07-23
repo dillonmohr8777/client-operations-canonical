@@ -93,7 +93,9 @@ $taskNames = @(
     'DillonAgentOS-SlackBridge',
     'DillonAgentOS-DailyBrief',
     'DillonAgentOS-WeeklyCloseout',
-    'Codex-Chrome-Watchdog'
+    'Codex-Chrome-Watchdog',
+    'MarketingChief-DailyCalibration',
+    'MarketingChief-SitesBridge'
 )
 $tasks = @($taskNames | ForEach-Object { Get-TaskHealth $_ })
 
@@ -104,6 +106,12 @@ foreach ($sensorName in @('DillonAgentOS-GmailBridge','DillonAgentOS-SlackBridge
     if ($sensor.enabled -and -not $sensor.prepareOnly) { $warnings.Add("$sensorName is enabled without PrepareOnly") }
     if ($sensor.lastResult -notin @($null, 0, 267009)) { $warnings.Add("$sensorName last result is $($sensor.lastResult)") }
 }
+$calibration = @($tasks | Where-Object { $_.name -eq 'MarketingChief-DailyCalibration' })[0]
+if (-not $calibration.present -or -not $calibration.enabled) { $warnings.Add('MarketingChief-DailyCalibration is missing or disabled') }
+elseif ($calibration.lastResult -notin @($null, 0, 267009)) { $warnings.Add("MarketingChief-DailyCalibration last result is $($calibration.lastResult)") }
+$sitesBridge = @($tasks | Where-Object { $_.name -eq 'MarketingChief-SitesBridge' })[0]
+if (-not $sitesBridge.present -or -not $sitesBridge.enabled) { $warnings.Add('MarketingChief-SitesBridge is missing or disabled') }
+elseif ($sitesBridge.lastResult -notin @($null, 0, 267009)) { $warnings.Add("MarketingChief-SitesBridge last result is $($sitesBridge.lastResult)") }
 
 $registryProbe=Invoke-BoundedPowerShellProbe -ScriptPath (Join-Path $PSScriptRoot 'Test-ClientRegistry.ps1') -TimeoutSeconds $ExternalProbeTimeoutSeconds
 $registryTest=($registryProbe.stdout+([Environment]::NewLine)+$registryProbe.stderr).Trim()
@@ -185,7 +193,8 @@ else { $warnings.Add('access coverage state is missing') }
 $gmailHistoryPath = if ([string]::IsNullOrWhiteSpace($GmailHistoryPath)) { Join-Path $projectRoot 'state\client-history-research\gmail-client-history-2026-07-16.json' } else { [IO.Path]::GetFullPath($GmailHistoryPath) }
 $defaultGmailSupplementPaths = @(
     (Join-Path $projectRoot 'state\client-history-research\gmail-bridge-software-history-2026-07-16.json'),
-    (Join-Path $projectRoot 'state\client-history-research\gmail-onsite-concrete-landscape-history-2026-07-16.json')
+    (Join-Path $projectRoot 'state\client-history-research\gmail-onsite-concrete-landscape-history-2026-07-16.json'),
+    (Join-Path $projectRoot 'state\client-history-research\gmail-bigorange-marketing-history-2026-07-22.json')
 )
 $gmailSupplementPaths = if ($null -eq $GmailSupplementPath -or @($GmailSupplementPath).Count -eq 0) {
     @($defaultGmailSupplementPaths)
