@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-23T01:53:49.0310859+00:00`
-Queue revision: `153`
+Last reconciled: `2026-07-23T03:50:29.5901154+00:00`
+Queue revision: `157`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -14,7 +14,7 @@ Mode: `manual-pilot`
 
 **Next Dillon decision:** **Implement the Momentum caller auto-response workflow** (`wi-20260718-0003`, score 204): At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation. Why: P1, portfolio rank 3 (strategic), overdue, current evidence, status needs_approval, action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
 
-**Next unblock:** **Deploy the VA Claims Phase 2 portal release** (`wi-20260722-0001`, score 210): A VA Claims Vercel owner must free a member seat or increase capacity and approve the pending dillonmohr8777 request; then redeploy commit 14bcdba and verify the public alias. Why: P0, portfolio rank 2 (critical), no evidenced deadline, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
+**Next unblock:** **Reconcile two Fagan Painting website leads** (`wi-20260715-0002`, score 145): Verify mailbox processing, the named response owner, and lead-level disposition through the approved Fagan mailbox, CRM, or Zapier records before any prospect contact. Why: P0, portfolio rank 10 (standard), no evidenced deadline, current evidence, status blocked, next action contains gated action language.
 <!-- marketing-chief:predictions:end -->
 
 ## Active execution (normal 0/3; emergency 0/1)
@@ -58,7 +58,7 @@ No client outcome currently consumes a normal WIP slot.
 | `wi-20260721-0001` | `kimberly-james-bridal` | Reconcile KJB converting ad and landing page | Done | P0 | Meta read-only account and campaign are verified; restore the authorized Google Ads account readback, then match the appointment to platform, ad or asset, landing-page URL, cost, timestamp, and booking evidence; retain the response as a local draft until reconciled. | No evidenced deadline |
 | `wi-20260721-0002` | `momentum-360` | Prepare AI Tech News next steps and check-in packet | Done | P1 | Run the local QA and handoff checklist, record final decisions and owners, and keep the check-in response unsent until participants and timing are confirmed. | No evidenced deadline |
 | `wi-20260721-0003` | `momentum-360` | Prepare Sean organic webinar acquisition system brief | Done | P1 | Review the upgraded live Momentum workshop prototype; no Slack or email delivery has been made. | No evidenced deadline |
-| `wi-20260722-0001` | `va-claims-edge` | Deploy the VA Claims Phase 2 portal release | Blocked | P0 | A VA Claims Vercel owner must free a member seat or increase capacity and approve the pending dillonmohr8777 request; then redeploy commit 14bcdba and verify the public alias. | No evidenced deadline |
+| `wi-20260722-0001` | `va-claims-edge` | Deploy the VA Claims Phase 2 portal release | Done | P0 | Reconcile the authorized VA Claims production deployment and independent public readback into the canonical verified outcome. | No evidenced deadline |
 | `wi-20260723-0001` | `kimberly-james-bridal` | Apply Mac KJB Search draft controls | Done | P0 | Draft-control work is complete; the separately gated launch swap is tracked in wi-20260723-0002. | No evidenced deadline |
 | `wi-20260723-0002` | `kimberly-james-bridal` | Approve controlled KJB Search launch swap | Needs Approval | P0 | Await Dillon explicit approval, then create the Search campaign without incremental spend, attach and verify all staged campaign negatives, pause Performance Max, and verify the final serving and budget state. | No evidenced deadline |
 
@@ -166,8 +166,6 @@ No client outcome currently consumes a normal WIP slot.
 
 - **Reconcile two Fagan Painting website leads:** Verify mailbox processing, the named response owner, and lead-level disposition through the approved Fagan mailbox, CRM, or Zapier records before any prospect contact.
   Current evidence: A fresh read-only recheck verified the client-side response owner and confirmed that both relevant operator-mailbox threads still contain unsent drafts with no sent follow-up or later activity. Both individual lead dispositions remain unverified, and the exact client mailbox route still requires a human authentication handoff.
-- **Deploy the VA Claims Phase 2 portal release:** A VA Claims Vercel owner must free a member seat or increase capacity and approve the pending dillonmohr8777 request; then redeploy commit 14bcdba and verify the public alias.
-  Current evidence: The exact Vercel team access request was submitted under Dillon approval. Vercel reports that an owner must approve it and that the VA Claims team has reached its member limit; the new production deployment therefore remains blocked and the existing live site is unchanged.
 
 ## Intake quarantine
 
@@ -211,9 +209,9 @@ No client outcome currently consumes a normal WIP slot.
 
 ## Live health probe
 
-- **As of:** `2026-07-23T03:38:19.4574232+00:00`
+- **As of:** `2026-07-23T03:50:41.7063795+00:00`
 - **Overall:** `healthy-with-human-gates`
-- **Queue:** revision `153`, `36` work items, normal `0/3`, emergency `0/1` active
+- **Queue:** revision `157`, `36` work items, normal `0/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `8/21` canonical clients registered, `2/65` systems verified, `6` exact Bitwarden item locators
