@@ -118,6 +118,22 @@ function Test-ExactRequestState {
     [pscustomobject]@{ exact = $exact; queue = $current.queue; item = $current.item }
 }
 
+function Invoke-BridgeGit {
+    param([Parameter(Mandatory = $true)][string[]]$Arguments)
+    $previousPreference = $ErrorActionPreference
+    try {
+        # Windows PowerShell can promote ordinary Git progress written to stderr
+        # into a terminating NativeCommandError when the bridge uses Stop.
+        $ErrorActionPreference = 'Continue'
+        $output = @(& git -C $projectRoot @Arguments 2>$null)
+        $exitCode = $LASTEXITCODE
+    }
+    finally {
+        $ErrorActionPreference = $previousPreference
+    }
+    [pscustomobject]@{ exitCode = $exitCode; output = $output }
+}
+
 function Test-CanonicalWriteReady {
     $guardedPaths = @(
         'queue/work-items.json',
@@ -125,20 +141,22 @@ function Test-CanonicalWriteReady {
         'state/prediction-outcomes.jsonl',
         'state/queue-mutations.jsonl'
     )
-    $dirty = @(& git -C $projectRoot status --porcelain -- $guardedPaths 2>$null)
-    if ($LASTEXITCODE -ne 0) { return [pscustomobject]@{ ready = $false; reason = 'git_status_failed' } }
+    $statusResult = Invoke-BridgeGit -Arguments (@('status', '--porcelain', '--') + $guardedPaths)
+    $dirty = @($statusResult.output)
+    if ($statusResult.exitCode -ne 0) { return [pscustomobject]@{ ready = $false; reason = 'git_status_failed' } }
     if ($dirty.Count -gt 0) { return [pscustomobject]@{ ready = $false; reason = 'canonical_paths_have_pending_changes' } }
-    & git -C $projectRoot fetch origin --prune 2>$null | Out-Null
-    if ($LASTEXITCODE -ne 0) { return [pscustomobject]@{ ready = $false; reason = 'git_fetch_failed' } }
-    $counts = (& git -C $projectRoot rev-list --left-right --count HEAD...origin/main 2>$null) -split '\s+'
-    if ($LASTEXITCODE -ne 0 -or $counts.Count -lt 2) {
+    $fetchResult = Invoke-BridgeGit -Arguments @('fetch', 'origin', '--prune')
+    if ($fetchResult.exitCode -ne 0) { return [pscustomobject]@{ ready = $false; reason = 'git_fetch_failed' } }
+    $divergenceResult = Invoke-BridgeGit -Arguments @('rev-list', '--left-right', '--count', 'HEAD...origin/main')
+    $counts = ($divergenceResult.output -join ' ') -split '\s+'
+    if ($divergenceResult.exitCode -ne 0 -or $counts.Count -lt 2) {
         return [pscustomobject]@{ ready = $false; reason = 'git_divergence_check_failed' }
     }
     if ([int]$counts[0] -ne 0 -or [int]$counts[1] -ne 0) {
         return [pscustomobject]@{ ready = $false; reason = 'canonical_branch_not_exactly_synced' }
     }
-    & git -C $projectRoot pull --ff-only origin main 2>$null | Out-Null
-    if ($LASTEXITCODE -ne 0) { return [pscustomobject]@{ ready = $false; reason = 'git_fast_forward_failed' } }
+    $pullResult = Invoke-BridgeGit -Arguments @('pull', '--ff-only', 'origin', 'main')
+    if ($pullResult.exitCode -ne 0) { return [pscustomobject]@{ ready = $false; reason = 'git_fast_forward_failed' } }
     [pscustomobject]@{ ready = $true; reason = 'ready' }
 }
 
@@ -147,14 +165,14 @@ function Publish-CanonicalPaths {
         [Parameter(Mandatory = $true)][string[]]$Paths,
         [Parameter(Mandatory = $true)][string]$Message
     )
-    & git -C $projectRoot add -- $Paths
-    if ($LASTEXITCODE -ne 0) { throw 'Failed to stage the exact canonical bridge paths.' }
-    & git -C $projectRoot diff --cached --quiet
-    if ($LASTEXITCODE -eq 0) { return }
-    & git -C $projectRoot commit -m $Message | Out-Null
-    if ($LASTEXITCODE -ne 0) { throw 'Failed to commit the canonical bridge update.' }
-    & git -C $projectRoot push origin HEAD:main | Out-Null
-    if ($LASTEXITCODE -ne 0) { throw 'Failed to fast-forward the canonical bridge update.' }
+    $addResult = Invoke-BridgeGit -Arguments (@('add', '--') + $Paths)
+    if ($addResult.exitCode -ne 0) { throw 'Failed to stage the exact canonical bridge paths.' }
+    $diffResult = Invoke-BridgeGit -Arguments @('diff', '--cached', '--quiet')
+    if ($diffResult.exitCode -eq 0) { return }
+    $commitResult = Invoke-BridgeGit -Arguments @('commit', '-m', $Message)
+    if ($commitResult.exitCode -ne 0) { throw 'Failed to commit the canonical bridge update.' }
+    $pushResult = Invoke-BridgeGit -Arguments @('push', 'origin', 'HEAD:main')
+    if ($pushResult.exitCode -ne 0) { throw 'Failed to fast-forward the canonical bridge update.' }
 }
 
 function Resolve-Operator {
