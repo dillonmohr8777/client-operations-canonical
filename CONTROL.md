@@ -3,23 +3,24 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-24T13:52:50.9653310+00:00`
-Queue revision: `180`
+Last reconciled: `2026-07-24T15:55:15.0156206+00:00`
+Queue revision: `181`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
 ## Predicted next actions
 
-**Next automatic action:** **Full completion of deliverables** (`wi-20260723-0007`, score 133): Check and see that all deliverables were done today Why: P1, portfolio rank 14 (standard), no evidenced deadline, current evidence, status ready.
+**Next automatic action:** **Full completion of deliverables** (`wi-20260723-0007`, score 140): Check and see that all deliverables were done today Why: P1, portfolio rank 14 (standard), no evidenced deadline, current evidence, status in_progress.
 
 **Next Dillon decision:** **Implement the Momentum caller auto-response workflow** (`wi-20260718-0003`, score 208): At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation. Why: P1, portfolio rank 3 (strategic), overdue, current evidence, status ready, action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
 
 **Next unblock:** **Approve controlled KJB Search launch swap** (`wi-20260723-0002`, score 170): Dillon must complete the visible Google Ads Confirm it is you gate in the preserved KJB Chrome tab; then correct the remaining ad validation issue, publish Search, attach and verify the staged negatives, pause Performance Max, and verify the final serving state. Why: P0, portfolio rank 4 (strategic), no evidenced deadline, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; next action contains gated action language; approval state is not exactly automatic and not_required.
 <!-- marketing-chief:predictions:end -->
 
-## Active execution (normal 1/3; emergency 0/1)
+## Active execution (normal 2/3; emergency 0/1)
 
 - `wi-20260723-0005` Finish Align HCM HubSpot Customer Agent: Verify the working live agent against the prepared acceptance suite from the authenticated Align HubSpot computer, then record its knowledge-source sync, human handoff, channel, credit, and activation evidence.
+- `wi-20260723-0007` Full completion of deliverables: Check and see that all deliverables were done today
 
 ## Commitment queue
 
@@ -65,7 +66,7 @@ Mode: `manual-pilot`
 | `wi-20260723-0004` | `align-hcm` | Finish Align August 2026 production package | Done | P1 | Using the verified Align repository, render and inspect AN01 through AN06 as final MP4s, create the Beumer and Troon static assets, cut the two remaining Maher and Brent podcast recuts, and assemble QA evidence. Preserve Joann and Moe as recording dependent gates. Keep every output local for owner review. | No evidenced deadline |
 | `wi-20260723-0005` | `align-hcm` | Finish Align HCM HubSpot Customer Agent | Verification | P1 | Verify the working live agent against the prepared acceptance suite from the authenticated Align HubSpot computer, then record its knowledge-source sync, human handoff, channel, credit, and activation evidence. | No evidenced deadline |
 | `wi-20260723-0006` | `momentum-360` | Complete Mac AI operations and Slack enablement bundle | Blocked | P1 | Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity. | No evidenced deadline |
-| `wi-20260723-0007` | `align-hcm` | Full completion of deliverables | Ready | P1 | Check and see that all deliverables were done today | No evidenced deadline |
+| `wi-20260723-0007` | `align-hcm` | Full completion of deliverables | In Progress | P1 | Check and see that all deliverables were done today | No evidenced deadline |
 
 ## Waiting on Dillon
 
