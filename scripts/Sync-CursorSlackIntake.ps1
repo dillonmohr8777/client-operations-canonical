@@ -216,8 +216,13 @@ function ConvertTo-ValidatedRequest {
         -Label 'Cursor Slack request'
     if ([int]$Candidate.schemaVersion -ne 1) { throw 'Cursor Slack request schema is unsupported.' }
     $requestId = [string]$Candidate.requestId
-    if ($requestId -notmatch '^slack-(\d{10})-(\d{6})$') { throw 'Cursor Slack request identifier is invalid.' }
-    $messageTsFromId = "$($Matches[1]).$($Matches[2])"
+    $messageTsFromId = $null
+    if ($requestId -match '^slack-(\d{10})-(\d{6})$') {
+        $messageTsFromId = "$($Matches[1]).$($Matches[2])"
+    }
+    elseif ($requestId -notmatch '^cursor-slack-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$') {
+        throw 'Cursor Slack request identifier is invalid.'
+    }
 
     Assert-ExactProperties -Object $Candidate.source `
         -Allowed @('workspaceId','channelId','messageTs','requesterUserId','cursorUserId') `
@@ -226,9 +231,16 @@ function ConvertTo-ValidatedRequest {
         [string]$Candidate.source.workspaceId -cne $expectedWorkspaceId -or
         [string]$Candidate.source.channelId -cne $expectedChannelId -or
         [string]$Candidate.source.requesterUserId -cne $expectedRequesterId -or
-        [string]$Candidate.source.cursorUserId -cne $expectedCursorId -or
-        [string]$Candidate.source.messageTs -cne $messageTsFromId
+        [string]$Candidate.source.cursorUserId -cne $expectedCursorId
     ) { throw 'Cursor Slack source identity does not match the allowlisted Dillon-to-Cursor route.' }
+    $messageTs = $null
+    if (-not [string]::IsNullOrWhiteSpace([string]$Candidate.source.messageTs)) {
+        $messageTs = [string]$Candidate.source.messageTs
+        if ($messageTs -notmatch '^\d{10}\.\d{6}$') { throw 'Cursor Slack message timestamp is invalid.' }
+    }
+    if ($null -ne $messageTsFromId -and $messageTs -cne $messageTsFromId) {
+        throw 'Cursor Slack message timestamp does not match the request identifier.'
+    }
 
     $clientId = [string]$Candidate.clientId
     if ($clientId -notmatch '^[a-z0-9][a-z0-9-]{0,79}$') { throw 'Cursor Slack client identifier is invalid.' }
@@ -270,7 +282,7 @@ function ConvertTo-ValidatedRequest {
         source = [pscustomobject][ordered]@{
             workspaceId = $expectedWorkspaceId
             channelId = $expectedChannelId
-            messageTs = $messageTsFromId
+            messageTs = $messageTs
             requesterUserId = $expectedRequesterId
             cursorUserId = $expectedCursorId
             pullRequest = if ($null -eq $PullRequest) { $null } else { [int]$PullRequest.number }
@@ -299,7 +311,8 @@ function Get-PullRequestCandidate {
         '--json','number,title,author,baseRefName,headRefOid,url,isDraft'
     )
     if ($listResult.exitCode -ne 0) { throw 'GitHub pull-request intake lookup failed.' }
-    $items = @(($listResult.output -join [Environment]::NewLine) | ConvertFrom-Json)
+    $parsedItems = (($listResult.output -join [Environment]::NewLine) | ConvertFrom-Json)
+    $items = @($parsedItems | ForEach-Object { $_ })
     foreach ($item in @($items | Sort-Object number)) {
         if ([string]$item.title -notmatch '^\[Marketing Chief Intake\]') { continue }
         if ([string]$item.author.login -cne $AuthorLogin) { continue }
@@ -314,7 +327,7 @@ function Get-RequestFromPullRequest {
     param([Parameter(Mandatory = $true)][object]$PullRequest)
     $viewResult = Invoke-Gh -Arguments @(
         'pr','view',[string]$PullRequest.number,'--repo',$Repository,
-        '--json','files,author,baseRefName,headRefOid,title,url'
+        '--json','number,files,author,baseRefName,headRefOid,title,url'
     )
     if ($viewResult.exitCode -ne 0) { throw 'Cursor Slack intake pull request could not be inspected.' }
     $view = ($viewResult.output -join [Environment]::NewLine) | ConvertFrom-Json
@@ -326,12 +339,12 @@ function Get-RequestFromPullRequest {
     $file = $files[0]
     $path = ([string]$file.path).Replace('\','/')
     if (
-        $path -notmatch '^intake/cursor-slack-requests/pending/slack-\d{10}-\d{6}\.json$' -or
+        $path -notmatch '^intake/cursor-slack-requests/pending/(?:slack-\d{10}-\d{6}|cursor-slack-[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})\.json$' -or
         [int]$file.deletions -ne 0 -or [int]$file.additions -gt 80
     ) { throw 'Cursor Slack intake pull request contains an unsafe file change.' }
 
     $encodedPath = ($path -split '/' | ForEach-Object { [uri]::EscapeDataString($_) }) -join '/'
-    $apiPath = "repos/$Repository/contents/$encodedPath?ref=$([uri]::EscapeDataString([string]$view.headRefOid))"
+    $apiPath = "repos/$Repository/contents/${encodedPath}?ref=$([uri]::EscapeDataString([string]$view.headRefOid))"
     $contentResult = Invoke-Gh -Arguments @('api',$apiPath)
     if ($contentResult.exitCode -ne 0) { throw 'Cursor Slack intake request content could not be read.' }
     $contentEnvelope = ($contentResult.output -join [Environment]::NewLine) | ConvertFrom-Json

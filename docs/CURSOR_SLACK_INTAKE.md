@@ -23,7 +23,7 @@ Create one pull request in
 - title beginning `[Marketing Chief Intake]`
 - exactly one added file
 - file path
-  `intake/cursor-slack-requests/pending/slack-<message-seconds>-<message-micros>.json`
+  `intake/cursor-slack-requests/pending/cursor-slack-<uuid>.json`
 - no other file, queue, control, client, or state changes
 
 The JSON shape is:
@@ -31,11 +31,11 @@ The JSON shape is:
 ```json
 {
   "schemaVersion": 1,
-  "requestId": "slack-1784922105-135699",
+  "requestId": "cursor-slack-123e4567-e89b-42d3-a456-426614174000",
   "source": {
     "workspaceId": "T066HGS7N",
     "channelId": "D0BJEC2MM6V",
-    "messageTs": "1784922105.135699",
+    "messageTs": null,
     "requesterUserId": "U0A6MD920MA",
     "cursorUserId": "U0BJCELQYLS"
   },
@@ -48,6 +48,11 @@ The JSON shape is:
   "testOnly": false
 }
 ```
+
+Cursor generates a fresh lowercase UUID for each request. `messageTs` may be
+the exact Slack timestamp when Cursor can read it; otherwise it must be null.
+The owner-authored GitHub pull request, exact repository, and exact allowlisted
+Slack identities are the authenticated relay boundary.
 
 Allowed modes:
 

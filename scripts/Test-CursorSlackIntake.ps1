@@ -72,6 +72,16 @@ try {
     Add-Check 'valid-request' ($validResult.exitCode -eq 0 -and [string]$validJson.status -eq 'would-import') ([string]$validResult.output)
     Add-Check 'valid-local-class' ([string]$validJson.actionClass -eq 'local_artifact' -and [bool]$validJson.automaticEligible) ([string]$validResult.output)
 
+    $uuidRequest = Copy-Object $valid
+    $uuidRequest.requestId = 'cursor-slack-123e4567-e89b-42d3-a456-426614174000'
+    $uuidRequest.source.messageTs = $null
+    $uuidResult = Invoke-Fixture -Path (Write-Fixture -Name 'uuid-request' -Value $uuidRequest)
+    $uuidJson = if ($uuidResult.exitCode -eq 0) { $uuidResult.output | ConvertFrom-Json } else { $null }
+    Add-Check 'valid-uuid-without-message-ts' (
+        $uuidResult.exitCode -eq 0 -and
+        [string]$uuidJson.status -eq 'would-import'
+    ) ([string]$uuidResult.output)
+
     $gated = Copy-Object $valid
     $gated.requestId = 'slack-1784922106-135700'
     $gated.source.messageTs = '1784922106.135700'
