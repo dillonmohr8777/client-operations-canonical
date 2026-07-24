@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-24T19:16:31.3111039+00:00`
-Queue revision: `246`
+Last reconciled: `2026-07-24T23:21:04.7913287+00:00`
+Queue revision: `258`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -12,7 +12,7 @@ Mode: `manual-pilot`
 
 **Next automatic action:** No automatic action is currently eligible.
 
-**Next Dillon decision:** **Implement the Momentum caller auto-response workflow** (`wi-20260718-0003`, score 208): At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation. Why: P1, portfolio rank 3 (strategic), overdue, current evidence, status ready, action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
+**Next Dillon decision:** **Activate foundation Stripe donation flow** (`wi-20260724-0024`, score 210): An authorized foundation representative must create or authenticate the dedicated Stripe business and complete required identity, banking, tax, terms, CAPTCHA, MFA, and consent steps. Why: P0, portfolio rank 3 (strategic), due within 24 hours, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required.
 
 **Next unblock:** **Complete Mac AI operations and Slack enablement bundle** (`wi-20260723-0006`, score 155): Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity. Why: P1, portfolio rank 3 (strategic), no evidenced deadline, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required, last prediction accept.
 <!-- marketing-chief:predictions:end -->
@@ -66,7 +66,7 @@ Mode: `manual-pilot`
 | `wi-20260723-0005` | `align-hcm` | Finish Align HCM HubSpot Customer Agent | Verification | P1 | Verify the working live agent against the prepared acceptance suite from the authenticated Align HubSpot computer, then record its knowledge-source sync, human handoff, channel, credit, and activation evidence. | No evidenced deadline |
 | `wi-20260723-0006` | `momentum-360` | Complete Mac AI operations and Slack enablement bundle | Blocked | P1 | Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity. | No evidenced deadline |
 | `wi-20260723-0007` | `align-hcm` | Full completion of deliverables | Done | P1 | Check and see that all deliverables were done today | No evidenced deadline |
-| `wi-20260724-0001` | `bridge-software` | Cursor integration | Needs Approval | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0001` | `bridge-software` | Cursor integration | Blocked | P1 | Invite the Cursor Slack app to the exact private Pritzker Law Group and VA Claims channels, then rerun a bounded read-only source pass before considering any broader integration. | No evidenced deadline |
 | `wi-20260724-0002` | `va-claims-edge` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
 | `wi-20260724-0003` | `momentum-360` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
 | `wi-20260724-0004` | `kimberly-james-bridal` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
@@ -86,6 +86,10 @@ Mode: `manual-pilot`
 | `wi-20260724-0018` | `bercos-popcorn` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
 | `wi-20260724-0019` | `bigorange-marketing` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
 | `wi-20260724-0020` | `revive-systems` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0021` | `va-claims-edge` | Apply VA Claims dashboard review feedback | Cancelled | P0 | Verify the local dashboard changes and preserve push, deployment, and external handoff behind approval. | No evidenced deadline |
+| `wi-20260724-0022` | `va-claims-edge` | Apply VA Claims dashboard review feedback | Done | P0 | Await explicit approval before any push, Vercel deployment, or client-channel handoff. | No evidenced deadline |
+| `wi-20260724-0023` | `pritzker-law-group` | Build Love Philadelphia podcast sponsor landing page | Done | P0 | Await explicit approval before any publication, hosting, analytics, form wiring, or client-channel delivery. | No evidenced deadline |
+| `wi-20260724-0024` | `momentum-360` | Activate foundation Stripe donation flow | Blocked | P0 | An authorized foundation representative must create or authenticate the dedicated Stripe business and complete required identity, banking, tax, terms, CAPTCHA, MFA, and consent steps. | 2026-07-24 23:59 -04:00 |
 
 ## Waiting on Dillon
 
@@ -167,7 +171,7 @@ Mode: `manual-pilot`
 
 **Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
 
-**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+**Next action:** Invite the Cursor Slack app to the exact private Pritzker Law Group and VA Claims channels, then rerun a bounded read-only source pass before considering any broader integration.
 
 **Definition of done:**
 
@@ -402,6 +406,19 @@ Mode: `manual-pilot`
 - Complete the requested local outcome and record allowlisted evidence.
 - Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
 - Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Activate foundation Stripe donation flow
+
+**Decision:** Authorized foundation representative completes the dedicated Stripe onboarding and authentication gates.
+
+**Next action:** An authorized foundation representative must create or authenticate the dedicated Stripe business and complete required identity, banking, tax, terms, CAPTCHA, MFA, and consent steps.
+
+**Definition of done:**
+
+- Dedicated foundation Stripe business identity is authenticated and verified.
+- Required business, banking, tax, terms, CAPTCHA, MFA, and consent gates are completed by an authorized human.
+- Production Stripe key and webhook configuration are added through an approved secret path without exposing credentials.
+- A low-risk live donation test succeeds and the unrelated authenticated Stripe account remains unchanged.
 
 ## Blocked or at risk
 
@@ -409,6 +426,9 @@ Mode: `manual-pilot`
   Current evidence: A fresh read-only recheck verified the client-side response owner and confirmed that both relevant operator-mailbox threads still contain unsent drafts with no sent follow-up or later activity. Both individual lead dispositions remain unverified, and the exact client mailbox route still requires a human authentication handoff.
 - **Complete Mac AI operations and Slack enablement bundle:** Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity.
   Current evidence: The 32-row controlled direct-mail sheet, unpublished QRTIGER and PostGrid Zap drafts, verified Slackbot AI response, and narrated 1080p walkthrough are complete. QRTIGER is staged at its Google account chooser and PostGrid still requires a human CAPTCHA, terms acceptance, and account details. All 32 mail rows remain suppressed and no mail or spend occurred.
+- **Cursor integration:** Invite the Cursor Slack app to the exact private Pritzker Law Group and VA Claims channels, then rerun a bounded read-only source pass before considering any broader integration.
+  Current evidence: Cursor completed a bounded public-source pass and opened PR 210, but it could not read either private client channel. Its Pritzker brief added public-source corroboration; its VA section correctly marked the July 24 criteria unavailable. No merge, client-channel post, deployment, or queue mutation was performed by Cursor.
+- **Activate foundation Stripe donation flow:** An authorized foundation representative must create or authenticate the dedicated Stripe business and complete required identity, banking, tax, terms, CAPTCHA, MFA, and consent steps.
 
 ## Intake quarantine
 

@@ -1,0 +1,674 @@
+{
+    "schemaVersion":  1,
+    "graphRunId":  "mgr-20260724-va-dashboard-feedback-v2",
+    "graphRevision":  7,
+    "workflowId":  "marketing-chief-execution-graph",
+    "createdAt":  "2026-07-24T23:12:56.6343248+00:00",
+    "updatedAt":  "2026-07-24T23:13:18.8513984+00:00",
+    "status":  "handoff_ready",
+    "queueSnapshot":  {
+                          "locator":  "queue/work-items.json",
+                          "revision":  250,
+                          "sha256":  "C9C28BD830DAE9DCECC65A5F9AE67A5C5D3D95A65B2F486D7C87FC5481BA7391",
+                          "capturedAt":  "2026-07-24T23:12:56.6343248+00:00"
+                      },
+    "workItem":  {
+                     "id":  "wi-20260724-0022",
+                     "expectedVersion":  2,
+                     "contentSha256":  "C3F79D30007229CAF977D9C7378BE58D5E36D2C1BE30271372B7DC153E2C62C9",
+                     "clientId":  "va-claims-edge",
+                     "title":  "Apply VA Claims dashboard review feedback",
+                     "status":  "in_progress",
+                     "lane":  "normal",
+                     "priority":  "P0",
+                     "actionClass":  "local_artifact",
+                     "nextAction":  "Verify the local dashboard changes and preserve push, deployment, and external handoff behind approval.",
+                     "definitionOfDone":  [
+                                              "Awaiting Nexus Letter card links to the incomplete nexus-stage filter.",
+                                              "Needs Attention consistently uses a no-contact threshold of 60 days or more.",
+                                              "Pipeline label reads Ready to File.",
+                                              "Lint and production build pass with non-secret build fixtures."
+                                          ],
+                     "sourceLocator":  "clients/va-claims-edge/evidence/2026-07-24-dashboard-review-feedback.md",
+                     "evidenceRefs":  [
+                                          "clients/va-claims-edge/evidence/2026-07-24-dashboard-review-feedback.md"
+                                      ],
+                     "artifactRefs":  [
+
+                                      ],
+                     "dependencies":  [
+
+                                      ],
+                     "approval":  {
+                                      "tier":  "automatic",
+                                      "status":  "not_required",
+                                      "gate":  "none"
+                                  }
+                 },
+    "scope":  {
+                  "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+                  "clientRoot":  "clients/va-claims-edge",
+                  "graphLocator":  "state/execution-graphs/wi-20260724-0022/mgr-20260724-va-dashboard-feedback-v2/execution-graph.json",
+                  "canonicalWriteAllowed":  false,
+                  "externalActionAllowed":  false,
+                  "durableMemoryWriteAllowed":  false,
+                  "privacy":  "redacted"
+              },
+    "retrieval":  {
+                      "strategy":  "exact-plus-graph",
+                      "exactBindingRequired":  true,
+                      "semanticBindingAllowed":  false,
+                      "sourceCount":  1,
+                      "artifactCount":  0
+                  },
+    "nodes":  [
+                  {
+                      "id":  "scope-guard",
+                      "kind":  "scope_guard",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Validate immutable queue, work-item, client, and project scope.",
+                      "requires":  [
+
+                                   ],
+                      "produces":  [
+                                       "scoped_work_item"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Queue revision, work-item version, exact client route, and safety scope were validated.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "queue/work-items.json",
+                                                      "clients/va-claims-edge/evidence/2026-07-24-dashboard-review-feedback.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Queue revision 250 captured.",
+                                                          "Work-item version 2 captured.",
+                                                          "Client route va-claims-edge resolved exactly once and is active."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "source-intake",
+                      "kind":  "source_intake",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Capture safe exact source and evidence locators.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "provenance_slice"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Exact source and evidence locators were captured without raw communications.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/evidence/2026-07-24-dashboard-review-feedback.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Evidence freshness evaluated at 2026-07-24T23:12:56.6343248+00:00."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "context-retrieval",
+                      "kind":  "context_retrieval",
+                      "owner":  "marketing-chief-context-loader",
+                      "status":  "completed",
+                      "task":  "Assemble the exact bounded context slice required by this item.",
+                      "requires":  [
+                                       "source-intake"
+                                   ],
+                      "produces":  [
+                                       "worker_context"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Bounded client, source, artifact, dependency, and definition-of-done context was assembled.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/evidence/2026-07-24-dashboard-review-feedback.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Definition-of-done checks: 4.",
+                                                          "Artifact references: 0."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "worker-execution",
+                      "kind":  "worker_execution",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Verify the local dashboard changes and preserve push, deployment, and external handoff behind approval.",
+                      "requires":  [
+                                       "context-retrieval"
+                                   ],
+                      "produces":  [
+                                       "local_artifacts",
+                                       "worker_evidence"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Implemented all three dashboard review criteria and verified lint plus a production build with non-secret fixtures.",
+                                     "artifacts":  [
+                                                       "clients/va-claims-edge/workspace/vace-platform/src/app/dashboard/page.js",
+                                                       "clients/va-claims-edge/workspace/vace-platform/src/app/globals.css"
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/evidence/2026-07-24-dashboard-review-feedback.md"
+                                                  ],
+                                     "verification":  [
+                                                          "ESLint passed.",
+                                                          "Next.js production build passed with non-secret Supabase build fixtures.",
+                                                          "No push, deployment, or external handoff occurred."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-01",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Awaiting Nexus Letter card links to the incomplete nexus-stage filter.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_01"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Verified the Awaiting Nexus Letter card and its incomplete nexus-stage filter contract.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/evidence/2026-07-24-dashboard-review-feedback.md"
+                                                  ],
+                                     "verification":  [
+                                                          "The card is adjacent to Awaiting Documents in desktop order and links to filter=awaiting-nexus-letter."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-02",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Needs Attention consistently uses a no-contact threshold of 60 days or more.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_02"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Verified the Needs Attention definition across the dashboard.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/evidence/2026-07-24-dashboard-review-feedback.md"
+                                                  ],
+                                     "verification":  [
+                                                          "The summary context, page guidance, action link, and attention rule consistently use 60 days or more."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-03",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Pipeline label reads Ready to File.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_03"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Verified the clarified pipeline terminology.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/evidence/2026-07-24-dashboard-review-feedback.md"
+                                                  ],
+                                     "verification":  [
+                                                          "The sample pipeline stage label reads Ready to File."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-04",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Lint and production build pass with non-secret build fixtures.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_04"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Verified deterministic code quality and production compilation.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/evidence/2026-07-24-dashboard-review-feedback.md"
+                                                  ],
+                                     "verification":  [
+                                                          "ESLint passed and the Next.js production build passed with non-secret Supabase fixtures."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "approval-gate",
+                      "kind":  "approval_gate",
+                      "owner":  "marketing-chief",
+                      "status":  "completed",
+                      "task":  "Enforce the exact action-class and approval boundary.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "approval_verdict"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "This graph permits local reversible work only; no external action is authorized.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+
+                                                  ],
+                                     "verification":  [
+                                                          "Action class: local_artifact.",
+                                                          "Approval tier/status: automatic/not_required."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "handoff-assembly",
+                      "kind":  "handoff_assembly",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Assemble a schema-valid redacted worker handoff from completed graph outputs.",
+                      "requires":  [
+                                       "verify-01",
+                                       "verify-02",
+                                       "verify-03",
+                                       "verify-04",
+                                       "approval-gate"
+                                   ],
+                      "produces":  [
+                                       "worker_handoff"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "state/worker-handoffs/handoff-va-dashboard-feedback-20260724.json",
+                                                      "sha256:65FEC89A2641DF0D08209AD0D4FB483EEED7D6D92D6917CE6E16688547801D76"
+                                                  ],
+                                     "verification":  [
+
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "chief-reconciliation",
+                      "kind":  "chief_reconciliation",
+                      "owner":  "marketing-chief",
+                      "status":  "ready",
+                      "task":  "Revalidate live queue and item state, then accept or reject the handoff through the supported canonical mutation path.",
+                      "requires":  [
+                                       "handoff-assembly"
+                                   ],
+                      "produces":  [
+                                       "canonical_receipt"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  }
+              ],
+    "edges":  [
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "source-intake"
+                  },
+                  {
+                      "from":  "source-intake",
+                      "relation":  "precedes",
+                      "to":  "context-retrieval"
+                  },
+                  {
+                      "from":  "context-retrieval",
+                      "relation":  "precedes",
+                      "to":  "worker-execution"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-01"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-02"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-03"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-04"
+                  },
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "approval-gate"
+                  },
+                  {
+                      "from":  "verify-01",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-02",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-03",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-04",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "approval-gate",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "handoff-assembly",
+                      "relation":  "precedes",
+                      "to":  "chief-reconciliation"
+                  }
+              ],
+    "knowledgeGraph":  {
+                           "nodes":  [
+                                         {
+                                             "id":  "queue:canonical",
+                                             "type":  "queue",
+                                             "label":  "Canonical queue revision 250",
+                                             "locator":  "queue/work-items.json"
+                                         },
+                                         {
+                                             "id":  "client:va-claims-edge",
+                                             "type":  "client",
+                                             "label":  "va-claims-edge",
+                                             "locator":  "clients/va-claims-edge"
+                                         },
+                                         {
+                                             "id":  "work-item:wi-20260724-0022",
+                                             "type":  "work_item",
+                                             "label":  "Apply VA Claims dashboard review feedback",
+                                             "locator":  "clients/va-claims-edge/evidence/2026-07-24-dashboard-review-feedback.md"
+                                         },
+                                         {
+                                             "id":  "approval:none",
+                                             "type":  "approval",
+                                             "label":  "automatic/not_required/none",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "evidence:feb358351083d728",
+                                             "type":  "evidence",
+                                             "label":  "clients/va-claims-edge/evidence/2026-07-24-dashboard-review-feedback.md",
+                                             "locator":  "clients/va-claims-edge/evidence/2026-07-24-dashboard-review-feedback.md"
+                                         },
+                                         {
+                                             "id":  "definition:01",
+                                             "type":  "definition",
+                                             "label":  "Awaiting Nexus Letter card links to the incomplete nexus-stage filter.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:02",
+                                             "type":  "definition",
+                                             "label":  "Needs Attention consistently uses a no-contact threshold of 60 days or more.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:03",
+                                             "type":  "definition",
+                                             "label":  "Pipeline label reads Ready to File.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:04",
+                                             "type":  "definition",
+                                             "label":  "Lint and production build pass with non-secret build fixtures.",
+                                             "locator":  null
+                                         }
+                                     ],
+                           "edges":  [
+                                         {
+                                             "from":  "queue:canonical",
+                                             "relation":  "contains",
+                                             "to":  "work-item:wi-20260724-0022"
+                                         },
+                                         {
+                                             "from":  "client:va-claims-edge",
+                                             "relation":  "owns",
+                                             "to":  "work-item:wi-20260724-0022"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260724-0022",
+                                             "relation":  "governed_by",
+                                             "to":  "approval:none"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260724-0022",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:feb358351083d728"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260724-0022",
+                                             "relation":  "requires",
+                                             "to":  "definition:01"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260724-0022",
+                                             "relation":  "requires",
+                                             "to":  "definition:02"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260724-0022",
+                                             "relation":  "requires",
+                                             "to":  "definition:03"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260724-0022",
+                                             "relation":  "requires",
+                                             "to":  "definition:04"
+                                         }
+                                     ],
+                           "nodeCount":  9,
+                           "edgeCount":  8
+                       },
+    "handoffContract":  {
+                            "schema":  "schemas/worker-handoff.schema.json",
+                            "validator":  "scripts/Test-MarketingHandoff.ps1",
+                            "reconciler":  "scripts/Accept-WorkerHandoff.ps1",
+                            "expectedWorkItemVersion":  2,
+                            "approvalGate":  "none",
+                            "graphEvidence":  "state/execution-graphs/wi-20260724-0022/mgr-20260724-va-dashboard-feedback-v2/execution-graph.json"
+                        },
+    "blockers":  [
+
+                 ],
+    "warnings":  [
+
+                 ],
+    "trace":  [
+                  {
+                      "eventId":  "evt-55bb89c52ba14affac19dd239e1090f3",
+                      "at":  "2026-07-24T23:12:56.6343248+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "scope-guard",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-09657b5c2601416c91deecfe5726708b",
+                      "at":  "2026-07-24T23:12:56.6343248+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "source-intake",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-5d718d4f0f824e40bd9dd52e87292a21",
+                      "at":  "2026-07-24T23:12:56.6343248+00:00",
+                      "actor":  "marketing-chief-context-loader",
+                      "nodeId":  "context-retrieval",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-7c1291be5a9f4baeb4c0ad6dd8ae563b",
+                      "at":  "2026-07-24T23:12:56.6343248+00:00",
+                      "actor":  "queue-state-import",
+                      "nodeId":  "worker-execution",
+                      "fromStatus":  null,
+                      "toStatus":  "running",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-0227eaeaccd44d2ea9accfabbb19ced9",
+                      "at":  "2026-07-24T23:12:56.6343248+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "approval-gate",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-83681761d9ee4e8b88ce8e9578214fd6",
+                      "at":  "2026-07-24T23:12:58.2444746+00:00",
+                      "actor":  "bounded-worker",
+                      "nodeId":  "worker-execution",
+                      "fromStatus":  "running",
+                      "toStatus":  "completed",
+                      "summary":  "Implemented all three dashboard review criteria and verified lint plus a production build with non-secret fixtures."
+                  },
+                  {
+                      "eventId":  "evt-f2bcdb111f604a4dbccb09e4dfdf869d",
+                      "at":  "2026-07-24T23:12:59.8390041+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-01",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Verified the Awaiting Nexus Letter card and its incomplete nexus-stage filter contract."
+                  },
+                  {
+                      "eventId":  "evt-5cb4434a915d416eadecfbe5c53cf34e",
+                      "at":  "2026-07-24T23:13:01.4834138+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-02",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Verified the Needs Attention definition across the dashboard."
+                  },
+                  {
+                      "eventId":  "evt-f63d28c7a8b64ecfa97d5a070df26f4f",
+                      "at":  "2026-07-24T23:13:03.1753865+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-03",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Verified the clarified pipeline terminology."
+                  },
+                  {
+                      "eventId":  "evt-f3a61e73cf034dc3a0c325e3005b3cea",
+                      "at":  "2026-07-24T23:13:04.9438570+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-04",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Verified deterministic code quality and production compilation."
+                  },
+                  {
+                      "eventId":  "evt-fdc7ea7218404965a0e1e09ee3bc39ba",
+                      "at":  "2026-07-24T23:13:18.8513984+00:00",
+                      "actor":  "bounded-worker",
+                      "nodeId":  "handoff-assembly",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation."
+                  }
+              ],
+    "attestations":  {
+                         "canonicalWriteAttempted":  false,
+                         "externalActionAttempted":  false,
+                         "durableMemoryWriteAttempted":  false,
+                         "containsSecrets":  false,
+                         "containsDirectIdentifiers":  false,
+                         "containsRawCommunications":  false
+                     }
+}

@@ -1,0 +1,736 @@
+{
+    "schemaVersion":  1,
+    "graphRunId":  "mgr-20260724-pritzker-sponsor-lp",
+    "graphRevision":  8,
+    "workflowId":  "marketing-chief-execution-graph",
+    "createdAt":  "2026-07-24T23:14:20.9087983+00:00",
+    "updatedAt":  "2026-07-24T23:16:57.8956241+00:00",
+    "status":  "handoff_ready",
+    "queueSnapshot":  {
+                          "locator":  "queue/work-items.json",
+                          "revision":  254,
+                          "sha256":  "AD65EE9C463FE9444C0ED1059D5F002D2F31D5816223E6C5364C6EA45A3F5B8F",
+                          "capturedAt":  "2026-07-24T23:14:20.9087983+00:00"
+                      },
+    "workItem":  {
+                     "id":  "wi-20260724-0023",
+                     "expectedVersion":  2,
+                     "contentSha256":  "3DE7F9E62CB23250DD76E3546B9FCC2BDA0297148FCE06E8741A1D44611C7B6F",
+                     "clientId":  "pritzker-law-group",
+                     "title":  "Build Love Philadelphia podcast sponsor landing page",
+                     "status":  "in_progress",
+                     "lane":  "normal",
+                     "priority":  "P0",
+                     "actionClass":  "local_artifact",
+                     "nextAction":  "Complete and verify the local landing-page artifact while keeping publication, analytics, form wiring, and client delivery gated.",
+                     "definitionOfDone":  [
+                                              "Responsive landing page clearly identifies Love Philadelphia and Pritzker Law Group as premium sponsor.",
+                                              "Only verified firm facts and links are presented as confirmed.",
+                                              "Unknown launch, episode, host, listening, form, analytics, and hosting details remain visibly pending.",
+                                              "Desktop and mobile browser QA pass with no horizontal overflow.",
+                                              "No publish, deploy, form submission, analytics change, or client-channel delivery occurs."
+                                          ],
+                     "sourceLocator":  "clients/pritzker-law-group/evidence/2026-07-24-podcast-sponsor-landing-page.md",
+                     "evidenceRefs":  [
+                                          "clients/pritzker-law-group/evidence/2026-07-24-podcast-sponsor-landing-page.md"
+                                      ],
+                     "artifactRefs":  [
+
+                                      ],
+                     "dependencies":  [
+
+                                      ],
+                     "approval":  {
+                                      "tier":  "automatic",
+                                      "status":  "not_required",
+                                      "gate":  "none"
+                                  }
+                 },
+    "scope":  {
+                  "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+                  "clientRoot":  "clients/pritzker-law-group",
+                  "graphLocator":  "state/execution-graphs/wi-20260724-0023/mgr-20260724-pritzker-sponsor-lp/execution-graph.json",
+                  "canonicalWriteAllowed":  false,
+                  "externalActionAllowed":  false,
+                  "durableMemoryWriteAllowed":  false,
+                  "privacy":  "redacted"
+              },
+    "retrieval":  {
+                      "strategy":  "exact-plus-graph",
+                      "exactBindingRequired":  true,
+                      "semanticBindingAllowed":  false,
+                      "sourceCount":  1,
+                      "artifactCount":  0
+                  },
+    "nodes":  [
+                  {
+                      "id":  "scope-guard",
+                      "kind":  "scope_guard",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Validate immutable queue, work-item, client, and project scope.",
+                      "requires":  [
+
+                                   ],
+                      "produces":  [
+                                       "scoped_work_item"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Queue revision, work-item version, exact client route, and safety scope were validated.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "queue/work-items.json",
+                                                      "clients/pritzker-law-group/evidence/2026-07-24-podcast-sponsor-landing-page.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Queue revision 254 captured.",
+                                                          "Work-item version 2 captured.",
+                                                          "Client route pritzker-law-group resolved exactly once and is active."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "source-intake",
+                      "kind":  "source_intake",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Capture safe exact source and evidence locators.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "provenance_slice"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Exact source and evidence locators were captured without raw communications.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/pritzker-law-group/evidence/2026-07-24-podcast-sponsor-landing-page.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Evidence freshness evaluated at 2026-07-24T23:14:20.9087983+00:00."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "context-retrieval",
+                      "kind":  "context_retrieval",
+                      "owner":  "marketing-chief-context-loader",
+                      "status":  "completed",
+                      "task":  "Assemble the exact bounded context slice required by this item.",
+                      "requires":  [
+                                       "source-intake"
+                                   ],
+                      "produces":  [
+                                       "worker_context"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Bounded client, source, artifact, dependency, and definition-of-done context was assembled.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/pritzker-law-group/evidence/2026-07-24-podcast-sponsor-landing-page.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Definition-of-done checks: 5.",
+                                                          "Artifact references: 0."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "worker-execution",
+                      "kind":  "worker_execution",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Complete and verify the local landing-page artifact while keeping publication, analytics, form wiring, and client delivery gated.",
+                      "requires":  [
+                                       "context-retrieval"
+                                   ],
+                      "produces":  [
+                                       "local_artifacts",
+                                       "worker_evidence"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Built the responsive local sponsor landing page and retained all publication and integration gates.",
+                                     "artifacts":  [
+                                                       "clients/pritzker-law-group/deliverables/2026-07-24-love-philadelphia-podcast-sponsor-lp/index.html",
+                                                       "clients/pritzker-law-group/deliverables/2026-07-24-love-philadelphia-podcast-sponsor-lp/styles.css",
+                                                       "clients/pritzker-law-group/deliverables/2026-07-24-love-philadelphia-podcast-sponsor-lp/script.js"
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/pritzker-law-group/evidence/2026-07-24-podcast-sponsor-landing-page.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Static browser review passed at desktop and mobile sizes.",
+                                                          "No horizontal overflow was detected.",
+                                                          "External links resolve to verified firm pages.",
+                                                          "No deploy, form, analytics, or client delivery was attempted."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-01",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Responsive landing page clearly identifies Love Philadelphia and Pritzker Law Group as premium sponsor.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_01"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Responsive identity and premium sponsorship messaging are present at desktop and mobile sizes.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/pritzker-law-group/evidence/2026-07-24-podcast-sponsor-landing-page.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Responsive identity and premium sponsorship messaging are present at desktop and mobile sizes."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-02",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Only verified firm facts and links are presented as confirmed.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_02"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Confirmed firm copy and links are limited to official firm source material.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/pritzker-law-group/evidence/2026-07-24-podcast-sponsor-landing-page.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Confirmed firm copy and links are limited to official firm source material."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-03",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Unknown launch, episode, host, listening, form, analytics, and hosting details remain visibly pending.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_03"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Unconfirmed launch, listening, form, analytics, and hosting details remain pending or disabled.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/pritzker-law-group/evidence/2026-07-24-podcast-sponsor-landing-page.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Unconfirmed launch, listening, form, analytics, and hosting details remain pending or disabled."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-04",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Desktop and mobile browser QA pass with no horizontal overflow.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_04"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Desktop and mobile browser review passed with no horizontal overflow.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/pritzker-law-group/evidence/2026-07-24-podcast-sponsor-landing-page.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Desktop and mobile browser review passed with no horizontal overflow."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-05",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "No publish, deploy, form submission, analytics change, or client-channel delivery occurs.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_05"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "No publication, deployment, form submission, analytics change, or client delivery occurred.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/pritzker-law-group/evidence/2026-07-24-podcast-sponsor-landing-page.md"
+                                                  ],
+                                     "verification":  [
+                                                          "No publication, deployment, form submission, analytics change, or client delivery occurred."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "approval-gate",
+                      "kind":  "approval_gate",
+                      "owner":  "marketing-chief",
+                      "status":  "completed",
+                      "task":  "Enforce the exact action-class and approval boundary.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "approval_verdict"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "This graph permits local reversible work only; no external action is authorized.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+
+                                                  ],
+                                     "verification":  [
+                                                          "Action class: local_artifact.",
+                                                          "Approval tier/status: automatic/not_required."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "handoff-assembly",
+                      "kind":  "handoff_assembly",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Assemble a schema-valid redacted worker handoff from completed graph outputs.",
+                      "requires":  [
+                                       "verify-01",
+                                       "verify-02",
+                                       "verify-03",
+                                       "verify-04",
+                                       "verify-05",
+                                       "approval-gate"
+                                   ],
+                      "produces":  [
+                                       "worker_handoff"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "state/worker-handoffs/handoff-pritzker-sponsor-lp-20260724.json",
+                                                      "sha256:870E03268EA78D417F510B48140E21CF58BA653525B908E06316BEDE9192336F"
+                                                  ],
+                                     "verification":  [
+
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "chief-reconciliation",
+                      "kind":  "chief_reconciliation",
+                      "owner":  "marketing-chief",
+                      "status":  "ready",
+                      "task":  "Revalidate live queue and item state, then accept or reject the handoff through the supported canonical mutation path.",
+                      "requires":  [
+                                       "handoff-assembly"
+                                   ],
+                      "produces":  [
+                                       "canonical_receipt"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  }
+              ],
+    "edges":  [
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "source-intake"
+                  },
+                  {
+                      "from":  "source-intake",
+                      "relation":  "precedes",
+                      "to":  "context-retrieval"
+                  },
+                  {
+                      "from":  "context-retrieval",
+                      "relation":  "precedes",
+                      "to":  "worker-execution"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-01"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-02"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-03"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-04"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-05"
+                  },
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "approval-gate"
+                  },
+                  {
+                      "from":  "verify-01",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-02",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-03",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-04",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-05",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "approval-gate",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "handoff-assembly",
+                      "relation":  "precedes",
+                      "to":  "chief-reconciliation"
+                  }
+              ],
+    "knowledgeGraph":  {
+                           "nodes":  [
+                                         {
+                                             "id":  "queue:canonical",
+                                             "type":  "queue",
+                                             "label":  "Canonical queue revision 254",
+                                             "locator":  "queue/work-items.json"
+                                         },
+                                         {
+                                             "id":  "client:pritzker-law-group",
+                                             "type":  "client",
+                                             "label":  "pritzker-law-group",
+                                             "locator":  "clients/pritzker-law-group"
+                                         },
+                                         {
+                                             "id":  "work-item:wi-20260724-0023",
+                                             "type":  "work_item",
+                                             "label":  "Build Love Philadelphia podcast sponsor landing page",
+                                             "locator":  "clients/pritzker-law-group/evidence/2026-07-24-podcast-sponsor-landing-page.md"
+                                         },
+                                         {
+                                             "id":  "approval:none",
+                                             "type":  "approval",
+                                             "label":  "automatic/not_required/none",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "evidence:1bfe1784020bc258",
+                                             "type":  "evidence",
+                                             "label":  "clients/pritzker-law-group/evidence/2026-07-24-podcast-sponsor-landing-page.md",
+                                             "locator":  "clients/pritzker-law-group/evidence/2026-07-24-podcast-sponsor-landing-page.md"
+                                         },
+                                         {
+                                             "id":  "definition:01",
+                                             "type":  "definition",
+                                             "label":  "Responsive landing page clearly identifies Love Philadelphia and Pritzker Law Group as premium sponsor.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:02",
+                                             "type":  "definition",
+                                             "label":  "Only verified firm facts and links are presented as confirmed.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:03",
+                                             "type":  "definition",
+                                             "label":  "Unknown launch, episode, host, listening, form, analytics, and hosting details remain visibly pending.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:04",
+                                             "type":  "definition",
+                                             "label":  "Desktop and mobile browser QA pass with no horizontal overflow.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:05",
+                                             "type":  "definition",
+                                             "label":  "No publish, deploy, form submission, analytics change, or client-channel delivery occurs.",
+                                             "locator":  null
+                                         }
+                                     ],
+                           "edges":  [
+                                         {
+                                             "from":  "queue:canonical",
+                                             "relation":  "contains",
+                                             "to":  "work-item:wi-20260724-0023"
+                                         },
+                                         {
+                                             "from":  "client:pritzker-law-group",
+                                             "relation":  "owns",
+                                             "to":  "work-item:wi-20260724-0023"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260724-0023",
+                                             "relation":  "governed_by",
+                                             "to":  "approval:none"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260724-0023",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:1bfe1784020bc258"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260724-0023",
+                                             "relation":  "requires",
+                                             "to":  "definition:01"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260724-0023",
+                                             "relation":  "requires",
+                                             "to":  "definition:02"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260724-0023",
+                                             "relation":  "requires",
+                                             "to":  "definition:03"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260724-0023",
+                                             "relation":  "requires",
+                                             "to":  "definition:04"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260724-0023",
+                                             "relation":  "requires",
+                                             "to":  "definition:05"
+                                         }
+                                     ],
+                           "nodeCount":  10,
+                           "edgeCount":  9
+                       },
+    "handoffContract":  {
+                            "schema":  "schemas/worker-handoff.schema.json",
+                            "validator":  "scripts/Test-MarketingHandoff.ps1",
+                            "reconciler":  "scripts/Accept-WorkerHandoff.ps1",
+                            "expectedWorkItemVersion":  2,
+                            "approvalGate":  "none",
+                            "graphEvidence":  "state/execution-graphs/wi-20260724-0023/mgr-20260724-pritzker-sponsor-lp/execution-graph.json"
+                        },
+    "blockers":  [
+
+                 ],
+    "warnings":  [
+
+                 ],
+    "trace":  [
+                  {
+                      "eventId":  "evt-1ba6c566f25641059e4be6618040daab",
+                      "at":  "2026-07-24T23:14:20.9087983+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "scope-guard",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-fd20c13a929a4bc79d82be07672ff271",
+                      "at":  "2026-07-24T23:14:20.9087983+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "source-intake",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-ab66354d3af142a7a831b1e417ef1d97",
+                      "at":  "2026-07-24T23:14:20.9087983+00:00",
+                      "actor":  "marketing-chief-context-loader",
+                      "nodeId":  "context-retrieval",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-f86981988ca44c93a96e93730a668195",
+                      "at":  "2026-07-24T23:14:20.9087983+00:00",
+                      "actor":  "queue-state-import",
+                      "nodeId":  "worker-execution",
+                      "fromStatus":  null,
+                      "toStatus":  "running",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-0944881a8be9476da7e975906b7ada6d",
+                      "at":  "2026-07-24T23:14:20.9087983+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "approval-gate",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-9a92de7ce9bc4f5e8762a523e7efc9ba",
+                      "at":  "2026-07-24T23:16:29.6406347+00:00",
+                      "actor":  "bounded-worker",
+                      "nodeId":  "worker-execution",
+                      "fromStatus":  "running",
+                      "toStatus":  "completed",
+                      "summary":  "Built the responsive local sponsor landing page and retained all publication and integration gates."
+                  },
+                  {
+                      "eventId":  "evt-c6b6b9d10d6847318d6c63a12872ef05",
+                      "at":  "2026-07-24T23:16:31.6527626+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-01",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Responsive identity and premium sponsorship messaging are present at desktop and mobile sizes."
+                  },
+                  {
+                      "eventId":  "evt-b49ffe2bc3fb4f0c92d0fb54efc4510c",
+                      "at":  "2026-07-24T23:16:33.9330389+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-02",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Confirmed firm copy and links are limited to official firm source material."
+                  },
+                  {
+                      "eventId":  "evt-03c81d0bcb934ec2a73fa7effedddd20",
+                      "at":  "2026-07-24T23:16:36.3360504+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-03",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Unconfirmed launch, listening, form, analytics, and hosting details remain pending or disabled."
+                  },
+                  {
+                      "eventId":  "evt-c70b3129e2754eac838f0a0c882cf507",
+                      "at":  "2026-07-24T23:16:38.7790352+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-04",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Desktop and mobile browser review passed with no horizontal overflow."
+                  },
+                  {
+                      "eventId":  "evt-c2c28e1ae69345d48738c016bae82e5b",
+                      "at":  "2026-07-24T23:16:41.6564635+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-05",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "No publication, deployment, form submission, analytics change, or client delivery occurred."
+                  },
+                  {
+                      "eventId":  "evt-fc39efb4ec294bf59a03b7496f12416f",
+                      "at":  "2026-07-24T23:16:57.8956241+00:00",
+                      "actor":  "bounded-worker",
+                      "nodeId":  "handoff-assembly",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation."
+                  }
+              ],
+    "attestations":  {
+                         "canonicalWriteAttempted":  false,
+                         "externalActionAttempted":  false,
+                         "durableMemoryWriteAttempted":  false,
+                         "containsSecrets":  false,
+                         "containsDirectIdentifiers":  false,
+                         "containsRawCommunications":  false
+                     }
+}
