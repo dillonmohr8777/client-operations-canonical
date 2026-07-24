@@ -3,14 +3,14 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-24T19:02:33.1506204+00:00`
-Queue revision: `207`
+Last reconciled: `2026-07-24T19:16:31.3111039+00:00`
+Queue revision: `246`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
 ## Predicted next actions
 
-**Next automatic action:** **Cursor integration** (`wi-20260724-0001`, score 198): Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack Why: P1, portfolio rank 1 (critical), no evidenced deadline, current evidence, status ready.
+**Next automatic action:** No automatic action is currently eligible.
 
 **Next Dillon decision:** **Implement the Momentum caller auto-response workflow** (`wi-20260718-0003`, score 208): At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation. Why: P1, portfolio rank 3 (strategic), overdue, current evidence, status ready, action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
 
@@ -66,26 +66,26 @@ Mode: `manual-pilot`
 | `wi-20260723-0005` | `align-hcm` | Finish Align HCM HubSpot Customer Agent | Verification | P1 | Verify the working live agent against the prepared acceptance suite from the authenticated Align HubSpot computer, then record its knowledge-source sync, human handoff, channel, credit, and activation evidence. | No evidenced deadline |
 | `wi-20260723-0006` | `momentum-360` | Complete Mac AI operations and Slack enablement bundle | Blocked | P1 | Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity. | No evidenced deadline |
 | `wi-20260723-0007` | `align-hcm` | Full completion of deliverables | Done | P1 | Check and see that all deliverables were done today | No evidenced deadline |
-| `wi-20260724-0001` | `bridge-software` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0002` | `va-claims-edge` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0003` | `momentum-360` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0004` | `kimberly-james-bridal` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0005` | `replenish-7-eleven` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0006` | `bok-law-firm` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0007` | `bar-crawl-usa` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0008` | `hope-wellness-center` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0009` | `nkcdc` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0010` | `fagan-painting` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0011` | `fresh-blends-kwik-trip` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0012` | `ami-cleaning` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0013` | `cindy-may-christmas` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0014` | `align-hcm` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0015` | `omega-landscaping` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0016` | `onsite-concrete-landscape` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0017` | `shadow-heating-cooling` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0018` | `bercos-popcorn` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0019` | `bigorange-marketing` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
-| `wi-20260724-0020` | `revive-systems` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0001` | `bridge-software` | Cursor integration | Needs Approval | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0002` | `va-claims-edge` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0003` | `momentum-360` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0004` | `kimberly-james-bridal` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0005` | `replenish-7-eleven` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0006` | `bok-law-firm` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0007` | `bar-crawl-usa` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0008` | `hope-wellness-center` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0009` | `nkcdc` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0010` | `fagan-painting` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0011` | `fresh-blends-kwik-trip` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0012` | `ami-cleaning` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0013` | `cindy-may-christmas` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0014` | `align-hcm` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0015` | `omega-landscaping` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0016` | `onsite-concrete-landscape` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0017` | `shadow-heating-cooling` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0018` | `bercos-popcorn` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0019` | `bigorange-marketing` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0020` | `revive-systems` | Cursor integration | Cancelled | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -162,6 +162,246 @@ Mode: `manual-pilot`
 - The local commission tracker marks the trial as agreed or remains pending with the unresolved field clearly named.
 - Any WordPress or Semrush access route is mapped only through an authorized, revocable account path.
 - No external delivery, publishing, invoicing, account change, or client-system write occurs before explicit confirmation.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
+
+### Cursor integration
+
+**Decision:** Local reversible preparation only. Any consequential external action remains separately approval-gated.
+
+**Next action:** Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack
+
+**Definition of done:**
+
+- Complete the requested local outcome and record allowlisted evidence.
+- Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.
+- Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.
 
 ## Blocked or at risk
 
