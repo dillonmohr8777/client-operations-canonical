@@ -1,0 +1,781 @@
+{
+    "schemaVersion":  1,
+    "graphRunId":  "mgr-20260724-align-august-reconcile",
+    "graphRevision":  6,
+    "workflowId":  "marketing-chief-execution-graph",
+    "createdAt":  "2026-07-24T13:49:50.6168044+00:00",
+    "updatedAt":  "2026-07-24T13:51:33.0088087+00:00",
+    "status":  "handoff_ready",
+    "queueSnapshot":  {
+                          "locator":  "queue/work-items.json",
+                          "revision":  178,
+                          "sha256":  "FEF366E4076DC8404C232561E8B703C1889B5FA73691559F9F14701E156C505F",
+                          "capturedAt":  "2026-07-24T13:49:50.6168044+00:00"
+                      },
+    "workItem":  {
+                     "id":  "wi-20260723-0004",
+                     "expectedVersion":  2,
+                     "contentSha256":  "3FCC26E2185D14E0B70BFEFBD6B9281C719051751F105E36118D3D05AC37A334",
+                     "clientId":  "align-hcm",
+                     "title":  "Finish Align August 2026 production package",
+                     "status":  "in_progress",
+                     "lane":  "normal",
+                     "priority":  "P1",
+                     "actionClass":  "local_artifact",
+                     "nextAction":  "Using the verified Align repository, render and inspect AN01 through AN06 as final MP4s, create the Beumer and Troon static assets, cut the two remaining Maher and Brent podcast recuts, and assemble QA evidence. Preserve Joann and Moe as recording dependent gates. Keep every output local for owner review.",
+                     "definitionOfDone":  [
+                                              "Complete the requested local outcome and record allowlisted evidence.",
+                                              "Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.",
+                                              "Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval."
+                                          ],
+                     "sourceLocator":  "sites-intent:d9a9879c-8c64-4166-9bf3-b6ec4169e452",
+                     "evidenceRefs":  [
+                                          "sites-intent:d9a9879c-8c64-4166-9bf3-b6ec4169e452",
+                                          "clients/align-hcm/deliverables/2026-07-24-august-production-qa-inventory.md",
+                                          "state/execution-graphs/wi-20260723-0004/mgr-cron-20260724-align-august-production/execution-graph.json",
+                                          "sha256:282F2087BDF3F1F9A366E135F66D5519477D72DC2EA28C9B49A18802000063B7"
+                                      ],
+                     "artifactRefs":  [
+                                          "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-implementation-starts-before-kickoff-30s/master-1080x1350.mp4",
+                                          "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-academy-train-for-the-job-45s/master-1080x1350.mp4",
+                                          "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-smartcare-starting-line-60s/master-1080x1350.mp4",
+                                          "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-public-service-cannot-pause-60s/master-1080x1350.mp4",
+                                          "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-gtaa-12-needs-six-months-60s/master-1080x1350.mp4",
+                                          "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-different-missions-same-pressure-60s/master-1080x1350.mp4",
+                                          "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/maher-brent-podcast-recuts/PC01-treat-the-platform-like-a-product-1080x1350.mp4",
+                                          "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/maher-brent-podcast-recuts/PC02-speak-the-cfos-language-1080x1350.mp4",
+                                          "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/assets/generated-static/beumer-carousel/AUG05R-beumer-contact-sheet.png",
+                                          "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/assets/generated-static/troon-case-study-proof-card.png"
+                                      ],
+                     "dependencies":  [
+
+                                      ],
+                     "approval":  {
+                                      "tier":  "automatic",
+                                      "status":  "not_required",
+                                      "gate":  "none"
+                                  }
+                 },
+    "scope":  {
+                  "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+                  "clientRoot":  "clients/align-hcm",
+                  "graphLocator":  "state/execution-graphs/wi-20260723-0004/mgr-20260724-align-august-reconcile/execution-graph.json",
+                  "canonicalWriteAllowed":  false,
+                  "externalActionAllowed":  false,
+                  "durableMemoryWriteAllowed":  false,
+                  "privacy":  "redacted"
+              },
+    "retrieval":  {
+                      "strategy":  "exact-plus-graph",
+                      "exactBindingRequired":  true,
+                      "semanticBindingAllowed":  false,
+                      "sourceCount":  4,
+                      "artifactCount":  10
+                  },
+    "nodes":  [
+                  {
+                      "id":  "scope-guard",
+                      "kind":  "scope_guard",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Validate immutable queue, work-item, client, and project scope.",
+                      "requires":  [
+
+                                   ],
+                      "produces":  [
+                                       "scoped_work_item"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Queue revision, work-item version, exact client route, and safety scope were validated.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "queue/work-items.json",
+                                                      "sites-intent:d9a9879c-8c64-4166-9bf3-b6ec4169e452"
+                                                  ],
+                                     "verification":  [
+                                                          "Queue revision 178 captured.",
+                                                          "Work-item version 2 captured.",
+                                                          "Client route align-hcm resolved exactly once and is active."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "source-intake",
+                      "kind":  "source_intake",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Capture safe exact source and evidence locators.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "provenance_slice"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Exact source and evidence locators were captured without raw communications.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "sites-intent:d9a9879c-8c64-4166-9bf3-b6ec4169e452",
+                                                      "clients/align-hcm/deliverables/2026-07-24-august-production-qa-inventory.md",
+                                                      "state/execution-graphs/wi-20260723-0004/mgr-cron-20260724-align-august-production/execution-graph.json",
+                                                      "sha256:282F2087BDF3F1F9A366E135F66D5519477D72DC2EA28C9B49A18802000063B7"
+                                                  ],
+                                     "verification":  [
+                                                          "Evidence freshness evaluated at 2026-07-24T13:49:50.6168044+00:00."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "context-retrieval",
+                      "kind":  "context_retrieval",
+                      "owner":  "marketing-chief-context-loader",
+                      "status":  "completed",
+                      "task":  "Assemble the exact bounded context slice required by this item.",
+                      "requires":  [
+                                       "source-intake"
+                                   ],
+                      "produces":  [
+                                       "worker_context"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Bounded client, source, artifact, dependency, and definition-of-done context was assembled.",
+                                     "artifacts":  [
+                                                       "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-implementation-starts-before-kickoff-30s/master-1080x1350.mp4",
+                                                       "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-academy-train-for-the-job-45s/master-1080x1350.mp4",
+                                                       "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-smartcare-starting-line-60s/master-1080x1350.mp4",
+                                                       "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-public-service-cannot-pause-60s/master-1080x1350.mp4",
+                                                       "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-gtaa-12-needs-six-months-60s/master-1080x1350.mp4",
+                                                       "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-different-missions-same-pressure-60s/master-1080x1350.mp4",
+                                                       "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/maher-brent-podcast-recuts/PC01-treat-the-platform-like-a-product-1080x1350.mp4",
+                                                       "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/maher-brent-podcast-recuts/PC02-speak-the-cfos-language-1080x1350.mp4",
+                                                       "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/assets/generated-static/beumer-carousel/AUG05R-beumer-contact-sheet.png",
+                                                       "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/assets/generated-static/troon-case-study-proof-card.png"
+                                                   ],
+                                     "evidence":  [
+                                                      "sites-intent:d9a9879c-8c64-4166-9bf3-b6ec4169e452",
+                                                      "clients/align-hcm/deliverables/2026-07-24-august-production-qa-inventory.md",
+                                                      "state/execution-graphs/wi-20260723-0004/mgr-cron-20260724-align-august-production/execution-graph.json",
+                                                      "sha256:282F2087BDF3F1F9A366E135F66D5519477D72DC2EA28C9B49A18802000063B7"
+                                                  ],
+                                     "verification":  [
+                                                          "Definition-of-done checks: 3.",
+                                                          "Artifact references: 10."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "worker-execution",
+                      "kind":  "worker_execution",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Using the verified Align repository, render and inspect AN01 through AN06 as final MP4s, create the Beumer and Troon static assets, cut the two remaining Maher and Brent podcast recuts, and assemble QA evidence. Preserve Joann and Moe as recording dependent gates. Keep every output local for owner review.",
+                      "requires":  [
+                                       "context-retrieval"
+                                   ],
+                      "produces":  [
+                                       "local_artifacts",
+                                       "worker_evidence"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Reconciled the completed Align August local production package against the current queue version; all finished outputs and QA evidence remain present and unchanged.",
+                                     "artifacts":  [
+                                                       "clients/align-hcm/deliverables/2026-07-24-august-production-qa-inventory.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/align-hcm/deliverables/2026-07-24-august-production-qa-inventory.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Eight final MP4 files passed full decode and expected format checks."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-01",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Complete the requested local outcome and record allowlisted evidence.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_01"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Confirmed the requested local production package exists.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/align-hcm/deliverables/2026-07-24-august-production-qa-inventory.md"
+                                                  ],
+                                     "verification":  [
+                                                          "AN01 through AN06, both podcast recuts, and the Beumer and Troon statics are present; Joann and Moe remain recording dependent."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-02",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_02"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Confirmed exact client routing and redacted evidence boundaries.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/align-hcm/deliverables/2026-07-24-august-production-qa-inventory.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Every artifact remains within clients/align-hcm and the QA inventory contains no secrets or raw communications."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-03",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_03"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Confirmed all work remained local and reversible.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/align-hcm/deliverables/2026-07-24-august-production-qa-inventory.md"
+                                                  ],
+                                     "verification":  [
+                                                          "No external delivery, publishing, deployment, spend, account change, or destructive action was attempted."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "approval-gate",
+                      "kind":  "approval_gate",
+                      "owner":  "marketing-chief",
+                      "status":  "completed",
+                      "task":  "Enforce the exact action-class and approval boundary.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "approval_verdict"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "This graph permits local reversible work only; no external action is authorized.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+
+                                                  ],
+                                     "verification":  [
+                                                          "Action class: local_artifact.",
+                                                          "Approval tier/status: automatic/not_required."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "handoff-assembly",
+                      "kind":  "handoff_assembly",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Assemble a schema-valid redacted worker handoff from completed graph outputs.",
+                      "requires":  [
+                                       "verify-01",
+                                       "verify-02",
+                                       "verify-03",
+                                       "approval-gate"
+                                   ],
+                      "produces":  [
+                                       "worker_handoff"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "state/worker-handoffs/handoff-align-august-verified-20260724.json",
+                                                      "sha256:CB35824C353DACD96BD3C887D402D4C05FCE10743C090F0C2C30E3DD92C455AE"
+                                                  ],
+                                     "verification":  [
+
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "chief-reconciliation",
+                      "kind":  "chief_reconciliation",
+                      "owner":  "marketing-chief",
+                      "status":  "ready",
+                      "task":  "Revalidate live queue and item state, then accept or reject the handoff through the supported canonical mutation path.",
+                      "requires":  [
+                                       "handoff-assembly"
+                                   ],
+                      "produces":  [
+                                       "canonical_receipt"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  }
+              ],
+    "edges":  [
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "source-intake"
+                  },
+                  {
+                      "from":  "source-intake",
+                      "relation":  "precedes",
+                      "to":  "context-retrieval"
+                  },
+                  {
+                      "from":  "context-retrieval",
+                      "relation":  "precedes",
+                      "to":  "worker-execution"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-01"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-02"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-03"
+                  },
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "approval-gate"
+                  },
+                  {
+                      "from":  "verify-01",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-02",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-03",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "approval-gate",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "handoff-assembly",
+                      "relation":  "precedes",
+                      "to":  "chief-reconciliation"
+                  }
+              ],
+    "knowledgeGraph":  {
+                           "nodes":  [
+                                         {
+                                             "id":  "queue:canonical",
+                                             "type":  "queue",
+                                             "label":  "Canonical queue revision 178",
+                                             "locator":  "queue/work-items.json"
+                                         },
+                                         {
+                                             "id":  "client:align-hcm",
+                                             "type":  "client",
+                                             "label":  "align-hcm",
+                                             "locator":  "clients/align-hcm"
+                                         },
+                                         {
+                                             "id":  "work-item:wi-20260723-0004",
+                                             "type":  "work_item",
+                                             "label":  "Finish Align August 2026 production package",
+                                             "locator":  "sites-intent:d9a9879c-8c64-4166-9bf3-b6ec4169e452"
+                                         },
+                                         {
+                                             "id":  "approval:none",
+                                             "type":  "approval",
+                                             "label":  "automatic/not_required/none",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "evidence:a2489a6f880e13b7",
+                                             "type":  "evidence",
+                                             "label":  "sites-intent:d9a9879c-8c64-4166-9bf3-b6ec4169e452",
+                                             "locator":  "sites-intent:d9a9879c-8c64-4166-9bf3-b6ec4169e452"
+                                         },
+                                         {
+                                             "id":  "evidence:b815d934764dc2ec",
+                                             "type":  "evidence",
+                                             "label":  "clients/align-hcm/deliverables/2026-07-24-august-production-qa-inventory.md",
+                                             "locator":  "clients/align-hcm/deliverables/2026-07-24-august-production-qa-inventory.md"
+                                         },
+                                         {
+                                             "id":  "evidence:d2d2da560b74bf23",
+                                             "type":  "evidence",
+                                             "label":  "state/execution-graphs/wi-20260723-0004/mgr-cron-20260724-align-august-production/execution-graph.json",
+                                             "locator":  "state/execution-graphs/wi-20260723-0004/mgr-cron-20260724-align-august-production/execution-graph.json"
+                                         },
+                                         {
+                                             "id":  "evidence:e31ecc2128eae9fa",
+                                             "type":  "evidence",
+                                             "label":  "sha256:282F2087BDF3F1F9A366E135F66D5519477D72DC2EA28C9B49A18802000063B7",
+                                             "locator":  "sha256:282F2087BDF3F1F9A366E135F66D5519477D72DC2EA28C9B49A18802000063B7"
+                                         },
+                                         {
+                                             "id":  "artifact:ed132154c8df59e1",
+                                             "type":  "artifact",
+                                             "label":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-implementation-starts-before-kickoff-30s/master-1080x1350.mp4",
+                                             "locator":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-implementation-starts-before-kickoff-30s/master-1080x1350.mp4"
+                                         },
+                                         {
+                                             "id":  "artifact:e04e26d47164868a",
+                                             "type":  "artifact",
+                                             "label":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-academy-train-for-the-job-45s/master-1080x1350.mp4",
+                                             "locator":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-academy-train-for-the-job-45s/master-1080x1350.mp4"
+                                         },
+                                         {
+                                             "id":  "artifact:379e8ea8fff55c9a",
+                                             "type":  "artifact",
+                                             "label":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-smartcare-starting-line-60s/master-1080x1350.mp4",
+                                             "locator":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-smartcare-starting-line-60s/master-1080x1350.mp4"
+                                         },
+                                         {
+                                             "id":  "artifact:1a099dd1563d520c",
+                                             "type":  "artifact",
+                                             "label":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-public-service-cannot-pause-60s/master-1080x1350.mp4",
+                                             "locator":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-public-service-cannot-pause-60s/master-1080x1350.mp4"
+                                         },
+                                         {
+                                             "id":  "artifact:475da66b115a4dbd",
+                                             "type":  "artifact",
+                                             "label":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-gtaa-12-needs-six-months-60s/master-1080x1350.mp4",
+                                             "locator":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-gtaa-12-needs-six-months-60s/master-1080x1350.mp4"
+                                         },
+                                         {
+                                             "id":  "artifact:22b3e075bbf2e1ad",
+                                             "type":  "artifact",
+                                             "label":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-different-missions-same-pressure-60s/master-1080x1350.mp4",
+                                             "locator":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/align-different-missions-same-pressure-60s/master-1080x1350.mp4"
+                                         },
+                                         {
+                                             "id":  "artifact:b2cebdd74e458a8c",
+                                             "type":  "artifact",
+                                             "label":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/maher-brent-podcast-recuts/PC01-treat-the-platform-like-a-product-1080x1350.mp4",
+                                             "locator":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/maher-brent-podcast-recuts/PC01-treat-the-platform-like-a-product-1080x1350.mp4"
+                                         },
+                                         {
+                                             "id":  "artifact:b3accfd648a7950d",
+                                             "type":  "artifact",
+                                             "label":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/maher-brent-podcast-recuts/PC02-speak-the-cfos-language-1080x1350.mp4",
+                                             "locator":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/deliverables/maher-brent-podcast-recuts/PC02-speak-the-cfos-language-1080x1350.mp4"
+                                         },
+                                         {
+                                             "id":  "artifact:00d8da0bcb4799a6",
+                                             "type":  "artifact",
+                                             "label":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/assets/generated-static/beumer-carousel/AUG05R-beumer-contact-sheet.png",
+                                             "locator":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/assets/generated-static/beumer-carousel/AUG05R-beumer-contact-sheet.png"
+                                         },
+                                         {
+                                             "id":  "artifact:94d288e7e3336c40",
+                                             "type":  "artifact",
+                                             "label":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/assets/generated-static/troon-case-study-proof-card.png",
+                                             "locator":  "clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/assets/generated-static/troon-case-study-proof-card.png"
+                                         },
+                                         {
+                                             "id":  "definition:01",
+                                             "type":  "definition",
+                                             "label":  "Complete the requested local outcome and record allowlisted evidence.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:02",
+                                             "type":  "definition",
+                                             "label":  "Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:03",
+                                             "type":  "definition",
+                                             "label":  "Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.",
+                                             "locator":  null
+                                         }
+                                     ],
+                           "edges":  [
+                                         {
+                                             "from":  "queue:canonical",
+                                             "relation":  "contains",
+                                             "to":  "work-item:wi-20260723-0004"
+                                         },
+                                         {
+                                             "from":  "client:align-hcm",
+                                             "relation":  "owns",
+                                             "to":  "work-item:wi-20260723-0004"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "governed_by",
+                                             "to":  "approval:none"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:a2489a6f880e13b7"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:b815d934764dc2ec"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:d2d2da560b74bf23"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:e31ecc2128eae9fa"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "produces",
+                                             "to":  "artifact:ed132154c8df59e1"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "produces",
+                                             "to":  "artifact:e04e26d47164868a"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "produces",
+                                             "to":  "artifact:379e8ea8fff55c9a"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "produces",
+                                             "to":  "artifact:1a099dd1563d520c"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "produces",
+                                             "to":  "artifact:475da66b115a4dbd"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "produces",
+                                             "to":  "artifact:22b3e075bbf2e1ad"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "produces",
+                                             "to":  "artifact:b2cebdd74e458a8c"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "produces",
+                                             "to":  "artifact:b3accfd648a7950d"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "produces",
+                                             "to":  "artifact:00d8da0bcb4799a6"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "produces",
+                                             "to":  "artifact:94d288e7e3336c40"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "requires",
+                                             "to":  "definition:01"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "requires",
+                                             "to":  "definition:02"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260723-0004",
+                                             "relation":  "requires",
+                                             "to":  "definition:03"
+                                         }
+                                     ],
+                           "nodeCount":  21,
+                           "edgeCount":  20
+                       },
+    "handoffContract":  {
+                            "schema":  "schemas/worker-handoff.schema.json",
+                            "validator":  "scripts/Test-MarketingHandoff.ps1",
+                            "reconciler":  "scripts/Accept-WorkerHandoff.ps1",
+                            "expectedWorkItemVersion":  2,
+                            "approvalGate":  "none",
+                            "graphEvidence":  "state/execution-graphs/wi-20260723-0004/mgr-20260724-align-august-reconcile/execution-graph.json"
+                        },
+    "blockers":  [
+
+                 ],
+    "warnings":  [
+
+                 ],
+    "trace":  [
+                  {
+                      "eventId":  "evt-03f6c0d86a0e4e86b0d65bc12286df63",
+                      "at":  "2026-07-24T13:49:50.6168044+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "scope-guard",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-dc89412d0c6249d2951585bea01e09f4",
+                      "at":  "2026-07-24T13:49:50.6168044+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "source-intake",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-e0f6b611a6654b32818dabd65fd367d6",
+                      "at":  "2026-07-24T13:49:50.6168044+00:00",
+                      "actor":  "marketing-chief-context-loader",
+                      "nodeId":  "context-retrieval",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-bf3df89384d141d4abb41086a64505c3",
+                      "at":  "2026-07-24T13:49:50.6168044+00:00",
+                      "actor":  "queue-state-import",
+                      "nodeId":  "worker-execution",
+                      "fromStatus":  null,
+                      "toStatus":  "running",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-e06021869222404b860972b5579662c0",
+                      "at":  "2026-07-24T13:49:50.6168044+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "approval-gate",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-5f051f1e92a9458c96f0342ddb50f60e",
+                      "at":  "2026-07-24T13:50:56.9116598+00:00",
+                      "actor":  "bounded-worker",
+                      "nodeId":  "worker-execution",
+                      "fromStatus":  "running",
+                      "toStatus":  "completed",
+                      "summary":  "Reconciled the completed Align August local production package against the current queue version; all finished outputs and QA evidence remain present and unchanged."
+                  },
+                  {
+                      "eventId":  "evt-a6a1e5f8881a4816aa5bfbb0a7fe33f9",
+                      "at":  "2026-07-24T13:51:09.8467643+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-01",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Confirmed the requested local production package exists."
+                  },
+                  {
+                      "eventId":  "evt-0cb5eb948f55485d8a0a0375bcf24979",
+                      "at":  "2026-07-24T13:51:11.2522562+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-02",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Confirmed exact client routing and redacted evidence boundaries."
+                  },
+                  {
+                      "eventId":  "evt-2ece2d673800417d93c6f7334b5fe94f",
+                      "at":  "2026-07-24T13:51:12.7741387+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-03",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Confirmed all work remained local and reversible."
+                  },
+                  {
+                      "eventId":  "evt-b5da9b4ca7094fa1885e3979383094f4",
+                      "at":  "2026-07-24T13:51:33.0088087+00:00",
+                      "actor":  "bounded-worker",
+                      "nodeId":  "handoff-assembly",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation."
+                  }
+              ],
+    "attestations":  {
+                         "canonicalWriteAttempted":  false,
+                         "externalActionAttempted":  false,
+                         "durableMemoryWriteAttempted":  false,
+                         "containsSecrets":  false,
+                         "containsDirectIdentifiers":  false,
+                         "containsRawCommunications":  false
+                     }
+}
