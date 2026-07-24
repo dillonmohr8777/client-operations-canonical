@@ -206,7 +206,8 @@ $gmailHistoryPath = if ([string]::IsNullOrWhiteSpace($GmailHistoryPath)) { Join-
 $defaultGmailSupplementPaths = @(
     (Join-Path $projectRoot 'state\client-history-research\gmail-bridge-software-history-2026-07-16.json'),
     (Join-Path $projectRoot 'state\client-history-research\gmail-onsite-concrete-landscape-history-2026-07-16.json'),
-    (Join-Path $projectRoot 'state\client-history-research\gmail-bigorange-marketing-history-2026-07-22.json')
+    (Join-Path $projectRoot 'state\client-history-research\gmail-bigorange-marketing-history-2026-07-22.json'),
+    (Join-Path $projectRoot 'state\client-history-research\gmail-pritzker-law-group-history-2026-07-24.json')
 )
 $gmailSupplementPaths = if ($null -eq $GmailSupplementPath -or @($GmailSupplementPath).Count -eq 0) {
     @($defaultGmailSupplementPaths)
