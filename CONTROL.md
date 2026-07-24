@@ -3,18 +3,18 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-24T16:39:05.8883206+00:00`
-Queue revision: `187`
+Last reconciled: `2026-07-24T19:00:16.1366203+00:00`
+Queue revision: `188`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
 ## Predicted next actions
 
-**Next automatic action:** No automatic action is currently eligible.
+**Next automatic action:** **Cursor integration** (`wi-20260724-0001`, score 198): Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack Why: P1, portfolio rank 1 (critical), no evidenced deadline, current evidence, status ready.
 
 **Next Dillon decision:** **Implement the Momentum caller auto-response workflow** (`wi-20260718-0003`, score 208): At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation. Why: P1, portfolio rank 3 (strategic), overdue, current evidence, status ready, action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
 
-**Next unblock:** **Complete Mac AI operations and Slack enablement bundle** (`wi-20260723-0006`, score 145): Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity. Why: P1, portfolio rank 3 (strategic), no evidenced deadline, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required.
+**Next unblock:** **Complete Mac AI operations and Slack enablement bundle** (`wi-20260723-0006`, score 155): Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity. Why: P1, portfolio rank 3 (strategic), no evidenced deadline, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required, last prediction accept.
 <!-- marketing-chief:predictions:end -->
 
 ## Active execution (normal 1/3; emergency 0/1)
@@ -66,6 +66,7 @@ Mode: `manual-pilot`
 | `wi-20260723-0005` | `align-hcm` | Finish Align HCM HubSpot Customer Agent | Verification | P1 | Verify the working live agent against the prepared acceptance suite from the authenticated Align HubSpot computer, then record its knowledge-source sync, human handoff, channel, credit, and activation evidence. | No evidenced deadline |
 | `wi-20260723-0006` | `momentum-360` | Complete Mac AI operations and Slack enablement bundle | Blocked | P1 | Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity. | No evidenced deadline |
 | `wi-20260723-0007` | `align-hcm` | Full completion of deliverables | Done | P1 | Check and see that all deliverables were done today | No evidenced deadline |
+| `wi-20260724-0001` | `bridge-software` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -192,9 +193,9 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-07-24T12:15:03.9633977+00:00`
+- **As of:** `2026-07-24T19:00:00.5164556+00:00`
 - **Overall:** `healthy-with-human-gates`
-- **Queue:** revision `177`, `41` work items, normal `1/3`, emergency `0/1` active
+- **Queue:** revision `187`, `41` work items, normal `1/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `8/21` canonical clients registered, `2/65` systems verified, `6` exact Bitwarden item locators
@@ -208,8 +209,8 @@ Mode: `manual-pilot`
   - `DillonAgentOS-DailyBrief`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
-  - `MarketingChief-DailyCalibration`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
-  - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
+  - `MarketingChief-DailyCalibration`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
+  - `MarketingChief-SitesBridge`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
 - **Human gates:** `active_client_exact_bw_item_mapping`
 - **Deferred actions:** `secondary_exposed_password_rotation`
 
