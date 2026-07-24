@@ -15,6 +15,7 @@ param(
     [switch]$EnableWorker,
     [switch]$InitializeOnly,
     [switch]$SkipSlackPoll,
+    [switch]$SkipCursorSlackIntake,
     [switch]$DryRun
 )
 
@@ -567,6 +568,33 @@ try {
     }
     else {
         Invoke-SlackSensor -Simulation:$DryRun
+    }
+
+    $cursorSlackIntakeResult = [pscustomobject]@{
+        status = 'skipped'
+        imported = $false
+        containsSecrets = $false
+    }
+    if (-not $SkipCursorSlackIntake) {
+        $cursorSlackIntakeScript = Join-Path $PSScriptRoot 'Sync-CursorSlackIntake.ps1'
+        if (Test-Path -LiteralPath $cursorSlackIntakeScript -PathType Leaf) {
+            try {
+                $cursorSlackOutput = if ($DryRun) {
+                    & $cursorSlackIntakeScript -CanonicalRoot $CanonicalRoot -DryRun
+                }
+                else {
+                    & $cursorSlackIntakeScript -CanonicalRoot $CanonicalRoot
+                }
+                $cursorSlackIntakeResult = (($cursorSlackOutput -join [Environment]::NewLine) | ConvertFrom-Json)
+            }
+            catch {
+                $cursorSlackIntakeResult = [pscustomobject]@{
+                    status = 'failed'
+                    imported = $false
+                    containsSecrets = $false
+                }
+            }
+        }
     }
 
     $prediction = Get-ValidatedPrediction -Now $started

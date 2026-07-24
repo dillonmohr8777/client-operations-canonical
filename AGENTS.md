@@ -43,6 +43,17 @@ Handoffs are limited to 20 KB, 10 artifacts, 10 evidence entries, 10 verificatio
 
 Background Gmail and Slack mechanisms are sensors only. They may write redacted, deduplicated observations under `intake/` through `scripts/Sync-AgentOsIntake.ps1`; they may not create Codex tasks, send completion notifications, or mutate the canonical queue.
 
+The narrow Cursor Slack intake relay is not a background channel scanner. It
+accepts only an explicit Dillon-authored request relayed through an
+owner-authored pull request that satisfies
+`docs/CURSOR_SLACK_INTAKE.md`. Only
+`scripts/Sync-CursorSlackIntake.ps1` may materialize that request, and it must
+revalidate the exact Dillon-to-Cursor Slack identity, exact active client
+route, one-file pull-request shape, secret screening, deduplication, action
+classification, approval gate, clean canonical paths, current queue revision,
+and Git fast-forward state. It must not merge the relay pull request or allow
+Slack or Cursor to become a second queue or canonical writer.
+
 ## OmniRoute gateway capability
 
 - Treat `$omniroute-gateway` as an available Marketing Chief capability when model or provider routing, quota visibility, fallback combinations, prompt compression, an OpenAI-compatible local endpoint, or OmniRoute MCP tools are relevant.

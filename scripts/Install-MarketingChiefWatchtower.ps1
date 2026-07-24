@@ -83,7 +83,7 @@ Register-ScheduledTask `
     -Trigger $trigger `
     -Settings $settings `
     -Principal $principal `
-    -Description "Poll Slack read-only and complete at most one exact-routed, local, reversible Marketing Chief episode per guarded $WorkerEngine worker run." `
+    -Description "Poll Slack read-only, validate owner-authored Cursor Slack intake, and complete at most one exact-routed, local, reversible Marketing Chief episode per guarded $WorkerEngine worker run." `
     -Force | Out-Null
 
 if ($StartNow) {
