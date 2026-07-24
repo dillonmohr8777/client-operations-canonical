@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-24T19:02:03.1550454+00:00`
-Queue revision: `203`
+Last reconciled: `2026-07-24T19:02:11.3296254+00:00`
+Queue revision: `204`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -82,6 +82,7 @@ Mode: `manual-pilot`
 | `wi-20260724-0014` | `align-hcm` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
 | `wi-20260724-0015` | `omega-landscaping` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
 | `wi-20260724-0016` | `onsite-concrete-landscape` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
+| `wi-20260724-0017` | `shadow-heating-cooling` | Cursor integration | Ready | P1 | Youâre supposed to add in any new client I receive and I also need you to become integrated with Cursor inside of my Slack | No evidenced deadline |
 
 ## Waiting on Dillon
 
