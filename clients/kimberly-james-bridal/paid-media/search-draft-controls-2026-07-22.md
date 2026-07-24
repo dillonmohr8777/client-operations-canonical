@@ -1,12 +1,12 @@
 # KJB local Search draft controls
 
 Date: 2026-07-22
-Status: saved in Google Ads draft; campaign remains unpublished
+Status: launched and verified in Google Ads on 2026-07-24
 Account: Kimberly James Bridal, customer `814-550-6229`
 Campaign: `KJB | Search | Local Bridal | Philadelphia`
 Source: `slack://C0530MVK371/1784753160.005249`
 
-## Live draft readback
+## Final live readback
 
 - Google Search Partners: off
 - Google Display Network expansion: off
@@ -15,8 +15,13 @@ Source: `slack://C0530MVK371/1784753160.005249`
 - Final URL expansion: off
 - Daily budget: $20, unchanged
 - Included geography: Philadelphia County, Pennsylvania
-- Campaign publication: not performed
-- Existing Performance Max campaign: unchanged and still active
+- Search campaign ID: `24069334480`
+- Search campaign status: enabled
+- Search bid strategy: learning
+- Responsive Search ad: pending Google review
+- Existing Performance Max campaign ID: `23690389385`
+- Existing Performance Max campaign status: paused
+- Final serving state: no overlapping campaign spend
 
 ## ZIP exclusions
 
@@ -36,9 +41,9 @@ The draft now excludes the 11 Philadelphia ZIP Code Tabulation Areas below. The 
 
 Source: U.S. Census Bureau 2024 ACS five-year table B19013, retrieved through the Census Reporter API release `acs2024_5yr`.
 
-## Campaign negative keywords ready to attach
+## Campaign negative keywords attached
 
-The Google Ads campaign builder does not expose campaign negative keywords while this Search campaign is still an unpublished draft. Attach the following as phrase-match campaign negatives immediately after the campaign object is created and before it is enabled:
+All 21 entries below were saved as phrase-match campaign negatives and read back from the live Search campaign before enablement:
 
 - `"prom dress"`
 - `"bridesmaid dress"`
@@ -68,10 +73,10 @@ Do not add broad negatives for `dress`, `bridal`, `appointment`, `plus size`, `a
 
 - Ten high-intent exact and phrase keywords remain in the ad group.
 - The appointment-focused responsive Search ad remains in the draft.
-- One over-length description was corrected from 95 characters to 84 characters.
+- The remaining over-length description was corrected from 95 characters to 90 characters.
 - The review screen confirms one included geography and 11 excluded ZIP codes.
-- No campaign was published, enabled, paused, or assigned additional spend.
+- The campaign was published at the unchanged $20 daily budget.
 
-## Launch gate
+## Launch verification
 
-Before launch, create the Search campaign without enabling incremental spend, attach the negative list, read it back, then pause Performance Max before Search can spend. The campaign should never overlap with the live $20/day Performance Max budget.
+On 2026-07-24, the Search campaign was published in the verified Kimberly James Bridal account. It was paused while all 21 negatives were attached and read back. Performance Max was then paused before Search was enabled. Final live readback confirmed Search enabled at $20 per day, Performance Max paused at $20 per day, and the new Search ad pending Google review.
