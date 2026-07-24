@@ -33,7 +33,7 @@ The JSON shape is:
   "schemaVersion": 1,
   "requestId": "slack-1784922105-135699",
   "source": {
-    "workspaceId": "T0A6J12L9F6",
+    "workspaceId": "T066HGS7N",
     "channelId": "D0BJEC2MM6V",
     "messageTs": "1784922105.135699",
     "requesterUserId": "U0A6MD920MA",
