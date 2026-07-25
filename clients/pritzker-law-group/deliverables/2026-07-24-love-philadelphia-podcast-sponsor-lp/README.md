@@ -6,7 +6,7 @@ Production landing page for Pritzker Law Group's premium sponsorship of `Love, P
 
 - Live URL: `https://pritzker-love-philadelphia-podcast.netlify.app`
 - Netlify site: `pritzker-love-philadelphia-podcast`
-- Production deploy: `6a6411fa49587152b5ddc5b9`
+- Production deploy: `6a644b4c97faf3dec980f100`
 - V2 published with Dillon's explicit approval on July 24, 2026.
 
 ## Open locally
