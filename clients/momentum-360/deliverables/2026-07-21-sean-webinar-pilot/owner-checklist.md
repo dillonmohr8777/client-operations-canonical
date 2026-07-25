@@ -11,6 +11,14 @@
 
 ## Dillon
 
+- Configure `GOOGLE_CALENDAR_CLIENT_ID`,
+  `GOOGLE_CALENDAR_CLIENT_SECRET`, and
+  `GOOGLE_CALENDAR_REFRESH_TOKEN` as private Netlify environment variables for
+  the approved organizer account. Optionally set `GOOGLE_CALENDAR_ID` and
+  `GOOGLE_CALENDAR_EVENT_ID`.
+- Verify one test registration creates the organizer event, adds the submitted
+  address as an attendee, sends exactly one RSVP invitation, and does not log
+  the attendee email.
 - Replace prototype date and meeting-link placeholders.
 - Verify the public calendar hub remains the fallback destination until the
   final meeting URL is approved.
@@ -32,7 +40,10 @@
 
 ## QA acceptance
 
-- No event appears on a calendar without the registrant clicking an add action.
+- Calendar delivery runs only after a verified registration with the required
+  one-workshop invitation consent.
+- A guest invitation is sent with `sendUpdates=all`; the recipient's calendar
+  settings control whether it appears immediately or after acceptance.
 - No reminder or replay email is sent unless the registrant selects workshop updates.
 - Suppressed and unsubscribed contacts cannot be invited.
 - Test registrations appear once in the approved system and carry source attribution.

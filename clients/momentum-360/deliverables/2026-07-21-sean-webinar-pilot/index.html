@@ -246,7 +246,7 @@
                       <option>Building repeatable operations</option>
                     </select></label
                   >
-                  <div class="form-step consent-step"><span>02</span><div><b>Your choices</b><small>You stay in control of follow-up.</small></div></div>
+                  <div class="form-step consent-step"><span>02</span><div><b>Calendar delivery</b><small>Your registration authorizes one workshop invitation.</small></div></div>
                   <label class="consent"
                     ><input name="reminders" type="checkbox" /><span
                       ><strong>Workshop updates</strong>Email me the
@@ -258,25 +258,38 @@
                     ><input
                       name="calendar_consent"
                       type="checkbox"
+                      checked
+                      required
                     /><span
-                      ><strong>Help me add it to my calendar</strong>After I
-                      register, open Google Calendar with the workshop filled
-                      in. Outlook and Apple Calendar options stay available on
-                      the confirmation screen. Nothing is inserted without my
-                      final click.</span
+                      ><strong>Send the calendar invitation</strong>Required for
+                      registration. Momentum 360 will send this email address
+                      one workshop invitation with RSVP controls. Your calendar
+                      provider decides whether it appears immediately or waits
+                      for acceptance.</span
                     ></label
+                  >
+                  <label
+                    >Open after registration<select
+                      name="calendar_provider"
+                      required
+                    >
+                      <option value="google">Google Calendar</option>
+                      <option value="outlook">Outlook Calendar</option>
+                      <option value="apple">Apple / other calendar app</option>
+                    </select></label
                   >
                   <button
                     class="button button-primary command-submit"
                     type="submit"
                     data-state="idle"
                   >
-                    <span class="submit-label">Register for the workshop</span
+                    <span class="submit-label">Register and open my calendar</span
                     ><span class="submit-glyph" aria-hidden="true">→</span>
                   </button>
                   <p class="form-privacy">
-                    We use your details to administer this workshop. Email
-                    updates are optional. Review Momentum Digital's
+                    We use your details to administer this workshop and deliver
+                    the requested calendar invitation. Other email updates are
+                    optional. Review Momentum Digital's
                     <a
                       href="https://www.needmomentum.com/privacy-policy/"
                       target="_blank"
@@ -705,12 +718,17 @@
                 type="button"
               >
                 Apple / other calendars
-              </button>
+              </button
+              ><a
+                class="button button-ghost"
+                href="webcal://momentum-workshop-pilot.netlify.app/momentum-workshops.ics"
+                >Subscribe to workshop updates</a
+              >
             </div>
             <p class="calendar-assurance">
-              Calendar times are locked to Eastern Time and converted correctly
-              for each calendar provider. Final online access details will be
-              supplied to registered attendees.
+              A real RSVP invitation is queued from the organizer calendar after
+              Netlify verifies the registration. Calendar times are locked to
+              Eastern Time and converted correctly for each provider.
             </p>
             <button class="text-action" data-route="register" type="button">
               Back to workshop

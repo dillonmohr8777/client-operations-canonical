@@ -15,9 +15,11 @@ registrant selects the optional updates checkbox.
 - Continuous five-logo recognition swipe with a static reduced-motion fallback.
 - Scroll-controlled desktop agenda and native swipe agenda on mobile.
 - Mobile agenda controls and a shared purpose-based motion theme adapted from Motion UI principles.
-- Explicit email reminder and calendar consent controls.
-- Optional one-click Google Calendar review, dedicated Outlook event, and ICS
-  download for Apple Calendar and other calendar apps.
+- Explicit email reminder and required one-workshop calendar invitation consent.
+- A verified-form event function that creates one organizer event, adds each
+  registrant as an attendee, and sends Google Calendar RSVP updates.
+- Immediate Google, Outlook, or Apple Calendar opening after registration plus
+  a subscribable ICS feed for workshop updates.
 - Netlify registration capture with duplicate-click protection, clear submit states, a honeypot, event metadata, page/referrer attribution, UTM fields, and a linked Momentum Digital privacy policy.
 - Operator event configuration with local persistence.
 - Funnel scorecard, test-registration table, and safe reminder simulator.
@@ -28,11 +30,12 @@ registrant selects the optional updates checkbox.
 ## Remaining launch inputs
 
 The visual experience, responsive behavior, Netlify form destination, and
-calendar generation are production-capable. Before the link is distributed,
+calendar generation are production-capable. The verified-form calendar
+delivery function requires the three private Google OAuth environment
+variables documented in `owner-checklist.md`. Before the link is distributed,
 the owners still need to supply the final meeting URL, confirm the final date
 and time, name the invitation audience and sender, and approve the
-reminder/replay copy. The page does not silently add calendar events or send
-email.
+reminder/replay copy.
 
 ## Verified locally
 

@@ -59,6 +59,7 @@ registrationForm.addEventListener("submit", async (event) => {
     constraint: clean(form.get("constraint")),
     reminders: form.get("reminders") === "on",
     calendarConsent: form.get("calendar_consent") === "on",
+    calendarProvider: clean(form.get("calendar_provider")),
     createdAt: new Date().toISOString(),
   };
   const search = new URLSearchParams(window.location.search);
@@ -81,7 +82,7 @@ registrationForm.addEventListener("submit", async (event) => {
   if (calendarWindow) {
     calendarWindow.opener = null;
   }
-  setSubmitState("loading", "Saving your seat", "…");
+  setSubmitState("loading", "Queuing your calendar invitation", "…");
   try {
     if (hostedSubmission) {
       await submitRegistration(form);
@@ -95,14 +96,18 @@ registrationForm.addEventListener("submit", async (event) => {
     return;
   }
   if (calendarWindow) {
-    calendarWindow.location.href = googleCalendarUrl();
+    calendarWindow.location.href = calendarTargetUrl(record.calendarProvider);
   }
   registrations = [record, ...registrations].slice(0, 25);
   if (!hostedSubmission) {
     write(KEYS.registrations, registrations);
   }
   error.hidden = true;
-  updateConfirmation(record.firstName, record.calendarConsent);
+  updateConfirmation(
+    record.firstName,
+    record.calendarConsent,
+    record.calendarProvider,
+  );
   updateMetrics();
   renderRegistrants();
   setSubmitState("success", "Seat reserved", "✓");
@@ -190,7 +195,7 @@ function showView(name) {
     window.scrollTo({ top: 0, behavior: "smooth" });
     document.querySelector("#mobileDock")?.classList.toggle("hidden", name !== "register");
     if (name === "register" && submitButton.dataset.state === "success") {
-      setSubmitState("idle", "Register for the workshop", "→");
+      setSubmitState("idle", "Register and open my calendar", "→");
     }
   };
   if (document.startViewTransition) {
@@ -229,10 +234,20 @@ function updateEventDetails() {
   document.querySelector("#outlook-calendar").href = outlookCalendarUrl();
 }
 
-function updateConfirmation(firstName, calendarRequested = false) {
+function updateConfirmation(
+  firstName,
+  calendarRequested = false,
+  calendarProvider = "google",
+) {
+  const provider =
+    {
+      google: "Google Calendar",
+      outlook: "Outlook Calendar",
+      apple: "your calendar app",
+    }[calendarProvider] || "your calendar";
   document.querySelector("#confirmation-copy").textContent =
     calendarRequested
-      ? `${firstName}, your Google Calendar review has opened. Confirm the event there, or choose Outlook or Apple Calendar below.`
+      ? `${firstName}, the organizer invitation is queued and ${provider} has opened with the event ready. Accept the invitation when it arrives to keep RSVP updates connected.`
       : `${firstName}, your seat is ready. Choose Google, Outlook, or Apple Calendar below to add the workshop.`;
   updateEventDetails();
 }
@@ -549,7 +564,7 @@ function setupFormProgress() {
   const required = [...registrationForm.querySelectorAll("[required]")];
   const update = () => {
     if (submitButton.dataset.state === "error") {
-      setSubmitState("idle", "Register for the workshop", "→");
+      setSubmitState("idle", "Register and open my calendar", "→");
       error.hidden = true;
     }
     const complete = required.filter((field) =>
@@ -627,6 +642,14 @@ function outlookCalendarUrl() {
     location: calendarLocation(),
   });
   return `https://outlook.live.com/calendar/0/deeplink/compose?${params}`;
+}
+
+function calendarTargetUrl(provider) {
+  if (provider === "outlook") return outlookCalendarUrl();
+  if (provider === "apple") {
+    return `${window.location.origin}/momentum-workshops.ics`;
+  }
+  return googleCalendarUrl();
 }
 
 function downloadIcs() {
