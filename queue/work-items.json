@@ -1,7 +1,7 @@
 {
     "schemaVersion":  1,
-    "revision":  273,
-    "updatedAt":  "2026-07-25T04:03:06.0846637+00:00",
+    "revision":  276,
+    "updatedAt":  "2026-07-25T04:44:25.3632667+00:00",
     "updatedBy":  "marketing-chief",
     "mode":  "manual-pilot",
     "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
@@ -117,7 +117,7 @@
                       },
                       {
                           "id":  "wi-20260715-0002",
-                          "version":  8,
+                          "version":  9,
                           "dedupeKey":  "fagan-painting:2026-07-15:website-lead-reconciliation",
                           "scope":  "client",
                           "clientId":  "fagan-painting",
@@ -142,13 +142,13 @@
                                            "rationale":  "Fresh inbound leads can decay quickly, and current local evidence does not prove routing, ownership, or follow-up."
                                        },
                           "owner":  "marketing-chief",
-                          "nextAction":  "Verify mailbox processing, the named response owner, and lead-level disposition through the approved Fagan mailbox, CRM, or Zapier records before any prospect contact.",
+                          "nextAction":  "Obtain lead-level disposition for the two exact canonical records from the approved client mailbox, CRM, or Zapier record; do not infer individual outcomes from aggregate batch feedback.",
                           "execution":  {
                                             "actionClass":  "read_only_verification",
                                             "automaticEligible":  true,
                                             "externalAction":  false,
                                             "reversible":  true,
-                                            "classifiedAt":  "2026-07-16T06:42:00Z"
+                                            "classifiedAt":  "2026-07-25T04:42:40.6530729+00:00"
                                         },
                           "definitionOfDone":  [
                                                    "Exactly two unique lead records are reconciled and the apparent duplicate is classified.",
@@ -195,32 +195,13 @@
                                                "clients/fagan-painting/evidence/2026-07-17-lead-owner-mailbox-recheck.json"
                                            ],
                           "outcome":  {
-                                          "status":  "partially_completed",
-                                          "verifiedAt":  "2026-07-18T03:01:20.2707414+00:00",
-                                          "summary":  "A fresh read-only recheck verified the client-side response owner and confirmed that both relevant operator-mailbox threads still contain unsent drafts with no sent follow-up or later activity. Both individual lead dispositions remain unverified, and the exact client mailbox route still requires a human authentication handoff.",
-                                          "handoffId":  "fagan-lead-owner-mailbox-recheck-20260717",
-                                          "handoffContentSha256":  "DFF030B75B7CA65C51DEE5BDF17F870BEF55FA536E6A9417B8BBDF2C5B521CC7",
-                                          "workerRole":  "lead-reconciliation-verifier",
-                                          "verification":  [
-                                                               "The canonical client route and Fagan Gmail system record validated successfully.",
-                                                               "Seven opaque Gmail evidence messages resolved to five complete threads without truncation.",
-                                                               "Both relevant lead threads contain an inbound notification and an unsent draft but no sent response or later message.",
-                                                               "The exact Fagan Slack channel identifies a client-side lead owner for all leads.",
-                                                               "No source verified either lead as contacted, qualified, scheduled, disqualified, or unreachable.",
-                                                               "The sanitized Bitwarden bridge confirmed a locked vault state with a bootstrap credential present, while the exact mailbox credential locator remains unregistered."
-                                                           ],
-                                          "assumptions":  [
-
-                                                          ],
-                                          "risks":  [
-                                                        "Closing either lead would invent an operational outcome.",
-                                                        "The operator mailbox cannot prove processing inside the canonical client mailbox."
-                                                    ],
-                                          "privacy":  "redacted",
+                                          "status":  "blocked",
+                                          "verifiedAt":  "2026-07-25T04:42:40.6530729+00:00",
+                                          "summary":  "A current read-only mailbox recheck found aggregate client feedback that one of ten raw submissions became an estimate and several others were dead ends or outside the service area, but neither of the two exact canonical lead records was individually identified. The duplicate and response owner remain verified; exact lead dispositions and downstream CRM or Zapier evidence remain unknown.",
                                           "externalActionTaken":  false
                                       },
                           "createdAt":  "2026-07-16T03:50:25Z",
-                          "updatedAt":  "2026-07-18T03:01:20.2707414+00:00"
+                          "updatedAt":  "2026-07-25T04:42:40.6530729+00:00"
                       },
                       {
                           "id":  "wi-20260715-0003",
@@ -5911,6 +5892,79 @@
                                       },
                           "createdAt":  "2026-07-25T04:02:49.0387490+00:00",
                           "updatedAt":  "2026-07-25T04:03:06.0846637+00:00"
+                      },
+                      {
+                          "id":  "wi-20260725-0007",
+                          "version":  2,
+                          "dedupeKey":  "va-claims-edge:2026-07-25:correct-booking-lead-routing",
+                          "scope":  "client",
+                          "clientId":  "va-claims-edge",
+                          "routing":  {
+                                          "status":  "resolved",
+                                          "matchedBy":  "registry-resolver",
+                                          "registryStatus":  "active",
+                                          "verifiedAt":  "2026-07-25T04:44:15.5691123+00:00"
+                                      },
+                          "title":  "Correct VA Claims booking and lead routing rules",
+                          "requestedOutcome":  "Bring the live booking route into alignment with the approved advance-booking limits, primary-owner availability, appointment durations, provider assignments, calendar synchronization, meeting-link generation, and confirmation delivery.",
+                          "source":  {
+                                         "type":  "file",
+                                         "locator":  "clients/va-claims-edge/evidence/2026-07-25-booking-routing-verification.json",
+                                         "observedAt":  "2026-07-25T04:44:15.5691123+00:00",
+                                         "redactedSummary":  "A current public configuration readback found four material mismatches between the approved booking rules and the live route. Calendar and meeting integrations appear connected, but confirmation delivery is not yet verified."
+                                     },
+                          "status":  "blocked",
+                          "lane":  "normal",
+                          "emergencyRationale":  null,
+                          "priority":  {
+                                           "level":  "P0",
+                                           "rationale":  "Incorrect scheduling constraints and provider assignment can misroute or mis-schedule prospective clients."
+                                       },
+                          "owner":  "marketing-chief",
+                          "nextAction":  "Map and authenticate the exact authorized WordPress or Amelia administrator route, apply only the verified scheduling and routing corrections, then complete an approved synthetic booking test without contacting a prospect.",
+                          "execution":  {
+                                            "actionClass":  "account_change",
+                                            "automaticEligible":  false,
+                                            "externalAction":  true,
+                                            "reversible":  false,
+                                            "classifiedAt":  "2026-07-25T04:44:25.3632667+00:00"
+                                        },
+                          "definitionOfDone":  [
+                                                   "The exact authorized administrator account is mapped and verified.",
+                                                   "The minimum advance window is 24 hours and the maximum booking horizon is 45 days.",
+                                                   "The primary owner schedule matches the approved weekday availability in the site timezone.",
+                                                   "The three approved service durations match the written requirements.",
+                                                   "Each visible provider service assignment and the multi-provider selection rule are explicitly verified.",
+                                                   "An approved synthetic booking verifies calendar placement, meeting-link creation, and confirmation delivery without prospect contact."
+                                               ],
+                          "dueAt":  null,
+                          "reviewAt":  null,
+                          "evidence":  {
+                                           "asOf":  "2026-07-25T04:44:15.5691123+00:00",
+                                           "freshness":  "current",
+                                           "refs":  [
+                                                        "clients/va-claims-edge/evidence/2026-07-25-booking-routing-verification.json"
+                                                    ]
+                                       },
+                          "approval":  {
+                                           "tier":  "explicit",
+                                           "action":  "Approve the verified WordPress or Amelia scheduling and provider-routing corrections plus one synthetic booking test.",
+                                           "status":  "approved",
+                                           "approvalRef":  "user://2026-07-25/fix-va-claims-lead-routing"
+                                       },
+                          "dependencies":  [
+
+                                           ],
+                          "assumptions":  [
+
+                                          ],
+                          "confidence":  0.8,
+                          "artifactRefs":  [
+
+                                           ],
+                          "outcome":  null,
+                          "createdAt":  "2026-07-25T04:44:15.5691123+00:00",
+                          "updatedAt":  "2026-07-25T04:44:25.3632667+00:00"
                       }
                   ],
     "intakeQuarantine":  [

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "clientId": "va-claims-edge",
+  "evidenceType": "public_booking_routing_verification",
+  "observedAt": "2026-07-25T04:38:13Z",
+  "sourceRefs": [
+    "gmail://message/19edcb0524a88a87",
+    "https://www.vaclaimsedge.com/book-now/"
+  ],
+  "requestedRules": {
+    "minimumAdvanceHours": 24,
+    "maximumAdvanceDays": 45,
+    "primaryOwnerAvailability": {
+      "days": "monday_through_friday",
+      "start": "10:30",
+      "end": "16:00",
+      "timezone": "America/Chicago"
+    },
+    "serviceDurationsMinutes": {
+      "freeConsultation": 30,
+      "preExamBriefing": 30,
+      "claimFiling": 75
+    },
+    "calendarAndMeeting": {
+      "calendarSyncRequired": true,
+      "automaticMeetingLinkRequired": true,
+      "automaticConfirmationRequired": true
+    }
+  },
+  "currentPublicConfiguration": {
+    "bookingSystem": "amelia",
+    "minimumAdvanceHours": 0,
+    "maximumAdvanceDays": 365,
+    "primaryOwnerAvailability": {
+      "monday": "10:00-16:00",
+      "tuesday": "10:00-16:00",
+      "wednesday": "10:00-16:00",
+      "thursday": "10:00-12:00",
+      "friday": "unavailable",
+      "timezone": "America/Chicago"
+    },
+    "serviceDurationsMinutes": {
+      "freeConsultation": 30,
+      "preExamBriefing": 30,
+      "claimFiling": 90
+    },
+    "providerRouting": {
+      "visibleProviderCount": 3,
+      "freeConsultation": "primary_owner_only",
+      "preExamBriefing": "three_visible_providers",
+      "claimFiling": "three_visible_providers",
+      "multiProviderSelectionRule": "random"
+    },
+    "integrations": {
+      "googleCalendarConnected": true,
+      "googleMeetEnabled": true,
+      "customerConfirmationDelivery": "not_verified"
+    }
+  },
+  "mismatches": [
+    "The minimum advance-booking requirement is not enforced.",
+    "The maximum booking horizon exceeds the approved window.",
+    "The primary owner's published availability does not match the approved weekday schedule.",
+    "The claim-filing duration is longer than the approved duration."
+  ],
+  "accessState": {
+    "exactWordPressOrAmeliaLoginMapped": false,
+    "browserPluginAvailable": false,
+    "externalActionTaken": false
+  }
+}

@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-25T04:03:06.0846637+00:00`
-Queue revision: `273`
+Last reconciled: `2026-07-25T04:44:25.3632667+00:00`
+Queue revision: `276`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -14,7 +14,7 @@ Mode: `manual-pilot`
 
 **Next Dillon decision:** **Activate foundation Stripe donation flow** (`wi-20260724-0024`, score 220): Await confirmation that an authorized foundation representative has completed the dedicated Stripe business identity, banking, tax, terms, MFA, and verification requirements and that live payments and payouts are enabled. Why: P0, portfolio rank 3 (strategic), overdue, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required.
 
-**Next unblock:** **Complete Mac AI operations and Slack enablement bundle** (`wi-20260723-0006`, score 155): Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity. Why: P1, portfolio rank 3 (strategic), no evidenced deadline, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required, last prediction accept.
+**Next unblock:** **Correct VA Claims booking and lead routing rules** (`wi-20260725-0007`, score 210): Map and authenticate the exact authorized WordPress or Amelia administrator route, apply only the verified scheduling and routing corrections, then complete an approved synthetic booking test without contacting a prospect. Why: P0, portfolio rank 2 (critical), no evidenced deadline, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
 <!-- marketing-chief:predictions:end -->
 
 ## Active execution (normal 1/3; emergency 0/1)
@@ -26,7 +26,7 @@ Mode: `manual-pilot`
 | ID | Client | Outcome | Status | Priority | Next action | Due |
 |---|---|---|---|---|---|---|
 | `wi-20260715-0001` | `hope-wellness-center` | Approve Hope Wellness analysis, reel direction, and P0 release | Deferred | P0 | Reassess Hope Wellness only when Dillon explicitly returns it to the current operating window. | No evidenced deadline |
-| `wi-20260715-0002` | `fagan-painting` | Reconcile two Fagan Painting website leads | Blocked | P0 | Verify mailbox processing, the named response owner, and lead-level disposition through the approved Fagan mailbox, CRM, or Zapier records before any prospect contact. | No evidenced deadline |
+| `wi-20260715-0002` | `fagan-painting` | Reconcile two Fagan Painting website leads | Blocked | P0 | Obtain lead-level disposition for the two exact canonical records from the approved client mailbox, CRM, or Zapier record; do not infer individual outcomes from aggregate batch feedback. | No evidenced deadline |
 | `wi-20260715-0003` | `nkcdc` | Build NKCDC Phase Two Growth Strategy deck | Done | P1 | Verify the completed local deck package against the brief, rendered pages, output contract, and factual safety checks. | No evidenced deadline |
 | `wi-20260716-0001` | `bridge-software` | Prepare Bridge milestone and decision brief | Done | P0 | Create a local Bridge milestone decision brief from the exact redacted Gmail and Slack evidence, separating verified decisions, open requirements, owners, dependencies, and the next review gate. | No evidenced deadline |
 | `wi-20260716-0002` | `va-claims-edge` | Prepare VA Claims Phase 2 demo-readiness brief | Done | P0 | Create a local VA Claims Phase 2 demo-readiness brief from the exact redacted Gmail and Slack evidence, separating completed work, open decisions, owners, dependencies, security gates, and next review actions. | No evidenced deadline |
@@ -96,6 +96,7 @@ Mode: `manual-pilot`
 | `wi-20260725-0004` | `momentum-360` | Deliver foundation Stripe authentication handoff | Done | P0 | Monitor the verified production result and treat any additional scope as a separate approved action. | No evidenced deadline |
 | `wi-20260725-0005` | `shadow-heating-cooling` | Pause Shadow Heating Meta lead campaigns | Blocked | P0 | Human authentication is required in the approved persistent Chrome Meta session. After sign-in, select the exact Shadow campaign named Shadow AC Leads Hampshire 30mi Summer 2026 in Dillon Operations, pause it and any other delivering Shadow campaign, then verify no Shadow delivery remains active. | No evidenced deadline |
 | `wi-20260725-0006` | `va-claims-edge` | Ship David client continuity workspace | Done | P0 | Deploy the verified VA Claims Edge continuity workspace to the review site and canonical Vercel production repository, then verify both live destinations. | No evidenced deadline |
+| `wi-20260725-0007` | `va-claims-edge` | Correct VA Claims booking and lead routing rules | Blocked | P0 | Map and authenticate the exact authorized WordPress or Amelia administrator route, apply only the verified scheduling and routing corrections, then complete an approved synthetic booking test without contacting a prospect. | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -428,8 +429,8 @@ Mode: `manual-pilot`
 
 ## Blocked or at risk
 
-- **Reconcile two Fagan Painting website leads:** Verify mailbox processing, the named response owner, and lead-level disposition through the approved Fagan mailbox, CRM, or Zapier records before any prospect contact.
-  Current evidence: A fresh read-only recheck verified the client-side response owner and confirmed that both relevant operator-mailbox threads still contain unsent drafts with no sent follow-up or later activity. Both individual lead dispositions remain unverified, and the exact client mailbox route still requires a human authentication handoff.
+- **Reconcile two Fagan Painting website leads:** Obtain lead-level disposition for the two exact canonical records from the approved client mailbox, CRM, or Zapier record; do not infer individual outcomes from aggregate batch feedback.
+  Current evidence: A current read-only mailbox recheck found aggregate client feedback that one of ten raw submissions became an estimate and several others were dead ends or outside the service area, but neither of the two exact canonical lead records was individually identified. The duplicate and response owner remain verified; exact lead dispositions and downstream CRM or Zapier evidence remain unknown.
 - **Complete Mac AI operations and Slack enablement bundle:** Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity.
   Current evidence: The 32-row controlled direct-mail sheet, unpublished QRTIGER and PostGrid Zap drafts, verified Slackbot AI response, and narrated 1080p walkthrough are complete. QRTIGER is staged at its Google account chooser and PostGrid still requires a human CAPTCHA, terms acceptance, and account details. All 32 mail rows remain suppressed and no mail or spend occurred.
 - **Cursor integration:** Invite the Cursor Slack app to the exact private Pritzker Law Group and VA Claims channels, then rerun a bounded read-only source pass before considering any broader integration.
@@ -438,6 +439,7 @@ Mode: `manual-pilot`
   Current evidence: The security-safe activation checklist was delivered to the verified agency leadership contact. Dedicated foundation account authentication remains a human-only blocker; technical production credentials and webhook configuration remain separate.
 - **Pause Shadow Heating Meta lead campaigns:** Human authentication is required in the approved persistent Chrome Meta session. After sign-in, select the exact Shadow campaign named Shadow AC Leads Hampshire 30mi Summer 2026 in Dillon Operations, pause it and any other delivering Shadow campaign, then verify no Shadow delivery remains active.
   Current evidence: Pause authorization is recorded. Execution is blocked because the approved persistent Chrome Meta session is unavailable without opening or completing a Meta login; no campaign state was changed.
+- **Correct VA Claims booking and lead routing rules:** Map and authenticate the exact authorized WordPress or Amelia administrator route, apply only the verified scheduling and routing corrections, then complete an approved synthetic booking test without contacting a prospect.
 
 ## Intake quarantine
 
@@ -481,26 +483,27 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-07-24T19:00:00.5164556+00:00`
-- **Overall:** `healthy-with-human-gates`
-- **Queue:** revision `187`, `41` work items, normal `1/3`, emergency `0/1` active
+- **As of:** `2026-07-25T04:28:32.6312625+00:00`
+- **Overall:** `degraded`
+- **Queue:** revision `273`, `71` work items, normal `1/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `8/21` canonical clients registered, `2/65` systems verified, `6` exact Bitwarden item locators
-- **Gmail client history:** `21` records audited, `20` active promoted, `0` quarantined; `2555` distinct messages across `897` threads
+- **Gmail client history:** `22` records audited, `21` active promoted, `0` quarantined; `2555` distinct messages across `897` threads
 - **Slack client history:** `complete`; conversation inventory established `True`; scope upgrade required `False`; requested upload scope `files:write`
 - **Credential bridge:** `locked`, secure bootstrap present `True`, review `go-no-critical-or-high-findings-integrity-verified`
 - **Scheduled mechanisms:**
   - `Codex-Morning-Orchestrator-Preflight`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
-  - `DillonAgentOS-GmailBridge`: enabled `True`, state `Ready`, prepare-only `True`, last result `0`
-  - `DillonAgentOS-SlackBridge`: enabled `True`, state `Ready`, prepare-only `True`, last result `0`
+  - `DillonAgentOS-GmailBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
+  - `DillonAgentOS-SlackBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
   - `DillonAgentOS-DailyBrief`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `MarketingChief-DailyCalibration`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
-  - `MarketingChief-SitesBridge`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
+  - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
 - **Human gates:** `active_client_exact_bw_item_mapping`
 - **Deferred actions:** `secondary_exposed_password_rotation`
+- **Warnings:** DillonAgentOS-GmailBridge is enabled without PrepareOnly; DillonAgentOS-SlackBridge is enabled without PrepareOnly
 
 ## Standing operating contract
 
