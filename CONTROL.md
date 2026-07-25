@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-25T04:44:25.3632667+00:00`
-Queue revision: `276`
+Last reconciled: `2026-07-25T05:32:35.0355984+00:00`
+Queue revision: `281`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -94,7 +94,7 @@ Mode: `manual-pilot`
 | `wi-20260725-0002` | `va-claims-edge` | Deploy VA Claims dashboard review feedback | Done | P0 | Monitor the verified production result and treat any additional scope as a separate approved action. | No evidenced deadline |
 | `wi-20260725-0003` | `pritzker-law-group` | Publish Pritzker podcast sponsor landing page v2 | Done | P0 | Monitor the verified production result and treat any additional scope as a separate approved action. | No evidenced deadline |
 | `wi-20260725-0004` | `momentum-360` | Deliver foundation Stripe authentication handoff | Done | P0 | Monitor the verified production result and treat any additional scope as a separate approved action. | No evidenced deadline |
-| `wi-20260725-0005` | `shadow-heating-cooling` | Pause Shadow Heating Meta lead campaigns | Blocked | P0 | Human authentication is required in the approved persistent Chrome Meta session. After sign-in, select the exact Shadow campaign named Shadow AC Leads Hampshire 30mi Summer 2026 in Dillon Operations, pause it and any other delivering Shadow campaign, then verify no Shadow delivery remains active. | No evidenced deadline |
+| `wi-20260725-0005` | `shadow-heating-cooling` | Pause Shadow Heating Meta lead campaigns | Done | P0 | Human authentication is required in the approved persistent Chrome Meta session. After sign-in, select the exact Shadow campaign named Shadow AC Leads Hampshire 30mi Summer 2026 in Dillon Operations, pause it and any other delivering Shadow campaign, then verify no Shadow delivery remains active. | No evidenced deadline |
 | `wi-20260725-0006` | `va-claims-edge` | Ship David client continuity workspace | Done | P0 | Deploy the verified VA Claims Edge continuity workspace to the review site and canonical Vercel production repository, then verify both live destinations. | No evidenced deadline |
 | `wi-20260725-0007` | `va-claims-edge` | Correct VA Claims booking and lead routing rules | Blocked | P0 | Map and authenticate the exact authorized WordPress or Amelia administrator route, apply only the verified scheduling and routing corrections, then complete an approved synthetic booking test without contacting a prospect. | No evidenced deadline |
 
@@ -437,9 +437,8 @@ Mode: `manual-pilot`
   Current evidence: Cursor completed a bounded public-source pass and opened PR 210, but it could not read either private client channel. Its Pritzker brief added public-source corroboration; its VA section correctly marked the July 24 criteria unavailable. No merge, client-channel post, deployment, or queue mutation was performed by Cursor.
 - **Activate foundation Stripe donation flow:** Await confirmation that an authorized foundation representative has completed the dedicated Stripe business identity, banking, tax, terms, MFA, and verification requirements and that live payments and payouts are enabled.
   Current evidence: The security-safe activation checklist was delivered to the verified agency leadership contact. Dedicated foundation account authentication remains a human-only blocker; technical production credentials and webhook configuration remain separate.
-- **Pause Shadow Heating Meta lead campaigns:** Human authentication is required in the approved persistent Chrome Meta session. After sign-in, select the exact Shadow campaign named Shadow AC Leads Hampshire 30mi Summer 2026 in Dillon Operations, pause it and any other delivering Shadow campaign, then verify no Shadow delivery remains active.
-  Current evidence: Pause authorization is recorded. Execution is blocked because the approved persistent Chrome Meta session is unavailable without opening or completing a Meta login; no campaign state was changed.
 - **Correct VA Claims booking and lead routing rules:** Map and authenticate the exact authorized WordPress or Amelia administrator route, apply only the verified scheduling and routing corrections, then complete an approved synthetic booking test without contacting a prospect.
+  Current evidence: The Chrome plugin and native-host path were repaired and verified with the dedicated hidden profile, and the VA Claims WordPress administrator login was reached. The authorized Bitwarden vault is locked and the access registry has no exact VA Claims WordPress or Amelia locator, so a human vault unlock is still required before credential autofill, settings changes, and synthetic booking verification. No external configuration was changed. Evidence: clients/va-claims-edge/evidence/2026-07-25-booking-routing-verification.json.
 
 ## Intake quarantine
 
