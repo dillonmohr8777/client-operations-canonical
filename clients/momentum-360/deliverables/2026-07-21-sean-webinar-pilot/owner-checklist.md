@@ -12,11 +12,15 @@
 ## Dillon
 
 - Replace prototype date and meeting-link placeholders.
+- Verify the public calendar hub remains the fallback destination until the
+  final meeting URL is approved.
 - Verify the Netlify `workshop-registration` submission in the live site dashboard.
 - Confirm each production submission includes attendee identity, company, growth constraint, email-reminder choice, calendar choice, event details, registration ID, page/referrer, and available UTM attribution.
 - Configure confirmation, reminder, replay, unsubscribe, and suppression handling.
 - Map the event schema into the approved analytics destination.
-- Test desktop, mobile, form validation, calendar links, time zone, reminders, and booking attribution.
+- Test desktop, mobile, form validation, Google Calendar, Outlook Calendar,
+  Apple/ICS download, Eastern Time conversion, reminders, and booking
+  attribution.
 
 ## Required joint approvals
 

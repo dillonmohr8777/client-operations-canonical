@@ -1,5 +1,5 @@
 const KEYS = {
-  event: "momentum-workshop-event-v2",
+  event: "momentum-workshop-event-v3",
   registrations: "momentum-workshop-registrations-v2",
 };
 const defaults = {
@@ -8,7 +8,9 @@ const defaults = {
   time: "12:00",
   duration: "60",
   timezone: "America/New_York",
-  meeting_url: "https://example.com/pilot-room",
+  meeting_url: "",
+  public_url:
+    "https://momentum-workshop-pilot.netlify.app/?utm_source=calendar&utm_medium=event&utm_campaign=growth-workshop",
   host: "Sean and Mac",
 };
 const MOTION = {
@@ -20,7 +22,7 @@ const MOTION = {
   ambient: 3.8,
   enter: 24,
 };
-let eventConfig = read(KEYS.event, defaults);
+let eventConfig = normalizeEventConfig(read(KEYS.event, defaults));
 let registrations = read(KEYS.registrations, []);
 
 const views = [...document.querySelectorAll("[data-view]")];
@@ -141,6 +143,7 @@ configForm.addEventListener("submit", (event) => {
     return;
   }
   eventConfig = Object.fromEntries(new FormData(configForm).entries());
+  eventConfig = normalizeEventConfig(eventConfig);
   write(KEYS.event, eventConfig);
   document.querySelector("#save-status").textContent = "Saved just now";
   updateEventDetails();
@@ -223,13 +226,14 @@ function updateEventDetails() {
     .toUpperCase();
   document.querySelector("#orbit-day").textContent = String(orbitDate.getDate()).padStart(2, "0");
   document.querySelector("#google-calendar").href = googleCalendarUrl();
+  document.querySelector("#outlook-calendar").href = outlookCalendarUrl();
 }
 
 function updateConfirmation(firstName, calendarRequested = false) {
   document.querySelector("#confirmation-copy").textContent =
     calendarRequested
-      ? `${firstName}, your Google Calendar review has opened. Confirm the event there, or use either calendar action below.`
-      : `${firstName}, your seat is ready. Use either calendar action below if you want the event on your calendar.`;
+      ? `${firstName}, your Google Calendar review has opened. Confirm the event there, or choose Outlook or Apple Calendar below.`
+      : `${firstName}, your seat is ready. Choose Google, Outlook, or Apple Calendar below to add the workshop.`;
   updateEventDetails();
 }
 
@@ -605,10 +609,24 @@ function googleCalendarUrl() {
     action: "TEMPLATE",
     text: eventConfig.title,
     dates: `${calendarStamp(start)}/${calendarStamp(end)}`,
-    details: `Live workshop hosted by ${eventConfig.host}. Join: ${eventConfig.meeting_url}`,
-    location: eventConfig.meeting_url,
+    details: calendarDescription(),
+    location: calendarLocation(),
+    ctz: eventConfig.timezone,
   });
   return `https://calendar.google.com/calendar/render?${params}`;
+}
+
+function outlookCalendarUrl() {
+  const { start, end } = eventTimes();
+  const params = new URLSearchParams({
+    rru: "addevent",
+    subject: eventConfig.title,
+    startdt: start.toISOString(),
+    enddt: end.toISOString(),
+    body: calendarDescription(),
+    location: calendarLocation(),
+  });
+  return `https://outlook.live.com/calendar/0/deeplink/compose?${params}`;
 }
 
 function downloadIcs() {
@@ -618,14 +636,20 @@ function downloadIcs() {
     "VERSION:2.0",
     "PRODID:-//Momentum Workshop Pilot//EN",
     "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+    `X-WR-CALNAME:${icsEscape(eventConfig.title)}`,
+    `X-WR-TIMEZONE:${icsEscape(eventConfig.timezone)}`,
     "BEGIN:VEVENT",
     `UID:${crypto.randomUUID()}@momentum-workshop.local`,
     `DTSTAMP:${calendarStamp(new Date())}`,
     `DTSTART:${calendarStamp(start)}`,
     `DTEND:${calendarStamp(end)}`,
     `SUMMARY:${icsEscape(eventConfig.title)}`,
-    `DESCRIPTION:${icsEscape(`Live workshop hosted by ${eventConfig.host}. Join: ${eventConfig.meeting_url}`)}`,
-    `LOCATION:${icsEscape(eventConfig.meeting_url)}`,
+    `DESCRIPTION:${icsEscape(calendarDescription())}`,
+    `LOCATION:${icsEscape(calendarLocation())}`,
+    `URL:${icsEscape(eventConfig.public_url)}`,
+    "STATUS:CONFIRMED",
+    "TRANSP:OPAQUE",
     "END:VEVENT",
     "END:VCALENDAR",
   ].join("\r\n");
@@ -635,15 +659,93 @@ function downloadIcs() {
   );
   link.download = "momentum-workshop-pilot.ics";
   link.click();
-  URL.revokeObjectURL(link.href);
+  window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
 }
 
 function eventTimes() {
-  const start = new Date(`${eventConfig.date}T${eventConfig.time}:00`);
+  const start = zonedDateTimeToUtc(
+    eventConfig.date,
+    eventConfig.time,
+    eventConfig.timezone,
+  );
   return {
     start,
     end: new Date(start.getTime() + Number(eventConfig.duration) * 60000),
   };
+}
+
+function zonedDateTimeToUtc(dateValue, timeValue, timeZone) {
+  const [year, month, day] = dateValue.split("-").map(Number);
+  const [hour, minute] = timeValue.split(":").map(Number);
+  const target = Date.UTC(year, month - 1, day, hour, minute);
+  let guess = target;
+  const formatter = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hourCycle: "h23",
+  });
+
+  for (let pass = 0; pass < 3; pass += 1) {
+    const parts = Object.fromEntries(
+      formatter
+        .formatToParts(new Date(guess))
+        .filter(({ type }) => type !== "literal")
+        .map(({ type, value }) => [type, Number(value)]),
+    );
+    const rendered = Date.UTC(
+      parts.year,
+      parts.month - 1,
+      parts.day,
+      parts.hour,
+      parts.minute,
+      parts.second,
+    );
+    guess += target - rendered;
+  }
+
+  return new Date(guess);
+}
+
+function calendarDescription() {
+  const access = validMeetingUrl(eventConfig.meeting_url)
+    ? `Join the live workshop: ${eventConfig.meeting_url}`
+    : `Workshop access and updates: ${eventConfig.public_url}`;
+  return `Live Momentum 360 workshop hosted by ${eventConfig.host}. Bring one active offer and one growth constraint. ${access}`;
+}
+
+function calendarLocation() {
+  return validMeetingUrl(eventConfig.meeting_url)
+    ? eventConfig.meeting_url
+    : "Online workshop — join details supplied after registration";
+}
+
+function validMeetingUrl(value) {
+  try {
+    const url = new URL(String(value || ""));
+    return (
+      url.protocol === "https:" &&
+      url.hostname !== "example.com" &&
+      url.hostname !== "www.example.com"
+    );
+  } catch {
+    return false;
+  }
+}
+
+function normalizeEventConfig(value) {
+  const config = { ...defaults, ...(value || {}) };
+  if (!validMeetingUrl(config.meeting_url)) {
+    config.meeting_url = "";
+  }
+  if (!validMeetingUrl(config.public_url)) {
+    config.public_url = defaults.public_url;
+  }
+  return config;
 }
 function calendarStamp(date) {
   return date

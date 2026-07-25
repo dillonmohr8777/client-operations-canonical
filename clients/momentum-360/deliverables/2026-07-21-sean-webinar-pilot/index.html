@@ -259,9 +259,11 @@
                       name="calendar_consent"
                       type="checkbox"
                     /><span
-                      ><strong>Open my calendar next</strong>After I register,
-                      open Google Calendar so I can review and add the event.
-                      Nothing is inserted without my final click.</span
+                      ><strong>Help me add it to my calendar</strong>After I
+                      register, open Google Calendar with the workshop filled
+                      in. Outlook and Apple Calendar options stay available on
+                      the confirmation screen. Nothing is inserted without my
+                      final click.</span
                     ></label
                   >
                   <button
@@ -566,8 +568,8 @@
               <p>
                 If you choose the calendar option, registration opens a
                 pre-filled Google Calendar event for review. The final add stays
-                in your hands. An ICS file remains available for Outlook, Apple
-                Calendar, and other calendar apps.
+                in your hands. Dedicated Outlook and ICS options remain
+                available for Outlook, Apple Calendar, and other calendar apps.
               </p>
               <div class="calendar-steps">
                 <span><b>1</b> Register</span>
@@ -606,8 +608,9 @@
                 <summary>Will anything be added to my calendar automatically?</summary>
                 <p>
                   No. If you opt in, Google Calendar opens with the workshop
-                  details prepared. You review and add it yourself, or download
-                  the ICS file.
+                  details prepared. You review and add it yourself, open the
+                  dedicated Outlook event, or download the ICS file for Apple
+                  Calendar and other calendar apps.
                 </p>
               </details>
               <details>
@@ -688,16 +691,27 @@
                 id="google-calendar"
                 class="button button-primary"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 >Open Google Calendar</a
+              ><a
+                id="outlook-calendar"
+                class="button button-ghost"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Open Outlook Calendar</a
               ><button
                 id="download-ics"
                 class="button button-ghost"
                 type="button"
               >
-                Download ICS file
+                Apple / other calendars
               </button>
             </div>
+            <p class="calendar-assurance">
+              Calendar times are locked to Eastern Time and converted correctly
+              for each calendar provider. Final online access details will be
+              supplied to registered attendees.
+            </p>
             <button class="text-action" data-route="register" type="button">
               Back to workshop
             </button>
@@ -792,11 +806,11 @@
                 >
               </div>
               <label
-                >Meeting URL<input
+                >Meeting URL <small>(optional until approved)</small><input
                   name="meeting_url"
                   type="url"
-                  value="https://example.com/pilot-room"
-                  required /></label
+                  placeholder="https://meet.google.com/..."
+                  value="" /></label
               ><label
                 >Host name<input
                   name="host"
