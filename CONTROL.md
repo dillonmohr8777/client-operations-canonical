@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-24T23:21:04.7913287+00:00`
-Queue revision: `258`
+Last reconciled: `2026-07-25T00:58:05.2398714+00:00`
+Queue revision: `262`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -90,6 +90,7 @@ Mode: `manual-pilot`
 | `wi-20260724-0022` | `va-claims-edge` | Apply VA Claims dashboard review feedback | Done | P0 | Await explicit approval before any push, Vercel deployment, or client-channel handoff. | No evidenced deadline |
 | `wi-20260724-0023` | `pritzker-law-group` | Build Love Philadelphia podcast sponsor landing page | Done | P0 | Await explicit approval before any publication, hosting, analytics, form wiring, or client-channel delivery. | No evidenced deadline |
 | `wi-20260724-0024` | `momentum-360` | Activate foundation Stripe donation flow | Blocked | P0 | An authorized foundation representative must create or authenticate the dedicated Stripe business and complete required identity, banking, tax, terms, CAPTCHA, MFA, and consent steps. | 2026-07-24 23:59 -04:00 |
+| `wi-20260725-0001` | `pritzker-law-group` | Deploy Pritzker podcast sponsor landing page to Netlify | Done | P0 | Monitor the current Netlify URL; require separate approval before adding a custom domain, analytics, forms, tracking, or new integrations. | No evidenced deadline |
 
 ## Waiting on Dillon
 
