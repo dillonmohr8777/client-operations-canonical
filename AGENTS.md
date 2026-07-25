@@ -54,6 +54,18 @@ classification, approval gate, clean canonical paths, current queue revision,
 and Git fast-forward state. It must not merge the relay pull request or allow
 Slack or Cursor to become a second queue or canonical writer.
 
+For live Slack-derived analysis, leverage Cursor in every relevant channel it
+is already authorized to access by invoking it from the exact source-message
+thread. A Cursor DM cannot read unrelated private-channel context even when the
+app is a channel member. Give Cursor the exact registry client ID and bounded
+read-only outcome, require redacted findings with channel and timestamp
+locators, and prohibit client delivery, PR creation or merge, publishing,
+deployment, account changes, and canonical queue mutation unless Dillon
+separately approves the exact action. Read Dillon's other DMs only through the
+authorized Slack connector and pass Cursor redacted summaries, never raw
+private communications. Do not infer permission to expand Cursor membership or
+workspace permissions.
+
 ## OmniRoute gateway capability
 
 - Treat `$omniroute-gateway` as an available Marketing Chief capability when model or provider routing, quota visibility, fallback combinations, prompt compression, an OpenAI-compatible local endpoint, or OmniRoute MCP tools are relevant.
