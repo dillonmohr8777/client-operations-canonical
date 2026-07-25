@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-25T01:34:42.3936658+00:00`
-Queue revision: `269`
+Last reconciled: `2026-07-25T04:03:06.0846637+00:00`
+Queue revision: `273`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -12,7 +12,7 @@ Mode: `manual-pilot`
 
 **Next automatic action:** No automatic action is currently eligible.
 
-**Next Dillon decision:** **Activate foundation Stripe donation flow** (`wi-20260724-0024`, score 210): Await confirmation that an authorized foundation representative has completed the dedicated Stripe business identity, banking, tax, terms, MFA, and verification requirements and that live payments and payouts are enabled. Why: P0, portfolio rank 3 (strategic), due within 24 hours, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required.
+**Next Dillon decision:** **Activate foundation Stripe donation flow** (`wi-20260724-0024`, score 220): Await confirmation that an authorized foundation representative has completed the dedicated Stripe business identity, banking, tax, terms, MFA, and verification requirements and that live payments and payouts are enabled. Why: P0, portfolio rank 3 (strategic), overdue, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required.
 
 **Next unblock:** **Complete Mac AI operations and Slack enablement bundle** (`wi-20260723-0006`, score 155): Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity. Why: P1, portfolio rank 3 (strategic), no evidenced deadline, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required, last prediction accept.
 <!-- marketing-chief:predictions:end -->
@@ -94,6 +94,8 @@ Mode: `manual-pilot`
 | `wi-20260725-0002` | `va-claims-edge` | Deploy VA Claims dashboard review feedback | Done | P0 | Monitor the verified production result and treat any additional scope as a separate approved action. | No evidenced deadline |
 | `wi-20260725-0003` | `pritzker-law-group` | Publish Pritzker podcast sponsor landing page v2 | Done | P0 | Monitor the verified production result and treat any additional scope as a separate approved action. | No evidenced deadline |
 | `wi-20260725-0004` | `momentum-360` | Deliver foundation Stripe authentication handoff | Done | P0 | Monitor the verified production result and treat any additional scope as a separate approved action. | No evidenced deadline |
+| `wi-20260725-0005` | `shadow-heating-cooling` | Pause Shadow Heating Meta lead campaigns | Blocked | P0 | Human authentication is required in the approved persistent Chrome Meta session. After sign-in, select the exact Shadow campaign named Shadow AC Leads Hampshire 30mi Summer 2026 in Dillon Operations, pause it and any other delivering Shadow campaign, then verify no Shadow delivery remains active. | No evidenced deadline |
+| `wi-20260725-0006` | `va-claims-edge` | Ship David client continuity workspace | Done | P0 | Deploy the verified VA Claims Edge continuity workspace to the review site and canonical Vercel production repository, then verify both live destinations. | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -434,6 +436,8 @@ Mode: `manual-pilot`
   Current evidence: Cursor completed a bounded public-source pass and opened PR 210, but it could not read either private client channel. Its Pritzker brief added public-source corroboration; its VA section correctly marked the July 24 criteria unavailable. No merge, client-channel post, deployment, or queue mutation was performed by Cursor.
 - **Activate foundation Stripe donation flow:** Await confirmation that an authorized foundation representative has completed the dedicated Stripe business identity, banking, tax, terms, MFA, and verification requirements and that live payments and payouts are enabled.
   Current evidence: The security-safe activation checklist was delivered to the verified agency leadership contact. Dedicated foundation account authentication remains a human-only blocker; technical production credentials and webhook configuration remain separate.
+- **Pause Shadow Heating Meta lead campaigns:** Human authentication is required in the approved persistent Chrome Meta session. After sign-in, select the exact Shadow campaign named Shadow AC Leads Hampshire 30mi Summer 2026 in Dillon Operations, pause it and any other delivering Shadow campaign, then verify no Shadow delivery remains active.
+  Current evidence: Pause authorization is recorded. Execution is blocked because the approved persistent Chrome Meta session is unavailable without opening or completing a Meta login; no campaign state was changed.
 
 ## Intake quarantine
 
