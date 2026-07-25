@@ -6,8 +6,8 @@ Production landing page for Pritzker Law Group's premium sponsorship of `Love, P
 
 - Live URL: `https://pritzker-love-philadelphia-podcast.netlify.app`
 - Netlify site: `pritzker-love-philadelphia-podcast`
-- Production deploy: `6a6409d90f322e0df842e62e`
-- Published with Dillon's explicit approval on July 24, 2026.
+- Production deploy: `6a6411fa49587152b5ddc5b9`
+- V2 published with Dillon's explicit approval on July 24, 2026.
 
 ## Open locally
 
@@ -21,7 +21,7 @@ Then open `http://127.0.0.1:4174`.
 
 ## Current behavior
 
-- Responsive podcast launch page with Pritzker Law Group sponsor treatment.
+- Responsive editorial podcast launch page with a legible show mark, a stronger first-viewport hierarchy, and a distinct Pritzker Law Group premium-sponsor rail.
 - Verified outbound links to the official firm site and Rachael Pritzker profile.
 - Listening controls are disabled until real platform destinations exist.
 - No form, analytics, tracking, or third-party integration is active.

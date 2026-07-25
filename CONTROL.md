@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-25T00:58:05.2398714+00:00`
-Queue revision: `262`
+Last reconciled: `2026-07-25T01:34:42.3936658+00:00`
+Queue revision: `269`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -12,7 +12,7 @@ Mode: `manual-pilot`
 
 **Next automatic action:** No automatic action is currently eligible.
 
-**Next Dillon decision:** **Activate foundation Stripe donation flow** (`wi-20260724-0024`, score 210): An authorized foundation representative must create or authenticate the dedicated Stripe business and complete required identity, banking, tax, terms, CAPTCHA, MFA, and consent steps. Why: P0, portfolio rank 3 (strategic), due within 24 hours, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required.
+**Next Dillon decision:** **Activate foundation Stripe donation flow** (`wi-20260724-0024`, score 210): Await confirmation that an authorized foundation representative has completed the dedicated Stripe business identity, banking, tax, terms, MFA, and verification requirements and that live payments and payouts are enabled. Why: P0, portfolio rank 3 (strategic), due within 24 hours, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required.
 
 **Next unblock:** **Complete Mac AI operations and Slack enablement bundle** (`wi-20260723-0006`, score 155): Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity. Why: P1, portfolio rank 3 (strategic), no evidenced deadline, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required, last prediction accept.
 <!-- marketing-chief:predictions:end -->
@@ -89,8 +89,11 @@ Mode: `manual-pilot`
 | `wi-20260724-0021` | `va-claims-edge` | Apply VA Claims dashboard review feedback | Cancelled | P0 | Verify the local dashboard changes and preserve push, deployment, and external handoff behind approval. | No evidenced deadline |
 | `wi-20260724-0022` | `va-claims-edge` | Apply VA Claims dashboard review feedback | Done | P0 | Await explicit approval before any push, Vercel deployment, or client-channel handoff. | No evidenced deadline |
 | `wi-20260724-0023` | `pritzker-law-group` | Build Love Philadelphia podcast sponsor landing page | Done | P0 | Await explicit approval before any publication, hosting, analytics, form wiring, or client-channel delivery. | No evidenced deadline |
-| `wi-20260724-0024` | `momentum-360` | Activate foundation Stripe donation flow | Blocked | P0 | An authorized foundation representative must create or authenticate the dedicated Stripe business and complete required identity, banking, tax, terms, CAPTCHA, MFA, and consent steps. | 2026-07-24 23:59 -04:00 |
+| `wi-20260724-0024` | `momentum-360` | Activate foundation Stripe donation flow | Blocked | P0 | Await confirmation that an authorized foundation representative has completed the dedicated Stripe business identity, banking, tax, terms, MFA, and verification requirements and that live payments and payouts are enabled. | 2026-07-24 23:59 -04:00 |
 | `wi-20260725-0001` | `pritzker-law-group` | Deploy Pritzker podcast sponsor landing page to Netlify | Done | P0 | Monitor the current Netlify URL; require separate approval before adding a custom domain, analytics, forms, tracking, or new integrations. | No evidenced deadline |
+| `wi-20260725-0002` | `va-claims-edge` | Deploy VA Claims dashboard review feedback | Done | P0 | Monitor the verified production result and treat any additional scope as a separate approved action. | No evidenced deadline |
+| `wi-20260725-0003` | `pritzker-law-group` | Publish Pritzker podcast sponsor landing page v2 | Done | P0 | Monitor the verified production result and treat any additional scope as a separate approved action. | No evidenced deadline |
+| `wi-20260725-0004` | `momentum-360` | Deliver foundation Stripe authentication handoff | Done | P0 | Monitor the verified production result and treat any additional scope as a separate approved action. | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -412,7 +415,7 @@ Mode: `manual-pilot`
 
 **Decision:** Authorized foundation representative completes the dedicated Stripe onboarding and authentication gates.
 
-**Next action:** An authorized foundation representative must create or authenticate the dedicated Stripe business and complete required identity, banking, tax, terms, CAPTCHA, MFA, and consent steps.
+**Next action:** Await confirmation that an authorized foundation representative has completed the dedicated Stripe business identity, banking, tax, terms, MFA, and verification requirements and that live payments and payouts are enabled.
 
 **Definition of done:**
 
@@ -429,7 +432,8 @@ Mode: `manual-pilot`
   Current evidence: The 32-row controlled direct-mail sheet, unpublished QRTIGER and PostGrid Zap drafts, verified Slackbot AI response, and narrated 1080p walkthrough are complete. QRTIGER is staged at its Google account chooser and PostGrid still requires a human CAPTCHA, terms acceptance, and account details. All 32 mail rows remain suppressed and no mail or spend occurred.
 - **Cursor integration:** Invite the Cursor Slack app to the exact private Pritzker Law Group and VA Claims channels, then rerun a bounded read-only source pass before considering any broader integration.
   Current evidence: Cursor completed a bounded public-source pass and opened PR 210, but it could not read either private client channel. Its Pritzker brief added public-source corroboration; its VA section correctly marked the July 24 criteria unavailable. No merge, client-channel post, deployment, or queue mutation was performed by Cursor.
-- **Activate foundation Stripe donation flow:** An authorized foundation representative must create or authenticate the dedicated Stripe business and complete required identity, banking, tax, terms, CAPTCHA, MFA, and consent steps.
+- **Activate foundation Stripe donation flow:** Await confirmation that an authorized foundation representative has completed the dedicated Stripe business identity, banking, tax, terms, MFA, and verification requirements and that live payments and payouts are enabled.
+  Current evidence: The security-safe activation checklist was delivered to the verified agency leadership contact. Dedicated foundation account authentication remains a human-only blocker; technical production credentials and webhook configuration remain separate.
 
 ## Intake quarantine
 

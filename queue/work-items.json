@@ -1,7 +1,7 @@
 {
     "schemaVersion":  1,
-    "revision":  262,
-    "updatedAt":  "2026-07-25T00:58:05.2398714+00:00",
+    "revision":  269,
+    "updatedAt":  "2026-07-25T01:34:42.3936658+00:00",
     "updatedBy":  "marketing-chief",
     "mode":  "manual-pilot",
     "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
@@ -5389,7 +5389,7 @@
                       },
                       {
                           "id":  "wi-20260724-0024",
-                          "version":  1,
+                          "version":  2,
                           "dedupeKey":  "foundation-stripe-dedicated-account-activation",
                           "scope":  "client",
                           "clientId":  "momentum-360",
@@ -5415,13 +5415,13 @@
                                            "rationale":  "The donation experience is technically ready, but production collection cannot start until the dedicated Stripe business gate is completed."
                                        },
                           "owner":  "marketing-chief",
-                          "nextAction":  "An authorized foundation representative must create or authenticate the dedicated Stripe business and complete required identity, banking, tax, terms, CAPTCHA, MFA, and consent steps.",
+                          "nextAction":  "Await confirmation that an authorized foundation representative has completed the dedicated Stripe business identity, banking, tax, terms, MFA, and verification requirements and that live payments and payouts are enabled.",
                           "execution":  {
                                             "actionClass":  "human_authentication",
                                             "automaticEligible":  false,
                                             "externalAction":  false,
                                             "reversible":  false,
-                                            "classifiedAt":  "2026-07-24T23:17:29.2256018+00:00"
+                                            "classifiedAt":  "2026-07-25T01:34:42.3936658+00:00"
                                         },
                           "definitionOfDone":  [
                                                    "Dedicated foundation Stripe business identity is authenticated and verified.",
@@ -5454,9 +5454,14 @@
                           "artifactRefs":  [
 
                                            ],
-                          "outcome":  null,
+                          "outcome":  {
+                                          "status":  "blocked",
+                                          "verifiedAt":  "2026-07-25T01:34:42.3936658+00:00",
+                                          "summary":  "The security-safe activation checklist was delivered to the verified agency leadership contact. Dedicated foundation account authentication remains a human-only blocker; technical production credentials and webhook configuration remain separate.",
+                                          "externalActionTaken":  false
+                                      },
                           "createdAt":  "2026-07-24T23:17:29.2256018+00:00",
-                          "updatedAt":  "2026-07-24T23:17:29.2256018+00:00"
+                          "updatedAt":  "2026-07-25T01:34:42.3936658+00:00"
                       },
                       {
                           "id":  "wi-20260725-0001",
@@ -5533,6 +5538,231 @@
                                       },
                           "createdAt":  "2026-07-25T00:56:38.4583526+00:00",
                           "updatedAt":  "2026-07-25T00:58:05.2398714+00:00"
+                      },
+                      {
+                          "id":  "wi-20260725-0002",
+                          "version":  2,
+                          "dedupeKey":  "va-claims-dashboard-production-deploy-2026-07-24-f422312",
+                          "scope":  "client",
+                          "clientId":  "va-claims-edge",
+                          "routing":  {
+                                          "status":  "resolved",
+                                          "matchedBy":  "registry-resolver",
+                                          "registryStatus":  "active",
+                                          "verifiedAt":  "2026-07-25T01:34:32.3723193+00:00"
+                                      },
+                          "title":  "Deploy VA Claims dashboard review feedback",
+                          "requestedOutcome":  "Push the reviewed dashboard refinements to main and verify the connected Vercel production deployment.",
+                          "source":  {
+                                         "type":  "user",
+                                         "locator":  "user-instruction:handle-all-approved-2026-07-24",
+                                         "observedAt":  "2026-07-25T01:34:32.3723193+00:00",
+                                         "redactedSummary":  "Dillon approved the completed VA Claims dashboard changes for production delivery."
+                                     },
+                          "status":  "done",
+                          "lane":  "normal",
+                          "emergencyRationale":  null,
+                          "priority":  {
+                                           "level":  "P0",
+                                           "rationale":  "Approved production delivery required to close the current canonical queue item."
+                                       },
+                          "owner":  "marketing-chief",
+                          "nextAction":  "Monitor the verified production result and treat any additional scope as a separate approved action.",
+                          "execution":  {
+                                            "actionClass":  "deployment",
+                                            "automaticEligible":  false,
+                                            "externalAction":  true,
+                                            "reversible":  false,
+                                            "classifiedAt":  "2026-07-25T01:34:34.1380176+00:00"
+                                        },
+                          "definitionOfDone":  [
+                                                   "Reviewed commit is on origin main.",
+                                                   "Connected Vercel deployment reports success.",
+                                                   "Production login URL returns HTTP 200."
+                                               ],
+                          "dueAt":  null,
+                          "reviewAt":  null,
+                          "evidence":  {
+                                           "asOf":  "2026-07-25T01:34:32.3723193+00:00",
+                                           "freshness":  "current",
+                                           "refs":  [
+                                                        "user-instruction:handle-all-approved-2026-07-24"
+                                                    ]
+                                       },
+                          "approval":  {
+                                           "tier":  "explicit",
+                                           "action":  "Dillon approved this exact delivery in the active task.",
+                                           "status":  "approved",
+                                           "approvalRef":  "user-instruction:handle-all-approved-2026-07-24"
+                                       },
+                          "dependencies":  [
+
+                                           ],
+                          "assumptions":  [
+
+                                          ],
+                          "confidence":  0.8,
+                          "artifactRefs":  [
+
+                                           ],
+                          "outcome":  {
+                                          "status":  "done",
+                                          "verifiedAt":  "2026-07-25T01:34:34.1380176+00:00",
+                                          "summary":  "Rebased the reviewed dashboard refinements onto the latest upstream authentication fix, reran ESLint and the production build, pushed commit f422312 to origin main, and verified Vercel deployment success. The production login URL https://vaclaims-portal.vercel.app/login returns HTTP 200.",
+                                          "externalActionTaken":  true
+                                      },
+                          "createdAt":  "2026-07-25T01:34:32.3723193+00:00",
+                          "updatedAt":  "2026-07-25T01:34:34.1380176+00:00"
+                      },
+                      {
+                          "id":  "wi-20260725-0003",
+                          "version":  2,
+                          "dedupeKey":  "pritzker-podcast-sponsor-netlify-v2-2026-07-24",
+                          "scope":  "client",
+                          "clientId":  "pritzker-law-group",
+                          "routing":  {
+                                          "status":  "resolved",
+                                          "matchedBy":  "registry-resolver",
+                                          "registryStatus":  "active",
+                                          "verifiedAt":  "2026-07-25T01:34:36.0437811+00:00"
+                                      },
+                          "title":  "Publish Pritzker podcast sponsor landing page v2",
+                          "requestedOutcome":  "Improve the approved landing page first viewport and publish the reviewed v2 to the dedicated Netlify production site.",
+                          "source":  {
+                                         "type":  "user",
+                                         "locator":  "user-instruction:handle-all-approved-2026-07-24",
+                                         "observedAt":  "2026-07-25T01:34:36.0437811+00:00",
+                                         "redactedSummary":  "Dillon approved a stronger Pritzker landing-page iteration and production publication."
+                                     },
+                          "status":  "done",
+                          "lane":  "normal",
+                          "emergencyRationale":  null,
+                          "priority":  {
+                                           "level":  "P0",
+                                           "rationale":  "Approved production delivery required to close the current canonical queue item."
+                                       },
+                          "owner":  "marketing-chief",
+                          "nextAction":  "Monitor the verified production result and treat any additional scope as a separate approved action.",
+                          "execution":  {
+                                            "actionClass":  "publishing",
+                                            "automaticEligible":  false,
+                                            "externalAction":  true,
+                                            "reversible":  false,
+                                            "classifiedAt":  "2026-07-25T01:34:37.4954969+00:00"
+                                        },
+                          "definitionOfDone":  [
+                                                   "Impeccable detector returns no findings.",
+                                                   "Production Netlify deploy succeeds.",
+                                                   "Live page and all reviewed assets return HTTP 200."
+                                               ],
+                          "dueAt":  null,
+                          "reviewAt":  null,
+                          "evidence":  {
+                                           "asOf":  "2026-07-25T01:34:36.0437811+00:00",
+                                           "freshness":  "current",
+                                           "refs":  [
+                                                        "user-instruction:handle-all-approved-2026-07-24"
+                                                    ]
+                                       },
+                          "approval":  {
+                                           "tier":  "explicit",
+                                           "action":  "Dillon approved this exact delivery in the active task.",
+                                           "status":  "approved",
+                                           "approvalRef":  "user-instruction:handle-all-approved-2026-07-24"
+                                       },
+                          "dependencies":  [
+
+                                           ],
+                          "assumptions":  [
+
+                                          ],
+                          "confidence":  0.8,
+                          "artifactRefs":  [
+
+                                           ],
+                          "outcome":  {
+                                          "status":  "done",
+                                          "verifiedAt":  "2026-07-25T01:34:37.4954969+00:00",
+                                          "summary":  "Polished the first viewport into a legible editorial show presentation with a distinct premium sponsor rail, verified desktop and mobile layouts, received an empty Impeccable detector result, and published Netlify deploy 6a6411fa49587152b5ddc5b9. The live page and all reviewed assets return HTTP 200 at https://pritzker-love-philadelphia-podcast.netlify.app.",
+                                          "externalActionTaken":  true
+                                      },
+                          "createdAt":  "2026-07-25T01:34:36.0437811+00:00",
+                          "updatedAt":  "2026-07-25T01:34:37.4954969+00:00"
+                      },
+                      {
+                          "id":  "wi-20260725-0004",
+                          "version":  2,
+                          "dedupeKey":  "momentum-foundation-stripe-auth-handoff-2026-07-24",
+                          "scope":  "client",
+                          "clientId":  "momentum-360",
+                          "routing":  {
+                                          "status":  "resolved",
+                                          "matchedBy":  "registry-resolver",
+                                          "registryStatus":  "active",
+                                          "verifiedAt":  "2026-07-25T01:34:39.3797272+00:00"
+                                      },
+                          "title":  "Deliver foundation Stripe authentication handoff",
+                          "requestedOutcome":  "Send the verified agency leader a separate, security-safe checklist for completing the Foundation Stripe business authentication.",
+                          "source":  {
+                                         "type":  "user",
+                                         "locator":  "user-instruction:handle-all-approved-2026-07-24",
+                                         "observedAt":  "2026-07-25T01:34:39.3797272+00:00",
+                                         "redactedSummary":  "Dillon approved direct delivery of the Stripe authentication instructions while keeping technical integration separate."
+                                     },
+                          "status":  "done",
+                          "lane":  "normal",
+                          "emergencyRationale":  null,
+                          "priority":  {
+                                           "level":  "P0",
+                                           "rationale":  "Approved production delivery required to close the current canonical queue item."
+                                       },
+                          "owner":  "marketing-chief",
+                          "nextAction":  "Monitor the verified production result and treat any additional scope as a separate approved action.",
+                          "execution":  {
+                                            "actionClass":  "external_delivery",
+                                            "automaticEligible":  false,
+                                            "externalAction":  true,
+                                            "reversible":  false,
+                                            "classifiedAt":  "2026-07-25T01:34:40.8415046+00:00"
+                                        },
+                          "definitionOfDone":  [
+                                                   "Recipient route is verified.",
+                                                   "Checklist covers legal, identity, banking, security, and stop-point requirements.",
+                                                   "Direct message is sent and visible in the conversation."
+                                               ],
+                          "dueAt":  null,
+                          "reviewAt":  null,
+                          "evidence":  {
+                                           "asOf":  "2026-07-25T01:34:39.3797272+00:00",
+                                           "freshness":  "current",
+                                           "refs":  [
+                                                        "user-instruction:handle-all-approved-2026-07-24"
+                                                    ]
+                                       },
+                          "approval":  {
+                                           "tier":  "explicit",
+                                           "action":  "Dillon approved this exact delivery in the active task.",
+                                           "status":  "approved",
+                                           "approvalRef":  "user-instruction:handle-all-approved-2026-07-24"
+                                       },
+                          "dependencies":  [
+
+                                           ],
+                          "assumptions":  [
+
+                                          ],
+                          "confidence":  0.8,
+                          "artifactRefs":  [
+
+                                           ],
+                          "outcome":  {
+                                          "status":  "done",
+                                          "verifiedAt":  "2026-07-25T01:34:40.8415046+00:00",
+                                          "summary":  "Sent and verified a direct Slack handoff at 9:30 PM ET with the Foundation Stripe activation checklist, official Stripe account and bank-verification documentation, a no-secrets-over-chat warning, and a clear stop point before technical key, webhook, Netlify, and live-test work.",
+                                          "externalActionTaken":  true
+                                      },
+                          "createdAt":  "2026-07-25T01:34:39.3797272+00:00",
+                          "updatedAt":  "2026-07-25T01:34:40.8415046+00:00"
                       }
                   ],
     "intakeQuarantine":  [
