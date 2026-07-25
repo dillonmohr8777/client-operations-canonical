@@ -1,11 +1,15 @@
 const GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
 const GOOGLE_CALENDAR_API = "https://www.googleapis.com/calendar/v3";
 const DEFAULT_EVENT_ID = "6d6f6d656e74756d3230323630383036";
+const TRANSIENT_STATUSES = new Set([429, 500, 502, 503, 504]);
 const EVENT = {
   summary: "Build a Business That Grows Without You",
   description:
     "Live Momentum 360 workshop hosted by Sean and Mac. Bring one active offer and one growth constraint. Workshop access and updates: https://momentum-workshop-pilot.netlify.app/",
-  location: "Online workshop - join details supplied after registration",
+  location: "Google Meet - link delivered in the calendar invitation",
+  guestsCanInviteOthers: false,
+  guestsCanModify: false,
+  guestsCanSeeOtherGuests: false,
   start: {
     dateTime: "2026-08-06T12:00:00-04:00",
     timeZone: "America/New_York",
@@ -65,7 +69,7 @@ export default {
         return;
       }
 
-      const response = await fetch(
+      const response = await fetchWithRetry(
         `${GOOGLE_CALENDAR_API}/calendars/${encodeURIComponent(calendarId)}/events/${encodeURIComponent(eventId)}?sendUpdates=all`,
         {
           method: "PATCH",
@@ -76,6 +80,9 @@ export default {
           },
           body: JSON.stringify({
             attendees: [...(existing.attendees || []), { email: attendee }],
+            guestsCanInviteOthers: false,
+            guestsCanModify: false,
+            guestsCanSeeOtherGuests: false,
           }),
         },
       );
@@ -103,7 +110,7 @@ async function getGoogleAccessToken() {
     throw new Error(`Calendar OAuth is not configured: ${missing.join(", ")}.`);
   }
 
-  const response = await fetch(GOOGLE_TOKEN_URL, {
+  const response = await fetchWithRetry(GOOGLE_TOKEN_URL, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
@@ -124,7 +131,7 @@ async function getGoogleAccessToken() {
 }
 
 async function getEvent(accessToken, calendarId, eventId) {
-  const response = await fetch(
+  const response = await fetchWithRetry(
     `${GOOGLE_CALENDAR_API}/calendars/${encodeURIComponent(calendarId)}/events/${encodeURIComponent(eventId)}`,
     { headers: { Authorization: `Bearer ${accessToken}` } },
   );
@@ -136,8 +143,8 @@ async function getEvent(accessToken, calendarId, eventId) {
 }
 
 async function createEvent(accessToken, calendarId, eventId, attendee) {
-  const response = await fetch(
-    `${GOOGLE_CALENDAR_API}/calendars/${encodeURIComponent(calendarId)}/events?sendUpdates=all`,
+  const response = await fetchWithRetry(
+    `${GOOGLE_CALENDAR_API}/calendars/${encodeURIComponent(calendarId)}/events?sendUpdates=all&conferenceDataVersion=1`,
     {
       method: "POST",
       headers: {
@@ -148,10 +155,40 @@ async function createEvent(accessToken, calendarId, eventId, attendee) {
         ...EVENT,
         id: eventId,
         attendees: [{ email: attendee }],
+        conferenceData: {
+          createRequest: {
+            requestId: `momentum-workshop-${eventId}`,
+            conferenceSolutionKey: { type: "hangoutsMeet" },
+          },
+        },
       }),
     },
   );
   if (response.ok) return true;
   if (response.status === 409) return false;
   throw new Error(`Calendar event creation failed with ${response.status}.`);
+}
+
+async function fetchWithRetry(url, options = {}) {
+  let lastError;
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        ...options,
+        signal: AbortSignal.timeout(10_000),
+      });
+      if (!TRANSIENT_STATUSES.has(response.status) || attempt === 3) {
+        return response;
+      }
+    } catch (error) {
+      lastError = error;
+      if (attempt === 3) {
+        throw new Error("Calendar request failed after transient retries.", {
+          cause: error,
+        });
+      }
+    }
+    await new Promise((resolve) => setTimeout(resolve, 250 * 2 ** attempt));
+  }
+  throw lastError || new Error("Calendar request failed.");
 }
