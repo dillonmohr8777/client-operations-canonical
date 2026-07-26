@@ -7,7 +7,7 @@
                          "start":  "2026-07-26T00:00:00.0000000-04:00",
                          "endExclusive":  "2026-07-27T00:00:00.0000000-04:00"
                      },
-    "status":  "blocked-fail-closed",
+    "status":  "ready-for-read-only-review",
     "source":  {
                    "rosterPath":  "registry/paid-media-roster.json",
                    "rosterSha256":  "161b30b992f8fa2419f955668b02e5e508a0d00b147f5c37504b98992e7c1fce",
@@ -26,8 +26,8 @@
                },
     "summary":  {
                     "laneCount":  8,
-                    "readyLaneCount":  7,
-                    "blockedLaneCount":  1,
+                    "readyLaneCount":  8,
+                    "blockedLaneCount":  0,
                     "googleAdsLaneCount":  5,
                     "metaAdsLaneCount":  3,
                     "materialFindingCandidateCount":  0
@@ -664,15 +664,15 @@
                       "currentStateNote":  "Meta Ads optimization is gated by verified lead quality. Platform volume or cost alone cannot authorize a scaling recommendation.",
                       "metricsPolicy":  "historical-observations-never-authority",
                       "configPath":  "clients/shadow-heating-cooling/paid-media/launch-config.json",
-                      "configSha256":  "a1779eef78035e0f20f3205322381a250762581d3d9a3514445eaef6e1cb5ece",
+                      "configSha256":  "dce37f02bdae8d87a80032cf2393f7d31b7416fa7cefffa87dd0f481e6af7b63",
                       "routeState":  {
                                          "clientRegistry":  "active-exact",
-                                         "paidMediaConfig":  "invalid-or-incomplete",
-                                         "accountReference":  "missing",
-                                         "reviewEligibility":  "blocked-fail-closed"
+                                         "paidMediaConfig":  "ready",
+                                         "accountReference":  "present-opaque",
+                                         "reviewEligibility":  "ready-for-read-only-review"
                                      },
                       "blockers":  [
-                                       "opaque-account-reference-missing"
+
                                    ],
                       "reviewFocus":  [
                                           "Reconcile lead quality and service-area fit.",
@@ -683,7 +683,7 @@
                                      {
                                          "id":  "session_account",
                                          "label":  "Session and exact account",
-                                         "status":  "blocked-by-route-or-config",
+                                         "status":  "pending-read-only-evidence",
                                          "evidenceRequired":  "Live read-only identity, account, client, platform, and authorization readback.",
                                          "materialFindingRule":  "Candidate when the expected account cannot be verified, the route is mismatched, or authentication blocks the review.",
                                          "providerMutationAllowed":  false
@@ -691,7 +691,7 @@
                                      {
                                          "id":  "delivery_pacing",
                                          "label":  "Delivery and pacing",
-                                         "status":  "blocked-by-route-or-config",
+                                         "status":  "pending-read-only-evidence",
                                          "evidenceRequired":  "Current delivery state, spend and budget pacing against the configured guardrails; expected state is unknown-requires-readback.",
                                          "materialFindingRule":  "Candidate when delivery differs from the client-approved state or pacing breaches a current configured guardrail.",
                                          "providerMutationAllowed":  false
@@ -699,7 +699,7 @@
                                      {
                                          "id":  "conversion_tracking_dedup",
                                          "label":  "Conversion tracking and deduplication",
-                                         "status":  "blocked-by-route-or-config",
+                                         "status":  "pending-read-only-evidence",
                                          "evidenceRequired":  "Current primary and secondary conversion definitions, event health, attribution settings, CRM or appointment reconciliation, and duplicate-event evidence.",
                                          "materialFindingRule":  "Candidate when tracking is broken, duplicated, misclassified, stale, or materially disconnected from qualified outcomes.",
                                          "providerMutationAllowed":  false
@@ -707,7 +707,7 @@
                                      {
                                          "id":  "landing_page_health",
                                          "label":  "Landing-page health",
-                                         "status":  "blocked-by-route-or-config",
+                                         "status":  "pending-read-only-evidence",
                                          "evidenceRequired":  "Current destination URL readback, status, mobile usability, form or call path, message match, and tracking continuity.",
                                          "materialFindingRule":  "Candidate when a destination is unavailable, materially degraded, mismatched, or unable to preserve conversion measurement.",
                                          "providerMutationAllowed":  false
@@ -715,7 +715,7 @@
                                      {
                                          "id":  "creative-fatigue-and-placements",
                                          "label":  "Channel-specific optimization evidence",
-                                         "status":  "blocked-by-route-or-config",
+                                         "status":  "pending-read-only-evidence",
                                          "evidenceRequired":  "Current read-only creative age, frequency, reach, CTR or result-rate trend, and placement-level delivery evidence.",
                                          "materialFindingRule":  "Candidate only when fatigue, frequency, placement concentration, or creative deterioration is material and currently evidenced.",
                                          "providerMutationAllowed":  false
@@ -723,7 +723,7 @@
                                      {
                                          "id":  "change_history",
                                          "label":  "Change history",
-                                         "status":  "blocked-by-route-or-config",
+                                         "status":  "pending-read-only-evidence",
                                          "evidenceRequired":  "Current platform change history and the exact actor, timestamp, object, and before or after state for material changes.",
                                          "materialFindingRule":  "Candidate when an unexplained, unauthorized, or materially harmful change is currently evidenced.",
                                          "providerMutationAllowed":  false
@@ -731,7 +731,7 @@
                                      {
                                          "id":  "budget_recommendation",
                                          "label":  "Budget recommendation",
-                                         "status":  "blocked-by-route-or-config",
+                                         "status":  "pending-read-only-evidence",
                                          "evidenceRequired":  "Current outcome quality, pacing, marginal efficiency, learning state, configured ceilings, and explicit uncertainty.",
                                          "materialFindingRule":  "Candidate only as a recommendation with evidence; no budget mutation is authorized by this manifest.",
                                          "providerMutationAllowed":  false
@@ -739,7 +739,7 @@
                                      {
                                          "id":  "readback_freshness",
                                          "label":  "Readback freshness",
-                                         "status":  "blocked-by-route-or-config",
+                                         "status":  "pending-read-only-evidence",
                                          "evidenceRequired":  "Timestamped live readback from the exact platform account and any required downstream lead-quality source.",
                                          "materialFindingRule":  "Candidate when the evidence is too stale to support today\u0027s decision or a required downstream source is unavailable.",
                                          "providerMutationAllowed":  false

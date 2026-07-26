@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "documentType": "paid-media-reporting-contract",
+  "effectiveDate": "2026-07-26",
+  "ownerClientId": "momentum-360",
+  "timezone": "America/New_York",
+  "rosterRef": "registry/paid-media-roster.json",
+  "dailyManifestRef": "state/paid-media/daily-review-2026-07-26.json",
+  "status": "ready",
+  "scope": {
+    "laneCount": 8,
+    "clientCount": 7,
+    "googleAdsLaneCount": 5,
+    "metaAdsLaneCount": 3
+  },
+  "requiredDeliverables": [
+    {
+      "id": "client-executive-report",
+      "cadence": "weekly",
+      "formats": ["html-or-dashboard", "pdf"]
+    },
+    {
+      "id": "platform-performance-appendix",
+      "cadence": "weekly",
+      "formats": ["csv-or-json", "report-summary-table"]
+    },
+    {
+      "id": "business-outcome-reconciliation-ledger",
+      "cadence": "weekly",
+      "formats": ["csv-or-json", "client-summary"]
+    },
+    {
+      "id": "measurement-and-source-freshness-ledger",
+      "cadence": "weekly",
+      "formats": ["report-section", "machine-readable-manifest"]
+    },
+    {
+      "id": "recommendation-and-action-plan",
+      "cadence": "weekly",
+      "formats": ["report-section"]
+    },
+    {
+      "id": "internal-optimization-review",
+      "cadence": "daily",
+      "formats": ["json-manifest", "material-evidence-notes"]
+    },
+    {
+      "id": "monthly-strategy-review",
+      "cadence": "monthly",
+      "formats": ["dashboard-or-deck", "pdf"]
+    },
+    {
+      "id": "delivery-draft",
+      "cadence": "with-each-client-report",
+      "formats": ["email-or-slack-draft"],
+      "externalDeliveryRequiresApproval": true
+    }
+  ],
+  "requiredMetadata": [
+    "clientId",
+    "platform",
+    "opaqueExactAccountRef",
+    "reportingPeriod",
+    "comparisonPeriod",
+    "accountTimezone",
+    "currency",
+    "generatedAt",
+    "sourceObservedAt",
+    "attributionSetting",
+    "conversionWindow",
+    "attributionModel",
+    "dataLatency",
+    "budgetType",
+    "trackingLimitations",
+    "externalChangesMade"
+  ],
+  "metricGroups": {
+    "deliveryAndPacing": [
+      "deliveryState",
+      "diagnostics",
+      "budget",
+      "spend",
+      "remainingBudget",
+      "pacingPercent",
+      "periodEndForecast",
+      "impressions",
+      "cpm",
+      "clicksOrLinkClicks",
+      "ctrOrLinkCtr",
+      "cpc",
+      "landingPageViewsOrSessions",
+      "changeHistory"
+    ],
+    "platformEvents": [
+      "namedResultOrConversionAction",
+      "costPerNamedAction",
+      "primaryVsSecondaryActions",
+      "resultsVsConversionsVsAllConversions",
+      "excludedTestsDuplicatesAndNonBusinessEvents"
+    ],
+    "businessOutcomes": [
+      "leadsReceived",
+      "deduplicatedLeads",
+      "contactedLeads",
+      "qualifiedLeadsOrEstimates",
+      "bookedAppointmentsEstimatesOrServices",
+      "wonOutcomes",
+      "attributableRevenue",
+      "validFunnelRates",
+      "defensibleOutcomeCosts"
+    ],
+    "measurementQuality": [
+      "landingPageHealth",
+      "mobileFormAndPhoneTests",
+      "utmAndSourceRetention",
+      "tagPixelApiCrmBookingAndCallTrackingContinuity",
+      "browserServerDeduplication",
+      "conversionDefinition",
+      "attributionWindow",
+      "reportingLatency",
+      "businessDispositionFreshness"
+    ]
+  },
+  "reportingRules": {
+    "weeklyWindow": "latest-complete-monday-through-sunday",
+    "comparisonWindow": "immediately-preceding-equivalent-period",
+    "wholeIntegerLeadAndConversionEventCounts": true,
+    "missingValues": "pending-not-inferred",
+    "conversionPendingLanguage": "Conversion reporting is pending validation.",
+    "historicalObservationsAreCurrentAuthority": false,
+    "googleAndMetaMustRemainSeparate": true,
+    "replenishAndFreshBlendsMustRemainSeparate": true,
+    "platformEventsRequireBusinessReconciliation": true,
+    "spendAndExternalDeliveryRequireApproval": true
+  },
+  "lanes": [
+    {
+      "laneId": "google-ads--kimberly-james-bridal",
+      "clientId": "kimberly-james-bridal",
+      "platform": "google-ads",
+      "accountRef": "access-broker:kimberly-james-bridal/google-ads-production",
+      "outcome": "booked-and-qualified-bridal-appointments",
+      "specialRules": ["exclude-cancelled-duplicate", "keep-google-separate-from-meta"]
+    },
+    {
+      "laneId": "google-ads--replenish-7-eleven",
+      "clientId": "replenish-7-eleven",
+      "platform": "google-ads",
+      "accountRef": "access-broker:replenish-7-eleven/google-ads-production",
+      "outcome": "store-and-location-outcomes",
+      "specialRules": ["report-locations-separately", "never-blend-fresh-blends"]
+    },
+    {
+      "laneId": "google-ads--fresh-blends-kwik-trip",
+      "clientId": "fresh-blends-kwik-trip",
+      "platform": "google-ads",
+      "accountRef": "access-broker:fresh-blends-kwik-trip/google-ads-production-shared",
+      "outcome": "store-level-qualified-action",
+      "specialRules": ["exact-campaign-names-only", "preserve-paused-state-unless-current-approved-evidence", "never-blend-replenish"]
+    },
+    {
+      "laneId": "google-ads--omega-landscaping",
+      "clientId": "omega-landscaping",
+      "platform": "google-ads",
+      "accountRef": "access-broker:omega-landscaping/google-ads-production",
+      "outcome": "qualified-opportunities-and-won-work",
+      "specialRules": ["business-reconciliation-before-budget-recommendation"]
+    },
+    {
+      "laneId": "google-ads--onsite-concrete-landscape",
+      "clientId": "onsite-concrete-landscape",
+      "platform": "google-ads",
+      "accountRef": "access-broker:onsite-concrete-landscape/google-ads-production",
+      "outcome": "deduplicated-qualified-form-and-call-leads",
+      "specialRules": ["verify-monthly-cap", "deduplicate-form-call-crm-and-imported-events"]
+    },
+    {
+      "laneId": "meta-ads--fagan-painting",
+      "clientId": "fagan-painting",
+      "platform": "meta-ads",
+      "accountRef": "access-broker:fagan-painting/meta-ads-production",
+      "outcome": "qualified-estimates-and-booked-work",
+      "specialRules": ["verify-six-campaign-states", "preserve-draft-and-off-states", "review-fatigue-frequency-and-placements"]
+    },
+    {
+      "laneId": "meta-ads--shadow-heating-cooling",
+      "clientId": "shadow-heating-cooling",
+      "platform": "meta-ads",
+      "accountRef": "access-broker:shadow-heating-cooling/meta-ads-production",
+      "outcome": "qualified-contacted-booked-and-closed-hvac-outcomes",
+      "specialRules": ["exact-shadow-campaigns-inside-dillon-operations-account", "verify-service-area-fit", "review-fatigue-frequency-and-placements"]
+    },
+    {
+      "laneId": "meta-ads--kimberly-james-bridal",
+      "clientId": "kimberly-james-bridal",
+      "platform": "meta-ads",
+      "accountRef": "access-broker:kimberly-james-bridal/meta-ads-production-1249689223687250",
+      "outcome": "booked-and-qualified-bridal-appointments",
+      "specialRules": ["preserve-draft-vs-active-state", "keep-meta-separate-from-google", "review-fatigue-frequency-and-placements"]
+    }
+  ],
+  "liveRouteVerification": {
+    "verifiedAt": "2026-07-26",
+    "googleAdsAuthenticated": true,
+    "metaAdsAuthenticated": true,
+    "readyLaneCount": 8,
+    "blockedLaneCount": 0,
+    "metaFutureIdentityVerificationWarning": true,
+    "identityVerificationStarted": false,
+    "externalChangesMade": false
+  },
+  "privacy": {
+    "redacted": true,
+    "containsSecrets": false,
+    "containsRawAccountIdentifiers": false,
+    "containsRawCommunications": false
+  }
+}
