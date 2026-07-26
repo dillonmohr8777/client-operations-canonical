@@ -482,7 +482,7 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-07-26T18:40:12.0821283+00:00`
+- **As of:** `2026-07-26T18:42:01.5922413+00:00`
 - **Overall:** `healthy-with-human-gates`
 - **Queue:** revision `284`, `72` work items, normal `1/3`, emergency `0/1` active
 - **Client registry:** `valid`
