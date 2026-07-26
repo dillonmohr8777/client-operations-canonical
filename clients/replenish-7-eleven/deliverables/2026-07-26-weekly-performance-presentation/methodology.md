@@ -1,10 +1,11 @@
 # Replenish weekly presentation methodology
 
-- Reporting period: July 13 through July 19, 2026.
-- Account route: authenticated Replenish Google Ads child account, verified 2026-07-26.
-- Visual system: exact palette, typography hierarchy, panel treatment, Momentum mark, and Replenish wordmark recovered from the current live Netlify report.
-- KPI source: detailed campaign rows in the current report.
-- QA choice: detailed rows total $775.03, 36,432 impressions, and 1,534 clicks. Those values are used because the report's headline cards differ slightly.
+- Reporting period: July 20 through July 26, 2026.
+- Account route: authenticated Replenish Google Ads account `627-501-4654`, verified 2026-07-26.
+- Visual authority: the exact Replenish PowerPoint Dillon sent by email, including its embedded 7-Eleven logo, typography hierarchy, white report stock, green headers, and orange/red/green signal rule.
+- KPI source: authenticated Google Ads campaign-table readback for the exact selected period.
+- Verified totals: $153.72 spend, 5,049 impressions, 288 clicks, 5.70% CTR, and $0.53 average CPC.
+- Row QA: seven Replenish campaign rows reconcile exactly to the account total; six incurred spend and Pampano recorded 15 impressions with limited delivery.
+- Meta Ads review: the authenticated account selector exposed no Replenish-named or canonically mapped account, so no Meta metrics are attributed to this report.
 - Conversion status: Conversion reporting is pending validation.
-- Scope: Replenish only. Fresh Blends is excluded.
-- External actions: none. No campaign, budget, targeting, creative, billing, delivery, or account setting was changed.
+- External action: the approved existing Replenish Netlify production site was replaced with the corrected client-branded report. No advertising, budget, targeting, creative, billing, or account setting was changed.
