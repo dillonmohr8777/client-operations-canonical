@@ -5,6 +5,7 @@ Verified on 2026-07-26. Every URL below returned HTTP 200. This inventory keeps 
 ## Primary current report and design source
 
 - https://replenish-2026-06-06.netlify.app/ — current live Replenish report; page content is dated July 13 through July 19, 2026 despite the historical slug. This is the presentation's visual and numeric source.
+- https://replenish-2026-06-06.netlify.app/presentation/ — published Replenish presentation page with an embedded PDF preview and PPTX/PDF downloads.
 
 ## Momentum 360 reporting tools
 

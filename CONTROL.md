@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-26T20:41:23.4009980+00:00`
-Queue revision: `295`
+Last reconciled: `2026-07-26T20:51:53.0337021+00:00`
+Queue revision: `301`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -101,6 +101,7 @@ Mode: `manual-pilot`
 | `wi-20260726-0002` | `momentum-360` | Produce the canonical eight-lane paid-media reporting package | Cancelled | P1 | Recreate the reporting-package work item with eight separate definition-of-done checks bound to the canonical reporting contract. | No evidenced deadline |
 | `wi-20260726-0003` | `momentum-360` | Produce the canonical eight-lane paid-media reporting package | Cancelled | P1 | Use the canonical reporting contract to collect a fresh exact-period readback for all eight lanes, assemble the first complete weekly packet, run QA, and prepare exact delivery drafts for approval. | No evidenced deadline |
 | `wi-20260726-0004` | `replenish-7-eleven` | Build Replenish weekly performance presentation and dashboard handoff | Done | P1 | Build and locally verify the Replenish PPTX, PDF, source ledger, and Netlify dashboard inventory. | No evidenced deadline |
+| `wi-20260726-0005` | `replenish-7-eleven` | Publish the Replenish weekly presentation to the existing Netlify site | Done | P1 | Publish the preserved dashboard bundle with the presentation page and downloads to the exact existing Replenish Netlify site. | No evidenced deadline |
 
 ## Waiting on Dillon
 
