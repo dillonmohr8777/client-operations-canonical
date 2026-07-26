@@ -3,14 +3,14 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-26T20:03:42.2185320+00:00`
-Queue revision: `285`
+Last reconciled: `2026-07-26T20:41:23.4009980+00:00`
+Queue revision: `295`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
 ## Predicted next actions
 
-**Next automatic action:** **Produce the canonical eight-lane paid-media reporting package** (`wi-20260726-0001`, score 158): Use the canonical reporting contract to collect a fresh exact-period readback for all eight lanes, assemble the first complete weekly packet, run QA, and prepare exact delivery drafts for approval. Why: P1, portfolio rank 3 (strategic), no evidenced deadline, current evidence, status ready.
+**Next automatic action:** No automatic action is currently eligible.
 
 **Next Dillon decision:** **Activate foundation Stripe donation flow** (`wi-20260724-0024`, score 220): Await confirmation that an authorized foundation representative has completed the dedicated Stripe business identity, banking, tax, terms, MFA, and verification requirements and that live payments and payouts are enabled. Why: P0, portfolio rank 3 (strategic), overdue, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required.
 
@@ -97,7 +97,10 @@ Mode: `manual-pilot`
 | `wi-20260725-0005` | `shadow-heating-cooling` | Pause Shadow Heating Meta lead campaigns | Done | P0 | Human authentication is required in the approved persistent Chrome Meta session. After sign-in, select the exact Shadow campaign named Shadow AC Leads Hampshire 30mi Summer 2026 in Dillon Operations, pause it and any other delivering Shadow campaign, then verify no Shadow delivery remains active. | No evidenced deadline |
 | `wi-20260725-0006` | `va-claims-edge` | Ship David client continuity workspace | Done | P0 | Deploy the verified VA Claims Edge continuity workspace to the review site and canonical Vercel production repository, then verify both live destinations. | No evidenced deadline |
 | `wi-20260725-0007` | `va-claims-edge` | Correct VA Claims booking and lead routing rules | Blocked | P0 | Map and authenticate the exact authorized WordPress or Amelia administrator route, apply only the verified scheduling and routing corrections, then complete an approved synthetic booking test without contacting a prospect. | No evidenced deadline |
-| `wi-20260726-0001` | `momentum-360` | Produce the canonical eight-lane paid-media reporting package | Ready | P1 | Use the canonical reporting contract to collect a fresh exact-period readback for all eight lanes, assemble the first complete weekly packet, run QA, and prepare exact delivery drafts for approval. | No evidenced deadline |
+| `wi-20260726-0001` | `momentum-360` | Produce the canonical eight-lane paid-media reporting package | Cancelled | P1 | Create the replacement reporting-package work item bound to clients/momentum-360/deliverables/2026-07-26-paid-media-reporting-contract.md, then create the version-bound execution graph and continue local packet assembly. | No evidenced deadline |
+| `wi-20260726-0002` | `momentum-360` | Produce the canonical eight-lane paid-media reporting package | Cancelled | P1 | Recreate the reporting-package work item with eight separate definition-of-done checks bound to the canonical reporting contract. | No evidenced deadline |
+| `wi-20260726-0003` | `momentum-360` | Produce the canonical eight-lane paid-media reporting package | Cancelled | P1 | Use the canonical reporting contract to collect a fresh exact-period readback for all eight lanes, assemble the first complete weekly packet, run QA, and prepare exact delivery drafts for approval. | No evidenced deadline |
+| `wi-20260726-0004` | `replenish-7-eleven` | Build Replenish weekly performance presentation and dashboard handoff | Done | P1 | Build and locally verify the Replenish PPTX, PDF, source ledger, and Netlify dashboard inventory. | No evidenced deadline |
 
 ## Waiting on Dillon
 

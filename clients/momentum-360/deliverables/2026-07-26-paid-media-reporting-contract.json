@@ -8,10 +8,13 @@
   "dailyManifestRef": "state/paid-media/daily-review-2026-07-26.json",
   "status": "ready",
   "scope": {
-    "laneCount": 8,
-    "clientCount": 7,
+    "clientFacingLaneCount": 7,
+    "internalRosterLaneCount": 8,
+    "clientCount": 6,
     "googleAdsLaneCount": 5,
-    "metaAdsLaneCount": 3
+    "metaAdsLaneCount": 2,
+    "presentationClientIds": ["replenish-7-eleven"],
+    "clientFacingExcludedClientIds": ["shadow-heating-cooling"]
   },
   "requiredDeliverables": [
     {
@@ -131,7 +134,10 @@
     "googleAndMetaMustRemainSeparate": true,
     "replenishAndFreshBlendsMustRemainSeparate": true,
     "platformEventsRequireBusinessReconciliation": true,
-    "spendAndExternalDeliveryRequireApproval": true
+    "spendAndExternalDeliveryRequireApproval": true,
+    "replenishDeprecatedLocationActionMetricExcluded": true,
+    "shadowClientFacingReportingExcluded": true,
+    "presentationProductionScope": ["replenish-7-eleven"]
   },
   "lanes": [
     {
@@ -148,7 +154,7 @@
       "platform": "google-ads",
       "accountRef": "access-broker:replenish-7-eleven/google-ads-production",
       "outcome": "store-and-location-outcomes",
-      "specialRules": ["report-locations-separately", "never-blend-fresh-blends"]
+      "specialRules": ["report-locations-separately", "exclude-deprecated-location-action-metric", "named-outcomes-only-when-defensible", "never-blend-fresh-blends"]
     },
     {
       "laneId": "google-ads--fresh-blends-kwik-trip",
@@ -183,14 +189,6 @@
       "specialRules": ["verify-six-campaign-states", "preserve-draft-and-off-states", "review-fatigue-frequency-and-placements"]
     },
     {
-      "laneId": "meta-ads--shadow-heating-cooling",
-      "clientId": "shadow-heating-cooling",
-      "platform": "meta-ads",
-      "accountRef": "access-broker:shadow-heating-cooling/meta-ads-production",
-      "outcome": "qualified-contacted-booked-and-closed-hvac-outcomes",
-      "specialRules": ["exact-shadow-campaigns-inside-dillon-operations-account", "verify-service-area-fit", "review-fatigue-frequency-and-placements"]
-    },
-    {
       "laneId": "meta-ads--kimberly-james-bridal",
       "clientId": "kimberly-james-bridal",
       "platform": "meta-ads",
@@ -203,7 +201,8 @@
     "verifiedAt": "2026-07-26",
     "googleAdsAuthenticated": true,
     "metaAdsAuthenticated": true,
-    "readyLaneCount": 8,
+    "readyClientFacingLaneCount": 7,
+    "internalReadyLaneCount": 8,
     "blockedLaneCount": 0,
     "metaFutureIdentityVerificationWarning": true,
     "identityVerificationStarted": false,

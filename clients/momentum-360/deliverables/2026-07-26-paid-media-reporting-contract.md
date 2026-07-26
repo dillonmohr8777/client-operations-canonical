@@ -11,21 +11,23 @@ external_changes: none
 
 ## Outcome
 
-Momentum 360 owes a defensible report for each of the eight canonical client/platform lanes. Every report must identify the exact client, platform, account route, reporting period, comparison period, timezone, attribution setting, source freshness, tracking limitations, business outcomes, and next actions. Google Ads and Meta Ads evidence stays separate, and Replenish / 7-Eleven never blends with Fresh Blends / Kwik Trip even though both routes can appear inside one Google Ads child account.
+Momentum 360 owes a defensible client-facing report for each of the seven current reporting lanes. Every report must identify the exact client, platform, account route, reporting period, comparison period, timezone, attribution setting, source freshness, tracking limitations, business outcomes, and next actions. Google Ads and Meta Ads evidence stays separate, and Replenish / 7-Eleven never blends with Fresh Blends / Kwik Trip even though both routes can appear inside one Google Ads child account.
 
 This contract governs future client-facing ad reports. Historical observations may be cited with their observation date, but they are never presented as current performance or as authority to change spend.
+
+Shadow Heating & Cooling is excluded from client-facing reporting. Presentation production is currently limited to Replenish / 7-Eleven unless Dillon explicitly expands the presentation scope. Replenish presentations omit the deprecated location-action metric and use verified delivery, traffic, measurement status, and downstream outcomes.
 
 ## Required deliverables
 
 | Deliverable | Cadence | Required format | Purpose |
 |---|---|---|---|
-| Client executive report | Weekly for every active lane | Mobile-readable dashboard or HTML plus downloadable PDF | Explain what happened, why it matters, and what happens next |
+| Client executive report | Weekly for every active client-facing lane | Mobile-readable dashboard or HTML plus downloadable PDF | Explain what happened, why it matters, and what happens next |
 | Platform performance appendix | Weekly | CSV or JSON export plus a summarized table in the report | Preserve campaign, ad group or ad set, ad or asset, spend, delivery, and performance evidence |
 | Business-outcome reconciliation ledger | Weekly | CSV or JSON with summarized client-facing totals | Separate platform-reported events from received, deduplicated, qualified, booked, won, and revenue outcomes |
 | Measurement and source-freshness ledger | Weekly | Report section plus machine-readable manifest | Record attribution windows, conversion definitions, tracking health, source timestamps, latency, and unavailable fields |
 | Recommendation and action plan | Weekly | Report section | Name decisions, owners, due dates, expected impact, and whether approval is required |
 | Internal optimization review | Daily on the exact roster | `state/paid-media/daily-review-<date>.json` plus evidence notes when material | Check routing, pacing, tracking, landing pages, search terms or creative fatigue, placements, and change history |
-| Monthly strategy review | Monthly | Trend dashboard or deck plus PDF | Compare full-month and prior-period trends, creative or query learning, lead quality, and budget scenarios |
+| Monthly strategy review | Monthly | Trend dashboard or PDF; deck plus PDF for Replenish | Compare full-month and prior-period trends, creative or query learning, lead quality, and budget scenarios |
 | Delivery draft | With each client report | Email or Slack draft only | Provide the exact proposed client message; sending requires explicit approval |
 
 The weekly client packet is not complete unless the executive report, platform appendix, outcome ledger, freshness ledger, and recommendation section all pass QA. A platform screenshot alone is not an ad report.
@@ -126,12 +128,11 @@ Meta platform events do not become verified business outcomes until downstream r
 | Lane | Client report outcome | Required special treatment |
 |---|---|---|
 | Google Ads | Kimberly James Bridal | Reconcile named Google actions to booked and qualified bridal appointments; exclude the cancelled duplicate account; keep Google separate from Meta |
-| Google Ads | Replenish / 7-Eleven | Report store and location campaigns separately; reconcile direction-intent and store outcomes; never blend Fresh Blends evidence |
+| Google Ads | Replenish / 7-Eleven | Report store and location campaigns separately; omit the deprecated location-action metric; reconcile only defensible named outcomes; never blend Fresh Blends evidence |
 | Google Ads | Fresh Blends / Kwik Trip | Report only exact Fresh Blends campaigns; preserve paused state unless current approved evidence says otherwise; never blend Replenish evidence |
 | Google Ads | Omega Landscaping & Concrete | Reconcile platform events to owned, contacted, qualified opportunities and won work before budget recommendations |
 | Google Ads | On-Site Concrete & Landscape | Reconcile forms, calls, CRM, and imported events; verify monthly cap and remove duplicates before outcome reporting |
 | Meta Ads | Fagan Painting | Verify all six campaign states; reconcile received leads to qualified estimates and booked work; review fatigue, frequency, and placements |
-| Meta Ads | Shadow Heating & Cooling | Report the two exact Shadow summer campaigns inside the verified Dillon operations account; reconcile service-area fit, contacted leads, booked service, and closure |
 | Meta Ads | Kimberly James Bridal | Reconcile Meta leads to booked and qualified bridal appointments; preserve draft versus active state; keep Meta separate from Google |
 
 ## Production workflow
@@ -173,8 +174,8 @@ A report passes only when:
 
 - Google Ads is authenticated through Dillon's approved Google identity. The primary KJB account, Replenish, Omega, and On-Site account routes are visible; the cancelled KJB duplicate remains excluded. Fresh Blends continues to use its separate client route inside the shared child-account context.
 - Meta Ads is authenticated. The named Fagan account shows six campaigns, the named KJB account shows four campaigns, and the two exact Shadow summer campaigns resolve inside Dillon's operations account.
-- Shadow now has a client-specific non-secret Access Broker record and opaque production account reference.
-- `state/paid-media/daily-review-2026-07-26.json` reports all eight lanes ready for read-only review.
+- Shadow is excluded from client-facing reporting. Any internal safety or account-continuity observation in the paid-media roster does not create a Shadow client deliverable.
+- `state/paid-media/daily-review-2026-07-26.json` remains an internal eight-lane read-only review artifact; the client-facing reporting scope is seven lanes.
 - Meta surfaced a warning that identity verification may be required in the future. No verification flow was started.
 - No ad, campaign, budget, targeting, creative, billing, account, draft, or delivery state was changed.
 
