@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "clientId": "fagan-painting",
+  "workItemId": "wi-20260715-0002",
+  "evidenceType": "read_only_lead_disposition_recheck",
+  "observedAt": "2026-07-26T18:37:00Z",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false,
+  "supersedes": "clients/fagan-painting/evidence/2026-07-26-lead-disposition-recheck.json",
+  "correctionReason": "Normalize the recorded observation time to the verified execution window.",
+  "scope": {
+    "mailboxClass": "connected-operator-mailbox",
+    "canonicalLeadCount": 2,
+    "exactLeadThreadsRead": 2,
+    "relatedDispositionThreadRead": true,
+    "recentClientMessageSearchCompleted": true,
+    "prospectContactAttempted": false,
+    "externalActionTaken": false
+  },
+  "verified": {
+    "uniqueLeadCount": 2,
+    "duplicateClassification": "confirmed",
+    "responseOwner": "client_side_owner_verified",
+    "exactLeadThreadState": "no_newer_activity",
+    "individualDispositionEvidenceFound": false,
+    "recentClientMessagesConcernedDifferentOutcomes": true
+  },
+  "unverified": {
+    "firstCanonicalLeadDisposition": "unknown",
+    "secondCanonicalLeadDisposition": "unknown",
+    "estimateIdentity": "not_identified",
+    "canonicalClientMailboxProcessing": "not_verified",
+    "crmOrZapierDispositionEvidence": "not_found"
+  },
+  "verification": [
+    "The two exact canonical lead threads were read in full without truncation.",
+    "Neither exact lead thread contains a newer reply, sent follow-up, or disposition.",
+    "The related client feedback thread still reports only aggregate outcomes and does not identify either canonical lead.",
+    "A recent-message search found current Fagan correspondence, but it concerns other business and lead outcomes rather than these two exact records.",
+    "No message, draft, label, recipient, or mailbox state was changed."
+  ],
+  "limitations": [
+    "The connected operator mailbox cannot prove processing inside the canonical client mailbox.",
+    "Aggregate or different-lead feedback cannot establish either canonical lead's individual outcome."
+  ],
+  "evidenceRefs": [
+    "gmail://thread/19f63d38529ca576",
+    "gmail://thread/19f65bc99e5aa93a",
+    "gmail://thread/19f811fe324b1b1d",
+    "clients/fagan-painting/evidence/2026-07-25-lead-disposition-recheck.json",
+    "access-broker:fagan-painting:gmail-persistent-chrome"
+  ],
+  "stateRecommendation": {
+    "proposedTransition": "blocked",
+    "reason": "Both exact dispositions remain unknown, and the remaining canonical mailbox or downstream-system evidence is still behind a human authentication gate."
+  }
+}

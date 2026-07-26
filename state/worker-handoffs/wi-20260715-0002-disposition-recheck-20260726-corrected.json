@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "handoffId": "fagan-lead-disposition-recheck-20260726-corrected",
+  "workItemId": "wi-20260715-0002",
+  "expectedWorkItemVersion": 10,
+  "clientId": "fagan-painting",
+  "workerRole": "lead-reconciliation-verifier",
+  "status": "partially_completed",
+  "startedAt": "2026-07-26T18:34:00Z",
+  "finishedAt": "2026-07-26T18:37:00Z",
+  "summary": "A current read-only mailbox recheck found no newer activity or disposition in either exact canonical lead thread. Recent client correspondence concerns different outcomes, so both individual dispositions remain unknown and the canonical client mailbox or downstream-system evidence still requires human authentication.",
+  "artifacts": [
+    "clients/fagan-painting/evidence/2026-07-26-lead-disposition-recheck-corrected.json"
+  ],
+  "evidence": [
+    "clients/fagan-painting/evidence/2026-07-26-lead-disposition-recheck-corrected.json",
+    "access-broker:fagan-painting:gmail-persistent-chrome"
+  ],
+  "verification": [
+    "The canonical Fagan client route is exact and active.",
+    "The two exact lead threads were read without truncation and contain no newer disposition evidence.",
+    "The related feedback thread remains aggregate and does not identify either exact lead.",
+    "Recent Fagan correspondence concerns different outcomes and cannot close these records.",
+    "No Gmail state or external system was changed.",
+    "The corrected artifact records the verified execution window and supersedes the earlier estimated timestamp."
+  ],
+  "assumptions": [],
+  "risks": [
+    "Closing either lead would invent an individual outcome.",
+    "The connected operator mailbox cannot prove processing inside the canonical client mailbox."
+  ],
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false,
+  "approvalGate": "human_authentication",
+  "proposedTransition": "blocked",
+  "canonicalWriteAttempted": false,
+  "externalActionAttempted": false
+}

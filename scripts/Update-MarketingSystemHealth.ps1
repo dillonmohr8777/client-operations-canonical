@@ -82,12 +82,39 @@ function Invoke-BoundedPowerShellProbe {
     }
 }
 
+function Test-TaskPrepareOnly {
+    param(
+        [Parameter(Mandatory = $true)]$Action,
+        [Parameter(Mandatory = $true)][string]$TaskName
+    )
+
+    $arguments = [string]$Action.Arguments
+    if ($arguments -match '(?i)(^|\s)-PrepareOnly(\s|$)') { return $true }
+
+    $execute = [string]$Action.Execute
+    if ($execute -notmatch '(?i)(^|\\)(?:wscript|cscript)\.exe$') { return $false }
+    if ($arguments -notmatch '(?i)Run-HiddenScheduledTask\.vbs') { return $false }
+
+    $vbsMatch = [regex]::Match($arguments, '(?i)"([^"]*Run-HiddenScheduledTask\.vbs)"')
+    if (-not $vbsMatch.Success) { return $false }
+    $manifestPath = Join-Path (Split-Path -Parent $vbsMatch.Groups[1].Value) 'hidden-scheduled-tasks.tsv'
+    if (-not (Test-Path -LiteralPath $manifestPath -PathType Leaf)) { return $false }
+
+    foreach ($line in @(Get-Content -LiteralPath $manifestPath -Encoding UTF8)) {
+        if ([string]::IsNullOrWhiteSpace($line) -or $line.StartsWith('#')) { continue }
+        $parts = $line -split "`t", 2
+        if ($parts.Count -ne 2 -or $parts[0] -ine $TaskName) { continue }
+        return $parts[1] -match '(?i)(^|\s)-PrepareOnly(\s|$)'
+    }
+    return $false
+}
+
 function Get-TaskHealth {
     param([string]$Name)
     $task = Get-ScheduledTask -TaskName $Name -ErrorAction SilentlyContinue
     if ($null -eq $task) { return [pscustomobject]@{ name = $Name; present = $false; enabled = $false; state = 'missing'; lastResult = $null; nextRun = $null; prepareOnly = $false } }
     $info = Get-ScheduledTaskInfo -TaskName $Name -ErrorAction SilentlyContinue
-    $arguments = [string](($task.Actions | Select-Object -First 1).Arguments)
+    $action = $task.Actions | Select-Object -First 1
     return [pscustomobject][ordered]@{
         name = $Name
         present = $true
@@ -95,7 +122,7 @@ function Get-TaskHealth {
         state = [string]$task.State
         lastResult = if ($null -eq $info) { $null } else { [int]$info.LastTaskResult }
         nextRun = if ($null -eq $info -or $info.NextRunTime.Year -le 1900) { $null } else { ([DateTimeOffset]$info.NextRunTime).ToString('o') }
-        prepareOnly = $arguments -match '(?i)(^|\s)-PrepareOnly(\s|$)'
+        prepareOnly = Test-TaskPrepareOnly -Action $action -TaskName $Name
     }
 }
 

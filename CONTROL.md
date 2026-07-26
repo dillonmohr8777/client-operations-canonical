@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-25T05:37:36.5286161+00:00`
-Queue revision: `282`
+Last reconciled: `2026-07-26T18:37:54.6523769+00:00`
+Queue revision: `284`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -430,7 +430,7 @@ Mode: `manual-pilot`
 ## Blocked or at risk
 
 - **Reconcile two Fagan Painting website leads:** Obtain lead-level disposition for the two exact canonical records from the approved client mailbox, CRM, or Zapier record; do not infer individual outcomes from aggregate batch feedback.
-  Current evidence: A current read-only mailbox recheck found aggregate client feedback that one of ten raw submissions became an estimate and several others were dead ends or outside the service area, but neither of the two exact canonical lead records was individually identified. The duplicate and response owner remain verified; exact lead dispositions and downstream CRM or Zapier evidence remain unknown.
+  Current evidence: A current read-only mailbox recheck found no newer activity or disposition in either exact canonical lead thread. Recent client correspondence concerns different outcomes, so both individual dispositions remain unknown and the canonical client mailbox or downstream-system evidence still requires human authentication.
 - **Complete Mac AI operations and Slack enablement bundle:** Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity.
   Current evidence: The 32-row controlled direct-mail sheet, unpublished QRTIGER and PostGrid Zap drafts, verified Slackbot AI response, and narrated 1080p walkthrough are complete. QRTIGER is staged at its Google account chooser and PostGrid still requires a human CAPTCHA, terms acceptance, and account details. All 32 mail rows remain suppressed and no mail or spend occurred.
 - **Cursor integration:** Invite the Cursor Slack app to the exact private Pritzker Law Group and VA Claims channels, then rerun a bounded read-only source pass before considering any broader integration.
@@ -482,9 +482,9 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-07-25T04:28:32.6312625+00:00`
-- **Overall:** `degraded`
-- **Queue:** revision `273`, `71` work items, normal `1/3`, emergency `0/1` active
+- **As of:** `2026-07-26T18:40:12.0821283+00:00`
+- **Overall:** `healthy-with-human-gates`
+- **Queue:** revision `284`, `72` work items, normal `1/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `8/21` canonical clients registered, `2/65` systems verified, `6` exact Bitwarden item locators
@@ -493,8 +493,8 @@ Mode: `manual-pilot`
 - **Credential bridge:** `locked`, secure bootstrap present `True`, review `go-no-critical-or-high-findings-integrity-verified`
 - **Scheduled mechanisms:**
   - `Codex-Morning-Orchestrator-Preflight`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
-  - `DillonAgentOS-GmailBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
-  - `DillonAgentOS-SlackBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
+  - `DillonAgentOS-GmailBridge`: enabled `True`, state `Ready`, prepare-only `True`, last result `0`
+  - `DillonAgentOS-SlackBridge`: enabled `True`, state `Ready`, prepare-only `True`, last result `0`
   - `DillonAgentOS-DailyBrief`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
@@ -502,7 +502,6 @@ Mode: `manual-pilot`
   - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
 - **Human gates:** `active_client_exact_bw_item_mapping`
 - **Deferred actions:** `secondary_exposed_password_rotation`
-- **Warnings:** DillonAgentOS-GmailBridge is enabled without PrepareOnly; DillonAgentOS-SlackBridge is enabled without PrepareOnly
 
 ## Standing operating contract
 
