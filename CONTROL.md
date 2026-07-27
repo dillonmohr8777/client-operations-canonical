@@ -492,9 +492,9 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-07-26T18:42:01.5922413+00:00`
-- **Overall:** `healthy-with-human-gates`
-- **Queue:** revision `284`, `72` work items, normal `1/3`, emergency `0/1` active
+- **As of:** `2026-07-27T12:03:59.2694989+00:00`
+- **Overall:** `degraded`
+- **Queue:** revision `318`, `82` work items, normal `1/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `8/21` canonical clients registered, `2/65` systems verified, `6` exact Bitwarden item locators
@@ -509,9 +509,10 @@ Mode: `manual-pilot`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `MarketingChief-DailyCalibration`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
-  - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
+  - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `1`
 - **Human gates:** `active_client_exact_bw_item_mapping`
 - **Deferred actions:** `secondary_exposed_password_rotation`
+- **Warnings:** MarketingChief-SitesBridge last result is 1
 
 ## Standing operating contract
 

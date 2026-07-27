@@ -1,13 +1,13 @@
 # Canonical intake summary
 
-Generated: 2026-07-26T18:36:23.161Z
+Generated: 2026-07-27T12:06:22.767Z
 
 This surface contains redacted routing metadata and opaque source locators only. It stores no raw messages, requested outcomes, email addresses, phone numbers, secrets, codes, or other direct identifiers.
 
 ## Triage inventory
 
 - Pending: 0
-- Quarantined: 9
+- Quarantined: 10
 - Resolved to a canonical work item: 2
 - Acknowledged without promotion: 10
 
