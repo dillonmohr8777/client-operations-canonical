@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-27T02:22:51.6236109+00:00`
-Queue revision: `315`
+Last reconciled: `2026-07-27T02:59:39.9575512+00:00`
+Queue revision: `318`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -106,6 +106,7 @@ Mode: `manual-pilot`
 | `wi-20260727-0001` | `replenish-7-eleven` | Enforce the Replenish lifetime spend cap | Done | P1 | Keep the four verified San Diego-area campaigns enabled and apply the $500 lifetime-spend pause rule before any additional Replenish campaign continues delivery. | No evidenced deadline |
 | `wi-20260727-0002` | `shadow-heating-cooling` | Confirm all Shadow Meta ads are off | Done | P1 | Keep Shadow Heating and Cooling excluded from reporting and verify the exact Meta account remains fully off only when Dillon requests a shutdown audit. | No evidenced deadline |
 | `wi-20260727-0003` | `momentum-360` | Refresh and deploy all current paid-media client dashboards | Done | P1 | Deploy the verified client-specific weekly dashboards to their existing mapped Netlify sites. | No evidenced deadline |
+| `wi-20260727-0004` | `momentum-360` | Restore the standard paid-media client dashboard shell | Done | P1 | Restore the prior verified dashboard lineage and republish the corrected reports to the existing Netlify sites. | No evidenced deadline |
 
 ## Waiting on Dillon
 

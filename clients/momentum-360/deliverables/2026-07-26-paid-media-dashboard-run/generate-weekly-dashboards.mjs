@@ -1,6 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 
+await import("./restore-standard-dashboard-template.mjs");
+process.exit(0);
+
 const repo = path.resolve(import.meta.dirname, "../../../..");
 const period = "July 20–26, 2026";
 
