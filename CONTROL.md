@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-26T22:55:02.3474010+00:00`
-Queue revision: `307`
+Last reconciled: `2026-07-27T00:57:58.6444245+00:00`
+Queue revision: `311`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -103,6 +103,8 @@ Mode: `manual-pilot`
 | `wi-20260726-0004` | `replenish-7-eleven` | Build Replenish weekly performance presentation and dashboard handoff | Done | P1 | Build and locally verify the Replenish PPTX, PDF, source ledger, and Netlify dashboard inventory. | No evidenced deadline |
 | `wi-20260726-0005` | `replenish-7-eleven` | Publish the Replenish weekly presentation to the existing Netlify site | Done | P1 | Publish the preserved dashboard bundle with the presentation page and downloads to the exact existing Replenish Netlify site. | No evidenced deadline |
 | `wi-20260726-0006` | `replenish-7-eleven` | Correct and republish the Replenish weekly report | Done | P1 | Keep the verified production report and client-ready downloads as the current Replenish handoff. | No evidenced deadline |
+| `wi-20260727-0001` | `replenish-7-eleven` | Enforce the Replenish lifetime spend cap | Done | P1 | Keep the four verified San Diego-area campaigns enabled and apply the $500 lifetime-spend pause rule before any additional Replenish campaign continues delivery. | No evidenced deadline |
+| `wi-20260727-0002` | `shadow-heating-cooling` | Confirm all Shadow Meta ads are off | Done | P1 | Keep Shadow Heating and Cooling excluded from reporting and verify the exact Meta account remains fully off only when Dillon requests a shutdown audit. | No evidenced deadline |
 
 ## Waiting on Dillon
 
