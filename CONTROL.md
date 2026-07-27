@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-27T02:59:39.9575512+00:00`
-Queue revision: `318`
+Last reconciled: `2026-07-27T23:38:52.0516303+00:00`
+Queue revision: `324`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -17,8 +17,9 @@ Mode: `manual-pilot`
 **Next unblock:** **Correct VA Claims booking and lead routing rules** (`wi-20260725-0007`, score 210): Map and authenticate the exact authorized WordPress or Amelia administrator route, apply only the verified scheduling and routing corrections, then complete an approved synthetic booking test without contacting a prospect. Why: P0, portfolio rank 2 (critical), no evidenced deadline, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
 <!-- marketing-chief:predictions:end -->
 
-## Active execution (normal 1/3; emergency 0/1)
+## Active execution (normal 2/3; emergency 0/1)
 
+- `wi-20260718-0003` Implement the Momentum caller auto-response workflow: After 10:00 PM Eastern, run one controlled unanswered call to a Momentum 360 tracking number and one to the GMB Suspension number; verify the approved missed-call text, equal Sean and Jason round-robin without voicemail interception, and one CallRail-associated HubSpot record per call.
 - `wi-20260723-0005` Finish Align HCM HubSpot Customer Agent: Verify the working live agent against the prepared acceptance suite from the authenticated Align HubSpot computer, then record its knowledge-source sync, human handoff, channel, credit, and activation evidence.
 
 ## Commitment queue
@@ -49,7 +50,7 @@ Mode: `manual-pilot`
 | `wi-20260717-0011` | `va-claims-edge` | Implement Obaid's Phase 2 VA Claims UI handoff | Done | P0 | Review the local integrated branch and QA evidence. Keep GitHub push, Vercel deployment, merge, and external handoff pending explicit approval. | No evidenced deadline |
 | `wi-20260718-0001` | `bigorange-marketing` | Confirm BigOrange paid-trial scope and compensation | Needs Approval | P1 | At the confirmed July 27 working session, clarify and document the pilot scope, hours, pricing, start date, payment timing, and authorized access route. Do not begin, invoice, publish, send, or change accounts until the terms and exact access are confirmed. | 2026-07-27 13:00 -04:00 |
 | `wi-20260718-0002` | `momentum-360` | Prepare the July 20 Momentum AI review | Done | P1 | Build and verify a redacted local decision packet from current canonical artifacts and communication evidence. | 2026-07-20 14:30 -04:00 |
-| `wi-20260718-0003` | `momentum-360` | Implement the Momentum caller auto-response workflow | Ready | P1 | At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation. | 2026-07-20 15:00 -04:00 |
+| `wi-20260718-0003` | `momentum-360` | Implement the Momentum caller auto-response workflow | Verification | P1 | After 10:00 PM Eastern, run one controlled unanswered call to a Momentum 360 tracking number and one to the GMB Suspension number; verify the approved missed-call text, equal Sean and Jason round-robin without voicemail interception, and one CallRail-associated HubSpot record per call. | 2026-07-20 15:00 -04:00 |
 | `wi-20260718-0004` | `momentum-360` | Prepare the July 22 Momentum AI and Fable training | Done | P1 | Build and verify the local training packet from approved Momentum examples and non-secret access prerequisites. | 2026-07-22 15:30 -04:00 |
 | `wi-20260718-0005` | `align-hcm` | Prepare Align Dayforce Discover exhibitor readiness | Done | P1 | Build and verify a local deadline and decision packet from the manual, marking each unknown, owner, dependency, and review date. | 2026-08-14 17:00 -04:00 |
 | `wi-20260718-0006` | `momentum-360` | Finish Mac law-firm local SEO audit builder | Done | P1 | Recover the current visual contract, implement the missing local audit and screenshot workflow in canonical local source, then verify both modes and PDF output. | No evidenced deadline |
@@ -107,6 +108,7 @@ Mode: `manual-pilot`
 | `wi-20260727-0002` | `shadow-heating-cooling` | Confirm all Shadow Meta ads are off | Done | P1 | Keep Shadow Heating and Cooling excluded from reporting and verify the exact Meta account remains fully off only when Dillon requests a shutdown audit. | No evidenced deadline |
 | `wi-20260727-0003` | `momentum-360` | Refresh and deploy all current paid-media client dashboards | Done | P1 | Deploy the verified client-specific weekly dashboards to their existing mapped Netlify sites. | No evidenced deadline |
 | `wi-20260727-0004` | `momentum-360` | Restore the standard paid-media client dashboard shell | Done | P1 | Restore the prior verified dashboard lineage and republish the corrected reports to the existing Netlify sites. | No evidenced deadline |
+| `wi-20260727-0005` | `momentum-360` | Reconcile live workshop launch records | Done | P1 | Use the live launch decision as the source of truth and treat reminder, replay, analytics, strategy-call, outbound-delivery, or paid-budget work as separate scoped actions. | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -492,7 +494,7 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-07-27T12:03:59.2694989+00:00`
+- **As of:** `2026-07-27T23:29:37.0914776+00:00`
 - **Overall:** `degraded`
 - **Queue:** revision `318`, `82` work items, normal `1/3`, emergency `0/1` active
 - **Client registry:** `valid`

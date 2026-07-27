@@ -1,7 +1,7 @@
 {
     "schemaVersion":  1,
-    "revision":  318,
-    "updatedAt":  "2026-07-27T02:59:39.9575512+00:00",
+    "revision":  324,
+    "updatedAt":  "2026-07-27T23:38:52.0516303+00:00",
     "updatedBy":  "marketing-chief",
     "mode":  "manual-pilot",
     "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
@@ -2219,7 +2219,7 @@
                       },
                       {
                           "id":  "wi-20260718-0003",
-                          "version":  2,
+                          "version":  4,
                           "dedupeKey":  "momentum-callrail-hubspot-caller-auto-response-2026-07",
                           "scope":  "client",
                           "clientId":  "momentum-360",
@@ -2237,7 +2237,7 @@
                                          "observedAt":  "2026-07-18T03:37:35.4808163+00:00",
                                          "redactedSummary":  "The communication review confirms an uncompleted caller auto-response commitment and enumerates the decisions required before an account-changing implementation."
                                      },
-                          "status":  "ready",
+                          "status":  "verification",
                           "lane":  "normal",
                           "emergencyRationale":  null,
                           "priority":  {
@@ -2245,13 +2245,13 @@
                                            "rationale":  "The request is an explicit team commitment and should be resolved at the July 20 review, but implementation changes messaging and connected accounts."
                                        },
                           "owner":  "marketing-chief",
-                          "nextAction":  "At the July 20 review, confirm the trigger, approved copy, opt-out behavior, routing, exact accounts, owner, test plan, and rollback plan; obtain explicit approval before implementation.",
+                          "nextAction":  "After 10:00 PM Eastern, run one controlled unanswered call to a Momentum 360 tracking number and one to the GMB Suspension number; verify the approved missed-call text, equal Sean and Jason round-robin without voicemail interception, and one CallRail-associated HubSpot record per call.",
                           "execution":  {
-                                            "actionClass":  "account_change",
+                                            "actionClass":  "local_test",
                                             "automaticEligible":  false,
-                                            "externalAction":  true,
-                                            "reversible":  false,
-                                            "classifiedAt":  "2026-07-23T14:11:48.7131487+00:00"
+                                            "externalAction":  false,
+                                            "reversible":  true,
+                                            "classifiedAt":  "2026-07-27T23:37:13.4520086+00:00"
                                         },
                           "definitionOfDone":  [
                                                    "The exact CallRail and HubSpot accounts and eligible phone numbers are verified.",
@@ -2273,7 +2273,7 @@
                                            "tier":  "explicit",
                                            "action":  "Approve the exact Momentum CallRail and HubSpot caller auto-response configuration before any workflow or account change.",
                                            "status":  "approved",
-                                           "approvalRef":  "sites-request:2a18ee5f-186e-4117-81b4-f0f448b02d4a"
+                                           "approvalRef":  "client-evidence-callrail-live-approval"
                                        },
                           "dependencies":  [
 
@@ -2285,9 +2285,14 @@
                           "artifactRefs":  [
 
                                            ],
-                          "outcome":  null,
+                          "outcome":  {
+                                          "status":  "verification",
+                                          "verifiedAt":  "2026-07-27T23:37:13.4520086+00:00",
+                                          "summary":  "Approved missed-call SMS with STOP language and the 10 PM to 6 AM equal Sean and Jason after-hours routing were saved and reopened in CallRail. HubSpot reporting is live in the verified Momentum portal with current CallRail contact associations; two controlled after-hours calls remain for acceptance.",
+                                          "externalActionTaken":  false
+                                      },
                           "createdAt":  "2026-07-18T03:37:35.4808163+00:00",
-                          "updatedAt":  "2026-07-23T14:11:48.7131487+00:00"
+                          "updatedAt":  "2026-07-27T23:37:13.4520086+00:00"
                       },
                       {
                           "id":  "wi-20260718-0004",
@@ -6779,6 +6784,81 @@
                                       },
                           "createdAt":  "2026-07-27T02:59:36.7077072+00:00",
                           "updatedAt":  "2026-07-27T02:59:39.9575512+00:00"
+                      },
+                      {
+                          "id":  "wi-20260727-0005",
+                          "version":  4,
+                          "dedupeKey":  "momentum-workshop-launch-doc-reconciliation-20260727",
+                          "scope":  "client",
+                          "clientId":  "momentum-360",
+                          "routing":  {
+                                          "status":  "resolved",
+                                          "matchedBy":  "registry-resolver",
+                                          "registryStatus":  "active",
+                                          "verifiedAt":  "2026-07-27T23:38:35.9970822+00:00"
+                                      },
+                          "title":  "Reconcile live workshop launch records",
+                          "requestedOutcome":  "Align the canonical workshop product, surface, checklist, and README records with the verified August 6 production launch and preserve the remaining separate approval gates.",
+                          "source":  {
+                                         "type":  "file",
+                                         "locator":  "clients/momentum-360/deliverables/2026-07-21-sean-webinar-pilot/launch-decision-2026-07-27.md",
+                                         "observedAt":  "2026-07-27T23:38:35.9970822+00:00",
+                                         "redactedSummary":  "The verified launch decision proves the live schedule, audience, meeting route, signed webhook, and consent-gated Calendar acceptance while older workshop records still describe those inputs as missing."
+                                     },
+                          "status":  "done",
+                          "lane":  "normal",
+                          "emergencyRationale":  null,
+                          "priority":  {
+                                           "level":  "P1",
+                                           "rationale":  "Stale launch records can cause operators to reopen settled decisions or misstate production readiness before the scheduled workshop."
+                                       },
+                          "owner":  "marketing-chief",
+                          "nextAction":  "Use the live launch decision as the source of truth and treat reminder, replay, analytics, strategy-call, outbound-delivery, or paid-budget work as separate scoped actions.",
+                          "execution":  {
+                                            "actionClass":  "local_artifact",
+                                            "automaticEligible":  true,
+                                            "externalAction":  false,
+                                            "reversible":  true,
+                                            "classifiedAt":  "2026-07-27T23:38:52.0516303+00:00"
+                                        },
+                          "definitionOfDone":  [
+                                                   "PRODUCT and surface records reflect the verified August 6 production configuration.",
+                                                   "README and owner checklist distinguish the active registration and Calendar path from separate remaining workflows.",
+                                                   "Stale missing-date, missing-meeting, missing-audience, and missing-form claims are absent from the current workshop records."
+                                               ],
+                          "dueAt":  null,
+                          "reviewAt":  null,
+                          "evidence":  {
+                                           "asOf":  "2026-07-27T23:38:35.9970822+00:00",
+                                           "freshness":  "current",
+                                           "refs":  [
+                                                        "clients/momentum-360/deliverables/2026-07-21-sean-webinar-pilot/launch-decision-2026-07-27.md"
+                                                    ]
+                                       },
+                          "approval":  {
+                                           "tier":  "automatic",
+                                           "action":  "Local reversible documentation reconciliation only.",
+                                           "status":  "not_required",
+                                           "approvalRef":  null
+                                       },
+                          "dependencies":  [
+
+                                           ],
+                          "assumptions":  [
+
+                                          ],
+                          "confidence":  0.8,
+                          "artifactRefs":  [
+
+                                           ],
+                          "outcome":  {
+                                          "status":  "done",
+                                          "verifiedAt":  "2026-07-27T23:38:52.0516303+00:00",
+                                          "summary":  "PRODUCT, both surface records, README, and owner checklist now agree with the verified August 6 production launch. The live registration and consent-gated Calendar path are distinguished from the remaining separate workflows.",
+                                          "externalActionTaken":  false
+                                      },
+                          "createdAt":  "2026-07-27T23:38:35.9970822+00:00",
+                          "updatedAt":  "2026-07-27T23:38:52.0516303+00:00"
                       }
                   ],
     "intakeQuarantine":  [

@@ -26,9 +26,9 @@ The funnel begins with opted-in subscribers, Skool members, referrals, and indiv
 
 - Registration and operator views share one responsive web experience.
 - Calendar insertion requires an explicit registrant action; silent third-party calendar placement is prohibited.
-- Email reminders require explicit consent, an approved sender, unsubscribe support, and suppression handling.
-- Production activation still needs the final event date, meeting URL, audience, privacy language, sender, form destination, and strategy-call route.
-- Paid spend and live audience delivery remain separately reviewable actions.
+- The production attendee and calendar path is active for Thursday, August 6, 2026 from 12:00 PM to 1:00 PM Eastern using the approved existing Google Meet.
+- Email reminders and replay delivery remain separate workflows and require explicit consent, an approved sender, unsubscribe support, and suppression handling.
+- Paid spend and outbound audience delivery remain separately reviewable actions.
 
 ## Brand Commitments
 
@@ -39,7 +39,8 @@ Preserve the Momentum 360 name, corporate logo, Mac and Sean imagery, navy/gold/
 - Real Momentum 360 logo and recognition badges in `assets/`.
 - Canonical individual founder portraits in `assets/sean-boyle-founder-bio-v1.webp` and `assets/mac-frederick-founder-bio-v1.webp`, plus the established paired founder imagery.
 - Existing registration, confirmation, Google Calendar, ICS, operator, event-schema, and QA implementations.
-- No approved testimonials, customer results, final webinar date, production meeting URL, or audience list; future work must not fabricate them.
+- Approved August 6 workshop schedule, existing Google Meet, Philadelphia local-service-owner audience, production form, and consent-gated Calendar delivery.
+- No approved testimonials or customer-result claims; future work must not fabricate them.
 
 ## Product Principles
 

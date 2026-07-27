@@ -14,5 +14,5 @@ related_targets: ["clients/momentum-360/deliverables/2026-07-21-sean-webinar-pil
 - Proof: Real founder imagery, Momentum 360 logo, recognition badges, and a concrete 60-minute operating sequence.
 - Direction: Cinematic Founder Story in the established Momentum 360 command-stage world.
 - Memorable moment: The page moves from a monumental close founder portrait into a horizontal, scroll-controlled workshop build before returning to a consent-first calendar orbit.
-- Constraints: No fabricated results or testimonials. No silent calendar insertion. No live reminder delivery until the sender, audience, privacy language, date, meeting link, and unsubscribe path are approved.
-- Open decisions: Final live date, meeting URL, sender identity, production form destination, strategy-call route, and exact audience.
+- Constraints: No fabricated results or testimonials. No silent calendar insertion. Organizer invitations are limited to registrants who explicitly select the one-workshop Calendar consent. Email reminders and replay delivery remain off until sender, unsubscribe, and suppression handling are approved.
+- Open decisions: Reminder and replay sender, retention and unsubscribe operations, analytics destination, strategy-call route, and any separately approved outbound channel or paid budget.
