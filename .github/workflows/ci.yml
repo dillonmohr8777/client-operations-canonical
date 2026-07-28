@@ -11,8 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
 
       - name: Install PSScriptAnalyzer
         shell: pwsh
@@ -58,8 +56,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
 
       # These suites exercise Windows path semantics and PowerShell 5.1 JSON
       # behavior the way the canonical operator machines run them. The full
