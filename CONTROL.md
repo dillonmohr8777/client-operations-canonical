@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-27T23:38:52.0516303+00:00`
-Queue revision: `324`
+Last reconciled: `2026-07-28T18:56:50.6435245+00:00`
+Queue revision: `325`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -109,6 +109,7 @@ Mode: `manual-pilot`
 | `wi-20260727-0003` | `momentum-360` | Refresh and deploy all current paid-media client dashboards | Done | P1 | Deploy the verified client-specific weekly dashboards to their existing mapped Netlify sites. | No evidenced deadline |
 | `wi-20260727-0004` | `momentum-360` | Restore the standard paid-media client dashboard shell | Done | P1 | Restore the prior verified dashboard lineage and republish the corrected reports to the existing Netlify sites. | No evidenced deadline |
 | `wi-20260727-0005` | `momentum-360` | Reconcile live workshop launch records | Done | P1 | Use the live launch decision as the source of truth and treat reminder, replay, analytics, strategy-call, outbound-delivery, or paid-budget work as separate scoped actions. | No evidenced deadline |
+| `wi-20260728-0001` | `replenish-7-eleven` | Resolve Replenish Google Ads chargebacks and mixed-brand balance | Needs Approval | P0 | Confirm whether the four chargebacks were intentional and identify the authorized cardholder; then choose either the bank-release and payment-verification path or the Google Ads billing-dispute path. Keep payment, campaign restart, and external contact pending exact approval. | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -438,6 +439,19 @@ Mode: `manual-pilot`
 - Required business, banking, tax, terms, CAPTCHA, MFA, and consent gates are completed by an authorized human.
 - Production Stripe key and webhook configuration are added through an approved secret path without exposing credentials.
 - A low-risk live donation test succeeds and the unrelated authenticated Stripe account remains unchanged.
+
+### Resolve Replenish Google Ads chargebacks and mixed-brand balance
+
+**Decision:** Approve one exact resolution path after cardholder intent and mixed-brand cost allocation are confirmed. Payment, campaign restart, and support submission remain separately gated.
+
+**Next action:** Confirm whether the four chargebacks were intentional and identify the authorized cardholder; then choose either the bank-release and payment-verification path or the Google Ads billing-dispute path. Keep payment, campaign restart, and external contact pending exact approval.
+
+**Definition of done:**
+
+- The four chargebacks are confirmed as intentional or unintended by the authorized cardholder.
+- June and July costs are reconciled by campaign between Replenish and Fresh Blends before assigning client responsibility.
+- The correct bank or Google Ads support route is selected and prepared with exact live transaction evidence.
+- No payment, delivery restart, or external support submission occurs without exact approval.
 
 ## Blocked or at risk
 
