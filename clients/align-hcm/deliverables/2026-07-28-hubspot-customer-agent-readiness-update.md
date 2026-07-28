@@ -176,8 +176,15 @@ Reply `approve disposable handoff ticket test` to run in one pass:
 
 Create one clearly labeled disposable Help Desk ticket and close it after verification.
 
-## Evidence provenance
+## Local PDF package (2026-07-28)
 
-- Live Edge portal inspection and tester chat: 2026-07-28 Opus 5 verification run summarized above.
-- Baselines: July 23 Readiness Report + Knowledge Core.
-- This file is a durable local evidence package only. It does not activate the agent, mutate HubSpot, or mutate the canonical Marketing Chief queue.
+Regenerated after the live Edge re-verification:
+
+| PDF | Path | SHA-256 |
+|---|---|---|
+| Readiness Report | `clients/align-hcm/deliverables/output/pdf/Align-HCM-Customer-Agent-Readiness-Report-2026-07-28.pdf` | `6d30fc5b60aedcdd9174af1a862bbd1a915e5c43fd53dc645f334526daebfc16` |
+| Knowledge Core | `clients/align-hcm/deliverables/output/pdf/Align-HCM-Customer-Agent-Knowledge-Core-2026-07-28.pdf` | `024b944a8204f5246226caa19b581403795fc4e55b9d6117cb4dc105fb833fe0` |
+| Correction Package | `clients/align-hcm/deliverables/output/pdf/Align-HCM-Customer-Agent-Correction-Package-2026-07-28.pdf` | `3d76456a62d8c21e02faf69bdb377f15787056a05f36cfc92c5c2b6ecda41d97` |
+
+Builder: `clients/align-hcm/deliverables/output/pdf/build-customer-agent-pdfs.py`
+
