@@ -40,6 +40,11 @@ jobs:
             throw "Lint failed: $parseErrors parse error(s), $($errors.Count) analyzer error(s)."
           }
 
+      # Scripts invoke `powershell.exe`; on Linux, alias it to pwsh (same shim
+      # the Cursor Cloud VM uses). See AGENTS.md "Cursor Cloud specific instructions".
+      - name: Alias powershell.exe -> pwsh
+        run: sudo ln -sf "$(command -v pwsh)" /usr/local/bin/powershell.exe
+
       - name: Cross-platform unit tests
         shell: pwsh
         env:
