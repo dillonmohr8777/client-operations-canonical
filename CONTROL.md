@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-28T18:56:50.6435245+00:00`
-Queue revision: `325`
+Last reconciled: `2026-07-28T19:19:41.5910741+00:00`
+Queue revision: `328`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -109,7 +109,7 @@ Mode: `manual-pilot`
 | `wi-20260727-0003` | `momentum-360` | Refresh and deploy all current paid-media client dashboards | Done | P1 | Deploy the verified client-specific weekly dashboards to their existing mapped Netlify sites. | No evidenced deadline |
 | `wi-20260727-0004` | `momentum-360` | Restore the standard paid-media client dashboard shell | Done | P1 | Restore the prior verified dashboard lineage and republish the corrected reports to the existing Netlify sites. | No evidenced deadline |
 | `wi-20260727-0005` | `momentum-360` | Reconcile live workshop launch records | Done | P1 | Use the live launch decision as the source of truth and treat reminder, replay, analytics, strategy-call, outbound-delivery, or paid-budget work as separate scoped actions. | No evidenced deadline |
-| `wi-20260728-0001` | `replenish-7-eleven` | Resolve Replenish Google Ads chargebacks and mixed-brand balance | Needs Approval | P0 | Confirm whether the four chargebacks were intentional and identify the authorized cardholder; then choose either the bank-release and payment-verification path or the Google Ads billing-dispute path. Keep payment, campaign restart, and external contact pending exact approval. | No evidenced deadline |
+| `wi-20260728-0001` | `replenish-7-eleven` | Resolve Replenish Google Ads chargebacks and mixed-brand balance | Needs Approval | P0 | Preserve the suspended and paused state; reconcile the $457.57 Pompano post-cap cost against the authorized Google-credit restart, allocate all $558.26 in credits and $3,395.48 in retained payments between Replenish and Fresh Blends, and approve the exact Google Ads billing-support case before submission. | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -444,7 +444,7 @@ Mode: `manual-pilot`
 
 **Decision:** Approve one exact resolution path after cardholder intent and mixed-brand cost allocation are confirmed. Payment, campaign restart, and support submission remain separately gated.
 
-**Next action:** Confirm whether the four chargebacks were intentional and identify the authorized cardholder; then choose either the bank-release and payment-verification path or the Google Ads billing-dispute path. Keep payment, campaign restart, and external contact pending exact approval.
+**Next action:** Preserve the suspended and paused state; reconcile the $457.57 Pompano post-cap cost against the authorized Google-credit restart, allocate all $558.26 in credits and $3,395.48 in retained payments between Replenish and Fresh Blends, and approve the exact Google Ads billing-support case before submission.
 
 **Definition of done:**
 
