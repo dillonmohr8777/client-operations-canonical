@@ -178,13 +178,49 @@ Create one clearly labeled disposable Help Desk ticket and close it after verifi
 
 ## Local PDF package (2026-07-28)
 
-Regenerated after the live Edge re-verification:
+Rebuilt in the designed July 23 template so the delivered package and this evidence file agree.
+All three PDFs now carry July 28 content in the branded layout (navy covers, cream interiors,
+phase headers, stat cards, verdict pills) rather than the plain builder output.
 
-| PDF | Path | SHA-256 |
-|---|---|---|
-| Readiness Report | `clients/align-hcm/deliverables/output/pdf/Align-HCM-Customer-Agent-Readiness-Report-2026-07-28.pdf` | `6d30fc5b60aedcdd9174af1a862bbd1a915e5c43fd53dc645f334526daebfc16` |
-| Knowledge Core | `clients/align-hcm/deliverables/output/pdf/Align-HCM-Customer-Agent-Knowledge-Core-2026-07-28.pdf` | `024b944a8204f5246226caa19b581403795fc4e55b9d6117cb4dc105fb833fe0` |
-| Correction Package | `clients/align-hcm/deliverables/output/pdf/Align-HCM-Customer-Agent-Correction-Package-2026-07-28.pdf` | `3d76456a62d8c21e02faf69bdb377f15787056a05f36cfc92c5c2b6ecda41d97` |
+| PDF | Pages | Path | SHA-256 |
+|---|---|---|---|
+| Readiness Report | 12 | `clients/align-hcm/deliverables/output/pdf/Align-HCM-Customer-Agent-Readiness-Report-2026-07-28.pdf` | `2c8e253f95826d3a9ca05c879bc1a5759664764f448835dd415da7d937426e38` |
+| Knowledge Core | 10 | `clients/align-hcm/deliverables/output/pdf/Align-HCM-Customer-Agent-Knowledge-Core-2026-07-28.pdf` | `bd6b10f0bc0b6c78d677c531d11ecdf687c25899103e3a5fcb04d03564fe3af9` |
+| Correction Package | 6 | `clients/align-hcm/deliverables/output/pdf/Align-HCM-Customer-Agent-Correction-Package-2026-07-28.pdf` | `85d125b8b93f40bee74274cdf43caf8f684d566ddcb250925d34f05a4470256a` |
 
 Builder: `clients/align-hcm/deliverables/output/pdf/build-customer-agent-pdfs.py`
+Design system: `clients/align-hcm/deliverables/output/pdf/agent_pdf_theme.py`
+Fonts (committed for reproducible builds): `clients/align-hcm/deliverables/assets/customer-agent/fonts/`
+
+### July 23 baselines (archived)
+
+The designed July 23 deliverables this update is measured against are now stored alongside the
+current package instead of living only outside the repo:
+
+| PDF | Pages | Path | SHA-256 |
+|---|---|---|---|
+| Readiness Report · Jul 23 | 10 | `.../output/pdf/archive/Align-HCM-Customer-Agent-Readiness-Report-2026-07-23.pdf` | `5a3c1820ba5b4faccbad479702ca2f2cbbf8b6df6decba8abfd333b19aaa61a4` |
+| Knowledge Core · Jul 23 | 9 | `.../output/pdf/archive/Align-HCM-Customer-Agent-Knowledge-Core-2026-07-23.pdf` | `4cd6af1e27a9fb91bec65adfb55dfbc81befb03072b9f2e10b0b1c8196507697` |
+
+### What the July 28 rebuild changed in the documents
+
+- **Readiness Report** — reframed around the current failure. The July 23 verdict ("safe by design,
+  cannot retrieve") is now a *Delta* page showing 10 dimensions moved between passes. Evidence log
+  expanded from 8 probes to 10 knowledge + 5 safety probes with the three deferred cases marked.
+  Source-health page reports 118 sources instead of 71, and names the private pricing calculator and
+  sandbox-host findings. Gates re-scored 13-wide: 5 pass, 3 fail, 4 pending/partial, activation off.
+- **Knowledge Core** — added the three hard rules from the correction package (URL rule,
+  data-conversion completeness rule, privacy wording) as their own page, corrected the
+  "can Align migrate all of our history" grounded answer, added `/case-studies` and the GTAA study to
+  the authoritative source list, and added the SmartCare pricing-source warning.
+- **Correction Package** — promoted from a plain 2-page memo to a designed 6-page operator package
+  with the guardrail text, the attach/detach tables, the Round A/B/C retest pack, the identity and
+  billing checklist with both avatar candidates rendered, and the activation gate.
+
+### Avatar status in the documents
+
+The July 23 Readiness Report showed a report-only "proposed monogram" direction. The July 28
+documents render the actual asset package built on this branch — `align-customer-agent-robot-hubspot-1024.png`
+as primary and the monogram as the mark-first alternate. Neither has been uploaded to HubSpot and
+neither is brand-approved; the report and the correction package both say so explicitly.
 

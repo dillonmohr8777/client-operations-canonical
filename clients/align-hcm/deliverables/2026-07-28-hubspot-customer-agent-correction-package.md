@@ -150,3 +150,20 @@ Activation remains blocked until:
 - Separate Dillon activation approval for website live chat
 
 This package does not authorize HubSpot mutation, ticket creation, publishing, spend, or channel activation by itself.
+
+## Delivered package
+
+This memo is delivered as a designed 6-page operator PDF:
+
+| Item | Value |
+|---|---|
+| Path | `clients/align-hcm/deliverables/output/pdf/Align-HCM-Customer-Agent-Correction-Package-2026-07-28.pdf` |
+| SHA-256 | `85d125b8b93f40bee74274cdf43caf8f684d566ddcb250925d34f05a4470256a` |
+| Builder | `clients/align-hcm/deliverables/output/pdf/build-customer-agent-pdfs.py` |
+
+Page order: cover and authorization boundary · guardrails to publish (§1–3 verbatim) · source-set
+repair tables (§4) · Round A/B/C retest pack (§6) · identity, channel, and billing checklist with
+both avatar candidates rendered (§5, §7) · activation gate (§8).
+
+The guardrail text in §1–3 above is the source of truth. The PDF reproduces it verbatim so an
+operator can paste from either.
