@@ -30,7 +30,7 @@ alignment.
 | Wave | Recipients | Earliest action |
 | --- | ---: | --- |
 | 1 | 25 | Sent and verified in Gmail Sent at 2026-07-28T00:34:00Z |
-| 2 | 50 | Blocked: wave 1 produced 3 hard bounces out of 25 (12%) |
+| 2 | 50 | Prospects 026 through 050 sent after Dillon's explicit authorization; remaining 25 held |
 | 3 | 50 | After bounce, complaint, opt out, and registration review |
 | 4 | 50 | After continued healthy delivery |
 | 5 | 50 | After continued healthy delivery |
@@ -40,9 +40,12 @@ A live Gmail review at `2026-07-28T00:57:00Z` found 3 hard delivery
 failures among the 25 wave 1 messages. All 3 addresses are suppressed in the
 protected audience file and the non-PII campaign ledger. The observed hard
 bounce rate is 12 percent, above the campaign's 2 percent pause threshold.
-Wave 2 is blocked. Review again after at least 24 hours, validate the
-remaining audience at the mailbox level, and use an authenticated Momentum
-domain sender before resuming.
+Despite the pause threshold, Dillon explicitly authorized another 25 messages.
+Prospects 026 through 050 were sent individually between
+`2026-07-28T02:46:13Z` and `2026-07-28T02:49:42Z`. All 25 were verified with
+recipient-specific Gmail Sent searches. Five then produced hard delivery
+failures and were suppressed; 20 remain delivered or pending. The remaining
+200 stay held.
 
 Pause immediately for:
 

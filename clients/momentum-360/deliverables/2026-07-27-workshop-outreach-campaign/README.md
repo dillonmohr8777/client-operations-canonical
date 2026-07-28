@@ -13,21 +13,29 @@ Prepared July 27, 2026 for the August 6, 2026 Philadelphia owner workshop.
 - Momentum sender alias in Gmail: not configured
 - Invitation capacity: Dillon Mohr, on behalf of Momentum 360
 - Default Gmail signature artwork: deployed live
-- Delivery status: wave 1 sent and verified, 25 messages
-- Sent verification: Gmail Sent search showed exactly 25 matching messages at
-  `2026-07-28T00:34:00Z`
+- Delivery status: 50 individual messages sent and verified
+- Sent verification: wave 1 contained prospects 001 through 025; Dillon
+  authorized another 25 and wave 2 sent prospects 026 through 050 from
+  `2026-07-28T02:46:13Z` through `2026-07-28T02:49:42Z`
+- Gmail verification: all 25 wave 2 recipient-specific Sent searches matched;
+  the combined subject search displayed 49 conversations because Gmail grouped
+  at least one same-subject conversation
 - Live delivery review: 3 hard bounces were verified and suppressed at
   `2026-07-28T00:57:00Z`; 22 messages remain delivered or pending
-- Observed hard bounce rate: 12 percent, so wave 2 is blocked
+- Observed hard bounce rate from wave 1: 12 percent
+- Wave 2 delivery review: 5 hard bounces were verified and suppressed; 20
+  messages remain delivered or pending
+- Total verified outcome: 8 hard bounces across 50 attempts, with 42 delivered
+  or pending
 - Registrations: 0 in the live Netlify form at the same review
 - Gmail signature: the old cached block was replaced with the Momentum 360
   HTML signature and verified in a fresh compose
 
-The campaign package is complete and the controlled first wave is live. The
-remaining 225 are blocked because wave 1 produced 3 hard bounces out of 25 and
-Gmail currently has no authenticated Momentum sender alias. The prospect list
-has only syntax and domain mail validation rather than individual mailbox
-validation.
+The campaign package is complete and 50 individual invitations were attempted.
+The remaining 200 are held because 8 hard bounces were verified across the two
+batches and Gmail currently has no authenticated Momentum sender alias. The
+prospect list has only syntax and domain mail validation rather than individual
+mailbox validation.
 
 ## Package contents
 
@@ -67,15 +75,15 @@ recipient.
 
 ## Production decision
 
-Preferred route for the remaining 225:
+Preferred route for the remaining 200:
 
 1. Configure an authenticated `needmomentum.com` sender with SPF, DKIM, and
    DMARC alignment in a mail platform that supports suppression and
    unsubscribe handling.
 2. Review hard bounces, spam complaints, opt outs, replies, and registrations
-   from the completed 25-recipient first wave.
+   from both completed 25-recipient batches.
 3. Continue only if the first wave is healthy.
 
-The fallback Gmail route was used for wave 1. Every message was sent
-individually from Dillon's authenticated Gmail account. The list was never
-exposed with a shared To, Cc, or Bcc field.
+The fallback Gmail route was used for both 25-recipient batches. Every message
+was sent individually from Dillon's authenticated Gmail account. The list was
+never exposed with a shared To, Cc, or Bcc field.
