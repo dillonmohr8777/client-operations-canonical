@@ -1,0 +1,76 @@
+name: CI
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-smoke-linux:
+    name: Lint & smoke tests (Linux / pwsh 7)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install PSScriptAnalyzer
+        shell: pwsh
+        run: |
+          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+          Install-Module PSScriptAnalyzer -Scope CurrentUser -Force
+
+      - name: Lint (parse + PSScriptAnalyzer, fail on Error)
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $scripts = Get-ChildItem -Recurse -Filter *.ps1 -File |
+            Where-Object { $_.FullName -notmatch 'align-hcm-lead-intelligence' }
+          $parseErrors = 0
+          foreach ($s in $scripts) {
+            $pe = $null
+            [void][System.Management.Automation.Language.Parser]::ParseFile($s.FullName, [ref]$null, [ref]$pe)
+            if (@($pe).Count) { $parseErrors += @($pe).Count; Write-Host "PARSE ERROR: $($s.FullName)" }
+          }
+          Write-Host "Parsed $($scripts.Count) scripts; $parseErrors parse error(s)"
+          Import-Module PSScriptAnalyzer
+          $findings = @('scripts','tests') | ForEach-Object { Invoke-ScriptAnalyzer -Path $_ -Recurse }
+          $findings | Group-Object Severity | Sort-Object Name | ForEach-Object { Write-Host ("{0,-12} {1}" -f $_.Name, $_.Count) }
+          $errors = @($findings | Where-Object Severity -eq 'Error')
+          if ($parseErrors -gt 0 -or $errors.Count -gt 0) {
+            $errors | Format-Table RuleName, ScriptName, Line, Message -Auto | Out-String | Write-Host
+            throw "Lint failed: $parseErrors parse error(s), $($errors.Count) analyzer error(s)."
+          }
+
+      - name: Cross-platform unit tests
+        shell: pwsh
+        env:
+          TMPDIR: ${{ runner.temp }}
+          TEMP: ${{ runner.temp }}
+          TMP: ${{ runner.temp }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          ./tests/Test-MarketingSafeText.ps1
+          ./tests/Test-DailyPaidMediaReview.ps1
+
+  canonical-tests-windows:
+    name: Canonical tests (Windows / PowerShell 5.1)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      # These suites exercise Windows path semantics and PowerShell 5.1 JSON
+      # behavior the way the canonical operator machines run them. The full
+      # Test-MarketingOS.ps1 suite depends on operator-local machine state
+      # (e.g. C:\Users\<operator>\.codex\...), so it is validated on the
+      # operator hosts rather than on hosted CI runners.
+      - name: Environment-independent suites (Windows PowerShell 5.1)
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          & .\scripts\Test-ClientRegistry.ps1
+          & .\tests\Test-MarketingSafeText.ps1
+          & .\tests\Test-DailyPaidMediaReview.ps1
+          & .\tests\Test-MarketingExecutionGraph.ps1
