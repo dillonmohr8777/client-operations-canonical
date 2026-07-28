@@ -30,14 +30,19 @@ alignment.
 | Wave | Recipients | Earliest action |
 | --- | ---: | --- |
 | 1 | 25 | Sent and verified in Gmail Sent at 2026-07-28T00:34:00Z |
-| 2 | 50 | At least 24 hours after a healthy first wave |
+| 2 | 50 | Blocked: wave 1 produced 3 hard bounces out of 25 (12%) |
 | 3 | 50 | After bounce, complaint, opt out, and registration review |
 | 4 | 50 | After continued healthy delivery |
 | 5 | 50 | After continued healthy delivery |
 | 6 | 25 | Final clean recipients only |
 
-An immediate post-send search found no matching replies or delivery failures
-at `2026-07-28T00:34:54Z`. Review again after at least 24 hours before wave 2.
+A live Gmail review at `2026-07-28T00:57:00Z` found 3 hard delivery
+failures among the 25 wave 1 messages. All 3 addresses are suppressed in the
+protected audience file and the non-PII campaign ledger. The observed hard
+bounce rate is 12 percent, above the campaign's 2 percent pause threshold.
+Wave 2 is blocked. Review again after at least 24 hours, validate the
+remaining audience at the mailbox level, and use an authenticated Momentum
+domain sender before resuming.
 
 Pause immediately for:
 

@@ -16,12 +16,16 @@ Prepared July 27, 2026 for the August 6, 2026 Philadelphia owner workshop.
 - Delivery status: wave 1 sent and verified, 25 messages
 - Sent verification: Gmail Sent search showed exactly 25 matching messages at
   `2026-07-28T00:34:00Z`
-- Immediate reply and bounce search: no matching inbound messages at
-  `2026-07-28T00:34:54Z`; this is not a substitute for the 24 hour review
+- Live delivery review: 3 hard bounces were verified and suppressed at
+  `2026-07-28T00:57:00Z`; 22 messages remain delivered or pending
+- Observed hard bounce rate: 12 percent, so wave 2 is blocked
+- Registrations: 0 in the live Netlify form at the same review
+- Gmail signature: the old cached block was replaced with the Momentum 360
+  HTML signature and verified in a fresh compose
 
-The campaign is complete and the controlled first wave is live. It is not safe
-to send the remaining 225 at once from Dillon's personal Gmail identity. Gmail
-currently has no authenticated Momentum sender alias, and the prospect list
+The campaign package is complete and the controlled first wave is live. The
+remaining 225 are blocked because wave 1 produced 3 hard bounces out of 25 and
+Gmail currently has no authenticated Momentum sender alias. The prospect list
 has only syntax and domain mail validation rather than individual mailbox
 validation.
 
