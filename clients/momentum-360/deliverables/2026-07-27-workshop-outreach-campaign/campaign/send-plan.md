@@ -29,12 +29,15 @@ alignment.
 
 | Wave | Recipients | Earliest action |
 | --- | ---: | --- |
-| 1 | 25 | Send only after sender and final copy confirmation |
+| 1 | 25 | Sent and verified in Gmail Sent at 2026-07-28T00:34:00Z |
 | 2 | 50 | At least 24 hours after a healthy first wave |
 | 3 | 50 | After bounce, complaint, opt out, and registration review |
 | 4 | 50 | After continued healthy delivery |
 | 5 | 50 | After continued healthy delivery |
 | 6 | 25 | Final clean recipients only |
+
+An immediate post-send search found no matching replies or delivery failures
+at `2026-07-28T00:34:54Z`. Review again after at least 24 hours before wave 2.
 
 Pause immediately for:
 

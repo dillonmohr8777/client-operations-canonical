@@ -13,12 +13,17 @@ Prepared July 27, 2026 for the August 6, 2026 Philadelphia owner workshop.
 - Momentum sender alias in Gmail: not configured
 - Invitation capacity: Dillon Mohr, on behalf of Momentum 360
 - Default Gmail signature artwork: deployed live
-- Delivery status: not sent
+- Delivery status: wave 1 sent and verified, 25 messages
+- Sent verification: Gmail Sent search showed exactly 25 matching messages at
+  `2026-07-28T00:34:00Z`
+- Immediate reply and bounce search: no matching inbound messages at
+  `2026-07-28T00:34:54Z`; this is not a substitute for the 24 hour review
 
-The campaign is complete and ready for a controlled first wave. It is not safe
-to send all 250 at once from Dillon's personal Gmail identity. Gmail currently
-has no authenticated Momentum sender alias, and the prospect list has only
-syntax and domain mail validation rather than individual mailbox validation.
+The campaign is complete and the controlled first wave is live. It is not safe
+to send the remaining 225 at once from Dillon's personal Gmail identity. Gmail
+currently has no authenticated Momentum sender alias, and the prospect list
+has only syntax and domain mail validation rather than individual mailbox
+validation.
 
 ## Package contents
 
@@ -58,17 +63,15 @@ recipient.
 
 ## Production decision
 
-Preferred route:
+Preferred route for the remaining 225:
 
 1. Configure an authenticated `needmomentum.com` sender with SPF, DKIM, and
    DMARC alignment in a mail platform that supports suppression and
    unsubscribe handling.
-2. Send a 25-recipient first wave.
-3. Review hard bounces, spam complaints, opt outs, replies, and registrations.
-4. Continue only if the first wave is healthy.
+2. Review hard bounces, spam complaints, opt outs, replies, and registrations
+   from the completed 25-recipient first wave.
+3. Continue only if the first wave is healthy.
 
-Fallback route:
-
-Send the same 25-recipient first wave from Dillon's currently authenticated
-Gmail account, one personalized message per recipient. Do not expose the list
-with a shared To or Cc field.
+The fallback Gmail route was used for wave 1. Every message was sent
+individually from Dillon's authenticated Gmail account. The list was never
+exposed with a shared To, Cc, or Bcc field.
