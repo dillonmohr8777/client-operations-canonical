@@ -1,5 +1,47 @@
 # August 2026 content calendar — revision log
 
+## 0036 (from 0035)
+
+Adds the Peco Foods case study as a fourth static case-study post on
+**Tuesday, August 25**, an open weekday. Aug 25 spaces the case studies across
+the month (6, 10, 17, 25) rather than doubling them up next to Aug 10 or Aug 17.
+
+The calendar grows from 16 to 17 pages. Peco is page 13, directly after Mon
+Aug 24, and the four pages after it were renumbered 14 through 17.
+
+Page 1 was updated to match:
+
+* Aug 25 is promoted from an unscheduled weekday to a posting day, with the
+  peach cell tint, the post title, and the `Static case study` type label.
+* The slate summary now reads *sixteen posts* and *four static case studies*.
+
+`build/build-peco-page.py` reproduces the change from 0035. The page is built by
+cloning the design chrome from the GTAA page, stripping its glyphs, and redrawing
+the Peco content in the calendar's own typefaces. Those were identified by
+matching measured glyph advances against the original: **Plus Jakarta Sans 800**
+for display headlines, **Plus Jakarta Sans 700** for letterspaced caps and grid
+titles, **DM Sans 400** for body and footers, **DM Sans 500** for grid type
+labels, and **DM Sans 700** for the semibold HEADLINE row. Every other page was
+diffed against 0034 and is unchanged apart from the renumbered footers.
+
+### Confirm before scheduling
+
+* The first-comment link points at `alignhcm.com/case-studies` because the
+  Peco story's own slug is not recorded anywhere in this repository. The other
+  three case-study posts use a specific deep link, so Peco should too.
+* Copy figures were taken from the supplied one-pager: 7,000 employees, three
+  states, three unions, under six months.
+
+### Still open after 0036
+
+* **Maher video consolidation** and the **industries video** remain unaddressed.
+  Both are blocked on source assets that are not in this repository. Cutting the
+  three Maher posts and swapping the industries video in for the Aug 19 SmartCare
+  post will change the slate counts on page 1 again.
+* Pre-existing in 0034 and not touched here: on page 1 the closing line
+  *"Nothing is scheduled or published from this document without approval."*
+  collides with the footer rule. It needs a fix in the source HTML.
+
 ## 0035 (from 0034)
 
 Case-study artwork swap. The three static case-study pages now carry the
