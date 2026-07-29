@@ -1,5 +1,59 @@
 # August 2026 content calendar — revision log
 
+## 0038 (from 0037)
+
+Blog swap and two deletions. The deck goes from 16 pages to 14, and the month from
+fifteen posts to thirteen.
+
+| Page | Date | Was | Now |
+|---|---|---|---|
+| 3 | Wed Aug 5 | Implementation Starts Before Kickoff | **Don't Let the Demos Decide** — the HCM Vendor Selection Checklist blog |
+| 5 | Fri Aug 7 | Six Things Before Payroll Implementation | removed; its replacement blog now sits on Aug 5 |
+| 6 | Wed Aug 12 | Train for the Job, Not the Screen | unchanged copy, **interim still** from the industries video |
+| 14 | Wed Aug 26 | One System, Three Learning Paths | removed as a duplicate of the Aug 12 training message |
+
+Aug 7, Aug 26, and Aug 31 are all unscheduled weekdays now.
+
+### Aug 5, the new blog post
+
+Copy is drawn from the checklist itself, filed here as
+`hcm-vendor-selection-checklist-draft.pdf`. Its spine is Maher's own framing:
+disciplined evaluations turn into presentation contests, and the fix is a better
+decision model rather than better demos. The still is the supplied hero image,
+padded to the frame's 16:9 with the card's own navy so nothing stretches.
+
+Two things to confirm before this ships:
+
+* The checklist PDF is marked *Draft for editorial and design review*, so the
+  first-comment URL `alignhcm.com/blog/hcm-vendor-selection-checklist` is a
+  reasonable guess, not a verified link. Every other post on the slate uses a real
+  deep link.
+* The blog is explicitly vendor agnostic, which is worth keeping that way in the
+  post copy. It currently names no vendor.
+
+### Aug 12's still is a placeholder
+
+The frame is the industries video's `Build one workforce foundation` panel. It is
+a capability frame on a training post, so it does not really match the message.
+That is deliberate: the request was to put an industries still there, and a
+purpose-made screenshot is coming. `video-stills/industries-foundation.png` is the
+file to replace.
+
+### Also fixed
+
+* `centre` had slipped into the Aug 19 copy in 0037. The deck is US spelling
+  throughout, so it now reads `center`.
+* The Aug 5 copy panel ran to y=713.9 in the source deck, which put its bottom
+  border straight through the footer text. The new copy is shorter, so the panel is
+  normalised to the 689.4 bottom every other page uses and the footer chrome below
+  it was rebuilt.
+
+Every page that was not touched is word-for-word identical to 0037. The only
+extraction difference on renumbered pages is the reading order of
+`Confidential Information` relative to the redrawn page number.
+
+`build/build-0038.py` reproduces this revision from 0037.
+
 ## 0037 (from 0036)
 
 Video slate rebuilt. Three pages get a frame grab from their own finished asset
