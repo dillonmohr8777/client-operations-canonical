@@ -1,5 +1,43 @@
 # August 2026 content calendar — revision log
 
+## 0041 (from 0040)
+
+Aug 12 is deleted, so the industries film backs one post rather than two. Aug 19
+keeps it. 14 pages to 13, thirteen posts to twelve.
+
+Aug 12 returns to an unscheduled weekday, which leaves Aug 7, Aug 12, Aug 26, and
+Aug 31 all open.
+
+### Knock-on edits
+
+* Original animations drop from four to three, so the slate summary now reads
+  *twelve posts: three original animations, four static case studies, one brand
+  video, one founder blog post, one podcast conversation, and two expert and
+  talking head videos.*
+* **The cover's cadence claim was no longer true.** With Aug 12 gone the week of
+  Aug 10 carries two posts, against a cover that promised *three or four posts per
+  week*. That line now reads *two to four*.
+
+| Week | Posts |
+|---|---|
+| Aug 3–7 | 3 |
+| Aug 10–14 | **2** |
+| Aug 17–21 | 3 |
+| Aug 24–28 | 4 |
+| Aug 31 | 0 |
+
+Worth a decision rather than leaving as is: Aug 12 is an open Wednesday in the one
+light week, and `Implementation Starts Before Kickoff` (AN01) is a produced and
+QA'd 30s animation that has had nowhere to go since 0038 displaced it from Aug 5.
+Putting it on Aug 12 would restore the three-post week and use the asset.
+
+### Verification
+
+The case-study audit from 0039 runs on the output and all four pages are correct,
+which matters because page 4 and page 12 still share image xref 40 and page 4
+depends on the GTAA overlay surviving the page deletion. Every surviving page was
+compared word-for-word against 0040.
+
 ## 0040 (from 0039)
 
 Aug 12 is rewritten as industry solutions so the copy matches the still already on
