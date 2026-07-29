@@ -1,12 +1,11 @@
 # Navy intro and outro cards
 
-Design mockups for reworking the two ends of the industries video onto brand navy
-so the reversed Align logo reads as supplied. The light body of the video is not
-touched, so the ends become a branded sting rather than a change of look
-throughout.
+Reworks the two ends of the industries video onto brand navy so the reversed Align
+logo reads as supplied. The light body of the video is not touched, so the ends
+become a branded sting rather than a change of look throughout.
 
-`make_navy_cards.py` generates `navy-plate.png`, `card-intro-navy.png`, and
-`card-outro-navy.png`.
+`make-plate.py` generates the plate. It is fully procedural with no dependency on
+the source video, and reproduces the exact plate used in the delivered cut.
 
 ## The plate mirrors the deck's own gradient
 
@@ -29,36 +28,31 @@ system as the body rather than a generic dark slate.
 
 ## Outro card composition
 
-The card's own elements are lifted from the video's frame and recoloured only
-where a dark ground requires it:
-
-| Element | Source in frame | Treatment |
+| Element | Source | Treatment |
 |---|---|---|
-| Align mark | y144..471 | replaced with the reversed logo |
-| divider rule | y628..632 | kept orange, reads fine on navy |
-| `Align moves at your speed.` | y693..763 | navy to warm white, it would vanish otherwise |
-| `Which is always right now.` | y786..858 | kept orange |
-| `ALIGNHCM.COM` | y906..928 | kept orange |
-| top rule | y0..6 | orange over deep navy |
+| Align mark | `assets/logo.png` | reversed lockup, same placement as the intro |
+| `HUMAN CAPITAL MANAGEMENT` | `assets/tagline.png` | reversed, same placement as the intro |
+| `ALIGNHCM.COM` | lifted from frame y906..928 | kept orange, it reads on navy |
+| top rule | drawn | orange over deep navy |
 
-`HUMAN CAPITAL MANAGEMENT` stays off the outro, per the earlier decision, and
-appears only in the intro.
+`ALIGNHCM.COM` is the only element still lifted from the video's own frame, which
+is why `assets/url_orange.png` is committed.
 
 ## Built and running
 
-`./build-navy.sh <source.mp4>` produces the finished 1920x1080, 30fps, 62.7s cut
-(1,881 frames). Three segments joined in a single encode:
+`./build-navy.sh <source.mp4>` produces the finished 1920x1080, 30fps, 64.6s cut
+(1,938 frames). Three segments joined in a single encode:
 
 | Segment | Frames | Source |
 |---|---|---|
-| navy particle intro | 87 (2.9s) | `intro.html` |
+| navy particle intro | 147 (4.9s) | `intro.html` |
 | light body, untouched | 1,638 (54.6s) | original frames 162..1799 |
 | navy closing card | 174 (5.8s) | `outro.html` |
 
-Joins are crossfades: 0.30s from the intro into the body at 2.60s, hidden under
-the intro's white flash, and 0.40s from the body into the closing card at 56.90s,
+Joins are crossfades: 0.30s from the intro into the body at 4.60s, hidden under
+the intro's white flash, and 0.40s from the body into the closing card at 58.80s,
 so the SmartCare page dissolves to navy. The closing card is 174 frames precisely
-so the total runtime matches the original's own outro length.
+so it occupies the same span the original's own outro did.
 
 ### Intro on navy
 
@@ -69,12 +63,25 @@ a dark ground. The closing white flash is unchanged and still works, because it
 now flashes from navy through white into the cream body, which makes the handoff
 punchier than it was on cream.
 
+The lockup holds for roughly 2.2s before the burst. The extra time went into the
+hold rather than the assemble, so the mark is readable without the entrance
+feeling slow.
+
 ### Closing card
 
+Resolves to the **same lockup the intro ends on**: identical asset, identical
+position (`490,290` for the mark, `482,730` for the tagline), identical scale, so
+the mark does not shift between the two ends. `ALIGNHCM.COM` carries the close
+beneath it.
+
 Staggered build rather than a static plate: the mark fades up with a whisper of
-scale, the divider draws outward from the centre, then the two sign-off lines and
-the URL rise in sequence, finishing at 1.64s and holding. A slow field of 220
-drifting dust motes keeps the five-second hold from looking like a freeze frame.
+scale, then the tagline and the URL rise in sequence, finishing at 1.45s and
+holding. A slow field of 220 drifting dust motes keeps the five-second hold from
+looking like a freeze frame.
+
+The earlier sign-off lines, `Align moves at your speed.` and `Which is always
+right now.`, were removed, and the divider rule went with them since it existed
+only to separate them from the tagline.
 
 ## Still pending the vector
 
@@ -84,4 +91,5 @@ in motion but it is not as crisp as the mark the original video drew at 1043px.
 When a vector or a 2000px+ export arrives, replace `assets/logo.png` and
 `assets/tagline.png` and re-run; nothing else needs to change.
 
-One open layout note: the outro divider sits fairly tight under the mark.
+`assets/plate.png` is generated, not committed, and so are the frame
+directories. Everything else needed to rebuild is here.

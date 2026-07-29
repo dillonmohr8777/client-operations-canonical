@@ -21,26 +21,22 @@ const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
 const clamp01 = t => t < 0 ? 0 : t > 1 ? 1 : t;
 const ramp = (t, a, b) => clamp01((t - a) / (b - a));
 
-// staggered reveal: the mark lands first, then the sign-off builds under it
+// The closing card resolves to the same lockup the intro ends on, so the mark
+// reads identically at both ends. The sign-off lines are gone; the URL closes.
 const T = {
-  logoIn:   [0.10, 0.72],
-  divIn:    [0.58, 0.88],
-  slog1In:  [0.78, 1.14],
-  slog2In:  [0.98, 1.34],
-  urlIn:    [1.28, 1.64],
+  logoIn: [0.10, 0.72],
+  tagIn:  [0.62, 0.98],
+  urlIn:  [1.05, 1.45],
 };
 
-const LAYOUT = {
-  logo:   { x: 490, y: 180 },
-  div:    { cy: 600 },
-  slog1:  { cy: 670 },
-  slog2:  { cy: 760 },
-  url:    { cy: 870 },
-};
+// Identical placement to intro.html so the mark does not shift between the ends.
+const LOGO_POS = { x: 490, y: 290 };
+const TAG_POS  = { x: 482, y: 730 };
+const URL_CY   = 880;
 
 const cv = document.getElementById('stage');
 const ctx = cv.getContext('2d', { alpha: false });
-let plate, logo, slog1, slog2, url, div, dust = [];
+let plate, logo, tag, url, dust = [];
 
 function loadImage(src) {
   return new Promise((res, rej) => {
@@ -52,16 +48,13 @@ function loadImage(src) {
 }
 
 async function init() {
-  [plate, logo, slog1, slog2, url, div] = await Promise.all([
+  [plate, logo, tag, url] = await Promise.all([
     loadImage('assets/plate.png'),
     loadImage('assets/logo.png'),
-    loadImage('assets/slogan1_light.png'),
-    loadImage('assets/slogan2_orange.png'),
+    loadImage('assets/tagline.png'),
     loadImage('assets/url_orange.png'),
-    loadImage('assets/divider_orange.png'),
   ]);
 
-  // slow drifting dust so the card is not a dead still for five seconds
   const rnd = mulberry32(20260826);
   for (let i = 0; i < 220; i++) {
     dust.push({
@@ -94,7 +87,7 @@ function drawDust(t) {
 function bloom(t) {
   const a = ramp(t, T.logoIn[0], T.logoIn[1]) * 0.5;
   if (a <= 0.004) return;
-  const cx = 960, cy = LAYOUT.logo.y + logo.height / 2;
+  const cx = 960, cy = LOGO_POS.y + logo.height / 2;
   const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, 640);
   g.addColorStop(0, `rgba(150,190,255,${a * 0.8})`);
   g.addColorStop(0.45, `rgba(70,120,210,${a * 0.45})`);
@@ -103,53 +96,45 @@ function bloom(t) {
   ctx.fillRect(0, 0, W, H);
 }
 
-function put(img, cy, span, t, rise) {
-  const k = ramp(t, span[0], span[1]);
-  if (k <= 0.004) return;
-  const e = easeOutCubic(k);
-  ctx.save();
-  ctx.globalAlpha = e;
-  ctx.drawImage(img, Math.round(960 - img.width / 2),
-                Math.round(cy - img.height / 2 + (1 - e) * rise));
-  ctx.restore();
-}
-
 window.drawFrame = function (frame) {
   const t = frame / FPS;
   ctx.drawImage(plate, 0, 0, W, H);
   drawDust(t);
   bloom(t);
 
-  // mark: fades up with a whisper of scale so it settles rather than pops
+  // mark, matching the intro's resting position and scale
   const k = ramp(t, T.logoIn[0], T.logoIn[1]);
   if (k > 0.004) {
     const e = easeOutCubic(k);
     const s = 0.965 + 0.035 * e;
-    const cx = 960, cy = LAYOUT.logo.y + logo.height / 2;
+    const cx = 960, cy = LOGO_POS.y + logo.height / 2;
     ctx.save();
     ctx.globalAlpha = e;
     ctx.translate(cx, cy);
     ctx.scale(s, s);
     ctx.translate(-cx, -cy);
-    ctx.drawImage(logo, LAYOUT.logo.x, LAYOUT.logo.y);
+    ctx.drawImage(logo, LOGO_POS.x, LOGO_POS.y);
     ctx.restore();
   }
 
-  // divider draws outward from the centre
-  const dk = ramp(t, T.divIn[0], T.divIn[1]);
-  if (dk > 0.004) {
-    const e = easeOutCubic(dk);
-    const w = div.width * e, h = div.height;
+  const tk = ramp(t, T.tagIn[0], T.tagIn[1]);
+  if (tk > 0.004) {
+    const e = easeOutCubic(tk);
     ctx.save();
     ctx.globalAlpha = e;
-    ctx.drawImage(div, 0, 0, div.width, h,
-                  Math.round(960 - w / 2), Math.round(LAYOUT.div.cy - h / 2), w, h);
+    ctx.drawImage(tag, TAG_POS.x, Math.round(TAG_POS.y + (1 - e) * 10));
     ctx.restore();
   }
 
-  put(slog1, LAYOUT.slog1.cy, T.slog1In, t, 14);
-  put(slog2, LAYOUT.slog2.cy, T.slog2In, t, 14);
-  put(url,   LAYOUT.url.cy,   T.urlIn,   t, 10);
+  const uk = ramp(t, T.urlIn[0], T.urlIn[1]);
+  if (uk > 0.004) {
+    const e = easeOutCubic(uk);
+    ctx.save();
+    ctx.globalAlpha = e;
+    ctx.drawImage(url, Math.round(960 - url.width / 2),
+                  Math.round(URL_CY - url.height / 2 + (1 - e) * 8));
+    ctx.restore();
+  }
 
   // orange top rule, matching the deck's chrome
   ctx.fillStyle = 'rgba(231,104,45,0.95)';

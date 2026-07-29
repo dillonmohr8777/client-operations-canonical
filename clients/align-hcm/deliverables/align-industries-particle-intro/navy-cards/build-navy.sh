@@ -17,11 +17,11 @@ cd "$HERE"
 BODY_IN=162           # t=5.40s, first settled content page after the original's logo open
 BODY_OUT=1800         # t=60.00s, where the original's own closing card starts
 
-XF1_DUR=0.30; XF1_AT=2.60     # intro (87f / 2.9s) into the body, under the flash
-XF2_DUR=0.40; XF2_AT=56.90    # body into the navy closing card
+XF1_DUR=0.30; XF1_AT=4.60     # intro (147f / 4.9s) into the body, under the flash
+XF2_DUR=0.40; XF2_AT=58.80    # body into the navy closing card
 
 echo "1/3  navy plate"
-python3 make_navy_cards.py
+python3 make-plate.py
 
 echo "2/3  rendering cards"
 node render.mjs
