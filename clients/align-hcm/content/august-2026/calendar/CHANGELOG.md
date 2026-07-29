@@ -1,5 +1,46 @@
 # August 2026 content calendar — revision log
 
+## 0039 (from 0038)
+
+**Bug fix.** The GTAA page had been showing the Peco Foods artwork since 0036.
+Page 4 now carries the GTAA one-pager again. Nothing else changed: every page's
+text is identical to 0038 and the other three case-study pages were already
+correct.
+
+### What went wrong
+
+0036 built the Peco page with `fullcopy_page` from the GTAA page. A full copy
+shares the image XObject with its source, so the later `replace_image` call on the
+clone rewrote the single object both pages pointed at. The Peco page came out right
+and the GTAA page silently inherited Peco's artwork.
+
+It survived three revisions because the 0036 check only compared image
+*dimensions*, and all four stills are 576x1024. The visual review that round
+covered the new Peco page and page 1, not page 4.
+
+### Why the fix is an overlay
+
+Page 4 and page 12 still both reference xref 40, so `replace_image` cannot fix
+this: it would put GTAA's artwork on the Peco page instead. 0039 inserts the GTAA
+still as a new image object on page 4 only, on the exact frame the old one
+occupied, so it covers it completely and page 12 is untouched.
+
+### The check that should have existed
+
+`build/build-0039.py` audits by decoding the image actually visible in each
+case-study frame and hashing its pixels against the source files in
+`case-study-statics/`. It runs before and after the fix and asserts all four pages
+match. Two details it has to get right: pick the *last* image landing on the frame,
+since an overlay sits on top of the old one in content-stream order, and match on
+the frame rect so the drop-shadow image behind it is skipped.
+
+| Page | Expected | 0038 | 0039 |
+|---|---|---|---|
+| 4 | GTAA | Peco | GTAA |
+| 5 | Beumer | Beumer | Beumer |
+| 8 | Troon | Troon | Troon |
+| 12 | Peco | Peco | Peco |
+
 ## 0038 (from 0037)
 
 Blog swap and two deletions. The deck goes from 16 pages to 14, and the month from
