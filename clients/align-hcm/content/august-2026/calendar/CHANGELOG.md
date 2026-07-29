@@ -1,5 +1,61 @@
 # August 2026 content calendar — revision log
 
+## 0037 (from 0036)
+
+Video slate rebuilt. Three pages get a frame grab from their own finished asset
+plus fresh copy, and the Maher podcast posts consolidate from three down to one.
+The deck goes from 17 pages to 16, and the month from sixteen posts to fifteen.
+
+| Page | Date | Was | Now |
+|---|---|---|---|
+| 2 | Mon Aug 3 | The Record Trap (Maher clip) | **The Team That Finishes It** — the Who We Are brand video |
+| 10 | Wed Aug 19 | Go Live Is the Starting Line (SmartCare) | **Every Industry Depends On It** — the finished industries video |
+| 12 | Mon Aug 24 | Treat the Platform Like a Product (Maher recut) | **HR at the Table** — the 2m13s Maher and Brent Skinner conversation |
+| 17 | Mon Aug 31 | Speak the CFO's Language (Maher recut) | removed; Aug 31 returns to an unscheduled weekday |
+
+Deleting the last page needed no footer renumbering, and every page that was not
+rebuilt was diffed against 0036 and is textually identical.
+
+### The competitor references are now gone
+
+The Aug 19 SmartCare still carried a slide reading
+`UKG | Dayforce | Paylocity | Workday | ADP | And more`. Replacing that post with
+the industries video removes it. Sweeping the whole deck afterwards, the only
+remaining platform-vendor mention is `ADP to UKG Pro` in the Beumer case study on
+page 6, which is a factual description of that migration rather than a vendor
+list, so it stays.
+
+**Carry-over risk:** the Who We Are video itself still contains the same panel, at
+about 21s, showing UKG, Dayforce, Workday, and ADP logos under
+`ONE PARTNER, EVERY PLATFORM`. The still chosen for page 2 is from 18.5s and does
+not include it, but the video does, so it needs a decision before that post ships.
+
+### Stills
+
+Frames were chosen by scanning each asset rather than grabbing an arbitrary
+timestamp. Sources are in `video-stills/`.
+
+* `who-we-are.png` — 18.5s, `We are the team that finishes it.`, the positioning
+  line. Alternate worth considering: 10.8s, the five walls with the pill list,
+  which is more visually arresting.
+* `industries.png` — 8.6s, the title card, which states the video's thesis.
+* `maher.png` — 62.5s. The captions animate word by word, so most frames land
+  mid-phrase. This was picked by measuring caption ink across the whole video at
+  2fps and taking the fullest block, which gives a four-line caption with both
+  speakers engaged.
+
+Each still is padded to its frame's exact aspect ratio with the card's own navy
+before placement, so nothing is stretched and the padding is invisible against the
+card. Page 10's frame is 16:9; pages 2 and 12 use the wider 1200x627 frame.
+
+### Copy
+
+All three posts carry new copy drawn from the asset's own script, wrapped to the
+video-page measure of 424pt at 8.1pt. Each lands at exactly eight lines across six
+paragraphs, matching the rhythm of the page it replaced.
+
+`build/build-0037.py` reproduces this revision from 0036.
+
 ## 0036 (from 0035)
 
 Adds the Peco Foods case study as a fourth static case-study post on
