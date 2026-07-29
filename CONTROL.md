@@ -508,15 +508,15 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-07-28T12:15:02.8825808+00:00`
-- **Overall:** `healthy-with-human-gates`
-- **Queue:** revision `324`, `83` work items, normal `2/3`, emergency `0/1` active
+- **As of:** `2026-07-29T12:03:59.2878136+00:00`
+- **Overall:** `degraded`
+- **Queue:** revision `328`, `84` work items, normal `2/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `8/21` canonical clients registered, `2/65` systems verified, `6` exact Bitwarden item locators
-- **Gmail client history:** `22` records audited, `21` active promoted, `0` quarantined; `2555` distinct messages across `897` threads
+- **Gmail client history:** `23` records audited, `22` active promoted, `0` quarantined; `2555` distinct messages across `897` threads
 - **Slack client history:** `complete`; conversation inventory established `True`; scope upgrade required `False`; requested upload scope `files:write`
-- **Credential bridge:** `locked`, secure bootstrap present `True`, review `go-no-critical-or-high-findings-integrity-verified`
+- **Credential bridge:** `unknown`, secure bootstrap present `False`, review `unverified-integrity-mismatch`
 - **Scheduled mechanisms:**
   - `Codex-Morning-Orchestrator-Preflight`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-GmailBridge`: enabled `True`, state `Ready`, prepare-only `True`, last result `0`
@@ -524,10 +524,11 @@ Mode: `manual-pilot`
   - `DillonAgentOS-DailyBrief`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
-  - `MarketingChief-DailyCalibration`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
-  - `MarketingChief-SitesBridge`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
+  - `MarketingChief-DailyCalibration`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
+  - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `1`
 - **Human gates:** `active_client_exact_bw_item_mapping`
 - **Deferred actions:** `secondary_exposed_password_rotation`
+- **Warnings:** MarketingChief-SitesBridge last result is 1; Bitwarden bridge integrity does not match the independently reviewed build; execution was refused
 
 ## Standing operating contract
 
