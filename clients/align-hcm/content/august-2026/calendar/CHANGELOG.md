@@ -1,5 +1,58 @@
 # August 2026 content calendar — revision log
 
+## 0042 (from 0041)
+
+Rebalances the month to **three posts a week** by moving one post, not several.
+
+`HR at the Table` moves from Mon Aug 24 to Wed Aug 12. Nothing else changes: all
+twelve posts survive, one date changed, and the deck stays in date order.
+
+| Week | 0041 | 0042 |
+|---|---|---|
+| Aug 3–7 | 3 | 3 |
+| Aug 10–14 | 2 | 3 |
+| Aug 17–21 | 3 | 3 |
+| Aug 24–28 | 4 | 3 |
+
+The cover's cadence line goes back to `three posts per week`, which is now exactly
+true for every working week.
+
+### Why that post moved and not another
+
+Two assets on the slate are still unproduced: the Joann video on Aug 20 and Moe's
+Four Decisions on Aug 27, whose ASSET row reads `to record`. Moving either earlier
+would compress a production runway, so both stayed put. That left three produced
+candidates in the four-post week:
+
+| Candidate | Effect if moved to Aug 12 |
+|---|---|
+| Peco, Aug 25 | two case studies in week two, and Beumer and Peco are both manufacturing stories |
+| Different Missions, Aug 28 | lands two days from Public Service Cannot Pause, both public-sector animations |
+| **HR at the Table, Aug 24** | week two gets a case study, a podcast, and an animation |
+
+The result keeps **exactly one case study per week** (GTAA, Beumer, Troon, Peco)
+and puts no two same-theme posts next to each other.
+
+| Week | Mix |
+|---|---|
+| Aug 3–7 | brand video, founder blog, case study |
+| Aug 10–14 | case study, podcast, animation |
+| Aug 17–21 | case study, animation, talking-head video |
+| Aug 24–28 | case study, expert video, animation |
+
+Aug 31 stays empty. A single Monday in a fifth week is a weak place to close a
+month, and the alternative was leaving a two-post week.
+
+### Verification
+
+Page order is asserted to be chronological, the set of post titles is compared
+against 0041 so nothing can be lost or duplicated by the reorder, and the
+case-study audit runs on the output. Titles are matched by their 15pt display span
+rather than reading order, because on a redated page the redrawn eyebrow is appended
+after the title in the content stream.
+
+Open weekdays now: Aug 4, 7, 11, 13, 18, 21, 24, 26, 31.
+
 ## 0041 (from 0040)
 
 Aug 12 is deleted, so the industries film backs one post rather than two. Aug 19
