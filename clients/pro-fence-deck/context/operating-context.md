@@ -72,4 +72,3 @@ project media.
 | Redacted exact-route Gmail audit | 2026-06-16 through 2026-07-28 | `state/client-history-research/gmail-pro-fence-deck-history-2026-07-28.json#client=pro-fence-deck` |
 | Portfolio ranking | 2026-07-28 | `state/portfolio-priorities.json#client=pro-fence-deck` |
 | Video-factory source policy | 2026-07-28 | `clients/pro-fence-deck/video-factory/profile.json` |
-
