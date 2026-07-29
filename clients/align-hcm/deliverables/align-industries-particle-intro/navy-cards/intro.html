@@ -1,0 +1,224 @@
+<style>
+  html, body { margin: 0; padding: 0; background: #000; }
+  #stage { display: block; width: 1920px; height: 1080px; }
+</style>
+<canvas id="stage" width="1920" height="1080"></canvas>
+<script>
+const W = 1920, H = 1080, FPS = 30, DUR = 2.9;
+const TOTAL = Math.round(DUR * FPS);
+
+// Deterministic PRNG so every render of a given frame is identical.
+function mulberry32(seed) {
+  return function () {
+    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+// --- timeline (seconds) -----------------------------------------------------
+const T = {
+  assembleIn:  0.15,
+  assembleOut: 1.35,   // last particle lands
+  crystalIn:   1.15,   // crisp logo starts taking over
+  crystalOut:  1.48,
+  tagIn:       1.45,
+  tagOut:      1.72,
+  holdEnd:     1.95,   // dispersal begins
+  scatterEnd:  2.62,   // particles fully gone
+  boomIn:      2.48,   // fast flash
+  boomPeak:    2.68,
+  end:         DUR,
+};
+
+const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+const easeInCubic  = t => t * t * t;
+const easeInOut    = t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+const clamp01 = t => t < 0 ? 0 : t > 1 ? 1 : t;
+const ramp = (t, a, b) => clamp01((t - a) / (b - a));
+
+const cv = document.getElementById('stage');
+const ctx = cv.getContext('2d', { alpha: false });
+
+const LOGO_POS = { x: 490, y: 290 };   // 940x360 reversed lockup, centred
+const TAG_POS  = { x: 482, y: 730 };
+
+let bgplate, logoImg, tagImg, particles = [], MARK;
+
+function loadImage(src) {
+  return new Promise(res => { const i = new Image(); i.onload = () => res(i); i.src = src; });
+}
+
+async function init() {
+  [bgplate, logoImg, tagImg] = await Promise.all([
+    loadImage('assets/plate.png'),
+    loadImage('assets/logo.png'),
+    loadImage('assets/tagline.png'),
+  ]);
+
+  // Sample particle targets from the logo's opaque pixels.
+  const off = document.createElement('canvas');
+  off.width = logoImg.width; off.height = logoImg.height;
+  const octx = off.getContext('2d');
+  octx.drawImage(logoImg, 0, 0);
+  const data = octx.getImageData(0, 0, off.width, off.height).data;
+
+  const rnd = mulberry32(20260825);
+  const STEP = 6;                       // pixel grid stride -> particle count
+  const pts = [];
+  for (let y = 0; y < off.height; y += STEP) {
+    for (let x = 0; x < off.width; x += STEP) {
+      const i = (y * off.width + x) * 4;
+      if (data[i + 3] < 190) continue;
+      pts.push({
+        tx: LOGO_POS.x + x + (rnd() - 0.5) * STEP,
+        ty: LOGO_POS.y + y + (rnd() - 0.5) * STEP,
+        r: data[i], g: data[i + 1], b: data[i + 2],
+      });
+    }
+  }
+
+  // Mark centre, used for the radial converge and the outward burst.
+  let cx = 0, cy = 0;
+  for (const p of pts) { cx += p.tx; cy += p.ty; }
+  MARK = { x: cx / pts.length, y: cy / pts.length };
+
+  for (const p of pts) {
+    // start on a wide ellipse outside the frame, biased to the particle's own side
+    const baseAng = Math.atan2(p.ty - MARK.y, p.tx - MARK.x);
+    const ang = baseAng + (rnd() - 0.5) * 2.4;
+    const rad = 900 + rnd() * 1100;
+    const dx = p.tx - MARK.x, dy = p.ty - MARK.y;
+    const outAng = Math.atan2(dy, dx) + (rnd() - 0.5) * 0.5;
+    const spread = Math.hypot(dx, dy) / 520;   // outer particles burst harder
+    particles.push({
+      ...p,
+      sx: MARK.x + Math.cos(ang) * rad * 1.15,
+      sy: MARK.y + Math.sin(ang) * rad * 0.72,
+      delay: rnd() * 0.42,                     // stagger the arrival
+      swirl: (rnd() - 0.5) * 0.9,
+      size: 2.4 + rnd() * 2.6,
+      vx: Math.cos(outAng) * (420 + rnd() * 900) * (0.55 + spread),
+      vy: Math.sin(outAng) * (300 + rnd() * 720) * (0.55 + spread) - 90,
+      spin: (rnd() - 0.5) * 700,
+      jitter: rnd() * Math.PI * 2,
+    });
+  }
+  window.__ready = true;
+  window.__count = particles.length;
+}
+
+// --- drawing ----------------------------------------------------------------
+
+function drawParticles(t) {
+  const assembling = t < T.holdEnd;
+  ctx.save();
+  for (const p of particles) {
+    let x, y, alpha, size = p.size;
+
+    if (assembling) {
+      const span = (T.assembleOut - T.assembleIn) - 0.42;
+      const local = (t - T.assembleIn - p.delay) / span;
+      if (local <= 0) continue;
+      const e = easeOutCubic(clamp01(local));
+      // travel with a decaying swirl so the converge curves instead of going straight
+      const sw = p.swirl * (1 - e) * 0.9;
+      const bx = p.sx + (p.tx - p.sx) * e;
+      const by = p.sy + (p.ty - p.sy) * e;
+      const dx = bx - MARK.x, dy = by - MARK.y;
+      x = MARK.x + dx * Math.cos(sw) - dy * Math.sin(sw);
+      y = MARK.y + dx * Math.sin(sw) + dy * Math.cos(sw);
+      alpha = clamp01(local * 4) * (1 - ramp(t, T.crystalIn, T.crystalOut));
+      size *= 1 + (1 - e) * 0.75;
+      // speed streak
+      if (e < 0.93) {
+        const trail = Math.min(30, Math.hypot(p.tx - p.sx, p.ty - p.sy) * (1 - e) * 0.055);
+        ctx.strokeStyle = `rgba(${p.r},${p.g},${p.b},${alpha * 0.16})`;
+        ctx.lineWidth = Math.max(0.7, size * 0.42);
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + (bx - x) * 0.2 - (p.tx - p.sx) / Math.hypot(p.tx - p.sx, p.ty - p.sy) * trail,
+                   y + (by - y) * 0.2 - (p.ty - p.sy) / Math.hypot(p.tx - p.sx, p.ty - p.sy) * trail);
+        ctx.stroke();
+      }
+    } else {
+      const dt = t - T.holdEnd;
+      const k = clamp01(dt / (T.scatterEnd - T.holdEnd));
+      const drag = 1 - Math.pow(1 - k, 2.2);
+      x = p.tx + p.vx * drag * 0.55 + Math.sin(p.jitter + dt * 7) * 18 * k;
+      y = p.ty + p.vy * drag * 0.55 + 240 * k * k;
+      alpha = clamp01(dt / 0.10) * (1 - easeInCubic(k));
+      size *= 1 + k * 1.4;
+    }
+
+    if (alpha <= 0.01) continue;
+    ctx.fillStyle = `rgba(${p.r},${p.g},${p.b},${alpha})`;
+    ctx.beginPath();
+    ctx.arc(x, y, size * 0.5, 0, 6.2832);
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+function drawGlow(t) {
+  // warm bloom behind the mark as it crystallises
+  const a = ramp(t, T.crystalIn, T.tagIn) * (1 - ramp(t, T.holdEnd, T.scatterEnd)) * 0.42;
+  if (a <= 0.005) return;
+  const g = ctx.createRadialGradient(MARK.x, MARK.y, 0, MARK.x, MARK.y, 720);
+  g.addColorStop(0, `rgba(150,190,255,${a * 0.85})`);
+  g.addColorStop(0.45, `rgba(70,120,210,${a * 0.5})`);
+  g.addColorStop(1, 'rgba(40,80,160,0)');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, W, H);
+}
+
+function drawBoom(t) {
+  const rise = ramp(t, T.boomIn, T.boomPeak);
+  const fall = ramp(t, T.boomPeak, T.end + 0.30);   // still lit when we hand off
+  const a = (easeOutCubic(rise) - easeInCubic(fall) * 0.72) * 0.98;
+  if (a <= 0.004) return;
+  const rad = 260 + easeOutCubic(rise) * 1750 + fall * 620;
+  const g = ctx.createRadialGradient(MARK.x, MARK.y, 0, MARK.x, MARK.y, rad);
+  g.addColorStop(0, `rgba(255,255,255,${a})`);
+  g.addColorStop(0.55, `rgba(255,246,238,${a * 0.92})`);
+  g.addColorStop(1, `rgba(255,238,224,0)`);
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, W, H);
+}
+
+window.drawFrame = function (frame) {
+  const t = frame / FPS;
+  ctx.drawImage(bgplate, 0, 0, W, H);
+  drawGlow(t);
+  drawParticles(t);
+
+  // crisp logo takes over from the particle field, then fades for the burst
+  const logoA = ramp(t, T.crystalIn, T.crystalOut) * (1 - ramp(t, T.holdEnd, T.holdEnd + 0.20));
+  if (logoA > 0.004) {
+    ctx.save();
+    ctx.globalAlpha = logoA;
+    const s = 1 + (1 - ramp(t, T.crystalIn, T.crystalOut + 0.28)) * 0.014;
+    ctx.translate(MARK.x, MARK.y);
+    ctx.scale(s, s);
+    ctx.translate(-MARK.x, -MARK.y);
+    ctx.drawImage(logoImg, LOGO_POS.x, LOGO_POS.y);
+    ctx.restore();
+  }
+
+  const tagA = ramp(t, T.tagIn, T.tagOut) * (1 - ramp(t, T.holdEnd, T.holdEnd + 0.14));
+  if (tagA > 0.004) {
+    ctx.save();
+    ctx.globalAlpha = tagA;
+    const rise = (1 - ramp(t, T.tagIn, T.tagOut)) * 10;
+    ctx.drawImage(tagImg, TAG_POS.x, TAG_POS.y + rise);
+    ctx.restore();
+  }
+
+  drawBoom(t);
+  return t;
+};
+
+window.__total = TOTAL;
+init();
+</script>

@@ -44,15 +44,44 @@ where a dark ground requires it:
 `HUMAN CAPITAL MANAGEMENT` stays off the outro, per the earlier decision, and
 appears only in the intro.
 
-## Not final
+## Built and running
 
-The logo in both mockups is placed at its native 660px rather than the 1043px
-footprint the video uses, because upscaling the current capture 1.58x looks soft.
-These are for approving the design direction. When the vector or a 2000px+ export
-arrives, the logo layer scales up and the cards are re-rendered, then the intro's
-particle system is re-pointed at the reversed mark so the particles assemble in
-white and orange instead of navy and orange.
+`./build-navy.sh <source.mp4>` produces the finished 1920x1080, 30fps, 62.7s cut
+(1,881 frames). Three segments joined in a single encode:
 
-Two smaller adjustments to make at that point: the intro lockup wants to sit a
-little larger and more optically centred, and the outro divider is slightly tight
-under the mark.
+| Segment | Frames | Source |
+|---|---|---|
+| navy particle intro | 87 (2.9s) | `intro.html` |
+| light body, untouched | 1,638 (54.6s) | original frames 162..1799 |
+| navy closing card | 174 (5.8s) | `outro.html` |
+
+Joins are crossfades: 0.30s from the intro into the body at 2.60s, hidden under
+the intro's white flash, and 0.40s from the body into the closing card at 56.90s,
+so the SmartCare page dissolves to navy. The closing card is 174 frames precisely
+so the total runtime matches the original's own outro length.
+
+### Intro on navy
+
+Same particle system as the cream version, re-pointed at the reversed mark, so the
+particles now carry white and orange instead of navy and orange. 3,134 particles.
+The crystallisation bloom was changed from warm cream to cool blue, which reads on
+a dark ground. The closing white flash is unchanged and still works, because it
+now flashes from navy through white into the cream body, which makes the handoff
+punchier than it was on cream.
+
+### Closing card
+
+Staggered build rather than a static plate: the mark fades up with a whisper of
+scale, the divider draws outward from the centre, then the two sign-off lines and
+the URL rise in sequence, finishing at 1.64s and holding. A slow field of 220
+drifting dust motes keeps the five-second hold from looking like a freeze frame.
+
+## Still pending the vector
+
+The logo is placed at 940px wide, a 1.42x upscale of the capture, with an unsharp
+pass on the RGB channels only so the alpha edges do not pick up halos. It holds up
+in motion but it is not as crisp as the mark the original video drew at 1043px.
+When a vector or a 2000px+ export arrives, replace `assets/logo.png` and
+`assets/tagline.png` and re-run; nothing else needs to change.
+
+One open layout note: the outro divider sits fairly tight under the mark.
