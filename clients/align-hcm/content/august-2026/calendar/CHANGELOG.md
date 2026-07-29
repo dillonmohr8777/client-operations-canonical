@@ -1,5 +1,46 @@
 # August 2026 content calendar — revision log
 
+## 0043 (from 0042)
+
+Fri Aug 28 swaps content. `Different Missions. Same Workforce Pressure.` comes off
+and **Align Academy** goes on as `Transform, or Gather Dust`, with a still from the
+45s Academy film and fresh copy.
+
+This closes the gap flagged in 0040. After Aug 26 was cut and Aug 12 was rewritten
+as industry solutions, Align Academy had no post left in August. It has one again.
+
+Date, page count, and cadence are untouched: still 13 pages, twelve posts, three a
+week, and three original animations, so the cover needed no edit.
+
+### Copy
+
+Taken from the film's own spine: *a system either transforms your operations, or it
+gathers dust, and the difference lies entirely in training.* The body then covers
+who it trains (administrators, managers, and employees, separately, because each
+needs something different from the same platform), what is inside (role based
+design, custom learning paths, safe practice environments, post launch
+reinforcement), and why it matters (adoption climbs, ticket volume falls,
+workarounds disappear).
+
+The chosen still is the `WHAT'S INSIDE` panel with `Safe practice environments`
+lit, so the copy's third paragraph names the four pillars the frame is showing.
+
+### Two production details
+
+* The still is 1320x688, wider than the page's 16:9 frame. Rather than padding with
+  a flat colour, each padded row continues the image's own edge tone, so the
+  gradient carries through and the seam is invisible against the card.
+* This page's copy panel stopped at y=676.1 because the old post's copy was short.
+  It is extended to the 689.4 bottom the rest of the deck uses, with the side and
+  bottom borders rebuilt, so the page now matches its neighbours.
+
+### Displaced assets
+
+`Different Missions. Same Workforce Pressure.` is AN06, a produced and QA'd 60s
+animation. It now joins `Implementation Starts Before Kickoff` (AN01) as a finished
+asset with no date on the August slate. Both are candidates for September, or for
+Aug 31, which is still open.
+
 ## 0042 (from 0041)
 
 Rebalances the month to **three posts a week** by moving one post, not several.
