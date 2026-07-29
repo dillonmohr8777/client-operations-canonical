@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Declare the safe operating-system surfaces available to the Marketing Chief Buzz team without turning Buzz into a second queue, credential store, or source of truth.",
+  "bindings": [
+    {
+      "id": "canonical-operations",
+      "name": "Canonical Client Operations",
+      "layer": "control",
+      "mode": "system-of-record",
+      "route": "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+      "use": "Client registry, versioned queue, approvals, execution graphs, policies, evidence, and durable handoffs.",
+      "agents": ["marketing-chief", "client-router", "independent-verifier", "watchtower-checker"]
+    },
+    {
+      "id": "operator-studio",
+      "name": "Marketing Chief Operator Studio",
+      "layer": "control",
+      "mode": "owner-only",
+      "route": "https://dillon-marketing-chief.dillonmohr8777.chatgpt.site",
+      "use": "Owner commands, direct agent and room messages, approvals, safe delivery evidence, and portfolio status.",
+      "agents": ["marketing-chief", "watchtower-checker"]
+    },
+    {
+      "id": "watchtower",
+      "name": "Watchtower and Scheduled Tasks",
+      "layer": "control",
+      "mode": "scheduler-and-verifier",
+      "route": "Windows Task Scheduler plus canonical state",
+      "use": "Liveness, stalled handoffs, bounded recovery, evidence freshness, and scheduled synchronization.",
+      "agents": ["watchtower-checker", "marketing-chief", "independent-verifier"]
+    },
+    {
+      "id": "buzz",
+      "name": "Buzz Desktop and ACP",
+      "layer": "collaboration",
+      "mode": "private-messaging",
+      "route": "Official Block Buzz desktop plus hosted private community",
+      "use": "Direct messages, private rooms, agent presence, threads, and subscription-backed ACP sessions.",
+      "agents": ["marketing-chief", "client-router", "evidence-research", "content-creative", "web-product", "paid-media", "crm-lifecycle", "access-continuity", "independent-verifier", "watchtower-checker"]
+    },
+    {
+      "id": "codex-claude",
+      "name": "Codex and Claude ACP Harnesses",
+      "layer": "intelligence",
+      "mode": "subscription-backed",
+      "route": "codex-acp and claude-agent-acp",
+      "use": "Primary execution, research, creative, and independent verification lanes.",
+      "agents": ["marketing-chief", "client-router", "evidence-research", "content-creative", "web-product", "paid-media", "crm-lifecycle", "access-continuity", "independent-verifier", "watchtower-checker"]
+    },
+    {
+      "id": "omniroute-ollama",
+      "name": "OmniRoute and Ollama",
+      "layer": "intelligence",
+      "mode": "loopback-only",
+      "route": "http://127.0.0.1:20128/v1 and http://127.0.0.1:11434",
+      "use": "Governed model routing, local open-weight inference, quota visibility, resilience, and private model lanes.",
+      "agents": ["marketing-chief", "evidence-research", "web-product", "independent-verifier"]
+    },
+    {
+      "id": "operator-clients",
+      "name": "Installed Operator Clients",
+      "layer": "intelligence",
+      "mode": "bounded-tools",
+      "route": "Codex, Claude Code, Gemini CLI, OpenCode, Qwen Code, Hermes Agent, Cursor, and Kimi Code",
+      "use": "Specialized local operator surfaces; each keeps its own trust, authentication, and workspace boundaries.",
+      "agents": ["marketing-chief", "web-product", "evidence-research"]
+    },
+    {
+      "id": "mcp",
+      "name": "MCP Capability Plane",
+      "layer": "intelligence",
+      "mode": "scoped",
+      "route": "OmniRoute MCP, Marketing Chief Filesystem, Private Memory, and MCP Inspector",
+      "use": "Routing, integrations, restricted project files, safe private memory, and protocol inspection.",
+      "agents": ["marketing-chief", "client-router", "evidence-research", "web-product", "independent-verifier"]
+    },
+    {
+      "id": "access",
+      "name": "Access Broker and Bitwarden",
+      "layer": "access",
+      "mode": "protected",
+      "route": "Windows Access Broker, Credential Manager, and opaque Bitwarden locators",
+      "use": "Exact account selection and authenticated-session continuity. Secret values never enter Buzz, prompts, files, logs, or chat.",
+      "agents": ["access-continuity", "client-router", "marketing-chief"]
+    },
+    {
+      "id": "browser",
+      "name": "Persistent Authenticated Chrome",
+      "layer": "access",
+      "mode": "background-and-account-routed",
+      "route": "Dillon's authorized persistent Chrome profile",
+      "use": "Read-first provider work and routine authenticated navigation after exact client and account verification.",
+      "agents": ["access-continuity", "paid-media", "crm-lifecycle", "marketing-chief"]
+    },
+    {
+      "id": "gmail",
+      "name": "Gmail Intake",
+      "layer": "evidence",
+      "mode": "read-only-sensor",
+      "route": "Connected Gmail plus prepare-only canonical intake",
+      "use": "Current client requests and historical evidence; raw messages stay outside Buzz and only redacted observations enter intake.",
+      "agents": ["client-router", "evidence-research", "marketing-chief"]
+    },
+    {
+      "id": "slack",
+      "name": "Slack and Cursor Intake",
+      "layer": "evidence",
+      "mode": "read-only-and-draft",
+      "route": "Connected Slack plus bounded Cursor collaboration",
+      "use": "Exact-channel evidence, redacted intake, and proposed replies. No autonomous posting or queue mutation.",
+      "agents": ["client-router", "evidence-research", "content-creative", "marketing-chief"]
+    },
+    {
+      "id": "hubspot",
+      "name": "HubSpot and Lifecycle",
+      "layer": "delivery",
+      "mode": "exact-portal",
+      "route": "Portal-routed HubSpot connections",
+      "use": "CRM, CMS, lifecycle, attribution, forms, and reporting with strict client and portal separation.",
+      "agents": ["crm-lifecycle", "client-router", "independent-verifier"]
+    },
+    {
+      "id": "paid-media",
+      "name": "Google Ads, Meta Ads, and Analytics",
+      "layer": "delivery",
+      "mode": "read-first-approval-gated",
+      "route": "Exact account mappings through connected apps or authenticated Chrome",
+      "use": "Brand-separated delivery, tracking, KPI validation, and staged campaign work. Spend and live mutation retain approval gates.",
+      "agents": ["paid-media", "client-router", "evidence-research", "independent-verifier"]
+    },
+    {
+      "id": "source-deploy",
+      "name": "GitHub, Sites, and Netlify",
+      "layer": "delivery",
+      "mode": "versioned-and-reversible",
+      "route": "Authenticated source control and exact mapped deployment targets",
+      "use": "Versioned implementation, private dashboard releases, staging, rollback evidence, and approved mapped-site publication.",
+      "agents": ["web-product", "marketing-chief", "independent-verifier"]
+    }
+  ]
+}
