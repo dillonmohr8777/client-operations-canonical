@@ -73,11 +73,19 @@ Illustrations for articles 01–05 are the client-supplied originals, downsample
 the 1200 × 627 production spec the handoffs call for and encoded as WebP. Alt text
 is descriptive and the source caption is retained.
 
-Articles 06–10 carry **no figure**. Those handoffs supplied no artwork — each
-instead names a "Recommended visual" in its publication notes, which this package
-reproduces verbatim along with a line stating that no artwork was supplied. Nothing
-was generated to fill the gap. When artwork arrives, drop a 1200 × 627 WebP into
-`assets/` and add a `<figure>` block matching the pattern in articles 01–05.
+Articles 06, 08, 09, and 10 carry client-supplied artwork on the same terms. Each
+was matched to its article by the "Recommended visual" its handoff names: a
+quote-normalization comparison for DF01, a source-to-signoff conversion pipeline
+for DF03, a hub-and-spoke integration map for DF04, and a weighted readiness grid
+for DF05.
+
+Article 07 (DF02, payroll parallel testing) carries **no figure**. No artwork has
+been supplied for it, so its publication notes reproduce the recommended visual —
+a pay-group testing flow through variance ownership, retest, and go-live signoff —
+alongside an explicit statement that no artwork was supplied. Nothing was
+generated to fill the gap. When artwork arrives, drop a 1200 × 627 WebP into
+`assets/` as `illustration-07.webp` and add a `<figure>` block matching the
+pattern in the other nine articles.
 
 Link targets use only URLs verified against the reference PDF's own link
 annotations: `/services/client-side-services`, `/services/implementation`,
@@ -105,7 +113,7 @@ python3 build.py --no-pdf   # HTML only
 * Both the reference and each output were rendered to PNG and compared page by
   page at overview scale; glyph-run widths were compared numerically via
   `pdftotext -bbox`.
-* Page counts: 7 / 8 / 8 / 7 / 8 / 8 / 10 / 10 / 10 / 13.
+* Page counts: 7 / 8 / 8 / 7 / 8 / 9 / 10 / 11 / 11 / 13.
 * No overflow, no orphaned heading, no split FAQ card, no split table row.
 * Standalone HTML verified to have zero external references.
 * Fill-in cells in the VIB06/VIB09/DF05 scorecards and the VIB07/DF01/DF02
