@@ -36,15 +36,15 @@ pages are visually interchangeable with it.
 * **Surface:** A4 (594.96 × 841.92 pt), `@page margin: 15mm`, cream page field,
   content flush to the margin box. Rendered by headless Chromium, matching the
   reference's own producer.
-* **Wordmark, not a logo:** the reference PDF's embedded logo artwork is a
-  fabricated Align HCM mark, so it has been removed and no logo file is bundled
-  with this package. The hero instead carries the typographic `alignHCM` wordmark
-  the Align HCM editorial masters use in their own page headers — "align" in
-  white, "HCM" in amber `#F7931D`, Plus Jakarta Sans ExtraBold at 19 px.
-  **To drop in the approved logo:** put the file in `assets/`, then in each
-  `src/*.html` replace `<div class="hero__wordmark">align<b>HCM</b></div>` with
-  `<img class="hero__mark" src="../assets/<file>" alt="Align HCM">`. The
-  `.hero__mark` rule already sizes it to the hero's 80 px slot.
+* **Logo:** the approved Align HCM logo, taken from the supplied master
+  (`IMG_4143`) and cut out of its blue gradient background by colour unmixing —
+  a per-pixel background model plus a two-colour (white / orange) foreground
+  solve, so the alpha channel carries real antialiasing rather than a hard key.
+  Placed at 130 px wide on the navy hero. It is light-on-dark artwork and is only
+  used there.
+  *Correction to an earlier note in this file: the mark embedded in the reference
+  PDF was the genuine logo at 300 x 150, not fabricated artwork. It looked wrong
+  because of its resolution.*
 * **Type:** Plus Jakarta Sans (display, labels, table headers), DM Sans (body),
   JetBrains Mono (slugs, URLs, inline code). Latin and latin-ext woff2 subsets are
   vendored in `assets/fonts/`.
@@ -61,7 +61,22 @@ pages are visually interchangeable with it.
   conversion CTA / dashed publication-notes and sources blocks.
 
 **Anti-references:** generic AI gradients and glass cards; any decoration not
-present in the reference; invented or approximated logo artwork.
+present in the reference; approximated or re-traced logo artwork.
+
+## Readability
+
+Type and colour were raised above the reference's own values on the client's
+instruction that the copy read easily in print:
+
+* Body 13.6 px / 1.72 (reference: 12.3 px / 1.71); direct answer 14.1 px;
+  H2 20.5 px; table body 12.5 px; FAQ answers 12.8 px.
+* Body text darkened to `#2D3748` and secondary text to `#5A6472`.
+* Links use a dedicated `--link: #C24216` rather than the brand orange, because
+  the brand orange only reaches 3.19:1 on cream — below AA for body-size text.
+  Brand orange is retained for rules, bullets, and badge fills, where 3:1 applies.
+
+Every text/background pair was checked against WCAG 2.1 AA and recorded in the
+QA section below.
 
 ## Content provenance
 
@@ -96,6 +111,25 @@ the Align HCM UKG, Dayforce, buyer-guide, and case-study pages, had no URL in th
 handoffs, so those sources print title-only with a production note telling the
 publisher to attach each URL before launch.
 
+## Research sources
+
+Each article carries two or three peer-reviewed or published research citations,
+linked inline where they support a claim the copy already makes, and listed with
+full references in a closing "Research sources" block. The set:
+
+| Work | Used in |
+|---|---|
+| Umble, Haft & Umble (2003), *Eur. J. Operational Research* — ERP critical success factors | 01, 02, 04, 05, 06, 07, 08, 09 |
+| Wang & Strong (1996), *J. Management Information Systems* — data-quality dimensions | 07, 08, 09 |
+| Venkatesh et al. (2003), *MIS Quarterly* — UTAUT technology acceptance | 04 |
+| Flyvbjerg & Budzier (2011), *Harvard Business Review* — IT cost-overrun distribution | 03, 06, 10 |
+| Jadhav & Sonar (2009), *Information & Software Technology* — software package selection | 02, 03, 05 |
+| Abu Madi, Ayoubi & Alzbaidi (2024), *Int. J. Public Administration* — public-sector ERP CSFs | 10 |
+| Oreg, Vakola & Armenakis (2011), *J. Applied Behavioral Science* — reactions to change | 01, 10 |
+
+No citation asserts anything beyond what the paper reports, and none replaces a
+vendor-sourced claim from the handoffs.
+
 ## Build
 
 ```
@@ -113,8 +147,14 @@ python3 build.py --no-pdf   # HTML only
 * Both the reference and each output were rendered to PNG and compared page by
   page at overview scale; glyph-run widths were compared numerically via
   `pdftotext -bbox`.
-* Page counts: 7 / 8 / 8 / 7 / 8 / 9 / 10 / 11 / 11 / 13.
+* Page counts: 9 / 9 / 10 / 8 / 9 / 10 / 11 / 12 / 12 / 15 (larger type).
 * No overflow, no orphaned heading, no split FAQ card, no split table row.
 * Standalone HTML verified to have zero external references.
+* WCAG 2.1 AA contrast verified by computation, not by eye. Lowest passing pair
+  is the numbered-list badge at 5.22:1 on peach; body text is 11.41:1 on cream.
+* Every cited DOI was resolved over the network and confirmed to land on the
+  named article. Publisher 403s from Taylor & Francis, SAGE, and misq.umn.edu are
+  bot blocks at the destination, not broken links — the redirect targets were
+  checked individually.
 * Fill-in cells in the VIB06/VIB09/DF05 scorecards and the VIB07/DF01/DF02
   comparison tables are intentionally blank; they are worksheets in the source.
