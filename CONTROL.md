@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-28T19:19:41.5910741+00:00`
-Queue revision: `328`
+Last reconciled: `2026-07-29T13:48:50.3001949+00:00`
+Queue revision: `329`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -109,7 +109,7 @@ Mode: `manual-pilot`
 | `wi-20260727-0003` | `momentum-360` | Refresh and deploy all current paid-media client dashboards | Done | P1 | Deploy the verified client-specific weekly dashboards to their existing mapped Netlify sites. | No evidenced deadline |
 | `wi-20260727-0004` | `momentum-360` | Restore the standard paid-media client dashboard shell | Done | P1 | Restore the prior verified dashboard lineage and republish the corrected reports to the existing Netlify sites. | No evidenced deadline |
 | `wi-20260727-0005` | `momentum-360` | Reconcile live workshop launch records | Done | P1 | Use the live launch decision as the source of truth and treat reminder, replay, analytics, strategy-call, outbound-delivery, or paid-budget work as separate scoped actions. | No evidenced deadline |
-| `wi-20260728-0001` | `replenish-7-eleven` | Resolve Replenish Google Ads chargebacks and mixed-brand balance | Needs Approval | P0 | Preserve the suspended and paused state; reconcile the $457.57 Pompano post-cap cost against the authorized Google-credit restart, allocate all $558.26 in credits and $3,395.48 in retained payments between Replenish and Fresh Blends, and approve the exact Google Ads billing-support case before submission. | No evidenced deadline |
+| `wi-20260728-0001` | `replenish-7-eleven` | Resolve Replenish Google Ads chargebacks and mixed-brand balance | Needs Approval | P0 | Approve the exact PDF attachment and recipient, then send it to Mia; collect her chargeback reason, Pompano credit intent, and San Diego budget ceiling before opening the Google Ads billing case or making any payment. | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -444,7 +444,7 @@ Mode: `manual-pilot`
 
 **Decision:** Approve one exact resolution path after cardholder intent and mixed-brand cost allocation are confirmed. Payment, campaign restart, and support submission remain separately gated.
 
-**Next action:** Preserve the suspended and paused state; reconcile the $457.57 Pompano post-cap cost against the authorized Google-credit restart, allocate all $558.26 in credits and $3,395.48 in retained payments between Replenish and Fresh Blends, and approve the exact Google Ads billing-support case before submission.
+**Next action:** Approve the exact PDF attachment and recipient, then send it to Mia; collect her chargeback reason, Pompano credit intent, and San Diego budget ceiling before opening the Google Ads billing case or making any payment.
 
 **Definition of done:**
 
@@ -508,7 +508,7 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-07-29T12:03:59.2878136+00:00`
+- **As of:** `2026-07-29T12:15:02.7731804+00:00`
 - **Overall:** `degraded`
 - **Queue:** revision `328`, `84` work items, normal `2/3`, emergency `0/1` active
 - **Client registry:** `valid`
@@ -524,11 +524,11 @@ Mode: `manual-pilot`
   - `DillonAgentOS-DailyBrief`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
-  - `MarketingChief-DailyCalibration`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
-  - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `1`
+  - `MarketingChief-DailyCalibration`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
+  - `MarketingChief-SitesBridge`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
 - **Human gates:** `active_client_exact_bw_item_mapping`
 - **Deferred actions:** `secondary_exposed_password_rotation`
-- **Warnings:** MarketingChief-SitesBridge last result is 1; Bitwarden bridge integrity does not match the independently reviewed build; execution was refused
+- **Warnings:** Bitwarden bridge integrity does not match the independently reviewed build; execution was refused
 
 ## Standing operating contract
 
