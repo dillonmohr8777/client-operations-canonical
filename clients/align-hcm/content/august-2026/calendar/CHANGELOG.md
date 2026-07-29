@@ -1,5 +1,40 @@
 # August 2026 content calendar — revision log
 
+## 0040 (from 0039)
+
+Aug 12 is rewritten as industry solutions so the copy matches the still already on
+it. The Align Academy training angle comes off the slate.
+
+| | Was | Now |
+|---|---|---|
+| Title | Train for the Job, Not the Screen | **One Foundation, Not One Size** |
+| Headline | One HCM system creates very different learning needs. | One workforce foundation, without flattening industry complexity. |
+| Angle | Align Academy role-based training | the four operating decisions behind one shared foundation |
+
+The still is unchanged and the copy now walks the exact four cards it shows:
+design for the work itself, connect coverage and time and pay, make workforce risk
+visible, keep the platform relevant.
+
+### Aug 12 and Aug 19 share a film, deliberately
+
+Both posts now draw on the 64.6s industries video, so they were given different
+cuts of it rather than the same message twice:
+
+* **Aug 19** keeps the thesis. `Different work. One standard for operational trust.`
+* **Aug 12** takes the `how Align helps` panel, which is what its still shows.
+
+Aug 12's ASSET row says `segment of the 64.6s industries film` rather than
+restating the full runtime, so the reuse is visible on the page instead of looking
+like two separate videos. Worth a look when the slate is reviewed: two posts a week
+apart off one film is defensible, but it is a judgement call rather than a
+requirement.
+
+### Slate composition is unchanged
+
+Aug 12 was already counted as an original animation and the industries film is one,
+so the page 1 summary still reads correctly at thirteen posts with four original
+animations. Only the grid cell title changed.
+
 ## 0039 (from 0038)
 
 **Bug fix.** The GTAA page had been showing the Peco Foods artwork since 0036.
