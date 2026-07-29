@@ -1,6 +1,6 @@
-# Align HCM Blog Review PDFs — VIB04, VIB06, VIB07, VIB08, VIB09
+# Align HCM Blog Review PDFs — VIB04, VIB06–VIB09, DF01–DF05
 
-Five editorial-handoff articles rendered in the accepted Align HCM blog review-PDF
+All ten editorial handoffs rendered in the accepted Align HCM blog review-PDF
 design. Created 2026-07-29.
 
 ## Deliverables
@@ -12,6 +12,14 @@ design. Created 2026-07-29.
 | 03 | What Should Be Included in a UKG Implementation Partner Quote? (VIB07) | UKG implementation partner quote | 8 |
 | 04 | UKG Pro Implementation Partner vs. UKG Ready: What Changes? (VIB08) | UKG Pro implementation partner | 7 |
 | 05 | Best Dayforce Partner for Your Implementation: An RFP Scorecard (VIB09) | best Dayforce partner | 8 |
+| 06 | Dayforce Implementation Cost: 12 Quote Drivers to Normalize (DF01) | Dayforce implementation cost | 8 |
+| 07 | Dayforce Parallel Testing: A Payroll Go-Live Checklist (DF02) | Dayforce parallel testing | 10 |
+| 08 | Dayforce Data Migration Checklist: Clean, Map, Reconcile (DF03) | Dayforce data migration | 10 |
+| 09 | Dayforce Integration Partner Scope: 15 Questions Before You Build (DF04) | Dayforce integration partner | 10 |
+| 10 | Dayforce Public Sector Implementation: An RFP Readiness Checklist (DF05) | Dayforce public sector implementation | 13 |
+
+Handoffs 01–05 are the VIB series; 06–10 are the Dayforce implementation-readiness
+series (DF01–DF05).
 
 Each ships as two artifacts in `dist/`:
 
@@ -22,7 +30,7 @@ Each ships as two artifacts in `dist/`:
 ## Design contract
 
 **Reference (accepted):** the HiBob client-side vs. vendor services review PDF.
-Every token below was measured out of that file rather than chosen, so the five
+Every token below was measured out of that file rather than chosen, so all ten
 pages are visually interchangeable with it.
 
 * **Surface:** A4 (594.96 × 841.92 pt), `@page margin: 15mm`, cream page field,
@@ -61,23 +69,29 @@ Copy, tables, FAQs, publication notes, and sources are taken verbatim from the
 boss-feedback-revision editorial handoffs. Titles, direct answers, metadata,
 factual caveats, sources, and CTAs are preserved as the handoffs require.
 
-Illustrations are the original 1200 × 627 Align HCM illustrations carried in each
-handoff, extracted and converted to WebP (~210 KB each). Alt text is descriptive
-and the source caption is retained.
+Illustrations for articles 01–05 are the client-supplied originals, downsampled to
+the 1200 × 627 production spec the handoffs call for and encoded as WebP. Alt text
+is descriptive and the source caption is retained.
+
+Articles 06–10 carry **no figure**. Those handoffs supplied no artwork — each
+instead names a "Recommended visual" in its publication notes, which this package
+reproduces verbatim along with a line stating that no artwork was supplied. Nothing
+was generated to fill the gap. When artwork arrives, drop a 1200 × 627 WebP into
+`assets/` and add a `<figure>` block matching the pattern in articles 01–05.
 
 Link targets use only URLs verified against the reference PDF's own link
 annotations: `/services/client-side-services`, `/services/implementation`,
 `/services/integration`, `/services/data-conversion`, `/services/training`,
 `/services/support`, `/contact`, `/partners/hibob`, and `hibob.com/partner/`.
-No URL was invented. The UKG and Dayforce source pages, and the Align HCM UKG,
-Dayforce, buyer-guide, and case-study pages, had no URL in the handoffs, so those
-sources print title-only with a production note telling the publisher to attach
-each URL before launch.
+No URL was invented. The UKG, Dayforce, and Government of Canada source pages, and
+the Align HCM UKG, Dayforce, buyer-guide, and case-study pages, had no URL in the
+handoffs, so those sources print title-only with a production note telling the
+publisher to attach each URL before launch.
 
 ## Build
 
 ```
-python3 build.py            # all five: standalone HTML + PDF
+python3 build.py            # all ten: standalone HTML + PDF
 python3 build.py 02         # one page
 python3 build.py --no-pdf   # HTML only
 ```
@@ -91,8 +105,8 @@ python3 build.py --no-pdf   # HTML only
 * Both the reference and each output were rendered to PNG and compared page by
   page at overview scale; glyph-run widths were compared numerically via
   `pdftotext -bbox`.
-* Page counts: 7 / 8 / 8 / 7 / 8.
+* Page counts: 7 / 8 / 8 / 7 / 8 / 8 / 10 / 10 / 10 / 13.
 * No overflow, no orphaned heading, no split FAQ card, no split table row.
 * Standalone HTML verified to have zero external references.
-* Fill-in cells in the VIB06/VIB09 scorecards and the VIB07 side-by-side table are
-  intentionally blank; they are worksheets in the source.
+* Fill-in cells in the VIB06/VIB09/DF05 scorecards and the VIB07/DF01/DF02
+  comparison tables are intentionally blank; they are worksheets in the source.
