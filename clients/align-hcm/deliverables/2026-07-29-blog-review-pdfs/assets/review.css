@@ -25,6 +25,7 @@
   --orange: #ff6b2b;
   --orange-deep: #f15b29;
   --teal: #2bb5a0;
+  --amber: #f7931d;
   --hairline: #e8e9ec;
   --hairline-warm: #e9e4dc;
   --dash: #d9d3c9;
@@ -117,7 +118,26 @@ strong {
   margin-bottom: 26px;
 }
 
-.hero__logo {
+/* Typographic wordmark, matching the treatment the Align HCM editorial masters
+   use in their own page headers. No logo artwork is bundled with this package:
+   drop the approved logo file into assets/ and replace the .hero__wordmark
+   element in each src/*.html with an <img class="hero__mark"> to swap it in. */
+.hero__wordmark {
+  font-family: var(--display);
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.022em;
+  color: var(--white);
+  white-space: nowrap;
+}
+
+.hero__wordmark b {
+  font-weight: 800;
+  color: var(--amber);
+}
+
+.hero__mark {
   display: block;
   width: 80px;
   height: auto;

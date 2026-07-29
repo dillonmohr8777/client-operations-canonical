@@ -1,36 +1,42 @@
-# Align HCM Blog Review PDFs — VIB04, VIB06, VIB07, VIB08
+# Align HCM Blog Review PDFs — VIB04, VIB06, VIB07, VIB08, VIB09
 
-Four editorial-handoff articles rendered in the accepted Align HCM blog review-PDF
+Five editorial-handoff articles rendered in the accepted Align HCM blog review-PDF
 design. Created 2026-07-29.
 
 ## Deliverables
 
 | # | Article | Keyword | Pages |
 |---|---|---|---|
-| 01 | HiBob Client-Side Implementation Partner vs. Vendor Services: Who Owns What? (VIB04) | HiBob client-side implementation partner | 8 |
+| 01 | HiBob Client-Side Implementation Partner vs. Vendor Services: Who Owns What? (VIB04) | HiBob client-side implementation partner | 7 |
 | 02 | Best UKG Partner for Your Implementation? 12 Ways to Compare the Shortlist (VIB06) | best UKG partner | 8 |
 | 03 | What Should Be Included in a UKG Implementation Partner Quote? (VIB07) | UKG implementation partner quote | 8 |
 | 04 | UKG Pro Implementation Partner vs. UKG Ready: What Changes? (VIB08) | UKG Pro implementation partner | 7 |
+| 05 | Best Dayforce Partner for Your Implementation: An RFP Scorecard (VIB09) | best Dayforce partner | 8 |
 
 Each ships as two artifacts in `dist/`:
 
 * `<name>.pdf` — A4 review PDF, the primary review artifact.
-* `<name>.html` — fully self-contained single file (fonts, logo, and illustration
-  inlined as data URIs). Opens anywhere with no network access.
+* `<name>.html` — fully self-contained single file (fonts and illustration inlined
+  as data URIs). Opens anywhere with no network access.
 
 ## Design contract
 
 **Reference (accepted):** the HiBob client-side vs. vendor services review PDF.
-Every token below was measured out of that file rather than chosen, so the four
-new pages are visually interchangeable with it.
+Every token below was measured out of that file rather than chosen, so the five
+pages are visually interchangeable with it.
 
 * **Surface:** A4 (594.96 × 841.92 pt), `@page margin: 15mm`, cream page field,
   content flush to the margin box. Rendered by headless Chromium, matching the
   reference's own producer.
-* **Logo:** the exact Align HCM mark extracted from the reference PDF
-  (`assets/align-hcm-logo.png`, 300 × 150 with its alpha channel recomposed from
-  the embedded soft mask). Placed at 80 px wide, as in the reference. Not redrawn,
-  not re-traced.
+* **Wordmark, not a logo:** the reference PDF's embedded logo artwork is a
+  fabricated Align HCM mark, so it has been removed and no logo file is bundled
+  with this package. The hero instead carries the typographic `alignHCM` wordmark
+  the Align HCM editorial masters use in their own page headers — "align" in
+  white, "HCM" in amber `#F7931D`, Plus Jakarta Sans ExtraBold at 19 px.
+  **To drop in the approved logo:** put the file in `assets/`, then in each
+  `src/*.html` replace `<div class="hero__wordmark">align<b>HCM</b></div>` with
+  `<img class="hero__mark" src="../assets/<file>" alt="Align HCM">`. The
+  `.hero__mark` rule already sizes it to the hero's 80 px slot.
 * **Type:** Plus Jakarta Sans (display, labels, table headers), DM Sans (body),
   JetBrains Mono (slugs, URLs, inline code). Latin and latin-ext woff2 subsets are
   vendored in `assets/fonts/`.
@@ -47,7 +53,7 @@ new pages are visually interchangeable with it.
   conversion CTA / dashed publication-notes and sources blocks.
 
 **Anti-references:** generic AI gradients and glass cards; any decoration not
-present in the reference; a redrawn or approximated logo.
+present in the reference; invented or approximated logo artwork.
 
 ## Content provenance
 
@@ -63,14 +69,15 @@ Link targets use only URLs verified against the reference PDF's own link
 annotations: `/services/client-side-services`, `/services/implementation`,
 `/services/integration`, `/services/data-conversion`, `/services/training`,
 `/services/support`, `/contact`, `/partners/hibob`, and `hibob.com/partner/`.
-No URL was invented. The UKG source pages and the Align HCM UKG, buyer-guide, and
-case-study pages had no URL in the handoffs, so those sources print title-only
-with a production note telling the publisher to attach each URL before launch.
+No URL was invented. The UKG and Dayforce source pages, and the Align HCM UKG,
+Dayforce, buyer-guide, and case-study pages, had no URL in the handoffs, so those
+sources print title-only with a production note telling the publisher to attach
+each URL before launch.
 
 ## Build
 
 ```
-python3 build.py            # all four: standalone HTML + PDF
+python3 build.py            # all five: standalone HTML + PDF
 python3 build.py 02         # one page
 python3 build.py --no-pdf   # HTML only
 ```
@@ -84,8 +91,8 @@ python3 build.py --no-pdf   # HTML only
 * Both the reference and each output were rendered to PNG and compared page by
   page at overview scale; glyph-run widths were compared numerically via
   `pdftotext -bbox`.
-* Page counts track the handoff originals (8 / 8 / 8 / 7).
+* Page counts: 7 / 8 / 8 / 7 / 8.
 * No overflow, no orphaned heading, no split FAQ card, no split table row.
 * Standalone HTML verified to have zero external references.
-* Fill-in cells in the VIB06 scorecard and the VIB07 side-by-side table are
+* Fill-in cells in the VIB06/VIB09 scorecards and the VIB07 side-by-side table are
   intentionally blank; they are worksheets in the source.
