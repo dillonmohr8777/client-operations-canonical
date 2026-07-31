@@ -1,0 +1,14 @@
+# Netlify builds this report from source. The repo root is not the site root,
+# so `base` points at the report directory and `publish` at the static export.
+[build]
+  base    = "clients/align-hcm/reports/july-2026-growth-report"
+  command = "npm ci && npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

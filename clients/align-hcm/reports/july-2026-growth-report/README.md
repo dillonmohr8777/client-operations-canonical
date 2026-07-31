@@ -1,50 +1,119 @@
-# Align HCM — July 2026 Growth &amp; Attribution Report
+# Align HCM — July 2026 Growth & Attribution Report
 
-Static site source for the president-level July 2026 growth report.
+Next.js 15 (App Router) + React 19 + Framer Motion, exported as static files.
 Deployed at `align-hcm-july-2026-growth-report.netlify.app`.
 
-Three files, no build step, no dependencies: `index.html`, `styles.css`, `app.js`.
-Deploy by publishing this directory as-is.
+```bash
+npm install
+npm run dev        # localhost:3000
+npm run build      # static export into out/
+npm run typecheck
+```
 
-## What changed in the redesign
+`netlify.toml` in this directory carries the build config — the repo root is not
+the site root, so `base` points here and `publish` at `out/`.
 
-**Removed duplicated sections.** The previous version told the same story more
-than once:
+## Stack, and why
+
+| Choice | Reason |
+|---|---|
+| **Next.js 15, `output: 'export'`** | Static files, so the deploy model is unchanged from the previous hand-written version — no server, no runtime. |
+| **Framer Motion (`motion` v12)** | The animation layer. Chosen over hand-rolled CSS because the pop system needs variant staggering, spring-damped pointer tilt, count-up numerals, and `AnimatePresence` for the lightbox. |
+| **Tailwind 4** | Same stack as `immohrtal-site`, so the two codebases read alike. Design tokens plus the motion, print and reduced-motion layers live in `app/globals.css`. |
+| **`next/font/google`** | DM Sans + Plus Jakarta Sans are downloaded at build time and self-hosted in the export, so the page makes **zero** external requests at runtime. |
+
+Note: `immohrtal-site` is itself Vite + React 19 + Tailwind 4, not Next.js. Next
+is used here because that was the ask; what is ported from Immohrtal is the
+*motion vocabulary*, not the build tool.
+
+## The motion system
+
+`components/motion-primitives.tsx` ports Immohrtal's vocabulary into Framer
+Motion. Immohrtal's "pop" is a card arriving as an object — it rises, un-tilts
+out of a 9° `rotateX`, and scales up from `0.94` over ~0.85s on
+`cubic-bezier(0.17, 0.4, 0.02, 0.99)`. Everything here is built on that one idea.
+
+| Primitive | What it does | Immohrtal ancestor |
+|---|---|---|
+| `Pop` | The 3D pop-in, or a gentler `rise` for prose | `.reveal-pop` / `.reveal` |
+| `PopGroup` / `PopChild` | Staggered arrival, so a grid lands instead of appearing | `.reveal-late` / `.reveal-later` |
+| `TiltCard` | Spring-damped pointer tilt plus a cursor-tracked `.sheen` | `TiltBox.tsx` |
+| `Magnetic` | Buttons that lean toward the cursor | — |
+| `CountUp` | Numerals that count up on entry | — |
+| `GrowBar` | Tier and pace bars that grow into place | — |
+| `PopWords` | Headline landing word by word out of a mask | — |
+| chrome numerals | `.chrome-orange` / `-navy` / `-light` gradient-clipped text | `--chrome` / `--chrome-light` |
+
+Three deliberate departures from a naive implementation:
+
+1. **The in-view trigger is scroll-position driven, not `IntersectionObserver`** —
+   so not motion's own `whileInView`. IO callbacks are async and coalesced, so a
+   fast flick, a jump-link or a programmatic scroll can outrun them and leave a
+   panel stranded at `opacity: 0`. This was observed, not hypothesised: with
+   `whileInView`, 58 of 68 animated blocks stayed invisible after a fast
+   programmatic scroll. `useLatchedInView` re-checks live geometry and latches
+   once true, so nothing can stay hidden.
+2. **Every wrapper sets `min-width: 0`.** Grid and flex items default to
+   `min-width: auto`, meaning their minimum size is the min-content of their
+   subtree. One 730px screenshot inside a `1fr` track was enough to push the
+   page 351px wider than a 390px viewport. Grid templates use `minmax(0, 1fr)`
+   for the same reason.
+3. **`PopWords` puts the inter-word gap in a text node between the masks.** An
+   inline-block with `overflow: hidden` collapses its own trailing whitespace,
+   which welds the headline into one word and takes copy-paste and screen
+   readers with it.
+
+### Three independent guarantees that an animation never hides content
+
+Motion renders its `initial` state into the static HTML, so the export ships
+with `opacity: 0` on animated blocks. That is only safe with fallbacks:
+
+1. A `<noscript>` style block — JS disabled entirely. Pure CSS, zero flash.
+2. A failsafe timer in `app/layout.tsx`, disarmed by `HydrationBeacon`. If
+   hydration never happens, `.no-js` is applied and everything is forced visible.
+3. `@media (prefers-reduced-motion: reduce)` in CSS forces `opacity: 1` and
+   `transform: none`, so reduced-motion correctness does not depend on the
+   `useReducedMotion()` hook's first value.
+
+Anything animated by a plain `motion.*` rather than via a primitive must carry
+`data-pop`, or these nets miss it — that is how the eyebrow, hero paragraph and
+CTA row initially vanished in the JS-disabled render.
+
+## Content changes carried over from the previous rebuild
+
+**Removed the duplicated sections.** The original told the same story more than
+once. Section count went from 12 to 6.
 
 | Removed | Why |
 |---|---|
-| `#rank-one` "Fifteen number-one rankings" | Duplicate of `#top-rankings`; both introduced the same 15 queries. Merged into one `#number-one` section. |
-| `#ai-query-ledger` | Duplicate of `#ai-overviews`; the 11 AI Overview queries were listed twice, then illustrated with the same screenshots again. Merged. |
-| `#signals` "Four proof sources" | Restated the hero and ribbon numbers with no new information. |
-| `#authority` dark section | One flat stat (Authority Score 25, unchanged). Folded into the keyword section and methodology. |
-| `#blogs` standalone section | Folded into `#keywords` as a sub-stat row. |
-| `#content-performance` page-views table | Cut — page views are not a leadership metric. |
-| Marquee metric ribbon | Every metric was duplicated in the DOM to fake the scroll loop. Replaced with a static four-up stat grid. |
+| `#rank-one` "Fifteen number-one rankings" | Duplicate of `#top-rankings` — both introduced the same 15 queries |
+| `#ai-query-ledger` | Duplicate of `#ai-overviews` — the 11 AI Overview queries were listed twice, then illustrated with the same screenshots again |
+| `#signals` "Four proof sources" | Restated the hero and ribbon numbers with no new information |
+| `#authority` | One flat stat (Authority Score 25, unchanged) |
+| `#blogs` | Folded into `#keywords` as a sub-stat row |
+| `#content-performance` | Page-views table — cut, not a leadership metric |
+| Marquee metric ribbon | Duplicated every stat in the DOM to fake the scroll loop |
 
-**Fixed the blurry screenshots.** The old CSS rendered 1265px-wide captures into
+**Fixed the blurry screenshots.** The original CSS pushed 1265px captures into
 ~600px two-column grid cells with `object-fit: cover`, which both downscaled the
-text to ~0.47x and cropped the bottom off every image. Now:
+text to 0.47× and cropped the bottom off every image. Now:
 
-- `assets/aio/` holds crops of the AI Overview answer block only, so the answer
-  text is the content instead of 60% dead whitespace.
-- `assets/serp/` holds the full search result, de-scrollbarred, for the lightbox.
-- Nothing uses `object-fit: cover`. Captures are never cropped by CSS.
-- Answer text renders at **1.0x–1.6x of Google's own pixels at every breakpoint**
-  (verified 320px / 390px / 820px / 1400px). On phones the card pans
-  horizontally rather than shrinking the text; the page itself never scrolls
-  sideways.
-- Any capture opens in a lightbox with a Fit / Full-size toggle that renders at
-  native 1182px with panning.
+- `public/assets/aio/` holds crops of the AI Overview answer block only, so the
+  answer text is the content instead of 60% dead whitespace.
+- `public/assets/serp/` holds the full search result, de-scrollbarred, for the
+  lightbox.
+- Nothing uses `object-fit: cover`. No capture is cropped by CSS.
+- On phones the card pans horizontally at 1:1 rather than shrinking the text.
+- Any capture opens in a lightbox with a Fit / Full-size toggle at native 1182px.
 
-**Trimmed and reordered.** Leads and attribution now lead the report, then
-ranking keywords, then AI Overviews as the closing proof layer. Section count is
-down from 12 to 6.
+**Order:** leads and attribution first, then ranking keywords, then AI Overviews
+as the closing proof layer.
 
 ## Screenshot provenance and audit
 
-`assets/original/` holds the 18 untouched July 31 captures (1265x712, JPEG data
-with `.png` extensions as delivered). Everything in `assets/aio/` and
-`assets/serp/` is derived from these by cropping — no upscaling from a smaller
+`public/assets/original/` holds the 18 untouched July 31 captures (1265x712, JPEG data
+with `.png` extensions as delivered). Everything in `public/assets/aio/` and
+`public/assets/serp/` is derived from these by cropping — no upscaling from a smaller
 original, and no resampling that invents detail. The one scaling operation is a
 1.6x Lanczos enlargement of the already-cropped answer block for the `aio/`
 variants, so that desktop renders above native instead of below it.
@@ -97,21 +166,26 @@ re-captured; every screenshot here is one of the original July 31 files.
 
 ## Verified behaviour
 
-Checked with Playwright at 320 / 390 / 820 / 1400px:
+Checked with Playwright against the built static export at 320 / 390 / 820 /
+1400px:
 
-- No horizontal page overflow at any width.
-- No broken images, no console or page errors.
-- All `.reveal` elements resolve to `opacity: 1`. The reveal is scroll-position
-  driven, not `IntersectionObserver` — a fast flick or jump-link could outrun
-  observer callbacks and leave a panel stuck invisible, which is unacceptable
-  when the content is the deliverable. There is also an 8s failsafe, and the
-  whole effect is skipped under `prefers-reduced-motion`.
-- Lightbox: opens, focuses close, locks background scroll, Fit/Full-size toggle
-  reaches native 1182px with panning on mobile, prev/next and arrow keys move
-  between all 13 captures, Escape closes and restores scroll and focus.
-- Tap targets are at least 38px tall.
-- Body text meets WCAG AA (4.5:1) on both the white and warm backgrounds.
-- Fully readable with JavaScript disabled; print stylesheet included.
+- **No horizontal page overflow at any width.** The AI Overview cards pan
+  internally instead (9 panning cards at ≤800px).
+- **AI Overview answer text renders at 1.0×–1.64× of Google's own pixels** at
+  every breakpoint — 1.0× at 320/390px, 1.06× at 820px, 1.1–1.64× at 1400px.
+- **All 68 animated blocks resolve to `opacity: 1`.**
+- No broken images, no console errors, no page errors.
+- **Zero external network requests** — fonts are self-hosted in the export.
+- Lightbox: opens, focuses close, locks background scroll, Fit/Full-size reaches
+  native 1182px with panning on mobile, prev/next and arrow keys traverse all 13
+  captures, Escape closes and restores scroll and focus.
+- Reduced motion: no count-up, no tilt (`transform: none`), nothing hidden.
+- JS disabled: header, headline, hero copy, CTAs, every stat and all 15 queries
+  render — 7.5k characters of body text, 11 images.
+- Headline `innerText` reads "Organic is now sourcing deals." — the split-word
+  animation does not break selection or screen readers.
+- Tap targets ≥ 38px tall. Body text meets WCAG AA (4.5:1) on both backgrounds.
+- Print stylesheet drops chrome-gradient text back to solid ink.
 
 ## Data shown
 

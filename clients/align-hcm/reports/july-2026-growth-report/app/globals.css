@@ -1,0 +1,407 @@
+@import 'tailwindcss';
+
+/* ════════════════════════════════════════════════════════════
+   ALIGN HCM REPORT — design tokens
+   Align's brand palette (navy / orange / warm paper) carrying the
+   Immohrtal motion vocabulary: 3D pop-in, glow-lift surfaces,
+   chrome gradient numerals, pointer tilt.
+   ════════════════════════════════════════════════════════════ */
+:root {
+  --navy: #17324d;
+  --navy-deep: #0b1d2d;
+  --navy-ink: #071521;
+  --ink: #111820;
+  --slate: #3b4859;
+  --dim: #5c6a7b;
+  --orange: #f05a28;
+  --orange-hot: #ff6b35;
+  --orange-ink: #ad3d1b;
+  --paper: #ffffff;
+  --warm: #f6f2ec;
+  --warm-2: #ece4d9;
+  --line: #dfe4e9;
+  --line-warm: #ded4c6;
+  --line-dark: rgba(255, 255, 255, 0.16);
+  --good: #12805a;
+  --good-bright: #3ddc97;
+
+  /* Immohrtal-style depth: a soft ambient lift plus a coloured signal glow */
+  --glow-soft: 0 24px 60px rgba(11, 29, 45, 0.1), 0 6px 18px rgba(11, 29, 45, 0.06);
+  --glow-lift: 0 34px 80px rgba(11, 29, 45, 0.16), 0 10px 24px rgba(11, 29, 45, 0.1);
+  --glow-orange: 0 12px 34px rgba(240, 90, 40, 0.24), 0 2px 8px rgba(240, 90, 40, 0.14);
+  --glow-dark: 0 30px 70px rgba(0, 0, 0, 0.42);
+
+  /* the chrome treatment, retuned from gunmetal to Align navy + orange */
+  --chrome-orange: linear-gradient(
+    180deg,
+    #ff9264 0%,
+    #f05a28 32%,
+    #ffb090 48%,
+    #d8431a 58%,
+    #ff7d4d 78%,
+    #e14e20 100%
+  );
+  --chrome-navy: linear-gradient(
+    180deg,
+    #4d6b8c 0%,
+    #17324d 30%,
+    #6a89ab 48%,
+    #0d2136 56%,
+    #3d5c7d 74%,
+    #142c45 100%
+  );
+  --chrome-light: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #cddbe8 28%,
+    #8ea6bd 46%,
+    #f2f7fc 54%,
+    #6b869f 66%,
+    #b9cade 84%,
+    #eaf1f8 100%
+  );
+
+  --ease-hover: cubic-bezier(0.17, 0.4, 0.02, 0.99);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --font-display: var(--font-jakarta), system-ui, sans-serif;
+  --font-body: var(--font-dm-sans), system-ui, sans-serif;
+
+  --shell: min(1200px, 100% - 2.75rem);
+  --pad-y: clamp(58px, 8vw, 108px);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  /* belt and braces with body: a stray wide child must never make the
+     whole document pan sideways */
+  overflow-x: clip;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+p {
+  margin: 0;
+}
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+button {
+  font: inherit;
+  color: inherit;
+}
+:focus-visible {
+  outline: 3px solid var(--orange-hot);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Plus Jakarta Sans ships a very tight word space, which reads as missing
+   at label sizes ("corrected leads" looking like one word). Every element
+   set in the display face goes through this class. */
+.disp {
+  font-family: var(--font-display);
+  word-spacing: 0.055em;
+}
+
+h1,
+h2,
+h3,
+h4,
+.h2 {
+  word-spacing: 0.04em;
+}
+
+.shell {
+  width: var(--shell);
+  margin-inline: auto;
+}
+
+.skip {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 200;
+  padding: 12px 18px;
+  border-radius: 0 0 12px 12px;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 160ms var(--ease-out);
+}
+.skip:focus {
+  top: 0;
+}
+
+/* ── chrome gradient numerals ───────────────────────────────── */
+.chrome-orange,
+.chrome-navy,
+.chrome-light {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.chrome-orange {
+  background-image: var(--chrome-orange);
+}
+.chrome-navy {
+  background-image: var(--chrome-navy);
+}
+.chrome-light {
+  background-image: var(--chrome-light);
+}
+/* Safari occasionally drops clipped-text paint mid-transform; a tiny
+   translateZ keeps the numerals on their own layer. */
+.chrome-orange,
+.chrome-navy,
+.chrome-light {
+  transform: translateZ(0);
+}
+
+/* ── sections ───────────────────────────────────────────────── */
+.section {
+  padding-block: var(--pad-y);
+}
+.section-warm {
+  background: var(--warm);
+}
+.section-dark {
+  background: var(--navy-deep);
+  color: #fff;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+.eyebrow::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 30px;
+  height: 2px;
+  background: var(--orange);
+}
+.section-dark .eyebrow {
+  color: var(--orange-hot);
+}
+
+.h2 {
+  font-size: clamp(30px, 4.6vw, 50px);
+  color: var(--navy-deep);
+}
+.section-dark .h2 {
+  color: #fff;
+}
+.lede {
+  margin-top: 16px;
+  max-width: 64ch;
+  color: var(--dim);
+  font-size: clamp(16px, 1.5vw, 19px);
+}
+.section-dark .lede {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* ── surfaces that behave like objects ──────────────────────── */
+.pop-box {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--glow-soft);
+  transition:
+    box-shadow 0.45s var(--ease-hover),
+    border-color 0.45s var(--ease-hover);
+}
+.section-dark .pop-box {
+  border-color: var(--line-dark);
+  box-shadow: var(--glow-dark);
+}
+@media (hover: hover) {
+  .tilt-target:hover .pop-box,
+  .pop-box.is-hoverable:hover {
+    border-color: rgba(240, 90, 40, 0.45);
+    box-shadow: var(--glow-lift), var(--glow-orange);
+  }
+}
+
+/* cursor-tracked sheen, painted only while a fine pointer is inside */
+.sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-hover);
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(240, 90, 40, 0.13),
+    transparent 62%
+  );
+}
+.tilt-target:hover .sheen {
+  opacity: 1;
+}
+
+/* ── grain, so the flat fills read like paper not like a screen ── */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.42;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+}
+
+/* ── screenshots ────────────────────────────────────────────── */
+/* Never object-fit: cover. The whole capture stays visible, always. */
+.shot-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #fff;
+}
+
+/* A phone gives ~344px of usable width; an AI Overview answer is ~730px of
+   Google page. Scaling it down is what made the previous report unreadable,
+   so on narrow screens the answer renders at 1:1 and the card pans. The page
+   itself never scrolls sideways. */
+.shot-scroll {
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+@media (max-width: 800px) {
+  .shot-scroll .shot-img {
+    width: 730px;
+    max-width: none;
+  }
+}
+.shot-hint {
+  display: none;
+}
+@media (max-width: 800px) {
+  .shot-hint {
+    display: flex;
+  }
+}
+
+/* ── lightbox ───────────────────────────────────────────────── */
+.lb-viewport {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  display: grid;
+  place-items: center;
+  padding: clamp(10px, 2vw, 22px);
+}
+.lb-viewport img {
+  border-radius: 10px;
+  background: #fff;
+}
+.lb-fit .lb-viewport img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+.lb-zoom .lb-viewport {
+  place-items: start;
+}
+.lb-zoom .lb-viewport img {
+  width: 1182px;
+  max-width: none;
+  height: auto;
+}
+
+/* ── reduced motion, guaranteed in CSS ──────────────────────────
+   The primitives already branch on useReducedMotion(), but that is a hook
+   whose first value depends on hydration timing. This makes the outcome
+   independent of JS entirely: nothing translates, tilts, or glows. */
+@media (prefers-reduced-motion: reduce) {
+  [data-pop] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .tilt-target {
+    transform: none !important;
+    transition: none !important;
+  }
+  .sheen {
+    display: none !important;
+  }
+  .pop-box {
+    transition: none !important;
+  }
+}
+
+/* ── no-JS and print safety nets ────────────────────────────────
+   Motion mounts hidden elements. If React never hydrates, or the page
+   is printed, the content must still be there. */
+.no-js [data-pop] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media print {
+  .no-print,
+  .shot-hint {
+    display: none !important;
+  }
+  [data-pop] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .section {
+    padding-block: 24px;
+    page-break-inside: avoid;
+  }
+  .chrome-orange,
+  .chrome-navy,
+  .chrome-light {
+    -webkit-text-fill-color: currentColor;
+    color: var(--navy-deep);
+    background-image: none;
+  }
+}
