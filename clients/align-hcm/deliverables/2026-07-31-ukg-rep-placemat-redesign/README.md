@@ -25,6 +25,12 @@ larger type.
 | Buying signals | Bullet-separated run-on line | Individual tokens |
 | CTA | Plain navy bar | Split bar with an action badge |
 
+**Copy is unchanged from the DOCX.** Every headline, bullet, table cell, talk
+track, objection answer, and deal flow step is reproduced word for word. The
+only text edits are the em and en dash removals above. The three talk track
+chips and the CTA badge are the sole additions, and both reuse phrases already
+in the doc.
+
 Page count is unchanged at two.
 
 ## Brand tokens used
