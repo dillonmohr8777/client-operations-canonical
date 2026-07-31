@@ -1,0 +1,493 @@
+<meta charset="utf-8">
+<title>Align HCM · UKG Partner Placemat</title>
+<style>
+/*__FONTS__*/
+
+:root{
+  --navy:#0A1628;
+  --navy2:#16304F;
+  --slate:#2D3748;
+  --ink:#1F2A37;
+  --body:#33414F;
+  --muted:#6B7A8C;
+  --line:#D8DFE7;
+  --paper:#FFFFFF;
+  --wash:#F4F7FA;
+  --teal:#0E9C88;
+  --tealwash:#EAF8F5;
+  --blue:#1B4F72;
+  --bluewash:#EDF3F8;
+  --orange:#E8832A;
+  --orangedeep:#F05A28;
+  --orangewash:#FEF4EA;
+  --ukg:#005151;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#fff}
+body{
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+  color:var(--body);
+  -webkit-font-smoothing:antialiased;
+  font-size:10pt;
+  line-height:1.34;
+}
+@page{ size:11in 8.5in; margin:0; }
+
+.page{
+  width:11in; height:8.5in;
+  padding:.30in .40in .24in;
+  display:flex; flex-direction:column;
+  position:relative;
+  background:#fff;
+  overflow:hidden;
+}
+.page + .page{ page-break-before:always; }
+
+/* ---------- brand bar ---------- */
+.brandbar{
+  display:flex; align-items:center; gap:16px;
+  padding-bottom:7pt; margin-bottom:0;
+  border-bottom:2.5pt solid var(--navy);
+}
+.brandbar .align{ height:31pt; display:block; }
+.brandbar .ukg{ height:20pt; display:block; }
+.lockup{
+  flex:1; display:flex; align-items:center; gap:12px;
+}
+.xmark{
+  font-size:13pt; color:var(--line); font-weight:600; letter-spacing:.02em;
+}
+.partnerline{ display:flex; flex-direction:column; gap:1pt; }
+.partnerline .k{
+  font-size:8pt; font-weight:800; letter-spacing:.20em; text-transform:uppercase;
+  color:var(--orangedeep);
+}
+.partnerline .v{
+  font-size:11.5pt; font-weight:800; color:var(--navy); letter-spacing:-.01em;
+}
+.ukgblock{ display:flex; align-items:center; gap:9px; }
+.ukgblock .cap{
+  font-size:7.2pt; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted); text-align:right; line-height:1.3;
+}
+
+/* ---------- title strip ---------- */
+.strip{
+  margin-top:9pt;
+  background:linear-gradient(100deg,var(--navy) 0%, #142C48 58%, #1B3E63 100%);
+  border-radius:5pt;
+  padding:9.5pt 15pt;
+  display:flex; align-items:center; gap:18px;
+  color:#fff;
+}
+.strip .flow{
+  font-size:14.5pt; font-weight:800; letter-spacing:-.005em; white-space:nowrap;
+}
+.strip .flow .arrow{ color:var(--orange); padding:0 3pt; font-weight:700; }
+.strip .rule{ width:1.2pt; height:26pt; background:rgba(255,255,255,.22); }
+.strip .sub{
+  font-size:9.6pt; font-weight:500; color:#D3DDE9; line-height:1.36;
+}
+.strip .sub b{ color:#fff; font-weight:700; }
+
+/* ---------- phase cards ---------- */
+.phases{ display:flex; gap:10pt; margin-top:9pt; }
+.card{
+  flex:1; display:flex; flex-direction:column;
+  border:1pt solid var(--line); border-radius:6pt; overflow:hidden;
+  background:#fff;
+}
+.card .head{ padding:8pt 12pt 7pt; color:#fff; display:flex; align-items:center; gap:9pt; }
+.card .num{
+  width:20pt; height:20pt; border-radius:50%; flex:none;
+  background:rgba(255,255,255,.20);
+  display:flex; align-items:center; justify-content:center;
+  font-size:10.5pt; font-weight:800; color:#fff;
+}
+.card .htext .ph{
+  font-size:7.2pt; font-weight:800; letter-spacing:.17em; text-transform:uppercase;
+  color:rgba(255,255,255,.80); line-height:1.2;
+}
+.card .htext .nm{ font-size:12.6pt; font-weight:800; letter-spacing:-.015em; line-height:1.18; }
+.card .meta{
+  display:flex; gap:7pt; padding:6pt 12pt; border-bottom:1pt solid var(--line);
+}
+.pill{
+  font-size:7.6pt; font-weight:700; letter-spacing:.02em;
+  padding:2.6pt 7pt; border-radius:20pt; white-space:nowrap;
+}
+.card .list{ padding:8pt 11pt 8pt; flex:1; }
+.card .list li{ list-style:none; display:flex; gap:6pt; margin-bottom:4.8pt; font-size:9.5pt; color:var(--ink); line-height:1.28; }
+.card .list li:last-child{ margin-bottom:0 }
+.card .list .tick{ font-weight:800; font-size:9pt; flex:none; line-height:1.4; }
+.wiifm{ padding:7pt 11pt 8pt; min-height:57pt; }
+.wiifm .lbl{
+  font-size:7.4pt; font-weight:800; letter-spacing:.13em; text-transform:uppercase;
+  margin-bottom:3.5pt;
+}
+.wiifm .txt{ font-size:9.2pt; line-height:1.34; color:var(--ink); font-weight:500; }
+.wiifm .txt b{ font-weight:800; }
+
+.t .head{background:linear-gradient(100deg,#0B8674,#12AE97)} .t .num{}
+.t .pill{background:var(--tealwash);color:#0A6E60}
+.t .tick{color:var(--teal)}
+.t .wiifm{background:var(--tealwash);border-top:1pt solid #CBEBE4}
+.t .wiifm .lbl{color:#0A6E60}
+
+.b .head{background:linear-gradient(100deg,#153F5C,#22638C)}
+.b .pill{background:var(--bluewash);color:#154A6B}
+.b .tick{color:#2A7FB0}
+.b .wiifm{background:var(--bluewash);border-top:1pt solid #CBDCE9}
+.b .wiifm .lbl{color:#154A6B}
+
+.o .head{background:linear-gradient(100deg,#D9701C,#F0912F)}
+.o .pill{background:var(--orangewash);color:#B45F14}
+.o .tick{color:var(--orange)}
+.o .wiifm{background:var(--orangewash);border-top:1pt solid #F5DCC2}
+.o .wiifm .lbl{color:#B45F14}
+
+/* ---------- lower row page 1 ---------- */
+.lower{ display:flex; gap:10pt; margin-top:9pt; flex:1; }
+.panel{
+  border:1pt solid var(--line); border-radius:6pt; padding:9pt 12pt 9pt;
+  display:flex; flex-direction:column;
+}
+.panel h3{
+  font-size:9.4pt; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--navy); margin-bottom:6pt; display:flex; align-items:center; gap:7pt;
+}
+.panel h3::after{ content:""; flex:1; height:1pt; background:var(--line); }
+.why{ flex:1.02; background:#fff; }
+.why li{ list-style:none; display:flex; gap:7pt; font-size:9.4pt; color:var(--ink); margin-bottom:5pt; line-height:1.28; }
+.why li:last-child{margin-bottom:0}
+.why .tick{ color:var(--orange); font-weight:800; flex:none; }
+.why b{ font-weight:800; color:var(--navy); }
+
+.talk{ flex:1; background:var(--wash); border-color:#DCE4EC; position:relative; }
+.talk .quote{
+  font-size:9.7pt; line-height:1.42; font-style:italic; color:var(--ink); font-weight:500;
+}
+.talk .quote b{ font-style:normal; font-weight:800; color:var(--navy); }
+.chips{ display:flex; gap:5pt; margin-top:auto; padding-top:10pt; }
+.chips span{ font-size:8.4pt; font-weight:800; letter-spacing:.02em; color:var(--navy);
+  background:#fff; border:1pt solid #D5DEE7; border-radius:20pt; padding:3.4pt 9pt; }
+.chips span i{ font-style:normal; color:var(--orangedeep); margin-right:4pt; }
+.talk .mark{
+  font-family:Georgia,serif; font-size:26pt; line-height:0; color:var(--orange);
+  vertical-align:-6pt; margin-right:2pt; font-weight:700;
+}
+
+/* ---------- footer ---------- */
+.foot{
+  margin-top:7pt; padding-top:5pt; border-top:1pt solid var(--line);
+  display:flex; align-items:center; justify-content:space-between;
+  font-size:7.6pt; color:var(--muted); font-weight:600; letter-spacing:.04em;
+}
+.foot .pg{
+  width:14pt;height:14pt;border-radius:50%;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:7.4pt;font-weight:800;
+}
+
+/* ---------- page 2 ---------- */
+.cols{ display:flex; gap:10pt; margin-top:8pt; }
+.icp{ flex:.86; }
+.obj{ flex:1.14; }
+
+.icprow{ display:flex; gap:9pt; padding:5.8pt 0; border-bottom:1pt solid #E6ECF2; }
+.icprow:last-child{ border-bottom:none; padding-bottom:0 }
+.icprow:first-of-type{ padding-top:0 }
+.icprow .lbl{
+  flex:none; width:74pt; font-size:8.2pt; font-weight:800; letter-spacing:.055em;
+  text-transform:uppercase; color:var(--navy); line-height:1.28; padding-top:.5pt;
+}
+.icprow .val{ font-size:9.5pt; color:var(--ink); line-height:1.32; }
+.icprow .val b{ font-weight:800; color:var(--navy); }
+.sig{ display:flex; flex-wrap:wrap; gap:4pt; }
+.sig span{
+  font-size:8.2pt; font-weight:700; color:#154A6B; background:var(--bluewash);
+  border-radius:3pt; padding:2.2pt 5.5pt;
+}
+.trigger{
+  background:var(--orangewash); border-left:2.5pt solid var(--orange);
+  border-radius:0 4pt 4pt 0; padding:7pt 10pt; margin-top:auto;
+}
+.trigger .q{ font-size:9.5pt; font-style:italic; font-weight:600; color:var(--navy); line-height:1.3; }
+.trigger .a{ font-size:8.8pt; color:#B45F14; font-weight:700; margin-top:3pt; }
+
+.qa{ display:flex; gap:9pt; padding:5.1pt 0; border-bottom:1pt solid #E6ECF2; }
+.qa:last-child{ border-bottom:none; padding-bottom:0 }
+.qa:first-of-type{ padding-top:0 }
+.qa .q{
+  flex:none; width:104pt; font-size:9.3pt; font-weight:800; color:var(--navy); line-height:1.28;
+}
+.cq{ margin-left:-1.2pt; }
+.qa .a{ font-size:9.3pt; color:var(--ink); line-height:1.32; }
+.qa .a b{ font-weight:800; color:var(--navy); }
+
+/* deal flow */
+.flowsec{ margin-top:8pt; }
+.steps{ display:flex; gap:6pt; margin-top:6pt; }
+.step{
+  flex:1; border:1pt solid var(--line); border-radius:5pt; overflow:hidden; background:#fff;
+  display:flex; flex-direction:column;
+}
+.step .sh{
+  padding:4.6pt 8pt; display:flex; align-items:center; gap:5pt; color:#fff;
+}
+.step .sn{ font-size:7.2pt; font-weight:800; letter-spacing:.13em; opacity:.82 }
+.step .st{ font-size:9.3pt; font-weight:800; letter-spacing:-.01em; line-height:1.15 }
+.step .sb{ padding:5.2pt 8pt 6pt; font-size:8.7pt; color:var(--ink); line-height:1.3; flex:1 }
+.s1 .sh{background:#0B8674} .s2 .sh{background:#12A08B}
+.s3 .sh{background:#19698F} .s4 .sh{background:#1B4F72}
+.s5 .sh{background:#C96A1A} .s6 .sh{background:#E8832A}
+.step .sh .stk{ display:flex; flex-direction:column; }
+
+.cta{
+  margin-top:8pt;
+  background:linear-gradient(100deg,var(--navy) 0%, #142C48 55%, #1B3E63 100%);
+  border-radius:6pt; padding:9pt 18pt;
+  display:flex; align-items:center; justify-content:space-between; gap:18px; color:#fff;
+}
+.cta .t{ font-size:13.5pt; font-weight:800; letter-spacing:-.01em; }
+.cta .s{ font-size:9.6pt; color:#CFDAE7; font-weight:500; margin-top:2.5pt; }
+.cta .badge{
+  flex:none; background:linear-gradient(135deg,var(--orangedeep),#FF8A3D);
+  color:#fff; font-size:10pt; font-weight:800; letter-spacing:.02em;
+  padding:9pt 16pt; border-radius:5pt; text-align:center; line-height:1.25;
+}
+</style>
+
+<!-- ===================== PAGE 1 ===================== -->
+<section class="page">
+
+  <div class="brandbar">
+    <img class="align" src="__ALIGN__" alt="Align HCM">
+    <div class="lockup">
+      <span class="xmark">|</span>
+      <div class="partnerline">
+        <div class="k">Implementation Partner Program</div>
+        <div class="v">The Rep Placemat</div>
+      </div>
+    </div>
+    <div class="ukgblock">
+      <div class="cap">Built for<br>sales reps at</div>
+      <img class="ukg" src="__UKG__" alt="UKG">
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="flow">Optimize <span class="arrow">→</span> Implement <span class="arrow">→</span> Sustain</div>
+    <div class="rule"></div>
+    <div class="sub">One partner across the whole arc, with a <b>built-in value story</b> that runs from first discovery call through hyper-care. You keep the relationship. Align does the delivery.</div>
+  </div>
+
+  <div class="phases">
+
+    <div class="card t">
+      <div class="head">
+        <div class="num">0</div>
+        <div class="htext">
+          <div class="ph">Phase Zero</div>
+          <div class="nm">Quick Optimization Analysis</div>
+        </div>
+      </div>
+      <div class="meta">
+        <span class="pill">FREE to the customer</span>
+        <span class="pill">5 to 10 business days</span>
+      </div>
+      <ul class="list">
+        <li><span class="tick">✓</span><span>Current-state HCM and WFM assessment</span></li>
+        <li><span class="tick">✓</span><span>Process and compliance audit</span></li>
+        <li><span class="tick">✓</span><span>Technology fit analysis across UKG modules</span></li>
+        <li><span class="tick">✓</span><span>ROI and business case with quantified value</span></li>
+        <li><span class="tick">✓</span><span>Phased implementation roadmap</span></li>
+        <li><span class="tick">✓</span><span>Executive presentation to stakeholders</span></li>
+      </ul>
+      <div class="wiifm">
+        <div class="lbl">What's in it for my customer?</div>
+        <div class="txt">A risk-free look under the hood. <b>No commitment.</b> They keep the roadmap and business case whether or not they buy.</div>
+      </div>
+    </div>
+
+    <div class="card b">
+      <div class="head">
+        <div class="num">1</div>
+        <div class="htext">
+          <div class="ph">Phase One</div>
+          <div class="nm">UKG Implementation</div>
+        </div>
+      </div>
+      <div class="meta">
+        <span class="pill">Standard SOW pricing</span>
+        <span class="pill">12 to 26 weeks typical</span>
+      </div>
+      <ul class="list">
+        <li><span class="tick">✓</span><span>Scope informed by the QOA, no surprises</span></li>
+        <li><span class="tick">✓</span><span>Full Align project team (PM plus consultants)</span></li>
+        <li><span class="tick">✓</span><span>Config, data migration, integrations, UAT</span></li>
+        <li><span class="tick">✓</span><span>Parallel payroll where applicable</span></li>
+        <li><span class="tick">✓</span><span>Change management and user training</span></li>
+        <li><span class="tick">✓</span><span>Go-live support and formal sign-off</span></li>
+      </ul>
+      <div class="wiifm">
+        <div class="lbl">What's in it for my customer?</div>
+        <div class="txt">An implementation partner who already knows their environment from the QOA. <b>Less rework, faster time to value, fewer change orders.</b></div>
+      </div>
+    </div>
+
+    <div class="card o">
+      <div class="head">
+        <div class="num">2</div>
+        <div class="htext">
+          <div class="ph">Phase Two</div>
+          <div class="nm">SmartCare 60-Day</div>
+        </div>
+      </div>
+      <div class="meta">
+        <span class="pill">Included at no charge</span>
+        <span class="pill">60 calendar days</span>
+      </div>
+      <ul class="list">
+        <li><span class="tick">✓</span><span>Dedicated SmartCare analyst assigned</span></li>
+        <li><span class="tick">✓</span><span>Break/fix triage and resolution</span></li>
+        <li><span class="tick">✓</span><span>Configuration adjustments</span></li>
+        <li><span class="tick">✓</span><span>End-user and admin Q&amp;A support</span></li>
+        <li><span class="tick">✓</span><span>Day 30 and Day 55 optimization check-ins</span></li>
+        <li><span class="tick">✓</span><span>Transition-to-BAU knowledge transfer</span></li>
+      </ul>
+      <div class="wiifm">
+        <div class="lbl">What's in it for my customer?</div>
+        <div class="txt">Peace of mind through go-live, from the team that built it. <b>80% of post-go-live issues surface in the first 60 days.</b> Those are covered.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="lower">
+    <div class="panel why">
+      <h3>Why attach Align</h3>
+      <ul>
+        <li><span class="tick">✓</span><span><b>12+ years of UKG and Kronos DNA.</b> Pro, Pro WFM, Workforce Central, Ready, SmartCare.</span></li>
+        <li><span class="tick">✓</span><span><b>Canadian enterprise focus.</b> Payroll compliance, multi-province, bilingual delivery.</span></li>
+        <li><span class="tick">✓</span><span><b>The free QOA drops the barrier to entry.</b> Your customer says yes to a conversation, not a contract.</span></li>
+        <li><span class="tick">✓</span><span><b>60 days of SmartCare de-risks go-live</b> and seeds long-term managed services revenue.</span></li>
+        <li><span class="tick">✓</span><span><b>Deep vertical bench.</b> Manufacturing, retail, healthcare, energy, financial services.</span></li>
+      </ul>
+    </div>
+    <div class="panel talk">
+      <h3>Your 30-second talk track</h3>
+      <div class="quote"><span class="mark">&ldquo;</span>I'd like to bring in our implementation partner, Align HCM. They'll run a complimentary optimization analysis on your current environment. <b>No cost, no commitment.</b> You'll get a clear picture of where you are, a quantified business case, and a phased roadmap. If you decide to move forward, they implement it and include 60 days of managed support to make sure you're stable. It's the smoothest on-ramp to UKG I can offer you.<span class="cq">&rdquo;</span></div>
+      <div class="chips"><span><i>&#10003;</i>No cost</span><span><i>&#10003;</i>No commitment</span><span><i>&#10003;</i>60 days included</span></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>ALIGN HCM &nbsp;|&nbsp; OPTIMIZE → IMPLEMENT → SUSTAIN &nbsp;|&nbsp; UKG PARTNER PLACEMAT</span>
+    <span>CONFIDENTIAL &nbsp;|&nbsp; JULY 2026</span>
+    <span class="pg">1</span>
+  </div>
+</section>
+
+<!-- ===================== PAGE 2 ===================== -->
+<section class="page">
+
+  <div class="brandbar">
+    <img class="align" src="__ALIGN__" alt="Align HCM">
+    <div class="lockup">
+      <span class="xmark">|</span>
+      <div class="partnerline">
+        <div class="k">Who to target, what to say, how it closes</div>
+        <div class="v">Qualify, Handle, Close</div>
+      </div>
+    </div>
+    <div class="ukgblock">
+      <div class="cap">Built for<br>sales reps at</div>
+      <img class="ukg" src="__UKG__" alt="UKG">
+    </div>
+  </div>
+
+  <div class="cols">
+
+    <div class="panel icp">
+      <h3>Ideal customer profile</h3>
+      <div class="icprow">
+        <div class="lbl">Company size</div>
+        <div class="val"><b>500 to 15,000 employees.</b> Canadian enterprise is the sweet spot, but the program works across all segments.</div>
+      </div>
+      <div class="icprow">
+        <div class="lbl">Current HCM</div>
+        <div class="val">Legacy UKG (Workforce Central, Kronos), a competing HCM platform, or fragmented point solutions held together by manual workarounds.</div>
+      </div>
+      <div class="icprow">
+        <div class="lbl">Buying signals</div>
+        <div class="val">
+          <div class="sig">
+            <span>Platform sunset</span><span>M&amp;A integration</span><span>Compliance event</span><span>Payroll consolidation</span><span>ERP go-live</span><span>Renewal window</span>
+          </div>
+        </div>
+      </div>
+      <div class="icprow">
+        <div class="lbl">Decision maker</div>
+        <div class="val"><b>VP HR, CHRO, or CFO</b> with allocated or allocable HCM budget and willingness to engage inside 90 days.</div>
+      </div>
+      <div class="trigger">
+        <div class="q">&ldquo;They know they have a problem, but they aren't sure where to start.<span class="cq">&rdquo;</span></div>
+        <div class="a">That is exactly what the free QOA solves.</div>
+      </div>
+    </div>
+
+    <div class="panel obj">
+      <h3>Objection handling</h3>
+      <div class="qa">
+        <div class="q">&ldquo;Why is the assessment free?<span class="cq">&rdquo;</span></div>
+        <div class="a">Align invests in the QOA because it makes them a better implementation partner. They go in with their eyes open instead of discovering surprises mid-project. <b>That saves everyone time and money.</b></div>
+      </div>
+      <div class="qa">
+        <div class="q">&ldquo;What's the catch?<span class="cq">&rdquo;</span></div>
+        <div class="a">No catch. If the assessment says stay put, they shake hands and walk away. But every QOA they have run surfaced <b>3 to 5 high-impact opportunities</b> the customer didn't know they were leaving on the table.</div>
+      </div>
+      <div class="qa">
+        <div class="q">&ldquo;We already have support.<span class="cq">&rdquo;</span></div>
+        <div class="a">SmartCare isn't generic support. It's a dedicated team that knows the customer's configuration <b>because they built it.</b> The 60-day inclusive period lets them feel the difference before committing.</div>
+      </div>
+      <div class="qa">
+        <div class="q">&ldquo;Why only 60 days?<span class="cq">&rdquo;</span></div>
+        <div class="a">60 days covers the hyper-care window where 80% of post-go-live issues surface. <b>Most customers convert to a paid subscription</b> because they see the ROI by Day 30.</div>
+      </div>
+      <div class="qa">
+        <div class="q">&ldquo;We're not ready for a full project.<span class="cq">&rdquo;</span></div>
+        <div class="a">That is exactly the right time for a QOA. It's a zero-risk way to build the business case and get clarity on scope, timeline, and budget <b>before any commitment.</b></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="flowsec">
+    <div class="panel" style="border:none;padding:0">
+      <h3>Your deal flow, from first conversation to managed services</h3>
+    </div>
+    <div class="steps">
+      <div class="step s1"><div class="sh"><div class="stk"><div class="sn">STEP 1</div><div class="st">Identify &amp; Qualify</div></div></div><div class="sb">Spot an account in your book that matches the ICP. Flag it for the program.</div></div>
+      <div class="step s2"><div class="sh"><div class="stk"><div class="sn">STEP 2</div><div class="st">Introduce Align</div></div></div><div class="sb">Run the 30-second talk track. Position the free QOA as a no-risk next step.</div></div>
+      <div class="step s3"><div class="sh"><div class="stk"><div class="sn">STEP 3</div><div class="st">QOA Delivery</div></div></div><div class="sb">Align runs it in 5 to 10 days. You stay in the loop. Findings are co-presented.</div></div>
+      <div class="step s4"><div class="sh"><div class="stk"><div class="sn">STEP 4</div><div class="st">Proposal &amp; Close</div></div></div><div class="sb">QOA findings drive the SOW. Align builds the proposal. You close the deal together.</div></div>
+      <div class="step s5"><div class="sh"><div class="stk"><div class="sn">STEP 5</div><div class="st">Implementation</div></div></div><div class="sb">Align delivers. You check in at milestones. Go-live triggers the SmartCare handoff.</div></div>
+      <div class="step s6"><div class="sh"><div class="stk"><div class="sn">STEP 6</div><div class="st">SmartCare 60-Day</div></div></div><div class="sb">60 days of included support. Day 45 conversion to a paid subscription. Customer retained.</div></div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <div>
+      <div class="t">Ready to attach Align?</div>
+      <div class="s">Contact your Align HCM partner manager to nominate an account for a QOA. We'll take it from there.</div>
+    </div>
+    <div class="badge">Nominate an account<br>for a free QOA</div>
+  </div>
+
+  <div class="foot">
+    <span>ALIGN HCM &nbsp;|&nbsp; OPTIMIZE → IMPLEMENT → SUSTAIN &nbsp;|&nbsp; UKG PARTNER PLACEMAT</span>
+    <span>CONFIDENTIAL &nbsp;|&nbsp; JULY 2026</span>
+    <span class="pg">2</span>
+  </div>
+</section>
