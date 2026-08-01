@@ -1,7 +1,7 @@
 {
     "schemaVersion":  1,
-    "revision":  334,
-    "updatedAt":  "2026-08-01T20:28:46.6112402+00:00",
+    "revision":  335,
+    "updatedAt":  "2026-08-01T20:36:18.0681554+00:00",
     "updatedBy":  "marketing-chief",
     "mode":  "manual-pilot",
     "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
@@ -7038,7 +7038,7 @@
                       },
                       {
                           "id":  "wi-20260801-0001",
-                          "version":  1,
+                          "version":  2,
                           "dedupeKey":  "momentum-hubspot-daily-missed-call-text-review-guide-2026-07-31",
                           "scope":  "client",
                           "clientId":  "momentum-360",
@@ -7056,7 +7056,7 @@
                                          "observedAt":  "2026-08-01T20:28:46.6112402+00:00",
                                          "redactedSummary":  "Authorized Momentum stakeholder requested a clear daily review path for missed-call and client-messaging activity in HubSpot."
                                      },
-                          "status":  "ready",
+                          "status":  "blocked",
                           "lane":  "normal",
                           "emergencyRationale":  null,
                           "priority":  {
@@ -7064,13 +7064,13 @@
                                            "rationale":  "The request supports daily follow-up visibility and completion verification for the active caller-response workflow without authorizing a live account change."
                                        },
                           "owner":  "marketing-chief",
-                          "nextAction":  "Verify the exact Momentum portal identity, read-only HubSpot navigation, CallRail association boundaries, and remaining controlled deployment gates, then prepare a local daily-review guide without changing settings, sending messages, or declaring production complete.",
+                          "nextAction":  "Unlock the sole approved Bitwarden vault, complete the Google password challenge for the approved Momentum HubSpot account, and confirm whether live alerts should use the Slack-profile identity or the approved HubSpot-account identity before any production change.",
                           "execution":  {
-                                            "actionClass":  "read_only_verification",
-                                            "automaticEligible":  true,
+                                            "actionClass":  "human_authentication",
+                                            "automaticEligible":  false,
                                             "externalAction":  false,
-                                            "reversible":  true,
-                                            "classifiedAt":  "2026-08-01T20:28:46.6112402+00:00"
+                                            "reversible":  false,
+                                            "classifiedAt":  "2026-08-01T20:36:18.0681554+00:00"
                                         },
                           "definitionOfDone":  [
                                                    "The exact Momentum route is verified as HubSpot portal 50612503.",
@@ -7090,9 +7090,9 @@
                                                     ]
                                        },
                           "approval":  {
-                                           "tier":  "automatic",
+                                           "tier":  "explicit",
                                            "action":  "Local read-only verification and guide preparation only.",
-                                           "status":  "not_required",
+                                           "status":  "pending",
                                            "approvalRef":  null
                                        },
                           "dependencies":  [
@@ -7105,9 +7105,14 @@
                           "artifactRefs":  [
 
                                            ],
-                          "outcome":  null,
+                          "outcome":  {
+                                          "status":  "blocked",
+                                          "verifiedAt":  "2026-08-01T20:36:18.0681554+00:00",
+                                          "summary":  "Portal 50612503 token and identity verification passed, and the Workflows probe succeeded. The Conversations probe returned a missing-scopes denial. Exact account selection reached the Google password challenge, which is blocked until the sole approved Bitwarden vault is unlocked. The local daily-review guide exists and its tests pass 9 of 9. The live alert recipient remains undecided between the Slack-profile identity and the approved HubSpot-account identity. Production completion is false; no HubSpot, Slack, or email write was performed.",
+                                          "externalActionTaken":  false
+                                      },
                           "createdAt":  "2026-08-01T20:28:46.6112402+00:00",
-                          "updatedAt":  "2026-08-01T20:28:46.6112402+00:00"
+                          "updatedAt":  "2026-08-01T20:36:18.0681554+00:00"
                       }
                   ],
     "intakeQuarantine":  [

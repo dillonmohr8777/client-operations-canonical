@@ -3,14 +3,14 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-08-01T20:28:46.6112402+00:00`
-Queue revision: `334`
+Last reconciled: `2026-08-01T20:36:18.0681554+00:00`
+Queue revision: `335`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
 ## Predicted next actions
 
-**Next automatic action:** **Verify Momentum HubSpot caller-response deployment and daily review path** (`wi-20260801-0001`, score 158): Verify the exact Momentum portal identity, read-only HubSpot navigation, CallRail association boundaries, and remaining controlled deployment gates, then prepare a local daily-review guide without changing settings, sending messages, or declaring production complete. Why: P1, portfolio rank 3 (strategic), no evidenced deadline, current evidence, status ready.
+**Next automatic action:** No automatic action is currently eligible.
 
 **Next Dillon decision:** **Activate foundation Stripe donation flow** (`wi-20260724-0024`, score 220): Await confirmation that an authorized foundation representative has completed the dedicated Stripe business identity, banking, tax, terms, MFA, and verification requirements and that live payments and payouts are enabled. Why: P0, portfolio rank 3 (strategic), overdue, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required.
 
@@ -111,7 +111,7 @@ Mode: `manual-pilot`
 | `wi-20260727-0005` | `momentum-360` | Reconcile live workshop launch records | Done | P1 | Use the live launch decision as the source of truth and treat reminder, replay, analytics, strategy-call, outbound-delivery, or paid-budget work as separate scoped actions. | No evidenced deadline |
 | `wi-20260728-0001` | `replenish-7-eleven` | Resolve Replenish Google Ads chargebacks and mixed-brand balance | Needs Approval | P0 | Approve the exact PDF attachment and recipient, then send it to Mia; collect her chargeback reason, Pompano credit intent, and San Diego budget ceiling before opening the Google Ads billing case or making any payment. | No evidenced deadline |
 | `wi-20260731-0001` | `align-hcm` | Verify Align HCM AMP issue and remediation scope | Done | P1 | Perform a read-only public and local-source verification of Align HCM AMP usage, capture current evidence, and prepare a local remediation brief without changing the live site. | No evidenced deadline |
-| `wi-20260801-0001` | `momentum-360` | Verify Momentum HubSpot caller-response deployment and daily review path | Ready | P1 | Verify the exact Momentum portal identity, read-only HubSpot navigation, CallRail association boundaries, and remaining controlled deployment gates, then prepare a local daily-review guide without changing settings, sending messages, or declaring production complete. | No evidenced deadline |
+| `wi-20260801-0001` | `momentum-360` | Verify Momentum HubSpot caller-response deployment and daily review path | Blocked | P1 | Unlock the sole approved Bitwarden vault, complete the Google password challenge for the approved Momentum HubSpot account, and confirm whether live alerts should use the Slack-profile identity or the approved HubSpot-account identity before any production change. | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -455,6 +455,21 @@ Mode: `manual-pilot`
 - The correct bank or Google Ads support route is selected and prepared with exact live transaction evidence.
 - No payment, delivery restart, or external support submission occurs without exact approval.
 
+### Verify Momentum HubSpot caller-response deployment and daily review path
+
+**Decision:** Local read-only verification and guide preparation only.
+
+**Next action:** Unlock the sole approved Bitwarden vault, complete the Google password challenge for the approved Momentum HubSpot account, and confirm whether live alerts should use the Slack-profile identity or the approved HubSpot-account identity before any production change.
+
+**Definition of done:**
+
+- The exact Momentum route is verified as HubSpot portal 50612503.
+- The local guide identifies the daily review surfaces and fields for missed-call and messaging activity.
+- CallRail-only SMS and routing telemetry is clearly separated from HubSpot-native records and associations.
+- The remaining controlled after-hours call and readback gates are listed with their evidence requirements.
+- No HubSpot setting, workflow, routing rule, record, message, deployment, or external delivery is changed.
+- Production completion is not claimed without the remaining controlled live evidence.
+
 ## Blocked or at risk
 
 - **Reconcile two Fagan Painting website leads:** Obtain lead-level disposition for the two exact canonical records from the approved client mailbox, CRM, or Zapier record; do not infer individual outcomes from aggregate batch feedback.
@@ -467,6 +482,8 @@ Mode: `manual-pilot`
   Current evidence: The security-safe activation checklist was delivered to the verified agency leadership contact. Dedicated foundation account authentication remains a human-only blocker; technical production credentials and webhook configuration remain separate.
 - **Correct VA Claims booking and lead routing rules:** Map and authenticate the exact authorized WordPress or Amelia administrator route, apply only the verified scheduling and routing corrections, then complete an approved synthetic booking test without contacting a prospect.
   Current evidence: The Chrome plugin and native-host path were repaired and verified with the dedicated hidden profile, and the VA Claims WordPress administrator login was reached. The authorized Bitwarden vault is locked and the access registry has no exact VA Claims WordPress or Amelia locator, so a human vault unlock is still required before credential autofill, settings changes, and synthetic booking verification. No external configuration was changed. Evidence: clients/va-claims-edge/evidence/2026-07-25-booking-routing-verification.json.
+- **Verify Momentum HubSpot caller-response deployment and daily review path:** Unlock the sole approved Bitwarden vault, complete the Google password challenge for the approved Momentum HubSpot account, and confirm whether live alerts should use the Slack-profile identity or the approved HubSpot-account identity before any production change.
+  Current evidence: Portal 50612503 token and identity verification passed, and the Workflows probe succeeded. The Conversations probe returned a missing-scopes denial. Exact account selection reached the Google password challenge, which is blocked until the sole approved Bitwarden vault is unlocked. The local daily-review guide exists and its tests pass 9 of 9. The live alert recipient remains undecided between the Slack-profile identity and the approved HubSpot-account identity. Production completion is false; no HubSpot, Slack, or email write was performed.
 
 ## Intake quarantine
 
