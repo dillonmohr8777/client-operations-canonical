@@ -3,14 +3,14 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-07-29T13:48:50.3001949+00:00`
-Queue revision: `329`
+Last reconciled: `2026-08-01T20:28:46.6112402+00:00`
+Queue revision: `334`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
 ## Predicted next actions
 
-**Next automatic action:** No automatic action is currently eligible.
+**Next automatic action:** **Verify Momentum HubSpot caller-response deployment and daily review path** (`wi-20260801-0001`, score 158): Verify the exact Momentum portal identity, read-only HubSpot navigation, CallRail association boundaries, and remaining controlled deployment gates, then prepare a local daily-review guide without changing settings, sending messages, or declaring production complete. Why: P1, portfolio rank 3 (strategic), no evidenced deadline, current evidence, status ready.
 
 **Next Dillon decision:** **Activate foundation Stripe donation flow** (`wi-20260724-0024`, score 220): Await confirmation that an authorized foundation representative has completed the dedicated Stripe business identity, banking, tax, terms, MFA, and verification requirements and that live payments and payouts are enabled. Why: P0, portfolio rank 3 (strategic), overdue, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required.
 
@@ -110,6 +110,8 @@ Mode: `manual-pilot`
 | `wi-20260727-0004` | `momentum-360` | Restore the standard paid-media client dashboard shell | Done | P1 | Restore the prior verified dashboard lineage and republish the corrected reports to the existing Netlify sites. | No evidenced deadline |
 | `wi-20260727-0005` | `momentum-360` | Reconcile live workshop launch records | Done | P1 | Use the live launch decision as the source of truth and treat reminder, replay, analytics, strategy-call, outbound-delivery, or paid-budget work as separate scoped actions. | No evidenced deadline |
 | `wi-20260728-0001` | `replenish-7-eleven` | Resolve Replenish Google Ads chargebacks and mixed-brand balance | Needs Approval | P0 | Approve the exact PDF attachment and recipient, then send it to Mia; collect her chargeback reason, Pompano credit intent, and San Diego budget ceiling before opening the Google Ads billing case or making any payment. | No evidenced deadline |
+| `wi-20260731-0001` | `align-hcm` | Verify Align HCM AMP issue and remediation scope | Done | P1 | Perform a read-only public and local-source verification of Align HCM AMP usage, capture current evidence, and prepare a local remediation brief without changing the live site. | No evidenced deadline |
+| `wi-20260801-0001` | `momentum-360` | Verify Momentum HubSpot caller-response deployment and daily review path | Ready | P1 | Verify the exact Momentum portal identity, read-only HubSpot navigation, CallRail association boundaries, and remaining controlled deployment gates, then prepare a local daily-review guide without changing settings, sending messages, or declaring production complete. | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -508,9 +510,9 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-07-29T17:36:42.0566101+00:00`
+- **As of:** `2026-08-01T12:15:03.2483020+00:00`
 - **Overall:** `degraded`
-- **Queue:** revision `329`, `84` work items, normal `2/3`, emergency `0/1` active
+- **Queue:** revision `333`, `85` work items, normal `2/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `8/21` canonical clients registered, `2/65` systems verified, `6` exact Bitwarden item locators
@@ -524,8 +526,8 @@ Mode: `manual-pilot`
   - `DillonAgentOS-DailyBrief`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
-  - `MarketingChief-DailyCalibration`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
-  - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
+  - `MarketingChief-DailyCalibration`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
+  - `MarketingChief-SitesBridge`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
 - **Human gates:** `active_client_exact_bw_item_mapping`
 - **Deferred actions:** `secondary_exposed_password_rotation`
 - **Warnings:** Bitwarden bridge integrity does not match the independently reviewed build; execution was refused

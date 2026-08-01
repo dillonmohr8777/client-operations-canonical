@@ -1,7 +1,7 @@
 {
     "schemaVersion":  1,
-    "revision":  329,
-    "updatedAt":  "2026-07-29T13:48:50.3001949+00:00",
+    "revision":  334,
+    "updatedAt":  "2026-08-01T20:28:46.6112402+00:00",
     "updatedBy":  "marketing-chief",
     "mode":  "manual-pilot",
     "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
@@ -6935,6 +6935,179 @@
                                       },
                           "createdAt":  "2026-07-28T18:56:50.6435245+00:00",
                           "updatedAt":  "2026-07-29T13:48:50.3001949+00:00"
+                      },
+                      {
+                          "id":  "wi-20260731-0001",
+                          "version":  4,
+                          "dedupeKey":  "intake:agent-os-run:20260730-101244-5fb934cf/task.json",
+                          "scope":  "client",
+                          "clientId":  "align-hcm",
+                          "routing":  {
+                                          "status":  "resolved",
+                                          "matchedBy":  "registry-resolver",
+                                          "registryStatus":  "active",
+                                          "verifiedAt":  "2026-07-31T13:49:24.6107104+00:00"
+                                      },
+                          "title":  "Verify Align HCM AMP issue and remediation scope",
+                          "requestedOutcome":  "Verify the current Align HCM AMP issue, identify the affected public URL or template when discoverable, and prepare a safe local remediation recommendation.",
+                          "source":  {
+                                         "type":  "intake",
+                                         "locator":  "agent-os-run:20260730-101244-5fb934cf/task.json",
+                                         "observedAt":  "2026-07-31T13:49:24.6107104+00:00",
+                                         "redactedSummary":  "An exact Google Search Console alert reports one AMP issue for the active Align HCM site."
+                                     },
+                          "status":  "done",
+                          "lane":  "normal",
+                          "emergencyRationale":  null,
+                          "priority":  {
+                                           "level":  "P1",
+                                           "rationale":  "A current Search Console technical issue may affect organic visibility or page eligibility and should be verified before any production change."
+                                       },
+                          "owner":  "marketing-chief",
+                          "nextAction":  "Perform a read-only public and local-source verification of Align HCM AMP usage, capture current evidence, and prepare a local remediation brief without changing the live site.",
+                          "execution":  {
+                                            "actionClass":  "local_research",
+                                            "automaticEligible":  true,
+                                            "externalAction":  false,
+                                            "reversible":  true,
+                                            "classifiedAt":  "2026-07-31T13:49:24.6107104+00:00"
+                                        },
+                          "definitionOfDone":  [
+                                                   "The exact active Align client route and alert source are preserved.",
+                                                   "Current public AMP signals and affected scope are checked without mutating production.",
+                                                   "A redacted local evidence artifact records findings, uncertainty, and recommended remediation.",
+                                                   "An independent verification check confirms that no external action or canonical write was attempted by the worker."
+                                               ],
+                          "dueAt":  null,
+                          "reviewAt":  null,
+                          "evidence":  {
+                                           "asOf":  "2026-07-31T14:01:18.5698572+00:00",
+                                           "freshness":  "current",
+                                           "refs":  [
+                                                        "agent-os-run:20260730-101244-5fb934cf/task.json",
+                                                        "clients/align-hcm/evidence/2026-07-31-amp-issue-readonly-verification.json",
+                                                        "state/execution-graphs/wi-20260731-0001/mgr-align-amp-review-20260731/execution-graph.json",
+                                                        "sha256:0CA1F9889242A6E69D5B7E6F00D075FE0BB1E779ECF57ECAB9237744E687D36B",
+                                                        "state/execution-graphs/wi-20260731-0001/mgr-align-amp-verify-20260731/execution-graph.json",
+                                                        "sha256:D521C2EBD623579FE907DBCFAB7242291D9D71C09FFC53593F3B83CC5B3DB0BC",
+                                                        "state/execution-graphs/wi-20260731-0001/mgr-align-amp-final-20260731/execution-graph.json",
+                                                        "sha256:213F31B476F97A00DB7EF1C90D40075C53F9E78B993D8A90AD3873C5FF49D2BA"
+                                                    ]
+                                       },
+                          "approval":  {
+                                           "tier":  "automatic",
+                                           "action":  "Local reversible work only.",
+                                           "status":  "not_required",
+                                           "approvalRef":  null
+                                       },
+                          "dependencies":  [
+
+                                           ],
+                          "assumptions":  [
+
+                                          ],
+                          "confidence":  0.9,
+                          "artifactRefs":  [
+                                               "clients/align-hcm/evidence/2026-07-31-amp-issue-readonly-verification.json",
+                                               "clients/align-hcm/deliverables/2026-07-31-amp-issue-remediation-brief.md"
+                                           ],
+                          "outcome":  {
+                                          "status":  "completed",
+                                          "verifiedAt":  "2026-07-31T14:01:18.5698572+00:00",
+                                          "summary":  "The Align HCM AMP alert is fully triaged: the issue is a non-critical recommended image-size warning, current HubSpot AMP coverage is documented, and a safe remediation path is ready for future authorized Search Console and HubSpot work.",
+                                          "handoffId":  "handoff-align-amp-done-20260731",
+                                          "handoffContentSha256":  "78C139ABB316D29401E9DBAAE9EA43C98702D64B2486FDD91BA93D956CDBB96F",
+                                          "workerRole":  "bounded-worker",
+                                          "verification":  [
+                                                               "All definition-of-done checks passed in the final graph.",
+                                                               "The alert severity and issue type were verified from the exact source.",
+                                                               "The public AMP scope received both bounded and independent readbacks.",
+                                                               "No external action or worker canonical write occurred."
+                                                           ],
+                                          "assumptions":  [
+
+                                                          ],
+                                          "risks":  [
+                                                        "Any future live remediation still requires the exact Search Console example and an authorized HubSpot change path."
+                                                    ],
+                                          "privacy":  "redacted",
+                                          "externalActionTaken":  false
+                                      },
+                          "createdAt":  "2026-07-31T13:49:24.6107104+00:00",
+                          "updatedAt":  "2026-07-31T14:01:18.5698572+00:00"
+                      },
+                      {
+                          "id":  "wi-20260801-0001",
+                          "version":  1,
+                          "dedupeKey":  "momentum-hubspot-daily-missed-call-text-review-guide-2026-07-31",
+                          "scope":  "client",
+                          "clientId":  "momentum-360",
+                          "routing":  {
+                                          "status":  "resolved",
+                                          "matchedBy":  "registry-resolver",
+                                          "registryStatus":  "active",
+                                          "verifiedAt":  "2026-08-01T20:28:46.6112402+00:00"
+                                      },
+                          "title":  "Verify Momentum HubSpot caller-response deployment and daily review path",
+                          "requestedOutcome":  "Verify the remaining live HubSpot and CallRail caller-response gates and create a local daily review guide for missed-call and messaging activity in the exact Momentum portal without asserting production completion.",
+                          "source":  {
+                                         "type":  "slack",
+                                         "locator":  "slack://channel/C0B2N20A0SW/message/1785511579.769919",
+                                         "observedAt":  "2026-08-01T20:28:46.6112402+00:00",
+                                         "redactedSummary":  "Authorized Momentum stakeholder requested a clear daily review path for missed-call and client-messaging activity in HubSpot."
+                                     },
+                          "status":  "ready",
+                          "lane":  "normal",
+                          "emergencyRationale":  null,
+                          "priority":  {
+                                           "level":  "P1",
+                                           "rationale":  "The request supports daily follow-up visibility and completion verification for the active caller-response workflow without authorizing a live account change."
+                                       },
+                          "owner":  "marketing-chief",
+                          "nextAction":  "Verify the exact Momentum portal identity, read-only HubSpot navigation, CallRail association boundaries, and remaining controlled deployment gates, then prepare a local daily-review guide without changing settings, sending messages, or declaring production complete.",
+                          "execution":  {
+                                            "actionClass":  "read_only_verification",
+                                            "automaticEligible":  true,
+                                            "externalAction":  false,
+                                            "reversible":  true,
+                                            "classifiedAt":  "2026-08-01T20:28:46.6112402+00:00"
+                                        },
+                          "definitionOfDone":  [
+                                                   "The exact Momentum route is verified as HubSpot portal 50612503.",
+                                                   "The local guide identifies the daily review surfaces and fields for missed-call and messaging activity.",
+                                                   "CallRail-only SMS and routing telemetry is clearly separated from HubSpot-native records and associations.",
+                                                   "The remaining controlled after-hours call and readback gates are listed with their evidence requirements.",
+                                                   "No HubSpot setting, workflow, routing rule, record, message, deployment, or external delivery is changed.",
+                                                   "Production completion is not claimed without the remaining controlled live evidence."
+                                               ],
+                          "dueAt":  null,
+                          "reviewAt":  null,
+                          "evidence":  {
+                                           "asOf":  "2026-08-01T20:28:46.6112402+00:00",
+                                           "freshness":  "current",
+                                           "refs":  [
+                                                        "slack://channel/C0B2N20A0SW/message/1785511579.769919"
+                                                    ]
+                                       },
+                          "approval":  {
+                                           "tier":  "automatic",
+                                           "action":  "Local read-only verification and guide preparation only.",
+                                           "status":  "not_required",
+                                           "approvalRef":  null
+                                       },
+                          "dependencies":  [
+
+                                           ],
+                          "assumptions":  [
+
+                                          ],
+                          "confidence":  0.8,
+                          "artifactRefs":  [
+
+                                           ],
+                          "outcome":  null,
+                          "createdAt":  "2026-08-01T20:28:46.6112402+00:00",
+                          "updatedAt":  "2026-08-01T20:28:46.6112402+00:00"
                       }
                   ],
     "intakeQuarantine":  [

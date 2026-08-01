@@ -47,7 +47,7 @@ function Assert-SafeItem {
   $workItemId = [string](Get-OptionalProperty $Item 'promotedWorkItemId')
   if (-not [string]::IsNullOrWhiteSpace($workItemId) -and $workItemId -notmatch '^wi-[A-Za-z0-9][A-Za-z0-9_-]{5,79}$') { throw 'Intake contains an unsafe promoted work-item identifier.' }
   $quarantineReason = [string](Get-OptionalProperty $Item 'quarantineReason')
-  $allowedReasons = @('ambiguous-client', 'client-status-not-active', 'known-false-or-cross-client-route', 'unresolved-client', 'missing-current-outcome', 'unsafe-execution-mode', 'invalid-client-route', 'manual-quarantine', 'legacy-quarantine')
+  $allowedReasons = @('ambiguous-client', 'client-status-not-active', 'known-false-or-cross-client-route', 'unresolved-client', 'missing-current-outcome', 'exact-source-identity-required', 'unsafe-execution-mode', 'invalid-client-route', 'manual-quarantine', 'legacy-quarantine')
   if (-not [string]::IsNullOrWhiteSpace($quarantineReason) -and $quarantineReason -notin $allowedReasons) { throw 'Intake contains an unsafe quarantine reason.' }
   $resolutionAction = [string](Get-OptionalProperty $Item 'resolutionAction')
   if (-not [string]::IsNullOrWhiteSpace($resolutionAction) -and $resolutionAction -notin @('promoted', 'acknowledged')) { throw 'Intake contains an invalid resolution action.' }

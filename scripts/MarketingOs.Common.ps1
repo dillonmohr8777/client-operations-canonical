@@ -22,6 +22,11 @@ function Test-MarketingSafeText {
         '(?i)agent-os-run:[A-Za-z0-9][A-Za-z0-9_-]{5,79}/task\.json',
         'SAFE_AGENT_OS_LOCATOR'
     )
+    $safeCandidate = [regex]::Replace(
+        $safeCandidate,
+        'slack://channel/[A-Z0-9]{9,20}/message/[0-9]{10,16}\.[0-9]{6}',
+        'SAFE_SLACK_MESSAGE_LOCATOR'
+    )
 
     $badPatterns = @(
         '(?i)-----BEGIN [A-Z ]*PRIVATE KEY-----',
@@ -65,6 +70,7 @@ function Test-MarketingSafeLocator {
     if ($Value -match '^sha256:[0-9a-fA-F]{64}$') { return $true }
     if ($Value -match '^source-commit:[0-9a-fA-F]{7,40}$') { return $true }
     if ($Value -match '^agent-os-run:[A-Za-z0-9-]{8,100}/task\.json$') { return $true }
+    if ($Value -match '^slack://channel/[A-Z0-9]{9,20}/message/[0-9]{10,16}\.[0-9]{6}$') { return $true }
     if ($Value -match '^sites-intent:[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$') { return $true }
     return $false
 }
