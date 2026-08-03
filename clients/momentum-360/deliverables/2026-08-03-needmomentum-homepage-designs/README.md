@@ -42,7 +42,8 @@ review/                   the comparison hub Jenny receives
 netlify.toml              one site, three paths; / redirects to /review/
 _headers                  strict CSP — no CDN scripts anywhere
 tools/
-  build-assets.py         fetches + encodes every image, then syncs into both builds
+  build-assets.py         fetches + encodes every image into shared/assets/
+  build-artifact.py       flattens a build to one self-contained file (fonts, images, CSS, JS inlined)
   qa.mjs                  headless-Chromium QA: a11y, broken images, weight, screenshots
 qa/                       QA screenshots, desktop + mobile, per design
 docs/
@@ -79,6 +80,22 @@ python3 tools/build-assets.py                # add --skip-download to use the ca
 python3 -m http.server 8899
 node tools/qa.mjs http://localhost:8899      # exits non-zero on a hard failure
 ```
+
+## Viewable now
+
+Published as private Artifacts, each a single self-contained file with fonts,
+images, CSS and JS inlined (no external requests at all):
+
+| | Link |
+|---|---|
+| Review hub — start here | https://claude.ai/code/artifact/c0c21d94-8166-497a-8970-bb4dcfdff652 |
+| Design A — Puts You On the Map | https://claude.ai/code/artifact/11736cee-46d1-461b-9b1f-7e6799df697d |
+| Design B — The Gold Line | https://claude.ai/code/artifact/df18500b-d22a-4443-8f3b-664e46d3a579 |
+
+Rebuild them with `python3 tools/build-artifact.py design-a out.html`. Two
+differences from the Netlify builds, both forced by the Artifact CSP: the
+YouTube facades become links that open in a new tab rather than swapping in an
+iframe, and each image is embedded at one width instead of a full `srcset`.
 
 ## Deploying
 
