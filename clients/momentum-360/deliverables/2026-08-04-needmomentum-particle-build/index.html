@@ -1,0 +1,440 @@
+<!doctype html>
+<!--
+  Need Momentum — MOTION build
+  Builds ON the Codex "signal" site: same design language, same palette family,
+  same fonts, same nine-section spine. What changed, all from the review notes:
+
+    * The hero particle field now RESOLVES into the crisp Need Momentum logo.
+      No decorative streak — the particles exist only to become the mark.
+    * The mobile clipping is fixed (canvas style size + measured parent box).
+    * "DIGITAL GROWTH + SPATIAL MEDIA" is gone; the hero starts at the h1 and
+      third-party proof takes that hierarchy slot instead.
+    * Every visible "signal" string is gone, including <title> and og:*.
+    * 01-06 numerals are ~9rem and sit behind the card as structure.
+    * Solo founder portraits only. The duo and the YouTube-thumbnail shots are
+      not in this build. Each bio is three real paragraphs at 1.25rem, and the
+      lead sentence assembles from particles once, then never again.
+    * No black grounds. navy -> white -> navy -> yellow -> near-white -> navy ->
+      white -> navy -> yellow.
+    * One ambient particle field across the whole page, tinted per section so it
+      reads on navy, paper AND yellow.
+
+  No CDN: the house CSP is script-src 'self'. Fonts are self-hosted woff2.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#071632" />
+    <title>Need Momentum — Digital growth and spatial media in Philadelphia</title>
+    <meta
+      name="description"
+      content="One connected agency for getting found, looking exceptional and turning attention into action. Search, paid media, websites, local presence and virtual tours."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta property="og:title" content="Need Momentum — Digital growth and spatial media in Philadelphia" />
+    <meta
+      property="og:description"
+      content="One connected agency for getting found, looking exceptional and turning attention into action."
+    />
+    <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Need Momentum",
+        "alternateName": ["Momentum", "Momentum Digital", "Momentum 360"],
+        "url": "https://www.needmomentum.com/",
+        "telephone": "+1-215-876-2954",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1635 Market Street #1601",
+          "addressLocality": "Philadelphia",
+          "addressRegion": "PA",
+          "postalCode": "19103",
+          "addressCountry": "US"
+        },
+        "founder": [
+          { "@type": "Person", "name": "Mac Frederick", "jobTitle": "Founder & CEO" },
+          { "@type": "Person", "name": "Sean Boyle", "jobTitle": "Partner" }
+        ]
+      }
+    </script>
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!-- One ambient field for the whole page. Inert: aria-hidden and
+         pointer-events:none, so it can never intercept a scroll or a tap. -->
+    <canvas id="nmField" class="nm-field" aria-hidden="true"></canvas>
+
+    <header class="topbar" id="top">
+      <a class="lockup" href="#top" aria-label="Need Momentum home">
+        <img src="assets/brand/need-momentum-logo.png" alt="Need Momentum" width="150" height="34" />
+      </a>
+      <nav class="topbar__nav" aria-label="Primary">
+        <a href="#system">System</a>
+        <a href="#services">Services</a>
+        <a href="#momentum-360">Momentum 360</a>
+        <a href="#work">Work</a>
+        <a href="#founders">About</a>
+      </nav>
+      <div class="topbar__act">
+        <button class="mt" id="motionToggle" type="button" aria-pressed="true">
+          <span class="mt__dot" aria-hidden="true"></span><span class="mt__label">Motion on</span>
+        </button>
+        <a class="btn btn--yellow" href="#audit">Free audit</a>
+        <button class="menub" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav">
+          <span aria-hidden="true"></span><b class="sr-only">Open menu</b>
+        </button>
+      </div>
+    </header>
+
+    <div class="mobile-nav" id="mobileNav" hidden>
+      <a href="#system">System</a>
+      <a href="#services">Services</a>
+      <a href="#momentum-360">Momentum 360</a>
+      <a href="#work">Work</a>
+      <a href="#founders">About</a>
+      <a class="btn btn--yellow" href="#audit">Free audit</a>
+    </div>
+
+    <main id="main">
+      <!-- 1 · HERO — deep navy ------------------------------------------- -->
+      <section class="sect hero s-navy" data-band="navy" aria-labelledby="heroTitle">
+        <div class="shell hero__grid">
+          <div class="hero__copy">
+            <!-- The particle stage. The real logo is in the DOM from byte one;
+                 particles assemble onto it and then die, so the end state is
+                 the crisp asset at any DPR. -->
+            <div class="assemble" data-assemble-logo>
+              <img
+                src="assets/brand/momentum-lockup-paper.svg"
+                alt="Need Momentum"
+                width="420"
+                height="82"
+                fetchpriority="high"
+              />
+            </div>
+
+            <h1 id="heroTitle">Need Momentum?<br />Make It Move.</h1>
+
+            <p class="lede">
+              One connected agency for getting found, looking exceptional and turning attention into
+              action.
+            </p>
+
+            <div class="cta-row">
+              <a class="btn btn--yellow" href="#audit">Request a free audit</a>
+              <a class="btn btn--ghost" href="#work">See the work</a>
+            </div>
+
+            <!-- Third-party proof takes the slot the deleted eyebrow held.
+                 Above the fold it outperforms a self-authored category label. -->
+            <div class="cred">
+              <img src="assets/badges/google-partner.webp" alt="Google Partner" width="96" height="54" />
+              <img src="assets/badges/inc-5000.png" alt="Inc. 5000 honoree" width="54" height="54" />
+              <img src="assets/badges/philly-100.png" alt="Philly 100" width="54" height="54" />
+              <p class="cred__cap dim">Google Partner · No.&nbsp;651 Inc.&nbsp;5000 · No.&nbsp;2 Philly&nbsp;100</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · SYSTEM — white. the page's first exhale ---------------------- -->
+      <section class="sect system s-paper" id="system" data-band="paper" aria-labelledby="sysTitle">
+        <div class="shell">
+          <p class="eyebrow rise">The system</p>
+          <h2 class="sys__lines rise" id="sysTitle">
+            <span>Search finds you.</span> <span class="hl">Story holds attention.</span>
+            <span class="hl2">Space builds trust.</span> <span>Systems move people.</span>
+          </h2>
+          <p class="sys__kick rise d1">One company runs the whole system.</p>
+        </div>
+      </section>
+
+      <!-- 3 · SERVICES — mid navy ----------------------------------------- -->
+      <section class="sect services s-navy-mid" id="services" data-band="navy-mid" aria-labelledby="svcTitle">
+        <div class="shell">
+          <div class="deck__head">
+            <div>
+              <p class="eyebrow rise">Services</p>
+              <h2 class="rise" id="svcTitle">Six moves. One operator.</h2>
+              <p class="dim rise d1">Drag, or use the arrows.</p>
+            </div>
+            <div class="deck__ctrl">
+              <button class="deck__btn" type="button" data-deck="prev" aria-label="Previous services">←</button>
+              <button class="deck__btn" type="button" data-deck="next" aria-label="More services">→</button>
+            </div>
+          </div>
+
+          <ul class="deck" id="deck" tabindex="0" aria-label="Services, scroll horizontally">
+            <li class="card">
+              <span class="card__no" aria-hidden="true">01</span>
+              <p class="card__over">Be found</p>
+              <h3>Search &amp; AI visibility</h3>
+              <p>Technical SEO, local visibility and AI-search work shaped around how people actually look for businesses now.</p>
+              <a class="card__cta" href="#audit">How we get you found <span aria-hidden="true">→</span></a>
+            </li>
+            <li class="card">
+              <span class="card__no" aria-hidden="true">02</span>
+              <p class="card__over">Create demand</p>
+              <h3>Paid media</h3>
+              <p>Google and social campaigns wired to real landing pages, clean reporting and one obvious next step.</p>
+              <a class="card__cta" href="#audit">How the campaigns run <span aria-hidden="true">→</span></a>
+            </li>
+            <li class="card">
+              <span class="card__no" aria-hidden="true">03</span>
+              <p class="card__over">Convert attention</p>
+              <h3>Web experiences</h3>
+              <p>Fast, useful websites that turn search intent into trust, phone calls and qualified conversations.</p>
+              <a class="card__cta" href="#audit">How the site converts <span aria-hidden="true">→</span></a>
+            </li>
+            <li class="card">
+              <span class="card__no" aria-hidden="true">04</span>
+              <p class="card__over">Show the space</p>
+              <h3>Momentum 360</h3>
+              <p>Virtual tours, photography, video and 360 capture that make a real place feel close from anywhere.</p>
+              <a class="card__cta" href="#momentum-360">See a tour <span aria-hidden="true">→</span></a>
+            </li>
+            <li class="card">
+              <span class="card__no" aria-hidden="true">05</span>
+              <p class="card__over">Own the map</p>
+              <h3>Local presence</h3>
+              <p>Google Business Profile strategy, listings and location content built to win the next nearby customer.</p>
+              <a class="card__cta" href="#audit">How we own the map <span aria-hidden="true">→</span></a>
+            </li>
+            <li class="card">
+              <span class="card__no" aria-hidden="true">06</span>
+              <p class="card__over">Move faster</p>
+              <h3>AI systems</h3>
+              <p>Practical automations that clear the busywork — follow-ups, routing, reporting — so the team stays on the work.</p>
+              <a class="card__cta" href="#audit">How the automations work <span aria-hidden="true">→</span></a>
+            </li>
+          </ul>
+          <div class="deck__bar" aria-hidden="true"><span id="deckFill"></span></div>
+        </div>
+      </section>
+
+      <!-- 4 · CREDIBILITY — yellow ---------------------------------------- -->
+      <section class="sect cred-strip s-yellow" data-band="yellow" aria-labelledby="credTitle">
+        <div class="shell cred-strip__in">
+          <div>
+            <p class="eyebrow rise">Receipts</p>
+            <h2 class="rise" id="credTitle">Ranked by other people.</h2>
+          </div>
+          <ul class="cred-strip__list rise d1">
+            <li><strong>No. 2</strong><span>Philly 100</span></li>
+            <li><strong>No. 651</strong><span>Inc. 5000</span></li>
+            <li><strong>Partner</strong><span>Google</span></li>
+            <li><strong>Featured</strong><span>Modern Luxury</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 5 · WORK — near-white ------------------------------------------- -->
+      <section class="sect work s-paper-2" id="work" data-band="paper-2" aria-labelledby="workTitle">
+        <div class="shell">
+          <p class="eyebrow rise">Work</p>
+          <h2 class="rise" id="workTitle">Attention becomes proof.</h2>
+          <p class="dim rise d1">Real places we have captured and marketed.</p>
+          <ul class="work__grid">
+            <li class="rise">
+              <img src="assets/proof/commercial-skyline.webp" alt="Commercial high-rise captured for a client listing" width="800" height="600" loading="lazy" />
+              <h3>Commercial</h3>
+            </li>
+            <li class="rise d1">
+              <img src="assets/proof/residential-townhome.webp" alt="Residential townhome captured for a listing" width="800" height="600" loading="lazy" />
+              <h3>Residential</h3>
+            </li>
+            <li class="rise d2">
+              <img src="assets/proof/hospitality.webp" alt="Hospitality interior captured for a venue" width="800" height="600" loading="lazy" />
+              <h3>Hospitality</h3>
+            </li>
+            <li class="rise">
+              <img src="assets/proof/meeting-space.webp" alt="Meeting space captured for a workspace listing" width="800" height="600" loading="lazy" />
+              <h3>Workspace</h3>
+            </li>
+            <li class="rise d1">
+              <img src="assets/proof/automotive.webp" alt="Automotive showroom captured for a dealership" width="800" height="600" loading="lazy" />
+              <h3>Automotive</h3>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 6 · MOMENTUM 360 — deep navy, the page's one warm moment -------- -->
+      <section class="sect m360 s-navy" id="momentum-360" data-band="gold" aria-labelledby="m360Title">
+        <div class="shell m360__grid">
+          <div class="rise">
+            <p class="endorse">
+              <img src="assets/brand/momentum-360-logo.png" alt="Momentum 360" width="150" height="34" />
+              <span class="dim">a Need Momentum service</span>
+            </p>
+            <h2 id="m360Title">The spatial-media arm.</h2>
+            <p>
+              Virtual tours, photography, video and 360 capture, built so a place feels close from
+              anywhere. It is the part of the system that turns interest into a visit.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn--yellow" href="#audit">Book a capture</a>
+              <a class="btn btn--ghost" href="https://www.momentumvirtualtours.com/virtual-tour-case-studies/" rel="noopener">Tour case studies</a>
+            </div>
+          </div>
+          <figure class="m360__shot rise d1">
+            <img src="assets/proof/commercial-skyline.webp" alt="A commercial building captured by Momentum 360" width="800" height="600" loading="lazy" />
+            <figcaption class="dim">Momentum 360 keeps its name, its awards and its tour library.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 7 · FOUNDERS — white, so the bios are maximally readable -------- -->
+      <section class="sect founders s-paper" id="founders" data-band="paper" aria-labelledby="fndTitle">
+        <div class="shell">
+          <p class="eyebrow rise">The founders</p>
+          <h2 class="rise" id="fndTitle">Built by people who run small businesses.</h2>
+
+          <article class="fnd">
+            <figure class="fnd__pic rise">
+              <picture>
+                <source type="image/avif" srcset="assets/founders/founder-mac-frederick-480.avif 480w, assets/founders/founder-mac-frederick-720.avif 720w" sizes="(min-width:64rem) 30vw, 80vw" />
+                <img src="assets/founders/founder-mac-frederick-480.webp" alt="Mac Frederick, founder and CEO of Need Momentum" width="480" height="600" loading="lazy" />
+              </picture>
+            </figure>
+            <div class="fnd__body">
+              <h3>Mac Frederick</h3>
+              <p class="fnd__role">Founder &amp; CEO</p>
+              <!-- The lead sentence assembles from particles, once, then hands
+                   off to this same element as real selectable text. -->
+              <p class="fnd__lead" data-assemble-text>
+                Mac Frederick started this agency after working at Google.
+              </p>
+              <p class="fnd__p rise d1">
+                That is the whole origin story, and it still shapes how the work gets done: measure
+                what the channel actually rewards, then build for it instead of guessing.
+              </p>
+              <p class="fnd__p rise d2">
+                A Penn State graduate, he has built the company into one of the fastest-growing in the
+                city — No. 2 on the Philly 100 and No. 651 on the Inc. 5000 — while also founding Phone
+                Repair Philly, now four locations, and Philly IV, now two. Running local businesses of
+                his own is why he talks to owners like an owner.
+              </p>
+              <p class="fnd__p rise d3">
+                Outside the accounts he hosts an annual breast-cancer-awareness gala that raises about
+                $100,000, and runs a Small Business Saturday push that has backed more than 100 local
+                businesses. Modern Luxury named him one of its Men of Influence.
+              </p>
+            </div>
+          </article>
+
+          <article class="fnd fnd--flip">
+            <figure class="fnd__pic rise">
+              <picture>
+                <source type="image/avif" srcset="assets/founders/founder-sean-boyle-480.avif 480w, assets/founders/founder-sean-boyle-720.avif 720w" sizes="(min-width:64rem) 30vw, 80vw" />
+                <img src="assets/founders/founder-sean-boyle-480.webp" alt="Sean Boyle, partner at Need Momentum" width="480" height="600" loading="lazy" />
+              </picture>
+            </figure>
+            <div class="fnd__body">
+              <h3>Sean Boyle</h3>
+              <p class="fnd__role">Partner</p>
+              <p class="fnd__lead" data-assemble-text>
+                Sean Boyle runs the side of the business that makes a space sell itself.
+              </p>
+              <p class="fnd__p rise d1">
+                Commercial real estate and tours: when a building, a restaurant, a suite or a job site
+                has to earn a visit before anyone shows up, that is his work.
+              </p>
+              <p class="fnd__p rise d2">
+                He leads Momentum 360, the spatial-media arm — virtual tours, photography, video and
+                360 capture built so a place feels close from anywhere. It is the reason a listing can
+                go from search result to walkthrough without a second vendor.
+              </p>
+              <p class="fnd__p rise d3">
+                Sean works from the Center City office at 1635 Market Street with Mac Frederick and
+                partner Luke McCallion. If you want to see the standard before you commit, ask for a
+                walkthrough of a space like yours — that request goes to him.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 8 · DECISION — mid navy ----------------------------------------- -->
+      <section class="sect decision s-navy-mid" data-band="navy-mid" aria-labelledby="decTitle">
+        <div class="shell">
+          <p class="eyebrow rise">How we start</p>
+          <h2 class="rise" id="decTitle">Not more noise. More momentum.</h2>
+          <ol class="dec__grid">
+            <li class="rise"><b>01</b><h3>Find the gap</h3><p>Start with the free audit. See what customers see and where the work should go.</p></li>
+            <li class="rise d1"><b>02</b><h3>Choose the lever</h3><p>Pick the one channel with the most headroom and put the first budget there.</p></li>
+            <li class="rise d2"><b>03</b><h3>Connect the system</h3><p>Add the next service once the last one pays for itself. Nothing runs in isolation.</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 9 · AUDIT — yellow, the brightest surface holds the primary action -->
+      <section class="sect audit s-yellow" id="audit" data-band="yellow" aria-labelledby="auditTitle">
+        <div class="shell audit__grid">
+          <div class="rise">
+            <p class="eyebrow">The ask</p>
+            <h2 id="auditTitle">Put your business in motion.</h2>
+            <p>Tell us the business and the market. We come back with where you are losing attention and what to do first.</p>
+            <address class="addr dim">
+              1635 Market Street #1601, Philadelphia, PA 19103<br />
+              <a href="tel:+12158762954">215-876-2954</a>
+            </address>
+          </div>
+          <form class="form rise d1" name="audit" method="POST" data-netlify="true" action="/thanks">
+            <input type="hidden" name="form-name" value="audit" />
+            <p class="hp"><label>Do not fill this in <input name="bot-field" /></label></p>
+            <label>Name<input type="text" name="name" required autocomplete="name" /></label>
+            <label>Business<input type="text" name="business" required autocomplete="organization" /></label>
+            <label>Email<input type="email" name="email" required autocomplete="email" /></label>
+            <label>What are you trying to fix?<textarea name="goal" rows="3"></textarea></label>
+            <button class="btn btn--dark" type="submit">Send it</button>
+            <p class="form__status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot s-navy" data-band="navy">
+      <div class="shell foot__grid">
+        <div>
+          <img src="assets/brand/need-momentum-logo.png" alt="Need Momentum" width="170" height="39" loading="lazy" />
+          <p class="dim">Digital growth and spatial media, Philadelphia.</p>
+        </div>
+        <nav aria-label="Services">
+          <h2>Services</h2>
+          <a href="#services">Search &amp; AI visibility</a>
+          <a href="#services">Paid media</a>
+          <a href="#services">Web experiences</a>
+          <a href="#momentum-360">Momentum 360</a>
+          <a href="#services">Local presence</a>
+          <a href="#services">AI systems</a>
+        </nav>
+        <nav aria-label="Company">
+          <h2>Company</h2>
+          <a href="#system">The system</a>
+          <a href="#work">Work</a>
+          <a href="#founders">Founders</a>
+          <a href="#audit">Free audit</a>
+        </nav>
+        <div>
+          <h2>Philadelphia</h2>
+          <address class="addr dim">
+            1635 Market Street #1601<br />Philadelphia, PA 19103<br />
+            <a href="tel:+12158762954">215-876-2954</a>
+          </address>
+        </div>
+      </div>
+      <p class="foot__legal dim">Concept build for internal review · not the live site.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
