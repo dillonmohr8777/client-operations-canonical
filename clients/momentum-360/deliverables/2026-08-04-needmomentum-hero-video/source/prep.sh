@@ -32,6 +32,9 @@ ffmpeg -v error -y -i "$HERE/master.mp4" \
   -c:v libvpx-vp9 -crf 32 -b:v 0 -row-mt 1 -pix_fmt yuv420p -an \
   "$HERE/need-momentum-hero-1200x628.webm"
 
-# Poster still, cropped to the exact 1200x627 request.
-ffmpeg -v error -y -sseof -0.1 -i "$HERE/master.mp4" -frames:v 1 \
-  -vf "crop=1200:627:0:0" "$HERE/need-momentum-endcard-1200x627.png"
+# Poster still at the pulse peak, cropped to the exact 1200x627 request.
+# format=rgb24 has to come first: cropping to an odd height in yuv420p silently
+# rounds down to 626, because chroma is subsampled 2x vertically.
+ffmpeg -v error -y -i "$HERE/master.mp4" \
+  -vf "select='eq(n\,365)',format=rgb24,crop=1200:627:0:0" -frames:v 1 \
+  "$HERE/need-momentum-endcard-1200x627.png"

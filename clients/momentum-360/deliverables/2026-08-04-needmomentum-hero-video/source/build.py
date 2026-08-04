@@ -41,7 +41,7 @@ F_VID_START = 54
 F_VID_END = F_VID_START + N_VID          # exclusive
 F_IN_DISS = (F_VID_START, F_VID_START + 9)
 F_END_DISS = (F_VID_END - 17, F_VID_END)
-F_TOTAL = F_VID_END + 141
+F_TOTAL = F_VID_END + 151   # holds for exactly two pulse cycles, ending at rest
 
 # intro mark
 I_ASM = (0, 16)          # particle delays spread across here
@@ -53,6 +53,10 @@ E_LOGO_D0 = F_VID_END - 17
 E_LOGO_BMP = (F_VID_END + 23, F_VID_END + 37)
 E_TEXT_D0 = F_VID_END + 17
 E_TEXT_BMP = (F_VID_END + 61, F_VID_END + 75)
+
+# the wordmark's pulse, phased to start from rest the moment it lands
+PULSE_PERIOD = 38.0
+PULSE_T0 = E_TEXT_BMP[1]
 
 # ------------------------------------------------------------- helpers ------
 def smoothstep(a, b, x):
@@ -66,6 +70,11 @@ def ease_out(u):
 
 def lerp(a, b, t):
     return a + (b - a) * t
+
+
+def pulse(f):
+    """0 at the moment the wordmark lands, then breathes 0..1."""
+    return 0.5 - 0.5 * math.cos(2.0 * math.pi * (f - PULSE_T0) / PULSE_PERIOD)
 
 
 class Layer:
@@ -132,23 +141,32 @@ def logo_layer(height, cx, cy):
 
 # ---------------------------------------------------------- text plate ------
 def text_layer(text, target_w, cy, tracking=0.15, oversample=4):
+    # Punctuation has to hug the letter it follows. At this much tracking a
+    # uniform gap would read as "MOMENTUM ?" rather than "MOMENTUM?".
+    def gaps_for(size):
+        t = tracking * size
+        return [
+            t * (0.14 if text[i + 1] in "?!,.:;" else 1.0)
+            for i in range(len(text) - 1)
+        ]
+
     probe = ImageFont.truetype(FONT, 100)
-    unit = sum(probe.getlength(c) for c in text) + tracking * 100 * (len(text) - 1)
+    unit = sum(probe.getlength(c) for c in text) + sum(gaps_for(100))
     size = 100.0 * target_w / unit
 
     ss = int(round(size * oversample))
     font = ImageFont.truetype(FONT, ss)
-    track = tracking * ss
-    total = sum(font.getlength(c) for c in text) + track * (len(text) - 1)
+    gaps = gaps_for(ss)
+    total = sum(font.getlength(c) for c in text) + sum(gaps)
 
     pad = ss
     img = Image.new("L", (int(total) + 2 * pad, int(ss * 2.2)), 0)
     d = ImageDraw.Draw(img)
     x = float(pad)
     base = int(ss * 1.5)
-    for c in text:
+    for i, c in enumerate(text):
         d.text((x, base), c, font=font, fill=255, anchor="ls")
-        x += font.getlength(c) + track
+        x += font.getlength(c) + (gaps[i] if i < len(gaps) else 0.0)
 
     m = np.array(img, np.float32) / 255.0
     ys, xs = np.nonzero(m > 0.004)
@@ -335,7 +353,12 @@ rng = np.random.default_rng(7)
 
 L_INTRO = logo_layer(300, 600, 314)
 L_LOGO = logo_layer(236, 600, 226)
-L_TEXT = text_layer("NEED MOMENTUM", 660, 442, tracking=0.155)
+L_TEXT = text_layer("NEED MOMENTUM?", 690, 442, tracking=0.155)
+
+# halo plate the pulse rides on, normalised so the amplitude is predictable
+TEXT_GLOW = gaussian_filter(L_TEXT.a, 9.0)
+TEXT_GLOW = (TEXT_GLOW / max(TEXT_GLOW.max(), 1e-6)).astype(np.float32)
+PULSE_COL = np.array([70, 150, 235], np.float32) / 255.0
 
 BG_INTRO = intro_bg()
 BG_END, BG_END_GLOW = endcard_bg()
@@ -384,11 +407,11 @@ def video(i):
     ) / 255.0
 
 
-def over(dst, layer, op):
+def over(dst, layer, op, gain=1.0):
     if op <= 0.001:
         return dst
     a = (layer.a * op)[..., None]
-    return dst * (1 - a) + layer.rgb * a
+    return dst * (1 - a) + np.clip(layer.rgb * gain, 0, 1) * a
 
 
 def ramp(f, a, b):
@@ -411,9 +434,10 @@ def frame(f):
     else:
         base = BG_END.copy()
 
+    pz = pulse(f)
     on_card = ramp(f, F_END_DISS[0], F_END_DISS[1] + 6)
     if on_card > 0:
-        g = 0.30 + 0.055 * math.sin(f * 0.075)
+        g = 0.30 + 0.05 * pz          # the pool breathes on the wordmark's beat
         base = base + BG_END_GLOW[..., None] * (
             np.array([15, 44, 80], np.float32) / 255.0
         ) * g * on_card
@@ -443,7 +467,9 @@ def frame(f):
             splat(bufs, p, c, a * (1 - 0.58 * o_lb) * 0.15 * wsub)
 
             p, c, a = SW_TEXT.at(t)
-            splat(bufs, p, c, a * (1 - 0.55 * o_tb) * 0.16 * wsub)
+            # settled grains twinkle with the pulse; in-flight ones are untouched
+            splat(bufs, p, c, a * (1 - 0.55 * o_tb) * (1 + 0.42 * pz * o_tb)
+                  * 0.16 * wsub)
 
             if on_card > 0:
                 dp = DUST_P + DUST_V * (t - E_LOGO_D0)
@@ -454,12 +480,14 @@ def frame(f):
 
     p = np.stack([b.reshape(H, W) for b in bufs], -1).astype(np.float32)
     p = bloom(p)
+    if o_tb > 0.001:
+        p = p + TEXT_GLOW[..., None] * PULSE_COL * (0.10 + 0.40 * pz) * o_tb
     out = 1.0 - (1.0 - base) * (1.0 - np.clip(p, 0, 1))
 
     # ---- crisp plates on top so the marks read exactly
     out = over(out, L_INTRO, o_ib)
     out = over(out, L_LOGO, o_lb)
-    out = over(out, L_TEXT, o_tb)
+    out = over(out, L_TEXT, o_tb, gain=0.92 + 0.11 * pz)
 
     out *= lerp(1.0, VIG[..., None], 0.35 * on_card)
     out += np.random.default_rng(1000 + f).normal(0, 1.15 / 255, (H, W, 1)).astype(np.float32)
