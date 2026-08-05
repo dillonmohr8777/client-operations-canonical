@@ -1,0 +1,47 @@
+# dataviz palette validation — one ordinal blue ramp on both paper surfaces
+
+$ validate_palette.js "#1c5cab,#3987e5,#6da7ec" --ordinal --mode light --surface "#fffaf0"
+
+Palette (light, surface #fffaf0, ordinal ramp): 3 slots
+  [PASS] Lightness monotone     steps read light→dark
+  [PASS] Adjacent ΔL            all gaps >= 0.06
+  [PASS] Light-end contrast     #6da7ec at 2.41:1 vs surface
+  [PASS] Single hue             hue spread 3°
+
+  → ALL CHECKS PASS  (ordinal: one hue, monotone L, visible step gaps, light end clears surface)
+
+$ validate_palette.js "#1c5cab,#3987e5,#6da7ec" --ordinal --mode light --surface "#f6ecdb"
+
+Palette (light, surface #f6ecdb, ordinal ramp): 3 slots
+  [PASS] Lightness monotone     steps read light→dark
+  [PASS] Adjacent ΔL            all gaps >= 0.06
+  [PASS] Light-end contrast     #6da7ec at 2.14:1 vs surface
+  [PASS] Single hue             hue spread 3°
+
+  → ALL CHECKS PASS  (ordinal: one hue, monotone L, visible step gaps, light end clears surface)
+
+## REJECTED CANDIDATE 1 — four status colours as adjacent stacked segments
+
+Palette (light, surface #fffaf0, categorical): 4 slots
+  [FAIL] Lightness band         outside band: [["#fab219",0.811]]
+  [PASS] Chroma floor           all 4 >= 0.1
+  [PASS] CVD separation         worst adjacent #ec835a↔#fab219 ΔE 11.3 (deutan) · tritan 9.6
+  [FAIL] Normal-vision floor    worst adjacent #ec835a↔#fab219 ΔE 13.6 (normal) — below 15, hard to tell apart even with full color vision
+  [WARN] Contrast vs surface    below 3:1 — relief required (visible labels or table view): [["#fab219",1.76],["#ec835a",2.54]]
+
+  → FAILED — fix the marked checks  (CVD in the 6–8 floor band is legal ONLY with secondary encoding: direct labels, gaps, or texture)
+  scope: categorical palettes only. For a lone status/text color check WCAG text contrast; for a sequential ramp, lightness monotonicity.
+
+
+## REJECTED CANDIDATE 2 — darkened status inks as a categorical set
+
+Palette (light, surface #fffaf0, categorical): 3 slots
+  [PASS] Lightness band         all 3 inside L 0.43–0.77
+  [FAIL] Chroma floor           below floor (reads gray): [["#7a4a00",0.1]]
+  [FAIL] CVD separation         worst adjacent #7a4a00↔#006300 ΔE 3.0 (deutan) · tritan 12.2
+  [FAIL] Normal-vision floor    worst adjacent #b02525↔#7a4a00 ΔE 12.8 (normal) — below 15, hard to tell apart even with full color vision
+  [PASS] Contrast vs surface    all 3 >= 3:1
+
+  → FAILED — fix the marked checks  (CVD in the 6–8 floor band is legal ONLY with secondary encoding: direct labels, gaps, or texture)
+  scope: categorical palettes only. For a lone status/text color check WCAG text contrast; for a sequential ramp, lightness monotonicity.
+
