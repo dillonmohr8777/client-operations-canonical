@@ -15,10 +15,10 @@ Snapshot: 2026-08-06. This is the centralized status file requested for active s
 - Canonical client: `clients/align-hcm/` (active).
 - Primary current content/dashboard repo: `dillonmohr8777/align-hcm-august-2026-content`.
 - Current `main`: `6435b319742c7204d79f03a98ca9ae2d86683616`, an Aug. 6 HubSpot dashboard refresh.
-- Local in-progress branch `feature-pr3` contains five dashboard-refresh commits through `cc7655d` plus a safe environment-token-based refresh script that verifies portal `242825734` and writes sanitized exports.
+- Published in-progress branch `feature-pr3` now ends at `1088341`. It contains five dashboard-refresh commits through `cc7655d` plus a safe environment-token-based refresh script that verifies portal `242825734` and writes sanitized exports.
 - Other code sources: `align-hcm-lead-intelligence`, `align-hcm-public-content`, and `align-hcm-maher-brent-chatcut`.
 - Brand: orange `#F05A28`, deep navy `#0B1D2D`, warm paper `#F4EFE7`, sky `#EAF6FC`, success green `#159B63`; Plus Jakarta Sans display and DM Sans body. Use the real logo, proof-led executive copy, accessible motion, and no unsupported attribution claims.
-- Next: push/review `feature-pr3`, choose the newest dashboard/report PR, verify HubSpot portal/account and refresh timestamps, then inspect desktop/mobile and console. Conversion reporting stays pending validation unless the exact definition/window/tracking/CRM outcome is verified.
+- Next: review `feature-pr3`, choose the newest dashboard/report PR, verify HubSpot portal/account and refresh timestamps, then inspect desktop/mobile and console. Conversion reporting stays pending validation unless the exact definition/window/tracking/CRM outcome is verified.
 
 ## IMMOHRTAL
 

@@ -2,7 +2,7 @@
 
 Snapshot: 2026-08-06 (America/New_York)  
 Repository: `dillonmohr8777/client-operations-canonical`  
-Reviewed remote base: `main` at `116235f259f885cb5eb76dc473f1a7c820282523`
+Source baseline before this handoff: `main` at `116235f259f885cb5eb76dc473f1a7c820282523`
 
 ## Purpose and authority
 
@@ -51,17 +51,19 @@ This repository stores canonical routing, status, evidence locators, approvals, 
 
 When sources conflict: current live account evidence beats cached reports; canonical queue/registry beats the generated agent vault; exact client evidence beats portfolio summaries; and the newest approved deliverable beats an older PR draft.
 
-## Current sync gap
+## Current published state and remaining local gap
 
-The remote base contained queue revision 335 and 21 active registry records. The local canonical worktree now contains queue revision 388, 22 active registry records, and 85 tracked modifications across policy, queue, registry, intake, scripts, Buzz/SitesBridge, health state, and client deliverables. It also contains roughly 15,000 untracked entries, overwhelmingly `.tmp`, `node_modules`, rendered assets, and other generated work products.
+The remote base contained queue revision 335 and 21 active registry records. This handoff commit published the reviewed tracked delta: queue revision 388, 22 active registry records, and 85 tracked modifications across policy, queue, registry, intake, scripts, Buzz/SitesBridge, health state, and client deliverables.
 
-The tracked canonical delta is intentionally distinct from the generated/untracked bulk. Do not use `git add -A`. Validate and commit supported canonical state; selectively add only approved deliverables with clear lineage. Generated dependencies, `.tmp`, runtime caches, and raw source dumps must stay out of Git.
+The persistent local worktree still contains roughly 15,000 untracked entries, overwhelmingly `.tmp`, `node_modules`, rendered assets, runtime reports, and other generated work products. Some newer reviewable deliverables and worker evidence are mixed into that set and require selective lineage/privacy review before publication.
+
+The published tracked canonical state is intentionally distinct from the generated/untracked bulk. Do not use `git add -A`. Selectively add only approved deliverables/evidence with clear lineage. Generated dependencies, `.tmp`, runtime caches, and raw source dumps must stay out of Git.
 
 Open GitHub pull requests: 16. Issues are disabled. PRs `#4` and `#8`-`#19` include client packets, environment work, reports, dashboards, videos, and Need Momentum designs. Treat most draft PRs as candidate inputs, not current canonical truth.
 
 ## Grok: next 48 hours
 
-1. Validate and reconcile the local revision-388 tracked delta, regenerate `CONTROL.md`, run the Marketing OS tests, and push through a normal fast-forward commit.
+1. Treat revision 388 as the published queue baseline. Review the remaining untracked set by lineage and publish only unique, approved canonical artifacts; exclude generated dependencies and caches.
 2. Review all 16 open PRs by exact client and deliverable; close connectivity tests and superseded design/report drafts after preserving unique evidence.
 3. Keep website status centralized in `GROK-HANDOFF-WEBSITES.md` and update exact code-repo locators as branches merge.
 4. Work only the highest safe automatic queue action after exact client routing; return one schema-valid worker handoff.
