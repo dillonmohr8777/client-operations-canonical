@@ -16,6 +16,8 @@
     "sensorsMayMutateQueue": false,
     "workersMayMutateQueue": false,
     "externalDeliveryRequiresExplicitApproval": true,
+    "cursorCommunicationPolicy": "policies/cursor-communication-policy.json",
+    "cursorMaySendWithoutExactPreviewApproval": false,
     "standingClientSpecificAuthorityCountsAsExplicitApproval": true,
     "standingAuthorityRequirements": [
       "exact active client",
@@ -161,6 +163,7 @@
   },
   "contextLoadOrder": [
     "AGENTS.md",
+    "policies/cursor-communication-policy.json for Cursor-assisted communication and client-facing paid-media language",
     "registry/clients.json",
     "queue/work-items.json",
     "workflows/marketing-chief-execution-graph.workflow.json for nontrivial automatic execution",
@@ -236,7 +239,7 @@
       "id": "daily-paid-media-review",
       "owner": "marketing-chief",
       "input": "exact paid-media roster and today's deterministic review manifest",
-      "output": "eight reviewed or explicitly fail-closed client-platform lanes and zero or more material-finding candidates",
+      "output": "seven reviewed or explicitly fail-closed client-platform lanes and zero or more material-finding candidates",
       "rule": "Run once per America/New_York day through Get-DailyPaidMediaReview.ps1. Inspect exact accounts read-only only when routing is ready. Routine variance stays in the daily artifact; only a current source-backed material finding can become a canonical work item. The manifest never mutates providers or the queue."
     },
     {
@@ -292,7 +295,7 @@
       "promote the observation with Resolve-IntakeObservation.ps1, or acknowledge or quarantine it with a recorded resolution when promotion is unsupported",
       "load canonical context and corrections",
       "when OmniRoute is relevant, run its Status, Doctor, and MCP preflight as applicable and remain read-only unless the exact configuration or account change is explicitly approved",
-      "run or verify today's eight-lane paid-media review and materialize only current material findings through the Chief's normal source-bound queue contract",
+      "run or verify today's seven-lane paid-media review and materialize only current material findings through the Chief's normal source-bound queue contract",
       "rank canonical work",
       "when an inspected communication implies paid-media launch work, materialize the exact client request and run the communication-triggered ad-launch workflow through the furthest locally safe or explicitly authorized terminal phase",
     "generate or resume a validated execution graph for the highest safe nontrivial automatic action, then execute only ready dependency-satisfied nodes within WIP limits",
@@ -310,6 +313,6 @@
     "zero external actions without approval",
     "zero standalone watcher-created Codex tasks",
     "recurring source outcomes remain observable after earlier occurrences are resolved",
-    "exactly eight paid-media lanes are reviewed or explicitly fail closed once per Eastern day, with no unrostered optimization"
+    "exactly seven paid-media lanes are reviewed or explicitly fail closed once per Eastern day, with no unrostered optimization"
   ]
 }

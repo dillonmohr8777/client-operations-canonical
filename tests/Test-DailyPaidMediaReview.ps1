@@ -56,17 +56,17 @@ $schema = Get-Content -LiteralPath $schemaPath -Raw -Encoding UTF8 | ConvertFrom
 $roster = Get-Content -LiteralPath $rosterPath -Raw -Encoding UTF8 | ConvertFrom-Json
 $workflow = Get-Content -LiteralPath $workflowPath -Raw -Encoding UTF8 | ConvertFrom-Json
 Assert-True ([int]$schema.properties.schemaVersion.const -eq 1) 'Roster schema version contract is missing.'
-Assert-True ([int]$schema.properties.lanes.minItems -eq 8 -and [int]$schema.properties.lanes.maxItems -eq 8) 'Roster schema must require exactly eight lanes.'
+Assert-True ([int]$schema.properties.lanes.minItems -eq 7 -and [int]$schema.properties.lanes.maxItems -eq 7) 'Roster schema must require exactly seven lanes.'
 Assert-True ([int]$roster.schemaVersion -eq 1) 'Roster schemaVersion must be 1.'
 Assert-True ([string]$roster.timezone -eq 'America/New_York') 'Roster timezone must be America/New_York.'
-Assert-True (@($roster.lanes).Count -eq 8) 'Roster must contain exactly eight lanes.'
+Assert-True (@($roster.lanes).Count -eq 7) 'Roster must contain exactly seven lanes.'
 Assert-True (@($roster.lanes | Group-Object laneId | Where-Object Count -gt 1).Count -eq 0) 'Roster lane IDs must be unique.'
 Assert-True (@($roster.lanes | Group-Object clientId, platform | Where-Object Count -gt 1).Count -eq 0) 'Client-platform routes must be unique.'
 Assert-True (@($roster.lanes | Where-Object { -not $_.active }).Count -eq 0) 'Every roster lane must be active.'
 Assert-True (@($roster.lanes | Where-Object { [string]$_.metricsPolicy -ne 'historical-observations-never-authority' }).Count -eq 0) 'Historical metrics must never be authority.'
 Assert-True (@($roster.lanes | Where-Object platform -eq 'google-ads').Count -eq 5) 'Exactly five Google Ads lanes are required.'
-Assert-True (@($roster.lanes | Where-Object platform -eq 'meta-ads').Count -eq 3) 'Exactly three Meta Ads lanes are required.'
-Assert-True (@($workflow.exactLanes).Count -eq 8) 'Workflow must enumerate exactly eight lanes.'
+Assert-True (@($roster.lanes | Where-Object platform -eq 'meta-ads').Count -eq 2) 'Exactly two Meta Ads lanes are required.'
+Assert-True (@($workflow.exactLanes).Count -eq 7) 'Workflow must enumerate exactly seven lanes.'
 Assert-True ([bool]$workflow.authority.externalMutationRequiresExactActiveAuthority) 'Workflow must require exact active authority for external mutation.'
 Assert-True (-not [bool]$workflow.authority.manifestGeneratorCallsProviders) 'Manifest generator provider calls must be forbidden.'
 Assert-True (-not [bool]$workflow.authority.manifestGeneratorMutatesCanonicalQueue) 'Manifest generator queue mutation must be forbidden.'
@@ -83,8 +83,7 @@ Assert-True ([string]$kjbGoogle.currentStateNote -match 'cancelled duplicate') '
 Assert-True ([string]$kjbGoogle.currentStateNote -match 'zero conversions') 'KJB Google lane must preserve the live zero-conversion finding.'
 Assert-True ([string]$kjbMeta.expectedDeliveryState -eq 'active') 'KJB Meta lane must remain distinct and active.'
 Assert-True ([string]$kjbMeta.currentStateNote -match 'Website Carousel Traffic' -and [string]$kjbMeta.currentStateNote -match 'Leads carousel') 'KJB Meta live campaign-state evidence is incomplete.'
-$faganMeta = @($roster.lanes | Where-Object laneId -eq 'meta-ads--fagan-painting')[0]
-Assert-True ([string]$faganMeta.currentStateNote -match 'six campaigns' -and [string]$faganMeta.currentStateNote -match 'draft') 'Fagan Meta live account evidence is incomplete.'
+Assert-True (@($roster.lanes | Where-Object clientId -eq 'fagan-painting').Count -eq 0) 'Fagan Painting must remain excluded while it is not running ads.'
 
 $temporaryRoot = Join-Path ([IO.Path]::GetTempPath()) ('codex-paid-media-review-' + [guid]::NewGuid().ToString('N'))
 $fixtureRegistryPath = Join-Path $temporaryRoot 'registry\clients.json'
@@ -105,8 +104,8 @@ try {
     Assert-True (Test-Path -LiteralPath $outputPath -PathType Leaf) 'Generator did not write the daily manifest.'
     $manifest = Get-Content -LiteralPath $outputPath -Raw -Encoding UTF8 | ConvertFrom-Json
     Assert-True ([string]$manifest.status -eq 'blocked-fail-closed') 'Missing configs must block the manifest closed.'
-    Assert-True ([int]$manifest.summary.laneCount -eq 8) 'Manifest must retain all eight lanes when configs are missing.'
-    Assert-True ([int]$manifest.summary.blockedLaneCount -eq 8) 'All isolated fixture lanes should be blocked by missing configs.'
+    Assert-True ([int]$manifest.summary.laneCount -eq 7) 'Manifest must retain all seven lanes when configs are missing.'
+    Assert-True ([int]$manifest.summary.blockedLaneCount -eq 7) 'All isolated fixture lanes should be blocked by missing configs.'
     Assert-True (@($manifest.lanes | Where-Object { $_.blockers -notcontains 'paid-media-config-missing' }).Count -eq 0) 'Missing configs must be reported per lane without a crash.'
     Assert-True (@($manifest.lanes | Where-Object { $_.routeState.clientRegistry -ne 'active-exact' }).Count -eq 0) 'Fixture client routes should resolve exactly.'
     Assert-True (-not [bool]$manifest.policy.providerCallsAttempted) 'Manifest must attest that no provider call was attempted.'
@@ -156,9 +155,9 @@ try {
 [pscustomobject][ordered]@{
     status = 'passed'
     assertions = $script:AssertionCount
-    rosterLanes = 8
+    rosterLanes = 7
     googleAdsLanes = 5
-    metaAdsLanes = 3
+    metaAdsLanes = 2
     queueMutationAttempted = $false
     providerCallsAttempted = $false
     externalActionAttempted = $false

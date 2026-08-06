@@ -72,8 +72,19 @@ registrationForm.addEventListener("submit", async (event) => {
   form.set("event_timezone", eventConfig.timezone);
   form.set("page_url", window.location.href);
   form.set("referrer", document.referrer || "direct");
-  ["utm_source", "utm_medium", "utm_campaign"].forEach((key) =>
+  ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach((key) =>
     form.set(key, clean(search.get(key))),
+  );
+  const prospectId = clean(search.get("utm_content"));
+  form.set(
+    "source_prospect_id",
+    /^PHL-WORKSHOP-\d{3}$/.test(prospectId) ? prospectId : "",
+  );
+  form.set(
+    "source_list",
+    /^PHL-WORKSHOP-\d{3}$/.test(prospectId)
+      ? "philadelphia_workshop_250_2026_07"
+      : "",
   );
   const hostedSubmission = isHostedSubmission();
   const calendarWindow = record.calendarConsent

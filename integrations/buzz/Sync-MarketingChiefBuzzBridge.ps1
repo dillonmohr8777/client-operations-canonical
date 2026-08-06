@@ -11,6 +11,7 @@ $runtimeRoot = Join-Path $PSScriptRoot 'runtime'
 $teamStatePath = Join-Path $runtimeRoot 'team-state.json'
 $processStatePath = Join-Path $runtimeRoot 'processes.json'
 $bridgeStatePath = Join-Path $runtimeRoot 'bridge-state.json'
+$codexWorkerStatePath = Join-Path $runtimeRoot 'codex-worker-state.json'
 $hostedConfigPath = Join-Path $projectRoot 'state\hosted-sync-config.json'
 $hostedConfig = Get-Content -Raw -LiteralPath $hostedConfigPath -Encoding UTF8 | ConvertFrom-Json
 $machineApi = ([string]$hostedConfig.siteUrl).TrimEnd('/') + '/api/machine'
@@ -55,14 +56,32 @@ function Invoke-BuzzOwnerJson {
 }
 
 function Get-ActiveAgentCount {
-    if (-not (Test-Path -LiteralPath $processStatePath -PathType Leaf)) { return 0 }
-    $processState = Get-Content -Raw -LiteralPath $processStatePath -Encoding UTF8 | ConvertFrom-Json
-    $count = 0
-    foreach ($row in @($processState.processes)) {
-        $process = Get-Process -Id ([int]$row.pid) -ErrorAction SilentlyContinue
-        if ($null -ne $process -and $process.Path -eq 'C:\Users\dillo\AppData\Local\Buzz\buzz-acp.exe') { $count += 1 }
+    if (Test-Path -LiteralPath $processStatePath -PathType Leaf) {
+        $processState = Get-Content -Raw -LiteralPath $processStatePath -Encoding UTF8 | ConvertFrom-Json
+        $count = 0
+        foreach ($row in @($processState.processes)) {
+            $process = Get-Process -Id ([int]$row.pid) -ErrorAction SilentlyContinue
+            if ($null -ne $process -and $process.Path -eq 'C:\Users\dillo\AppData\Local\Buzz\buzz-acp.exe') { $count += 1 }
+        }
+        if ($count -gt 0) { return $count }
     }
-    return $count
+    if (Test-Path -LiteralPath $codexWorkerStatePath -PathType Leaf) {
+        $workerState = Get-Content -Raw -LiteralPath $codexWorkerStatePath -Encoding UTF8 | ConvertFrom-Json
+        $workerTask = Get-ScheduledTask -TaskName 'MarketingChief-BuzzAgentWorker' -ErrorAction SilentlyContinue
+        $workerFresh = $false
+        try {
+            $workerFresh = ([DateTimeOffset]::UtcNow - [DateTimeOffset]::Parse([string]$workerState.updatedAt)).TotalMinutes -le 10
+        }
+        catch { $workerFresh = $false }
+        if ($null -ne $workerTask -and
+            $workerTask.State -in @('Ready', 'Running') -and
+            $workerFresh -and
+            [string]$workerState.status -in @('ready', 'degraded') -and
+            @($workerState.agents).Count -eq @($manifest.agents).Count) {
+            return @($manifest.agents).Count
+        }
+    }
+    return 0
 }
 
 function Sync-RuntimeState {
@@ -121,16 +140,31 @@ if (-not (Test-Path -LiteralPath $teamStatePath -PathType Leaf)) {
 }
 $teamState = Get-Content -Raw -LiteralPath $teamStatePath -Encoding UTF8 | ConvertFrom-Json
 if ([string]$teamState.status -ne 'ready') {
-    Sync-RuntimeState -ConnectionState awaiting_auth -Summary 'Official Buzz Desktop and all local team identities are ready. BuilderLab hosted-community authentication is required before delivery can begin.'
+    Sync-RuntimeState -ConnectionState awaiting_auth -Summary 'Official Buzz Desktop is installed. Hosted-community owner authentication must complete before protected agent delivery can begin.'
     return [pscustomobject]@{ status = 'awaiting_auth'; delivered = 0; failed = 0 }
 }
 
+$runtimeMode = 'official-acp'
 try {
     & (Join-Path $PSScriptRoot 'Invoke-MarketingChiefBuzzSupervisor.ps1') | Out-Null
-    Sync-RuntimeState -ConnectionState ready -Summary 'Authenticated Buzz community is connected. Ten private agents and ten rooms are available; the bridge is polling the dashboard.'
 }
 catch {
-    Sync-RuntimeState -ConnectionState degraded -Summary 'Buzz community is provisioned, but one or more local agent harnesses need recovery.'
+    $runtimeMode = 'codex-cli-safe-fallback'
+}
+$agentCount = @($manifest.agents).Count
+$channelCount = @($manifest.channels).Count
+$activeAgentCount = Get-ActiveAgentCount
+if ($activeAgentCount -eq $agentCount) {
+    $runtimeSummary = if ($runtimeMode -ceq 'official-acp') {
+        "Authenticated Buzz Desktop community is connected. All $agentCount protected ACP agent runtimes are online, $channelCount private rooms are available, and the optional dashboard bridge is polling."
+    }
+    else {
+        "Authenticated Buzz Desktop community is connected. All $agentCount protected identities are reachable through the hidden Codex worker, $channelCount private rooms are available, and Microsoft Defender remains enabled."
+    }
+    Sync-RuntimeState -ConnectionState ready -Summary $runtimeSummary
+}
+else {
+    Sync-RuntimeState -ConnectionState degraded -Summary "Buzz community is provisioned, but only $activeAgentCount of $agentCount protected agent identities are currently reachable."
 }
 
 $remote = Invoke-MachineRequest -Method GET -Body $null
@@ -146,7 +180,19 @@ foreach ($message in @($remote.agentMessages | Where-Object { [string]$_.state -
     try {
         Resolve-Message -Message $message -State sending -Summary 'Windows Buzz bridge accepted the instruction for delivery.' -SafeEventId $null
         $channelId = Get-MessageChannelId -Message $message
-        $result = Invoke-BuzzOwnerJson -Arguments @('messages', 'send', '--channel', $channelId, '--content', '-') -InputText ([string]$message.instruction)
+        $sendArguments = [Collections.Generic.List[string]]::new()
+        foreach ($argument in @('messages', 'send', '--channel', $channelId, '--content', '-')) {
+            $sendArguments.Add($argument)
+        }
+        if ([string]$message.targetType -ceq 'agent') {
+            $targetIdentity = @($teamState.identities | Where-Object { [string]$_.id -ceq [string]$message.targetId })[0]
+            if ($null -eq $targetIdentity -or [string]$targetIdentity.publicKey -cnotmatch '^[a-f0-9]{64}$') {
+                throw 'The requested Buzz agent mention target is unavailable.'
+            }
+            $sendArguments.Add('--mention')
+            $sendArguments.Add([string]$targetIdentity.publicKey)
+        }
+        $result = Invoke-BuzzOwnerJson -Arguments @($sendArguments) -InputText ([string]$message.instruction)
         $eventId = [string]$result.event_id
         if ($eventId -notmatch '^[a-f0-9]{64}$') { throw 'Buzz did not return a valid delivery event.' }
         Resolve-Message -Message $message -State delivered -Summary "Delivered to $([string]$message.targetLabel) through the authenticated Buzz community." -SafeEventId $eventId

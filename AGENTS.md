@@ -20,6 +20,47 @@
 
 ## Marketing Chief manual pilot
 
+- `/loop` is Dillon's standing Buzz delegation shorthand, not a literal Buzz
+  slash command. For each substantive Marketing Chief request, keep this Codex
+  task as Dillon's only required conversation surface, select the smallest
+  relevant set of Buzz agents, message them on Dillon's behalf, coordinate
+  their signed replies, and return one reconciled result here. Dillon should
+  not have to manage the agent DMs himself.
+- Use Marketing Chief as the coordinator, add Client and Access Router when
+  routing or authentication matters, use Web and Product by default for
+  website, application, UI, dashboard, and product work, and include
+  Independent Verifier for material completion claims. Do not fan trivial
+  requests to all eight agents or exceed the existing three-worker concurrency
+  limit.
+- A Buzz delivery receipt proves only that a message was accepted. Do not
+  claim an agent conversation worked until a reply signed by the expected
+  protected identity is visible. For integration checks, prove at least two
+  sequential turns in the same DM so session continuity is real.
+- On Windows, prefer the official `buzz-acp` harness only while its exact
+  release binary remains present and accepted by Defender. If Defender
+  quarantines that unsigned sidecar, do not disable antivirus or add a broad
+  exclusion. Use the console-free `MarketingChief-BuzzAgentWorker` Codex
+  fallback, preserve the per-agent Buzz identities, and verify replies from
+  the owner side of the real desktop DM.
+- Buzz agents may use the full authorized Marketing Chief workspace, installed
+  tools, connected services, Access Broker routes, authenticated sessions, and
+  protected credential mechanisms needed for their scoped work. They must
+  never expose raw secrets, and external delivery, publishing, spend, account
+  changes, and destructive actions retain the approval gates below.
+- Web and Product may discover and directly use every installed and enabled
+  skill, plugin, MCP tool, connected app, repository, authenticated browser
+  route, hosting surface, analytics source, and protected access route needed
+  for scoped website and product work. Its standing production mission includes
+  Dillon-owned Mac, Apple, AI, and technology-news sites. `AI Tech News`
+  specifically means Momentum 360's weekly 25-site `AI Site Builder Outreach
+  Engine` in `dillonmohr8777/dillon-os`, merged through pull request 226; use
+  `integrations/buzz/references/ai-tech-news-site-factory.md` and the existing
+  site-batch/site-factory implementation instead of building a parallel
+  generator. Independent Verifier
+  must validate material completion claims. Fagan Painting is not an active
+  paid-media lane and must not receive ad review, optimization, provider
+  packets, or launch work unless Dillon explicitly reactivates it in the
+  canonical paid-media roster.
 - `queue/work-items.json` is the canonical machine state. `CONTROL.md` is its human-readable projection. `state/corrections.jsonl` is append-only learning state.
 - Load `context/DILLON_OPERATING_HISTORY.md`, `context/marketing-context.md`, `context/DILLON_VOICE.md`, and `context/DESIGN_STANDARD.md` before planning consequential marketing work. Then load the exact client's context and current source evidence.
 - When Dillon says `continue`, refresh redacted intake and live system health, inspect and materialize exact-routed pending intake through the intake-to-queue contract below, rank the queue, execute the highest safe automatic action within WIP limits, reconcile verified handoffs, and surface at most one human-only decision.
@@ -66,6 +107,66 @@ authorized Slack connector and pass Cursor redacted summaries, never raw
 private communications. Do not infer permission to expand Cursor membership or
 workspace permissions.
 
+Cursor-assisted communication uses `policies/cursor-communication-policy.json`.
+Cursor may automatically triage, retrieve current bounded context, and draft,
+but it may never answer, post, or send. Before any reply is delivered, notify
+Dillon with the exact recipient and channel, exact proposed reply, source and
+fact freshness, and material uncertainty. Only a clear approval for that exact
+preview authorizes delivery; `edit` produces a new preview and `hold` preserves
+the draft without sending.
+
+For client-facing paid-media reports, messages, and drafts, never say `zero
+conversions`, `no conversions`, `not enough conversions`, or `insufficient
+conversions`. Verify the conversion definition, attribution window, reporting
+dates, platform latency, tracking health, and CRM or booking outcomes first. If
+a defensible conversion result is unavailable, say `Conversion reporting is
+pending validation` and focus on verified delivery, traffic, lead quality, and
+next actions. Do not alter raw source evidence or invent positive results.
+
+Every finalized weekly and monthly report must also be archived in Dillon's
+`dillon-os` Obsidian brain before the reporting workflow closes. Keep the
+canonical package and evidence in this project, then pass only the final
+client-facing PDF, HTML, or Markdown artifact through
+`C:\Users\dillo\repos\dillon-os\_os\automation\bin\report-ingest.js` using a
+manifest that matches `12_Brain\schemas\report-run.json`. Verify the exact
+client route, cadence, period, delivery state, source path, and copied artifact
+hash. Brain ingestion never authorizes sending, posting, publishing, spend, or
+account changes.
+
+## Grok client creative standard
+
+- Use animated comic-book art as the default Grok Imagine style for every
+  client unless Dillon explicitly selects another direction for the exact
+  creative.
+- Never run a client generation from a text prompt alone. Every generation
+  brief must attach a verified client logo or a clean logo render derived from
+  a verified brand source, plus at least one approved client, product, service,
+  location, or style reference image.
+- Treat the logo as locked artwork. Prompts must tell Grok to preserve its
+  spelling, proportions, colors, and geometry; do not redraw, morph, animate,
+  crop, or place it on generated people, vehicles, tools, uniforms, buildings,
+  or products. Use a separate exact-logo end card or post-production overlay
+  when the model cannot preserve it.
+- Block generation when the client logo or reference provenance is missing or
+  ambiguous. Do not substitute another portfolio client's assets, infer a logo
+  from a company name, or treat a similarly named public business as the
+  verified client.
+- Build comic motion through a reference-first pipeline: verified asset bundle,
+  branded keyframe, image-to-video animation, three-frame visual review, exact
+  logo end card, deterministic media inspection, and local review package.
+- Prompts must specify the visual substyle, panel composition, shot and camera
+  choreography, subject motion, environmental motion, transition logic,
+  lighting, palette, sound direction, aspect ratio, duration, and negative
+  constraints. Always prohibit gibberish text, warped logos, unverified claims,
+  synthetic testimonials, duplicated subjects, extra limbs, melted geometry,
+  and cross-client brand elements.
+- Comic substyles may vary by client and campaign while remaining inside the
+  comic-book system: kinetic superhero, premium graphic novel, retro pop-art,
+  clean editorial illustration, or gentle wellness comic. Record the exact
+  substyle and reference bundle in the client-separated generation manifest.
+- Grok renders are local review drafts. Sending, posting, scheduling, or
+  publishing still requires the exact preview and approval.
+
 ## OmniRoute gateway capability
 
 - Treat `$omniroute-gateway` as an available Marketing Chief capability when model or provider routing, quota visibility, fallback combinations, prompt compression, an OpenAI-compatible local endpoint, or OmniRoute MCP tools are relevant.
@@ -88,7 +189,7 @@ workspace permissions.
 ## Communication-triggered paid media
 
 - Use `workflows/communication-triggered-ad-launch.workflow.json` when an authorized Gmail, Slack, or direct user request implies a campaign launch, expansion, restart, or group of new locations. Treat the communication as a trigger to infer and build the complete deliverable chain, not as permission to guess missing commercial terms.
-- `registry/paid-media-roster.json` is the only current paid-media eligibility source. Google Ads routes are KJB, Replenish, Omega, Onsite, and Fresh Blends for Kwik Trip Ice Box campaigns. Meta Ads routes are Fagan, Shadow Heating, and KJB. A client absent from the exact platform roster must not receive planning, optimization, provider packets, or launch work for that platform.
+- `registry/paid-media-roster.json` is the only current paid-media eligibility source. Google Ads routes are KJB, Replenish, Omega, Onsite, and Fresh Blends for Kwik Trip Ice Box campaigns. Meta Ads routes are Shadow Heating and KJB. Fagan Painting is not running ads and is excluded until Dillon explicitly reactivates it through a new roster change. A client absent from the exact platform roster must not receive planning, optimization, provider packets, or launch work for that platform.
 - Resolve the source to exactly one active client and one canonical requester reference. A person's name alone is never a route. In particular, `registry-contact:replenish-7-eleven:0` routes only to Replenish / 7-Eleven, while `registry-contact:fresh-blends-kwik-trip:0` routes only to Fresh Blends / Kwik Trip. Never combine those brands, locations, accounts, landing pages, campaign history, or budgets.
 - Load the exact `clients/<client-id>/paid-media/blueprints/<platform>.json` first. Build the location manifest, offer, landing page, creative, copy, conversion event, UTMs, campaign structure, targeting, QA evidence, rollback plan, and provider packet before live mutation. A missing client-specific landing page is part of the implied deliverable, not a reason to return only a summary.
 - Use `scripts/New-AdLaunchRequest.ps1`, `scripts/Test-AdLaunchRequest.ps1`, and `scripts/Invoke-AdLaunch.ps1`. Provider packets are runtime-only artifacts under `work/`; never store tokens or raw communications in them. Always run provider validate-only operations first, create campaigns paused, enable only inside exact authority, and perform live readback after creation and enablement.

@@ -160,10 +160,10 @@ Next: reconcile the tracked events to qualified estimates, then tune budget arou
   {
     slug: "fagan-painting",
     client: "Fagan Painting",
-    title: "Meta Ads Weekly Report",
-    platforms: ["Meta Ads"],
-    sourceStatus: "Meta verified through Jul 25 · Jul 26 pending",
-    signal: "Fagan recorded six Meta lead-form results from the primary delivered campaign before the current billing state interrupted delivery.",
+    title: "Meta Closeout and Organic Search Transition",
+    platforms: ["Meta Ads", "AEO", "GEO", "SEO"],
+    sourceStatus: "Meta verified through Jul 25 · handoff and organic transition active",
+    signal: "Fagan recorded six Meta lead-form results from the leading delivered campaign, and the ongoing lane is moving to coordinated AEO, GEO, and SEO.",
     metrics: [
       ["Spend", "$478.14", "Two campaigns with delivery"],
       ["Impressions", "10,563", "Campaign-total delivery"],
@@ -183,24 +183,40 @@ Next: reconcile the tracked events to qualified estimates, then tune budget arou
         ],
         campaigns: [
           ["Primary First Optimized Lead Campaign", "Delivered · now off", "$137.66", "2,253", "Lead reporting pending validation"],
-          ["Pittsburgh 25mi Lead Campaign · Copy", "Delivered · payment state", "$340.48", "8,310", "6 lead forms"],
+          ["Pittsburgh 25mi Lead Campaign · Copy", "Delivered · handoff", "$340.48", "8,310", "6 lead forms"],
+        ],
+      },
+      {
+        platform: "AEO, GEO, and SEO",
+        status: "Transition active",
+        note: "Dillon's continuing work is moving to answer-focused organic visibility coordinated with Phil and Mac. The first lane covers service-page answers, homeowner FAQs, local painting topics, internal links, and structured content.",
+        metrics: [
+          ["Program status", "Initiated"],
+          ["Coordination", "Phil + Mac"],
+          ["Baseline", "Next review"],
+          ["First content lane", "Service pages + FAQs"],
+        ],
+        campaigns: [
+          ["Answer-ready service pages", "Priority mapping", "—", "—", "Baseline pending"],
+          ["Homeowner FAQ system", "Question inventory", "—", "—", "First sprint"],
+          ["Local painting topics", "SEO coordination", "—", "—", "Internal-link plan"],
         ],
       },
     ],
-    interpretation: "The six-lead campaign is the weekly acquisition story. Current delivery is constrained by the account’s payment state, so lead follow-up and billing recovery are the immediate operational priorities.",
-    next: "Confirm disposition of the six leads, resolve the payment state, and resume only the campaign and routing path that produced verified lead delivery.",
+    interpretation: "The six-lead campaign is the final paid-social acquisition story for this reporting window. Facebook management is transitioning to Benson and Legacy Paint Holdings, while the ongoing opportunity moves into AEO, GEO, and SEO coordinated with the existing organic program.",
+    next: "Complete the Meta handoff record, establish the organic and AI citation baseline, and align the first answer-focused service page and FAQ priorities with Phil and Mac.",
     slack: `Fagan Painting | ${period} Meta update
 
 Dashboard: https://fagan-painting-2026-07-06.netlify.app
 
-Fagan recorded six Meta lead-form results from the primary delivered campaign before the current billing state interrupted delivery.
+Fagan recorded six Meta lead-form results from the leading delivered campaign. Facebook management is transitioning to Benson and Legacy Paint Holdings, and the ongoing lane is shifting to coordinated AEO, GEO, and SEO.
 
 • $478.14 total Meta spend across two campaigns with delivery
 • 10,563 campaign impressions
 • 6 lead-form results
 • $56.75 cost per lead on the six-lead campaign
 
-Next: confirm lead disposition, resolve the payment state, and resume the verified lead-routing path.`,
+Next: complete the Meta handoff record, establish the organic and AI citation baseline, and align the first answer-focused service page and FAQ priorities with Phil and Mac.`,
   },
   {
     slug: "fresh-blends-kwik-trip",

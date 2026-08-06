@@ -9,10 +9,18 @@ canonical Marketing Chief queue.
 - `MarketingChief-Watchtower` on Dillon's Windows machine is the guarded
   executor and the only component allowed to materialize the relayed request.
 - `queue/work-items.json` remains the one canonical queue.
+- `policies/cursor-communication-policy.json` controls reply triage, current
+  context, preview, approval, and paid-media language.
 
 Cursor must not execute the requested client deliverable in its cloud
 environment. It creates one intake pull request and lets the Windows worker
 route and execute the request.
+
+Cursor may triage and draft automatically, but it may never answer, post, or
+send. The Marketing Chief must show Dillon the intended recipient and channel,
+the exact proposed reply, source and fact freshness, and any material
+uncertainty. `Send` or `yes` approves only the exact preview shown. `Edit`
+requires a revised preview, and `hold` sends nothing.
 
 ## Accepted request
 
@@ -89,3 +97,10 @@ The Windows bridge accepts only:
 Secret-shaped text, direct identifiers, raw message headers, extra files,
 duplicate requests, stale canonical state, and ambiguous or inactive clients
 fail closed. Pull requests are not merged automatically.
+
+For any client-facing paid-media report, message, or draft, do not claim `zero
+conversions`, `no conversions`, `not enough conversions`, or `insufficient
+conversions`. Recheck the exact account, reporting dates, conversion
+definition, attribution window, platform latency, tracking health, and
+authorized CRM or booking evidence. If the result is not defensible, use
+`Conversion reporting is pending validation` and report only verified facts.

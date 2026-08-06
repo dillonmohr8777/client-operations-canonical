@@ -1,12 +1,9 @@
-🔴 Kimberly James Bridal | July 20–26, 2026 paid media update
+🔴 Kimberly James Bridal | Search and qualified Meta lead launch
 
 Dashboard: https://kimberly-james-bridal-2026-06-06.netlify.app
 
-Google and Meta kept traffic efficient this week while the appointment-quality layer is reconciled.
+The new Philadelphia Search campaign is live and learning. Through the current July 27 observation, including a partial day, it has 33 impressions, one click, $1.86 spend, a 3.03% CTR, and a $1.86 CPC. That CPC is 58% lower than the 2026 Apparel, Fashion, and Jewelry search benchmark of $4.44, although the sample is still early.
 
-• Google Ads: $144.48 spend, 10,212 impressions, 282 clicks, 2.76% CTR, and $0.51 average CPC
-• Meta Ads: $57.75 spend, 5,999 impressions, 4,462 reach, and 123 landing-page views at $0.47 each
-• Combined media spend: $202.23
-• Conversion reporting is pending validation against appointment outcomes
+The only Meta campaign included here is the new qualified lead campaign. It is published and processing at $10 per day with a Higher Intent form, SMS verification, four approved creatives, and four questions covering wedding timing, gown budget, boutique visit timing, and stylist contact readiness.
 
-Next: reconcile appointments by source, preserve Google search learning, and complete the Meta lead-creative review.
+Next: monitor Search terms and learning, confirm Meta delivery, review the first qualified submissions, and reconcile appointments by source. Conversion reporting is pending validation.

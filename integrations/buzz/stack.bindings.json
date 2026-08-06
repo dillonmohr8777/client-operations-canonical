@@ -9,16 +9,16 @@
       "mode": "system-of-record",
       "route": "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
       "use": "Client registry, versioned queue, approvals, execution graphs, policies, evidence, and durable handoffs.",
-      "agents": ["marketing-chief", "client-router", "independent-verifier", "watchtower-checker"]
+      "agents": ["marketing-chief", "client-access-router", "web-product", "independent-verifier", "watchtower-checker"]
     },
     {
       "id": "operator-studio",
       "name": "Marketing Chief Operator Studio",
       "layer": "control",
-      "mode": "owner-only",
+      "mode": "optional-owner-only-fallback",
       "route": "https://dillon-marketing-chief.dillonmohr8777.chatgpt.site",
-      "use": "Owner commands, direct agent and room messages, approvals, safe delivery evidence, and portfolio status.",
-      "agents": ["marketing-chief", "watchtower-checker"]
+      "use": "Optional private status, approval, safe delivery evidence, and portfolio fallback. Buzz Desktop is the daily command interface.",
+      "agents": ["marketing-chief", "web-product", "watchtower-checker"]
     },
     {
       "id": "watchtower",
@@ -27,7 +27,7 @@
       "mode": "scheduler-and-verifier",
       "route": "Windows Task Scheduler plus canonical state",
       "use": "Liveness, stalled handoffs, bounded recovery, evidence freshness, and scheduled synchronization.",
-      "agents": ["watchtower-checker", "marketing-chief", "independent-verifier"]
+      "agents": ["watchtower-checker", "marketing-chief", "web-product", "independent-verifier"]
     },
     {
       "id": "buzz",
@@ -36,7 +36,7 @@
       "mode": "private-messaging",
       "route": "Official Block Buzz desktop plus hosted private community",
       "use": "Direct messages, private rooms, agent presence, threads, and subscription-backed ACP sessions.",
-      "agents": ["marketing-chief", "client-router", "evidence-research", "content-creative", "web-product", "paid-media", "crm-lifecycle", "access-continuity", "independent-verifier", "watchtower-checker"]
+      "agents": ["marketing-chief", "client-access-router", "evidence-research", "content-creative", "web-product", "growth-ops", "independent-verifier", "watchtower-checker"]
     },
     {
       "id": "codex-claude",
@@ -45,7 +45,7 @@
       "mode": "subscription-backed",
       "route": "codex-acp and claude-agent-acp",
       "use": "Primary execution, research, creative, and independent verification lanes.",
-      "agents": ["marketing-chief", "client-router", "evidence-research", "content-creative", "web-product", "paid-media", "crm-lifecycle", "access-continuity", "independent-verifier", "watchtower-checker"]
+      "agents": ["marketing-chief", "client-access-router", "evidence-research", "content-creative", "web-product", "growth-ops", "independent-verifier", "watchtower-checker"]
     },
     {
       "id": "omniroute-ollama",
@@ -72,7 +72,7 @@
       "mode": "scoped",
       "route": "OmniRoute MCP, Marketing Chief Filesystem, Private Memory, and MCP Inspector",
       "use": "Routing, integrations, restricted project files, safe private memory, and protocol inspection.",
-      "agents": ["marketing-chief", "client-router", "evidence-research", "web-product", "independent-verifier"]
+      "agents": ["marketing-chief", "client-access-router", "evidence-research", "web-product", "independent-verifier"]
     },
     {
       "id": "access",
@@ -81,16 +81,16 @@
       "mode": "protected",
       "route": "Windows Access Broker, Credential Manager, and opaque Bitwarden locators",
       "use": "Exact account selection and authenticated-session continuity. Secret values never enter Buzz, prompts, files, logs, or chat.",
-      "agents": ["access-continuity", "client-router", "marketing-chief"]
+      "agents": ["client-access-router", "marketing-chief", "web-product"]
     },
     {
       "id": "browser",
       "name": "Persistent Authenticated Chrome",
       "layer": "access",
       "mode": "background-and-account-routed",
-      "route": "Dillon's authorized persistent Chrome profile",
-      "use": "Read-first provider work and routine authenticated navigation after exact client and account verification.",
-      "agents": ["access-continuity", "paid-media", "crm-lifecycle", "marketing-chief"]
+      "route": "Dedicated Chrome-for-Testing automation profile through local CDP http://127.0.0.1:9222; start with C:\\Users\\dillo\\.codex\\tools\\Start-ZenSpaRemoteChrome.ps1 -Quiet",
+      "use": "Read-first provider work and routine authenticated navigation after exact client and account verification. Keep the window minimized, never use or disturb Dillon's foreground entertainment tab, and release/reset task tabs with C:\\Users\\dillo\\.codex\\tools\\Reset-CodexRemoteChromeTabs.ps1 -Quiet after scoped browser work.",
+      "agents": ["client-access-router", "growth-ops", "marketing-chief", "web-product"]
     },
     {
       "id": "gmail",
@@ -99,7 +99,7 @@
       "mode": "read-only-sensor",
       "route": "Connected Gmail plus prepare-only canonical intake",
       "use": "Current client requests and historical evidence; raw messages stay outside Buzz and only redacted observations enter intake.",
-      "agents": ["client-router", "evidence-research", "marketing-chief"]
+      "agents": ["client-access-router", "evidence-research", "marketing-chief", "web-product"]
     },
     {
       "id": "slack",
@@ -108,7 +108,7 @@
       "mode": "read-only-and-draft",
       "route": "Connected Slack plus bounded Cursor collaboration",
       "use": "Exact-channel evidence, redacted intake, and proposed replies. No autonomous posting or queue mutation.",
-      "agents": ["client-router", "evidence-research", "content-creative", "marketing-chief"]
+      "agents": ["client-access-router", "evidence-research", "content-creative", "marketing-chief", "web-product"]
     },
     {
       "id": "hubspot",
@@ -117,7 +117,7 @@
       "mode": "exact-portal",
       "route": "Portal-routed HubSpot connections",
       "use": "CRM, CMS, lifecycle, attribution, forms, and reporting with strict client and portal separation.",
-      "agents": ["crm-lifecycle", "client-router", "independent-verifier"]
+      "agents": ["growth-ops", "client-access-router", "web-product", "independent-verifier"]
     },
     {
       "id": "paid-media",
@@ -126,15 +126,15 @@
       "mode": "read-first-approval-gated",
       "route": "Exact account mappings through connected apps or authenticated Chrome",
       "use": "Brand-separated delivery, tracking, KPI validation, and staged campaign work. Spend and live mutation retain approval gates.",
-      "agents": ["paid-media", "client-router", "evidence-research", "independent-verifier"]
+      "agents": ["growth-ops", "client-access-router", "evidence-research", "web-product", "independent-verifier"]
     },
     {
       "id": "source-deploy",
       "name": "GitHub, Sites, and Netlify",
       "layer": "delivery",
       "mode": "versioned-and-reversible",
-      "route": "Authenticated source control and exact mapped deployment targets",
-      "use": "Versioned implementation, private dashboard releases, staging, rollback evidence, and approved mapped-site publication.",
+      "route": "Authenticated source control and exact mapped deployment targets. AI Tech News uses dillonmohr8777/dillon-os main at merged PR 226; verified local source is C:\\Users\\dillo\\Documents\\Codex\\2026-07-29\\monitor-this-session-on-cursor-i\\work\\pr226-site-factory.",
+      "use": "Versioned implementation, private dashboard releases, staging, rollback evidence, and approved mapped-site publication. For Momentum 360 AI Tech News, run the existing 25-site batch factory and its maker/checker QA contract; do not create a parallel generator.",
       "agents": ["web-product", "marketing-chief", "independent-verifier"]
     }
   ]

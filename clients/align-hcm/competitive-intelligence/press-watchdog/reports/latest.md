@@ -1,6 +1,6 @@
 # Align HCM Competitor Press Watch
 
-Generated: July 20, 2026 6:35 AM -04:00
+Generated: August 5, 2026 6:35 AM -04:00
 Run mode: **incremental**
 Mode: **private, read-only OSINT**. No HubSpot record, website page, email, or press release was created or published.
 
@@ -25,7 +25,7 @@ No new signal-triggered concepts on this run. Keep the existing release queue un
 
 - Successful source checks: 11
 - Failed source checks: 0
-- Official-domain items retrieved inside the 120-day window: 6
+- Official-domain items retrieved inside the 120-day window: 8
 - RSS dates are treated as publication dates. Bing web RSS dates are labeled as search-index dates and must be verified on-page before public use.
 
 ## Guardrails

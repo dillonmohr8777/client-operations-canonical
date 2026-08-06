@@ -60,7 +60,7 @@ function Assert-SafeStoredItem {
   if (-not [string]::IsNullOrWhiteSpace($storedClientId) -and $storedClientId -notmatch '^[a-z0-9][a-z0-9-]{0,79}$') { throw 'Intake contains an unsafe client identifier.' }
   $storedWorkItemId = [string](Get-OptionalProperty $Item 'promotedWorkItemId')
   if (-not [string]::IsNullOrWhiteSpace($storedWorkItemId) -and $storedWorkItemId -notmatch '^wi-[A-Za-z0-9][A-Za-z0-9_-]{5,79}$') { throw 'Intake contains an unsafe promoted work-item identifier.' }
-  $allowedReasons = @('ambiguous-client', 'client-status-not-active', 'known-false-or-cross-client-route', 'unresolved-client', 'missing-current-outcome', 'unsafe-execution-mode', 'invalid-client-route', 'manual-quarantine', 'legacy-quarantine')
+  $allowedReasons = @('ambiguous-client', 'client-status-not-active', 'known-false-or-cross-client-route', 'unresolved-client', 'missing-current-outcome', 'exact-source-identity-required', 'unsafe-execution-mode', 'invalid-client-route', 'manual-quarantine', 'legacy-quarantine')
   $storedReason = [string](Get-OptionalProperty $Item 'quarantineReason')
   if (-not [string]::IsNullOrWhiteSpace($storedReason) -and $storedReason -notin $allowedReasons) { throw 'Intake contains an unsafe quarantine reason.' }
 }

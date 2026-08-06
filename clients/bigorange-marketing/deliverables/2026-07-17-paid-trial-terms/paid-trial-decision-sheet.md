@@ -1,82 +1,78 @@
-# BigOrange paid-trial decision sheet
+# BigOrange paid-pilot decision sheet
 
 Prepared: 2026-07-17  
+Reconciled: 2026-08-03  
 Work item: `wi-20260718-0001`  
-Status: `PENDING WRITTEN TERMS`
+Status: `APPROVED SCOPE AND FEE — DELIVERY GATES REMAIN`
 
 ## Current truth
 
-- The BigOrange relationship is active.
-- A paid trial has been discussed, but the final scope and compensation are not recorded as agreed.
-- No historical job-listing range is treated as income or an agreed trial rate.
-- No WordPress, Semrush, analytics, CRM, or other private client access route is approved yet.
-- No work, invoice, publishing, account change, or external delivery should begin from this sheet alone.
+- BigOrange approved the `AI-Assisted SEO, AEO & Content Production System` paid pilot in writing and instructed Dillon to proceed.
+- The approved effort is 35 hours at $30 per hour, for a total of $1,050.
+- The pilot evolves the existing `/marketing-agency-for-builders/` WordPress page into a Custom Home Builder Marketing authority hub.
+- The strategy, research, technical and AI-search specification, editorial workflow, schema graph, roadmaps, concise discovery PDF, and working-session deck are prepared. The pillar and two supporting articles remain provisional until the SME review.
+- No WordPress publication, client delivery, invoice, or account change occurred in this reconciliation.
+- Janice's SME interview, verified WordPress staging access, final client review, final presentation, and payment timing remain open. Semrush validation was completed August 4.
 
-## Written terms to capture after the interview
+## Terms reconciliation
 
-| Required term | Confirmed value | Evidence or owner | Status |
+| Required term | Confirmed value | Evidence | Status |
 | --- | --- | --- | --- |
-| Trial objective |  |  | Pending |
-| Exact deliverables |  |  | Pending |
-| Explicit exclusions |  |  | Pending |
-| Hour cap or fixed scope |  |  | Pending |
-| Hourly rate or fixed fee |  |  | Pending |
-| Start date |  |  | Pending |
-| End date or review date |  |  | Pending |
-| Invoice timing |  |  | Pending |
-| Payment timing and method |  |  | Pending |
-| Acceptance owner |  |  | Pending |
-| Revision allowance |  |  | Pending |
-| Required systems |  |  | Pending |
-| Approved access route for each system |  |  | Pending |
-| Confidentiality and data limits |  |  | Pending |
-| Work-product ownership and portfolio use |  |  | Pending |
-| Conversion or ongoing-role decision point |  |  | Pending |
+| Trial objective | Build a repeatable AI-assisted SEO, AEO, and content-production system using a Custom Home Builder Marketing authority hub | Approved Google Doc | Confirmed |
+| Exact deliverables | Audit; competitor and keyword research; content calendar and architecture; AI-search strategy; 90-day roadmap; WordPress pillar; two articles; technical implementation; AI/editorial workflow; presentation; bonus 12-month roadmap | Approved Google Doc | Confirmed |
+| Explicit exclusions | Phase 2 social, downloadable, video, and webinar production are opportunities, not required pilot production assets | Approved Google Doc | Confirmed |
+| Hour cap | 35 hours | Approved Google Doc | Confirmed |
+| Hourly rate and total | $30/hour; $1,050 total | Approved Google Doc | Confirmed |
+| Start date | 2026-07-27, based on written instruction to proceed | Gmail project thread | Confirmed |
+| Review date | 2026-08-10 | Gmail project thread | Confirmed |
+| Invoice timing | Not stated in the reviewed written terms | — | Pending |
+| Payment timing and method | Not stated in the reviewed written terms | — | Pending |
+| Acceptance owner | Margee and the BigOrange review team are the documented review route; final acceptance mechanics are not stated | Gmail project thread | Partially confirmed |
+| Revision allowance | Not stated | — | Pending |
+| Required systems | Existing BigOrange WordPress; professional keyword data via Moz or client-provided Semrush report | Approved proposal and project thread | Confirmed |
+| Approved access route | WordPress and HubSpot invitations appeared in the thread, but the exact active role, staging target, and Moz route were not verified in this run | Gmail project thread | Pending verification |
+| Confidentiality and data limits | No additional terms found in the approved proposal | — | Pending if required |
+| Work-product ownership and portfolio use | Not stated in the reviewed written terms | — | Pending if required |
+| Ongoing-role decision point | Final pilot review and presentation | Approved Google Doc and project thread | Confirmed |
 
-## Scope reconciliation
+## Approved scope
 
-Use the interview notes and the written follow-up to place every requested activity in exactly one column.
+### Milestone 1 — strategy and architecture, estimated 15 hours
 
-| Included in paid trial | Later phase | Explicitly excluded |
-| --- | --- | --- |
-|  |  |  |
+- Current site audit covering technical SEO, page experience, architecture, internal linking, AI readiness, and content gaps.
+- Competitor research across builder marketing, lead generation, SEO, and websites.
+- Keyword research with selected and rejected directions; Semrush US desktop volume and difficulty were validated August 4.
+- Complete authority architecture: one pillar, supporting articles, FAQs, guides, case studies, downloads, internal links, URLs, and schema.
+- AI-search strategy for Google AI features, ChatGPT, Claude, Gemini, and Perplexity.
+- 90-day roadmap.
 
-Do not assume that the existing capability showcase, public site audit, WordPress discovery, Semrush discovery, SEO, AEO, GEO, analytics planning, design support, or client work are all included. Record only the activities that BigOrange confirms in writing.
+### Milestone 2 — proof of concept, estimated 20 hours
 
-## Access contract
+- One complete authority pillar targeting Custom Home Builder Marketing.
+- Two complete supporting articles.
+- WordPress metadata, internal-link, accessibility, performance, and structured-data specification.
+- Marketer-editable publishing approach.
+- One-hour Janice SME interview as a required source and review step.
+- Documented AI prompts, editing, fact-checking, human review, QA, and publishing workflow.
+- 45-60 minute final presentation after SME review and implementation evidence.
+- Bonus 12-month authority roadmap.
 
-For every required system, record:
+## Remaining gates
 
-1. The exact BigOrange-owned system and environment.
-2. A role-specific account for Dillon.
-3. The minimum required permission.
-4. A revocable OAuth, WordPress Application Password, or approved password-manager route.
-5. The person who owns MFA and recovery.
-6. Whether the first action is read only.
-7. The removal or revocation step when the trial ends.
+- [x] Scope and exclusions are written.
+- [x] Hours and compensation are explicit.
+- [x] Start and review dates are documented.
+- [ ] Invoice and payment timing are explicit.
+- [ ] Janice's interview and factual review are complete.
+- [x] Semrush validation is complete.
+- [ ] WordPress role and staging target are verified and revocable.
+- [ ] Final acceptance, revision, confidentiality, ownership, and portfolio-use expectations are confirmed if BigOrange requires them.
+- [ ] BigOrange approves the final client delivery and WordPress publication.
 
-Do not accept shared raw passwords, broad administrator access without a need, or credentials sent through chat or email.
+## Safe source locators
 
-## Go or no-go check
+- Google Doc: `gdoc://1_rv8nGWdb6X5QxdByBhLDSQrvEVkRCD853ByH_aYjhA`
+- Gmail project thread: `gmail-thread://19fa4cb8f6812394`
+- Completed local package: `clients/bigorange-marketing/deliverables/2026-08-03-custom-home-builder-authority-hub-pilot/`
 
-The trial can move from pending only when all statements below are true:
-
-- [ ] Scope and exclusions are written.
-- [ ] Hours or fixed deliverables are capped.
-- [ ] Compensation is explicit.
-- [ ] Start and payment timing are explicit.
-- [ ] The acceptance owner is identified.
-- [ ] Every required access route is authorized and revocable.
-- [ ] Data, confidentiality, ownership, and portfolio-use expectations are clear.
-- [ ] Dillon has explicitly accepted the final terms.
-
-If any box remains open, keep the commission tracker at `pending` and name the unresolved field rather than estimating it.
-
-## Post-interview closeout
-
-1. Save the written terms or approved summary as a safe source locator.
-2. Fill this sheet using exact language from that source.
-3. Update `commission-tracker.csv` only with agreed values.
-4. Register only non-secret access metadata after a real access route is provided.
-5. Return one decision to Dillon: accept, modify, or decline the trial terms.
-
+No raw credentials, private message bodies, or confidential client data are stored here.

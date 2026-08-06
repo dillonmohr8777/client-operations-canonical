@@ -4,13 +4,16 @@
   "purpose": "Give Dillon one private collaboration plane for messaging the Marketing Chief and its bounded specialist team without creating another task queue.",
   "canonicalSystemOfRecord": "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
   "relay": {
-    "wsUrl": "wss://buzz.block.builderlab.xyz",
-    "httpUrl": "https://buzz.block.builderlab.xyz",
+    "wsUrl": "wss://dillon-marketing-chief.communities.buzz.xyz",
+    "httpUrl": "https://dillon-marketing-chief.communities.buzz.xyz",
     "provider": "Block Buzz hosted relay",
     "maturity": "developer-preview"
   },
   "executionPolicy": {
     "coordinatorId": "marketing-chief",
+    "defaultProductionDeputyId": "web-product",
+    "dailyInterface": "buzz-desktop",
+    "dashboardRole": "optional-status-and-approval-fallback",
     "maxActiveCoordinators": 1,
     "maxConcurrentInternalWorkers": 3,
     "queueRemainsCanonical": true,
@@ -35,8 +38,11 @@
       "description": "Dillon's private command room for priorities, delegation, and final synthesis.",
       "members": [
         "marketing-chief",
-        "client-router",
+        "client-access-router",
         "evidence-research",
+        "content-creative",
+        "web-product",
+        "growth-ops",
         "independent-verifier",
         "watchtower-checker"
       ]
@@ -49,8 +55,7 @@
       "description": "Exact client routing, ambiguity resolution, and canonical intake handoffs.",
       "members": [
         "marketing-chief",
-        "client-router",
-        "access-continuity",
+        "client-access-router",
         "watchtower-checker"
       ]
     },
@@ -100,7 +105,7 @@
       "description": "Read-first paid-media analysis with brand-separated evidence and approval gates.",
       "members": [
         "marketing-chief",
-        "paid-media",
+        "growth-ops",
         "evidence-research",
         "independent-verifier"
       ]
@@ -113,8 +118,8 @@
       "description": "CRM, HubSpot, lifecycle, attribution, and portal-specific work.",
       "members": [
         "marketing-chief",
-        "crm-lifecycle",
-        "client-router",
+        "growth-ops",
+        "client-access-router",
         "independent-verifier"
       ]
     },
@@ -126,8 +131,7 @@
       "description": "Non-secret account routing, authenticated-session continuity, and human gates.",
       "members": [
         "marketing-chief",
-        "access-continuity",
-        "client-router",
+        "client-access-router",
         "independent-verifier"
       ]
     },
@@ -153,7 +157,7 @@
       "members": [
         "marketing-chief",
         "watchtower-checker",
-        "client-router",
+        "client-access-router",
         "independent-verifier"
       ]
     }
@@ -166,6 +170,7 @@
       "role": "Owner-facing coordinator and sole canonical queue writer",
       "harness": "codex",
       "credentialTarget": "MarketingChief-Buzz-Agent-MarketingChief",
+      "authTagCredentialTarget": "MarketingChief-Buzz-AuthTag-MarketingChief",
       "promptFile": "prompts/marketing-chief.md",
       "channels": [
         "management",
@@ -181,13 +186,14 @@
       ]
     },
     {
-      "id": "client-router",
-      "handle": "client-router",
-      "displayName": "Client Router",
-      "role": "Exact client, account, portal, and canonical-folder router",
+      "id": "client-access-router",
+      "handle": "client-access-router",
+      "displayName": "Client and Access Router",
+      "role": "Exact client, account, portal, canonical-folder, and authenticated-session router",
       "harness": "codex",
       "credentialTarget": "MarketingChief-Buzz-Agent-ClientRouter",
-      "promptFile": "prompts/client-router.md",
+      "authTagCredentialTarget": "MarketingChief-Buzz-AuthTag-ClientRouter",
+      "promptFile": "prompts/client-access-router.md",
       "channels": [
         "management",
         "intake-routing",
@@ -203,6 +209,7 @@
       "role": "Source-bounded current research and evidence packet builder",
       "harness": "claude",
       "credentialTarget": "MarketingChief-Buzz-Agent-EvidenceResearch",
+      "authTagCredentialTarget": "MarketingChief-Buzz-AuthTag-EvidenceResearch",
       "promptFile": "prompts/evidence-research.md",
       "channels": [
         "management",
@@ -220,6 +227,7 @@
       "role": "Client-safe copy, campaigns, visual briefs, and creative production",
       "harness": "claude",
       "credentialTarget": "MarketingChief-Buzz-Agent-ContentCreative",
+      "authTagCredentialTarget": "MarketingChief-Buzz-AuthTag-ContentCreative",
       "promptFile": "prompts/content-creative.md",
       "channels": [
         "content-creative"
@@ -232,46 +240,24 @@
       "role": "Websites, product interfaces, dashboards, and implementation",
       "harness": "codex",
       "credentialTarget": "MarketingChief-Buzz-Agent-WebProduct",
+      "authTagCredentialTarget": "MarketingChief-Buzz-AuthTag-WebProduct",
       "promptFile": "prompts/web-product.md",
       "channels": [
         "web-product"
       ]
     },
     {
-      "id": "paid-media",
-      "handle": "paid-media",
-      "displayName": "Paid Media",
-      "role": "Read-first channel analysis, KPI validation, and guarded recommendations",
+      "id": "growth-ops",
+      "handle": "growth-ops",
+      "displayName": "Growth Operations",
+      "role": "Read-first paid media, CRM, lifecycle, attribution, KPI validation, and guarded recommendations",
       "harness": "codex",
       "credentialTarget": "MarketingChief-Buzz-Agent-PaidMedia",
-      "promptFile": "prompts/paid-media.md",
+      "authTagCredentialTarget": "MarketingChief-Buzz-AuthTag-GrowthOperations",
+      "promptFile": "prompts/growth-ops.md",
       "channels": [
-        "paid-media"
-      ]
-    },
-    {
-      "id": "crm-lifecycle",
-      "handle": "crm-lifecycle",
-      "displayName": "CRM and Lifecycle",
-      "role": "Portal-routed CRM, HubSpot, lifecycle, and attribution work",
-      "harness": "codex",
-      "credentialTarget": "MarketingChief-Buzz-Agent-CrmLifecycle",
-      "promptFile": "prompts/crm-lifecycle.md",
-      "channels": [
+        "paid-media",
         "crm-lifecycle"
-      ]
-    },
-    {
-      "id": "access-continuity",
-      "handle": "access-continuity",
-      "displayName": "Access Continuity",
-      "role": "Read-first non-secret account and authenticated-session continuity",
-      "harness": "codex",
-      "credentialTarget": "MarketingChief-Buzz-Agent-AccessContinuity",
-      "promptFile": "prompts/access-continuity.md",
-      "channels": [
-        "intake-routing",
-        "access-continuity"
       ]
     },
     {
@@ -281,6 +267,7 @@
       "role": "Adversarial review, acceptance evidence, and release gate",
       "harness": "claude",
       "credentialTarget": "MarketingChief-Buzz-Agent-IndependentVerifier",
+      "authTagCredentialTarget": "MarketingChief-Buzz-AuthTag-IndependentVerifier",
       "promptFile": "prompts/independent-verifier.md",
       "channels": [
         "management",
@@ -301,6 +288,7 @@
       "role": "Independent task checker, liveness monitor, and bounded recovery sentinel",
       "harness": "codex",
       "credentialTarget": "MarketingChief-Buzz-Agent-WatchtowerChecker",
+      "authTagCredentialTarget": "MarketingChief-Buzz-AuthTag-WatchtowerChecker",
       "promptFile": "prompts/watchtower-checker.md",
       "channels": [
         "management",

@@ -57,9 +57,23 @@ finally {
 
 $syncScript = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot 'Sync-MarketingChiefSitesBridge.ps1'))
 if (-not (Test-Path -LiteralPath $syncScript -PathType Leaf)) { throw "Sync script not found: $syncScript" }
-$powerShell = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
-$arguments = '-NoLogo -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File "{0}" -EnableCanonicalWrites' -f $syncScript
-$action = New-ScheduledTaskAction -Execute $powerShell -Argument $arguments
+$hiddenTaskWrapper = 'C:\Users\dillo\.codex\tools\Run-HiddenScheduledTask.vbs'
+$hiddenTaskManifest = 'C:\Users\dillo\.codex\tools\hidden-scheduled-tasks.tsv'
+if (-not (Test-Path -LiteralPath $hiddenTaskWrapper -PathType Leaf)) {
+    throw "Console-free scheduled-task wrapper not found: $hiddenTaskWrapper"
+}
+if (-not (Test-Path -LiteralPath $hiddenTaskManifest -PathType Leaf)) {
+    throw "Console-free scheduled-task manifest not found: $hiddenTaskManifest"
+}
+$manifestEntry = Get-Content -LiteralPath $hiddenTaskManifest |
+    Where-Object { $_ -match ('^{0}\t' -f [regex]::Escape($TaskName)) } |
+    Select-Object -First 1
+if ([string]::IsNullOrWhiteSpace($manifestEntry)) {
+    throw "No console-free manifest entry exists for scheduled task '$TaskName'."
+}
+$wscript = "$env:SystemRoot\System32\wscript.exe"
+$arguments = '//B //Nologo "{0}" "{1}"' -f $hiddenTaskWrapper,$TaskName
+$action = New-ScheduledTaskAction -Execute $wscript -Argument $arguments
 $trigger = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) `
     -RepetitionInterval (New-TimeSpan -Minutes $EveryMinutes) `
     -RepetitionDuration (New-TimeSpan -Days 3650)

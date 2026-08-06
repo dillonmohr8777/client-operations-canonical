@@ -14,6 +14,7 @@ function Invoke-MarketingChiefBuzzProcess {
         [Parameter(Mandatory = $true)][string]$CredentialTarget,
         [Parameter(Mandatory = $true)][string]$RelayUrl,
         [Parameter(Mandatory = $true)][string[]]$ArgumentList,
+        [string]$AuthTagCredentialTarget,
         [string]$StandardInput,
         [ValidateRange(5, 300)][int]$TimeoutSeconds = 45
     )
@@ -28,6 +29,11 @@ function Invoke-MarketingChiefBuzzProcess {
     }
 
     $privateKey = Get-MarketingChiefBuzzPrivateKey -Target $CredentialTarget
+    $authTag = if ([string]::IsNullOrWhiteSpace($AuthTagCredentialTarget)) {
+        $null
+    } else {
+        Get-MarketingChiefBuzzAuthTag -Target $AuthTagCredentialTarget
+    }
     $startInfo = [Diagnostics.ProcessStartInfo]::new()
     $startInfo.FileName = $buzzPath
     $startInfo.Arguments = ($ArgumentList | ForEach-Object { ConvertTo-MarketingChiefProcessArgument -Value ([string]$_) }) -join ' '
@@ -38,6 +44,7 @@ function Invoke-MarketingChiefBuzzProcess {
     $startInfo.RedirectStandardInput = $true
     $startInfo.EnvironmentVariables['BUZZ_PRIVATE_KEY'] = $privateKey
     $startInfo.EnvironmentVariables['BUZZ_RELAY_URL'] = $RelayUrl.TrimEnd('/')
+    if ($null -ne $authTag) { $startInfo.EnvironmentVariables['BUZZ_AUTH_TAG'] = $authTag }
     $startInfo.EnvironmentVariables['BUZZ_SHELL'] = 'C:\Program Files\Git\bin\bash.exe'
 
     $process = [Diagnostics.Process]::new()
@@ -62,7 +69,9 @@ function Invoke-MarketingChiefBuzzProcess {
     }
     finally {
         $startInfo.EnvironmentVariables['BUZZ_PRIVATE_KEY'] = ''
+        $startInfo.EnvironmentVariables['BUZZ_AUTH_TAG'] = ''
         $privateKey = $null
+        $authTag = $null
         if ($null -ne $process) { $process.Dispose() }
     }
 }

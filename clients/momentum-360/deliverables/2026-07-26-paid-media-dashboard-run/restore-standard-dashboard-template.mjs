@@ -18,131 +18,120 @@ const reports = [
       "https://6a5e2aec47c635e9cf13c459--kimberly-james-bridal-2026-06-06.netlify.app",
     data: {
       clientName: "Kimberly James Bridal",
-      reportMonth: "July 20-July 26, 2026",
-      reportView: "Week",
+      reportMonth: "Launch snapshot through July 27, 2026",
+      reportView: "Launch",
       reportingMonth: "2026-07",
       logoAlt: "Kimberly James Bridal logo",
       logoPanel: "light",
-      industry: "Bridal / Google Ads + Meta Ads",
-      status: "Optimizing",
+      industry: "Bridal / Google Search + Meta Lead Generation",
+      status: "Launching",
       executiveSummary:
-        "Kimberly James Bridal invested $202.23 across Google Ads and Meta Ads in the July 20-July 26 reporting window. Google delivered 10,212 impressions and 282 clicks on $144.48 in spend. Meta reporting through July 25 delivered 5,999 impressions, 4,462 people reached, and 123 landing-page views on $57.75 in spend. Meta's July 26 row is still pending platform finalization, and appointment reporting remains pending validation.",
+        "Kimberly James Bridal's new Philadelphia Search campaign is live and learning. Through the current July 27 observation, including a partial day of reporting, it has produced 33 impressions and one click on $1.86 in spend. Its $1.86 average CPC is 58% lower than the 2026 Apparel, Fashion, and Jewelry search benchmark of $4.44. The new Meta qualified lead campaign is published and processing at a $10 daily budget with a Higher Intent form, SMS verification, and four qualification questions.",
       primaryGoal:
-        "Keep Google and Meta measured separately while reconciling appointment quality and source attribution before the next budget decision.",
+        "Build qualified bridal appointment volume through the new Google Search and Meta lead campaigns while validating every lead and appointment by source.",
       kpis: [
         {
-          label: "Combined Spend",
-          value: "$202.23",
-          change: "Google + Meta",
+          label: "Search Spend",
+          value: "$1.86",
+          change: "Launch through Jul 27",
           trend: "neutral",
-          context: "Channels separated below",
+          context: "Jul 27 reporting is partial",
         },
         {
-          label: "Google Clicks",
-          value: "282",
-          change: "2.76% CTR",
+          label: "Search Impressions",
+          value: "33",
+          change: "Campaign learning",
           trend: "up",
-          context: "$0.51 average CPC",
+          context: "29 complete + 4 partial-day",
         },
         {
-          label: "Meta LP Views",
-          value: "123",
-          change: "$0.47 per view",
-          trend: "up",
-          context: "Verified through Jul 25",
+          label: "Search Clicks",
+          value: "1",
+          change: "3.03% CTR",
+          trend: "neutral",
+          context: "Early launch sample",
         },
         {
-          label: "Impressions",
-          value: "16,211",
-          change: "10,212 Google + 5,999 Meta",
+          label: "Search CPC",
+          value: "$1.86",
+          change: "58% below benchmark",
           trend: "up",
-          context: "Cross-channel delivery",
+          context: "2026 category benchmark: $4.44",
         },
       ],
       channels: [
-        {
-          name: "Google | Performance Max Bridal Appointment",
-          spend: 142.62,
-          leads: 0,
-          cpl: 0,
-          resultLabel: "281 clicks",
-          costLabel: "$0.51 CPC",
-          status: "Paused",
-          notes:
-            "July 20-July 26: 10,185 impressions, 281 clicks, and $142.62 spend. The campaign is paused.",
-        },
         {
           name: "Google | Local Bridal | Philadelphia Search",
           spend: 1.86,
           leads: 0,
           cpl: 0,
           resultLabel: "1 click",
-          costLabel: "$1.86 spend",
-          status: "Active",
+          costLabel: "$1.86 CPC",
+          status: "Active · Bid strategy learning",
           notes:
-            "July 20-July 26: 27 impressions, 1 click, and $1.86 spend.",
+            "Launch through the current July 27 observation: 33 impressions, one click, 3.03% CTR, and $1.86 spend. The daily budget is $20 and July 27 reporting is partial.",
         },
         {
-          name: "Meta | Website Carousel | Philadelphia",
-          spend: 57.75,
+          name: "Meta | Qualified Form | Philadelphia",
+          spend: 0,
           leads: 0,
           cpl: 0,
-          resultLabel: "123 landing-page views",
-          costLabel: "$0.47 per view",
-          status: "Active through Jul 25",
+          resultLabel: "Qualified lead form",
+          costLabel: "$10 daily budget",
+          status: "Published · Processing",
           notes:
-            "Meta delivered 5,999 impressions and reached 4,462 people through July 25. July 26 remains pending platform finalization.",
+            "The Higher Intent form requires SMS verification plus wedding timing, gown budget, boutique visit timing, and stylist contact readiness. Four approved images are active.",
         },
       ],
       chartData: [
         {
-          week: "Google Ads",
-          impressions: 10212,
-          clicks: 282,
+          week: "Google Search",
+          impressions: 33,
+          clicks: 1,
           leads: 0,
           conversions: 0,
         },
         {
-          week: "Meta Ads",
-          impressions: 5999,
+          week: "Meta Qualified Leads",
+          impressions: 0,
           clicks: 0,
           leads: 0,
           conversions: 0,
         },
       ],
       wins: [
-        "Google delivered 282 clicks at a $0.51 average CPC.",
-        "Meta produced 123 landing-page views at $0.47 each.",
-        "The two channels generated 16,211 confirmed impressions while remaining separately measured.",
+        "The Philadelphia Search campaign is live, eligible, and progressing through bid strategy learning.",
+        "The early $1.86 Search CPC is 58% lower than the 2026 Apparel, Fashion, and Jewelry search benchmark of $4.44.",
+        "The Meta qualified lead campaign is published with SMS verification and four questions designed to screen for appointment readiness.",
       ],
       watchouts: [
-        "Meta has not finalized the July 26 reporting row.",
-        "Appointment and conversion reporting remains pending validation against named outcomes.",
-        "Four Meta drafts remain unpublished and are not included as active delivery.",
+        "Search volume is still an early sample and July 27 reporting is partial.",
+        "Meta is processing, so lead performance will be benchmarked after delivery begins and enough data is available.",
+        "Lead and appointment reporting remains pending validation against named business outcomes.",
       ],
       changesMade: [
-        "Updated the standard Momentum 360 dashboard with the verified July 20-July 26 Google totals.",
-        "Updated Meta delivery through July 25 and marked July 26 as pending platform finalization.",
-        "Kept Google traffic, Meta landing-page views, and appointment validation as separate measurement layers.",
+        "Added the live Philadelphia Search launch and learning status.",
+        "Added the new Meta qualified lead campaign and its Higher Intent safeguards.",
+        "Removed the prior traffic campaign and prior Performance Max reporting from this launch view.",
       ],
       nextMoves: [
-        "Reconcile appointment outcomes by source before changing budget.",
-        "Keep the active Google search campaign learning while the Performance Max campaign remains paused.",
-        "Complete the Meta lead-creative review before publishing any draft.",
+        "Monitor Search terms, click quality, and bid strategy learning as the sample grows.",
+        "Confirm Meta delivery and review the first qualified lead submissions against the four form questions.",
+        "Reconcile leads and appointments by source before making the next budget decision.",
       ],
       leadBreakdown: {
         forms: 0,
         calls: 0,
         other: 0,
-        source: "Google Ads and Meta Ads platform reporting",
+        source: "Google Ads live readback and Meta Ads Manager publication readback",
         notes:
-          "Appointment and conversion reporting is pending validation against named business outcomes.",
+          "Lead and appointment reporting is pending validation against named business outcomes. No unverified result is inferred.",
       },
       reviewContactName: "",
       reviewContactEmail: "",
       reviewDocuments: [
         {
-          title: "Kimberly James Bridal July 20-July 26 performance review",
+          title: "Kimberly James Bridal Search and Meta qualified lead launch review",
           status: "Ready for review",
         },
       ],
@@ -398,12 +387,12 @@ const reports = [
       reportingMonth: "2026-07",
       logoAlt: "Fagan Painting LLC logo",
       logoPanel: "light",
-      industry: "Painting / Meta Ads",
-      status: "Payment Action Needed",
+      industry: "Painting / Meta closeout + organic search",
+      status: "Organic Search Transition",
       executiveSummary:
-        "Fagan Painting LLC recorded $478.14 in Meta spend and 10,563 campaign impressions in the confirmed July 20-July 25 reporting rows. The Pittsburgh 25-mile campaign produced six lead-form results on $340.48 in spend, for a $56.75 cost per lead. Meta has not finalized the July 26 row, and current delivery is interrupted by the account payment state.",
+        "Fagan Painting LLC recorded $478.14 in Meta spend and 10,563 campaign impressions in the confirmed July 20-July 25 reporting rows. The Pittsburgh 25-mile campaign produced six lead-form results on $340.48 in spend, for a $56.75 cost per lead. Facebook management is transitioning to Benson and Legacy Paint Holdings, while Dillon's ongoing work moves into coordinated AEO, GEO, and SEO.",
       primaryGoal:
-        "Confirm disposition of the six lead-form results, resolve the payment state, and resume only the campaign and routing path that produced verified lead delivery.",
+        "Preserve the final Meta record and handoff context, then coordinate answer-ready service pages, real homeowner FAQs, local painting topics, internal links, and structured organic content with Phil and Mac.",
       kpis: [
         {
           label: "Meta Spend",
@@ -453,7 +442,7 @@ const reports = [
           cpl: 56.75,
           resultLabel: "6 lead forms",
           costLabel: "$56.75 CPL",
-          status: "Payment state",
+          status: "Delivered - handoff",
           notes:
             "Confirmed period: 8,310 impressions, 4,129 reach, $340.48 spend, and six lead-form results.",
         },
@@ -481,18 +470,18 @@ const reports = [
       ],
       watchouts: [
         "Meta has not finalized the July 26 reporting row.",
-        "The current payment state is interrupting delivery.",
-        "Lead follow-up outcomes are needed before any campaign restart decision.",
+        "Lead follow-up outcomes should stay attached to the handoff record.",
+        "AEO and GEO implementation should remain coordinated with the existing SEO work.",
       ],
       changesMade: [
         "Updated Fagan to the confirmed July 20-July 25 Meta delivery rows.",
         "Marked the July 26 row as pending platform finalization.",
-        "Separated the six-result campaign from the campaign whose lead reporting remains pending validation.",
+        "Established the transition from paid social management to a coordinated AEO, GEO, and SEO program.",
       ],
       nextMoves: [
-        "Confirm the disposition and qualification of all six lead-form results.",
-        "Resolve the Meta account payment state.",
-        "Resume only the verified campaign and lead-routing path after billing recovery.",
+        "Complete the Meta campaign, form, routing, and lead-quality handoff record.",
+        "Establish the organic search and AI citation baseline.",
+        "Align the first answer-focused service page and FAQ priorities with Phil and Mac.",
       ],
       leadBreakdown: {
         forms: 6,
@@ -782,8 +771,16 @@ async function restoreReport(report, token) {
 const config = JSON.parse(await fs.readFile(netlifyConfig, "utf8"));
 const token = getNetlifyToken(config);
 const results = [];
+const selectedSlug = process.env.REPORT_SLUG?.trim();
+const selectedReports = selectedSlug
+  ? reports.filter((report) => report.slug === selectedSlug)
+  : reports;
 
-for (const report of reports) {
+if (selectedReports.length === 0) {
+  throw new Error(`No dashboard report matched REPORT_SLUG=${selectedSlug}`);
+}
+
+for (const report of selectedReports) {
   results.push(await restoreReport(report, token));
 }
 

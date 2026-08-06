@@ -41,12 +41,18 @@ try {
         $syncSource -match 'PSObject\.Properties\[''ownerIntents''\]' -and
         $syncSource -match 'processedOwnerIntents'
     )
-    Add-Check 'owner intent modes map only to reversible local action classes' (
+    Add-Check 'safe owner intent modes map to reversible local action classes' (
         $syncSource -match '''analyze''\s*\{\s*return ''local_research''' -and
         $syncSource -match '''prepare''\s*\{\s*return ''local_artifact''' -and
         $syncSource -match '''execute_safe''\s*\{\s*return ''local_test''' -and
         $syncSource -match '''draft_for_approval''\s*\{\s*return ''local_draft''' -and
         $syncSource -match '''monitor''\s*\{\s*return ''read_only_verification'''
+    )
+    Add-Check 'consequential owner intent content is approval gated' (
+        $syncSource -match 'return ''account_change''' -and
+        $syncSource -match 'return ''external_delivery''' -and
+        $syncSource -match 'ApprovalTier = if \(\$automaticAction\)' -and
+        $syncSource -match 'Explicit owner approval is required'
     )
     Add-Check 'owner intents use exact idempotent source and dedupe bindings' (
         $syncSource -match 'DedupeKey = "sites-intent:\$intentId"' -and

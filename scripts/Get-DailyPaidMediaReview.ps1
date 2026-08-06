@@ -136,14 +136,13 @@ try { $roster = Get-Content -LiteralPath $RosterPath -Raw -Encoding UTF8 | Conve
 if ([int](Get-PropertyValue $roster 'schemaVersion' 0) -ne 1) { throw 'Unsupported paid-media roster schema.' }
 if ([string](Get-PropertyValue $roster 'timezone' '') -ne 'America/New_York') { throw 'Paid-media roster must use America/New_York.' }
 $lanes = @($roster.lanes)
-if ($lanes.Count -ne 8) { throw 'Paid-media roster must contain exactly eight lanes.' }
+if ($lanes.Count -ne 7) { throw 'Paid-media roster must contain exactly seven lanes.' }
 $expectedLaneIds = @(
     'google-ads--kimberly-james-bridal',
     'google-ads--replenish-7-eleven',
     'google-ads--fresh-blends-kwik-trip',
     'google-ads--omega-landscaping',
     'google-ads--onsite-concrete-landscape',
-    'meta-ads--fagan-painting',
     'meta-ads--shadow-heating-cooling',
     'meta-ads--kimberly-james-bridal'
 )
@@ -153,8 +152,8 @@ if (@($laneIds | Where-Object { $_ -notin $expectedLaneIds }).Count -gt 0 -or @(
     throw 'Paid-media roster does not match the exact eight authorized client-platform lanes.'
 }
 $orders = @($lanes | ForEach-Object { [int]$_.order })
-if (@($orders | Group-Object | Where-Object Count -gt 1).Count -gt 0 -or ($orders | Measure-Object -Minimum).Minimum -ne 1 -or ($orders | Measure-Object -Maximum).Maximum -ne 8) {
-    throw 'Paid-media roster order must be unique from 1 through 8.'
+if (@($orders | Group-Object | Where-Object Count -gt 1).Count -gt 0 -or ($orders | Measure-Object -Minimum).Minimum -ne 1 -or ($orders | Measure-Object -Maximum).Maximum -ne 7) {
+    throw 'Paid-media roster order must be unique from 1 through 7.'
 }
 foreach ($lane in $lanes) {
     if ([string]$lane.platform -notin @('google-ads', 'meta-ads')) { throw "Unsupported paid-media platform: $($lane.platform)" }

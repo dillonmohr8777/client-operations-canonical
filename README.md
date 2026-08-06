@@ -83,7 +83,7 @@ Prediction outcomes are recorded through `Record-MarketingDecision.ps1`. `Get-Ne
 
 An exact current-client Gmail, Slack, or direct user request can now trigger the whole paid-media deliverable chain: location interpretation, landing-page reuse or build, creative and copy, conversion tracking, UTMs, campaign and ad-group manifests, provider validation, paused creation, enablement, live readback, and observation. The durable contract is `workflows/communication-triggered-ad-launch.workflow.json`.
 
-Current platform eligibility lives only in `registry/paid-media-roster.json`. Google Ads has five exact client lanes: KJB, Replenish, Omega, Onsite, and Fresh Blends for Kwik Trip Ice Box campaigns. Meta Ads has three: Fagan, Shadow Heating, and KJB. Persistent Chrome live-verified every Google child-account mapping on July 16. KJB Google is enabled, not paused; the cancelled KJB duplicate is excluded. The observed Fresh Blends Ice Box campaigns remain paused unless a fresh exact-account readback proves otherwise.
+Current platform eligibility lives only in `registry/paid-media-roster.json`. Google Ads has five exact client lanes: KJB, Replenish, Omega, Onsite, and Fresh Blends for Kwik Trip Ice Box campaigns. Meta Ads has two: Shadow Heating and KJB. Fagan Painting is excluded because Dillon confirmed it is no longer running ads. Persistent Chrome live-verified every Google child-account mapping on July 16. KJB Google is enabled, not paused; the cancelled KJB duplicate is excluded. The observed Fresh Blends Ice Box campaigns remain paused unless a fresh exact-account readback proves otherwise.
 
 The terminal entry points are:
 

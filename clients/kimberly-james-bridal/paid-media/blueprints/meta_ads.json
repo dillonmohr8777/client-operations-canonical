@@ -6,9 +6,9 @@
   "routeState": "active",
   "patternStatus": "live-observed",
   "sourceEvidence": {
-    "observedAt": "2026-07-16T19:43:00Z",
+    "observedAt": "2026-07-27T05:35:00Z",
     "sourceClasses": ["user", "gmail", "slack", "live_platform"],
-    "summary": "Persistent Chrome verified the exact KJB Meta ad-account route and four campaigns. Website Carousel Traffic and Website Retargeting were active, while a Leads carousel was in draft; no state was changed. Those campaign states are readback evidence only. Appointment-path QA, qualified-conversation feedback, creative iteration, tracking, and billing remain the optimization gates.",
+    "summary": "Persistent Chrome verified KJB Meta Ads account 1249689223687250 and published the authorized Philadelphia qualified-lead replacement. The campaign uses Meta Instant Forms, Higher Intent review, restricted sharing, required SMS phone verification, four required qualification questions, and four approved KJB bridal images. The landing-page-view traffic campaign was turned off after the replacement entered Processing.",
     "liveAccountVerified": true,
     "historicalOnly": false
   },
@@ -21,7 +21,7 @@
   },
   "buildContract": {
     "campaign": {
-      "type": "Website traffic, retargeting, or lead generation based on the exact objective",
+      "type": "Lead generation with Meta Instant Forms",
       "bidStrategy": "Highest volume",
       "campaignNamingPattern": "KJB | Meta | {Offer} | {Audience}",
       "adGroupNamingPattern": "{Audience} | {CreativeAngle}"
@@ -29,9 +29,9 @@
     "budgetBaseline": {
       "daily": 10,
       "currency": "USD",
-      "basis": "Historical communicated daily budget; not current spend authority.",
-      "observedAt": "2026-07-12T23:59:59Z",
-      "isSpendAuthority": false
+      "basis": "Existing campaign budget retained during the user-authorized 2026-07-27 live conversion.",
+      "observedAt": "2026-07-27T05:35:00Z",
+      "isSpendAuthority": true
     },
     "landingPage": {
       "defaultMode": "reuse",
@@ -40,18 +40,18 @@
       "qa": ["mobile appointment completion", "pixel and event test", "source fields preserved", "test submission excluded", "brand and factual review"]
     },
     "tracking": {
-      "primaryEvent": "appointment_request",
-      "secondaryEvents": ["lead", "schedule_start", "phone_click"],
+      "primaryEvent": "meta_instant_form_lead",
+      "secondaryEvents": ["sms_verified_lead", "qualified_bridal_inquiry", "schedule_start", "booked_appointment"],
       "dedupRequired": true,
-      "utmPattern": "kjb_meta_{offer}_{audience}"
+      "utmPattern": "kjb_bridal_booked_appointments_philadelphia_2026_07"
     },
     "creative": {
-      "requiredAssets": ["square image or video", "vertical story asset", "primary text variants", "headline variants", "approved call to action"],
-      "copyRequirements": ["lead with the bridal shopping outcome", "use approved inclusive language", "make the appointment step concrete", "avoid unsupported urgency or inventory claims"]
+      "requiredAssets": ["four approved KJB bridal images", "Philadelphia bridal primary text", "Find Your Gown in Philadelphia headline", "Book now call to action"],
+      "copyRequirements": ["lead with the bridal shopping outcome", "describe private Chestnut Hill styling", "set expectation of four qualification questions", "avoid unsupported urgency or inventory claims"]
     }
   },
-  "dailyOptimizationChecks": ["exact account and four-campaign delivery readback", "active traffic and retargeting campaign continuity", "draft Leads carousel preservation", "budget pacing", "lead and appointment event flow", "qualified-conversation feedback", "creative fatigue and frequency", "placement quality", "landing-page completion", "billing and change history"],
-  "antiRegressionRules": ["Do not publish the observed Leads carousel draft without exact current authority.", "Do not count tests as leads or appointments.", "Do not judge Meta on raw forms alone when appointment outcomes are available.", "Do not increase spend until delivery, tracking, and qualified lead quality are reconciled.", "Keep Meta and Google campaign evidence distinct."],
+  "dailyOptimizationChecks": ["exact account and campaign delivery readback", "qualified-lead campaign review and delivery status", "landing-page-view traffic campaign remains off", "budget pacing", "SMS-verified lead flow", "four-question response quality", "qualified-conversation and booked-appointment feedback", "creative fatigue and frequency", "placement quality", "billing and change history"],
+  "antiRegressionRules": ["Do not switch the qualified campaign back to Landing Page Views.", "Do not remove Higher Intent review, restricted sharing, SMS verification, or the four required qualification questions without current authority.", "Do not count tests as leads or appointments.", "Do not judge Meta on raw forms alone when appointment outcomes are available.", "Do not increase spend until delivery, tracking, and qualified lead quality are reconciled.", "Keep Meta and Google campaign evidence distinct."],
   "learningPolicy": {
     "minimumComparableOutcomes": 3,
     "successSignals": ["qualified bridal conversation", "booked appointment", "verified appointment request", "stable qualified cost per result"],

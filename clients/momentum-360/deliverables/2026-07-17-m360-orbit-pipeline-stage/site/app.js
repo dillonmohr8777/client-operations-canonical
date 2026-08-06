@@ -132,6 +132,46 @@ function renderMarkdown(markdown) {
   return html.join("");
 }
 
+function safeHttpUrl(value) {
+  try {
+    const url = new URL(String(value || ""), window.location.href);
+    return ["http:", "https:"].includes(url.protocol) ? url.href : null;
+  } catch {
+    return null;
+  }
+}
+
+function renderSources(container, sourceItems) {
+  container.replaceChildren();
+  const validSources = (Array.isArray(sourceItems) ? sourceItems : [])
+    .map((source) => ({
+      title: String(source?.title || "Source").trim().slice(0, 180),
+      url: safeHttpUrl(source?.url),
+    }))
+    .filter((source) => source.url);
+
+  if (!validSources.length) {
+    container.hidden = true;
+    return;
+  }
+
+  const label = document.createElement("strong");
+  label.textContent = "Live sources";
+  const list = document.createElement("ul");
+  for (const source of validSources) {
+    const item = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = source.url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = source.title || new URL(source.url).hostname;
+    item.append(link);
+    list.append(item);
+  }
+  container.append(label, list);
+  container.hidden = false;
+}
+
 function setLoading(isLoading) {
   submitButton.disabled = isLoading;
   submitButton.querySelector("span").textContent = isLoading ? "Routing…" : "Route my question";
@@ -165,32 +205,48 @@ async function askOrbit() {
         website: questionForm.elements.website?.value || "",
       }),
     });
-    const payload = await response.json();
+    const rawPayload = await response.text();
+    let payload;
+    try {
+      payload = JSON.parse(rawPayload);
+    } catch {
+      throw new Error("Orbit returned an unreadable response.");
+    }
     if (!response.ok) throw new Error(payload.error || "Orbit could not answer right now.");
+    if (!payload?.agent?.name || typeof payload.answer !== "string") {
+      throw new Error("Orbit returned an incomplete response.");
+    }
 
     lastAgent = payload.agent.name;
     byId("answerMonogram").textContent = payload.agent.name.charAt(0);
     byId("answerSquad").textContent = payload.agent.squad;
     byId("answerAgent").textContent = payload.agent.name;
     byId("answerRole").textContent = payload.agent.role;
-    byId("answerMode").textContent = payload.mode === "deep-live" ? "DEEP + AI LIVE" : payload.mode === "deep-research" ? "DEEP + LIVE SOURCES" : "STARTER";
+    const collaborators = Array.isArray(payload.collaborators) ? payload.collaborators : [];
+    const collaboratorLine = byId("answerCollaborators");
+    if (collaborators.length) {
+      collaboratorLine.innerHTML = `Coordinated with <strong>${collaborators.map((agent) => escapeHtml(agent.name)).join(", ")}</strong>`;
+      collaboratorLine.hidden = false;
+    } else {
+      collaboratorLine.innerHTML = "";
+      collaboratorLine.hidden = true;
+    }
+    byId("answerMode").textContent = payload.mode === "deep-multi"
+      ? `${collaborators.length + 1} AGENTS COORDINATED`
+      : payload.mode === "deep-live"
+        ? "DEEP + AI LIVE"
+        : payload.mode === "deep-plan"
+          ? "DEEP PLAN"
+          : "STARTER";
     byId("answerBody").innerHTML = renderMarkdown(payload.answer);
     const sources = byId("answerSources");
-    if (Array.isArray(payload.sources) && payload.sources.length) {
-      sources.innerHTML = `<strong>Live sources</strong><ul>${payload.sources.map((source) => `<li><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.title)}</a></li>`).join("")}</ul>`;
-      sources.hidden = false;
-    } else {
-      sources.hidden = true;
-      sources.innerHTML = "";
-    }
+    renderSources(sources, payload.sources);
     byId("leadQuestion").value = lastQuestion;
     byId("leadAgent").value = `${payload.agent.name} — ${payload.agent.role}`;
     answerPanel.hidden = false;
   } catch (error) {
-    const safeMessage = error instanceof TypeError
-      ? "Orbit could not connect right now. Your question is safe; please try again."
-      : error?.message;
-    byId("errorMessage").textContent = safeMessage || "Orbit could not answer right now.";
+    console.error("Orbit request failed", { name: error?.name, message: error?.message });
+    byId("errorMessage").textContent = "Orbit could not finish that response. Your question is safe; please try again.";
     errorPanel.hidden = false;
   } finally {
     thinking.hidden = true;
@@ -205,6 +261,8 @@ function resetCommand() {
   questionInput.value = "";
   agentChoice.value = "";
   byId("answerSources").hidden = true;
+  byId("answerCollaborators").hidden = true;
+  byId("answerCollaborators").innerHTML = "";
   questionInput.focus();
 }
 
@@ -225,9 +283,9 @@ async function saveLead(event) {
       body: data.toString(),
     });
     if (!response.ok) throw new Error("Could not save the plan.");
-    status.textContent = "Saved. Momentum 360 can now keep this moving with you.";
+    status.textContent = "Follow-up requested. Momentum 360 can now review this handoff.";
     byId("leadEmail").disabled = true;
-    button.textContent = "Plan saved";
+    button.textContent = "Follow-up requested";
   } catch {
     status.textContent = "We could not save it here. Call (215) 607-6482 and we will pick it up.";
     button.disabled = false;

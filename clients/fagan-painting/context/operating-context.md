@@ -1,6 +1,6 @@
 # Fagan Painting operating context
 
-Last updated: 2026-07-16
+Last updated: 2026-07-27
 Canonical client ID: `fagan-painting`
 Evidence cutoff: 2026-07-16
 Privacy: redacted; no prospect, contact, credential, token, account-ID, or raw-message data
@@ -8,11 +8,23 @@ Context status: V1; operational follow-up facts remain incomplete
 
 ## Bottom line
 
-Fagan is a Pittsburgh-area painting business with a website-led estimate funnel and Meta-supported demand generation. The highest-value operating priority is closed-loop lead handling: prove that each legitimate inquiry reached the approved destination, has a human owner and disposition, and retains trustworthy campaign attribution before scaling spend or claiming results.
+Fagan is a Pittsburgh-area painting business moving from Dillon-managed Meta advertising into a coordinated organic-search program. Facebook management is transitioning to Benson and Legacy Paint Holdings. Dillon's ongoing lane is AEO, GEO, and SEO coordinated with Phil and Mac.
 
-The production attribution path was reported repaired on 2026-07-13. That does not prove the ad account, campaign delivery, mailbox processing, CRM path, or follow-up status is healthy today. The canonical 2026-07-16 work item remains blocked on operational access and ownership evidence.
+The organic program is now instituted through `organic-search/2026-07-27-aeo-seo-transition-plan.md`. Its first priorities are an organic and AI-citation baseline, answer-ready service pages, real homeowner FAQs, local painting topics, stronger internal links, and structured content that search engines and AI answer systems can extract.
 
-Confidence: high for the historical repair and current reconciliation gap; current live campaign and lead-handling status unverified.
+The paid-media history below remains useful handoff evidence, but any recommendation to resume or scale Dillon-managed Meta activity is superseded by this transition unless Dillon gives a newer instruction.
+
+Confidence: high for the strategy transition because it is supported by the July 2026 email thread and Dillon's direct July 27 instruction. Implementation and current organic visibility remain pending baseline verification.
+
+## Current strategy transition
+
+- Facebook owner: Benson and Legacy Paint Holdings, transition in progress.
+- Dillon's continuing scope: AEO, GEO, and SEO.
+- Coordination rule: align implementation with Phil and Mac so the existing SEO work and future backlink work remain coherent.
+- First deliverable: organic and AI-citation baseline plus a prioritized service-page and FAQ map.
+- Measurement: implementation progress, crawl and schema health, target-query visibility, AI citations, organic demand, and qualified organic estimate activity.
+- Paid-social record: preserve campaign structure, lead-form logic, routing context, and lead-quality feedback for the incoming Facebook owner.
+- External boundary: do not publish website changes, change search configuration, or contact the client from this plan without the applicable access and delivery authority.
 
 ## Current outcome and action
 

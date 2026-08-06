@@ -9,6 +9,7 @@ param(
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 . (Join-Path $PSScriptRoot 'MarketingChief.SitesBridgeCredential.ps1')
+. (Join-Path $PSScriptRoot 'MarketingOs.Common.ps1')
 
 $projectRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 if ([string]::IsNullOrWhiteSpace($ConfigPath)) {
@@ -304,6 +305,22 @@ function Resolve-Operator {
     Invoke-MachinePost -ApiUrl $machineApi -Token $token -DispatchToken $dispatchToken -Body $body | Out-Null
 }
 
+function Resolve-HostedChoice {
+    param(
+        [Parameter(Mandatory = $true)][object]$Choice,
+        [Parameter(Mandatory = $true)][ValidateSet('imported','superseded','failed')][string]$State,
+        [AllowNull()][string]$CanonicalOutcomeId
+    )
+    if ($DryRun) { return }
+    $body = @{
+        action = 'resolve-choice'
+        id = [string]$Choice.id
+        state = $State
+        canonicalOutcomeId = $CanonicalOutcomeId
+    }
+    Invoke-MachinePost -ApiUrl $machineApi -Token $token -DispatchToken $dispatchToken -Body $body | Out-Null
+}
+
 function Resolve-OwnerIntent {
     param(
         [Parameter(Mandatory = $true)][object]$Intent,
@@ -323,7 +340,21 @@ function Resolve-OwnerIntent {
 }
 
 function Get-IntentActionClass {
-    param([Parameter(Mandatory = $true)][string]$Mode)
+    param(
+        [Parameter(Mandatory = $true)][string]$Mode,
+        [Parameter(Mandatory = $true)][string]$Instruction
+    )
+    # The UI mode describes the owner's desired handling, but it cannot make
+    # consequential account or outside-world work automatically executable.
+    # Fail closed on explicit integration/access and delivery language.
+    if ($Instruction -match '(?i)\b(?:integrat(?:e|ed|ion)|connect|install|authorize|grant access|change permissions?)\b.{0,120}\b(?:Slack|Cursor|account|workspace|app|integration)\b') {
+        return 'account_change'
+    }
+    if ($Instruction -match '(?i)\b(?:publish|post|go live)\b') { return 'publishing' }
+    if ($Instruction -match '(?i)\bdeploy\b') { return 'deployment' }
+    if ($Instruction -match '(?i)\b(?:spend|purchase|buy|pay|charge|raise budget|increase budget)\b') { return 'spend' }
+    if ($Instruction -match '(?i)\b(?:delete|remove account)\b') { return 'destructive' }
+    if (Test-MarketingRiskyActionText $Instruction) { return 'external_delivery' }
     switch ($Mode) {
         'analyze' { return 'local_research' }
         'prepare' { return 'local_artifact' }
@@ -378,7 +409,6 @@ if ([int]$state.schemaVersion -ne 1) { throw 'Hosted sync state schema is unsupp
 if ($null -eq $state.PSObject.Properties['processedOwnerIntents']) {
     Add-Member -InputObject $state -MemberType NoteProperty -Name processedOwnerIntents -Value @()
 }
-$processedChoiceIds = @($state.processedChoices | ForEach-Object { [string]$_.id })
 $processedRequestIds = @($state.processedOperatorRequests | ForEach-Object { [string]$_.id })
 $processedIntentIds = @($state.processedOwnerIntents | ForEach-Object { [string]$_.id })
 
@@ -387,8 +417,31 @@ try {
     if ([int]$remote.schemaVersion -ne 1) { throw 'Hosted machine response schema is unsupported.' }
     $remoteOwnerIntents = if ($null -ne $remote.PSObject.Properties['ownerIntents']) { @($remote.ownerIntents) } else { @() }
 
-    foreach ($choice in @($remote.hostedChoices)) {
-        if ([string]$choice.id -in $processedChoiceIds) { continue }
+    foreach ($choice in @($remote.hostedChoices | Where-Object { [string]$_.state -ceq 'pending' })) {
+        $processedChoice = $state.processedChoices |
+            Where-Object { [string]$_.id -ceq [string]$choice.id } |
+            Select-Object -First 1
+        if ($null -ne $processedChoice) {
+            $hostedResolution = switch ([string]$processedChoice.status) {
+                'recorded' { 'imported' }
+                'imported' { 'imported' }
+                'superseded' { 'superseded' }
+                'failed' { 'failed' }
+                'would-record' { if ($DryRun) { 'dry-run-skip' } else { $null } }
+                default { $null }
+            }
+            if ($hostedResolution -ceq 'dry-run-skip') { continue }
+            if (-not [string]::IsNullOrWhiteSpace([string]$hostedResolution)) {
+                $outcomeRef = if ($hostedResolution -ceq 'imported') {
+                    "sites-choice:$([string]$choice.id)"
+                }
+                else {
+                    $null
+                }
+                Resolve-HostedChoice -Choice $choice -State $hostedResolution -CanonicalOutcomeId $outcomeRef
+                continue
+            }
+        }
         $current = Get-LocalQueueItem -WorkItemId ([string]$choice.workItemId)
         $exact = (
             $null -ne $current.item -and
@@ -402,6 +455,7 @@ try {
                 status = 'superseded'
                 processedAt = [DateTimeOffset]::UtcNow.ToString('o')
             }
+            Resolve-HostedChoice -Choice $choice -State superseded -CanonicalOutcomeId $null
             Write-BridgeLog -Event 'hosted-choice' -Status 'superseded' -Detail ([string]$choice.workItemId)
             continue
         }
@@ -441,6 +495,8 @@ try {
             status = if ($DryRun) { 'would-record' } else { 'recorded' }
             processedAt = [DateTimeOffset]::UtcNow.ToString('o')
         }
+        Resolve-HostedChoice -Choice $choice -State imported `
+            -CanonicalOutcomeId ("sites-choice:{0}" -f [string]$choice.id)
         Write-BridgeLog -Event 'hosted-choice' -Status 'recorded' -Detail ([string]$choice.workItemId)
     }
 
@@ -592,7 +648,8 @@ try {
         try {
             $queue = Read-JsonFile -Path $queuePath
             if ($null -eq $queue) { throw 'Canonical queue is unavailable.' }
-            $actionClass = Get-IntentActionClass -Mode ([string]$intent.mode)
+            $actionClass = Get-IntentActionClass -Mode ([string]$intent.mode) -Instruction ([string]$intent.instruction)
+            $automaticAction = Test-MarketingAutomaticActionClass $actionClass
             $workItemArgs = @{
                 Client = [string]$intent.clientId
                 DedupeKey = "sites-intent:$intentId"
@@ -610,8 +667,13 @@ try {
                     'Preserve the exact active client route and exclude raw communications, direct identifiers, and secrets.',
                     'Keep external delivery, publishing, spend, account changes, and destructive actions pending explicit approval.'
                 )
-                ApprovalTier = 'automatic'
-                ApprovalAction = 'Local reversible preparation only. Any consequential external action remains separately approval-gated.'
+                ApprovalTier = if ($automaticAction) { 'automatic' } else { 'explicit' }
+                ApprovalAction = if ($automaticAction) {
+                    'Local reversible preparation only. Any consequential external action remains separately approval-gated.'
+                }
+                else {
+                    'Explicit owner approval is required before this consequential action can execute.'
+                }
                 ExpectedQueueRevision = [int]$queue.revision
             }
             if (-not [string]::IsNullOrWhiteSpace([string]$intent.dueAt)) {
@@ -654,7 +716,30 @@ try {
         }
     }
 
-    $snapshot = Invoke-RestMethod -Uri ([string]$config.localStudioUrl) -Method Get -TimeoutSec 60 -UseBasicParsing
+    $aiStackUpdater = Join-Path $PSScriptRoot 'Update-AiStackState.ps1'
+    if (Test-Path -LiteralPath $aiStackUpdater -PathType Leaf) {
+        try {
+            $aiStackHealth = & $aiStackUpdater
+            Write-BridgeLog -Event 'ai-stack-refresh' -Status ([string]$aiStackHealth.status) `
+                -Detail ("gateway:{0};local:{1};models:{2};providers:{3}" -f `
+                    $aiStackHealth.gatewayStatus,
+                    $aiStackHealth.localRuntimeStatus,
+                    $aiStackHealth.localModelCount,
+                    $aiStackHealth.connectedProviderCount)
+        }
+        catch {
+            Write-BridgeLog -Event 'ai-stack-refresh' -Status 'degraded' `
+                -Detail (ConvertTo-SafeBridgeMessage $_.Exception.Message)
+        }
+    }
+
+    $studioHeaders = @{
+        'oai-authenticated-user-email' = 'dillonmohr8777@gmail.com'
+        'oai-authenticated-user-full-name' = 'Dillon%20Mohr'
+        'oai-authenticated-user-full-name-encoding' = 'percent-encoded-utf-8'
+    }
+    $snapshot = Invoke-RestMethod -Uri ([string]$config.localStudioUrl) -Method Get `
+        -Headers $studioHeaders -TimeoutSec 60 -UseBasicParsing
     if (
         [int]$snapshot.schemaVersion -ne 2 -or
         [int]$snapshot.portfolio.totalClients -ne @($snapshot.clients).Count -or

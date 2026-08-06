@@ -78,7 +78,22 @@ function Test-MarketingSafeLocator {
 function Test-MarketingRiskyActionText {
     param([AllowNull()][string]$Value)
     if ([string]::IsNullOrWhiteSpace($Value)) { return $false }
-    return $Value -match '(?i)\b(send|email|message|post|publish|deploy|launch live|go live|purchase|buy|pay|charge|spend|raise budget|increase budget|delete|remove account|change permission|grant access|contact|call the (lead|prospect|client)|submit live)\b'
+    $riskyVerb = '(?:send|email|message|post|publish|deploy|launch live|go live|purchase|buy|pay|charge|spend|raise budget|increase budget|delete|remove account|change permission|grant access|contact|call the (?:lead|prospect|client)|submit live)'
+    $normalized = [string]$Value
+
+    # Protective wording describes a boundary, not an instruction to cross it.
+    # Remove only the bounded clause so an unrelated risky instruction elsewhere
+    # in the same next action still fails closed.
+    $protectivePatterns = @(
+        "(?i)\b(?:do not|don't|never|must not|without)\s+(?:\w+\s+){0,3}$riskyVerb\b",
+        "(?i)\bbefore\s+(?:any\s+)?(?:lead|prospect|client)?\s*$riskyVerb\b",
+        "(?i)\b(?:keep|leave|remain|stays?)\s+(?:the\s+)?$riskyVerb\s+(?:pending|blocked|disabled|off|paused)\b"
+    )
+    foreach ($pattern in $protectivePatterns) {
+        $normalized = [regex]::Replace($normalized, $pattern, ' ')
+    }
+
+    return $normalized -match "(?i)\b$riskyVerb\b"
 }
 
 function Test-MarketingAutomaticActionClass {

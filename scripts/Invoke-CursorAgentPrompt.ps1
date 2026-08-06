@@ -2,7 +2,8 @@
 param(
     [Parameter(Mandatory = $true)][string]$AgentPath,
     [Parameter(Mandatory = $true)][string]$Workspace,
-    [Parameter(Mandatory = $true)][string]$PromptPath
+    [Parameter(Mandatory = $true)][string]$PromptPath,
+    [string]$Model
 )
 
 $ErrorActionPreference = 'Stop'
@@ -32,6 +33,15 @@ if ([string]::IsNullOrWhiteSpace($prompt) -or $prompt.Length -gt 20000) {
 if ($prompt -match '(?i)(?:bw://item/|authorization["'']?\s*[:=]\s*["'']?bearer|password\s*[:=]|api[_ -]?key\s*[:=]|access[_ -]?token\s*[:=])') {
     throw 'Cursor Agent prompt contains prohibited secret-shaped material.'
 }
+if (-not [string]::IsNullOrWhiteSpace($Model) -and $Model -notmatch '^[a-z0-9][a-z0-9.\-\[\],=_]{1,199}$') {
+    throw 'Cursor Agent model identifier is invalid.'
+}
 
-& $AgentPath -p --force --trust --workspace $Workspace --output-format json $prompt
+$arguments = @('-p', '--force', '--trust', '--workspace', $Workspace, '--output-format', 'json')
+if (-not [string]::IsNullOrWhiteSpace($Model)) {
+    $arguments += @('--model', $Model)
+}
+$arguments += $prompt
+
+& $AgentPath @arguments
 exit $LASTEXITCODE

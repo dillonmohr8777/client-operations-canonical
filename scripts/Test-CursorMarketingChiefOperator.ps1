@@ -7,6 +7,7 @@ Set-StrictMode -Version 2.0
 $watchtower = Join-Path $PSScriptRoot 'Invoke-MarketingChiefWatchtower.ps1'
 $installer = Join-Path $PSScriptRoot 'Install-MarketingChiefWatchtower.ps1'
 $wrapper = Join-Path $PSScriptRoot 'Invoke-CursorAgentPrompt.ps1'
+$communicationPolicyTest = Join-Path $PSScriptRoot 'Test-CursorCommunicationPolicy.ps1'
 $checks = New-Object System.Collections.ArrayList
 
 function Add-Check {
@@ -15,11 +16,18 @@ function Add-Check {
     if (-not $Passed) { throw "Cursor Marketing Chief check failed: $Name" }
 }
 
-foreach ($path in @($watchtower, $installer, $wrapper)) {
+foreach ($path in @($watchtower, $installer, $wrapper, $communicationPolicyTest)) {
     $errors = $null
     [void][Management.Automation.Language.Parser]::ParseFile($path, [ref]$null, [ref]$errors)
     Add-Check -Name ("PowerShell parses: " + [IO.Path]::GetFileName($path)) -Passed (@($errors).Count -eq 0)
 }
+
+$policyOutput = @(& $communicationPolicyTest)
+$policyScriptSucceeded = $?
+$policyResult = ($policyOutput -join [Environment]::NewLine) | ConvertFrom-Json
+Add-Check -Name 'Cursor communication policy passes' -Passed (
+    $policyScriptSucceeded -and [string]$policyResult.status -ceq 'passed'
+)
 
 $cursor = Get-Command cursor-agent.cmd -ErrorAction SilentlyContinue
 if ($null -eq $cursor) {

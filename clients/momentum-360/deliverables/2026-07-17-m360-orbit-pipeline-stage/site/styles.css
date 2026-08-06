@@ -141,8 +141,7 @@ button { color: inherit; }
 }
 
 .hero-layout { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(420px, .92fr); align-items: center; gap: clamp(40px, 7vw, 100px); padding: 154px 0 126px; }
-.eyebrow, .section-index { font-family: var(--display); font-size: .72rem; font-weight: 700; letter-spacing: .19em; text-transform: uppercase; }
-.eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--gold); margin-bottom: 24px; }
+.section-index { font-family: var(--display); font-size: .72rem; font-weight: 700; letter-spacing: .19em; text-transform: uppercase; }
 .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); box-shadow: 0 0 0 5px rgba(72,213,151,.12), 0 0 18px rgba(72,213,151,.8); animation: pulse 2s infinite; }
 
 .hero h1 { margin: 0 0 26px; max-width: 760px; font-family: var(--display); font-size: clamp(4.2rem, 7.1vw, 7.6rem); line-height: .87; letter-spacing: -.065em; }
@@ -232,11 +231,14 @@ button { color: inherit; }
 .answer-agent small { color: #7184a3; font-size: .6rem; letter-spacing: .15em; }
 .answer-agent h3 { margin: 1px 0 0; font-family: var(--display); font-size: 1.45rem; }
 .answer-agent p { margin: -2px 0 0; color: #91a4bf; font-size: .75rem; }
+.answer-agent .answer-collaborators { margin-top: 6px; color: #9fb1ca; line-height: 1.45; }
+.answer-agent .answer-collaborators strong { color: var(--cyan); font-weight: 700; }
 .answer-mode { align-self: start; padding: 5px 8px; border: 1px solid rgba(72,213,151,.3); border-radius: 99px; color: var(--success); font-size: .55rem; letter-spacing: .14em; }
-.answer-body { max-height: 430px; overflow: auto; padding-right: 10px; color: #c8d4e5; font-size: .93rem; }
+.answer-body { max-height: 430px; overflow-x: hidden; overflow-y: auto; padding-right: 10px; color: #c8d4e5; font-size: .93rem; }
 .answer-body h2, .answer-body h3 { color: var(--white); font-family: var(--display); line-height: 1.25; }
 .answer-body h2 { font-size: 1.35rem; }
 .answer-body h3 { margin-top: 1.25em; font-size: 1.05rem; }
+.answer-body p, .answer-body li, .answer-body code { overflow-wrap: anywhere; word-break: break-word; white-space: normal; }
 .answer-body li { margin-bottom: 9px; }
 .answer-body strong { color: var(--white); }
 .answer-sources { margin-top: 18px; padding: 14px 16px; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; background: rgba(255,255,255,.04); color: #c8d4e5; font-size: .82rem; }
@@ -404,7 +406,6 @@ button { color: inherit; }
   .hero { min-height: auto; }
   .hero-layout { grid-template-columns: 1fr; padding: 140px 0 118px; }
 .hero-copy { min-width: 0; text-align: center; }
-  .eyebrow { justify-content: center; }
   .hero-lede { margin-inline: auto; }
   .hero-actions, .hero-meta { justify-content: center; }
   .orbit-stage { width: min(500px, 100%); margin: 20px auto 0; }
