@@ -3,14 +3,14 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-08-06T16:57:51.5918718+00:00`
-Queue revision: `388`
+Last reconciled: `2026-08-07T16:15:25.0174200+00:00`
+Queue revision: `389`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
 ## Predicted next actions
 
-**Next automatic action:** No automatic action is currently eligible.
+**Next automatic action:** **Map Tags 2 Go Google Ads access and produce redacted audit baseline** (`wi-20260807-0001`, score 133): Map Tags 2 Go Google Ads through Access Broker or Bitwarden, confirm whether an agency admin invite is already active, then capture a redacted account-health baseline under the client evidence folder. Why: P1, portfolio rank 23 (standard), no evidenced deadline, current evidence, status ready.
 
 **Next Dillon decision:** **Activate foundation Stripe donation flow** (`wi-20260724-0024`, score 220): Await confirmation that an authorized foundation representative has completed the dedicated Stripe business identity, banking, tax, terms, MFA, and verification requirements and that live payments and payouts are enabled. Why: P0, portfolio rank 3 (strategic), overdue, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required.
 
@@ -124,6 +124,7 @@ Mode: `manual-pilot`
 | `wi-20260805-0008` | `cindy-may-christmas` | Check in with Cindy on website review and support needs | Done | P1 | Hold further implementation until Cindy completes review; then resolve the video destination, newsletter platform, photo map, and remaining package decisions. | No evidenced deadline |
 | `wi-20260806-0001` | `fagan-painting` | Reconcile residual Fagan Meta billing and shutdown | Done | P0 | Read the exact Fagan Meta account state, record whether any delivery remains, compare the same-day receipt and reimbursement evidence, and preserve the existing roster exclusion. | No evidenced deadline |
 | `wi-20260806-0002` | `revive-systems` | Finish Revive Local Services Ads approval | Done | P0 | Preserve the live verification evidence, identify the exact outstanding Evident and featured-professional requirements, and prepare a truthful reply for Dillon's review. | No evidenced deadline |
+| `wi-20260807-0001` | `tags-2-go` | Map Tags 2 Go Google Ads access and produce redacted audit baseline | Ready | P1 | Map Tags 2 Go Google Ads through Access Broker or Bitwarden, confirm whether an agency admin invite is already active, then capture a redacted account-health baseline under the client evidence folder. | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -524,9 +525,9 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-08-06T14:15:25.6678307+00:00`
+- **As of:** `2026-08-07T12:15:03.7039430+00:00`
 - **Overall:** `degraded`
-- **Queue:** revision `380`, `96` work items, normal `2/3`, emergency `0/1` active
+- **Queue:** revision `388`, `98` work items, normal `2/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `8/21` canonical clients registered, `2/65` systems verified, `6` exact Bitwarden item locators
@@ -540,8 +541,8 @@ Mode: `manual-pilot`
   - `DillonAgentOS-DailyBrief`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
-  - `MarketingChief-DailyCalibration`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
-  - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
+  - `MarketingChief-DailyCalibration`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
+  - `MarketingChief-SitesBridge`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
 - **Human gates:** `active_client_exact_bw_item_mapping`
 - **Deferred actions:** `secondary_exposed_password_rotation`
 - **Warnings:** Bitwarden bridge integrity does not match the independently reviewed build; execution was refused

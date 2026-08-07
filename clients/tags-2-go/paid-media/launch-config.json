@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "clientId": "tags-2-go",
+  "requesterRefs": ["user:dillon", "slack-channel:tags-2-go"],
+  "loginIdentityRefs": [],
+  "platforms": {
+    "google_ads": {
+      "enabledForPlanning": true,
+      "exactAccountRef": null,
+      "exactAccountIdSha256": null,
+      "executionSurface": "unconfigured",
+      "launchBlueprintRef": null,
+      "observedLoginIdentity": "tags2go.pro@gmail.com",
+      "accessMappingRequired": true,
+      "accessMappingReason": "Google Ads credentials were shared in Slack. Map through Access Broker or Bitwarden, prefer an agency admin invite, and reverify the live child account before any provider mutation."
+    },
+    "meta_ads": {
+      "enabledForPlanning": false,
+      "exactAccountRef": null,
+      "exactAccountIdSha256": null,
+      "executionSurface": "unconfigured",
+      "launchBlueprintRef": null
+    }
+  },
+  "locationPolicy": {
+    "scope": "unverified",
+    "source": "Do not invent geo targeting until the live Google Ads account and client service area are verified.",
+    "mixedBrandLocationsForbidden": true
+  },
+  "landingPage": {
+    "defaultMode": "existing",
+    "sourceRef": "https://tags2go.pro/",
+    "stagingDeploymentRef": null,
+    "productionDeploymentRef": null,
+    "status": "public-site-confirmed-not-mapped"
+  },
+  "currentStateRules": [
+    "Google Ads only unless Dillon expands scope.",
+    "Prior government-keyword policy flags make compliance review mandatory before rebuild recommendations.",
+    "Do not enable spend, campaigns, or account changes without exact current authority.",
+    "Never store Slack-shared passwords or MFA codes in canonical state."
+  ],
+  "providerReadinessRef": "state/ad-provider-readiness.json",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false
+}
