@@ -1,7 +1,7 @@
 {
     "schemaVersion":  1,
-    "revision":  389,
-    "updatedAt":  "2026-08-07T16:15:25.0174200+00:00",
+    "revision":  403,
+    "updatedAt":  "2026-08-09T18:05:56.1256552+00:00",
     "updatedBy":  "marketing-chief",
     "mode":  "manual-pilot",
     "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
@@ -8087,7 +8087,7 @@
                       },
                       {
                           "id":  "wi-20260807-0001",
-                          "version":  1,
+                          "version":  2,
                           "dedupeKey":  "tags-2-go/google-ads-access-mapping-2026-08-07",
                           "scope":  "client",
                           "clientId":  "tags-2-go",
@@ -8105,7 +8105,7 @@
                                          "observedAt":  "2026-08-07T16:15:25.0174200+00:00",
                                          "redactedSummary":  "Sean handed Tags 2 Go Google Ads to Dillon after Adem passed. Prior account was policy-flagged. Login details were shared in Slack and must be remapped before live work."
                                      },
-                          "status":  "ready",
+                          "status":  "blocked",
                           "lane":  "normal",
                           "emergencyRationale":  null,
                           "priority":  {
@@ -8129,10 +8129,15 @@
                           "dueAt":  null,
                           "reviewAt":  null,
                           "evidence":  {
-                                           "asOf":  "2026-08-07T16:15:25.0174200+00:00",
+                                           "asOf":  "2026-08-07T16:29:23.8753016+00:00",
                                            "freshness":  "current",
                                            "refs":  [
-                                                        "slack://channel/C0BMDSVT4JG/message/1786110229.200619"
+                                                        "slack://channel/C0BMDSVT4JG/message/1786110229.200619",
+                                                        "clients/tags-2-go/evidence/2026-08-07-google-ads-access-mapping-baseline.md",
+                                                        "clients/tags-2-go/evidence/2026-08-07-slack-handoff-redacted.md",
+                                                        "clients/tags-2-go/paid-media/launch-config.json",
+                                                        "state/execution-graphs/wi-20260807-0001/mgr-20260807t161900z-wi-20260807-0001-tags2go/execution-graph.json",
+                                                        "sha256:2101A066D6ECD0A2DD4E0FF45F9EB9664EB3F1334474638C4510D459C17ABB76"
                                                     ]
                                        },
                           "approval":  {
@@ -8149,11 +8154,371 @@
                                           ],
                           "confidence":  0.8,
                           "artifactRefs":  [
+                                               "clients/tags-2-go/evidence/2026-08-07-google-ads-access-mapping-baseline.md"
+                                           ],
+                          "outcome":  {
+                                          "status":  "blocked",
+                                          "verifiedAt":  "2026-08-07T16:29:23.8753016+00:00",
+                                          "summary":  "Local Tags 2 Go Google Ads access-mapping research is complete and blocked on human vault or admin-invite mapping. No Access Broker or Bitwarden locator exists. A redacted account-health baseline is stored under the client evidence folder. No live login, credential import, spend, or account change was attempted.",
+                                          "handoffId":  "handoff-tags2go-ads-access-map-20260807",
+                                          "handoffContentSha256":  "0EBB02D269D4CFBAEE10186E02240036BBB4DF6A162288AD080EC87C43642311",
+                                          "workerRole":  "marketing-operations",
+                                          "verification":  [
+                                                               "Access Broker has no tags-2-go client route.",
+                                                               "No exact Bitwarden item locator is available.",
+                                                               "Preferred admin-invite path is documented without secrets.",
+                                                               "Redacted baseline artifact exists under clients/tags-2-go/evidence.",
+                                                               "No external Google Ads mutation occurred."
+                                                           ],
+                                          "assumptions":  [
+                                                              "Chat-exposed credentials must be rotated after an authorized vault or invite route exists."
+                                                          ],
+                                          "risks":  [
+                                                        "Importing Slack-shared credentials would expand exposure and violate Access Broker policy."
+                                                    ],
+                                          "privacy":  "redacted",
+                                          "externalActionTaken":  false
+                                      },
+                          "createdAt":  "2026-08-07T16:15:25.0174200+00:00",
+                          "updatedAt":  "2026-08-07T16:29:23.8753016+00:00"
+                      },
+                      {
+                          "id":  "wi-20260808-0001",
+                          "version":  4,
+                          "dedupeKey":  "intake:agent-os-run:20260808-061243-99986abd/task.json",
+                          "scope":  "client",
+                          "clientId":  "align-hcm",
+                          "routing":  {
+                                          "status":  "resolved",
+                                          "matchedBy":  "registry-resolver",
+                                          "registryStatus":  "active",
+                                          "verifiedAt":  "2026-08-08T12:06:28.4699446+00:00"
+                                      },
+                          "title":  "Verify new Align indexation exclusions and prepare remediation brief",
+                          "requestedOutcome":  "Determine which newly reported Google Search Console indexation reasons affect the canonical Align site and prepare a local evidence-backed remediation brief without changing the live site or Search Console property.",
+                          "source":  {
+                                         "type":  "intake",
+                                         "locator":  "agent-os-run:20260808-061243-99986abd/task.json",
+                                         "observedAt":  "2026-08-08T12:06:28.4699446+00:00",
+                                         "redactedSummary":  "A current Google Search Console notification reports newly detected indexation exclusions for the canonical Align website, including redirect and alternate-page categories. Exact affected URLs and remediation necessity require read-only verification."
+                                     },
+                          "status":  "done",
+                          "lane":  "normal",
+                          "emergencyRationale":  null,
+                          "priority":  {
+                                           "level":  "P1",
+                                           "rationale":  "Current search visibility warning for an active client requires timely local verification, but no live change is authorized."
+                                       },
+                          "owner":  "marketing-chief",
+                          "nextAction":  "Inspect current public URL behavior and authorized read-only Search Console evidence, classify affected URLs and causes, and prepare a local remediation brief with no live changes.",
+                          "execution":  {
+                                            "actionClass":  "read_only_verification",
+                                            "automaticEligible":  true,
+                                            "externalAction":  false,
+                                            "reversible":  true,
+                                            "classifiedAt":  "2026-08-08T12:06:28.4699446+00:00"
+                                        },
+                          "definitionOfDone":  [
+                                                   "The exact affected URL set and reported exclusion categories are captured from current read-only evidence.,Redirect, canonical, alternate-page, robots, sitemap, and status-code behavior are verified for the affected sample.,A local remediation brief separates expected exclusions from defects and lists prioritized safe fixes.,No Search Console, website, hosting, DNS, or account setting is changed."
+                                               ],
+                          "dueAt":  null,
+                          "reviewAt":  null,
+                          "evidence":  {
+                                           "asOf":  "2026-08-08T12:40:04.1004787+00:00",
+                                           "freshness":  "current",
+                                           "refs":  [
+                                                        "agent-os-run:20260808-061243-99986abd/task.json",
+                                                        "clients/align-hcm/evidence/2026-08-08-indexation-exclusion-readonly-verification.json",
+                                                        "state/execution-graphs/wi-20260808-0001/mgr-align-indexation-20260808/execution-graph.json",
+                                                        "sha256:5396BF87C584C3E2E940293E30070C761304AC43019CEDA454FD3393330A1DC8",
+                                                        "state/execution-graphs/wi-20260808-0001/mgr-align-indexation-verify-20260808/execution-graph.json",
+                                                        "sha256:BF3CC1E30D60FD4910484E193A8030E9256D8A600452EEAC933F6A50D6464CA2",
+                                                        "state/execution-graphs/wi-20260808-0001/mgr-align-indexation-final-20260808/execution-graph.json",
+                                                        "sha256:C9717B9FE05CC26D22DF259E0C16600163C241632171457B911929FF19D01651"
+                                                    ]
+                                       },
+                          "approval":  {
+                                           "tier":  "automatic",
+                                           "action":  "Local reversible work only.",
+                                           "status":  "not_required",
+                                           "approvalRef":  null
+                                       },
+                          "dependencies":  [
+
+                                           ],
+                          "assumptions":  [
+
+                                          ],
+                          "confidence":  0.8,
+                          "artifactRefs":  [
+                                               "clients/align-hcm/evidence/2026-08-08-indexation-exclusion-readonly-verification.json",
+                                               "clients/align-hcm/deliverables/2026-08-08-indexation-exclusion-remediation-brief.md"
+                                           ],
+                          "outcome":  {
+                                          "status":  "completed",
+                                          "verifiedAt":  "2026-08-08T12:40:04.1004787+00:00",
+                                          "summary":  "The Align HCM indexation alert is fully triaged: Page with redirect and Alternate page exclusions are classified from public readback, expected host slash and AMP alternate patterns are documented, and a safe remediation path is ready for future authorized Search Console follow-up.",
+                                          "handoffId":  "handoff-align-indexation-done-20260808",
+                                          "handoffContentSha256":  "759C3B387C5DE524BD43D5903A5CECCE291F021F59DC8753D8183A9462B379C0",
+                                          "workerRole":  "bounded-worker",
+                                          "verification":  [
+                                                               "All definition-of-done checks passed in the final graph.",
+                                                               "Alert categories were verified from the exact source.",
+                                                               "Public redirect and AMP alternate scope received independent verification.",
+                                                               "No external action or worker canonical write occurred."
+                                                           ],
+                                          "assumptions":  [
+
+                                                          ],
+                                          "risks":  [
+                                                        "Any future live remediation still requires exact Search Console examples and an authorized change path."
+                                                    ],
+                                          "privacy":  "redacted",
+                                          "externalActionTaken":  false
+                                      },
+                          "createdAt":  "2026-08-08T12:06:28.4699446+00:00",
+                          "updatedAt":  "2026-08-08T12:40:04.1004787+00:00"
+                      },
+                      {
+                          "id":  "wi-20260808-0002",
+                          "version":  4,
+                          "dedupeKey":  "intake:agent-os-run:20260807-131243-7c97bb2c/task.json",
+                          "scope":  "client",
+                          "clientId":  "fagan-painting",
+                          "routing":  {
+                                          "status":  "resolved",
+                                          "matchedBy":  "registry-resolver",
+                                          "registryStatus":  "active",
+                                          "verifiedAt":  "2026-08-08T12:07:11.1130758+00:00"
+                                      },
+                          "title":  "Verify routing and ownership of new Fagan website lead",
+                          "requestedOutcome":  "Confirm that the newly received Fagan consultation lead reached the correct approved destination, has one accountable owner, and has not been duplicated, without contacting the prospect.",
+                          "source":  {
+                                         "type":  "intake",
+                                         "locator":  "agent-os-run:20260807-131243-7c97bb2c/task.json",
+                                         "observedAt":  "2026-08-08T12:07:11.1130758+00:00",
+                                         "redactedSummary":  "A current Fagan website consultation submission was distributed through the existing notification path. Lead-level routing, ownership, duplication, and disposition are not yet verified."
+                                     },
+                          "status":  "done",
+                          "lane":  "normal",
+                          "emergencyRationale":  null,
+                          "priority":  {
+                                           "level":  "P0",
+                                           "rationale":  "A fresh client lead requires prompt ownership verification, while prospect contact remains approval-gated."
+                                       },
+                          "owner":  "marketing-chief",
+                          "nextAction":  "Perform a read-only check of the approved mailbox, CRM, or Zapier record for routing, duplicate status, owner, and current disposition without contacting the prospect.",
+                          "execution":  {
+                                            "actionClass":  "read_only_verification",
+                                            "automaticEligible":  true,
+                                            "externalAction":  false,
+                                            "reversible":  true,
+                                            "classifiedAt":  "2026-08-08T12:07:11.1130758+00:00"
+                                        },
+                          "definitionOfDone":  [
+                                                   "The exact canonical source occurrence is matched to one lead record without storing direct identifiers.,Approved destination and routing path are verified from current evidence.,One accountable owner and current disposition are recorded in redacted form, or the exact missing dependency is named.,No prospect or client contact, account change, or external delivery occurs."
+                                               ],
+                          "dueAt":  null,
+                          "reviewAt":  null,
+                          "evidence":  {
+                                           "asOf":  "2026-08-08T12:19:57.5754645+00:00",
+                                           "freshness":  "current",
+                                           "refs":  [
+                                                        "agent-os-run:20260807-131243-7c97bb2c/task.json",
+                                                        "clients/fagan-painting/evidence/2026-08-08-new-lead-mailbox-readback.json",
+                                                        "state/execution-graphs/wi-20260808-0002/mgr-20260808t121200z-wi-20260808-0002-faganlead/execution-graph.json",
+                                                        "sha256:D5F77FB162D131B00CB27BFC6FFB725B1357E94DAA1F4C4757C5F7DEE2048499",
+                                                        "state/execution-graphs/wi-20260808-0002/mgr-20260808t121800z-wi-20260808-0002-faganfinal/execution-graph.json",
+                                                        "sha256:1716A15BDA0093046AF24895DA4E1096DDEBC1335354FC2CBC51D5C986287F57",
+                                                        "state/execution-graphs/wi-20260808-0002/mgr-20260808t122000z-wi-20260808-0002-faganclose/execution-graph.json",
+                                                        "sha256:B589E63AD442141E5FB05EF57D28379F114E1E60337861932DC3EDA937907FC8"
+                                                    ]
+                                       },
+                          "approval":  {
+                                           "tier":  "automatic",
+                                           "action":  "Local reversible work only.",
+                                           "status":  "not_required",
+                                           "approvalRef":  null
+                                       },
+                          "dependencies":  [
+
+                                           ],
+                          "assumptions":  [
+
+                                          ],
+                          "confidence":  0.8,
+                          "artifactRefs":  [
+                                               "clients/fagan-painting/evidence/2026-08-08-new-lead-routing-verification.md"
+                                           ],
+                          "outcome":  {
+                                          "status":  "completed",
+                                          "verifiedAt":  "2026-08-08T12:19:57.5754645+00:00",
+                                          "summary":  "Read-only verification complete for the exact Fagan website submission. One non-duplicate vendor-solicitation notification reached the configured multi-recipient route. No reply or downstream owner is visible; the named remaining dependency is an approved CRM or Zapier assignment record. No prospect contact or external change occurred.",
+                                          "handoffId":  "handoff-fagan-lead-done-20260808",
+                                          "handoffContentSha256":  "704BC1B143AEA22D1FCA699C12DE408C41F8F1C22026CBDD675FF0B9276F2954",
+                                          "workerRole":  "marketing-operations",
+                                          "verification":  [
+                                                               "Exact source occurrence matched one mailbox notification and one exact-identifier search hit.",
+                                                               "Configured multi-recipient routing path was verified from current evidence.",
+                                                               "Disposition recorded as vendor-solicitation-pending-downstream-disposition; missing CRM or Zapier owner record is named.",
+                                                               "No prospect or client contact, account change, or external delivery occurred."
+                                                           ],
+                                          "assumptions":  [
+                                                              "Connected operator mailbox remains a valid read-only verification surface for this notification path."
+                                                          ],
+                                          "risks":  [
+                                                        "Client-mailbox processing and CRM disposition remain outside the connected operator mailbox view."
+                                                    ],
+                                          "privacy":  "redacted",
+                                          "externalActionTaken":  false
+                                      },
+                          "createdAt":  "2026-08-08T12:07:11.1130758+00:00",
+                          "updatedAt":  "2026-08-08T12:19:57.5754645+00:00"
+                      },
+                      {
+                          "id":  "wi-20260808-0003",
+                          "version":  1,
+                          "dedupeKey":  "intake:agent-os-run:20260806-141245-8cb2a853/task.json",
+                          "scope":  "client",
+                          "clientId":  "bar-crawl-usa",
+                          "routing":  {
+                                          "status":  "resolved",
+                                          "matchedBy":  "registry-resolver",
+                                          "registryStatus":  "active",
+                                          "verifiedAt":  "2026-08-08T12:07:31.2478626+00:00"
+                                      },
+                          "title":  "Confirm Bar Crawl billing-method change scope",
+                          "requestedOutcome":  "Confirm the exact authorized billing surfaces and payment-method change requested for Bar Crawl recurring service invoices and advertising charges before any account mutation.",
+                          "source":  {
+                                         "type":  "intake",
+                                         "locator":  "agent-os-run:20260806-141245-8cb2a853/task.json",
+                                         "observedAt":  "2026-08-08T12:07:31.2478626+00:00",
+                                         "redactedSummary":  "A current client-owner reply requests a payment-method switch for recurring service invoices and advertising charges. Exact accounts, authorization boundaries, effective date, and replacement method remain gated."
+                                     },
+                          "status":  "needs_approval",
+                          "lane":  "normal",
+                          "emergencyRationale":  null,
+                          "priority":  {
+                                           "level":  "P1",
+                                           "rationale":  "The request affects recurring billing and an advertising account, but Bar Crawl is absent from the canonical paid-media roster and no account mutation is authorized automatically."
+                                       },
+                          "owner":  "marketing-chief",
+                          "nextAction":  "Obtain explicit approval for the exact billing accounts, effective date, and protected payment-method update path; keep all invoice and advertising account changes paused.",
+                          "execution":  {
+                                            "actionClass":  "account_change",
+                                            "automaticEligible":  false,
+                                            "externalAction":  true,
+                                            "reversible":  false,
+                                            "classifiedAt":  "2026-08-08T12:07:31.2478626+00:00"
+                                        },
+                          "definitionOfDone":  [
+                                                   "The exact recurring invoice account and advertising account are separately identified through safe account references.,The authorized requester, effective date, and payment-method scope are confirmed.,Bar Crawl remains excluded from paid-media planning, optimization, provider packets, and launch work unless separately added to the canonical roster.,No payment method, campaign, budget, invoice, or account setting is changed without exact approval.,Any approved mutation is independently read back from the exact account."
+                                               ],
+                          "dueAt":  null,
+                          "reviewAt":  null,
+                          "evidence":  {
+                                           "asOf":  "2026-08-08T12:07:31.2478626+00:00",
+                                           "freshness":  "current",
+                                           "refs":  [
+                                                        "agent-os-run:20260806-141245-8cb2a853/task.json"
+                                                    ]
+                                       },
+                          "approval":  {
+                                           "tier":  "explicit",
+                                           "action":  "Approve the exact Bar Crawl billing accounts, effective date, and protected payment-method update path before any account change.",
+                                           "status":  "pending",
+                                           "approvalRef":  null
+                                       },
+                          "dependencies":  [
+
+                                           ],
+                          "assumptions":  [
+
+                                          ],
+                          "confidence":  0.8,
+                          "artifactRefs":  [
 
                                            ],
                           "outcome":  null,
-                          "createdAt":  "2026-08-07T16:15:25.0174200+00:00",
-                          "updatedAt":  "2026-08-07T16:15:25.0174200+00:00"
+                          "createdAt":  "2026-08-08T12:07:31.2478626+00:00",
+                          "updatedAt":  "2026-08-08T12:07:31.2478626+00:00"
+                      },
+                      {
+                          "id":  "wi-20260809-0001",
+                          "version":  4,
+                          "dedupeKey":  "momentum-360:2026-08-09:walcroft-foundation-domain-purchase",
+                          "scope":  "client",
+                          "clientId":  "momentum-360",
+                          "routing":  {
+                                          "status":  "resolved",
+                                          "matchedBy":  "registry-resolver",
+                                          "registryStatus":  "active",
+                                          "verifiedAt":  "2026-08-09T17:43:09.4291687+00:00"
+                                      },
+                          "title":  "Purchase Walcroft foundation custom domain",
+                          "requestedOutcome":  "Purchase the exact approved foundation domain through the verified registrar account, attach it to the existing mapped foundation site, verify ownership and live routing, then send the approved completion reply.",
+                          "source":  {
+                                         "type":  "slack",
+                                         "locator":  "slack://channel/D0A6ECLQ0S1/message/1786233732.860559",
+                                         "observedAt":  "2026-08-09T17:43:09.4291687+00:00",
+                                         "redactedSummary":  "Authorized Momentum stakeholder selected the second proposed foundation domain; current user instruction explicitly approves the purchase with the specified saved payment method and the immediate completion reply."
+                                     },
+                          "status":  "done",
+                          "lane":  "emergency",
+                          "emergencyRationale":  "User explicitly requested immediate purchase and same-week completion of overdue deliverables.",
+                          "priority":  {
+                                           "level":  "P0",
+                                           "rationale":  "The exact domain was selected yesterday and the current user explicitly requested immediate purchase and completion communication."
+                                       },
+                          "owner":  "marketing-chief",
+                          "nextAction":  "No further delivery action is required. Monitor the Netlify team billing warning separately because it is outside this approved domain workflow.",
+                          "execution":  {
+                                            "actionClass":  "external_delivery",
+                                            "automaticEligible":  false,
+                                            "externalAction":  true,
+                                            "reversible":  false,
+                                            "classifiedAt":  "2026-08-09T18:05:56.1256552+00:00"
+                                        },
+                          "definitionOfDone":  [
+                                                   "Live checkout confirms jeannewalcroftfoundation.org and the current total before purchase.",
+                                                   "Only the saved payment method ending 3339 is selected.",
+                                                   "Registrar ownership and receipt are read back after purchase.",
+                                                   "The domain is attached to the existing Jeanne Walcroft foundation Netlify site and DNS or certificate status is verified or recorded as propagating.",
+                                                   "The authorized Slack completion reply is sent in the exact source DM and delivery is read back."
+                                               ],
+                          "dueAt":  "2026-08-09T23:59:00.0000000-04:00",
+                          "reviewAt":  null,
+                          "evidence":  {
+                                           "asOf":  "2026-08-09T17:43:09.4291687+00:00",
+                                           "freshness":  "current",
+                                           "refs":  [
+                                                        "slack://channel/D0A6ECLQ0S1/message/1786233732.860559"
+                                                    ]
+                                       },
+                          "approval":  {
+                                           "tier":  "explicit",
+                                           "action":  "Dillon approved the exact domain purchase with the saved card ending 3339 and the associated completion reply in the current request.",
+                                           "status":  "approved",
+                                           "approvalRef":  "user://current-request/2026-08-09/domain-purchase-and-reply"
+                                       },
+                          "dependencies":  [
+
+                                           ],
+                          "assumptions":  [
+
+                                          ],
+                          "confidence":  0.98,
+                          "artifactRefs":  [
+
+                                           ],
+                          "outcome":  {
+                                          "status":  "done",
+                                          "verifiedAt":  "2026-08-09T18:05:56.1256552+00:00",
+                                          "summary":  "Completed end to end. Purchased jeannewalcroftfoundation.org once for $8.49 with the approved saved card ending 3339; one successful receipt was verified. ICANN contact verification succeeded. Vercel DNS routes the apex and www host to the existing Netlify foundation site. Netlify DNS verification and certificate issuance succeeded; strict HTTPS returns 200 at the apex with the correct foundation title and www returns 301 to the apex. Sean received and reread both the purchase update and secure live URL.",
+                                          "externalActionTaken":  true
+                                      },
+                          "createdAt":  "2026-08-09T17:43:09.4291687+00:00",
+                          "updatedAt":  "2026-08-09T18:05:56.1256552+00:00"
                       }
                   ],
     "intakeQuarantine":  [

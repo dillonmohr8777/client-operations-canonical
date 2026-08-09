@@ -3,18 +3,18 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-08-07T16:15:25.0174200+00:00`
-Queue revision: `389`
+Last reconciled: `2026-08-09T18:05:56.1256552+00:00`
+Queue revision: `403`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
 ## Predicted next actions
 
-**Next automatic action:** **Map Tags 2 Go Google Ads access and produce redacted audit baseline** (`wi-20260807-0001`, score 133): Map Tags 2 Go Google Ads through Access Broker or Bitwarden, confirm whether an agency admin invite is already active, then capture a redacted account-health baseline under the client evidence folder. Why: P1, portfolio rank 23 (standard), no evidenced deadline, current evidence, status ready.
+**Next automatic action:** No automatic action is currently eligible.
 
-**Next Dillon decision:** **Activate foundation Stripe donation flow** (`wi-20260724-0024`, score 220): Await confirmation that an authorized foundation representative has completed the dedicated Stripe business identity, banking, tax, terms, MFA, and verification requirements and that live payments and payouts are enabled. Why: P0, portfolio rank 3 (strategic), overdue, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required.
+**Next Dillon decision:** **Activate foundation Stripe donation flow** (`wi-20260724-0024`, score 220): Await confirmation that an authorized foundation representative has completed the dedicated Stripe business identity, banking, tax, terms, MFA, and verification requirements and that live payments and payouts are enabled. Why: P0, portfolio rank 3 (strategic), overdue, current evidence, status blocked, routing verification is older than 14 days or invalid; evidence is stale or invalid; action class is approval-gated; automatic eligibility is false; action is not reversible; approval state is not exactly automatic and not_required.
 
-**Next unblock:** **Correct VA Claims booking and lead routing rules** (`wi-20260725-0007`, score 210): Map and authenticate the exact authorized WordPress or Amelia administrator route, apply only the verified scheduling and routing corrections, then complete an approved synthetic booking test without contacting a prospect. Why: P0, portfolio rank 2 (critical), no evidenced deadline, current evidence, status blocked, action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
+**Next unblock:** **Correct VA Claims booking and lead routing rules** (`wi-20260725-0007`, score 210): Map and authenticate the exact authorized WordPress or Amelia administrator route, apply only the verified scheduling and routing corrections, then complete an approved synthetic booking test without contacting a prospect. Why: P0, portfolio rank 2 (critical), no evidenced deadline, current evidence, status blocked, routing verification is older than 14 days or invalid; evidence is stale or invalid; action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
 <!-- marketing-chief:predictions:end -->
 
 ## Active execution (normal 2/3; emergency 0/1)
@@ -124,7 +124,11 @@ Mode: `manual-pilot`
 | `wi-20260805-0008` | `cindy-may-christmas` | Check in with Cindy on website review and support needs | Done | P1 | Hold further implementation until Cindy completes review; then resolve the video destination, newsletter platform, photo map, and remaining package decisions. | No evidenced deadline |
 | `wi-20260806-0001` | `fagan-painting` | Reconcile residual Fagan Meta billing and shutdown | Done | P0 | Read the exact Fagan Meta account state, record whether any delivery remains, compare the same-day receipt and reimbursement evidence, and preserve the existing roster exclusion. | No evidenced deadline |
 | `wi-20260806-0002` | `revive-systems` | Finish Revive Local Services Ads approval | Done | P0 | Preserve the live verification evidence, identify the exact outstanding Evident and featured-professional requirements, and prepare a truthful reply for Dillon's review. | No evidenced deadline |
-| `wi-20260807-0001` | `tags-2-go` | Map Tags 2 Go Google Ads access and produce redacted audit baseline | Ready | P1 | Map Tags 2 Go Google Ads through Access Broker or Bitwarden, confirm whether an agency admin invite is already active, then capture a redacted account-health baseline under the client evidence folder. | No evidenced deadline |
+| `wi-20260807-0001` | `tags-2-go` | Map Tags 2 Go Google Ads access and produce redacted audit baseline | Blocked | P1 | Map Tags 2 Go Google Ads through Access Broker or Bitwarden, confirm whether an agency admin invite is already active, then capture a redacted account-health baseline under the client evidence folder. | No evidenced deadline |
+| `wi-20260808-0001` | `align-hcm` | Verify new Align indexation exclusions and prepare remediation brief | Done | P1 | Inspect current public URL behavior and authorized read-only Search Console evidence, classify affected URLs and causes, and prepare a local remediation brief with no live changes. | No evidenced deadline |
+| `wi-20260808-0002` | `fagan-painting` | Verify routing and ownership of new Fagan website lead | Done | P0 | Perform a read-only check of the approved mailbox, CRM, or Zapier record for routing, duplicate status, owner, and current disposition without contacting the prospect. | No evidenced deadline |
+| `wi-20260808-0003` | `bar-crawl-usa` | Confirm Bar Crawl billing-method change scope | Needs Approval | P1 | Obtain explicit approval for the exact billing accounts, effective date, and protected payment-method update path; keep all invoice and advertising account changes paused. | No evidenced deadline |
+| `wi-20260809-0001` | `momentum-360` | Purchase Walcroft foundation custom domain | Done | P0 | No further delivery action is required. Monitor the Netlify team billing warning separately because it is outside this approved domain workflow. | 2026-08-09 23:59 -04:00 |
 
 ## Waiting on Dillon
 
@@ -464,6 +468,16 @@ Mode: `manual-pilot`
 - No HubSpot setting, workflow, routing rule, record, message, deployment, or external delivery is changed.
 - Production completion is not claimed without the remaining controlled live evidence.
 
+### Confirm Bar Crawl billing-method change scope
+
+**Decision:** Approve the exact Bar Crawl billing accounts, effective date, and protected payment-method update path before any account change.
+
+**Next action:** Obtain explicit approval for the exact billing accounts, effective date, and protected payment-method update path; keep all invoice and advertising account changes paused.
+
+**Definition of done:**
+
+- The exact recurring invoice account and advertising account are separately identified through safe account references.,The authorized requester, effective date, and payment-method scope are confirmed.,Bar Crawl remains excluded from paid-media planning, optimization, provider packets, and launch work unless separately added to the canonical roster.,No payment method, campaign, budget, invoice, or account setting is changed without exact approval.,Any approved mutation is independently read back from the exact account.
+
 ## Blocked or at risk
 
 - **Reconcile two Fagan Painting website leads:** Obtain lead-level disposition for the two exact canonical records from the approved client mailbox, CRM, or Zapier record; do not infer individual outcomes from aggregate batch feedback.
@@ -482,6 +496,8 @@ Mode: `manual-pilot`
   Current evidence: Portal 50612503 token and identity verification passed, and the Workflows probe succeeded. The Conversations probe returned a missing-scopes denial. Exact account selection reached the Google password challenge, which is blocked until the sole approved Bitwarden vault is unlocked. The local daily-review guide exists and its tests pass 9 of 9. The live alert recipient remains undecided between the Slack-profile identity and the approved HubSpot-account identity. Production completion is false; no HubSpot, Slack, or email write was performed.
 - **KJB daily lead intake and Kim routing:** Use the active KJB Daily Leads label for intake and retry the verified forwarding address only after Google secure verification succeeds.
   Current evidence: The active Gmail filter now labels future KJB appointment-request notifications as KJB Daily Leads. The requested automatic forwarding route to Kim was retried and Google returned a secure verification error again, so daily email delivery is not yet confirmed. The existing readable digest format remains the interim path.
+- **Map Tags 2 Go Google Ads access and produce redacted audit baseline:** Map Tags 2 Go Google Ads through Access Broker or Bitwarden, confirm whether an agency admin invite is already active, then capture a redacted account-health baseline under the client evidence folder.
+  Current evidence: Local Tags 2 Go Google Ads access-mapping research is complete and blocked on human vault or admin-invite mapping. No Access Broker or Bitwarden locator exists. A redacted account-health baseline is stored under the client evidence folder. No live login, credential import, spend, or account change was attempted.
 
 ## Intake quarantine
 
@@ -525,13 +541,13 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-08-07T12:15:03.7039430+00:00`
+- **As of:** `2026-08-09T17:40:10.8560804+00:00`
 - **Overall:** `degraded`
-- **Queue:** revision `388`, `98` work items, normal `2/3`, emergency `0/1` active
+- **Queue:** revision `399`, `102` work items, normal `2/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `8/21` canonical clients registered, `2/65` systems verified, `6` exact Bitwarden item locators
-- **Gmail client history:** `23` records audited, `22` active promoted, `0` quarantined; `2555` distinct messages across `897` threads
+- **Gmail client history:** `24` records audited, `23` active promoted, `0` quarantined; `2555` distinct messages across `897` threads
 - **Slack client history:** `complete`; conversation inventory established `True`; scope upgrade required `False`; requested upload scope `files:write`
 - **Credential bridge:** `unknown`, secure bootstrap present `False`, review `unverified-integrity-mismatch`
 - **Scheduled mechanisms:**
@@ -541,11 +557,11 @@ Mode: `manual-pilot`
   - `DillonAgentOS-DailyBrief`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
-  - `MarketingChief-DailyCalibration`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
-  - `MarketingChief-SitesBridge`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
+  - `MarketingChief-DailyCalibration`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
+  - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
 - **Human gates:** `active_client_exact_bw_item_mapping`
 - **Deferred actions:** `secondary_exposed_password_rotation`
-- **Warnings:** Bitwarden bridge integrity does not match the independently reviewed build; execution was refused
+- **Warnings:** Bitwarden bridge integrity does not match the independently reviewed build; execution was refused; Gmail base audit plus exact-route supplements do not cover the canonical registry exactly once
 
 ## Standing operating contract
 
