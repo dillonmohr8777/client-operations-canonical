@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-08-09T18:05:56.1256552+00:00`
-Queue revision: `403`
+Last reconciled: `2026-08-10T01:56:46.5620556+00:00`
+Queue revision: `405`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -129,6 +129,7 @@ Mode: `manual-pilot`
 | `wi-20260808-0002` | `fagan-painting` | Verify routing and ownership of new Fagan website lead | Done | P0 | Perform a read-only check of the approved mailbox, CRM, or Zapier record for routing, duplicate status, owner, and current disposition without contacting the prospect. | No evidenced deadline |
 | `wi-20260808-0003` | `bar-crawl-usa` | Confirm Bar Crawl billing-method change scope | Needs Approval | P1 | Obtain explicit approval for the exact billing accounts, effective date, and protected payment-method update path; keep all invoice and advertising account changes paused. | No evidenced deadline |
 | `wi-20260809-0001` | `momentum-360` | Purchase Walcroft foundation custom domain | Done | P0 | No further delivery action is required. Monitor the Netlify team billing warning separately because it is outside this approved domain workflow. | 2026-08-09 23:59 -04:00 |
+| `wi-20260810-0001` | `va-claims-edge` | Complete Phase 3 seven-stage review frontend | Done | P1 | Deploy the verified build to the existing mapped Netlify review site and record the evidence package. | No evidenced deadline |
 
 ## Waiting on Dillon
 
