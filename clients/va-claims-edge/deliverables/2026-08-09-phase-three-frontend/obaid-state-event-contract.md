@@ -49,11 +49,11 @@ Stage changes must be derived from recorded events and validated transitions. Ti
 ## Stage gates
 
 1. Onboarding, CLIENT: open when the contract is sent; close only after `contract_signed` and `deposit_received` are both recorded. These remain independent events.
-2. Records intake, FIRM: open when Stage 1 closes or a linked claim cycle restarts; record `welcome_email_sent` and `records_status` as `none`, `incomplete`, or `complete`; close only with the authorized complete-records event.
+2. Records intake, CLIENT: open when Stage 1 closes or a linked claim cycle restarts; record `welcome_email_sent` and `records_status` as `none`, `incomplete`, or `complete`; close only with the authorized complete-records event.
 3. Strategy development, FIRM: close when `strategy_plan_sent_to_client` is recorded.
 4. Client task completion, CLIENT: separately record `client_tasks_completed` and `filing_appointment_booked`; close only after both. Generate day 15, 30, 45, and 60 alert events with idempotent deduplication and visible alert history.
 5. Claim filing and VA scheduling, VA: informational; close only from the defined external filing or scheduling event. Suppress ordinary client-action reminders while VA owns the stage.
-6. Pre-exam briefings, FIRM: record each briefing and the final briefing; capture `last_va_exam_at`. The team must approve the exact Stage 6-to-7 exit event.
+6. Pre-exam briefings, FIRM: store `scheduled_exam_count`, `completed_briefing_count`, `final_briefing_completed`, and `last_va_exam_at`. The review gate requires at least one scheduled exam, matching scheduled-exam and completed-briefing counts, the final briefing, and the last exam date. The last exam date starts Stage 7. The team must approve this exact gate before production persistence.
 7. VA adjudication, VA: record `decision_reported` and `decision_letter_uploaded`. Suppress ordinary client-action reminders. A favorable decision may proceed to Stop the Clock; an unfavorable decision starts a linked cycle at Stage 2 while the master clock continues.
 
 ## Stop the Clock
@@ -95,4 +95,3 @@ Stop the Clock is an explicit command, never a derived timeout.
 - Lapsed-prospect behavior.
 - Appeal relationship to claim cycles.
 - Claimant-file compliance policy.
-
