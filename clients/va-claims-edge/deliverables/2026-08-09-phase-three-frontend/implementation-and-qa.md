@@ -11,6 +11,8 @@ The existing VA Claims Edge Netlify review environment now presents the Phase 3 
 - Netlify site ID: `85c1af3b-b8c2-40db-ae9c-a04e912d1d18`
 - Production deploy ID: `6a792eabda82b4b272adbe86`
 - Immutable deploy URL: https://6a792eabda82b4b272adbe86--va-claims-edge-phase-two-review.netlify.app/
+- Source branch: `feature/phase-3-frontend`
+- Source commit: `7e5f4ae`
 - Authenticated Phase 2 foundation, unchanged by this review deployment: https://vaclaims-portal.vercel.app/
 - Eventual production hostname, not connected in this work: `portal.vaclaimsedge.com`
 
@@ -62,4 +64,3 @@ Review controls currently persist only in browser storage. Obaid's production ba
 - Whether appeals are separate matters or linked claim cycles.
 - Compliance requirements before real claimant files or data enter the system.
 - Production-domain connection and launch checks.
-
