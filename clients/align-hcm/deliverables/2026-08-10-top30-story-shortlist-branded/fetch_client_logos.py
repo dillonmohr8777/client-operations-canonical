@@ -50,6 +50,8 @@ VERIFIED_OVERRIDES = {
     ],
     "aceparking.com": [
         "https://www.sandiego.org/sites/default/files/styles/large/public/listing_images/sandiego-d44206053d5d44868d1b5d45ead1097f_5A160198-0725-DE67-D29B7B99CEF51A75-5a1600f6f00bcd1_5a160f51-b81e-21e9-b468ddfc2f78fcf6.jpg.webp?itok=kY7s8HW0",
+        "https://icon.horse/icon/aceparking.com",
+        "https://icons.duckduckgo.com/ip3/aceparking.com.ico",
     ],
 }
 
@@ -68,7 +70,7 @@ def image_from_response(response: requests.Response) -> Image.Image:
             raise ValueError("SVG support unavailable")
         payload = cairosvg.svg2png(bytestring=payload, output_width=800)
     image = Image.open(io.BytesIO(payload)).convert("RGBA")
-    if image.width < 24 or image.height < 24:
+    if image.width < 16 or image.height < 16:
         raise ValueError("image too small")
     return image
 
