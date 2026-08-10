@@ -486,7 +486,7 @@ def draw_story_card(c, story, x, y, w, h):
         (mid_x, "PORTFOLIO", f"{ascii_text(story['Industry'])} | {ascii_text(story['Size (HC)'])} | {ascii_text(story['Platform'])}"),
         (right_x, "CRM OWNER", ascii_text(story["CRM Deal Owner"])),
     ]
-    widths = [270, 290, 240]
+    widths = [270, 200, 220]
     for (xx, label, value_text), width in zip(fields, widths):
         set_font(c, "Inter-SemiBold", 6.6, MUTED)
         c.drawString(xx, label_y, label)
