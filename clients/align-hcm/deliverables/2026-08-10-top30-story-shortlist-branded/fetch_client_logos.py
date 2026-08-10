@@ -38,6 +38,21 @@ SESSION.headers.update(
     }
 )
 
+VERIFIED_OVERRIDES = {
+    "burnco.com": [
+        "https://cdn.craft.cloud/284c7dbf-9389-4754-b7ea-50312329b835/assets/contentful/BURNCO-Pantone-485.jpg?fit=cover&format=webp&s=n961Eg_CNtjmIxeOIicr91ryKBGxXuGnT_HV09WvLp8",
+    ],
+    "primeflight.com": [
+        "https://i.vimeocdn.com/portrait/36472638_640x640?region=us&sig=6cbda6caed1c9f89643da948869d6445173179788e8fd166b5c76a53ad6a0652&v=1",
+    ],
+    "distributorwireandcable.com": [
+        "https://www.distributorwire.com/images/seo/DWC-meta-1a.png",
+    ],
+    "aceparking.com": [
+        "https://www.sandiego.org/sites/default/files/styles/large/public/listing_images/sandiego-d44206053d5d44868d1b5d45ead1097f_5A160198-0725-DE67-D29B7B99CEF51A75-5a1600f6f00bcd1_5a160f51-b81e-21e9-b468ddfc2f78fcf6.jpg.webp?itok=kY7s8HW0",
+    ],
+}
+
 
 def slug(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
@@ -125,10 +140,15 @@ def fallback_candidates(domain: str):
     yield f"https://www.google.com/s2/favicons?domain={domain}&sz=256", "google-domain-icon"
 
 
+def override_candidates(domain: str):
+    for url in VERIFIED_OVERRIDES.get(domain, []):
+        yield url, "verified-logo-override"
+
+
 def fetch_logo(domain: str):
     errors = []
     seen = set()
-    for url, source_type in [*official_candidates(domain), *fallback_candidates(domain)]:
+    for url, source_type in [*override_candidates(domain), *official_candidates(domain), *fallback_candidates(domain)]:
         if url in seen:
             continue
         seen.add(url)
