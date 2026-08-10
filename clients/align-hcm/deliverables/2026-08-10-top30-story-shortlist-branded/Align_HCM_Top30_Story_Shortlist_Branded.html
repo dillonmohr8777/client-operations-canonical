@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Align HCM · Top 30 Story Shortlist</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Syne:wght@700;800&display=swap');
+:root{
+  --navy:#0A1628; --navy-soft:#33506F; --steel:#1B4F72; --steel-t:#EDF3F8;
+  --ink:#2D3748; --mut:#646E7C; --orange:#F05A28; --orange-b:#FF6B2B;
+  --rust:#AD3D1B; --o-tint:#FDF1EA; --teal:#136E61; --teal-t:#E9F7F4;
+  --paper:#FCFAF7; --panel:#F5F1EA; --hair:#E9E4DC; --blue-mut:#B9C6D8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',-apple-system,'Segoe UI',Arial,sans-serif;background:var(--paper);color:var(--ink);font-size:14px;line-height:1.5}
+.wrap{max-width:1280px;margin:0 auto;padding:0 28px}
+/* ---------- masthead ---------- */
+header{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+header::before{content:"";position:absolute;width:520px;height:520px;right:-160px;top:-260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(240,90,40,.38),transparent 62%);filter:blur(120px)}
+header::after{content:"";position:absolute;width:420px;height:420px;left:-180px;bottom:-300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(27,79,114,.5),transparent 60%);filter:blur(110px)}
+.mast{position:relative;z-index:1;padding:44px 0 0}
+.mtop{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap}
+.mlogo{width:min(320px,60vw);height:auto;display:block}
+.kick{font-size:11px;letter-spacing:.22em;font-weight:700;color:var(--orange-b);text-transform:uppercase;text-align:right;line-height:2}
+.kick span{display:block;color:var(--blue-mut);letter-spacing:.18em}
+h1{font-family:'Syne','DM Sans',sans-serif;font-weight:800;font-size:clamp(30px,4.6vw,52px);line-height:1.06;margin:34px 0 10px;letter-spacing:-.01em}
+h1 em{font-style:normal;position:relative;white-space:nowrap}
+h1 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:5px;border-radius:3px;
+  background:linear-gradient(135deg,#F05A28 0%,#FF6B35 100%);transform-origin:left;animation:uline .6s .3s both}
+@keyframes uline{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.sub{color:var(--blue-mut);font-size:15px;max-width:860px}
+.stats{position:relative;z-index:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:30px 0 0;padding-bottom:38px}
+.stat{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:14px;
+  padding:14px 16px;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+.stat b{display:block;font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#fff}
+.stat span{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-mut)}
+.stat.hot b{color:var(--orange-b)}
+.rule{height:4px;background:linear-gradient(135deg,#F05A28 0%,#FF6B35 55%,#0A1628 100%)}
+/* ---------- sections ---------- */
+section{padding:34px 0 8px}
+.shead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+h2{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;color:var(--navy)}
+.shead small{color:var(--mut);font-size:12.5px}
+.snote{font-size:12px;color:var(--rust);background:var(--o-tint);border:1px solid #F3D9C9;border-radius:8px;padding:7px 12px;margin:10px 0 14px;display:inline-block}
+/* ---------- controls ---------- */
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}
+.controls input{font:inherit;font-size:13px;padding:8px 14px;border:1px solid var(--hair);border-radius:999px;background:#fff;min-width:240px;color:var(--ink)}
+.controls input:focus{outline:2px solid var(--orange);border-color:transparent}
+.fbtn{font:inherit;font-size:12px;font-weight:700;padding:7px 14px;border-radius:999px;border:1px solid var(--hair);background:#fff;color:var(--mut);cursor:pointer}
+.fbtn.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.fbtn.sort.on{background:var(--orange);border-color:var(--orange)}
+/* ---------- table ---------- */
+.tblwrap{overflow-x:auto;border:1px solid var(--hair);border-radius:16px;background:#fff;box-shadow:0 1px 2px rgba(10,22,40,.04)}
+table{border-collapse:collapse;width:100%;min-width:1080px}
+thead th{position:sticky;top:0;background:var(--navy);color:#fff;font-size:10px;letter-spacing:.07em;text-transform:uppercase;
+  text-align:left;padding:10px 8px;white-space:nowrap;border-bottom:2px solid var(--orange);z-index:2}
+tbody td{padding:8px 8px;border-bottom:1px solid var(--hair);vertical-align:middle;font-size:12.5px}
+tbody tr:nth-child(even){background:var(--panel)}
+tbody tr:hover{background:var(--o-tint)}
+tbody tr:last-child td{border-bottom:none}
+.rk{width:44px} .rkb{display:inline-flex;align-items:center;justify-content:center;width:27px;height:27px;border-radius:50%;
+  background:var(--steel-t);color:var(--steel);font-weight:700;font-size:12.5px}
+.rkb.top{background:linear-gradient(135deg,#F05A28,#FF6B35);color:#fff}
+.cl{display:flex;align-items:center;gap:10px;min-width:215px}
+.cln{display:flex;flex-direction:column;line-height:1.25}
+.cln b{color:var(--navy);font-size:13.5px}
+.cln a{color:var(--mut);font-size:11px;text-decoration:none}
+.cln a:hover{color:var(--orange)}
+.cln .crm{color:#98A0AC;font-size:10.5px}
+.tnote{font-size:11px;color:var(--mut);margin:8px 2px 0}
+.lg{--sz:40px;width:var(--sz);height:var(--sz);flex:0 0 var(--sz);border-radius:10px;background:#fff;border:1px solid var(--hair);
+  display:inline-flex;align-items:center;justify-content:center;overflow:hidden}
+.lg img{max-width:calc(var(--sz) - 9px);max-height:calc(var(--sz) - 9px);object-fit:contain}
+.lg i{display:none;font-style:normal;font-weight:700;font-size:calc(var(--sz)*.34);color:var(--navy)}
+.lg.fb{background:var(--panel);border-color:#DCD5C9}
+.lg.fb img{display:none} .lg.fb i{display:block}
+.plat{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.p-pro{background:var(--steel-t);color:var(--steel)} .p-ready{background:var(--teal-t);color:var(--teal)}
+.p-day{background:var(--o-tint);color:var(--rust)}
+.val{min-width:130px} .val .v{display:block;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums;text-align:right}
+.bar{display:block;height:3px;background:var(--hair);border-radius:2px;margin-top:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(135deg,#F05A28,#FF6B35);border-radius:2px}
+.mark{font-weight:700;font-size:12px} .mark.y{color:var(--teal)} .mark.n{color:#B7BDC7}
+.chip{font-size:10.5px;font-weight:600;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.chip.ok{background:var(--teal-t);color:var(--teal)} .chip.fresh{background:var(--steel-t);color:var(--steel)}
+.chip.todo{background:var(--o-tint);color:var(--rust)}
+.mut{color:var(--mut)} .nw{white-space:nowrap} .ctr{text-align:center}
+tfoot td{background:#F4EFE7;font-weight:700;color:var(--navy);padding:11px 10px;border-top:2px solid var(--orange);font-size:13px}
+/* ---------- reference + gaps ---------- */
+.tier{font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.tier.a{background:var(--teal-t);color:var(--teal)} .tier.b{background:var(--steel-t);color:var(--steel)}
+.gaps{display:grid;grid-template-columns:repeat(auto-fit,minmax(470px,1fr));gap:16px}
+.gapcard{background:#fff;border:1px solid var(--hair);border-radius:16px;padding:16px 18px;overflow-x:auto}
+.gapcard h3{font-size:12px;letter-spacing:.16em;color:var(--rust);margin-bottom:8px}
+.gapcard table{min-width:0;width:100%}
+.gapcard thead th{position:static;background:transparent;color:var(--mut);border-bottom:1px solid var(--hair);font-size:10px;padding:6px}
+.gapcard td{font-size:12px;padding:5px 6px}
+.gapcard td:first-child{max-width:150px}
+.gapcard tr.flagged{background:var(--o-tint)}
+.chipgap{font-size:10.5px;font-weight:700;color:#fff;background:var(--orange);padding:2px 8px;border-radius:999px;white-space:nowrap}
+/* ---------- method / footer ---------- */
+.method{background:#fff;border:1px solid var(--hair);border-radius:16px;padding:24px 28px;column-gap:44px}
+.method h3{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);margin:16px 0 6px}
+.method h3:first-child{margin-top:0}
+.method p{font-size:13px;color:var(--ink);margin:6px 0;max-width:1000px}
+footer{background:var(--navy);color:var(--blue-mut);margin-top:44px;position:relative;overflow:hidden}
+footer::before{content:"";position:absolute;width:380px;height:380px;right:-120px;bottom:-260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(240,90,40,.3),transparent 60%);filter:blur(100px)}
+.fin{position:relative;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:30px 0;flex-wrap:wrap}
+.fin img{width:180px;height:auto}
+.fin p{font-size:11.5px;line-height:1.7;text-align:right}
+.fin a{color:var(--orange-b);text-decoration:none}
+@media print{
+  .controls{display:none}
+  header::before,header::after,footer::before{display:none}
+  body{font-size:11px}
+  .tblwrap{overflow:visible;border-radius:0}
+  table{min-width:0}
+  thead th{position:static}
+  section{padding:16px 0 4px;break-inside:avoid-page}
+}
+</style></head><body>
+<header><div class="wrap mast">
+  <div class="mtop">
+    <img class="mlogo" src="data:image/png;base64,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" alt="Align HCM. Human Capital Management.">
+    <div class="kick">Internal use · Unpublished<span>Prepared 10 Aug 2026 · Source: Client Story Database v8 + HubSpot 242825734</span></div>
+  </div>
+  <h1>Top 30 <em>Story Shortlist</em></h1>
+  <p class="sub">Recommendation for Objective 1. Selected from 453 readable story rows with values restated to true USD. One story per client, max 4 per industry, max 7 per size band, $50k minimum, and Dayforce plus UKG Ready represented. Full method notes sit at the bottom of this page.</p>
+  <div class="stats">
+    <div class="stat hot"><b>$8,260,174</b><span>True USD, 30 stories</span></div>
+    <div class="stat"><b>30</b><span>Clients · 1 story each</span></div>
+    <div class="stat"><b>20 of 30</b><span>Narratives drafted</span></div>
+    <div class="stat"><b>16 of 30</b><span>Raven quotes</span></div>
+    <div class="stat"><b>14</b><span>Industries</span></div>
+    <div class="stat"><b>3</b><span>Platforms</span></div>
+  </div>
+</div><div class="rule"></div></header>
+
+<div class="wrap">
+<section>
+  <div class="shead"><h2>The shortlist</h2><small>Ranked by 45% deal value (log-scaled, true USD) + 30% recency + 25% narrative readiness</small></div>
+  <div class="snote">EDIT THE YELLOW COLUMNS ONLY (Reference Status uses the Vocab tab list; Validator and Notes are free text). Everything left of them is derived. Editable columns live in the workbook twin; this page is the read view.</div>
+  <div class="controls">
+    <input id="q" type="search" placeholder="Search client, industry, story type, owner…" aria-label="Search">
+    <button class="fbtn on" data-plat="">All platforms</button>
+    <button class="fbtn" data-plat="UKG Pro">UKG Pro</button>
+    <button class="fbtn" data-plat="UKG Ready">UKG Ready</button>
+    <button class="fbtn" data-plat="Dayforce">Dayforce</button>
+    <button class="fbtn sort" id="sortBtn" data-mode="rank">Sort: Rank</button>
+  </div>
+  <div class="tblwrap"><table id="t30">
+    <thead><tr><th>#</th><th>Client · HQ · Emp (CRM)</th><th>Industry</th><th>Size (HC)</th><th>Geo</th><th>Platform</th><th>Story type</th><th>Start</th><th>Value (true USD)</th><th>Narrative</th><th>Quote</th><th>What it still needs</th><th>CRM deal owner</th></tr></thead>
+    <tbody><tr data-plat="Dayforce" data-q="leyad real estate smartcare maintain michael lederman ontario, canada" data-rank="1" data-value="79012.8" data-client="Leyad">
+<td class="rk"><span class="rkb top">1</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/leyad.ca" alt="Leyad logo" onerror="this.parentElement.classList.add('fb')"><i>L</i></span><span class="cln"><b>Leyad</b><a href="https://leyad.ca" target="_blank" rel="noopener">leyad.ca</a><span class="crm">Ontario, Canada · 300 emp</span></span></td>
+<td>Real Estate</td><td class="nw">&lt;500</td><td>Canada</td>
+<td><span class="plat p-day">Dayforce</span></td>
+<td>SmartCare Maintain</td><td class="nw ctr">2026</td>
+<td class="val"><span class="v">$79,013</span><span class="bar"><i style="width:3.6%"></i></span></td>
+<td class="ctr"><span class="mark n">No</span></td><td class="ctr"><span class="mark n">No</span></td>
+<td><span class="chip todo">Narrative + quote</span></td><td class="mut">Michael Lederman</td>
+</tr><tr data-plat="Dayforce" data-q="ges professional services add-on expansion dianna hammond las vegas, nv" data-rank="2" data-value="145500" data-client="GES">
+<td class="rk"><span class="rkb top">2</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/ges.com" alt="GES logo" onerror="this.parentElement.classList.add('fb')"><i>G</i></span><span class="cln"><b>GES</b><a href="https://ges.com" target="_blank" rel="noopener">ges.com</a><span class="crm">Las Vegas, NV</span></span></td>
+<td>Professional Services</td><td class="nw">2,000-5,000</td><td>Multi</td>
+<td><span class="plat p-day">Dayforce</span></td>
+<td>Add-on Expansion</td><td class="nw ctr">2025</td>
+<td class="val"><span class="v">$145,500</span><span class="bar"><i style="width:6.7%"></i></span></td>
+<td class="ctr"><span class="mark n">No</span></td><td class="ctr"><span class="mark n">No</span></td>
+<td><span class="chip todo">Narrative + quote</span></td><td class="mut">Dianna Hammond</td>
+</tr><tr data-plat="Dayforce" data-q="curtin maritime transportation &amp; logistics smartcare maintain maher el-abdallah " data-rank="3" data-value="84000" data-client="Curtin Maritime">
+<td class="rk"><span class="rkb top">3</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/curtinmaritime.com" alt="Curtin Maritime logo" onerror="this.parentElement.classList.add('fb')"><i>CM</i></span><span class="cln"><b>Curtin Maritime</b><a href="https://curtinmaritime.com" target="_blank" rel="noopener">curtinmaritime.com</a><span class="crm">500 emp</span></span></td>
+<td>Transportation &amp; Logistics</td><td class="nw">500-2,000</td><td>US</td>
+<td><span class="plat p-day">Dayforce</span></td>
+<td>SmartCare Maintain</td><td class="nw ctr">2025</td>
+<td class="val"><span class="v">$84,000</span><span class="bar"><i style="width:3.9%"></i></span></td>
+<td class="ctr"><span class="mark n">No</span></td><td class="ctr"><span class="mark n">No</span></td>
+<td><span class="chip todo">Narrative + quote</span></td><td class="mut">Maher El-Abdallah</td>
+</tr><tr data-plat="UKG Ready" data-q="everquote financial services implementation / go-live — not in crm — " data-rank="4" data-value="78800" data-client="EverQuote">
+<td class="rk"><span class="rkb top">4</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/everquote.com" alt="EverQuote logo" onerror="this.parentElement.classList.add('fb')"><i>E</i></span><span class="cln"><b>EverQuote</b><a href="https://everquote.com" target="_blank" rel="noopener">everquote.com</a><span class="crm">350 emp</span></span></td>
+<td>Financial Services</td><td class="nw">&lt;500</td><td>US</td>
+<td><span class="plat p-ready">UKG Ready</span></td>
+<td>Implementation / Go-Live</td><td class="nw ctr">2025</td>
+<td class="val"><span class="v">$78,800</span><span class="bar"><i style="width:3.6%"></i></span></td>
+<td class="ctr"><span class="mark n">No</span></td><td class="ctr"><span class="mark n">No</span></td>
+<td><span class="chip todo">Narrative + quote</span></td><td class="mut">— not in CRM —</td>
+</tr><tr data-plat="UKG Pro" data-q="burnco retail / consumer implementation / go-live miranda sarwan calgary, ab" data-rank="5" data-value="153416.52" data-client="BURNCO">
+<td class="rk"><span class="rkb top">5</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/burnco.com" alt="BURNCO logo" onerror="this.parentElement.classList.add('fb')"><i>B</i></span><span class="cln"><b>BURNCO</b><a href="https://burnco.com" target="_blank" rel="noopener">burnco.com</a><span class="crm">Calgary, AB · 1,500 emp</span></span></td>
+<td>Retail / Consumer</td><td class="nw">500-2,000</td><td>Canada</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Implementation / Go-Live</td><td class="nw ctr">2026</td>
+<td class="val"><span class="v">$153,417</span><span class="bar"><i style="width:7.1%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark y">Raven</span></td>
+<td><span class="chip ok">Ready — spot-check only</span></td><td class="mut">Miranda Sarwan</td>
+</tr><tr data-plat="UKG Pro" data-q="ohiohealth healthcare migration mike emsley columbus, oh" data-rank="6" data-value="2165175" data-client="OhioHealth">
+<td class="rk"><span class="rkb">6</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/ohiohealth.com" alt="OhioHealth logo" onerror="this.parentElement.classList.add('fb')"><i>O</i></span><span class="cln"><b>OhioHealth</b><a href="https://ohiohealth.com" target="_blank" rel="noopener">ohiohealth.com</a><span class="crm">Columbus, OH · 30,000 emp</span></span></td>
+<td>Healthcare</td><td class="nw">10,000-50,000</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Migration</td><td class="nw ctr">2024</td>
+<td class="val"><span class="v">$2,165,175</span><span class="bar"><i style="width:100.0%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark y">Raven</span></td>
+<td><span class="chip ok">Ready — spot-check only</span></td><td class="mut">Mike Emsley</td>
+</tr><tr data-plat="UKG Pro" data-q="mcleod software technology implementation / go-live — not in crm — birmingham, al" data-rank="7" data-value="96875" data-client="McLeod Software">
+<td class="rk"><span class="rkb">7</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/mcleodsoftware.com" alt="McLeod Software logo" onerror="this.parentElement.classList.add('fb')"><i>MS</i></span><span class="cln"><b>McLeod Software</b><a href="https://mcleodsoftware.com" target="_blank" rel="noopener">mcleodsoftware.com</a><span class="crm">Birmingham, AL · 700 emp</span></span></td>
+<td>Technology</td><td class="nw">500-2,000</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Implementation / Go-Live</td><td class="nw ctr">2025</td>
+<td class="val"><span class="v">$96,875</span><span class="bar"><i style="width:4.5%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark y">Raven</span></td>
+<td><span class="chip ok">Ready — spot-check only</span></td><td class="mut">— not in CRM —</td>
+</tr><tr data-plat="UKG Pro" data-q="primeflight transportation &amp; logistics acquisition / carve-out support maher el-abdallah sugar land, tx" data-rank="8" data-value="296490" data-client="PrimeFlight">
+<td class="rk"><span class="rkb">8</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/primeflight.com" alt="PrimeFlight logo" onerror="this.parentElement.classList.add('fb')"><i>P</i></span><span class="cln"><b>PrimeFlight</b><a href="https://primeflight.com" target="_blank" rel="noopener">primeflight.com</a><span class="crm">Sugar Land, TX · 9,400 emp</span></span></td>
+<td>Transportation &amp; Logistics</td><td class="nw">5,000-10,000</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Acquisition / Carve-out Support</td><td class="nw ctr">2024</td>
+<td class="val"><span class="v">$296,490</span><span class="bar"><i style="width:13.7%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark y">Raven</span></td>
+<td><span class="chip ok">Ready — spot-check only</span></td><td class="mut">Maher El-Abdallah</td>
+</tr><tr data-plat="UKG Pro" data-q="vacasa hospitality smartcare maintain — not in crm — portland, or" data-rank="9" data-value="240000" data-client="Vacasa">
+<td class="rk"><span class="rkb">9</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/vacasa.com" alt="Vacasa logo" onerror="this.parentElement.classList.add('fb')"><i>V</i></span><span class="cln"><b>Vacasa</b><a href="https://vacasa.com" target="_blank" rel="noopener">vacasa.com</a><span class="crm">Portland, OR · 6,800 emp</span></span></td>
+<td>Hospitality</td><td class="nw">5,000-10,000</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>SmartCare Maintain</td><td class="nw ctr">2024</td>
+<td class="val"><span class="v">$240,000</span><span class="bar"><i style="width:11.1%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark y">Raven</span></td>
+<td><span class="chip ok">Ready — spot-check only</span></td><td class="mut">— not in CRM —</td>
+</tr><tr data-plat="UKG Pro" data-q="mw components manufacturing comp &amp; performance project miranda sarwan charlotte, nc" data-rank="10" data-value="231550" data-client="MW Components">
+<td class="rk"><span class="rkb">10</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/mwcomponents.com" alt="MW Components logo" onerror="this.parentElement.classList.add('fb')"><i>MC</i></span><span class="cln"><b>MW Components</b><a href="https://mwcomponents.com" target="_blank" rel="noopener">mwcomponents.com</a><span class="crm">Charlotte, NC · 2,100 emp</span></span></td>
+<td>Manufacturing</td><td class="nw">2,000-5,000</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Comp &amp; Performance Project</td><td class="nw ctr">2024</td>
+<td class="val"><span class="v">$231,550</span><span class="bar"><i style="width:10.7%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark y">Raven</span></td>
+<td><span class="chip ok">Ready — spot-check only</span></td><td class="mut">Miranda Sarwan</td>
+</tr><tr data-plat="UKG Pro" data-q="distributor wire &amp; cable manufacturing smartcare maintain — not in crm — " data-rank="11" data-value="54000" data-client="Distributor Wire &amp; Cable">
+<td class="rk"><span class="rkb">11</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/distributorwireandcable.com" alt="Distributor Wire &amp; Cable logo" onerror="this.parentElement.classList.add('fb')"><i>DW</i></span><span class="cln"><b>Distributor Wire &amp; Cable</b><a href="https://distributorwireandcable.com" target="_blank" rel="noopener">distributorwireandcable.com</a></span></td>
+<td>Manufacturing</td><td class="nw">&lt;500</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>SmartCare Maintain</td><td class="nw ctr">2025</td>
+<td class="val"><span class="v">$54,000</span><span class="bar"><i style="width:2.5%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark y">Raven</span></td>
+<td><span class="chip ok">Ready — spot-check only</span></td><td class="mut">— not in CRM —</td>
+</tr><tr data-plat="UKG Pro" data-q="bethany christian services professional services migration miranda sarwan " data-rank="12" data-value="153495" data-client="Bethany Christian Services">
+<td class="rk"><span class="rkb">12</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/bethany.org" alt="Bethany Christian Services logo" onerror="this.parentElement.classList.add('fb')"><i>BC</i></span><span class="cln"><b>Bethany Christian Services</b><a href="https://bethany.org" target="_blank" rel="noopener">bethany.org</a></span></td>
+<td>Professional Services</td><td class="nw">2,000-5,000</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Migration</td><td class="nw ctr">2024</td>
+<td class="val"><span class="v">$153,495</span><span class="bar"><i style="width:7.1%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark y">Raven</span></td>
+<td><span class="chip ok">Ready — spot-check only</span></td><td class="mut">Miranda Sarwan</td>
+</tr><tr data-plat="UKG Pro" data-q="tristate health healthcare migration miranda sarwan clarkson, wa" data-rank="13" data-value="142950" data-client="TriState Health">
+<td class="rk"><span class="rkb">13</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/tsh.org" alt="TriState Health logo" onerror="this.parentElement.classList.add('fb')"><i>TH</i></span><span class="cln"><b>TriState Health</b><a href="https://tsh.org" target="_blank" rel="noopener">tsh.org</a><span class="crm">Clarkson, WA</span></span></td>
+<td>Healthcare</td><td class="nw">&lt;500</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Migration</td><td class="nw ctr">2024</td>
+<td class="val"><span class="v">$142,950</span><span class="bar"><i style="width:6.6%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark y">Raven</span></td>
+<td><span class="chip ok">Ready — spot-check only</span></td><td class="mut">Miranda Sarwan</td>
+</tr><tr data-plat="UKG Pro" data-q="kw property management real estate migration miranda sarwan miami, fl" data-rank="14" data-value="138000" data-client="KW Property Management">
+<td class="rk"><span class="rkb">14</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/kwpmc.com" alt="KW Property Management logo" onerror="this.parentElement.classList.add('fb')"><i>KP</i></span><span class="cln"><b>KW Property Management</b><a href="https://kwpmc.com" target="_blank" rel="noopener">kwpmc.com</a><span class="crm">Miami, FL · 2,700 emp</span></span></td>
+<td>Real Estate</td><td class="nw">2,000-5,000</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Migration</td><td class="nw ctr">2024</td>
+<td class="val"><span class="v">$138,000</span><span class="bar"><i style="width:6.4%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark y">Raven</span></td>
+<td><span class="chip ok">Ready — spot-check only</span></td><td class="mut">Miranda Sarwan</td>
+</tr><tr data-plat="UKG Pro" data-q="troon hospitality integration dianna hammond scottsdale, az" data-rank="15" data-value="128500" data-client="Troon">
+<td class="rk"><span class="rkb">15</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/troon.com" alt="Troon logo" onerror="this.parentElement.classList.add('fb')"><i>T</i></span><span class="cln"><b>Troon</b><a href="https://troon.com" target="_blank" rel="noopener">troon.com</a><span class="crm">Scottsdale, AZ · 30,000 emp</span></span></td>
+<td>Hospitality</td><td class="nw">10,000-50,000</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Integration</td><td class="nw ctr">2024</td>
+<td class="val"><span class="v">$128,500</span><span class="bar"><i style="width:5.9%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark y">Raven</span></td>
+<td><span class="chip ok">Ready — spot-check only</span></td><td class="mut">Dianna Hammond</td>
+</tr><tr data-plat="UKG Pro" data-q="jacam catalyst energy / utilities migration — not in crm — sterling, ks" data-rank="16" data-value="107500" data-client="JACAM Catalyst">
+<td class="rk"><span class="rkb">16</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/jacamcatalyst.com" alt="JACAM Catalyst logo" onerror="this.parentElement.classList.add('fb')"><i>JC</i></span><span class="cln"><b>JACAM Catalyst</b><a href="https://jacamcatalyst.com" target="_blank" rel="noopener">jacamcatalyst.com</a><span class="crm">Sterling, KS</span></span></td>
+<td>Energy / Utilities</td><td class="nw">500-2,000</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Migration</td><td class="nw ctr">2024</td>
+<td class="val"><span class="v">$107,500</span><span class="bar"><i style="width:5.0%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark y">Raven</span></td>
+<td><span class="chip ok">Ready — spot-check only</span></td><td class="mut">— not in CRM —</td>
+</tr><tr data-plat="UKG Pro" data-q="chautauqua institution nonprofit / social services migration miranda sarwan " data-rank="17" data-value="84375" data-client="Chautauqua Institution">
+<td class="rk"><span class="rkb">17</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/chq.org" alt="Chautauqua Institution logo" onerror="this.parentElement.classList.add('fb')"><i>CI</i></span><span class="cln"><b>Chautauqua Institution</b><a href="https://chq.org" target="_blank" rel="noopener">chq.org</a><span class="crm">1,400 emp</span></span></td>
+<td>Nonprofit / Social Services</td><td class="nw">500-2,000</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Migration</td><td class="nw ctr">2024</td>
+<td class="val"><span class="v">$84,375</span><span class="bar"><i style="width:3.9%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark y">Raven</span></td>
+<td><span class="chip ok">Ready — spot-check only</span></td><td class="mut">Miranda Sarwan</td>
+</tr><tr data-plat="UKG Pro" data-q="excelsior university higher education migration miranda sarwan albany, ny" data-rank="18" data-value="79000" data-client="Excelsior University">
+<td class="rk"><span class="rkb">18</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/excelsior.edu" alt="Excelsior University logo" onerror="this.parentElement.classList.add('fb')"><i>EU</i></span><span class="cln"><b>Excelsior University</b><a href="https://excelsior.edu" target="_blank" rel="noopener">excelsior.edu</a><span class="crm">Albany, NY</span></span></td>
+<td>Higher Education</td><td class="nw">&lt;500</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Migration</td><td class="nw ctr">2024</td>
+<td class="val"><span class="v">$79,000</span><span class="bar"><i style="width:3.6%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark y">Raven</span></td>
+<td><span class="chip ok">Ready — spot-check only</span></td><td class="mut">Miranda Sarwan</td>
+</tr><tr data-plat="UKG Pro" data-q="eagle materials manufacturing integration miranda sarwan dallas, tx" data-rank="19" data-value="71000" data-client="Eagle Materials">
+<td class="rk"><span class="rkb">19</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/eaglematerials.com" alt="Eagle Materials logo" onerror="this.parentElement.classList.add('fb')"><i>EM</i></span><span class="cln"><b>Eagle Materials</b><a href="https://eaglematerials.com" target="_blank" rel="noopener">eaglematerials.com</a><span class="crm">Dallas, TX · 2,657 emp</span></span></td>
+<td>Manufacturing</td><td class="nw">2,000-5,000</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Integration</td><td class="nw ctr">2024</td>
+<td class="val"><span class="v">$71,000</span><span class="bar"><i style="width:3.3%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark y">Raven</span></td>
+<td><span class="chip ok">Ready — spot-check only</span></td><td class="mut">Miranda Sarwan</td>
+</tr><tr data-plat="UKG Pro" data-q="mta ny public sector staff augmentation / pm maher el-abdallah " data-rank="20" data-value="1296000" data-client="MTA NY">
+<td class="rk"><span class="rkb">20</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/mta.info" alt="MTA NY logo" onerror="this.parentElement.classList.add('fb')"><i>MN</i></span><span class="cln"><b>MTA NY</b><a href="https://mta.info" target="_blank" rel="noopener">mta.info</a><span class="crm">70,000 emp</span></span></td>
+<td>Public Sector</td><td class="nw">50,000+</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Staff Augmentation / PM</td><td class="nw ctr">2024</td>
+<td class="val"><span class="v">$1,296,000</span><span class="bar"><i style="width:59.9%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark n">No</span></td>
+<td><span class="chip fresh">Fresh quote</span></td><td class="mut">Maher El-Abdallah</td>
+</tr><tr data-plat="UKG Pro" data-q="grand river health healthcare implementation / go-live — not in crm — rifle, co" data-rank="21" data-value="317700" data-client="Grand River Health">
+<td class="rk"><span class="rkb">21</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/grandriverhealth.org" alt="Grand River Health logo" onerror="this.parentElement.classList.add('fb')"><i>GR</i></span><span class="cln"><b>Grand River Health</b><a href="https://grandriverhealth.org" target="_blank" rel="noopener">grandriverhealth.org</a><span class="crm">Rifle, CO · 850 emp</span></span></td>
+<td>Healthcare</td><td class="nw">500-2,000</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Implementation / Go-Live</td><td class="nw ctr">2025</td>
+<td class="val"><span class="v">$317,700</span><span class="bar"><i style="width:14.7%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark n">No</span></td>
+<td><span class="chip fresh">Fresh quote</span></td><td class="mut">— not in CRM —</td>
+</tr><tr data-plat="UKG Pro" data-q="bayshore healthcare healthcare implementation / go-live maher el-abdallah etobicoke, on" data-rank="22" data-value="411159.2" data-client="Bayshore HealthCare">
+<td class="rk"><span class="rkb">22</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/bayshore.ca" alt="Bayshore HealthCare logo" onerror="this.parentElement.classList.add('fb')"><i>BH</i></span><span class="cln"><b>Bayshore HealthCare</b><a href="https://bayshore.ca" target="_blank" rel="noopener">bayshore.ca</a><span class="crm">Etobicoke, ON · 3,500 emp</span></span></td>
+<td>Healthcare</td><td class="nw">2,000-5,000</td><td>Canada</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Implementation / Go-Live</td><td class="nw ctr">2024</td>
+<td class="val"><span class="v">$411,159</span><span class="bar"><i style="width:19.0%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark n">No</span></td>
+<td><span class="chip fresh">Fresh quote</span></td><td class="mut">Maher El-Abdallah</td>
+</tr><tr data-plat="UKG Pro" data-q="rollins professional services integration maher el-abdallah atlanta, ga" data-rank="23" data-value="52750" data-client="Rollins">
+<td class="rk"><span class="rkb">23</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/rollins.com" alt="Rollins logo" onerror="this.parentElement.classList.add('fb')"><i>R</i></span><span class="cln"><b>Rollins</b><a href="https://rollins.com" target="_blank" rel="noopener">rollins.com</a><span class="crm">Atlanta, GA · 13,000 emp</span></span></td>
+<td>Professional Services</td><td class="nw">10,000-50,000</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Integration</td><td class="nw ctr">2022</td>
+<td class="val"><span class="v">$52,750</span><span class="bar"><i style="width:2.5%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark y">Raven</span></td>
+<td><span class="chip ok">Ready — spot-check only</span></td><td class="mut">Maher El-Abdallah</td>
+</tr><tr data-plat="UKG Pro" data-q="driscoll&#x27;s agriculture &amp; food implementation / go-live miranda sarwan watsonville, ca" data-rank="24" data-value="453850" data-client="Driscoll&#x27;s">
+<td class="rk"><span class="rkb">24</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/driscolls.com" alt="Driscoll&#x27;s logo" onerror="this.parentElement.classList.add('fb')"><i>D</i></span><span class="cln"><b>Driscoll&#x27;s</b><a href="https://driscolls.com" target="_blank" rel="noopener">driscolls.com</a><span class="crm">Watsonville, CA · 6,200 emp</span></span></td>
+<td>Agriculture &amp; Food</td><td class="nw">5,000-10,000</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Implementation / Go-Live</td><td class="nw ctr">2023</td>
+<td class="val"><span class="v">$453,850</span><span class="bar"><i style="width:21.0%"></i></span></td>
+<td class="ctr"><span class="mark y">Yes</span></td><td class="ctr"><span class="mark n">No</span></td>
+<td><span class="chip fresh">Fresh quote</span></td><td class="mut">Miranda Sarwan</td>
+</tr><tr data-plat="UKG Pro" data-q="trimac transportation transportation &amp; logistics implementation / go-live miranda sarwan calgary, ab" data-rank="25" data-value="398582.996" data-client="Trimac Transportation">
+<td class="rk"><span class="rkb">25</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/trimac.com" alt="Trimac Transportation logo" onerror="this.parentElement.classList.add('fb')"><i>TT</i></span><span class="cln"><b>Trimac Transportation</b><a href="https://trimac.com" target="_blank" rel="noopener">trimac.com</a><span class="crm">Calgary, AB</span></span></td>
+<td>Transportation &amp; Logistics</td><td class="nw">2,000-5,000</td><td>Canada</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Implementation / Go-Live</td><td class="nw ctr">2026</td>
+<td class="val"><span class="v">$398,583</span><span class="bar"><i style="width:18.4%"></i></span></td>
+<td class="ctr"><span class="mark n">No</span></td><td class="ctr"><span class="mark n">No</span></td>
+<td><span class="chip todo">Narrative + quote</span></td><td class="mut">Miranda Sarwan</td>
+</tr><tr data-plat="UKG Pro" data-q="coastal community credit union financial services acquisition / carve-out support miranda sarwan " data-rank="26" data-value="213422.352" data-client="Coastal Community Credit Union">
+<td class="rk"><span class="rkb">26</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/cccu.ca" alt="Coastal Community Credit Union logo" onerror="this.parentElement.classList.add('fb')"><i>CC</i></span><span class="cln"><b>Coastal Community Credit Union</b><a href="https://cccu.ca" target="_blank" rel="noopener">cccu.ca</a></span></td>
+<td>Financial Services</td><td class="nw">500-2,000</td><td>Canada</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Acquisition / Carve-out Support</td><td class="nw ctr">2026</td>
+<td class="val"><span class="v">$213,422</span><span class="bar"><i style="width:9.9%"></i></span></td>
+<td class="ctr"><span class="mark n">No</span></td><td class="ctr"><span class="mark n">No</span></td>
+<td><span class="chip todo">Narrative + quote</span></td><td class="mut">Miranda Sarwan</td>
+</tr><tr data-plat="UKG Pro" data-q="rei retail / consumer assessment / optimization michael lederman " data-rank="27" data-value="196350" data-client="REI">
+<td class="rk"><span class="rkb">27</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/rei.com" alt="REI logo" onerror="this.parentElement.classList.add('fb')"><i>R</i></span><span class="cln"><b>REI</b><a href="https://rei.com" target="_blank" rel="noopener">rei.com</a></span></td>
+<td>Retail / Consumer</td><td class="nw">10,000-50,000</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Assessment / Optimization</td><td class="nw ctr">2026</td>
+<td class="val"><span class="v">$196,350</span><span class="bar"><i style="width:9.1%"></i></span></td>
+<td class="ctr"><span class="mark n">No</span></td><td class="ctr"><span class="mark n">No</span></td>
+<td><span class="chip todo">Narrative + quote</span></td><td class="mut">Michael Lederman</td>
+</tr><tr data-plat="UKG Pro" data-q="ube manufacturing implementation / go-live maher el-abdallah " data-rank="28" data-value="156300" data-client="UBE">
+<td class="rk"><span class="rkb">28</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/ube.com" alt="UBE logo" onerror="this.parentElement.classList.add('fb')"><i>U</i></span><span class="cln"><b>UBE</b><a href="https://ube.com" target="_blank" rel="noopener">ube.com</a></span></td>
+<td>Manufacturing</td><td class="nw">10,000-50,000</td><td>Other</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>Implementation / Go-Live</td><td class="nw ctr">2026</td>
+<td class="val"><span class="v">$156,300</span><span class="bar"><i style="width:7.2%"></i></span></td>
+<td class="ctr"><span class="mark n">No</span></td><td class="ctr"><span class="mark n">No</span></td>
+<td><span class="chip todo">Narrative + quote</span></td><td class="mut">Maher El-Abdallah</td>
+</tr><tr data-plat="UKG Pro" data-q="ace parking professional services smartcare maintain michael lederman " data-rank="29" data-value="120000" data-client="Ace Parking">
+<td class="rk"><span class="rkb">29</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/aceparking.com" alt="Ace Parking logo" onerror="this.parentElement.classList.add('fb')"><i>AP</i></span><span class="cln"><b>Ace Parking</b><a href="https://aceparking.com" target="_blank" rel="noopener">aceparking.com</a><span class="crm">5,000 emp</span></span></td>
+<td>Professional Services</td><td class="nw">5,000-10,000</td><td>US</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>SmartCare Maintain</td><td class="nw ctr">2026</td>
+<td class="val"><span class="v">$120,000</span><span class="bar"><i style="width:5.5%"></i></span></td>
+<td class="ctr"><span class="mark n">No</span></td><td class="ctr"><span class="mark n">No</span></td>
+<td><span class="chip todo">Narrative + quote</span></td><td class="mut">Michael Lederman</td>
+</tr><tr data-plat="UKG Pro" data-q="mccain foods agriculture &amp; food smartcare maintain miranda sarwan ontario, canada" data-rank="30" data-value="114420" data-client="McCain Foods">
+<td class="rk"><span class="rkb">30</span></td>
+<td class="cl"><span class="lg" style="--sz:40px"><img loading="lazy" src="https://logo.clearbit.com/mccain.com" alt="McCain Foods logo" onerror="this.parentElement.classList.add('fb')"><i>MF</i></span><span class="cln"><b>McCain Foods</b><a href="https://mccain.com" target="_blank" rel="noopener">mccain.com</a><span class="crm">Ontario, Canada · 20,000 emp</span></span></td>
+<td>Agriculture &amp; Food</td><td class="nw">10,000-50,000</td><td>Multi</td>
+<td><span class="plat p-pro">UKG Pro</span></td>
+<td>SmartCare Maintain</td><td class="nw ctr">2026</td>
+<td class="val"><span class="v">$114,420</span><span class="bar"><i style="width:5.3%"></i></span></td>
+<td class="ctr"><span class="mark n">No</span></td><td class="ctr"><span class="mark n">No</span></td>
+<td><span class="chip todo">Narrative + quote</span></td><td class="mut">Miranda Sarwan</td>
+</tr></tbody>
+    <tfoot><tr><td colspan="8">TOTAL · 30 stories</td><td style="text-align:right">$8,260,174</td><td style="text-align:center">20</td><td style="text-align:center">16</td><td colspan="2"></td></tr></tfoot>
+  </table></div>
+  <p class="tnote">Client marks load from each company's public domain via logo.clearbit.com at view time; monogram tiles show when offline. HQ and employee figures were read from HubSpot on 10 Aug 2026.</p>
+</section>
+
+<section>
+  <div class="shead"><h2>Reference candidates</h2><small>Objective 2 · ranked by how close each client already is to being usable · Tier A is Raven + recent</small></div>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Tier</th><th>Client</th><th>Industry</th><th>Size (HC)</th><th>Geo</th><th>Engagements</th><th>Value (true USD)</th><th>Latest yr</th></tr></thead>
+    <tbody><tr>
+<td><span class="tier b">B — Raven, older</span></td>
+<td class="cl"><span class="lg" style="--sz:34px"><img loading="lazy" src="https://logo.clearbit.com/ohiohealth.com" alt="OhioHealth logo" onerror="this.parentElement.classList.add('fb')"><i>O</i></span><span class="cln"><b>OhioHealth</b></span></td>
+<td>Healthcare</td><td class="nw">10,000-50,000</td><td>US</td>
+<td class="ctr">2</td><td class="val"><span class="v">$2,932,695</span></td><td class="ctr">2024</td>
+</tr><tr>
+<td><span class="tier a">A — Raven + recent</span></td>
+<td class="cl"><span class="lg" style="--sz:34px"><img loading="lazy" src="https://logo.clearbit.com/primeflight.com" alt="PrimeFlight logo" onerror="this.parentElement.classList.add('fb')"><i>P</i></span><span class="cln"><b>PrimeFlight</b></span></td>
+<td>Transportation &amp; Logistics</td><td class="nw">5,000-10,000</td><td>US</td>
+<td class="ctr">4</td><td class="val"><span class="v">$1,417,850</span></td><td class="ctr">2025</td>
+</tr><tr>
+<td><span class="tier b">B — Raven, older</span></td>
+<td class="cl"><span class="lg" style="--sz:34px"><img loading="lazy" src="https://logo.clearbit.com/eaglematerials.com" alt="Eagle Materials logo" onerror="this.parentElement.classList.add('fb')"><i>EM</i></span><span class="cln"><b>Eagle Materials</b></span></td>
+<td>Manufacturing</td><td class="nw">2,000-5,000</td><td>US</td>
+<td class="ctr">2</td><td class="val"><span class="v">$731,000</span></td><td class="ctr">2024</td>
+</tr><tr>
+<td><span class="tier a">A — Raven + recent</span></td>
+<td class="cl"><span class="lg" style="--sz:34px"><img loading="lazy" src="https://logo.clearbit.com/burnco.com" alt="BURNCO logo" onerror="this.parentElement.classList.add('fb')"><i>B</i></span><span class="cln"><b>BURNCO</b></span></td>
+<td>Retail / Consumer</td><td class="nw">500-2,000</td><td>Canada</td>
+<td class="ctr">2</td><td class="val"><span class="v">$418,237</span></td><td class="ctr">2026</td>
+</tr><tr>
+<td><span class="tier a">A — Raven + recent</span></td>
+<td class="cl"><span class="lg" style="--sz:34px"><img loading="lazy" src="https://logo.clearbit.com/troon.com" alt="Troon logo" onerror="this.parentElement.classList.add('fb')"><i>T</i></span><span class="cln"><b>Troon</b></span></td>
+<td>Hospitality</td><td class="nw">10,000-50,000</td><td>US</td>
+<td class="ctr">3</td><td class="val"><span class="v">$353,500</span></td><td class="ctr">2025</td>
+</tr><tr>
+<td><span class="tier a">A — Raven + recent</span></td>
+<td class="cl"><span class="lg" style="--sz:34px"><img loading="lazy" src="https://logo.clearbit.com/mwcomponents.com" alt="MW Components logo" onerror="this.parentElement.classList.add('fb')"><i>MC</i></span><span class="cln"><b>MW Components</b></span></td>
+<td>Manufacturing</td><td class="nw">2,000-5,000</td><td>US</td>
+<td class="ctr">2</td><td class="val"><span class="v">$255,550</span></td><td class="ctr">2025</td>
+</tr><tr>
+<td><span class="tier b">B — Raven, older</span></td>
+<td class="cl"><span class="lg" style="--sz:34px"><img loading="lazy" src="https://logo.clearbit.com/vacasa.com" alt="Vacasa logo" onerror="this.parentElement.classList.add('fb')"><i>V</i></span><span class="cln"><b>Vacasa</b></span></td>
+<td>Hospitality</td><td class="nw">5,000-10,000</td><td>US</td>
+<td class="ctr">1</td><td class="val"><span class="v">$240,000</span></td><td class="ctr">2024</td>
+</tr><tr>
+<td><span class="tier a">A — Raven + recent</span></td>
+<td class="cl"><span class="lg" style="--sz:34px"><img loading="lazy" src="https://logo.clearbit.com/kwpmc.com" alt="KW Property Management logo" onerror="this.parentElement.classList.add('fb')"><i>KP</i></span><span class="cln"><b>KW Property Management</b></span></td>
+<td>Real Estate</td><td class="nw">2,000-5,000</td><td>US</td>
+<td class="ctr">2</td><td class="val"><span class="v">$178,000</span></td><td class="ctr">2025</td>
+</tr><tr>
+<td><span class="tier a">A — Raven + recent</span></td>
+<td class="cl"><span class="lg" style="--sz:34px"><img loading="lazy" src="https://logo.clearbit.com/bethany.org" alt="Bethany Christian Services logo" onerror="this.parentElement.classList.add('fb')"><i>BC</i></span><span class="cln"><b>Bethany Christian Services</b></span></td>
+<td>Professional Services</td><td class="nw">2,000-5,000</td><td>US</td>
+<td class="ctr">2</td><td class="val"><span class="v">$156,495</span></td><td class="ctr">2025</td>
+</tr><tr>
+<td><span class="tier b">B — Raven, older</span></td>
+<td class="cl"><span class="lg" style="--sz:34px"><img loading="lazy" src="https://logo.clearbit.com/tsh.org" alt="TriState Health logo" onerror="this.parentElement.classList.add('fb')"><i>TH</i></span><span class="cln"><b>TriState Health</b></span></td>
+<td>Healthcare</td><td class="nw">&lt;500</td><td>US</td>
+<td class="ctr">1</td><td class="val"><span class="v">$142,950</span></td><td class="ctr">2024</td>
+</tr><tr>
+<td><span class="tier a">A — Raven + recent</span></td>
+<td class="cl"><span class="lg" style="--sz:34px"><img loading="lazy" src="https://logo.clearbit.com/chq.org" alt="Chautauqua Institution logo" onerror="this.parentElement.classList.add('fb')"><i>CI</i></span><span class="cln"><b>Chautauqua Institution</b></span></td>
+<td>Nonprofit / Social Services</td><td class="nw">500-2,000</td><td>US</td>
+<td class="ctr">2</td><td class="val"><span class="v">$115,875</span></td><td class="ctr">2025</td>
+</tr><tr>
+<td><span class="tier b">B — Raven, older</span></td>
+<td class="cl"><span class="lg" style="--sz:34px"><img loading="lazy" src="https://logo.clearbit.com/jacamcatalyst.com" alt="JACAM Catalyst logo" onerror="this.parentElement.classList.add('fb')"><i>JC</i></span><span class="cln"><b>JACAM Catalyst</b></span></td>
+<td>Energy / Utilities</td><td class="nw">500-2,000</td><td>US</td>
+<td class="ctr">1</td><td class="val"><span class="v">$107,500</span></td><td class="ctr">2024</td>
+</tr><tr>
+<td><span class="tier a">A — Raven + recent</span></td>
+<td class="cl"><span class="lg" style="--sz:34px"><img loading="lazy" src="https://logo.clearbit.com/mcleodsoftware.com" alt="McLeod Software logo" onerror="this.parentElement.classList.add('fb')"><i>MS</i></span><span class="cln"><b>McLeod Software</b></span></td>
+<td>Technology</td><td class="nw">500-2,000</td><td>US</td>
+<td class="ctr">1</td><td class="val"><span class="v">$96,875</span></td><td class="ctr">2025</td>
+</tr><tr>
+<td><span class="tier b">B — Raven, older</span></td>
+<td class="cl"><span class="lg" style="--sz:34px"><img loading="lazy" src="https://logo.clearbit.com/excelsior.edu" alt="Excelsior University logo" onerror="this.parentElement.classList.add('fb')"><i>EU</i></span><span class="cln"><b>Excelsior University</b></span></td>
+<td>Higher Education</td><td class="nw">&lt;500</td><td>US</td>
+<td class="ctr">1</td><td class="val"><span class="v">$79,000</span></td><td class="ctr">2024</td>
+</tr><tr>
+<td><span class="tier a">A — Raven + recent</span></td>
+<td class="cl"><span class="lg" style="--sz:34px"><img loading="lazy" src="https://logo.clearbit.com/distributorwireandcable.com" alt="Distributor Wire &amp; Cable logo" onerror="this.parentElement.classList.add('fb')"><i>DW</i></span><span class="cln"><b>Distributor Wire &amp; Cable</b></span></td>
+<td>Manufacturing</td><td class="nw">&lt;500</td><td>US</td>
+<td class="ctr">1</td><td class="val"><span class="v">$54,000</span></td><td class="ctr">2025</td>
+</tr><tr>
+<td><span class="tier b">B — Raven, older</span></td>
+<td class="cl"><span class="lg" style="--sz:34px"><img loading="lazy" src="https://logo.clearbit.com/rollins.com" alt="Rollins logo" onerror="this.parentElement.classList.add('fb')"><i>R</i></span><span class="cln"><b>Rollins</b></span></td>
+<td>Professional Services</td><td class="nw">10,000-50,000</td><td>US</td>
+<td class="ctr">1</td><td class="val"><span class="v">$52,750</span></td><td class="ctr">2022</td>
+</tr><tr>
+<td><span class="tier b">B — Raven, older</span></td>
+<td class="cl"><span class="lg fb" style="--sz:34px"><i>PR</i></span><span class="cln"><b>Pernod Ricard</b></span></td>
+<td>Agriculture &amp; Food</td><td class="nw">&lt;500</td><td>US</td>
+<td class="ctr">1</td><td class="val"><span class="v">$37,920</span></td><td class="ctr">2024</td>
+</tr><tr>
+<td><span class="tier a">A — Raven + recent</span></td>
+<td class="cl"><span class="lg fb" style="--sz:34px"><i>N</i></span><span class="cln"><b>Napoleon</b></span></td>
+<td>Manufacturing</td><td class="nw">1,000-5,000</td><td>Canada</td>
+<td class="ctr">2</td><td class="val"><span class="v">$14,486</span></td><td class="ctr">2025</td>
+</tr><tr>
+<td><span class="tier a">A — Raven + recent</span></td>
+<td class="cl"><span class="lg fb" style="--sz:34px"><i>RO</i></span><span class="cln"><b>Royal Oak</b></span></td>
+<td>Agriculture &amp; Food</td><td class="nw">500-2,000</td><td>US</td>
+<td class="ctr">1</td><td class="val"><span class="v">$5,000</span></td><td class="ctr">2026</td>
+</tr><tr>
+<td><span class="tier a">A — Raven + recent</span></td>
+<td class="cl"><span class="lg fb" style="--sz:34px"><i>BC</i></span><span class="cln"><b>Beem CR047</b></span></td>
+<td>Financial Services</td><td class="nw">500-2,000</td><td>Canada</td>
+<td class="ctr">1</td><td class="val"><span class="v">$3,292</span></td><td class="ctr">2026</td>
+</tr></tbody>
+  </table></div>
+</section>
+
+<section>
+  <div class="shead"><h2>Representation gaps</h2><small>Objective 4 · shortlist coverage vs the whole book · flags mark unrepresented dimensions</small></div>
+  <div class="gaps"><div class="gapcard"><h3>INDUSTRY / VERTICAL</h3>
+<table><thead><tr><th>Value</th><th>Shortlist</th><th>Full book</th><th>Book value</th><th></th></tr></thead>
+<tbody><tr class=""><td>Retail / Consumer</td><td class="ctr">2</td><td class="ctr">42</td><td class="val"><span class="v">$7,615,838</span></td><td></td></tr><tr class=""><td>Healthcare</td><td class="ctr">4</td><td class="ctr">52</td><td class="val"><span class="v">$7,165,577</span></td><td></td></tr><tr class=""><td>Manufacturing</td><td class="ctr">4</td><td class="ctr">67</td><td class="val"><span class="v">$6,947,435</span></td><td></td></tr><tr class=""><td>Professional Services</td><td class="ctr">4</td><td class="ctr">42</td><td class="val"><span class="v">$4,982,543</span></td><td></td></tr><tr class=""><td>Technology</td><td class="ctr">1</td><td class="ctr">57</td><td class="val"><span class="v">$4,511,950</span></td><td></td></tr><tr class=""><td>Hospitality</td><td class="ctr">2</td><td class="ctr">41</td><td class="val"><span class="v">$3,740,838</span></td><td></td></tr><tr class=""><td>Transportation &amp; Logistics</td><td class="ctr">3</td><td class="ctr">21</td><td class="val"><span class="v">$2,969,944</span></td><td></td></tr><tr class=""><td>Financial Services</td><td class="ctr">2</td><td class="ctr">27</td><td class="val"><span class="v">$2,840,499</span></td><td></td></tr><tr class=""><td>Agriculture &amp; Food</td><td class="ctr">2</td><td class="ctr">25</td><td class="val"><span class="v">$2,461,572</span></td><td></td></tr><tr class=""><td>Public Sector</td><td class="ctr">1</td><td class="ctr">10</td><td class="val"><span class="v">$2,431,570</span></td><td></td></tr><tr class="flagged"><td>Construction</td><td class="ctr">0</td><td class="ctr">18</td><td class="val"><span class="v">$1,218,116</span></td><td><span class=chipgap>GAP — not represented</span></td></tr><tr class=""><td>Energy / Utilities</td><td class="ctr">1</td><td class="ctr">16</td><td class="val"><span class="v">$1,036,128</span></td><td></td></tr><tr class=""><td>Real Estate</td><td class="ctr">2</td><td class="ctr">8</td><td class="val"><span class="v">$720,038</span></td><td></td></tr><tr class=""><td>Nonprofit / Social Services</td><td class="ctr">1</td><td class="ctr">14</td><td class="val"><span class="v">$490,258</span></td><td></td></tr><tr class=""><td>Higher Education</td><td class="ctr">1</td><td class="ctr">4</td><td class="val"><span class="v">$288,654</span></td><td></td></tr><tr class="flagged"><td>Government Contractor</td><td class="ctr">0</td><td class="ctr">4</td><td class="val"><span class="v">$175,050</span></td><td><span class=chipgap>absent (low value)</span></td></tr><tr class="flagged"><td>Other</td><td class="ctr">0</td><td class="ctr">5</td><td class="val"><span class="v">$161,200</span></td><td><span class=chipgap>absent (low value)</span></td></tr></tbody></table></div><div class="gapcard"><h3>COMPANY SIZE (HC)</h3>
+<table><thead><tr><th>Value</th><th>Shortlist</th><th>Full book</th><th>Book value</th><th></th></tr></thead>
+<tbody><tr class=""><td>500-2,000</td><td class="ctr">7</td><td class="ctr">158</td><td class="val"><span class="v">$12,889,958</span></td><td></td></tr><tr class=""><td>10,000-50,000</td><td class="ctr">6</td><td class="ctr">48</td><td class="val"><span class="v">$11,022,165</span></td><td></td></tr><tr class=""><td>5,000-10,000</td><td class="ctr">4</td><td class="ctr">74</td><td class="val"><span class="v">$10,747,532</span></td><td></td></tr><tr class=""><td>2,000-5,000</td><td class="ctr">7</td><td class="ctr">77</td><td class="val"><span class="v">$8,773,354</span></td><td></td></tr><tr class=""><td>&lt;500</td><td class="ctr">5</td><td class="ctr">84</td><td class="val"><span class="v">$4,135,076</span></td><td></td></tr><tr class=""><td>50,000+</td><td class="ctr">1</td><td class="ctr">9</td><td class="val"><span class="v">$2,129,640</span></td><td></td></tr><tr class="flagged"><td>1,000-5,000</td><td class="ctr">0</td><td class="ctr">2</td><td class="val"><span class="v">$14,486</span></td><td><span class=chipgap>absent (low value)</span></td></tr></tbody></table></div><div class="gapcard"><h3>HCM PLATFORM</h3>
+<table><thead><tr><th>Value</th><th>Shortlist</th><th>Full book</th><th>Book value</th><th></th></tr></thead>
+<tbody><tr class=""><td>UKG Pro</td><td class="ctr">26</td><td class="ctr">401</td><td class="val"><span class="v">$47,272,459</span></td><td></td></tr><tr class=""><td>UKG Ready</td><td class="ctr">1</td><td class="ctr">43</td><td class="val"><span class="v">$1,761,422</span></td><td></td></tr><tr class=""><td>Dayforce</td><td class="ctr">3</td><td class="ctr">9</td><td class="val"><span class="v">$723,330</span></td><td></td></tr></tbody></table></div><div class="gapcard"><h3>GEOGRAPHY</h3>
+<table><thead><tr><th>Value</th><th>Shortlist</th><th>Full book</th><th>Book value</th><th></th></tr></thead>
+<tbody><tr class=""><td>US</td><td class="ctr">22</td><td class="ctr">342</td><td class="val"><span class="v">$40,051,748</span></td><td></td></tr><tr class=""><td>Canada</td><td class="ctr">5</td><td class="ctr">78</td><td class="val"><span class="v">$6,975,627</span></td><td></td></tr><tr class=""><td>Multi</td><td class="ctr">2</td><td class="ctr">28</td><td class="val"><span class="v">$2,293,095</span></td><td></td></tr><tr class=""><td>Other</td><td class="ctr">1</td><td class="ctr">4</td><td class="val"><span class="v">$391,740</span></td><td></td></tr></tbody></table></div><div class="gapcard"><h3>STORY TYPE</h3>
+<table><thead><tr><th>Value</th><th>Shortlist</th><th>Full book</th><th>Book value</th><th></th></tr></thead>
+<tbody><tr class=""><td>Implementation / Go-Live</td><td class="ctr">8</td><td class="ctr">129</td><td class="val"><span class="v">$18,938,060</span></td><td></td></tr><tr class=""><td>SmartCare Maintain</td><td class="ctr">6</td><td class="ctr">65</td><td class="val"><span class="v">$7,824,192</span></td><td></td></tr><tr class=""><td>Migration</td><td class="ctr">7</td><td class="ctr">21</td><td class="val"><span class="v">$4,010,730</span></td><td></td></tr><tr class=""><td>Acquisition / Carve-out Support</td><td class="ctr">2</td><td class="ctr">21</td><td class="val"><span class="v">$2,896,708</span></td><td></td></tr><tr class="flagged"><td>Engagement Extension</td><td class="ctr">0</td><td class="ctr">8</td><td class="val"><span class="v">$2,293,005</span></td><td><span class=chipgap>GAP — not represented</span></td></tr><tr class=""><td>Add-on Expansion</td><td class="ctr">1</td><td class="ctr">12</td><td class="val"><span class="v">$2,287,050</span></td><td></td></tr><tr class=""><td>Integration</td><td class="ctr">3</td><td class="ctr">52</td><td class="val"><span class="v">$2,071,349</span></td><td></td></tr><tr class=""><td>Staff Augmentation / PM</td><td class="ctr">1</td><td class="ctr">8</td><td class="val"><span class="v">$1,808,114</span></td><td></td></tr><tr class="flagged"><td>SmartCare Maintain + Add-on</td><td class="ctr">0</td><td class="ctr">8</td><td class="val"><span class="v">$1,524,001</span></td><td><span class=chipgap>GAP — not represented</span></td></tr><tr class="flagged"><td>SmartCare Renewal</td><td class="ctr">0</td><td class="ctr">5</td><td class="val"><span class="v">$1,089,691</span></td><td><span class=chipgap>GAP — not represented</span></td></tr><tr class="flagged"><td>Add-on Expansion (Change Request)</td><td class="ctr">0</td><td class="ctr">35</td><td class="val"><span class="v">$881,480</span></td><td><span class=chipgap>GAP — not represented</span></td></tr><tr class=""><td>Assessment / Optimization</td><td class="ctr">1</td><td class="ctr">17</td><td class="val"><span class="v">$800,009</span></td><td></td></tr><tr class="flagged"><td>Client-Side Support</td><td class="ctr">0</td><td class="ctr">9</td><td class="val"><span class="v">$723,062</span></td><td><span class=chipgap>GAP — not represented</span></td></tr><tr class="flagged"><td>Post-Live Stabilization</td><td class="ctr">0</td><td class="ctr">8</td><td class="val"><span class="v">$518,206</span></td><td><span class=chipgap>GAP — not represented</span></td></tr><tr class=""><td>Comp &amp; Performance Project</td><td class="ctr">1</td><td class="ctr">6</td><td class="val"><span class="v">$462,400</span></td><td></td></tr><tr class="flagged"><td>Post-Live Support</td><td class="ctr">0</td><td class="ctr">9</td><td class="val"><span class="v">$407,850</span></td><td><span class=chipgap>GAP — not represented</span></td></tr><tr class="flagged"><td>Training / Enablement</td><td class="ctr">0</td><td class="ctr">12</td><td class="val"><span class="v">$349,795</span></td><td><span class=chipgap>GAP — not represented</span></td></tr><tr class="flagged"><td>Implementation / Go-Live (Phased)</td><td class="ctr">0</td><td class="ctr">2</td><td class="val"><span class="v">$284,400</span></td><td><span class=chipgap>absent (low value)</span></td></tr><tr class="flagged"><td>Consulting / Advisory</td><td class="ctr">0</td><td class="ctr">3</td><td class="val"><span class="v">$259,013</span></td><td><span class=chipgap>absent (low value)</span></td></tr><tr class="flagged"><td>Talent Acquisition Project</td><td class="ctr">0</td><td class="ctr">4</td><td class="val"><span class="v">$86,800</span></td><td><span class=chipgap>absent (low value)</span></td></tr><tr class="flagged"><td>Data Conversion</td><td class="ctr">0</td><td class="ctr">7</td><td class="val"><span class="v">$83,000</span></td><td><span class=chipgap>absent (low value)</span></td></tr><tr class="flagged"><td>Reporting / BI</td><td class="ctr">0</td><td class="ctr">8</td><td class="val"><span class="v">$53,046</span></td><td><span class=chipgap>absent (low value)</span></td></tr><tr class="flagged"><td>Benefits Project</td><td class="ctr">0</td><td class="ctr">1</td><td class="val"><span class="v">$50,000</span></td><td><span class=chipgap>absent (low value)</span></td></tr><tr class="flagged"><td>Year-End / Open Enrollment Support</td><td class="ctr">0</td><td class="ctr">1</td><td class="val"><span class="v">$29,050</span></td><td><span class=chipgap>absent (low value)</span></td></tr><tr class="flagged"><td>Audit / Compliance</td><td class="ctr">0</td><td class="ctr">2</td><td class="val"><span class="v">$26,200</span></td><td><span class=chipgap>absent (low value)</span></td></tr></tbody></table></div></div>
+</section>
+
+<section>
+  <div class="shead"><h2>How this was built</h2><small>Verbatim from the shortlist build notes</small></div>
+  <div class="method"><h3>Source &amp; scope</h3><p>Built from Client_Story_Database_v8.xlsx, Stories tab, rows 1-459 (453 of 483 engagements = 94%). The final ~30 rows and 4 of the 5 worksheets were not readable through the Microsoft 365 connector, so this shortlist may shift once those rows are included.</p><p>Deal values cross-verified live against HubSpot portal 242825734 on 10 Aug 2026. Read-only: nothing was created, changed or sent.</p><h3>One correction you should apply to the source workbook</h3><p>The Stories tab Deal Size ($) column sums raw HubSpot &quot;amount&quot;, not &quot;amount_in_home_currency&quot;. Because Align books in USD and CAD, every Canadian engagement is overstated — by 36.7% relative to true USD. Portfolio-wide that is $56,512,040 raw vs $54,266,143 USD, a $2,245,897 overstatement, 99.7% of it in the 104 CAD deals.</p><p>Values in this file are restated. Canadian rows are discounted at the verified blended rate 0.7316. Re-derive the source column from amount_in_home_currency to fix it permanently.</p><p>Also check deal 320839688918 (Burnco SmartCare 2026) by hand: it is coded USD but converted at a CAD rate, so a currency-code-based fix will miss it.</p><h3>Selection method</h3><p>Score = 45% deal value (log-scaled, true USD) + 30% recency + 25% narrative readiness (has narrative / has quote).</p><p>Constraints: one story per client; max 4 per industry; max 7 per size band; $50k minimum; at least 4 non-UKG-Pro stories so Dayforce and UKG Ready are represented.</p><p>Client names were de-duplicated first — the source splits some clients across spellings (KCC / Kimberly-Clark / Kimberly Clark UTA; REI / Recreational Equipment Inc; EOS Hospitality across three names). 10 merges applied.</p><h3>What the shortlist needs from you</h3><p>20 of 30 already have a drafted narrative and 16 have a Raven-sourced quote — so the net new writing is 10 narratives and 14 quotes, not 30.</p><p>Reference Status is blank on all 453 source rows. The Vocab tab already defines the right ladder (None / Logo OK / Quote OK / Reference Call OK / Logo+Quote OK / Logo+Quote+Reference Call OK) — it just has never been filled in. Until it is, none of these are cleared to name publicly.</p><p>The Validator column is blank on purpose. Mike&#x27;s objective names Maher, Tammi, Rich, Moe, Sneh, Sarah and Allison — but only Maher and Allison map to CRM deal owners, and the Engagement Owner column that would connect stories to the delivery team is empty on every row. That mapping needs a human.</p><h3>Unblocking the other 421 engagements</h3><p>The How to Use tab has the fix: in OneDrive, right-click the sales SOW folders, choose &quot;Always keep on this device&quot;, then re-run the narrative pass. 12 of the 62 drafts are low-confidence purely because their SOWs were cloud-only stubs.</p>
+  <h3>Branded edition, 10 Aug 2026</h3>
+  <p>This page is the HTML twin of Align_HCM_Top30_Story_Shortlist_Branded.xlsx. Story data is unchanged from the 10 Aug build. Website, HQ, and employee counts were read from HubSpot portal 242825734 on 10 Aug 2026, read-only. Client logos render from each company's public domain via logo.clearbit.com with a monogram fallback, so no logo files are redistributed with this document. Brand colors, type, and the Align logo follow the shipped Align editorial system.</p>
+  </div>
+</section>
+</div>
+
+<footer><div class="wrap fin">
+  <img src="data:image/png;base64,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" alt="Align HCM">
+  <p>Align HCM · SmartCare · UKG implementation and support<br>
+  <a href="https://www.alignhcm.com">alignhcm.com</a> · Internal use, unpublished · Prepared 10 Aug 2026</p>
+</div></footer>
+
+<script>
+(function(){
+  const q=document.getElementById('q'),tb=document.querySelector('#t30 tbody');
+  const rows=[...tb.rows];let plat='';
+  function apply(){
+    const s=(q.value||'').toLowerCase().trim();
+    rows.forEach(r=>{
+      const okQ=!s||r.dataset.q.includes(s);
+      const okP=!plat||r.dataset.plat===plat;
+      r.style.display=okQ&&okP?'':'none';
+    });
+  }
+  q.addEventListener('input',apply);
+  document.querySelectorAll('.fbtn[data-plat]').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.fbtn[data-plat]').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');plat=b.dataset.plat;apply();
+  }));
+  const sb=document.getElementById('sortBtn');
+  const modes=[['rank','Sort: Rank'],['value','Sort: Value'],['client','Sort: Client A→Z']];let mi=0;
+  sb.addEventListener('click',()=>{
+    mi=(mi+1)%modes.length;const m=modes[mi][0];sb.textContent=modes[mi][1];sb.classList.add('on');
+    rows.sort((a,b)=>m==='rank'?a.dataset.rank-b.dataset.rank
+      :m==='value'?b.dataset.value-a.dataset.value
+      :a.dataset.client.localeCompare(b.dataset.client));
+    rows.forEach(r=>tb.appendChild(r));
+  });
+})();
+</script>
+</body></html>
