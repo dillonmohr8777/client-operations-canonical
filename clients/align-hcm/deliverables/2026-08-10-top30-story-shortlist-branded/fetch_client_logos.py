@@ -58,9 +58,11 @@ VERIFIED_OVERRIDES = {
         "https://mma.prnewswire.com/media/1500972/MW_Components_Logo.jpg",
     ],
     "trimac.com": [
+        "https://dokumfe7mps0i.cloudfront.net/oms/2931/image/2025/3/DNV4A_google/google.jpg",
         "https://www.trimac.com/wp-content/uploads/2025/12/Trimac-logo.svg",
     ],
     "tsh.org": [
+        "https://portal.tristatehospital.org/Pub/Phm/Images/v3/TRSWEB.LIVEF/SignOnImage.png",
         "https://www.tsh.org/wp-content/uploads/2020/10/logo.svg",
     ],
     "rollins.com": [
@@ -110,7 +112,13 @@ def image_from_response(response: requests.Response) -> Image.Image:
 
 def trim(image: Image.Image) -> Image.Image:
     alpha = image.getchannel("A")
-    bbox = alpha.getbbox()
+    if alpha.getextrema()[0] < 255:
+        bbox = alpha.getbbox()
+    else:
+        background = Image.new("RGBA", image.size, image.getpixel((0, 0)))
+        difference = ImageChops.difference(image, background).convert("L")
+        mask = difference.point(lambda value: 255 if value > 12 else 0)
+        bbox = mask.getbbox()
     if bbox:
         image = image.crop(bbox)
     if image.width > 0 and image.height > 0:
