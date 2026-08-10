@@ -69,7 +69,20 @@ VERIFIED_OVERRIDES = {
         "https://d1io3yog0oux5.cloudfront.net/_d4e6516391e7a29b8f572b54c9bd7951/rollins/db/1002/9855/image.svg",
     ],
     "eaglematerials.com": [
+        "https://assets1.hbsdealer.com/images/v/max_width_1440/s3fs-public/2024-05/eagle.png",
         "https://www.eaglematerials.com/sites/default/files/eagle-materials.png",
+    ],
+    "grandriverhealth.org": [
+        "https://grandriverhealth.org/wp-content/uploads/2022/10/GRH-main-logo-2022.png",
+    ],
+    "mccain.com": [
+        "https://www.mccain.com/media/3565/mccain-foods-logo.jpg",
+    ],
+    "rei.com": [
+        "https://www.rei.com/rei-co-op-logo-black.svg",
+    ],
+    "troon.com": [
+        "https://bayclub.onelombard.com/wp-content/uploads/sites/4/2024/01/troon-vector-logo.png",
     ],
     "ges.com": [
         "https://mma.prnewswire.com/media/2426524/GES_COLOR_Logo.jpg",
@@ -140,10 +153,17 @@ def normalize(image: Image.Image) -> Image.Image:
         if visible
         else 0
     )
+    bright_share = (
+        sum(1 for red, green, blue in visible if 0.2126 * red + 0.7152 * green + 0.0722 * blue > 230)
+        / len(visible)
+        if visible
+        else 0
+    )
     has_transparency = alpha.getextrema()[0] < 255
-    background = (10, 22, 40, 255) if has_transparency and mean_luminance > 205 else (255, 255, 255, 0)
+    needs_dark_surface = has_transparency and (mean_luminance > 205 or bright_share > 0.28)
+    background = (10, 22, 40, 255) if needs_dark_surface else (255, 255, 255, 0)
     target = Image.new("RGBA", (600, 220), background)
-    scale = min(540 / image.width, 170 / image.height, 1.0 if max(image.size) > 500 else 4.0)
+    scale = min(540 / image.width, 170 / image.height, 1.0 if max(image.size) > 500 else 8.0)
     resized = image.resize(
         (max(1, round(image.width * scale)), max(1, round(image.height * scale))),
         Image.Resampling.LANCZOS,
