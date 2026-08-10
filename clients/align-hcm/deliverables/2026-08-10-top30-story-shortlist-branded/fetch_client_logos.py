@@ -150,7 +150,15 @@ def override_candidates(domain: str):
 def fetch_logo(domain: str):
     errors = []
     seen = set()
-    for url, source_type in [*override_candidates(domain), *official_candidates(domain), *fallback_candidates(domain)]:
+    clearbit = [(f"https://logo.clearbit.com/{domain}?size=512", "clearbit-domain-logo")]
+    google = [(f"https://www.google.com/s2/favicons?domain={domain}&sz=256", "google-domain-icon")]
+    candidates = [
+        *override_candidates(domain),
+        *clearbit,
+        *official_candidates(domain),
+        *google,
+    ]
+    for url, source_type in candidates:
         if url in seen:
             continue
         seen.add(url)
