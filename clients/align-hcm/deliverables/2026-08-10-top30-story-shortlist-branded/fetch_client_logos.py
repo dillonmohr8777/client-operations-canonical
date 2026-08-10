@@ -39,6 +39,39 @@ SESSION.headers.update(
 )
 
 VERIFIED_OVERRIDES = {
+    "bayshore.ca": [
+        "https://www.bayshore.ca/wp-content/themes/bayshore/dist/images/logo.svg",
+    ],
+    "cccu.ca": [
+        "https://www.cccu.ca/assets/img/logos/6954ba2a-6878-4812-a10d-c52332946014.svg",
+    ],
+    "chq.org": [
+        "https://www.chq.org/wp-content/uploads/2021/05/ChautauquaLogo_2021_PMS348.svg",
+    ],
+    "everquote.com": [
+        "https://cdn.prod.website-files.com/5f19961dcd0dc8de84b6d0c9/5f19b00072b3350a15873d03_EverQuote%20Logo.svg",
+    ],
+    "mta.info": [
+        "https://upload.wikimedia.org/wikipedia/commons/3/3c/MTA_NYC_logo.svg",
+    ],
+    "mwcomponents.com": [
+        "https://mma.prnewswire.com/media/1500972/MW_Components_Logo.jpg",
+    ],
+    "trimac.com": [
+        "https://www.trimac.com/wp-content/uploads/2025/12/Trimac-logo.svg",
+    ],
+    "tsh.org": [
+        "https://www.tsh.org/wp-content/uploads/2020/10/logo.svg",
+    ],
+    "rollins.com": [
+        "https://d1io3yog0oux5.cloudfront.net/_d4e6516391e7a29b8f572b54c9bd7951/rollins/db/1002/9855/image.svg",
+    ],
+    "eaglematerials.com": [
+        "https://www.eaglematerials.com/sites/default/files/eagle-materials.png",
+    ],
+    "ges.com": [
+        "https://mma.prnewswire.com/media/2426524/GES_COLOR_Logo.jpg",
+    ],
     "burnco.com": [
         "https://cdn.craft.cloud/284c7dbf-9389-4754-b7ea-50312329b835/assets/contentful/BURNCO-Pantone-485.jpg?fit=cover&format=webp&s=n961Eg_CNtjmIxeOIicr91ryKBGxXuGnT_HV09WvLp8",
     ],
@@ -87,7 +120,21 @@ def trim(image: Image.Image) -> Image.Image:
 
 def normalize(image: Image.Image) -> Image.Image:
     image = trim(image)
-    target = Image.new("RGBA", (600, 220), (255, 255, 255, 0))
+    alpha = image.getchannel("A")
+    visible = [
+        pixel[:3]
+        for pixel in image.getdata()
+        if pixel[3] > 32
+    ]
+    mean_luminance = (
+        sum(0.2126 * red + 0.7152 * green + 0.0722 * blue for red, green, blue in visible)
+        / len(visible)
+        if visible
+        else 0
+    )
+    has_transparency = alpha.getextrema()[0] < 255
+    background = (10, 22, 40, 255) if has_transparency and mean_luminance > 205 else (255, 255, 255, 0)
+    target = Image.new("RGBA", (600, 220), background)
     scale = min(540 / image.width, 170 / image.height, 1.0 if max(image.size) > 500 else 4.0)
     resized = image.resize(
         (max(1, round(image.width * scale)), max(1, round(image.height * scale))),
