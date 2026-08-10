@@ -543,9 +543,9 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-08-09T17:40:10.8560804+00:00`
+- **As of:** `2026-08-10T12:03:33.1766151+00:00`
 - **Overall:** `degraded`
-- **Queue:** revision `399`, `102` work items, normal `2/3`, emergency `0/1` active
+- **Queue:** revision `407`, `105` work items, normal `2/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `8/21` canonical clients registered, `2/65` systems verified, `6` exact Bitwarden item locators
@@ -560,10 +560,10 @@ Mode: `manual-pilot`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `MarketingChief-DailyCalibration`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
-  - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
+  - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `1`
 - **Human gates:** `active_client_exact_bw_item_mapping`
 - **Deferred actions:** `secondary_exposed_password_rotation`
-- **Warnings:** Bitwarden bridge integrity does not match the independently reviewed build; execution was refused; Gmail base audit plus exact-route supplements do not cover the canonical registry exactly once
+- **Warnings:** MarketingChief-SitesBridge last result is 1; Bitwarden bridge integrity does not match the independently reviewed build; execution was refused; Gmail base audit plus exact-route supplements do not cover the canonical registry exactly once
 
 ## Standing operating contract
 
