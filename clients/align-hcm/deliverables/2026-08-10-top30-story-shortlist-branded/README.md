@@ -41,6 +41,15 @@ files, same data, one design system:
   for the dark surface with the dataviz six-check validator. Validation
   checklists and notes persist in localStorage; current filter exports to CSV.
   Regenerates via `build_command_deck.py`.
+  v2 (22:10 UTC read): won, open, and lost are now split by real deal state.
+  The earlier "open" bucket was hs_is_closed_won=false, which also contained
+  closed-lost deals; true open is hs_is_closed=false. Corrected figures: $1.30M
+  open across 6 live deals, $5.01M closed lost (including a $4.0M MTA NY loss
+  in 2025), and the engagement matrix is closed-won only. Adds a live signal
+  feed, an open-deal board with stages, owners, and close dates, per-client win
+  rates, and a design pass from the dillon-os ui-design and motion-design
+  skills: editorial kickers, gradient-hairline panels, Inter plus Syne type,
+  reveal and count-up motion with reduced-motion and no-JS guards.
 
 ## What was added vs the source file
 
