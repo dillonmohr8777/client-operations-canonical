@@ -16,9 +16,9 @@ CHROME = "/opt/pw-browsers/chromium-1194/chrome-linux/chrome"
 FONTDIR = HERE / "fonts"
 
 VARIANTS = {
-    "a": ("template-a.html", "project-hope-onepager-A-contact-band"),
-    "b": ("template-b.html", "project-hope-onepager-B-contact-panel"),
+    "tall": ("template-tall.html", "project-hope-onepager"),
 }
+PAGE_IN = (8.5, 14)          # page size the templates declare
 
 def font_css():
     css = []
@@ -84,7 +84,7 @@ def measure(variant):
                         "--virtual-time-budget=4000", "--dump-dom", str(src)],
                        capture_output=True, text=True, check=True)
     m = re.search(r"<title>MEASURE ([^<]*)</title>", r.stdout)
-    print(f"\n=== variant {variant.upper()} (page = 792pt) ===")
+    print(f"\n=== variant {variant} (page = {PAGE_IN[1]*72:.0f}pt tall) ===")
     if not m:
         print("  !! no measurement captured"); return
     for kv in m.group(1).split():
@@ -105,7 +105,7 @@ def render(variant):
     print(f"{stem}.pdf  pages={pages}  "
           f"{float(mb[2])/72:.2f}x{float(mb[3])/72:.2f}in  {len(d)//1024}KB")
 
-    W, H, S = 816, 1056, 2
+    W, H, S = int(PAGE_IN[0]*96), int(PAGE_IN[1]*96), 2
     shot = HERE / f"{stem}-preview.png"
     npages = 1
     subprocess.run([CHROME, *base, f"--force-device-scale-factor={S}",
