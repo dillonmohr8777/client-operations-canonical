@@ -8,23 +8,29 @@ Redesign of the "Your Deal Is Stalled" partner offer sheet for Dayforce sellers.
 Same offer, same approved copy, rebuilt as one tall page with a real type system,
 reworked boxes, and the Align logo as a true vector.
 
-## Open item: the Dayforce logo
+## Logos
 
-The header carries a plain bordered text designation reading "DAYFORCE PARTNER",
-**not the Dayforce logo.** It is deliberately set as a small two-line label at
-label size so it cannot be mistaken for the wordmark. The official mark could not
-be fetched: outbound egress in the build session is restricted to a short
-allowlist, and no Dayforce artwork exists anywhere in this repo or in `dillon-os`.
-Drawing a trademark from memory was not an acceptable substitute.
+Both marks are real vectors, traced from supplied artwork and reversed to white
+for the navy bands. Neither is a font imitation.
 
-To drop the real logo in, put the file beside `src/build.py` as
-`dayforce-logo.svg` (preferred) or `.png`/`.jpg`/`.webp`, then rebuild.
-`build.py` detects it and replaces the text designation with a proper lockup:
-the logo plus an orange "PARTNER" label beneath it. The reserved slot is 78 pt
-wide, close to the 68 pt the text designation occupies, so the header stays
-balanced when it is swapped. An SVG filled with `currentColor` will reverse to
-white automatically; a fixed-color SVG or a raster will be placed as-is, so use a
-white or knockout version for the navy header.
+**Dayforce.** Traced from the supplied artwork to `dayforce-logo.svg`, one path
+per letter with the background dropped, so nothing sits behind the wordmark on
+the navy header. Dayforce blue is `#346FE7`, sampled from that file. The paths are
+filled with `currentColor`, so one file serves every placement: white in the
+header lockup here, or set `color` to `#346FE7` on a light background. It sits
+beside the Align logo with a hairline divider and an orange "PARTNER" label, sized
+to 94 pt wide so its wordmark reads at about the same optical weight as Align's.
+
+**Align HCM.** The original sheet pasted a JPEG logo inside a white box with a
+dark green stroke. Both are gone. The artwork was split into its gray and orange
+layers and retraced, so the wordmark knocks out to white with the slash and dots
+in brand orange. The orange was normalized to the documented `#E8832A`; the source
+JPEG had drifted to about `#E9983D`. Ships as `align-logo-reversed.svg` for dark
+backgrounds and `align-logo-dark.svg` for light ones.
+
+`build.py` still supports swapping the partner mark: replace `dayforce-logo.svg`
+and rebuild. If the file is missing it falls back to a plain text designation
+rather than drawing an imitation of the wordmark.
 
 Also worth confirming before this goes out: that Align's Dayforce partner
 agreement covers using the Dayforce mark on partner-authored collateral.
@@ -40,15 +46,6 @@ agreement covers using the Dayforce mark on partner-authored collateral.
 - Body copy 9.4 to 9.7 pt, up from roughly 7 pt on the original sheet
 - Frame is even all the way down: 22 pt under the header, about 26 pt between
   sections, 24 pt above the contact band
-
-## Align HCM logo
-
-The original sheet pasted a JPEG logo inside a white box with a dark green
-stroke. Both are gone. The artwork was split into its gray and orange layers and
-retraced to vector, so the wordmark knocks out to white with the slash and dots
-in brand orange. The orange was normalized to the documented `#E8832A`; the
-source JPEG had drifted to about `#E9983D`. Ships as `align-logo-reversed.svg`
-for dark backgrounds and `align-logo-dark.svg` for light ones.
 
 ## Contact band
 
