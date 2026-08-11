@@ -2,90 +2,87 @@
 
 Date: 2026-08-11
 Client: `align-hcm`
-Deliverable: `project-hope-ukg-partner-onepager.pdf`
 
 Redesign of the "Your Deal Is Stalled" partner offer sheet for UKG sellers. Same
 offer, same approved copy, rebuilt as a single Letter page with a real type
-system, reworked boxes, and a cleaned-up logo.
+system, reworked boxes, both logos as true vectors, and Ben Harrison's contact
+block promoted to the focal point of the page.
+
+Two iterations ship. Pick one.
+
+| | `project-hope-onepager-A-contact-band.pdf` | `project-hope-onepager-B-contact-panel.pdf` |
+|---|---|---|
+| Contact block | Full-width hero band across the bottom | Tall panel in the bottom right |
+| Name size | 26 pt | 28 pt |
+| Referral steps | Three across, above the band | Stacked vertically beside the panel |
+| Logos in contact block | Align | Align and UKG |
+| Reads as | A letterhead-style footer signature | A business card built into the page |
+
+Both are one page at 8.5 x 11 in with identical copy and identical type sizes
+everywhere except the name. A is the safer, more formal layout. B gives the
+contact block the most visual weight and puts both logos next to it.
 
 ## Specs
 
-- 8.5 x 11 in (612 x 792 pt), exactly one page, 192 KB
-- Typeface: Plus Jakarta Sans (400/500/600/700/800), embedded in the PDF
+- 8.5 x 11 in (612 x 792 pt), exactly one page. A is 249 KB, B is 278 KB
+- Typeface: Plus Jakarta Sans (400/500/600/700/800), embedded
 - Palette from `dillon-os/02_FullTimeJob/AlignHCM/brand-guidelines.md`:
   navy `#0A1628`, orange `#E8832A`, hot orange `#F05A28`, surface `#F6F8FB`
-- Full-bleed navy header and footer bands, 30 pt side margins on the body
+- Body copy 8.1 to 8.6 pt, up from roughly 7 pt on the original sheet
 
-## What changed
+## The contact block
 
-Logo
-- The old sheet pasted a JPEG logo inside a white box with a dark green stroke
-  sitting on the navy header. Both the box and the stroke are gone.
-- The logo was extracted from the source artwork, separated into its gray and
-  orange layers, and retraced as vector paths (`src/align-logo-*.svg`). It now
-  scales cleanly and knocks out onto navy: wordmark reversed to white, slash and
-  dots in brand orange.
-- The wordmark orange was normalized to the documented brand orange `#E8832A`.
-  The source JPEG had drifted to roughly `#E9983D`.
-- Two variants ship: `align-logo-reversed.svg` for dark backgrounds and
-  `align-logo-dark.svg` for light ones.
+This is the focus of the document, so it carries the most design weight:
 
-Type
-- Body copy moved from roughly 7 pt to 8.5 to 8.9 pt. Section headings, card
-  titles, and the contact block all went up with it.
-- Headline is 28 pt with the orange second line at 16.2 pt, both set to stay on
-  one line.
+- Raised card on the navy band: navy gradient, a 3.6 pt orange left edge, an
+  inset top highlight, and a soft drop shadow so it reads as lifted off the page
+- A warm orange glow behind the card, which is what gives it depth on a dark
+  background where a plain shadow would disappear
+- "Ben Harrison" at 26 pt in A and 28 pt in B, with a soft text shadow. That is
+  more than double the 12 pt it was on the previous version
+- Phone number at 14 pt in brand orange, email at 10 to 11 pt in white, each
+  behind a rounded orange icon chip
+- Role, company, and the "REFER A STALLED DEAL" label all kept
+- The whole band is 112 pt tall in A against 55 pt before, so the block is
+  exactly double its old size
 
-Boxes
-- Five Reasons: bordered cards on a light surface with an orange gradient cap,
-  the index moved to a corner badge, and titles padded to a common two-line
-  height so every card's body copy starts on the same baseline.
-- HOPE stages: navy header holding the stage name, duration, and client time in
-  orange, a white body, and a dashed-off "Solves" footer. Footers align across
-  all four cards regardless of body length.
-- The offer: one navy panel split into Prospect and You columns with tag chips
-  and drawn check bullets, replacing the flat text block.
-- Referral steps: orange rule blocks, lighter than the boxed sections above so
-  the page does not read as four identical grids.
-- Contact: full-bleed navy footer band with the logo, name, role, and details.
+## Logos
 
-Spacing
-- The old sheet left about a fifth of the page empty at the bottom. Content now
-  fills the full 11 in: 14 pt above the body, 14 pt between sections, 16 pt
-  below, with the header and footer trimmed to pay for it.
+Both marks are real vectors, traced from source artwork and reversed to white
+for the navy header. Neither is a font imitation.
 
-## The UKG logo is a stand-in
+**Align HCM.** The original sheet pasted a JPEG logo inside a white box with a
+dark green stroke. Both are gone. The artwork was split into its gray and orange
+layers and retraced, so the wordmark now knocks out to white with the slash and
+dots in brand orange. The orange was normalized to the documented `#E8832A`; the
+source JPEG had drifted to about `#E9983D`. Ships as `align-logo-reversed.svg`
+for dark backgrounds and `align-logo-dark.svg` for light ones.
 
-The UKG mark in the header is **"UKG" set in Plus Jakarta Sans ExtraBold, not the
-official logo.** It needs to be swapped before this goes to UKG sellers.
+**UKG.** This is the current mark from the October 2025 rebrand, traced from the
+supplied artwork to `ukg-logo.svg`. Its own dark teal is `#205050`, sampled from
+that file. The SVG is filled with `currentColor`, so a single file serves every
+placement: white in the header lockup and in B's contact panel, or set `color`
+to `#205050` on a light background. It appears beside the Align logo with a
+hairline divider and an orange "PARTNER" label.
 
-UKG relaunched its brand on 2025-10-01 with a new logotype by FUNDAMENTALco, so
-the current mark is the post-October-2025 one, not the older wordmark. This
-session could not fetch it: outbound egress is restricted to a short allowlist,
-and every source was refused by the proxy, including `ukg.com`, UKG's own partner
-brand portal at `cdp.content.ukg.com`, `brandfetch.com`, and Wikimedia. Only
-UKG Light Teal `#30CEBB` could be confirmed, and the dark teal could not.
-
-To swap it in, drop the official file beside `src/build.py` as `ukg-logo.svg`
-(or `.png`/`.jpg`/`.webp`) and rebuild. `build.py` picks it up automatically and
-replaces the stand-in. The slot is sized at 62 pt wide with a 26 pt max height,
-next to a hairline divider and the orange "PARTNER" label. Pull the asset from
-the UKG partner brand portal so the version and the usage rules match.
-
-Also worth confirming before this ships: that Align's UKG partner agreement
-covers putting the UKG mark on partner-authored collateral.
+Still worth confirming before this goes out: that Align's UKG partner agreement
+covers using the UKG mark on partner-authored collateral.
 
 ## Rebuilding
 
 ```
-cd src && python3 build.py            # writes hope-onepager.{html,pdf} + preview
-python3 build.py --measure            # dumps section heights in pt, for fit work
+cd src
+python3 build.py              # both iterations, PDF + preview each
+python3 build.py a            # just one
+python3 build.py --measure    # band heights in pt, for fit work
 ```
 
-Needs Python with `pillow`, and Chromium at the path in `build.py`. `template.html`
-holds the markup and CSS. `build.py` inlines the fonts and logo, then prints to
-PDF, so the output is self-contained with no external requests.
+Needs Python with `pillow`, and Chromium at the path in `build.py`.
+`template-a.html` and `template-b.html` hold the markup and CSS and share every
+value except the bottom row. `build.py` inlines the fonts and both logos as SVG
+symbols, so the output is self-contained with no external requests.
 
 The `--measure` pass reports every band's height against the 792 pt page. Use it
 when changing copy: if `slack` goes negative the layout no longer fits on one
-page.
+page. Both iterations currently sit at about 44 pt of slack, which is spent as
+roughly 15 pt of air between sections.
