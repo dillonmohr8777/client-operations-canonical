@@ -50,6 +50,13 @@ files, same data, one design system:
   rates, and a design pass from the dillon-os ui-design and motion-design
   skills: editorial kickers, gradient-hairline panels, Inter plus Syne type,
   reveal and count-up motion with reduced-motion and no-JS guards.
+  v3: server-rendered and mobile-first. Every section is baked into the HTML
+  at build time, so the deck renders fully in script-blocking contexts (mobile
+  file previews, sandboxed webviews); JavaScript only upgrades it to tabs,
+  filters, drawer, and motion. Without JS the six views stack as one scrolling
+  page and the nav anchors jump to them. Responsive pass: scaled constellation,
+  compact header, two-column KPI grid, tightened chart tracks, tap-to-show
+  tooltips, scrollable filter row, 100dvh drawer.
 
 ## What was added vs the source file
 
