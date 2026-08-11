@@ -40,6 +40,27 @@ def svg_symbol(path, sym_id):
     vb = vb.group(1) if vb else "0 0 100 100"
     return f'<symbol id="{sym_id}" viewBox="{vb}">{inner}</symbol>', vb
 
+# Until the official Dayforce logo is supplied, the header carries a plain text
+# designation rather than an imitation of the wordmark. Drop `dayforce-logo.svg`
+# (or .png/.jpg/.webp) beside this script and rebuild to swap it in.
+PARTNER_BADGE = '<div class="df-badge">Dayforce<br>Partner</div>'
+
+def partner_logo():
+    svg = HERE / "dayforce-logo.svg"
+    if svg.exists():
+        print("partner: using dayforce-logo.svg")
+        return svg_symbol(svg, "df-logo")
+    for ext in ("png", "jpg", "jpeg", "webp"):
+        f = HERE / f"dayforce-logo.{ext}"
+        if f.exists():
+            b64 = base64.b64encode(f.read_bytes()).decode()
+            print(f"partner: using dayforce-logo.{ext}")
+            inner = (f'<image href="data:image/{ext};base64,{b64}" '
+                     'width="100" height="100" preserveAspectRatio="xMidYMid meet"/>')
+            return f'<symbol id="df-logo" viewBox="0 0 100 100">{inner}</symbol>', "0 0 100 100"
+    print("partner: no dayforce-logo.* found, using the text designation")
+    return None
+
 MEASURE = """
 <script>
 document.fonts.ready.then(function(){
@@ -70,8 +91,15 @@ def build(variant, measure=False):
     html = (HERE / tpl).read_text()
     html = html.replace("/*FONTS*/", font_css())
     align, _ = svg_symbol(HERE / "align-logo-reversed.svg", "align-logo")
-    ukg, _ = svg_symbol(HERE / "ukg-logo.svg", "ukg-logo")
-    html = html.replace("<!--SYMBOLS-->", align + "\n" + ukg)
+    symbols, mark = align, PARTNER_BADGE
+    df = partner_logo()
+    if df:
+        sym, vb = df
+        symbols += "\n" + sym
+        mark = (f'<svg class="df-logo" viewBox="{vb}"><use href="#df-logo"/></svg>'
+                '<div class="df-label">Partner</div>')
+    html = html.replace("<!--SYMBOLS-->", symbols)
+    html = html.replace("<!--PARTNER_MARK-->", mark)
     if measure:
         html = html.replace("<!--MEASURE-->", MEASURE)
     out = HERE / (f"_measure-{variant}.html" if measure else f"_build-{variant}.html")
