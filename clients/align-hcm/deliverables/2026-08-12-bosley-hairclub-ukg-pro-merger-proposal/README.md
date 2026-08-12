@@ -36,6 +36,29 @@ Type is Calibri for body and UI (matching both source decks) and Cambria for
 slide titles and the investment figure, which keeps the serif character of the
 original Bosley deck. Both ship with Office, so nothing substitutes on open.
 
+## Card and edge system
+
+There is one card treatment in the deck and it is used everywhere — executive
+summary, timeline note, investment cards, engagement callout:
+
+- **Fill** navy `#232E3E`, or `#1D2735` when the card sits on a navy slide
+- **Edge** `#4A5C75` at 1.25pt (`#55606E` on navy). The original `#DCE2E9`
+  hairline all but vanished on screen; these read at presentation distance
+  without turning into a box-drawing exercise
+- **Icon** orange `#E97722` glyph on a raised `#2B3849` disc, ringed in the same
+  edge colour as the cards so the discs and the cards read as one system
+- **Copy** white titles, `#AEB9C8` body — 6.8:1 on the card fill
+
+Running one dark card style across both the light and the dark slides is what
+keeps the deck reading as a single object rather than two halves. Table edges
+follow the same logic in two steps: `#C5CEDA` for row rules and the outer
+frame, `#E3E8EE` for the column separators, which need to be felt rather than
+seen.
+
+Icons are recoloured, never redrawn — `build/recolor_icons.py` keeps the
+original coverage mask and swaps only the fill, preserving the stroke weights
+and optical sizing of the house set.
+
 ## Logos
 
 - **Align HCM** — `assets/align-hcm-logo.png`, extracted byte-for-byte from
@@ -87,6 +110,7 @@ Content is transcribed from the source deck screenshots without rewording.
 ```bash
 cd build
 python3 extract_logo.py                                    # client mark -> transparent PNGs
+python3 recolor_icons.py                                   # orange copies of the house icons
 python3 build_deck.py                                      # writes the .pptx
 python3 render_qa.py ../Align_HCM_*.pptx ../qa             # rasterizes for review
 ```

@@ -147,6 +147,28 @@ def cell_fill(cell):
     return None
 
 
+def cell_borders(cell):
+    """Read the real lnL/lnR/lnT/lnB off the cell rather than assuming a colour.
+
+    Edge brightness is a deliberate design choice here, so the preview has to
+    show what the file actually carries.
+    """
+    out = {}
+    tcPr = cell._tc.find(qn("a:tcPr"))
+    if tcPr is None:
+        return out
+    for edge in ("L", "R", "T", "B"):
+        ln = tcPr.find(qn(f"a:ln{edge}"))
+        if ln is None:
+            continue
+        clr = ln.find(f'{qn("a:solidFill")}/{qn("a:srgbClr")}')
+        if clr is None:
+            continue
+        w_emu = int(ln.get("w", "12700"))
+        out[edge] = ("#" + clr.get("val"), max(1, round(w_emu / 12700 * DPI / 72)))
+    return out
+
+
 def render(path, outdir):
     prs = Presentation(path)
     W = int(Emu(prs.slide_width).inches * DPI)
@@ -187,9 +209,16 @@ def render(path, outdir):
                     for j, cell in enumerate(row.cells):
                         cw = px(tbl.columns[j].width)
                         chh = px(row.height)
+                        x0, y0 = col_x[j], row_y[i]
+                        x1, y1 = x0 + cw, y0 + chh
                         f = cell_fill(cell)
-                        dr.rectangle([col_x[j], row_y[i], col_x[j] + cw, row_y[i] + chh],
-                                     fill=f, outline="#DCE2E9", width=1)
+                        if f:
+                            dr.rectangle([x0, y0, x1, y1], fill=f)
+                        edges = cell_borders(cell)
+                        for edge, (col, wid) in edges.items():
+                            seg = {"L": [x0, y0, x0, y1], "R": [x1, y0, x1, y1],
+                                   "T": [x0, y0, x1, y0], "B": [x0, y1, x1, y1]}[edge]
+                            dr.line(seg, fill=col, width=wid)
                         ml = px(cell.margin_left) if cell.margin_left else 6
                         mt = px(cell.margin_top) if cell.margin_top else 4
                         draw_text_frame(dr, cell.text_frame,

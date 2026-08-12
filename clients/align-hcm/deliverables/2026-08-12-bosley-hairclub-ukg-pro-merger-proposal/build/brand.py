@@ -24,6 +24,16 @@ INK_2       = RGBColor(0x55, 0x60, 0x6E)   # #55606E secondary
 WHITE       = RGBColor(0xFF, 0xFF, 0xFF)
 CARD_BG     = RGBColor(0xF6, 0xF8, 0xFA)   # subtle tint of BORDER for light cards
 
+# --- edges ------------------------------------------------------------------
+# The original #DCE2E9 hairline all but vanished on screen. Edges are brightened
+# in two steps: a defining rule that carries structure, and a soft one for
+# secondary separators that should be felt rather than seen.
+BORDER_BRIGHT = RGBColor(0xC5, 0xCE, 0xDA)  # table row rules, outer edges
+BORDER_SOFT   = RGBColor(0xE3, 0xE8, 0xEE)  # column separators inside tables
+CARD_DARK_LINE = RGBColor(0x4A, 0x5C, 0x75)  # lit edge on a dark card, light bg
+CARD_NAVY_LINE = RGBColor(0x55, 0x60, 0x6E)  # lit edge on a dark card, navy bg
+ICON_CIRCLE    = NAVY_ELEV                   # disc behind an orange glyph
+
 # navy ramp used by the timeline chips (light -> dark reads left -> right)
 RAMP = [
     RGBColor(0x1D, 0x27, 0x35),

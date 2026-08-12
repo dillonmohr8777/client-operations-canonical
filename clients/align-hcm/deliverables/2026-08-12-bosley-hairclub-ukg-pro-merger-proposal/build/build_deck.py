@@ -13,6 +13,7 @@ import copy
 
 from brand import (
     ORANGE, ORANGE_DEEP, NAVY, NAVY_DEEP, NAVY_ELEV, SLATE, SLATE_LT, BORDER,
+    BORDER_BRIGHT, BORDER_SOFT, CARD_DARK_LINE, CARD_NAVY_LINE, ICON_CIRCLE,
     INK, INK_2, WHITE, CARD_BG, RAMP, FONT_BODY, FONT_HEAD,
     SLIDE_W, SLIDE_H, MARGIN, CONTENT_W, BODY_TOP, FOOTER_Y,
     rect, ellipse, textbox, write, anchor_middle, header, footer, blank, bg, picture,
@@ -24,20 +25,32 @@ OUT = os.path.join(HERE, "Align_HCM_Bosley_HairClub_UKG_Pro_Merger.pptx")
 
 
 # ---------------------------------------------------------------- table utils
-def _set_border(cell, edges=("L", "R", "T", "B"), color=BORDER, width_pt=0.75):
+def _set_border(cell, spec):
+    """Apply cell edges. `spec` maps edge -> (color, width_pt).
+
+    CT_TableCell declares lnL, lnR, lnT, lnB as an ordered sequence, so all four
+    are rebuilt in one pass and inserted in that order — writing them per-edge
+    lands them reversed.
+    """
     tcPr = cell._tc.get_or_add_tcPr()
-    for edge in edges:
-        tag = qn(f"a:ln{edge}")
-        for old in tcPr.findall(tag):
+    for edge in ("L", "R", "T", "B"):
+        for old in tcPr.findall(qn(f"a:ln{edge}")):
             tcPr.remove(old)
-        ln = tcPr.makeelement(tag, {"w": str(int(width_pt * 12700)), "cap": "flat",
-                                    "cmpd": "sng", "algn": "ctr"})
+
+    at = 0
+    for edge in ("L", "R", "T", "B"):
+        if edge not in spec:
+            continue
+        color, width_pt = spec[edge]
+        ln = tcPr.makeelement(qn(f"a:ln{edge}"),
+                              {"w": str(int(width_pt * 12700)), "cap": "flat",
+                               "cmpd": "sng", "algn": "ctr"})
         fill = ln.makeelement(qn("a:solidFill"), {})
         clr = ln.makeelement(qn("a:srgbClr"), {"val": str(color)})
         fill.append(clr)
         ln.append(fill)
-        # OOXML requires the ln* elements in L,R,T,B order after tcPr's fills
-        tcPr.insert(0, ln)
+        tcPr.insert(at, ln)
+        at += 1
 
 
 def _cell(cell, text, size=10, bold=False, color=INK, fill=None, align="l",
@@ -53,6 +66,37 @@ def _cell(cell, text, size=10, bold=False, color=INK, fill=None, align="l",
     write(cell.text_frame, [{"text": text}],
           {"size": size, "bold": bold, "color": color, "align": align, "font": font,
            "line_spacing": 0.95})
+
+
+def dark_card(slide, x, y, w, h, on_navy=False, name=None):
+    """The deck's one card treatment: navy fill, lit edge, orange icon inside.
+
+    A single card style everywhere is what keeps the light and dark slides
+    reading as one deck rather than two.
+    """
+    return rect(slide, x, y, w, h,
+                fill=NAVY_DEEP if on_navy else NAVY,
+                line=CARD_NAVY_LINE if on_navy else CARD_DARK_LINE,
+                line_w=1.25, radius=0.13, name=name)
+
+
+def orange_icon(slide, icon, x, y, disc=0.58):
+    """Orange glyph on a raised navy disc, centred on (x, y) as the disc origin.
+
+    The disc carries the same lit edge as the cards, so the ring reads as one
+    system with the card outlines rather than as a separate decoration.
+    """
+    from pptx.enum.shapes import MSO_SHAPE
+    shp = slide.shapes.add_shape(MSO_SHAPE.OVAL, Inches(x), Inches(y),
+                                 Inches(disc), Inches(disc))
+    shp.fill.solid()
+    shp.fill.fore_color.rgb = ICON_CIRCLE
+    shp.line.color.rgb = CARD_DARK_LINE
+    shp.line.width = Pt(1.0)
+    shp.shadow.inherit = False
+    glyph = disc * 0.50
+    picture(slide, os.path.join(HERE, "assets", "icons-orange", icon),
+            x + (disc - glyph) / 2, y + (disc - glyph) / 2, w=glyph)
 
 
 def add_table(slide, x, y, col_w, row_h, name=None):
@@ -150,14 +194,12 @@ def slide_exec_summary(prs):
     for i, (icon, title, body) in enumerate(cards):
         cx = MARGIN + (cw + gap) * (i % 2)
         cy = top + (ch + gap) * (i // 2)
-        rect(s, cx, cy, cw, ch, fill=CARD_BG, line=BORDER, radius=0.12,
-             name=f"ExecCard{i+1}")
-        ellipse(s, cx + 0.36, cy + 0.34, 0.56, NAVY)
-        picture(s, A(icon), cx + 0.36 + 0.145, cy + 0.34 + 0.145, w=0.27)
-        _, tf = textbox(s, cx + 1.10, cy + 0.40, cw - 1.46, 0.46)
-        write(tf, [{"text": title}], {"size": 13.5, "bold": True, "color": NAVY})
-        _, tf = textbox(s, cx + 0.36, cy + 1.02, cw - 0.72, ch - 1.24)
-        write(tf, [{"text": body}], {"size": 11, "color": INK_2, "line_spacing": 1.22})
+        dark_card(s, cx, cy, cw, ch, name=f"ExecCard{i+1}")
+        orange_icon(s, icon, cx + 0.36, cy + 0.34)
+        _, tf = textbox(s, cx + 1.14, cy + 0.47, cw - 1.50, 0.46)
+        write(tf, [{"text": title}], {"size": 13.5, "bold": True, "color": WHITE})
+        _, tf = textbox(s, cx + 0.36, cy + 1.04, cw - 0.72, ch - 1.26)
+        write(tf, [{"text": body}], {"size": 11, "color": SLATE_LT, "line_spacing": 1.22})
 
     footer(s, 2)
     return s
@@ -214,13 +256,12 @@ def slide_timeline(prs):
           {"size": 10, "italic": True, "color": INK_2, "align": "c"})
 
     note_y = 5.34
-    rect(s, MARGIN, note_y, CONTENT_W, 0.96, fill=CARD_BG, line=BORDER, radius=0.10)
-    ellipse(s, MARGIN + 0.32, note_y + 0.22, 0.52, NAVY)
-    picture(s, A("icon-calendar.png"), MARGIN + 0.32 + 0.135, note_y + 0.22 + 0.135, w=0.25)
-    _, tf = textbox(s, MARGIN + 1.04, note_y + 0.26, CONTENT_W - 1.38, 0.50)
+    dark_card(s, MARGIN, note_y, CONTENT_W, 0.96, name="TimelineNote")
+    orange_icon(s, "icon-calendar.png", MARGIN + 0.32, note_y + 0.19)
+    _, tf = textbox(s, MARGIN + 1.06, note_y + 0.26, CONTENT_W - 1.40, 0.50)
     write(tf, [{"text": "Target go-live: January 1, 2027, with true go-live defined as "
                         "the start of the first supported pay period."}],
-          {"size": 11.5, "color": INK_2, "line_spacing": 1.2})
+          {"size": 11.5, "color": SLATE_LT, "line_spacing": 1.2})
 
     footer(s, 3)
     return s
@@ -253,18 +294,24 @@ def slide_milestones(prs):
     row_h = [0.44] + [0.545] * len(rows)
     tbl = add_table(s, MARGIN, 2.42, col_w, row_h, name="MilestonesTable")
 
+    ncols = 3
     for j, head in enumerate(["Phase", "Weeks", "Key Milestones"]):
         _cell(tbl.cell(0, j), head, size=10.5, bold=True, color=WHITE, fill=NAVY)
-        _set_border(tbl.cell(0, j), ("L", "R", "T", "B"), NAVY)
+        _set_border(tbl.cell(0, j), {e: (NAVY, 1.0) for e in "LRTB"})
 
     for i, (phase, weeks, ms) in enumerate(rows, start=1):
         zebra = WHITE if i % 2 else CARD_BG
         _cell(tbl.cell(i, 0), phase, size=10.5, bold=True, color=NAVY, fill=zebra)
         _cell(tbl.cell(i, 1), weeks, size=10, bold=True, color=ORANGE, fill=zebra, align="c")
         _cell(tbl.cell(i, 2), ms, size=10, color=INK_2, fill=zebra)
-        for j in range(3):
-            _set_border(tbl.cell(i, j), ("T", "B"), BORDER, 0.75)
-            _set_border(tbl.cell(i, j), ("L", "R"), zebra, 0.75)
+        last = i == len(rows)
+        for j in range(ncols):
+            _set_border(tbl.cell(i, j), {
+                "T": (BORDER_BRIGHT, 1.0),
+                "B": (BORDER_BRIGHT, 1.25 if last else 1.0),
+                "L": (BORDER_BRIGHT if j == 0 else BORDER_SOFT, 1.0),
+                "R": (BORDER_BRIGHT if j == ncols - 1 else BORDER_SOFT, 1.0),
+            })
 
     footer(s, 4)
     return s
@@ -281,7 +328,7 @@ def slide_investment(prs):
     lw = 5.20
     rw = CONTENT_W - lw - gap
 
-    rect(s, MARGIN, top, lw, ch, fill=NAVY_DEEP, radius=0.14, name="PriceCard")
+    dark_card(s, MARGIN, top, lw, ch, on_navy=True, name="PriceCard")
     _, tf = textbox(s, MARGIN + 0.30, top + 0.44, lw - 0.60, 1.00)
     write(tf, [{"text": "$93,955"}],
           {"size": 60, "bold": True, "color": WHITE, "font": FONT_HEAD, "align": "c"})
@@ -294,10 +341,9 @@ def slide_investment(prs):
           {"size": 10, "color": SLATE_LT, "align": "c", "line_spacing": 1.18})
 
     rx = MARGIN + lw + gap
-    rect(s, rx, top, rw, ch, fill=NAVY_ELEV, radius=0.14, name="EarlyGoLiveCard")
-    ellipse(s, rx + 0.34, top + 0.34, 0.56, ORANGE)
-    picture(s, A("icon-arrow-up.png"), rx + 0.34 + 0.145, top + 0.34 + 0.145, w=0.27)
-    _, tf = textbox(s, rx + 1.06, top + 0.42, rw - 1.40, 0.40)
+    dark_card(s, rx, top, rw, ch, on_navy=True, name="EarlyGoLiveCard")
+    orange_icon(s, "icon-arrow-up.png", rx + 0.34, top + 0.34)
+    _, tf = textbox(s, rx + 1.08, top + 0.42, rw - 1.42, 0.40)
     write(tf, [{"text": "+$12,900 for an earlier go-live"}],
           {"size": 15, "bold": True, "color": WHITE})
     _, tf = textbox(s, rx + 0.34, top + 1.06, rw - 0.68, 1.05)
@@ -307,10 +353,9 @@ def slide_investment(prs):
           {"size": 11, "color": SLATE_LT, "line_spacing": 1.24})
 
     by = top + ch + gap
-    rect(s, MARGIN, by, CONTENT_W, 1.30, fill=NAVY_DEEP, radius=0.14, name="ScopeCard")
-    ellipse(s, MARGIN + 0.34, by + 0.36, 0.56, NAVY_ELEV)
-    picture(s, A("icon-calendar.png"), MARGIN + 0.34 + 0.145, by + 0.36 + 0.145, w=0.27)
-    _, tf = textbox(s, MARGIN + 1.06, by + 0.24, CONTENT_W - 1.40, 0.34)
+    dark_card(s, MARGIN, by, CONTENT_W, 1.30, on_navy=True, name="ScopeCard")
+    orange_icon(s, "icon-calendar.png", MARGIN + 0.34, by + 0.36)
+    _, tf = textbox(s, MARGIN + 1.08, by + 0.24, CONTENT_W - 1.42, 0.34)
     write(tf, [{"text": "12 weeks of implementation + 4 weeks of post go-live support "
                         "= 16 weeks total"}],
           {"size": 14, "bold": True, "color": WHITE})
@@ -344,10 +389,11 @@ def slide_engagement(prs):
     row_h = [0.46] + [0.52] * len(rows)
     tbl = add_table(s, MARGIN, 2.42, col_w, row_h, name="EngagementTable")
 
+    ncols = len(heads)
     for j, head in enumerate(heads):
         _cell(tbl.cell(0, j), head, size=10.5, bold=True, color=WHITE, fill=NAVY,
               align="l" if j == 0 else "c")
-        _set_border(tbl.cell(0, j), ("L", "R", "T", "B"), NAVY)
+        _set_border(tbl.cell(0, j), {e: (NAVY, 1.0) for e in "LRTB"})
 
     for i, (res, levels) in enumerate(rows, start=1):
         zebra = WHITE if i % 2 else CARD_BG
@@ -355,24 +401,27 @@ def slide_engagement(prs):
         for j, lv in enumerate(levels, start=1):
             _cell(tbl.cell(i, j), lv, size=10.5, bold=True, color=level_col[lv],
                   fill=zebra, align="c")
-        for j in range(len(heads)):
-            _set_border(tbl.cell(i, j), ("T", "B"), BORDER, 0.75)
-            _set_border(tbl.cell(i, j), ("L", "R"), zebra, 0.75)
+        last = i == len(rows)
+        for j in range(ncols):
+            _set_border(tbl.cell(i, j), {
+                "T": (BORDER_BRIGHT, 1.0),
+                "B": (BORDER_BRIGHT, 1.25 if last else 1.0),
+                "L": (BORDER_BRIGHT if j == 0 else BORDER_SOFT, 1.0),
+                "R": (BORDER_BRIGHT if j == ncols - 1 else BORDER_SOFT, 1.0),
+            })
 
     cy = 2.42 + sum(row_h) + 0.40
-    rect(s, MARGIN, cy, CONTENT_W, 1.44, fill=CARD_BG, line=BORDER, radius=0.12,
-         name="EngagementCallout")
-    ellipse(s, MARGIN + 0.34, cy + 0.42, 0.58, NAVY)
-    picture(s, A("icon-person.png"), MARGIN + 0.34 + 0.155, cy + 0.42 + 0.155, w=0.27)
-    _, tf = textbox(s, MARGIN + 1.08, cy + 0.28, CONTENT_W - 1.42, 0.34)
+    dark_card(s, MARGIN, cy, CONTENT_W, 1.44, name="EngagementCallout")
+    orange_icon(s, "icon-person.png", MARGIN + 0.34, cy + 0.43)
+    _, tf = textbox(s, MARGIN + 1.10, cy + 0.28, CONTENT_W - 1.44, 0.34)
     write(tf, [{"text": "Your team stays focused on decisions and validation"}],
-          {"size": 13.5, "bold": True, "color": NAVY})
-    _, tf = textbox(s, MARGIN + 1.08, cy + 0.68, CONTENT_W - 1.42, 0.62)
+          {"size": 13.5, "bold": True, "color": WHITE})
+    _, tf = textbox(s, MARGIN + 1.10, cy + 0.68, CONTENT_W - 1.44, 0.62)
     write(tf, [{"text": "HairClub's team confirms that Bosley employees fit existing "
                         "business rules, validates converted data, and supports UAT "
                         "sign-off. AlignHCM leads configuration, data conversion, and "
                         "testing coordination."}],
-          {"size": 11, "color": INK_2, "line_spacing": 1.22})
+          {"size": 11, "color": SLATE_LT, "line_spacing": 1.22})
 
     footer(s, 6)
     return s
@@ -399,19 +448,19 @@ def slide_contact(prs):
         ("icon-envelope.png", "allison.cox@alignhcm.com", None),
         ("icon-phone.png", "317-690-7960", None),
     ]
-    y = 3.92
+    disc, step = 0.66, 0.98
+    y = 3.84
     for icon, primary, secondary in contacts:
-        ellipse(s, 5.35, y, 0.54, NAVY_ELEV)
-        picture(s, A(icon), 5.35 + 0.14, y + 0.14, w=0.26)
+        orange_icon(s, icon, 5.35, y, disc=disc)
         if secondary:
-            _, tf = textbox(s, 6.14, y + 0.01, 6.1, 0.28)
-            write(tf, [{"text": primary}], {"size": 15, "bold": True, "color": WHITE})
-            _, tf = textbox(s, 6.14, y + 0.30, 6.1, 0.24)
-            write(tf, [{"text": secondary}], {"size": 11, "color": SLATE})
+            _, tf = textbox(s, 6.30, y - 0.01, 6.0, 0.38)
+            write(tf, [{"text": primary}], {"size": 23, "bold": True, "color": WHITE})
+            _, tf = textbox(s, 6.30, y + 0.39, 6.0, 0.26)
+            write(tf, [{"text": secondary}], {"size": 12.5, "color": SLATE})
         else:
-            _, tf = textbox(s, 6.14, y + 0.12, 6.1, 0.30)
-            write(tf, [{"text": primary}], {"size": 14, "color": WHITE})
-        y += 0.82
+            _, tf = textbox(s, 6.30, y + 0.14, 6.0, 0.38)
+            write(tf, [{"text": primary}], {"size": 20, "color": WHITE})
+        y += step
 
     _, tf = textbox(s, 5.35, FOOTER_Y, 4.0, 0.24)
     write(tf, [{"text": "alignhcm.com"}], {"size": 9, "color": SLATE})
