@@ -99,18 +99,20 @@ def slide_title(prs):
     _, tf = textbox(s, 0.90, 5.42, 7.6, 0.32)
     write(tf, [{"text": "August 2026"}], {"size": 13, "bold": True, "color": SLATE})
 
-    # client lockup — white plate so a supplied dark logo drops straight in
-    rect(s, 9.42, 2.62, 3.42, 2.30, fill=WHITE, radius=0.16, name="ClientLogoPlate")
-    _, tf = textbox(s, 9.42, 3.06, 3.42, 0.50, name="CLIENT_LOGO_BOSLEY")
-    write(tf, [{"text": "BOSLEY"}], {"size": 27, "bold": True, "color": NAVY,
-                                     "font": FONT_HEAD, "align": "c", "spacing": 2.2})
-    rect(s, 11.02, 3.70, 0.22, 0.035, fill=ORANGE)
-    _, tf = textbox(s, 9.42, 3.92, 3.42, 0.46, name="CLIENT_LOGO_HAIRCLUB")
-    write(tf, [{"text": "HairClub"}], {"size": 24, "bold": True, "color": NAVY,
-                                       "font": FONT_HEAD, "align": "c"})
-    _, tf = textbox(s, 9.42, 5.12, 3.42, 0.26)
-    write(tf, [{"text": "Prepared for Bosley HairClub"}],
-          {"size": 9.5, "color": SLATE, "align": "c", "caps": True, "spacing": 1.0})
+    # Client mark: the supplied logo is white type, so it sits straight on the
+    # dark panel — no plate needed, and it mirrors the Align lockup opposite.
+    panel_x, panel_w = 8.90, SLIDE_W - 8.90
+    _, tf = textbox(s, panel_x, 3.02, panel_w, 0.26)
+    write(tf, [{"text": "Prepared for"}],
+          {"size": 9.5, "color": SLATE, "align": "c", "caps": True, "spacing": 1.6})
+
+    logo_w = 2.90
+    logo_h = logo_w / 2.907                      # measured from the extracted PNG
+    picture(s, A("bosley-hairclub-logo-white.png"),
+            panel_x + (panel_w - logo_w) / 2, 3.46, w=logo_w,
+            name="BosleyHairClub_Logo")
+
+    rect(s, panel_x + (panel_w - 0.60) / 2, 3.46 + logo_h + 0.34, 0.60, 0.035, fill=ORANGE)
 
     _, tf = textbox(s, 0.90, FOOTER_Y, 6.0, 0.24)
     write(tf, [{"text": "© 2026 AlignHCM  ·  Confidential"}], {"size": 9, "color": SLATE})

@@ -43,23 +43,29 @@ original Bosley deck. Both ship with Office, so nothing substitutes on open.
   transparent; no matte removal was needed and none was applied, so the artwork
   is unmodified. It is the light-on-dark version, which is why it sits on navy
   on slides 1 and 7.
-- **Bosley and HairClub** — **not** the official marks. External network egress
-  is blocked in the build environment and neither logo was present in Drive, so
-  slide 1 carries a typographic lockup on a white plate as a stand-in. This
-  follows the TPI Composites precedent, where the client mark was also set as
-  type.
+- **Bosley HairClub** — `assets/bosley-hairclub-logo-white.png`, the real mark,
+  supplied as white type on a solid `#1A365D` navy square. The navy is removed,
+  so it sits directly on the deck's dark panel with no plate behind it.
+  `assets/bosley-hairclub-logo-navy.png` is the same coverage mask filled navy,
+  for use on light backgrounds later.
 
-  To drop in the real files: on slide 1, delete the two text boxes named
-  `CLIENT_LOGO_BOSLEY` and `CLIENT_LOGO_HAIRCLUB` and place the transparent PNGs
-  inside `ClientLogoPlate` (the white rounded card at 9.42in, 2.62in,
-  3.42 x 2.30in). The plate is white specifically so a dark-on-transparent logo
-  reads without any further treatment.
+  Background removal is un-matting, not colour keying — see `build/extract_logo.py`.
+  Keying on the navy would leave a fringe on every anti-aliased edge; instead
+  each pixel is solved back through `p = white * a + bg * (1 - a)` per channel to
+  recover true fractional coverage, giving pure white art with clean edges.
+
+  **Resolution caveat:** the supplied file is a 200px JPEG, and the mark occupies
+  157 x 54px of it. It is denoised and upscaled 4x to 628 x 216px, which is about
+  260 DPI at the 2.9in placement — fine on screen and for normal printing, but
+  it is the ceiling this source allows. If Bosley HairClub can send an SVG, EPS,
+  or a large PNG, swap `assets/bosley-hairclub-logo-white.png` and rebuild;
+  nothing else has to change.
 
 ## Slides
 
 | # | Slide | Notes |
 |---|---|---|
-| 1 | Title | Split navy / deep-navy, Align logo, client logo plate |
+| 1 | Title | Split navy / deep-navy, Align logo left, Bosley HairClub mark right |
 | 2 | Executive Summary | Four cards, house icons in navy circles |
 | 3 | Proposed Timeline | Six phase chips on a navy ramp, go-live marker at week 12 |
 | 4 | Milestones by Phase | Native 3-column table, seven phases |
@@ -74,12 +80,13 @@ Content is transcribed from the source deck screenshots without rewording.
 - Slides 6 and 7 of the source deck were not in the screenshots provided — the
   footers jumped from `05` to `08` — so two slides are unaccounted for and are
   not represented here. This deck renumbers 1 through 7 continuously.
-- Bosley and HairClub logos, as above.
+- A higher-resolution Bosley HairClub logo would improve slide 1, as above.
 
 ## Rebuilding
 
 ```bash
 cd build
+python3 extract_logo.py                                    # client mark -> transparent PNGs
 python3 build_deck.py                                      # writes the .pptx
 python3 render_qa.py ../Align_HCM_*.pptx ../qa             # rasterizes for review
 ```
