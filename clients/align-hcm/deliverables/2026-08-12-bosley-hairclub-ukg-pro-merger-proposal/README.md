@@ -59,6 +59,30 @@ Icons are recoloured, never redrawn — `build/recolor_icons.py` keeps the
 original coverage mask and swaps only the fill, preserving the stroke weights
 and optical sizing of the house set.
 
+## Text colours
+
+The source decks' `#8792A3` / `#AEB9C8` / `#55606E` were being used for running
+copy, where they read as washed-out gray. Body text now uses a dedicated set,
+and those original tokens are kept for fills and rules only:
+
+| Token | Hex | Use | Contrast |
+|---|---|---|---|
+| `TEXT_ON_DARK` | `#EDF2F8` | Body on navy — reads as white | 12:1 |
+| `MUTED_ON_DARK` | `#C7D2DF` | Labels and footers on navy | 7.8:1 |
+| `TEXT_ON_LIGHT` | `#2B3849` | Body on white | 11:1 |
+| `MUTED_ON_LIGHT` | `#4A5563` | Footers and captions on white | 7.5:1 |
+
+Brand orange needed splitting. `#E97722` is fine on navy (5:1) but only **2.95:1
+on white**, so it fails as small type — which it was being used for in the
+eyebrows, the go-live marker, the Weeks column, and the engagement scale. Those
+now use same-hue darkenings, while every fill, rule, and icon stays `#E97722`:
+
+- `ORANGE_TEXT` `#B05512` — 5.1:1 on white, 4.8:1 on the zebra row tint
+- `ORANGE_TEXT_DEEP` `#94480F` — 6.6:1, the top of the engagement scale
+
+The engagement heat scale therefore runs navy → orange → deep orange, with every
+level above AA rather than a light gray "Low" that recedes off the slide.
+
 ## Logos
 
 - **Align HCM** — `assets/align-hcm-logo.png`, extracted byte-for-byte from
@@ -113,7 +137,14 @@ python3 extract_logo.py                                    # client mark -> tran
 python3 recolor_icons.py                                   # orange copies of the house icons
 python3 build_deck.py                                      # writes the .pptx
 python3 render_qa.py ../Align_HCM_*.pptx ../qa             # rasterizes for review
+python3 audit_contrast.py ../Align_HCM_*.pptx              # WCAG check, exits non-zero on a fail
 ```
+
+`audit_contrast.py` walks every text run and resolves what is actually behind it
+— the card, panel, or slide background it sits on in z-order, or the cell fill
+for table text — then reports WCAG contrast against the threshold for that run's
+size. It is what caught the orange-on-white failures above. All 139 runs
+currently pass AA.
 
 `render_qa.py` exists because LibreOffice is only partially installed in the
 build container and cannot open any presentation. It walks the real shape tree

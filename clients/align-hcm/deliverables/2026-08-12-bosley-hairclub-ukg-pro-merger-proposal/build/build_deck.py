@@ -14,6 +14,8 @@ import copy
 from brand import (
     ORANGE, ORANGE_DEEP, NAVY, NAVY_DEEP, NAVY_ELEV, SLATE, SLATE_LT, BORDER,
     BORDER_BRIGHT, BORDER_SOFT, CARD_DARK_LINE, CARD_NAVY_LINE, ICON_CIRCLE,
+    TEXT_ON_DARK, MUTED_ON_DARK, TEXT_ON_LIGHT, MUTED_ON_LIGHT,
+    ORANGE_TEXT, ORANGE_TEXT_DEEP,
     INK, INK_2, WHITE, CARD_BG, RAMP, FONT_BODY, FONT_HEAD,
     SLIDE_W, SLIDE_H, MARGIN, CONTENT_W, BODY_TOP, FOOTER_Y,
     rect, ellipse, textbox, write, anchor_middle, header, footer, blank, bg, picture,
@@ -136,19 +138,19 @@ def slide_title(prs):
           {"size": 50, "bold": True, "color": WHITE, "font": FONT_HEAD})
 
     _, tf = textbox(s, 0.90, 4.42, 7.6, 0.42)
-    write(tf, [{"text": "UKG Pro Merger"}], {"size": 22, "color": SLATE_LT})
+    write(tf, [{"text": "UKG Pro Merger"}], {"size": 22, "color": TEXT_ON_DARK})
 
     rect(s, 0.90, 5.12, 0.85, 0.045, fill=ORANGE)
 
     _, tf = textbox(s, 0.90, 5.42, 7.6, 0.32)
-    write(tf, [{"text": "August 2026"}], {"size": 13, "bold": True, "color": SLATE})
+    write(tf, [{"text": "August 2026"}], {"size": 13, "bold": True, "color": MUTED_ON_DARK})
 
     # Client mark: the supplied logo is white type, so it sits straight on the
     # dark panel — no plate needed, and it mirrors the Align lockup opposite.
     panel_x, panel_w = 8.90, SLIDE_W - 8.90
     _, tf = textbox(s, panel_x, 3.02, panel_w, 0.26)
     write(tf, [{"text": "Prepared for"}],
-          {"size": 9.5, "color": SLATE, "align": "c", "caps": True, "spacing": 1.6})
+          {"size": 9.5, "color": MUTED_ON_DARK, "align": "c", "caps": True, "spacing": 1.6})
 
     logo_w = 2.90
     logo_h = logo_w / 2.907                      # measured from the extracted PNG
@@ -159,9 +161,9 @@ def slide_title(prs):
     rect(s, panel_x + (panel_w - 0.60) / 2, 3.46 + logo_h + 0.34, 0.60, 0.035, fill=ORANGE)
 
     _, tf = textbox(s, 0.90, FOOTER_Y, 6.0, 0.24)
-    write(tf, [{"text": "© 2026 AlignHCM  ·  Confidential"}], {"size": 9, "color": SLATE})
+    write(tf, [{"text": "© 2026 AlignHCM  ·  Confidential"}], {"size": 9, "color": MUTED_ON_DARK})
     _, tf = textbox(s, SLIDE_W - MARGIN - 3.0, FOOTER_Y, 3.0, 0.24)
-    write(tf, [{"text": "Align HCM   ·   01"}], {"size": 9, "color": SLATE, "align": "r"})
+    write(tf, [{"text": "Align HCM   ·   01"}], {"size": 9, "color": MUTED_ON_DARK, "align": "r"})
     return s
 
 
@@ -199,7 +201,7 @@ def slide_exec_summary(prs):
         _, tf = textbox(s, cx + 1.14, cy + 0.47, cw - 1.50, 0.46)
         write(tf, [{"text": title}], {"size": 13.5, "bold": True, "color": WHITE})
         _, tf = textbox(s, cx + 0.36, cy + 1.04, cw - 0.72, ch - 1.26)
-        write(tf, [{"text": body}], {"size": 11, "color": SLATE_LT, "line_spacing": 1.22})
+        write(tf, [{"text": body}], {"size": 11, "color": TEXT_ON_DARK, "line_spacing": 1.22})
 
     footer(s, 2)
     return s
@@ -235,7 +237,7 @@ def slide_timeline(prs):
               {"size": 10.5, "bold": True, "color": WHITE, "align": "c",
                "line_spacing": 1.02})
         _, tf = textbox(s, x + 0.08, top + 0.84, w - 0.16, 0.24)
-        write(tf, [{"text": weeks}], {"size": 9.5, "color": SLATE_LT, "align": "c"})
+        write(tf, [{"text": weeks}], {"size": 9.5, "color": TEXT_ON_DARK, "align": "c"})
         x += w + gap
 
     # go-live marker sits on the seam before Post Go-Live Support, and stops at
@@ -244,16 +246,16 @@ def slide_timeline(prs):
     rect(s, seam - 0.011, top - 0.34, 0.022, ch + 0.44, fill=ORANGE, name="GoLiveMarker")
     _, tf = textbox(s, seam - 1.10, top - 0.86, 2.20, 0.44)
     write(tf, [{"text": "GO-LIVE"}, {"text": "Week 12"}],
-          {"size": 9.5, "bold": True, "color": ORANGE, "align": "c", "line_spacing": 1.05})
+          {"size": 9.5, "bold": True, "color": ORANGE_TEXT, "align": "c", "line_spacing": 1.05})
 
     cap_y = top + ch + 0.34
     impl_w = xs[5][0] - gap - MARGIN - 0.45
     _, tf = textbox(s, MARGIN, cap_y, impl_w, 0.26)
     write(tf, [{"text": "Weeks 1-12  ·  Implementation"}],
-          {"size": 10, "italic": True, "color": INK_2, "align": "c"})
+          {"size": 10, "italic": True, "color": TEXT_ON_LIGHT, "align": "c"})
     _, tf = textbox(s, xs[5][0] - 0.34, cap_y, xs[5][1] + 0.34, 0.26)
     write(tf, [{"text": "Weeks 13-16  ·  Post Go-Live"}],
-          {"size": 10, "italic": True, "color": INK_2, "align": "c"})
+          {"size": 10, "italic": True, "color": TEXT_ON_LIGHT, "align": "c"})
 
     note_y = 5.34
     dark_card(s, MARGIN, note_y, CONTENT_W, 0.96, name="TimelineNote")
@@ -261,7 +263,7 @@ def slide_timeline(prs):
     _, tf = textbox(s, MARGIN + 1.06, note_y + 0.26, CONTENT_W - 1.40, 0.50)
     write(tf, [{"text": "Target go-live: January 1, 2027, with true go-live defined as "
                         "the start of the first supported pay period."}],
-          {"size": 11.5, "color": SLATE_LT, "line_spacing": 1.2})
+          {"size": 11.5, "color": TEXT_ON_DARK, "line_spacing": 1.2})
 
     footer(s, 3)
     return s
@@ -302,8 +304,8 @@ def slide_milestones(prs):
     for i, (phase, weeks, ms) in enumerate(rows, start=1):
         zebra = WHITE if i % 2 else CARD_BG
         _cell(tbl.cell(i, 0), phase, size=10.5, bold=True, color=NAVY, fill=zebra)
-        _cell(tbl.cell(i, 1), weeks, size=10, bold=True, color=ORANGE, fill=zebra, align="c")
-        _cell(tbl.cell(i, 2), ms, size=10, color=INK_2, fill=zebra)
+        _cell(tbl.cell(i, 1), weeks, size=10, bold=True, color=ORANGE_TEXT, fill=zebra, align="c")
+        _cell(tbl.cell(i, 2), ms, size=10, color=TEXT_ON_LIGHT, fill=zebra)
         last = i == len(rows)
         for j in range(ncols):
             _set_border(tbl.cell(i, j), {
@@ -338,7 +340,7 @@ def slide_investment(prs):
     _, tf = textbox(s, MARGIN + 0.55, top + 1.80, lw - 1.10, 0.46)
     write(tf, [{"text": "Includes project management, UKG Pro & WFM system "
                         "configuration, and employee data conversion."}],
-          {"size": 10, "color": SLATE_LT, "align": "c", "line_spacing": 1.18})
+          {"size": 10, "color": TEXT_ON_DARK, "align": "c", "line_spacing": 1.18})
 
     rx = MARGIN + lw + gap
     dark_card(s, rx, top, rw, ch, on_navy=True, name="EarlyGoLiveCard")
@@ -350,7 +352,7 @@ def slide_investment(prs):
     write(tf, [{"text": "If Bosley HairClub goes live sooner than 1/1/2027, an additional "
                         "$12,900 applies for the extra data conversion work required to "
                         "bring over opening balances."}],
-          {"size": 11, "color": SLATE_LT, "line_spacing": 1.24})
+          {"size": 11, "color": TEXT_ON_DARK, "line_spacing": 1.24})
 
     by = top + ch + gap
     dark_card(s, MARGIN, by, CONTENT_W, 1.30, on_navy=True, name="ScopeCard")
@@ -363,7 +365,7 @@ def slide_investment(prs):
     write(tf, [{"text": "Pricing reflects Phase 1 only: bringing Bosley HairClub's 400 "
                         "employees onto HairClub's existing UKG Pro environment. Phase 2 "
                         "(Benefits Hub) will be scoped and priced separately."}],
-          {"size": 11, "color": SLATE_LT, "line_spacing": 1.22})
+          {"size": 11, "color": TEXT_ON_DARK, "line_spacing": 1.22})
 
     footer(s, 5, on_dark=True)
     return s
@@ -382,8 +384,8 @@ def slide_engagement(prs):
         ("System Administrator", ["Low", "Medium", "High", "Medium", "Medium"]),
         ("IT / Data Contact",   ["Low", "Low", "High", "Low", "Low"]),
     ]
-    # INK_2 rather than SLATE for "Low": #8792A3 on white is ~2.9:1, below AA
-    level_col = {"Low": INK_2, "Medium": ORANGE, "High": ORANGE_DEEP}
+    # every level must read: navy -> orange -> deep orange, all above AA
+    level_col = {"Low": TEXT_ON_LIGHT, "Medium": ORANGE_TEXT, "High": ORANGE_TEXT_DEEP}
 
     col_w = [3.20] + [1.7267] * 5
     row_h = [0.46] + [0.52] * len(rows)
@@ -421,7 +423,7 @@ def slide_engagement(prs):
                         "business rules, validates converted data, and supports UAT "
                         "sign-off. AlignHCM leads configuration, data conversion, and "
                         "testing coordination."}],
-          {"size": 11, "color": SLATE_LT, "line_spacing": 1.22})
+          {"size": 11, "color": TEXT_ON_DARK, "line_spacing": 1.22})
 
     footer(s, 6)
     return s
@@ -456,17 +458,17 @@ def slide_contact(prs):
             _, tf = textbox(s, 6.30, y - 0.01, 6.0, 0.38)
             write(tf, [{"text": primary}], {"size": 23, "bold": True, "color": WHITE})
             _, tf = textbox(s, 6.30, y + 0.39, 6.0, 0.26)
-            write(tf, [{"text": secondary}], {"size": 12.5, "color": SLATE})
+            write(tf, [{"text": secondary}], {"size": 12.5, "color": MUTED_ON_DARK})
         else:
             _, tf = textbox(s, 6.30, y + 0.14, 6.0, 0.38)
             write(tf, [{"text": primary}], {"size": 20, "color": WHITE})
         y += step
 
     _, tf = textbox(s, 5.35, FOOTER_Y, 4.0, 0.24)
-    write(tf, [{"text": "alignhcm.com"}], {"size": 9, "color": SLATE})
+    write(tf, [{"text": "alignhcm.com"}], {"size": 9, "color": MUTED_ON_DARK})
     _, tf = textbox(s, SLIDE_W - MARGIN - 4.0, FOOTER_Y, 4.0, 0.24)
     write(tf, [{"text": "© 2026 AlignHCM  ·  Confidential   ·   07"}],
-          {"size": 9, "color": SLATE, "align": "r"})
+          {"size": 9, "color": MUTED_ON_DARK, "align": "r"})
     return s
 
 

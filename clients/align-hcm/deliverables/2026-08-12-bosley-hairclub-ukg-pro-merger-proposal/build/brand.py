@@ -13,6 +13,12 @@ from pptx.util import Inches, Pt, Emu
 # --- palette (exact, from ppt/slides/*.xml of the source decks) ---------------
 ORANGE      = RGBColor(0xE9, 0x77, 0x22)   # #E97722 primary accent
 ORANGE_DEEP = RGBColor(0xC0, 0x52, 0x1A)   # darkened accent for heat scale
+
+# Brand orange is only 2.95:1 on white, so it fails as small text there while
+# being perfectly fine on navy (5:1). These are same-hue darkenings used ONLY
+# for orange type on light backgrounds — fills, rules and icons stay #E97722.
+ORANGE_TEXT      = RGBColor(0xB0, 0x55, 0x12)  # 5.1:1 on white, 4.8:1 on the zebra tint
+ORANGE_TEXT_DEEP = RGBColor(0x94, 0x48, 0x0F)  # 6.6:1 on white
 NAVY        = RGBColor(0x23, 0x2E, 0x3E)   # #232E3E primary dark
 NAVY_DEEP   = RGBColor(0x1D, 0x27, 0x35)   # #1D2735 deepest
 NAVY_ELEV   = RGBColor(0x2B, 0x38, 0x49)   # #2B3849 raised panel on navy
@@ -23,6 +29,15 @@ INK         = RGBColor(0x33, 0x33, 0x33)   # #333333 body copy
 INK_2       = RGBColor(0x55, 0x60, 0x6E)   # #55606E secondary
 WHITE       = RGBColor(0xFF, 0xFF, 0xFF)
 CARD_BG     = RGBColor(0xF6, 0xF8, 0xFA)   # subtle tint of BORDER for light cards
+
+# --- text -------------------------------------------------------------------
+# SLATE / SLATE_LT / INK_2 came out of the source decks but were being used for
+# running copy, where they read as washed-out gray. Body text now uses these
+# instead; the source tokens stay for fills and rules only.
+TEXT_ON_DARK   = RGBColor(0xED, 0xF2, 0xF8)  # body on navy — 12:1, reads white
+MUTED_ON_DARK  = RGBColor(0xC7, 0xD2, 0xDF)  # labels/footers on navy — 7.8:1
+TEXT_ON_LIGHT  = RGBColor(0x2B, 0x38, 0x49)  # body on white — 11:1
+MUTED_ON_LIGHT = RGBColor(0x4A, 0x55, 0x63)  # footers/captions on white — 7.5:1
 
 # --- edges ------------------------------------------------------------------
 # The original #DCE2E9 hairline all but vanished on screen. Edges are brightened
@@ -167,11 +182,12 @@ def anchor_middle(tf):
 def header(slide, eyebrow, title, subtitle=None, on_dark=False):
     """The standard Align HCM content-slide header block."""
     title_col = WHITE if on_dark else NAVY
-    sub_col = SLATE_LT if on_dark else INK_2
+    sub_col = TEXT_ON_DARK if on_dark else TEXT_ON_LIGHT
 
     _, tf = textbox(slide, MARGIN, EYEBROW_Y, 9.0, 0.30, name="Eyebrow")
-    write(tf, [{"text": eyebrow}], {"size": 10.5, "bold": True, "color": ORANGE,
-                                    "caps": True, "spacing": 1.4})
+    write(tf, [{"text": eyebrow}],
+          {"size": 10.5, "bold": True, "color": ORANGE if on_dark else ORANGE_TEXT,
+           "caps": True, "spacing": 1.4})
 
     _, tf = textbox(slide, MARGIN, TITLE_Y, CONTENT_W, 0.70, name="Title")
     write(tf, [{"text": title}], {"size": 32, "bold": True, "color": title_col,
@@ -186,7 +202,7 @@ def header(slide, eyebrow, title, subtitle=None, on_dark=False):
 
 def footer(slide, page, on_dark=False, total=None):
     """alignhcm.com | Confidential | Align HCM . NN  — the house footer."""
-    col = SLATE if on_dark else SLATE
+    col = MUTED_ON_DARK if on_dark else MUTED_ON_LIGHT
     _, tf = textbox(slide, MARGIN, FOOTER_Y, 3.0, 0.24, name="FooterLeft")
     write(tf, [{"text": "alignhcm.com"}], {"size": 9, "color": col})
 
