@@ -544,7 +544,7 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-08-15T12:13:27.9837275+00:00`
+- **As of:** `2026-08-15T12:15:07.0291445+00:00`
 - **Overall:** `degraded`
 - **Queue:** revision `411`, `106` work items, normal `2/3`, emergency `0/1` active
 - **Client registry:** `valid`
@@ -560,7 +560,7 @@ Mode: `manual-pilot`
   - `DillonAgentOS-DailyBrief`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
-  - `MarketingChief-DailyCalibration`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
+  - `MarketingChief-DailyCalibration`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
   - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `1`
 - **Human gates:** `active_client_exact_bw_item_mapping`
 - **Deferred actions:** `secondary_exposed_password_rotation`
