@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-08-10T02:26:16.3024720+00:00`
-Queue revision: `407`
+Last reconciled: `2026-08-11T13:01:38.1827101+00:00`
+Queue revision: `411`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -131,6 +131,7 @@ Mode: `manual-pilot`
 | `wi-20260809-0001` | `momentum-360` | Purchase Walcroft foundation custom domain | Done | P0 | No further delivery action is required. Monitor the Netlify team billing warning separately because it is outside this approved domain workflow. | 2026-08-09 23:59 -04:00 |
 | `wi-20260810-0001` | `va-claims-edge` | Complete Phase 3 seven-stage review frontend | Done | P1 | Deploy the verified build to the existing mapped Netlify review site and record the evidence package. | No evidenced deadline |
 | `wi-20260810-0002` | `va-claims-edge` | Finish Phase 3 final-product acceptance details | Done | P1 | Deploy the verified acceptance corrections to the already mapped VA Claims Edge Netlify review site and reconcile the evidence artifacts. | No evidenced deadline |
+| `wi-20260811-0001` | `fagan-painting` | Verify routing and ownership of August 10 Fagan website lead | Done | P0 | Perform a read-only check of the approved mailbox, CRM, or Zapier record for routing, duplicate status, owner, and current disposition without contacting the prospect. | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -543,9 +544,9 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-08-10T12:03:33.1766151+00:00`
+- **As of:** `2026-08-15T12:13:27.9837275+00:00`
 - **Overall:** `degraded`
-- **Queue:** revision `407`, `105` work items, normal `2/3`, emergency `0/1` active
+- **Queue:** revision `411`, `106` work items, normal `2/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `8/21` canonical clients registered, `2/65` systems verified, `6` exact Bitwarden item locators

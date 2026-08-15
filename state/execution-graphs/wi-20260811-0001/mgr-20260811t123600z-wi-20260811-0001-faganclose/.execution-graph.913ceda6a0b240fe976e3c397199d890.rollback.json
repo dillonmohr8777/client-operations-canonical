@@ -1,0 +1,683 @@
+{
+    "schemaVersion":  1,
+    "graphRunId":  "mgr-20260811t123600z-wi-20260811-0001-faganclose",
+    "graphRevision":  2,
+    "workflowId":  "marketing-chief-execution-graph",
+    "createdAt":  "2026-08-11T12:38:16.3178693+00:00",
+    "updatedAt":  "2026-08-11T12:40:09.6097929+00:00",
+    "status":  "running",
+    "queueSnapshot":  {
+                          "locator":  "queue/work-items.json",
+                          "revision":  410,
+                          "sha256":  "36C8094E06C1AB14766F1967D459AE4F922D8FE39E58D03D6EB36F00760ECA20",
+                          "capturedAt":  "2026-08-11T12:38:16.3178693+00:00"
+                      },
+    "workItem":  {
+                     "id":  "wi-20260811-0001",
+                     "expectedVersion":  3,
+                     "contentSha256":  "41B56384FD47565951703E0F33AF32EE9A6C669B454E01CD9D896075B45BE0EE",
+                     "clientId":  "fagan-painting",
+                     "title":  "Verify routing and ownership of August 10 Fagan website lead",
+                     "status":  "verification",
+                     "lane":  "normal",
+                     "priority":  "P0",
+                     "actionClass":  "read_only_verification",
+                     "nextAction":  "Perform a read-only check of the approved mailbox, CRM, or Zapier record for routing, duplicate status, owner, and current disposition without contacting the prospect.",
+                     "definitionOfDone":  [
+                                              "The exact source occurrence is matched to one canonical lead record without storing direct identifiers.",
+                                              "The approved destination and routing path are verified from current evidence.",
+                                              "One accountable owner and current disposition are recorded in redacted form, or the exact missing dependency is named.",
+                                              "No prospect or client contact, account change, or external delivery occurs."
+                                          ],
+                     "sourceLocator":  "agent-os-run:20260810-111243-1e2bd873/task.json",
+                     "evidenceRefs":  [
+                                          "agent-os-run:20260810-111243-1e2bd873/task.json",
+                                          "access-broker:fagan-painting/gmail-persistent-chrome",
+                                          "access-broker:fagan-painting/zapier-production",
+                                          "state/execution-graphs/wi-20260811-0001/mgr-20260811t120800z-wi-20260811-0001-faganlead/execution-graph.json",
+                                          "sha256:07CCE426259EA748A6F9A4183F616BAE11A004001335BBDFD0930D7942058FF4",
+                                          "state/execution-graphs/wi-20260811-0001/mgr-20260811t121000z-wi-20260811-0001-faganverify/execution-graph.json",
+                                          "sha256:15A18D93AD3DEDA21F47EE3D88886D51072C478783A883BDF55BE64C51A0710A"
+                                      ],
+                     "artifactRefs":  [
+                                          "clients/fagan-painting/evidence/2026-08-11-new-lead-routing-verification.md"
+                                      ],
+                     "dependencies":  [
+
+                                      ],
+                     "approval":  {
+                                      "tier":  "automatic",
+                                      "status":  "not_required",
+                                      "gate":  "none"
+                                  }
+                 },
+    "scope":  {
+                  "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+                  "clientRoot":  "clients/fagan-painting",
+                  "graphLocator":  "state/execution-graphs/wi-20260811-0001/mgr-20260811t123600z-wi-20260811-0001-faganclose/execution-graph.json",
+                  "canonicalWriteAllowed":  false,
+                  "externalActionAllowed":  false,
+                  "durableMemoryWriteAllowed":  false,
+                  "privacy":  "redacted"
+              },
+    "retrieval":  {
+                      "strategy":  "exact-plus-graph",
+                      "exactBindingRequired":  true,
+                      "semanticBindingAllowed":  false,
+                      "sourceCount":  7,
+                      "artifactCount":  1
+                  },
+    "nodes":  [
+                  {
+                      "id":  "scope-guard",
+                      "kind":  "scope_guard",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Validate immutable queue, work-item, client, and project scope.",
+                      "requires":  [
+
+                                   ],
+                      "produces":  [
+                                       "scoped_work_item"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Queue revision, work-item version, exact client route, and safety scope were validated.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "queue/work-items.json",
+                                                      "agent-os-run:20260810-111243-1e2bd873/task.json"
+                                                  ],
+                                     "verification":  [
+                                                          "Queue revision 410 captured.",
+                                                          "Work-item version 3 captured.",
+                                                          "Client route fagan-painting resolved exactly once and is active."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "source-intake",
+                      "kind":  "source_intake",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Capture safe exact source and evidence locators.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "provenance_slice"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Exact source and evidence locators were captured without raw communications.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "agent-os-run:20260810-111243-1e2bd873/task.json",
+                                                      "access-broker:fagan-painting/gmail-persistent-chrome",
+                                                      "access-broker:fagan-painting/zapier-production",
+                                                      "state/execution-graphs/wi-20260811-0001/mgr-20260811t120800z-wi-20260811-0001-faganlead/execution-graph.json",
+                                                      "sha256:07CCE426259EA748A6F9A4183F616BAE11A004001335BBDFD0930D7942058FF4",
+                                                      "state/execution-graphs/wi-20260811-0001/mgr-20260811t121000z-wi-20260811-0001-faganverify/execution-graph.json",
+                                                      "sha256:15A18D93AD3DEDA21F47EE3D88886D51072C478783A883BDF55BE64C51A0710A"
+                                                  ],
+                                     "verification":  [
+                                                          "Evidence freshness evaluated at 2026-08-11T12:38:16.3178693+00:00."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "context-retrieval",
+                      "kind":  "context_retrieval",
+                      "owner":  "marketing-chief-context-loader",
+                      "status":  "completed",
+                      "task":  "Assemble the exact bounded context slice required by this item.",
+                      "requires":  [
+                                       "source-intake"
+                                   ],
+                      "produces":  [
+                                       "worker_context"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Bounded client, source, artifact, dependency, and definition-of-done context was assembled.",
+                                     "artifacts":  [
+                                                       "clients/fagan-painting/evidence/2026-08-11-new-lead-routing-verification.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "agent-os-run:20260810-111243-1e2bd873/task.json",
+                                                      "access-broker:fagan-painting/gmail-persistent-chrome",
+                                                      "access-broker:fagan-painting/zapier-production",
+                                                      "state/execution-graphs/wi-20260811-0001/mgr-20260811t120800z-wi-20260811-0001-faganlead/execution-graph.json",
+                                                      "sha256:07CCE426259EA748A6F9A4183F616BAE11A004001335BBDFD0930D7942058FF4",
+                                                      "state/execution-graphs/wi-20260811-0001/mgr-20260811t121000z-wi-20260811-0001-faganverify/execution-graph.json",
+                                                      "sha256:15A18D93AD3DEDA21F47EE3D88886D51072C478783A883BDF55BE64C51A0710A"
+                                                  ],
+                                     "verification":  [
+                                                          "Definition-of-done checks: 4.",
+                                                          "Artifact references: 1."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "worker-execution",
+                      "kind":  "worker_execution",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Perform a read-only check of the approved mailbox, CRM, or Zapier record for routing, duplicate status, owner, and current disposition without contacting the prospect.",
+                      "requires":  [
+                                       "context-retrieval"
+                                   ],
+                      "produces":  [
+                                       "local_artifacts",
+                                       "worker_evidence"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Verified the exact August 10 Fagan website lead as one non-duplicate notification on the approved route. Owner and disposition remain unavailable; the exact missing dependency is the Zapier production assignment record. No contact or external change occurred.",
+                                     "artifacts":  [
+                                                       "clients/fagan-painting/evidence/2026-08-11-new-lead-routing-verification.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "agent-os-run:20260810-111243-1e2bd873/task.json",
+                                                      "access-broker:fagan-painting/gmail-persistent-chrome",
+                                                      "access-broker:fagan-painting/zapier-production",
+                                                      "state/execution-graphs/wi-20260811-0001/mgr-20260811t120800z-wi-20260811-0001-faganlead/execution-graph.json",
+                                                      "sha256:07CCE426259EA748A6F9A4183F616BAE11A004001335BBDFD0930D7942058FF4",
+                                                      "state/execution-graphs/wi-20260811-0001/mgr-20260811t121000z-wi-20260811-0001-faganverify/execution-graph.json",
+                                                      "sha256:15A18D93AD3DEDA21F47EE3D88886D51072C478783A883BDF55BE64C51A0710A"
+                                                  ],
+                                     "verification":  [
+
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-01",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "The exact source occurrence is matched to one canonical lead record without storing direct identifiers.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_01"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Passed: exact occurrence remains one mailbox notification and one exact-identifier hit with no stored identifiers.",
+                                     "artifacts":  [
+                                                       "clients/fagan-painting/evidence/2026-08-11-new-lead-routing-verification.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "agent-os-run:20260810-111243-1e2bd873/task.json",
+                                                      "clients/fagan-painting/evidence/2026-08-11-new-lead-mailbox-readback.json"
+                                                  ],
+                                     "verification":  [
+                                                          "Independent closeout check 1 passed against the current mailbox readback."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-02",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "ready",
+                      "task":  "The approved destination and routing path are verified from current evidence.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_02"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "verify-03",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "ready",
+                      "task":  "One accountable owner and current disposition are recorded in redacted form, or the exact missing dependency is named.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_03"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "verify-04",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "ready",
+                      "task":  "No prospect or client contact, account change, or external delivery occurs.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_04"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "approval-gate",
+                      "kind":  "approval_gate",
+                      "owner":  "marketing-chief",
+                      "status":  "completed",
+                      "task":  "Enforce the exact action-class and approval boundary.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "approval_verdict"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "This graph permits local reversible work only; no external action is authorized.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+
+                                                  ],
+                                     "verification":  [
+                                                          "Action class: read_only_verification.",
+                                                          "Approval tier/status: automatic/not_required."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "handoff-assembly",
+                      "kind":  "handoff_assembly",
+                      "owner":  "bounded-worker",
+                      "status":  "pending",
+                      "task":  "Assemble a schema-valid redacted worker handoff from completed graph outputs.",
+                      "requires":  [
+                                       "verify-01",
+                                       "verify-02",
+                                       "verify-03",
+                                       "verify-04",
+                                       "approval-gate"
+                                   ],
+                      "produces":  [
+                                       "worker_handoff"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "chief-reconciliation",
+                      "kind":  "chief_reconciliation",
+                      "owner":  "marketing-chief",
+                      "status":  "pending",
+                      "task":  "Revalidate live queue and item state, then accept or reject the handoff through the supported canonical mutation path.",
+                      "requires":  [
+                                       "handoff-assembly"
+                                   ],
+                      "produces":  [
+                                       "canonical_receipt"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  }
+              ],
+    "edges":  [
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "source-intake"
+                  },
+                  {
+                      "from":  "source-intake",
+                      "relation":  "precedes",
+                      "to":  "context-retrieval"
+                  },
+                  {
+                      "from":  "context-retrieval",
+                      "relation":  "precedes",
+                      "to":  "worker-execution"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-01"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-02"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-03"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-04"
+                  },
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "approval-gate"
+                  },
+                  {
+                      "from":  "verify-01",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-02",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-03",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-04",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "approval-gate",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "handoff-assembly",
+                      "relation":  "precedes",
+                      "to":  "chief-reconciliation"
+                  }
+              ],
+    "knowledgeGraph":  {
+                           "nodes":  [
+                                         {
+                                             "id":  "queue:canonical",
+                                             "type":  "queue",
+                                             "label":  "Canonical queue revision 410",
+                                             "locator":  "queue/work-items.json"
+                                         },
+                                         {
+                                             "id":  "client:fagan-painting",
+                                             "type":  "client",
+                                             "label":  "fagan-painting",
+                                             "locator":  "clients/fagan-painting"
+                                         },
+                                         {
+                                             "id":  "work-item:wi-20260811-0001",
+                                             "type":  "work_item",
+                                             "label":  "Verify routing and ownership of August 10 Fagan website lead",
+                                             "locator":  "agent-os-run:20260810-111243-1e2bd873/task.json"
+                                         },
+                                         {
+                                             "id":  "approval:none",
+                                             "type":  "approval",
+                                             "label":  "automatic/not_required/none",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "evidence:6e4a13e54fe8c2e2",
+                                             "type":  "evidence",
+                                             "label":  "agent-os-run:20260810-111243-1e2bd873/task.json",
+                                             "locator":  "agent-os-run:20260810-111243-1e2bd873/task.json"
+                                         },
+                                         {
+                                             "id":  "evidence:e2aa61c63bd7857b",
+                                             "type":  "evidence",
+                                             "label":  "access-broker:fagan-painting/gmail-persistent-chrome",
+                                             "locator":  "access-broker:fagan-painting/gmail-persistent-chrome"
+                                         },
+                                         {
+                                             "id":  "evidence:5835569655a62fb0",
+                                             "type":  "evidence",
+                                             "label":  "access-broker:fagan-painting/zapier-production",
+                                             "locator":  "access-broker:fagan-painting/zapier-production"
+                                         },
+                                         {
+                                             "id":  "evidence:eaa1b5284ea56c34",
+                                             "type":  "evidence",
+                                             "label":  "state/execution-graphs/wi-20260811-0001/mgr-20260811t120800z-wi-20260811-0001-faganlead/execution-graph.json",
+                                             "locator":  "state/execution-graphs/wi-20260811-0001/mgr-20260811t120800z-wi-20260811-0001-faganlead/execution-graph.json"
+                                         },
+                                         {
+                                             "id":  "evidence:67e2ef10ab31a4f3",
+                                             "type":  "evidence",
+                                             "label":  "sha256:07CCE426259EA748A6F9A4183F616BAE11A004001335BBDFD0930D7942058FF4",
+                                             "locator":  "sha256:07CCE426259EA748A6F9A4183F616BAE11A004001335BBDFD0930D7942058FF4"
+                                         },
+                                         {
+                                             "id":  "evidence:8ac9da1c9ffc1b9b",
+                                             "type":  "evidence",
+                                             "label":  "state/execution-graphs/wi-20260811-0001/mgr-20260811t121000z-wi-20260811-0001-faganverify/execution-graph.json",
+                                             "locator":  "state/execution-graphs/wi-20260811-0001/mgr-20260811t121000z-wi-20260811-0001-faganverify/execution-graph.json"
+                                         },
+                                         {
+                                             "id":  "evidence:462e2a9e42ecb0c3",
+                                             "type":  "evidence",
+                                             "label":  "sha256:15A18D93AD3DEDA21F47EE3D88886D51072C478783A883BDF55BE64C51A0710A",
+                                             "locator":  "sha256:15A18D93AD3DEDA21F47EE3D88886D51072C478783A883BDF55BE64C51A0710A"
+                                         },
+                                         {
+                                             "id":  "artifact:4f964816a1e80a18",
+                                             "type":  "artifact",
+                                             "label":  "clients/fagan-painting/evidence/2026-08-11-new-lead-routing-verification.md",
+                                             "locator":  "clients/fagan-painting/evidence/2026-08-11-new-lead-routing-verification.md"
+                                         },
+                                         {
+                                             "id":  "definition:01",
+                                             "type":  "definition",
+                                             "label":  "The exact source occurrence is matched to one canonical lead record without storing direct identifiers.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:02",
+                                             "type":  "definition",
+                                             "label":  "The approved destination and routing path are verified from current evidence.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:03",
+                                             "type":  "definition",
+                                             "label":  "One accountable owner and current disposition are recorded in redacted form, or the exact missing dependency is named.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:04",
+                                             "type":  "definition",
+                                             "label":  "No prospect or client contact, account change, or external delivery occurs.",
+                                             "locator":  null
+                                         }
+                                     ],
+                           "edges":  [
+                                         {
+                                             "from":  "queue:canonical",
+                                             "relation":  "contains",
+                                             "to":  "work-item:wi-20260811-0001"
+                                         },
+                                         {
+                                             "from":  "client:fagan-painting",
+                                             "relation":  "owns",
+                                             "to":  "work-item:wi-20260811-0001"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260811-0001",
+                                             "relation":  "governed_by",
+                                             "to":  "approval:none"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260811-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:6e4a13e54fe8c2e2"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260811-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:e2aa61c63bd7857b"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260811-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:5835569655a62fb0"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260811-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:eaa1b5284ea56c34"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260811-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:67e2ef10ab31a4f3"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260811-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:8ac9da1c9ffc1b9b"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260811-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:462e2a9e42ecb0c3"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260811-0001",
+                                             "relation":  "produces",
+                                             "to":  "artifact:4f964816a1e80a18"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260811-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:01"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260811-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:02"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260811-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:03"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260811-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:04"
+                                         }
+                                     ],
+                           "nodeCount":  16,
+                           "edgeCount":  15
+                       },
+    "handoffContract":  {
+                            "schema":  "schemas/worker-handoff.schema.json",
+                            "validator":  "scripts/Test-MarketingHandoff.ps1",
+                            "reconciler":  "scripts/Accept-WorkerHandoff.ps1",
+                            "expectedWorkItemVersion":  3,
+                            "approvalGate":  "none",
+                            "graphEvidence":  "state/execution-graphs/wi-20260811-0001/mgr-20260811t123600z-wi-20260811-0001-faganclose/execution-graph.json"
+                        },
+    "blockers":  [
+
+                 ],
+    "warnings":  [
+
+                 ],
+    "trace":  [
+                  {
+                      "eventId":  "evt-f47a25769a0d448ba9a2ad5df384db2c",
+                      "at":  "2026-08-11T12:38:16.3178693+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "scope-guard",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-898011188d7c430aad7ef60152ed4d63",
+                      "at":  "2026-08-11T12:38:16.3178693+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "source-intake",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-420cf415a8b74f6bb22320940abf5049",
+                      "at":  "2026-08-11T12:38:16.3178693+00:00",
+                      "actor":  "marketing-chief-context-loader",
+                      "nodeId":  "context-retrieval",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-92f3452d36a345aca58dbd0b6138ba5d",
+                      "at":  "2026-08-11T12:38:16.3178693+00:00",
+                      "actor":  "queue-state-import",
+                      "nodeId":  "worker-execution",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-b15177274b0f4db889a9cae6a10fc553",
+                      "at":  "2026-08-11T12:38:16.3178693+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "approval-gate",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-747d2abead56495c9b1ef63fe1b041ab",
+                      "at":  "2026-08-11T12:40:09.6097929+00:00",
+                      "actor":  "independent-verifier",
+                      "nodeId":  "verify-01",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Passed: exact occurrence remains one mailbox notification and one exact-identifier hit with no stored identifiers."
+                  }
+              ],
+    "attestations":  {
+                         "canonicalWriteAttempted":  false,
+                         "externalActionAttempted":  false,
+                         "durableMemoryWriteAttempted":  false,
+                         "containsSecrets":  false,
+                         "containsDirectIdentifiers":  false,
+                         "containsRawCommunications":  false
+                     }
+}
