@@ -59,6 +59,62 @@ The Phase 2 review package is built and live for client review, the canonical fi
 
 - Nationwide live data providers; menu/order integrations; marketplace seeding and pilot launch; pricing packaging (commercial track only, out of product UI); HR concept (separate legal charter only). External menu, ordering, maps, and social destinations remain links only in the MVP.
 
+## Full work breakdown through Phase 5
+
+The contracted plan is five phases mapped to six execution milestones (the mapping artifact `2026-08-05-milestone-2-alignment-and-reply-draft.md` is referenced by `wi-20260805-0002` but missing from this mirror; the mapping below is reconstructed from the July 10 execution plan, the Aug 1 Phase 2 plan PDF provenance, the phase2 product contract, and the phased backlog, and should be confirmed against that artifact and the signed proposal). Source note: no Slack MCP exists in this session's connector set, so Slack facts below come from the redacted Slack synthesis already in this repository (channel `C0BGWRK03B2` evidence, 2026-08-05 readback). The July 23 Tori meeting is an Otter transcript (39:17, 344 segments), not in Fireflies.
+
+### Phase 1 — Discovery, requirements, architecture (Milestone 1) — COMPLETE
+
+Delivered: role definitions (brand, retailer, dispensary, sales rep, admin), application map, initial backlog, Phase 1 tracker, accepted proposal ($45,000), tori source package, discovery prototype.
+
+### Phase 2 — Product definition and UX system (Milestone 2) — AT EXIT GATE
+
+Build work is done (live five-route review prototype, product contract, role/visibility matrix, five priority journeys with acceptance criteria, Miraj backend contract, canonical Next.js port merged via PR #3). Remaining to formally close — all human gates:
+
+1. **Tori:** route-by-route written accept/revise on the five routes (Home, Community News, Create, My Profile, Explore) recorded with dated locators in `phase2-acceptance-record.md`; sign-off PDF is prepared in Drive (`Bridge-Phase-2-Sign-Off-2026-08-06.pdf`).
+2. **Tori:** default feed decision — News grid (recommended) vs Classic.
+3. **Tori + Miraj + legal:** approve the field-level visibility matrix and vendor-to-vendor protected visibility (recommend deny-by-default).
+4. **Dillon + Miraj:** lock the first vertical slice (recommended: Targeted Promotion creation + protected profile projection) with fixtures and a staging date.
+5. **Miraj:** confirm the nine contract areas (claims, authorization, uploads/storage/scanning, post/audience persistence, profile projection, contact confirmation/reminders, search/favorites, introductions, audit events) with inspectable evidence: repository, branch, PR/commit, migrations, RLS tests, endpoint evidence, first staging slice.
+6. **Dillon:** confirm final imagery and production copy where prototype fixtures remain.
+7. **Dillon:** verify the GitHub and Supabase account path (explicitly unverified per `wi-20260805-0002`).
+
+### Phase 3 — Front-end foundation and Miraj contracts (Milestone 3)
+
+- Promote the approved visual direction into production design-system tokens and component rules on the canonical Next.js stack (route naming, shared layout, reusable components, form patterns, responsive behavior).
+- Set up the AI-assisted dev workflow (Claude/Codex/Cursor) with review gates and a decision log; keep secrets and compliance-sensitive data out of prompts.
+- Human gate: obtain and document Miraj's backend contract before connecting Supabase — auth provider and session contract, user/profile/organization relationships, tables/views/enums/nullability, RLS intent per read/write path, storage buckets and signed-URL behavior, API/RPC boundaries and error shapes, audit-event requirements, environment-variable strategy for local/preview/production.
+- Build the locked vertical slice end to end against the eight required API behaviors (claims; audience-safe Community News with cursor pagination; upload intent → validation → scan → processing state; multi-audience post persistence; public/B2B profile projections; contact-confirmation event + next-due date; Explore search with composable filters + favorites; permissioned introduction requests).
+- Server-side enforcement from day one: authorization on every protected record/upload/audience/projection/introduction; protected-detail posts must reject Adults 21+ targeting server-side; disabled client controls are never a security boundary.
+- Begin automated tests as soon as real APIs exist.
+
+### Phase 4 — Core MVP build and integration (Milestones 4–5)
+
+- Build the shared authenticated shell: navigation, page structure, responsive layout, notifications, account context.
+- Onboarding and account setup with validation and recovery paths; verification-facing screens coordinated with Miraj's EIN/business/license/jurisdiction/status requirements.
+- Role-aware dashboards; first usable flows for listings/discovery, messaging, and admin review (verification queue, moderation, disputes).
+- Replace mock adapters with Supabase-backed flows one bounded flow at a time (users/memberships, organizations/locations, profiles, licenses/verification, contact requests, favorites, announcements/notifications, moderation/audit).
+- State machines: verification `draft → submitted → in_review → approved | changes_requested | rejected` (plus re-verification), contact request `draft → sent → accepted | declined | withdrawn`, profile `draft → pending_review → published`.
+- Full state coverage on every data-dependent route: loading, empty, populated, validation-blocked, permission-denied, network error with retry, pending/in-review, rejected-with-reason, success without duplicate submission.
+- Integration QA as endpoints land: permissions match the role matrix; verification/account states (incomplete, pending, rejected, approved); age-gating, jurisdiction, and license-status assumptions validated with the team; responsive, cross-browser, keyboard, and accessibility checks (WCAG 2.2 AA target); failures become tickets with reproduction steps, severity, and owner.
+- Maintain the implementation log: complete, blocked, changed, needs client confirmation.
+
+### Phase 5 — Acceptance, launch readiness, and handoff (Milestone 6)
+
+- Convert acceptance criteria into automated tests against real APIs (unit: filters/validation/state transitions/permission rendering; component: forms/dialogs/tables/state views; end-to-end: the five priority journeys; automated accessibility plus manual keyboard/screen-reader spot checks).
+- Prepare and run the demo-ready acceptance path with Tori; no hidden manual fixes.
+- Confirm final MVP scope and record everything intentionally deferred; coordinate final fixes, environment checks, and release sequencing with Miraj; establish staged launch criteria and rollback paths.
+- Launch operations (from the phased backlog P3): recruit initial retailers/service providers/brands, define verification-operations ownership, moderation, support, and escalation; validate analytics definitions, privacy notices, consent, retention, advertising rules, and legal-state coverage; run usability sessions with Tori and representative roles.
+- Documentation and handoff: app map, role behavior, component conventions, AI workflow, known limitations, next-priority backlog; user-flow walkthrough for client and team; case-study assets pending approval.
+- Pricing/packaging decided on the commercial track only after value validation (the discussed $349–$350 tier is not final); HR concept stays out pending its own legal charter.
+
+### Standing items across all phases
+
+- Route decisions through Melissa and Mac to Tori; keep Mac's sign-off at milestone gates.
+- Keep the tracker/decision log current; assumptions labeled and visible.
+- No legal or regulatory determinations in-product without confirmed guidance; no client credentials or verification data in AI prompts; no silent MVP expansion — new ideas become backlog items.
+- External action (posting, deploying, inviting, account changes) stays approval-gated per the canonical operating rules.
+
 ## Open decisions register
 
 | ID | Decision | Owner | Working recommendation |
