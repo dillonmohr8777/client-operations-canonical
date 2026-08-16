@@ -544,7 +544,7 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-08-15T12:15:07.0291445+00:00`
+- **As of:** `2026-08-16T12:15:06.9641778+00:00`
 - **Overall:** `degraded`
 - **Queue:** revision `411`, `106` work items, normal `2/3`, emergency `0/1` active
 - **Client registry:** `valid`

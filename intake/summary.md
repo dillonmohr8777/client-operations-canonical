@@ -1,6 +1,6 @@
 # Canonical intake summary
 
-Generated: 2026-08-15T12:16:27.586Z
+Generated: 2026-08-16T12:16:27.273Z
 
 This surface contains redacted routing metadata and opaque source locators only. It stores no raw messages, requested outcomes, email addresses, phone numbers, secrets, codes, or other direct identifiers.
 
