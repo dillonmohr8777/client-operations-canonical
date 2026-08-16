@@ -1,95 +1,100 @@
 # OneDrive and SharePoint File Census — Execution Plan
 
-Date: 2026-08-16
-Client route: `align-hcm` (census target is Dillon's alignhcm.com Microsoft 365 tenant)
-Status: prepare-only plan. Execution is blocked until the Microsoft 365 connector is enabled in the working chat and the binding taxonomy is supplied or located.
-Boundaries: read-only census. No file is moved, renamed, deleted, or shared by the agent under this plan. This plan does not touch `queue/work-items.json` or `CONTROL.md`; the Marketing Chief may materialize a work item for it separately.
+Date: 2026-08-16 (revised same day after three-lens adversarial review: completeness, feasibility, compliance)
+Client route: `align-hcm` (census target is Dillon's alignhcm.com Microsoft 365 tenant; `registry/clients.json` resolves `align-hcm` active with email domain `alignhcm.com`)
+Status: prepare-only plan. Execution is blocked on the three Phase 0 gates below.
+Boundaries: read-only census. No file is moved, renamed, deleted, or shared by the agent under this plan. This plan does not touch `queue/work-items.json`, `CONTROL.md`, or `state/corrections.jsonl`.
 
 ## 1. Purpose
 
-Produce one complete, verifiable census of Dillon's OneDrive and all reachable SharePoint document libraries, and turn it into an exact, approval-gated move list keyed to the client-file taxonomy from the 2026-08-16 claude.ai working session. The census answers four questions:
+Produce one complete, honestly-bounded census of Dillon's OneDrive and all in-scope SharePoint document libraries, and turn it into an exact, approval-gated move list keyed to the client-file taxonomy from the 2026-08-16 claude.ai working session. The census answers four questions:
 
-1. What exists — per-folder file counts, last-modified dates, and owners where available.
-2. What is duplicated — families of the same document living in multiple places or under near-identical names.
-3. What violates client separation — files whose subject client does not match the client folder they sit in, or files in mixed/unclassified locations.
-4. What moves where — an exact source-path → target-path list under the taxonomy, with a quarantine list for everything that cannot be classified without guessing.
+1. What exists — per-folder file counts, last-modified dates, and creators/owners where the connector exposes them.
+2. What is duplicated — families of the same document living in multiple places, under near-identical names, or (where content evidence is available) renamed copies.
+3. What violates client separation — files whose subject client does not match the client folder they sit in, or client material in mixed/unclassified locations.
+4. What moves where — one disposition per inventoried item: correctly filed, MoveList row (`move` or `hold`), Quarantine row, `personal — leave in place`, or `internal/template`.
 
-## 2. Binding references
+## 2. Execution vehicle
 
-- **The taxonomy.** The target folder structure was produced in a separate claude.ai session on 2026-08-16 and is not in this repository. It is the binding key for phases 3–4. Phase 0 must obtain it by one of: (a) Dillon pastes it into the working chat; (b) the agent retrieves it from the tenant once Microsoft 365 is enabled — it was discussed over Outlook/Teams and derived from a "master template," so it should be findable by search; or (c) Dillon points to the saved file. Whichever copy is used, Dillon confirms it is the current version before any move list is keyed to it.
-- **Repository invariants that carry over** (from `AGENTS.md` / `README.md`): one client has exactly one canonical home; ambiguous routing is quarantined, never guessed; destructive or external actions are approval-gated; no secrets, raw communications, or unnecessary PII enter this repository.
+The census runs in a **Claude Code session** (this one or a successor on the same repository), not a plain chat, because the census needs what only this environment provides: durable files for the ledger and inventory, git for checkpointing, scripted aggregation and workbook assembly, and workflow fan-out for parallel sweeps. The Microsoft 365 connector must be toggled on **for that session**.
 
-## 3. Scope
+The connector is Graph-backed and expected to be search/read oriented. The plan therefore assumes **search-mode** as the default method everywhere; folder-walk enumeration is a conditional upgrade used only if the Phase 0 probe proves a folder-listing tool with real pagination exists. No phase may silently assume capabilities the probe did not confirm.
 
-In scope:
+## 3. Binding references
 
-- Dillon's OneDrive for Business (alignhcm.com), full folder tree.
-- Every SharePoint site and document library the connector identity can reach, enumerated explicitly in Phase 0 so coverage is a checked list, not an assumption.
+- **The taxonomy.** Produced in a separate claude.ai session on 2026-08-16; not in this repository. Phase 0 obtains it by: (a) Dillon pastes it; (b) Dillon points to the saved file; or (c) the agent retrieves it from the tenant by search. Retrieval stores only the taxonomy content plus a safe source locator — never Outlook/Teams message bodies — as a narrow exception to the Section 4 scope. Dillon confirms the binding copy before any move list is keyed to it, and the MoveList header records which copy was used.
+- **Repository invariants that carry over** (`AGENTS.md`): one client, one canonical home; quarantine over guessing; destructive/external actions approval-gated; no secrets, raw communications, or unnecessary PII in this repository.
 
-Out of scope unless Dillon widens it:
+## 4. Scope
 
-- Outlook attachments, Teams chat file tabs (they surface as SharePoint/OneDrive items where relevant), recycle bins, version histories (used as evidence, not censused as items), and other users' OneDrives.
-- Personal (non-work) files: flagged as `personal — leave in place`, never routed into client folders.
+In scope: Dillon's OneDrive for Business, plus the SharePoint sites/libraries on the frozen scope list (Phase 0.2).
 
-## 4. Phases
+Out of scope unless Dillon widens it: Outlook attachments, Teams chat file tabs, recycle bins, version histories (evidence only, not censused), other users' OneDrives, and **sharing-audience auditing** (who can see each file). Sharing-based separation violations are real but unqueryable through a read/search connector; they are recorded here as an explicit exclusion for Dillon to confirm or reassign to an admin-side SharePoint sharing report.
 
-### Phase 0 — Preflight (blocking gates)
+Personal (non-work) files: flagged `personal — leave in place`, never routed into client folders.
 
-1. Confirm Microsoft 365 is `enabledInChat: true`; re-authentication by Dillon is expected after the token expiry that ended the prior session.
-2. Probe the connector's actual tool surface and record it. The census method depends on what the tools really are: true drive/folder enumeration is the preferred path; if the connector is search-oriented (Graph search), fall back to a multi-modal search sweep (by site, by folder path, by file type, by client name from the taxonomy) and document the coverage limits of each sweep. No silent caps: every truncated listing or capped search is logged in the coverage ledger.
-3. Enumerate all sites/drives reachable by the connector identity and freeze the scope list with Dillon.
-4. Ingest the taxonomy (section 2) and extract from it the canonical client list the census will key against.
+## 5. Phases
+
+### Phase 0 — Blocking gates and preflight
+
+1. **Connector gate.** Microsoft 365 `enabledInChat: true` in the executing session; re-authentication by Dillon expected after the token expiry that ended the prior session.
+2. **Scope gate.** The site/library denominator cannot be derived from a search-only connector, so it comes from Dillon: a SharePoint admin "Active sites" export or a Site-contents screenshot/list. The connector is used only to spot-check reachability of each named site. The confirmed list is frozen in the coverage ledger.
+3. **Queue gate.** Before execution and before any completion-summary commit, the Marketing Chief materializes a truthfully-classed work item (`read_only_verification` / `local_research`) from an authorized writer host (DESKTOP-4AHKEC4 or AHCM-3LCQVF4) under the normal expected-revision rules. This plan is a drafting artifact and never becomes a second queue.
+4. **Capability probe.** Enumerate the connector's actual tools and record, in the ledger: folder-listing yes/no, pagination control yes/no, per-item fields actually returned (path, dates, size, createdBy, hashes, item ID). Every downstream phase adapts to this record; every capability the probe does not confirm is treated as absent.
+5. **Taxonomy gate.** Binding taxonomy confirmed (Section 3); the client list the census keys against is extracted from it.
 
 ### Phase 1 — Inventory sweep
 
-- Walk each drive in scope, folder by folder, to exhaustion of pagination. Fan out one worker per site/top-level folder where parallelism is available.
-- Record per item: full path, name, extension, size (if exposed), created/modified dates, last-modified-by (if exposed), and web URL as the durable locator.
-- Output: `Inventory` sheet plus a per-folder rollup (`counts by folder`, newest/oldest last-touched) and the coverage ledger (every container visited, item count, and whether enumeration completed or was capped).
+- **Default (search-mode):** a multi-modal sweep per scope-list container — by site/path prefix, by file type, by client name from the taxonomy, by date window — each mode run to its cap, sequentially unless this session's workflow subagents can genuinely parallelize connector calls. Caps are expected: every capped query is logged with its query string and cap size. Search cannot prove absence; coverage claims are stated per-mode, never as blanket completeness.
+- **Upgrade (enumeration-mode, only if probed):** walk each container's folder tree to pagination exhaustion.
+- Per item, best-effort by probe record: full path, name, extension, modified date, created date, createdBy/owner, size, content hashes, and web URL as the durable locator. Items reachable by multiple paths are deduplicated on canonicalized web URL.
+- **Durable ledger:** the coverage ledger and raw inventory are files in the executing session's workspace, checkpointed after every container sweep (committed as redacted ledger updates where appropriate). Resume after any interruption = re-ingest the ledger, not re-derive it from chat memory.
 
 ### Phase 2 — Duplicate families
 
-- Deterministic pass first: normalize name stems (strip `copy`, `final`, `v2`, `(1)`, date suffixes, case, separators) and cluster by normalized stem + extension; flag exact name matches in different folders; corroborate with size and modified dates where exposed.
-- Judgment pass second, only on deterministic candidates: distinguish true duplicate families from legitimate siblings (e.g., per-client instances of the master template are *expected* copies, not violations; the family is noted with its canonical original).
-- Distinguish OneDrive shortcuts/links to a SharePoint original from real copies — a linked item is one file, not two.
-- Output: `Duplicates` sheet — family ID, member paths, proposed canonical survivor, evidence (dates/size), and disposition suggestion. Deletion of losers is never executed under this plan; it is a separate approval after Dillon reviews the families.
+- Deterministic pass: normalize name stems (strip `copy`, `final`, `v2`, `(1)`, date suffixes, case, separators); cluster by normalized stem + extension; flag exact-name matches across folders. Where the probe confirmed hashes/size, add a size+hash clustering pass — this is what catches renamed copies. Where it did not, **renamed-copy detection is a stated blind spot** in the deliverable, partially mitigated by budgeted content peeks (Phase 3 budget) on high-suspicion pairs.
+- Judgment pass on candidates only: distinguish true duplicate families from legitimate siblings (per-client instances of the master template are expected copies, noted with their canonical original). Family evidence is name-stem + path + modified date; size/hash strengthen it when present. A stated false-positive rate is expected and acceptable — Dillon reviews families before any deletion, which is a separate approval this plan never executes.
+- Shortcut-vs-copy discrimination requires item facets the connector may not expose; where it doesn't, suspected shortcuts get a `manual check` flag rather than a claimed determination.
+- Output: `Duplicates` sheet — family ID, member paths, proposed canonical survivor, evidence, disposition suggestion.
 
 ### Phase 3 — Client-separation audit
 
-- Map every in-scope item to exactly one taxonomy client (or `internal`, `template`, `personal`) using folder context, file name, and — only where the name is insufficient and the stakes justify it — a metadata/content peek.
-- A violation is: an item whose mapped client differs from the client folder containing it; an item containing more than one client's material in a client-specific location; or client material sitting in an unclassified/shared dumping ground.
-- Ambiguity rule (mirrors this repository's invariant): if the client cannot be determined without guessing, the item goes to `Quarantine` with the reason, not into the move list.
+- Bulk classification by path/name rules against the taxonomy client list first. Content peeks are capped at a fixed per-session budget (default 20 items, Dillon-adjustable); items beyond the budget that rules cannot classify go to Quarantine by rule.
+- A violation is: an item whose mapped client differs from the client folder containing it; multi-client material in a client-specific location; or client material in an unclassified dumping ground.
+- Ambiguity rule: if the client cannot be determined without guessing, the item goes to `Quarantine` with the reason. Never guessed.
 - Output: `Violations` sheet — path, mapped client, containing-folder client, violation type, evidence.
 
 ### Phase 4 — Exact move list
 
-- For every item that is misplaced or unfiled under the taxonomy: one row of `source path → target path`, with confidence tier (`exact` / `probable`), the rule that produced it, and collision handling (target already has a same-named file → tie into the Phase 2 family rather than overwriting).
-- Do-not-move flags, checked per row before it enters the list: items with active external sharing links (moves break links), items pinned by flows/automations if any are detected, and anything inside a synced-library path Dillon names as fragile.
-- Output: `MoveList` sheet. **Prepare-only.** Execution routes, each separately approved by Dillon: manual moves, Power Automate, or Zapier once that connector is enabled. The Microsoft 365 connector itself is expected to be read-oriented; the census never assumes it can write.
+- Every misplaced or unfiled item gets exactly one row: `source path → target path` under the taxonomy, confidence tier (`exact` / `probable`), the rule that produced it, and collision handling (same-named file at target → tied into its Phase 2 family, never overwritten).
+- **Hold rows, not omissions:** items that should not move yet (active external sharing links, suspected flow/automation dependencies, fragile synced paths Dillon names) stay in the MoveList with status `hold` and the reason — the list remains an exhaustive account of everything misplaced. Sharing-link and automation checks are unqueryable by the agent; they are Dillon/admin pre-execution gates (SharePoint sharing report, Power Automate connection review) run before any `move` row executes.
+- **Prepare-only.** Execution routes, each separately approved by Dillon: manual moves, Power Automate, or Zapier once enabled. The census never assumes the connector can write.
 
 ### Phase 5 — Verification and delivery
 
-- Adversarial verification before delivery: re-count a random sample of folders against the inventory; independently re-verify every `Violations` row by re-reading the item's metadata; run a completeness critic over the coverage ledger ("which container, file type, or search mode was not exercised?"). Findings loop back into phases 1–4 until two consecutive passes surface nothing new.
-- Deliverable: one workbook (`Inventory`, `Duplicates`, `Violations`, `MoveList`, `Quarantine`, `Coverage`) sent to Dillon as a file, plus a short written summary with per-folder counts and the top duplicate families.
-- The workbook contains client-identifying file names, so it is **delivered, not committed**. What gets committed here afterwards is a redacted completion summary (counts, family totals, violation totals, coverage attestation) under this client folder.
+- **Independent instrument:** Dillon opens a random sample of folders in the OneDrive/SharePoint UI and reports item counts, compared against the inventory — the census is not verified against the same search tool that built it. Duplicate families get a sample re-verification pass; every Violations row is independently re-read before delivery. Findings loop back until a full pass surfaces nothing new.
+- Deliverable: one workbook (`Inventory`, `Duplicates`, `Violations`, `MoveList`, `Quarantine`, `Coverage`) sent to Dillon as a file, plus a written summary. **Delivered, not committed** — it contains client-identifying file names.
+- Committed afterwards (post queue-gate reconciliation): a redacted completion summary keying counts per taxonomy client, naming the align-hcm tenant as the single source system, containing **zero file names or paths**.
 
-## 5. Risks and handling
+## 6. Failure handling
 
-| Risk | Handling |
+| Failure | Handling |
 |---|---|
-| Connector is search-based, not enumeration-based | Phase 0 probe decides the method before any counting; multi-modal sweep with a per-mode coverage ledger; limits stated in the deliverable, never papered over |
-| Token expires mid-census | Checkpoint after every container; the census resumes from the ledger instead of restarting |
-| Graph throttling (429) | Pace requests, back off, and prefer per-container batching over item-by-item calls |
-| Same document reachable via two paths (shared library + shortcut) | Deduplicate by item ID/web URL before counting |
-| Taxonomy version drift (chat copy vs. saved copy) | Dillon confirms the binding copy in Phase 0; the move list header records which copy it was keyed to |
-| Wrong-client mapping | Quarantine over guessing, and Phase 5 re-verifies every violation row independently |
+| Connector error / throttling | Wait, retry the sweep query once, log the failure with its query in the ledger; no HTTP-level control is assumed |
+| Token expires mid-census | Ledger and inventory are on disk; resume by re-ingesting them after Dillon re-authenticates |
+| Session/context limits | Census is pre-chunked per site/top-level container; each chunk emits a partial ledger; aggregation and workbook assembly are scripted in the Claude Code session, not held in chat memory |
+| Capped container | Closed via an alternate sweep mode where possible; otherwise explicitly accepted by Dillon as a named coverage gap — a silent cap never counts as done |
+| Taxonomy version drift | Binding copy confirmed in Phase 0; MoveList header records which copy it was keyed to |
+| Unmappable client | Quarantine, never guess |
 
-## 6. Definition of done
+## 7. Definition of done
 
-1. Coverage ledger shows every in-scope container enumerated to completion, or its cap explicitly recorded.
-2. Every violation row independently re-verified; two consecutive clean verification passes.
-3. Workbook delivered to Dillon; redacted summary committed to this folder.
-4. No write of any kind performed against the tenant; move list and duplicate dispositions remain pending Dillon's explicit approval.
+1. Every scope-list container swept; enumeration-mode containers enumerated to completion; search-mode containers have all planned sweep modes executed, every cap recorded, and each remaining gap either closed by an alternate mode or explicitly accepted by Dillon. Search-mode coverage carries an explicit residual-risk statement in place of a completeness attestation.
+2. Full reconciliation: every inventoried item has exactly one recorded disposition (correctly filed / MoveList `move` / MoveList `hold` / Quarantine / personal / internal-template).
+3. Every Violations row independently re-verified; duplicate families sample-verified; Dillon's UI spot-counts reconciled against the inventory.
+4. Workbook delivered to Dillon; redacted, path-free completion summary committed via the queue-gated route.
+5. No write of any kind performed against the tenant; move list and duplicate dispositions remain pending Dillon's explicit approval.
 
-## 7. Trigger to execute
+## 8. Triggers to execute
 
-Microsoft 365 toggled on in the working chat (+ re-auth), taxonomy confirmed. From there this plan is straight execution — no further design decisions are required before Phase 4 output exists.
+All three Phase 0 gates: (1) Microsoft 365 enabled in the executing Claude Code session (+ re-auth), (2) scope list supplied by Dillon, (3) taxonomy confirmed — plus the Marketing Chief queue gate for the canonical trail. From there this plan is straight execution.
