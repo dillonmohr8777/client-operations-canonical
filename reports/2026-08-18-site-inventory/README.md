@@ -63,9 +63,50 @@ broken.** It ran, returned `status: ok`, and had nothing to do. Four causes:
    2026-08-05, so the 138 later builds were invisible, and the exclusion it did
    carry only applied at discovery — rows already in the registry kept
    `verdict: rebuild` forever. **104 already-built businesses were still live
-   rebuild targets, and 9 of the 15 top suggestions in that morning's brief were
-   businesses whose new homepage was already live.** This is also why two
+   rebuild targets.** On the dashboard's default view — the Rebuild queue sorted
+   by priority descending, `momentum-prospect-radar.netlify.app/#sort=p:desc` —
+   **100 of the 188 rows were businesses whose new homepage was already live,
+   including 16 of the 25 visible without scrolling.** This is also why two
    businesses got built twice.
+
+### What that page shows right now
+
+`momentum-prospect-radar.netlify.app/#sort=p:desc` opens on the Rebuild queue,
+priority descending. The first 25 rows, with the ones we have already built
+marked:
+
+| Priority | Business | Already built? |
+|---:|---|---|
+| 94 | Germantown Dental Group | **yes** — Cinematic 169-178, not cleared |
+| 86 | Udis & Conn Orthodontics | **yes** — Cinematic 169-178, not cleared |
+| 86 | Colonial Animal Hospital | no |
+| 82 | Jarman Sales & Service, Inc | **yes** — phl-2026-w34, not cleared |
+| 82 | Lee's Hoagie House | **yes** — Cinematic 169-178, not cleared |
+| 78 | Andorra Family Dentistry | **yes** — phl-2026-w33, not cleared |
+| 78 | Dutton Road Veterinary Clinic | **yes** — phl-2026-w33, not cleared |
+| 78 | P & C Insurance Agency LLC | no |
+| 78 | Anthony Gueriera Jr. Insurance Agency LLC | **yes** — Cinematic 169-178, not cleared |
+| 78 | Big Head Transport, LLC | **yes** — Cinematic 169-178, not cleared |
+| 78 | Kehan's Auto Service | **yes** — Cinematic 169-178, not cleared |
+| 78 | Elite Auto Parts | **yes** — Cinematic 169-178, not cleared |
+| 78 | Bàn Bàn Asian Bistro | **yes** — Cinematic 169-178, not cleared |
+| 78 | Golden Eagle Jewelry | **yes** — Cinematic 166-168, not cleared |
+| 75 | E&S Autoparts | no |
+| 75 | Go Vertical - Indoor Rock Climbing Gym | no |
+| 75 | ansarispharma.com | no |
+| 75 | Ward Insurance Associates Inc. | no |
+| 75 | Fortitude & Co | no |
+| 74 | BG Electric Service LLC | **yes** — phl-2026-w34, not cleared |
+| 74 | Pennsylvania Dental Group | **yes** — phl-2026-w34, not cleared |
+| 74 | HaverCrown Dental | **yes** — phl-2026-w34, not cleared |
+| 72 | Hortense T. Moss Health Center | no |
+| 72 | Mt. Airy Pediatrics, P.C. | no |
+| 72 | Always Dental Care | **yes** — phl-2026-w34, not cleared |
+
+Sixteen of the twenty-five. Every one of them is also in the fix queue — the
+concept exists but has not been cleared to show — so the same business is
+simultaneously "our top rebuild target" and "a page we already built and have
+not QA'd." The real rebuild pipeline is **88**, not the 182 the brief reports.
 
 2. **Discovery queried the same cells every morning.** The planner took the top
    3 verticals by deficit and nothing else; deficits move slowly, so the same
@@ -88,7 +129,8 @@ broken.** It ran, returned `status: ok`, and had nothing to do. Four causes:
 | | before | after |
 |---|---:|---:|
 | Already-built businesses live as rebuild targets | 104 | 0 |
-| Top-15 suggestions already built | 9 | 0 |
+| Already built in the visible top 25 of the Rebuild queue | 16 | 0 |
+| Already built across the whole Rebuild queue | 100 | 0 |
 | `queued_build` | 181 | 82 |
 | Rebuild queue | 188 | 88 |
 | Rows the sweep would grade today | 0 | 250 |
