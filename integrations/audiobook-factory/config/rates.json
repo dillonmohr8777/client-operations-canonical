@@ -1,0 +1,66 @@
+{
+  "_comment": "Momentum 360 delivery economics for audiobook production. Labour hours are the real cost; TTS API spend is rounding error. Adjust internalHourlyCost to your loaded rate.",
+  "verified": "2026-08-19",
+  "currency": "USD",
+  "labor": {
+    "internalHourlyCost": 65,
+    "perCourseHours": {
+      "sourcePrep": 1.5,
+      "flagResolution": 0.4,
+      "proofReview": 0.5,
+      "deliveryQaListen": 0.6,
+      "packagingDelivery": 0.25
+    },
+    "oneTimeHours": {
+      "voiceSetupOrClone": 3,
+      "lexiconBuild": 2,
+      "creditsAndBrandTemplate": 2,
+      "pilotCourseAndSignoff": 3,
+      "distributionSetup": 2
+    }
+  },
+  "market": {
+    "_comment": "Benchmarks used to justify price, verified 2026-08-19.",
+    "humanNarrationPfhLow": 200,
+    "humanNarrationPfhHigh": 400,
+    "humanFullProductionPerTitleLow": 2500,
+    "humanFullProductionPerTitleHigh": 10000,
+    "sources": [
+      "https://narrationbox.com/blog/ai-voice-vs-human-narrator-cost-80k-words",
+      "https://www.audie.ai/ai-narration-vs-hiring-a-human-narrator-cost-time-quality",
+      "https://narratemi.com/audiobook-cost"
+    ]
+  },
+  "tiers": [
+    {
+      "id": "essential",
+      "label": "Essential",
+      "engine": { "provider": "google", "model": "chirp-3-hd" },
+      "profile": "lms",
+      "includes": ["Stock premium voice", "Chaptered M4B + per-lesson files", "QA report", "Delivery to the client's platform"],
+      "excludes": ["Voice cloning", "Private podcast feed", "Distribution setup"],
+      "laborMultiplier": 0.8,
+      "targetMarginPct": 60
+    },
+    {
+      "id": "signature",
+      "label": "Signature",
+      "engine": { "provider": "elevenlabs", "model": "eleven_multilingual_v2" },
+      "profile": "podcast",
+      "includes": ["Voice clone of the author", "Chaptered M4B + per-lesson files", "Private podcast feed", "QA report", "Two revision rounds"],
+      "excludes": ["Retail distribution contracts"],
+      "laborMultiplier": 1.0,
+      "targetMarginPct": 65
+    },
+    {
+      "id": "catalogue",
+      "label": "Catalogue + Distribution",
+      "engine": { "provider": "elevenlabs", "model": "eleven_multilingual_v2" },
+      "profile": "podcast",
+      "includes": ["Everything in Signature", "Distribution setup and submission", "Feed hosting handoff", "Quarterly refresh of changed modules"],
+      "excludes": [],
+      "laborMultiplier": 1.25,
+      "targetMarginPct": 65
+    }
+  ]
+}

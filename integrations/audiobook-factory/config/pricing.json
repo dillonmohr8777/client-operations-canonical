@@ -1,0 +1,89 @@
+{
+  "_comment": "Vendor TTS pricing. Dated + sourced. Re-verify on or before 'expires'.",
+  "verified": "2026-08-19",
+  "expires": "2026-11-19",
+  "currency": "USD",
+  "narration": {
+    "_comment": "Conversion constants used to turn characters into finished audio hours.",
+    "wordsPerMinute": 150,
+    "charsPerWord": 5.9,
+    "charsPerFinishedHour": 53100,
+    "note": "150 wpm is the audiobook industry pace band (150-160). charsPerWord measured from real prose incl. spaces."
+  },
+  "vendors": {
+    "elevenlabs": {
+      "label": "ElevenLabs",
+      "tier": "premium",
+      "bestFor": "Delivery voice. Best-in-class long-form prosody + professional voice cloning of the author.",
+      "models": {
+        "eleven_multilingual_v2": { "usdPerMillionChars": 100.0, "quality": "delivery", "basis": "overage rate $0.10/1k chars" },
+        "eleven_v3":             { "usdPerMillionChars": 100.0, "quality": "delivery", "basis": "overage rate $0.10/1k chars" },
+        "eleven_flash_v2_5":     { "usdPerMillionChars": 50.0,  "quality": "draft",    "basis": "overage rate $0.05/1k chars" }
+      },
+      "plans": [
+        { "name": "Free",     "usdPerMonth": 0,   "creditsPerMonth": 10000,    "effectiveUsdPerMillionChars": null },
+        { "name": "Starter",  "usdPerMonth": 6,   "creditsPerMonth": 30000,    "effectiveUsdPerMillionChars": 200.0 },
+        { "name": "Creator",  "usdPerMonth": 22,  "creditsPerMonth": 100000,   "effectiveUsdPerMillionChars": 220.0 },
+        { "name": "Pro",      "usdPerMonth": 99,  "creditsPerMonth": 500000,   "effectiveUsdPerMillionChars": 198.0 },
+        { "name": "Scale",    "usdPerMonth": 299, "creditsPerMonth": 2000000,  "effectiveUsdPerMillionChars": 149.5 },
+        { "name": "Business", "usdPerMonth": 990, "creditsPerMonth": 11000000, "effectiveUsdPerMillionChars": 90.0 }
+      ],
+      "creditRule": "Multilingual v2 / v3 = 1 credit per character. Flash / Turbo v2.5 = 0.5 credits per character.",
+      "sources": [
+        "https://www.cekura.ai/blogs/elevenlabs-pricing",
+        "https://flexprice.io/blog/elevenlabs-pricing-breakdown",
+        "https://bigvu.tv/blog/elevenlabs-pricing-2026-plans-credits-commercial-rights-api-costs/"
+      ]
+    },
+    "openai": {
+      "label": "OpenAI",
+      "tier": "value",
+      "bestFor": "Cheapest credible delivery voice. No voice cloning - you pick from a stock voice set.",
+      "models": {
+        "tts-1":            { "usdPerMillionChars": 15.0, "quality": "draft",    "basis": "list price per 1M chars" },
+        "tts-1-hd":         { "usdPerMillionChars": 30.0, "quality": "delivery", "basis": "list price per 1M chars" },
+        "gpt-4o-mini-tts":  { "usdPerMillionChars": 15.0, "quality": "delivery", "basis": "token-based: $0.60/1M text-input tokens + $12/1M audio-output tokens, ~= $15/1M chars, ~$0.015/min" }
+      },
+      "sources": [
+        "https://texttolab.com/blog/openai-tts-pricing",
+        "https://tokenmix.ai/blog/gpt-4o-mini-tts-cheapest-tts-api-2026",
+        "https://costgoat.com/pricing/openai-tts"
+      ]
+    },
+    "google": {
+      "label": "Google Cloud Text-to-Speech",
+      "tier": "value",
+      "bestFor": "1M free chars/month on Chirp 3 HD covers most of this catalog at zero API cost.",
+      "models": {
+        "chirp-3-hd": { "usdPerMillionChars": 30.0, "quality": "delivery", "freeCharsPerMonth": 1000000, "basis": "$0.00003/char" },
+        "neural2":    { "usdPerMillionChars": 16.0, "quality": "draft",    "freeCharsPerMonth": 1000000 },
+        "standard":   { "usdPerMillionChars": 4.0,  "quality": "proof",    "freeCharsPerMonth": 4000000 }
+      },
+      "sources": [
+        "https://texttolab.com/blog/google-cloud-tts-pricing",
+        "https://diyai.io/ai-tools/audio-generation/google-cloud-text-to-speech-pricing/"
+      ]
+    },
+    "azure": {
+      "label": "Azure AI Speech",
+      "tier": "value",
+      "bestFor": "Commitment tiers get to $7.50/1M at volume. Strong if the client is already on Azure.",
+      "models": {
+        "neural":            { "usdPerMillionChars": 16.0, "quality": "draft",    "freeCharsPerMonth": 500000 },
+        "neural-hd":         { "usdPerMillionChars": 22.0, "quality": "delivery", "freeCharsPerMonth": 500000, "basis": "reduced from $30 in March 2026" },
+        "neural-commitment": { "usdPerMillionChars": 7.5,  "quality": "delivery", "basis": "commitment-tier floor, ~53% off PAYG" }
+      },
+      "sources": [
+        "https://texttolab.com/blog/azure-text-to-speech-pricing",
+        "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/azure-speech-%e2%80%93-neural-hd-text-to-speech-recent-voice-updates/4505380"
+      ]
+    },
+    "local": {
+      "label": "espeak-ng (offline)",
+      "tier": "proof",
+      "bestFor": "Free proof pass. Validates chapterization, pronunciation, timing and packaging before a single paid character is spent. NEVER a delivery voice.",
+      "models": { "espeak-ng": { "usdPerMillionChars": 0.0, "quality": "proof" } },
+      "sources": ["bundled with the container; no API key required"]
+    }
+  }
+}
