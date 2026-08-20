@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-08-11T13:01:38.1827101+00:00`
-Queue revision: `411`
+Last reconciled: `2026-08-20T12:34:45.9380270+00:00`
+Queue revision: `415`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -132,6 +132,7 @@ Mode: `manual-pilot`
 | `wi-20260810-0001` | `va-claims-edge` | Complete Phase 3 seven-stage review frontend | Done | P1 | Deploy the verified build to the existing mapped Netlify review site and record the evidence package. | No evidenced deadline |
 | `wi-20260810-0002` | `va-claims-edge` | Finish Phase 3 final-product acceptance details | Done | P1 | Deploy the verified acceptance corrections to the already mapped VA Claims Edge Netlify review site and reconcile the evidence artifacts. | No evidenced deadline |
 | `wi-20260811-0001` | `fagan-painting` | Verify routing and ownership of August 10 Fagan website lead | Done | P0 | Perform a read-only check of the approved mailbox, CRM, or Zapier record for routing, duplicate status, owner, and current disposition without contacting the prospect. | No evidenced deadline |
+| `wi-20260820-0001` | `va-claims-edge` | Prepare current VA Claims portal meeting-readiness packet | Done | P1 | Build a local redacted portal meeting-readiness packet from current canonical VA Claims artifacts, separating verified completed work, open issues, decisions, owners, and demo checks. | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -544,9 +545,9 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-08-16T12:15:06.9641778+00:00`
+- **As of:** `2026-08-20T12:35:08.4510189+00:00`
 - **Overall:** `degraded`
-- **Queue:** revision `411`, `106` work items, normal `2/3`, emergency `0/1` active
+- **Queue:** revision `415`, `107` work items, normal `2/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `8/21` canonical clients registered, `2/65` systems verified, `6` exact Bitwarden item locators
@@ -560,7 +561,7 @@ Mode: `manual-pilot`
   - `DillonAgentOS-DailyBrief`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
-  - `MarketingChief-DailyCalibration`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
+  - `MarketingChief-DailyCalibration`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
   - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `1`
 - **Human gates:** `active_client_exact_bw_item_mapping`
 - **Deferred actions:** `secondary_exposed_password_rotation`

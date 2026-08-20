@@ -1,0 +1,812 @@
+{
+    "schemaVersion":  1,
+    "graphRunId":  "mgr-20260820-1332-wi-20260820-0001",
+    "graphRevision":  6,
+    "workflowId":  "marketing-chief-execution-graph",
+    "createdAt":  "2026-08-20T12:33:12.1552374+00:00",
+    "updatedAt":  "2026-08-20T12:34:22.8207655+00:00",
+    "status":  "handoff_ready",
+    "queueSnapshot":  {
+                          "locator":  "queue/work-items.json",
+                          "revision":  414,
+                          "sha256":  "DD8F9D9BAD027073F9DF5B9C1AB1479E395D4A7BD03D9B899B39CE8F01D16994",
+                          "capturedAt":  "2026-08-20T12:33:12.1552374+00:00"
+                      },
+    "workItem":  {
+                     "id":  "wi-20260820-0001",
+                     "expectedVersion":  3,
+                     "contentSha256":  "11EFE10ECD43BF87DE18A0FF6B32BE760F1421B50652000C1CED193C4640B12E",
+                     "clientId":  "va-claims-edge",
+                     "title":  "Prepare current VA Claims portal meeting-readiness packet",
+                     "status":  "verification",
+                     "lane":  "normal",
+                     "priority":  "P1",
+                     "actionClass":  "local_artifact",
+                     "nextAction":  "Build a local redacted portal meeting-readiness packet from current canonical VA Claims artifacts, separating verified completed work, open issues, decisions, owners, and demo checks.",
+                     "definitionOfDone":  [
+                                              "Packet cites current client-separated source locators without raw communications or direct identifiers.",
+                                              "Verified completed work is separated from assumptions, open issues, and approval-gated actions.",
+                                              "The portal demo flow, exact decisions, owners, and next checkpoints are concise and review-ready.",
+                                              "An independent verifier checks factual support, client isolation, and the no-external-action boundary."
+                                          ],
+                     "sourceLocator":  "agent-os-run:20260817-111244-0c7bab93/task.json",
+                     "evidenceRefs":  [
+                                          "agent-os-run:20260817-111244-0c7bab93/task.json",
+                                          "clients/va-claims-edge/evidence/2026-08-20-portal-meeting-readiness-readback.json",
+                                          "clients/va-claims-edge/workspace/vace-platform/docs/phase-2-closeout-2026-08-15.md",
+                                          "clients/va-claims-edge/workspace/vace-platform/docs/phase-3-data-activation.md",
+                                          "clients/va-claims-edge/workspace/vace-platform/docs/phase-3-review-checklist.md",
+                                          "clients/va-claims-edge/evidence/2026-07-25-booking-routing-verification.json",
+                                          "state/execution-graphs/wi-20260820-0001/mgr-20260820-1209-wi-20260820-0001/execution-graph.json",
+                                          "sha256:11F229638D24EFA8B4F64247003429B578DA7F1772E9210AC40CC0A64F75CC7E",
+                                          "state/execution-graphs/wi-20260820-0001/mgr-20260820-1329-wi-20260820-0001/execution-graph.json",
+                                          "sha256:3F95AA6EF28889A782AD900A66315CC165E08EDA46B13035F8948FEDDCB5C532"
+                                      ],
+                     "artifactRefs":  [
+                                          "clients/va-claims-edge/deliverables/2026-08-20-portal-meeting-readiness/meeting-readiness.md"
+                                      ],
+                     "dependencies":  [
+
+                                      ],
+                     "approval":  {
+                                      "tier":  "automatic",
+                                      "status":  "not_required",
+                                      "gate":  "none"
+                                  }
+                 },
+    "scope":  {
+                  "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+                  "clientRoot":  "clients/va-claims-edge",
+                  "graphLocator":  "state/execution-graphs/wi-20260820-0001/mgr-20260820-1332-wi-20260820-0001/execution-graph.json",
+                  "canonicalWriteAllowed":  false,
+                  "externalActionAllowed":  false,
+                  "durableMemoryWriteAllowed":  false,
+                  "privacy":  "redacted"
+              },
+    "retrieval":  {
+                      "strategy":  "exact-plus-graph",
+                      "exactBindingRequired":  true,
+                      "semanticBindingAllowed":  false,
+                      "sourceCount":  10,
+                      "artifactCount":  1
+                  },
+    "nodes":  [
+                  {
+                      "id":  "scope-guard",
+                      "kind":  "scope_guard",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Validate immutable queue, work-item, client, and project scope.",
+                      "requires":  [
+
+                                   ],
+                      "produces":  [
+                                       "scoped_work_item"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Queue revision, work-item version, exact client route, and safety scope were validated.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "queue/work-items.json",
+                                                      "agent-os-run:20260817-111244-0c7bab93/task.json"
+                                                  ],
+                                     "verification":  [
+                                                          "Queue revision 414 captured.",
+                                                          "Work-item version 3 captured.",
+                                                          "Client route va-claims-edge resolved exactly once and is active."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "source-intake",
+                      "kind":  "source_intake",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Capture safe exact source and evidence locators.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "provenance_slice"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Exact source and evidence locators were captured without raw communications.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "agent-os-run:20260817-111244-0c7bab93/task.json",
+                                                      "clients/va-claims-edge/evidence/2026-08-20-portal-meeting-readiness-readback.json",
+                                                      "clients/va-claims-edge/workspace/vace-platform/docs/phase-2-closeout-2026-08-15.md",
+                                                      "clients/va-claims-edge/workspace/vace-platform/docs/phase-3-data-activation.md",
+                                                      "clients/va-claims-edge/workspace/vace-platform/docs/phase-3-review-checklist.md",
+                                                      "clients/va-claims-edge/evidence/2026-07-25-booking-routing-verification.json",
+                                                      "state/execution-graphs/wi-20260820-0001/mgr-20260820-1209-wi-20260820-0001/execution-graph.json",
+                                                      "sha256:11F229638D24EFA8B4F64247003429B578DA7F1772E9210AC40CC0A64F75CC7E",
+                                                      "state/execution-graphs/wi-20260820-0001/mgr-20260820-1329-wi-20260820-0001/execution-graph.json",
+                                                      "sha256:3F95AA6EF28889A782AD900A66315CC165E08EDA46B13035F8948FEDDCB5C532"
+                                                  ],
+                                     "verification":  [
+                                                          "Evidence freshness evaluated at 2026-08-20T12:33:12.1552374+00:00."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "context-retrieval",
+                      "kind":  "context_retrieval",
+                      "owner":  "marketing-chief-context-loader",
+                      "status":  "completed",
+                      "task":  "Assemble the exact bounded context slice required by this item.",
+                      "requires":  [
+                                       "source-intake"
+                                   ],
+                      "produces":  [
+                                       "worker_context"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Bounded client, source, artifact, dependency, and definition-of-done context was assembled.",
+                                     "artifacts":  [
+                                                       "clients/va-claims-edge/deliverables/2026-08-20-portal-meeting-readiness/meeting-readiness.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "agent-os-run:20260817-111244-0c7bab93/task.json",
+                                                      "clients/va-claims-edge/evidence/2026-08-20-portal-meeting-readiness-readback.json",
+                                                      "clients/va-claims-edge/workspace/vace-platform/docs/phase-2-closeout-2026-08-15.md",
+                                                      "clients/va-claims-edge/workspace/vace-platform/docs/phase-3-data-activation.md",
+                                                      "clients/va-claims-edge/workspace/vace-platform/docs/phase-3-review-checklist.md",
+                                                      "clients/va-claims-edge/evidence/2026-07-25-booking-routing-verification.json",
+                                                      "state/execution-graphs/wi-20260820-0001/mgr-20260820-1209-wi-20260820-0001/execution-graph.json",
+                                                      "sha256:11F229638D24EFA8B4F64247003429B578DA7F1772E9210AC40CC0A64F75CC7E",
+                                                      "state/execution-graphs/wi-20260820-0001/mgr-20260820-1329-wi-20260820-0001/execution-graph.json",
+                                                      "sha256:3F95AA6EF28889A782AD900A66315CC165E08EDA46B13035F8948FEDDCB5C532"
+                                                  ],
+                                     "verification":  [
+                                                          "Definition-of-done checks: 4.",
+                                                          "Artifact references: 1."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "worker-execution",
+                      "kind":  "worker_execution",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Build a local redacted portal meeting-readiness packet from current canonical VA Claims artifacts, separating verified completed work, open issues, decisions, owners, and demo checks.",
+                      "requires":  [
+                                       "context-retrieval"
+                                   ],
+                      "produces":  [
+                                       "local_artifacts",
+                                       "worker_evidence"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "The local VA Claims meeting-readiness packet is complete and independently verified against current canonical sources; advance the active item to canonical verification.",
+                                     "artifacts":  [
+                                                       "clients/va-claims-edge/deliverables/2026-08-20-portal-meeting-readiness/meeting-readiness.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "agent-os-run:20260817-111244-0c7bab93/task.json",
+                                                      "clients/va-claims-edge/evidence/2026-08-20-portal-meeting-readiness-readback.json",
+                                                      "clients/va-claims-edge/workspace/vace-platform/docs/phase-2-closeout-2026-08-15.md",
+                                                      "clients/va-claims-edge/workspace/vace-platform/docs/phase-3-data-activation.md",
+                                                      "clients/va-claims-edge/workspace/vace-platform/docs/phase-3-review-checklist.md",
+                                                      "clients/va-claims-edge/evidence/2026-07-25-booking-routing-verification.json",
+                                                      "state/execution-graphs/wi-20260820-0001/mgr-20260820-1209-wi-20260820-0001/execution-graph.json",
+                                                      "sha256:11F229638D24EFA8B4F64247003429B578DA7F1772E9210AC40CC0A64F75CC7E",
+                                                      "state/execution-graphs/wi-20260820-0001/mgr-20260820-1329-wi-20260820-0001/execution-graph.json",
+                                                      "sha256:3F95AA6EF28889A782AD900A66315CC165E08EDA46B13035F8948FEDDCB5C532"
+                                                  ],
+                                     "verification":  [
+
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-01",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Packet cites current client-separated source locators without raw communications or direct identifiers.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_01"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "PASS: Exact client-scoped safe locators and redacted evidence; no raw communications or direct identifiers.",
+                                     "artifacts":  [
+                                                       "clients/va-claims-edge/deliverables/2026-08-20-portal-meeting-readiness/meeting-readiness.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/evidence/2026-08-20-portal-meeting-readiness-readback.json"
+                                                  ],
+                                     "verification":  [
+                                                          "Independent final verifier PASS."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-02",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Verified completed work is separated from assumptions, open issues, and approval-gated actions.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_02"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "PASS: Completed review work is separated from assumptions, open production work, booking gaps, and approval-gated actions.",
+                                     "artifacts":  [
+                                                       "clients/va-claims-edge/deliverables/2026-08-20-portal-meeting-readiness/meeting-readiness.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/workspace/vace-platform/docs/phase-2-closeout-2026-08-15.md",
+                                                      "clients/va-claims-edge/evidence/2026-07-25-booking-routing-verification.json"
+                                                  ],
+                                     "verification":  [
+                                                          "Independent final verifier PASS."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-03",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "The portal demo flow, exact decisions, owners, and next checkpoints are concise and review-ready.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_03"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "PASS: Demo flow, decisions, proposed role owners, activation workstreams, and next checkpoint are concise and review-ready.",
+                                     "artifacts":  [
+                                                       "clients/va-claims-edge/deliverables/2026-08-20-portal-meeting-readiness/meeting-readiness.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/workspace/vace-platform/docs/phase-3-data-activation.md",
+                                                      "clients/va-claims-edge/workspace/vace-platform/docs/phase-3-review-checklist.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Independent final verifier PASS."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-04",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "An independent verifier checks factual support, client isolation, and the no-external-action boundary.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_04"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "PASS: Final independent verification confirmed factual support, client isolation, all definition-of-done checks, and no external action.",
+                                     "artifacts":  [
+                                                       "clients/va-claims-edge/deliverables/2026-08-20-portal-meeting-readiness/meeting-readiness.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/va-claims-edge/evidence/2026-08-20-portal-meeting-readiness-readback.json",
+                                                      "state/execution-graphs/wi-20260820-0001/mgr-20260820-1332-wi-20260820-0001/execution-graph.json"
+                                                  ],
+                                     "verification":  [
+                                                          "Independent final verifier PASS after all five advisory defects were corrected.",
+                                                          "No external action or worker canonical write occurred."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "approval-gate",
+                      "kind":  "approval_gate",
+                      "owner":  "marketing-chief",
+                      "status":  "completed",
+                      "task":  "Enforce the exact action-class and approval boundary.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "approval_verdict"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "This graph permits local reversible work only; no external action is authorized.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+
+                                                  ],
+                                     "verification":  [
+                                                          "Action class: local_artifact.",
+                                                          "Approval tier/status: automatic/not_required."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "handoff-assembly",
+                      "kind":  "handoff_assembly",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Assemble a schema-valid redacted worker handoff from completed graph outputs.",
+                      "requires":  [
+                                       "verify-01",
+                                       "verify-02",
+                                       "verify-03",
+                                       "verify-04",
+                                       "approval-gate"
+                                   ],
+                      "produces":  [
+                                       "worker_handoff"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "state/worker-handoffs/handoff-va-portal-readiness-done-20260820.json",
+                                                      "sha256:F197E5EBDAEEA5E39633633E3A5711F70347827FE3229C2ED6C915286A743242"
+                                                  ],
+                                     "verification":  [
+
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "chief-reconciliation",
+                      "kind":  "chief_reconciliation",
+                      "owner":  "marketing-chief",
+                      "status":  "ready",
+                      "task":  "Revalidate live queue and item state, then accept or reject the handoff through the supported canonical mutation path.",
+                      "requires":  [
+                                       "handoff-assembly"
+                                   ],
+                      "produces":  [
+                                       "canonical_receipt"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  }
+              ],
+    "edges":  [
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "source-intake"
+                  },
+                  {
+                      "from":  "source-intake",
+                      "relation":  "precedes",
+                      "to":  "context-retrieval"
+                  },
+                  {
+                      "from":  "context-retrieval",
+                      "relation":  "precedes",
+                      "to":  "worker-execution"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-01"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-02"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-03"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-04"
+                  },
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "approval-gate"
+                  },
+                  {
+                      "from":  "verify-01",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-02",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-03",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-04",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "approval-gate",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "handoff-assembly",
+                      "relation":  "precedes",
+                      "to":  "chief-reconciliation"
+                  }
+              ],
+    "knowledgeGraph":  {
+                           "nodes":  [
+                                         {
+                                             "id":  "queue:canonical",
+                                             "type":  "queue",
+                                             "label":  "Canonical queue revision 414",
+                                             "locator":  "queue/work-items.json"
+                                         },
+                                         {
+                                             "id":  "client:va-claims-edge",
+                                             "type":  "client",
+                                             "label":  "va-claims-edge",
+                                             "locator":  "clients/va-claims-edge"
+                                         },
+                                         {
+                                             "id":  "work-item:wi-20260820-0001",
+                                             "type":  "work_item",
+                                             "label":  "Prepare current VA Claims portal meeting-readiness packet",
+                                             "locator":  "agent-os-run:20260817-111244-0c7bab93/task.json"
+                                         },
+                                         {
+                                             "id":  "approval:none",
+                                             "type":  "approval",
+                                             "label":  "automatic/not_required/none",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "evidence:439b5b6d2fd8a260",
+                                             "type":  "evidence",
+                                             "label":  "agent-os-run:20260817-111244-0c7bab93/task.json",
+                                             "locator":  "agent-os-run:20260817-111244-0c7bab93/task.json"
+                                         },
+                                         {
+                                             "id":  "evidence:f63440e43bb27009",
+                                             "type":  "evidence",
+                                             "label":  "clients/va-claims-edge/evidence/2026-08-20-portal-meeting-readiness-readback.json",
+                                             "locator":  "clients/va-claims-edge/evidence/2026-08-20-portal-meeting-readiness-readback.json"
+                                         },
+                                         {
+                                             "id":  "evidence:efe36441d3eb9afc",
+                                             "type":  "evidence",
+                                             "label":  "clients/va-claims-edge/workspace/vace-platform/docs/phase-2-closeout-2026-08-15.md",
+                                             "locator":  "clients/va-claims-edge/workspace/vace-platform/docs/phase-2-closeout-2026-08-15.md"
+                                         },
+                                         {
+                                             "id":  "evidence:a79e5b6ee17e191e",
+                                             "type":  "evidence",
+                                             "label":  "clients/va-claims-edge/workspace/vace-platform/docs/phase-3-data-activation.md",
+                                             "locator":  "clients/va-claims-edge/workspace/vace-platform/docs/phase-3-data-activation.md"
+                                         },
+                                         {
+                                             "id":  "evidence:a33b79098fae24a4",
+                                             "type":  "evidence",
+                                             "label":  "clients/va-claims-edge/workspace/vace-platform/docs/phase-3-review-checklist.md",
+                                             "locator":  "clients/va-claims-edge/workspace/vace-platform/docs/phase-3-review-checklist.md"
+                                         },
+                                         {
+                                             "id":  "evidence:e5ce139851e3aeb8",
+                                             "type":  "evidence",
+                                             "label":  "clients/va-claims-edge/evidence/2026-07-25-booking-routing-verification.json",
+                                             "locator":  "clients/va-claims-edge/evidence/2026-07-25-booking-routing-verification.json"
+                                         },
+                                         {
+                                             "id":  "evidence:2a4d27bd10450005",
+                                             "type":  "evidence",
+                                             "label":  "state/execution-graphs/wi-20260820-0001/mgr-20260820-1209-wi-20260820-0001/execution-graph.json",
+                                             "locator":  "state/execution-graphs/wi-20260820-0001/mgr-20260820-1209-wi-20260820-0001/execution-graph.json"
+                                         },
+                                         {
+                                             "id":  "evidence:b541ec21b569a1ae",
+                                             "type":  "evidence",
+                                             "label":  "sha256:11F229638D24EFA8B4F64247003429B578DA7F1772E9210AC40CC0A64F75CC7E",
+                                             "locator":  "sha256:11F229638D24EFA8B4F64247003429B578DA7F1772E9210AC40CC0A64F75CC7E"
+                                         },
+                                         {
+                                             "id":  "evidence:cddda9da6669d654",
+                                             "type":  "evidence",
+                                             "label":  "state/execution-graphs/wi-20260820-0001/mgr-20260820-1329-wi-20260820-0001/execution-graph.json",
+                                             "locator":  "state/execution-graphs/wi-20260820-0001/mgr-20260820-1329-wi-20260820-0001/execution-graph.json"
+                                         },
+                                         {
+                                             "id":  "evidence:d322c63629509088",
+                                             "type":  "evidence",
+                                             "label":  "sha256:3F95AA6EF28889A782AD900A66315CC165E08EDA46B13035F8948FEDDCB5C532",
+                                             "locator":  "sha256:3F95AA6EF28889A782AD900A66315CC165E08EDA46B13035F8948FEDDCB5C532"
+                                         },
+                                         {
+                                             "id":  "artifact:7ea99d06867d6a97",
+                                             "type":  "artifact",
+                                             "label":  "clients/va-claims-edge/deliverables/2026-08-20-portal-meeting-readiness/meeting-readiness.md",
+                                             "locator":  "clients/va-claims-edge/deliverables/2026-08-20-portal-meeting-readiness/meeting-readiness.md"
+                                         },
+                                         {
+                                             "id":  "definition:01",
+                                             "type":  "definition",
+                                             "label":  "Packet cites current client-separated source locators without raw communications or direct identifiers.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:02",
+                                             "type":  "definition",
+                                             "label":  "Verified completed work is separated from assumptions, open issues, and approval-gated actions.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:03",
+                                             "type":  "definition",
+                                             "label":  "The portal demo flow, exact decisions, owners, and next checkpoints are concise and review-ready.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:04",
+                                             "type":  "definition",
+                                             "label":  "An independent verifier checks factual support, client isolation, and the no-external-action boundary.",
+                                             "locator":  null
+                                         }
+                                     ],
+                           "edges":  [
+                                         {
+                                             "from":  "queue:canonical",
+                                             "relation":  "contains",
+                                             "to":  "work-item:wi-20260820-0001"
+                                         },
+                                         {
+                                             "from":  "client:va-claims-edge",
+                                             "relation":  "owns",
+                                             "to":  "work-item:wi-20260820-0001"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260820-0001",
+                                             "relation":  "governed_by",
+                                             "to":  "approval:none"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260820-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:439b5b6d2fd8a260"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260820-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:f63440e43bb27009"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260820-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:efe36441d3eb9afc"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260820-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:a79e5b6ee17e191e"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260820-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:a33b79098fae24a4"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260820-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:e5ce139851e3aeb8"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260820-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:2a4d27bd10450005"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260820-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:b541ec21b569a1ae"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260820-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:cddda9da6669d654"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260820-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:d322c63629509088"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260820-0001",
+                                             "relation":  "produces",
+                                             "to":  "artifact:7ea99d06867d6a97"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260820-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:01"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260820-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:02"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260820-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:03"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260820-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:04"
+                                         }
+                                     ],
+                           "nodeCount":  19,
+                           "edgeCount":  18
+                       },
+    "handoffContract":  {
+                            "schema":  "schemas/worker-handoff.schema.json",
+                            "validator":  "scripts/Test-MarketingHandoff.ps1",
+                            "reconciler":  "scripts/Accept-WorkerHandoff.ps1",
+                            "expectedWorkItemVersion":  3,
+                            "approvalGate":  "none",
+                            "graphEvidence":  "state/execution-graphs/wi-20260820-0001/mgr-20260820-1332-wi-20260820-0001/execution-graph.json"
+                        },
+    "blockers":  [
+
+                 ],
+    "warnings":  [
+
+                 ],
+    "trace":  [
+                  {
+                      "eventId":  "evt-2bbae4a591b8453a9ad0faf515ff7868",
+                      "at":  "2026-08-20T12:33:12.1552374+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "scope-guard",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-d699664d7c8045e3a6cc3abf9ea161fd",
+                      "at":  "2026-08-20T12:33:12.1552374+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "source-intake",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-1a56d453c554482abdac3da7c134bcea",
+                      "at":  "2026-08-20T12:33:12.1552374+00:00",
+                      "actor":  "marketing-chief-context-loader",
+                      "nodeId":  "context-retrieval",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-b2a1a60244ce41a1afaa6a1d8a870a49",
+                      "at":  "2026-08-20T12:33:12.1552374+00:00",
+                      "actor":  "queue-state-import",
+                      "nodeId":  "worker-execution",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-19231a7576c4425191625a81a802cd0e",
+                      "at":  "2026-08-20T12:33:12.1552374+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "approval-gate",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-065e3a7c3b3b4cb4acea2ba767f4ca36",
+                      "at":  "2026-08-20T12:33:32.9946324+00:00",
+                      "actor":  "independent-verifier",
+                      "nodeId":  "verify-01",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "PASS: Exact client-scoped safe locators and redacted evidence; no raw communications or direct identifiers."
+                  },
+                  {
+                      "eventId":  "evt-8ae4b6530f78418ea4d9740011d49c3e",
+                      "at":  "2026-08-20T12:33:45.2522421+00:00",
+                      "actor":  "independent-verifier",
+                      "nodeId":  "verify-02",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "PASS: Completed review work is separated from assumptions, open production work, booking gaps, and approval-gated actions."
+                  },
+                  {
+                      "eventId":  "evt-a0ee0ac347e14aa98307b9c88f9a3efe",
+                      "at":  "2026-08-20T12:33:55.4817268+00:00",
+                      "actor":  "independent-verifier",
+                      "nodeId":  "verify-03",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "PASS: Demo flow, decisions, proposed role owners, activation workstreams, and next checkpoint are concise and review-ready."
+                  },
+                  {
+                      "eventId":  "evt-09eb6db2cbb8446a8c2d7f95d6ec705b",
+                      "at":  "2026-08-20T12:34:07.1349218+00:00",
+                      "actor":  "independent-verifier",
+                      "nodeId":  "verify-04",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "PASS: Final independent verification confirmed factual support, client isolation, all definition-of-done checks, and no external action."
+                  },
+                  {
+                      "eventId":  "evt-6260eed68a5e4741b70f8ca16c6ed09f",
+                      "at":  "2026-08-20T12:34:22.8207655+00:00",
+                      "actor":  "bounded-worker",
+                      "nodeId":  "handoff-assembly",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation."
+                  }
+              ],
+    "attestations":  {
+                         "canonicalWriteAttempted":  false,
+                         "externalActionAttempted":  false,
+                         "durableMemoryWriteAttempted":  false,
+                         "containsSecrets":  false,
+                         "containsDirectIdentifiers":  false,
+                         "containsRawCommunications":  false
+                     }
+}

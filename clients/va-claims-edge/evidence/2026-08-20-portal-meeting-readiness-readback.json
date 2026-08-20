@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "evidenceId": "va-claims-portal-readiness-2026-08-20",
+  "clientId": "va-claims-edge",
+  "observedAtUtc": "2026-08-20T12:12:00Z",
+  "purpose": "Read-only route and local-source readiness evidence for wi-20260820-0001.",
+  "checks": [
+    {
+      "target": "netlify-review-root",
+      "route": "/",
+      "statusCode": 200,
+      "result": "reachable"
+    },
+    {
+      "target": "netlify-review-portal",
+      "route": "/portal",
+      "statusCode": 200,
+      "result": "reachable"
+    },
+    {
+      "target": "netlify-review-dashboard",
+      "route": "/dashboard",
+      "statusCode": 200,
+      "result": "reachable"
+    },
+    {
+      "target": "netlify-review-synthetic-client",
+      "route": "/dashboard/clients/SAMPLE-1029",
+      "statusCode": 200,
+      "result": "reachable"
+    },
+    {
+      "target": "vercel-production-login-foundation",
+      "route": "/login",
+      "statusCode": 200,
+      "result": "reachable"
+    },
+    {
+      "target": "approved-custom-portal-hostname",
+      "result": "dns-unresolved"
+    },
+    {
+      "target": "local-source-checkout",
+      "branch": "codex/va-claims-edge-phase-3-complete-20260812",
+      "commit": "0a02845",
+      "gitDiffCheck": "passed"
+    }
+  ],
+  "interpretation": "HTTP 200 verifies point-in-time route availability only. It does not verify production persistence, authentication enforcement, database security, provider integration, or claimant-data readiness.",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false,
+  "providerMutationAttempted": false,
+  "canonicalQueueMutationAttempted": false,
+  "externalActionAttempted": false
+}
