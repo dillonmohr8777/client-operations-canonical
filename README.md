@@ -21,6 +21,28 @@ The Marketing Chief is the only writer to canonical state during the pilot. Focu
 
 In the pinned task, Dillon can say `continue`. The Chief then refreshes safe intake and live health, loads corrections and exact client context, ranks the queue, completes the highest safe local action, reconciles verified worker handoffs, and returns the result plus at most one human-only decision.
 
+## Higgsfield capability
+
+Higgsfield is the production image, video, audio, UGC, and studio path for Cursor, the local CLI, and official `higgsfield-ai/skills`. The ChatGPT plugin is not the production path. The hosted MCP URL is `https://mcp.higgsfield.ai/mcp`. Credit spend, publishing, TikTok, website deploy, and billing stay approval-gated. This is not a second queue.
+
+```powershell
+pwsh -NoProfile -File .\scripts\Invoke-Higgsfield.ps1 -Action Status
+pwsh -NoProfile -File .\scripts\Invoke-Higgsfield.ps1 -Action Doctor
+pwsh -NoProfile -File .\scripts\Invoke-Higgsfield.ps1 -Action Mcp
+pwsh -NoProfile -File .\scripts\Test-HiggsfieldCapability.ps1
+```
+
+On `DESKTOP-4AHKEC4` and `AHCM-3LCQVF4`, install the project MCP file and optional CLI, then complete `higgsfield auth login` as a human handoff:
+
+```powershell
+pwsh -NoProfile -File .\scripts\Install-HiggsfieldCapability.ps1
+pwsh -NoProfile -File .\scripts\Install-HiggsfieldCapability.ps1 -InstallCli
+higgsfield auth login
+npx skills add higgsfield-ai/skills
+```
+
+See `integrations/higgsfield/README.md`.
+
 ## OmniRoute capability
 
 The Marketing Chief can use the installed `$omniroute-gateway` capability for model or provider routing, quotas, fallback combinations, compression, an OpenAI-compatible local endpoint, and OmniRoute MCP when a task actually requires it. It is part of this operating system, not another queue or control center.

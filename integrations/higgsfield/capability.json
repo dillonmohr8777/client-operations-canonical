@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "id": "higgsfield",
+  "name": "Higgsfield Creative Studio",
+  "updatedAt": "2026-08-29T02:15:00Z",
+  "purpose": "First-class Marketing Chief image, video, audio, UGC, faceless, product, and website-generation capability. Cursor MCP plus local CLI replace the ChatGPT plugin as the production path.",
+  "queuePolicy": "Material Higgsfield work uses the existing Marketing Chief queue, action classes, execution graph, and approval gates. Higgsfield never becomes a second queue, Supercomputer inbox, or autonomous spend source.",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "productionRank": [
+    {
+      "id": "cursor-mcp",
+      "role": "primary-chat-and-cloud",
+      "production": true,
+      "why": "Full MCP tool surface, bundled workflows, audio, website building, and live OAuth in Cursor Cloud and Cursor Desktop."
+    },
+    {
+      "id": "local-cli-skills",
+      "role": "primary-coding-agent",
+      "production": true,
+      "why": "Structured skills plus Higgsfield CLI on DESKTOP-4AHKEC4 and AHCM-3LCQVF4 for low-token, repeatable generation."
+    },
+    {
+      "id": "cursor-marketplace",
+      "role": "desktop-oauth-helper",
+      "production": true,
+      "why": "Same hosted MCP URL through Cursor Customize, Marketplace, Add Higgsfield, then sign in."
+    },
+    {
+      "id": "chatgpt-plugin",
+      "role": "non-production-fallback",
+      "production": false,
+      "why": "No audio, no website-building skill, thin tool surface, and agents stop at plan-talk instead of loading and executing a workflow."
+    },
+    {
+      "id": "supercomputer-slash-skills",
+      "role": "separate-product",
+      "production": false,
+      "why": "Higgsfield Supercomputer slash skills are not interchangeable with CLI skills and must not become a second Marketing Chief control surface."
+    }
+  ],
+  "mcp": {
+    "url": "https://mcp.higgsfield.ai/mcp",
+    "transport": "http",
+    "docs": "https://higgsfield.ai/mcp?tab=cursor",
+    "help": "https://higgsfield.ai/creator-hub/help-center/integrations/how-do-i-connect-higgsfield-to-ai-agent",
+    "auth": "OAuth through the Higgsfield account. No API key in this repository.",
+    "unauthenticatedProbeHealthyStatuses": [200, 401, 405, 406]
+  },
+  "cli": {
+    "packageHint": "@higgsfield/cli",
+    "officialInstall": "https://raw.githubusercontent.com/higgsfield-ai/cli/main/install.sh",
+    "authCommand": "higgsfield auth login",
+    "statusCommand": "higgsfield account status",
+    "versionCommand": "higgsfield version",
+    "authIsHumanHandoff": true
+  },
+  "officialSkills": {
+    "repository": "https://github.com/higgsfield-ai/skills",
+    "versionObserved": "0.12.0",
+    "install": "npx skills add higgsfield-ai/skills",
+    "skills": [
+      "higgsfield-generate",
+      "higgsfield-soul-id",
+      "higgsfield-product-photoshoot",
+      "higgsfield-brandkit",
+      "higgsfield-marketplace-cards",
+      "higgsfield-websites",
+      "higgsfield-video-explainer",
+      "higgsfield-youtube-thumbnail",
+      "higgsfield-game-generation"
+    ]
+  },
+  "surfaces": [
+    {
+      "id": "cursor-mcp",
+      "name": "Cursor MCP",
+      "production": true,
+      "audio": true,
+      "websiteBuilding": true,
+      "workflowCatalog": true
+    },
+    {
+      "id": "local-cli-skills",
+      "name": "Higgsfield CLI plus official skills",
+      "production": true,
+      "audio": true,
+      "websiteBuilding": true,
+      "workflowCatalog": true
+    },
+    {
+      "id": "cursor-marketplace",
+      "name": "Cursor Marketplace plugin",
+      "production": true,
+      "audio": true,
+      "websiteBuilding": true,
+      "workflowCatalog": true
+    },
+    {
+      "id": "chatgpt-plugin",
+      "name": "ChatGPT Higgsfield plugin",
+      "production": false,
+      "audio": false,
+      "websiteBuilding": false,
+      "workflowCatalog": false,
+      "limitations": [
+        "no-audio",
+        "no-website-building",
+        "weak-workflow-execution",
+        "single-clip-duration-confusion"
+      ]
+    },
+    {
+      "id": "supercomputer-slash-skills",
+      "name": "Higgsfield Supercomputer slash skills",
+      "production": false,
+      "audio": true,
+      "websiteBuilding": true,
+      "workflowCatalog": false,
+      "limitations": [
+        "not-interchangeable-with-cli-skills",
+        "not-a-marketing-chief-queue"
+      ]
+    }
+  ],
+  "clipLimits": {
+    "typicalSingleVideoSeconds": 15,
+    "requestedLongerThanClipRule": "Load a bundled workflow and stitch scenes. Do not invent one 16-second generate_video call and stop at a plan.",
+    "neverStopAtPlanTalk": true
+  },
+  "workflows": [
+    { "id": "ad-multiplier", "use": "Multiple edited versions of one 4-30 second source ad." },
+    { "id": "brand-asset-creation", "use": "Logos, kits, mockups, decks, and branded stills from verified brand materials." },
+    { "id": "character-sheet", "use": "Consistent multi-view character reference sheets." },
+    { "id": "faceless-video", "use": "Finished multi-scene narrator-led faceless videos." },
+    { "id": "narrator", "use": "Locked-voice takes or consented photo-in-video narration." },
+    { "id": "product-photoshoot", "use": "Studio, lifestyle, hero, carousel, and ad-pack product stills." },
+    { "id": "subtitles", "use": "Burned-in captions on a finished video." },
+    { "id": "thumbnail-generation", "use": "YouTube or Instagram covers through the thumbnail pipeline." },
+    { "id": "ugc-product-video", "use": "Product-only UGC with no talking-head creator." },
+    { "id": "ugc-review-video", "use": "Talking-head creator review or product showcase." },
+    { "id": "ugc-try-on-video", "use": "Wearable fit-check UGC." },
+    { "id": "ugc-tutorial-video", "use": "Step-by-step product how-to UGC." },
+    { "id": "ugc-unboxing-video", "use": "Unboxing or first-reaction UGC." },
+    { "id": "ugc-website-video", "use": "Creator UGC that shows a real site or store page." },
+    { "id": "video-editing", "use": "File-backed higgsedit assembly of generated or source clips." },
+    { "id": "website-builder-flow", "use": "Higgsfield website, app, or game builds. Load before any website tool." }
+  ],
+  "readOnlyTools": [
+    "balance",
+    "list_workspaces",
+    "models_explore",
+    "show_generations",
+    "show_plans_and_credits",
+    "get_workflow_instructions",
+    "transactions"
+  ],
+  "spendTools": [
+    "generate_image",
+    "generate_video",
+    "generate_audio",
+    "generate_3d",
+    "generate_image_batch",
+    "generate_video_batch",
+    "generate_audio_batch"
+  ],
+  "approvalGates": [
+    "credit spend and paid generation",
+    "Soul character training from real-person photos",
+    "voice cloning or voice creation",
+    "TikTok connect, reconnect, prepare, or publish",
+    "website deploy or publish",
+    "billing purchase, trial cancel, or plan change",
+    "sync_agents personality or skill upload",
+    "client delivery, posting, scheduling, or paid-media upload"
+  ],
+  "clientCreativeRules": {
+    "blockTextOnlyClientGeneration": true,
+    "requireVerifiedLogo": true,
+    "requireApprovedReferenceImage": true,
+    "logoIsLockedArtwork": true,
+    "noCrossClientAssets": true,
+    "noSyntheticTestimonials": true,
+    "outputsAreLocalReviewDrafts": true,
+    "grokComicDefaultUnchanged": "Grok Imagine remains animated comic-book unless Dillon selects another direction for that exact creative. Higgsfield is the full studio path, not a silent replacement of the Grok default."
+  },
+  "machines": ["DESKTOP-4AHKEC4", "AHCM-3LCQVF4", "cursor-cloud"],
+  "controller": "scripts/Invoke-Higgsfield.ps1",
+  "installer": "scripts/Install-HiggsfieldCapability.ps1",
+  "skill": "integrations/higgsfield/skills/higgsfield-marketing-chief/SKILL.md",
+  "cursorMcpConfig": ".cursor/mcp.json",
+  "integrationBaseline": {
+    "verifiedAt": "2026-08-29",
+    "cursorCloudMcpConnected": true,
+    "planObserved": "pro",
+    "officialSkillsVersion": "0.12.0",
+    "bundledWorkflowCount": 16,
+    "creditBalanceIsNotCanonicalState": true
+  }
+}

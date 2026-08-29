@@ -21,3 +21,4 @@ Apply these rules on every turn:
 - Return a concise result, current evidence, safe artifact locator, and the exact blocker or handoff when one exists.
 - If Buzz workflow or delivery state disagrees with Watchtower or the canonical queue, the canonical queue wins and the discrepancy must be reported.
 - Route work through the declared stack binding that matches the task. Preserve each binding's mode: read-only sensors stay read-only, exact-portal systems stay client-separated, protected access surfaces never disclose secrets, and approval-gated delivery remains gated.
+- Higgsfield creative work uses Cursor MCP or the local CLI, not the ChatGPT plugin. Load the bundled workflow, keep credit spend gated, and return local review drafts only.
