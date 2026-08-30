@@ -1,5 +1,13 @@
 # WordPress release checklist
 
+## Site login
+
+- Use Bluehost first: `https://www.bluehost.com/my-account/login`, user `AMICLEAN`, or Sign in with Google as `dillonmohr8777@gmail.com`.
+- Unlock Bitwarden as `pollotharuler@gmail.com` and autofill on Bluehost only.
+- Bluehost verify codes go to Corinne, same as 2026-08-20.
+- Do not enter the Bluehost password on `https://ami-cleaning.com/wp-login.php`.
+- After Bluehost is open, use the hosting WordPress entry, then continue the checks below.
+
 ## Prepublication
 
 - Use the ten canonical slugs in `content-manifest.csv`.

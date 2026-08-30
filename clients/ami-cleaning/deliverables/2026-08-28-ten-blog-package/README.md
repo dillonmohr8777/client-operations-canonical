@@ -14,7 +14,7 @@ Canonical client: `ami-cleaning`
 - Monthly report completed: `AMI-August-2026-Monthly-Optimization-Report.md`.
 - August hours workbook completed and live-verified at 70.5 hours × $20 = $1,410: https://docs.google.com/spreadsheets/d/1E49C9YqEFWNHyCZ3CW5HFWXZsiHTQGORMLxK-8AhP6E/edit
 - August commission workbook updated and live-verified: https://docs.google.com/spreadsheets/d/1upQYyOhaMjgR__8XAYJ0NAoA_pEO6C1Lgb3jt_X2e9s/edit
-- WordPress publication is still blocked. The 2026-08-28 recovered Bluehost/WordPress password was rejected, Bluehost warned of limited remaining attempts, and the authorized Bitwarden vault is locked as of 2026-08-30. Do not retry the stale password. Next safe path is a current admin session or an owner-approved WordPress password reset.
+- WordPress publication is still blocked. Gmail history has one AMI host login: Corinne's 2026-05-01 `BLUEHOST LOGIN` thread. That is Bluehost user `AMICLEAN` at `https://www.bluehost.com/my-account/login`, not WordPress `wp-login`. The 2026-08-28 attempt used that Bluehost password on `ami-cleaning.com/wp-login.php`; WordPress rejected it and Bluehost warned of remaining attempts. Do not retry that password on WordPress. Last week's DNS work used Bluehost. Dillon also used Sign in with Google to `bluehost.com` on 2026-07-23. After a live Bluehost session, open WordPress from the hosting panel and publish these ten posts together.
 
 ## Package contents
 
