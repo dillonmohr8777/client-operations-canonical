@@ -1,38 +1,69 @@
 {
   "schemaVersion": 1,
   "packet": "ai-tech-news-batch-51-75-leftover-demo-qa",
-  "checkedAtUtc": "2026-08-31T22:12:00Z",
-  "method": "HTTP GET plus Firecrawl rendered scrape of leftover demos. LIVE_HTML means the demo returned 200 and the inventory phone plus a Google Maps marker were present after render. This is not desktop/mobile visual QA and is not a factory pass.",
-  "factoryQaPass": 0,
+  "checkedAtUtc": "2026-08-31T22:18:00Z",
+  "method": "HTTP GET plus official-page scrapes, then the existing dillon-os site-factory builder and qa.js. LIVE_HTML on leftover hosts is not a factory pass. Factory PASS here is local noindex preview only.",
+  "factoryQaPass": 5,
+  "factoryDeployed": false,
   "ready50Written": false,
   "jesseNotified": false,
   "counts": {
     "phonePassRows": 23,
     "liveHtmlPass": 18,
-    "demoGap": 5,
+    "demoGapRebuiltLocally": 5,
     "officialPending": 2
   },
   "liveHtmlPass": [51, 52, 53, 54, 55, 56, 57, 59, 61, 62, 63, 64, 65, 70, 71, 72, 73, 74],
-  "demoGap": [
+  "demoGapRebuiltLocally": [
     {
       "rank": 58,
-      "reason": "Rendered demo is live with Maps, but CTA phone is (215) 464-4444, not inventory 215-673-3200. Needs factory rebuild."
+      "slug": "northeast-family-foot-care",
+      "officialPhone": "215-673-3200",
+      "officialAddress": "9892 Bustleton Avenue, First Floor, Philadelphia, PA 19115",
+      "leftoverDemoPhone": "215-464-4444",
+      "factoryPreviewPhone": "215-673-3200",
+      "qaStatus": "PASS",
+      "deployed": false
     },
     {
       "rank": 60,
-      "reason": "Unslop demo is live; published phone is 800-544-1199 and Maps is missing. Inventory phone 610-647-4677 is absent. Needs factory rebuild."
+      "slug": "auger-manufacturing-specialists",
+      "officialPhone": "610-647-4677",
+      "officialAlsoPublishes": "800-544-1199",
+      "leftoverDemoPhone": "800-544-1199",
+      "factoryPreviewPhone": "610-647-4677",
+      "qaStatus": "PASS",
+      "deployed": false
     },
     {
       "rank": 66,
-      "reason": "Unslop demo is live with no phone and no Maps. Inventory 610-928-1515 is absent. Needs factory rebuild."
+      "slug": "fillman-and-sons-floors",
+      "officialPhone": "610-928-1515",
+      "officialSource": "http://www.fillmanandsons.com/contact_1.html",
+      "leftoverDemoPhone": null,
+      "factoryPreviewPhone": "610-928-1515",
+      "qaStatus": "PASS",
+      "deployed": false
     },
     {
       "rank": 68,
-      "reason": "Unslop demo is live with Maps, but phone is 610-446-2444, not inventory 215-878-1111. Needs factory rebuild."
+      "slug": "boyle-energy",
+      "officialPhone": "215-878-1111",
+      "officialSuburbsLine": "610-446-2444",
+      "leftoverDemoPhone": "610-446-2444",
+      "factoryPreviewPhone": "215-878-1111",
+      "qaStatus": "PASS",
+      "deployed": false
     },
     {
       "rank": 69,
-      "reason": "Unslop demo is live with no phone and no Maps. Inventory 215-990-7966 is absent. Needs factory rebuild."
+      "slug": "bg-electric-service",
+      "officialPhone": "215-990-7966",
+      "officialAddress": "1219 Saint Vincent St, Philadelphia, PA 19111",
+      "leftoverDemoPhone": null,
+      "factoryPreviewPhone": "215-990-7966",
+      "qaStatus": "PASS",
+      "deployed": false
     }
   ],
   "closedThisRun": [
@@ -55,6 +86,8 @@
     "requiredEngine": "dillonmohr8777/dillon-os PR 226 AI Site Builder Outreach Engine",
     "verifiedLocalPath": "C:\\Users\\dillo\\Documents\\Codex\\2026-07-29\\monitor-this-session-on-cursor-i\\work\\pr226-site-factory",
     "liveDemoGeneratorMeta": "philly-batch-2-rebuild",
-    "reachableFromThisEnvironment": false
+    "previewGeneratorMeta": "momentum-site-factory",
+    "reachableFromThisEnvironment": true,
+    "reachMethod": "Composio GitHub github_jamnia-altica"
   }
 }

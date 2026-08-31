@@ -10,8 +10,8 @@ No Slack post, Gmail send, or canonical queue write was performed here. Dillon l
 | --- | --- | --- | --- | --- |
 | 1 | Puttery NYC access / onboarding | Slack `#puttery` 16:54 ET; Melissa 17:00 ET | Melissa asked what Email/CRM Phase 1 means and whether to include Tom | Dillon posted the reply at 17:37 ET. Session closed. |
 | 2 | Replenish / Mia destination rule | Gmail draft `r-7445991864725719847` | Promised a confirmation after checking every destination | All 9 Replenish PMax final URLs now `https://7eleven.getreplenish.com`. Fresh Blends untouched. Spend not restarted. |
-| 3 | AI Tech News next 25 | Slack `#ai-tech-news` 16:10 ET | Best 50 is call-ready; next 25 queued for tomorrow; mail HOLD | 23 official-phone passes on HOLD leftover tab. 18 existing demos have rendered phone + Maps. Five leftover demos still fail phone or Maps. Factory not run. |
-| 4 | Momentum cinematic ending | Slack `#design-social-email` 16:20–17:27 ET | Improve the first ending; Mac asked for brand colors + music | Official-logo 9:16 card + instrumental bed mixed on the first ending. New Drive review file only. Not posted. Higgsfield still expired. |
+| 3 | AI Tech News next 25 | Slack `#ai-tech-news` 16:10 ET | Best 50 is call-ready; next 25 queued for tomorrow; mail HOLD | 23 official-phone passes on HOLD leftover tab. 18 leftover hosts are LIVE_HTML. Five leftover gaps now have local factory previews with official phones and Maps. Not deployed. |
+| 4 | Momentum cinematic ending | Slack `#design-social-email` 16:20–17:28 ET | Improve the first ending; Mac asked for brand colors + music | Official-logo 9:16 card + instrumental bed mixed on the first ending. Color-input brief written for Dillon’s blue/white question. New Drive review file only. Not posted. Higgsfield still expired. |
 
 ## Adjacent work already on other branches
 
@@ -29,5 +29,6 @@ Do not redo these. They already have PRs from today’s earlier agents:
 - Replenish hub final URLs are live. All nine Replenish campaigns remain `ENABLED` but `ENDED`, so destination change did not restart spend. Restarting the four San Diego campaigns is a separate approval.
 - Florida sitelink destinations now also use the hub. Leftover sitelink labels were not rewritten.
 - Corner Store first ending now has an official-logo end card and a 13s instrumental bed. Review file: https://drive.google.com/file/d/109DsafWL6WwSOD6lddh2lfZSIBejN17k/view. Do not replace Sean/Grace’s posted second clip.
-- Keep mail HOLD. Do not tell Jesse batch 51–75 is call-ready until factory QA passes. Verruni and BPM Fitness remain official-pending.
+- Keep mail HOLD. Do not tell Jesse batch 51–75 is call-ready until harvest, deploy, and production QA pass. Local factory previews for 58/60/66/68/69 are undeployed. Verruni and BPM Fitness remain official-pending.
+- Color inputs for the first ending are navy `#14314F`, blue `#075CA8`, gold `#F2B84B`, plus white paper. Do not grade blue-and-white only.
 - Unsigned Puttery contract and payment remain commercial gates.

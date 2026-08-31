@@ -22,17 +22,18 @@ Tab `HOLD leftover 51-75` now holds **23 official-phone passes**. Ten new rows w
 | Official URL + phone match | 23 |
 | Official pending | 2 |
 | Existing demo LIVE_HTML | 18 |
-| Existing demo gap | 5 |
+| Existing leftover-host demo gap | 5 |
+| Local factory previews (noindex, undeployed) | 5 |
 | Added to Ready 50 | 0 |
-| New factory builds | 0 |
+| Deployed factory builds | 0 |
 
 `leftover-demo-qa.json` records the live-HTML check on existing Batch 4 / Batch 2 / Unslop demos. LIVE_HTML is not desktop/mobile visual QA and is not a factory pass. HOLD Local QA / Deploy QA were updated to `LIVE_HTML` / `LIVE_HOST` or `DEMO_GAP`. Call QA and Mail stay HOLD.
 
-The 23 phone-pass rows still need the existing factory before Jesse. Rank 59 is now LIVE_HTML. Remaining demo gaps are 58, 60, 66, 68, and 69: existing leftover demos are live but carry the wrong phone, no phone, or no Maps. Those five need the PR 226 factory, not a new generator. Verruni remains Coming Soon with no first-party phone. BPM Fitness has no official phone and third-party listings say closed. `stricklandelectric.com` stays rejected; the passing Strickland host is `strickelectric.com`. Corrected demo slugs: Rittenhouse `rittenhouse-square-chiropractic`, Wilson `wilson-s-forklift-service-llc`.
+The 23 phone-pass rows still need a deployed factory pass before Jesse. Rank 59 is LIVE_HTML on the leftover host. Ranks 58, 60, 66, 68, and 69 now have local `momentum-site-factory` noindex previews with the official phone and a Maps link. Those builds used the real `dillon-os` engine under `/tmp`, not a new generator. They are not deployed. Images are preview placeholders until `harvest.js` runs. Verruni remains Coming Soon with no first-party phone. BPM Fitness has no official phone and third-party listings say closed. `stricklandelectric.com` stays rejected; the passing Strickland host is `strickelectric.com`. Corrected leftover-host slugs: Rittenhouse `rittenhouse-square-chiropractic`, Wilson `wilson-s-forklift-service-llc`.
 
 ## Factory contract still in force
 
-Reuse the existing AI Site Builder Outreach Engine in `dillon-os`. Do not stand up a parallel generator. This environment cannot see that private factory repo. See `factory-blocker.md` for the live checks.
+Reuse the existing AI Site Builder Outreach Engine in `dillon-os`. Do not stand up a parallel generator. This environment reached that private factory through Composio GitHub and ran a local preview. See `factory-blocker.md` and `factory-preview-results.json`.
 
 Each new row must still pass, in order:
 
@@ -51,5 +52,5 @@ Pitch scope stays exact: `rebuild`, `optimization`, or `optimization_only`.
 
 - Ready 50 rows were not marked differently and were not emailed.
 - Jesse was not told the next 25 are call-ready.
-- No factory rebuild ran.
+- Local factory previews for the five leftover gaps ran and passed `qa.js`. They were not deployed.
 - Neighborly / DreamMaker and generated-hero rows remain skipped.

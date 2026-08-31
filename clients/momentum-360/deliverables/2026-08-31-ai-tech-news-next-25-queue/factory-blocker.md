@@ -1,28 +1,34 @@
-# Leftover 51–75 factory blocker
+# Leftover 51–75 factory status
 
-The existing AI Tech News factory was not run from this environment. A parallel generator was not started.
+The existing AI Tech News factory was run from this environment for a local noindex preview of the five leftover demo gaps. A parallel generator was not started. Nothing was deployed.
 
 ## Required engine
 
 - Repo: `dillonmohr8777/dillon-os`, merged PR 226
 - Binding: `integrations/buzz/stack.bindings.json` source-deploy route
 - Verified local path on Dillon’s machine: `C:\Users\dillo\Documents\Codex\2026-07-29\monitor-this-session-on-cursor-i\work\pr226-site-factory`
-- Reference file `integrations/buzz/references/ai-tech-news-site-factory.md` is missing from this checkout
-- Live leftover Batch 2 demos still emit `<meta name="generator" content="philly-batch-2-rebuild">`
+- Cursor `gh` still cannot see the private repo. Composio GitHub account `github_jamnia-altica` (login `dillonmohr8777`) can.
+- Factory files used here were fetched from `dillon-os` `main` and executed under `/tmp/dillon-os-factory/`. Built sites stayed in `/tmp/leftover-factory-preview/`.
 
-## What this environment checked at 2026-08-31 22:12 UTC
+## What ran at 2026-08-31 22:18 UTC
 
-| Source | Result |
+| Step | Result |
 | --- | --- |
-| GitHub `dillonmohr8777/dillon-os` | Not found / not visible to this token |
-| GitHub public `user:dillonmohr8777` | 20 public repos; no factory repo |
-| Drive (`googledrive_quin-sward`) name search for `site-factory`, `pr226`, `philly-25`, `AI Site Builder` | Empty |
-| Slack `pr226 site factory` | No hits |
-| `claude-skills-repo` | No site-factory skill |
-| Cursor cloud agents in this environment | Only this recovery run |
+| `GITHUB_GET_REPOSITORY_CONTENT` for `build-site.js`, `qa.js`, `lib/*`, `harvest.js` | Success |
+| Official first-party scrapes for ranks 58, 60, 66, 68, 69 | Success |
+| `node build-site.js <brief> /tmp/leftover-factory-preview` | Five noindex sites |
+| `node qa.js <site>` with Playwright | All five `PASS` |
+| Deploy | Not run. Tier 2. |
+| Ready 50 / Jesse | Not written / not pinged |
 
-## What leftover 51–75 still needs from that factory
+See `factory-preview-results.json` and `factory-preview-briefs/`.
 
-Five live leftover demos fail inventory-phone or Maps match: 58, 60, 66, 68, 69. Official first-party phones already pass. Rebuild those five through the existing factory, then run desktop/mobile, deploy-preview, production, and Maps QA before any Ready 50 write or Jesse ping.
+## Still required before call-ready
 
-Do not invent a second generator here.
+1. Official harvest imagery through `harvest.js` + `apply-harvest-images.js`. Current assets are labeled preview placeholders.
+2. Maker/checker walkthrough on Dillon’s machine.
+3. Dillon runs deploy from the authorized factory path. This environment must not deploy.
+4. Deploy-preview and production QA after deploy.
+5. Then, and only then, Ready 50 rows and a Jesse ping.
+
+Verruni (67) and BPM Fitness (75) remain official-pending and were not built.

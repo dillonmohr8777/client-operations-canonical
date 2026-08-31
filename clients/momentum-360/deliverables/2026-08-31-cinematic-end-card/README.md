@@ -1,7 +1,7 @@
 # Momentum cinematic ending — local recovery
 
 **Client:** `momentum-360`  
-**Source:** Slack `#design-social-email` 2026-08-31 16:20–17:27 ET  
+**Source:** Slack `#design-social-email` 2026-08-31 16:20–17:28 ET  
 **Status:** local review draft uploaded as a **new** Drive file. Not posted. Sean’s second clip was not replaced.
 
 ## What ChatGPT left open
@@ -35,6 +35,8 @@ The logo is locked artwork. It was not redrawn, morphed, cropped onto people, or
 ## Still blocked
 
 Higgsfield session is still expired, so a new motion remake could not run here.
+
+Dillon asked at 17:28 ET whether to input just blue and white. Answer is in `color-input-brief.md`: navy `#14314F`, blue `#075CA8`, gold `#F2B84B`, white paper. Not posted.
 
 ## Approval gate
 
