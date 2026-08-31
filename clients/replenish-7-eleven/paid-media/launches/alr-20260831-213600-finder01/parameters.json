@@ -37,7 +37,15 @@
       "Replenish 7-11 Smoothies - Miami 56th - 30025",
       "Replenish 7-11 Smoothies - Coral Springs - 32773"
     ],
-    "excludeReason": "Florida campaigns remain paused under the 2026-07-26 $500 lifetime cap. Pampano $958.69, Miami 56 $623.52, Coral Springs $579.17.",
+    "excludeAnyFloridaMarket": [
+      "Pompano",
+      "Pampano",
+      "Miami 56",
+      "Coral Springs",
+      "Howard",
+      "Boca"
+    ],
+    "excludeReason": "Florida campaigns remain paused under the $500 lifetime cap. July 26 verification left only the four San Diego campaigns enabled. Howard and Boca stay out of scope even if they still exist in the account.",
     "nameSource": "clients/replenish-7-eleven/paid-media/2026-07-26-lifetime-cap-pause-verification.json",
     "doNotTouch": [
       "Fresh Blends / Kwik Trip Ice Box campaigns in the shared Google Ads account"
@@ -65,13 +73,14 @@
     "machine": "DESKTOP-4AHKEC4 or AHCM-3LCQVF4",
     "session": "persistent_chrome",
     "accountRef": "access-broker:replenish-7-eleven/google-ads-production",
+    "adsUiHint": "Open the mapped Replenish child account in persistent Chrome, then the four San Diego Performance Max campaigns only.",
     "steps": [
       "Open only the four included San Diego campaigns.",
       "Set every asset group final URL to https://7eleven.getreplenish.com.",
       "Do not change daily budget.",
-      "Do not enable Florida campaigns.",
+      "Do not enable Florida campaigns, including Pompano, Miami 56, Coral Springs, Howard, and Boca.",
       "Do not touch Fresh Blends campaigns.",
-      "Read back the live final URL on each included campaign and store the readback under this folder."
+      "Read back the live final URL and status on each included campaign and store the readback under this folder."
     ]
   }
 }
