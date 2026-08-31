@@ -35,6 +35,11 @@ Mosquito Squad came from the verified 2026-08-14 720-row harvest after the live 
 - 1 MX failure
 - Neighborly-family and known JS-shell locators (Mr. Rooter, SERVPRO, Visiting Angels, Lawn Doctor, and similar) were not crawled
 
+## Delivered
+
+- Group DM `C0B2N20A0SW` at 2026-08-31 13:01:05 ET: https://momentum3d.slack.com/archives/C0B2N20A0SW/p1788195665468269
+- Google Sheet writer-shared to Jason and Sean: https://docs.google.com/spreadsheets/d/1Z6sJwjtp__t2RHb-1lULPDE0FfHvZZyJR92Y1IZjMho/edit
+
 ## Not done
 
 - No HubSpot import, workflow, or list mutation

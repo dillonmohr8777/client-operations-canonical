@@ -30,10 +30,20 @@ Same as the Momentum 360 franchise playbook:
 - Neighborly-family locators and known JS-shell brands are not recrawled.
 - No outreach, HubSpot mutation, or calendar insertion.
 
+## Delivered 2026-08-31
+
+Sent to the Sean / Jason / Dillon group DM `C0B2N20A0SW` at 1:01 PM ET.
+
+- Slack: https://momentum3d.slack.com/archives/C0B2N20A0SW/p1788195665468269
+- Sheet (writer: Jason `fallonindustries@gmail.com`, Sean `sean@needmomentum.com`): https://docs.google.com/spreadsheets/d/1Z6sJwjtp__t2RHb-1lULPDE0FfHvZZyJR92Y1IZjMho/edit
+- HubSpot was not imported. No outreach was sent.
+
+Jason can use File → Download → CSV from that sheet for the HubSpot import.
+
 ## HubSpot upload (Jason)
 
 1. Contacts → Import → File from computer.
-2. Use `output/franchisee-emails-hubspot-import.csv`.
+2. Use `output/franchisee-emails-hubspot-import.csv` or the downloaded sheet CSV.
 3. Map `email`, `firstname`, `lastname`, `company`, `phone`, `website`, `city`, `state`, `jobtitle`.
 4. Create or add to a new static list, for example `Jason Service Franchisees 2026-08-31`.
 5. Do not enable any workflow, sequence, or webinar invite from this import.
