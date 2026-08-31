@@ -133,11 +133,25 @@ function Test-MarketingWorkerTransition {
     return $matrix.ContainsKey($WorkerStatus) -and $ProposedTransition -in @($matrix[$WorkerStatus])
 }
 
+function ConvertTo-MarketingOsPath {
+    param([Parameter(Mandatory = $true)][string]$Path)
+    $separator = [string][IO.Path]::DirectorySeparatorChar
+    $normalized = ($Path -replace '[\\/]+', $separator)
+    if ($normalized -match '^[\\/]$') { return $normalized }
+    return $normalized.TrimEnd('\', '/')
+}
+
+function Get-MarketingPathPrefix {
+    param([Parameter(Mandatory = $true)][string]$Path)
+    return (ConvertTo-MarketingOsPath ([IO.Path]::GetFullPath($Path))) + [IO.Path]::DirectorySeparatorChar
+}
+
 function Resolve-MarketingChildPath {
     param([Parameter(Mandatory = $true)][string]$Root, [Parameter(Mandatory = $true)][string]$Child)
-    $rootFull = [IO.Path]::GetFullPath($Root).TrimEnd('\')
-    $candidate = [IO.Path]::GetFullPath((Join-Path $rootFull $Child))
-    $prefix = $rootFull + '\'
+    $rootFull = ConvertTo-MarketingOsPath ([IO.Path]::GetFullPath($Root))
+    $normalizedChild = (ConvertTo-MarketingOsPath $Child).TrimStart('\', '/')
+    $candidate = [IO.Path]::GetFullPath((Join-Path $rootFull $normalizedChild))
+    $prefix = Get-MarketingPathPrefix $rootFull
     if (-not $candidate.StartsWith($prefix, [StringComparison]::OrdinalIgnoreCase)) { throw 'Path escapes the required canonical root.' }
     return $candidate
 }

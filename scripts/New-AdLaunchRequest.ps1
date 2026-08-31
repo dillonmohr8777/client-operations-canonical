@@ -35,12 +35,12 @@ param(
 $ErrorActionPreference='Stop'
 . (Join-Path $PSScriptRoot 'MarketingOs.Common.ps1')
 $projectRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-$registryPath=Join-Path $projectRoot 'registry\clients.json'
+$registryPath=Resolve-MarketingChildPath -Root $projectRoot -Child 'registry/clients.json'
 $registry=Get-Content -LiteralPath $registryPath -Raw -Encoding UTF8|ConvertFrom-Json
 $clients=@($registry.clients|Where-Object{$_.id-ceq$ClientId})
 if($clients.Count-ne1-or[string]$clients[0].status-ne'active'){throw 'ClientId must resolve to exactly one active canonical client.'}
 $client=$clients[0]
-$paidMediaRosterPath=Join-Path $projectRoot 'registry\paid-media-roster.json'
+$paidMediaRosterPath=Resolve-MarketingChildPath -Root $projectRoot -Child 'registry/paid-media-roster.json'
 if(-not(Test-Path -LiteralPath $paidMediaRosterPath -PathType Leaf)){throw 'Canonical paid-media roster is missing.'}
 $paidMediaRoster=Get-Content -LiteralPath $paidMediaRosterPath -Raw -Encoding UTF8|ConvertFrom-Json
 foreach($platformName in $Platform){
@@ -60,7 +60,7 @@ if($SourceChannel-eq'user'-and($SourceLocator-notlike'user-instruction:*'-or$Req
 if($SourceChannel-eq'gmail'-and($SourceLocator-notlike'gmail-message:*'-or$RequesterRef-notlike'registry-contact:*')){throw 'Gmail triggers require a Gmail locator and exact registry contact.'}
 if($SourceChannel-eq'slack'-and($SourceLocator-notlike'slack-message:*'-or$RequesterRef-notlike'registry-contact:*')){throw 'Slack triggers require a Slack locator and exact registry contact.'}
 if($RequesterRef-like'registry-contact:*'){$contactIndex=[int]($RequesterRef-split':')[-1];if($contactIndex-lt0-or$contactIndex-ge@($client.contacts).Count){throw 'RequesterRef does not resolve to a current client contact.'}}
-$launchConfigPath=Join-Path $projectRoot ("clients\$ClientId\paid-media\launch-config.json")
+$launchConfigPath=Resolve-MarketingChildPath -Root $projectRoot -Child "clients/$ClientId/paid-media/launch-config.json"
 if(-not(Test-Path -LiteralPath $launchConfigPath -PathType Leaf)){throw 'The selected client has no canonical paid-media launch configuration.'}
 $launchConfig=Get-Content -LiteralPath $launchConfigPath -Raw -Encoding UTF8|ConvertFrom-Json
 if($RequesterRef-notin@($launchConfig.requesterRefs)){throw 'RequesterRef is outside the client paid-media configuration.'}
@@ -71,7 +71,7 @@ foreach($platformName in $Platform){
     $blueprintRef=[string]$platformConfig.launchBlueprintRef
     $expectedBlueprintRef="clients/$ClientId/paid-media/blueprints/$platformName.json"
     if($blueprintRef-cne$expectedBlueprintRef){throw "$platformName does not use the canonical client launch blueprint."}
-    $blueprintPath=Join-Path $projectRoot ($blueprintRef-replace'/','\')
+    $blueprintPath=Resolve-MarketingChildPath -Root $projectRoot -Child $blueprintRef
     if(-not(Test-Path -LiteralPath $blueprintPath -PathType Leaf)){throw "$platformName launch blueprint is missing."}
     $blueprint=Get-Content -LiteralPath $blueprintPath -Raw -Encoding UTF8|ConvertFrom-Json
     if([int]$blueprint.schemaVersion-ne1-or[string]$blueprint.clientId-cne$ClientId-or[string]$blueprint.platform-cne$platformName){throw "$platformName launch blueprint does not match the selected route."}
@@ -98,10 +98,10 @@ if([string]::IsNullOrWhiteSpace($RequestId)){$RequestId='alr-'+$now.ToString('yy
 if($RequestId-notmatch'^alr-[a-z0-9-]{8,100}$'){throw 'RequestId is invalid.'}
 if([string]::IsNullOrWhiteSpace($AuthorityRef)){$AuthorityRef="clients/$ClientId/paid-media/launch-authority.json"}
 if($AuthorityRef-notmatch'^clients/[A-Za-z0-9._/ -]+/paid-media/launch-authority\.json$'-or$AuthorityRef-notlike("clients/$ClientId/*")){throw 'AuthorityRef must belong to the selected client.'}
-if([string]::IsNullOrWhiteSpace($OutputPath)){$OutputPath=Join-Path $projectRoot ("clients\$ClientId\paid-media\launches\$RequestId\request.json")}
+if([string]::IsNullOrWhiteSpace($OutputPath)){$OutputPath=Resolve-MarketingChildPath -Root $projectRoot -Child "clients/$ClientId/paid-media/launches/$RequestId/request.json"}
 $outputFull=[IO.Path]::GetFullPath($OutputPath)
-$clientRoot=[IO.Path]::GetFullPath((Join-Path $projectRoot "clients\$ClientId"))
-if(-not$outputFull.StartsWith($clientRoot+'\',[StringComparison]::OrdinalIgnoreCase)){throw 'OutputPath must remain inside the selected client folder.'}
+$clientRoot=Resolve-MarketingChildPath -Root $projectRoot -Child "clients/$ClientId"
+if(-not$outputFull.StartsWith((Get-MarketingPathPrefix $clientRoot),[StringComparison]::OrdinalIgnoreCase)){throw 'OutputPath must remain inside the selected client folder.'}
 
 $locations=for($i=0;$i-lt$LocationKey.Count;$i++){[pscustomobject][ordered]@{key=$LocationKey[$i];label=$LocationLabel[$i];scope=$LocationScope}}
 $request=[pscustomobject][ordered]@{
