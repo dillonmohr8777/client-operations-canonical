@@ -10,7 +10,7 @@ The live Best 50 Call Sheet is real. Drive title: `Momentum 360 — Best 50 Call
 
 ChatGPT’s last signed note queued the next 25 for tomorrow. That is batch 51–75, not a rebuild of 26–50.
 
-A separate tab `HOLD leftover 51-75` now holds the 13 official-phone passes only. Call QA and Mail Status are both HOLD. Jesse was not pinged.
+Tab `HOLD leftover 51-75` now holds **23 official-phone passes**. Ten new rows were appended at `A15:L24` after Firecrawl first-party checks. Call QA and Mail Status are both HOLD. Jesse was not pinged.
 
 ## What this recovery produced
 
@@ -19,12 +19,12 @@ A separate tab `HOLD leftover 51-75` now holds the 13 official-phone passes only
 | Gate | Count |
 | --- | ---: |
 | Candidates listed | 25 |
-| Official URL + phone match | 13 |
-| Official pending | 12 |
+| Official URL + phone match | 23 |
+| Official pending | 2 |
 | Added to Ready 50 | 0 |
 | New factory builds | 0 |
 
-The 13 passing rows can enter factory QA next. The other 12 stay off both tabs until a first-party phone match is proven. `stricklandelectric.com` and `mortonelectric.com` were rejected as wrong companies.
+The 23 passing rows can enter factory QA next. Verruni remains a Coming Soon page with no phone. BPM Fitness first-party scrape failed and third-party listings say the studio is closed. `stricklandelectric.com` stays rejected; the passing Strickland host is `strickelectric.com`.
 
 ## Factory contract still in force
 
