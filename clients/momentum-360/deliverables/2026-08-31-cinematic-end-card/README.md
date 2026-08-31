@@ -1,12 +1,12 @@
 # Momentum cinematic ending — local recovery
 
 **Client:** `momentum-360`  
-**Source:** Slack `#design-social-email` 2026-08-31 16:20–17:14 ET  
+**Source:** Slack `#design-social-email` 2026-08-31 16:20–17:27 ET  
 **Status:** local review draft. Not posted.
 
 ## What ChatGPT left open
 
-Dillon posted two 4K cinematic endings and said he would improve the first one. Sean liked the second and asked Grace to post it. Mac asked for music and said the colors were off.
+Dillon posted two 4K cinematic endings and said he would improve the first one. Sean liked the second and asked Grace to post it. Mac asked for music and said the colors were off. Dillon answered that music was coming and that the stack was Blender + Codex + Higgsfield + Claude Code.
 
 Drive files from today:
 
@@ -24,16 +24,17 @@ From the live Momentum signature, not guessed:
 - Exact wordmark spelling: `Momentum 360`
 - Line: `Make every space move`
 
-The logo is locked artwork. Do not redraw, morph, crop onto people, or animate its geometry.
+The logo is locked artwork. It was composited as-is onto the 1920×1080 end card. It was not redrawn, morphed, cropped onto people, or animated.
 
 ## Delivered locally
 
-- `end-card-16x9.svg` — 1920×1080 overlay for the Corner Store / first ending
-- Official logo file beside the SVG so the overlay can be composited without regenerating the mark
+- `end-card-16x9.svg` — vector overlay that references the official PNG
+- `momentum-360-corner-store-end-card-16x9.png` — 1920×1080 raster with the official logo pixels
+- `end-card-preview.html` — local review page
 
 ## Blocked
 
-Higgsfield MCP session is expired, so motion, music bed, and re-export of the 4K MP4 could not run from this machine. Jesse already pointed at Suno for music.
+Higgsfield MCP session is still expired, so motion, music bed, and re-export of the 4K MP4 could not run from this machine. Jesse already pointed at Suno for music.
 
 ## Suno brief for the first ending
 

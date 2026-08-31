@@ -1,4 +1,4 @@
-# AI Tech News — next 25 operator queue
+# AI Tech News — next 25 leftover queue
 
 **Client:** `momentum-360`  
 **Source:** Slack `#ai-tech-news` 2026-08-31 16:10 ET ChatGPT-signed update  
@@ -6,15 +6,29 @@
 
 ## Current verified state
 
-The Best 50 Call Sheet is live. Rows 1–50 are READY for phone outreach. Mail status is HOLD across all 50. No email should be sent from the sheet.
+The live Best 50 Call Sheet is real. Drive title: `Momentum 360 — Best 50 Call Sheet — 2026-08-31`. Rows 1–50 start at H&G Sign Company and end at Manayunk Plumbing & Heating. Call status is READY. Mail status is HOLD across all 50.
 
-ChatGPT’s last signed note said the next 25 are queued for tomorrow. That is batch 51–75, not a rebuild of 26–50.
+ChatGPT’s last signed note queued the next 25 for tomorrow. That is batch 51–75, not a rebuild of 26–50.
 
-## Factory contract for batch 51–75
+## What this recovery produced
 
-Reuse the existing AI Site Builder Outreach Engine. Do not stand up a parallel generator.
+`batch-51-75-candidates.json` is the leftover queue. Names come from the 2026-08-18 built-site inventory plus live Batch 4 / Unslop remainder after subtracting the 50 sheet names. No business was invented.
 
-Each new row must pass, in order:
+| Gate | Count |
+| --- | ---: |
+| Candidates listed | 25 |
+| Official URL + phone match tonight | 10 |
+| Official pending | 15 |
+| Added to the Best 50 sheet | 0 |
+| New factory builds | 0 |
+
+The 10 passing rows can enter factory QA next. The other 15 stay off the sheet until a first-party phone match is proven. `stricklandelectric.com` and `mortonelectric.com` were rejected as wrong companies.
+
+## Factory contract still in force
+
+Reuse the existing AI Site Builder Outreach Engine in `dillon-os`. Do not stand up a parallel generator. This environment cannot see that private factory repo.
+
+Each new row must still pass, in order:
 
 1. Unique official source URL and published phone
 2. Phone match against the first-party page
@@ -25,16 +39,11 @@ Each new row must pass, in order:
 7. Relationship-clear / no prior sent outreach, or disclose an unsent draft
 8. Mail remains HOLD until Jesse is separately authorized to send
 
-Pitch scope stays exact: `rebuild`, `optimization`, or `optimization_only`. Do not pitch a rebuild against a conversion-rich live site.
+Pitch scope stays exact: `rebuild`, `optimization`, or `optimization_only`.
 
-## What this recovery does not invent
+## What was not done
 
-This packet does not invent 25 new business names. The next names have to come from the remaining authored-100 / radar inventory already used for batches 1–50. That source lives on the earlier Best 25 review branch and the dillon-os factory, not in this checkout of `main`.
-
-## Tomorrow start checklist
-
-- Pull the authored-100 remainder after excluding the 50 sheet names
-- Skip Neighborly-family and any row whose official phone or source is stale
-- Keep mail HOLD
-- Add passing rows to the same sheet, do not create a second sheet
-- Tell Jesse only after 25 rows pass the same QA gates as 26–50
+- The Best 50 sheet was not edited.
+- Jesse was not told the next 25 are call-ready.
+- No email was sent.
+- Neighborly / DreamMaker and generated-hero rows were skipped.
