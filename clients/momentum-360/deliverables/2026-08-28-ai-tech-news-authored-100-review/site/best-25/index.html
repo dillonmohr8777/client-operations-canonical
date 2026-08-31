@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#11120f">
+  <title>Best 25 | Momentum 360 Private Review</title>
+  <meta name="description" content="One private review deck for the twenty five call ready Momentum 360 prospect concepts.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!--
+  THESIS: The live concept fills the viewport first so a reviewer can judge the repair, then step to the next site without scrolling a directory.
+  OWN-WORLD: The Editorial Review Ledger uses warm paper, near black ink, square ruled controls, Georgia orientation type, and rare lime signals.
+  STORY: Rank 1 loads immediately. Previous, next, and the numbered filmstrip move through the twenty five production demos. Find stays in a drawer until needed.
+  FIRST VIEWPORT: A compact ink command bar, a dominant live site, and a horizontal ranked filmstrip. No vertical page scroll.
+  FORM: Review Deck, adapted from Cohort Switchboard for phone-first inspection.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+  -->
+  <a class="skip" href="#concept-frame">Skip to live concept</a>
+
+  <div class="deck">
+    <header class="deck-bar">
+      <div class="identity">
+        <p id="active-position">Prospect 1 of 25</p>
+        <h1 id="active-business">Loading preview</h1>
+      </div>
+
+      <div class="deck-actions">
+        <div class="viewport-switch" aria-label="Preview size">
+          <button type="button" aria-pressed="true" data-viewport="desktop">Desktop</button>
+          <button type="button" aria-pressed="false" data-viewport="phone">Phone</button>
+        </div>
+        <button type="button" id="previous-prospect" aria-keyshortcuts="ArrowLeft">Previous</button>
+        <button type="button" id="next-prospect" aria-keyshortcuts="ArrowRight">Next</button>
+        <button type="button" id="open-finder" aria-haspopup="dialog" aria-controls="finder">Find</button>
+        <a id="open-demo" href="#" target="_blank" rel="noopener">Open full demo</a>
+      </div>
+    </header>
+
+    <div class="progress" aria-hidden="true"><span id="progress-fill"></span></div>
+
+    <main class="stage" id="review-stage" aria-labelledby="active-business">
+      <div class="frame-field" id="frame-field">
+        <div class="preview-loading" id="preview-loading" role="status">Loading live concept</div>
+        <div class="frame-shell">
+          <iframe id="concept-frame" title="Live concept preview" loading="eager" referrerpolicy="no-referrer"></iframe>
+        </div>
+      </div>
+    </main>
+
+    <footer class="film-bar">
+      <div class="film-copy">
+        <div class="status-cluster" aria-label="Review status">
+          <span class="status ready">Call QA ready</span>
+          <span class="status hold">Mail hold</span>
+          <span class="status scope" id="active-scope">Pitch scope</span>
+        </div>
+        <div class="film-meta">
+          <p id="active-note">Verified concept details will appear here.</p>
+          <div class="contact-links">
+            <a id="active-phone" href="#">Phone</a>
+            <a id="official-site" href="#" target="_blank" rel="noopener">Official source</a>
+          </div>
+        </div>
+      </div>
+
+      <ol id="prospect-list" class="filmstrip" aria-label="Ranked prospects"></ol>
+    </footer>
+  </div>
+
+  <dialog id="finder" aria-labelledby="finder-title">
+    <form method="dialog" class="finder-sheet">
+      <header class="finder-head">
+        <h2 id="finder-title">Find a prospect</h2>
+        <button type="submit" id="close-finder" value="close">Close</button>
+      </header>
+
+      <div class="finder-tools">
+        <div class="search-control">
+          <label class="visually-hidden" for="prospect-search">Search name, phone, or scope</label>
+          <input id="prospect-search" type="search" autocomplete="off" placeholder="Search name, phone, or scope" aria-keyshortcuts="/">
+          <button id="clear-search" type="button" hidden>Clear</button>
+        </div>
+
+        <div class="jump-control">
+          <label for="prospect-jump">Jump to</label>
+          <select id="prospect-jump" disabled>
+            <option>Loading prospects</option>
+          </select>
+        </div>
+
+        <div class="cohort-tabs" role="tablist" aria-label="Filter by cohort">
+          <button type="button" role="tab" aria-selected="true" data-cohort="all">All <span data-cohort-count="all">25</span></button>
+          <button type="button" role="tab" aria-selected="false" data-cohort="batch2">Batch 2 <span data-cohort-count="batch2">12</span></button>
+          <button type="button" role="tab" aria-selected="false" data-cohort="batch4">Batch 4 <span data-cohort-count="batch4">10</span></button>
+          <button type="button" role="tab" aria-selected="false" data-cohort="unslop25">Unslop <span data-cohort-count="unslop25">3</span></button>
+        </div>
+
+        <p class="result-count" id="result-count" aria-live="polite">Loading verified prospects</p>
+      </div>
+
+      <ol id="finder-list" class="finder-list" aria-label="Matching prospects"></ol>
+      <p id="empty-state" class="empty-state" hidden>No prospects match this view. Clear the search or choose another cohort.</p>
+    </form>
+  </dialog>
+
+  <noscript>
+    <p class="noscript">JavaScript is required for the unified viewer. The individual production demos remain available from the call sheet.</p>
+  </noscript>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
