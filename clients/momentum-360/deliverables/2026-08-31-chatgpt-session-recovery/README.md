@@ -8,7 +8,7 @@ No Slack post, Gmail send, Google Ads mutation, or canonical queue write was per
 
 | # | Session | Last ChatGPT-signed evidence | Outstanding when recovered | This recovery |
 | --- | --- | --- | --- | --- |
-| 1 | Puttery NYC access / onboarding | Slack `#puttery` 16:54 ET; Melissa 17:00 ET | Melissa asked what Email/CRM Phase 1 means and whether to include Tom | Paste-ready Slack reply. Dillon posts it. |
+| 1 | Puttery NYC access / onboarding | Slack `#puttery` 16:54 ET; Melissa 17:00 ET | Melissa asked what Email/CRM Phase 1 means and whether to include Tom | Dillon posted the reply at 17:37 ET. Session closed. |
 | 2 | Replenish / Mia destination rule | Gmail draft `r-7445991864725719847` | Promised a confirmation after checking every destination | Hub for every ad. Spend only the 4 San Diego campaigns until Mia confirms Florida. |
 | 3 | AI Tech News next 25 | Slack `#ai-tech-news` 16:10 ET | Best 50 is call-ready; next 25 queued for tomorrow; mail HOLD | Leftover batch 51–75 candidate queue; 10 source/phone passes |
 | 4 | Momentum cinematic ending | Slack `#design-social-email` 16:20–17:27 ET | Improve the first ending; Mac asked for brand colors + music | Official-logo 1920×1080 end card; Higgsfield still expired |
@@ -24,7 +24,7 @@ Do not redo these. They already have PRs from today’s earlier agents:
 
 ## Human-only gates still open
 
-- Dillon asked for the Melissa paste and will post it himself. This machine did not post.
+- Puttery Slack reply is live in-thread at 17:37 ET. Melissa’s two questions are answered.
 - Approve the exact Mia Gmail draft before sending.
 - Ads decision recorded: one hub URL for every Replenish ad; spend only the 4 San Diego campaigns until Mia confirms Florida is blending. Launch authority is still draft, so nothing was enabled here.
 - Fill the Ads final-URL worksheet from Chrome on DESKTOP or AHCM. Composio child-account reads are blocked without a manager login-customer header.
