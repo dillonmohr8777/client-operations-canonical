@@ -10,7 +10,7 @@ No Slack post, Gmail send, or canonical queue write was performed here. Dillon l
 | --- | --- | --- | --- | --- |
 | 1 | Puttery NYC access / onboarding | Slack `#puttery` 16:54 ET; Melissa 17:00 ET | Melissa asked what Email/CRM Phase 1 means and whether to include Tom | Dillon posted the reply at 17:37 ET. Session closed. |
 | 2 | Replenish / Mia destination rule | Gmail draft `r-7445991864725719847` | Promised a confirmation after checking every destination | All 9 Replenish PMax final URLs now `https://7eleven.getreplenish.com`. Fresh Blends untouched. Spend not restarted. |
-| 3 | AI Tech News next 25 | Slack `#ai-tech-news` 16:10 ET | Best 50 is call-ready; next 25 queued for tomorrow; mail HOLD | 23 official-phone passes on HOLD leftover tab. Ready 50 untouched this pass. Factory not run. |
+| 3 | AI Tech News next 25 | Slack `#ai-tech-news` 16:10 ET | Best 50 is call-ready; next 25 queued for tomorrow; mail HOLD | 23 official-phone passes on HOLD leftover tab. 17 existing demos have live HTML + phone + Maps. Factory not run. |
 | 4 | Momentum cinematic ending | Slack `#design-social-email` 16:20–17:27 ET | Improve the first ending; Mac asked for brand colors + music | Official-logo 9:16 card + instrumental bed mixed on the first ending. New Drive review file only. Not posted. Higgsfield still expired. |
 
 ## Adjacent work already on other branches

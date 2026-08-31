@@ -21,10 +21,14 @@ Tab `HOLD leftover 51-75` now holds **23 official-phone passes**. Ten new rows w
 | Candidates listed | 25 |
 | Official URL + phone match | 23 |
 | Official pending | 2 |
+| Existing demo LIVE_HTML | 17 |
+| Existing demo gap | 6 |
 | Added to Ready 50 | 0 |
 | New factory builds | 0 |
 
-The 23 passing rows can enter factory QA next. Verruni remains a Coming Soon page with no phone. BPM Fitness first-party scrape failed and third-party listings say the studio is closed. `stricklandelectric.com` stays rejected; the passing Strickland host is `strickelectric.com`.
+`leftover-demo-qa.json` records the live-HTML check on existing Batch 4 / Batch 2 / Unslop demos. LIVE_HTML is not desktop/mobile visual QA and is not a factory pass. HOLD Local QA / Deploy QA were updated to `LIVE_HTML` / `LIVE_HOST` or `DEMO_GAP`. Call QA and Mail stay HOLD.
+
+The 23 phone-pass rows still need the existing factory before Jesse. Verruni remains Coming Soon with no first-party phone. BPM Fitness has no official phone and third-party listings say closed. `stricklandelectric.com` stays rejected; the passing Strickland host is `strickelectric.com`. Corrected demo slugs: Rittenhouse `rittenhouse-square-chiropractic`, Wilson `wilson-s-forklift-service-llc`.
 
 ## Factory contract still in force
 
