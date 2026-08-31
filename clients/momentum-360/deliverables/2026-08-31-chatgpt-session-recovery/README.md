@@ -24,10 +24,10 @@ Do not redo these. They already have PRs from today’s earlier agents:
 
 ## Human-only gates still open
 
-- Approve the exact Puttery Slack preview before posting.
+- Dillon asked for the Melissa paste and will post it himself. This machine did not post.
 - Approve the exact Mia Gmail draft before sending.
-- Confirm whether South Florida Replenish stores are blending now. All five FL store pages still say `Coming this August`.
-- Fill the Ads final-URL worksheet from the authorized Replenish account. July 16 state has names only.
+- Ads decision recorded: one hub URL for every Replenish ad; spend only the 4 San Diego campaigns until Mia confirms Florida is blending. Launch authority is still draft, so nothing was enabled here.
+- Fill the Ads final-URL worksheet from Chrome on DESKTOP or AHCM. Composio child-account reads are blocked without a manager login-customer header.
 - Reconnect Higgsfield or run Suno locally to finish motion/music on the Corner Store ending.
 - Keep mail HOLD on the Best 50 sheet. Do not tell Jesse batch 51–75 is call-ready until the remaining official-phone rows pass.
 - Unsigned Puttery contract and payment remain commercial gates.
