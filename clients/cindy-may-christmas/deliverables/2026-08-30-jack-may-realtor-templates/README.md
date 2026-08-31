@@ -2,7 +2,11 @@
 
 Local research only. Jack May is not in `registry/clients.json`. Cindy May referred him on 2026-08-24 as broker-owner of May Team Realtors in Louisville. No outreach, publish, or canonical-queue write was made.
 
-The practical 18-site list below is the wrong brief if the next draft is supposed to look expensive. Use `BOUGIE.md` and `screenshots/bougie/` instead. That pass ranks 111 West 57th, Aman, Kirman, Beverly Hills Estates, and the other $100M homepages.
+Three briefs live in this folder.
+
+- `BOUGIE.md` is the fashion-empty $100M look. Towers and gold marks.
+- `BIG-HOMES.md` is the middle: a real house you could live in, and it can still be huge. Premier Sotheby's, LandVest, Saunders, Kumara.
+- The 18-site list below was the first practical pass. Keep it as contrast only.
 
 Captured 2026-08-30. Desktop viewport 1440x900. Fresh JPEG screenshots are in `screenshots/`.
 
