@@ -23,12 +23,13 @@ The existing AI Tech News factory was run from this environment for a local noin
 
 See `factory-preview-results.json` and `factory-preview-briefs/`.
 
+Official harvest ran at 2026-08-31 22:23 UTC. `apply-harvest-images.js` wrote first-party photos and official-site screenshots into the five local previews. `qa.js` still reports `PASS`. See `harvest-results.json`.
+
 ## Still required before call-ready
 
-1. Official harvest imagery through `harvest.js` + `apply-harvest-images.js`. Current assets are labeled preview placeholders.
-2. Maker/checker walkthrough on Dillon’s machine.
-3. Dillon runs deploy from the authorized factory path. This environment must not deploy.
-4. Deploy-preview and production QA after deploy.
-5. Then, and only then, Ready 50 rows and a Jesse ping.
+1. Maker/checker walkthrough on Dillon’s machine.
+2. Dillon runs deploy from the authorized factory path. This environment must not deploy.
+3. Deploy-preview and production QA after deploy.
+4. Then, and only then, Ready 50 rows and a Jesse ping.
 
 Verruni (67) and BPM Fitness (75) remain official-pending and were not built.

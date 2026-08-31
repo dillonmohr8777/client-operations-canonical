@@ -28,4 +28,6 @@ The first-ending review file already uses this lock on the last 3 seconds:
 
 https://drive.google.com/file/d/109DsafWL6WwSOD6lddh2lfZSIBejN17k/view
 
+A later local grade applies navy/blue push only on the plate before `t=13.125` and leaves the official end card locked: `/tmp/cinematic/corner-official-endcard-music-navy-gold-grade.mp4`.
+
 Sean’s second clip stays posted. Do not replace it. A Higgsfield remake still needs re-auth.

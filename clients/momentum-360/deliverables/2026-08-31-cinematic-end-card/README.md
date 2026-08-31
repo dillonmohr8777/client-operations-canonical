@@ -38,6 +38,8 @@ Higgsfield session is still expired, so a new motion remake could not run here.
 
 Dillon asked at 17:28 ET whether to input just blue and white. Answer is in `color-input-brief.md`: navy `#14314F`, blue `#075CA8`, gold `#F2B84B`, white paper. Not posted.
 
+A local navy/blue/gold grade now exists on the first-ending mix: `/tmp/cinematic/corner-official-endcard-music-navy-gold-grade.mp4`. Only the plate before `t=13.125` was graded. The official end card was left locked. This is a new local review, not an overwrite of the Drive source or Sean’s posted second clip. Drive upload of this grade was not completed in this pass.
+
 ## Approval gate
 
 Sean already asked Grace to post the second clip. This package is only for improving the first ending. Do not replace the posted file without a new preview.
