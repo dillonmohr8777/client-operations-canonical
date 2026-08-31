@@ -36,11 +36,14 @@ Child account `6275014654`. `login-customer-id` header set to the same child ID.
 
 Fresh Blends x Kwik Trip Ice Box campaigns `#633`, `#1110`, `#573`, and `#1161` remain paused and still use `https://www.kwiktrip.com/icebox`.
 
+## Sitelinks 2026-08-31 21:49 UTC
+
+Six leftover Florida sitelink assets on Boca, Coral Springs, and Miami 56 were pointing at unrelated Netlify pages. Those asset final URLs are now `https://7eleven.getreplenish.com`. Fresh Blends sitelinks were not touched. Link text is unchanged, including leftover labels such as `IPTV Multiroom Service`.
+
 ## Not changed
 
 - Campaign status, budgets, and enablement
 - Fresh Blends campaigns
-- Sitelink assets (some Florida sitelinks still point at leftover unrelated Netlify pages)
 - Conversion setup. Conversion reporting is pending validation.
 
 All nine Replenish campaigns are `ENABLED` but `ENDED`, so changing the destination does not restart spend. Restarting San Diego delivery is a separate approval.

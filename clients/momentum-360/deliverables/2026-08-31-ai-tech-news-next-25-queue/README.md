@@ -6,9 +6,11 @@
 
 ## Current verified state
 
-The live Best 50 Call Sheet is real. Drive title: `Momentum 360 — Best 50 Call Sheet — 2026-08-31`. Rows 1–50 start at H&G Sign Company and end at Manayunk Plumbing & Heating. Call status is READY. Mail status is HOLD across all 50.
+The live Best 50 Call Sheet is real. Drive title: `Momentum 360 — Best 50 Call Sheet — 2026-08-31`. Tab `Ready 50` still starts at H&G Sign Company. Call status is READY. Mail status is HOLD across all 50.
 
 ChatGPT’s last signed note queued the next 25 for tomorrow. That is batch 51–75, not a rebuild of 26–50.
+
+A separate tab `HOLD leftover 51-75` now holds the 13 official-phone passes only. Call QA and Mail Status are both HOLD. Jesse was not pinged.
 
 ## What this recovery produced
 
@@ -17,12 +19,12 @@ ChatGPT’s last signed note queued the next 25 for tomorrow. That is batch 51�
 | Gate | Count |
 | --- | ---: |
 | Candidates listed | 25 |
-| Official URL + phone match tonight | 10 |
-| Official pending | 15 |
-| Added to the Best 50 sheet | 0 |
+| Official URL + phone match | 13 |
+| Official pending | 12 |
+| Added to Ready 50 | 0 |
 | New factory builds | 0 |
 
-The 10 passing rows can enter factory QA next. The other 15 stay off the sheet until a first-party phone match is proven. `stricklandelectric.com` and `mortonelectric.com` were rejected as wrong companies.
+The 13 passing rows can enter factory QA next. The other 12 stay off both tabs until a first-party phone match is proven. `stricklandelectric.com` and `mortonelectric.com` were rejected as wrong companies.
 
 ## Factory contract still in force
 
@@ -43,7 +45,7 @@ Pitch scope stays exact: `rebuild`, `optimization`, or `optimization_only`.
 
 ## What was not done
 
-- The Best 50 sheet was not edited.
+- Ready 50 rows were not marked differently and were not emailed.
 - Jesse was not told the next 25 are call-ready.
-- No email was sent.
-- Neighborly / DreamMaker and generated-hero rows were skipped.
+- No factory rebuild ran.
+- Neighborly / DreamMaker and generated-hero rows remain skipped.
