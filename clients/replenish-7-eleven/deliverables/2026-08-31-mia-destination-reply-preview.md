@@ -15,9 +15,9 @@ You are right. There are no hoops on your side, and I should not have written it
 
 The website issue I meant is not that your page is broken. The issue was that ads and reporting have still been using multiple location URLs. Your rule is the one we should already be on: every Replenish 7-Eleven ad goes to https://7eleven.getreplenish.com, the page with every participating location and the location finder map.
 
-I just checked that page live. It is up, the map is there, and it links nine store pages. The old short paths such as /pompano-beach and /miami-56 are gone. I will still confirm every live campaign final URL against that one destination and send you a short note if any campaign is pointed somewhere else.
+I just checked that page live. It is up, the map is there, and it links nine store pages. The old short paths such as /pompano-beach and /miami-56 are gone. I will still confirm every live campaign final URL against that one destination and send you a short note if any campaign is pointed somewhere else. Until you confirm Florida is blending, we will keep spend on the four San Diego stores that already say Available now.
 
-One website fact I do need you to confirm: the five South Florida store pages still say “Coming this August.” The four San Diego County pages say “Available now.” If the Florida stores are blending now, that language should change. If they are not, the current copy is accurate and I will leave it alone.
+One website fact I do need you to confirm: the five South Florida store pages still say “Coming this August.” The four San Diego County pages say “Available now.” If the Florida stores are blending now, that language should change and we can treat those five campaigns as open. If they are not, the current copy is accurate and I will leave it alone.
 
 Thanks,  
 Dillon

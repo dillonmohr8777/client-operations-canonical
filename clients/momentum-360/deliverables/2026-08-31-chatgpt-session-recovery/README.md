@@ -8,8 +8,8 @@ No Slack post, Gmail send, Google Ads mutation, or canonical queue write was per
 
 | # | Session | Last ChatGPT-signed evidence | Outstanding when recovered | This recovery |
 | --- | --- | --- | --- | --- |
-| 1 | Puttery NYC access / onboarding | Slack `#puttery` 16:54 ET; Melissa 17:00 ET | Melissa asked what Email/CRM Phase 1 means and whether to include Tom | Unsent Slack preview in this folder |
-| 2 | Replenish / Mia destination rule | Gmail draft `r-7445991864725719847` | Promised a confirmation after checking every destination | Live page audit + unsent Gmail draft + Ads readback worksheet |
+| 1 | Puttery NYC access / onboarding | Slack `#puttery` 16:54 ET; Melissa 17:00 ET | Melissa asked what Email/CRM Phase 1 means and whether to include Tom | Paste-ready Slack reply. Dillon posts it. |
+| 2 | Replenish / Mia destination rule | Gmail draft `r-7445991864725719847` | Promised a confirmation after checking every destination | Hub for every ad. Spend only the 4 San Diego campaigns until Mia confirms Florida. |
 | 3 | AI Tech News next 25 | Slack `#ai-tech-news` 16:10 ET | Best 50 is call-ready; next 25 queued for tomorrow; mail HOLD | Leftover batch 51–75 candidate queue; 10 source/phone passes |
 | 4 | Momentum cinematic ending | Slack `#design-social-email` 16:20–17:27 ET | Improve the first ending; Mac asked for brand colors + music | Official-logo 1920×1080 end card; Higgsfield still expired |
 
