@@ -29,11 +29,14 @@ The canonical receiver package passes local code, protected credential, syntax, 
 ## Data Exports probe boundary
 
 - Official endpoint used: `https://api.exploretock.com/api/data/export/urls`.
-- Unauthenticated response: HTTP `403`.
-- One exact-scope, credentialed, read-only response: HTTP `503`.
-- Rechecked at `2026-09-01T20:31:35Z`: the exact-scope credentialed request still returned HTTP `503`.
-- Authentication and provisioning are not considered validated.
-- Credential or signed URL exposed: false.
+- No-credential control at `2026-09-01T21:35:06Z`: HTTP `403`, empty body, Cloudflare ray `a34767181ddc6665-IAD`.
+- Random wrong-credential control at `2026-09-01T21:35:07Z`: HTTP `503`, 9,102-byte `text/html` response with the redacted `unavailable` and `try again` indicators, Cloudflare ray `a347671ebe0ad6a3-IAD`.
+- Stored-credential probe 1 at `2026-09-01T21:38:20Z`: HTTP `503`, 9,102-byte Cloudflare origin-error response shape, ray `a3476bd418eae643-IAD`.
+- Stored-credential probe 2 at `2026-09-01T21:43:21Z`: HTTP `503`, the same redacted response shape, ray `a347732fa9ff5fa6-IAD`.
+- Stored-credential probe 3 at `2026-09-01T21:48:22Z`: HTTP `503`, the same redacted response shape, ray `a3477a899ef7d703-IAD`.
+- None of the four responses with an authorization header included `Retry-After`.
+- Because both a random value and the stored value reach the same unavailable origin path, this result isolates the current 503 upstream of credential validation. It does not validate the stored credential or provisioning.
+- Credential, signed URL, and response body exposed: false.
 - Outbound email or Slack message sent during this recheck: false.
 
 ## Unverified here

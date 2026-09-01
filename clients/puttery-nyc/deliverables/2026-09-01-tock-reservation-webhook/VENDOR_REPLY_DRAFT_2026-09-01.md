@@ -14,7 +14,9 @@ We have bound Business Group ID 28086 and Puttery NYC Business ID 37824 and comp
 
 For security, please revoke the role credential that was sent through ordinary email and confirm an approved secure route for the replacement.
 
-We also made one read only request to the Data Exports endpoint using the exact business and group identifiers. It returned HTTP 503, while an unauthenticated request returned HTTP 403, so we are not treating access as validated. Could you please confirm whether the 503 response is temporary or whether Data Exports still requires provisioning?
+We also ran a redacted read only check against the Data Exports endpoint using the exact business and group identifiers. A request with no credential returned HTTP 403. A request with a random invalid credential returned a Cloudflare HTTP 503 origin error, and the stored credential returned the same 503 response shape three times at five minute intervals with no Retry After header. We are not treating access as validated because the service appears unavailable before it can accept or reject the credential.
+
+Could you please confirm whether Data Exports is currently unavailable, still requires provisioning for this account, or uses a different validation route? I can provide the five timestamps and Cloudflare ray IDs from the redacted checks if helpful. Please also confirm the approved secure route for credential replacement so the value originally sent through email can be rotated.
 
 Once our durable HTTPS endpoint is cleared, I will provide the endpoint and authorization header through the approved secure route, then request Reservation Webhook registration and one controlled Puttery NYC test event.
 

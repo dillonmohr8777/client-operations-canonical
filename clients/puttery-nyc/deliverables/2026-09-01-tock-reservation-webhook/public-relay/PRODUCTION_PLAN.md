@@ -8,14 +8,14 @@ Venue binding: Business Group `28086`, Business ID `37824`.
 
 Observed at `2026-09-01T20:31:35Z`: a credentialed Tock API call returned 503. Unauthenticated probes from a separate network at `2026-09-01T20:50Z` showed `api.exploretock.com` alive: the reservation model docs return 200, unknown paths return 400. So the host is up and the 503 is endpoint- or account-scoped. A 503 never proves or disproves a credential; only 401 or 403 does.
 
-Triage protocol, run from the machine that holds the credential:
+Triage protocol, run from the machine that holds the credential with `scripts/Invoke-TockProbeTriage.ps1` (Windows PowerShell 5.1; the original `../scripts/Invoke-TockDataExportProbe.ps1` needs PowerShell 7, which is not installed on the desktop):
 
-1. Repeat the exact call three times, five minutes apart. Record for each: HTTP status, `Retry-After`, any request-id header, response body (redacted), and the wall-clock time.
-2. Call the lightest authenticated read the vendor documentation offers (a business or whoami style endpoint) with the same credential. A 200 there validates the credential and isolates the 503 to the reservation endpoint.
-3. Send the same request with a deliberately wrong credential. A 401 or 403 proves the auth layer is reachable; a 503 again means the failure is upstream of auth.
-4. Only after 1 to 3: open a Tock support ticket quoting business IDs, request ids, timestamps, and the pattern. Do not include the credential.
+1. Repeat the exact call three times, five minutes apart (`-Mode credentialed -AllowEmailedCredential`). Record for each: HTTP status, `Retry-After`, the `cf-ray` id, body size and shape, and the wall-clock time. The body itself is never printed.
+2. There is no lighter authenticated read: Data Exports `/api/data/export/urls` is the only documented API call, so it is both the credential check and the endpoint under test.
+3. Send the same request with no credential (`-Mode none`) and with a deliberately wrong one (`-Mode wrong`, a fresh random value). A 401 or 403 proves the auth layer is reachable; a 503 for the wrong value means the failure is upstream of credential validation.
+4. Only after 1 to 3: ask Resy API Integrations in the existing thread (draft in `../VENDOR_REPLY_DRAFT_2026-09-01.md`) quoting business IDs, `cf-ray` ids, timestamps, and the pattern. Do not include the credential.
 
-Record every result in `../VERIFICATION_2026-09-01.md`. Until step 2 or a live delivery succeeds, the readiness doc keeps "credential provisioning unvalidated".
+Result on 2026-09-01 (desktop, 21:35Z to 21:48Z, details in `../VERIFICATION_2026-09-01.md`): no credential answers 403 with an empty body; a random wrong credential answers 503 with a 9,102-byte `text/html` Cloudflare origin-error response shape; the stored credential answers the same redacted response shape on all three five-minute probes, with no `Retry-After`. This strongly indicates that the 503 occurs upstream of credential validation: any presented `X-Tock-Authorization` value reaches an origin that is unavailable, while the stored credential is neither validated nor rejected. Step 4 is the next move. The readiness doc keeps "credential provisioning unvalidated".
 
 ## 2. Durable public webhook host: the relay in this folder
 
@@ -24,14 +24,19 @@ Tock has to deliver to a stable HTTPS URL that is up when the Windows machine is
 ```
 Tock  ── POST /tock/webhook ──▶  Netlify Function + Blobs (this folder)
                                           │  pending/<reservationId>/<digest>
-Windows receiver  ◀── GET /tock/drain ────┘  then POST /tock/drain/ack
+Drain-TockRelay.ps1  ◀── GET /tock/drain ─┘
+        │ POST /webhooks/tock/reservations (original body, PutteryWebhookAuth header)
+        ▼
+Local receiver (../receiver, SQLite)  ── 2xx ──▶  POST /tock/drain/ack
 ```
 
-- Auth from Tock: a shared secret in a configurable header. The header name and value scheme must come from the vendor documentation. Set `TOCK_WEBHOOK_HEADER` accordingly; default is `authorization` with `Bearer <secret>`.
+- Auth from Tock: the static header is ours to name (Tock treats it as optional and registers what we give them). It is `PutteryWebhookAuth`, the name already bound in `../account-binding.json` and enforced by the receiver; the relay default matches and a test pins the two together. The value is the relay's own `TOCK_WEBHOOK_SECRET`, not the receiver's value.
 - Venue filter: events for any other business or group are answered 202 and never stored.
 - Idempotency: key is reservation id plus a digest of the body. Identical redeliveries dedupe; a changed reservation is a new event.
-- Drain auth: a separate `DRAIN_TOKEN`, so Tock's credential can never read events back.
-- Nothing about a guest is logged by the platform beyond the stored record, and the stored record is exactly what Tock sent.
+- Consistency: both functions use strong Netlify Blobs reads so a successful acknowledgement and raw-payload deletion are visible immediately across function instances.
+- Drain auth: a separate `DRAIN_TOKEN` as `Authorization: Bearer`, so Tock's credential can never read events back.
+- Drain client: hands each stored body to the local receiver unchanged so the receiver's version ordering, duplicate suppression, and NYC filter stay authoritative. Acks 2xx responses; dead-letters and acks only permanent payload errors (`400`, `413`, `415`, `422`). Authentication, routing, rate-limit, server, and connection failures stop the batch unacked so the next run retries.
+- Privacy: the raw Tock body lives in Blobs only while pending. On ack it is deleted and a `{key, reservationId, receivedAt, ackedAt}` marker remains for dedupe.
 
 Deploy steps (Dillon or Codex, from the desktop, after review):
 
@@ -40,14 +45,14 @@ npm install
 npm test
 netlify sites:create --name puttery-tock-relay
 netlify env:set TOCK_WEBHOOK_SECRET <generate 32+ random bytes>
-netlify env:set TOCK_WEBHOOK_HEADER authorization      # or the header the vendor docs name
+netlify env:set TOCK_WEBHOOK_HEADER PutteryWebhookAuth
 netlify env:set TOCK_BUSINESS_ID 37824
 netlify env:set TOCK_BUSINESS_GROUP_ID 28086
 netlify env:set DRAIN_TOKEN <generate a second 32+ byte secret>
 netlify deploy --prod
 ```
 
-Store both secrets in Windows Credential Manager and register them in Access Broker, the same way the API key was handled. They never enter Git or a chat.
+Store both secrets in Windows Credential Manager and register them in Access Broker, the same way the API key was handled. They never enter Git or a chat. The drain client reads `DRAIN_TOKEN` from target `Codex.ClientAccess.PutteryNYC.TockRelayDrainToken` and the receiver header value from the existing `Codex.ClientAccess.PutteryNYC.TockWebhookAuthorization`.
 
 Smoke test before telling Tock anything: POST a synthetic reservation (see `test/relay-core.test.mjs` for the shape) with the correct header and confirm `stored: true`; POST it again and confirm `duplicate: true`; POST one with `business.id` set to another value and confirm 202; run `scripts/Drain-TockRelay.ps1 -DryRun`.
 

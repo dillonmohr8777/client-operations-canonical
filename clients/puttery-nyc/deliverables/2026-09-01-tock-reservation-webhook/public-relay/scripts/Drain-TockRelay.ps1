@@ -8,9 +8,10 @@
   <ReceiverBase>/webhooks/tock/reservations with the PutteryWebhookAuth header, so the receiver's
   own insertion, version ordering, duplicate suppression, and venue filtering apply.
 
-  Acks go back to the relay only for events the receiver answered 2xx. A 4xx (malformed payload)
-  is written to the dead-letter folder and acked so it cannot block the queue. A 5xx or a
-  connection failure stops the batch unacked; the next run retries from the same event.
+  Acks go back to the relay only for events the receiver answered 2xx. Explicit permanent
+  payload errors (400, 413, 415, or 422) are written to the dead-letter folder and acked so
+  they cannot block the queue. Authentication, routing, rate-limit, server, and connection
+  failures stop the batch unacked; the next run retries from the same event.
 
   Secrets: the relay drain token and the receiver header value are read from Windows Credential
   Manager (the two targets below), or for local testing from the TOCK_RELAY_DRAIN_TOKEN and
@@ -133,6 +134,7 @@ try {
     }
     else {
         $receiverHeaders = @{ PutteryWebhookAuth = $receiverAuth }
+        $permanentPayloadStatuses = @(400, 413, 415, 422)
         $toAck = New-Object System.Collections.Generic.List[string]
         foreach ($e in $events) {
             $r = Invoke-Receiver -Uri $receiverUri -Body ([string]$e.body) -Headers $receiverHeaders
@@ -140,7 +142,7 @@ try {
                 $toAck.Add([string]$e.key); $result.delivered++
                 continue
             }
-            if ($r.status -ge 400 -and $r.status -lt 500) {
+            if ($permanentPayloadStatuses -contains $r.status) {
                 if (-not (Test-Path -LiteralPath $DeadLetterDir)) { New-Item -ItemType Directory -Path $DeadLetterDir -Force | Out-Null }
                 $path = Join-Path $DeadLetterDir ((([string]$e.key) -replace '/', '_') + '.json')
                 [IO.File]::WriteAllText($path, ($e | ConvertTo-Json -Depth 20), [Text.UTF8Encoding]::new($false))

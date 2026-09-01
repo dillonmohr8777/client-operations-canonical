@@ -47,7 +47,9 @@ export default async (req) => {
     classification,
     source: { userAgent: req.headers.get('user-agent'), contentType: req.headers.get('content-type') },
   });
-  const store = getStore(DEFAULTS.storeName);
+  // Queue reads must observe acknowledgements and deletes immediately across
+  // function instances. Netlify Blobs is eventually consistent by default.
+  const store = getStore({ name: DEFAULTS.storeName, consistency: 'strong' });
   const result = await storeEvent(store, key, record);
   return json({ received: true, stored: result.stored, duplicate: result.duplicate, key }, 200);
 };

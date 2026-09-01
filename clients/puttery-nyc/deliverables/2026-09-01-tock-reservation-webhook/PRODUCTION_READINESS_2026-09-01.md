@@ -26,10 +26,11 @@ The exact account is bound, both secrets are protected, and the receiver passes 
 
 ## Data Exports verification state
 
-- An unauthenticated request to the official endpoint returned HTTP `403`.
-- One exact-scope, credentialed, read-only request returned HTTP `503`.
-- No signed URLs or credential values were printed or stored in the project.
-- The different response is not sufficient proof of authentication or provisioning. Access remains unverified until a rotated credential returns a successful response or Tock confirms the service state.
+- A no-credential control returned HTTP `403` with an empty body.
+- A random wrong credential returned HTTP `503` with a 9,102-byte Cloudflare origin-error response shape.
+- Three exact-scope, stored-credential requests five minutes apart returned the same HTTP `503` response shape with no `Retry-After`.
+- No response body, signed URL, or credential value was printed or stored in the project.
+- The control pattern indicates the 503 currently occurs upstream of credential validation. Access remains unverified until a rotated credential returns a successful response or Tock confirms the service state.
 
 ## Verified local controls
 

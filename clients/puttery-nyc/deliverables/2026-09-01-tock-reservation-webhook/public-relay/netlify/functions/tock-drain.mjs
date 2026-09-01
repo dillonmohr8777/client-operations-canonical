@@ -17,7 +17,8 @@ export default async (req) => {
   if (!auth.ok) return json({ error: 'unauthorized' }, 401);
 
   const url = new URL(req.url);
-  const store = getStore(DEFAULTS.storeName);
+  // A drain must not re-read an acknowledged payload from an edge cache.
+  const store = getStore({ name: DEFAULTS.storeName, consistency: 'strong' });
 
   if (url.pathname.endsWith('/health')) {
     if (req.method !== 'GET') return json({ error: 'GET only' }, 405);
