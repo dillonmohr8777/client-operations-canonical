@@ -23,7 +23,11 @@ Canonical path used: `C:\Users\dillo\Documents\Codex\worktrees\immohrtal-marketi
 - No LinkedIn company `sameAs` was added because no verified IMMOHRTAL company page was found.
 - Franchise outreach was not sent. Workspace Gmail is still the send gate.
 
-## Live checks before deploy
+## Live after merge
 
-- Sitemap at `https://www.immohrtalmarketing.com/sitemap.xml` returned HTTP 200.
-- The three old insight slugs returned HTTP 404 and need the new redirects after Vercel deploys this branch.
+- Merged https://github.com/dillonmohr8777/dillon-os/pull/349 into `codex/immohrtal-marketing-solutions-20260824`.
+- Vercel production deployment `Production – mohr-media-site` started at 2026-09-01T23:49:53Z for commit `e9a3ae59`.
+- Live `/about/` now contains Pittsburgh, `127 Muirfield`, `814.873.5333`, and the Immohrtal Media Inc disambiguation.
+- `/insights/aeo-vs-seo/` now returns 308 to `/insights/aeo-vs-geo-service-businesses/`.
+- Search Console accepted a fresh sitemap submit for `https://www.immohrtalmarketing.com/sitemap.xml`.
+- URL Inspection still shows homepage, About, Contact, and `/aeo-geo/` as Submitted and indexed. Those inspect results are pre-deploy crawls.
