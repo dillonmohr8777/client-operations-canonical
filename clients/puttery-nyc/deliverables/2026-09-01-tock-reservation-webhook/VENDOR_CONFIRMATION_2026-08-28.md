@@ -1,10 +1,10 @@
 # Verified Tock Vendor Confirmation
 
-**Source:** Gmail message `1a049e62f063f279`  
-**Thread:** `1a049e62f063f279`  
-**Subject:** `Follow Up: Puttery NYC | Tock API integration x Webhooks??`  
-**Sender:** Resy API Integrations  
-**Signed by:** Laura Benedetto, Technical Account Analyst  
+**Source:** Gmail message `1a049e62f063f279`
+**Thread:** `1a049e62f063f279`
+**Subject:** `Follow Up: Puttery NYC | Tock API integration x Webhooks??`
+**Sender:** Resy API Integrations
+**Signed by:** Laura Benedetto, Technical Account Analyst
 **Received:** August 28, 2026 at 3:43 PM Eastern
 
 ## Confirmed
@@ -49,4 +49,3 @@ The attachments are proprietary and remain in the exact Gmail source thread. Thi
 - Native GA4 event proof for transaction ID, value, currency, and cross-domain attribution
 - Native Meta integration proof
 - Approved conversion-value and consent treatment
-

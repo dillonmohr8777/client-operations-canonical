@@ -1,9 +1,9 @@
 # Vendor reply draft
 
-**Thread:** `Follow Up: Puttery NYC | Tock API integration x Webhooks??`  
-**From:** `dillonmohr8777@gmail.com`  
-**To:** `api-integration@resy.com`  
-**Cc:** `tluciano@driveshack.com`, `joe@highlinecomedy.com`  
+**Thread:** `Follow Up: Puttery NYC | Tock API integration x Webhooks??`
+**From:** `dillonmohr8777@gmail.com`
+**To:** `api-integration@resy.com`
+**Cc:** `tluciano@driveshack.com`, `joe@highlinecomedy.com`
 **Reply status:** Verified Gmail draft. Do not send until Dillon approves this exact reply.
 **Draft ID:** `r-164939560219168303`
 **Draft message ID:** `1a05f126a89b5e37`
