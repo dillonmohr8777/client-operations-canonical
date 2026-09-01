@@ -6,8 +6,8 @@ clientId: ami-cleaning
 mail_ready: hold
 privacy: redacted
 external_action_attempted: none
-gmail_draft_id: r8819921002605976124
-gmail_message_id: 1a05dcae27ab4084
+gmail_draft_id: r7857778723011443099
+gmail_message_id: 1a05dcd0efdef02c
 gmail_thread_id: 1a05521f2ef4b157
 gmail_reply_to_message_id: 1a05d6f10691c9a7
 from: dillonmohr8777@gmail.com
