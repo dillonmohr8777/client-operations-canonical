@@ -1,0 +1,52 @@
+{
+  "zone": "immohrtalmarketing.com",
+  "registrarDns": "Cloudflare",
+  "nameservers": ["mariah.ns.cloudflare.com", "patrick.ns.cloudflare.com"],
+  "mailHost": "Google Workspace",
+  "applyWhenCloudflareConnected": [
+    {
+      "action": "update",
+      "type": "TXT",
+      "name": "_dmarc",
+      "current": "v=DMARC1; p=none; pct=100",
+      "content": "v=DMARC1; p=none; pct=100; rua=mailto:dillon@immohrtalmarketing.com; fo=1; adkim=r; aspf=r",
+      "why": "Keep monitor-only policy. Add aggregate reports so unexpected senders are visible before p=quarantine."
+    },
+    {
+      "action": "create-if-absent",
+      "type": "TXT",
+      "name": "_smtp._tls",
+      "content": "v=TLSRPTv1; rua=mailto:dillon@immohrtalmarketing.com",
+      "why": "TLS reporting for Google Workspace inbound path."
+    }
+  ],
+  "keepUnchanged": [
+    {
+      "type": "MX",
+      "name": "@",
+      "content": "smtp.google.com",
+      "priority": 10
+    },
+    {
+      "type": "TXT",
+      "name": "@",
+      "content": "v=spf1 include:_spf.google.com ~all"
+    },
+    {
+      "type": "TXT",
+      "name": "google._domainkey",
+      "content": "present-2048-bit-google-selector"
+    }
+  ],
+  "doNotChangeYet": [
+    "Do not switch SPF to -all until Zoho is confirmed unused and rua shows only Google.",
+    "Do not raise DMARC to p=quarantine until 14 days of clean rua.",
+    "Do not delete the Zoho verification TXT until Dillon confirms Zoho is retired.",
+    "Do not add BIMI without a paid VMC.",
+    "Do not add MTA-STS until https://mta-sts.immohrtalmarketing.com/.well-known/mta-sts.txt is hosted."
+  ],
+  "postmaster": {
+    "url": "https://postmaster.google.com/",
+    "action": "Add immohrtalmarketing.com and publish the verification TXT Cloudflare returns. No other DNS guess."
+  }
+}

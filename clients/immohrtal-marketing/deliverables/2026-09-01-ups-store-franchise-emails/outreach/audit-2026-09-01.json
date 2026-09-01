@@ -1,0 +1,71 @@
+{
+  "auditedAt": "2026-09-01T22:55:00Z",
+  "domain": "immohrtalmarketing.com",
+  "site": "https://www.immohrtalmarketing.com/",
+  "fromMailbox": "dillon@immohrtalmarketing.com",
+  "headline": "Authentication already passes. Inbox risk is a week-old domain plus no Workspace send connection, not a missing SPF record.",
+  "liveDns": {
+    "nameservers": ["mariah.ns.cloudflare.com", "patrick.ns.cloudflare.com"],
+    "mx": [{ "priority": 10, "host": "smtp.google.com" }],
+    "spf": "v=spf1 include:_spf.google.com ~all",
+    "dkim": {
+      "google._domainkey": "present",
+      "selector1._domainkey": "absent",
+      "selector2._domainkey": "absent"
+    },
+    "dmarc": "v=DMARC1; p=none; pct=100",
+    "bimi": "absent",
+    "mtaSts": "absent",
+    "tlsrpt": "absent",
+    "staleTxt": ["zoho-verification=zb06529671.zmverify.zoho.com"],
+    "www": "CNAME 21b52d30d229208f.vercel-dns-017.com",
+    "apexA": ["64.29.17.65", "216.198.79.65"]
+  },
+  "headerEvidence": {
+    "messageIds": ["1a03aa981047f549", "1a03f35797cea6fc"],
+    "sentAt": ["2026-08-25T20:42:51Z", "2026-08-26T17:54:13Z"],
+    "from": "Dillon Mohr <dillon@immohrtalmarketing.com>",
+    "to": "dillonmohr8777@gmail.com",
+    "placement": "INBOX",
+    "spf": "pass",
+    "dkim": "pass header.i=@immohrtalmarketing.com header.s=google",
+    "dmarc": "pass (p=NONE)",
+    "alignment": "pass",
+    "returnPath": "dillon@immohrtalmarketing.com",
+    "sendingIp": "209.85.220.41"
+  },
+  "campaignState": {
+    "listSize": 5801,
+    "sentCount": 0,
+    "suppressedCount": 0,
+    "sendBlocked": "workspace_gmail_not_connected",
+    "connectedMailboxObserved": "dillonmohr8777@gmail.com"
+  },
+  "risks": [
+    {
+      "id": "new-domain",
+      "severity": "high",
+      "detail": "First authenticated Workspace send was 2026-08-25. Domain mail history is about one week."
+    },
+    {
+      "id": "same-corporate-domain",
+      "severity": "high",
+      "detail": "All 5801 recipients are @theupsstore.com. Fifty similar messages a day will look like a burst to one corporate filter."
+    },
+    {
+      "id": "workspace-disconnected",
+      "severity": "high",
+      "detail": "Cursor Gmail is the personal mailbox. Sending from that account, even with a From alias, would fail alignment and land in spam."
+    },
+    {
+      "id": "dmarc-reporting",
+      "severity": "medium",
+      "detail": "DMARC is p=none with no rua, so spoofing and unexpected senders are invisible."
+    },
+    {
+      "id": "soft-fail-spf",
+      "severity": "low",
+      "detail": "SPF uses ~all. Keep it until Zoho is confirmed unused, then move to -all."
+    }
+  ]
+}
