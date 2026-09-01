@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "reportId": "momentum-360-hubspot-chronos-pilot-20260901",
+  "clientId": "momentum-360",
+  "portalId": "50612503",
+  "generatedAt": "2026-09-01T21:05:55.487Z",
+  "components": [
+    {
+      "name": "Jason Fallon HubSpot read-only specialist",
+      "state": "live-verified",
+      "capability": "aggregate CRM, reporting, tickets, automation, forms, calls, meetings, tasks, schemas, owners, pipelines"
+    },
+    {
+      "name": "Provider-neutral forecast router",
+      "state": "merged",
+      "source": "dillon-os PR 346 / merge 437d0803bfbc96b8068f1d5abd8bb36b1b8f2373"
+    },
+    {
+      "name": "Local Chronos-2 runtime",
+      "state": "verified",
+      "runtime": "chronos-forecasting==2.3.1;torch==2.6.0+cpu;Python 3.12.13"
+    },
+    {
+      "name": "Fingerprint-bound client research gate",
+      "state": "implemented-for-review",
+      "scope": "Momentum 360 sanitized aggregate contact-created weekly series only"
+    },
+    {
+      "name": "Held-out forecast scorer",
+      "state": "verified",
+      "metrics": ["MAE", "RMSE", "WAPE", "sMAPE", "p10-p90 coverage", "interval width"]
+    }
+  ],
+  "boundaries": {
+    "hubspotWrites": false,
+    "scheduledAutomation": false,
+    "productionPromotion": false,
+    "externalDelivery": false,
+    "timesFm3ClientData": false,
+    "forbiddenUses": ["spend", "send", "publish", "conversion-claim"]
+  },
+  "result": "retain-evidence-only"
+}

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "clientId": "momentum-360",
+  "account": "Jason Fallon / Momentum 360",
+  "portalId": "50612503",
+  "generatedAt": "2026-09-01T20:59:38.463Z",
+  "extraction": {
+    "extractedAt": "2026-09-01T20:58:23.653Z",
+    "accessPath": "Jason-only protected service-key launcher",
+    "readOnly": true,
+    "capturedPages": 149,
+    "observedRecords": 14897,
+    "sourceObjectTotal": 14897,
+    "sourceTotalReconciled": true
+  },
+  "selectedTarget": {
+    "id": "hubspot_contacts_created",
+    "definition": "Count of non-archived HubSpot contact records grouped by immutable contact createdate.",
+    "businessBoundary": "CRM contact creation activity, not verified leads, qualified leads, conversions, deals, or revenue.",
+    "aggregation": "weekly",
+    "timezone": "UTC",
+    "firstCompleteWeekStart": "2025-10-27",
+    "lastCompleteWeekStart": "2026-08-24",
+    "completeWeeklySteps": 44,
+    "completeWindowRecordCount": 14846,
+    "excludedPartialBoundaryRecords": 51,
+    "descriptiveStatistics": {
+      "minimum": 0,
+      "maximum": 5718,
+      "mean": 337.41,
+      "median": 113,
+      "populationStandardDeviation": 1117.95,
+      "coefficientOfVariation": 3.3133,
+      "zeroCountWeeks": 3
+    },
+    "qualityWarning": {
+      "status": "material",
+      "extremeWeeks": {
+        "2025-11-17": 5177,
+        "2026-02-02": 5718
+      },
+      "recordsInExtremeWeeks": 10895,
+      "shareOfCompleteWindow": 73.39,
+      "interpretation": "Likely import, migration, or backfill concentration until independently explained; do not treat as organic demand history."
+    },
+    "missingness": {
+      "invalidOrMissingCreatedateRecords": 0,
+      "regularWeeklyGrid": true,
+      "missingWeeksOnGrid": 0
+    },
+    "decision": "eligible-for-one-bound-shadow-test-with-material-quality-warning"
+  },
+  "sourceSnapshot": {
+    "contacts": 14897,
+    "companies": 6885,
+    "deals": 1675,
+    "calls": 3457,
+    "meetings": 260,
+    "tasks": 2960,
+    "owners": 9,
+    "forms": 17,
+    "dealPipelines": 5,
+    "provisionalChannelMappingCoveragePercent": 22.19,
+    "conversationsAccess": "unavailable: 403 MISSING_SCOPES"
+  },
+  "privacy": {
+    "classification": "sanitized aggregate evidence",
+    "piiIncluded": false,
+    "containsSecrets": false,
+    "containsDirectIdentifiers": true,
+    "containsContactLevelIdentifiers": false,
+    "containsAccountRoutingIdentifiers": true,
+    "containsRecordIds": false,
+    "containsRawCommunications": false
+  },
+  "limitations": [
+    "No HubSpot records or configuration were changed.",
+    "Qualification, conversion, revenue, channel, spend, lifecycle-flow, email, reply, web-traffic, and conversation forecasts remain blocked or unavailable.",
+    "The raw target is survivor-biased because archived contacts are excluded.",
+    "The current incomplete week and first partial week were excluded.",
+    "This manifest authorizes no send, spend, publish, automation, conversion claim, or CRM mutation."
+  ]
+}
