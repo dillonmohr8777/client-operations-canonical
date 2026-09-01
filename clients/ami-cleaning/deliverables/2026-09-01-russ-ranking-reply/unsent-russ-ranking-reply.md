@@ -6,8 +6,8 @@ clientId: ami-cleaning
 mail_ready: hold
 privacy: redacted
 external_action_attempted: none
-gmail_draft_id: r1789290058801555412
-gmail_message_id: 1a05dc252d98c3aa
+gmail_draft_id: r-1436242280790378206
+gmail_message_id: 1a05dc6fd5050a3c
 gmail_thread_id: 1a05521f2ef4b157
 gmail_reply_to_message_id: 1a05d6f10691c9a7
 from: dillonmohr8777@gmail.com
@@ -16,50 +16,68 @@ to:
 cc:
   - corinne@ami-cleaning.com
 subject: Re: AMI August hours and branded article PDFs
-gmail_attachments: none
-attach_in_gmail_before_send:
-  - screenshots/00-gsc-first-page-board.jpg
-  - screenshots/00-ami-homepage.jpg
+gmail_attachments:
+  - AMI Google ranking summary.jpg
+  - AMI page one query evidence 1.jpg
+  - AMI page one query evidence 2.jpg
+  - AMI Wilmington query evidence.jpg
+  - AMI live site homepage.jpg
 ---
 
 # Unsent reply to Russ and Corinne
 
-Do not send until Dillon says send. This replaces the conciliatory hold draft in Gmail. Recipients are Reply All: Russ as sender, Corinne on Cc.
+Do not send until Dillon explicitly approves this exact draft. This is Reply All to Russ, with Corinne on Cc.
 
 Affiliation: AMI is not a Momentum 360 client. From mailbox is `dillonmohr8777@gmail.com`. Do not append the Momentum 360 signature or the IMMOHRTAL signature.
 
-The HTML below has no hyphens, en dashes, em dashes, or asterisks.
-
-Gmail draft is Reply All on Russ's thread and is unsent. MCP file attach orphans drafts off this thread, so attach the two JPEGs in Gmail before send. Live Google result pages from this machine were blocked by captcha. The board is Search Console, the ranking source Google records. The homepage shot is the live rebuilt site.
+The HTML below contains only the new body. It has no quoted history and no custom signature.
 
 ```html
-<p>Hi Russ and Corinne,</p>
-<p>I hear you. One Google search for janitorial companies in Wilmington is not the same as AMI having no presence. People can click. Google is already showing AMI. The attached Search Console board is every first page query Google recorded for the new site from 3 July through 30 August.</p>
-<p><strong>I did not put AMI in a bad position.</strong> Before this work AMI had almost no website presence. The old site was not a functional, searchable site for Google or for AI crawlers. I rebuilt AMI a hard coded HTML experience built for Google, set up Google Analytics, and got the site indexed. That is the opposite of putting the company in a hole.</p>
-<p>Google Search Console, read live today:</p>
+<p>Hi Russ,</p>
+<p>I will honor the $800 amount for August and I will pause new work as requested. I do need to correct several statements in your email, because the documented record does not support the conclusion that AMI was put in a bad position or that you were charged for work that was not performed.</p>
+<p><strong>First, the exact Google search you ran was never represented as a current page one ranking.</strong></p>
+<p>The phrase “janitorial companies in Wilmington DE” was not a keyword I told you AMI ranked on page one for, and it was not one of the ten article targets. I did not make that claim. In Google Search Console, the closest recorded query is “janitorial companies,” with an average position of 11 based on one impression. The related Wilmington terms are currently later in the results, ranging from an average position of 22.5 to 62.4. I am not calling those page one rankings.</p>
+<p>That honest limitation does not mean there is “nothing to click” or that AMI has no Google presence. AMI has a live <a href="https://www.ami-cleaning.com/cities/wilmington/">Wilmington city page</a> and a live <a href="https://www.ami-cleaning.com/service-areas/delaware/wilmington/">Wilmington service area page</a>, and both are indexed. Google Search Console has also recorded real appearances and real clicks for the site. Google explains that a manual search can differ from Search Console because results vary by location, search history, device, and other context. One search from one person is therefore not a complete measurement of whether a site is indexed or being shown.</p>
+<p><strong>Second, the before and after data shows that AMI is in a materially stronger search position than it was before the rebuild.</strong></p>
 <ul>
-<li>1 January 2025 through 2 July 2026, before launch: 276 impressions and 0 clicks. About 15 Google appearances a month, and nobody clicked through.</li>
-<li>3 July through 31 July: 3,683 impressions and 27 clicks</li>
-<li>1 August through 30 August: 3,573 impressions and 15 clicks</li>
-<li>Together since launch: 7,256 impressions and 42 clicks</li>
+<li>From January 1, 2025 through July 2, 2026, the prior site recorded 276 Google impressions and 0 clicks.</li>
+<li>From July 3 through July 31, the rebuilt site recorded 3,683 impressions and 27 clicks.</li>
+<li>From August 1 through August 30, it recorded another 3,573 impressions and 15 clicks.</li>
+<li>That is 7,256 impressions and 42 clicks since launch.</li>
+<li>Monthly Google visibility is now about 230 times the prior baseline.</li>
+<li>Google Analytics, which was not configured on the prior site, recorded 287 active users in July and 419 in August.</li>
 </ul>
-<p>That is about 230 times more Google appearances per month than the old site.</p>
-<p>Google Analytics did not exist on the old site. I created the AMI Website property on 3 July. July had 287 active users. August had 419.</p>
-<p>You are ranking. You are not number 1 for every city category term, and of course that takes many months. You are on the first page for the searches on the attached board, including ami cleaning, ami commercial cleaning, janitorial service, commercial cleaning coatesville, commercial cleaning near me, medical office cleaning companies near me, commercial cleaning and janitorial services harbeson de, and construction cleaning company in newark de.</p>
-<p>A Wilmington Maps result is a Google Business listing race, not a test of whether the new website exists. AMI already has a Wilmington page, and Search Console already records Wilmington impressions. Those terms are later pages today, which is exactly where a rebuilt site sits in month two, not in a bad spot.</p>
-<p>The ten facility articles are written and designed. They are not live on WordPress yet. The rankings above are from the rebuilt site and the keyword work behind those articles.</p>
-<p>I will honor the 800 for August. If you still want new work paused after this, I will pause it. The record on ranking should be the Google numbers, not one search.</p>
+<p>The attached Search Console evidence also records page one appearances for actual queries. The clearest examples are “ami cleaning” at average position 2.4 across 44 impressions with 9 clicks, “ami commercial cleaning” at position 2.4 across 23 impressions with 7 clicks, “commercial cleaning coatesville” at position 1.9 across 12 impressions, “ami clean” at position 5 across 18 impressions, and “commercial cleaning near me” at position 9.3 across 12 impressions. Some of the other page one appearances are low volume, so I am not presenting them as stable national rankings. I am presenting exactly what Google recorded.</p>
+<p>The accurate conclusion is that the rebuilt site is indexed, earning visibility, receiving clicks, and appearing on page one for a number of relevant queries. It is not yet at the top for every city and category combination, including the specific Wilmington phrase you typed. Those are two very different statements.</p>
+<p><strong>Third, SEO and content were part of the written scope from the beginning.</strong></p>
+<p>The proposal I emailed on April 30 explicitly listed monthly SEO and content, four blog posts, one new page, schema upkeep, keyword reporting, and separate website maintenance. Its ongoing pricing table listed SEO and content at $280 to $360, website maintenance at $60 to $80, and the combined email, SEO, and maintenance range at $740 to $940. The proposal also described the first month as the heaviest period. The blogs and ranking work were not concepts introduced after the August invoice.</p>
+<p>The ten facility articles are fully written and designed, but they are not live. I accept that I should have set a hard monthly cap with you before carrying out a heavier than normal content month. That is why I reduced the August amount from the 70.5 hour total to $800. I will not publish the articles or perform additional ranking work while the account is paused.</p>
+<p><strong>Fourth, the John and DNS work was performed.</strong></p>
+<ul>
+<li>Corinne introduced John on August 4, and I replied to him that same day.</li>
+<li>I reviewed the existing DNS and email configuration and sent my findings on August 8.</li>
+<li>On August 11, I sent the three Amazon SES authentication records and coordinated availability.</li>
+<li>I booked the working session on August 16.</li>
+<li>On August 20, I published all three SES authentication records for outreach.ami-cleaning.com. Corinne acknowledged the update.</li>
+<li>When John reported this morning that the masking record had disappeared, I responded, restored the records, and verified them again before your 10:45 email. John acknowledged my response with “Thank you, Dillon.”</li>
+</ul>
+<p>I own the scheduling delay and the fact that one meeting had to be moved. It is not accurate, however, to say that I did not perform the work. The configuration was reviewed, the required records were provided, the records were published, and they were restored and verified again today.</p>
+<p>I am not claiming that every part of the project is finished or that AMI already ranks first for every search. The ten articles remain unpublished, and the exact Wilmington phrase you searched is not a page one term today. I am saying that the work completed to date is real, documented, and measurable, and the available evidence directly contradicts the statement that AMI has been placed in a worse position.</p>
+<p>I will honor the $800 for August and pause new work now. The existing site, analytics, Search Console history, and completed DNS configuration remain in place. No additional work will be performed unless you and Corinne decide to resume it.</p>
 <p>Thanks,</p>
 <p>Dillon</p>
 ```
 
-## Facts as of 2026-09-01
+## Verified facts as of 2026-09-01
 
-Live GSC `sc-domain:ami-cleaning.com` on account `google_search_console_mooner-urban` and GA4 `properties/544090354`. Do not invent booked work. Do not say zero conversions.
-
-- Before launch impressions 276 / 0 clicks is current.
-- Since launch 7,256 impressions / 42 clicks is current through 30 Aug 2026.
-- August GA4 active users 419.
-- Blogs remain unpublished.
-- Russ query is not a page 1 GSC term. Best Wilmington query is around position 22.
-- Do not attach captcha or blank Bing screenshots.
+- Search Console property: `sc-domain:ami-cleaning.com`.
+- GA4 property: `properties/544090354`.
+- Prelaunch: 276 impressions, 0 clicks, average position 38.7.
+- Since launch through 2026-08-30: 7,256 impressions, 42 clicks, average position 42.7.
+- August GA4 active users: 419.
+- Russ's exact phrase is not a represented page one term. Closest generic query is position 11 based on one impression.
+- Related Wilmington queries range from position 22.5 to 62.4.
+- Ten articles are written and designed but remain unpublished.
+- The April 30 proposal includes recurring SEO, content, blogs, schema, reporting, and separate maintenance pricing.
+- DNS work was completed August 20 and restored and verified September 1.
+- Do not claim booked work, conversions, or page one placement for the exact Wilmington phrase.
