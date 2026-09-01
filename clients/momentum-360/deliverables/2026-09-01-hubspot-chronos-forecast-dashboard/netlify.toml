@@ -1,0 +1,17 @@
+[build]
+  publish = "site"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/downloads/*.pdf"
+  [headers.values]
+    Content-Disposition = "inline"
+    Content-Type = "application/pdf"

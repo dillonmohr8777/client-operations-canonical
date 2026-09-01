@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="description" content="Momentum 360 executive evidence dashboard for the HubSpot contacts-created forecast pilot.">
+  <title>Momentum 360 | Forecast Pilot Evidence Dashboard</title>
+  <link rel="preload" href="assets/fonts/SpaceGrotesk-Variable.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/DMSans-Variable.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body data-page="dashboard">
+  <a class="skip-link" href="#main-content">Skip to evidence</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Momentum 360 forecast pilot home">
+      <span class="logo-plaque logo-plaque-small"><img src="assets/momentum-360-logo.png" alt="Momentum 360"></span>
+      <span class="brand-copy"><strong>Momentum 360</strong><span>Forecast specialist pilot</span></span>
+    </a>
+    <div class="header-actions">
+      <span class="review-state"><span aria-hidden="true"></span>Internal research</span>
+      <a class="text-action" href="brief.html">Open executive brief</a>
+      <a class="primary-action" href="downloads/Momentum-360-Forecast-Pilot-Executive-Brief.pdf" download>Download PDF</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="opening" id="top" aria-labelledby="verdict-title">
+      <div class="verdict-column">
+        <div class="decision-row">
+          <time id="evidence-date" datetime="2026-09-01">Evidence reviewed Sep 1, 2026</time>
+        </div>
+        <h1 id="verdict-title">The system worked. <span>The model did not earn promotion.</span></h1>
+        <p class="verdict-summary" id="verdict-summary">Chronos-2 completed the governed test but finished slightly behind the simplest baseline.</p>
+        <div class="decision-copy">
+          <strong id="verdict-state" data-verdict-state>Retain / evidence only</strong>
+          <p id="verdict-decision">Improve the target data and test across multiple windows before any planning proposal.</p>
+        </div>
+        <p class="target-boundary"><strong>What was measured:</strong> weekly HubSpot contacts created. This is CRM creation activity, not verified leads, qualified leads, conversions, deals, demand, or revenue.</p>
+      </div>
+
+      <div class="hero-chart evidence-surface">
+        <div class="chart-heading">
+          <div>
+            <h2>12-week held-out evaluation</h2>
+            <p>Actual contacts created compared with Chronos p50, its p10–p90 band, and persistence.</p>
+          </div>
+          <div class="chart-legend" aria-label="Toggle chart series">
+            <button type="button" class="legend-control legend-actual" data-chart="holdout-chart" data-series="actual" aria-pressed="true"><span></span>Actual</button>
+            <button type="button" class="legend-control legend-chronos" data-chart="holdout-chart" data-series="chronos" aria-pressed="true"><span></span>Chronos p50</button>
+            <button type="button" class="legend-control legend-persistence" data-chart="holdout-chart" data-series="persistence" aria-pressed="true"><span></span>Persistence</button>
+            <button type="button" class="legend-control legend-band" data-chart="holdout-chart" data-series="band" aria-pressed="true"><span></span>p10–p90</button>
+          </div>
+        </div>
+        <p class="mobile-chart-cue">Swipe the chart horizontally to inspect all 12 weeks.</p>
+        <div class="chart-shell" id="holdout-chart-shell">
+          <svg id="holdout-chart" class="chart chart-holdout" viewBox="0 0 880 420" role="img" aria-labelledby="holdout-chart-title holdout-chart-desc"></svg>
+          <div class="chart-tooltip" id="holdout-tooltip" role="status" aria-live="polite"></div>
+        </div>
+        <p class="chart-summary" id="holdout-summary">Chronos did not beat persistence on WAPE, and the intended 80% interval covered 7 of 12 held-out weeks.</p>
+        <details class="data-disclosure">
+          <summary>View held-out data table</summary>
+          <div class="table-scroll"><table id="holdout-table"><caption>Weekly held-out contacts-created evaluation</caption><thead><tr><th scope="col">Week</th><th scope="col">Actual</th><th scope="col">Chronos p50</th><th scope="col">Persistence</th><th scope="col">p10</th><th scope="col">p90</th></tr></thead><tbody></tbody></table></div>
+        </details>
+      </div>
+
+      <div class="evidence-ribbon" aria-label="Decision evidence">
+        <div><span>Chronos WAPE</span><strong id="metric-chronos-wape">25.75%</strong><small>held-out evaluation</small></div>
+        <div><span>Persistence WAPE</span><strong id="metric-persistence-wape">25.11%</strong><small>simple baseline won</small></div>
+        <div><span>p10–p90 coverage</span><strong id="metric-coverage">58.33%</strong><small>7 of 12 vs intended 80%</small></div>
+        <div><span>History concentration</span><strong id="metric-concentration">73.39%</strong><small>in two flagged weeks</small></div>
+      </div>
+    </section>
+
+    <section class="evidence-workspace" aria-labelledby="workspace-title">
+      <div class="workspace-heading">
+        <div><h2 id="workspace-title">Evidence workspace</h2><p>Move from evaluation to data quality, integration, and the next test without losing the decision boundary.</p></div>
+        <span class="freshness">44 complete weeks · weekly UTC aggregation</span>
+      </div>
+
+      <div class="tab-list" role="tablist" aria-label="Forecast pilot evidence views">
+        <button id="tab-evaluation" type="button" role="tab" aria-selected="true" aria-controls="panel-evaluation" tabindex="0">Evaluation</button>
+        <button id="tab-quality" type="button" role="tab" aria-selected="false" aria-controls="panel-quality" tabindex="-1">Data quality</button>
+        <button id="tab-integration" type="button" role="tab" aria-selected="false" aria-controls="panel-integration" tabindex="-1">Integration</button>
+        <button id="tab-next" type="button" role="tab" aria-selected="false" aria-controls="panel-next" tabindex="-1">Next test</button>
+      </div>
+
+      <section class="tab-panel" id="panel-evaluation" role="tabpanel" aria-labelledby="tab-evaluation">
+        <div class="panel-lead">
+          <div><h3>The useful result is the abstention.</h3><p>Chronos beat the trailing-four-week mean, but it did not beat persistence. Its p10–p90 uncertainty band was also too wide and under-covered the held-out observations.</p></div>
+          <div class="coverage-readout"><span>Observed coverage</span><strong id="coverage-observed">58.33%</strong><div class="coverage-track" aria-hidden="true"><span id="coverage-bar"></span><i id="coverage-target"></i></div><small>Intended band coverage: 80%</small></div>
+        </div>
+        <div class="comparison-grid">
+          <div class="comparison-table-wrap">
+            <table class="comparison-table" id="comparison-table"><caption>Held-out model and baseline errors</caption><thead><tr><th scope="col">Method</th><th scope="col">MAE</th><th scope="col">RMSE</th><th scope="col">WAPE</th><th scope="col">sMAPE</th></tr></thead><tbody></tbody></table>
+          </div>
+          <aside class="plain-read" aria-labelledby="plain-read-title"><h3 id="plain-read-title">Executive read</h3><ul><li>Persistence was better by 0.64 percentage points on WAPE.</li><li>The p50 estimate was above actual contacts created in 9 of 12 weeks.</li><li>The average p10–p90 span was 311 contacts created.</li><li>One held-out window is not a production acceptance test.</li></ul></aside>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="panel-quality" role="tabpanel" aria-labelledby="tab-quality" hidden>
+        <div class="quality-intro"><div><h3>Two weeks dominate the history.</h3><p>Likely import, migration, or backfill activity accounts for most records in the complete window. The raw evidence stays intact; the zoom exists only to make the normal-range weeks readable.</p></div><div class="warning-measure"><strong id="warning-share">73.39%</strong><span id="warning-counts">10,895 of 14,846 contacts created</span></div></div>
+        <div class="history-grid">
+          <article class="history-figure"><div class="figure-heading"><h4>Full 44-week history</h4><span>Nothing removed</span></div><svg id="history-full-chart" class="chart history-chart" viewBox="0 0 760 300" role="img" aria-labelledby="history-full-title history-full-desc"></svg><p>The full scale preserves the two extreme weeks and shows why ordinary activity becomes visually compressed.</p></article>
+          <article class="history-figure"><div class="figure-heading"><h4>Normal-range zoom</h4><span>Two flagged weeks omitted from line only</span></div><svg id="history-zoom-chart" class="chart history-chart" viewBox="0 0 760 300" role="img" aria-labelledby="history-zoom-title history-zoom-desc"></svg><p>Gold markers retain the omitted positions; the source values remain unchanged in the evidence table.</p></article>
+        </div>
+        <details class="data-disclosure">
+          <summary>View complete weekly history</summary>
+          <div class="table-scroll"><table id="history-table"><caption>Complete weekly contacts-created history</caption><thead><tr><th scope="col">Week</th><th scope="col">Contacts created</th><th scope="col">Evidence state</th></tr></thead><tbody></tbody></table></div>
+        </details>
+      </section>
+
+      <section class="tab-panel" id="panel-integration" role="tabpanel" aria-labelledby="tab-integration" hidden>
+        <div class="integration-heading"><div><h3>A governed path, not a prediction shortcut.</h3><p>The system separated data extraction, numeric forecasting, scoring, and interpretation so a failed model comparison could stop safely.</p></div><span class="verified-chip">Read-only path verified</span></div>
+        <ol class="evidence-rail" id="integration-rail"></ol>
+        <div class="integration-bottom">
+          <div class="object-coverage"><h3>Aggregate coverage inspected</h3><div id="access-grid" class="access-grid"></div></div>
+          <aside class="boundary-panel"><h3>Evidence-only boundary</h3><p>HubSpot contacts created are not verified leads, qualified leads, conversions, deals, demand, or revenue.</p><ul><li>Channel mapping covers only <strong id="channel-coverage">22.19%</strong>.</li><li>Conversation evidence was unavailable.</li><li>Conversion reporting is pending validation.</li><li>No CRM changes or production promotion were made.</li></ul></aside>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="panel-next" role="tabpanel" aria-labelledby="tab-next" hidden>
+        <div class="next-heading"><div><h3>Improve the target before improving the model.</h3><p>The next run should make the signal more defensible, then test whether Chronos consistently beats simple baselines.</p></div><div class="promotion-gate"><span>Promotion gate</span><strong>Baseline win + calibrated uncertainty</strong></div></div>
+        <ol class="next-experiment" id="next-experiment"></ol>
+        <div class="safety-bar"><strong>This result cannot authorize:</strong><span>spend</span><span>sending</span><span>publishing</span><span>conversion claims</span><span>CRM mutation</span><span>scheduled automation</span></div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div><span class="logo-plaque logo-plaque-footer"><img src="assets/momentum-360-logo.png" alt=""></span><p><strong>Momentum 360 forecast specialist pilot</strong><br>Sanitized aggregate evidence · Evidence only</p></div>
+    <div><p>Conversion reporting is pending validation.</p><a href="#top">Return to verdict</a></div>
+  </footer>
+
+  <noscript><div class="noscript">JavaScript is required to render the verified chart data. The executive PDF remains available from the download link.</div></noscript>
+</body>
+</html>
