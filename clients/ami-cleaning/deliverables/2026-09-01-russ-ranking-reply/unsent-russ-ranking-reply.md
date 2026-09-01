@@ -6,8 +6,8 @@ clientId: ami-cleaning
 mail_ready: hold
 privacy: redacted
 external_action_attempted: none
-gmail_draft_id: r-1436242280790378206
-gmail_message_id: 1a05dc6fd5050a3c
+gmail_draft_id: r8819921002605976124
+gmail_message_id: 1a05dcae27ab4084
 gmail_thread_id: 1a05521f2ef4b157
 gmail_reply_to_message_id: 1a05d6f10691c9a7
 from: dillonmohr8777@gmail.com
@@ -18,15 +18,12 @@ cc:
 subject: Re: AMI August hours and branded article PDFs
 gmail_attachments:
   - AMI Google ranking summary.jpg
-  - AMI page one query evidence 1.jpg
-  - AMI page one query evidence 2.jpg
-  - AMI Wilmington query evidence.jpg
   - AMI live site homepage.jpg
 ---
 
-# Unsent reply to Russ and Corinne
+# Unsent reply to Russ
 
-Do not send until Dillon explicitly approves this exact draft. This is Reply All to Russ, with Corinne on Cc.
+Do not send until Dillon explicitly approves this exact draft. This is Reply All to Russ's email, with Corinne on Cc.
 
 Affiliation: AMI is not a Momentum 360 client. From mailbox is `dillonmohr8777@gmail.com`. Do not append the Momentum 360 signature or the IMMOHRTAL signature.
 
@@ -35,9 +32,10 @@ The HTML below contains only the new body. It has no quoted history and no custo
 ```html
 <p>Hi Russ,</p>
 <p>I will honor the $800 amount for August and I will pause new work as requested. I do need to correct several statements in your email, because the documented record does not support the conclusion that AMI was put in a bad position or that you were charged for work that was not performed.</p>
+<p><strong>I did not put AMI in a bad position.</strong></p>
 <p><strong>First, the exact Google search you ran was never represented as a current page one ranking.</strong></p>
 <p>The phrase “janitorial companies in Wilmington DE” was not a keyword I told you AMI ranked on page one for, and it was not one of the ten article targets. I did not make that claim. In Google Search Console, the closest recorded query is “janitorial companies,” with an average position of 11 based on one impression. The related Wilmington terms are currently later in the results, ranging from an average position of 22.5 to 62.4. I am not calling those page one rankings.</p>
-<p>That honest limitation does not mean there is “nothing to click” or that AMI has no Google presence. AMI has a live <a href="https://www.ami-cleaning.com/cities/wilmington/">Wilmington city page</a> and a live <a href="https://www.ami-cleaning.com/service-areas/delaware/wilmington/">Wilmington service area page</a>, and both are indexed. Google Search Console has also recorded real appearances and real clicks for the site. Google explains that a manual search can differ from Search Console because results vary by location, search history, device, and other context. One search from one person is therefore not a complete measurement of whether a site is indexed or being shown.</p>
+<p>That honest limitation does not mean there is “nothing to click” or that AMI has no Google presence. AMI has a live <a href="https://www.ami-cleaning.com/cities/wilmington/">Wilmington city page</a> and a live <a href="https://www.ami-cleaning.com/service-areas/delaware/wilmington/">Wilmington service area page</a>, and both are indexed. Google Search Console has also recorded real appearances and real clicks for the site. <a href="https://support.google.com/webmasters/answer/7042828?hl=en">Google explains</a> that a manual search can differ from Search Console because results vary by location, search history, device, and other context. One search from one person is therefore not a complete measurement of whether a site is indexed or being shown.</p>
 <p><strong>Second, the before and after data shows that AMI is in a materially stronger search position than it was before the rebuild.</strong></p>
 <ul>
 <li>From January 1, 2025 through July 2, 2026, the prior site recorded 276 Google impressions and 0 clicks.</li>
@@ -58,7 +56,7 @@ The HTML below contains only the new body. It has no quoted history and no custo
 <li>I reviewed the existing DNS and email configuration and sent my findings on August 8.</li>
 <li>On August 11, I sent the three Amazon SES authentication records and coordinated availability.</li>
 <li>I booked the working session on August 16.</li>
-<li>On August 20, I published all three SES authentication records for outreach.ami-cleaning.com. Corinne acknowledged the update.</li>
+<li>On August 20, I published all three SES authentication records for the AMI outreach subdomain. Corinne acknowledged the update.</li>
 <li>When John reported this morning that the masking record had disappeared, I responded, restored the records, and verified them again before your 10:45 email. John acknowledged my response with “Thank you, Dillon.”</li>
 </ul>
 <p>I own the scheduling delay and the fact that one meeting had to be moved. It is not accurate, however, to say that I did not perform the work. The configuration was reviewed, the required records were provided, the records were published, and they were restored and verified again today.</p>
@@ -81,3 +79,4 @@ The HTML below contains only the new body. It has no quoted history and no custo
 - The April 30 proposal includes recurring SEO, content, blogs, schema, reporting, and separate maintenance pricing.
 - DNS work was completed August 20 and restored and verified September 1.
 - Do not claim booked work, conversions, or page one placement for the exact Wilmington phrase.
+- Attach in Gmail before send: `screenshots/00-gsc-first-page-board.jpg` and `screenshots/00-ami-homepage.jpg`. Do not attach through MCP.
