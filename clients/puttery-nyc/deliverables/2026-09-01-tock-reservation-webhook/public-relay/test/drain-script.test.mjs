@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
-import { mkdtempSync, readdirSync, rmSync } from 'node:fs';
+import { mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -16,7 +16,7 @@ const RECEIVER_AUTH = 'receiver-auth-test-value-0123456789abcdef';
 const key = (id) => String(id).padStart(32, '0');
 const event = (id) => ({
   key: key(id), receivedAt: `2026-09-01T20:0${id}:00Z`,
-  body: JSON.stringify({ id, business: { id: 37824 }, versionId: 1 }),
+  body: JSON.stringify({ id, business: { id: 37824 }, versionId: 1, ownerPatron: { email: `guest${id}@example.test` } }),
 });
 
 // spawnSync would block the event loop that serves the fake, so the child runs async.
@@ -84,6 +84,18 @@ test('drain delivers to the receiver, dead-letters permanent payload 4xx, stops 
     assert.deepEqual(calls.delivered, [1, 2, 3, 4], 'stopped at the 5xx, never sent 5');
     assert.deepEqual(calls.acks, [[key(1), key(2), key(3)]], 'acked the two delivered and the dead-lettered one, not the failed one');
     assert.deepEqual(readdirSync(dead), [`${key(2)}.json`]);
+    const deadLetter = JSON.parse(readFileSync(join(dead, `${key(2)}.json`), 'utf8'));
+    assert.deepEqual({ ...deadLetter, deadLetteredAt: '<timestamp>' }, {
+      schemaVersion: 1,
+      key: key(2),
+      receivedAt: '2026-09-01T20:02:00Z',
+      receiverStatus: 422,
+      receiverOutcome: 'invalid_payload',
+      deadLetteredAt: '<timestamp>',
+    });
+    assert.match(deadLetter.deadLetteredAt, /^\d{4}-\d{2}-\d{2}T/);
+    assert.equal(JSON.stringify(deadLetter).includes('guest2@example.test'), false, 'dead letter excludes raw guest data');
+    assert.equal(Object.hasOwn(deadLetter, 'body'), false, 'dead letter excludes the raw body');
     assert.equal(summary.delivered, 2);
     assert.equal(summary.deadLettered, 1);
     assert.equal(summary.acked, 3);

@@ -35,7 +35,7 @@ Local receiver (../receiver, SQLite)  ── 2xx ──▶  POST /tock/drain/ack
 - Idempotency: the key is an opaque digest of the reservation id and exact body. Identical redeliveries dedupe; a changed reservation is a new event without exposing the source id in queue keys.
 - Consistency: both functions use strong Netlify Blobs reads so a successful acknowledgement and raw-payload deletion are visible immediately across function instances.
 - Drain auth: a separate `DRAIN_TOKEN` as `Authorization: Bearer`, so Tock's credential can never read events back.
-- Drain client: hands each stored body to the local receiver unchanged so the receiver's version ordering, duplicate suppression, and NYC filter stay authoritative. Acks 2xx responses; dead-letters and acks only permanent payload errors (`400`, `413`, `415`, `422`). Authentication, routing, rate-limit, server, and connection failures stop the batch unacked so the next run retries.
+- Drain client: hands each stored bare Reservation body to the local receiver unchanged so the receiver's version ordering, duplicate suppression, and NYC filter stay authoritative. Acks 2xx responses; records only privacy-safe status metadata before acknowledging permanent payload errors (`400`, `413`, `415`, `422`). Authentication, routing, rate-limit, server, and connection failures stop the batch unacked so the next run retries.
 - Privacy: the raw Tock body lives in Blobs only while pending. On ack it is deleted and a `{key, receivedAt, ackedAt}` marker remains for dedupe.
 
 Deploy steps (Dillon or Codex, from the desktop, after review):
@@ -63,7 +63,7 @@ Tock registers the webhook on their side. Draft request, to be sent by Dillon th
 > Please register a reservation webhook for Business Group 28086, Business ID 37824 (Puttery NYC).
 > Endpoint: `https://<site>.netlify.app/tock/webhook` (HTTPS only, POST, JSON).
 > Events: reservation created, updated, and cancelled.
-> Authentication: we will accept the shared secret in the header your documentation specifies; please confirm the header name and whether it is a bearer token or an HMAC signature.
+> Authentication: static shared secret in header `PutteryWebhookAuth`; we will provide the value through the approved secure route.
 > Please also confirm your retry policy on non-2xx responses and whether you can send a test delivery so we can validate end to end before the first real reservation.
 
 Approval gate: external send. Gmail draft `r-164939560219168303` is verified and remains unsent until Dillon says go.

@@ -54,11 +54,9 @@ export function parseEvent(bodyText, { maxBodyBytes = DEFAULTS.maxBodyBytes } = 
   }
 }
 
-/** Tock may deliver the reservation bare or wrapped; accept both without guessing further. */
+/** The verified webhook contract delivers one bare Reservation object. */
 export function extractReservation(event) {
-  if (!event || typeof event !== 'object') return null;
-  const candidate = event.reservation ?? event.data?.reservation ?? event;
-  return candidate && typeof candidate === 'object' ? candidate : null;
+  return event && typeof event === 'object' && !Array.isArray(event) ? event : null;
 }
 
 /** The documented keyValue shape is [{ attribute, attributeValue }]. Tolerate a plain object too. */

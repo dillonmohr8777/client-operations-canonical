@@ -145,7 +145,15 @@ try {
             if ($permanentPayloadStatuses -contains $r.status) {
                 if (-not (Test-Path -LiteralPath $DeadLetterDir)) { New-Item -ItemType Directory -Path $DeadLetterDir -Force | Out-Null }
                 $path = Join-Path $DeadLetterDir ((([string]$e.key) -replace '/', '_') + '.json')
-                [IO.File]::WriteAllText($path, ($e | ConvertTo-Json -Depth 20), [Text.UTF8Encoding]::new($false))
+                $deadLetter = [ordered]@{
+                    schemaVersion = 1
+                    key = [string]$e.key
+                    receivedAt = [string]$e.receivedAt
+                    receiverStatus = [int]$r.status
+                    receiverOutcome = [string]$r.outcome
+                    deadLetteredAt = [DateTimeOffset]::UtcNow.ToString('o')
+                }
+                [IO.File]::WriteAllText($path, ($deadLetter | ConvertTo-Json), [Text.UTF8Encoding]::new($false))
                 Write-Warning ("receiver rejected event {0} with HTTP {1} ({2}); dead-lettered to {3}" -f $e.key, $r.status, $r.outcome, $path)
                 $toAck.Add([string]$e.key); $result.deadLettered++
                 continue

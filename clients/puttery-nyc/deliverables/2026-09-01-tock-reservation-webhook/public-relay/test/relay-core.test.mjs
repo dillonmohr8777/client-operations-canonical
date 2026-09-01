@@ -70,7 +70,7 @@ describe('body parsing', () => {
 });
 
 describe('venue classification', () => {
-  it('accepts a bare or wrapped reservation for the configured venue', () => {
+  it('accepts the documented bare reservation shape for the configured venue', () => {
     const bare = classifyEvent(reservation(), VENUE);
     assert.equal(bare.accept, true);
     assert.equal(bare.reservationId, '9001');
@@ -79,8 +79,8 @@ describe('venue classification', () => {
       { attribute: 'utm_source', attributeValue: 'google' },
       { attribute: 'utm_campaign', attributeValue: 'puttery_nyc_test' },
     ]);
-    assert.equal(classifyEvent({ reservation: reservation() }, VENUE).accept, true);
-    assert.equal(classifyEvent({ data: { reservation: reservation() } }, VENUE).accept, true);
+    assert.equal(classifyEvent({ reservation: reservation() }, VENUE).status, 400);
+    assert.equal(classifyEvent({ data: { reservation: reservation() } }, VENUE).status, 400);
   });
   it('acknowledges but never stores another venue or another group', () => {
     const other = classifyEvent(reservation({ business: { id: 11111, businessGroupId: 28086 } }), VENUE);
