@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-01T21:15:56.107Z",
+  "clientId": "momentum-360",
+  "portalId": "50612503",
+  "experimentId": "EXP-JASON-HUBSPOT-CHRONOS-20260901",
+  "validation": {
+    "routerStatus": "sandbox-eligible",
+    "clientExperimentAuthorized": true,
+    "runValid": true,
+    "exactIdentityAssertions": "passed"
+  },
+  "provenance": {
+    "inputCsvSha256": "f7a3498802729132b17bfdff54f5a8b0e614e4efa39f2c9be02c56de5f549e23",
+    "requestSha256": "453c1f47945440943c349a448ef0f3d2f02e8e2cf3077700f23631839497870e",
+    "forecastRunSha256": "d8ecc8e5ac3f3f786a4eb975cbbbd616abc626c215ecd42c666ef77ceaf06a2f"
+  },
+  "target": "hubspot_contacts_created",
+  "aggregation": "week",
+  "contextSteps": 32,
+  "holdoutSteps": 12,
+  "holdoutStart": "2026-06-08",
+  "holdoutEnd": "2026-08-24",
+  "actual": [
+    149,
+    160,
+    143,
+    89,
+    91,
+    94,
+    115,
+    133,
+    87,
+    107,
+    137,
+    89
+  ],
+  "model": {
+    "id": "amazon/chronos-2",
+    "point": [
+      131.74404907226562,
+      137.20758056640625,
+      137.57992553710938,
+      139.872314453125,
+      141.90750122070312,
+      139.43878173828125,
+      135.18179321289062,
+      138.53445434570312,
+      140.1990966796875,
+      140.60733032226562,
+      138.09918212890625,
+      141.65399169921875
+    ],
+    "metrics": {
+      "mae": 29.9136,
+      "rmse": 35.6629,
+      "wapePercent": 25.75,
+      "smapePercent": 24.94
+    },
+    "p10P90CoveragePercent": 58.33,
+    "meanP10P90Width": 311.2217,
+    "p50AboveActualSteps": 9
+  },
+  "baselines": {
+    "persistence": {
+      "value": 140,
+      "metrics": {
+        "mae": 29.1667,
+        "rmse": 35.107,
+        "wapePercent": 25.11,
+        "smapePercent": 24.4
+      }
+    },
+    "trailingFourWeekMean": {
+      "value": 152.5,
+      "metrics": {
+        "mae": 37.5833,
+        "rmse": 44.5487,
+        "wapePercent": 32.35,
+        "smapePercent": 29.91
+      }
+    }
+  },
+  "comparison": {
+    "beatsPersistenceOnWape": false,
+    "beatsTrailingFourWeekMeanOnWape": true,
+    "initialHoldoutOnly": true,
+    "rollingOriginAcceptanceComplete": false
+  },
+  "dataQuality": {
+    "materialWarning": true,
+    "extremeContextWeeks": [
+      "2025-11-17",
+      "2026-02-02"
+    ],
+    "extremeContextRecordSharePercent": 73.39,
+    "interpretation": "Likely import, migration, or backfill concentration until independently explained."
+  },
+  "decision": "retain-evidence-only-and-require-robust-rolling-origin-review",
+  "forbiddenUses": [
+    "spend",
+    "send",
+    "publish",
+    "conversion-claim",
+    "client-facing-performance-claim"
+  ]
+}
