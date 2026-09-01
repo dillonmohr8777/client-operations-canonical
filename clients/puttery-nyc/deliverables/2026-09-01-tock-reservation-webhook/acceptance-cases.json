@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "suite": "puttery_nyc_tock_prepaid_booking_measurement",
+  "status": "local_receiver_verified_pending_rotation_durable_host_controlled_payload_and_measurement_gates",
+  "cases": [
+    {
+      "id": "paid_single_reservation",
+      "description": "One eligible checkout creates one reservation and one captured payment.",
+      "expected": "One ledger transaction and at most one Purchase per approved platform route with exact USD cents."
+    },
+    {
+      "id": "multi_tee_single_checkout",
+      "description": "One checkout creates two tee-time reservations.",
+      "expected": "One transaction value is counted once unless Tock supplies an authoritative allocation rule."
+    },
+    {
+      "id": "duplicate_webhook_retry",
+      "description": "The identical webhook event is delivered more than once under Tock's at-least-once contract.",
+      "expected": "One processed event, one ledger effect, and zero duplicate purchases."
+    },
+    {
+      "id": "out_of_order_update",
+      "description": "A stale reservation update arrives after a newer sequence.",
+      "expected": "The stale state is ignored or quarantined without reversing the newer state."
+    },
+    {
+      "id": "browser_server_dual_delivery",
+      "description": "A browser Purchase and server Purchase represent the same checkout.",
+      "expected": "Meta receives the same event name and event ID and records one deduplicated purchase."
+    },
+    {
+      "id": "partial_refund",
+      "description": "A paid checkout receives a partial refund.",
+      "expected": "Ledger net value changes by exact cents; platform adjustment follows only a verified supported path."
+    },
+    {
+      "id": "full_refund",
+      "description": "A paid checkout receives a full refund.",
+      "expected": "Ledger net value becomes zero; Google retraction or restatement is tested when configured."
+    },
+    {
+      "id": "cancel_without_refund",
+      "description": "A prepaid reservation is cancelled and no refund is issued.",
+      "expected": "Cancellation state changes while captured revenue remains according to the approved definition."
+    },
+    {
+      "id": "cancel_and_rebook",
+      "description": "A reservation is cancelled and replaced by another booking.",
+      "expected": "The original and replacement remain traceable without double-counting value."
+    },
+    {
+      "id": "no_show_without_refund",
+      "description": "A prepaid reservation is marked no-show without a refund.",
+      "expected": "Operational status changes while prepaid value remains; no-show is not treated as an automatic refund."
+    },
+    {
+      "id": "reservation_transfer",
+      "description": "A reservation is transferred to another guest.",
+      "expected": "The original reservation is recorded as cancelled and the transferee receives a new reservation; value is linked without an unsupported second purchase."
+    },
+    {
+      "id": "same_version_conflicting_payload",
+      "description": "The same business, reservation ID, and versionId arrive with a different payload hash.",
+      "expected": "The update is quarantined as a conflict and does not replace the accepted state."
+    },
+    {
+      "id": "business_group_stream_filter",
+      "description": "The business-group webhook sends valid reservations for Puttery locations other than NYC.",
+      "expected": "Non-NYC records receive a successful filtered acknowledgment and never enter the NYC ledger or ad delivery."
+    },
+    {
+      "id": "daily_export_recovery",
+      "description": "A webhook delivery is missed after Tock's immediate retry attempts.",
+      "expected": "The next daily export reconciliation restores the missing reservation version without creating a duplicate."
+    },
+    {
+      "id": "non_nyc_business",
+      "description": "An event arrives for another Puttery business or location.",
+      "expected": "The event receives a successful filtered acknowledgment, does not retain its source identifiers, and never enters NYC reporting or ad delivery."
+    },
+    {
+      "id": "consent_denied",
+      "description": "A booking has no permitted advertising-measurement consent.",
+      "expected": "The ledger may retain non-identifying aggregate facts, but no guest match signals are sent to ad platforms."
+    },
+    {
+      "id": "missing_click_identifiers",
+      "description": "A valid paid booking contains no usable click or browser identifiers.",
+      "expected": "The booking remains visible as unmatched and is not represented as a failed or guaranteed platform match."
+    },
+    {
+      "id": "stale_meta_event",
+      "description": "A server event falls outside Meta's accepted event-time window.",
+      "expected": "The event is withheld or quarantined so one stale record cannot invalidate a production batch."
+    }
+  ]
+}

@@ -1,59 +1,170 @@
 <#
 .SYNOPSIS
-  Pull pending Tock events from the public relay into a local inbox folder, then acknowledge them.
+  Pull pending Tock events from the public relay, hand each to the local receiver, then acknowledge.
 
 .DESCRIPTION
-  Runs on the Windows machine next to the tested local receiver. Each event is written as
-  <OutDir>\<reservationId>_<digest>.json exactly as the relay stored it (the original Tock body
-  is in the `body` field). The receiver ingests from that folder with its existing insertion,
-  duplicate suppression, and venue filtering. Acks are sent only after every file in the batch
-  is written, so a crash mid-batch re-delivers rather than loses.
+  Runs on the Windows machine next to the tested local receiver (../../receiver/src/server.mjs).
+  For every pending event the relay stored, the original Tock body is POSTed unchanged to
+  <ReceiverBase>/webhooks/tock/reservations with the PutteryWebhookAuth header, so the receiver's
+  own insertion, version ordering, duplicate suppression, and venue filtering apply.
 
-  The drain token is read from the environment variable named by -TokenEnvName. Put it there
-  from Windows Credential Manager or Access Broker in the calling shell; never pass it on the
-  command line and never write it to disk.
+  Acks go back to the relay only for events the receiver answered 2xx. A 4xx (malformed payload)
+  is written to the dead-letter folder and acked so it cannot block the queue. A 5xx or a
+  connection failure stops the batch unacked; the next run retries from the same event.
+
+  Secrets: the relay drain token and the receiver header value are read from Windows Credential
+  Manager (the two targets below), or for local testing from the TOCK_RELAY_DRAIN_TOKEN and
+  TOCK_RELAY_RECEIVER_AUTH environment variables. They are never printed or written to disk.
+  Windows PowerShell 5.1 compatible.
 
 .EXAMPLE
-  $env:TOCK_RELAY_DRAIN_TOKEN = <from Credential Manager>
-  .\Drain-TockRelay.ps1 -RelayBase https://<site>.netlify.app -OutDir C:\path\to\receiver\inbox -DryRun
+  .\Drain-TockRelay.ps1 -RelayBase https://<site>.netlify.app -DryRun
 #>
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)][string]$RelayBase,
-    [Parameter(Mandatory = $true)][string]$OutDir,
-    [string]$TokenEnvName = 'TOCK_RELAY_DRAIN_TOKEN',
+    [string]$ReceiverBase = 'http://127.0.0.1:8787',
+    [string]$DeadLetterDir = (Join-Path $env:LOCALAPPDATA 'Codex\ClientAccess\PutteryNYC\tock-dead-letter'),
+    [string]$DrainTokenTarget = 'Codex.ClientAccess.PutteryNYC.TockRelayDrainToken',
+    [string]$ReceiverAuthTarget = 'Codex.ClientAccess.PutteryNYC.TockWebhookAuthorization',
     [ValidateRange(1, 500)][int]$Limit = 100,
     [switch]$DryRun
 )
 
+Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
-$token = [Environment]::GetEnvironmentVariable($TokenEnvName)
-if ([string]::IsNullOrWhiteSpace($token)) { throw "Environment variable $TokenEnvName is empty. Load the drain token into it first." }
-$headers = @{ Authorization = "Bearer $token" }
-$base = $RelayBase.TrimEnd('/')
+[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 
-if (-not (Test-Path -LiteralPath $OutDir)) { New-Item -ItemType Directory -Path $OutDir -Force | Out-Null }
+if (-not ('Codex.PutteryDrainCredential.NativeMethods' -as [type])) {
+    Add-Type -TypeDefinition @'
+using System;
+using System.Runtime.InteropServices;
 
-$health = Invoke-RestMethod -Method Get -Uri "$base/tock/health" -Headers $headers
-Write-Host ("relay ok={0} pending={1} acked={2} venue={3}" -f $health.ok, $health.pending, $health.acked, $health.venue)
+namespace Codex.PutteryDrainCredential {
+  [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+  public struct CREDENTIAL {
+    public UInt32 Flags;
+    public UInt32 Type;
+    public IntPtr TargetName;
+    public IntPtr Comment;
+    public System.Runtime.InteropServices.ComTypes.FILETIME LastWritten;
+    public UInt32 CredentialBlobSize;
+    public IntPtr CredentialBlob;
+    public UInt32 Persist;
+    public UInt32 AttributeCount;
+    public IntPtr Attributes;
+    public IntPtr TargetAlias;
+    public IntPtr UserName;
+  }
 
-$batch = Invoke-RestMethod -Method Get -Uri "$base/tock/drain?limit=$Limit" -Headers $headers
-$events = @($batch.events)
-if ($events.Count -eq 0) { Write-Host 'nothing pending'; exit 0 }
+  public static class NativeMethods {
+    [DllImport("Advapi32.dll", EntryPoint = "CredReadW", CharSet = CharSet.Unicode, SetLastError = true)]
+    public static extern bool CredRead(string target, UInt32 type, UInt32 flags, out IntPtr credentialPtr);
 
-$written = New-Object System.Collections.Generic.List[string]
-foreach ($event in $events) {
-    $fileName = ($event.key -replace '/', '_') + '.json'
-    $path = Join-Path $OutDir $fileName
-    if ($DryRun) { Write-Host "would write $path (reservation $($event.reservationId), received $($event.receivedAt))"; continue }
-    [IO.File]::WriteAllText($path, ($event | ConvertTo-Json -Depth 20), [Text.UTF8Encoding]::new($false))
-    $written.Add([string]$event.key)
+    [DllImport("Advapi32.dll", SetLastError = true)]
+    public static extern void CredFree(IntPtr buffer);
+  }
+}
+'@
 }
 
-if ($DryRun) { Write-Host ("dry run: {0} events would be written and acked" -f $events.Count); exit 0 }
-if ($written.Count -eq 0) { exit 0 }
+function Read-ProtectedValue {
+    param([string]$EnvName, [string]$Target)
+    $fromEnv = [Environment]::GetEnvironmentVariable($EnvName)
+    if (-not [string]::IsNullOrWhiteSpace($fromEnv)) { return $fromEnv }
+    $ptr = [IntPtr]::Zero
+    try {
+        if (-not [Codex.PutteryDrainCredential.NativeMethods]::CredRead($Target, 1, 0, [ref]$ptr)) { throw "credential_target_not_found:$Target" }
+        $cred = [Runtime.InteropServices.Marshal]::PtrToStructure($ptr, [type][Codex.PutteryDrainCredential.CREDENTIAL])
+        if ($cred.CredentialBlobSize -lt 32 -or $cred.CredentialBlob -eq [IntPtr]::Zero) { throw "credential_blob_invalid:$Target" }
+        $bytes = [byte[]]::new($cred.CredentialBlobSize)
+        [Runtime.InteropServices.Marshal]::Copy($cred.CredentialBlob, $bytes, 0, $bytes.Length)
+        $value = [Text.Encoding]::Unicode.GetString($bytes)
+        [Array]::Clear($bytes, 0, $bytes.Length)
+        return $value
+    }
+    finally {
+        if ($ptr -ne [IntPtr]::Zero) { [Codex.PutteryDrainCredential.NativeMethods]::CredFree($ptr) }
+    }
+}
 
-$ackBody = @{ keys = @($written) } | ConvertTo-Json -Compress
-$ack = Invoke-RestMethod -Method Post -Uri "$base/tock/drain/ack" -Headers $headers -ContentType 'application/json' -Body $ackBody
-Write-Host ("wrote {0} events; acked {1}; missing {2}" -f $written.Count, @($ack.acked).Count, @($ack.missing).Count)
-if (@($ack.missing).Count -gt 0) { Write-Warning ("relay did not recognise: {0}" -f (@($ack.missing) -join ', ')) }
+function Invoke-Receiver {
+    param([string]$Uri, [string]$Body, [hashtable]$Headers)
+    try {
+        $r = Invoke-WebRequest -UseBasicParsing -Uri $Uri -Method Post -Headers $Headers -ContentType 'application/json; charset=utf-8' -Body ([Text.Encoding]::UTF8.GetBytes($Body)) -TimeoutSec 30
+        return @{ status = [int]$r.StatusCode; outcome = [string]$r.Headers['x-tock-receiver-outcome'] }
+    }
+    catch [Net.WebException] {
+        $resp = $_.Exception.Response
+        if ($null -eq $resp) { return @{ status = 0; outcome = [string]$_.Exception.Status } }
+        return @{ status = [int]$resp.StatusCode; outcome = [string]$resp.Headers['x-tock-receiver-outcome'] }
+    }
+}
+
+$drainToken = $null
+$receiverAuth = $null
+try {
+    $drainToken = Read-ProtectedValue -EnvName 'TOCK_RELAY_DRAIN_TOKEN' -Target $DrainTokenTarget
+    if (-not $DryRun) { $receiverAuth = Read-ProtectedValue -EnvName 'TOCK_RELAY_RECEIVER_AUTH' -Target $ReceiverAuthTarget }
+
+    $relayHeaders = @{ Authorization = "Bearer $drainToken" }
+    $base = $RelayBase.TrimEnd('/')
+    $receiverUri = $ReceiverBase.TrimEnd('/') + '/webhooks/tock/reservations'
+
+    $health = Invoke-RestMethod -Method Get -Uri "$base/tock/health" -Headers $relayHeaders
+    $batch = Invoke-RestMethod -Method Get -Uri "$base/tock/drain?limit=$Limit" -Headers $relayHeaders
+    $events = @($batch.events)
+
+    $result = [ordered]@{
+        relayPending = [int]$health.pending
+        relayAcked = [int]$health.acked
+        venue = [string]$health.venue
+        fetched = $events.Count
+        delivered = 0
+        deadLettered = 0
+        acked = 0
+        missing = 0
+        stopped = $null
+        dryRun = [bool]$DryRun
+    }
+
+    if ($DryRun) {
+        foreach ($e in $events) { Write-Host ("would deliver reservation {0} received {1} key {2}" -f $e.reservationId, $e.receivedAt, $e.key) }
+    }
+    else {
+        $receiverHeaders = @{ PutteryWebhookAuth = $receiverAuth }
+        $toAck = New-Object System.Collections.Generic.List[string]
+        foreach ($e in $events) {
+            $r = Invoke-Receiver -Uri $receiverUri -Body ([string]$e.body) -Headers $receiverHeaders
+            if ($r.status -ge 200 -and $r.status -lt 300) {
+                $toAck.Add([string]$e.key); $result.delivered++
+                continue
+            }
+            if ($r.status -ge 400 -and $r.status -lt 500) {
+                if (-not (Test-Path -LiteralPath $DeadLetterDir)) { New-Item -ItemType Directory -Path $DeadLetterDir -Force | Out-Null }
+                $path = Join-Path $DeadLetterDir ((([string]$e.key) -replace '/', '_') + '.json')
+                [IO.File]::WriteAllText($path, ($e | ConvertTo-Json -Depth 20), [Text.UTF8Encoding]::new($false))
+                Write-Warning ("receiver rejected reservation {0} with HTTP {1} ({2}); dead-lettered to {3}" -f $e.reservationId, $r.status, $r.outcome, $path)
+                $toAck.Add([string]$e.key); $result.deadLettered++
+                continue
+            }
+            $result.stopped = ("receiver returned HTTP {0} ({1}) for reservation {2}; batch stopped before ack, next run retries" -f $r.status, $r.outcome, $e.reservationId)
+            Write-Warning $result.stopped
+            break
+        }
+        if ($toAck.Count -gt 0) {
+            $ackBody = @{ keys = @($toAck) } | ConvertTo-Json -Compress
+            $ack = Invoke-RestMethod -Method Post -Uri "$base/tock/drain/ack" -Headers $relayHeaders -ContentType 'application/json' -Body $ackBody
+            $result.acked = @($ack.acked).Count
+            $result.missing = @($ack.missing).Count
+            if ($result.missing -gt 0) { Write-Warning ("relay did not recognise: {0}" -f (@($ack.missing) -join ', ')) }
+        }
+    }
+
+    [pscustomobject]$result | ConvertTo-Json -Compress
+    if ($result.stopped) { exit 1 }
+}
+finally {
+    $drainToken = $null
+    $receiverAuth = $null
+}

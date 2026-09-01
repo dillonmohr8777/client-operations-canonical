@@ -1,7 +1,9 @@
 // node --test test/*.test.mjs
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import {
+  DEFAULTS,
   verifySharedSecret,
   parseEvent,
   classifyEvent,
@@ -38,16 +40,22 @@ function reservation(overrides = {}) {
 const headers = (obj) => new Headers(obj);
 
 describe('shared-secret verification', () => {
-  it('accepts Bearer and bare secrets in the configured header', () => {
-    assert.equal(verifySharedSecret(headers({ authorization: 'Bearer s3cret' }), { secret: 's3cret' }).ok, true);
-    assert.equal(verifySharedSecret(headers({ authorization: 's3cret' }), { secret: 's3cret' }).ok, true);
-    assert.equal(verifySharedSecret(headers({ 'x-tock-signature': 's3cret' }), { secret: 's3cret', headerName: 'x-tock-signature' }).ok, true);
+  it('uses the header name the canonical receiver contract binds', () => {
+    const binding = JSON.parse(readFileSync(new URL('../../account-binding.json', import.meta.url), 'utf8'));
+    assert.equal(DEFAULTS.authHeader, binding.tock.deliveryContract.authorizationHeaderName);
   });
-  it('rejects a missing header, a wrong secret, and an unconfigured relay', () => {
+  it('accepts Bearer and bare secrets in the venue header, case-insensitively', () => {
+    assert.equal(verifySharedSecret(headers({ PutteryWebhookAuth: 's3cret' }), { secret: 's3cret' }).ok, true);
+    assert.equal(verifySharedSecret(headers({ putterywebhookauth: 'Bearer s3cret' }), { secret: 's3cret' }).ok, true);
+    assert.equal(verifySharedSecret({ putterywebhookauth: 's3cret' }, { secret: 's3cret' }).ok, true, 'node:http style lowercased object');
+    assert.equal(verifySharedSecret(headers({ authorization: 'Bearer s3cret' }), { secret: 's3cret', headerName: 'authorization' }).ok, true);
+  });
+  it('rejects a missing header, the wrong header, a wrong secret, and an unconfigured relay', () => {
     assert.equal(verifySharedSecret(headers({}), { secret: 's3cret' }).ok, false);
-    assert.equal(verifySharedSecret(headers({ authorization: 'Bearer nope' }), { secret: 's3cret' }).ok, false);
-    assert.equal(verifySharedSecret(headers({ authorization: 'Bearer s3cret' }), { secret: '' }).ok, false);
-    assert.equal(verifySharedSecret(headers({ authorization: 'Bearer s3cre' }), { secret: 's3cret' }).ok, false, 'length mismatch is a mismatch');
+    assert.equal(verifySharedSecret(headers({ authorization: 'Bearer s3cret' }), { secret: 's3cret' }).ok, false, 'Authorization is the drain header, not the venue header');
+    assert.equal(verifySharedSecret(headers({ PutteryWebhookAuth: 'nope' }), { secret: 's3cret' }).ok, false);
+    assert.equal(verifySharedSecret(headers({ PutteryWebhookAuth: 's3cret' }), { secret: '' }).ok, false);
+    assert.equal(verifySharedSecret(headers({ PutteryWebhookAuth: 's3cre' }), { secret: 's3cret' }).ok, false, 'length mismatch is a mismatch');
   });
 });
 
@@ -139,6 +147,19 @@ describe('idempotency and the drain cycle', () => {
     assert.deepEqual([redelivery.duplicate, redelivery.state], [true, 'acked']);
     const remaining = await listPending(store);
     assert.equal(remaining.events.some((e) => e.key === batch.events[0].key), false);
+  });
+
+  it('an acked marker keeps the dedupe key and nothing about the guest', async () => {
+    const store = memoryStore();
+    const body = JSON.stringify(reservation({ ownerPatron: { email: 'private@example.com' } }));
+    const c = classifyEvent(JSON.parse(body), VENUE);
+    const k = eventKey(c.reservationId, body);
+    await storeEvent(store, k, receivedRecord({ key: k, bodyText: body, classification: c, receivedAt: '2026-09-01T20:00:00Z' }));
+    await ackEvents(store, [k], { ackedAt: '2026-09-01T20:10:00Z' });
+    const marker = await store.get('acked/' + k, { type: 'json' });
+    assert.deepEqual(marker, { schemaVersion: 1, key: k, reservationId: '9001', receivedAt: '2026-09-01T20:00:00Z', ackedAt: '2026-09-01T20:10:00Z' });
+    assert.equal(JSON.stringify(marker).includes('private@example.com'), false);
+    assert.equal(JSON.stringify(marker).includes('TESTCODE'), false);
   });
 
   it('records carry the metadata and the exact body, nothing invented', () => {

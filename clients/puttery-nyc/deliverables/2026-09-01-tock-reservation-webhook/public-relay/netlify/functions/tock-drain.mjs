@@ -13,7 +13,7 @@ const json = (body, status = 200) => new Response(JSON.stringify(body), {
 });
 
 export default async (req) => {
-  const auth = verifySharedSecret(req.headers, { secret: process.env.DRAIN_TOKEN });
+  const auth = verifySharedSecret(req.headers, { secret: process.env.DRAIN_TOKEN, headerName: 'authorization' });
   if (!auth.ok) return json({ error: 'unauthorized' }, 401);
 
   const url = new URL(req.url);

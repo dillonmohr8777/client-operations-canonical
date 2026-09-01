@@ -5,7 +5,10 @@
 import { createHash, timingSafeEqual } from 'node:crypto';
 
 export const DEFAULTS = Object.freeze({
-  authHeader: 'authorization',
+  // The header name is ours to choose (Tock treats the static header as optional
+  // and registers whatever name we give them). It must match the canonical
+  // receiver contract: account-binding.json `authorizationHeaderName`.
+  authHeader: 'PutteryWebhookAuth',
   maxBodyBytes: 256 * 1024,
   drainLimit: 100,
   storeName: 'tock-events',
@@ -23,13 +26,15 @@ function constantTimeEqual(a, b) {
 
 /**
  * Shared-secret check. Accepts `Bearer <secret>` or the bare secret in the
- * configured header. The header name is configurable because Tock's exact
- * webhook auth mechanism must be taken from the vendor documentation, not
- * guessed here. Never echoes the reason to the caller.
+ * configured header. Header lookup is case-insensitive (Headers.get already
+ * is; plain objects from node:http arrive lowercased). Never echoes the
+ * reason to the caller.
  */
 export function verifySharedSecret(headers, { secret, headerName = DEFAULTS.authHeader } = {}) {
   if (!secret) return { ok: false, reason: 'relay secret not configured' };
-  const raw = typeof headers?.get === 'function' ? headers.get(headerName) : headers?.[headerName];
+  const raw = typeof headers?.get === 'function'
+    ? headers.get(headerName)
+    : headers?.[headerName] ?? headers?.[headerName.toLowerCase()];
   if (!raw) return { ok: false, reason: `missing ${headerName} header` };
   const presented = String(raw).replace(/^Bearer\s+/i, '').trim();
   return constantTimeEqual(presented, secret) ? { ok: true } : { ok: false, reason: 'secret mismatch' };
@@ -149,6 +154,8 @@ export async function storeEvent(store, key, record) {
 }
 
 export async function listPending(store, { limit = DEFAULTS.drainLimit } = {}) {
+  // ponytail: reads every pending blob to sort by receivedAt (keys are id-ordered, not
+  // time-ordered). Fine at a few events per drain; time-prefix the keys if pending grows.
   const { blobs = [] } = await store.list({ prefix: PENDING });
   const records = [];
   for (const blob of blobs) {
@@ -159,6 +166,15 @@ export async function listPending(store, { limit = DEFAULTS.drainLimit } = {}) {
   return { events: records.slice(0, Math.max(1, Math.min(limit, 500))), pending: records.length };
 }
 
+/**
+ * Ack keeps only a dedupe marker. The raw Tock body (guest identity, click
+ * values) leaves the relay the moment the receiver has it; the marker is
+ * enough for a late Tock redelivery to still read as a duplicate.
+ */
+export function ackMarker(rec, ackedAt) {
+  return { schemaVersion: 1, key: rec.key, reservationId: rec.reservationId, receivedAt: rec.receivedAt, ackedAt };
+}
+
 export async function ackEvents(store, keys, { ackedAt = new Date().toISOString() } = {}) {
   const acked = [];
   const missing = [];
@@ -166,7 +182,7 @@ export async function ackEvents(store, keys, { ackedAt = new Date().toISOString(
     if (typeof key !== 'string' || !/^\d+\/[0-9a-f]{16}$/.test(key)) { missing.push(key); continue; }
     const rec = await store.get(PENDING + key, { type: 'json' });
     if (!rec) { missing.push(key); continue; }
-    await store.setJSON(ACKED + key, { ...rec, ackedAt });
+    await store.setJSON(ACKED + key, ackMarker(rec, ackedAt));
     await store.delete(PENDING + key);
     acked.push(key);
   }

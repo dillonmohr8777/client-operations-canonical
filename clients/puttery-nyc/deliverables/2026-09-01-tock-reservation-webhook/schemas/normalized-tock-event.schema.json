@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.immohrtal.invalid/schemas/puttery-nyc-normalized-tock-event.schema.json",
+  "title": "Puttery NYC Normalized Tock Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "source",
+    "eventId",
+    "idempotencyKey",
+    "eventType",
+    "occurredAt",
+    "businessId",
+    "locationId",
+    "reservationId",
+    "currency",
+    "amounts",
+    "lifecycle",
+    "attribution",
+    "sourcePayloadHash"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "source": { "const": "tock" },
+    "eventId": { "type": "string", "minLength": 1 },
+    "idempotencyKey": { "type": "string", "minLength": 1 },
+    "eventType": {
+      "enum": [
+        "booking_created",
+        "payment_captured",
+        "booking_updated",
+        "booking_cancelled",
+        "refund_partial",
+        "refund_full",
+        "visit_arrived",
+        "visit_completed",
+        "no_show"
+      ]
+    },
+    "occurredAt": { "type": "string", "format": "date-time" },
+    "businessId": { "type": "string", "minLength": 1 },
+    "locationId": { "type": "string", "minLength": 1 },
+    "businessGroupId": { "type": ["string", "null"] },
+    "reservationId": { "type": "string", "minLength": 1 },
+    "checkoutId": { "type": ["string", "null"] },
+    "transactionId": { "type": ["string", "null"] },
+    "confirmationCode": { "type": ["string", "null"] },
+    "sequenceId": { "type": ["integer", "null"], "minimum": 0 },
+    "createdAt": { "type": ["string", "null"], "format": "date-time" },
+    "updatedAt": { "type": ["string", "null"], "format": "date-time" },
+    "serviceStartAt": { "type": ["string", "null"], "format": "date-time" },
+    "currency": { "const": "USD" },
+    "amounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["totalPriceCents", "netAmountPaidCents", "amountDueCents", "refundedCents"],
+      "properties": {
+        "totalPriceCents": { "type": ["integer", "null"], "minimum": 0 },
+        "netAmountPaidCents": { "type": ["integer", "null"], "minimum": 0 },
+        "amountDueCents": { "type": ["integer", "null"], "minimum": 0 },
+        "refundedCents": { "type": ["integer", "null"], "minimum": 0 },
+        "approvedAdValueCents": { "type": ["integer", "null"], "minimum": 0 },
+        "approvedValueDefinition": {
+          "enum": [null, "guest_charge", "net_amount_paid", "subtotal_excluding_tax_and_gratuity", "finance_approved_other"]
+        }
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["isCancelled", "partyState"],
+      "properties": {
+        "isCancelled": { "type": "boolean" },
+        "partyState": {
+          "enum": [null, "EXPECTED", "ARRIVED", "SEATED", "LEFT", "NO_SHOW", "CANCELLED", "OTHER"]
+        },
+        "refundState": { "enum": ["none", "partial", "full", "pending", "unknown"] }
+      }
+    },
+    "attribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["permittedForAds", "consentState", "signalsPresent"],
+      "properties": {
+        "permittedForAds": { "type": "boolean" },
+        "consentState": { "enum": ["granted", "denied", "unknown", "not_applicable"] },
+        "utmSource": { "type": ["string", "null"] },
+        "utmMedium": { "type": ["string", "null"] },
+        "utmCampaign": { "type": ["string", "null"] },
+        "keyValueNames": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "signalsPresent": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["gclid", "gbraid", "wbraid", "fbclid", "fbc", "fbp", "permittedHashedIdentity"],
+          "properties": {
+            "gclid": { "type": "boolean" },
+            "gbraid": { "type": "boolean" },
+            "wbraid": { "type": "boolean" },
+            "fbclid": { "type": "boolean" },
+            "fbc": { "type": "boolean" },
+            "fbp": { "type": "boolean" },
+            "permittedHashedIdentity": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "sourcePayloadHash": { "type": "string", "minLength": 32 },
+    "sourceMessageLocator": { "type": ["string", "null"] }
+  }
+}
