@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-08-20T12:34:45.9380270+00:00`
-Queue revision: `415`
+Last reconciled: `09/01/2026 13:07:21`
+Queue revision: `417`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -133,6 +133,7 @@ Mode: `manual-pilot`
 | `wi-20260810-0002` | `va-claims-edge` | Finish Phase 3 final-product acceptance details | Done | P1 | Deploy the verified acceptance corrections to the already mapped VA Claims Edge Netlify review site and reconcile the evidence artifacts. | No evidenced deadline |
 | `wi-20260811-0001` | `fagan-painting` | Verify routing and ownership of August 10 Fagan website lead | Done | P0 | Perform a read-only check of the approved mailbox, CRM, or Zapier record for routing, duplicate status, owner, and current disposition without contacting the prospect. | No evidenced deadline |
 | `wi-20260820-0001` | `va-claims-edge` | Prepare current VA Claims portal meeting-readiness packet | Done | P1 | Build a local redacted portal meeting-readiness packet from current canonical VA Claims artifacts, separating verified completed work, open issues, decisions, owners, and demo checks. | No evidenced deadline |
+| `wi-20260901-0001` | `kimberly-james-bridal` | Pause Kimberly James Bridal Google Ads for September test | Needs Approval | P0 | Pause every enabled campaign in the exact KJB Google Ads account, verify that no campaign remains enabled, and preserve billing and change-history evidence. | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -482,6 +483,19 @@ Mode: `manual-pilot`
 
 - The exact recurring invoice account and advertising account are separately identified through safe account references.,The authorized requester, effective date, and payment-method scope are confirmed.,Bar Crawl remains excluded from paid-media planning, optimization, provider packets, and launch work unless separately added to the canonical roster.,No payment method, campaign, budget, invoice, or account setting is changed without exact approval.,Any approved mutation is independently read back from the exact account.
 
+### Pause Kimberly James Bridal Google Ads for September test
+
+**Decision:** Approve pausing all enabled campaigns in the exact KJB Google Ads account for the September platform test.
+
+**Next action:** Pause every enabled campaign in the exact KJB Google Ads account, verify that no campaign remains enabled, and preserve billing and change-history evidence.
+
+**Definition of done:**
+
+- Exact KJB account ID matches the canonical route.
+- All enabled KJB campaigns are paused.
+- Live campaign status readback confirms no enabled campaign remains.
+- No other client account or Meta campaign is changed.
+
 ## Blocked or at risk
 
 - **Reconcile two Fagan Painting website leads:** Obtain lead-level disposition for the two exact canonical records from the approved client mailbox, CRM, or Zapier record; do not infer individual outcomes from aggregate batch feedback.
@@ -528,7 +542,7 @@ Mode: `manual-pilot`
 
 - **accessBroker:** `valid`
 - **agentOsSlackBridge:** `enabled-prepare-only-canonical-intake-sync`
-- **asOf:** `2026-07-16T15:58:37.2107567+00:00`
+- **asOf:** `07/16/2026 11:58:37`
 - **browserPolicy:** `persistent-remote-chrome-only-never-edge`
 - **canonicalIntake:** `live-exact-route-deduplicated-redacted-no-task-no-notification`
 - **canonicalRepository:** `dirty-user-work-preserved-no-outer-remote`
@@ -545,9 +559,9 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-08-20T12:35:08.4510189+00:00`
+- **As of:** `8/16/2026 8:15:06 AM`
 - **Overall:** `degraded`
-- **Queue:** revision `415`, `107` work items, normal `2/3`, emergency `0/1` active
+- **Queue:** revision `411`, `106` work items, normal `2/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
 - **Access coverage:** `8/21` canonical clients registered, `2/65` systems verified, `6` exact Bitwarden item locators
@@ -561,7 +575,7 @@ Mode: `manual-pilot`
   - `DillonAgentOS-DailyBrief`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
-  - `MarketingChief-DailyCalibration`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
+  - `MarketingChief-DailyCalibration`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
   - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `1`
 - **Human gates:** `active_client_exact_bw_item_mapping`
 - **Deferred actions:** `secondary_exposed_password_rotation`
