@@ -130,7 +130,7 @@ try {
     }
 
     if ($DryRun) {
-        foreach ($e in $events) { Write-Host ("would deliver reservation {0} received {1} key {2}" -f $e.reservationId, $e.receivedAt, $e.key) }
+        foreach ($e in $events) { Write-Host ("would deliver event received {0} key {1}" -f $e.receivedAt, $e.key) }
     }
     else {
         $receiverHeaders = @{ PutteryWebhookAuth = $receiverAuth }
@@ -146,11 +146,11 @@ try {
                 if (-not (Test-Path -LiteralPath $DeadLetterDir)) { New-Item -ItemType Directory -Path $DeadLetterDir -Force | Out-Null }
                 $path = Join-Path $DeadLetterDir ((([string]$e.key) -replace '/', '_') + '.json')
                 [IO.File]::WriteAllText($path, ($e | ConvertTo-Json -Depth 20), [Text.UTF8Encoding]::new($false))
-                Write-Warning ("receiver rejected reservation {0} with HTTP {1} ({2}); dead-lettered to {3}" -f $e.reservationId, $r.status, $r.outcome, $path)
+                Write-Warning ("receiver rejected event {0} with HTTP {1} ({2}); dead-lettered to {3}" -f $e.key, $r.status, $r.outcome, $path)
                 $toAck.Add([string]$e.key); $result.deadLettered++
                 continue
             }
-            $result.stopped = ("receiver returned HTTP {0} ({1}) for reservation {2}; batch stopped before ack, next run retries" -f $r.status, $r.outcome, $e.reservationId)
+            $result.stopped = ("receiver returned HTTP {0} ({1}) for event {2}; batch stopped before ack, next run retries" -f $r.status, $r.outcome, $e.key)
             Write-Warning $result.stopped
             break
         }

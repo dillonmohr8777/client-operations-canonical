@@ -17,14 +17,15 @@ The canonical receiver package passes local code, protected credential, syntax, 
 - JSON files parsed: 5, with 0 parse failures.
 - PowerShell files parsed: 5, with 0 syntax failures.
 - JWT-shaped values found in the package: 0.
-- Existing Gmail vendor reply draft updated in the original thread and verified with label `DRAFT`.
-- Vendor draft ID: `r343221723841933233`.
-- Vendor draft message ID: `1a05e7e9138bb544`.
-- Vendor thread ID: `1a049e62f063f279`.
-- Vendor draft sender: `dillonmohr8777@gmail.com`.
-- Vendor draft recipient: `api-integration@resy.com`.
-- Vendor draft copies: `tluciano@driveshack.com`, `joe@highlinecomedy.com`.
-- Vendor draft sent: false.
+- Gmail thread ID: `1a049e62f063f279`.
+- A shorter vendor reply was sent at 2026-09-01 16:02 ET from `dillonmohr8777@gmail.com` to `api-integration@resy.com`, copying `tluciano@driveshack.com` and `joe@highlinecomedy.com`.
+- Sent message ID: `1a05e90c3108a1f3`; live Gmail readback showed label `SENT`.
+- The sent body requested the next steps and preferred secure method for sharing the webhook endpoint and authorization details. It contained no credential and predated the 503 triage.
+- The previously recorded draft ID `r343221723841933233` and message ID `1a05e7e9138bb544` no longer resolve in Gmail.
+- The complete 503 and credential-rotation follow-up was recreated in the same thread and verified with label `DRAFT` at 2026-09-01 18:23 ET.
+- Current vendor draft ID: `r-164939560219168303`.
+- Current vendor draft message ID: `1a05f126a89b5e37`.
+- Current vendor draft sent: false.
 
 ## Data Exports probe boundary
 
@@ -37,7 +38,7 @@ The canonical receiver package passes local code, protected credential, syntax, 
 - None of the four responses with an authorization header included `Retry-After`.
 - Because both a random value and the stored value reach the same unavailable origin path, this result isolates the current 503 upstream of credential validation. It does not validate the stored credential or provisioning.
 - Credential, signed URL, and response body exposed: false.
-- Outbound email or Slack message sent during this recheck: false.
+- Outbound email or Slack message sent during the 21:35Z to 21:48Z probe recheck: false. The current technical follow-up remains an unsent draft.
 
 ## Unverified here
 

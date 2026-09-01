@@ -27,7 +27,7 @@ This is the canonical, privacy-safe implementation package for the Puttery NYC R
 - `acceptance-cases.json`: Required production acceptance cases.
 - `receiver/`: Dependency-free Node 24 receiver with SQLite persistence, tests, and a portable container definition.
 - `scripts/`: Protected credential import, read-only API probing, access registration, and local end-to-end verification.
-- `VENDOR_REPLY_DRAFT_2026-09-01.md`: Exact unsent vendor handoff copy.
+- `VENDOR_REPLY_DRAFT_2026-09-01.md`: Exact vendor follow-up copy, verified as an unsent Gmail draft in the original thread.
 
 ## Safe local verification
 

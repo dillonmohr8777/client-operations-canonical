@@ -93,6 +93,11 @@ describe('venue classification', () => {
   it('compares ids as strings and tolerates a missing group id', () => {
     assert.equal(classifyEvent(reservation({ business: { id: '37824' } }), VENUE).accept, true);
   });
+  it('fails closed when the venue configuration is missing or invalid', () => {
+    assert.equal(classifyEvent(reservation()).status, 503);
+    assert.equal(classifyEvent(reservation(), { businessId: '0' }).status, 503);
+    assert.equal(classifyEvent(reservation(), { businessId: '37824', businessGroupId: 'invalid' }).status, 503);
+  });
   it('rejects a payload with no numeric reservation id', () => {
     assert.equal(classifyEvent({ business: { id: 37824 } }, VENUE).status, 400);
     assert.equal(classifyEvent(reservation({ id: 'abc' }), VENUE).status, 400);
@@ -115,7 +120,7 @@ describe('idempotency and the drain cycle', () => {
     const k1 = eventKey(c1.reservationId, body1);
     const k2 = eventKey(c2.reservationId, body2);
     assert.notEqual(k1, k2);
-    assert.match(k1, /^9001\/[0-9a-f]{16}$/);
+    assert.match(k1, /^[0-9a-f]{32}$/);
 
     const first = await storeEvent(store, k1, receivedRecord({ key: k1, bodyText: body1, classification: c1, receivedAt: '2026-09-01T20:00:00Z' }));
     const again = await storeEvent(store, k1, receivedRecord({ key: k1, bodyText: body1, classification: c1, receivedAt: '2026-09-01T20:00:05Z' }));
@@ -138,9 +143,10 @@ describe('idempotency and the drain cycle', () => {
     assert.equal(batch.pending, 3);
     assert.deepEqual(batch.events.map((e) => e.receivedAt), ['2026-09-01T20:01:00Z', '2026-09-01T20:02:00Z']);
 
-    const ack = await ackEvents(store, [batch.events[0].key, 'not/a-key', '55/0000000000000000'], { ackedAt: '2026-09-01T20:10:00Z' });
+    const missingKey = '0'.repeat(32);
+    const ack = await ackEvents(store, [batch.events[0].key, 'not-a-key', missingKey], { ackedAt: '2026-09-01T20:10:00Z' });
     assert.deepEqual(ack.acked, [batch.events[0].key]);
-    assert.deepEqual(ack.missing, ['not/a-key', '55/0000000000000000']);
+    assert.deepEqual(ack.missing, ['not-a-key', missingKey]);
     assert.deepEqual(await counts(store), { pending: 2, acked: 1 });
 
     const redelivery = await storeEvent(store, batch.events[0].key, { key: batch.events[0].key });
@@ -157,19 +163,20 @@ describe('idempotency and the drain cycle', () => {
     await storeEvent(store, k, receivedRecord({ key: k, bodyText: body, classification: c, receivedAt: '2026-09-01T20:00:00Z' }));
     await ackEvents(store, [k], { ackedAt: '2026-09-01T20:10:00Z' });
     const marker = await store.get('acked/' + k, { type: 'json' });
-    assert.deepEqual(marker, { schemaVersion: 1, key: k, reservationId: '9001', receivedAt: '2026-09-01T20:00:00Z', ackedAt: '2026-09-01T20:10:00Z' });
+    assert.deepEqual(marker, { schemaVersion: 2, key: k, receivedAt: '2026-09-01T20:00:00Z', ackedAt: '2026-09-01T20:10:00Z' });
     assert.equal(JSON.stringify(marker).includes('private@example.com'), false);
     assert.equal(JSON.stringify(marker).includes('TESTCODE'), false);
   });
 
-  it('records carry the metadata and the exact body, nothing invented', () => {
+  it('records keep the exact body and transport metadata without duplicating identifiers', () => {
     const body = JSON.stringify(reservation());
     const c = classifyEvent(JSON.parse(body), VENUE);
     const rec = receivedRecord({ key: eventKey(c.reservationId, body), bodyText: body, classification: c, receivedAt: '2026-09-01T20:00:00Z', source: { userAgent: 'test', contentType: 'application/json' } });
-    assert.equal(rec.schemaVersion, 1);
+    assert.equal(rec.schemaVersion, 2);
     assert.equal(rec.body, body);
-    assert.equal(rec.confirmationCode, 'TESTCODE');
-    assert.equal(rec.metadata.length, 2);
     assert.equal(rec.source.userAgent, 'test');
+    assert.equal(Object.hasOwn(rec, 'reservationId'), false);
+    assert.equal(Object.hasOwn(rec, 'confirmationCode'), false);
+    assert.equal(Object.hasOwn(rec, 'metadata'), false);
   });
 });

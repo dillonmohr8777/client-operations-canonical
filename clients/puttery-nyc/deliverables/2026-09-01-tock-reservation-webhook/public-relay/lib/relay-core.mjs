@@ -18,9 +18,8 @@ export const PENDING = 'pending/';
 export const ACKED = 'acked/';
 
 function constantTimeEqual(a, b) {
-  const ab = Buffer.from(String(a));
-  const bb = Buffer.from(String(b));
-  if (ab.length !== bb.length) return false;
+  const ab = createHash('sha256').update(String(a)).digest();
+  const bb = createHash('sha256').update(String(b)).digest();
   return timingSafeEqual(ab, bb);
 }
 
@@ -83,6 +82,12 @@ export function normalizeKeyValues(kv) {
  * should not retry it, and the local receiver should never see it.
  */
 export function classifyEvent(event, { businessId, businessGroupId } = {}) {
+  if (!/^[1-9]\d*$/.test(String(businessId ?? ''))) {
+    return { accept: false, status: 503, reason: 'relay venue not configured' };
+  }
+  if (businessGroupId != null && businessGroupId !== '' && !/^[1-9]\d*$/.test(String(businessGroupId))) {
+    return { accept: false, status: 503, reason: 'relay venue group not configured' };
+  }
   const r = extractReservation(event);
   if (!r) return { accept: false, status: 400, reason: 'no reservation object' };
   const id = r.id ?? r.reservationId;
@@ -113,26 +118,19 @@ export function classifyEvent(event, { businessId, businessGroupId } = {}) {
 }
 
 /**
- * Idempotency key: reservation id plus a digest of the exact body. The same
- * delivery retried by Tock dedupes; a later update to the same reservation
- * (different body) is a new event the receiver must see.
+ * Opaque idempotency key: a digest of the reservation id and exact body. The
+ * same delivery retried by Tock dedupes; a later update to the same reservation
+ * (different body) is a new event the receiver must see without exposing the id.
  */
 export function eventKey(reservationId, bodyText) {
-  const digest = createHash('sha256').update(bodyText).digest('hex').slice(0, 16);
-  return `${reservationId}/${digest}`;
+  return createHash('sha256').update(String(reservationId)).update('\0').update(bodyText).digest('hex').slice(0, 32);
 }
 
-export function receivedRecord({ key, bodyText, classification, receivedAt = new Date().toISOString(), source = {} }) {
+export function receivedRecord({ key, bodyText, receivedAt = new Date().toISOString(), source = {} }) {
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     key,
     receivedAt,
-    reservationId: classification.reservationId,
-    businessId: classification.businessId,
-    isCancelled: classification.isCancelled,
-    partyState: classification.partyState,
-    confirmationCode: classification.confirmationCode,
-    metadata: classification.metadata,
     source: { userAgent: source.userAgent ?? null, contentType: source.contentType ?? null },
     body: bodyText,
   };
@@ -154,8 +152,8 @@ export async function storeEvent(store, key, record) {
 }
 
 export async function listPending(store, { limit = DEFAULTS.drainLimit } = {}) {
-  // ponytail: reads every pending blob to sort by receivedAt (keys are id-ordered, not
-  // time-ordered). Fine at a few events per drain; time-prefix the keys if pending grows.
+  // ponytail: reads every pending blob to sort by receivedAt (opaque keys are not
+  // time-ordered). Fine at a few events per drain; add an index if pending grows.
   const { blobs = [] } = await store.list({ prefix: PENDING });
   const records = [];
   for (const blob of blobs) {
@@ -172,14 +170,14 @@ export async function listPending(store, { limit = DEFAULTS.drainLimit } = {}) {
  * enough for a late Tock redelivery to still read as a duplicate.
  */
 export function ackMarker(rec, ackedAt) {
-  return { schemaVersion: 1, key: rec.key, reservationId: rec.reservationId, receivedAt: rec.receivedAt, ackedAt };
+  return { schemaVersion: 2, key: rec.key, receivedAt: rec.receivedAt, ackedAt };
 }
 
 export async function ackEvents(store, keys, { ackedAt = new Date().toISOString() } = {}) {
   const acked = [];
   const missing = [];
   for (const key of keys) {
-    if (typeof key !== 'string' || !/^\d+\/[0-9a-f]{16}$/.test(key)) { missing.push(key); continue; }
+    if (typeof key !== 'string' || !/^[0-9a-f]{32}$/.test(key)) { missing.push(key); continue; }
     const rec = await store.get(PENDING + key, { type: 'json' });
     if (!rec) { missing.push(key); continue; }
     await store.setJSON(ACKED + key, ackMarker(rec, ackedAt));

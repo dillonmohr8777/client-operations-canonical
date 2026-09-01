@@ -13,7 +13,7 @@ Triage protocol, run from the machine that holds the credential with `scripts/In
 1. Repeat the exact call three times, five minutes apart (`-Mode credentialed -AllowEmailedCredential`). Record for each: HTTP status, `Retry-After`, the `cf-ray` id, body size and shape, and the wall-clock time. The body itself is never printed.
 2. There is no lighter authenticated read: Data Exports `/api/data/export/urls` is the only documented API call, so it is both the credential check and the endpoint under test.
 3. Send the same request with no credential (`-Mode none`) and with a deliberately wrong one (`-Mode wrong`, a fresh random value). A 401 or 403 proves the auth layer is reachable; a 503 for the wrong value means the failure is upstream of credential validation.
-4. Only after 1 to 3: ask Resy API Integrations in the existing thread (draft in `../VENDOR_REPLY_DRAFT_2026-09-01.md`) quoting business IDs, `cf-ray` ids, timestamps, and the pattern. Do not include the credential.
+4. Only after 1 to 3: ask Resy API Integrations in the existing thread using the verified unsent draft in `../VENDOR_REPLY_DRAFT_2026-09-01.md`, quoting business IDs, `cf-ray` ids, timestamps, and the pattern. Do not include the credential.
 
 Result on 2026-09-01 (desktop, 21:35Z to 21:48Z, details in `../VERIFICATION_2026-09-01.md`): no credential answers 403 with an empty body; a random wrong credential answers 503 with a 9,102-byte `text/html` Cloudflare origin-error response shape; the stored credential answers the same redacted response shape on all three five-minute probes, with no `Retry-After`. This strongly indicates that the 503 occurs upstream of credential validation: any presented `X-Tock-Authorization` value reaches an origin that is unavailable, while the stored credential is neither validated nor rejected. Step 4 is the next move. The readiness doc keeps "credential provisioning unvalidated".
 
@@ -23,7 +23,7 @@ Tock has to deliver to a stable HTTPS URL that is up when the Windows machine is
 
 ```
 Tock  ── POST /tock/webhook ──▶  Netlify Function + Blobs (this folder)
-                                          │  pending/<reservationId>/<digest>
+                                          │  pending/<opaque-digest>
 Drain-TockRelay.ps1  ◀── GET /tock/drain ─┘
         │ POST /webhooks/tock/reservations (original body, PutteryWebhookAuth header)
         ▼
@@ -32,11 +32,11 @@ Local receiver (../receiver, SQLite)  ── 2xx ──▶  POST /tock/drain/ack
 
 - Auth from Tock: the static header is ours to name (Tock treats it as optional and registers what we give them). It is `PutteryWebhookAuth`, the name already bound in `../account-binding.json` and enforced by the receiver; the relay default matches and a test pins the two together. The value is the relay's own `TOCK_WEBHOOK_SECRET`, not the receiver's value.
 - Venue filter: events for any other business or group are answered 202 and never stored.
-- Idempotency: key is reservation id plus a digest of the body. Identical redeliveries dedupe; a changed reservation is a new event.
+- Idempotency: the key is an opaque digest of the reservation id and exact body. Identical redeliveries dedupe; a changed reservation is a new event without exposing the source id in queue keys.
 - Consistency: both functions use strong Netlify Blobs reads so a successful acknowledgement and raw-payload deletion are visible immediately across function instances.
 - Drain auth: a separate `DRAIN_TOKEN` as `Authorization: Bearer`, so Tock's credential can never read events back.
 - Drain client: hands each stored body to the local receiver unchanged so the receiver's version ordering, duplicate suppression, and NYC filter stay authoritative. Acks 2xx responses; dead-letters and acks only permanent payload errors (`400`, `413`, `415`, `422`). Authentication, routing, rate-limit, server, and connection failures stop the batch unacked so the next run retries.
-- Privacy: the raw Tock body lives in Blobs only while pending. On ack it is deleted and a `{key, reservationId, receivedAt, ackedAt}` marker remains for dedupe.
+- Privacy: the raw Tock body lives in Blobs only while pending. On ack it is deleted and a `{key, receivedAt, ackedAt}` marker remains for dedupe.
 
 Deploy steps (Dillon or Codex, from the desktop, after review):
 
@@ -66,7 +66,7 @@ Tock registers the webhook on their side. Draft request, to be sent by Dillon th
 > Authentication: we will accept the shared secret in the header your documentation specifies; please confirm the header name and whether it is a bearer token or an HMAC signature.
 > Please also confirm your retry policy on non-2xx responses and whether you can send a test delivery so we can validate end to end before the first real reservation.
 
-Approval gate: external send. Draft only until Dillon says go.
+Approval gate: external send. Gmail draft `r-164939560219168303` is verified and remains unsent until Dillon says go.
 
 ## 4. Credential rotation
 

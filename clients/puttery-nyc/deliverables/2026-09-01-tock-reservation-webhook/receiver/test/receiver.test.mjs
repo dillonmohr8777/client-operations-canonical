@@ -7,7 +7,7 @@ import { ReservationStore } from "../src/store.mjs";
 const silentLogger = { info() {}, error() {} };
 const TEST_SECRET = "test-only-secret-value-0123456789abcdef";
 
-async function withServer(run, { maxBodyBytes = 1_048_576 } = {}) {
+async function withServer(run, { maxBodyBytes = 1_048_576, logger = silentLogger } = {}) {
   const store = new ReservationStore(":memory:");
   const handler = createReceiver({
     allowedBusinessId: "707",
@@ -15,7 +15,7 @@ async function withServer(run, { maxBodyBytes = 1_048_576 } = {}) {
     authHeaderValue: TEST_SECRET,
     maxBodyBytes,
     store,
-    logger: silentLogger
+    logger
   });
   const server = createServer(handler);
   await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
@@ -117,6 +117,8 @@ test("persists one state across duplicate and newer deliveries", async () => {
 });
 
 test("stores only a safe summary for a target reservation", async () => {
+  const messages = [];
+  const logger = { info(message) { messages.push(JSON.parse(message)); }, error() {} };
   await withServer(async ({ baseUrl, store }) => {
     const payload = {
       ...reservation(),
@@ -129,5 +131,8 @@ test("stores only a safe summary for a target reservation", async () => {
     assert.equal(stored.includes("5551234567"), false);
     assert.equal(stored.includes("raw-click-secret"), false);
     assert.equal(JSON.parse(stored).signalsPresent.gclid, true);
-  });
+    assert.equal(messages.length, 1);
+    assert.equal(messages[0].reservationHash.length, 16);
+    assert.equal(Object.hasOwn(messages[0], "reservationId"), false);
+  }, { logger });
 });

@@ -13,9 +13,9 @@ const SCRIPT = fileURLToPath(new URL('../scripts/Drain-TockRelay.ps1', import.me
 const DRAIN_TOKEN = 'drain-token-test-value-0123456789abcdef';
 const RECEIVER_AUTH = 'receiver-auth-test-value-0123456789abcdef';
 
-const key = (id) => `${id}/${String(id).padStart(16, '0')}`;
+const key = (id) => String(id).padStart(32, '0');
 const event = (id) => ({
-  key: key(id), reservationId: String(id), receivedAt: `2026-09-01T20:0${id}:00Z`,
+  key: key(id), receivedAt: `2026-09-01T20:0${id}:00Z`,
   body: JSON.stringify({ id, business: { id: 37824 }, versionId: 1 }),
 });
 
@@ -83,7 +83,7 @@ test('drain delivers to the receiver, dead-letters permanent payload 4xx, stops 
     const summary = JSON.parse(summaryLine);
     assert.deepEqual(calls.delivered, [1, 2, 3, 4], 'stopped at the 5xx, never sent 5');
     assert.deepEqual(calls.acks, [[key(1), key(2), key(3)]], 'acked the two delivered and the dead-lettered one, not the failed one');
-    assert.deepEqual(readdirSync(dead), [`2_${String(2).padStart(16, '0')}.json`]);
+    assert.deepEqual(readdirSync(dead), [`${key(2)}.json`]);
     assert.equal(summary.delivered, 2);
     assert.equal(summary.deadLettered, 1);
     assert.equal(summary.acked, 3);
@@ -103,7 +103,7 @@ test('dry run touches nothing and acks nothing', { skip: process.platform !== 'w
     assert.equal(result.status, 0, result.stderr);
     assert.deepEqual(calls.delivered, []);
     assert.deepEqual(calls.acks, []);
-    assert.match(result.stdout, /would deliver reservation 1 /);
+    assert.match(result.stdout, /would deliver event received /);
   } finally {
     server.closeAllConnections(); server.close();
   }

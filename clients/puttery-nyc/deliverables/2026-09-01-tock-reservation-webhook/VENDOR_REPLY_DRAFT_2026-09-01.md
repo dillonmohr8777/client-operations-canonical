@@ -4,7 +4,13 @@
 **From:** `dillonmohr8777@gmail.com`  
 **To:** `api-integration@resy.com`  
 **Cc:** `tluciano@driveshack.com`, `joe@highlinecomedy.com`  
-**Reply status:** Draft only. Do not send until Dillon approves this exact reply.
+**Reply status:** Verified Gmail draft. Do not send until Dillon approves this exact reply.
+**Draft ID:** `r-164939560219168303`
+**Draft message ID:** `1a05f126a89b5e37`
+**Thread ID:** `1a049e62f063f279`
+**Verified:** 2026-09-01 18:23 ET with label `DRAFT`
+
+An earlier, shorter reply was sent in this thread at 2026-09-01 16:02 ET. It requested the vendor's next steps and preferred secure exchange route, contained no credential, and did not include the later 503 triage. This draft is the unsent technical follow-up.
 
 Hi Laura,
 

@@ -84,7 +84,8 @@ export function createReceiver({ allowedBusinessId, authHeaderName, authHeaderVa
       }
 
       const outcome = store.apply(summary);
-      logger.info(JSON.stringify({ source: "tock", businessId: summary.businessId, reservationId: summary.reservationId, versionId: summary.versionId, outcome }));
+      const reservationHash = createHash("sha256").update(summary.reservationId).digest("hex").slice(0, 16);
+      logger.info(JSON.stringify({ source: "tock", businessId: summary.businessId, reservationHash, outcome }));
       send(res, outcome === "conflict" ? 202 : 204, outcome);
     } catch (error) {
       if (error instanceof SyntaxError) {
