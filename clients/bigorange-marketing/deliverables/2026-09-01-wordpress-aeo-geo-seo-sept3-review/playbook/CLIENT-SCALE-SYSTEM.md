@@ -17,6 +17,7 @@ One sentence: every public URL owns one reader job, answers it in extractable bl
 | --- | --- | --- |
 | Keyword ownership ledger | `evidence/emelia-moz-page-map.csv` + `emelia-moz-analysis.md` | One row per tracked query → one owned URL |
 | Per-URL playbook | `playbook/PER-PAGE-RECOMMENDATIONS.md` + `per-page-recs.csv` | Same columns, client domain |
+| Full-site ledger | `playbook/ALL-PAGES-LEDGER.md` + `all-pages-ledger.csv` (370 BOM URLs) | Same columns for every published URL, then `client-blank-page-map.csv` |
 | Site health + ranking | `playbook/SITEWIDE-HEALTH-AND-RANKING.md` | Origin, robots, sitemap, H1, nofollow, LCP, families |
 | Content contract | `2026-08-28-content-authority-proposal/implementation/AEO-GEO-SEO-CONTENT-STANDARD.md` | Unchanged rules, new vertical copy |
 | WordPress gate | `WORDPRESS-IMPLEMENTATION-AND-RELEASE-GATE.md` | Private draft → staging QA → exact-revision publish |
@@ -215,7 +216,7 @@ A client-facing walkthrough (no secrets, no ranking promises):
 
 1. **Source honesty.** Emelia’s Moz file through 2026-08-14. Public HTML and REST on 2026-09-01. Two dates, labeled.
 2. **Two lanes.** Lane A finishes the builder hub that already holds 17 ranked builder terms. Lane B applies the same contract to 27 URLs that already rank for MSP, StoryBrand, manufacturing, and Cincinnati.
-3. **Machine + human.** `per-page-recs.csv` for operators; `PER-PAGE-RECOMMENDATIONS.md` for the working session.
+3. **Machine + human.** `per-page-recs.csv` for the 39 working-session URLs; `all-pages-ledger.csv` for every published URL; `review-ui/index.html` to filter them in the room.
 4. **Health is ranking.** Origin 520 → recovered; typo; nofollow; sitemap gaps; LCP on the #1 ownership URL. One document.
 5. **Reusable blocks.** Answer, definition, decision table, FAQ, entity, sources — named so a WP editor can install them on an MSP page the same week as a landscaping page.
 6. **Gates.** Private draft, SME permission, staging QA, exact-revision publish. The builder drafts (5546, 5585, 5550, 5552) are still behind those gates. That is the point.

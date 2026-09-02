@@ -5,7 +5,7 @@
 **Client route:** `bigorange-marketing`  
 **Evidence:** 2026-08-14 Moz National Google en-US / Google Mobile en-US snapshot (Emelia Pitlick export) plus 2026-09-01 public fetch. These are not live current ranks. Re-export Moz or another rank source before any post-August-14 ranking claim.
 
-This document treats crawl/index/performance health and keyword ownership as one system. A healthy origin that still leaks equity, splits one reader job across five URLs, or ships AEO pages with `nofollow` will not hold the terms Emelia already tracks.
+This document treats crawl/index/performance health and keyword ownership as one system. Pair it with the 370-URL ledger in `ALL-PAGES-LEDGER.md`. A healthy origin that still leaks equity, splits one reader job across five URLs, or ships AEO pages with `nofollow` will not hold the terms Emelia already tracks.
 
 No ranking, traffic, lead, revenue, rich-result, or AI-citation promises. Health fixes and content ownership are controllable. Outcomes are not.
 

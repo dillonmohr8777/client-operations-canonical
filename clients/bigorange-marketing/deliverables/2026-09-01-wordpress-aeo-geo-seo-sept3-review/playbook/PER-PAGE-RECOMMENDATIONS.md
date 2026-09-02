@@ -5,7 +5,7 @@
 **Client route:** `bigorange-marketing`  
 **Evidence dates:** Moz snapshot **2026-08-14** (Emelia Pitlick export, National Google en-US / Google Mobile en-US). Public HTML, Yoast, REST, sitemap **2026-09-01**. These are not live current ranks. Do not invent ranks. Re-export before any post-August-14 ranking claim.
 
-**Coverage:** all **28** Moz ranking URLs, plus `/ai-search-optimization-services/`, `/website-design-and-storybrand-seo-services/`, `/book-appointment/`, and the **8** builder satellite URLs that own **zero** snapshot keywords. Homepage is in the Moz 28.
+**Coverage:** all **28** Moz ranking URLs, plus `/ai-search-optimization-services/`, `/website-design-and-storybrand-seo-services/`, `/book-appointment/`, and the **8** builder satellite URLs that own **zero** snapshot keywords. Homepage is in the Moz 28. Every other published URL is in `playbook/ALL-PAGES-LEDGER.md` (370 total).
 
 **Priority:** P0 = protect slipping position 1–3 terms or repair a live health defect on a commercial/ranking URL. P1 = improve 4–10, resolve a cannibalization family, or attach a high-volume unranked vertical term to an existing owner. P2 = opportunity 11–20, conversion/utility copy, or archive/proof satellites.
 
