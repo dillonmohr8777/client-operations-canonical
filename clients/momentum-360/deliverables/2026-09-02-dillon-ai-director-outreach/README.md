@@ -78,9 +78,17 @@ See `list/README.md`. Emails are not invented. A row becomes sendable only after
 
 ## First unsent samples
 
+Review copies are in Dillon's Gmail inbox as of 2026-09-02 20:18 UTC. From and to are both `dillonmohr8777@gmail.com`. No prospect was mailed.
+
+- `REVIEW | Fugh Refrigeration outreach preview`
+- `REVIEW | Bay House Erie outreach preview`
+- `REVIEW | Erie and Pittsburgh first 32 businesses`
+
+Repo copies remain at:
+
 - Fugh Refrigeration, Pittsburgh and Western PA: `drafts/fugh-refrigeration.html`
 - Bay House / Pier 6, Erie bayfront: `drafts/bay-house-erie.html`
 
 ## One decision
 
-Approve those two previews, or mark the edits. After that, the next move is the 32-row review batch, still unsent until you say send.
+Open those three REVIEW emails in Gmail. Approve the two previews, or mark the edits. After that, the next move is the 32-row review batch, still unsent until you say send.
