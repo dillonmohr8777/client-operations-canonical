@@ -16,8 +16,8 @@ The 1 Sep hunt is not starting from zero.
 
 - Harvested 2,631 remote marketing and design postings, cleaned to 862, ranked a top 600.
 - Scanned 11,336 Greenhouse jobs across 176 boards and 317 Ashby US-remote marketing roles.
-- Sent 20 notes today from `dillonmohr8777@gmail.com` using the AI Marketing Director signature. One bounce (`work@super.com`). Two auto-replies told us to use the careers site (Pomelo, Built).
-- Gmail confirmation receipts prove ATS submissions landed at Addepar, Ethos Life, Maven Clinic (Director Marketing Operations and VP of Member Growth), Lumimeds, ConnectWise, Boulevard, Pendo, Apollo.io, Hypori, Motive, Motivity, Ondo Finance, Avo, Arkestro, Wizard, Viral Nation, and Casechek.
+- Sent 21 notes from `dillonmohr8777@gmail.com` using the AI Marketing Director signature. Twenty went out on 1 Sep. Oscilar `careers@oscilar.com` went out on 2 Sep as Gmail `1a05fb961e9d42ba`. One bounce (`work@super.com`). Two auto-replies told us to use the careers site (Pomelo, Built). Drive resume link only. No PDF attachment on those notes.
+- Gmail confirmation receipts prove ATS submissions landed at Addepar, Ethos Life, Maven Clinic (Director Marketing Operations and VP of Member Growth), Lumimeds, ConnectWise, Boulevard, Pendo, Apollo.io, Hypori, Motive, Motivity, Ondo Finance, Avo, Arkestro, Wizard, Viral Nation, Casechek, Ping Identity, Highwire, Flex, Bloom (VP Growth and VP Marketing), CaptivateIQ, Later VP Creator Growth, and Engine Director Growth.
 - A later Remotive, Jobicy, Arbeitnow, RemoteOK, Himalayas, and We Work Remotely recrawl with unused-inbox rules found **zero** new unused published apply inboxes. LaunchDarkly `careers@` was the only leftover and was already emailed.
 
 The machine can find hundreds of live roles. It cannot honestly manufacture 50 unused apply inboxes a day.
@@ -66,7 +66,11 @@ Target: **50 outbound actions a day**, not 50 junk emails.
 
 4. ATS window
    - Easy Greenhouse first. Ashby is currently flagging headless submits as spam (Cruva, Gray Swan, Bettercloud). Pause bulk Ashby until those can be finished in a normal browser.
-   - Remaining high-pay A-tier still worth finishing: Later VP Growth, Calendly Senior Director Growth, Spring Health Senior Director Growth, Asana Head of SEO and AEO, Houzz Director SEO and AEO, OpenRouter Director Growth, Hatch Growth Marketing Director, Oscilar Brand Marketing Director, Tapcart Demand Gen Director, Amplitude Head of Product Marketing, Highwire SVP Integrated Marketing, Ping Identity VP Product and Solution Marketing.
+   - Finished on 2 Sep with Gmail receipts: Oscilar email, Ping Identity VP Product and Solution Marketing, Highwire SVP Integrated Marketing, Flex Head of Growth Marketing, Bloom VP Growth, Bloom VP Marketing, CaptivateIQ VP Revenue Marketing, Later VP Creator Growth, Engine Director Growth.
+   - Still blocked on form fields: Motley Fool Head of Marketing MFAM, Houzz Director SEO and AEO. Engine Director Product Marketing hit a Greenhouse security-code timeout.
+   - Do not retry Later VP Growth, Calendly, Spring Health, Midi, Addepar, Lumimeds, or Seed unless new required fields are mapped.
+   - Skip Asana Head of SEO and AEO (Vancouver and San Francisco). Skip Ethos `8466120002` (live title is now Head of Paid Social). Skip Okta APJ. Skip Cursor APJ.
+   - Remaining high-pay apply-first roles are mostly Ashby (OpenRouter, Hatch, Tapcart, Amplitude, Tremendous). Bulk Ashby stays paused because Cruva, Gray Swan, and Bettercloud flagged headless submits as spam.
    - Skip Drata if the form still requires Tue/Wed/Thu commute to the 2nd Street office. That is not a remote-first fit.
    - Stop at MFA, account creation, CAPTCHA, or Workday sign-in.
 
