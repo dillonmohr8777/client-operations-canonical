@@ -1,8 +1,9 @@
 # BigOrange WordPress growth package — redesign (2026-09-02)
 
 Complete visual rebuild of the seven review-package files sent to Dillon on 2026-09-02
-("BigOrange Complete WordPress Growth Package | Final Review Copy"). Copy is unchanged;
-every design decision from the earlier versions was discarded.
+("BigOrange Complete WordPress Growth Package | Final Review Copy"). Every design decision from the earlier versions was discarded. v2 (same day) rewrote all
+copy into the BigOrange voice with Sonnet 5 under locked facts: titles, queries, slugs, meta
+descriptions, numbers, dates, and disclaimers are byte-identical to v1; structure is unchanged.
 
 ## Files
 
@@ -11,6 +12,7 @@ every design decision from the earlier versions was discarded.
 | `BigOrange-Complete-WordPress-SEO-AEO-GEO-Growth-Plan-2026-09-02.pdf` | Master plan, 11 pages |
 | `BLOG-01` … `BLOG-05` PDFs | Five branded article PDFs with implementation brief covers |
 | `BigOrange-Thursday-WordPress-Growth-Review-2026-09-03.pptx` | 15-slide Thursday review deck, speaker notes preserved |
+| `BigOrange-Brand-Voice-Guide.pdf` | Standalone Brand Voice Guide v1.0 (source: `src/brand-voice-guide.md`) |
 
 ## Design system
 
