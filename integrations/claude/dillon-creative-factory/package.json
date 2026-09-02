@@ -1,0 +1,25 @@
+{
+  "name": "@dillon/client-creative-factory",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Read-only and artifact-creation MCP tools for Claude Code in Dillon's client operations repo.",
+  "scripts": {
+    "start": "node src/index.js",
+    "export:sessions": "node scripts/export-claude-sessions.mjs",
+    "test": "node --test",
+    "verify": "npm test && npm run export:sessions -- --check"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.0.0",
+    "archiver": "7.0.1",
+    "playwright-core": "1.55.0",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.0.0"
+  }
+}
