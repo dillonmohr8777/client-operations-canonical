@@ -4,7 +4,9 @@ This is a HubSpot-import-ready franchisee list for IMMOHRTAL Marketing Solutions
 
 Sector: older shipping, print, and mailbox storefronts. UPS Store franchisees are typically owner-operators with a physical counter, print shop, and mailbox business. Local websites and Google profiles are often weak, which matches IMMOHRTAL website, search, and HubSpot work.
 
-HubSpot import is still off. Dillon approved a 50 per day outreach send from `dillon@immohrtalmarketing.com` until the list is finished. See `outreach/RUNBOOK.md`.
+HubSpot import is still off. Dillon approved a 50 per day outreach send from `dillon@immohrtalmarketing.com` until the list is finished. Warmup caps the first two weeks. See `outreach/RUNBOOK.md` and `outreach/DELIVERABILITY.md`.
+
+2026-09-02 daily run: warmup 10 queued, not sent. Workspace Gmail is still disconnected. Personal Gmail, AgentMail, and Momentum mailboxes were refused. Remaining 5801.
 
 ## Result
 
