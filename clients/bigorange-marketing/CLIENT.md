@@ -27,3 +27,10 @@ Use the canonical contact records in `registry/clients.json`. Margee Moore is th
 - Recommended cinematic showcase: https://bigorange-growth-signal-showcase.netlify.app
 - `evidence/2026-07-16-public-site-audit.md`
 - `drafts/2026-07-16-follow-up-email.html`
+
+## Skills and automations
+
+- Portable skills: `claude-skills-repo/skills/bigorange-brand-system`, `bigorange-client-decks`, `bigorange-client-radar`, `bigorange-vertical-{home-builders,msp,manufacturing,landscaping}`.
+- Client roster and new-client events are produced by `bigorange-client-radar` (public site and WordPress REST, read-only) into `dillon-os/12_Brain/state/bigorange-client-roster.json`. Dillon's own clients in `registry/clients.json` are suppressed from that roster.
+- Kickoff decks drafted on a new-client event stay `sampleData: true` and wait in the approval queue. Nothing is sent or published by automation.
+- Access request text for a role-based WordPress Application Password: `bigorange-client-radar/references/access-request.md`.
