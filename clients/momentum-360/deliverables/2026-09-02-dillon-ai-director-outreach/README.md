@@ -66,6 +66,16 @@ Do not pull the radar. Do not scrape Google Maps into a directory. Open the offi
 4. Dillon approves the exact preview from his Gmail.
 5. Sean and Mac are not copied.
 
+## The hundreds
+
+The list is built. Source is OpenStreetMap website tags, not the radar and not Google Maps.
+
+- 2,066 unique official sites across Pittsburgh and Erie County
+- 870 priority owner-operated businesses
+- 32 in the first review batch, 16 Erie and 16 Pittsburgh
+
+See `list/README.md`. Emails are not invented. A row becomes sendable only after a published mailbox is taken from the official site and Dillon approves the exact preview.
+
 ## First unsent samples
 
 - Fugh Refrigeration, Pittsburgh and Western PA: `drafts/fugh-refrigeration.html`
@@ -73,4 +83,4 @@ Do not pull the radar. Do not scrape Google Maps into a directory. Open the offi
 
 ## One decision
 
-Approve those two previews, or mark the edits. After that, the next move is a first Erie and Pittsburgh batch of 15 reviewed drafts, still unsent until you say send.
+Approve those two previews, or mark the edits. After that, the next move is the 32-row review batch, still unsent until you say send.

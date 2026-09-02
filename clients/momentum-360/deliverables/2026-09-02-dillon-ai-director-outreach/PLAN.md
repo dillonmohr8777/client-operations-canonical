@@ -11,7 +11,7 @@
 
 ## Daily machine
 
-1. Pick the next Erie or Pittsburgh official site. Alternate cities so the batch is not one town.
+1. Pick the next Erie or Pittsburgh official site from `list/first-review-batch.json`, then `list/priority-candidates.json`. Alternate cities so the batch is not one town.
 2. Run the Grok 4.5 prompt once per business.
 3. Reopen the official URL and confirm the one-sentence observation.
 4. Drop anyone with a current Momentum relationship, a suppression hit, or an existing draft.
