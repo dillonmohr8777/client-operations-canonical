@@ -1,0 +1,136 @@
+<!doctype html><html><head><meta charset="utf-8"><title>BigOrange skills catalog</title><link rel="stylesheet" href="theme-static.css"><link rel="stylesheet" href="plan.css"></head><body>
+
+<section class="page pcover cover-only">
+  <div class="sq"></div><div class="sq2"></div>
+  <img class="logo" src="assets/bigorange-logo-white.png" alt="BigOrange.Marketing">
+  <div class="big">The BigOrange<br><em>Skills</em><br>Package</div>
+  <div class="strip">
+    <div><div class="n">6</div><div class="l">portable skills</div></div>
+    <div><div class="n">4</div><div class="l">deck recipes</div></div>
+    <div><div class="n">4</div><div class="l">industry playbooks</div></div>
+    <div><div class="n">1</div><div class="l">exact brand system</div></div>
+    <div><div class="n">0</div><div class="l">automated sends or publishes</div></div>
+  </div>
+  <div class="foot">
+    <div class="p"><small>Prepared for BigOrange leadership</small>What was built, and how to run it</div>
+    <div class="pill" style="color:#fff">September 2026</div>
+  </div>
+</section>
+
+<div class="body-only article">
+
+<div class="purpose"><div class="k">Purpose</div><p>This is the one-page-per-skill guide to the tools built around BigOrange's brand, decks, clients and industries. Each skill is a folder that any Claude Code or Codex session can load. Together they let the team produce on-brand decks and documents from a short brief, keep a roster of BigOrange's own clients current, and pitch each of the four industries with sourced, dated material. Nothing here sends, publishes or changes WordPress on its own.</p></div>
+
+<div class="sec first">
+  <div class="sechead"><div class="n">01</div><div><div class="k">How it fits together</div><h2>Six skills, one brand authority</h2></div></div>
+  <p class="intro">One skill owns the tokens, logo and validators. The others import from it and never redefine a colour or a font. Industry playbooks feed the deck engine; the client radar feeds kickoff decks; every output passes the same validator before anyone sees it.</p>
+  <div class="chain">
+    <div class="c"><div class="n">1</div><h4>Brand system</h4><p>Logo, tokens, deck kit, PDF kit, linter, validator</p></div>
+    <div class="c"><div class="n">2</div><h4>Client decks</h4><p>Four recipes turn a JSON brief into a finished deck</p></div>
+    <div class="c"><div class="n">3</div><h4>Client radar</h4><p>Roster of BigOrange's clients from the public site and WordPress</p></div>
+    <div class="c"><div class="n">4</div><h4>Verticals</h4><p>Home builders, MSPs, manufacturing, landscaping</p></div>
+    <div class="c"><div class="n">5</div><h4>Review</h4><p>Draft banner, validator and a human look before anything ships</p></div>
+    <div class="c"><div class="n">6</div><h4>Approval</h4><p>Sending, publishing and spend stay with a named person</p></div>
+  </div>
+  <h3 class="sub">Where it lives</h3>
+  <p>All six skills sit in the shared skills repository under <code>skills/bigorange-*</code> and are registered in the Claude Code marketplace file next to the Align HCM system. Install by copying a skill folder into <code>~/.claude/skills/</code> (Claude Code) or <code>~/.codex/skills/</code> (Codex). Each skill's <code>SKILL.md</code> is the contract; read it before using the skill.</p>
+</div>
+
+<div class="sec">
+  <div class="sechead"><div class="n">02</div><div><div class="k">bigorange-brand-system</div><h2>The brand authority</h2></div></div>
+  <p class="intro">Exact BigOrange artwork and the rules for using it on every surface: PowerPoint, PDF, the live website, blog HTML shipped into WordPress, and social graphics. This is the only place colours, fonts and logo rules are defined.</p>
+  <div class="stats">
+    <div class="stat hot"><div class="v">#FF7C00</div><div class="l"><b>brand orange</b>sampled from the logo file</div></div>
+    <div class="stat"><div class="v">5</div><div class="l"><b>surfaces</b>deck, document, web, editorial, social</div></div>
+    <div class="stat"><div class="v">14</div><div class="l"><b>deck blocks</b>cover, stats, cards, flows, timelines, charts, close</div></div>
+    <div class="stat"><div class="v">2</div><div class="l"><b>gates</b>brand linter and deck validator</div></div>
+  </div>
+  <table class="t"><thead><tr><th>Part</th><th>What it does</th></tr></thead><tbody>
+    <tr><td>Logo assets</td><td>The orange and white PNGs with pinned hashes. Never redrawn, retyped or recoloured.</td></tr>
+    <tr><td>Token ledger</td><td>Colours and type per surface. Decks and PDFs use the logo orange with Montserrat; anything on bigorange.marketing uses the live theme's orange, Raleway and Open Sans. The linter enforces the split.</td></tr>
+    <tr><td>Deck kit</td><td>A code library of BigOrange slide blocks. Every deck in this package was built with it.</td></tr>
+    <tr><td>Document kit</td><td>Stylesheets and a renderer for branded PDFs: plans, blog PDFs, guides.</td></tr>
+    <tr><td>Brand linter</td><td>Flags any off-ledger colour or font in a file, and bans Align HCM and Momentum 360 colours outright.</td></tr>
+    <tr><td>Deck validator</td><td>Checks geometry, the logo on every slide, unresolved placeholders, the draft banner, and a verified client logo when one is declared.</td></tr>
+    <tr><td>Brand research</td><td>Dated public research on the site, awards, team, type and colour (expires 2026-12-01).</td></tr>
+  </tbody></table>
+  <div class="callout"><div class="k">Rule that matters most</div><p>Every generated deck starts as a draft with a visible banner. The banner comes off only when every number has a granted, dated source. A client deck without a verified logo fails validation instead of guessing.</p></div>
+</div>
+
+<div class="sec">
+  <div class="sechead"><div class="n">03</div><div><div class="k">bigorange-client-decks</div><h2>The deck engine</h2></div></div>
+  <p class="intro">A brief in, a validated BigOrange deck out. Recipes hold the slides BigOrange always says the same way (the method, the measurement chain, the release gates); the brief supplies what changes per client or industry.</p>
+  <table class="t"><thead><tr><th>Recipe</th><th>Audience</th><th>Filled from</th><th>Slides</th></tr></thead><tbody>
+    <tr><td>Industry pitch</td><td>A prospect in one of the four industries</td><td>The vertical playbook, plus verified BigOrange proof only</td><td>12</td></tr>
+    <tr><td>Client kickoff</td><td>A newly signed client, first working session</td><td>Proposal, intake call, the client radar roster, a verified logo</td><td>10</td></tr>
+    <tr><td>Monthly performance</td><td>An existing client, monthly review</td><td>The same data contract as the HTML client report; native charts; draft until analytics access is granted</td><td>8</td></tr>
+    <tr><td>Leadership review</td><td>Leadership deciding on an audit or plan</td><td>Evidence, priorities, rollout, decisions (the September 3 Thursday deck is the worked example)</td><td>11</td></tr>
+  </tbody></table>
+  <h3 class="sub">How a deck gets made</h3>
+  <ol class="plain">
+    <li>Scaffold a brief for the recipe; every slot the recipe needs is listed with a TODO.</li>
+    <li>Fill the slots from the source material. Proof slots accept only verified BigOrange facts.</li>
+    <li>Build. The validator runs automatically and fails on any leftover placeholder, missing logo or missing banner.</li>
+    <li>Render every slide to an image and look at it. Fix overflow by shortening copy, not by shrinking type.</li>
+    <li>File the deck with its brief beside it. Sending stays with a person.</li>
+  </ol>
+  <p>Shipped with this package: four industry pitch decks (one per vertical), a kickoff example, and the Thursday review rebuilt through the engine as proof that the recipe reproduces it.</p>
+</div>
+
+<div class="sec">
+  <div class="sechead"><div class="n">04</div><div><div class="k">bigorange-client-radar</div><h2>Who BigOrange works with, kept current</h2></div></div>
+  <p class="intro">Reads bigorange.marketing the way a visitor can (public pages and the public WordPress REST index), collects every company presented as a client in case studies, testimonials and logo strips, and keeps a roster with evidence and a confidence score. A daily run diffs the roster and raises an event when a new client appears.</p>
+  <div class="timeline">
+    <div class="tl"><div class="n">01</div><div class="w">Discover</div><p>Case-study posts, testimonials, logo alt text, media library.</p><div class="g">Output</div><div class="gt">Roster with evidence URLs and confidence</div></div>
+    <div class="tl"><div class="n">02</div><div class="w">Diff</div><p>Compare with yesterday's roster.</p><div class="g">Output</div><div class="gt">new_client, new_evidence, removed events</div></div>
+    <div class="tl"><div class="n">03</div><div class="w">Queue</div><p>One approval line per new client.</p><div class="g">Output</div><div class="gt">"Draft kickoff deck for X?"</div></div>
+    <div class="tl"><div class="n">04</div><div class="w">Draft</div><p>A person runs the kickoff recipe.</p><div class="g">Output</div><div class="gt">Draft-banded deck, nothing sent</div></div>
+  </div>
+  <table class="t"><thead><tr><th>Guardrail</th><th>Detail</th></tr></thead><tbody>
+    <tr><td>Read-only</td><td>Never writes to WordPress, never sends. Authenticated mode uses a role-based, revocable Application Password and still only reads.</td></tr>
+    <tr><td>Suppression</td><td>Dillon's own clients and every tool vendor (StoryBrand, HubSpot, WP Engine, Clutch and so on) are excluded so they never appear as BigOrange clients.</td></tr>
+    <tr><td>Honest ceiling</td><td>Most BigOrange case studies anonymize the client ("Seattle IT firm"). The roster reports that as low confidence rather than inventing a name. Real names need the Application Password or the Abency WordPress connection; the request text is in the skill.</td></tr>
+    <tr><td>Tested</td><td>An offline fixture test proves discovery and the one-new-client event before every change.</td></tr>
+  </tbody></table>
+</div>
+
+<div class="sec">
+  <div class="sechead"><div class="n">05</div><div><div class="k">Vertical playbooks</div><h2>Four industries, sourced and dated</h2></div></div>
+  <p class="intro">One skill per industry BigOrange serves: custom home builders (deepest), IT and MSPs, manufacturing, landscaping. Each carries the same five files so the deck engine and any writer can use them the same way.</p>
+  <div class="layers">
+    <div class="layer"><div class="n">01</div><div><h4>Industry brief</h4><p>Who the buyer is, their customer's journey, what is usually broken, objections, proof patterns, KPIs, seasonality, compliance cautions. Every fact has a URL and a date; the file expires 2026-12-01.</p></div></div>
+    <div class="layer"><div class="n">02</div><div><h4>Deck narrative</h4><p>A slide-by-slide pitch arc with slot names and copy guidance in BigOrange voice. Slides that need verified proof are marked and cannot be auto-filled.</p></div></div>
+    <div class="layer"><div class="n">03</div><div><h4>Keyword seed</h4><p>Query clusters by intent with a suggested owner page. Volumes are marked unverified until a real tool run.</p></div></div>
+    <div class="layer"><div class="n">04</div><div><h4>Content angles</h4><p>Fifteen to twenty hooks grouped by buyer job, each naming the proof it needs before it ships.</p></div></div>
+    <div class="layer"><div class="n">05</div><div><h4>Audit checklist (home builders)</h4><p>Fifty-two yes/no questions across website, proof, local presence, search foundation, follow-up and measurement.</p></div></div>
+    <div class="layer"><div class="n">06</div><div><h4>Fail-closed rule</h4><p>No skill invents a statistic, a case study or a homeowner quote. If the evidence does not exist yet, the skill says so and points at how to get it.</p></div></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sechead"><div class="n">06</div><div><div class="k">Brand voice</div><h2>How everything sounds</h2></div></div>
+  <p class="intro">The Brand Voice Guide (separate PDF) is the long form. The short form travels inside the brand system so every deck, document and blog is written the same way.</p>
+  <ol class="plain">
+    <li>Write to one busy person as "you". Lead with their worry, not with us.</li>
+    <li>Plain verbs: find, fix, show, check, build, book, grow.</li>
+    <li>Question, short answer, proof. Keep the rhythm uneven.</li>
+    <li>One playful line per section at most, followed by something useful.</li>
+    <li>Every number carries a source and a date. Estimates stay labeled as estimates.</li>
+    <li>No guarantees, no promised rankings, no invented case studies.</li>
+  </ol>
+  <div class="callout"><div class="k">Included in this package</div><p>Master growth plan, five builder blog PDFs, the Thursday review deck, the Brand Voice Guide, four industry pitch decks, a kickoff example, the leadership review rebuilt through the engine, and the SEO, AEO and GEO link map for the five blogs.</p></div>
+</div>
+
+<div class="sec">
+  <div class="sechead"><div class="n">07</div><div><div class="k">Adoption</div><h2>What BigOrange decides</h2></div></div>
+  <p class="intro">To fold this into the team's own operating skills, three decisions unlock the rest.</p>
+  <div class="decisions">
+    <div class="dec"><div class="n">1</div><p>Confirm the per-surface brand rule: logo orange and Montserrat for decks and PDFs, the live theme for the website.</p></div>
+    <div class="dec"><div class="n">2</div><p>Issue a role-based, read-only WordPress Application Password (or connect the site in Abency) so the client radar can see real client names.</p></div>
+    <div class="dec"><div class="n">3</div><p>Name one factual reviewer and one release owner for anything the engine drafts.</p></div>
+    <div class="dec"><div class="n">4</div><p>Grant read access to Search Console, GA4 and HubSpot when monthly performance decks should carry live numbers.</p></div>
+    <div class="dec wide"><div class="n">5</div><p>Decide which industry pitch deck goes to a real prospect first, and who presents it. The engine can produce the next one in minutes; the proof on slide seven is the only part that cannot be automated.</p></div>
+  </div>
+  <p class="endnote">Built for BigOrange by Dillon Mohr, September 2026. Research inside the skills expires 2026-12-01 and should be re-verified before reuse after that date.</p>
+</div>
+</div></body></html>
