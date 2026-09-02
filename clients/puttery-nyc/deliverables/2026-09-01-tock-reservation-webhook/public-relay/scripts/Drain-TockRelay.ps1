@@ -112,8 +112,8 @@ try {
     $base = $RelayBase.TrimEnd('/')
     $receiverUri = $ReceiverBase.TrimEnd('/') + '/webhooks/tock/reservations'
 
-    $health = Invoke-RestMethod -Method Get -Uri "$base/tock/health" -Headers $relayHeaders
-    $batch = Invoke-RestMethod -Method Get -Uri "$base/tock/drain?limit=$Limit" -Headers $relayHeaders
+    $health = Invoke-RestMethod -Method Get -Uri "$base/tock/health" -Headers $relayHeaders -TimeoutSec 30
+    $batch = Invoke-RestMethod -Method Get -Uri "$base/tock/drain?limit=$Limit" -Headers $relayHeaders -TimeoutSec 30
     $events = @($batch.events)
 
     $result = [ordered]@{
@@ -164,7 +164,7 @@ try {
         }
         if ($toAck.Count -gt 0) {
             $ackBody = @{ keys = @($toAck) } | ConvertTo-Json -Compress
-            $ack = Invoke-RestMethod -Method Post -Uri "$base/tock/drain/ack" -Headers $relayHeaders -ContentType 'application/json' -Body $ackBody
+            $ack = Invoke-RestMethod -Method Post -Uri "$base/tock/drain/ack" -Headers $relayHeaders -ContentType 'application/json' -Body $ackBody -TimeoutSec 30
             $result.acked = @($ack.acked).Count
             $result.missing = @($ack.missing).Count
             if ($result.missing -gt 0) { Write-Warning ("relay did not recognise: {0}" -f (@($ack.missing) -join ', ')) }

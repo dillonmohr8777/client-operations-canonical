@@ -90,6 +90,8 @@ export function classifyEvent(event, { businessId, businessGroupId } = {}) {
   if (!r) return { accept: false, status: 400, reason: 'no reservation object' };
   const id = r.id ?? r.reservationId;
   if (id == null || !/^\d+$/.test(String(id))) return { accept: false, status: 400, reason: 'reservation id missing or not numeric' };
+  const versionId = r.versionId;
+  if (versionId == null || !/^\d+$/.test(String(versionId))) return { accept: false, status: 400, reason: 'reservation versionId missing or not numeric' };
 
   const bid = r.business?.id ?? r.businessId;
   if (businessId && String(bid ?? '') !== String(businessId)) {
@@ -104,6 +106,7 @@ export function classifyEvent(event, { businessId, businessGroupId } = {}) {
     accept: true,
     status: 200,
     reservationId: String(id),
+    versionId: String(versionId),
     businessId: bid == null ? null : String(bid),
     businessGroupId: gid == null ? null : String(gid),
     isCancelled: Boolean(r.isCancelled),

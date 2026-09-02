@@ -23,11 +23,12 @@ const event = (id) => ({
 function run(args, env) {
   return new Promise((resolve, reject) => {
     const child = spawn(
-      'powershell',
-      ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', SCRIPT, ...args],
+      'powershell.exe',
+      ['-NoProfile', '-NonInteractive', '-InputFormat', 'None', '-ExecutionPolicy', 'Bypass', '-File', SCRIPT, ...args],
       {
         env: { ...process.env, ...env },
-        timeout: 120_000,
+        stdio: ['ignore', 'pipe', 'pipe'],
+        timeout: 60_000,
         windowsHide: true,
       },
     );

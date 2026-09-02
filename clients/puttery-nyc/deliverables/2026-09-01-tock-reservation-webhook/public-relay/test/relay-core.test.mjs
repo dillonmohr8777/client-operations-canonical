@@ -23,6 +23,7 @@ const VENUE = { businessId: '37824', businessGroupId: '28086' };
 function reservation(overrides = {}) {
   return {
     id: 9001,
+    versionId: 7,
     business: { id: 37824, businessGroupId: 28086, name: 'Puttery NYC' },
     dateTime: '19:30',
     partySize: 4,
@@ -98,6 +99,12 @@ describe('venue classification', () => {
     assert.equal(classifyEvent(reservation(), { businessId: '0' }).status, 503);
     assert.equal(classifyEvent(reservation(), { businessId: '37824', businessGroupId: 'invalid' }).status, 503);
   });
+  it('rejects a payload without a numeric versionId', () => {
+    assert.equal(classifyEvent(reservation({ versionId: undefined }), VENUE).status, 400);
+    assert.equal(classifyEvent(reservation({ versionId: 'v7' }), VENUE).status, 400);
+    assert.equal(classifyEvent(reservation(), VENUE).versionId, '7');
+  });
+
   it('rejects a payload with no numeric reservation id', () => {
     assert.equal(classifyEvent({ business: { id: 37824 } }, VENUE).status, 400);
     assert.equal(classifyEvent(reservation({ id: 'abc' }), VENUE).status, 400);
