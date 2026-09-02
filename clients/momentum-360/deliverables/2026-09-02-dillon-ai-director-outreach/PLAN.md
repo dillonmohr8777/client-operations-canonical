@@ -5,6 +5,7 @@
 - From: `dillonmohr8777@gmail.com`
 - Title: AI Marketing Director
 - Signature: Momentum HTML signature, Need Momentum URL
+- Erie notes: Dillon grew up in Erie. Use `drafts/template-erie.html` and `personalization/erie-hometown.md`. Signature geography is Erie, Pennsylvania.
 - CC: empty
 - Proof sites: `needmomentum.com` and `momentumvirtualtours.com`
 - Not used: Immortal, Philadelphia radar, UPS
@@ -15,8 +16,8 @@
 2. Run the Grok 4.5 prompt once per business.
 3. Reopen the official URL and confirm the one-sentence observation.
 4. Drop anyone with a current Momentum relationship, a suppression hit, or an existing draft.
-5. Fill `drafts/template.html` and save a named preview.
-6. Stop. Show Dillon the exact set. Send only the ones he approves, from his Gmail.
+5. If the row is Erie, fill `drafts/template-erie.html` using `personalization/erie-hometown.md`. If the row is Pittsburgh, fill `drafts/template.html`. Save a named preview.
+6. Stop. Put the exact preview in Dillon's Gmail. Send to the business only after he approves that preview.
 
 Grok is cheap research. It is not the sender.
 

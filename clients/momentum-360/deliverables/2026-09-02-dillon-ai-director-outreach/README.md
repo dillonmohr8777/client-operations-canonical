@@ -9,7 +9,7 @@ CC: none
 Brand pages: Need Momentum and Momentum 360 only  
 Not used: Immortal site, Philadelphia radar, UPS Store list
 
-This is Dillon reaching Erie and Pittsburgh owners as AI Marketing Director. The company proof is the live Need Momentum and Momentum 360 sites. Sean and Mac stay off the thread.
+This is Dillon reaching Erie and Pittsburgh owners as AI Marketing Director. He grew up in Erie, so every Erie note uses that hometown line plus a place taken from the official site. The company proof is the live Need Momentum and Momentum 360 sites. Sean and Mac stay off the thread.
 
 ## What stayed from the last plan
 
@@ -62,9 +62,10 @@ Do not pull the radar. Do not scrape Google Maps into a directory. Open the offi
 
 1. Grok 4.5 audits that exact official site.
 2. A human reopens the URL and keeps only what is still true.
-3. The email proves we looked, names one gap, then stacks Need Momentum and Momentum 360 links plus the recent films and builds.
-4. Dillon approves the exact preview from his Gmail.
-5. Sean and Mac are not copied.
+3. If the business is in Erie, the opener says Dillon grew up there and names a place from that site. Pittsburgh notes do not use that line.
+4. The email proves we looked, names one gap, then stacks Need Momentum and Momentum 360 links plus the recent films and builds.
+5. Dillon approves the exact preview from his Gmail.
+6. Sean and Mac are not copied.
 
 ## The hundreds
 
@@ -78,11 +79,12 @@ See `list/README.md`. Emails are not invented. A row becomes sendable only after
 
 ## First unsent samples
 
-Review copies are in Dillon's Gmail inbox as of 2026-09-02 20:18 UTC. From and to are both `dillonmohr8777@gmail.com`. No prospect was mailed.
+Review copies are in Dillon's Gmail inbox. From and to are both `dillonmohr8777@gmail.com`. No prospect was mailed.
 
 - `REVIEW | Fugh Refrigeration outreach preview`
 - `REVIEW | Bay House Erie outreach preview`
 - `REVIEW | Erie and Pittsburgh first 32 businesses`
+- `REVIEW | Bay House Erie hometown rewrite`
 
 Repo copies remain at:
 
@@ -91,4 +93,4 @@ Repo copies remain at:
 
 ## One decision
 
-Open those three REVIEW emails in Gmail. Approve the two previews, or mark the edits. After that, the next move is the 32-row review batch, still unsent until you say send.
+Open `REVIEW | Bay House Erie hometown rewrite` in Gmail. Approve that Erie voice, or mark the edits. After that, the next move is the 32-row review batch, still unsent until you say send.

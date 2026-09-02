@@ -21,6 +21,8 @@ Rules:
 5. Do not mention Immortal, Philadelphia radar demos, or other Momentum clients.
 6. Do not write medical, legal, or guaranteed outcome claims.
 7. Keep the owner-facing observation under 40 words and specific to this business.
+8. If the city is Erie, write `openingTwoSentences` as a hometown note. First sentence: Dillon grew up in Erie and is the AI Marketing Director at Momentum. Second sentence: a place reason taken from this official site (street, bayfront, Presque Isle Bay, neighborhood, or published room or offer). Do not invent meals, owners, schools, or "I used to go there." Do not use tourist adjectives. Do not mention Philadelphia.
+9. If the city is Pittsburgh, do not use the Erie hometown line.
 
 Return:
 
@@ -60,5 +62,5 @@ Return:
 
 1. Reopen the official URL and confirm the observation.
 2. Confirm the city is Erie or Pittsburgh, not a radar leftover.
-3. Paste confirmed lines into `drafts/template.html`.
+3. Paste confirmed Erie lines into `drafts/template-erie.html`. Paste Pittsburgh lines into `drafts/template.html`.
 4. Leave the message unsent until Dillon approves that exact preview from his Gmail.
