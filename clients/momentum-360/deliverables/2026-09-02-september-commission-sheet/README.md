@@ -14,9 +14,9 @@ The August tab was duplicated into a new September tab, then three September cli
 | The GT Clinic | $450.00 | Expected / provisional. $900 monthly quote x 50%. Not signed as of 2026-09-02. |
 | Puttery NYC | $650.00 | Expected. Dillon's September figure. Prior confirmed project fee was $1,500. |
 
-Copied August total was $5,350. September expected total is **$7,200**.
+Copied August total was $5,350. Bridge Phase 2 $1,300 was then removed because it was paid in August, and unpaid Bridge Phase 3 $1,500 was added. September expected total is **$7,400**.
 
-- Digital: $4,400
+- Digital: $4,600
 - 360: $2,800
 
 ## Deb Mara signed contract
@@ -81,12 +81,25 @@ These were duplicated because Dillon asked to duplicate everything. Confirm befo
 
 - Tags 2 Go: August 24 cancellation directive.
 - Jeanne Walcroft: August completion.
-- Bridge Phase 2 $1,300: already paid/approved; Phase 3 still unpaid.
 - Bar Crawl Halloween $400: August one-time page build.
 - Nexla $500: month 2 of a 3-month engagement, still provisional.
+
+## Bridge phases
+
+Phase 2 $1,300 is off September. Phase 3 $1,500 is on September as expected unpaid.
+
+The August sheet already named Phase 3 as $1,500 and excluded it until Tori paid. Mac's July 8 split is 20% of each phase on the approved $45,000 six-milestone 17hats contract. Equal milestones would be $7,500 client fee and $1,500 Dillon share.
+
+Phase feasibility as of 2026-09-02:
+
+- Phase 3 is the September lock. Dillon's frontend foundation is built. Miraj said Milestone 3 is almost done and posted a live backend origin.
+- Phase 4 frontend screens are a stretch, not a lock. Doable if login, join steps 2-4, verification, and admin stay in Dillon's lane and Tori does not reopen scope.
+- Phase 5 full integration, QA, and acceptance is not a September lock. It needs live API wiring, role proof, and Tori/Melissa acceptance.
+- Finishing every remaining phase through Phase 6 by September 30 is not realistic. Phase 6 is pilot and launch readiness.
 
 ## Files
 
 - `september-commission.csv` — the September tab contents
 - `commission-math.json` — source-backed fee and rate math
 - `quote-extract.json` — redacted quote extraction
+- `bridge-phase-status.json` — Bridge phase fees and September feasibility
