@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "run_id": "forecast-run-forecast-momentum-360-hubspot-contacts-weekly-backtest-20260902-origin-40",
+  "request_id": "forecast-momentum-360-hubspot-contacts-weekly-backtest-20260902-origin-40",
+  "as_of": "2026-09-02T04:07:49.034Z",
+  "client_id": "momentum-360",
+  "series_id": "momentum-360-hubspot-contacts-created-weekly",
+  "frequency": "week",
+  "model_id": "amazon/chronos-2",
+  "provider_id": "amazon-science",
+  "runtime_id": "chronos-forecasting==2.3.1;torch==2.6.0+cpu",
+  "license_lane": "apache-2.0",
+  "used_for": "research",
+  "horizon": 4,
+  "contains_client_series": true,
+  "source_locators": [
+    "hubspot://portal/50612503/contacts/createdate/weekly?cutoff=2026-08-31",
+    "clients/momentum-360/deliverables/2026-09-01-hubspot-chronos-forecast-pilot/inputs/hubspot-contacts-created-weekly.csv"
+  ],
+  "status": "ok",
+  "forbidden_uses": [
+    "spend",
+    "send",
+    "publish",
+    "conversion-claim"
+  ],
+  "client_experiment": {
+    "experiment_id": "EXP-JASON-HUBSPOT-CHRONOS-BACKTEST-20260902",
+    "approval_ref": "direct-user-approval:2026-09-02-jason-hubspot-chronos-rolling-backtest",
+    "data_class": "sanitized-aggregate",
+    "backtest_origin": 40,
+    "input_fingerprint": "ece56d6b438d5cae8b1fba12a8a13b12be90285427ca6acc522742ef289b4aca"
+  },
+  "target_outputs": [
+    {
+      "series_id": "hubspot_contacts_created",
+      "point": [
+        131.94276428222656,
+        132.4344024658203,
+        133.24346923828125,
+        128.88809204101562
+      ],
+      "quantiles": {
+        "p10": [
+          80.1214599609375,
+          78.19268798828125,
+          76.35675048828125,
+          73.46112060546875
+        ],
+        "p20": [
+          97.36236572265625,
+          97.71408081054688,
+          95.66046142578125,
+          92.13510131835938
+        ],
+        "p30": [
+          109.75904846191406,
+          110.46406555175781,
+          109.05992126464844,
+          105.50508117675781
+        ],
+        "p40": [
+          121.12586975097656,
+          121.66780090332031,
+          121.30989074707031,
+          117.62275695800781
+        ],
+        "p50": [
+          131.94276428222656,
+          132.4344024658203,
+          133.24346923828125,
+          128.88809204101562
+        ],
+        "p60": [
+          142.78060913085938,
+          142.64337158203125,
+          144.4859161376953,
+          140.5662841796875
+        ],
+        "p70": [
+          153.81898498535156,
+          154.65164184570312,
+          156.38063049316406,
+          153.1377716064453
+        ],
+        "p80": [
+          173.00601196289062,
+          173.01025390625,
+          174.28846740722656,
+          173.02737426757812
+        ],
+        "p90": [
+          221.53834533691406,
+          221.09197998046875,
+          221.7410125732422,
+          224.16603088378906
+        ]
+      }
+    }
+  ],
+  "summary": "Chronos-2 CPU forecast completed with cross_learning=False; model load 0.1989s; forecast 0.1621s.",
+  "artifact_paths": [
+    "C:\\Users\\dillo\\AppData\\Local\\Codex\\Forecasting\\backtests\\EXP-JASON-HUBSPOT-CHRONOS-BACKTEST-20260902\\runs\\forecast-momentum-360-hubspot-contacts-weekly-backtest-20260902-origin-40-run.json"
+  ]
+}
