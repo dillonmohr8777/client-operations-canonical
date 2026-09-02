@@ -54,3 +54,5 @@ npm run verify
 ```
 
 The test suite validates client routing, path containment, brand-kit isolation, queue readback, the MCP stdio handshake, all tool names, and a live read-only tool call.
+
+For a release-time exact session snapshot, run `npm run export:sessions` followed by `node scripts/export-claude-sessions.mjs --check --strict`. Normal verification checks the privacy/schema contract without failing just because another Claude session starts concurrently.

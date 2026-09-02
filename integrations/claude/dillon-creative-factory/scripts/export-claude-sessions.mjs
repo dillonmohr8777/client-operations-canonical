@@ -10,6 +10,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const outputDir = path.resolve(here, '..', 'session-index');
 const claudeProjectsRoot = process.env.CLAUDE_PROJECTS_ROOT || 'C:\\Users\\dillo\\.claude\\projects';
 const checkOnly = process.argv.includes('--check');
+const strict = process.argv.includes('--strict');
 
 async function findJsonl(root, results = []) {
   for (const entry of await readdir(root, { withFileTypes: true })) {
@@ -55,9 +56,14 @@ async function summarize(file) {
     } catch { malformedLines += 1; }
   }
   const info = await stat(file);
+  const projectKey = safeProjectKey(file);
+  const sourceRelative = path.relative(claudeProjectsRoot, file).replaceAll('\\', '/');
   return {
+    entryId: createHash('sha256').update(sourceRelative).digest('hex').slice(0, 24),
     sessionId,
-    projectKey: safeProjectKey(file),
+    projectKey,
+    sourceLocatorDigest: createHash('sha256').update(sourceRelative).digest('hex'),
+    sourceCreatedAt: info.birthtime.toISOString(),
     firstTimestamp,
     lastTimestamp,
     sizeBytes: info.size,
@@ -89,8 +95,14 @@ const index = {
 const output = path.join(outputDir, 'claude-sessions.json');
 if (checkOnly) {
   const existing = JSON.parse(await readFile(output, 'utf8'));
-  if (existing.sessionCount !== index.sessionCount) throw new Error(`Session index is stale: expected ${index.sessionCount}, found ${existing.sessionCount}`);
-  console.error(`Session index current: ${index.sessionCount} sessions`);
+  if (existing.privacy !== 'metadata-only-redacted' || existing.sourceContentStored !== false) throw new Error('Session index privacy contract is invalid');
+  if (existing.sessionCount !== existing.sessions?.length) throw new Error('Session index count does not match its entries');
+  if (new Set(existing.sessions.map((session) => session.entryId)).size !== existing.sessionCount) throw new Error('Session index contains duplicate project/session entries');
+  const snapshotCutoff = new Date(existing.generatedAt).toISOString();
+  const expectedAtSnapshot = index.sessions.filter((session) => session.sourceCreatedAt <= snapshotCutoff).length;
+  if (strict && existing.sessionCount !== expectedAtSnapshot) throw new Error(`Session index is stale at its snapshot cutoff: expected ${expectedAtSnapshot}, found ${existing.sessionCount}`);
+  const drift = index.sessionCount - existing.sessionCount;
+  console.error(strict ? `Session snapshot complete at ${snapshotCutoff}: ${existing.sessionCount} sessions` : `Session index valid: ${existing.sessionCount} sessions${drift > 0 ? `; ${drift} newer session(s) available for the next refresh` : ''}`);
 } else {
   await mkdir(outputDir, { recursive: true });
   await writeFile(output, `${JSON.stringify(index, null, 2)}\n`, 'utf8');
