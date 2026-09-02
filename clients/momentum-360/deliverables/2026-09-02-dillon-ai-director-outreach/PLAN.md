@@ -1,32 +1,29 @@
-# How to run this without burning the list
+# How to run Erie and Pittsburgh from Dillon's Gmail
 
 ## Identity
 
-- From: Dillon Mohr, AI Marketing Director
-- Signature: the Momentum HTML signature already used on the workshop mail
+- From: `dillonmohr8777@gmail.com`
+- Title: AI Marketing Director
+- Signature: Momentum HTML signature, Need Momentum URL
 - CC: empty
-- Brand: Need Momentum / Momentum 360
-- Not Immortal. Not personal-brand AEO spam. Not a Sean and Mac blast.
+- Proof sites: `needmomentum.com` and `momentumvirtualtours.com`
+- Not used: Immortal, Philadelphia radar, UPS
 
 ## Daily machine
 
-1. Take the next 15 Philadelphia 75 rows that are still `mail_ready: false` and have no unsent draft.
+1. Pick the next Erie or Pittsburgh official site. Alternate cities so the batch is not one town.
 2. Run the Grok 4.5 prompt once per business.
-3. Confirm the official site observation by opening the live URL.
-4. Drop anyone with a relationship, suppression hit, or existing draft.
+3. Reopen the official URL and confirm the one-sentence observation.
+4. Drop anyone with a current Momentum relationship, a suppression hit, or an existing draft.
 5. Fill `drafts/template.html` and save a named preview.
-6. Stop. Show Dillon the exact 15. Send only the ones he approves.
+6. Stop. Show Dillon the exact set. Send only the ones he approves, from his Gmail.
 
 Grok is cheap research. It is not the sender.
 
-## Pittsburgh and Erie later
-
-Use the same Maps-first factory that produced the Philadelphia 75. Do not start those cities until the first 15 Philadelphia notes have a mailbox, a reply path, and a clean bounce read.
-
-## UPS
-
-Leave the Immortal UPS campaign parked. It is a different client route and a different offer.
-
 ## Volume
 
-15 a day from an authenticated company mailbox. Not 100 to 150 from personal Gmail.
+The mailbox is Dillon's personal Gmail because that is the send identity he named. Review 15 drafts before any send. Raise the daily count only after those first replies and bounce results are visible. Do not start at 100 to 150.
+
+## What the pitch can say
+
+Dillon can call this Pennsylvania's most current AI marketing operation because the recent work is film, scroll web, AEO pages, and live site systems. Do not pretend the Need Momentum homepage already uses that line. That homepage still reads as a Philadelphia SEO and ads agency. The futuristic proof is the work links, not a slogan on the WordPress home.

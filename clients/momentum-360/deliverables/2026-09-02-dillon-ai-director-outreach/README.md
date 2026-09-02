@@ -4,76 +4,73 @@ Client route: `momentum-360`
 Prepared: 2026-09-02  
 Status: local plan and unsent drafts only  
 Sends: 0  
-Sean / Mac / Melissa CC: none
+From mailbox: `dillonmohr8777@gmail.com`  
+CC: none  
+Brand pages: Need Momentum and Momentum 360 only  
+Not used: Immortal site, Philadelphia radar, UPS Store list
 
-This package answers how Dillon should bring clients on as AI Marketing Director without using the UPS Store list, without Immortal branding, and without looping in Sean or Mac.
+This is Dillon reaching Erie and Pittsburgh owners as AI Marketing Director. The company proof is the live Need Momentum and Momentum 360 sites. Sean and Mac stay off the thread.
 
-## What we are actually selling
+## What stayed from the last plan
 
-Lead with one offer, not a menu dump.
+- One named-business observation, then one AI or website gap
+- Grok 4.5 does the cheap first-pass audit
+- Lots of live links to the actual company pages and recent work
+- The September 1 Mac and Sean 4K films, the moving Signal homepage, and the scroll film
+- Exact Momentum HTML signature
+- No invented rankings, traffic, or conversions
+- Nothing sends until Dillon approves that exact preview
 
-1. **AI visibility audit**  
-   A short, named-business review of whether ChatGPT, Google AI Overviews, and Google still understand the brand. This is the opener.
-2. **Website modernization**  
-   We already have a custom homepage concept for 75 Philadelphia businesses. That is the proof, not a promise.
-3. **Get found locally**  
-   Local SEO, Google Business Profile, maps, and citations.
-4. **Demand**  
-   Google Ads and Meta only after the site and tracking are honest.
-5. **Make the space move**  
-   Virtual tours, property film, and scroll-driven web. This is the Momentum 360 differentiator.
+## What got cut
 
-Need Momentum already publishes these as services. The new move is Dillon sending a one-to-one note that proves we already looked at their business.
+- The Philadelphia 75 radar list
+- Custom concept URLs from the site factory
+- Immortal pages and the Immortal signature
+- UPS Store franchise mailboxes
 
-## Do not use UPS Stores for this
+## What we are selling
 
-The UPS Store list is 5801 franchise mailboxes built for IMMOHRTAL website and HubSpot work. It is the wrong buyer for an AI Marketing Director pitch.
+Position the note as Pennsylvania's most current AI marketing shop, then prove it with the live service set.
 
-- The mailbox is usually `store####@theupsstore.com`, not an owner who buys creative or AI search.
-- The offer we just built for them was Immortal, not Momentum.
-- That campaign is already paused in practice: 2026-09-02 queued 10 warmup sends and did not send because workspace Gmail was disconnected. Personal Gmail was correctly refused.
+Need Momentum, inspected 2026-09-02:
 
-Keep that list parked. Do not reuse it for Momentum. Do not send it from Dillon's personal Gmail.
+- Home: https://www.needmomentum.com/
+- All services: https://www.needmomentum.com/services/
+- Free website SEO audit: https://www.needmomentum.com/free-website-seo-audit/
+- Local SEO: https://www.needmomentum.com/local-seo-marketing/
+- AEO: https://www.needmomentum.com/answer-engine-optimization/
+- AI Overviews: https://www.needmomentum.com/ai-overviews/
+- Local SEO for AI Overviews: https://www.needmomentum.com/optimize-local-seo-for-ai-overviews/
+- Virtual tours: https://www.needmomentum.com/virtual-tours/
 
-## Use the work we already built
+Momentum 360, inspected 2026-09-02:
 
-The better list is already sitting in the AI Site Builder packet:
+- Home: https://www.momentumvirtualtours.com/
+- Full services: https://www.momentumvirtualtours.com/services/
+- Website design: https://www.momentumvirtualtours.com/nationwide-website-design-services/
+- Custom 360 tours: https://www.momentumvirtualtours.com/services/custom-360-virtual-tours/
 
-- 75 verified Philadelphia-area businesses
-- Each has a first-party site, a current phone, and a live custom concept
-- Call sheet is ready
-- Mail is intentionally on HOLD
+The live front of house is the whole stack: web, SEO, AEO, local SEO, Google Ads, social, photography, video, 3D, virtual tours, and Google Business Profile.
 
-That is the first cohort. Pittsburgh and Erie can come next, built the same way: Google Maps first, official site second, custom concept third, then a Grok 4.5 brand audit, then a Dillon-only draft.
+## Who we write
 
-## How the email should feel
+Erie businesses and Pittsburgh businesses. Owner-operated shops, restaurants, clinics, trades, and other companies that already have a public site and look like they need a stronger web and AI presence.
 
-Dillon Mohr. AI Marketing Director. One recipient. No CC.
+Do not pull the radar. Do not scrape Google Maps into a directory. Open the official site first, then write the note from what is actually there.
 
-Shape:
+## How each note works
 
-1. One sentence that proves we opened their actual site.
-2. One AI or website gap a owner can understand in 10 seconds.
-3. Their custom concept link.
-4. A short proof row: films, Need Momentum services, audit, scroll story, workshop.
-5. One ask: a 15 minute look, or a reply.
+1. Grok 4.5 audits that exact official site.
+2. A human reopens the URL and keeps only what is still true.
+3. The email proves we looked, names one gap, then stacks Need Momentum and Momentum 360 links plus the recent films and builds.
+4. Dillon approves the exact preview from his Gmail.
+5. Sean and Mac are not copied.
 
-Do not say we ran hundreds of sub-agents. Do not invent rankings, traffic, or conversions. Do not attach another client's Semrush or Ahrefs screenshots. Do not use the Immortal signature.
+## First unsent samples
 
-## Mailbox and volume
-
-Do not send 100 to 150 a day from personal Gmail. That will burn `dillonmohr8777@gmail.com` and still look like a blast.
-
-Safer ramp:
-
-- Week 1: 15 a day from an authenticated `needmomentum.com` mailbox, or a dedicated sending subdomain.
-- Week 2: 25 a day if bounce and spam stay clean.
-- Week 3: 40 a day only after inbox placement is verified.
-
-If Dillon insists on personal Gmail, cap it at 15 a day and treat it as a test, not a campaign.
+- Fugh Refrigeration, Pittsburgh and Western PA: `drafts/fugh-refrigeration.html`
+- Bay House / Pier 6, Erie bayfront: `drafts/bay-house-erie.html`
 
 ## One decision
 
-Approve the first 10 Dillon-only previews from the Philadelphia 75, and name the From mailbox.
-
-Until that happens, everything in this folder stays unsent.
+Approve those two previews, or mark the edits. After that, the next move is a first Erie and Pittsburgh batch of 15 reviewed drafts, still unsent until you say send.
