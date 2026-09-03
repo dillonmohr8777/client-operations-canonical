@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 423,
-  "updatedAt": "2026-09-01T17:32:44.9298410+00:00",
+  "revision": 424,
+  "updatedAt": "2026-09-03T01:00:00.0000000+00:00",
   "updatedBy": "marketing-chief",
   "mode": "manual-pilot",
   "canonicalProject": "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
@@ -8322,6 +8322,86 @@
       },
       "createdAt": "2026-09-01T13:07:19.0625035-04:00",
       "updatedAt": "2026-09-01T13:17:28.7725757-04:00"
+    },
+    {
+      "id": "wi-20260902-0001",
+      "version": 1,
+      "dedupeKey": "va-claims-edge/phase-three-closeout-2026-09-02",
+      "scope": "client",
+      "clientId": "va-claims-edge",
+      "routing": {
+        "status": "resolved",
+        "matchedBy": "registry-resolver",
+        "registryStatus": "active",
+        "verifiedAt": "2026-09-03T01:00:00.0000000+00:00"
+      },
+      "title": "Close out VA Claims Phase 3 after Obaid's development-complete handoff",
+      "requestedOutcome": "Phase 3 is verified end to end from Dillon's side, David has answered the sender-domain and self-registration decisions, and the tracker reflects merged production state.",
+      "source": {
+        "type": "slack",
+        "locator": "slack://channel/C0AU6GMGY73/message/1788390625.269229",
+        "observedAt": "2026-09-02T23:10:25Z",
+        "redactedSummary": "Obaid declared Phase 3 complete on the development side and live on production. Dillon replied that he would check what was left to clean up on his side. Two items still need David: the Resend sender domain and whether website self-registration is in scope."
+      },
+      "status": "in_progress",
+      "lane": "normal",
+      "emergencyRationale": null,
+      "priority": {
+        "level": "P1",
+        "rationale": "Active client phase gate. The alert engine cannot leave test-sender mode until David confirms the sending domain."
+      },
+      "owner": "marketing-chief",
+      "nextAction": "Run the authenticated walkthrough of the seven-stage journey on production, confirm the operations dashboard uses the seven-stage model and that the large-text accessibility pass survived the Phase 3 merges, then send the approved drafts to Obaid, James, and David.",
+      "execution": {
+        "actionClass": "local_research",
+        "automaticEligible": true,
+        "externalAction": false,
+        "reversible": true,
+        "classifiedAt": "2026-09-03T01:00:00.0000000+00:00"
+      },
+      "definitionOfDone": [
+        "Authenticated walkthrough of all seven stages recorded under clients/va-claims-edge/evidence",
+        "Operations dashboard confirmed on the seven-stage model, not the retired four-stage grouping",
+        "Large-text accessibility pass confirmed intact after the Phase 3 merges",
+        "David has answered the Resend sender domain and the self-registration scope question",
+        "Phase 3 tracker rows updated to merged production state"
+      ],
+      "dueAt": null,
+      "reviewAt": null,
+      "evidence": {
+        "asOf": "2026-09-03T01:00:00.0000000+00:00",
+        "freshness": "current",
+        "refs": [
+          "slack://channel/C0AU6GMGY73/message/1788390625.269229",
+          "clients/va-claims-edge/evidence/2026-09-02-phase-three-production-verification.json",
+          "clients/va-claims-edge/deliverables/2026-09-02-phase-three-closeout/closeout.md",
+          "clients/va-claims-edge/deliverables/2026-09-02-phase-three-closeout/slack-drafts.md"
+        ]
+      },
+      "approval": {
+        "tier": "gated",
+        "action": "Send the Slack replies to Obaid and James and the DM to David.",
+        "status": "pending",
+        "approvalRef": null
+      },
+      "dependencies": [],
+      "assumptions": [
+        "Obaid's report that the daily cron job and Resend notification engine are working is taken at face value; neither is externally observable from this session."
+      ],
+      "confidence": 0.85,
+      "artifactRefs": [
+        "clients/va-claims-edge/deliverables/2026-09-02-phase-three-closeout/closeout.md",
+        "clients/va-claims-edge/deliverables/2026-09-02-phase-three-closeout/slack-drafts.md",
+        "clients/va-claims-edge/evidence/2026-09-02-phase-three-production-verification.json"
+      ],
+      "outcome": {
+        "status": "in_progress",
+        "verifiedAt": "2026-09-03T01:00:00.0000000+00:00",
+        "summary": "All eleven production routes return 200 and every protected API route tested returns 401 unauthenticated, confirming Obaid's claim to the extent it is checkable without credentials. Authenticated behaviour, the daily cron, and the Resend digest remain unverified.",
+        "externalActionTaken": false
+      },
+      "createdAt": "2026-09-03T01:00:00.0000000+00:00",
+      "updatedAt": "2026-09-03T01:00:00.0000000+00:00"
     }
   ],
   "intakeQuarantine": [

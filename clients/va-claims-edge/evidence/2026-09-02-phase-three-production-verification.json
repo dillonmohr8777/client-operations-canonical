@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "evidenceId": "va-claims-phase-three-production-verification-2026-09-02",
+  "clientId": "va-claims-edge",
+  "observedAtUtc": "2026-09-03T01:00:00Z",
+  "purpose": "Independent verification of Obaid's 2026-09-02 Phase 3 development-complete claim on the production portal. Read-only, unauthenticated probes only.",
+  "claimUnderTest": {
+    "source": "slack",
+    "channel": "#va-claims",
+    "author": "Obaidullah Shaikh",
+    "messageTs": "1788390625.269229",
+    "claim": "Phase 3 is complete from the development side. Everything is live and verified on production at vaclaims-portal.vercel.app."
+  },
+  "origin": "https://vaclaims-portal.vercel.app",
+  "routeChecks": [
+    { "route": "/", "statusCode": 200, "result": "reachable" },
+    { "route": "/login", "statusCode": 200, "result": "reachable" },
+    { "route": "/portal", "statusCode": 200, "result": "reachable" },
+    { "route": "/dashboard", "statusCode": 200, "result": "reachable" },
+    { "route": "/dashboard/clients", "statusCode": 200, "result": "reachable" },
+    { "route": "/dashboard/clients/new", "statusCode": 200, "result": "reachable" },
+    { "route": "/dashboard/alerts", "statusCode": 200, "result": "reachable" },
+    { "route": "/dashboard/advisors", "statusCode": 200, "result": "reachable" },
+    { "route": "/dashboard/payment-watch", "statusCode": 200, "result": "reachable" },
+    { "route": "/dashboard/settings", "statusCode": 200, "result": "reachable" },
+    { "route": "/dashboard/ai", "statusCode": 200, "result": "reachable" }
+  ],
+  "authEnforcementChecks": [
+    { "route": "/api/clients", "method": "GET", "authenticated": false, "statusCode": 401, "body": "{\"error\":\"Authentication required.\"}", "result": "rejected-as-expected" },
+    { "route": "/api/payment-watch", "method": "GET", "authenticated": false, "statusCode": 401, "body": "{\"error\":\"Authentication required.\"}", "result": "rejected-as-expected" },
+    { "route": "/api/advisors", "method": "GET", "authenticated": false, "statusCode": 401, "body": "{\"error\":\"Authentication required.\"}", "result": "rejected-as-expected" },
+    { "route": "/api/settings", "method": "GET", "authenticated": false, "statusCode": 401, "body": "{\"error\":\"Authentication required.\"}", "result": "rejected-as-expected" },
+    { "route": "/api/ai", "method": "GET", "authenticated": false, "statusCode": 405, "result": "method-not-allowed-consistent-with-post-only-route" }
+  ],
+  "findings": [
+    "All eleven production routes named in the Phase 3 completion claim are reachable and return 200.",
+    "Every protected API route tested rejects unauthenticated requests with 401, consistent with the security patch confirmed on 2026-08-31.",
+    "The staff intake route /dashboard/clients/new is live, which is the capability that was missing when client intake was raised on 2026-09-01.",
+    "Operational surfaces are nested under /dashboard/*, not at the site root. An earlier probe of root-level paths returned 404; that was an incorrect path assumption by the reviewer, not a defect."
+  ],
+  "limitations": [
+    "Unauthenticated verification only. Authenticated behaviour behind login was not exercised: stage transitions, onus toggle, stop clock, note append, advisor CRUD, and AI assistant responses are unverified from this session.",
+    "The vaclaims-dev/vace-platform repository is not attached to this session, so no code-level review of the Phase 3 backend was performed.",
+    "The daily cron job and Resend notification engine were not observed running; both are reported complete by Obaid but are not externally observable."
+  ],
+  "verificationState": "route-and-auth-verified",
+  "openItemsRequiringDavid": [
+    "Confirm the Resend sender domain, most likely vaclaimsedge.com, so the daily alert engine can leave test-sender mode.",
+    "Confirm whether website self-registration is in scope for a later phase. Staff intake is live now; James Frederick asked for both self and staff onboarding on 2026-09-01."
+  ]
+}
