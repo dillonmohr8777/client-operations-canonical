@@ -11,7 +11,7 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent
 LIST = ROOT.parent / "list"
-MAX_SEND = 150
+MAX_SEND = 200
 
 
 def host_label(url: str | None) -> str:
@@ -30,24 +30,119 @@ def clean_text(value: str) -> str:
     return text
 
 
+def category_lane(row: dict) -> str:
+    cat = (row.get("category") or "").lower()
+    name = (row.get("business") or "").lower()
+    blob = f"{cat} {name}"
+    if any(token in blob for token in ("restaurant", "cafe", "bar", "pub", "pizza", "grill", "tavern", "diner", "bakery", "brew", "donut", "chocolate", "coffee", "wine", "bean")):
+        return "food"
+    if any(token in blob for token in ("dentist", "ortho", "chiro", "vet", "clinic", "rehab", "health", "med", "massage")):
+        return "care"
+    if any(token in blob for token in ("plumb", "hvac", "roof", "electric", "insulat", "auto", "repair", "construct", "landscap", "clean", "remodel", "mechan")):
+        return "trade"
+    if any(token in blob for token in ("camp", "hotel", "motel", "tour", "park", "charter", "golf", "inn")):
+        return "visit"
+    return "shop"
+
+
+def hook_for(row: dict) -> str:
+    name = clean_text(row["business"])
+    city = clean_text(row.get("city") or "Erie")
+    reason = clean_text(row.get("localPlaceReason") or "")
+    lane = category_lane(row)
+    if city.lower() != "erie":
+        place = city
+    else:
+        place = "Erie"
+    if lane == "food":
+        return f"{name} should be the first table people think of in {place}. Right now the internet still makes them work for it."
+    if lane == "care":
+        return f"When someone in {place} needs {name}, they should get you in one look. Not a scavenger hunt."
+    if lane == "trade":
+        return f"If a {place} phone is about to call a trade, {name} should already be the obvious answer."
+    if lane == "visit":
+        return f"{name} should own the {place} search before a visitor ever opens a second tab."
+    article = "an" if place[:1].lower() in "aeiou" else "a"
+    if reason and "should be easier" in reason.lower():
+        return f"{name} is {article} {place} name that should already own the search. It does not yet."
+    return f"{name} should be easier to find in {place} than it is tonight."
+
+
+def offer_for(row: dict) -> str:
+    lane = category_lane(row)
+    if lane == "food":
+        return "Give me 15 minutes and I will show you how we rebuild the first screen so a hungry person and an AI search both get the simple version: what you cook, who it is for, and why to come in. Then we add tours, film, and the rest."
+    if lane == "care":
+        return "Give me 15 minutes and I will show you how we rebuild the first screen so a family and an AI search both get the simple version: what you do, who you help, and why to call first. Then we add tours, film, and the rest."
+    if lane == "trade":
+        return "Give me 15 minutes and I will show you how we rebuild the first screen so a homeowner and an AI search both get the simple version: what you fix, where you work, and why to call you first. Then we add tours, film, and the rest."
+    if lane == "visit":
+        return "Give me 15 minutes and I will show you how we rebuild the first screen so a visitor and an AI search both get the simple version: what the stay feels like, where you sit, and why to book you first. Then we add tours, film, and the rest."
+    return "Give me 15 minutes and I will show you how we rebuild the first screen so a visitor and an AI search both get the simple version: what you do, who it is for, and why to call you first. Then we add tours, film, and the rest."
+
+
 def subject_for(row: dict) -> str:
     name = clean_text(row["business"])
     city = clean_text(row.get("city") or "Erie")
     if city.lower() == "erie":
-        return f"A note from Erie on {name}"
-    return f"A note from Erie on {name} in {city}"
+        return f"{name} should own the Erie search"
+    return f"{name} should own the {city} search"
+
+
+def story_block() -> str:
+    return (
+        "Grew up in Erie with this. Marketing started at McDowell, then Mercyhurst. "
+        "Eight years in engineering and marketing after that, and I put the whole mix into the AI work I run at Momentum. "
+        "Now I want that working for shops here, not sitting in a deck."
+    )
+
+
+def proof_links_html() -> str:
+    links = [
+        ("Need Momentum", "https://www.needmomentum.com/"),
+        ("Need Momentum services", "https://www.needmomentum.com/services/"),
+        ("AI Overviews and tours", "https://www.needmomentum.com/ai-overviews/"),
+        ("Virtual tours", "https://www.needmomentum.com/virtual-tours/"),
+        ("Momentum 360", "https://www.momentumvirtualtours.com/"),
+        ("A scroll driven film we just finished", "https://momentum-360-scroll-story-20260830-212.netlify.app"),
+    ]
+    parts = []
+    for index, (label, url) in enumerate(links):
+        bottom = "16px" if index == len(links) - 1 else "8px"
+        parts.append(
+            f'<p style="margin:0 0 {bottom};"><a href="{url}" style="color:#075ca8;font-weight:700;text-decoration:none;">{label}</a></p>'
+        )
+    return "\n  ".join(parts)
+
+
+def signature_html() -> str:
+    return """<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:20px;font-family:Arial,Helvetica,sans-serif;color:#14314f;">
+    <tr>
+      <td style="padding:0 14px 0 0;vertical-align:middle;">
+        <a href="https://www.needmomentum.com/" style="text-decoration:none;">
+          <img src="https://momentum-workshop-pilot.netlify.app/assets/momentum-360-logo.png" width="72" height="72" alt="Momentum 360" style="display:block;width:72px;height:72px;border:0;border-radius:50%;">
+        </a>
+      </td>
+      <td style="padding:0 0 0 14px;vertical-align:middle;border-left:3px solid #e6a23c;">
+        <div style="font-size:17px;line-height:21px;font-weight:700;color:#075ca8;">Dillon Mohr</div>
+        <div style="margin-top:2px;font-size:13px;line-height:18px;font-weight:700;color:#d4a017;">AI Marketing Director <span style="color:#075ca8;">|</span> Account Manager</div>
+        <div style="margin-top:5px;font-size:13px;line-height:18px;">
+          <a href="tel:+18148735333" style="color:#d4a017;text-decoration:none;font-weight:700;">814.873.5333</a>
+        </div>
+        <div style="margin-top:2px;font-size:13px;line-height:18px;">
+          <a href="https://www.needmomentum.com/" style="color:#075ca8;text-decoration:none;font-weight:700;">needmomentum.com</a>
+        </div>
+        <div style="margin-top:4px;font-size:12px;line-height:17px;color:#8a94a0;">Momentum 360 · Philadelphia</div>
+      </td>
+    </tr>
+  </table>"""
 
 
 def html_message(row: dict) -> str:
-    name = escape(clean_text(row["business"]))
-    reason = escape(clean_text(row.get("localPlaceReason") or f"{row['business']} is an Erie name that should be easier to find online"))
+    hook = escape(hook_for(row))
     observation = escape(clean_text(row.get("liveSiteObservation") or f"I opened the live {row['business']} site this week."))
-    gap = escape(
-        clean_text(
-            row.get("aiGap")
-            or "What a visitor or an AI tool still has to assemble is the simple Erie version: what you do, who it is for, and why to call you first."
-        )
-    )
+    offer = escape(offer_for(row))
+    story = escape(story_block())
     url = row.get("officialUrl") or ""
     site = escape(host_label(url) or url)
     site_block = ""
@@ -57,44 +152,19 @@ def html_message(row: dict) -> str:
             f'<a href="{escape(url)}" style="color:#075ca8;font-weight:700;text-decoration:none;">{site}</a></p>'
         )
     return f"""<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#203346;max-width:620px;">
-  <p style="margin:0 0 16px;">Hi there,</p>
-  <p style="margin:0 0 16px;">I am Dillon Mohr. I grew up in Erie, and I am the AI Marketing Director at Momentum. I looked at {name} this week because {reason}.</p>
+  <p style="margin:0 0 16px;">Hey,</p>
+  <p style="margin:0 0 16px;">{hook}</p>
   <p style="margin:0 0 16px;">{observation}</p>
-  <p style="margin:0 0 16px;">{gap} That is the first thing I would fix, then wrap it in tours, film, and the rest of the front of house stack we already run.</p>
+  <p style="margin:0 0 16px;">{story}</p>
+  <p style="margin:0 0 16px;">{offer}</p>
   {site_block}
-  <p style="margin:0 0 16px;">If you want to see the company and the work, these are live:</p>
-  <p style="margin:0 0 8px;"><a href="https://www.needmomentum.com/" style="color:#075ca8;font-weight:700;text-decoration:none;">Need Momentum</a></p>
-  <p style="margin:0 0 8px;"><a href="https://www.needmomentum.com/services/" style="color:#075ca8;font-weight:700;text-decoration:none;">Need Momentum services</a></p>
-  <p style="margin:0 0 8px;"><a href="https://www.needmomentum.com/ai-overviews/" style="color:#075ca8;font-weight:700;text-decoration:none;">AI Overviews and tours</a></p>
-  <p style="margin:0 0 8px;"><a href="https://www.needmomentum.com/virtual-tours/" style="color:#075ca8;font-weight:700;text-decoration:none;">Virtual tours</a></p>
-  <p style="margin:0 0 8px;"><a href="https://www.momentumvirtualtours.com/" style="color:#075ca8;font-weight:700;text-decoration:none;">Momentum 360</a></p>
-  <p style="margin:0 0 8px;"><a href="https://www.momentumvirtualtours.com/services/" style="color:#075ca8;font-weight:700;text-decoration:none;">Tours, photo, video, web, ads, and SEO</a></p>
-  <p style="margin:0 0 8px;"><a href="https://need-momentum-signal-20260803.netlify.app" style="color:#075ca8;font-weight:700;text-decoration:none;">The moving Need Momentum homepage</a></p>
-  <p style="margin:0 0 16px;"><a href="https://momentum-360-scroll-story-20260830-212.netlify.app" style="color:#075ca8;font-weight:700;text-decoration:none;">A scroll driven film we just finished</a></p>
-  <p style="margin:0 0 16px;">If you want the free public audit on the current site, it is here: <a href="https://www.needmomentum.com/free-website-seo-audit/" style="color:#075ca8;font-weight:700;text-decoration:none;">needmomentum.com/free-website-seo-audit</a></p>
-  <p style="margin:0 0 16px;">I sent this from my email. Nobody else from the company is copied. If the 15 minute version would help, reply and I will walk you through it.</p>
+  <p style="margin:0 0 16px;">These are live:</p>
+  {proof_links_html()}
+  <p style="margin:0 0 16px;">Reply and I will walk you through the 15 minute version. Just me on this note. Nobody else from the company is copied.</p>
   <p style="margin:0;">Thanks,</p>
-  <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:20px;font-family:Arial,Helvetica,sans-serif;color:#14314f;">
-    <tr>
-      <td style="padding:0 14px 0 0;vertical-align:middle;">
-        <a href="https://www.needmomentum.com/" style="text-decoration:none;">
-          <img src="https://momentum-workshop-pilot.netlify.app/assets/momentum-360-logo.png" width="72" height="72" alt="Momentum 360" style="display:block;width:72px;height:72px;border:0;border-radius:50%;">
-        </a>
-      </td>
-      <td style="padding:0 0 0 14px;vertical-align:middle;border-left:3px solid #f2b84b;">
-        <div style="font-size:17px;line-height:21px;font-weight:700;color:#075ca8;">Dillon Mohr</div>
-        <div style="margin-top:2px;font-size:13px;line-height:18px;font-weight:700;color:#14314f;">AI Marketing Director <span style="color:#f2b84b;">|</span> Account Manager</div>
-        <div style="margin-top:5px;font-size:13px;line-height:18px;color:#526679;">
-          <a href="tel:+18148735333" style="color:#526679;text-decoration:none;">814.873.5333</a>
-          <span style="color:#f2b84b;"> | </span>
-          <a href="https://www.needmomentum.com/" style="color:#075ca8;text-decoration:none;font-weight:700;">needmomentum.com</a>
-        </div>
-        <div style="font-size:12px;line-height:17px;color:#728294;">Momentum 360 · Erie, Pennsylvania</div>
-      </td>
-    </tr>
-  </table>
+  {signature_html()}
   <div style="margin-top:22px;padding-top:12px;border-top:1px solid #dce5ec;font-size:11px;line-height:16px;color:#728294;">
-    <p style="margin:0 0 5px;">Dillon Mohr is sending this note himself. He is from Erie. Momentum Digital, 1635 Market St. #1601, Philadelphia, PA 19103.</p>
+    <p style="margin:0 0 5px;">Momentum Digital, 1635 Market St. #1601, Philadelphia, PA 19103.</p>
     <p style="margin:0;">If this is not useful, reply stop and I will remove you.</p>
   </div>
 </div>
@@ -103,51 +173,54 @@ def html_message(row: dict) -> str:
 
 def text_message(row: dict) -> str:
     name = clean_text(row["business"])
-    reason = clean_text(row.get("localPlaceReason") or f"{name} is an Erie name that should be easier to find online")
     observation = clean_text(row.get("liveSiteObservation") or f"I opened the live {name} site this week.")
-    gap = clean_text(
-        row.get("aiGap")
-        or "What a visitor or an AI tool still has to assemble is the simple Erie version: what you do, who it is for, and why to call you first."
-    )
     url = row.get("officialUrl") or ""
     lines = [
-        "Hi there,",
+        "Hey,",
         "",
-        f"I am Dillon Mohr. I grew up in Erie, and I am the AI Marketing Director at Momentum. I looked at {name} this week because {reason}.",
+        hook_for(row),
         "",
         observation,
         "",
-        f"{gap} That is the first thing I would fix, then wrap it in tours, film, and the rest of the front of house stack we already run.",
+        story_block(),
+        "",
+        offer_for(row),
         "",
     ]
     if url:
         lines.extend([f"Your current site is here: {url}", ""])
     lines.extend(
         [
+            "These are live:",
             "Need Momentum: https://www.needmomentum.com/",
             "Need Momentum services: https://www.needmomentum.com/services/",
             "AI Overviews and tours: https://www.needmomentum.com/ai-overviews/",
             "Virtual tours: https://www.needmomentum.com/virtual-tours/",
             "Momentum 360: https://www.momentumvirtualtours.com/",
-            "Tours, photo, video, web, ads, and SEO: https://www.momentumvirtualtours.com/services/",
-            "The moving Need Momentum homepage: https://need-momentum-signal-20260803.netlify.app",
             "A scroll driven film we just finished: https://momentum-360-scroll-story-20260830-212.netlify.app",
-            "Free public audit: https://www.needmomentum.com/free-website-seo-audit/",
             "",
-            "I sent this from my email. Nobody else from the company is copied. If the 15 minute version would help, reply and I will walk you through it.",
+            "Reply and I will walk you through the 15 minute version. Just me on this note. Nobody else from the company is copied.",
             "",
             "Thanks,",
             "Dillon Mohr",
             "AI Marketing Director | Account Manager",
-            "814.873.5333 | needmomentum.com",
-            "Momentum 360 · Erie, Pennsylvania",
+            "814.873.5333",
+            "needmomentum.com",
+            "Momentum 360 · Philadelphia",
         ]
     )
     return "\n".join(lines)
 
 
+def load_rows() -> list[dict]:
+    wave2 = LIST / "erie-wave2-sendable.json"
+    if wave2.exists():
+        return json.loads(wave2.read_text(encoding="utf-8"))
+    return json.loads((LIST / "erie-sendable.json").read_text(encoding="utf-8"))
+
+
 def main() -> None:
-    rows = json.loads((LIST / "erie-sendable.json").read_text(encoding="utf-8"))
+    rows = load_rows()
     unique: list[dict] = []
     seen_email: set[str] = set()
     seen_domain: set[str] = set()
@@ -185,11 +258,11 @@ def main() -> None:
         "fromMailbox": "dillonmohr8777@gmail.com",
         "cc": [],
         "count": len(messages),
-        "rule": "Erie hometown notes. Published emails only. No Pittsburgh. No Sean or Mac CC.",
+        "rule": "Human Erie hometown notes. Published emails only. Exact six proof links. Exact Philadelphia signature. No Sean or Mac CC.",
         "messages": messages,
     }
-    (ROOT / "erie-messages.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"count": len(messages), "emails": [m["email"] for m in messages[:10]]}, indent=2))
+    (ROOT / "erie-wave2-messages.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps({"count": len(messages), "emails": [m["email"] for m in messages[:12]]}, indent=2))
 
 
 if __name__ == "__main__":

@@ -2,8 +2,8 @@
 
 Client route: `momentum-360`  
 Prepared: 2026-09-02  
-Status: 41 Erie hometown notes sent from Dillon's Gmail on 2026-09-03  
-Sends: 41  
+Status: Wave 1 sent 41 stiff notes. Wave 2 is the human rewrite, 200 new Erie County sends.  
+Sends: 41 wave 1, 200 wave 2 ready  
 From mailbox: `dillonmohr8777@gmail.com`  
 CC: none  
 Brand pages: Need Momentum and Momentum 360 only  
