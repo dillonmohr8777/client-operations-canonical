@@ -2,14 +2,24 @@ from __future__ import annotations
 
 import argparse
 import json
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
-from zoneinfo import ZoneInfo
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 ROOT = Path(__file__).resolve().parent
 SENT_PATH = ROOT / "sent.jsonl"
 STATE_PATH = ROOT / "state.json"
 CAMPAIGN_PATH = ROOT / "campaign.json"
+
+
+def campaign_tz(name: str):
+    try:
+        return ZoneInfo(name)
+    except ZoneInfoNotFoundError:
+        local = datetime.now().astimezone().tzinfo
+        if local is not None:
+            return local
+        return timezone(timedelta(hours=-4))
 
 
 def main() -> int:
@@ -18,7 +28,7 @@ def main() -> int:
     args = parser.parse_args()
 
     campaign = json.loads(CAMPAIGN_PATH.read_text(encoding="utf-8"))
-    tz = ZoneInfo(str(campaign.get("timezone") or "America/New_York"))
+    tz = campaign_tz(str(campaign.get("timezone") or "America/New_York"))
     results = json.loads(Path(args.input).read_text(encoding="utf-8"))
     if not isinstance(results, list):
         raise SystemExit("input must be a JSON array")

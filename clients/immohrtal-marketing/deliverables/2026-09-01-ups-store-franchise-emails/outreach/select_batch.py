@@ -3,9 +3,9 @@ from __future__ import annotations
 import argparse
 import csv
 import json
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
-from zoneinfo import ZoneInfo
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 ROOT = Path(__file__).resolve().parent
 CAMPAIGN_PATH = ROOT / "campaign.json"
@@ -45,6 +45,16 @@ def render(template: str, values: dict[str, str]) -> str:
     return out
 
 
+def campaign_tz(name: str):
+    try:
+        return ZoneInfo(name)
+    except ZoneInfoNotFoundError:
+        local = datetime.now().astimezone().tzinfo
+        if local is not None:
+            return local
+        return timezone(timedelta(hours=-4))
+
+
 def warmup_limit(warmup: dict, day: str, requested: int) -> int:
     if not warmup.get("enabled"):
         return requested
@@ -70,7 +80,7 @@ def main() -> int:
     campaign = load_json(CAMPAIGN_PATH, {})
     warmup = load_json(WARMUP_PATH, {})
     requested = args.limit or int(campaign.get("dailyLimit") or 50)
-    tz = ZoneInfo(str(campaign.get("timezone") or "America/New_York"))
+    tz = campaign_tz(str(campaign.get("timezone") or "America/New_York"))
     day = args.date or datetime.now(tz).date().isoformat()
     limit = requested if args.ignore_warmup else warmup_limit(warmup, day, requested)
 
