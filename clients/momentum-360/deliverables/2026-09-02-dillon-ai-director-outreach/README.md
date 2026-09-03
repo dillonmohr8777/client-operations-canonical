@@ -2,8 +2,8 @@
 
 Client route: `momentum-360`  
 Prepared: 2026-09-02  
-Status: Wave 1 sent 41 stiff notes. Wave 2 is the human rewrite, 200 new Erie County sends.  
-Sends: 41 wave 1, 200 wave 2 ready  
+Status: Wave 1 sent 41 stiff notes. Wave 2 sent 200 human hometown notes from chamber published emails.  
+Sends: 41 wave 1, 200 wave 2  
 From mailbox: `dillonmohr8777@gmail.com`  
 CC: none  
 Brand pages: Need Momentum and Momentum 360 only  
