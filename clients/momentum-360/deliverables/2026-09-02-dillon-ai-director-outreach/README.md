@@ -2,8 +2,8 @@
 
 Client route: `momentum-360`  
 Prepared: 2026-09-02  
-Status: local plan and unsent drafts only  
-Sends: 0  
+Status: 41 Erie hometown notes sent from Dillon's Gmail on 2026-09-03  
+Sends: 41  
 From mailbox: `dillonmohr8777@gmail.com`  
 CC: none  
 Brand pages: Need Momentum and Momentum 360 only  
