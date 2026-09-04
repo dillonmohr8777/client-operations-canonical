@@ -1,7 +1,9 @@
 # Momentum Digital sales deck — 2026-09-04
 
 **Deliverable:** `output/Momentum-Digital-Sales-Deck.pptx` — 26 slides, fully editable,
-Arial throughout so it renders identically on any sales laptop.
+Arial throughout so it renders identically on any sales laptop. Every slide has a native
+PowerPoint fade transition and automatic, staggered content reveals. The animations remain
+editable in PowerPoint and do not depend on video playback or an external service.
 
 Origin: Mac Frederick asked Dillon in #ai-tech-news whether AI could build a better deck.
 His brief: the current deck is old and outdated, needs updating and refreshing, more
@@ -12,6 +14,9 @@ services, case studies and pricing, plus AEO and AI marketing.
 ```bash
 node build-deck.mjs
 ```
+
+`deck.save()` runs the reusable `client-deck` animation pass automatically. The current
+build verifies 26 transitioned slides and native automatic object effects before delivery.
 
 ```bash
 pwsh -File "$HOME/.claude/skills/client-deck/scripts/render-qa.ps1" -Pptx ./output/Momentum-Digital-Sales-Deck.pptx -OutDir ./tmp/render
