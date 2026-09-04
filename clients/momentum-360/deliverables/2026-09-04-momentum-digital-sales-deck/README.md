@@ -1,9 +1,15 @@
 # Momentum Digital sales deck — 2026-09-04
 
 **Deliverable:** `output/Momentum-Digital-Sales-Deck.pptx` — 26 slides, fully editable,
-Arial throughout so it renders identically on any sales laptop. Every slide has a native
-PowerPoint fade transition and automatic, staggered content reveals. The animations remain
-editable in PowerPoint and do not depend on video playback or an external service.
+Arial throughout so it renders identically on any sales laptop. Alongside it,
+`.pdf` for sending and `.mp4` for anywhere the motion should play on its own.
+
+The deck is choreographed, not just transitioned: 423 native PowerPoint entrance effects,
+one per shape, chosen by what that shape is. Panels wipe in from the edge they bleed off,
+hero figures pop, hairlines draw, copy rises, and page numbers never move. Structure lands
+at zero delay so each slide is composed the moment it arrives; content then staggers 55ms
+in reading order. It is all native PowerPoint timing, so the deck stays editable and plays
+offline with nothing installed.
 
 Origin: Mac Frederick asked Dillon in #ai-tech-news whether AI could build a better deck.
 His brief: the current deck is old and outdated, needs updating and refreshing, more
@@ -15,8 +21,15 @@ services, case studies and pricing, plus AEO and AI marketing.
 node build-deck.mjs
 ```
 
-`deck.save()` runs the reusable `client-deck` animation pass automatically. The current
-build verifies 26 transitioned slides and native automatic object effects before delivery.
+`deck.save()` runs the `client-deck` choreographer automatically and reports what it did.
+The current build produces 26 transitioned slides and 423 entrance effects.
+
+```bash
+pwsh -File "$HOME/.claude/skills/client-deck/scripts/to-pdf.ps1"   -Pptx ./output/Momentum-Digital-Sales-Deck.pptx
+pwsh -File "$HOME/.claude/skills/client-deck/scripts/to-video.ps1" -Pptx ./output/Momentum-Digital-Sales-Deck.pptx -Height 1080
+```
+
+The MP4 is not committed: it is 20 MB and regenerates from the pptx in a couple of minutes.
 
 ```bash
 pwsh -File "$HOME/.claude/skills/client-deck/scripts/render-qa.ps1" -Pptx ./output/Momentum-Digital-Sales-Deck.pptx -OutDir ./tmp/render
