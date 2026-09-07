@@ -6,7 +6,7 @@ Nothing in this folder was built in Claude Design. The HTML files are wireframes
 
 ## Open this first
 
-Drop [CLAUDE-CODE-HANDOFF.md](CLAUDE-CODE-HANDOFF.md) into Claude Code. Model pick is in [MODELS.md](MODELS.md): Sonnet 5 daily, one Opus 5 pass.
+Drop [CLAUDE-CODE-HANDOFF.md](CLAUDE-CODE-HANDOFF.md) into Claude Code. Model pick is in [MODELS.md](MODELS.md): Sonnet 5 daily if the picker has it, Sonnet 4.6 if not, one optional Opus 5 pass. You do not need Opus or Fable for Friday.
 
 Then the seeds, if Claude Code needs a file to rebuild:
 

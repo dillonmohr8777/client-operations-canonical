@@ -4,7 +4,7 @@ Drop this file into Claude Code. This pack is prompts, facts, and wireframe seed
 
 Internal. Proposed. No send, post, deploy, or account change.
 
-**Model:** Sonnet 5 for almost everything. One Opus 5 pass on Book 01 or the Snapshot. See `MODELS.md`.
+**Model:** Sonnet 5 for almost everything. Sonnet 4.6 if the picker has no 5. One optional Opus 5 pass on Book 01 or the Snapshot. Do not use Fable. Full benches and why: `MODELS.md`.
 
 **Working folder:** `clients/momentum-360/deliverables/2026-09-07-ai-division-claude-design/`
 
