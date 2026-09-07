@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Momentum AI — Command Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito+Sans:ital,wght@0,400;0,600;0,800;1,400&family=Caveat:wght@700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --m-paper: #fbfaf7;
+  --m-surface: #eceae4;
+  --m-ink: #14181b;
+  --m-muted: #565f64;
+  --m-brand: #1e73be;
+  --m-on-brand: #ffffff;
+  --m-deep: #0e1a22;
+  --m-nav: #22303a;
+  --m-on-deep: #f2f6f8;
+  --m-on-deep-muted: #b4c3cc;
+  --m-accent: #f58320;
+  --m-on-accent: #1a1208;
+  --m-accent-ink: #96490b;
+  --m-accent-on-deep: #f9a03f;
+  --m-danger: #b3261e;
+  --m-success: #16703c;
+  --m-line: #dcd9d2;
+  --m-line-strong: #767d83;
+  --m-focus: #1e73be;
+  --m-focus-halo: #ffffff;
+  --m-font-display: "Archivo Black", "Anton", "Arial Black", system-ui, sans-serif;
+  --m-font-text: "Nunito Sans", system-ui, sans-serif;
+  --m-font-script: "Caveat", "Segoe Script", cursive;
+  --m-font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --m-r-sm: 6px;
+  --m-r-md: 12px;
+  --m-r-lg: 18px;
+  --m-r-pill: 999px;
+  --m-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  background: var(--m-deep);
+  color: var(--m-on-deep);
+  font-family: var(--m-font-text);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--m-focus-halo), 0 0 0 5px var(--m-focus);
+}
+.app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+.rail {
+  background: var(--m-nav);
+  padding: 1.25rem 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+.lockup { display: flex; align-items: baseline; gap: 0.45rem; }
+.lockup b {
+  font-family: var(--m-font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.lockup span {
+  color: var(--m-accent-on-deep);
+  font-family: var(--m-font-display);
+  font-size: 0.95rem;
+}
+.banner {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--m-on-accent);
+  background: var(--m-accent);
+  border-radius: var(--m-r-pill);
+  padding: 0.35rem 0.65rem;
+  display: inline-block;
+}
+nav { display: flex; flex-direction: column; gap: 0.25rem; }
+nav button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--m-on-deep-muted);
+  text-align: left;
+  font: 800 0.78rem/1.2 var(--m-font-text);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.7rem 0.75rem;
+  border-radius: var(--m-r-sm);
+  cursor: pointer;
+}
+nav button[aria-current="page"] {
+  background: var(--m-deep);
+  color: var(--m-on-deep);
+}
+.main { padding: 1.5rem clamp(1.25rem, 4vw, 3rem) 4rem; }
+.view { display: none; max-width: 1080px; }
+.view.is-on { display: block; }
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--m-accent-on-deep);
+  margin: 0 0 0.75rem;
+}
+h1, h2, h3 {
+  font-family: var(--m-font-display);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.96;
+  margin: 0;
+}
+h1 { font-size: clamp(2.4rem, 6vw, 4.6rem); }
+h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); }
+h3 { font-size: 1.15rem; }
+.script {
+  font-family: var(--m-font-script);
+  font-size: 1.7rem;
+  text-transform: none;
+  color: var(--m-accent-on-deep);
+  margin: 0 0 0.35rem;
+}
+.lead { font-size: 1.2rem; max-width: 62ch; color: var(--m-on-deep-muted); }
+.muted { color: var(--m-on-deep-muted); }
+.grid { display: grid; gap: 1rem; }
+.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.card {
+  background: #12202a;
+  border: 1px solid #2a3b47;
+  border-radius: var(--m-r-md);
+  padding: 1.1rem 1.15rem;
+}
+.card h3 { margin-bottom: 0.45rem; }
+.num {
+  font-family: var(--m-font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--m-accent-on-deep);
+}
+.pill, .seg button, .btn {
+  border: 0;
+  border-radius: var(--m-r-pill);
+  cursor: pointer;
+  font: 800 0.78rem/1 var(--m-font-text);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.seg { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0; }
+.seg button {
+  background: #12202a;
+  color: var(--m-on-deep-muted);
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #2a3b47;
+}
+.seg button[aria-pressed="true"] {
+  background: var(--m-accent);
+  color: var(--m-on-accent);
+  border-color: var(--m-accent);
+}
+.btn {
+  background: var(--m-accent);
+  color: var(--m-on-accent);
+  padding: 0.8rem 1.1rem;
+  display: inline-block;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--m-on-deep);
+  border: 1px solid #2a3b47;
+}
+.tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--m-on-accent);
+  background: var(--m-accent);
+  border-radius: var(--m-r-pill);
+  padding: 0.25rem 0.55rem;
+}
+.ok { color: #8ad4a6; }
+.bad { color: #f0a8a3; }
+input, select {
+  width: 100%;
+  background: var(--m-deep);
+  color: var(--m-on-deep);
+  border: 1px solid var(--m-line-strong);
+  border-radius: var(--m-r-sm);
+  padding: 0.7rem 0.8rem;
+  font: 400 1rem var(--m-font-text);
+}
+.mono { font-family: var(--m-font-mono); }
+.machine { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
+.stage { position: relative; }
+.stage::after {
+  content: "→";
+  position: absolute;
+  right: -0.55rem;
+  top: 1.1rem;
+  color: var(--m-accent-on-deep);
+}
+.stage:last-child::after { content: ""; }
+.ebook p, .pos p, .lane p { max-width: 68ch; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th, td { text-align: left; padding: 0.55rem 0.4rem; border-bottom: 1px solid #2a3b47; }
+th { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--m-on-deep-muted); }
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; }
+  .rail { position: static; height: auto; }
+  nav { flex-direction: row; flex-wrap: wrap; }
+  .g2, .g3, .g4, .machine { grid-template-columns: 1fr; }
+  .stage::after { content: ""; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="rail">
+    <div>
+      <div class="lockup"><b>Momentum</b><span>AI</span></div>
+      <p class="banner">Internal · Proposed</p>
+    </div>
+    <nav aria-label="Studio views">
+      <button type="button" data-view="pos" aria-current="page">01 Positioning</button>
+      <button type="button" data-view="lanes">02 Four lanes</button>
+      <button type="button" data-view="machine">03 Mac's machine</button>
+      <button type="button" data-view="snap">04 Snapshot</button>
+      <button type="button" data-view="econ">05 Economics</button>
+      <button type="button" data-view="dec">06 Decisions</button>
+      <button type="button" data-view="vid">07 Videos</button>
+      <button type="button" data-view="book">08 AEO ebook</button>
+    </nav>
+    <p class="muted" style="font-size:0.8rem;margin:auto 0 0">Friday 11 Sep 2026<br>11:00–11:30 ET<br>Dillon Mohr Monthly 1v1<br><br>
+      <a href="ebook-ai-marketing.html" style="color:#f9a03f">Book 01</a> ·
+      <a href="ebook-get-found.html" style="color:#f9a03f">Book 02</a> ·
+      <a href="diagnostic.html" style="color:#f9a03f">Diagnostic</a>
+    </p>
+  </aside>
+
+  <main class="main">
+    <section id="pos" class="view is-on pos" aria-labelledby="pos-h">
+      <p class="script">need momentum?</p>
+      <p class="eyebrow">Positioning brief · for Claude Design</p>
+      <h1 id="pos-h">Four lanes.<br>One machine.</h1>
+      <p class="lead">Momentum built the machine. Now we build yours. For established local service businesses that already have demand but lose it to unread sites, slow follow-up, and disconnected tools.</p>
+      <div class="grid g2" style="margin-top:1.5rem">
+        <article class="card">
+          <p class="num">ICP</p>
+          <h3>Who we sell first</h3>
+          <p>Philadelphia-region service owners already tied to Momentum. Named buyer. Live site. Existing lead source. One repeated costly handoff. An employee owns adoption.</p>
+          <p class="muted">Not first: cold Erie lists, healthcare or legal case records, ranking guarantees, no operator.</p>
+        </article>
+        <article class="card">
+          <p class="num">OPENER THAT WORKS</p>
+          <h3>Audit, not blast</h3>
+          <p>241 cold emails, 0 verified human replies. Two hand-built audits, two quotes. The Snapshot is the product Mac asked for on August 12.</p>
+        </article>
+      </div>
+      <h2 style="margin:2rem 0 1rem">Five-value map</h2>
+      <div class="grid g2">
+        <article class="card"><p class="num">01</p><h3>Get found by AI</h3><p>Crawlers can read the site. The business is typed as what it is. Twenty buyer questions, measured. No ranking promise.</p></article>
+        <article class="card"><p class="num">02</p><h3>See it in five days</h3><p>A working prototype from the client's verified logo and first-party facts. A prototype is a prototype.</p></article>
+        <article class="card"><p class="num">03</p><h3>Content that moves</h3><p>Monthly film and stills. Rights ledger. Logo never model-drawn. Credits at cost.</p></article>
+        <article class="card"><p class="num">04</p><h3>Every lead has a receipt</h3><p>One intake, one destination, dedupe, exception queue, reply draft, thirty named cases.</p></article>
+      </div>
+      <article class="card" style="margin-top:1rem">
+        <p class="num">05</p>
+        <h3>Hours per client is an acceptance metric</h3>
+        <p>Every offer ships with its agent. An AI division whose product is Dillon's hours is not an AI division.</p>
+      </article>
+      <div class="seg" role="tablist" aria-label="Elevator pitches">
+        <button type="button" data-pitch="short" aria-pressed="true">Short</button>
+        <button type="button" data-pitch="med">Medium</button>
+        <button type="button" data-pitch="long">Long</button>
+      </div>
+      <article class="card" id="pitch">We make a service business easier to find, faster to answer, and simpler to run. Then we show you what changed.</article>
+    </section>
+
+    <section id="lanes" class="view lane" aria-labelledby="lanes-h">
+      <p class="eyebrow">Mac's menu · July 27 and August 3</p>
+      <h1 id="lanes-h">The four lanes</h1>
+      <p class="lead">Do not rename them. Put one flagship and one agent behind each.</p>
+      <div class="seg" id="lane-seg"></div>
+      <article class="card" id="lane-card"></article>
+    </section>
+
+    <section id="machine" class="view" aria-labelledby="mac-h">
+      <p class="eyebrow">August 4 · #ai-tech-news</p>
+      <h1 id="mac-h">Mac's machine</h1>
+      <p class="lead">List. Grader. Outreach. Sale. This is the operating system he already drew. Cold outreach is paused until a Snapshot exists and a relationship owner approves.</p>
+      <div class="machine" style="margin-top:1.5rem">
+        <article class="card stage"><p class="num">01 List</p><h3>Database</h3><p>Name, website, email, social. Existing sheets and Apollo stay inputs. Not a second CRM.</p></article>
+        <article class="card stage"><p class="num">02 Grader</p><h3>Three observations</h3><p>Website. SEO / AEO. Social. No fake 100-point score. The Snapshot is the grader.</p></article>
+        <article class="card stage"><p class="num">03 Outreach</p><h3>After the audit</h3><p>Email + DM + voicemail only on approved names. 241 / 0 taught the lesson.</p></article>
+        <article class="card stage"><p class="num">04 Sale</p><h3>Jesse then Dillon</h3><p>Jesse books and proposes. Dillon diagnoses. Mac prices.</p></article>
+      </div>
+      <article class="card" style="margin-top:1rem">
+        <p class="num">PROPOSED SPLIT · NOT AGREED</p>
+        <h3>40 / 40 / 20</h3>
+        <p>40% Dillon — AI, Dev, Backend (List + Grader). 40% Jesse — Selling (Outreach + Sale). 20% Momentum — brand, admin, billing, legal. Friday still writes compensation down. D03.</p>
+      </article>
+    </section>
+
+    <section id="snap" class="view" aria-labelledby="snap-h">
+      <p class="eyebrow">Free opener · Mac August 12</p>
+      <h1 id="snap-h">AI Search Snapshot</h1>
+      <p class="lead">A branded three-to-five page audit from one URL. This studio walks already-run examples. It does not live-crawl and it does not invent a grade.</p>
+      <div class="seg" id="snap-seg">
+        <button type="button" data-domain="needmomentum.com" aria-pressed="true">needmomentum.com</button>
+        <button type="button" data-domain="momentumvirtualtours.com">momentumvirtualtours.com</button>
+        <button type="button" data-domain="faganpainting.com">faganpainting.com</button>
+      </div>
+      <div class="grid g2" id="snap-out"></div>
+    </section>
+
+    <section id="econ" class="view" aria-labelledby="econ-h">
+      <p class="eyebrow">Assumptions, not a P&amp;L</p>
+      <h1 id="econ-h">Economics lab</h1>
+      <p class="lead">$75 loaded labor. 10% sales. $500 fixed. Tools $75 / $100 / $150. Full collection. Known answers must hold: one of each = $1,125. Double hours = −$75.</p>
+      <div class="grid g3" style="margin-top:1rem">
+        <label>AEO clients<input id="n-aeo" type="number" min="0" value="1"></label>
+        <label>Motion clients<input id="n-mot" type="number" min="0" value="1"></label>
+        <label>Lead Ops clients<input id="n-ops" type="number" min="0" value="1"></label>
+        <label>Hours multiplier
+          <select id="mult"><option value="1">1× hours</option><option value="2">2× hours</option></select>
+        </label>
+        <label>Spec builds this month<input id="n-spec" type="number" min="0" value="0"></label>
+      </div>
+      <div class="grid g3" style="margin-top:1rem" id="econ-out"></div>
+    </section>
+
+    <section id="dec" class="view" aria-labelledby="dec-h">
+      <p class="eyebrow">Leave the room with these marked</p>
+      <h1 id="dec-h">Friday decisions</h1>
+      <p class="lead">Twenty open items. Local marks only. Pin D01, D02, D03, D09, D10, D19.</p>
+      <p class="muted" id="dec-tally"></p>
+      <div class="grid g2" id="dec-list" style="margin-top:1rem"></div>
+    </section>
+
+    <section id="vid" class="view" aria-labelledby="vid-h">
+      <p class="eyebrow">Use what exists</p>
+      <h1 id="vid-h">Video library</h1>
+      <p class="lead">About 17 finished pieces on Dillon's side. 50+ objects on the Higgsfield account. Five named division films are already specified. Do not render a new batch before Friday unless a plate is missing.</p>
+      <table>
+        <thead><tr><th>ID</th><th>Job</th><th>Format</th><th>Friday?</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">F01</td><td>Division opener</td><td>16:9 · 16s</td><td>Minimum</td></tr>
+          <tr><td class="mono">F02</td><td>AEO / GEO · Get found by AI</td><td>9:16 · 12s</td><td>If composited</td></tr>
+          <tr><td class="mono">F03</td><td>AI Design · Prototype in a week</td><td>9:16 · 12s</td><td>If composited</td></tr>
+          <tr><td class="mono">F04</td><td>AI Marketing · Content that moves</td><td>9:16 · 12s</td><td>If composited</td></tr>
+          <tr><td class="mono">F05</td><td>AI Automation · Attribution spine</td><td>9:16 · 12s</td><td>If composited</td></tr>
+          <tr><td class="mono">Cards</td><td>36 title-card stills already built</td><td>16:9 and 9:16</td><td>Yes</td></tr>
+        </tbody>
+      </table>
+      <p class="muted" style="margin-top:1rem">Logo never touches a model. Composite the verified wordmark locally. Reject cyan, yellow, faces, and generated type.</p>
+    </section>
+
+    <section id="book" class="view ebook" aria-labelledby="book-h">
+      <p class="eyebrow">Chapter 1 · interactive ebook</p>
+      <h1 id="book-h">Get found by AI</h1>
+      <p class="script">A field guide for Philadelphia service businesses</p>
+      <p class="lead">If the systems that write the answer cannot fetch the page, the business cannot appear. That is the whole first chapter.</p>
+      <div class="grid g2" style="margin-top:1.25rem">
+        <article class="card"><p class="num">01</p><h3>The reader changed</h3><p>Buyers still search. A growing share of the answer is written by a model that cites sources it could actually read.</p></article>
+        <article class="card"><p class="num">02</p><h3>Crawlers are not Googlebot</h3><p>GPTBot, PerplexityBot, ClaudeBot, and Google-Extended need an allow list. A truncated robots.txt is enough to disappear.</p></article>
+        <article class="card"><p class="num">03</p><h3>Be the thing you are</h3><p>Fagan Painting was typed as a Product. Entity and schema have to match the business, not the theme.</p></article>
+        <article class="card"><p class="num">04</p><h3>Answer the questions buyers ask</h3><p>Freeze twenty. Put the answer on a visible page. Repeat the measurement monthly. Three observations per question. Report the range.</p></article>
+      </div>
+      <article class="card" style="margin-top:1rem">
+        <p class="num">TRY IT</p>
+        <h3>How an answer engine wants the page</h3>
+        <label>Buyer question
+          <input id="q" value="best marketing agency in Philadelphia">
+        </label>
+        <div id="q-out" style="margin-top:0.8rem"></div>
+      </article>
+      <p class="muted">Observed mention, verified referral, and validated outcomes stay three separate numbers. No ranking guarantee.</p>
+    </section>
+  </main>
+</div>
+<script>
+const pitches = {
+  short: "We make a service business easier to find, faster to answer, and simpler to run. Then we show you what changed.",
+  med: "Momentum has served over a thousand Philadelphia-region businesses since 2015. The AI division does not sell a chatbot. It sells four finished machines already on the site. You pick one problem. We implement it, test it, and leave an operator who can run it.",
+  long: "Most agencies will sell you a tool subscription and a slide. Momentum AI sells a verified process. Mac already put the four lanes on needmomentum.com. Dillon's job is to put one flagship and one agent behind each lane, start with a free branded Snapshot on a relationship-approved account, and refuse any promise we cannot measure. The first cohort is three paid pilots."
+};
+const lanes = {
+  aeo: {
+    n: "01",
+    name: "AEO / GEO",
+    line: "Get found by AI",
+    flag: "AI Search Readiness sprint",
+    price: "PROPOSED $1,500 + $750/mo · 90 days",
+    outcome: "Within 90 days the systems that write AI answers can read the site, know what the business is, and are measured monthly on twenty frozen buyer questions.",
+    agent: "The Snapshot generator, rerun monthly, plus readiness checks after every deploy.",
+    hours: "Under 4 hours/month by month three, measured.",
+    next: "AI Visibility monitoring · PROPOSED $500/mo"
+  },
+  design: {
+    n: "02",
+    name: "AI Design",
+    line: "Prototype in a week",
+    flag: "Spec build",
+    price: "PROPOSED $3,500 fixed",
+    outcome: "Five working days after assets arrive: a working site, dashboard, or film from real logo, real photos, first-party facts.",
+    agent: "Radar, deck, and film engines. Dillon directs and QAs.",
+    hours: "Under 24 hours per build, measured.",
+    next: "Closed-loop site optimization · PROPOSED $1,000/mo"
+  },
+  mkt: {
+    n: "03",
+    name: "AI Marketing",
+    line: "Content that moves",
+    flag: "Motion content system",
+    price: "PROPOSED $1,500 + $1,250/mo + credits at cost",
+    outcome: "A short brand film and stills every month, in the client's identity, rights ledger attached. Logo never model-drawn.",
+    agent: "Higgsfield plates. Local composite. Automatic QA frames.",
+    hours: "Under 6 hours/month, measured.",
+    next: "ChatGPT Ads management · PROPOSED $500/mo · already sold once"
+  },
+  auto: {
+    n: "04",
+    name: "AI Automation",
+    line: "The attribution spine",
+    flag: "Lead Operations agent",
+    price: "PROPOSED $3,500 + $1,500/mo",
+    outcome: "A named employee can account for every accepted lead from one intake to one destination, including duplicates and exceptions.",
+    agent: "Validation, idempotency, reply draft, exception queue, destination readback.",
+    hours: "Under 6 hours/month. Humans touch the exception queue.",
+    next: "Attribution Spine · PROPOSED $3,500 + $1,000/mo"
+  }
+};
+const snaps = {
+  "needmomentum.com": {
+    host: "SiteGround challenge observed. AI-crawler state not claimed from a datacenter IP.",
+    entity: "Marketing agency. Keep typed as LocalBusiness / ProfessionalService, not Product.",
+    obs: ["Canonical and sitemap present.", "AI menu and four child pages are the public structure Mac asked for.", "Twenty-question baseline is still human-run and pending for the Friday demo."]
+  },
+  "momentumvirtualtours.com": {
+    host: "Same host family. Report host challenge separately from crawler allow-list.",
+    entity: "Virtual tour / media production. Do not collapse into the Digital parent.",
+    obs: ["Do not borrow the 360 cyan/yellow look for division collateral.", "Useful as a second Snapshot vantage, not as the division homepage.", "Keep brands separate in every report."]
+  },
+  "faganpainting.com": {
+    host: "September finding: site was not extractable by AI crawlers.",
+    entity: "Painting company typed as Product in Search Console. That is the first-order fix.",
+    obs: ["Truncated robots rule and no AI-bot allow list.", "AEO/GEO add-on was proposed at $500/month for 90 days.", "Fagan AEO delivery moved to Phil on September 4 so Dillon can build the division."]
+  }
+};
+const decisions = [
+  ["D01", "Charter", "Four lanes under Momentum Digital?", "Yes. One flagship each."],
+  ["D02", "Hours", "15h/week protected?", "10 delivery + 5 coordination."],
+  ["D03", "Pay", "Capacity plus incentive, or 40/40/20?", "Write it down. Do not imply it."],
+  ["D04", "AEO price", "$1,500 + $750/mo?", "Anchored to Fagan $500 and GT Clinic $900."],
+  ["D05", "Spec price", "$3,500 fixed?", "Puttery $2,500–$3,500; design package $3,000."],
+  ["D06", "Motion / Ops", "$1,500+$1,250 and $3,500+$1,500?", "Credits at cost on Motion."],
+  ["D07", "Support", "Business-hours ack, named backup?", "Required before signature."],
+  ["D08", "Engines", "Which two for the baseline?", "Chosen at kickoff. Human-run."],
+  ["D09", "Accounts", "Up to five relationship-approved names?", "Week of Sep 14."],
+  ["D10", "Outbound", "Pause cold email? Audit-led reporting?", "241 / 0. Two audit quotes."],
+  ["D11", "Deck", "Sign off claims and addendum?", "Blocks any external deck."],
+  ["D12", "Media rights", "Which original media may be reused?", "Missing rights = hold."],
+  ["D13", "IP / exit", "Who owns accounts, code, config?", "In the proposal before sale."],
+  ["D14", "Cancel", "Renewal and data return terms?", "Written into the agreement."],
+  ["D15", "Training", "Provider data-training verified?", "Verify before real customer data."],
+  ["D16", "Date", "Friday Sep 11 still the meeting?", "11:00–11:30 ET."],
+  ["D17", "Sites", "Any site-count in collateral?", "No. Selector run was blocked."],
+  ["D18", "Budget", "Tool spend authority?", "Resolve Friday."],
+  ["D19", "Name", "Momentum + AI lockup, no new logo?", "Dillon's call. Mac owns brand."],
+  ["D20", "Credits", "Pass through at cost on Motion?", "Reverify live rates."]
+];
+
+function show(id) {
+  document.querySelectorAll(".view").forEach((el) => el.classList.toggle("is-on", el.id === id));
+  document.querySelectorAll("nav button").forEach((btn) => {
+    btn.setAttribute("aria-current", btn.dataset.view === id ? "page" : "false");
+  });
+}
+document.querySelectorAll("nav button").forEach((btn) => {
+  btn.addEventListener("click", () => show(btn.dataset.view));
+});
+document.querySelectorAll("[data-pitch]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("[data-pitch]").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+    document.getElementById("pitch").textContent = pitches[btn.dataset.pitch];
+  });
+});
+
+const laneSeg = document.getElementById("lane-seg");
+const laneCard = document.getElementById("lane-card");
+Object.entries(lanes).forEach(([key, lane], i) => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.textContent = lane.n + " " + lane.name;
+  b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+  b.addEventListener("click", () => {
+    [...laneSeg.children].forEach((c) => c.setAttribute("aria-pressed", String(c === b)));
+    renderLane(lane);
+  });
+  laneSeg.appendChild(b);
+});
+function renderLane(lane) {
+  laneCard.innerHTML = `<p class="num">${lane.n} ${lane.name}</p><h3>${lane.line}</h3><p><span class="tag">${lane.flag}</span> <span class="muted">${lane.price}</span></p><p>${lane.outcome}</p><p><b>Agent.</b> ${lane.agent}</p><p><b>Hours target.</b> ${lane.hours}</p><p class="muted">Roadmap: ${lane.next}</p>`;
+}
+renderLane(lanes.aeo);
+
+function renderSnap(domain) {
+  const s = snaps[domain];
+  document.getElementById("snap-out").innerHTML = `
+    <article class="card"><p class="num">HOST</p><h3>${domain}</h3><p>${s.host}</p></article>
+    <article class="card"><p class="num">ENTITY</p><h3>What the business is</h3><p>${s.entity}</p></article>
+    <article class="card"><p class="num">THREE OBSERVATIONS</p><ul>${s.obs.map((o) => `<li>${o}</li>`).join("")}</ul></article>
+    <article class="card"><p class="num">NEXT STEP</p><h3>Suggested, not promised</h3><p>Run the readiness sprint on the first-order blockers. Do not quote a ranking. Book 20 minutes with the relationship owner.</p></article>`;
+}
+document.querySelectorAll("#snap-seg button").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#snap-seg button").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+    renderSnap(btn.dataset.domain);
+  });
+});
+renderSnap("needmomentum.com");
+
+function money(n) {
+  const sign = n < 0 ? "−" : "";
+  return sign + "$" + Math.abs(Math.round(n)).toLocaleString("en-US");
+}
+function econ() {
+  const a = +document.getElementById("n-aeo").value || 0;
+  const m = +document.getElementById("n-mot").value || 0;
+  const o = +document.getElementById("n-ops").value || 0;
+  const spec = +document.getElementById("n-spec").value || 0;
+  const mult = +document.getElementById("mult").value;
+  const rev = a * 750 + m * 1250 + o * 1500 + spec * 3500;
+  const hours = (a * 4 + m * 6 + o * 6) * mult + spec * 24;
+  const labor = hours * 75;
+  const tools = a * 75 + m * 100 + o * 150 + spec * 100;
+  const sales = rev * 0.1;
+  const contrib = rev - labor - tools - sales - 500;
+  document.getElementById("econ-out").innerHTML = `
+    <article class="card"><p class="num">REVENUE</p><h3 class="mono">${money(rev)}</h3><p class="muted">${hours} delivery hours</p></article>
+    <article class="card"><p class="num">CONTRIBUTION</p><h3 class="mono ${contrib < 0 ? "bad" : "ok"}">${money(contrib)}</h3><p class="muted">After labor, tools, 10% sales, $500 fixed</p></article>
+    <article class="card"><p class="num">CHECK</p><p>One of each at 1× must read $1,125. Same at 2× must read −$75. If not, the controls are wrong.</p></article>`;
+}
+["n-aeo", "n-mot", "n-ops", "n-spec", "mult"].forEach((id) => {
+  document.getElementById(id).addEventListener("input", econ);
+});
+econ();
+
+const decList = document.getElementById("dec-list");
+const marks = {};
+function tally() {
+  const yes = Object.values(marks).filter((v) => v === "yes").length;
+  const later = Object.values(marks).filter((v) => v === "later").length;
+  const change = Object.values(marks).filter((v) => v === "change").length;
+  document.getElementById("dec-tally").textContent = `${yes} marked yes · ${change} change · ${later} later · ${20 - yes - change - later} still open`;
+}
+decisions.forEach(([id, topic, q, proposed]) => {
+  const el = document.createElement("article");
+  el.className = "card";
+  el.innerHTML = `<p class="num">${id} · ${topic}</p><h3>${q}</h3><p>${proposed}</p>
+    <div class="seg">
+      <button type="button" data-m="yes">Yes</button>
+      <button type="button" data-m="change">Change</button>
+      <button type="button" data-m="later">Later</button>
+    </div>`;
+  el.querySelectorAll("button").forEach((b) => {
+    b.addEventListener("click", () => {
+      marks[id] = b.dataset.m;
+      el.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      tally();
+    });
+  });
+  decList.appendChild(el);
+});
+tally();
+
+const q = document.getElementById("q");
+const qOut = document.getElementById("q-out");
+function renderQ() {
+  const text = q.value.trim() || "best marketing agency in Philadelphia";
+  qOut.innerHTML = `<p class="muted">Labeled example. Not a live engine result.</p>
+    <p><b>Entity the page must assert.</b> A Philadelphia marketing agency with a named location and service set.</p>
+    <p><b>Visible answer.</b> A short paragraph that answers “${text}” in plain language on a real page, not only in meta.</p>
+    <p><b>FAQ pair.</b> The same question and answer repeated in visible FAQ markup.</p>
+    <p><b>Source page.</b> One canonical URL the model can fetch. If robots block it, this structure does not matter.</p>`;
+}
+q.addEventListener("input", renderQ);
+renderQ();
+</script>
+</body>
+</html>

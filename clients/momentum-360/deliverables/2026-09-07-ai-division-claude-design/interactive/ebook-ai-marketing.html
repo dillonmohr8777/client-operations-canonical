@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>How AI changed marketing for local businesses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito+Sans:wght@400;600;800&family=Caveat:wght@700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #fbfaf7; --surface: #eceae4; --ink: #14181b; --muted: #565f64;
+  --brand: #1e73be; --deep: #0e1a22; --nav: #22303a; --on: #f2f6f8;
+  --on-muted: #b4c3cc; --accent: #f58320; --on-accent: #1a1208;
+  --accent-ink: #96490b; --accent-on: #f9a03f; --line: #2a3b47;
+  --display: "Archivo Black", system-ui, sans-serif;
+  --text: "Nunito Sans", system-ui, sans-serif;
+  --script: "Caveat", cursive; --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body { background: var(--deep); color: var(--on); font: 400 1.05rem/1.6 var(--text); }
+:where(a, button, input, select):focus-visible { outline: none; box-shadow: 0 0 0 2px #fff, 0 0 0 5px var(--brand); }
+.app { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+.rail { background: var(--nav); padding: 1.2rem 1rem 2rem; position: sticky; top: 0; height: 100vh; }
+.lockup { font-family: var(--display); text-transform: uppercase; letter-spacing: .04em; }
+.lockup span { color: var(--accent-on); }
+.banner { display: inline-block; margin: .6rem 0 1.2rem; background: var(--accent); color: var(--on-accent); font: 800 .68rem/1 var(--text); letter-spacing: .12em; text-transform: uppercase; border-radius: 999px; padding: .35rem .65rem; }
+nav { display: flex; flex-direction: column; gap: .2rem; }
+nav button { appearance: none; border: 0; background: transparent; color: var(--on-muted); text-align: left; font: 800 .72rem/1.25 var(--text); letter-spacing: .08em; text-transform: uppercase; padding: .55rem .6rem; border-radius: 6px; cursor: pointer; }
+nav button[aria-current="page"] { background: var(--deep); color: var(--on); }
+.main { padding: 1.5rem clamp(1.2rem, 4vw, 3rem) 4rem; max-width: 860px; }
+.ch { display: none; }
+.ch.is-on { display: block; }
+.script { font-family: var(--script); font-size: 1.6rem; color: var(--accent-on); margin: 0 0 .3rem; }
+.eye { font: 800 .7rem/1 var(--text); letter-spacing: .14em; text-transform: uppercase; color: var(--accent-on); }
+h1, h2 { font-family: var(--display); text-transform: uppercase; letter-spacing: -.02em; line-height: .98; margin: .4rem 0 1rem; }
+h1 { font-size: clamp(2.2rem, 5.5vw, 4.2rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); }
+.lead { font-size: 1.18rem; color: var(--on-muted); max-width: 58ch; }
+.card { background: #12202a; border: 1px solid var(--line); border-radius: 12px; padding: 1.05rem 1.1rem; margin: 1rem 0; }
+.grid { display: grid; gap: .8rem; }
+.g2 { grid-template-columns: 1fr 1fr; }
+.g3 { grid-template-columns: 1fr 1fr 1fr; }
+.num { font-family: var(--mono); font-size: .75rem; letter-spacing: .08em; color: var(--accent-on); }
+.seg, .row { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1rem 0; }
+button.pill, .cta { border: 0; border-radius: 999px; cursor: pointer; font: 800 .75rem/1 var(--text); letter-spacing: .08em; text-transform: uppercase; padding: .65rem .95rem; }
+button.pill { background: #12202a; color: var(--on-muted); border: 1px solid var(--line); }
+button.pill[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.cta { background: var(--accent); color: var(--on-accent); display: inline-block; text-decoration: none; }
+.ghost { background: transparent; color: var(--on); border: 1px solid var(--line); }
+.muted { color: var(--on-muted); }
+.navrow { display: flex; gap: .6rem; margin-top: 1.6rem; }
+@media (max-width: 860px) {
+  .app { grid-template-columns: 1fr; }
+  .rail { position: static; height: auto; }
+  nav { flex-direction: row; flex-wrap: wrap; }
+  .g2, .g3 { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="rail">
+    <div class="lockup">Momentum <span>AI</span></div>
+    <p class="banner">Interactive ebook · draft</p>
+    <nav id="toc" aria-label="Chapters"></nav>
+    <p class="muted" style="font-size:.78rem;margin-top:auto">Book 01 · public magnet<br><a class="muted" href="index.html">Back to Command Center</a></p>
+  </aside>
+  <main class="main">
+
+    <article class="ch is-on" id="c0" data-title="Cover">
+      <p class="script">need momentum?</p>
+      <p class="eye">Field guide · Philadelphia service businesses</p>
+      <h1>How AI changed marketing for local businesses</h1>
+      <p class="lead">Not a tool list. A short book about what actually moved: who reads you, who answers you, and who follows up when a lead comes in.</p>
+      <div class="seg" aria-label="Industry skin">
+        <button class="pill" type="button" data-skin="trades" aria-pressed="true">Trades</button>
+        <button class="pill" type="button" data-skin="hosp">Hospitality</button>
+        <button class="pill" type="button" data-skin="pro">Professional services</button>
+      </div>
+      <p class="muted" id="skin-line">You paint, pave, heat, or build. Buyers still search. A growing share of the answer is written by a model that can only cite what it could fetch.</p>
+      <div class="navrow"><button class="cta" type="button" data-go="c1">Open chapter 1</button></div>
+    </article>
+
+    <article class="ch" id="c1" data-title="01 The reader changed">
+      <p class="eye">Chapter 01</p>
+      <h2>The reader changed</h2>
+      <p>People still type questions. What changed is the page that answers them. Search, maps, and chat tools now write a short answer and point at a few sources. If those systems cannot fetch your site, you are not in the conversation. That is not a ranking. That is a door.</p>
+      <p>For a <span class="who">trade shop</span>, the question is rarely "best marketing agency." It is "who can do this job near me, and can I trust the first screen." The first screen now has to work for a person and for a model.</p>
+      <div class="card">
+        <p class="num">MYTH / FACT</p>
+        <div class="seg">
+          <button class="pill" type="button" data-myth="0" aria-pressed="true">AI replaced Google</button>
+          <button class="pill" type="button" data-myth="1">I need a new website</button>
+          <button class="pill" type="button" data-myth="2">A chatbot is an AI division</button>
+        </div>
+        <p id="myth-out"></p>
+      </div>
+      <p class="muted">What this is not: a promise you will be cited. Observed mention, verified referral, and a booked job are three different numbers.</p>
+    </article>
+
+    <article class="ch" id="c2" data-title="02 Four places AI shows up">
+      <p class="eye">Chapter 02</p>
+      <h2>Four places AI shows up</h2>
+      <p>Mac already put these on the Momentum site. They are not moods. They are jobs.</p>
+      <div class="grid g2">
+        <div class="card"><p class="num">01 AEO / GEO</p><h3 style="margin:.3rem 0;font-family:var(--display);text-transform:uppercase">Get found</h3><p>Can the systems that write answers read the site and tell the truth about what the business is.</p></div>
+        <div class="card"><p class="num">02 AI DESIGN</p><h3 style="margin:.3rem 0;font-family:var(--display);text-transform:uppercase">See it this week</h3><p>A working prototype from your logo and your facts. Not a launched company. A thing you can look at.</p></div>
+        <div class="card"><p class="num">03 AI MARKETING</p><h3 style="margin:.3rem 0;font-family:var(--display);text-transform:uppercase">Content that moves</h3><p>Film and stills in your identity. The logo is never drawn by a model. Rights get written down.</p></div>
+        <div class="card"><p class="num">04 AI AUTOMATION</p><h3 style="margin:.3rem 0;font-family:var(--display);text-transform:uppercase">Every lead has a receipt</h3><p>One intake, one destination, a draft reply, and an exception queue. Handling. Not "more leads."</p></div>
+      </div>
+      <p>You do not buy all four. You buy the job that is already costing you.</p>
+    </article>
+
+    <article class="ch" id="c3" data-title="03 What you can do this week">
+      <p class="eye">Chapter 03</p>
+      <h2>What you can do this week</h2>
+      <p>None of this requires an agency. Do it, then decide whether you want someone to keep doing it.</p>
+      <div class="card">
+        <p class="num">CHECKLIST · YOUR WEEK</p>
+        <label><input type="checkbox" data-ck> Open the homepage on a phone. If the first screen does not say what you do, who it is for, and how to call, write that down.</label><br>
+        <label><input type="checkbox" data-ck> Search your exact business name in two answer tools. Save what they say. Do not argue with it yet.</label><br>
+        <label><input type="checkbox" data-ck> Ask whoever owns new leads how long the last five sat. A guess is a guess. Mark it as one.</label><br>
+        <label><input type="checkbox" data-ck> Find the logo file you actually own. If you cannot, that is the first asset problem.</label>
+        <p class="muted" id="ck-out" style="margin:.8rem 0 0"></p>
+      </div>
+    </article>
+
+    <article class="ch" id="c4" data-title="04 What you should not DIY">
+      <p class="eye">Chapter 04</p>
+      <h2>What you should not DIY</h2>
+      <p>You can buy a model subscription this afternoon. That is not the fee. The fee is choosing a process, connecting the right systems, testing the failure cases, and leaving an operator who can run it.</p>
+      <div class="grid g2">
+        <div class="card"><p class="num">DIY</p><p>Writing a clearer first paragraph. Uploading real photos. Answering the phone faster. Asking ChatGPT to draft a FAQ you then edit.</p></div>
+        <div class="card"><p class="num">NOT DIY</p><p>Allowing AI crawlers without breaking the site. Changing entity types in Search Console. Wiring a form to a CRM with duplicates and retries. Putting a logo on generated film.</p></div>
+      </div>
+      <p class="muted">If the work can silently write to the wrong account, it is not a weekend project.</p>
+    </article>
+
+    <article class="ch" id="c5" data-title="05 How to read an AI answer">
+      <p class="eye">Chapter 05</p>
+      <h2>How to read an AI answer about your business</h2>
+      <p>When a tool writes about a <span class="who">trade shop</span>, read three things. What it thinks you are. What it thinks you cover. What source it used. If any of those is wrong, the fix is on your site and your listings, not in a prompt you type once.</p>
+      <div class="card">
+        <p class="num">LABELED EXAMPLE · NOT A LIVE RESULT</p>
+        <p id="read-out"></p>
+      </div>
+    </article>
+
+    <article class="ch" id="c6" data-title="06 Pick your problem">
+      <p class="eye">Chapter 06</p>
+      <h2>Pick your problem</h2>
+      <p>One problem. One next step. That is how this division is built.</p>
+      <div class="seg" id="prob">
+        <button class="pill" type="button" data-p="found">People cannot find us in AI answers</button>
+        <button class="pill" type="button" data-p="see">I need to see the thing before I buy a full site</button>
+        <button class="pill" type="button" data-p="move">Our content sits still</button>
+        <button class="pill" type="button" data-p="lead">Leads land and then vanish</button>
+      </div>
+      <div class="card" id="prob-out"><p class="muted">Choose one. We will not pitch four lanes at once.</p></div>
+    </article>
+
+    <article class="ch" id="c7" data-title="07 The Snapshot">
+      <p class="eye">Chapter 07</p>
+      <h2>The Snapshot</h2>
+      <p>Mac asked for this on August 12. A Momentum-branded audit from one URL. Three evidenced observations. One suggested next step. Fifteen minutes once the generator is real.</p>
+      <p>Two hand-built audits we sent in August both reached a quote. Two hundred forty-one cold emails the same season did not get a verified human reply. Teach, then show their site.</p>
+      <div class="card">
+        <p class="num">WHAT YOU GET</p>
+        <p>Can AI systems fetch the pages. Does the site say what the business is. What we would measure next. No score out of 100. No guaranteed mention.</p>
+        <p><a class="cta" href="index.html">Open the Snapshot studio</a></p>
+      </div>
+    </article>
+
+  </main>
+</div>
+<script>
+const skins = {
+  trades: "You paint, pave, heat, or build. Buyers still search. A growing share of the answer is written by a model that can only cite what it could fetch.",
+  hosp: "You seat people, pour, or put them in a room. Buyers still search. A growing share of the answer is written by a model that can only cite what it could fetch.",
+  pro: "You advise, file, or represent. Buyers still search. A growing share of the answer is written by a model that can only cite what it could fetch."
+};
+const who = { trades: "trade shop", hosp: "restaurant or venue", pro: "local practice" };
+const myths = [
+  "Fact: search did not die. Answer engines sit on top of it. If they cannot fetch you, they cannot cite you. That is a fetch problem before it is a content problem.",
+  "Fact: Mac already said some clients need the current site cleaned up, not a new AI website. A prototype is a lane. It is not the default.",
+  "Fact: a chatbot is a tool. A division sells a verified process, an operator, and a receipt. Model access is an input."
+];
+const reads = {
+  trades: "It may call you a product, a contractor in the wrong county, or a shop that closed. The fix is entity, NAP, and a first screen a crawler can read.",
+  hosp: "It may invent a menu, a neighborhood, or a private-event policy. The fix is visible facts on a fetchable page, not a better prompt.",
+  pro: "It may blur you with a similarly named firm. The fix is a clear entity, a unique service sentence, and sources that agree."
+};
+const probs = {
+  found: { t: "Get found by AI", d: "Run the Snapshot. Then a 90-day readiness sprint if crawlers or entity are the blocker. No ranking promise." },
+  see: { t: "Prototype in a week", d: "Bring a verified logo, usable photos, and the facts the page will state. Five working days from assets, not from a handshake." },
+  move: { t: "Content that moves", d: "One film and a stills set in your identity. Logo composited after the model. Rights written down." },
+  lead: { t: "Every lead has a receipt", d: "One intake to one destination. Dedupe, exception queue, reply draft. This improves handling. It does not create demand." }
+};
+
+const chapters = [...document.querySelectorAll(".ch")];
+const toc = document.getElementById("toc");
+chapters.forEach((ch) => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.textContent = ch.dataset.title;
+  b.addEventListener("click", () => go(ch.id));
+  toc.appendChild(b);
+});
+function go(id) {
+  chapters.forEach((ch) => ch.classList.toggle("is-on", ch.id === id));
+  [...toc.children].forEach((b, i) => b.setAttribute("aria-current", chapters[i].id === id ? "page" : "false"));
+  window.scrollTo(0, 0);
+}
+document.querySelectorAll("[data-go]").forEach((b) => b.addEventListener("click", () => go(b.dataset.go)));
+
+let skin = "trades";
+function applySkin() {
+  document.getElementById("skin-line").textContent = skins[skin];
+  document.querySelectorAll(".who").forEach((el) => { el.textContent = who[skin]; });
+  document.getElementById("read-out").textContent = reads[skin];
+}
+document.querySelectorAll("[data-skin]").forEach((b) => {
+  b.addEventListener("click", () => {
+    skin = b.dataset.skin;
+    document.querySelectorAll("[data-skin]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    applySkin();
+  });
+});
+applySkin();
+
+const mythOut = document.getElementById("myth-out");
+document.querySelectorAll("[data-myth]").forEach((b) => {
+  b.addEventListener("click", () => {
+    document.querySelectorAll("[data-myth]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    mythOut.textContent = myths[+b.dataset.myth];
+  });
+});
+mythOut.textContent = myths[0];
+
+function ck() {
+  const n = [...document.querySelectorAll("[data-ck]")].filter((x) => x.checked).length;
+  document.getElementById("ck-out").textContent = n === 0 ? "Check what you already did." : n === 4 ? "You have enough to run a Snapshot without guessing." : n + " of 4. Finish the list before a sales call.";
+}
+document.querySelectorAll("[data-ck]").forEach((x) => x.addEventListener("change", ck));
+ck();
+
+document.querySelectorAll("#prob [data-p]").forEach((b) => {
+  b.addEventListener("click", () => {
+    document.querySelectorAll("#prob [data-p]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    const p = probs[b.dataset.p];
+    document.getElementById("prob-out").innerHTML = "<p class='num'>NEXT STEP</p><p><b>" + p.t + "</b>. " + p.d + "</p><p><a class='cta' href='index.html'>Open the Snapshot studio</a></p>";
+  });
+});
+
+chapters.forEach((ch, i) => {
+  if (i === 0) return;
+  const row = document.createElement("div");
+  row.className = "navrow";
+  const prev = document.createElement("button");
+  prev.className = "cta ghost";
+  prev.type = "button";
+  prev.textContent = "Back";
+  prev.addEventListener("click", () => go(chapters[i - 1].id));
+  row.appendChild(prev);
+  if (i < chapters.length - 1) {
+    const next = document.createElement("button");
+    next.className = "cta";
+    next.type = "button";
+    next.textContent = "Next chapter";
+    next.addEventListener("click", () => go(chapters[i + 1].id));
+    row.appendChild(next);
+  }
+  ch.appendChild(row);
+});
+</script>
+</body>
+</html>
