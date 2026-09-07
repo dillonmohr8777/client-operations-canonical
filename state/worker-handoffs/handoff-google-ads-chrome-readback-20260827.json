@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "handoffId": "handoff-google-ads-chrome-readback-20260827",
+  "workItemId": "none-existing-ads-chrome-readback",
+  "expectedWorkItemVersion": 0,
+  "clientId": "momentum-360",
+  "workerRole": "marketing-chief-operator",
+  "status": "completed",
+  "startedAt": "2026-08-27T22:40:00Z",
+  "finishedAt": "2026-08-27T23:07:46Z",
+  "summary": "Google Ads roster readback via existing Zen Chrome login, not Composio. KJB 814-550-6229 window cost 468.99 with 0 conversions. Omega 285-398-1364 window cost 1.29K, 3 conversions, High Intent paused. Onsite 103-371-5894 window cost 93.78, 4 conversions, live Search learning at 0 impressions. Replenish 627-501-4654 window cost 1.45K; no invite accept; Ice Box names not in overview widgets. No pause, enable, budget, or queue write.",
+  "artifacts": [
+    "state/paid-media/2026-08-27-chrome-readback.md"
+  ],
+  "evidence": [
+    "Zen Chrome CDP loopback ads.google.com picker then child overviews",
+    "KJB overview title Overview - Kimberly James Bridal",
+    "Omega overview title Overview - Omega Landscaping",
+    "Onsite overview title Overview - Onsite Concrete and Landscape",
+    "Replenish overview title Overview - Replenish"
+  ],
+  "verification": [
+    "Signed-in Google Ads picker listed the MCC and the four roster children before each overview load.",
+    "Each child overview title matched the intended account name after CID click.",
+    "No Accept control was clicked in Replenish. No recommendation Apply control was clicked.",
+    "No Google Ads API call this pass. Canonical queue was not written."
+  ],
+  "assumptions": [
+    "Persistent Chrome remains the roster execution surface while Composio stays on developer-quota cooldown.",
+    "Fresh Blends Ice Box campaigns still live in this same Replenish child even when overview widgets omit their names."
+  ],
+  "risks": [
+    "Campaigns table pages did not hydrate under CDP, so Omega Campaigns (9) and Replenish Campaigns (13) are incomplete beyond overview widgets.",
+    "Codex still needs to bind this evidence to a canonical work item. This handoff is not a queue write."
+  ],
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false,
+  "approvalGate": "none-read-only",
+  "proposedTransition": "read_only_verification",
+  "canonicalWriteAttempted": false,
+  "externalActionAttempted": false
+}
