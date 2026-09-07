@@ -22,6 +22,7 @@ Then the seeds, if Claude Code needs a file to rebuild:
 |---|---|
 | [CLAUDE-CODE-HANDOFF.md](CLAUDE-CODE-HANDOFF.md) | The one file to drop into Claude Code |
 | [MODELS.md](MODELS.md) | Claude model pick for the next few days |
+| [PRICE.md](PRICE.md) | Gemini 3.8 vs Sonnet, Opus, Fable, Astra, Codex, Cursor |
 | [COLLATERAL.md](COLLATERAL.md) | Interactive ebooks first, then diagnostics, lunch-and-learn, leave-behinds |
 | [POSITIONING.md](POSITIONING.md) | One-page positioning brief: statement, ICP, value map, three pitches |
 | [CLAUDE-DESIGN.md](CLAUDE-DESIGN.md) | Paste-ready prompts, hub then books |
