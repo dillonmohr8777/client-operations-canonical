@@ -63,7 +63,7 @@ Confirmed from Anthropic launch pages and the 2026-08-10 Sonnet 5 changelog. Con
 
 Claude 5-generation tokenizers count about **1.0–1.35x more tokens** than 4.6 for the same text. Cache the handoff. One artifact per turn. Point at the seed HTML. Do not paste the kit every turn.
 
-House-stack ratios (Gemini 3.8 Flash intro $0.75 / $3.75 vs this card) live in [PRICE.md](PRICE.md): **2.7× vs Sonnet 5, 6.7× vs Opus 5, 13× vs Fable 5 and Astra**. Luna and Composer 2.5 are cheaper than 3.8. Seats do not refund.
+House-stack ratios (Gemini 3.8 Flash intro $0.75 / $3.75 vs this card) live in [PRICE.md](PRICE.md): **2.7× vs Sonnet 5, 6.7× vs Opus 5, 13× vs Fable 5 and Astra**. Luna and Composer 2.5 are cheaper than 3.8. Seats do not refund. Official benches for that same set, including Luna max and Composer, are in [BENCH.md](BENCH.md).
 
 ---
 

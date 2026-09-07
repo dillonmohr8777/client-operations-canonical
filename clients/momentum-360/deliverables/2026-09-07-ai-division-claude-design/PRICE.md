@@ -4,6 +4,8 @@ Read 2026-09-07. API list is USD per 1 million tokens. Seats are monthly prepaid
 
 **Short answer:** Gemini 3.8 Flash intro list is **2.7× cheaper than Sonnet 5**, **6.7× cheaper than Opus 5**, and **13× cheaper than Fable 5 and GPT-6 Astra** on both input and output. It is **not** the cheapest thing in the house. GPT-5.6 Luna and Cursor Composer 2.5 undercut it.
 
+Benches for the same set live in [BENCH.md](BENCH.md). Headline: BenchLM **#6 at 78.4**, ties Opus on DeepSWE, dies on Terminal-Bench 4.0 (**19.1** vs Opus **52** / Astra **58**). Luna max is close on TB 2.1, not on the composite. Composer has no Sep 2026 frontier card.
+
 ---
 
 ## The one number
