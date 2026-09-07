@@ -39,17 +39,17 @@ Honesty that stays on every sheet: no guaranteed citations, rankings, leads, or 
 
 ## Collateral system (what Claude Design makes)
 
-See `CLAUDE-DESIGN.md`. The marketing system is the product surface:
+See `COLLATERAL.md`. The conversion system is interactive ebooks, not another deck.
 
-- Command Center for Friday
-- Snapshot Studio as the offer that opens every conversation
-- Lane studio as the menu that is also the demo
-- Four ebooks, one per lane, interactive
-- Print one-pagers already in the Sep 5 kit
-- Deck addendum already built; do not rebuild unless Mac rejects it
-- Video library mapped to funnel stage
-- Jesse sell sheet
-- Four public lane pages + ChatGPT Ads + homepage sections, unpublished
+- **Book 01** How AI changed marketing — public magnet
+- **Book 02** Get found by AI — Snapshot companion
+- Books 03–05 for spec build, motion, lead-ops
+- Readiness diagnostic, slow-follow-up calculator, DIY vs division
+- 20-minute lunch-and-learn and "what to ask any agency about AI"
+- Snapshot Studio as the offer that opens the conversation
+- Command Center for Friday only
+- Print one-pagers and deck addendum already in the Sep 5 kit
+- Jesse sell sheet after D11
 
 ## Videos
 

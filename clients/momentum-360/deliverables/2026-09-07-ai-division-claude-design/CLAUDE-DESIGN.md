@@ -33,24 +33,25 @@ Do these eight first. Stop when they exist. Everything else is the post-Friday f
 
 Seed HTML for 01–08 already lives in `interactive/index.html`. Rebuild it in Claude Design so each surface can stand alone and look finished.
 
-## After Friday — the full flush
+## The conversion flush — interactive ebooks first
 
-| # | Artifact | Job |
-|---|---|---|
-| 09 | ICP qualifier | Five-axis scorer. Zero in relationship, access, or adoption blocks a build. |
-| 10 | AEO ebook chapters 2–5 | Buyer questions, schema, crawlers, monthly measurement. |
-| 11 | AI Design ebook | How a spec build works in five days. |
-| 12 | AI Marketing ebook | Motion system, rights ledger, logo rule. |
-| 13 | AI Automation ebook | Lead-ops acceptance cases as an interactive demo. |
-| 14 | Four public lane pages | needmomentum.com copy and layout, not published from here. |
-| 15 | ChatGPT Ads page | Mac, August 5. Separate line. $500/month already sold once. |
-| 16 | Homepage add-on sections | AI Marketing, Industries, Experience. Mac, August 6. |
-| 17 | Print one-pagers | Division plus four flagships. Letter. Already drafted in the Sep 5 kit. |
-| 18 | Deck addendum restyle | Eight slides already built. Restyle only if D11 is still open. |
-| 19 | Video library | Map existing Higgsfield clips to funnel stage. Overlay lockup locally. |
-| 20 | Social kit | Title cards + 9:16 cuts + caption sheet. Do not schedule. |
-| 21 | Jesse sell sheet | One page: Snapshot → discovery → one flagship. Split still PROPOSED. |
-| 22 | Operator runbook | Exception queue, support hours, rollback. Internal. |
+The hub is for Mac. The books are for buyers. Full catalog: `COLLATERAL.md`. Seeds already in `interactive/`.
+
+| # | Artifact | Seed | Job |
+|---|---|---|---|
+| 10 | Book 01 · How AI changed marketing | `interactive/ebook-ai-marketing.html` | Public magnet. Teach the category. End on Snapshot. |
+| 11 | Book 02 · Get found by AI | `interactive/ebook-get-found.html` | Snapshot companion. AEO without ranking promises. |
+| 12 | Readiness diagnostic | `interactive/diagnostic.html` | Six factual questions. No grade. Points at one lane. |
+| 13 | Book 03 · Prototype in a week | — | Spec-build explainer with a scrubbable five-day timeline. |
+| 14 | Book 04 · Content that moves | — | Motion, rights ledger, logo rule. Brief builder. |
+| 15 | Book 05 · Every lead has a receipt | — | Lead-ops walkthrough. No "more leads" claim. |
+| 16 | Lunch-and-learn | — | Six spoken beats. Same story as book 01. |
+| 17 | What to ask any agency about AI | — | Eight-question leave-behind. |
+| 18 | ChatGPT Ads in plain English | — | Mac, August 5. |
+| 19 | Slow-follow-up calculator | — | Their numbers only. |
+| 20 | DIY vs division | — | Kills "can't I just subscribe." |
+| 21 | Fagan pattern walkthrough | — | Crawlers + Product entity. No revenue claim. |
+| 22 | Jesse sell sheet + objection explorer | — | Internal until D11. |
 
 ## Prompt 00 — pin this
 
@@ -208,35 +209,140 @@ D01 charter, D02 protected hours, D03 compensation, D09 account nomination, D10 
 Show a running tally of resolved vs open. Export is a printed Letter sheet, not a send.
 ```
 
-## Prompt 08 — AEO ebook chapter 1
+## Prompt 08 — AEO ebook teaser (in the hub)
+
+Keep a short chapter in the Command Center. The real book is Prompt 11.
+
+## Prompt 10 — Book 01, the public magnet
 
 ```
-Design chapter 1 of an interactive ebook titled
-"Get found by AI: a field guide for Philadelphia service businesses."
+Rebuild this as a finished interactive ebook, not a PDF and not a slide deck.
 
-Not a PDF wall. A designed chapter with:
-- Cover
-- 6 short sections
-- One interactive: paste a buyer question, see how an answer engine would need the page structured (entity, FAQ, visible answer, source page). Use invented-looking placeholders only as labeled examples, never as Momentum results.
-- End with a Snapshot CTA
+Title: How AI changed marketing for local businesses
+Subtitle: A Momentum AI field guide for service owners
+Seed: attach interactive/ebook-ai-marketing.html and COLLATERAL.md
 
-Facts only:
-- AI Overviews and answer engines read sources. If crawlers cannot fetch the page, the business cannot appear.
-- Measurement is observed mention, verified referral, and validated outcomes — three separate numbers.
-- No ranking guarantee.
+Chapters, in this order:
+1. The reader changed
+2. Four places AI shows up
+3. What you can do this week
+4. What you should not DIY
+5. How to read an AI answer about your business
+6. Pick your problem
+7. The Snapshot
 
-Tone matches POSITIONING.md. Momentum Digital tokens. Chapter 1 only.
+Rules:
+- One idea per chapter. 400–700 words designed, not a wall.
+- One interactive per chapter (myth/fact, four-place map, DIY checklist, problem picker).
+- Industry switcher with three skins only: trades, hospitality, professional services.
+- CTA is always "run the Snapshot" or "book 20 minutes." The button does not submit.
+- No ranking, citation, lead, or revenue promises.
+- No 100-point score. No invented case studies.
+- Momentum Digital tokens. Dark-first cover, paper chapters are allowed if contrast holds.
+- Progress rail. Keyboard next/back. Works at 375 and 1440.
+- Mark INTERNAL DRAFT / PROPOSED on this version.
+
+Voice from POSITIONING.md. Philadelphia service businesses. Warm, direct, measured.
 ```
 
-## Prompt 09 — ICP qualifier
+## Prompt 11 — Book 02, Get found by AI
 
 ```
-Build a five-axis qualifier. Axes: relationship approval, repeated problem, evidence, access, adoption owner. Score 0–2 each.
-A zero on relationship, access, or adoption shows BLOCKED BUILD.
-8–10 = prepare a scoped proposal.
-5–7 = paid discovery.
-Below 5 = defer.
-This is an internal rule, not a sales predictor. No submit button that leaves the page.
+Rebuild interactive/ebook-get-found.html as the Snapshot companion ebook.
+
+Title: Get found by AI
+Subtitle: A field guide for Philadelphia service businesses
+
+Chapters:
+1. If they cannot fetch you, you do not exist
+2. Be the thing you are
+3. Answer the questions buyers already ask
+4. Measure three numbers, not one
+5. What a 90-day readiness sprint actually does
+
+Interactives:
+- Crawler allow-list checklist (GPTBot, PerplexityBot, ClaudeBot, Google-Extended)
+- Entity type picker (LocalBusiness / ProfessionalService vs Product)
+- Buyer-question architect: type a question, see entity, visible answer, FAQ pair, source URL
+- Measurement triad: mention / referral / outcome as three separate counters the reader cannot add together
+
+Fagan pattern may be used as a pattern: crawlers blocked, painting company typed as Product. No revenue or ranking claim.
+
+CTA: run the Snapshot on your URL. No live crawl in this artifact.
+```
+
+## Prompt 12 — Readiness diagnostic
+
+```
+Rebuild interactive/diagnostic.html.
+
+Six factual questions. Each is yes / not sure / no.
+1. Can you name the person who answers new leads?
+2. Do you know whether GPTBot is allowed in robots.txt?
+3. Is the business typed as what it actually is in Search Console?
+4. Do you have a CRM or sheet every lead is supposed to land in?
+5. Can you point to the last time a lead sat more than a day?
+6. Do you have a verified logo and usable photos on hand?
+
+Output is not a score. It is one sentence: run a Snapshot, talk Lead Ops, or gather assets for a spec build.
+Zero network. No email capture in this draft.
+```
+
+## Prompt 13 — Book 03, Prototype in a week
+
+```
+Interactive ebook. Title: Prototype in a week.
+
+Teach what a spec build is: one working homepage, dashboard, or 15-second film in five working days from verified logo, real photos, first-party facts.
+
+Interactive: a five-day timeline the reader can scrub. Day 0 assets in. Day 5 they are looking at the thing. Clock starts when assets arrive, not at signature.
+
+Honesty: a prototype is a prototype. Not a launched site, not a live feed, not a results claim.
+CTA: "If you already know the thing you want to see, this is the lane."
+```
+
+## Prompt 14 — Book 04, Content that moves
+
+```
+Interactive ebook. Title: Content that moves.
+
+Teach the motion system: monthly film + stills, rights ledger, logo never model-drawn, credits at cost.
+
+Interactive: brief builder. Audience, offer, placement (IG / YT Shorts / site). Output a one-paragraph brief the reader can copy. No generate button that calls a model.
+
+Honesty: missing rights is a hold. No founder likeness. No other client's palette.
+```
+
+## Prompt 15 — Book 05, Every lead has a receipt
+
+```
+Interactive ebook. Title: Every lead has a receipt.
+
+Teach lead-ops: one intake, one destination, dedupe, exception queue, reply draft, thirty named cases.
+
+Interactive: step a labeled example lead through valid intake, duplicate, missing field, exception. Show the receipt each time.
+
+Honesty: this improves handling. It does not promise more leads.
+```
+
+## Prompt 16 — Lunch-and-learn + leave-behind
+
+```
+Two sibling artifacts, same story as book 01.
+
+A. 20-minute lunch-and-learn. Six beats on one screen. Speaker notes in a toggle. Jesse or Mac can run it. No autoplay video.
+
+B. What to ask any agency about AI. Eight questions on one Letter-friendly page:
+1. What will you measure, and what will you not promise?
+2. Which crawlers can fetch our site today?
+3. Who owns the accounts and the work if this ends?
+4. What does the operator do after handoff?
+5. Where does a lead go when the system is unsure?
+6. Is the logo ever drawn by a model?
+7. What is setup vs monthly, in hours not adjectives?
+8. Can I see one acceptance test before we start?
+
+Trust piece. Works even if they do not hire Momentum.
 ```
 
 ## Visual anti-references
