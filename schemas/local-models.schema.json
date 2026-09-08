@@ -10,6 +10,7 @@
     "title",
     "purpose",
     "authority",
+    "cursor",
     "hardwareClasses",
     "recommendations",
     "models"
@@ -27,6 +28,9 @@
         "ollamaPullByRoster",
         "omnirouteMutationByRoster",
         "canonicalQueueMutationByRoster",
+        "cursorUserSecretsByRoster",
+        "cursorTunnelsByRoster",
+        "cursorStateDbByRoster",
         "externalAction",
         "cloudOllamaTagsCountAsLocal",
         "vendorBenchmarksAreObservations"
@@ -36,9 +40,41 @@
         "ollamaPullByRoster": { "const": "forbidden" },
         "omnirouteMutationByRoster": { "const": "forbidden" },
         "canonicalQueueMutationByRoster": { "const": "forbidden" },
+        "cursorUserSecretsByRoster": { "const": "forbidden" },
+        "cursorTunnelsByRoster": { "const": "forbidden" },
+        "cursorStateDbByRoster": { "const": "forbidden" },
         "externalAction": { "const": "approval-gated" },
         "cloudOllamaTagsCountAsLocal": { "const": false },
         "vendorBenchmarksAreObservations": { "const": true }
+      }
+    },
+    "cursor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pickerCollisionPrefix",
+        "reservedBuiltinIds",
+        "loopbackOllamaBaseUrl",
+        "loopbackOmnirouteBaseUrl",
+        "cloudAgentsUseHostedModels",
+        "doNotWriteApiKeys",
+        "doNotEnableTunnels",
+        "doNotEditStateDb"
+      ],
+      "properties": {
+        "pickerCollisionPrefix": { "const": "mc-" },
+        "reservedBuiltinIds": {
+          "type": "array",
+          "minItems": 8,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 2, "maxLength": 80 }
+        },
+        "loopbackOllamaBaseUrl": { "const": "http://127.0.0.1:11434/v1" },
+        "loopbackOmnirouteBaseUrl": { "const": "http://127.0.0.1:20128/v1" },
+        "cloudAgentsUseHostedModels": { "const": true },
+        "doNotWriteApiKeys": { "const": true },
+        "doNotEnableTunnels": { "const": true },
+        "doNotEditStateDb": { "const": true }
       }
     },
     "hardwareClasses": {

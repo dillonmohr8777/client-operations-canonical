@@ -8,10 +8,37 @@ This file is prepare-only. It does not pull weights, change OmniRoute defaults, 
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Test-LocalModelRoster.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Test-CursorLocalModels.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Install-CursorLocalModels.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Install-CursorLocalModels.ps1 -Apply
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Update-AiStackState.ps1 -NoWrite
 ```
 
 `Update-AiStackState.ps1` rereads the roster, probes only `127.0.0.1:11434` and `127.0.0.1:20128`, and optionally writes `state/ai-stack.json`. Cloud Ollama aliases such as `deepseek-v4-pro:cloud` are ignored when counting local models. Pulling a model or changing an OmniRoute default remains approval-gated.
+
+## Institute into Cursor
+
+`registry/cursor-local-models.json` is the generated picker pack. Project rule `.cursor/rules/local-models.mdc` is always on in this repo. `scripts/Install-CursorLocalModels.ps1 -Apply` copies `integrations/cursor/marketing-chief-local-models` to `~/.cursor/plugins/local/marketing-chief-local-models` and writes a non-secret catalog to `~/.cursor/marketing-chief-local-models.json`.
+
+Cursor does not auto-discover `/v1/models`. A plugin or repo rule cannot inject IDs into the hosted model catalog. On a desktop that can reach loopback:
+
+1. Open Cursor Settings → Models.
+2. Enable OpenAI API Key and Override OpenAI Base URL.
+3. Set `http://127.0.0.1:11434/v1` for Ollama or `http://127.0.0.1:20128/v1` for OmniRoute.
+4. Type each `pickerId` and click Add Custom Model.
+
+| Lane | Add this exact ID |
+| --- | --- |
+| Frontier cluster | `deepseek-v4-pro-0813` |
+| Frontier workstation | `deepseek-v4-flash-0731` |
+| Daily coding | `ornith:35b` |
+| Daily general | `qwen3.8:27b` |
+| Daily vision | `gemma4:31b` |
+| Compact daily | `gpt-oss:20b` |
+| Compact coding | `ornith:9b` |
+| Local Qwen / Gemma / GLM | `qwen3.6:35b`, `qwen3.5:35b`, `qwen3.5:9b`, `gemma4:26b`, `gemma4:e4b`, `glm-4.7-flash` |
+
+Cloud Agents keep Cursor-hosted models. Loopback URLs are not reachable from Cursor Cloud. Do not add `kimi-k2.7-code` or `glm-5.1` as custom models; those names collide with Cursor built-ins. The pack uses `mc-kimi-k2.7-code` and `mc-glm-5.1`. The installer never writes API keys, edits `state.vscdb`, enables tunnels, or changes OmniRoute defaults.
 
 ## What to run locally
 

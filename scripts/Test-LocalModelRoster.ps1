@@ -24,8 +24,18 @@ Assert-True ([bool]$roster.authority.rosterIsRecommendationOnly) 'Roster must re
 Assert-True ([string]$roster.authority.ollamaPullByRoster -eq 'forbidden') 'Roster must not pull Ollama models.'
 Assert-True ([string]$roster.authority.omnirouteMutationByRoster -eq 'forbidden') 'Roster must not mutate OmniRoute.'
 Assert-True ([string]$roster.authority.canonicalQueueMutationByRoster -eq 'forbidden') 'Roster must not mutate the queue.'
+Assert-True ([string]$roster.authority.cursorUserSecretsByRoster -eq 'forbidden') 'Roster must not write Cursor API keys.'
+Assert-True ([string]$roster.authority.cursorTunnelsByRoster -eq 'forbidden') 'Roster must not enable Cursor tunnels.'
+Assert-True ([string]$roster.authority.cursorStateDbByRoster -eq 'forbidden') 'Roster must not edit Cursor state.vscdb.'
 Assert-True (-not [bool]$roster.authority.cloudOllamaTagsCountAsLocal) 'Cloud Ollama tags must not count as local.'
 Assert-True ([bool]$roster.authority.vendorBenchmarksAreObservations) 'Vendor scores must stay observations.'
+Assert-True ([string]$roster.cursor.pickerCollisionPrefix -eq 'mc-') 'Cursor picker collisions must use the mc- prefix.'
+Assert-True ([bool]$roster.cursor.cloudAgentsUseHostedModels) 'Cloud Agents must stay on hosted Cursor models.'
+Assert-True ([bool]$roster.cursor.doNotWriteApiKeys) 'Cursor pack must not write API keys.'
+Assert-True ([bool]$roster.cursor.doNotEnableTunnels) 'Cursor pack must not enable tunnels.'
+Assert-True ([bool]$roster.cursor.doNotEditStateDb) 'Cursor pack must not edit state.vscdb.'
+Assert-True (@($roster.cursor.reservedBuiltinIds).Count -ge 8) 'Cursor reserved built-in IDs are required.'
+Assert-True ('kimi-k2.7-code' -in @($roster.cursor.reservedBuiltinIds)) 'Kimi K2.7 Code is a Cursor built-in and must stay reserved.'
 
 $hardwareIds = @($roster.hardwareClasses | ForEach-Object { [string]$_.id })
 Assert-True ($hardwareIds.Count -eq (@($hardwareIds | Select-Object -Unique).Count)) 'Hardware class IDs must be unique.'
