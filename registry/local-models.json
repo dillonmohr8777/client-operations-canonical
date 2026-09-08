@@ -19,7 +19,9 @@
     "pickerCollisionPrefix": "mc-",
     "loopbackOllamaBaseUrl": "http://127.0.0.1:11434/v1",
     "loopbackOmnirouteBaseUrl": "http://127.0.0.1:20128/v1",
+    "pullHosts": ["DESKTOP", "AHCM"],
     "cloudAgentsUseHostedModels": true,
+    "cloudAgentsCannotReachLoopback": true,
     "doNotWriteApiKeys": true,
     "doNotEnableTunnels": true,
     "doNotEditStateDb": true,
@@ -91,6 +93,30 @@
       "typicalMemory": "Multiple 80 GB-class GPUs"
     }
   ],
+  "pullSets": {
+    "hosts": ["DESKTOP", "AHCM"],
+    "cloudAgentMayPull": false,
+    "confirmLocalNotCloud": true,
+    "daily24gb": [
+      "ornith:35b",
+      "qwen3.8:27b",
+      "gemma4:31b",
+      "gpt-oss:20b",
+      "ornith:9b"
+    ],
+    "edge16gb": [
+      "ornith:9b",
+      "gpt-oss:20b",
+      "qwen3.5:9b",
+      "gemma4:e4b"
+    ],
+    "recommendedIfFits": [
+      "qwen3.6:35b",
+      "qwen3.5:35b",
+      "gemma4:26b",
+      "glm-4.7-flash"
+    ]
+  },
   "recommendations": [
     {
       "lane": "frontier-cluster",

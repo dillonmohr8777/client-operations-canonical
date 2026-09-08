@@ -12,6 +12,7 @@
     "authority",
     "cursor",
     "hardwareClasses",
+    "pullSets",
     "recommendations",
     "models"
   ],
@@ -56,7 +57,9 @@
         "reservedBuiltinIds",
         "loopbackOllamaBaseUrl",
         "loopbackOmnirouteBaseUrl",
+        "pullHosts",
         "cloudAgentsUseHostedModels",
+        "cloudAgentsCannotReachLoopback",
         "doNotWriteApiKeys",
         "doNotEnableTunnels",
         "doNotEditStateDb"
@@ -71,7 +74,15 @@
         },
         "loopbackOllamaBaseUrl": { "const": "http://127.0.0.1:11434/v1" },
         "loopbackOmnirouteBaseUrl": { "const": "http://127.0.0.1:20128/v1" },
+        "pullHosts": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": { "type": "string", "enum": ["DESKTOP", "AHCM"] }
+        },
         "cloudAgentsUseHostedModels": { "const": true },
+        "cloudAgentsCannotReachLoopback": { "const": true },
         "doNotWriteApiKeys": { "const": true },
         "doNotEnableTunnels": { "const": true },
         "doNotEditStateDb": { "const": true }
@@ -97,6 +108,50 @@
           },
           "label": { "type": "string", "minLength": 1, "maxLength": 80 },
           "typicalMemory": { "type": "string", "minLength": 1, "maxLength": 80 }
+        }
+      }
+    },
+    "pullSets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hosts",
+        "cloudAgentMayPull",
+        "confirmLocalNotCloud",
+        "daily24gb",
+        "edge16gb",
+        "recommendedIfFits"
+      ],
+      "properties": {
+        "hosts": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": { "type": "string", "enum": ["DESKTOP", "AHCM"] }
+        },
+        "cloudAgentMayPull": { "const": false },
+        "confirmLocalNotCloud": { "const": true },
+        "daily24gb": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/ollamaTag" }
+        },
+        "edge16gb": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/ollamaTag" }
+        },
+        "recommendedIfFits": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/ollamaTag" }
         }
       }
     },
@@ -132,6 +187,12 @@
     }
   },
   "$defs": {
+    "ollamaTag": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 80,
+      "pattern": "^[a-z0-9][a-z0-9._-]{1,79}(?::[a-z0-9][a-z0-9._-]{0,39})?$"
+    },
     "model": {
       "type": "object",
       "additionalProperties": false,

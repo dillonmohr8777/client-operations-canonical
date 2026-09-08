@@ -9,11 +9,12 @@ description: Select and register Marketing Chief local open-weight models in Cur
 
 1. Read `references/cursor-local-models.json` or `registry/cursor-local-models.json`.
 2. Pick one recommended lane. Default daily coding is `ornith:35b`. Default daily general is `qwen3.8:27b`. DeepSeek Pro is `deepseek-v4-pro-0813` and needs vLLM or SGLang.
-3. On a desktop that can reach loopback, open Cursor Settings → Models. Enable OpenAI API Key and Override OpenAI Base URL. Set `http://127.0.0.1:11434/v1` or `http://127.0.0.1:20128/v1`.
-4. Type the exact `pickerId` and click Add Custom Model. Cursor does not refresh custom models from `/v1/models`.
-5. If a picker ID uses the `mc-` prefix, the gateway must already understand that alias. Do not create OmniRoute aliases from this skill.
-6. Cloud Agents stay on Cursor-hosted models. Do not claim a loopback model is serving this session.
-7. Never pull weights, write secrets, edit `state.vscdb`, enable tunnels, or mutate the canonical queue.
+3. Pull the matching Ollama tags only on DESKTOP or AHCM. Confirm they are local, not `:cloud`, with `ollama list` and `curl.exe http://127.0.0.1:11434/api/tags`.
+4. On desktop Cursor, open Settings → Models. Enable OpenAI API Key and Override OpenAI Base URL. Set `http://127.0.0.1:11434/v1` or `http://127.0.0.1:20128/v1`.
+5. Type the exact `pickerId` and click Add Custom Model. Cursor does not refresh custom models from `/v1/models`.
+6. If a picker ID uses the `mc-` prefix, the gateway must already understand that alias. Do not create OmniRoute aliases from this skill.
+7. Cloud Agents stay on Cursor-hosted models. Do not claim a loopback model is serving this session.
+8. Never pull weights from a Cloud Agent, write secrets, edit `state.vscdb`, enable tunnels, or mutate the canonical queue.
 
 ## Examples
 

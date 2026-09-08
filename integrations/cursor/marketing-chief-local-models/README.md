@@ -2,7 +2,7 @@
 
 Registers the canonical local and open-weight roster inside Cursor as unique custom-model picker IDs.
 
-This plugin does not add models to Cursor's hosted catalog by itself. Cursor does not auto-discover `/v1/models`. On a desktop that can reach loopback, add each `pickerId` under Settings → Models after enabling Override OpenAI Base URL. Cloud Agents keep using Cursor-hosted models.
+This plugin does not add models to Cursor's hosted catalog by itself. Cursor does not auto-discover `/v1/models`. Pull Ollama weights only on DESKTOP or AHCM, confirm they are local with `ollama list` and `curl.exe http://127.0.0.1:11434/api/tags`, then add each `pickerId` under Settings → Models after enabling Override OpenAI Base URL. Cloud Agents keep using Cursor-hosted models and cannot reach loopback.
 
 ## Install
 

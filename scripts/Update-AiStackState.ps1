@@ -75,20 +75,30 @@ if ($ollamaProbe.ok -and -not [string]::IsNullOrWhiteSpace([string]$ollamaProbe.
 
 $localInstalled = @($installed | Where-Object { [bool]$_.local })
 $cloudInstalled = @($installed | Where-Object { -not [bool]$_.local })
+$localInstalledNames = @($localInstalled | ForEach-Object { [string]$_.name })
 $recommendedLocalTags = @(
     $roster.models |
         Where-Object { [string]$_.status -eq 'recommended' -and -not [string]::IsNullOrWhiteSpace([string]$_.ollamaLocalTag) } |
         ForEach-Object { [string]$_.ollamaLocalTag }
 )
-$matchedRecommended = @(
-    $recommendedLocalTags | Where-Object {
-        $tag = $_
-        @($localInstalled | Where-Object {
-            $name = [string]$_.name
-            $name -eq $tag -or $name -like ($tag + ':*') -or $name -like ($tag + '-*')
-        }).Count -gt 0
+$matchedRecommended = @($recommendedLocalTags | Where-Object { $_ -in $localInstalledNames })
+
+function Get-PullSetCoverage {
+    param([string[]]$Tags)
+    $installedTags = @($Tags | Where-Object { $_ -in $localInstalledNames })
+    $missingTags = @($Tags | Where-Object { $_ -notin $localInstalledNames })
+    return [ordered]@{
+        requested = @($Tags)
+        installed = @($installedTags)
+        missing = @($missingTags)
     }
-)
+}
+
+$pullSetCoverage = [ordered]@{
+    daily24gb = Get-PullSetCoverage -Tags @($roster.pullSets.daily24gb)
+    edge16gb = Get-PullSetCoverage -Tags @($roster.pullSets.edge16gb)
+    recommendedIfFits = Get-PullSetCoverage -Tags @($roster.pullSets.recommendedIfFits)
+}
 
 $localRuntimeStatus = if ($ollamaProbe.ok) { 'listening' } else { 'unreachable' }
 $gatewayStatus = if ($gatewayProbe.ok) { 'listening' } else { 'unreachable' }
@@ -116,9 +126,12 @@ $result = [ordered]@{
         localOllamaCount = [int]$validation.localOllamaCount
         deepseekPro = [string]$validation.deepseekPro
     }
-    installedLocalNames = @($localInstalled | ForEach-Object { [string]$_.name })
+    pullHosts = @($roster.pullSets.hosts)
+    cloudAgentMayPull = [bool]$roster.pullSets.cloudAgentMayPull
+    installedLocalNames = @($localInstalledNames)
     installedCloudAliasesIgnored = @($cloudInstalled | ForEach-Object { [string]$_.name })
     matchedRecommendedLocalTags = @($matchedRecommended)
+    pullSets = $pullSetCoverage
     probes = [ordered]@{
         ollama = 'http://127.0.0.1:11434/api/tags'
         omniroute = 'http://127.0.0.1:20128/'

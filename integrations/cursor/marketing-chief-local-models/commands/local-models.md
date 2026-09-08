@@ -5,7 +5,7 @@ description: List the Marketing Chief local open-weight Cursor picker IDs and th
 
 # Local models
 
-Read `references/cursor-local-models.json` if this plugin is installed, or `registry/cursor-local-models.json` in the Marketing Chief repo. Do not pull weights or change OmniRoute.
+Read `references/cursor-local-models.json` if this plugin is installed, or `registry/cursor-local-models.json` in the Marketing Chief repo. Pull weights only on DESKTOP or AHCM. Cloud Agents cannot reach `127.0.0.1:11434` and must not pull or open a tunnel. Do not change OmniRoute.
 
 ## Add in Cursor desktop
 

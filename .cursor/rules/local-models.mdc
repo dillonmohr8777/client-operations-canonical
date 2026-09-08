@@ -7,6 +7,8 @@ alwaysApply: true
 
 `registry/local-models.json` is the roster. `registry/cursor-local-models.json` is the picker pack. Install the desktop plugin with `scripts/Install-CursorLocalModels.ps1 -Apply`.
 
+Ollama pulls belong on DESKTOP or AHCM. Cloud Agents cannot download weights or reach `127.0.0.1:11434`. Confirm installed tags with `ollama list` and `curl.exe http://127.0.0.1:11434/api/tags`. Do not treat a `:cloud` alias as local.
+
 Cursor does not auto-discover `/v1/models`. Cloud Agents and hosted Cursor sessions keep using Cursor-hosted models. Loopback Ollama (`http://127.0.0.1:11434/v1`) and OmniRoute (`http://127.0.0.1:20128/v1`) are desktop-only.
 
 Do not pull Ollama weights, change OmniRoute defaults, write API keys, edit `state.vscdb`, enable tunnels, or mutate the canonical queue from this roster.
