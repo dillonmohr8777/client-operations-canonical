@@ -35,9 +35,9 @@ $registry=Get-Content -LiteralPath $registryPath -Raw -Encoding UTF8|ConvertFrom
 
 try{
     $jsonPaths=@(
-        'queue\work-items.json','registry\clients.json','registry\paid-media-roster.json',
+        'queue\work-items.json','registry\clients.json','registry\paid-media-roster.json','registry\local-models.json',
         'workflows\marketing-chief.workflow.json','workflows\marketing-chief-execution-graph.workflow.json','workflows\communication-triggered-ad-launch.workflow.json','workflows\daily-paid-media-optimization.workflow.json',
-        'schemas\worker-handoff.schema.json','schemas\marketing-execution-graph.schema.json','schemas\design-contract.schema.json','schemas\ad-launch-request.schema.json','schemas\ad-launch-authority.schema.json','schemas\ad-provider-packet.schema.json','schemas\ad-provider-readiness.schema.json','schemas\paid-media-client-config.schema.json','schemas\paid-media-launch-blueprint.schema.json','schemas\paid-media-roster.schema.json',
+        'schemas\worker-handoff.schema.json','schemas\marketing-execution-graph.schema.json','schemas\design-contract.schema.json','schemas\ad-launch-request.schema.json','schemas\ad-launch-authority.schema.json','schemas\ad-provider-packet.schema.json','schemas\ad-provider-readiness.schema.json','schemas\paid-media-client-config.schema.json','schemas\paid-media-launch-blueprint.schema.json','schemas\paid-media-roster.schema.json','schemas\local-models.schema.json',
         'clients\replenish-7-eleven\paid-media\launch-authority.json','clients\replenish-7-eleven\paid-media\launch-config.json','clients\replenish-7-eleven\paid-media\blueprints\google_ads.json',
         'clients\fresh-blends-kwik-trip\paid-media\launch-authority.json','clients\fresh-blends-kwik-trip\paid-media\launch-config.json','clients\fresh-blends-kwik-trip\paid-media\blueprints\google_ads.json',
         'clients\kimberly-james-bridal\paid-media\launch-authority.json','clients\kimberly-james-bridal\paid-media\launch-config.json','clients\kimberly-james-bridal\paid-media\blueprints\google_ads.json','clients\kimberly-james-bridal\paid-media\blueprints\meta_ads.json',
@@ -61,6 +61,8 @@ try{
     }
 
     Add-ExitCheck 'client-registry' (Invoke-Script (Join-Path $PSScriptRoot 'Test-ClientRegistry.ps1') @())
+    Add-ExitCheck 'local-models:roster' (Invoke-Script (Join-Path $PSScriptRoot 'Test-LocalModelRoster.ps1') @())
+    Add-ExitCheck 'local-models:focused-suite' (Invoke-Script (Join-Path $projectRoot 'tests\Test-LocalModelRoster.ps1') @())
     Add-ExitCheck 'paid-media:daily-review-focused-suite' (Invoke-Script (Join-Path $projectRoot 'tests\Test-DailyPaidMediaReview.ps1') @())
     Add-ExitCheck 'execution-graph:focused-suite' (Invoke-Script (Join-Path $projectRoot 'tests\Test-MarketingExecutionGraph.ps1') @())
     $predictionResult=Invoke-Script (Join-Path $PSScriptRoot 'Get-NextActions.ps1') @('-Format','Json','-AsOf',[string]$queue.updatedAt)

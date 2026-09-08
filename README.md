@@ -27,6 +27,8 @@ The Marketing Chief can use the installed `$omniroute-gateway` capability for mo
 
 Every OmniRoute-dependent action begins with the controller's read-only `Status` and `Doctor` checks plus loopback verification. Run `Mcp` when MCP availability matters; it performs a direct stdio initialize and list-tools handshake. The dashboard is `http://127.0.0.1:20128`; the API base is `http://127.0.0.1:20128/v1`. Normal Codex and OpenAI authentication remains the default. Provider connection, model or route changes, client reconfiguration, MCP mutations, cloud features, tunnels, and public or LAN exposure require explicit approval.
 
+Current local and open-weight recommendations live in `registry/local-models.json`. The roster is prepare-only evidence: it does not pull Ollama weights or change OmniRoute defaults. DeepSeek-V4-Pro-0813 is the current DeepSeek Pro record. Validate with `scripts/Test-LocalModelRoster.ps1` and inspect live loopback health with `scripts/Update-AiStackState.ps1 -NoWrite`. See `docs/LOCAL_MODELS.md`.
+
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\dillo\.codex\skills\omniroute-gateway\scripts\Invoke-OmniRoute.ps1 -Action Status
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\dillo\.codex\skills\omniroute-gateway\scripts\Invoke-OmniRoute.ps1 -Action Doctor

@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "local-models.schema.json",
+  "title": "Canonical Local Open-Weight Model Roster",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "reviewedAt",
+    "title",
+    "purpose",
+    "authority",
+    "hardwareClasses",
+    "recommendations",
+    "models"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "reviewedAt": { "type": "string", "format": "date" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+    "purpose": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rosterIsRecommendationOnly",
+        "ollamaPullByRoster",
+        "omnirouteMutationByRoster",
+        "canonicalQueueMutationByRoster",
+        "externalAction",
+        "cloudOllamaTagsCountAsLocal",
+        "vendorBenchmarksAreObservations"
+      ],
+      "properties": {
+        "rosterIsRecommendationOnly": { "const": true },
+        "ollamaPullByRoster": { "const": "forbidden" },
+        "omnirouteMutationByRoster": { "const": "forbidden" },
+        "canonicalQueueMutationByRoster": { "const": "forbidden" },
+        "externalAction": { "const": "approval-gated" },
+        "cloudOllamaTagsCountAsLocal": { "const": false },
+        "vendorBenchmarksAreObservations": { "const": true }
+      }
+    },
+    "hardwareClasses": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "typicalMemory"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "edge-16gb",
+              "consumer-24gb",
+              "workstation-48-128gb",
+              "cluster-multi-gpu"
+            ]
+          },
+          "label": { "type": "string", "minLength": 1, "maxLength": 80 },
+          "typicalMemory": { "type": "string", "minLength": 1, "maxLength": 80 }
+        }
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["lane", "modelId", "hardwareClass", "why"],
+        "properties": {
+          "lane": { "type": "string", "minLength": 1, "maxLength": 64 },
+          "modelId": { "type": "string", "minLength": 1, "maxLength": 80 },
+          "hardwareClass": {
+            "type": "string",
+            "enum": [
+              "edge-16gb",
+              "consumer-24gb",
+              "workstation-48-128gb",
+              "cluster-multi-gpu"
+            ]
+          },
+          "why": { "type": "string", "minLength": 1, "maxLength": 400 }
+        }
+      }
+    },
+    "models": {
+      "type": "array",
+      "minItems": 8,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/model" }
+    }
+  },
+  "$defs": {
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "displayName",
+        "family",
+        "publisher",
+        "license",
+        "status",
+        "roles",
+        "architecture",
+        "totalParameters",
+        "contextTokens",
+        "hardwareClass",
+        "localWeightsAvailable",
+        "ollamaLocalTag",
+        "preferredRuntimes",
+        "benchmarks",
+        "sources"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9.-]{1,79}$" },
+        "displayName": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "family": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "publisher": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "license": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "releasedAt": { "type": "string", "maxLength": 20 },
+        "status": {
+          "type": "string",
+          "enum": ["recommended", "watch", "reference-only"]
+        },
+        "roles": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "frontier-reasoning",
+              "agentic-coding",
+              "daily-general",
+              "vision",
+              "compact",
+              "embedding"
+            ]
+          }
+        },
+        "architecture": {
+          "type": "string",
+          "enum": ["dense", "moe"]
+        },
+        "totalParameters": { "type": "string", "minLength": 1, "maxLength": 20 },
+        "activeParameters": { "type": "string", "maxLength": 20 },
+        "contextTokens": { "type": "integer", "minimum": 1024 },
+        "modalities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["text", "image", "audio", "video"]
+          }
+        },
+        "hardwareClass": {
+          "type": "string",
+          "enum": [
+            "edge-16gb",
+            "consumer-24gb",
+            "workstation-48-128gb",
+            "cluster-multi-gpu"
+          ]
+        },
+        "approxDownloadGiB": { "type": "number", "minimum": 0 },
+        "localWeightsAvailable": { "type": "boolean" },
+        "ollamaLocalTag": { "type": ["string", "null"], "maxLength": 80 },
+        "ollamaCloudTag": { "type": ["string", "null"], "maxLength": 80 },
+        "huggingfaceId": { "type": ["string", "null"], "maxLength": 160 },
+        "preferredRuntimes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": ["ollama", "vllm", "sglang", "llama.cpp", "lmstudio"]
+          }
+        },
+        "quantNotes": { "type": "string", "maxLength": 400 },
+        "benchmarks": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/benchmark" }
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["label", "url"],
+            "properties": {
+              "label": { "type": "string", "minLength": 1, "maxLength": 80 },
+              "url": { "type": "string", "minLength": 12, "maxLength": 300 }
+            }
+          }
+        },
+        "notes": { "type": "string", "maxLength": 800 }
+      }
+    },
+    "benchmark": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "score", "unit", "mode", "sourceKind"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "score": { "type": ["number", "string"] },
+        "unit": {
+          "type": "string",
+          "enum": ["percent", "rating", "elo", "count", "text"]
+        },
+        "mode": { "type": "string", "maxLength": 80 },
+        "sourceKind": {
+          "type": "string",
+          "enum": ["official-card", "official-library", "independent"]
+        }
+      }
+    }
+  }
+}
