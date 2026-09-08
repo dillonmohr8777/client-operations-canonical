@@ -18,6 +18,16 @@ function Assert-True {
     if (-not $Condition) { throw $Message }
 }
 
+function Get-JoinedInstructions {
+    param($Items)
+    return ((@($Items) | ForEach-Object { [string]$_ }) -join "`n")
+}
+
+function Get-InstructionMatchCount {
+    param($Items, [string]$Pattern)
+    return @(@($Items) | Where-Object { [string]$_ -match $Pattern }).Count
+}
+
 $roster = Get-Content -LiteralPath $RosterPath -Raw -Encoding UTF8 | ConvertFrom-Json
 $pack = Get-Content -LiteralPath $PackPath -Raw -Encoding UTF8 | ConvertFrom-Json
 $generated = & (Join-Path $PSScriptRoot 'New-CursorLocalModelPack.ps1') -RosterPath $RosterPath | ConvertFrom-Json
@@ -34,8 +44,13 @@ Assert-True ([bool]$pack.authority.cloudAgentsUseHostedModels) 'Cloud Agents mus
 Assert-True ([bool]$pack.authority.cursorByokLoopbackForbidden) 'Pack must forbid localhost Cursor BYOK.'
 Assert-True (-not [bool]$pack.endpoints.loopbackReachableFromCursorCloud) 'Loopback must stay unreachable from Cursor Cloud.'
 Assert-True ([bool]$pack.endpoints.cursorBackendCannotReachLoopback) 'Cursor backend cannot reach desktop loopback.'
-    Assert-True ((@($pack.howToAdd) -join "`n") -match 'ollama_cloud_run') 'Pack howToAdd must name ollama_cloud_run.'
-    Assert-True ((@($pack.howToAdd) -join "`n") -notmatch 'Enable OpenAI API Key and Override OpenAI Base URL') 'Pack howToAdd must not propagate localhost Cursor BYOK.'
+Assert-True ((Get-JoinedInstructions $pack.howToAdd) -match 'ollama_cloud_run') 'Pack howToAdd must name ollama_cloud_run.'
+Assert-True ((Get-InstructionMatchCount $pack.howToAdd 'Enable OpenAI API Key and Override OpenAI Base URL') -eq 0) 'Pack howToAdd must not propagate localhost Cursor BYOK.'
+Assert-True ((Get-InstructionMatchCount $pack.howToAdd 'click Add Custom Model') -eq 0) 'Pack howToAdd must not tell Cursor to add localhost custom models.'
+Assert-True ((Get-InstructionMatchCount $pack.howToAdd 'Set the base URL to http://127.0.0.1:11434/v1') -eq 0) 'Pack howToAdd must not set a loopback OpenAI base URL.'
+Assert-True ((Get-JoinedInstructions $pack.howToAdd) -eq (Get-JoinedInstructions $generated.howToAdd)) 'Committed pack howToAdd must match a fresh generator run.'
+Assert-True ([string]$pack.purpose -eq [string]$generated.purpose) 'Committed pack purpose must match a fresh generator run.'
+Assert-True ([bool]$pack.authority.cursorByokLoopbackForbidden -eq [bool]$generated.authority.cursorByokLoopbackForbidden) 'Committed pack BYOK gate must match a fresh generator run.'
 
 $rosterIds = @($roster.models | ForEach-Object { [string]$_.id })
 $packIds = @($pack.models | ForEach-Object { [string]$_.id })
@@ -120,6 +135,8 @@ foreach ($pickerId in $requiredPickerIds) {
 
 $reference = Get-Content -LiteralPath $referencePath -Raw -Encoding UTF8 | ConvertFrom-Json
 Assert-True (@($reference.models).Count -eq @($pack.models).Count) 'Plugin reference pack must match the committed pack.'
+Assert-True ((Get-JoinedInstructions $reference.howToAdd) -eq (Get-JoinedInstructions $generated.howToAdd)) 'Plugin reference howToAdd must match a fresh generator run.'
+Assert-True ((Get-InstructionMatchCount $reference.howToAdd 'Enable OpenAI API Key and Override OpenAI Base URL') -eq 0) 'Plugin reference must not propagate localhost Cursor BYOK.'
 
 [pscustomobject]@{
     status = 'valid'

@@ -10,6 +10,8 @@ Authorized inference is Ollama Cloud. Codex owns the explicit cloud MCP in deskt
 
 This Cloud Agent cannot reach desktop loopback or those MCP tools. DESKTOP and AHCM remain the only catalog hosts. Do not open a tunnel so a Cloud Agent can pretend it is local.
 
+Desktop Cursor CLI verified `ollama_cloud_run` on 2026-09-08: requested `gemma4:31b-cloud`, provider receipt `gemma4:31b`, answer `42`, 464 ms. Two CLI MCP permission rules unblocked that headless call. All deny rules stayed. `skipApproval` remains false. The hosted web agent stays separate and must not reuse that desktop receipt.
+
 ## Cursor backend cannot reach desktop loopback
 
 Do not enable Override OpenAI Base URL, do not point Cursor at `http://127.0.0.1:11434/v1`, and do not add custom models as localhost BYOK. Cursor Cloud and the Cursor backend cannot reach desktop loopback. The plugin only records picker IDs and docs. It is not a hosted catalog and it is not a working loopback route.
