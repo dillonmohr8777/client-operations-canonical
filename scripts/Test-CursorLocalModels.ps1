@@ -31,7 +31,11 @@ Assert-True (-not [bool]$pack.authority.pullsOllamaWeights) 'Pack must not pull 
 Assert-True (-not [bool]$pack.authority.mutatesOmniRoute) 'Pack must not mutate OmniRoute.'
 Assert-True (-not [bool]$pack.authority.mutatesCanonicalQueue) 'Pack must not mutate the queue.'
 Assert-True ([bool]$pack.authority.cloudAgentsUseHostedModels) 'Cloud Agents must stay on hosted models.'
+Assert-True ([bool]$pack.authority.cursorByokLoopbackForbidden) 'Pack must forbid localhost Cursor BYOK.'
 Assert-True (-not [bool]$pack.endpoints.loopbackReachableFromCursorCloud) 'Loopback must stay unreachable from Cursor Cloud.'
+Assert-True ([bool]$pack.endpoints.cursorBackendCannotReachLoopback) 'Cursor backend cannot reach desktop loopback.'
+    Assert-True ((@($pack.howToAdd) -join "`n") -match 'ollama_cloud_run') 'Pack howToAdd must name ollama_cloud_run.'
+    Assert-True ((@($pack.howToAdd) -join "`n") -notmatch 'Enable OpenAI API Key and Override OpenAI Base URL') 'Pack howToAdd must not propagate localhost Cursor BYOK.'
 
 $rosterIds = @($roster.models | ForEach-Object { [string]$_.id })
 $packIds = @($pack.models | ForEach-Object { [string]$_.id })

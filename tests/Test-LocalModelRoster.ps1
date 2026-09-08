@@ -95,10 +95,14 @@ try {
     Assert-True ($docs -match 'DeepSeek-V4-Pro-0813') 'Docs must name the official Pro release.'
     Assert-True ($docs -match 'does not pull') 'Docs must say the roster does not pull weights.'
     Assert-True ($docs -match 'Install-CursorLocalModels') 'Docs must name the Cursor installer.'
-    Assert-True ($docs -match 'ollama pull ornith:35b') 'Docs must include the 24 GB daily pull commands.'
-    Assert-True ($docs -match 'curl.exe http://127.0.0.1:11434/api/tags') 'Docs must confirm installed tags against loopback /api/tags.'
-    Assert-True ($docs -match 'DESKTOP') 'Docs must name DESKTOP as a pull host.'
-    Assert-True ($docs -match 'AHCM') 'Docs must name AHCM as a pull host.'
+    Assert-True ($docs -match 'ollama_cloud_run') 'Docs must name the Codex Ollama Cloud MCP tool.'
+    Assert-True ($docs -match 'local-ai-worker') 'Docs must name desktop local-ai-worker as the cloud MCP owner.'
+    Assert-True ($docs -match 'Cursor backend cannot reach desktop loopback') 'Docs must say Cursor backend cannot reach loopback.'
+    Assert-True ($docs -notmatch 'Enable OpenAI API Key and Override OpenAI Base URL') 'Docs must not propagate localhost Cursor BYOK.'
+    Assert-True ($docs -notmatch 'click Add Custom Model') 'Docs must not tell Cursor to add localhost custom models.'
+    Assert-True ($docs -match 'ornith:35b') 'Docs must keep the 24 GB catalog tag ornith:35b.'
+    Assert-True ($docs -match 'DESKTOP') 'Docs must keep DESKTOP as a catalog host.'
+    Assert-True ($docs -match 'AHCM') 'Docs must keep AHCM as a catalog host.'
     Assert-True ($docs -match 'deepseek-v4-pro:cloud') 'Docs must call out the DeepSeek Pro cloud alias.'
 
     Write-Output ("local-model-roster tests passed ({0} assertions)" -f $script:AssertionCount)

@@ -32,6 +32,9 @@
         "cursorUserSecretsByRoster",
         "cursorTunnelsByRoster",
         "cursorStateDbByRoster",
+        "cursorLoopbackByok",
+        "downloadOrLaunchNewLocalModels",
+        "purchaseByRoster",
         "externalAction",
         "cloudOllamaTagsCountAsLocal",
         "vendorBenchmarksAreObservations"
@@ -44,6 +47,9 @@
         "cursorUserSecretsByRoster": { "const": "forbidden" },
         "cursorTunnelsByRoster": { "const": "forbidden" },
         "cursorStateDbByRoster": { "const": "forbidden" },
+        "cursorLoopbackByok": { "const": "forbidden" },
+        "downloadOrLaunchNewLocalModels": { "const": "forbidden" },
+        "purchaseByRoster": { "const": "forbidden" },
         "externalAction": { "const": "approval-gated" },
         "cloudOllamaTagsCountAsLocal": { "const": false },
         "vendorBenchmarksAreObservations": { "const": true }
@@ -60,6 +66,11 @@
         "pullHosts",
         "cloudAgentsUseHostedModels",
         "cloudAgentsCannotReachLoopback",
+        "cursorBackendCannotReachLoopback",
+        "cursorByokLoopbackForbidden",
+        "authorizedCloudOwner",
+        "authorizedCloudMcp",
+        "authorizedCloudTools",
         "doNotWriteApiKeys",
         "doNotEnableTunnels",
         "doNotEditStateDb"
@@ -83,6 +94,17 @@
         },
         "cloudAgentsUseHostedModels": { "const": true },
         "cloudAgentsCannotReachLoopback": { "const": true },
+        "cursorBackendCannotReachLoopback": { "const": true },
+        "cursorByokLoopbackForbidden": { "const": true },
+        "authorizedCloudOwner": { "const": "codex" },
+        "authorizedCloudMcp": { "const": "local-ai-worker" },
+        "authorizedCloudTools": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": { "type": "string", "enum": ["ollama_cloud_status", "ollama_cloud_run"] }
+        },
         "doNotWriteApiKeys": { "const": true },
         "doNotEnableTunnels": { "const": true },
         "doNotEditStateDb": { "const": true }
@@ -117,6 +139,10 @@
       "required": [
         "hosts",
         "cloudAgentMayPull",
+        "doNotPull",
+        "doNotLaunch",
+        "doNotPurchase",
+        "authorizedPath",
         "confirmLocalNotCloud",
         "daily24gb",
         "edge16gb",
@@ -131,6 +157,10 @@
           "items": { "type": "string", "enum": ["DESKTOP", "AHCM"] }
         },
         "cloudAgentMayPull": { "const": false },
+        "doNotPull": { "const": true },
+        "doNotLaunch": { "const": true },
+        "doNotPurchase": { "const": true },
+        "authorizedPath": { "const": "ollama-cloud-via-local-ai-worker-mcp" },
         "confirmLocalNotCloud": { "const": true },
         "daily24gb": {
           "type": "array",

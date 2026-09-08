@@ -11,6 +11,9 @@
     "cursorUserSecretsByRoster": "forbidden",
     "cursorTunnelsByRoster": "forbidden",
     "cursorStateDbByRoster": "forbidden",
+    "cursorLoopbackByok": "forbidden",
+    "downloadOrLaunchNewLocalModels": "forbidden",
+    "purchaseByRoster": "forbidden",
     "externalAction": "approval-gated",
     "cloudOllamaTagsCountAsLocal": false,
     "vendorBenchmarksAreObservations": true
@@ -22,6 +25,11 @@
     "pullHosts": ["DESKTOP", "AHCM"],
     "cloudAgentsUseHostedModels": true,
     "cloudAgentsCannotReachLoopback": true,
+    "cursorBackendCannotReachLoopback": true,
+    "cursorByokLoopbackForbidden": true,
+    "authorizedCloudOwner": "codex",
+    "authorizedCloudMcp": "local-ai-worker",
+    "authorizedCloudTools": ["ollama_cloud_status", "ollama_cloud_run"],
     "doNotWriteApiKeys": true,
     "doNotEnableTunnels": true,
     "doNotEditStateDb": true,
@@ -96,6 +104,10 @@
   "pullSets": {
     "hosts": ["DESKTOP", "AHCM"],
     "cloudAgentMayPull": false,
+    "doNotPull": true,
+    "doNotLaunch": true,
+    "doNotPurchase": true,
+    "authorizedPath": "ollama-cloud-via-local-ai-worker-mcp",
     "confirmLocalNotCloud": true,
     "daily24gb": [
       "ornith:35b",

@@ -128,6 +128,10 @@ $result = [ordered]@{
     }
     pullHosts = @($roster.pullSets.hosts)
     cloudAgentMayPull = [bool]$roster.pullSets.cloudAgentMayPull
+    doNotPull = [bool]$roster.pullSets.doNotPull
+    authorizedCloudPath = [string]$roster.pullSets.authorizedPath
+    cursorByokLoopbackForbidden = [bool]$roster.cursor.cursorByokLoopbackForbidden
+    authorizedCloudMcp = [string]$roster.cursor.authorizedCloudMcp
     installedLocalNames = @($localInstalledNames)
     installedCloudAliasesIgnored = @($cloudInstalled | ForEach-Object { [string]$_.name })
     matchedRecommendedLocalTags = @($matchedRecommended)

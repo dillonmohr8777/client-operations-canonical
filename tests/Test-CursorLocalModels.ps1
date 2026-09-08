@@ -64,7 +64,8 @@ try {
     Assert-True ($docs -match 'Install-CursorLocalModels') 'Docs must name the Cursor installer.'
     Assert-True ($docs -match 'deepseek-v4-pro-0813') 'Docs must keep the DeepSeek Pro picker ID.'
     Assert-True ($docs -match 'ornith:35b') 'Docs must keep the Ornith daily-coding picker ID.'
-    Assert-True ($docs -match 'http://127.0.0.1:11434/v1') 'Docs must keep the Ollama OpenAI base URL including /v1.'
+    Assert-True ($docs -match 'ollama_cloud_run') 'Docs must name the Codex Ollama Cloud MCP tool.'
+    Assert-True ($docs -notmatch 'Enable OpenAI API Key and Override OpenAI Base URL') 'Docs must not propagate localhost Cursor BYOK.'
 
     Write-Output ("cursor-local-models tests passed ({0} assertions)" -f $script:AssertionCount)
     exit 0

@@ -1,21 +1,21 @@
 ---
-description: Use the canonical Marketing Chief local-model picker IDs in Cursor without pulling weights or exposing loopback.
+description: Use the canonical Marketing Chief local-model catalog without localhost Cursor BYOK or new local pulls.
 alwaysApply: true
 ---
 
 # Local models in Cursor
 
-`registry/local-models.json` is the roster. `registry/cursor-local-models.json` is the picker pack. Install the desktop plugin with `scripts/Install-CursorLocalModels.ps1 -Apply`.
+`registry/local-models.json` is the roster. `registry/cursor-local-models.json` is the picker pack.
 
-Ollama pulls belong on DESKTOP or AHCM. Cloud Agents cannot download weights or reach `127.0.0.1:11434`. Confirm installed tags with `ollama list` and `curl.exe http://127.0.0.1:11434/api/tags`. Do not treat a `:cloud` alias as local.
+Authorized inference is Ollama Cloud through Codex desktop `local-ai-worker` tools `ollama_cloud_status` and `ollama_cloud_run`. Do not download or launch new local models or purchase anything.
 
-Cursor does not auto-discover `/v1/models`. Cloud Agents and hosted Cursor sessions keep using Cursor-hosted models. Loopback Ollama (`http://127.0.0.1:11434/v1`) and OmniRoute (`http://127.0.0.1:20128/v1`) are desktop-only.
+Cursor backend cannot reach desktop loopback. Do not enable Override OpenAI Base URL or add custom models as localhost BYOK.
 
-Do not pull Ollama weights, change OmniRoute defaults, write API keys, edit `state.vscdb`, enable tunnels, or mutate the canonical queue from this roster.
+Cloud Agents keep Cursor-hosted models. Do not pull Ollama weights, change OmniRoute defaults, write API keys, edit `state.vscdb`, enable tunnels, or mutate the canonical queue from this roster.
 
-## Recommended picker IDs
+## Catalog picker IDs
 
-Add these exact IDs in Cursor Settings → Models → Add Custom Model:
+These IDs are catalog only. They are not localhost BYOK routes.
 
 - Frontier cluster: `deepseek-v4-pro-0813`
 - Frontier workstation: `deepseek-v4-flash-0731`
