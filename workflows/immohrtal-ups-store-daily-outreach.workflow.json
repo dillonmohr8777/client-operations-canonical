@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "workflowId": "immohrtal-ups-store-daily-outreach",
+  "title": "IMMOHRTAL UPS Store daily franchise outreach",
+  "owner": "immohrtal-marketing",
+  "clientRoute": "immohrtal-marketing",
+  "triggerSources": ["schedule", "user"],
+  "cadence": "50 sends per America/New_York day at 09:00 until the MX-ok list is exhausted",
+  "fromMailbox": "dillon@immohrtalmarketing.com",
+  "terminalEntrypoint": "clients/immohrtal-marketing/deliverables/2026-09-01-ups-store-franchise-emails/outreach/select_batch.py",
+  "forbidden": {
+    "fromMailboxes": [
+      "dillonmohr8777@gmail.com",
+      "dmohrmedia@agentmail.to",
+      "momentumlocalseo@gmail.com"
+    ],
+    "hubspotImport": true,
+    "momentumSlack": true,
+    "canonicalQueueWrite": true
+  },
+  "runbook": "clients/immohrtal-marketing/deliverables/2026-09-01-ups-store-franchise-emails/outreach/RUNBOOK.md"
+}
