@@ -1,0 +1,61 @@
+name: Build Align Top 30 logo PDF
+
+on:
+  push:
+    branches:
+      - claude/branded-deliverable-template-888znb
+    paths:
+      - "clients/align-hcm/deliverables/2026-08-10-top30-story-shortlist-branded/**"
+      - ".github/workflows/align-top30-logo-pdf.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "clients/align-hcm/deliverables/2026-08-10-top30-story-shortlist-branded/**"
+      - ".github/workflows/align-top30-logo-pdf.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: clients/align-hcm/deliverables/2026-08-10-top30-story-shortlist-branded
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install renderer dependencies
+        run: pip install beautifulsoup4 cairosvg fonttools openpyxl pillow pypdf reportlab requests
+      - name: Fetch and validate 30 client logos
+        run: python fetch_client_logos.py
+      - name: Build editorial PDF
+        run: python build_align_top30_pdf.py
+      - name: Validate PDF
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pypdf import PdfReader
+
+          manifest = json.loads(Path("tmp/pdfs/client-logos/manifest.json").read_text())
+          assert len(manifest) == 30
+          assert all(row["status"] == "ok" for row in manifest)
+          pdf = Path("output/pdf/Align_HCM_Top30_Story_Shortlist_Editorial.pdf")
+          assert pdf.exists() and pdf.stat().st_size > 100_000
+          assert len(PdfReader(pdf).pages) == 20
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: align-top30-logo-pdf
+          if-no-files-found: error
+          retention-days: 7
+          path: |
+            clients/align-hcm/deliverables/2026-08-10-top30-story-shortlist-branded/output/pdf/Align_HCM_Top30_Story_Shortlist_Editorial.pdf
+            clients/align-hcm/deliverables/2026-08-10-top30-story-shortlist-branded/tmp/pdfs/client-logos/manifest.json
+            clients/align-hcm/deliverables/2026-08-10-top30-story-shortlist-branded/tmp/pdfs/client-logos/*.png
