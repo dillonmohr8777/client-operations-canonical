@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/colors.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/typography.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/radius.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/motion.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/semantic.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/base.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/styles.css">
+<script src="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap">
+<style>
+html,body{margin:0;padding:0;background:#fff}
+body{color:var(--ink);font-family:var(--body);font-size:var(--size-body);line-height:var(--leading-body)}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--navy);text-decoration:underline}
+::selection{background:var(--gold);color:var(--night)}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:5px}
+input[type=range]{accent-color:var(--gold)}
+</style>
+</helmet>
+<div style="max-width:1440px;margin:0 auto;padding:36px clamp(20px,4vw,48px) 72px">
+
+  <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:20px">
+    <div style="max-width:23ch">
+      <p style="margin:0 0 10px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">AI 02 · 18 s · 30 fps · intelligence made visible</p>
+      <h1 style="margin:0;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:clamp(2.1rem,3.6vw,3.2rem);line-height:1.02;letter-spacing:-.03em;color:var(--navy);text-wrap:balance">Clear the Noise.</h1>
+    </div>
+    <p style="margin:0;max-width:50ch;font-size:var(--size-support);color:var(--muted);text-wrap:pretty">A dense field of competing marks sits at every depth. An oblique tidal ribbon passes through it, carries the noise away on shared physical motion, and leaves one signal — briefly bent by a lens, then perfectly legible.</p>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:18px 0 12px">
+    <p ref="{{ beatLine }}" style="margin:0;font-size:var(--size-note);font-weight:900;color:var(--muted)">01 · The field · 0–3 s</p>
+    <div style="flex:1"></div>
+    <span style="font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--muted);font-weight:900">Preview bg</span>
+    <div style="display:flex;gap:6px">
+      <button type="button" onClick="{{ onBgNavy }}" ref="{{ bgNavy }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-note);padding:8px 13px;border-radius:8px;border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer">Navy</button>
+      <button type="button" onClick="{{ onBgWhite }}" ref="{{ bgWhite }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-note);padding:8px 13px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">White</button>
+      <button type="button" onClick="{{ onBgChecker }}" ref="{{ bgChecker }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-note);padding:8px 13px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Checker</button>
+    </div>
+    <button type="button" onClick="{{ onSound }}" ref="{{ btnSound }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Sound off</button>
+    <button type="button" onClick="{{ onStatic }}" ref="{{ btnStatic }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Reduced motion</button>
+  </div>
+
+  <div ref="{{ stageWrap }}" style="position:relative">
+    <div ref="{{ stage }}" tabindex="0" data-om-exportable-video-with-duration-secs="18" data-screen-label="AI 02 · 00.0s" style="position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;touch-action:pan-y;cursor:grab;outline-offset:4px">
+      <div ref="{{ bgLayer }}" style="position:absolute;inset:0;background:#03172e"></div>
+      <canvas ref="{{ canvas }}" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+      <div ref="{{ loading }}" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:var(--size-label);font-weight:900;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#52677c">Filling the field</div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:16px 0 0">
+      <button type="button" onClick="{{ onToggle }}" ref="{{ btnPlay }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);width:92px;padding:9px 0;border-radius:8px;border:1px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer">Pause</button>
+      <button type="button" onClick="{{ onReplay }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Replay</button>
+      <input type="range" min="0" max="1000" defaultValue="0" ref="{{ scrub }}" onInput="{{ onScrub }}" aria-label="Scrub the film" style="flex:1;min-width:180px;height:22px">
+      <span ref="{{ timeLabel }}" style="font-size:var(--size-note);font-weight:900;color:var(--muted);font-variant-numeric:tabular-nums;min-width:78px;text-align:right">0.0 / 18.0s</span>
+      <span ref="{{ frameLabel }}" style="font-size:var(--size-note);font-weight:900;color:var(--blue);font-variant-numeric:tabular-nums;min-width:112px;text-align:right">frame 000 / 540</span>
+      <label style="display:flex;align-items:center;gap:8px;font-size:var(--size-note);font-weight:900;color:var(--muted)">Duration
+        <select ref="{{ durSel }}" defaultValue="18" onChange="{{ onDur }}" aria-label="Playback duration" style="font-family:var(--body);font-size:var(--size-note);font-weight:900;color:var(--navy);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="14">14 s</option>
+          <option value="18">18 s</option>
+          <option value="24">24 s</option>
+        </select>
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:var(--size-note);font-weight:900;color:var(--muted)">Frame
+        <select ref="{{ frameSel }}" defaultValue="16:9" onChange="{{ onFrame }}" aria-label="Composition frame" style="font-family:var(--body);font-size:var(--size-note);font-weight:900;color:var(--navy);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="16:9">16:9</option>
+          <option value="9:16">9:16 authored</option>
+        </select>
+      </label>
+    </div>
+
+    <p ref="{{ runtimeNote }}" style="margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:var(--size-note);color:var(--muted);line-height:var(--leading-note)">The ribbon is a real displaced surface, and every mark it collects is driven by that same displacement field — the wave and the matter it removes share one motion, so nothing is faded out behind a wipe. The lens bend is a lateral displacement of the signal's own path, not a screen-space blur. Alpha-preserving renderer, no background plate, no shadow catcher; the exact logo and launch line are in-scene planes. Drag to shuttle · ← → beats · space play/pause.</p>
+  </div>
+
+  <div ref="{{ staticBoard }}" style="display:none;padding-top:32px">
+    <p style="margin:0 0 8px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Reduced-motion poster · no animation</p>
+    <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(28px,4vw,56px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:28px;align-items:start">
+        <div>
+          <p style="margin:0 0 10px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">AI 02</p>
+          <h2 style="margin:0 0 14px;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:clamp(1.9rem,3vw,2.7rem);line-height:1.02;letter-spacing:-.03em;color:var(--navy)">Make room<br>for Momentum<span style="color:var(--gold)">.</span></h2>
+          <p style="margin:0;font-size:var(--size-support);color:var(--ink);max-width:34ch;text-wrap:pretty">A crowded field, one pass of the tide, and a single signal left standing — bent once by a lens, then completely clear.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:1.5rem;color:var(--gold);min-width:2.2ch">01</span><span style="font-size:var(--size-note);color:var(--ink)">A dense, readable field of competing marks at many depths.</span></div>
+          <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:1.5rem;color:var(--gold);min-width:2.2ch">02</span><span style="font-size:var(--size-note);color:var(--ink)">An oblique blue-white tidal ribbon passes through and carries the noise away with it.</span></div>
+          <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:1.5rem;color:var(--gold);min-width:2.2ch">03</span><span style="font-size:var(--size-note);color:var(--ink)">One signal travels as a single elegant path; refraction bends it, then it resolves.</span></div>
+          <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:1.5rem;color:var(--gold);min-width:2.2ch">04</span><span style="font-size:var(--size-note);color:var(--ink)">The exact Momentum logo holds with the launch line.</span></div>
+        </div>
+      </div>
+      <div style="margin-top:34px;padding-top:26px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:22px;align-items:center">
+        <img src="assets/momentum-logo.png" alt="Momentum" style="display:block;width:196px;height:auto">
+        <div>
+          <p style="margin:0 0 4px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Introducing our AI division</p>
+          <p style="margin:0;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:1.5rem;line-height:1.04;letter-spacing:-.03em;color:var(--navy)">Make room for Momentum<span style="color:var(--gold)">.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin:30px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:var(--size-note);color:var(--muted);line-height:var(--leading-note);max-width:74ch">Private concept film · September 2026 · <a href="REFERENCES.md">REFERENCES.md</a> · <a href="FILM-MANIFEST.md">FILM-MANIFEST.md</a>. All marks and surfaces are original geometry; no client result, metric or availability claim is made. The wordmark is the exact master. Display type is Bricolage Grotesque under the approved exception.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900},&quot;defaultDuration&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;14&quot;,&quot;18&quot;,&quot;24&quot;],&quot;default&quot;:&quot;18&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Timing&quot;}}">
+class Component extends DCLogic {
+  R = ['stage', 'stageWrap', 'canvas', 'bgLayer', 'loading', 'runtimeNote', 'staticBoard', 'beatLine', 'btnSound', 'btnStatic', 'btnPlay', 'scrub', 'timeLabel', 'frameLabel', 'durSel', 'frameSel', 'bgNavy', 'bgWhite', 'bgChecker'].reduce((o, n) => { o[n] = React.createRef(); return o; }, {});
+  r = new Proxy({}, { get: (_, k) => (this.R[k] ? this.R[k].current : undefined) });
+
+  BEATS = [
+    { t: 0, n: '01', k: 'The field', span: '0–3 s' },
+    { t: 3.0, n: '02', k: 'The tide passes through', span: '3–9 s' },
+    { t: 9.0, n: '03', k: 'One signal', span: '9–14 s' },
+    { t: 14.0, n: '04', k: 'The mark', span: '14–18 s' }
+  ];
+  N = 460;
+
+  componentDidMount() { this.boot(); }
+  componentWillUnmount() { this.dead = true; if (this.rt) this.rt.unmount(); }
+
+  async boot() {
+    const K = await import('./film-kit.js');
+    this.K = K;
+    if (this.dead) return;
+    try {
+      await Promise.all([document.fonts.load('800 120px "Bricolage Grotesque"'), document.fonts.load('900 40px Nunito'), document.fonts.ready]);
+    } catch (e) { /* falls back */ }
+    this.face = K.displayFace();
+    try { this.imgs = await K.loadImages({ logo: 'assets/momentum-logo.png' }); } catch (e) { this.imgs = null; }
+    const T = await K.loadThree();
+    if (this.dead) return;
+
+    this.rt = new K.FilmRuntime({
+      id: 'ai02', label: 'AI 02',
+      stage: this.r.stage, canvas: this.r.canvas, authored: 18, beats: this.BEATS,
+      refs: Object.assign({}, this.R, { bgBtns: [this.R.bgNavy, this.R.bgWhite, this.R.bgChecker] }),
+      renderFrameAt: (t) => this.render(t),
+      onResize: (w, h, mob, ch) => this.onResize(w, h, mob, ch),
+      onCue: (t, on) => this.cue(t, on),
+      resetCue: () => { this.lastCue = -1; }
+    }).mount();
+    this.sfx = new K.Sfx();
+    this.lastCue = -1;
+
+    if (!T || !K.hasWebGL() || !this.imgs) {
+      this.r.loading.textContent = '';
+      this.r.runtimeNote.textContent = !this.imgs
+        ? 'The exact logo master could not be loaded, so the branded finish cannot render here. The reduced-motion poster is shown instead.'
+        : 'WebGL / three.js could not load in this runtime, so the fluid scene cannot render here. Nothing is being substituted: the reduced-motion poster is shown instead.';
+      this.rt.applyStatic(true);
+      return;
+    }
+    this.T = T;
+    try { this.build(); } catch (e) {
+      this.r.loading.textContent = '';
+      this.r.runtimeNote.textContent = 'The scene failed to build in this runtime (' + (e && e.message ? e.message : 'unknown') + '). Showing the reduced-motion poster instead.';
+      this.rt.applyStatic(true);
+      return;
+    }
+    this.r.loading.style.display = 'none';
+    if (this.rt.staticMode) this.rt.applyStatic(true);
+    this.rt.resize();
+    this.rt.start();
+  }
+
+  /* ---------- the competing marks ---------- */
+  // Four original abstract mark shapes — a bar, a stack of rules, a hollow ring, a
+  // stepped tick. They read as "things clamouring for attention" without being
+  // letters, logos or dashboard chrome.
+  markTexture(kind) {
+    const K = this.K, T = this.T;
+    return K.textTexture(T, (x, w, h) => {
+      x.strokeStyle = '#ffffff'; x.fillStyle = '#ffffff';
+      x.lineCap = 'round'; x.lineJoin = 'round';
+      if (kind === 0) {
+        x.lineWidth = h * 0.2;
+        x.beginPath(); x.moveTo(w * 0.1, h * 0.5); x.lineTo(w * 0.9, h * 0.5); x.stroke();
+      } else if (kind === 1) {
+        x.lineWidth = h * 0.1;
+        for (let i = 0; i < 3; i++) {
+          const y = h * (0.28 + i * 0.22);
+          x.beginPath(); x.moveTo(w * 0.12, y); x.lineTo(w * (0.9 - i * 0.22), y); x.stroke();
+        }
+      } else if (kind === 2) {
+        x.lineWidth = h * 0.13;
+        x.beginPath(); x.arc(w / 2, h / 2, h * 0.34, 0, Math.PI * 2); x.stroke();
+      } else {
+        x.lineWidth = h * 0.14;
+        x.beginPath();
+        x.moveTo(w * 0.14, h * 0.7); x.lineTo(w * 0.4, h * 0.7);
+        x.lineTo(w * 0.4, h * 0.4); x.lineTo(w * 0.66, h * 0.4);
+        x.lineTo(w * 0.66, h * 0.22); x.lineTo(w * 0.88, h * 0.22);
+        x.stroke();
+      }
+    }, 256, 128);
+  }
+
+  plan() {
+    const K = this.K, N = this.N, P = [];
+    for (let i = 0; i < N; i++) {
+      // the field is laid out obliquely so the tide's diagonal pass reads clearly
+      const gx = K.rn11(i * 3 + 1) * 7.6;
+      const gy = K.rn11(i * 3 + 2) * 3.5;
+      const gz = K.rn11(i * 3 + 3) * 4.6;
+      const tone = K.rnd(i * 7 + 5);
+      P.push({
+        home: [gx, gy, gz],
+        kind: i % 4,
+        scale: 0.2 + K.rnd(i * 11 + 2) * 0.42 + (tone > 0.94 ? 0.3 : 0),
+        rot: K.rn11(i * 13 + 3) * 0.5,
+        // the sweep coordinate: how far along the oblique axis this mark sits
+        s: gx * 0.86 + gy * 0.28 + gz * 0.42,
+        gold: tone > 0.93,
+        dim: 0.34 + K.rnd(i * 17 + 4) * 0.66,
+        carry: [K.rn11(i * 19 + 1) * 1.5, 0.7 + K.rnd(i * 19 + 2) * 2.2, K.rn11(i * 19 + 3) * 1.5],
+        spin: [K.rn11(i * 23 + 1) * 5, K.rn11(i * 23 + 2) * 5, K.rn11(i * 23 + 3) * 5],
+        ph: K.rnd(i * 29 + 6) * Math.PI * 2
+      });
+    }
+    return P;
+  }
+
+  build() {
+    const T = this.T, K = this.K;
+    const sc = new T.Scene();
+    const cam = new T.PerspectiveCamera(40, 16 / 9, 0.08, 90);
+    const rn = K.makeRenderer(T, this.r.canvas);
+    K.studioLights(T, sc, { key: 1.2, fill: 0.55, rim: 0.26 });
+
+    this.P = this.plan();
+    this.texs = [0, 1, 2, 3].map(k => this.markTexture(k));
+    // one instanced draw per mark shape keeps 460 marks cheap
+    this.groups = this.texs.map((tex, k) => {
+      const idx = [];
+      this.P.forEach((p, i) => { if (p.kind === k) idx.push(i); });
+      const mat = new T.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, side: T.DoubleSide, toneMapped: false });
+      const mesh = new T.InstancedMesh(new T.PlaneGeometry(1, 0.5), mat, Math.max(1, idx.length));
+      mesh.instanceColor = new T.InstancedBufferAttribute(new Float32Array(Math.max(1, idx.length) * 3), 3);
+      mesh.frustumCulled = false;
+      sc.add(mesh);
+      return { mesh: mesh, idx: idx, mat: mat };
+    });
+    this.dummy = new T.Object3D();
+
+    /* the tidal ribbon: a real displaced surface, oblique to the field */
+    const RW = 11.5, RH = 3.1;
+    this.ribGeo = new T.PlaneGeometry(RW, RH, 96, 26);
+    this.ribGeo.userData = { orig: Float32Array.from(this.ribGeo.attributes.position.array), w: RW, h: RH };
+    this.ribbon = new T.Mesh(this.ribGeo, new T.MeshStandardMaterial({
+      color: 0xf4f9fd, roughness: 0.1, metalness: 0.06, transparent: true, opacity: 0,
+      side: T.DoubleSide, emissive: new T.Color(K.C.pale), emissiveIntensity: 0.16
+    }));
+    this.ribbon.rotation.set(-0.36, 0.0, -0.42);
+    sc.add(this.ribbon);
+    // the crest: the same surface, drawn as a bright leading edge
+    this.crestMat = K.glowMaterial(T, { color: K.C.pale, opacity: 0 });
+    this.crest = K.polyTube(T, this.crestMat, 0.05, 8);
+    sc.add(this.crest);
+
+    /* the signal: one path, and the lens that bends it once */
+    this.sigMat = new T.MeshStandardMaterial({
+      color: 0xffffff, roughness: 0.2, metalness: 0.25, transparent: true, opacity: 0,
+      emissive: new T.Color(K.C.pale), emissiveIntensity: 0.5
+    });
+    this.signal = K.polyTube(T, this.sigMat, 0.035, 12);
+    sc.add(this.signal);
+    this.nodeMat = K.glowMaterial(T, { color: K.C.gold, opacity: 0, side: T.FrontSide });
+    this.node = new T.Mesh(new T.SphereGeometry(0.075, 18, 14), this.nodeMat);
+    sc.add(this.node);
+    this.lens = new T.Mesh(new T.SphereGeometry(0.86, 30, 24), K.glowMaterial(T, { color: K.C.electric, opacity: 0 }));
+    this.lens.scale.set(1, 1.25, 0.34);
+    sc.add(this.lens);
+
+    this.card = K.buildEndCard(T, this.imgs.logo, {
+      face: this.face, kicker: 'Introducing our AI division', line: 'Make room|for Momentum.'
+    });
+    cam.add(this.card);
+    this.card.position.set(0, 0, -5.2);
+    sc.add(cam);
+
+    this.g = { sc: sc, cam: cam, rn: rn };
+  }
+
+  onResize(cw, ch, mob) {
+    if (!this.g) return;
+    this.g.rn.setSize(cw, ch, false);
+    this.K.fitCamera(this.g.cam, cw, ch, 40);
+    if (this.card) {
+      this.card.position.z = mob ? -6.1 : -5.2;
+      this.card.scale.setScalar(mob ? 0.92 : 1);
+    }
+  }
+
+  // the ribbon's displacement field — the single source of truth for both the
+  // surface and every mark the tide carries away
+  wave(u, v, front) {
+    const K = this.K;
+    const d = u - front;
+    const env = Math.exp(-Math.pow(d * 2.3, 2));
+    const crest = Math.sin((d * 3.1) - 1.1) * env;
+    return {
+      y: crest * 0.86 + env * 0.3,
+      z: env * 0.55 * Math.cos(v * 2.2),
+      grab: K.cl((0.5 - d) / 0.55, 0, 1) * K.cl((d + 1.5) / 0.9, 0, 1)
+    };
+  }
+
+  render(t) {
+    if (!this.g) return;
+    const T = this.T, K = this.K, g = this.g;
+    const lp = K.lp, sm = K.sm, ez = K.ez, eo = K.eo, cl = K.cl;
+
+    /* camera: oblique on the field, tracks the tide, then follows the signal */
+    let cam, tgt;
+    if (t < 3.0) {
+      const k = sm(t / 3.0);
+      cam = [lp(-3.4, -2.2, k), lp(1.5, 1.05, k), lp(7.4, 6.5, k)];
+      tgt = [lp(-0.5, 0, k), 0, 0];
+    } else if (t < 9.0) {
+      const k = sm((t - 3.0) / 6.0);
+      cam = [lp(-2.2, 2.6, k), lp(1.05, 1.5, k), lp(6.5, 6.1, k)];
+      tgt = [lp(0, 0.4, k), lp(0, 0.1, k), 0];
+    } else if (t < 14.0) {
+      const k = ez((t - 9.0) / 5.0);
+      cam = [lp(2.6, -0.4, k), lp(1.5, 0.5, k), lp(6.1, 3.5, k)];
+      tgt = [lp(0.4, 0.1, k), lp(0.1, 0.06, k), 0];
+    } else {
+      const k = sm((t - 14.0) / 3.6);
+      cam = [lp(-0.4, 0.2, k), lp(0.5, 0.34, k), lp(3.5, 5.6, k)];
+      tgt = [lp(0.1, 0, k), 0.04, 0];
+    }
+    cam[1] += 0.04 * Math.sin(t * 0.4);
+    if (this.rt.mob) { cam[1] += 0.3; cam[2] *= 1.18; }
+    g.cam.position.set(cam[0], cam[1], cam[2]);
+    g.cam.lookAt(tgt[0], tgt[1], tgt[2]);
+
+    /* the tide's leading edge sweeps the oblique axis across beat 02 */
+    const sweep = ez(cl((t - 3.2) / 5.2, 0, 1));
+    const front = lp(-9.5, 9.5, sweep);
+    const ribA = Math.min(sm((t - 3.05) / 0.6), sm((9.4 - t) / 0.8));
+
+    /* beat 01–02 — marks appear, then are collected and carried off */
+    const appear = eo(cl(t / 1.5, 0, 1));
+    const gold = new T.Color(K.C.gold), pale = new T.Color(0xf2f7fb), blue = new T.Color(0xbdd4e8);
+    const cLocal = new T.Color();
+    this.groups.forEach(grp => {
+      let n = 0;
+      grp.idx.forEach(i => {
+        const p = this.P[i];
+        const w = this.wave(p.s, p.home[1] * 0.4, front);
+        // once the crest reaches a mark it inherits the wave's motion and is carried
+        const carried = w.grab;
+        const gone = cl((carried - 0.18) / 0.82, 0, 1);
+        const drift = gone * gone;
+        const x = p.home[0] + w.z * 0.5 + p.carry[0] * drift * 2.6;
+        const y = p.home[1] + w.y * (0.5 + carried) + p.carry[1] * drift * 2.4;
+        const z = p.home[2] + p.carry[2] * drift * 2.6;
+        // depth and removal are carried by scale, never by darkening the colour:
+        // a dimmed mark would vanish against the navy preview and read as a hole in
+        // the exported RGBA layer
+        const clearOut = sm((t - 8.5) / 0.9);
+        const sc2 = p.scale * appear * lp(1, 0.02, Math.max(drift * 0.92, clearOut));
+        this.dummy.position.set(x, y, z);
+        this.dummy.rotation.set(p.rot + p.spin[0] * drift, p.spin[1] * drift, p.spin[2] * drift + 0.06 * Math.sin(t * 0.9 + p.ph));
+        this.dummy.scale.setScalar(Math.max(0.0001, sc2));
+        this.dummy.updateMatrix();
+        grp.mesh.setMatrixAt(n, this.dummy.matrix);
+        const base = p.gold ? gold : (K.rnd(i) > 0.5 ? pale : blue);
+        cLocal.copy(base).multiplyScalar(0.8 + p.dim * 0.2);
+        grp.mesh.setColorAt(n, cLocal);
+        n++;
+      });
+      grp.mesh.count = n;
+      grp.mesh.instanceMatrix.needsUpdate = true;
+      if (grp.mesh.instanceColor) grp.mesh.instanceColor.needsUpdate = true;
+      grp.mat.opacity = 1;
+    });
+
+    /* the ribbon surface, displaced by the same field */
+    this.ribbon.visible = ribA > 0.01;
+    if (this.ribbon.visible) {
+      const pos = this.ribGeo.attributes.position, o = this.ribGeo.userData.orig, RW = this.ribGeo.userData.w;
+      for (let i = 0; i < pos.count; i++) {
+        const x = o[i * 3], y = o[i * 3 + 1];
+        const u = x / RW * 19;
+        const w = this.wave(u, y, front);
+        pos.setXYZ(i, x, y + w.y * 0.5, w.y * 0.85 + w.z);
+      }
+      pos.needsUpdate = true;
+      this.ribGeo.computeVertexNormals();
+      this.ribbon.material.opacity = ribA * 0.17;
+      const pts = [];
+      for (let s = 0; s <= 24; s++) {
+        const v = (s / 24 - 0.5) * this.ribGeo.userData.h;
+        const w = this.wave(front + 0.02, v, front);
+        const lx = (front / 19) * RW;
+        pts.push(new T.Vector3(lx * 0.5 + v * -0.12, w.y * 0.55 + v * 0.04, w.y * 0.9 + w.z));
+      }
+      this.crest.userData.set(pts, 0.05);
+      this.crest.position.copy(this.ribbon.position);
+      this.crest.rotation.copy(this.ribbon.rotation);
+      this.crestMat.opacity = ribA * 0.9;
+    } else { this.crest.visible = false; }
+
+    /* beat 03 — one signal travels, the lens bends it, then it resolves */
+    const sigA = Math.min(sm((t - 8.35) / 0.5), sm((15.6 - t) / 0.9));
+    this.signal.visible = sigA > 0.01;
+    if (this.signal.visible) {
+      const travel = ez(cl((t - 8.6) / 1.9, 0, 1));
+      const resolve = sm(cl((t - 11.4) / 1.6, 0, 1));
+      const lensX = lp(-4.2, 4.2, ez(cl((t - 9.9) / 2.2, 0, 1)));
+      const pts = [];
+      const SEG = 60;
+      for (let s = 0; s <= SEG; s++) {
+        const u = s / SEG;
+        const x = lp(-4.6, 4.6, u);
+        // its own path bends near the lens, then straightens as it resolves
+        const dl = (x - lensX) / 1.1;
+        const bend = Math.exp(-dl * dl) * Math.sign(dl || 1) * 0.62 * (1 - resolve);
+        const wobble = Math.sin(u * 9.2 + t * 1.4) * 0.16 * (1 - resolve) + Math.sin(u * 3.1) * 0.3 * (1 - resolve);
+        const y = wobble + bend * 0.9;
+        const z = Math.cos(u * 5.4 + t * 0.8) * 0.22 * (1 - resolve);
+        const vis = u <= travel + 0.001;
+        if (vis) pts.push(new T.Vector3(x, y, z));
+      }
+      if (pts.length > 1) {
+        this.signal.userData.set(pts, lp(0.028, 0.042, resolve));
+        this.sigMat.opacity = sigA;
+        this.sigMat.emissiveIntensity = lp(0.35, 0.85, resolve);
+        const tip = pts[pts.length - 1];
+        this.node.position.copy(tip);
+        this.node.scale.setScalar(lp(0.8, 1.5, resolve));
+        this.nodeMat.opacity = sigA;
+      }
+      const lensA = Math.min(sm((t - 9.9) / 0.5), sm((12.9 - t) / 0.6));
+      this.lens.visible = lensA > 0.01;
+      this.lens.position.set(lensX, 0, 0.1);
+      this.lens.material.opacity = lensA * 0.16;
+    } else { this.node.visible = false; this.lens.visible = false; }
+    this.node.visible = this.signal.visible;
+
+    K.playEndCard(this.card, sm((t - 14.4) / 2.5));
+    g.rn.render(g.sc, g.cam);
+  }
+
+  MARKS = [{ t: 3.2, k: 'tide' }, { t: 6.0, k: 'carry' }, { t: 8.9, k: 'signal' }, { t: 12.3, k: 'resolve' }, { t: 14.5, k: 'settle' }];
+  cue(t, on) {
+    if (!on) return;
+    for (let i = 0; i < this.MARKS.length; i++) {
+      const m = this.MARKS[i];
+      if (this.lastCue < i && t >= m.t && t < m.t + 0.3) {
+        this.lastCue = i;
+        if (m.k === 'tide') this.sfx.noise(1.4, 260, 900, 0.1, 0.5, 'lowpass');
+        else if (m.k === 'carry') this.sfx.noise(1.1, 1200, 300, 0.07, 0.6);
+        else if (m.k === 'signal') this.sfx.tone(0.42, 700, 1100, 0.1);
+        else if (m.k === 'resolve') this.sfx.tone(0.6, 1100, 660, 0.11);
+        else this.sfx.noise(0.7, 900, 240, 0.06, 0.6, 'lowpass');
+      }
+    }
+    if (t < 2.6) this.lastCue = -1;
+  }
+
+  renderVals() {
+    return {
+      ...this.R,
+      onToggle: () => this.rt.toggle(),
+      onReplay: () => this.rt.replay(),
+      onScrub: (e) => {
+        this.rt.scrubbing = true;
+        this.rt.seek((Number(e.target.value) / 1000) * this.rt.AUTH);
+        clearTimeout(this.sT); this.sT = setTimeout(() => { this.rt.scrubbing = false; }, 250);
+      },
+      onDur: (e) => this.rt.setDur(e.target.value),
+      onFrame: (e) => this.rt.setFrame(e.target.value),
+      onBgNavy: () => this.rt.applyBg('navy'),
+      onBgWhite: () => this.rt.applyBg('white'),
+      onBgChecker: () => this.rt.applyBg('checker'),
+      onSound: () => { if (this.rt.toggleSound()) this.sfx.tone(0.2, 520, 300, 0.08); },
+      onStatic: () => this.rt.applyStatic(!this.rt.staticMode)
+    };
+  }
+}
+</script>
+</body>
+</html>

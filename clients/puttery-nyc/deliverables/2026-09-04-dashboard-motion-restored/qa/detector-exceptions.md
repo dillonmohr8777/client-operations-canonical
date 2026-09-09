@@ -1,0 +1,25 @@
+# Restoration detector exceptions
+
+The `npx impeccable detect` run returned exit **2**, with 107 findings: 26 warnings and 81 advisory findings, zero critical findings. Raw evidence is in `detector.json` and `detector-exit.txt`. This is an explained exception, not a clean detector pass. No detector rule was disabled.
+
+The user explicitly required restoration of the original Opus Five Max intro, logo motion, animated icons, golf motion, side ornament, bold layout, headline scale, and all of its visual personality. `restoration-proof.json` proves the original stylesheet is preserved as an exact prefix, including all original keyframes. The findings below concern that preserved direction, rather than a new unsolicited design system.
+
+- **2 side-tab, 4 all-caps-body:** original navigation and brand labels are preserved by explicit user direction. They remain readable, navigable, and text-labeled.
+- **6 undersized-ui-text, 8 tiny-text:** original small operational metadata and source labels are preserved. Main content, fields and buttons remain at the original larger scale; desktop/mobile inspection and axe pass. This exception applies to these original labels, not a universal typography rule.
+- **1 cramped-padding:** original tabular/structural rule uses cell or child insets rather than padding on its outer container. Rendered content and focus checks pass.
+- **37 design-system-color, 3 design-system-font, 44 design-system-font-size:** these advisory mismatches reflect literal values and responsive variants already in the preserved original source that its original DESIGN.md does not exhaustively enumerate. They are approved incumbent visual evidence for this restoration. New side fallback and motion controls use the original CSS palette and button styles. The original design record and sidecar are retained; no replacement style was introduced.
+- **2 layout-transition:** the original progress/heading behavior is retained as requested. No additional framework or unbounded layout animation was introduced. Default original motion remains active; the explicit Pause control, offscreen pause, hidden-page pause and reduced-motion path provide control.
+
+The independent reviewer should assess the exact restoration against the user's explicit direction. These narrow exceptions are confined to this restoration package. They do not authorize future low-contrast text, inaccessible controls, or arbitrary token drift. Browser axe and functional checks passed in both viewports; actual time-separated transforms are recorded in `motion-proof.json`.
+
+## Final champion bundle detector
+
+The final manual command was `npx --yes impeccable@4.0.1 detect --json index.html styles.css app.js champion-intro.js media.js`. It returned exit **2**, with **99 findings: 26 warnings, 73 advisories, zero critical findings**. See `champion-detector.json`, `champion-detector-exit.txt` and the generated `champion-detector-summary.json`. This run includes the final public champion JS, media manifest, complete stylesheet and entry page; no public source changed afterward.
+
+The original restoration exceptions above remain scoped to the preserved original source. The new intro keeps the original documented palette and pill controls, adds documented 0.875rem/0.75rem control sizes with 44px minimum height, and uses a bounded video-clock transform/clip reveal. Its generated film and exact SVG are explicitly requested visual evidence, not generic stock decoration. The focused intro axe check has no violations. Mobile placement, whole-golfer containment, Skip, Pause, Escape, replay, reduced motion, initial failure fallback, real side-video movement and late-error fallback are recorded in the 20 focused checks and six confirmation checks. No detector rule was disabled.
+
+## Final hand-drawn correction
+
+The realistic film was superseded by Dillon's explicit correction: pure black, hand-drawn cartoon golfer, and a ball that draws each exact logo glyph. The final manual command was `npx --yes impeccable@4.0.1 detect --json index.html styles.css champion-intro.js media.js assets/puttery-handdrawn-intro.svg`. It returned exit **2**, **99 findings: 26 warnings, 73 advisories, zero critical**. Raw evidence is `ink-detector.json` and `ink-detector-exit.txt`. Warning categories and counts are unchanged from the preceding run; the preserved original-style exceptions remain applicable. No detector rule was disabled.
+
+The new pure-black intro field is specifically requested. Individual original glyph silhouettes constrain the drawn ink, and the visible ball samples the same route as each mask. No generated font or realistic intro footage remains in the public bundle. The bounded 7.1-second drawing, 44px controls, focus trap, Skip, Pause, Escape, replay, original fallback and reduced-motion path are independently reviewable in `ink-checks.json` (23 checks) and `ink-confirm.json` (seven confirmations and final export). The zero-progress mask cap defect was corrected before the final screenshots and manifest. The ball merges into the last letter before the full exact wordmark holds.

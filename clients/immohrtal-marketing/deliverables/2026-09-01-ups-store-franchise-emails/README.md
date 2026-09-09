@@ -6,6 +6,8 @@ Sector: older shipping, print, and mailbox storefronts. UPS Store franchisees ar
 
 HubSpot import is still off. Dillon approved a 50 per day outreach send from `dillon@immohrtalmarketing.com` until the list is finished. Warmup caps the first two weeks. See `outreach/RUNBOOK.md` and `outreach/DELIVERABILITY.md`.
 
+2026-09-07 daily run: warmup 20 queued, not sent. Workspace Gmail is still disconnected. Personal Gmail, AgentMail, and Momentum mailboxes were refused. Remaining 5801.
+
 ## Result
 
 - Source: official UPS Store locator, accessed 2026-09-01

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/colors.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/typography.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/radius.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/motion.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/semantic.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/base.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/styles.css">
+<script src="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/_ds_bundle.js"></script>
+<style>
+html,body{margin:0;padding:0;background:#fff}
+body{color:var(--ink);font-family:var(--body);font-size:var(--size-body);line-height:var(--leading-body)}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--navy);text-decoration:underline}
+::selection{background:var(--gold);color:var(--night)}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:5px}
+input[type=range]{accent-color:var(--gold)}
+</style>
+</helmet>
+<div style="max-width:1440px;margin:0 auto;padding:36px clamp(20px,4vw,48px) 72px">
+
+  <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:20px">
+    <div style="max-width:26ch">
+      <p style="margin:0 0 10px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Character shorts · six × 10 seconds</p>
+      <h1 style="margin:0;font-family:var(--display);font-weight:900;font-size:clamp(2rem,3.4vw,3rem);line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy);text-wrap:balance">Meet your team.</h1>
+    </div>
+    <p style="margin:0;max-width:54ch;font-size:var(--size-support);color:var(--muted);text-wrap:pretty">One ceramic character per short, each resolved out of a halftone dot field on a lit stage. Six separately selectable and exportable 10-second passes. Roles come from the collection’s own names — no new characters, no page turns, no desk.</p>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:8px;padding:20px 0 6px">
+    <button type="button" onClick="{{ onS0 }}" ref="{{ s0 }}" style="display:flex;flex-direction:column;gap:3px;align-items:flex-start;text-align:left;font-family:var(--body);padding:11px 16px;border-radius:12px;border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer;flex:1;min-width:150px">
+      <span style="font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;font-weight:900;opacity:.72">Short 01</span>
+      <span style="font-family:var(--display);font-weight:900;font-size:1.02rem;letter-spacing:var(--tracking-display)">Momo</span>
+    </button>
+    <button type="button" onClick="{{ onS1 }}" ref="{{ s1 }}" style="display:flex;flex-direction:column;gap:3px;align-items:flex-start;text-align:left;font-family:var(--body);padding:11px 16px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;flex:1;min-width:150px">
+      <span style="font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;font-weight:900;opacity:.72">Short 02</span>
+      <span style="font-family:var(--display);font-weight:900;font-size:1.02rem;letter-spacing:var(--tracking-display)">Search</span>
+    </button>
+    <button type="button" onClick="{{ onS2 }}" ref="{{ s2 }}" style="display:flex;flex-direction:column;gap:3px;align-items:flex-start;text-align:left;font-family:var(--body);padding:11px 16px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;flex:1;min-width:150px">
+      <span style="font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;font-weight:900;opacity:.72">Short 03</span>
+      <span style="font-family:var(--display);font-weight:900;font-size:1.02rem;letter-spacing:var(--tracking-display)">Response</span>
+    </button>
+    <button type="button" onClick="{{ onS3 }}" ref="{{ s3 }}" style="display:flex;flex-direction:column;gap:3px;align-items:flex-start;text-align:left;font-family:var(--body);padding:11px 16px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;flex:1;min-width:150px">
+      <span style="font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;font-weight:900;opacity:.72">Short 04</span>
+      <span style="font-family:var(--display);font-weight:900;font-size:1.02rem;letter-spacing:var(--tracking-display)">Build</span>
+    </button>
+    <button type="button" onClick="{{ onS4 }}" ref="{{ s4 }}" style="display:flex;flex-direction:column;gap:3px;align-items:flex-start;text-align:left;font-family:var(--body);padding:11px 16px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;flex:1;min-width:150px">
+      <span style="font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;font-weight:900;opacity:.72">Short 05</span>
+      <span style="font-family:var(--display);font-weight:900;font-size:1.02rem;letter-spacing:var(--tracking-display)">Operations</span>
+    </button>
+    <button type="button" onClick="{{ onS5 }}" ref="{{ s5 }}" style="display:flex;flex-direction:column;gap:3px;align-items:flex-start;text-align:left;font-family:var(--body);padding:11px 16px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;flex:1;min-width:150px">
+      <span style="font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;font-weight:900;opacity:.72">Short 06</span>
+      <span style="font-family:var(--display);font-weight:900;font-size:1.02rem;letter-spacing:var(--tracking-display)">Audience</span>
+    </button>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:12px 0 14px">
+    <p ref="{{ shortLine }}" style="margin:0;font-size:var(--size-note);font-weight:900;color:var(--muted)">Short 01 · Momo · 10 s · route #momo</p>
+    <div style="flex:1"></div>
+    <button type="button" onClick="{{ onSound }}" ref="{{ btnSound }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Sound off</button>
+    <button type="button" onClick="{{ onStatic }}" ref="{{ btnStatic }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Static version</button>
+  </div>
+
+  <div ref="{{ stageWrap }}" style="position:relative">
+    <div ref="{{ stage }}" tabindex="0" data-om-exportable-video-with-duration-secs="10" data-screen-label="Short 01 Momo · 00.0s" style="position:relative;width:100%;aspect-ratio:16/9;background:#03172e;border-radius:var(--radius);overflow:hidden;container-type:size;touch-action:pan-y;cursor:crosshair;outline-offset:4px">
+      <canvas ref="{{ canvas }}" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+
+      <div ref="{{ plate }}" style="position:absolute;left:6cqw;top:26cqh;opacity:0;max-width:40cqw">
+        <p ref="{{ pNum }}" style="margin:0 0 1.4cqh;font-family:var(--body);font-weight:900;font-size:1.25cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">Short 01 · The guide</p>
+        <h2 ref="{{ pName }}" style="margin:0 0 2cqh;font-family:var(--display);font-weight:900;font-size:4.2cqw;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:#fff;text-wrap:balance">Momo<span style="color:#efb928">.</span></h2>
+        <p ref="{{ pRole }}" style="margin:0 0 2.4cqh;font-family:var(--body);font-weight:900;font-size:1.5cqw;color:#d5e4f1">The collection guide.</p>
+        <p ref="{{ pLine }}" style="margin:0;font-family:var(--body);font-weight:400;font-size:1.32cqw;line-height:1.55;color:#d5e4f1;opacity:.86">Keeps the whole system legible — one voice across every proposed workflow.</p>
+      </div>
+
+      <div ref="{{ tagRow }}" style="position:absolute;left:6cqw;bottom:7cqh;display:flex;gap:1cqw;opacity:0">
+        <span ref="{{ tag0 }}" style="font-family:var(--body);font-weight:900;font-size:1.1cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#d5e4f1;border:1px solid rgb(255 255 255 / 14%);border-radius:24px;padding:.9cqh 1.6cqw">Proposed role</span>
+        <span ref="{{ tag1 }}" style="font-family:var(--body);font-weight:900;font-size:1.1cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#d5e4f1;border:1px solid rgb(255 255 255 / 14%);border-radius:24px;padding:.9cqh 1.6cqw">Your approval</span>
+      </div>
+
+      <div ref="{{ endcard }}" style="position:absolute;left:6cqw;top:50%;transform:translateY(-50%);opacity:0;max-width:46cqw">
+        <img src="assets/momentum-logo.png" alt="Momentum" style="display:block;width:19cqw;height:auto;margin-bottom:3.2cqh">
+        <p style="margin:0 0 1.7cqh;font-family:var(--body);font-weight:900;font-size:1.3cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">Need momentum?</p>
+        <p ref="{{ endLine }}" style="margin:0;font-family:var(--display);font-weight:900;font-size:3.3cqw;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:#fff;text-wrap:balance">Meet the rest of the team<span style="color:#efb928">.</span></p>
+      </div>
+
+      <div ref="{{ hint }}" style="position:absolute;right:3.2cqw;top:3.6cqh;padding:.9cqh 1.8cqw;border:1px solid rgb(255 255 255 / 14%);border-radius:24px;font-size:1.15cqw;font-weight:900;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#d5e4f1;opacity:0">Move to develop · ← → for the next short</div>
+
+      <div ref="{{ loading }}" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:var(--size-label);font-weight:900;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#52677c">Lighting the stage</div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:16px 0 0">
+      <button type="button" onClick="{{ onToggle }}" ref="{{ btnPlay }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);width:96px;padding:9px 0;border-radius:8px;border:1px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer">Pause</button>
+      <button type="button" onClick="{{ onReplay }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Replay</button>
+      <input type="range" min="0" max="1000" defaultValue="0" ref="{{ scrub }}" onInput="{{ onScrub }}" aria-label="Scrub the short" style="flex:1;min-width:200px;height:22px">
+      <span ref="{{ timeLabel }}" style="font-size:var(--size-note);font-weight:900;color:var(--muted);font-variant-numeric:tabular-nums;min-width:74px;text-align:right">0.0 / 10.0s</span>
+      <label style="display:flex;align-items:center;gap:8px;font-size:var(--size-note);font-weight:900;color:var(--muted)">Duration
+        <select ref="{{ durSel }}" defaultValue="10" onChange="{{ onDur }}" aria-label="Playback duration" style="font-family:var(--body);font-size:var(--size-note);font-weight:900;color:var(--navy);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="8">8 s</option>
+          <option value="10">10 s</option>
+          <option value="14">14 s</option>
+        </select>
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:var(--size-note);font-weight:900;color:var(--muted)">Frame
+        <select ref="{{ frameSel }}" defaultValue="16:9" onChange="{{ onFrame }}" aria-label="Composition frame" style="font-family:var(--body);font-size:var(--size-note);font-weight:900;color:var(--navy);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="16:9">16:9</option>
+          <option value="9:16">9:16 mobile</option>
+        </select>
+      </label>
+    </div>
+
+    <p ref="{{ runtimeNote }}" style="margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:var(--size-note);color:var(--muted);line-height:var(--leading-note)">Rendered on a 2D canvas: the ceramic master is masked by a halftone dot grid whose dots grow from the stage centre outward, so the character develops like a print rather than fading in. A single crane-up move and a gold dot ring at the close; no book engine and no desk. Move the pointer across the stage to develop it by hand, use ← → for the next short, 1–6 to jump, space to play or pause. Sound stays off until you turn it on.</p>
+  </div>
+
+  <div ref="{{ staticBoard }}" style="display:none;padding-top:32px">
+    <p style="margin:0 0 8px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Static version · no motion</p>
+    <h2 style="margin:0 0 26px;font-family:var(--display);font-weight:900;font-size:clamp(1.7rem,2.6vw,2.4rem);line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">All six characters, developed and still.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:32px">
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);overflow:hidden">
+          <img src="assets/artwork/hero-mascot.png" alt="Momo, the collection guide" style="width:100%;height:auto;display:block">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Short 01 · The guide</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.5rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Momo.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Keeps the whole system legible — one voice across every proposed workflow.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);overflow:hidden">
+          <img src="assets/artwork/search-mascot.png" alt="Momo studies a local business landscape" style="width:100%;height:auto;display:block">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Short 02 · Search &amp; discovery</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.5rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Studies the landscape.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Proposed role: read how local buyers ask before anything gets written.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);overflow:hidden">
+          <img src="assets/artwork/phone-mascot.png" alt="A clear role for the next conversation" style="width:100%;height:auto;display:block">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Short 03 · Lead response</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.5rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Takes the next call.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Proposed role: answer quickly, ask what you would ask, hand over a real next step.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);overflow:hidden">
+          <img src="assets/artwork/build-mascot.png" alt="A practical companion for making the system" style="width:100%;height:auto;display:block">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Short 04 · Build &amp; create</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.5rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Builds the pieces.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Proposed role: assemble pages and drafts from your own words and photographs.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);overflow:hidden">
+          <img src="assets/artwork/operations-mascot.png" alt="A coordinated view of the moving parts" style="width:100%;height:auto;display:block">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Short 05 · Operations</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.5rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Keeps the parts in step.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Proposed role: hold the job, the crew and the calendar on one thread.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);overflow:hidden">
+          <img src="assets/artwork/audience-mascot.png" alt="People stay at the center of the work" style="width:100%;height:auto;display:block">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Short 06 · Audience</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.5rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Keeps people at the centre.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Proposed role: write for the person reading, not the platform serving.</p>
+      </div>
+    </div>
+    <div style="margin-top:34px;padding:28px 32px;background:#072d53;border-radius:var(--radius)">
+      <img src="assets/momentum-logo.png" alt="Momentum" style="display:block;width:210px;height:auto;margin-bottom:18px">
+      <p style="margin:0 0 8px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--gold);font-weight:900">Need momentum?</p>
+      <p style="margin:0;font-family:var(--display);font-weight:900;font-size:clamp(1.5rem,2.4vw,2.2rem);line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:#fff">Meet the rest of the team<span style="color:var(--gold)">.</span></p>
+    </div>
+  </div>
+
+  <p style="margin:34px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:var(--size-note);color:var(--muted);line-height:var(--leading-note);max-width:72ch">Private concept shorts · September 2026. Roles are proposed packaging for review, not deployed products, and no client result, metric or availability claim is made. Every character is an existing Momentum ceramic master used unmodified — no new characters, names or faces were drawn; the wordmark is the exact master.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:980},&quot;startShort&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;momo&quot;,&quot;search&quot;,&quot;response&quot;,&quot;build&quot;,&quot;operations&quot;,&quot;audience&quot;],&quot;default&quot;:&quot;momo&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Short&quot;},&quot;defaultDuration&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;8&quot;,&quot;10&quot;,&quot;14&quot;],&quot;default&quot;:&quot;10&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Short&quot;},&quot;dotSize&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:10,&quot;max&quot;:26,&quot;step&quot;:1,&quot;default&quot;:15,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Halftone&quot;}}">
+class Component extends DCLogic {
+  R = ['stage', 'stageWrap', 'canvas', 'plate', 'pNum', 'pName', 'pRole', 'pLine', 'tagRow', 'tag0', 'tag1', 'endcard', 'endLine', 'hint', 'loading', 'runtimeNote', 'staticBoard', 'shortLine', 'btnSound', 'btnStatic', 'btnPlay', 'scrub', 'timeLabel', 'durSel', 'frameSel', 's0', 's1', 's2', 's3', 's4', 's5'].reduce((o, n) => { o[n] = React.createRef(); return o; }, {});
+  r = new Proxy({}, { get: (_, k) => (this.R[k] ? this.R[k].current : undefined) });
+
+  CH = [
+    { id: 'momo', n: '01', name: 'Momo', kicker: 'The guide', art: 'hero-mascot', badge: 'icon-proof',
+      role: 'The collection guide.', line: 'Keeps the whole system legible — one voice across every proposed workflow.' },
+    { id: 'search', n: '02', name: 'Search', kicker: 'Search & discovery', art: 'search-mascot', badge: 'icon-search',
+      role: 'Studies the landscape.', line: 'Proposed role: read how local buyers ask before anything gets written.' },
+    { id: 'response', n: '03', name: 'Response', kicker: 'Lead response', art: 'phone-mascot', badge: 'icon-phone',
+      role: 'Takes the next call.', line: 'Proposed role: answer quickly, ask what you would ask, hand over a real next step.' },
+    { id: 'build', n: '04', name: 'Build', kicker: 'Build & create', art: 'build-mascot', badge: 'icon-build',
+      role: 'Builds the pieces.', line: 'Proposed role: assemble pages and drafts from your own words and photographs.' },
+    { id: 'operations', n: '05', name: 'Operations', kicker: 'Operations', art: 'operations-mascot', badge: 'icon-operations',
+      role: 'Keeps the parts in step.', line: 'Proposed role: hold the job, the crew and the calendar on one thread.' },
+    { id: 'audience', n: '06', name: 'Audience', kicker: 'Audience', art: 'audience-mascot', badge: 'icon-audience',
+      role: 'Keeps people at the centre.', line: 'Proposed role: write for the person reading, not the platform serving.' }
+  ];
+
+  AUTH = 10; dur = 10; t = 0; playing = true; sound = false; staticMode = false;
+  frame = '16:9'; mob = false; ix = 0; cue = -1; hand = 0;
+
+  componentDidMount() {
+    const p = this.props || {};
+    this.dur = Number(p.defaultDuration || 10) || 10;
+    this.dotSize = Number(p.dotSize || 15) || 15;
+    const hash = (location.hash || '').replace('#', '').toLowerCase();
+    const byHash = this.CH.findIndex(c => c.id === hash);
+    const byProp = this.CH.findIndex(c => c.id === String(p.startShort || 'momo'));
+    this.ix = byHash >= 0 ? byHash : (byProp >= 0 ? byProp : 0);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.staticMode = true;
+    window.addEventListener('hashchange', this.onHash);
+    requestAnimationFrame(() => requestAnimationFrame(() => { this.syncSel(); this.syncPick(); }));
+    this.boot();
+  }
+
+  componentWillUnmount() {
+    this.dead = true;
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.ro) this.ro.disconnect();
+    window.removeEventListener('hashchange', this.onHash);
+    window.removeEventListener('pointermove', this.onMove);
+  }
+
+  async boot() {
+    const stage = this.r.stage;
+    if (this.staticMode) this.applyStatic(true);
+    stage.addEventListener('data-om-seek-to-time-frame', this.onSeek);
+    stage.addEventListener('keydown', this.onKey);
+    window.addEventListener('pointermove', this.onMove);
+    this.ro = new ResizeObserver(() => this.resize());
+    this.ro.observe(stage);
+
+    try {
+      await Promise.all([document.fonts.load('900 64px Archivo'), document.fonts.load('400 26px Nunito'), document.fonts.ready]);
+    } catch (e) { /* fonts fall back */ }
+
+    const map = {};
+    this.CH.forEach((c, i) => { map['a' + i] = 'assets/artwork/' + c.art + '.png'; map['b' + i] = 'assets/artwork/' + c.badge + '.png'; });
+    try { this.imgs = await this.loadImages(map); } catch (e) { this.imgs = {}; }
+    if (this.dead) return;
+
+    this.ctx = this.r.canvas.getContext('2d');
+    if (!this.ctx) {
+      this.r.loading.textContent = '';
+      this.r.runtimeNote.textContent = 'A 2D canvas context was unavailable in this runtime, so the shorts cannot render here. The static readable version is shown instead.';
+      this.staticMode = true; this.applyStatic(true); this.playing = false; return;
+    }
+    this.work = document.createElement('canvas');
+    this.mask = document.createElement('canvas');
+    this.r.loading.style.display = 'none';
+    this.load(this.ix);
+    this.resize();
+    this.last = performance.now();
+    this.raf = requestAnimationFrame(this.loop);
+  }
+
+  loadImages(map) {
+    const keys = Object.keys(map);
+    return Promise.all(keys.map(k => new Promise((res, rej) => {
+      const im = new Image(); im.onload = () => res([k, im]); im.onerror = () => rej(new Error(map[k])); im.src = map[k];
+    }))).then(pairs => { const o = {}; pairs.forEach(x => o[x[0]] = x[1]); return o; });
+  }
+
+  load(i) {
+    this.ix = i;
+    const c = this.CH[i];
+    if (this.r.pNum) this.r.pNum.textContent = 'Short ' + c.n + ' · ' + c.kicker;
+    if (this.r.pName) this.r.pName.innerHTML = c.name + '<span style="color:#efb928">.</span>';
+    if (this.r.pRole) this.r.pRole.textContent = c.role;
+    if (this.r.pLine) this.r.pLine.textContent = c.line;
+    if (this.r.shortLine) this.r.shortLine.textContent = 'Short ' + c.n + ' · ' + c.name + ' · ' + this.dur.toFixed(0) + ' s · route #' + c.id;
+    if (location.hash.replace('#', '') !== c.id) history.replaceState(null, '', '#' + c.id);
+    this.syncPick();
+    this.t = 0; this.cue = -1; this.hand = 0; this.playing = !this.staticMode; this.syncPlay();
+    this.last = performance.now();
+    if (this.ctx) this.applyFrame(0);
+  }
+
+  cl(x, a, b) { return Math.max(a, Math.min(b, x)); }
+  sm(x) { const t = this.cl(x, 0, 1); return t * t * (3 - 2 * t); }
+  ez(x) { const t = this.cl(x, 0, 1); return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  lp(a, b, k) { return a + (b - a) * k; }
+
+  V() { return this.mob ? { w: 1080, h: 1920 } : { w: 1920, h: 1080 }; }
+
+  // 16:9 stands the character right of a type column; 9:16 puts the stage low and the
+  // type above it — two authored compositions, not one frame cropped.
+  L() {
+    // the plate deliberately bleeds off the right/bottom so only its inner edges need
+    // feathering into the stage
+    if (this.mob) return { char: { x: -40, y: 880, w: 1160, h: 1080 }, focus: { x: 640, y: 1330 }, pool: { x: 620, y: 1600, rx: 470, ry: 96 } };
+    return { char: { x: 660, y: 60, w: 1320, h: 1060 }, focus: { x: 1400, y: 640 }, pool: { x: 1400, y: 1000, rx: 500, ry: 90 } };
+  }
+
+  // ---------- one pure function of t ----------
+  shot(t) {
+    const L = this.L();
+    const dev = this.ez(this.cl((t - 0.25) / 1.75, 0, 1));
+    const crane = this.sm(this.cl(t / 9.2, 0, 1));
+    const ring = Math.min(this.sm((t - 7.1) / 0.7), this.sm((9.4 - t) / 0.5));
+    const out = this.sm((t - 8.1) / 0.8);
+    const hand = this.hand;
+    return {
+      t: t,
+      dev: Math.max(dev, hand),
+      char: {
+        x: L.char.x + this.lp(0, this.mob ? 0 : -34, crane) + out * (this.mob ? 0 : 120),
+        y: L.char.y + this.lp(this.mob ? 34 : 46, 0, crane) + out * (this.mob ? 150 : 0),
+        w: L.char.w, h: L.char.h,
+        a: 1 - out * 0.86
+      },
+      pool: { x: L.pool.x, y: L.pool.y + this.lp(this.mob ? 26 : 30, 0, crane), rx: L.pool.rx, ry: L.pool.ry, a: this.sm((t - 0.15) / 0.9) * (1 - out * 0.7) },
+      focus: L.focus,
+      ring: Math.max(0, ring),
+      plateA: Math.min(this.sm((t - 1.85) / 0.5), this.sm((8.0 - t) / 0.4)),
+      roleA: Math.min(this.sm((t - 2.5) / 0.5), this.sm((8.0 - t) / 0.4)),
+      lineA: Math.min(this.sm((t - 3.15) / 0.6), this.sm((8.0 - t) / 0.4)),
+      tagA: Math.min(this.sm((t - 4.1) / 0.5), this.sm((7.9 - t) / 0.4)),
+      endA: this.sm((t - 8.55) / 0.7),
+      hintA: Math.min(this.sm((t - 1.1) / 0.5), this.sm((3.6 - t) / 0.4)),
+      badge: this.sm((t - 4.6) / 0.6) * (1 - out)
+    };
+  }
+
+  // ---------- halftone development ----------
+  buildMask(P) {
+    const V = this.V(), S = this.dotSize;
+    const gx = Math.ceil(V.w / S) + 1, gy = Math.ceil(V.h / S) + 1;
+    if (this.mask.width !== gx || this.mask.height !== gy) { this.mask.width = gx; this.mask.height = gy; }
+    const m = this.mask.getContext('2d');
+    m.setTransform(1, 0, 0, 1, 0, 0);
+    m.clearRect(0, 0, gx, gy);
+    // dots grow outward from the stage focus, so the character develops from its own
+    // centre of light rather than wiping in from an edge
+    const fx = P.focus.x / S, fy = P.focus.y / S;
+    const maxd = Math.sqrt(gx * gx + gy * gy) * 0.62;
+    const p = P.dev;
+    m.fillStyle = '#000';
+    for (let j = 0; j < gy; j++) {
+      for (let i = 0; i < gx; i++) {
+        const dx = i - fx, dy = (j - fy) * 1.04;
+        const d = Math.sqrt(dx * dx + dy * dy) / maxd;
+        const jitter = ((((i * 73856093) ^ (j * 19349663)) >>> 8) % 100) / 100 * 0.16;
+        const k = this.cl((p * 1.34 - d - jitter) / 0.34, 0, 1);
+        if (k <= 0) continue;
+        const rr = 0.78 * k;
+        m.beginPath(); m.arc(i + 0.5, j + 0.5, rr, 0, Math.PI * 2); m.fill();
+      }
+    }
+    if (p > 0.88) { m.globalAlpha = this.cl((p - 0.88) / 0.12, 0, 1); m.fillRect(0, 0, gx, gy); m.globalAlpha = 1; }
+    return this.mask;
+  }
+
+  // destination-out tolerates partial-rect fills (it only erases what it covers), so the
+  // edge feather is built with rect fills and applied as one full-canvas destination-in
+  edgeMask() {
+    const V = this.V(), L = this.L(), key = (this.mob ? 'p' : 'l') + V.w;
+    if (this._em && this._emKey === key) return this._em;
+    const c = document.createElement('canvas');
+    c.width = V.w; c.height = V.h;
+    const m = c.getContext('2d');
+    m.fillStyle = '#000'; m.fillRect(0, 0, V.w, V.h);
+    m.globalCompositeOperation = 'destination-out';
+    const x0 = Math.max(0, L.char.x), y0 = Math.max(0, L.char.y), FW = 230, FH = 200;
+    if (x0 > 0) {
+      m.fillStyle = '#000'; m.fillRect(0, 0, x0, V.h);
+      const g = m.createLinearGradient(x0, 0, x0 + FW, 0);
+      g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+      m.fillStyle = g; m.fillRect(x0, 0, FW, V.h);
+    }
+    if (y0 > 0) {
+      m.fillStyle = '#000'; m.fillRect(0, 0, V.w, y0);
+      const g = m.createLinearGradient(0, y0, 0, y0 + FH);
+      g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+      m.fillStyle = g; m.fillRect(0, y0, V.w, FH);
+    }
+    this._em = c; this._emKey = key;
+    return c;
+  }
+
+  drawChar(P) {
+    const im = this.imgs ? this.imgs['a' + this.ix] : null;
+    if (!im) return;
+    const V = this.V(), c = P.char;
+    if (this.work.width !== V.w || this.work.height !== V.h) { this.work.width = V.w; this.work.height = V.h; }
+    const w = this.work.getContext('2d');
+    w.setTransform(1, 0, 0, 1, 0, 0);
+    w.clearRect(0, 0, V.w, V.h);
+    const k = Math.max(c.w / im.width, c.h / im.height), dw = im.width * k, dh = im.height * k;
+    w.drawImage(im, c.x + (c.w - dw) / 2, c.y + (c.h - dh) / 2, dw, dh);
+    w.globalCompositeOperation = 'destination-in';
+    w.imageSmoothingEnabled = true;
+    w.drawImage(this.buildMask(P), 0, 0, V.w, V.h);
+    w.drawImage(this.edgeMask(), 0, 0);
+    w.globalCompositeOperation = 'source-over';
+    const x = this.ctx;
+    x.save(); x.globalAlpha = P.char.a; x.drawImage(this.work, 0, 0); x.restore();
+  }
+
+  dotRing(P) {
+    if (P.ring <= 0) return;
+    const x = this.ctx, f = P.focus, n = 42;
+    const rad = this.lp(this.mob ? 300 : 330, this.mob ? 430 : 470, P.ring);
+    x.save();
+    x.globalAlpha = P.ring * 0.9;
+    for (let i = 0; i < n; i++) {
+      const a = (i / n) * Math.PI * 2 + P.ring * 0.24;
+      const rr = 3 + 4.4 * (0.5 + 0.5 * Math.sin(i * 1.7));
+      x.fillStyle = i % 4 === 0 ? '#efb928' : 'rgba(213,228,241,0.6)';
+      x.beginPath(); x.arc(f.x + Math.cos(a) * rad, f.y + Math.sin(a) * rad * 0.94, rr * P.ring, 0, Math.PI * 2); x.fill();
+    }
+    x.restore();
+  }
+
+  draw(P) {
+    const x = this.ctx, V = this.V();
+    x.setTransform(this.fit, 0, 0, this.fit, 0, 0);
+    x.fillStyle = '#03172e';
+    x.fillRect(0, 0, V.w, V.h);
+
+    // stage: one soft pool of light and an elliptical plinth shadow
+    const g = x.createRadialGradient(P.focus.x, P.focus.y - 40, 0, P.focus.x, P.focus.y - 40, V.w * 0.6);
+    g.addColorStop(0, 'rgba(23,102,171,0.42)');
+    g.addColorStop(1, 'rgba(3,23,46,0)');
+    x.fillStyle = g; x.fillRect(0, 0, V.w, V.h);
+
+    x.save();
+    x.globalAlpha = P.pool.a * 0.55;
+    const pg = x.createRadialGradient(P.pool.x, P.pool.y, 0, P.pool.x, P.pool.y, P.pool.rx);
+    pg.addColorStop(0, 'rgba(213,228,241,0.34)');
+    pg.addColorStop(1, 'rgba(213,228,241,0)');
+    x.fillStyle = pg;
+    x.beginPath(); x.ellipse(P.pool.x, P.pool.y, P.pool.rx, P.pool.ry, 0, 0, Math.PI * 2); x.fill();
+    x.restore();
+
+    this.drawChar(P);
+    this.dotRing(P);
+
+    if (P.badge > 0.01) {
+      const b = this.imgs ? this.imgs['b' + this.ix] : null;
+      if (b) {
+        const s = (this.mob ? 200 : 178) * this.lp(0.8, 1, P.badge);
+        const bx = this.mob ? 86 : 96, by = this.mob ? 1170 : 62;
+        const cx = bx + s / 2, cy = by + s / 2, rad = s * 0.5;
+        x.save();
+        x.globalAlpha = P.badge;
+        x.beginPath(); x.arc(cx, cy, rad, 0, Math.PI * 2);
+        x.fillStyle = '#f0f5f9'; x.fill();
+        x.save(); x.clip();
+        const k = Math.min(s / b.width, s / b.height) * 1.04;
+        x.drawImage(b, cx - b.width * k / 2, cy - b.height * k / 2, b.width * k, b.height * k);
+        x.restore();
+        x.strokeStyle = 'rgba(213,224,233,0.75)'; x.lineWidth = 2;
+        x.beginPath(); x.arc(cx, cy, rad, 0, Math.PI * 2); x.stroke();
+        x.restore();
+      }
+    }
+  }
+
+  applyFrame(t) {
+    if (!this.ctx) return;
+    const P = this.shot(t), c = this.CH[this.ix];
+    this.draw(P);
+    const set = (el, a, dy) => { if (!el) return; el.style.opacity = String(a); el.style.transform = 'translateY(' + ((1 - a) * (dy || 12)).toFixed(2) + 'px)'; };
+    if (this.r.plate) { this.r.plate.style.opacity = String(P.plateA); this.r.plate.style.transform = 'translateY(' + ((1 - P.plateA) * 18).toFixed(2) + 'px)'; }
+    set(this.r.pRole, P.roleA, 10);
+    set(this.r.pLine, P.lineA, 10);
+    if (this.r.tagRow) { this.r.tagRow.style.opacity = String(P.tagA); this.r.tagRow.style.transform = 'translateY(' + ((1 - P.tagA) * 10).toFixed(2) + 'px)'; }
+    this.r.endcard.style.opacity = String(Math.min(1, P.endA * 1.2));
+    this.r.endcard.style.clipPath = 'inset(0 ' + ((1 - P.endA) * 100).toFixed(1) + '% 0 0)';
+    this.r.hint.style.opacity = String(P.hintA * 0.9);
+    this.r.stage.setAttribute('data-screen-label', 'Short ' + c.n + ' ' + c.name + ' · ' + t.toFixed(1) + 's');
+    if (this.r.scrub && !this.scrubbing) this.r.scrub.value = String(Math.round((t / this.AUTH) * 1000));
+    if (this.r.timeLabel) this.r.timeLabel.textContent = (t / this.AUTH * this.dur).toFixed(1) + ' / ' + this.dur.toFixed(1) + 's';
+    this.syncSel();
+  }
+
+  compose() {
+    const k = this.mob ? 2.05 : 1;
+    if (!this._ts) {
+      this._ts = [];
+      this.r.stage.querySelectorAll('*').forEach(el => {
+        const s = el.getAttribute('style') || '';
+        const f = /font-size:\s*([\d.]+)cqw/.exec(s);
+        if (f) this._ts.push([el, 'fontSize', parseFloat(f[1])]);
+        if (el.tagName === 'IMG') { const w = /width:\s*([\d.]+)cqw/.exec(s); if (w) this._ts.push([el, 'width', parseFloat(w[1])]); }
+      });
+    }
+    for (const it of this._ts) it[0].style[it[1]] = (it[2] * k).toFixed(3) + 'cqw';
+    const p = this.r.plate, ec = this.r.endcard, tr = this.r.tagRow;
+    if (this.mob) {
+      p.style.maxWidth = '84cqw'; p.style.top = '7cqh'; p.style.left = '8cqw';
+      tr.style.bottom = 'auto'; tr.style.top = '40cqh'; tr.style.left = '8cqw';
+      ec.style.maxWidth = 'none'; ec.style.left = '0'; ec.style.right = '0';
+      ec.style.top = 'auto'; ec.style.bottom = '0'; ec.style.transform = 'none';
+      ec.style.background = '#03172e'; ec.style.padding = '5cqh 8cqw 7cqh';
+    } else {
+      p.style.maxWidth = '40cqw'; p.style.top = '26cqh'; p.style.left = '6cqw';
+      tr.style.bottom = '7cqh'; tr.style.top = 'auto'; tr.style.left = '6cqw';
+      ec.style.maxWidth = '46cqw'; ec.style.left = '6cqw'; ec.style.right = 'auto';
+      ec.style.top = '50%'; ec.style.bottom = 'auto'; ec.style.transform = 'translateY(-50%)';
+      ec.style.background = 'none'; ec.style.padding = '0';
+    }
+  }
+
+  resize() {
+    if (!this.ctx) return;
+    const s = this.r.stage, cw = s.clientWidth || 960, ch = s.clientHeight || 540;
+    const mob = cw / Math.max(1, ch) < 1.05;
+    if (mob !== this.mob) { this.mob = mob; this.compose(); }
+    const V = this.V(), dpr = Math.min(2, window.devicePixelRatio || 1);
+    this.r.canvas.width = Math.round(cw * dpr);
+    this.r.canvas.height = Math.round(ch * dpr);
+    this.fit = Math.min(cw / V.w, ch / V.h) * dpr;
+    this.applyFrame(this.t);
+  }
+
+  loop = (now) => {
+    if (this.dead) return;
+    this.raf = requestAnimationFrame(this.loop);
+    const dt = Math.min(0.05, (now - this.last) / 1000); this.last = now;
+    if (this.playing && !this.staticMode) {
+      this.t += dt * (this.AUTH / this.dur);
+      if (this.t >= this.AUTH) { this.t = this.AUTH; this.playing = false; this.syncPlay(); }
+      this.sfx();
+    }
+    if (this.hand > 0 && !this.playing) this.hand = Math.max(0, this.hand - dt * 0.35);
+    this.applyFrame(this.t);
+  };
+
+  MARKS = [{ t: 0.3, k: 'dot' }, { t: 1.9, k: 'paper' }, { t: 4.15, k: 'dot' }, { t: 7.15, k: 'dot' }];
+
+  sfx() {
+    for (let i = 0; i < this.MARKS.length; i++) {
+      const m = this.MARKS[i];
+      if (this.cue < i && this.t >= m.t && this.t < m.t + 0.3) { this.cue = i; this.tone(m.k); }
+    }
+    if (this.t < 0.2) this.cue = -1;
+  }
+
+  tone(kind) {
+    if (!this.sound) return;
+    try {
+      const ac = this.ac || (this.ac = new (window.AudioContext || window.webkitAudioContext)());
+      const spec = kind === 'dot' ? { d: 0.26, f0: 1400, f1: 3000, q: 1.1, g: 0.09, type: 'bandpass' }
+        : { d: 0.38, f0: 640, f1: 2300, q: 0.7, g: 0.14, type: 'bandpass' };
+      const sr = ac.sampleRate, buf = ac.createBuffer(1, Math.floor(sr * spec.d), sr), d = buf.getChannelData(0);
+      let seed = 20260908;
+      for (let i = 0; i < d.length; i++) { seed = (seed * 1103515245 + 12345) & 0x7fffffff; d[i] = (seed / 0x7fffffff) * 2 - 1; }
+      const src = ac.createBufferSource(); src.buffer = buf;
+      const f = ac.createBiquadFilter(); f.type = spec.type; f.Q.value = spec.q;
+      f.frequency.setValueAtTime(spec.f0, ac.currentTime);
+      f.frequency.exponentialRampToValueAtTime(spec.f1, ac.currentTime + spec.d);
+      const gn = ac.createGain();
+      gn.gain.setValueAtTime(0.0001, ac.currentTime);
+      gn.gain.exponentialRampToValueAtTime(spec.g, ac.currentTime + 0.04);
+      gn.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + spec.d);
+      src.connect(f); f.connect(gn); gn.connect(ac.destination); src.start();
+    } catch (e) { /* audio unavailable */ }
+  }
+
+  onHash = () => {
+    const h = (location.hash || '').replace('#', '').toLowerCase();
+    const i = this.CH.findIndex(c => c.id === h);
+    if (i >= 0 && i !== this.ix) this.load(i);
+  };
+
+  onSeek = (e) => {
+    const d = (e && e.detail) || {};
+    const time = typeof d.time === 'number' ? d.time : (typeof d.frame === 'number' ? d.frame / 30 : 0);
+    this.playing = false; this.hand = 0; this.syncPlay();
+    this.t = this.cl(time * (this.AUTH / this.dur), 0, this.AUTH);
+    this.cue = 99;
+    this.applyFrame(this.t);
+  };
+
+  // pointer develops the plate by hand without moving the clock
+  onMove = (e) => {
+    if (this.staticMode || !this.ctx || this.playing) return;
+    const r = this.r.stage.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) return;
+    this.hand = Math.min(1, this.hand + 0.06);
+    this.applyFrame(this.t);
+  };
+
+  onKey = (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); this.load((this.ix + 1) % 6); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); this.load((this.ix + 5) % 6); }
+    else if (e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); this.toggle(); }
+    else if (e.key >= '1' && e.key <= '6') { e.preventDefault(); this.load(Number(e.key) - 1); }
+  };
+
+  toggle() {
+    if (this.t >= this.AUTH - 0.01) { this.t = 0; this.cue = -1; }
+    this.playing = !this.playing; this.hand = 0; this.last = performance.now(); this.syncPlay();
+  }
+
+  applyStatic(on) {
+    this.staticMode = on;
+    this.r.staticBoard.style.display = on ? 'block' : 'none';
+    this.r.stageWrap.style.display = on ? 'none' : 'block';
+    const b = this.r.btnStatic;
+    if (b) {
+      b.textContent = on ? 'Motion version' : 'Static version';
+      b.style.background = on ? 'var(--navy)' : '#fff';
+      b.style.color = on ? '#fff' : 'var(--navy)';
+      b.style.borderColor = on ? 'var(--navy)' : 'var(--line)';
+    }
+  }
+
+  syncSel() {
+    if (this.r.durSel && this.r.durSel.value !== String(this.dur)) this.r.durSel.value = String(this.dur);
+    if (this.r.frameSel && this.r.frameSel.value !== this.frame) this.r.frameSel.value = this.frame;
+  }
+
+  syncPick() {
+    for (let i = 0; i < 6; i++) {
+      const b = this.r['s' + i];
+      if (!b) continue;
+      const on = i === this.ix;
+      b.style.background = on ? 'var(--navy)' : '#fff';
+      b.style.color = on ? '#fff' : 'var(--navy)';
+      b.style.borderColor = on ? 'var(--navy)' : 'var(--line)';
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+  }
+
+  syncPlay() { if (this.r.btnPlay) this.r.btnPlay.textContent = this.playing ? 'Pause' : 'Play'; }
+
+  renderVals() {
+    const go = (i) => () => { if (this.staticMode) this.applyStatic(false); this.load(i); this.r.stage.focus({ preventScroll: true }); };
+    return {
+      ...this.R,
+      onS0: go(0), onS1: go(1), onS2: go(2), onS3: go(3), onS4: go(4), onS5: go(5),
+      onToggle: () => this.toggle(),
+      onReplay: () => { this.t = 0; this.cue = -1; this.hand = 0; this.playing = true; this.last = performance.now(); this.syncPlay(); },
+      onScrub: (e) => {
+        this.playing = false; this.scrubbing = true; this.hand = 0; this.syncPlay();
+        this.t = (Number(e.target.value) / 1000) * this.AUTH; this.cue = 99;
+        this.applyFrame(this.t);
+        clearTimeout(this.sT); this.sT = setTimeout(() => { this.scrubbing = false; }, 250);
+      },
+      onDur: (e) => {
+        this.dur = Number(e.target.value);
+        this.r.stage.setAttribute('data-om-exportable-video-with-duration-secs', String(this.dur));
+        const c = this.CH[this.ix];
+        if (this.r.shortLine) this.r.shortLine.textContent = 'Short ' + c.n + ' · ' + c.name + ' · ' + this.dur.toFixed(0) + ' s · route #' + c.id;
+        this.applyFrame(this.t);
+      },
+      onFrame: (e) => {
+        this.frame = e.target.value;
+        const s = this.r.stage, p = this.frame === '9:16';
+        s.style.aspectRatio = p ? '9/16' : '16/9';
+        s.style.maxWidth = p ? '420px' : 'none';
+        s.style.marginLeft = p ? 'auto' : '0';
+        s.style.marginRight = p ? 'auto' : '0';
+        requestAnimationFrame(() => this.resize());
+      },
+      onSound: () => {
+        this.sound = !this.sound;
+        const b = this.r.btnSound;
+        b.textContent = this.sound ? 'Sound on' : 'Sound off';
+        b.style.background = this.sound ? 'var(--navy)' : '#fff';
+        b.style.color = this.sound ? '#fff' : 'var(--navy)';
+        b.style.borderColor = this.sound ? 'var(--navy)' : 'var(--line)';
+        if (this.sound) this.tone('dot');
+      },
+      onStatic: () => this.applyStatic(!this.staticMode)
+    };
+  }
+}
+</script>
+</body>
+</html>

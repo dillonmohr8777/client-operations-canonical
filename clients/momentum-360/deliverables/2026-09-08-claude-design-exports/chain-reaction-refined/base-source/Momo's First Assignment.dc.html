@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/colors.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/typography.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/radius.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/motion.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/semantic.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/base.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/styles.css">
+<script src="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/_ds_bundle.js"></script>
+<style>
+html,body{margin:0;padding:0;background:#fff}
+body{color:var(--ink);font-family:var(--body);font-size:var(--size-body);line-height:var(--leading-body)}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--navy);text-decoration:underline}
+::selection{background:var(--gold);color:var(--night)}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:5px}
+input[type=range]{accent-color:var(--gold)}
+</style>
+</helmet>
+<div style="max-width:1440px;margin:0 auto;padding:36px clamp(20px,4vw,48px) 72px">
+
+  <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:20px">
+    <div style="max-width:24ch">
+      <p style="margin:0 0 10px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Direction 01 · 20 seconds · desk film</p>
+      <h1 style="margin:0;font-family:var(--display);font-weight:900;font-size:clamp(2rem,3.4vw,3rem);line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy);text-wrap:balance">Momo’s first assignment.</h1>
+    </div>
+    <p style="margin:0;max-width:54ch;font-size:var(--size-support);color:var(--muted);text-wrap:pretty">A brief lands on the desk. Momo reads it, marks it in ink, and routes it through five paper stations until the idea is one coordinated board. Copy-stand camera, layered paper, no book.</p>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:18px 0 14px">
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button type="button" onClick="{{ onFilm }}" ref="{{ btnFilm }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer">Play the film</button>
+      <button type="button" onClick="{{ onHand }}" ref="{{ btnHand }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Step it by hand</button>
+    </div>
+    <div style="flex:1"></div>
+    <button type="button" onClick="{{ onSound }}" ref="{{ btnSound }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Sound off</button>
+    <button type="button" onClick="{{ onStatic }}" ref="{{ btnStatic }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Static version</button>
+  </div>
+
+  <div ref="{{ stageWrap }}" style="position:relative">
+    <div ref="{{ stage }}" tabindex="0" data-om-exportable-video-with-duration-secs="20" data-screen-label="Momo · 00.0s" style="position:relative;width:100%;aspect-ratio:16/9;background:#03172e;border-radius:var(--radius);overflow:hidden;container-type:size;touch-action:pan-y;cursor:grab;outline-offset:4px">
+      <canvas ref="{{ canvas }}" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+
+      <div ref="{{ caption }}" style="position:absolute;left:0;bottom:6cqh;opacity:0;display:flex;align-items:flex-end;gap:1.6cqw;background:#03172e;padding:1.3cqh 2.6cqw 1.3cqh 4cqw">
+        <span ref="{{ capNum }}" style="font-family:var(--display);font-weight:900;font-size:5cqw;line-height:.9;color:#efb928">00</span>
+        <span style="display:block;width:2.4cqw;height:1px;background:#efb928;margin-bottom:1.1cqh"></span>
+        <span style="display:flex;flex-direction:column;gap:.5cqh;margin-bottom:.4cqh">
+          <span ref="{{ capText }}" style="font-family:var(--body);font-weight:900;font-size:1.3cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#d5e4f1">The brief lands</span>
+          <span ref="{{ capLine }}" style="font-family:var(--body);font-weight:400;font-size:1.2cqw;color:#d5e4f1">Ordinary paper, ordinary Tuesday.</span>
+        </span>
+      </div>
+
+      <div ref="{{ rail }}" style="position:absolute;left:4cqw;top:4cqh;display:flex;gap:.9cqw;opacity:0">
+        <span ref="{{ d0 }}" style="display:block;width:3.4cqw;height:3px;background:#efb928"></span>
+        <span ref="{{ d1 }}" style="display:block;width:3.4cqw;height:3px;background:rgb(255 255 255 / 16%)"></span>
+        <span ref="{{ d2 }}" style="display:block;width:3.4cqw;height:3px;background:rgb(255 255 255 / 16%)"></span>
+        <span ref="{{ d3 }}" style="display:block;width:3.4cqw;height:3px;background:rgb(255 255 255 / 16%)"></span>
+        <span ref="{{ d4 }}" style="display:block;width:3.4cqw;height:3px;background:rgb(255 255 255 / 16%)"></span>
+      </div>
+
+      <div ref="{{ endcard }}" style="position:absolute;left:8cqw;top:50%;transform:translateY(-50%);opacity:0;max-width:52cqw">
+        <img src="assets/momentum-logo.png" alt="Momentum" style="display:block;width:20cqw;height:auto;margin-bottom:3.4cqh">
+        <p style="margin:0 0 1.8cqh;font-family:var(--body);font-weight:900;font-size:1.3cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">Need momentum?</p>
+        <p style="margin:0;font-family:var(--display);font-weight:900;font-size:3.4cqw;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:#fff;text-wrap:balance">Let’s run your first brief through it<span style="color:#efb928">.</span></p>
+      </div>
+
+      <div ref="{{ hint }}" style="position:absolute;right:3.2cqw;top:3.6cqh;padding:.9cqh 1.8cqw;border:1px solid rgb(255 255 255 / 14%);border-radius:24px;font-size:1.15cqw;font-weight:900;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#d5e4f1;opacity:0">Drag to shuttle · tap for next beat</div>
+
+      <div ref="{{ loading }}" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:var(--size-label);font-weight:900;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#52677c">Setting the desk</div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:16px 0 0">
+      <button type="button" onClick="{{ onToggle }}" ref="{{ btnPlay }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);width:96px;padding:9px 0;border-radius:8px;border:1px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer">Pause</button>
+      <button type="button" onClick="{{ onReplay }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Replay</button>
+      <input type="range" min="0" max="1000" defaultValue="0" ref="{{ scrub }}" onInput="{{ onScrub }}" aria-label="Scrub the film" style="flex:1;min-width:200px;height:22px">
+      <span ref="{{ timeLabel }}" style="font-size:var(--size-note);font-weight:900;color:var(--muted);font-variant-numeric:tabular-nums;min-width:78px;text-align:right">0.0 / 20.0s</span>
+      <label style="display:flex;align-items:center;gap:8px;font-size:var(--size-note);font-weight:900;color:var(--muted)">Duration
+        <select ref="{{ durSel }}" defaultValue="20" onChange="{{ onDur }}" aria-label="Playback duration" style="font-family:var(--body);font-size:var(--size-note);font-weight:900;color:var(--navy);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="16">16 s</option>
+          <option value="20">20 s</option>
+          <option value="26">26 s</option>
+        </select>
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:var(--size-note);font-weight:900;color:var(--muted)">Frame
+        <select ref="{{ frameSel }}" defaultValue="16:9" onChange="{{ onFrame }}" aria-label="Composition frame" style="font-family:var(--body);font-size:var(--size-note);font-weight:900;color:var(--navy);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="16:9">16:9</option>
+          <option value="9:16">9:16 mobile</option>
+        </select>
+      </label>
+    </div>
+
+    <p ref="{{ runtimeNote }}" style="margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:var(--size-note);color:var(--muted);line-height:var(--leading-note)">Rendered as 2.5D layered paper on a single 2D canvas — no WebGL and no page-turn engine. Depth comes from cast shadows that grow with lift, paper tilt on landing and a copy-stand camera that only pans and pushes. Drag across the desk to shuttle time, tap for the next beat, or use ← → and space. Sound stays off until you turn it on.</p>
+  </div>
+
+  <div ref="{{ staticBoard }}" style="display:none;padding-top:32px">
+    <p style="margin:0 0 8px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Static version · no motion</p>
+    <h2 style="margin:0 0 8px;font-family:var(--display);font-weight:900;font-size:clamp(1.7rem,2.6vw,2.4rem);line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">The assignment, read straight through.</h2>
+    <p style="margin:0 0 26px;max-width:64ch;font-size:var(--size-support);color:var(--muted);text-wrap:pretty">Momo takes one brief — phones ringing while the crew is out, a website three years old, no clear picture of where jobs came from — and routes it through five stations. Nothing here is published or sent; every step waits for your approval.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:28px">
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#f0f5f9;border:1px solid var(--line);border-radius:var(--radius);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden">
+          <img src="assets/artwork/icon-search.png" alt="Ceramic search icon" style="width:86%;height:86%;object-fit:contain">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">01 · Discover</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.35rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Find how they ask.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Proposed step: read the real questions before writing a word.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#f0f5f9;border:1px solid var(--line);border-radius:var(--radius);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden">
+          <img src="assets/artwork/icon-build.png" alt="Ceramic build icon" style="width:86%;height:86%;object-fit:contain">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">02 · Shape</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.35rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Make it recognizably yours.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Proposed step: one look, built from your own materials.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#f0f5f9;border:1px solid var(--line);border-radius:var(--radius);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden">
+          <img src="assets/artwork/icon-phone.png" alt="Ceramic response icon" style="width:86%;height:86%;object-fit:contain">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">03 · Respond</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.35rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Answer the first call.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Proposed step: the missed call gets a reply and a real next step.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#f0f5f9;border:1px solid var(--line);border-radius:var(--radius);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden">
+          <img src="assets/artwork/icon-audience.png" alt="Ceramic audience icon" style="width:86%;height:86%;object-fit:contain">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">04 · Make</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.35rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Say it in your voice.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Proposed step: drafts from your words and photographs, for your sign-off.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#f0f5f9;border:1px solid var(--line);border-radius:var(--radius);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden">
+          <img src="assets/artwork/icon-operations.png" alt="Ceramic operations icon" style="width:86%;height:86%;object-fit:contain">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">05 · Connect</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.35rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Keep the work connected.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Proposed step: one thread from the brief to the report.</p>
+      </div>
+    </div>
+    <div style="margin-top:34px;padding:28px 32px;background:#072d53;border-radius:var(--radius)">
+      <img src="assets/momentum-logo.png" alt="Momentum" style="display:block;width:210px;height:auto;margin-bottom:18px">
+      <p style="margin:0 0 8px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--gold);font-weight:900">Need momentum?</p>
+      <p style="margin:0;font-family:var(--display);font-weight:900;font-size:clamp(1.5rem,2.4vw,2.2rem);line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:#fff">Let’s run your first brief through it<span style="color:var(--gold)">.</span></p>
+    </div>
+  </div>
+
+  <p style="margin:34px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:var(--size-note);color:var(--muted);line-height:var(--leading-note);max-width:72ch">Private concept story · September 2026. The five stations are proposed steps for review, not deployed products, and no client result, metric or availability claim is made. Momo and the ceramic props are the existing Momentum masters, used unmodified; the wordmark is the exact master.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:980},&quot;momoScene&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;hero&quot;,&quot;search&quot;,&quot;phone&quot;,&quot;build&quot;,&quot;operations&quot;,&quot;audience&quot;],&quot;default&quot;:&quot;hero&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Character&quot;},&quot;defaultDuration&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;16&quot;,&quot;20&quot;,&quot;26&quot;],&quot;default&quot;:&quot;20&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Timing&quot;},&quot;deskVignette&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Look&quot;}}">
+class Component extends DCLogic {
+  R = ['stage', 'stageWrap', 'canvas', 'caption', 'capNum', 'capText', 'capLine', 'rail', 'd0', 'd1', 'd2', 'd3', 'd4', 'endcard', 'hint', 'loading', 'runtimeNote', 'staticBoard', 'btnFilm', 'btnHand', 'btnSound', 'btnStatic', 'btnPlay', 'scrub', 'timeLabel', 'durSel', 'frameSel'].reduce((o, n) => { o[n] = React.createRef(); return o; }, {});
+  r = new Proxy({}, { get: (_, k) => (this.R[k] ? this.R[k].current : undefined) });
+
+  AUTH = 20; dur = 20; t = 0; playing = true; mode = 'film'; sound = false;
+  staticMode = false; frame = '16:9'; mob = false; cue = -1;
+
+  // beat map — every value below is a pure function of these marks
+  BEATS = [
+    { t: 0.0, n: '00', k: 'The brief lands', line: 'Ordinary paper, ordinary Tuesday.' },
+    { t: 2.6, n: '01', k: 'Momo reads it', line: 'He looks before he moves.' },
+    { t: 5.6, n: '02', k: 'Marked, not published', line: 'Ink first, then your approval.' },
+    { t: 8.2, n: '03', k: 'Routed through the system', line: 'One idea, five places to go.' },
+    { t: 15.4, n: '04', k: 'One coordinated board', line: 'Every card still tied to the brief.' },
+    { t: 17.8, n: '05', k: 'Need momentum?', line: 'Let’s run your first brief through it.' }
+  ];
+
+  ST = [
+    { n: '01', tag: 'Discover', role: 'Search', line: 'Find how they ask.', icon: 'icon-search' },
+    { n: '02', tag: 'Shape', role: 'Design', line: 'Make it recognizably yours.', icon: 'icon-build' },
+    { n: '03', tag: 'Respond', role: 'Route', line: 'Answer the first call.', icon: 'icon-phone' },
+    { n: '04', tag: 'Make', role: 'Content', line: 'Say it in your voice.', icon: 'icon-audience' },
+    { n: '05', tag: 'Connect', role: 'Operations', line: 'Keep the work connected.', icon: 'icon-operations' }
+  ];
+
+  BRIEF = ['Phones ring while the crew is out.', 'The website is three years old.', 'No clear picture of where jobs came from.'];
+
+  componentDidMount() {
+    const p = this.props || {};
+    this.dur = Number(p.defaultDuration || 20) || 20;
+    this.scene = String(p.momoScene || 'hero') + '-mascot';
+    this.vign = p.deskVignette !== false;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.staticMode = true;
+    requestAnimationFrame(() => requestAnimationFrame(() => this.syncSel()));
+    this.boot();
+  }
+
+  componentWillUnmount() {
+    this.dead = true;
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.ro) this.ro.disconnect();
+    window.removeEventListener('pointermove', this.onMove);
+    window.removeEventListener('pointerup', this.onUp);
+  }
+
+  async boot() {
+    const stage = this.r.stage;
+    if (this.staticMode) this.applyStatic(true);
+    stage.addEventListener('data-om-seek-to-time-frame', this.onSeek);
+    stage.addEventListener('pointerdown', this.onDown);
+    stage.addEventListener('keydown', this.onKey);
+    window.addEventListener('pointermove', this.onMove);
+    window.addEventListener('pointerup', this.onUp);
+    this.ro = new ResizeObserver(() => this.resize());
+    this.ro.observe(stage);
+
+    try {
+      await Promise.all([
+        document.fonts.load('900 96px Archivo'), document.fonts.load('400 30px Nunito'),
+        document.fonts.load('900 30px Nunito'), document.fonts.ready
+      ]);
+    } catch (e) { /* fonts fall back */ }
+
+    const map = { momo: 'assets/artwork/' + this.scene + '.png' };
+    this.ST.forEach((s, i) => { map['i' + i] = 'assets/artwork/' + s.icon + '.png'; });
+    try { this.imgs = await this.loadImages(map); } catch (e) { this.imgs = {}; }
+    if (this.dead) return;
+
+    this.ctx = this.r.canvas.getContext('2d');
+    if (!this.ctx) {
+      this.r.loading.textContent = '';
+      this.r.runtimeNote.textContent = 'A 2D canvas context was unavailable in this runtime, so the desk film cannot render here. The static readable version is shown instead.';
+      this.staticMode = true; this.applyStatic(true); this.playing = false; return;
+    }
+    if (this.imgs.momo) this.momoPlate = this.featherPlate(this.imgs.momo);
+    this.r.loading.style.display = 'none';
+    this.resize();
+    this.last = performance.now();
+    this.raf = requestAnimationFrame(this.loop);
+  }
+
+  loadImages(map) {
+    const keys = Object.keys(map);
+    return Promise.all(keys.map(k => new Promise((res, rej) => {
+      const im = new Image(); im.onload = () => res([k, im]); im.onerror = () => rej(new Error(map[k])); im.src = map[k];
+    }))).then(pairs => { const o = {}; pairs.forEach(x => o[x[0]] = x[1]); return o; });
+  }
+
+  // The ceramic scenes are painted on their own midnight ground, so the desk uses the
+  // same midnight and the plate is feathered on its inner edges — the seam disappears
+  // instead of being hidden behind a panel.
+  featherPlate(im) {
+    const sx = Math.round(im.width * 0.44), sw = im.width - sx;
+    const c = document.createElement('canvas');
+    c.width = sw; c.height = im.height;
+    const x = c.getContext('2d');
+    x.drawImage(im, sx, 0, sw, im.height, 0, 0, sw, im.height);
+    // The mask is assembled on its own canvas and applied in ONE destination-in draw:
+    // each composited fill would otherwise erase everything outside its own rect.
+    const fw = Math.min(260, sw * 0.34);
+    const mk = document.createElement('canvas');
+    mk.width = sw; mk.height = im.height;
+    const m = mk.getContext('2d');
+    m.fillStyle = '#000'; m.fillRect(0, 0, sw, im.height);
+    m.globalCompositeOperation = 'destination-out';
+    const gl = m.createLinearGradient(0, 0, fw, 0);
+    gl.addColorStop(0, 'rgba(0,0,0,1)'); gl.addColorStop(1, 'rgba(0,0,0,0)');
+    m.fillStyle = gl; m.fillRect(0, 0, fw, im.height);
+    const gt = m.createLinearGradient(0, 0, 0, 190);
+    gt.addColorStop(0, 'rgba(0,0,0,1)'); gt.addColorStop(1, 'rgba(0,0,0,0)');
+    m.fillStyle = gt; m.fillRect(0, 0, sw, 190);
+    x.globalCompositeOperation = 'destination-in';
+    x.drawImage(mk, 0, 0);
+    x.globalCompositeOperation = 'source-over';
+    return c;
+  }
+
+  // ---------- math ----------
+  cl(x, a, b) { return Math.max(a, Math.min(b, x)); }
+  sm(x) { const t = this.cl(x, 0, 1); return t * t * (3 - 2 * t); }
+  ez(x) { const t = this.cl(x, 0, 1); return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  back(x) { const t = this.cl(x, 0, 1), c = 1.7; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); }
+  lp(a, b, k) { return a + (b - a) * k; }
+
+  V() { return this.mob ? { w: 1080, h: 1920 } : { w: 1920, h: 1080 }; }
+
+  // ---------- layout: two authored compositions, not one crop ----------
+  L() {
+    if (this.mob) return {
+      briefA: { x: 540, y: 830, w: 660, h: 820, r: -1.1 },
+      briefB: { x: 286, y: 366, w: 660, h: 820, s: 0.4, r: -2.6 },
+      momoA: { x: -60, y: 1200, w: 1240, h: 760 },
+      momoB: { x: 300, y: 1500, w: 940, h: 560 },
+      slots: [0, 1, 2, 3, 4].map(i => ({ x: 560, y: 560 + i * 232, w: 800, h: 196, r: (i % 2 ? 0.9 : -0.9) })),
+      card: 'wide'
+    };
+    return {
+      briefA: { x: 700, y: 540, w: 580, h: 720, r: -1.2 },
+      briefB: { x: 258, y: 232, w: 580, h: 720, s: 0.44, r: -2.4 },
+      momoA: { x: 1140, y: 150, w: 900, h: 990 },
+      momoB: { x: 1530, y: 340, w: 700, h: 800 },
+      slots: [0, 1, 2, 3, 4].map(i => ({ x: 396 + i * 272, y: 690, w: 250, h: 330, r: (i % 2 ? 1.1 : -1.3) })),
+      card: 'tall'
+    };
+  }
+
+  // ---------- the whole film as one pure function of t ----------
+  shot(t) {
+    const L = this.L(), V = this.V();
+    const P = {};
+    // copy-stand camera: pan and push only, no orbit, no tilt
+    const push = this.lp(1.06, 0.9, this.sm((t - 6.4) / 6.0));
+    const panX = this.lp(0, this.mob ? -6 : -46, this.sm((t - 7.0) / 5.0)) + (this.mob ? 0 : 18 * Math.sin(t * 0.34));
+    const panY = this.lp(this.mob ? 26 : 16, 0, this.sm(t / 3.0)) + (this.mob ? 10 * Math.sin(t * 0.3) : 8 * Math.sin(t * 0.28));
+    P.cam = { s: push, x: panX, y: panY };
+
+    // 00 — the brief drops in and settles
+    const drop = this.ez(this.cl((t - 0.12) / 1.05, 0, 1));
+    const settle = this.sm((t - 1.5) / 0.5);
+    const move = this.sm((t - 8.15) / 1.5);
+    const outB = this.sm((t - 18.0) / 1.1);
+    const bx = this.lp(L.briefA.x, L.briefB.x, move);
+    const by = this.lp(this.lp(-L.briefA.h * 0.9, L.briefA.y, drop), L.briefB.y, move) - outB * (V.h * 0.5);
+    P.brief = {
+      x: bx, y: by,
+      w: L.briefA.w, h: L.briefA.h,
+      s: this.lp(1, L.briefB.s, move) * this.lp(1.04, 1, settle),
+      r: this.lp(this.lp(-5.4, L.briefA.r, drop), L.briefB.r, move),
+      lift: this.lp(46, 9, drop) + move * 4,
+      a: 1 - outB
+    };
+
+    // 01 — Momo arrives and leans in; 02 — he dips on the stamp press
+    const enter = this.ez(this.cl((t - 2.35) / 1.2, 0, 1));
+    const shift = this.sm((t - 8.6) / 1.6);
+    const dip = Math.sin(Math.PI * this.cl((t - 7.15) / 0.5, 0, 1)) * (this.mob ? 16 : 20);
+    const outM = this.sm((t - 18.15) / 1.0);
+    P.momo = {
+      x: this.lp(L.momoA.x, L.momoB.x, shift) + this.lp(this.mob ? -320 : 260, 0, enter) + outM * (this.mob ? 0 : 300),
+      y: this.lp(L.momoA.y, L.momoB.y, shift) + dip + 7 * Math.sin(t * 1.15) + (this.mob ? outM * 340 : 0),
+      w: this.lp(L.momoA.w, L.momoB.w, shift),
+      h: this.lp(L.momoA.h, L.momoB.h, shift),
+      a: enter * (1 - outM * 0.9),
+      lean: this.lp(0, -1.4, this.sm((t - 3.1) / 1.1)) + this.lp(0, 1.4, this.sm((t - 15.2) / 1.4))
+    };
+
+    // 01 — reading pass: a soft studio highlight travels down the brief
+    P.read = { a: Math.min(this.sm((t - 3.1) / 0.5), this.sm((5.5 - t) / 0.5)), k: this.cl((t - 3.1) / 2.3, 0, 1) };
+
+    // 02 — ink, then the review stamp
+    P.ink = {
+      under: this.ez(this.cl((t - 5.75) / 0.7, 0, 1)),
+      carets: [0, 1, 2].map(i => this.back(this.cl((t - (6.3 + i * 0.26)) / 0.42, 0, 1))),
+      stamp: this.back(this.cl((t - 7.15) / 0.55, 0, 1)),
+      stampSpin: this.lp(-16, -7, this.sm((t - 7.15) / 0.55))
+    };
+
+    // 03 — five cards peel off the brief, 0.15s stagger per the system's assembly rhythm
+    const anchor = { x: bx, y: by };
+    P.cards = this.ST.map((s, i) => {
+      const ts = 8.5 + i * 1.28;
+      const p = this.ez(this.cl((t - ts) / 1.0, 0, 1));
+      const ob = this.back(this.cl((t - ts - 0.6) / 0.55, 0, 1));
+      const sl = L.slots[i];
+      const align = this.sm((t - (15.3 + i * 0.15)) / 0.6);
+      const out = this.sm((t - (17.9 + i * 0.08)) / 0.8);
+      const arc = Math.sin(Math.PI * p) * (this.mob ? 90 : 120);
+      return {
+        i: i, a: p > 0 ? Math.min(1, p * 2.4) * (1 - out) : 0,
+        x: this.lp(anchor.x, sl.x, p) + out * (this.mob ? 0 : 40),
+        y: this.lp(anchor.y, sl.y, p) - arc + out * (this.mob ? 260 : 190),
+        w: sl.w, h: sl.h,
+        s: this.lp(0.42, 1, p) * this.lp(1, 1.03, ob) * this.lp(1, 0.99, align),
+        r: this.lp(-9, sl.r * this.lp(2.2, 1, align), p),
+        lift: this.lp(6, 54, Math.sin(Math.PI * p)) + 10,
+        thread: this.ez(this.cl((t - ts - 0.5) / 0.7, 0, 1)) * (1 - out),
+        clip: this.back(this.cl((t - ts - 0.85) / 0.4, 0, 1)) * (1 - out)
+      };
+    });
+
+    P.anchor = anchor;
+    P.vign = this.vign ? 1 : 0;
+    P.beat = this.beatAt(t);
+    P.capA = Math.min(this.sm((t - 0.9) / 0.4), this.sm((17.6 - t) / 0.4));
+    P.endA = this.sm((t - 18.4) / 0.8);
+    P.hintA = this.mode === 'film' ? Math.min(this.sm((t - 1.3) / 0.5), this.sm((4.2 - t) / 0.4)) : 1;
+    P.railA = Math.min(this.sm((t - 0.15) / 0.4), this.sm((17.6 - t) / 0.4));
+    P.t = t;
+    return P;
+  }
+
+  beatAt(t) { let i = 0; for (let j = 0; j < this.BEATS.length; j++) if (t >= this.BEATS[j].t - 0.001) i = j; return i; }
+
+  // ---------- painting ----------
+  paper(x, cx, cy, w, h, rot, lift, scale, alpha, painter) {
+    x.save();
+    x.globalAlpha = alpha;
+    x.translate(cx, cy);
+    x.rotate(rot * Math.PI / 180);
+    x.scale(scale, scale);
+    x.shadowColor = 'rgba(2,14,28,0.55)';
+    x.shadowBlur = lift * 1.5;
+    x.shadowOffsetY = lift * 0.75;
+    x.fillStyle = '#ffffff';
+    this.rr(x, -w / 2, -h / 2, w, h, 8);
+    x.fill();
+    x.shadowColor = 'transparent'; x.shadowBlur = 0; x.shadowOffsetY = 0;
+    x.strokeStyle = '#d5e0e9'; x.lineWidth = 1;
+    this.rr(x, -w / 2, -h / 2, w, h, 8); x.stroke();
+    x.save();
+    this.rr(x, -w / 2, -h / 2, w, h, 8); x.clip();
+    x.translate(-w / 2, -h / 2);
+    if (painter) painter(x, w, h);
+    x.restore();
+    x.restore();
+  }
+
+  rr(x, a, b, w, h, r) {
+    x.beginPath();
+    x.moveTo(a + r, b);
+    x.lineTo(a + w - r, b); x.quadraticCurveTo(a + w, b, a + w, b + r);
+    x.lineTo(a + w, b + h - r); x.quadraticCurveTo(a + w, b + h, a + w - r, b + h);
+    x.lineTo(a + r, b + h); x.quadraticCurveTo(a, b + h, a, b + h - r);
+    x.lineTo(a, b + r); x.quadraticCurveTo(a, b, a + r, b);
+    x.closePath();
+  }
+
+  meta(x, text, px, py, size, color, track) {
+    x.save(); x.fillStyle = color; x.font = '900 ' + size + 'px Nunito';
+    x.letterSpacing = (track || 2.2) + 'px';
+    x.fillText(text, px, py); x.restore();
+  }
+
+  wrap(x, text, px, py, max, lh) {
+    const words = String(text).split(' '); let line = '', yy = py;
+    for (let i = 0; i < words.length; i++) {
+      const test = line ? line + ' ' + words[i] : words[i];
+      if (x.measureText(test).width > max && line) { x.fillText(line, px, yy); line = words[i]; yy += lh; }
+      else line = test;
+    }
+    if (line) x.fillText(line, px, yy);
+    return yy + lh;
+  }
+
+  contain(x, im, px, py, w, h) {
+    if (!im) return;
+    const k = Math.min(w / im.width, h / im.height), dw = im.width * k, dh = im.height * k;
+    x.drawImage(im, px + (w - dw) / 2, py + (h - dh) / 2, dw, dh);
+  }
+
+  paintBrief(P) {
+    return (x, w, h) => {
+      const pad = w * 0.09;
+      this.meta(x, 'CLIENT BRIEF · PRIVATE CONCEPT', pad, h * 0.085, Math.round(w * 0.032), '#1766ab');
+      x.strokeStyle = '#d5e0e9'; x.lineWidth = 1;
+      x.beginPath(); x.moveTo(pad, h * 0.115); x.lineTo(w - pad, h * 0.115); x.stroke();
+      x.fillStyle = '#072d53'; x.font = '900 ' + Math.round(w * 0.093) + 'px Archivo';
+      this.wrap(x, 'One busy season, three problems.', pad, h * 0.2, w - pad * 2, w * 0.101);
+      x.font = '400 ' + Math.round(w * 0.049) + 'px Nunito';
+      x.fillStyle = '#102d49';
+      const lineY = [];
+      this.BRIEF.forEach((b, i) => {
+        const yy = h * 0.47 + i * h * 0.085;
+        lineY.push(yy);
+        x.fillText(b, pad, yy);
+      });
+      // ruled paper below the written lines
+      x.strokeStyle = 'rgba(213,224,233,0.65)';
+      for (let i = 0; i < 5; i++) {
+        const yy = h * 0.76 + i * h * 0.042;
+        x.beginPath(); x.moveTo(pad, yy); x.lineTo(w - pad * (i === 4 ? 2.6 : 1), yy); x.stroke();
+      }
+      // 02 — ink underline on the third problem, carets in the margin
+      const ink = P.ink;
+      if (ink.under > 0) {
+        x.save(); x.strokeStyle = '#1766ab'; x.lineWidth = Math.max(3, w * 0.011); x.lineCap = 'round';
+        const y3 = lineY[2] + h * 0.022, x0 = pad, x1 = pad + (w - pad * 2) * 0.94;
+        x.beginPath(); x.moveTo(x0, y3);
+        const n = 16;
+        for (let i = 1; i <= n * ink.under; i++) {
+          const k = i / n;
+          x.lineTo(this.lp(x0, x1, k), y3 + Math.sin(k * 7) * (h * 0.004));
+        }
+        x.stroke(); x.restore();
+      }
+      ink.carets.forEach((c, i) => {
+        if (c <= 0) return;
+        x.save(); x.globalAlpha = Math.min(1, c * 1.4);
+        const cy = h * 0.455 + i * h * 0.085, s = w * 0.05 * Math.min(1, c);
+        x.strokeStyle = '#1766ab'; x.lineWidth = Math.max(2.5, w * 0.008); x.lineCap = 'round'; x.lineJoin = 'round';
+        x.beginPath();
+        x.moveTo(w - pad * 0.85 - s, cy); x.lineTo(w - pad * 0.85, cy);
+        x.moveTo(w - pad * 0.85 - s * 0.38, cy - s * 0.28); x.lineTo(w - pad * 0.85, cy); x.lineTo(w - pad * 0.85 - s * 0.38, cy + s * 0.28);
+        x.stroke(); x.restore();
+      });
+      if (ink.stamp > 0) {
+        x.save();
+        x.globalAlpha = Math.min(1, ink.stamp * 1.2);
+        x.translate(w * 0.66, h * 0.855);
+        x.rotate(ink.stampSpin * Math.PI / 180);
+        const rr = w * 0.155 * this.lp(1.5, 1, this.cl(ink.stamp, 0, 1));
+        x.strokeStyle = '#efb928'; x.lineWidth = Math.max(3, w * 0.012);
+        x.beginPath(); x.arc(0, 0, rr, 0, Math.PI * 2); x.stroke();
+        x.globalAlpha *= 0.85;
+        x.beginPath(); x.arc(0, 0, rr * 0.86, 0, Math.PI * 2); x.lineWidth = 1.5; x.stroke();
+        x.globalAlpha = Math.min(1, ink.stamp * 1.2);
+        x.fillStyle = '#efb928'; x.font = '900 ' + Math.round(rr * 0.3) + 'px Nunito';
+        x.letterSpacing = (rr * 0.05) + 'px';
+        x.textAlign = 'center';
+        x.fillText('FOR', 0, -rr * 0.06); x.fillText('REVIEW', 0, rr * 0.32);
+        x.textAlign = 'left'; x.letterSpacing = '0px';
+        x.restore();
+      }
+      if (P.read.a > 0) {
+        x.save();
+        x.globalAlpha = P.read.a * 0.5;
+        const cy = this.lp(h * 0.12, h * 0.9, P.read.k);
+        const g = x.createLinearGradient(0, cy - h * 0.16, 0, cy + h * 0.16);
+        g.addColorStop(0, 'rgba(213,228,241,0)');
+        g.addColorStop(0.5, 'rgba(213,228,241,0.55)');
+        g.addColorStop(1, 'rgba(213,228,241,0)');
+        x.fillStyle = g; x.fillRect(0, cy - h * 0.16, w, h * 0.32);
+        x.restore();
+      }
+    };
+  }
+
+  paintCard(i, wide) {
+    const s = this.ST[i], im = this.imgs ? this.imgs['i' + i] : null;
+    return (x, w, h) => {
+      if (wide) {
+        // the ceramic service icons are painted on their own white ground, so the tile
+        // stays paper and only a hairline separates it
+        x.fillStyle = '#f0f5f9'; x.fillRect(0, 0, h, h);
+        x.strokeStyle = '#d5e0e9'; x.lineWidth = 1;
+        x.beginPath(); x.moveTo(h, 0); x.lineTo(h, h); x.stroke();
+        this.contain(x, im, h * 0.07, h * 0.07, h * 0.86, h * 0.86);
+        const px = h + w * 0.04, avail = w - px - w * 0.04;
+        this.meta(x, s.n + ' · ' + s.tag.toUpperCase(), px, h * 0.28, Math.round(h * 0.11), '#1766ab');
+        x.fillStyle = '#072d53';
+        let fs = Math.round(h * 0.185);
+        x.font = '900 ' + fs + 'px Archivo';
+        while (x.measureText(s.line).width > avail && fs > h * 0.12) { fs -= 2; x.font = '900 ' + fs + 'px Archivo'; }
+        x.fillText(s.line, px, h * 0.585);
+        x.fillStyle = '#52677c'; x.font = '400 ' + Math.round(h * 0.11) + 'px Nunito';
+        x.fillText('Proposed step · ' + s.role, px, h * 0.8);
+      } else {
+        x.fillStyle = '#f0f5f9'; x.fillRect(0, 0, w, h * 0.46);
+        x.strokeStyle = '#d5e0e9'; x.lineWidth = 1;
+        x.beginPath(); x.moveTo(0, h * 0.46); x.lineTo(w, h * 0.46); x.stroke();
+        this.contain(x, im, w * 0.1, h * 0.03, w * 0.8, h * 0.4);
+        this.meta(x, s.n + ' · ' + s.tag.toUpperCase(), w * 0.09, h * 0.575, Math.round(w * 0.058), '#1766ab', 1.8);
+        x.fillStyle = '#072d53'; x.font = '900 ' + Math.round(w * 0.092) + 'px Archivo';
+        this.wrap(x, s.line, w * 0.09, h * 0.672, w * 0.82, w * 0.1);
+        x.strokeStyle = '#d5e0e9'; x.lineWidth = 1;
+        x.beginPath(); x.moveTo(w * 0.09, h * 0.885); x.lineTo(w * 0.91, h * 0.885); x.stroke();
+        x.fillStyle = '#52677c'; x.font = '400 ' + Math.round(w * 0.058) + 'px Nunito';
+        x.fillText('Proposed step · ' + s.role, w * 0.09, h * 0.945);
+      }
+    };
+  }
+
+  clipMark(x, cx, cy, k, rot) {
+    if (k <= 0) return;
+    x.save();
+    x.globalAlpha = Math.min(1, k * 1.3);
+    x.translate(cx, cy); x.rotate(rot * Math.PI / 180); x.scale(k, k);
+    x.shadowColor = 'rgba(2,14,28,0.45)'; x.shadowBlur = 10; x.shadowOffsetY = 4;
+    x.fillStyle = '#efb928';
+    this.rr(x, -13, -26, 26, 52, 12); x.fill();
+    x.shadowColor = 'transparent';
+    x.fillStyle = '#03172e';
+    this.rr(x, -6, -18, 12, 36, 6); x.fill();
+    x.restore();
+  }
+
+  thread(x, a, b, k) {
+    if (k <= 0) return;
+    x.save();
+    x.strokeStyle = 'rgba(23,102,171,0.85)'; x.lineWidth = 2.5; x.lineCap = 'round';
+    const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2 + 46;
+    x.beginPath(); x.moveTo(a.x, a.y);
+    const n = 24, kk = Math.max(0, Math.min(1, k));
+    for (let i = 1; i <= n * kk; i++) {
+      const p = i / n, ix = (1 - p) * (1 - p) * a.x + 2 * (1 - p) * p * mx + p * p * b.x;
+      const iy = (1 - p) * (1 - p) * a.y + 2 * (1 - p) * p * my + p * p * b.y;
+      x.lineTo(ix, iy);
+    }
+    x.stroke();
+    x.restore();
+  }
+
+  draw(P) {
+    const x = this.ctx, V = this.V(), fit = this.fit;
+    x.setTransform(fit, 0, 0, fit, 0, 0);
+    x.fillStyle = '#03172e';
+    x.fillRect(0, 0, V.w, V.h);
+
+    x.save();
+    x.translate(V.w / 2 + P.cam.x, V.h / 2 + P.cam.y);
+    x.scale(P.cam.s, P.cam.s);
+    x.translate(-V.w / 2, -V.h / 2);
+
+    // desk plane: a single soft pool of light, no gradient wallpaper
+    const g = x.createRadialGradient(V.w * 0.42, V.h * 0.42, 0, V.w * 0.42, V.h * 0.42, V.w * 0.72);
+    g.addColorStop(0, 'rgba(19,58,101,0.55)');
+    g.addColorStop(1, 'rgba(3,23,46,0)');
+    x.fillStyle = g; x.fillRect(0, 0, V.w, V.h);
+
+    if (this.momoPlate && P.momo.a > 0.01) {
+      x.save();
+      x.globalAlpha = P.momo.a;
+      const m = P.momo;
+      x.translate(m.x + m.w / 2, m.y + m.h);
+      x.rotate(m.lean * Math.PI / 180);
+      x.drawImage(this.momoPlate, -m.w / 2, -m.h, m.w, m.h);
+      x.restore();
+    }
+
+    P.cards.forEach(c => {
+      if (c.thread > 0) this.thread(x, P.anchor, { x: c.x, y: c.y }, c.thread);
+    });
+
+    if (P.brief.a > 0.01) {
+      this.paper(x, P.brief.x, P.brief.y, P.brief.w, P.brief.h, P.brief.r, P.brief.lift, P.brief.s, P.brief.a, this.paintBrief(P));
+    }
+
+    const wide = this.L().card === 'wide';
+    P.cards.forEach(c => {
+      if (c.a <= 0.01) return;
+      this.paper(x, c.x, c.y, c.w, c.h, c.r, c.lift, c.s, c.a, this.paintCard(c.i, wide));
+      const hw = (c.w / 2) * c.s, hh = (c.h / 2) * c.s;
+      this.clipMark(x, c.x - hw + 16 * c.s, c.y - hh + 10 * c.s, c.clip * c.s, c.r - 6);
+    });
+
+    x.restore();
+
+    if (P.vign) {
+      const v = x.createRadialGradient(V.w / 2, V.h * 0.46, Math.min(V.w, V.h) * 0.3, V.w / 2, V.h * 0.46, Math.max(V.w, V.h) * 0.72);
+      v.addColorStop(0, 'rgba(3,23,46,0)');
+      v.addColorStop(1, 'rgba(3,23,46,0.62)');
+      x.fillStyle = v; x.fillRect(0, 0, V.w, V.h);
+    }
+  }
+
+  applyFrame(t) {
+    if (!this.ctx) return;
+    const P = this.shot(t);
+    this.draw(P);
+    const b = this.BEATS[P.beat];
+    this.r.capNum.textContent = b.n;
+    this.r.capText.textContent = b.k;
+    this.r.capLine.textContent = b.line;
+    this.r.caption.style.opacity = String(P.capA);
+    this.r.caption.style.transform = 'translateY(' + ((1 - P.capA) * 14).toFixed(2) + 'px)';
+    this.r.rail.style.opacity = String(P.railA);
+    for (let i = 0; i < 5; i++) {
+      const el = this.r['d' + i];
+      if (el) el.style.background = P.beat > i ? '#efb928' : (P.beat === i ? '#d5e4f1' : 'rgb(255 255 255 / 16%)');
+    }
+    this.r.endcard.style.opacity = String(Math.min(1, P.endA * 1.2));
+    this.r.endcard.style.clipPath = 'inset(0 ' + ((1 - P.endA) * 100).toFixed(1) + '% 0 0)';
+    this.r.hint.style.opacity = String(P.hintA * 0.9);
+    this.r.stage.setAttribute('data-screen-label', 'Momo · ' + b.n + ' ' + b.k + ' · ' + t.toFixed(1) + 's');
+    if (this.r.scrub && !this.scrubbing) this.r.scrub.value = String(Math.round((t / this.AUTH) * 1000));
+    if (this.r.timeLabel) this.r.timeLabel.textContent = (t / this.AUTH * this.dur).toFixed(1) + ' / ' + this.dur.toFixed(1) + 's';
+    this.syncSel();
+  }
+
+  compose() {
+    const k = this.mob ? 2.1 : 1;
+    if (!this._ts) {
+      this._ts = [];
+      this.r.stage.querySelectorAll('*').forEach(el => {
+        const s = el.getAttribute('style') || '';
+        const f = /font-size:\s*([\d.]+)cqw/.exec(s);
+        if (f) this._ts.push([el, 'fontSize', parseFloat(f[1])]);
+        if (el.tagName === 'IMG') { const w = /width:\s*([\d.]+)cqw/.exec(s); if (w) this._ts.push([el, 'width', parseFloat(w[1])]); }
+      });
+    }
+    for (const it of this._ts) it[0].style[it[1]] = (it[2] * k).toFixed(3) + 'cqw';
+    const ec = this.r.endcard;
+    if (this.mob) {
+      ec.style.maxWidth = 'none'; ec.style.left = '0'; ec.style.right = '0';
+      ec.style.top = 'auto'; ec.style.bottom = '0'; ec.style.transform = 'none';
+      ec.style.background = '#03172e'; ec.style.padding = '5cqh 8cqw 7cqh';
+      this.r.caption.style.bottom = 'auto'; this.r.caption.style.top = '9cqh';
+      this.r.rail.style.top = '4.5cqh';
+    } else {
+      ec.style.maxWidth = '52cqw'; ec.style.left = '8cqw'; ec.style.right = 'auto';
+      ec.style.top = '50%'; ec.style.bottom = 'auto'; ec.style.transform = 'translateY(-50%)';
+      ec.style.background = 'none'; ec.style.padding = '0';
+      this.r.caption.style.bottom = '6cqh'; this.r.caption.style.top = 'auto';
+      this.r.rail.style.top = '4cqh';
+    }
+  }
+
+  resize() {
+    if (!this.ctx) return;
+    const s = this.r.stage, cw = s.clientWidth || 960, ch = s.clientHeight || 540;
+    const mob = cw / Math.max(1, ch) < 1.05;
+    if (mob !== this.mob) { this.mob = mob; this.compose(); }
+    const V = this.V(), dpr = Math.min(2, window.devicePixelRatio || 1);
+    this.r.canvas.width = Math.round(cw * dpr);
+    this.r.canvas.height = Math.round(ch * dpr);
+    this.fit = Math.min(cw / V.w, ch / V.h) * dpr;
+    this.applyFrame(this.t);
+  }
+
+  loop = (now) => {
+    if (this.dead) return;
+    this.raf = requestAnimationFrame(this.loop);
+    const dt = Math.min(0.05, (now - this.last) / 1000); this.last = now;
+    if (this.playing && this.mode === 'film' && !this.staticMode) {
+      this.t += dt * (this.AUTH / this.dur);
+      if (this.t >= this.AUTH) { this.t = this.AUTH; this.playing = false; this.syncPlay(); }
+      this.sfx();
+    }
+    this.applyFrame(this.t);
+  };
+
+  // ---------- synthesized paper / ink only, opt-in ----------
+  MARKS = [
+    { t: 1.35, k: 'paper' }, { t: 5.75, k: 'ink' }, { t: 6.3, k: 'ink' }, { t: 7.2, k: 'stamp' },
+    { t: 9.2, k: 'paper' }, { t: 10.5, k: 'paper' }, { t: 11.8, k: 'paper' }, { t: 13.05, k: 'paper' }, { t: 14.35, k: 'paper' }
+  ];
+
+  sfx() {
+    for (let i = 0; i < this.MARKS.length; i++) {
+      const m = this.MARKS[i];
+      if (this.cue < i && this.t >= m.t && this.t < m.t + 0.35) { this.cue = i; this.tone(m.k); }
+    }
+    if (this.t < 1.0) this.cue = -1;
+  }
+
+  tone(kind) {
+    if (!this.sound) return;
+    try {
+      const ac = this.ac || (this.ac = new (window.AudioContext || window.webkitAudioContext)());
+      const spec = kind === 'ink' ? { d: 0.2, f0: 1800, f1: 3400, q: 1.2, g: 0.1, type: 'bandpass' }
+        : kind === 'stamp' ? { d: 0.3, f0: 420, f1: 140, q: 0.6, g: 0.22, type: 'lowpass' }
+          : { d: 0.4, f0: 620, f1: 2400, q: 0.7, g: 0.15, type: 'bandpass' };
+      const sr = ac.sampleRate, buf = ac.createBuffer(1, Math.floor(sr * spec.d), sr), d = buf.getChannelData(0);
+      let seed = 20260908;
+      for (let i = 0; i < d.length; i++) { seed = (seed * 1103515245 + 12345) & 0x7fffffff; d[i] = (seed / 0x7fffffff) * 2 - 1; }
+      const src = ac.createBufferSource(); src.buffer = buf;
+      const f = ac.createBiquadFilter(); f.type = spec.type; f.Q.value = spec.q;
+      f.frequency.setValueAtTime(spec.f0, ac.currentTime);
+      f.frequency.exponentialRampToValueAtTime(spec.f1, ac.currentTime + spec.d);
+      const gn = ac.createGain();
+      gn.gain.setValueAtTime(0.0001, ac.currentTime);
+      gn.gain.exponentialRampToValueAtTime(spec.g, ac.currentTime + 0.05);
+      gn.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + spec.d);
+      src.connect(f); f.connect(gn); gn.connect(ac.destination); src.start();
+    } catch (e) { /* audio unavailable */ }
+  }
+
+  // ---------- interaction: drag shuttles, tap steps, keys step ----------
+  onSeek = (e) => {
+    const d = (e && e.detail) || {};
+    const time = typeof d.time === 'number' ? d.time : (typeof d.frame === 'number' ? d.frame / 30 : 0);
+    this.mode = 'film'; this.playing = false; this.syncMode(); this.syncPlay();
+    this.t = this.cl(time * (this.AUTH / this.dur), 0, this.AUTH);
+    this.cue = 99;
+    this.applyFrame(this.t);
+  };
+
+  onDown = (e) => {
+    if (this.staticMode || !this.ctx) return;
+    this.r.stage.focus({ preventScroll: true });
+    this.drag = { x: e.clientX, t: this.t, moved: 0 };
+    this.playing = false; this.syncPlay();
+    this.r.stage.style.cursor = 'grabbing';
+  };
+
+  onMove = (e) => {
+    if (!this.drag) return;
+    const w = this.r.stage.clientWidth || 960, dx = e.clientX - this.drag.x;
+    this.drag.moved = Math.max(this.drag.moved, Math.abs(dx));
+    this.t = this.cl(this.drag.t + (dx / w) * this.AUTH, 0, this.AUTH);
+    this.cue = 99;
+    this.applyFrame(this.t);
+  };
+
+  onUp = () => {
+    if (!this.drag) return;
+    const tap = this.drag.moved < 7;
+    this.drag = null;
+    this.r.stage.style.cursor = 'grab';
+    if (tap) { this.mode = 'hand'; this.syncMode(); this.step(1); }
+  };
+
+  onKey = (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); this.mode = 'hand'; this.syncMode(); this.step(1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); this.mode = 'hand'; this.syncMode(); this.step(-1); }
+    else if (e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); this.toggle(); }
+    else if (e.key === 'Home') { e.preventDefault(); this.t = 0; this.cue = -1; this.mode = 'film'; this.playing = true; this.last = performance.now(); this.syncMode(); this.syncPlay(); }
+  };
+
+  step(dir) {
+    this.playing = false; this.syncPlay();
+    const marks = this.BEATS.map(b => b.t).concat([this.AUTH]);
+    if (dir > 0) {
+      const next = marks.find(m => m > this.t + 0.08);
+      this.t = next === undefined ? 0 : next;
+      if (next === undefined) this.cue = -1;
+    } else {
+      const prev = marks.filter(m => m < this.t - 0.08).pop();
+      this.t = prev === undefined ? 0 : prev;
+    }
+    this.cue = 99;
+    this.applyFrame(this.t);
+  }
+
+  toggle() {
+    if (this.mode !== 'film') { this.mode = 'film'; this.syncMode(); }
+    if (this.t >= this.AUTH - 0.01) { this.t = 0; this.cue = -1; }
+    this.playing = !this.playing; this.last = performance.now(); this.syncPlay();
+  }
+
+  applyStatic(on) {
+    this.staticMode = on;
+    this.r.staticBoard.style.display = on ? 'block' : 'none';
+    this.r.stageWrap.style.display = on ? 'none' : 'block';
+    const b = this.r.btnStatic;
+    if (b) {
+      b.textContent = on ? 'Motion version' : 'Static version';
+      b.style.background = on ? 'var(--navy)' : '#fff';
+      b.style.color = on ? '#fff' : 'var(--navy)';
+      b.style.borderColor = on ? 'var(--navy)' : 'var(--line)';
+    }
+  }
+
+  syncSel() {
+    if (this.r.durSel && this.r.durSel.value !== String(this.dur)) this.r.durSel.value = String(this.dur);
+    if (this.r.frameSel && this.r.frameSel.value !== this.frame) this.r.frameSel.value = this.frame;
+  }
+
+  syncMode() {
+    const on = { background: 'var(--navy)', color: '#fff', borderColor: 'var(--navy)' };
+    const off = { background: '#fff', color: 'var(--navy)', borderColor: 'var(--line)' };
+    const set = (el, s) => { if (!el) return; el.style.background = s.background; el.style.color = s.color; el.style.borderColor = s.borderColor; };
+    set(this.r.btnFilm, this.mode === 'film' ? on : off);
+    set(this.r.btnHand, this.mode === 'hand' ? on : off);
+  }
+
+  syncPlay() { if (this.r.btnPlay) this.r.btnPlay.textContent = this.playing && this.mode === 'film' ? 'Pause' : 'Play'; }
+
+  renderVals() {
+    return {
+      ...this.R,
+      onFilm: () => { this.mode = 'film'; this.playing = true; this.last = performance.now(); this.syncMode(); this.syncPlay(); },
+      onHand: () => { this.mode = 'hand'; this.playing = false; this.syncMode(); this.syncPlay(); },
+      onToggle: () => this.toggle(),
+      onReplay: () => { this.t = 0; this.cue = -1; this.mode = 'film'; this.playing = true; this.last = performance.now(); this.syncMode(); this.syncPlay(); },
+      onScrub: (e) => {
+        this.mode = 'film'; this.playing = false; this.scrubbing = true; this.syncMode(); this.syncPlay();
+        this.t = (Number(e.target.value) / 1000) * this.AUTH; this.cue = 99;
+        this.applyFrame(this.t);
+        clearTimeout(this.sT); this.sT = setTimeout(() => { this.scrubbing = false; }, 250);
+      },
+      onDur: (e) => {
+        this.dur = Number(e.target.value);
+        this.r.stage.setAttribute('data-om-exportable-video-with-duration-secs', String(this.dur));
+        this.applyFrame(this.t);
+      },
+      onFrame: (e) => {
+        this.frame = e.target.value;
+        const s = this.r.stage, p = this.frame === '9:16';
+        s.style.aspectRatio = p ? '9/16' : '16/9';
+        s.style.maxWidth = p ? '420px' : 'none';
+        s.style.marginLeft = p ? 'auto' : '0';
+        s.style.marginRight = p ? 'auto' : '0';
+        requestAnimationFrame(() => this.resize());
+      },
+      onSound: () => {
+        this.sound = !this.sound;
+        const b = this.r.btnSound;
+        b.textContent = this.sound ? 'Sound on' : 'Sound off';
+        b.style.background = this.sound ? 'var(--navy)' : '#fff';
+        b.style.color = this.sound ? '#fff' : 'var(--navy)';
+        b.style.borderColor = this.sound ? 'var(--navy)' : 'var(--line)';
+        if (this.sound) this.tone('paper');
+      },
+      onStatic: () => this.applyStatic(!this.staticMode)
+    };
+  }
+}
+</script>
+</body>
+</html>

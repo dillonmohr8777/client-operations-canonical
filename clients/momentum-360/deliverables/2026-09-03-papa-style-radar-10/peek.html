@@ -1,0 +1,16 @@
+<!doctype html><meta charset="utf-8"><title>peek</title>
+<!-- Dev-only re-check, deliberately NOT in the publish set: frames one page at
+     a real width and a tall viewport, scaled to fit the pane, so a harness
+     finding can be looked at rather than argued about.
+     /peek.html?u=/sites/golden-sea/&w=375&h=2600&y=3200 -->
+<style>html,body{margin:0;background:#111}iframe{border:0;transform-origin:0 0;display:block}</style>
+<iframe id="f" title="page under review"></iframe>
+<script>
+const q=new URLSearchParams(location.search);
+const w=+(q.get('w')||375), h=+(q.get('h')||2600), y=+(q.get('y')||0), u=q.get('u')||'/';
+const s=(innerWidth-2)/w, f=document.getElementById('f');
+f.style.width=w+'px'; f.style.height=h+'px'; f.style.transform='scale('+s+')';
+document.body.style.height=(h*s)+'px';
+f.onload=()=>{ try{ f.contentWindow.scrollTo(0,y); }catch(e){} };
+f.src=u+'?peek='+Date.now();
+</script>

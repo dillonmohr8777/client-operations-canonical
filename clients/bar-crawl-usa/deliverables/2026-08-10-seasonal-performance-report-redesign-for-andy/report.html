@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bar Crawl USA GA4 and Semrush Seasonal Performance Field Book</title>
+  <style>
+    @font-face{font-family:"Barlow Condensed";src:url("BarlowCondensed-800.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap}
+    @font-face{font-family:"Barlow Condensed";src:url("BarlowCondensed-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+    :root{--ink:#111317;--paper:#f3eee4;--white:#fffdf8;--violet:#30207d;--cobalt:#244fce;--coral:#b83a2f;--coral-light:#ff9e8f;--quiet:#5c5a58;--mist:#d8d0c4;--wash:#dce4ff}
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#d7d3cb;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+    body{padding:24px}
+    .sheet{position:relative;width:8.5in;height:11in;margin:0 auto 24px;background:var(--paper);overflow:hidden;box-shadow:0 18px 46px rgba(17,19,23,.18);page-break-after:always}
+    .sheet:last-child{page-break-after:auto}
+    .pad{padding:.46in .5in .58in}
+    .dark{background:var(--ink);color:var(--white)}
+    .violet{background:var(--violet);color:var(--white)}
+    h1,h2,h3,p{margin:0}
+    h1,h2,h3{font-family:"Barlow Condensed",Arial,sans-serif;text-transform:uppercase}
+    h1{font-size:49pt;line-height:.84;letter-spacing:-.025em}
+    h2{font-size:29pt;line-height:.9;letter-spacing:-.015em}
+    h3{font-size:17pt;line-height:1}
+    p,li{font-size:9.2pt;line-height:1.42}
+    .brandbar{height:.68in;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid currentColor;padding:0 .5in;font:500 9pt/1 "Barlow Condensed",sans-serif;letter-spacing:.09em;text-transform:uppercase}
+    .brandbar img.logo{width:146px;height:36px;object-fit:contain;object-position:left center}
+    .partner{display:flex;align-items:center;gap:9px;font-weight:800}
+    .partner img{width:28px;height:28px;border-radius:8px}
+    .folio{position:absolute;left:.5in;right:.5in;bottom:.23in;display:flex;align-items:center;gap:14px;font:500 7.8pt/1 "Barlow Condensed",sans-serif;letter-spacing:.08em;text-transform:uppercase}
+    .folio i{height:1px;flex:1;background:currentColor;opacity:.4}
+    .cover-grid{display:grid;grid-template-columns:2.72in 1fr;min-height:9.72in}
+    .cover-left{background:var(--violet);color:white;padding:.52in .38in;display:flex;flex-direction:column;overflow:hidden}
+    .cover-left .number{font:800 62pt/.78 "Barlow Condensed",sans-serif;letter-spacing:-.035em;color:var(--coral-light)}
+    .cover-left .season{margin-top:.12in;font:800 25pt/.94 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .cover-left .season span{display:block;color:var(--wash)}
+    .cover-left .source{margin-top:auto;border-top:1px solid white;padding-top:.16in;font:500 8.4pt/1.35 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .cover-main{padding:.55in .48in .4in;display:flex;flex-direction:column}
+    .cover-main h1 strong{display:block;color:var(--violet);font-size:58pt}
+    .andy{margin-top:.25in;padding:.11in 0;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);font:800 14pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--coral)}
+    .cover-copy{margin-top:.24in;max-width:3.9in;font-size:10.5pt}
+    .snapshot{margin-top:auto;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+    .snapshot div{display:grid;grid-template-columns:1.22in 1fr;align-items:center;padding:.13in 0;border-bottom:1px solid var(--ink)}
+    .snapshot div:last-child{border-bottom:0}
+    .snapshot b{font:800 25pt/1 "Barlow Condensed",sans-serif;color:var(--violet)}
+    .snapshot span{font:500 9pt/1.2 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .stamp{position:absolute;right:.42in;bottom:.66in;border:2px solid var(--coral);color:var(--coral);padding:9px 13px;transform:rotate(-3deg);font:800 10.5pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.06em}
+    .page-title{display:grid;grid-template-columns:1fr 2.12in;gap:.3in;align-items:end;padding-bottom:.14in;border-bottom:3px solid currentColor}
+    .page-title p{font-size:8.3pt;color:var(--quiet)}
+    .dark .page-title p,.violet .page-title p{color:var(--white)}
+    .metric-band{display:grid;grid-template-columns:1.45fr repeat(3,1fr);margin-top:.22in;border-top:2px solid currentColor;border-bottom:2px solid currentColor}
+    .metric-band div{padding:.17in .12in;border-right:1px solid currentColor}
+    .metric-band div:last-child{border-right:0}
+    .metric-band .lead{background:var(--violet);color:white}
+    .dark .metric-band .lead,.violet .metric-band .lead{background:var(--white);color:var(--violet)}
+    .metric-band b{display:block;font:800 26pt/1 "Barlow Condensed",sans-serif}
+    .metric-band span{display:block;margin-top:5px;font:500 8pt/1.15 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    table{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:.23in}
+    th{background:var(--ink);color:white;padding:7px;text-align:right;font:800 7.5pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.03em}
+    th:first-child{text-align:left}
+    td{padding:7px;border-bottom:1px solid #aaa49a;text-align:right;font:500 8.7pt/1.05 "Barlow Condensed",sans-serif;font-variant-numeric:tabular-nums}
+    td:first-child{text-align:left;font-weight:800;text-transform:uppercase}
+    tbody tr:nth-child(even){background:rgba(36,79,206,.07)}
+    td.win{background:var(--wash);color:var(--violet);font-weight:800}
+    .insight{margin-top:.22in;display:grid;grid-template-columns:1.45in 1fr;background:var(--ink);color:white}
+    .insight strong{padding:.18in;font:800 17pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--coral-light)}
+    .insight p{padding:.18in;border-left:1px solid var(--quiet)}
+    .stack{margin-top:.2in}
+    .channel{display:grid;grid-template-columns:1.75in .85in .85in 1fr;align-items:center;padding:.13in 0;border-bottom:1px solid currentColor}
+    .channel:first-child{border-top:1px solid currentColor}
+    .channel h3{font-size:14pt}
+    .channel b{font:800 14pt/1 "Barlow Condensed",sans-serif;text-align:right}
+    .channel span{font:500 8.5pt/1.1 "Barlow Condensed",sans-serif;text-align:right;text-transform:uppercase}
+    .channel .bar{margin-left:.18in;height:9px;background:color-mix(in srgb,var(--white) 20%,transparent);position:relative}
+    .channel .bar i{display:block;height:100%;background:var(--coral-light)}
+    .paper-stack .channel .bar{background:#d4cec4}.paper-stack .channel .bar i{background:var(--cobalt)}
+    .landing td:first-child{width:48%}
+    .runway{display:grid;grid-template-columns:1fr 1fr;gap:.22in;margin-top:.22in}
+    .season-box{background:var(--white);box-shadow:inset 0 7px 0 var(--coral);padding:.23in .2in .18in}
+    .season-box:nth-child(2){box-shadow:inset 0 7px 0 var(--cobalt)}
+    .season-box h3{font-size:20pt}
+    .season-box .big{margin-top:.13in;font:800 33pt/1 "Barlow Condensed",sans-serif;color:var(--violet)}
+    .season-box p{margin-top:5px;color:var(--quiet)}
+    .baseline{display:grid;grid-template-columns:2.35in 1fr;gap:.28in;margin-top:.25in}
+    .baseline-left{background:var(--ink);color:white;padding:.24in}
+    .baseline-left .hero-metric{padding:.18in 0;border-top:1px solid white}
+    .baseline-left .hero-metric:first-child{border-top:0}
+    .baseline-left b{display:block;font:800 31pt/1 "Barlow Condensed",sans-serif;color:var(--coral-light)}
+    .baseline-left span{font:500 8.5pt/1.15 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .baseline-right .row{display:grid;grid-template-columns:1fr 1.25in;gap:.15in;padding:.12in 0;border-bottom:1px solid var(--ink)}
+    .baseline-right .row:first-child{border-top:1px solid var(--ink)}
+    .baseline-right strong{font:800 12pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .baseline-right span{font:500 11pt/1 "Barlow Condensed",sans-serif;text-align:right}
+    .intent{margin-top:.26in}
+    .intent-row{display:grid;grid-template-columns:1.45in .78in .78in 1fr;gap:.14in;align-items:center;padding:.1in 0;border-bottom:1px solid var(--ink)}
+    .intent-row:first-child{border-top:1px solid var(--ink)}
+    .intent-row strong{font:800 12pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .intent-row b{text-align:right;font:800 12pt/1 "Barlow Condensed",sans-serif}
+    .intent-row .bar{height:8px;background:#d4cec4}.intent-row i{display:block;height:100%;background:var(--violet)}
+    .rank-lead{display:grid;grid-template-columns:2.2in 1fr;gap:.3in;margin-top:.25in}
+    .rank-number{background:var(--violet);color:white;padding:.24in;min-height:2.25in}
+    .rank-number b{display:block;font:800 78pt/.72 "Barlow Condensed",sans-serif;color:var(--coral-light)}
+    .rank-number span{display:block;margin-top:.15in;font:800 18pt/.95 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .rank-copy h3{font-size:25pt;color:var(--violet)}
+    .rank-copy p{margin-top:.12in}
+    .rankings th:nth-child(1){width:42%}.rankings th:nth-child(2){width:10%}.rankings th:nth-child(3){width:14%}.rankings th:nth-child(4){width:34%}
+    .domain-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:.24in;margin-top:.24in}
+    .gap{background:var(--white);box-shadow:inset 0 8px 0 var(--coral);padding:.25in .22in}
+    .gap h3,.domain h3{font-size:23pt}
+    .gap .big{margin-top:.12in;font:800 44pt/1 "Barlow Condensed",sans-serif;color:var(--violet)}
+    .gap p{margin-top:.1in}
+    .gap table{margin-top:.16in}.gap th,.gap td{padding:6px;font-size:7.4pt}
+    .domain{background:var(--ink);color:white;padding:.25in .22in}
+    .domain h3{color:var(--coral-light)}
+    .domain .domain-metric{display:grid;grid-template-columns:1fr .82in;gap:.12in;padding:.12in 0;border-bottom:1px solid #77747b}
+    .domain .domain-metric:first-of-type{margin-top:.15in;border-top:1px solid white}
+    .domain strong{font:800 10pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .domain span{font:800 14pt/1 "Barlow Condensed",sans-serif;text-align:right;color:var(--wash)}
+    .action-list{margin-top:.24in}
+    .action{display:grid;grid-template-columns:1.12in 1fr 1.25in;gap:.2in;padding:.18in 0;border-bottom:1px solid currentColor;align-items:start}
+    .action:first-child{border-top:1px solid currentColor}
+    .action b{font:800 20pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--coral-light)}
+    .action h3{font-size:16pt}
+    .action p{margin-top:6px;color:var(--white)}
+    .action span{font:500 9pt/1.2 "Barlow Condensed",sans-serif;text-transform:uppercase;text-align:right;color:var(--wash)}
+    .close{margin-top:.34in;font:800 38pt/.9 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--coral-light);max-width:6.8in}
+    @media print{html,body{background:white}body{padding:0}.sheet{margin:0;box-shadow:none}}
+    @page{size:Letter portrait;margin:0}
+    @media screen and (max-width:850px){body{padding:0}.sheet{width:100%;height:auto;min-height:100vh;margin:0;overflow:visible}.cover-grid,.page-title,.baseline,.rank-lead,.domain-grid{grid-template-columns:minmax(0,1fr)}.cover-left,.cover-main{min-width:0}.cover-left{min-height:54vh}.cover-left .number{font-size:56pt}.cover-main{min-height:88vh}.brandbar{padding:0 22px}.pad{padding:28px 22px 68px}.metric-band{grid-template-columns:1fr 1fr}.metric-band div{border-bottom:1px solid currentColor}.runway{grid-template-columns:1fr}.insight{grid-template-columns:1fr}.insight p{border-left:0;border-top:1px solid var(--quiet)}.channel{grid-template-columns:1fr 1fr}.channel .bar{grid-column:1/-1;margin:8px 0 0}.action{grid-template-columns:1fr}.action span{text-align:left}.stamp{position:static;display:inline-block;margin:20px 22px 56px}.folio{left:22px;right:22px}}
+  </style>
+</head>
+<body>
+  <!-- THESIS: Seasonal reach becomes an executive field book, refusing the source file's generic document tables and internal-brief framing. OWN-WORLD: Bone call sheets, ultraviolet fields, near-black ledgers, coral decision marks, cropped counts, and condensed operational type. STORY: Andy sees current momentum, prior seasonal scale, top landing pages, search strength, ranking gaps, and the ordered next moves. FIRST VIEWPORT: The exact 237,385-session season monument sits beside the title, Andy attribution, and three current search-and-traffic signals. FORM: Established After-Hours Producer Dossier extended to a portrait seasonal performance book. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md -->
+  <section class="sheet">
+    <header class="brandbar"><img class="logo" src="bar-crawl-usa.webp" alt="Bar Crawl USA"><div class="partner"><img src="momentum-360-m-circle.png" alt="Momentum 360"><span>Momentum 360 · Seasonal field book</span></div></header>
+    <div class="cover-grid"><aside class="cover-left"><div class="number">237,385</div><div class="season">Sessions during the <span>2025 holiday season</span></div><div class="source">GA4 · October 1 to December 31, 2025<br>Current GA4 · July 12 to August 8, 2026<br>Semrush · August 8, 2026</div></aside><main class="cover-main"><h1>Seasonal performance <strong>field book</strong></h1><div class="andy">Prepared for Andy Zirger · August 10, 2026</div><p class="cover-copy">Bar Crawl USA already owns meaningful seasonal reach and a real organic-search asset. This book shows where current traffic quality is strongest, which pages carried the prior season, where Halloween rankings are already working, and what to prioritize next.</p><div class="snapshot"><div><b>6,764</b><span>Current GA4 sessions</span></div><div><b>2,989</b><span>Estimated monthly organic visits</span></div><div><b>2,088</b><span>Ranking keywords</span></div></div></main></div>
+    <div class="stamp">GA4 + Semrush · evidence through Aug 8</div><footer class="folio"><span>Bar Crawl USA · Seasonal performance</span><i></i><span>01 / 08</span></footer>
+  </section>
+
+  <section class="sheet pad">
+    <div class="page-title"><h2>Current GA4 performance</h2><p>barcrawlusa.com · July 12 to August 8, 2026. Organic Search carries the strongest engagement among the major traffic channels.</p></div>
+    <div class="metric-band"><div class="lead"><b>6,764</b><span>Sessions</span></div><div><b>2,237</b><span>Engaged sessions</span></div><div><b>33.07%</b><span>Engagement rate</span></div><div><b>16s</b><span>Average engagement</span></div></div>
+    <div class="stack paper-stack">
+      <div class="channel"><h3>Paid Social</h3><b>2,877</b><span>42.53% share · 20.89% engaged</span><div class="bar"><i style="width:100%"></i></div></div>
+      <div class="channel"><h3>Direct</h3><b>2,218</b><span>32.79% share · 30.39% engaged</span><div class="bar"><i style="width:77%"></i></div></div>
+      <div class="channel"><h3>Organic Search</h3><b>1,151</b><span>17.02% share · 58.47% engaged</span><div class="bar"><i style="width:40%"></i></div></div>
+      <div class="channel"><h3>Organic Social</h3><b>297</b><span>4.39% share · 47.47% engaged</span><div class="bar"><i style="width:10.3%"></i></div></div>
+      <div class="channel"><h3>Referral</h3><b>159</b><span>2.35% share · 71.70% engaged</span><div class="bar"><i style="width:5.5%"></i></div></div>
+    </div>
+    <div class="insight"><strong>Decision read</strong><p>Paid Social supplies the largest current audience. Organic Search produces a substantially stronger engagement rate and twice the average engagement time of Direct traffic. Protecting city and theme visibility should remain a seasonal priority.</p></div>
+    <footer class="folio"><span>Current GA4 · channel quality</span><i></i><span>02 / 08</span></footer>
+  </section>
+
+  <section class="sheet dark pad">
+    <div class="page-title"><h2>Prior seasonal scale</h2><p>barcrawlusa.com · October 1 to December 31, 2025. The prior holiday season provides the clearest evidence of peak audience demand.</p></div>
+    <div class="metric-band"><div class="lead"><b>237,385</b><span>Sessions</span></div><div><b>57,406</b><span>Engaged sessions</span></div><div><b>24.18%</b><span>Engagement rate</span></div><div><b>10s</b><span>Average engagement</span></div></div>
+    <div class="stack">
+      <div class="channel"><h3>Paid Social</h3><b>140,395</b><span>59.14% share · 16.06% engaged</span><div class="bar"><i style="width:100%"></i></div></div>
+      <div class="channel"><h3>Direct</h3><b>51,562</b><span>21.72% share · 30.08% engaged</span><div class="bar"><i style="width:36.7%"></i></div></div>
+      <div class="channel"><h3>Organic Search</h3><b>20,509</b><span>8.64% share · 49.40% engaged</span><div class="bar"><i style="width:14.6%"></i></div></div>
+      <div class="channel"><h3>Organic Social</h3><b>7,807</b><span>3.29% share · 38.00% engaged</span><div class="bar"><i style="width:5.6%"></i></div></div>
+      <div class="channel"><h3>Email</h3><b>4,849</b><span>2.04% share · 43.06% engaged</span><div class="bar"><i style="width:3.5%"></i></div></div>
+      <div class="channel"><h3>Referral</h3><b>2,971</b><span>1.25% share · 50.45% engaged</span><div class="bar"><i style="width:2.1%"></i></div></div>
+    </div>
+    <div class="insight"><strong>Decision read</strong><p>Paid Social created the scale of the season. Organic Search added 20,509 sessions with a 49.40% engagement rate and a 28-second average, showing that strong city and theme pages are durable audience assets.</p></div>
+    <footer class="folio"><span>Prior season · October through December 2025</span><i></i><span>03 / 08</span></footer>
+  </section>
+
+  <section class="sheet pad">
+    <div class="page-title"><h2>Seasonal landing-page leaders</h2><p>Eight highest-volume pages in the supplied prior-season landing-page table. The page mix confirms demand across theme hubs and local event destinations.</p></div>
+    <table class="landing"><thead><tr><th>Landing page</th><th>Sessions</th><th>Avg engage</th></tr></thead><tbody>
+      <tr><td>Ugly Sweater hub</td><td class="win">10,588</td><td>18s</td></tr>
+      <tr><td>Atlanta Beltline Halloween · Oct 31</td><td>10,505</td><td>7s</td></tr>
+      <tr><td>Atlanta Beltline Ugly Sweater</td><td>10,433</td><td>9s</td></tr>
+      <tr><td>Lakewood Ugly Sweater</td><td>8,530</td><td>7s</td></tr>
+      <tr><td>Alpharetta Ugly Sweater</td><td>7,978</td><td>7s</td></tr>
+      <tr><td>Atlanta Beltline Boos &amp; Booze</td><td>7,535</td><td class="win">19s</td></tr>
+      <tr><td>Macon Boos &amp; Booze</td><td>7,215</td><td>7s</td></tr>
+      <tr><td>Cincinnati Ugly Sweater</td><td>6,957</td><td>5s</td></tr>
+    </tbody></table>
+    <div class="runway"><article class="season-box"><h3>Halloween now</h3><div class="big">317 sessions</div><p>253 active users · 26-second average engagement · Atlanta Beltline leads the current set with 65 sessions.</p></article><article class="season-box"><h3>Ugly Sweater now</h3><div class="big">41 sessions</div><p>38 active users · 10-second average engagement. December intent remains early in the current window.</p></article></div>
+    <div class="insight"><strong>Runway</strong><p>Halloween demand is already surfacing while December interest remains early. August is the right window to strengthen the hubs and local destination pages before seasonal attention accelerates.</p></div>
+    <footer class="folio"><span>Landing-page evidence</span><i></i><span>04 / 08</span></footer>
+  </section>
+
+  <section class="sheet pad">
+    <div class="page-title"><h2>Semrush organic baseline</h2><p>barcrawlusa.com · U.S. desktop · August 8, 2026. Semrush values are modeled search estimates and remain separate from GA4 sessions.</p></div>
+    <div class="baseline"><aside class="baseline-left"><div class="hero-metric"><b>2,989</b><span>Estimated monthly organic visits</span></div><div class="hero-metric"><b>2,088</b><span>Ranking keywords</span></div><div class="hero-metric"><b>30</b><span>Authority Score</span></div></aside><div class="baseline-right"><div class="row"><strong>Branded traffic</strong><span>598</span></div><div class="row"><strong>Non-branded traffic</strong><span>~2,400</span></div><div class="row"><strong>Traffic cost</strong><span>$894</span></div><div class="row"><strong>Referring domains</strong><span>389</span></div><div class="row"><strong>Backlinks</strong><span>1,584</span></div><div class="row"><strong>Organic traffic change</strong><span>−10.43%</span></div><div class="row"><strong>Keyword change</strong><span>−0.52%</span></div></div></div>
+    <div class="intent"><h3>Keyword intent</h3><div class="intent-row"><strong>Informational</strong><b>~1,600</b><b>~1,800 visits</b><div class="bar"><i style="width:100%"></i></div></div><div class="intent-row"><strong>Commercial</strong><b>410</b><b>486 visits</b><div class="bar"><i style="width:25.6%"></i></div></div><div class="intent-row"><strong>Navigational</strong><b>105</b><b>611 visits</b><div class="bar"><i style="width:6.6%"></i></div></div><div class="intent-row"><strong>Transactional</strong><b>92</b><b>151 visits</b><div class="bar"><i style="width:5.8%"></i></div></div></div>
+    <div class="insight"><strong>Decision read</strong><p>The site has a broad discovery footprint with meaningful non-branded reach. The strongest growth path is to preserve informational visibility while making theme hubs and local event pages clearer, more current, and easier to navigate.</p></div>
+    <footer class="folio"><span>Semrush · domain and intent</span><i></i><span>05 / 08</span></footer>
+  </section>
+
+  <section class="sheet violet pad">
+    <div class="page-title"><h2>Halloween search advantage</h2><p>Semrush reports 273 ranking positions containing Halloween. Multiple city pages already hold first-page visibility.</p></div>
+    <div class="rank-lead"><div class="rank-number"><b>273</b><span>Halloween ranking positions</span></div><div class="rank-copy"><h3>The market already has proof</h3><p>The generic Halloween hub ranks for high-volume theme terms, while Cleveland, Atlanta, Lakewood, Cincinnati, and Portland have city-level visibility to protect and strengthen.</p></div></div>
+    <table class="rankings"><thead><tr><th>Query</th><th>Pos.</th><th>U.S. volume</th><th>Ranking destination</th></tr></thead><tbody>
+      <tr><td>halloween bar crawl</td><td>9</td><td>2,900</td><td>Halloween hub</td></tr>
+      <tr><td>bar crawl halloween</td><td class="win">4</td><td>1,300</td><td>Homepage / hub variants</td></tr>
+      <tr><td>halloween pub crawl</td><td>6</td><td>720</td><td>Halloween hub</td></tr>
+      <tr><td>cleveland halloween bar crawl</td><td class="win">2</td><td>110</td><td>Cleveland event page</td></tr>
+      <tr><td>atlanta bar crawl halloween</td><td class="win">3</td><td>140</td><td>Atlanta event page</td></tr>
+      <tr><td>lakewood halloween bar crawl</td><td class="win">1</td><td>40</td><td>Lakewood event page</td></tr>
+      <tr><td>boos fest halloween bar crawl</td><td class="win">3</td><td>140</td><td>Cincinnati event page</td></tr>
+      <tr><td>portland halloween bar crawl</td><td>9</td><td>90</td><td>Portland event page</td></tr>
+    </tbody></table>
+    <footer class="folio"><span>Halloween organic opportunity</span><i></i><span>06 / 08</span></footer>
+  </section>
+
+  <section class="sheet pad">
+    <div class="page-title"><h2>Ugly Sweater architecture gap</h2><p>The main domain shows only 15 Ugly Sweater ranking positions, and the generic query is being captured by an internal Elementor slug instead of the intended hub.</p></div>
+    <div class="domain-grid"><article class="gap"><h3>Main-domain search gap</h3><div class="big">15 positions</div><p>The generic query has demand, but ranking authority is fragmented across an internal slug, legacy events, and the intended public hub.</p><table><thead><tr><th>Query</th><th>Pos.</th><th>Vol.</th></tr></thead><tbody><tr><td>ugly sweater bar crawl · Elementor slug</td><td class="win">3</td><td>210</td></tr><tr><td>ugly sweater bar · legacy Atlanta</td><td>2</td><td>110</td></tr><tr><td>ugly sweater pub crawl · legacy Sarasota</td><td>10</td><td>170</td></tr><tr><td>ugly sweater bar crawl · intended hub</td><td>31</td><td>210</td></tr></tbody></table></article><aside class="domain"><h3>Separate domain snapshot</h3><div class="domain-metric"><strong>Prior-season sessions</strong><span>1,334</span></div><div class="domain-metric"><strong>Organic share</strong><span>76.69%</span></div><div class="domain-metric"><strong>Authority Score</strong><span>3</span></div><div class="domain-metric"><strong>Organic keywords</strong><span>59</span></div><div class="domain-metric"><strong>Referring domains</strong><span>166</span></div><div class="domain-metric"><strong>Backlinks</strong><span>462</span></div></aside></div>
+    <div class="insight"><strong>Decision read</strong><p>Keep seasonal authority centered on the stronger main domain, preserve any ranking equity, move the generic intent to the approved public hub, and establish the current December city pages as the local destination set.</p></div>
+    <footer class="folio"><span>Ugly Sweater · search architecture</span><i></i><span>07 / 08</span></footer>
+  </section>
+
+  <section class="sheet dark pad">
+    <div class="page-title"><h2>What Andy should approve now</h2><p>The evidence supports a focused seasonal program built around proven hubs, ranking city pages, and a clear August runway.</p></div>
+    <div class="action-list"><article class="action"><b>Now</b><div><h3>Protect the Halloween rank leaders</h3><p>Keep the strongest ranking URLs stable, strengthen the Halloween hub, and reinforce internal links to the proven city pages.</p></div><span>Preserve current visibility</span></article><article class="action"><b>August</b><div><h3>Finish the October page slate</h3><p>Apply the strongest local-page pattern to Atlanta, Cleveland, Cincinnati, Columbia, Greenville, Portland, St. Pete, Macon, Roswell, and Sarasota.</p></div><span>Build before peak demand</span></article><article class="action"><b>September</b><div><h3>Let the organic pages mature</h3><p>Monitor index coverage, improve thin local sections, refresh high-impression snippets, and keep the strongest city pages connected to the hubs.</p></div><span>Strengthen discovery</span></article><article class="action"><b>November</b><div><h3>Repair the Ugly Sweater hub</h3><p>Resolve the Elementor slug conflict, consolidate generic intent around the approved hub, and give the current December city pages a clear hierarchy.</p></div><span>Prepare the second sprint</span></article><article class="action"><b>Ongoing</b><div><h3>Use Organic Search as the quality benchmark</h3><p>Paid Social can create broad seasonal reach. Organic Search is the stronger engagement signal and the durable foundation for city and theme demand.</p></div><span>Balance scale and quality</span></article></div>
+    <div class="close">The reach is real. The next move is focus.</div>
+    <footer class="folio"><span>Prepared for Andy Zirger · August 10, 2026</span><i></i><span>08 / 08</span></footer>
+  </section>
+</body>
+</html>

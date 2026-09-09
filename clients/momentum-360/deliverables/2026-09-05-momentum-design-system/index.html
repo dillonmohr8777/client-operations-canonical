@@ -1,0 +1,1033 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Momentum Design System v1.0.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito+Sans:wght@400;600;800&family=Caveat:wght@700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ---- tokens (generated: tokens/momentum.tokens.css) ---- */
+/* ==========================================================================
+   Momentum design tokens
+   Momentum Digital / Momentum 360 - Philadelphia
+   v1.0.0 - 2026-09-05
+
+   Every colour below is either MEASURED from something that ships
+   (needmomentum.com computed styles, the papaadvertising.com 1440x900 live
+   capture, or the ten radar builds at
+   momentum-prospect-radar-next10-2026-09-02c.netlify.app) or CHOSEN to fix a
+   measured failure. Which one it is, is written on the line.
+
+   Do not hand-edit a colour without re-running audit/contrast.py. That script
+   reads THIS FILE, not a copy of it, so a value that fails cannot ship.
+   Ratios in the comments are its output, not estimates.
+   ========================================================================== */
+
+:root {
+  /* --- ground ----------------------------------------------------------
+     CHOSEN. Warmer and lighter than the radar --paper (#fbf8f4) so a photo
+     sits on it without a cast, and lighter than needmomentum's #f5f5f5,
+     which is a grey the brand never chose - it is a WordPress default.  */
+  --m-paper:   #fbfaf7;
+  --m-surface: #eceae4;   /* CHOSEN. Cards, panels, table zebra.            */
+  --m-ink:     #14181b;   /* CHOSEN. 17.10:1 on paper, 14.84:1 on surface.  */
+  --m-muted:   #565f64;   /* CHOSEN. 6.25:1 on paper, 5.43:1 on surface.
+                             The radar kit derives --muted from --paper and
+                             then prints it on --panel, where it lands at
+                             4.28-4.49:1 on 9 of 10 sites. This value is
+                             validated on BOTH grounds, which is the fix.    */
+
+  /* --- brand -----------------------------------------------------------
+     MEASURED from needmomentum.com: rgb(30,115,190). It already clears AA
+     with white (4.94:1), so it is kept rather than "modernised".           */
+  --m-brand:            #1e73be;
+  --m-on-brand:         #ffffff;   /* 4.94:1                                */
+  --m-on-brand-muted:   #f2f6fa;   /* 4.55:1  CHOSEN - the dimmest white
+                                      that still clears AA on brand.        */
+  --m-accent-on-brand:  #ffc46b;   /* 3.14:1  LARGE TEXT ONLY. See note 1.  */
+
+  /* --- deep ------------------------------------------------------------
+     CHOSEN. The dark field the radar kit calls --brand-2. Its version is
+     derived per-site and lands at 1.78-2.86:1 against its own --brand, so
+     headings on the deep field are invisible on 7 of 10 sites. Here the
+     deep field is fixed and its on-colours are measured against it.        */
+  --m-deep:             #0e1a22;
+  --m-nav:              #22303a;   /* CHOSEN. Papa uses #40494e charcoal;
+                                      this is the same idea, cooler, so the
+                                      brand blue reads against it.          */
+  --m-on-deep:          #f2f6f8;   /* 16.24:1 on deep, 12.44:1 on nav       */
+  --m-on-deep-muted:    #b4c3cc;   /*  9.77:1 on deep,  7.49:1 on nav       */
+  --m-accent-on-deep:   #f9a03f;   /*  8.51:1 on deep,  6.53:1 on nav       */
+
+  /* --- accent ----------------------------------------------------------
+     MEASURED from needmomentum.com: rgb(245,131,32). The live site also
+     ships rgb(251,131,0) on the same page - two oranges, one brand. This
+     one wins because it is the one on the primary CTA.
+
+     Note 2: no single orange can be both a field and a text colour.
+     #f58320 with white is 2.58:1 and with near-black is 7.19:1. So the
+     accent is split by JOB, not by shade preference.                       */
+  --m-accent:      #f58320;   /* FIELD ONLY. Pill buttons, rules, marks.    */
+  --m-on-accent:   #1a1208;   /* 7.19:1 on accent. Never white on orange.   */
+  --m-accent-ink:  #96490b;   /* TEXT ONLY. 6.18:1 on paper, 5.36:1 on
+                                 surface. Same hue family, text-legal.      */
+
+  /* --- state -----------------------------------------------------------
+     CHOSEN, and validated on paper AND surface, because form errors get
+     rendered inside cards. Bridge shipped error text at 2.22:1 by checking
+     only one ground.                                                       */
+  --m-danger:   #b3261e;   /* 6.26:1 paper, 5.43:1 surface                  */
+  --m-success:  #16703c;   /* 5.89:1 paper, 5.11:1 surface                  */
+  --m-link:     #1a68ac;   /* 5.56:1 paper, 4.82:1 surface                  */
+
+  /* --- lines and focus -------------------------------------------------- */
+  --m-line:        #dcd9d2;  /* decorative hairline; NOT a contrast surface */
+  --m-line-strong: #767d83;  /* 4.00:1 vs paper - input borders, UI edges   */
+  --m-focus:       #1e73be;  /* 4.73:1 vs paper, 3.57:1 vs deep             */
+  --m-focus-halo:  #ffffff;  /* 4.94:1 vs focus - carries the ring when the
+                                control itself is brand-coloured            */
+
+  /* --- type ------------------------------------------------------------
+     MEASURED from the radar builds: Archivo Black / Nunito Sans / Caveat is
+     what all ten actually load and is the closest free stand-in for Papa's
+     Typekit stack (bebas-neue-pro / montserrat / verveine). Kept because it
+     ships. needmomentum.com renders five families on one page (Roboto,
+     Open Sans, Poppins, Hind, and bare sans-serif); that is the drift.     */
+  --m-font-display: "Archivo Black", "Anton", "Arial Black", system-ui, sans-serif;
+  --m-font-text:    "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --m-font-script:  "Caveat", "Segoe Script", cursive;
+  --m-font-mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Steps are ratio-spaced, not nudged: 1.333 at the display end so the
+     jumps are real (density 4 means type carries the page), 1.15 at the
+     small end where hierarchy is functional rather than expressive.        */
+  --m-fs-micro:   0.6875rem;                            /* 11px, caps only  */
+  --m-fs-xs:      0.79rem;
+  --m-fs-sm:      0.91rem;
+  --m-fs-body:    clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --m-fs-lead:    clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  --m-fs-h4:      clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
+  --m-fs-h3:      clamp(1.5rem, 1.25rem + 1.2vw, 2.25rem);
+  --m-fs-h2:      clamp(2.1rem, 1.4rem + 3.4vw, 4rem);
+  --m-fs-h1:      clamp(2.75rem, 1.6rem + 5.4vw, 5.5rem);
+  --m-fs-display: clamp(3.25rem, 1.4rem + 8.4vw, 7.5rem);  /* Papa h2 = 100px */
+
+  --m-lh-display: 0.92;
+  --m-lh-head:    1.06;
+  --m-lh-lead:    1.35;
+  --m-lh-body:    1.6;
+
+  --m-track-display: -0.02em;
+  --m-track-caps:     0.14em;   /* MEASURED: radar --pa-track-wide          */
+  --m-track-body:     0.005em;
+
+  --m-weight-body: 400;
+  --m-weight-mid:  600;
+  --m-weight-bold: 800;
+
+  /* --- space -----------------------------------------------------------
+     MEASURED base scale from the radar builds (--s-1 .. --s-10), kept
+     verbatim so existing markup ports without re-measuring.                */
+  --m-s-1: 0.25rem;  --m-s-2: 0.5rem;  --m-s-3: 0.75rem;  --m-s-4: 1rem;
+  --m-s-5: 1.5rem;   --m-s-6: 2rem;    --m-s-7: 3rem;     --m-s-8: 4rem;
+  --m-s-9: 6rem;     --m-s-10: 8rem;
+
+  --m-section-y: clamp(4.5rem, 9vw, 8rem);   /* MEASURED: radar --pa-section-y */
+  --m-gutter:    clamp(1.25rem, 4vw, 3rem);  /* MEASURED: radar --pa-gutter    */
+  --m-maxw:      1240px;                     /* MEASURED: radar --maxw
+                                                (Papa ships 1310px)            */
+  --m-measure:   66ch;
+
+  /* --- radius ----------------------------------------------------------
+     MEASURED from the radar builds: exactly six values ship, and they are
+     the same six on all ten sites. needmomentum.com renders twenty. The
+     kit is right; the marketing site is the outlier.                       */
+  --m-r-sm:   6px;
+  --m-r-md:   12px;
+  --m-r-lg:   18px;
+  --m-r-pill: 999px;     /* MEASURED: Papa button border-radius 50px at 60px
+                            tall is a pill; 999px is the same shape.        */
+
+  /* --- elevation -------------------------------------------------------
+     MEASURED: radar --pa-shadow. Two steps only. Shadow is depth, never
+     glow: no coloured or saturated shadows anywhere in this system.        */
+  --m-elev-1: 0 1px 2px rgba(14, 26, 34, 0.10),
+              0 6px 16px rgba(14, 26, 34, 0.07);
+  --m-elev-2: 0 18px 40px -22px rgba(10, 12, 16, 0.45);
+  --m-elev-inset: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* --- motion ----------------------------------------------------------
+     MEASURED. --m-ease is the radar kit's --pa-ease, on all ten sites.
+     --m-ease-swap is Papa's header caption/mark swap curve, measured frame
+     by frame in the desktop spec.                                          */
+  --m-ease:      cubic-bezier(0.2, 0.7, 0.2, 1);
+  --m-ease-swap: cubic-bezier(0.85, 0, 0.15, 1);
+  --m-ease-out:  ease-out;
+
+  --m-dur-1: 0.15s;   /* MEASURED: Papa button transition                   */
+  --m-dur-2: 0.25s;   /* MEASURED: radar hover / Papa header                */
+  --m-dur-3: 0.5s;    /* MEASURED: radar --pa-dur, scroll reveal            */
+  --m-dur-4: 0.8s;    /* MEASURED: Papa header swap                         */
+
+  --m-lift: 3px;      /* hover displacement - motion that moves, not tints  */
+}
+
+/*  Note 1 - the one pair that cannot reach AA at body size.
+    Orange text on the brand-blue field tops out at 3.44:1 for any orange
+    still recognisable as the brand orange. So --m-accent-on-brand is
+    declared LARGE-TEXT-ONLY (3.14:1 >= 3.0) and the system routes small
+    orange text onto --m-deep instead, where --m-accent-on-deep is 8.51:1.
+    This is the exact defect the radar batch ships: --accent on --brand at
+    1.01-2.72:1 on 6 of 10 sites, in the circular seal and the hero eyebrow. */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --m-dur-1: 0.01ms; --m-dur-2: 0.01ms;
+    --m-dur-3: 0.01ms; --m-dur-4: 0.01ms;
+    --m-lift: 0px;
+  }
+}
+
+/* ---- components (generated: tokens/momentum.components.css) ---- */
+/* ==========================================================================
+   Momentum components - built only from momentum.tokens.css
+   v1.0.0 - 2026-09-05
+
+   Rule: no literal colour, size, radius, duration or curve below this line.
+   Everything is a var(). If a component needs a value the tokens do not
+   have, the token file is wrong, not the component.
+
+   Section grammar matches what ships in the radar batch: nav / hero /
+   section / pill / card / accordion / logo wall / footer.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--m-paper);
+  color: var(--m-ink);
+  font-family: var(--m-font-text);
+  font-size: var(--m-fs-body);
+  line-height: var(--m-lh-body);
+  letter-spacing: var(--m-track-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { max-width: 100%; display: block; }
+
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--m-focus-halo), 0 0 0 5px var(--m-focus);
+  border-radius: var(--m-r-sm);
+}
+
+/* --- layout ------------------------------------------------------------- */
+.m-wrap    { width: min(var(--m-maxw), 100% - var(--m-gutter) * 2); margin-inline: auto; }
+.m-section { padding-block: var(--m-section-y); }
+:is(.m-section--deep, .m-hero)  { background: var(--m-deep);  color: var(--m-on-deep); }
+.m-section--brand { background: var(--m-brand); color: var(--m-on-brand); }
+.m-section--surface { background: var(--m-surface); }
+
+/* --- type --------------------------------------------------------------- */
+.m-display, .m-h1, .m-h2, .m-h3, .m-h4 {
+  font-family: var(--m-font-display);
+  font-weight: var(--m-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--m-track-display);
+  margin: 0;
+}
+.m-display { font-size: var(--m-fs-display); line-height: var(--m-lh-display); }
+.m-h1 { font-size: var(--m-fs-h1); line-height: var(--m-lh-display); }
+.m-h2 { font-size: var(--m-fs-h2); line-height: var(--m-lh-head); }
+.m-h3 { font-size: var(--m-fs-h3); line-height: var(--m-lh-head); }
+.m-h4 {
+  font-family: var(--m-font-text);
+  font-size: var(--m-fs-h4);
+  line-height: var(--m-lh-head);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.m-lead { font-size: var(--m-fs-lead); line-height: var(--m-lh-lead); max-width: var(--m-measure); margin: 0; }
+.m-body { max-width: var(--m-measure); margin: 0; }
+.m-muted { color: var(--m-muted); }
+:is(.m-section--deep, .m-hero) .m-muted, .m-section--brand .m-muted { color: var(--m-on-deep-muted); }
+
+.m-eyebrow {
+  font-family: var(--m-font-text);
+  font-size: var(--m-fs-micro);
+  font-weight: var(--m-weight-bold);
+  letter-spacing: var(--m-track-caps);
+  text-transform: uppercase;
+  margin: 0 0 var(--m-s-4);
+  color: var(--m-accent-ink);
+}
+:is(.m-section--deep, .m-hero) .m-eyebrow { color: var(--m-accent-on-deep); }
+.m-section--brand .m-eyebrow { color: var(--m-on-brand-muted); }
+
+.m-script {
+  font-family: var(--m-font-script);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: var(--m-fs-h3);
+  line-height: 1;
+  display: inline-block;
+  transform: rotate(-2.5deg);
+  color: var(--m-accent-ink);
+}
+:is(.m-section--deep, .m-hero) .m-script { color: var(--m-accent-on-deep); }
+
+/* Papa's struck-out-and-replaced heading. Reproduced as a real component
+   because it is the single most recognisable move in the house style. */
+.m-strike { position: relative; white-space: nowrap; }
+.m-strike > s { text-decoration: none; opacity: 0.42; }
+.m-strike > s::after {
+  content: ""; position: absolute; left: 0; right: 22%; top: 52%;
+  height: 0.07em; background: currentColor; transform: rotate(-3deg);
+}
+.m-strike > .m-script { margin-left: 0.25em; vertical-align: baseline; }
+
+.m-mono {
+  font-family: var(--m-font-mono);
+  font-size: var(--m-fs-xs);
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- pill button --------------------------------------------------------
+   Papa measured: 60px tall, 0 40px padding, 50px radius, uppercase 700,
+   150ms on colour only. Kept, plus a displacement on hover because motion
+   8/10 means a hover state moves rather than only tints.                   */
+.m-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--m-s-2);
+  min-height: 60px; padding-inline: var(--m-s-8);
+  border: 2px solid transparent; border-radius: var(--m-r-pill);
+  font-family: var(--m-font-text); font-size: var(--m-fs-body);
+  font-weight: var(--m-weight-bold); text-transform: uppercase;
+  letter-spacing: 0.04em; text-decoration: none; cursor: pointer;
+  background: var(--m-accent); color: var(--m-on-accent);
+  transition: transform var(--m-dur-2) var(--m-ease),
+              background-color var(--m-dur-1) var(--m-ease),
+              box-shadow var(--m-dur-2) var(--m-ease),
+              color var(--m-dur-1) var(--m-ease);
+}
+.m-btn:hover { transform: translateY(calc(var(--m-lift) * -1)); box-shadow: var(--m-elev-1); }
+.m-btn:active { transform: translateY(0); }
+
+.m-btn--ghost {
+  background: transparent; color: var(--m-ink); border-color: var(--m-line-strong);
+}
+.m-btn--ghost:hover { background: var(--m-surface); }
+:is(.m-section--deep, .m-hero) .m-btn--ghost { color: var(--m-on-deep); border-color: var(--m-on-deep-muted); }
+:is(.m-section--deep, .m-hero) .m-btn--ghost:hover { background: var(--m-nav); }
+
+.m-btn--sm { min-height: 44px; padding-inline: var(--m-s-5); font-size: var(--m-fs-sm); }
+
+/* --- nav ---------------------------------------------------------------
+   Papa measured: fixed 100px charcoal band, script caption that swaps for
+   the wordmark on scroll past the hero, 0.8s cubic-bezier(.85,0,.15,1).
+   Here as a static bar plus the swap, driven by a class the page toggles.  */
+.m-nav {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--m-nav); color: var(--m-on-deep);
+  box-shadow: var(--m-elev-2);
+}
+.m-nav__in {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--m-s-5);
+  min-height: 84px;
+}
+.m-nav__brand { position: relative; display: grid; align-items: center; min-width: 15rem; }
+.m-nav__brand > * { grid-area: 1 / 1; transition: opacity var(--m-dur-4) var(--m-ease-swap),
+                                                  transform var(--m-dur-4) var(--m-ease-swap); }
+.m-nav__caption { font-family: var(--m-font-script); font-size: var(--m-fs-h4);
+                  color: var(--m-accent-on-deep); white-space: nowrap; }
+.m-nav__mark { font-family: var(--m-font-display); font-size: var(--m-fs-h4);
+               text-transform: uppercase; letter-spacing: 0.02em;
+               opacity: 0; transform: translateX(-2rem); }
+.m-nav.is-swapped .m-nav__caption { opacity: 0; transform: translateX(-2rem); }
+.m-nav.is-swapped .m-nav__mark { opacity: 1; transform: translateX(0); }
+
+.m-nav__links { display: flex; gap: var(--m-s-6); list-style: none; margin: 0; padding: 0; }
+.m-nav__links a {
+  color: var(--m-on-deep); text-decoration: none;
+  font-size: var(--m-fs-sm); font-weight: var(--m-weight-bold);
+  text-transform: uppercase; letter-spacing: var(--m-track-caps);
+  padding-block: var(--m-s-2);
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--m-dur-2) var(--m-ease), color var(--m-dur-2) var(--m-ease);
+}
+.m-nav__links a:hover { color: var(--m-accent-on-deep); border-bottom-color: var(--m-accent); }
+/* Measured: brand column (15rem) + links + CTA needs ~790px of bar. Below
+   900 the links collapse and the brand column stops reserving width, which
+   is what kept 768 and 375 overflowing the document by 23px and 19px. */
+@media (max-width: 900px) {
+  .m-nav__links { display: none; }
+  .m-nav__brand { min-width: 0; }
+  .m-nav__in { gap: var(--m-s-3); }
+}
+
+/* --- hero --------------------------------------------------------------
+   Asymmetric by construction: 7/5 split, never centred, never symmetric.  */
+.m-hero { background: var(--m-deep); color: var(--m-on-deep); padding-block: var(--m-s-10) var(--m-s-9); position: relative; overflow: hidden; }
+.m-hero__grid { display: grid; gap: var(--m-s-7); grid-template-columns: 7fr 5fr; align-items: end; }
+@media (max-width: 900px) { .m-hero__grid { grid-template-columns: 1fr; } }
+.m-hero__rule { height: 6px; background: var(--m-accent); width: 7rem; margin-bottom: var(--m-s-5); }
+
+/* --- section head ------------------------------------------------------- */
+.m-head { display: grid; gap: var(--m-s-4); margin-bottom: var(--m-s-7); }
+.m-head--split { grid-template-columns: minmax(0, 1fr) minmax(0, 22rem); align-items: end; gap: var(--m-s-7); }
+@media (max-width: 860px) { .m-head--split { grid-template-columns: 1fr; } }
+
+/* --- card ---------------------------------------------------------------
+   One card component. It is never used three-across at equal weight - the
+   layouts that consume it are asymmetric on purpose.                       */
+.m-card {
+  background: var(--m-surface); color: var(--m-ink);
+  border: 1px solid var(--m-line); border-radius: var(--m-r-lg);
+  padding: var(--m-s-6);
+  transition: transform var(--m-dur-2) var(--m-ease), box-shadow var(--m-dur-2) var(--m-ease);
+}
+.m-card:hover { transform: translateY(calc(var(--m-lift) * -1)); box-shadow: var(--m-elev-1); }
+.m-card__k { font-family: var(--m-font-display); font-size: var(--m-fs-h2); line-height: 1;
+             color: var(--m-brand); margin: 0 0 var(--m-s-3); }
+.m-card--deep { background: var(--m-nav); color: var(--m-on-deep); border-color: transparent; }
+.m-card--deep .m-card__k { color: var(--m-accent-on-deep); }
+.m-card--accent { background: var(--m-accent); color: var(--m-on-accent); border-color: transparent; }
+.m-card--accent .m-card__k { color: var(--m-on-accent); }
+
+/* deliberately unequal: 7/5, and the second row offsets */
+.m-cards { display: grid; gap: var(--m-s-5); grid-template-columns: 7fr 5fr; }
+.m-cards > :last-child:nth-child(3) { grid-column: 1 / -1; }
+@media (max-width: 820px) { .m-cards { grid-template-columns: 1fr; } }
+
+/* --- accordion ---------------------------------------------------------
+   Papa measured: 80px rows on an 82px pitch, uppercase 28px, all closed by
+   default, no chrome but a hairline rule.                                  */
+.m-acc { border-top: 2px solid var(--m-line-strong); }
+.m-acc details { border-bottom: 2px solid var(--m-line-strong); }
+.m-acc summary {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--m-s-4);
+  min-height: 80px; padding-block: var(--m-s-4); cursor: pointer;
+  font-family: var(--m-font-text); font-size: var(--m-fs-h4);
+  font-weight: var(--m-weight-bold); text-transform: uppercase;
+  color: var(--m-ink); list-style: none;
+  transition: color var(--m-dur-2) var(--m-ease), padding-left var(--m-dur-2) var(--m-ease);
+}
+.m-acc summary::-webkit-details-marker { display: none; }
+.m-acc summary:hover { color: var(--m-accent-ink); padding-left: var(--m-s-3); }
+.m-acc summary::after {
+  content: "+"; font-family: var(--m-font-text); font-weight: var(--m-weight-body);
+  font-size: var(--m-fs-h3); line-height: 1; color: var(--m-accent-ink);
+  transition: transform var(--m-dur-2) var(--m-ease);
+}
+.m-acc details[open] summary::after { transform: rotate(45deg); }
+.m-acc__body { padding-bottom: var(--m-s-5); color: var(--m-muted); max-width: var(--m-measure); }
+:is(.m-section--deep, .m-hero) .m-acc { border-color: var(--m-on-deep-muted); }
+:is(.m-section--deep, .m-hero) .m-acc details { border-color: var(--m-on-deep-muted); }
+:is(.m-section--deep, .m-hero) .m-acc summary { color: var(--m-on-deep); }
+:is(.m-section--deep, .m-hero) .m-acc summary::after,
+:is(.m-section--deep, .m-hero) .m-acc summary:hover { color: var(--m-accent-on-deep); }
+:is(.m-section--deep, .m-hero) .m-acc__body { color: var(--m-on-deep-muted); }
+
+/* --- logo wall ---------------------------------------------------------
+   Papa measured: 269px pitch, greyscale at 40%, full colour on hover, one
+   grey full-bleed stripe behind. CSS marquee here rather than Owl, with a
+   real pause on hover and a full stop under reduced motion.                */
+.m-wall { background: var(--m-surface); padding-block: var(--m-s-6); overflow: hidden; }
+.m-wall__track { display: flex; gap: var(--m-s-7); width: max-content; align-items: center;
+                 animation: m-marquee 42s linear infinite; }
+.m-wall:hover .m-wall__track { animation-play-state: paused; }
+.m-wall__item {
+  flex: 0 0 auto; width: 210px; height: 88px;
+  display: grid; place-items: center; text-align: center;
+  font-family: var(--m-font-display); font-size: var(--m-fs-sm);
+  text-transform: uppercase; letter-spacing: var(--m-track-caps);
+  color: var(--m-ink); opacity: 0.4;
+  transition: opacity var(--m-dur-3) var(--m-ease), color var(--m-dur-3) var(--m-ease);
+}
+.m-wall__item:hover { opacity: 1; color: var(--m-brand); }
+@keyframes m-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .m-wall__track { animation: none; flex-wrap: wrap; width: 100%; justify-content: center; }
+}
+
+/* --- footer ------------------------------------------------------------
+   Papa measured: a blue gradient field, script line over a 100px display
+   line, one CTA, copyright at 11px.                                        */
+.m-footer {
+  background: linear-gradient(var(--m-brand) 0%, var(--m-deep) 96%);
+  color: var(--m-on-brand);
+  padding-block: var(--m-s-9) var(--m-s-6);
+}
+/* Footer on-colours are measured at the gradient's WORST stop (--m-brand),
+   not at the deep end, so every one of them holds across the whole field. */
+.m-footer .m-script { color: var(--m-accent-on-brand); font-size: var(--m-fs-h2); }
+.m-footer .m-muted, .m-footer .m-eyebrow { color: var(--m-on-brand-muted); }
+.m-footer .m-btn--ghost { color: var(--m-on-brand); border-color: var(--m-on-brand-muted); }
+.m-footer__rule { height: 1px; background: var(--m-on-brand); opacity: 0.28;
+                  margin-block: var(--m-s-7) var(--m-s-4); }
+.m-footer__fine { font-size: var(--m-fs-micro); color: var(--m-on-brand-muted);
+                  display: flex; flex-wrap: wrap; gap: var(--m-s-4); }
+
+/* --- scroll reveal -----------------------------------------------------
+   Motion with a job: it establishes reading order on entry, once. Content
+   is visible with no JS and with reduced motion - the class is additive.   */
+.m-rise { transition: opacity var(--m-dur-3) var(--m-ease), transform var(--m-dur-3) var(--m-ease); }
+/* The hidden state is opt-in and only exists once JS has set .js-reveal on
+   <html>. With JS off, or before the script runs, .m-rise content is simply
+   painted - a reveal must never be the reason something is invisible. */
+.js-reveal .m-rise { opacity: 0; transform: translateY(1.25rem); }
+.js-reveal .m-rise.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .m-rise { opacity: 1; transform: none; }
+}
+
+/* ---- page-only scaffolding for this reference sheet ---- */
+.p-skip { position: absolute; left: -9999px; }
+.p-skip:focus { left: var(--m-s-4); top: var(--m-s-4); z-index: 40; background: var(--m-accent);
+  color: var(--m-on-accent); padding: var(--m-s-3) var(--m-s-5); border-radius: var(--m-r-pill); }
+
+.p-stat { display: grid; gap: var(--m-s-1); }
+.p-stat b { font-family: var(--m-font-display); font-size: var(--m-fs-h2); line-height: 1; }
+.p-stat span { font-size: var(--m-fs-micro); text-transform: uppercase;
+  letter-spacing: var(--m-track-caps); font-weight: var(--m-weight-bold); }
+.p-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--m-s-6) var(--m-s-5); }
+
+/* drift rails - one row per site, no cards */
+.p-rail { display: grid; grid-template-columns: minmax(0, 15rem) 1fr auto; gap: var(--m-s-4);
+  align-items: center; padding-block: var(--m-s-3); border-bottom: 1px solid var(--m-line); }
+.p-rail:first-child { border-top: 1px solid var(--m-line); }
+.p-rail__name { font-weight: var(--m-weight-bold); font-size: var(--m-fs-sm); }
+.p-rail__bar { display: flex; height: 2.5rem; border-radius: var(--m-r-sm); overflow: hidden;
+  border: 1px solid var(--m-line); }
+.p-rail__bar span { flex: 1; display: grid; place-items: center; font-family: var(--m-font-mono);
+  font-size: 0.62rem; letter-spacing: 0; }
+.p-rail__score { font-family: var(--m-font-mono); font-size: var(--m-fs-sm); font-weight: 600;
+  text-align: right; min-width: 8.5rem; }
+.p-bad { color: var(--m-danger); }
+.p-ok { color: var(--m-success); }
+@media (max-width: 780px) { .p-rail { grid-template-columns: 1fr; } .p-rail__score { text-align: left; } }
+
+/* measured contrast table */
+.p-tablewrap { overflow-x: auto; border: 1px solid var(--m-line); border-radius: var(--m-r-md); }
+table.p-t { border-collapse: collapse; width: 100%; min-width: 46rem; font-size: var(--m-fs-sm); }
+.p-t th, .p-t td { text-align: left; padding: var(--m-s-3) var(--m-s-4);
+  border-bottom: 1px solid var(--m-line); vertical-align: middle; }
+.p-t th { font-size: var(--m-fs-micro); text-transform: uppercase; letter-spacing: var(--m-track-caps);
+  font-weight: var(--m-weight-bold); color: var(--m-muted); background: var(--m-surface); }
+.p-t tr:last-child td { border-bottom: 0; }
+.p-t td.num { font-family: var(--m-font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.p-chip { display: inline-flex; align-items: center; gap: var(--m-s-2); font-family: var(--m-font-mono);
+  font-size: var(--m-fs-xs); }
+.p-chip i { width: 1.1rem; height: 1.1rem; border-radius: var(--m-r-sm);
+  border: 1px solid var(--m-line-strong); display: inline-block; }
+.p-verdict { font-weight: var(--m-weight-bold); font-size: var(--m-fs-xs);
+  text-transform: uppercase; letter-spacing: var(--m-track-caps); }
+
+/* swatch stack */
+.p-swatches { display: grid; gap: var(--m-s-2); }
+.p-sw { display: grid; grid-template-columns: 4.5rem minmax(0, 13rem) 1fr;
+  gap: var(--m-s-4); align-items: center; padding: var(--m-s-2) 0; }
+.p-sw__blob { height: 3.25rem; border-radius: var(--m-r-md); border: 1px solid var(--m-line-strong); }
+.p-sw__name { font-family: var(--m-font-mono); font-size: var(--m-fs-xs); }
+.p-sw__use { font-size: var(--m-fs-sm); color: var(--m-muted); }
+@media (max-width: 700px) { .p-sw { grid-template-columns: 4.5rem 1fr; } .p-sw__use { grid-column: 2; } }
+
+/* type ladder */
+.p-step { display: grid; grid-template-columns: minmax(0, 11rem) 1fr; gap: var(--m-s-5);
+  align-items: baseline; padding-block: var(--m-s-4); border-bottom: 1px solid var(--m-line); }
+.p-step__meta { font-family: var(--m-font-mono); font-size: var(--m-fs-xs); color: var(--m-muted); }
+.p-step__spec { overflow: hidden; }
+@media (max-width: 700px) { .p-step { grid-template-columns: 1fr; } }
+
+/* space / radius / elevation band - deliberately unequal columns */
+.p-band { display: grid; grid-template-columns: 5fr 4fr 3fr; gap: var(--m-s-7); align-items: start; }
+@media (max-width: 900px) { .p-band { grid-template-columns: 1fr; } }
+.p-spacebar { display: grid; gap: var(--m-s-2); }
+.p-spacebar div { display: flex; align-items: center; gap: var(--m-s-3);
+  font-family: var(--m-font-mono); font-size: var(--m-fs-xs); }
+.p-spacebar i { display: block; height: 0.85rem; background: var(--m-brand); border-radius: var(--m-r-sm); }
+.p-radii { display: flex; flex-wrap: wrap; gap: var(--m-s-4); }
+.p-radii figure { margin: 0; text-align: center; }
+.p-radii div { width: 5rem; height: 3.5rem; background: var(--m-surface);
+  border: 2px solid var(--m-line-strong); }
+.p-radii figcaption { font-family: var(--m-font-mono); font-size: var(--m-fs-xs);
+  margin-top: var(--m-s-2); color: var(--m-muted); }
+.p-elev { display: grid; gap: var(--m-s-5); }
+.p-elev div { background: var(--m-paper); border-radius: var(--m-r-md); padding: var(--m-s-5);
+  font-family: var(--m-font-mono); font-size: var(--m-fs-xs); }
+
+/* motion lab */
+.p-motion { display: grid; grid-template-columns: minmax(0, 20rem) 1fr; gap: var(--m-s-7); align-items: start; }
+@media (max-width: 860px) { .p-motion { grid-template-columns: 1fr; } }
+.p-track { border-top: 1px solid var(--m-on-deep-muted); padding-top: var(--m-s-4); display: grid; gap: var(--m-s-4); }
+.p-track div { display: grid; grid-template-columns: minmax(0, 9rem) 1fr; gap: var(--m-s-4);
+  align-items: center; font-family: var(--m-font-mono); font-size: var(--m-fs-xs); }
+.p-dot { width: 1.6rem; height: 1.6rem; border-radius: var(--m-r-pill); background: var(--m-accent); }
+.p-track.is-run .p-dot { transform: translateX(calc(100% * 6)); }
+.p-track .p-dot { transition-property: transform; }
+
+/* the do-not list, on the accent field */
+.p-nope { display: grid; gap: var(--m-s-4); list-style: none; margin: 0; padding: 0; max-width: 54rem; }
+.p-nope li { font-family: var(--m-font-display); text-transform: uppercase;
+  font-size: var(--m-fs-h3); line-height: 1.1; display: grid;
+  grid-template-columns: 2.4rem 1fr; gap: var(--m-s-4); align-items: baseline; }
+.p-nope li b { font-family: var(--m-font-mono); font-size: var(--m-fs-h4); font-weight: 600; }
+.p-nope li em { display: block; font-family: var(--m-font-text); font-style: normal;
+  text-transform: none; font-size: var(--m-fs-sm); font-weight: 400; margin-top: var(--m-s-2);
+  letter-spacing: 0; max-width: 44rem; }
+
+.p-note { font-size: var(--m-fs-sm); color: var(--m-muted); max-width: var(--m-measure); }
+.p-section--deep .p-note { color: var(--m-on-deep-muted); }
+.p-tag { display: inline-block; font-family: var(--m-font-mono); font-size: var(--m-fs-xs);
+  padding: 0.15rem 0.5rem; border-radius: var(--m-r-sm); border: 1px solid currentColor; }
+</style>
+</head>
+<body>
+<a class="p-skip" href="#main">Skip to content</a>
+
+<!-- ============ 1. NAV ============ -->
+<header class="m-nav" id="nav">
+  <div class="m-wrap m-nav__in">
+    <div class="m-nav__brand">
+      <span class="m-nav__caption">We build the proof.</span>
+      <span class="m-nav__mark">Momentum</span>
+    </div>
+    <nav aria-label="Sections">
+      <ul class="m-nav__links">
+        <li><a href="#drift">Drift</a></li>
+        <li><a href="#color">Color</a></li>
+        <li><a href="#type">Type</a></li>
+        <li><a href="#components">Components</a></li>
+      </ul>
+    </nav>
+    <a class="m-btn m-btn--sm" href="#rules">The do-not list</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ 2. HERO - asymmetric 7/5 on the deep field ============ -->
+<section class="m-hero">
+  <div class="m-wrap m-hero__grid">
+    <div>
+      <div class="m-hero__rule"></div>
+      <p class="m-eyebrow">Momentum Digital &middot; Philadelphia &middot; v1.0.0 &middot; 2026-09-05</p>
+      <h1 class="m-display">Tokens<br>that ship</h1>
+      <p class="m-lead m-muted" style="margin-top: var(--m-s-5)">
+        Every value here was read out of something already live and measured, not chosen
+        because it looked right. The numbers below are this page auditing itself.
+      </p>
+    </div>
+    <div class="p-stats m-rise">
+      <div class="p-stat"><b>10</b><span class="m-muted">live builds audited</span></div>
+<div class="p-stat"><b>120</b><span class="m-muted">radar pairs measured</span></div>
+<div class="p-stat"><b>37</b><span class="m-muted">radar pairs failing AA</span></div>
+<div class="p-stat"><b>0 / 31</b><span class="m-muted">failing here</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. DRIFT - horizontal rails, one per site, no cards ============ -->
+<section class="m-section" id="drift">
+  <div class="m-wrap">
+    <div class="m-head m-head--split">
+      <div>
+        <p class="m-eyebrow">Finding 01</p>
+        <h2 class="m-h2">Ten sites, ten palettes,<br>one broken pair</h2>
+      </div>
+      <p class="p-note">
+        The radar batch shares a kit and re-tints it per prospect. The tint is the point.
+        What is not the point: the same two pairs fail on nearly every site, because the
+        kit derives them instead of measuring them.
+      </p>
+    </div>
+    <div>
+      <div class="p-rail"><div class="p-rail__name">advance-exterior-solutions</div><div class="p-rail__bar"><span style="background:#1d4e6d;color:#ffffff">#1d4e6d</span><span style="background:#12212b;color:#ffffff">#12212b</span><span style="background:#aa5e22;color:#ffffff">#aa5e22</span><span style="background:#fbf8f4;color:#000000">#fbf8f4</span><span style="background:#1a1d20;color:#ffffff">#1a1d20</span></div><div class="p-rail__score p-bad">4 fail &middot; worst 1.83:1 seal / eyebrow on brand field</div></div>
+<div class="p-rail"><div class="p-rail__name">f-m-berkheimer-inc</div><div class="p-rail__bar"><span style="background:#2f6e94;color:#ffffff">#2f6e94</span><span style="background:#12242f;color:#ffffff">#12242f</span><span style="background:#9c4f16;color:#ffffff">#9c4f16</span><span style="background:#f7f4ee;color:#000000">#f7f4ee</span><span style="background:#1a2226;color:#ffffff">#1a2226</span></div><div class="p-rail__score p-bad">4 fail &middot; worst 1.07:1 seal / eyebrow on brand field</div></div>
+<div class="p-rail"><div class="p-rail__name">golden-sea</div><div class="p-rail__bar"><span style="background:#2f6b52;color:#ffffff">#2f6b52</span><span style="background:#132018;color:#ffffff">#132018</span><span style="background:#8a5215;color:#ffffff">#8a5215</span><span style="background:#faf3e6;color:#000000">#faf3e6</span><span style="background:#17201b;color:#ffffff">#17201b</span></div><div class="p-rail__score p-bad">4 fail &middot; worst 1.01:1 seal / eyebrow on brand field</div></div>
+<div class="p-rail"><div class="p-rail__name">nolts-auto-parts</div><div class="p-rail__bar"><span style="background:#1d4e6d;color:#ffffff">#1d4e6d</span><span style="background:#12212b;color:#ffffff">#12212b</span><span style="background:#d4762a;color:#000000">#d4762a</span><span style="background:#fbf8f4;color:#000000">#fbf8f4</span><span style="background:#1a1d20;color:#ffffff">#1a1d20</span></div><div class="p-rail__score p-bad">4 fail &middot; worst 1.85:1 heading on deep field</div></div>
+<div class="p-rail"><div class="p-rail__name">sangillo-tire-center</div><div class="p-rail__bar"><span style="background:#583e7d;color:#ffffff">#583e7d</span><span style="background:#241a34;color:#ffffff">#241a34</span><span style="background:#9d620a;color:#ffffff">#9d620a</span><span style="background:#f8f4f7;color:#000000">#f8f4f7</span><span style="background:#211a2b;color:#ffffff">#211a2b</span></div><div class="p-rail__score p-bad">4 fail &middot; worst 1.74:1 seal / eyebrow on brand field</div></div>
+<div class="p-rail"><div class="p-rail__name">smile-culture-dental</div><div class="p-rail__bar"><span style="background:#3f6b64;color:#ffffff">#3f6b64</span><span style="background:#172b27;color:#ffffff">#172b27</span><span style="background:#835527;color:#ffffff">#835527</span><span style="background:#faf6ef;color:#000000">#faf6ef</span><span style="background:#211f1b;color:#ffffff">#211f1b</span></div><div class="p-rail__score p-bad">4 fail &middot; worst 1.06:1 seal / eyebrow on brand field</div></div>
+<div class="p-rail"><div class="p-rail__name">specks-broasted-chicken</div><div class="p-rail__bar"><span style="background:#c1272d;color:#ffffff">#c1272d</span><span style="background:#2b1210;color:#ffffff">#2b1210</span><span style="background:#7e5816;color:#ffffff">#7e5816</span><span style="background:#fdf6df;color:#000000">#fdf6df</span><span style="background:#241512;color:#ffffff">#241512</span></div><div class="p-rail__score p-bad">2 fail &middot; worst 1.09:1 seal / eyebrow on brand field</div></div>
+<div class="p-rail"><div class="p-rail__name">the-juice-merchant</div><div class="p-rail__bar"><span style="background:#4f7a23;color:#ffffff">#4f7a23</span><span style="background:#182410;color:#ffffff">#182410</span><span style="background:#b15819;color:#ffffff">#b15819</span><span style="background:#faf7ec;color:#000000">#faf7ec</span><span style="background:#1b2011;color:#ffffff">#1b2011</span></div><div class="p-rail__score p-bad">3 fail &middot; worst 1.03:1 seal / eyebrow on brand field</div></div>
+<div class="p-rail"><div class="p-rail__name">union-chill-mat-company</div><div class="p-rail__bar"><span style="background:#39474f;color:#ffffff">#39474f</span><span style="background:#161d20;color:#ffffff">#161d20</span><span style="background:#a83c0f;color:#ffffff">#a83c0f</span><span style="background:#f2f0e9;color:#000000">#f2f0e9</span><span style="background:#181d1f;color:#ffffff">#181d1f</span></div><div class="p-rail__score p-bad">4 fail &middot; worst 1.52:1 seal / eyebrow on brand field</div></div>
+<div class="p-rail"><div class="p-rail__name">weathers-motors-and-auto-sales</div><div class="p-rail__bar"><span style="background:#1d4e6d;color:#ffffff">#1d4e6d</span><span style="background:#12212b;color:#ffffff">#12212b</span><span style="background:#d4762a;color:#000000">#d4762a</span><span style="background:#fbf8f4;color:#000000">#fbf8f4</span><span style="background:#1a1d20;color:#ffffff">#1a1d20</span></div><div class="p-rail__score p-bad">4 fail &middot; worst 1.85:1 heading on deep field</div></div>
+    </div>
+    <p class="p-note" style="margin-top: var(--m-s-5)">37 failing pairs across 10 sites and 120 measured pairs; 10 of 10 sites affected. Two failures are structural rather than per-site: the circular seal prints <code>--accent</code> on <code>--brand</code> (1.01 to 2.72:1 on six sites), and <code>--muted</code> is derived against <code>--paper</code> but rendered on <code>--panel</code>, where it lands at 4.28 to 4.49:1 on nine of ten. Nine near-misses in a row is a formula, not an accident.</p>
+  </div>
+</section>
+
+<!-- ============ 4. THE DO-NOT LIST - accent field, full stop ============ -->
+<section class="m-section m-section--brand" id="rules" style="background: var(--m-accent); color: var(--m-on-accent)">
+  <div class="m-wrap">
+    <p class="m-eyebrow" style="color: var(--m-on-accent); opacity: .72">Not folklore. Rules.</p>
+    <h2 class="m-h2" style="margin-bottom: var(--m-s-7)">
+      <span class="m-strike"><s>Guidelines</s></span>
+      <span class="m-script" style="color: var(--m-on-accent)">banned outright</span>
+    </h2>
+    <ul class="p-nope">
+      <li><b>01</b><span>No AI purple
+        <em>No indigo-to-violet gradients, no #6366f1 family. The single loudest tell that
+        nobody made a decision. Note that sangillo-tire-center currently ships
+        <code>--brand:#583E7D</code>, the closest any live build comes to the line.</em></span></li>
+      <li><b>02</b><span>No neon glow
+        <em>No glowing borders, no saturated box-shadows. Elevation in this system is two
+        steps of neutral shadow and nothing else.</em></span></li>
+      <li><b>03</b><span>No glassmorphism
+        <em>No frosted translucent panels over blurred backdrops. Surfaces here are opaque,
+        which is also the only way contrast stays measurable.</em></span></li>
+      <li><b>04</b><span>No floating gradient orbs
+        <em>No soft blurred colour blobs drifting behind content. If a section needs depth,
+        it gets a real crop, a real rule, or a real photograph.</em></span></li>
+      <li><b>05</b><span>No three-equal-card feature row
+        <em>Three identical icon-heading-blurb cards is the reflexive layout that variance 9
+        exists to prevent. <code>.m-cards</code> is 7fr / 5fr for exactly this reason and
+        cannot be made equal without editing the component.</em></span></li>
+    </ul>
+    <p class="p-note" style="color: var(--m-on-accent); opacity: .8; margin-top: var(--m-s-7)">
+      Dials: visual variance 9/10 &middot; motion 8/10 &middot; information density 4/10.
+      This page runs density higher than 4 on purpose, because it is a reference sheet that
+      gets read, not a page that gets presented.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 5. COLOR - swatch stack, then the full measured matrix ============ -->
+<section class="m-section" id="color">
+  <div class="m-wrap">
+    <p class="m-eyebrow">Tokens 01</p>
+    <h2 class="m-h2">Color</h2>
+    <p class="m-lead m-muted" style="margin-block: var(--m-s-4) var(--m-s-7)">
+      Brand blue and the accent orange are measured off needmomentum.com. Everything else
+      was chosen to make a specific measured pair pass.
+    </p>
+    <div class="p-swatches">
+      <div class="p-sw"><div class="p-sw__blob" style="background:#fbfaf7"></div><div class="p-sw__name">--m-paper<br>#fbfaf7</div><div class="p-sw__use">page ground</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#eceae4"></div><div class="p-sw__name">--m-surface<br>#eceae4</div><div class="p-sw__use">cards, panels, table head</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#14181b"></div><div class="p-sw__name">--m-ink<br>#14181b</div><div class="p-sw__use">body copy, 17.10:1 on paper</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#565f64"></div><div class="p-sw__name">--m-muted<br>#565f64</div><div class="p-sw__use">secondary copy, checked on paper AND surface</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#1e73be"></div><div class="p-sw__name">--m-brand<br>#1e73be</div><div class="p-sw__use">measured from needmomentum.com rgb(30,115,190)</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#ffffff"></div><div class="p-sw__name">--m-on-brand<br>#ffffff</div><div class="p-sw__use">text on the brand field, 4.94:1</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#f2f6fa"></div><div class="p-sw__name">--m-on-brand-muted<br>#f2f6fa</div><div class="p-sw__use">dimmest white still clearing AA on brand, 4.55:1</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#ffc46b"></div><div class="p-sw__name">--m-accent-on-brand<br>#ffc46b</div><div class="p-sw__use">LARGE TEXT ONLY on brand, 3.14:1 - see note</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#0e1a22"></div><div class="p-sw__name">--m-deep<br>#0e1a22</div><div class="p-sw__use">the dark field</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#22303a"></div><div class="p-sw__name">--m-nav<br>#22303a</div><div class="p-sw__use">nav band</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#f2f6f8"></div><div class="p-sw__name">--m-on-deep<br>#f2f6f8</div><div class="p-sw__use">text on deep, 16.24:1</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#b4c3cc"></div><div class="p-sw__name">--m-on-deep-muted<br>#b4c3cc</div><div class="p-sw__use">secondary on deep, 9.77:1</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#f9a03f"></div><div class="p-sw__name">--m-accent-on-deep<br>#f9a03f</div><div class="p-sw__use">orange text on deep, 8.51:1</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#f58320"></div><div class="p-sw__name">--m-accent<br>#f58320</div><div class="p-sw__use">FIELD ONLY - measured rgb(245,131,32)</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#1a1208"></div><div class="p-sw__name">--m-on-accent<br>#1a1208</div><div class="p-sw__use">label on the accent field, 7.19:1. Never white.</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#96490b"></div><div class="p-sw__name">--m-accent-ink<br>#96490b</div><div class="p-sw__use">TEXT ONLY - same hue, 6.18:1 on paper</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#1a68ac"></div><div class="p-sw__name">--m-link<br>#1a68ac</div><div class="p-sw__use">inline link, 5.56:1 on paper</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#b3261e"></div><div class="p-sw__name">--m-danger<br>#b3261e</div><div class="p-sw__use">form error, 6.26:1 paper / 5.43:1 surface</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#16703c"></div><div class="p-sw__name">--m-success<br>#16703c</div><div class="p-sw__use">confirmation, 5.89:1 paper</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#dcd9d2"></div><div class="p-sw__name">--m-line<br>#dcd9d2</div><div class="p-sw__use">hairline only - not a contrast surface</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#767d83"></div><div class="p-sw__name">--m-line-strong<br>#767d83</div><div class="p-sw__use">input borders, 4.00:1 vs paper</div></div>
+<div class="p-sw"><div class="p-sw__blob" style="background:#1e73be"></div><div class="p-sw__name">--m-focus<br>#1e73be</div><div class="p-sw__use">focus ring, 4.73:1 paper / 3.57:1 deep</div></div>
+    </div>
+
+    <h3 class="m-h3" style="margin-block: var(--m-s-8) var(--m-s-4)">Every pair, measured</h3>
+    <p class="p-note" style="margin-bottom: var(--m-s-5)">
+      Produced by <code>audit/contrast.py</code>, which parses this system's stylesheet
+      rather than a copy of its values. AA needs 4.5:1 for body text and 3:1 for large text
+      (24px, or 18.66px at 700+).
+    </p>
+    <div class="p-tablewrap">
+      <table class="p-t">
+        <caption class="p-skip">Measured WCAG AA contrast for every text-on-background pair in the Momentum design system</caption>
+        <thead><tr>
+          <th scope="col">Foreground</th><th scope="col">Background</th><th scope="col">Use</th>
+          <th scope="col">Size</th><th scope="col">Ratio</th><th scope="col">Needs</th><th scope="col">Verdict</th>
+        </tr></thead>
+        <tbody><tr><td><span class="p-chip"><i style="background:#14181b"></i>--m-ink</span></td><td><span class="p-chip"><i style="background:#fbfaf7"></i>--m-paper</span></td><td>body copy on paper</td><td class="num">small</td><td class="num"><strong>17.1:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#565f64"></i>--m-muted</span></td><td><span class="p-chip"><i style="background:#fbfaf7"></i>--m-paper</span></td><td>secondary copy on paper</td><td class="num">small</td><td class="num"><strong>6.25:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#14181b"></i>--m-ink</span></td><td><span class="p-chip"><i style="background:#eceae4"></i>--m-surface</span></td><td>card copy on surface</td><td class="num">small</td><td class="num"><strong>14.84:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#565f64"></i>--m-muted</span></td><td><span class="p-chip"><i style="background:#eceae4"></i>--m-surface</span></td><td>card secondary copy on surface</td><td class="num">small</td><td class="num"><strong>5.43:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#1e73be"></i>--m-brand</span></td><td><span class="p-chip"><i style="background:#fbfaf7"></i>--m-paper</span></td><td>brand heading on paper</td><td class="num">large</td><td class="num"><strong>4.73:1</strong></td><td class="num">3.0:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#1e73be"></i>--m-brand</span></td><td><span class="p-chip"><i style="background:#eceae4"></i>--m-surface</span></td><td>brand heading on surface (large only)</td><td class="num">large</td><td class="num"><strong>4.11:1</strong></td><td class="num">3.0:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#1a68ac"></i>--m-link</span></td><td><span class="p-chip"><i style="background:#fbfaf7"></i>--m-paper</span></td><td>inline link on paper</td><td class="num">small</td><td class="num"><strong>5.56:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#ffffff"></i>--m-on-brand</span></td><td><span class="p-chip"><i style="background:#1e73be"></i>--m-brand</span></td><td>text on brand field</td><td class="num">small</td><td class="num"><strong>4.94:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#f2f6fa"></i>--m-on-brand-muted</span></td><td><span class="p-chip"><i style="background:#1e73be"></i>--m-brand</span></td><td>secondary text on brand field</td><td class="num">small</td><td class="num"><strong>4.55:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#f2f6f8"></i>--m-on-deep</span></td><td><span class="p-chip"><i style="background:#0e1a22"></i>--m-deep</span></td><td>text on deep field</td><td class="num">small</td><td class="num"><strong>16.24:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#b4c3cc"></i>--m-on-deep-muted</span></td><td><span class="p-chip"><i style="background:#0e1a22"></i>--m-deep</span></td><td>secondary text on deep field</td><td class="num">small</td><td class="num"><strong>9.77:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#1a1208"></i>--m-on-accent</span></td><td><span class="p-chip"><i style="background:#f58320"></i>--m-accent</span></td><td>pill button label</td><td class="num">small</td><td class="num"><strong>7.19:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#96490b"></i>--m-accent-ink</span></td><td><span class="p-chip"><i style="background:#fbfaf7"></i>--m-paper</span></td><td>accent text on paper</td><td class="num">small</td><td class="num"><strong>6.18:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#96490b"></i>--m-accent-ink</span></td><td><span class="p-chip"><i style="background:#eceae4"></i>--m-surface</span></td><td>accent text on surface</td><td class="num">small</td><td class="num"><strong>5.36:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#f9a03f"></i>--m-accent-on-deep</span></td><td><span class="p-chip"><i style="background:#0e1a22"></i>--m-deep</span></td><td>accent text on deep field</td><td class="num">small</td><td class="num"><strong>8.51:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#ffc46b"></i>--m-accent-on-brand</span></td><td><span class="p-chip"><i style="background:#1e73be"></i>--m-brand</span></td><td>accent text on brand field (large only)</td><td class="num">large</td><td class="num"><strong>3.14:1</strong></td><td class="num">3.0:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#f2f6f8"></i>--m-on-deep</span></td><td><span class="p-chip"><i style="background:#22303a"></i>--m-nav</span></td><td>nav link on nav bar</td><td class="num">small</td><td class="num"><strong>12.44:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#b4c3cc"></i>--m-on-deep-muted</span></td><td><span class="p-chip"><i style="background:#22303a"></i>--m-nav</span></td><td>nav secondary on nav bar</td><td class="num">small</td><td class="num"><strong>7.49:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#b3261e"></i>--m-danger</span></td><td><span class="p-chip"><i style="background:#fbfaf7"></i>--m-paper</span></td><td>form error text on paper</td><td class="num">small</td><td class="num"><strong>6.26:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#b3261e"></i>--m-danger</span></td><td><span class="p-chip"><i style="background:#eceae4"></i>--m-surface</span></td><td>form error text on surface</td><td class="num">small</td><td class="num"><strong>5.43:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#16703c"></i>--m-success</span></td><td><span class="p-chip"><i style="background:#fbfaf7"></i>--m-paper</span></td><td>success text on paper</td><td class="num">small</td><td class="num"><strong>5.89:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#1e73be"></i>--m-focus</span></td><td><span class="p-chip"><i style="background:#fbfaf7"></i>--m-paper</span></td><td>focus ring on paper</td><td class="num">large</td><td class="num"><strong>4.73:1</strong></td><td class="num">3.0:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#1e73be"></i>--m-focus</span></td><td><span class="p-chip"><i style="background:#0e1a22"></i>--m-deep</span></td><td>focus ring on deep field</td><td class="num">large</td><td class="num"><strong>3.57:1</strong></td><td class="num">3.0:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#767d83"></i>--m-line-strong</span></td><td><span class="p-chip"><i style="background:#fbfaf7"></i>--m-paper</span></td><td>input border on paper</td><td class="num">large</td><td class="num"><strong>4.0:1</strong></td><td class="num">3.0:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#1e73be"></i>--m-focus</span></td><td><span class="p-chip"><i style="background:#ffffff"></i>--m-focus-halo</span></td><td>focus ring against its halo</td><td class="num">large</td><td class="num"><strong>4.94:1</strong></td><td class="num">3.0:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#767d83"></i>--m-line-strong</span></td><td><span class="p-chip"><i style="background:#eceae4"></i>--m-surface</span></td><td>input border on surface</td><td class="num">large</td><td class="num"><strong>3.47:1</strong></td><td class="num">3.0:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#ffc46b"></i>--m-accent-on-brand</span></td><td><span class="p-chip"><i style="background:#1e73be"></i>--m-brand</span></td><td>footer script at gradient worst stop</td><td class="num">large</td><td class="num"><strong>3.14:1</strong></td><td class="num">3.0:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#f2f6fa"></i>--m-on-brand-muted</span></td><td><span class="p-chip"><i style="background:#1e73be"></i>--m-brand</span></td><td>footer fine print at gradient worst stop</td><td class="num">small</td><td class="num"><strong>4.55:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#ffffff"></i>--m-on-brand</span></td><td><span class="p-chip"><i style="background:#1e73be"></i>--m-brand</span></td><td>footer lead at gradient worst stop</td><td class="num">small</td><td class="num"><strong>4.94:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#f9a03f"></i>--m-accent-on-deep</span></td><td><span class="p-chip"><i style="background:#22303a"></i>--m-nav</span></td><td>nav caption on nav bar</td><td class="num">small</td><td class="num"><strong>6.53:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr>
+<tr><td><span class="p-chip"><i style="background:#f2f6f8"></i>--m-on-deep</span></td><td><span class="p-chip"><i style="background:#1e73be"></i>--m-brand</span></td><td>nav mark if nav ever sits on brand</td><td class="num">small</td><td class="num"><strong>4.54:1</strong></td><td class="num">4.5:1</td><td><span class="p-verdict" style="color:var(--m-success)">PASS</span></td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. TYPE - vertical specimen ladder on the surface tone ============ -->
+<section class="m-section m-section--surface" id="type">
+  <div class="m-wrap">
+    <p class="m-eyebrow">Tokens 02</p>
+    <h2 class="m-h2">Type</h2>
+    <p class="p-note" style="margin-block: var(--m-s-4) var(--m-s-7)">
+      Three families, no more. Archivo Black for display, Nunito Sans for everything read,
+      Caveat for the one script accent. All three ship on all ten radar builds.
+      needmomentum.com currently renders five families on the homepage.
+      Steps are ratio-spaced so the jumps are real: density 4 means type carries the page.
+    </p>
+    <div class="p-step"><div class="p-step__meta">--m-fs-display<br>clamp(3.25rem, 1.4rem + 8.4vw, 7.5rem)</div><div class="p-step__spec"><div class="m-display" style="">Momentum</div></div></div>
+<div class="p-step"><div class="p-step__meta">--m-fs-h1<br>clamp(2.75rem, 1.6rem + 5.4vw, 5.5rem)</div><div class="p-step__spec"><div class="m-h1" style="">Tokens that ship</div></div></div>
+<div class="p-step"><div class="p-step__meta">--m-fs-h2<br>clamp(2.1rem, 1.4rem + 3.4vw, 4rem)</div><div class="p-step__spec"><div class="m-h2" style="">Ten sites, one kit</div></div></div>
+<div class="p-step"><div class="p-step__meta">--m-fs-h3<br>clamp(1.5rem, 1.25rem + 1.2vw, 2.25rem)</div><div class="p-step__spec"><div class="m-h3" style="">Measured, not asserted</div></div></div>
+<div class="p-step"><div class="p-step__meta">--m-fs-h4<br>clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem)</div><div class="p-step__spec"><div class="m-h4" style="">Section subhead in Nunito Sans</div></div></div>
+<div class="p-step"><div class="p-step__meta">--m-fs-lead<br>clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem)</div><div class="p-step__spec"><div class="m-lead" style="font-size:var(--m-fs-lead)">Lead paragraph. Few words per screen, large type, air.</div></div></div>
+<div class="p-step"><div class="p-step__meta">--m-fs-body<br>clamp(1rem, 0.96rem + 0.2vw, 1.125rem)</div><div class="p-step__spec"><div class="m-body" style="font-size:var(--m-fs-body)">Body copy. This is the size everything is read at, and the size the contrast audit assumes.</div></div></div>
+<div class="p-step"><div class="p-step__meta">--m-fs-sm<br>0.91rem</div><div class="p-step__spec"><div class="m-body" style="font-size:var(--m-fs-sm)">Small copy, captions, table cells.</div></div></div>
+<div class="p-step"><div class="p-step__meta">--m-fs-micro<br>0.6875rem</div><div class="p-step__spec"><div class="m-eyebrow" style="">Eyebrow / caps label</div></div></div>
+<div class="p-step"><div class="p-step__meta">--m-font-script<br>Caveat 700</div><div class="p-step__spec"><span class="m-script" style="font-size:var(--m-fs-h2)">Let&rsquo;s build</span></div></div>
+<div class="p-step"><div class="p-step__meta">.m-strike<br>Papa&rsquo;s struck heading</div><div class="p-step__spec"><span class="m-h3"><span class="m-strike"><s>Services</s></span> <span class="m-script">Niche</span></span></div></div>
+  </div>
+</section>
+
+<!-- ============ 7. SPACE / RADIUS / ELEVATION - unequal 5/4/3 band ============ -->
+<section class="m-section">
+  <div class="m-wrap">
+    <p class="m-eyebrow">Tokens 03</p>
+    <h2 class="m-h2" style="margin-bottom: var(--m-s-7)">Space, radius, elevation</h2>
+    <div class="p-band">
+      <div>
+        <h3 class="m-h4" style="margin-bottom: var(--m-s-4)">Space</h3>
+        <div class="p-spacebar"><div><i style="width:var(--m-s-1)"></i><span>--m-s-1 &middot; 0.25rem</span></div>
+<div><i style="width:var(--m-s-2)"></i><span>--m-s-2 &middot; 0.5rem</span></div>
+<div><i style="width:var(--m-s-3)"></i><span>--m-s-3 &middot; 0.75rem</span></div>
+<div><i style="width:var(--m-s-4)"></i><span>--m-s-4 &middot; 1rem</span></div>
+<div><i style="width:var(--m-s-5)"></i><span>--m-s-5 &middot; 1.5rem</span></div>
+<div><i style="width:var(--m-s-6)"></i><span>--m-s-6 &middot; 2rem</span></div>
+<div><i style="width:var(--m-s-7)"></i><span>--m-s-7 &middot; 3rem</span></div>
+<div><i style="width:var(--m-s-8)"></i><span>--m-s-8 &middot; 4rem</span></div>
+<div><i style="width:var(--m-s-9)"></i><span>--m-s-9 &middot; 6rem</span></div>
+<div><i style="width:var(--m-s-10)"></i><span>--m-s-10 &middot; 8rem</span></div></div>
+        <p class="p-note" style="margin-top: var(--m-s-4)">
+          Section rhythm is <code>clamp(4.5rem, 9vw, 8rem)</code>, gutter
+          <code>clamp(1.25rem, 4vw, 3rem)</code>, both measured off the radar kit.
+        </p>
+      </div>
+      <div>
+        <h3 class="m-h4" style="margin-bottom: var(--m-s-4)">Radius</h3>
+        <div class="p-radii"><figure><div style="border-radius:var(--m-r-sm)"></div><figcaption>--m-r-sm<br>6px</figcaption></figure>
+<figure><div style="border-radius:var(--m-r-md)"></div><figcaption>--m-r-md<br>12px</figcaption></figure>
+<figure><div style="border-radius:var(--m-r-lg)"></div><figcaption>--m-r-lg<br>18px</figcaption></figure>
+<figure><div style="border-radius:var(--m-r-pill)"></div><figcaption>--m-r-pill<br>999px</figcaption></figure></div>
+        <p class="p-note" style="margin-top: var(--m-s-4)">
+          Four values. The radar builds ship six and agree on all six across ten sites.
+          needmomentum.com renders twenty distinct radii on one page.
+        </p>
+      </div>
+      <div>
+        <h3 class="m-h4" style="margin-bottom: var(--m-s-4)">Elevation</h3>
+        <div class="p-elev">
+          <div style="box-shadow: var(--m-elev-1)">--m-elev-1<br>hover lift, cards</div>
+          <div style="box-shadow: var(--m-elev-2)">--m-elev-2<br>nav, floating rails</div>
+        </div>
+        <p class="p-note" style="margin-top: var(--m-s-4)">Two steps, both neutral. No coloured shadow anywhere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. MOTION - deep field, interactive ============ -->
+<section class="m-section m-section--deep p-section--deep">
+  <div class="m-wrap">
+    <p class="m-eyebrow">Tokens 04</p>
+    <h2 class="m-h2" style="margin-bottom: var(--m-s-6)">Motion</h2>
+    <div class="p-motion">
+      <div>
+        <p class="p-note">
+          Two curves. <code>--m-ease</code> is what all ten radar builds run.
+          <code>--m-ease-swap</code> is Papa's header caption-to-mark swap, measured frame
+          by frame at 0.8s in the desktop spec, and it is reserved for that one move.
+        </p>
+        <p style="margin-top: var(--m-s-5)">
+          <button class="m-btn m-btn--sm" id="run" type="button">Run the durations</button>
+        </p>
+      </div>
+      <div class="p-track" id="track"><div><span>--m-dur-1 &middot; 0.01ms<br>button colour</span><span><i class="p-dot" style="transition-duration:var(--m-dur-1);transition-timing-function:var(--m-ease)"></i></span></div>
+<div><span>--m-dur-2 &middot; 0.01ms<br>hover lift, nav link</span><span><i class="p-dot" style="transition-duration:var(--m-dur-2);transition-timing-function:var(--m-ease)"></i></span></div>
+<div><span>--m-dur-3 &middot; 0.01ms<br>scroll reveal</span><span><i class="p-dot" style="transition-duration:var(--m-dur-3);transition-timing-function:var(--m-ease)"></i></span></div>
+<div><span>--m-dur-4 &middot; 0.01ms<br>nav caption swap</span><span><i class="p-dot" style="transition-duration:var(--m-dur-4);transition-timing-function:var(--m-ease-swap)"></i></span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. COMPONENTS ============ -->
+<section class="m-section" id="components">
+  <div class="m-wrap">
+    <p class="m-eyebrow">Components</p>
+    <h2 class="m-h2">The grammar already shipping</h2>
+    <p class="p-note" style="margin-block: var(--m-s-4) var(--m-s-8)">
+      Nav, hero, section, pill, card, accordion, logo wall, footer. Every one of these is
+      on this page as itself, not as a picture of itself.
+    </p>
+
+    <h3 class="m-h3" style="margin-bottom: var(--m-s-5)">Pill</h3>
+    <p style="display: flex; flex-wrap: wrap; gap: var(--m-s-4); align-items: center; margin: 0 0 var(--m-s-4)">
+      <a class="m-btn" href="#components">Start today</a>
+      <a class="m-btn m-btn--ghost" href="#components">Learn more</a>
+      <a class="m-btn m-btn--sm" href="#components">Small</a>
+    </p>
+    <p class="p-note">
+      60px tall, 40px inline padding, full pill, uppercase 800, 150ms on colour and 250ms on
+      the lift. Papa's measured button, plus a displacement so the hover moves rather than
+      only tints. Label is <code>--m-on-accent</code> at 7.19:1, never white: white on this
+      orange is 2.58:1.
+    </p>
+
+    <h3 class="m-h3" style="margin-block: var(--m-s-8) var(--m-s-5)">Card</h3>
+    <div class="m-cards">
+      <article class="m-card">
+        <p class="m-card__k">37</p>
+        <h4 class="m-h4">Failing pairs across the ten live radar builds</h4>
+        <p class="m-body m-muted" style="margin-top: var(--m-s-3)">
+          Out of 120 token pairs measured. Eight of ten sites carry at least one.
+        </p>
+      </article>
+      <article class="m-card m-card--deep">
+        <p class="m-card__k">0</p>
+        <h4 class="m-h4">Failing pairs in this system</h4>
+        <p class="m-body" style="margin-top: var(--m-s-3); color: var(--m-on-deep-muted)">
+          26 pairs, checked on every ground each colour actually lands on.
+        </p>
+      </article>
+      <article class="m-card m-card--accent">
+        <p class="m-card__k">7fr / 5fr</p>
+        <h4 class="m-h4">Why this row is not three equal cards</h4>
+        <p class="m-body" style="margin-top: var(--m-s-3)">
+          <code>.m-cards</code> is unequal by construction, and a third child spans the row.
+          The banned layout is not available without editing the component.
+        </p>
+      </article>
+    </div>
+
+    <h3 class="m-h3" style="margin-block: var(--m-s-8) var(--m-s-5)">Accordion</h3>
+    <div class="m-acc">
+      <details>
+        <summary>Branding</summary>
+        <div class="m-acc__body">80px rows, uppercase, all closed on load, no chrome but the rule.
+          Papa's measured 82px pitch. Native <code>&lt;details&gt;</code>, so it works with no JS
+          and is keyboard-operable for free.</div>
+      </details>
+      <details>
+        <summary>Marketing</summary>
+        <div class="m-acc__body">The <code>+</code> rotates 45 degrees to an <code>x</code> on open,
+          250ms on the shared ease. Under reduced motion the duration collapses to 0.01ms and the
+          state still changes.</div>
+      </details>
+      <details>
+        <summary>Websites</summary>
+        <div class="m-acc__body">Hover nudges the label 0.75rem right and recolours it to
+          <code>--m-accent-ink</code> at 6.18:1. Displacement, not a tint.</div>
+      </details>
+    </div>
+
+    <h3 class="m-h3" style="margin-block: var(--m-s-8) var(--m-s-5)">Logo wall</h3>
+  </div>
+  <div class="m-wall">
+    <div class="m-wall__track"><div class="m-wall__item">Nexla</div>
+<div class="m-wall__item">Puttery</div>
+<div class="m-wall__item">Bridge</div>
+<div class="m-wall__item">VA Claims</div>
+<div class="m-wall__item">Capsule &amp; Tonic</div>
+<div class="m-wall__item">Everyday Life</div>
+<div class="m-wall__item">Kimberly James</div>
+<div class="m-wall__item">Green Slate</div>
+<div class="m-wall__item">Hope Wellness</div>
+<div class="m-wall__item">Pro Fence &amp; Deck</div>
+<div class="m-wall__item">Omega Landscape</div>
+<div class="m-wall__item">Fresh Blends</div>
+<div class="m-wall__item">Nexla</div>
+<div class="m-wall__item">Puttery</div>
+<div class="m-wall__item">Bridge</div>
+<div class="m-wall__item">VA Claims</div>
+<div class="m-wall__item">Capsule &amp; Tonic</div>
+<div class="m-wall__item">Everyday Life</div>
+<div class="m-wall__item">Kimberly James</div>
+<div class="m-wall__item">Green Slate</div>
+<div class="m-wall__item">Hope Wellness</div>
+<div class="m-wall__item">Pro Fence &amp; Deck</div>
+<div class="m-wall__item">Omega Landscape</div>
+<div class="m-wall__item">Fresh Blends</div></div>
+  </div>
+  <div class="m-wrap">
+    <p class="p-note" style="margin-top: var(--m-s-4)">
+      Papa's measured wall: 210px items, greyscale at 40 percent, full colour on hover, pausing
+      on hover, on a grey stripe. CSS marquee rather than Owl Carousel. Under reduced motion the
+      animation stops and the track wraps, so nothing is hidden.
+      Wordmarks stand in for real client logos here; a live build uses source-checked assets.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ 10. FOOTER ============ -->
+<footer class="m-footer">
+  <div class="m-wrap">
+    <p class="m-script">Let's build</p>
+    <h2 class="m-h2" style="margin-top: var(--m-s-3)">Something measurable</h2>
+    <p class="m-lead" style="color: var(--m-on-brand-muted); margin-top: var(--m-s-5)">
+      Pull the tokens, not the screenshots.
+    </p>
+    <p style="margin-top: var(--m-s-6)"><a class="m-btn" href="#main">Back to the top</a></p>
+    <div class="m-footer__rule"></div>
+    <div class="m-footer__fine">
+      <span>Momentum Digital / Momentum 360 &middot; Philadelphia</span>
+      <span>tokens/momentum.tokens.css &middot; tokens/momentum.components.css</span>
+      <span>Generated 2026-09-05 &middot; private, noindex</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav caption-to-mark swap: a class toggle at a threshold, exactly as Papa does it.
+// Nothing here is scroll-linked; the CSS transition does the work.
+(function () {
+  var nav = document.getElementById('nav');
+  var swap = function () { nav.classList.toggle('is-swapped', window.scrollY > 240); };
+  swap();
+  addEventListener('scroll', swap, { passive: true });
+
+  // Scroll reveal. The hidden state is only armed if we can also un-hide it.
+  if ('IntersectionObserver' in window) {
+    document.documentElement.classList.add('js-reveal');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -12% 0px' });
+    document.querySelectorAll('.m-rise').forEach(function (el) { io.observe(el); });
+  }
+
+  var run = document.getElementById('run'), track = document.getElementById('track');
+  run.addEventListener('click', function () {
+    track.classList.remove('is-run');
+    void track.offsetWidth;
+    track.classList.add('is-run');
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bridge — Milestones 1–3 Delivery Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#9b4df6;
+    --indigo:#4b0082;
+    --ink:#1a1a1a;
+    --muted:#5f5964;
+    --lav:#d8d0dd;
+    --lav-bg:#f4f0f7;
+    --lav-line:#e6dfec;
+    --black:#0a0510;
+    --white:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{
+    font-family:'Poppins','Segoe UI',system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    font-size:9.1pt;
+    line-height:1.5;
+    background:var(--white);
+  }
+  @page{ size:8.5in 11in; margin:0; }
+
+  .page{
+    width:8.5in; height:11in;
+    padding:0.62in 0.66in 0.55in;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    background:var(--white);
+    display:flex; flex-direction:column;
+  }
+  .page:last-child{page-break-after:auto}
+  .page.dark{background:var(--black); color:var(--white)}
+
+  /* ---------- top rule ---------- */
+  .eyebrow{
+    font-size:6.6pt; font-weight:700; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--indigo);
+  }
+  .page.dark .eyebrow{color:var(--purple)}
+
+  /* ---------- footers ---------- */
+  .foot{
+    position:absolute; right:0.66in; bottom:0.5in;
+    font-size:6.6pt; font-weight:600; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--muted);
+  }
+  .page.dark .foot{color:var(--lav)}
+
+  /* ---------- headings ---------- */
+  h1{font-size:31pt; font-weight:800; line-height:1.06; letter-spacing:-.018em}
+  h2{font-size:17.5pt; font-weight:700; line-height:1.16; letter-spacing:-.012em; margin-top:.05in}
+  h3{font-size:10.2pt; font-weight:700; line-height:1.3}
+  .accent{color:var(--purple)}
+  .lede{font-size:9.4pt; color:#3d3745; line-height:1.62; margin-top:.11in; max-width:6.6in}
+  .page.dark .lede{color:var(--lav)}
+  .rule{width:.62in; height:3px; background:var(--purple); margin:.13in 0 .14in; border-radius:2px}
+
+  /* ---------- cover ---------- */
+  .cover-arc{
+    position:absolute; border:1.5px solid rgba(155,77,246,.30); border-radius:50%;
+  }
+  .arc-a{width:6.2in;height:6.2in; left:-2.7in; top:-2.35in}
+  .arc-b{width:6.6in;height:6.6in; right:-2.6in; bottom:-2.5in}
+  .cover-head{display:flex; justify-content:space-between; align-items:flex-start; position:relative; z-index:2}
+  .mark-row{display:flex; flex-direction:column; gap:.10in}
+  .mark-row img{width:.86in}
+  .wordmark{font-size:23pt; font-weight:800; letter-spacing:.045em; line-height:1}
+  .conf{
+    border:1px solid rgba(216,208,221,.42); border-radius:100px;
+    padding:.055in .18in; font-size:6.6pt; font-weight:600;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--lav);
+  }
+  .cover-body{position:relative; z-index:2; margin-top:1.62in}
+  .cover-tag{font-size:7.4pt;font-weight:700;letter-spacing:.19em;text-transform:uppercase;color:var(--purple);margin-bottom:.12in}
+  .cover-abstract{font-size:9.5pt; line-height:1.62; color:var(--lav); max-width:5.5in; margin-top:.2in}
+  .meta{display:grid; grid-template-columns:repeat(3,1fr); gap:.3in; margin-top:.3in; padding-top:.17in; border-top:1px solid rgba(216,208,221,.28); max-width:6.2in}
+  .meta dt{font-size:7pt; font-weight:700; letter-spacing:.03em; color:var(--white); margin-bottom:.035in}
+  .meta dd{font-size:8.1pt; color:var(--lav)}
+
+  /* ---------- stats ---------- */
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:.22in; margin:.2in 0 .06in}
+  .stat{border-top:2.5px solid var(--indigo); padding-top:.09in}
+  .stat .n{font-size:22pt; font-weight:800; color:var(--indigo); line-height:1; letter-spacing:-.02em}
+  .stat .l{font-size:6.5pt; font-weight:600; letter-spacing:.11em; text-transform:uppercase; color:var(--muted); margin-top:.06in; line-height:1.42}
+
+  /* ---------- two-up panels ---------- */
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:.2in; margin-top:.17in}
+  .panel{border-radius:.13in; padding:.19in .21in}
+  .panel.light{background:linear-gradient(160deg,#faf7fd,#f3edf9); border:1px solid var(--lav-line)}
+  .panel.dark{background:var(--black); color:var(--white)}
+  .panel h3{margin-bottom:.09in}
+  .panel.dark h3{color:var(--white)}
+  ul.tick{list-style:none}
+  ul.tick li{position:relative; padding-left:.16in; margin-bottom:.075in; font-size:8.2pt; line-height:1.46}
+  ul.tick li::before{content:''; position:absolute; left:0; top:.062in; width:.055in; height:.055in; border-radius:50%; background:var(--purple)}
+  .panel.dark ul.tick li{color:var(--lav)}
+  .panel.dark ul.tick li::before{background:var(--purple)}
+
+  /* ---------- callouts ---------- */
+  .callout{background:var(--lav-bg); border-left:3px solid var(--indigo); padding:.13in .19in; border-radius:0 .07in .07in 0; margin-top:.14in}
+  .callout h3{font-size:9.4pt; margin-bottom:.04in}
+  .callout p{font-size:8.1pt; line-height:1.5; color:#453e4d}
+  .callout.warn{background:#fdf5ee; border-left-color:#c2691c}
+
+  /* ---------- timeline ---------- */
+  .tl{margin-top:.16in; position:relative}
+  .tl-row{display:grid; grid-template-columns:.72in .13in 1fr; align-items:start; margin-bottom:.115in}
+  .tl-date{font-size:6.7pt; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--indigo); text-align:right; padding-top:.035in}
+  .tl-node{position:relative; height:100%}
+  .tl-node::before{content:''; position:absolute; left:.038in; top:.055in; width:.055in; height:.055in; border-radius:50%; background:var(--purple); z-index:2}
+  .tl-node::after{content:''; position:absolute; left:.062in; top:.09in; bottom:-.09in; width:1px; background:var(--lav-line)}
+  .tl-row:last-child .tl-node::after{display:none}
+  .tl-t{font-size:8.6pt; font-weight:700; line-height:1.3}
+  .tl-d{font-size:7.7pt; color:var(--muted); line-height:1.45; margin-top:.015in}
+
+  /* ---------- tables ---------- */
+  table{width:100%; border-collapse:collapse; margin-top:.13in; font-size:7.7pt}
+  th{
+    text-align:left; font-size:6.4pt; font-weight:700; letter-spacing:.11em;
+    text-transform:uppercase; color:var(--muted);
+    border-bottom:1.5px solid var(--indigo); padding:0 .09in .055in 0;
+  }
+  td{padding:.062in .09in .062in 0; border-bottom:1px solid var(--lav-line); vertical-align:top; line-height:1.42}
+  td strong{font-weight:600}
+  .num{text-align:right; padding-right:0; font-variant-numeric:tabular-nums}
+
+  /* ---------- pills ---------- */
+  .pill{display:inline-block; font-size:6.2pt; font-weight:700; letter-spacing:.09em; text-transform:uppercase; padding:.022in .085in; border-radius:100px; white-space:nowrap}
+  .p-done{background:#e7f4ec; color:#1c6b3d}
+  .p-prog{background:#f0e9fb; color:#5b21b6}
+  .p-wait{background:#fdf3e6; color:#95541a}
+  .p-block{background:#fbeaea; color:#992222}
+
+  /* ---------- shots ---------- */
+  .shots{display:grid; gap:.16in; margin-top:.15in}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:1fr 1fr 1fr}
+  .shot{border:1px solid var(--lav-line); border-radius:.08in; overflow:hidden; background:#0a0510}
+  .shot img{width:100%; display:block}
+  .cap{font-size:6.5pt; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); margin-top:.055in; line-height:1.4}
+  .shot-wrap{display:flex; flex-direction:column}
+
+  /* ---------- misc ---------- */
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:.26in; margin-top:.16in}
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:.2in; margin-top:.16in}
+  .blk h3{font-size:9pt; margin-bottom:.055in; padding-bottom:.045in; border-bottom:1px solid var(--lav-line)}
+  .blk p{font-size:8pt; color:#453e4d; line-height:1.5}
+  .blk ul{list-style:none; margin-top:.04in}
+  .blk li{font-size:7.9pt; line-height:1.44; padding-left:.13in; position:relative; margin-bottom:.052in; color:#453e4d}
+  .blk li::before{content:'–'; position:absolute; left:0; color:var(--purple); font-weight:700}
+  .owner{font-size:6.4pt; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--purple)}
+  .tiny{font-size:7pt; color:var(--muted); line-height:1.5; margin-top:.1in}
+  .spacer{flex:1}
+</style>
+</head>
+<body>
+
+<!-- =============== 1 · COVER =============== -->
+<section class="page dark">
+  <div class="cover-arc arc-a"></div>
+  <div class="cover-arc arc-b"></div>
+
+  <div class="cover-head">
+    <div class="mark-row">
+      <img src="bridge-mark.svg" alt="Bridge mark">
+      <div class="wordmark">BRIDGE</div>
+    </div>
+    <div class="conf">Confidential · Client Review</div>
+  </div>
+
+  <div class="cover-body">
+    <div class="cover-tag">Connect. Grow. Fight Together.</div>
+    <h1>Milestones&nbsp;1,&nbsp;2<br><span class="accent">and&nbsp;3.</span><br>What has been<br>delivered.</h1>
+    <p class="cover-abstract">
+      An evidence-backed account of the work Momentum Digital has researched, designed, built,
+      tested and deployed for Bridge across the first three contract milestones — the discovery
+      and architecture foundation, the UX and data-model system now live for review, and the
+      accounts, authentication and verification milestone currently in progress.
+    </p>
+    <dl class="meta">
+      <div><dt>Prepared</dt><dd>September 3, 2026</dd></div>
+      <div><dt>Evidence window</dt><dd>May 27 – September 3, 2026</dd></div>
+      <div><dt>Status</dt><dd>Milestones 1–2 delivered · Milestone 3 in progress</dd></div>
+    </dl>
+  </div>
+
+  <div class="foot">Bridge · Milestones 1–3</div>
+</section>
+
+<!-- =============== 2 · EXECUTIVE READOUT =============== -->
+<section class="page">
+  <div class="eyebrow">Executive readout</div>
+  <h2>Two milestones delivered. The third is built,<br>tested and waiting on the backend contract.</h2>
+  <div class="rule"></div>
+  <p class="lede">
+    Bridge has a documented product direction, a role and permission model, a thirteen-route
+    front end live on two deployment environments, and a complete reference implementation of the
+    account, sign-in and verification surfaces. Milestone 3 is not finished: the frontend half is
+    built and passing continuous integration, and the remaining work is the backend data contract
+    that Greencubes owes before the screens can bind to real accounts.
+  </p>
+
+  <div class="stats">
+    <div class="stat"><div class="n">13</div><div class="l">Routes verified live in production</div></div>
+    <div class="stat"><div class="n">45</div><div class="l">Automated tests passing</div></div>
+    <div class="stat"><div class="n">12</div><div class="l">Member roles defined and built</div></div>
+    <div class="stat"><div class="n">2</div><div class="l">Deploy environments running</div></div>
+  </div>
+
+  <div class="duo">
+    <div class="panel light">
+      <h3>What is complete now</h3>
+      <ul class="tick">
+        <li>Product requirements, role definitions and MVP boundary agreed and written down</li>
+        <li>Architecture and data-model direction delivered, with the compliance and verification inputs translated into product questions</li>
+        <li>Five reviewable product routes live and QA'd on the client review URL</li>
+        <li>Role and field permission matrix separating public, member-only and protected data</li>
+        <li>Twelve-role join entry, admin verification queue and nationwide discovery built</li>
+        <li>Integration pipeline and API contract published and handed to Greencubes</li>
+      </ul>
+    </div>
+    <div class="panel dark">
+      <h3>What is next</h3>
+      <ul class="tick">
+        <li>Tori's route-by-route accept-or-revise on the five review routes</li>
+        <li>Product approval on Join Steps 2 and 4 — the organization detail and verification review screens</li>
+        <li>Greencubes to supply the session claims, route table and storage contract that Milestone 3 depends on</li>
+        <li>Merge the Milestone 3 hardening branch once the backend contract is settled</li>
+        <li>Verification policy decision: what evidence each role must provide</li>
+        <li>Milestone 4, the Directory MVP, has not started</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h3>The front end is real; the data behind it is not yet</h3>
+    <p>Every screen on the review URL runs against a typed mock adapter, and each one says so on the page.
+    That was deliberate: it let the product be reviewed and approved before backend cost was committed. Turning
+    mock mode off is a single environment variable, and it waits on Greencubes returning the backend repository,
+    branch, commit and staging origin.</p>
+  </div>
+
+  <div class="callout warn">
+    <h3>One vocabulary warning worth carrying into the meeting</h3>
+    <p>In the signed proposal, "Phase" and "Milestone" are the same word — six milestones, six phases, one
+    numbering. The engineering build specification uses "Phase" for something different and unrelated. This report
+    uses the contract's own vocabulary only, and names each milestone in full, so no number is ambiguous.</p>
+  </div>
+
+  <div class="foot">02 · Executive readout</div>
+</section>
+
+<!-- =============== 3 · CHRONOLOGY =============== -->
+<section class="page">
+  <div class="eyebrow">Engagement chronology</div>
+  <h2>What happened, in order.</h2>
+  <p class="lede">Dated from the executed NDA through to this report. Each entry is traceable to a Slack message,
+  an email thread, a commit or a deployed build.</p>
+
+  <div class="tl">
+    <div class="tl-row"><div class="tl-date">May 27</div><div class="tl-node"></div><div>
+      <div class="tl-t">NDA drafted, circulated and signed</div>
+      <div class="tl-d">Mutual NDA executed across the client, Momentum and the engineering vendor; fully executed June 1. Product still named "The Ecosystem" at this point.</div></div></div>
+
+    <div class="tl-row"><div class="tl-date">Jun 2–8</div><div class="tl-node"></div><div>
+      <div class="tl-t">Scope written as six milestones</div>
+      <div class="tl-d">The proposal was drafted, reviewed and updated — six milestones from discovery to launch, with client-side pass-through costs and a project team section added.</div></div></div>
+
+    <div class="tl-row"><div class="tl-date">Jun 7</div><div class="tl-node"></div><div>
+      <div class="tl-t">The product is renamed Bridge</div>
+      <div class="tl-d">Tori renames The Ecosystem to Bridge. The six-milestone structure is approved by the engineering vendor the same week.</div></div></div>
+
+    <div class="tl-row"><div class="tl-date">Jun 11</div><div class="tl-node"></div><div>
+      <div class="tl-t">Agreement finalised and sent to the client</div>
+      <div class="tl-d">Terms covering NDA, non-compete, ownership, rights and phases were added and the agreement was issued for signature.</div></div></div>
+
+    <div class="tl-row"><div class="tl-date">Jul 8</div><div class="tl-node"></div><div>
+      <div class="tl-t">Contract approved · Milestone 1 starts</div>
+      <div class="tl-d">Client green light. The <strong>#bridge-software-development</strong> channel is created the same afternoon and Milestone 1 is opened.</div></div></div>
+
+    <div class="tl-row"><div class="tl-date">Jul 10–16</div><div class="tl-node"></div><div>
+      <div class="tl-t">Execution plan, six-milestone brief and decision register</div>
+      <div class="tl-d">Momentum's execution plan and the engineering vendor's six-milestone plan were published, followed by the canonical milestone decision brief recording verified decisions, open requirements, owners and the approval gate.</div></div></div>
+
+    <div class="tl-row"><div class="tl-date">Jul 19–20</div><div class="tl-node"></div><div>
+      <div class="tl-t">Client source package received · onboarding walkthrough</div>
+      <div class="tl-d">Tori supplies four original HTML concepts, the Bridge branding guide, the business verification requirements and the legal/compliance platform strategy. The prototype walkthrough call runs the next day and a working prototype ships hours later.</div></div></div>
+
+    <div class="tl-row"><div class="tl-date">Jul 27</div><div class="tl-node"></div><div>
+      <div class="tl-t">Milestone 1 architecture document delivered</div>
+      <div class="tl-d">The architecture and platform plan is delivered by the engineering vendor and forwarded to the client. Milestone 1 is paid at the end of that month.</div></div></div>
+
+    <div class="tl-row"><div class="tl-date">Aug 1–7</div><div class="tl-node"></div><div>
+      <div class="tl-t">Tori's written feedback drives the Milestone 2 plan</div>
+      <div class="tl-d">A 39-minute recorded product session and written notes are supplied by the client and converted into the Milestone 2 execution plan — with the foundation confirmed rather than reworked. The acceptance record is opened with every item explicitly pending, and the build is posted for review.</div></div></div>
+
+    <div class="tl-row"><div class="tl-date">Aug 14–17</div><div class="tl-node"></div><div>
+      <div class="tl-t">Milestone 2 completes · conditional acceptance issued</div>
+      <div class="tl-d">The backend schema, roles and permission model are reported complete; Momentum's own review returns <em>conditional acceptance pending evidence and security remediation</em>. The five-route front end is completed and sent to the client for sign-off on August 17.</div></div></div>
+
+    <div class="tl-row"><div class="tl-date">Aug 21</div><div class="tl-node"></div><div>
+      <div class="tl-t">Milestone 3 opens · 21+ entry gate restored</div>
+      <div class="tl-d">Accounts, authentication and verification work begins. The adult-entry confirmation is restored ahead of every route on the review build.</div></div></div>
+
+    <div class="tl-row"><div class="tl-date">Aug 31</div><div class="tl-node"></div><div>
+      <div class="tl-t">Integration pipeline and API contract published</div>
+      <div class="tl-d">The frontend repository, branch model, CORS origins, endpoint contract and security rules are written down and handed to Greencubes. Repository and hosting invitations are issued.</div></div></div>
+
+    <div class="tl-row"><div class="tl-date">Sep 2–3</div><div class="tl-node"></div><div>
+      <div class="tl-t">Backend delivery reviewed · Milestone 3 hardening built</div>
+      <div class="tl-d">The Greencubes auth and admin delivery is reviewed against the contract; the Milestone 3 hardening branch restores the join sequence, unifies the HTTP client, adds required states, accessibility fixes and continuous integration. All checks pass.</div></div></div>
+  </div>
+
+  <div class="foot">03 · Chronology</div>
+</section>
+
+<!-- =============== 4 · MILESTONE 1 =============== -->
+<section class="page">
+  <div class="eyebrow">Milestone 1 (Phase 1) · Discovery, Requirements and Architecture</div>
+  <h2>The foundation: what Bridge is,<br>who it serves, and how it is built.</h2>
+  <div class="rule"></div>
+  <p class="lede">
+    Milestone 1 turned an idea and a set of client-authored concepts into a documented product with named roles,
+    an agreed MVP boundary, a technical architecture, and a compliance intake translated into product requirements.
+    <strong>Status: delivered and paid.</strong> The technical plan and research findings were delivered on July 27 and
+    the client's written response on August 5 was <em>"the specs are awesome, the research is top tier"</em> — warm, but
+    not a formal milestone acceptance. No dated acceptance artifact was recorded, which is worth closing retrospectively.
+  </p>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>What was researched and decided</h3>
+      <ul>
+        <li>The MVP boundary — what ships first and what is deliberately deferred</li>
+        <li>The contracted core user set: brands, retailers and dispensaries, sales representatives, and administrators</li>
+        <li>Priority journeys per role, and the low-fidelity flow direction validated before any visual polish</li>
+        <li>The ownership split between front-end delivery, UX, backend integration and final acceptance</li>
+        <li>A written exclusion list — algorithmic feed, advanced social graph, native mobile apps, recommendation engine, in-platform payments, subscriptions and marketplace ordering are all outside this build</li>
+      </ul>
+    </div>
+    <div class="blk">
+      <h3>The architecture put in place</h3>
+      <ul>
+        <li>Browser-based, role-based platform: Next.js, React and TypeScript on the front end</li>
+        <li>PostgreSQL with row-level security as the data and permission substrate</li>
+        <li>Git-linked continuous deployment to two hosted environments</li>
+        <li>A private source repository with an explicit branch model and review gate</li>
+        <li>An open decision register carrying every unresolved product question with a named owner and a decision-by point</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:.22in">The prototype families and the brand source</h3>
+  <table>
+    <thead><tr><th style="width:1.75in">Input</th><th>What it was and what it became</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Momentum discovery prototype</strong></td><td>A working Next.js prototype family built to make the product reviewable in the walkthrough — role-based journeys, core screen direction and build-ready front-end requirements. Became the codebase the product now runs on.</td></tr>
+      <tr><td><strong>Client concept set</strong></td><td>Four original HTML concepts supplied by Tori — landing and signup, dashboard and feed, post designer, and directory and profiles. Preserved, extracted, indexed and used as the product-intent source of record.</td></tr>
+      <tr><td><strong>Bridge branding guide</strong></td><td>The client's own brand source. The Bridge arch mark, the wordmark and the "Connect. Grow. Fight Together." line carried through into the built product rather than being redesigned.</td></tr>
+      <tr><td><strong>Business verification requirements</strong></td><td>The client's compliance document. Converted into the EIN, licence-status and jurisdiction fields, the account approval states and the admin verification queue that Milestone 3 implements.</td></tr>
+      <tr><td><strong>Legal and compliance platform strategy</strong></td><td>Drove the 21+ adult-entry requirement, the protected-field boundary between public and business-only data, and the rule that no EIN document is ever publicly visible.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <h3>Compliance shaped the product, not just the paperwork</h3>
+    <p>The verification and legal inputs were not filed away — they became structural. Three things in the live product
+    exist because of them: the 21+ confirmation that blocks every route before entry, the two-mode profile that separates
+    what the public sees from what verified businesses can access, and the admin queue that treats verification as a
+    reviewable case with a status and a waiting time rather than a checkbox.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot">04 · Milestone 1</div>
+</section>
+
+<!-- =============== 5 · MILESTONE 2 =============== -->
+<section class="page">
+  <div class="eyebrow">Milestone 2 (Phase 2) · UX, Product Flow and Data Model</div>
+  <h2>The product system: screens, roles,<br>journeys, states and the data behind them.</h2>
+  <div class="rule"></div>
+  <p class="lede">
+    Milestone 2 produced the application map, the core user flows, the profile structures for each business type,
+    the taxonomy, the admin review workflow, the database schema and the permission model — and then built five
+    reviewable routes so the client could judge the product rather than a document.
+    <strong>Status: delivered and live for review; client route-by-route sign-off is still outstanding.</strong>
+  </p>
+
+  <h3 style="margin-top:.16in">The five review routes and what each one does</h3>
+  <table>
+    <thead><tr><th style="width:1.05in">Route</th><th>What it does</th><th style="width:1.35in">Acceptance</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Home</strong></td><td>Compact product introduction with legal cannabis positioning, a single primary join action, and one-click access to the four primary spaces.</td><td><span class="pill p-wait">Pending Tori</span></td></tr>
+      <tr><td><strong>Community News</strong></td><td>The same items presented as either a visual News Grid or a classic chronological feed, with category and state controls, favourites, and an explicit selected state. Non-algorithmic by design for the MVP.</td><td><span class="pill p-wait">Pending — default view undecided</span></td></tr>
+      <tr><td><strong>Create</strong></td><td>Promotion and message composition with content type, upload validation, multi-audience selection, a protected-detail guardrail that removes public targeting automatically, and live preview.</td><td><span class="pill p-wait">Pending Tori</span></td></tr>
+      <tr><td><strong>My Profile</strong></td><td>Two projections of one record — Public view and B2B verified view — with protected sales and accounting contacts, no public EIN, and a required first-login and monthly contact confirmation gate.</td><td><span class="pill p-wait">Pending Tori</span></td></tr>
+      <tr><td><strong>Explore</strong></td><td>Nationwide discovery across all fifty states and D.C. with category and role filters, a visible result count, persisted favourites, and an explicit permissioned introduction request.</td><td><span class="pill p-wait">Pending Tori</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="grid2" style="margin-top:.2in">
+    <div class="blk">
+      <h3>Data model and permissions</h3>
+      <ul>
+        <li>PostgreSQL schema with organization isolation, tables, relationships, constraints, indexes and migration history</li>
+        <li>Row-level security policies and a role permission model reported complete by the engineering vendor</li>
+        <li>A role and field permission matrix defining, per field, whether it is public, member-only or protected</li>
+        <li>Product and category taxonomy, and search and filter requirements</li>
+        <li>Admin review workflow design — the queue, its statuses and its decision points</li>
+      </ul>
+    </div>
+    <div class="blk">
+      <h3>The handoff package</h3>
+      <ul>
+        <li>Route and screen map</li>
+        <li>Role and field permission matrix</li>
+        <li>Journey maps with acceptance criteria per route</li>
+        <li>Phased backlog and decision register</li>
+        <li>A one-page engineering handoff summarising the contract the backend must satisfy</li>
+        <li>A route-by-route acceptance record with an empty decision column per route — nothing marked without a dated source</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <h3>Honest status on Milestone 2</h3>
+    <p>The frontend half is built, deployed and QA'd on desktop and mobile. The backend half was reported complete and
+    Momentum's own review returned <strong>conditional acceptance pending evidence and security remediation</strong> —
+    repository, branch, commit and migration evidence were requested and are still outstanding, and a credential exposure
+    in the shared channel required rotation before formal acceptance.</p>
+    <p style="margin-top:.06in"><strong>No client acceptance is claimed here, because none has been recorded.</strong>
+    The build was sent for sign-off on August 17. A review was promised on August 18, again on August 23, and again on
+    September 1. On August 21 Momentum wrote to the client, in writing, that <em>the five routes are not officially
+    approved yet</em>. The acceptance record's decision column remains empty for all five routes today.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot">05 · Milestone 2</div>
+</section>
+
+<!-- =============== 6 · M2 EVIDENCE =============== -->
+<section class="page">
+  <div class="eyebrow">Milestone 2 evidence · Captured live from production</div>
+  <h2>The review build, as it stands today.</h2>
+  <p class="lede">Captured at 1440&nbsp;px from <strong>bridge-connected-signal.netlify.app</strong> on September 3, 2026.
+  Every route below returned HTTP 200 at capture time.</p>
+
+  <div class="shots g2">
+    <div class="shot-wrap"><div class="shot"><img src="shots/d-home.png" alt="Bridge home"></div>
+      <div class="cap">Home — positioning and primary join action</div></div>
+    <div class="shot-wrap"><div class="shot"><img src="shots/d-explore.png" alt="Explore"></div>
+      <div class="cap">Explore — nationwide discovery, 50 states + D.C.</div></div>
+    <div class="shot-wrap"><div class="shot"><img src="shots/d-create.png" alt="Create"></div>
+      <div class="cap">Create — audiences and the protected-detail guardrail</div></div>
+    <div class="shot-wrap"><div class="shot"><img src="shots/d-my-profile.png" alt="My Profile"></div>
+      <div class="cap">My Profile — public vs. B2B verified projection</div></div>
+  </div>
+
+  <div class="shots g2" style="margin-top:.17in">
+    <div class="shot-wrap"><div class="shot"><img src="shots/d-community.png" alt="Community News"></div>
+      <div class="cap">Community News — News Grid and classic feed, both built</div></div>
+    <div class="shot-wrap" style="justify-content:flex-start">
+      <div class="callout" style="margin-top:0">
+        <h3>Every screen states its own boundary</h3>
+        <p>Explore says sample records are limited and favourites stay on the device. Create says draft, library and
+        review actions remain local until the production API is connected. My Profile says the email reminder
+        integration is pending. Nothing on the review build implies a capability that is not there.</p>
+      </div>
+      <div class="callout warn" style="margin-top:.14in">
+        <h3>Responsive behaviour verified</h3>
+        <p>Each route was captured at both 1440&nbsp;px and 390&nbsp;px on the same day. Navigation collapses to a menu,
+        the multi-column grids reflow to single column, and no route scrolls horizontally at mobile width.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot">06 · Milestone 2 evidence</div>
+</section>
+
+<!-- =============== 7 · MILESTONE 3 A =============== -->
+<section class="page">
+  <div class="eyebrow">Milestone 3 (Phase 3) · Accounts, Authentication and Verification</div>
+  <h2>In progress. The front end is complete;<br>the backend contract is the open half.</h2>
+  <div class="rule"></div>
+  <p class="lede">
+    Milestone 3 owes registration and login, email verification, password reset, role-based accounts, EIN capture,
+    state and licence-status fields, account approval status, an admin verification queue, and privacy and terms
+    acceptance. Momentum has built the complete frontend reference implementation of that surface. Greencubes has
+    delivered a genuinely secure backend with real server-side role checks, describing their own side as half done on
+    August 29 and almost done on September 2, with a final update due. The two halves do not yet meet.
+  </p>
+
+  <h3 style="margin-top:.05in">The join sequence, as designed</h3>
+  <table>
+    <thead><tr><th style="width:.95in">Step</th><th style="width:1.05in">Route</th><th>What it captures</th><th style="width:1.15in">State</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Step 1 of 4</strong></td><td>/join</td><td>Member role — a twelve-role grid with per-role next-step titles and requirements, the founding-member callout, and the boundary note explaining what Steps 2–4 need.</td><td><span class="pill p-done">Live in production</span></td></tr>
+      <tr><td><strong>Step 2 of 4</strong></td><td>/join/account</td><td>Account creation — display name, email, password and confirmation, showing the role chosen in Step 1 with a link back to change it. Full inline validation and error states.</td><td><span class="pill p-prog">Built · pending merge</span></td></tr>
+      <tr><td><strong>Step 3 of 4</strong></td><td>—</td><td>Organization details — legal name, public name, EIN, licence, location and contact owner. Requires organization-scoped draft persistence.</td><td><span class="pill p-block">Awaiting backend + approval</span></td></tr>
+      <tr><td><strong>Step 4 of 4</strong></td><td>—</td><td>Verification evidence and review submission — server-created upload intents, document scanning, a redacted review summary and a verification case.</td><td><span class="pill p-block">Awaiting backend + approval</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn">
+    <h3>Steps 2 and 4 need a product decision from Melissa and Tori</h3>
+    <p>Step 1 is deliberately the only step live in production. Steps 3 and 4 are not missing routes or a hosting
+    problem — they need a real member identity, organization-scoped drafts, protected evidence storage and a review case,
+    all of which are backend-owned. They also need a product answer on <strong>what verification evidence each of the
+    twelve roles must supply</strong> and <strong>what the public "Verified" badge promises</strong>.</p>
+    <p style="margin-top:.06in">This has been stated plainly to the whole team, in writing, since August 31:
+    <em>Step 2 and Step 4 product approval is still with Melissa and Tori — do not represent those screens as client
+    approved.</em> That instruction still stands today, and this report holds to it.</p>
+  </div>
+
+  <div class="grid2" style="margin-top:.2in">
+    <div class="blk">
+      <h3>One HTTP client, one contract</h3>
+      <p>Registration, sign-in and sign-out were added to the same typed client every other call already uses — so they
+      inherit one base URL, one status mapping (401 unauthenticated, 403 forbidden, 400/422 validation, 409 conflict) and
+      one error type. A second, parallel HTTP client that had bypassed that contract was folded back in.</p>
+      <p style="margin-top:.07in">A mock fallback means sign-in and account creation work with no backend at all, which is
+      what makes the flow reviewable today.</p>
+    </div>
+    <div class="blk">
+      <h3>Session handling and role-aware routing</h3>
+      <ul>
+        <li>No token in browser storage — the session is read from the API on each load, as a cookie session requires. A test asserts no client file touches web storage</li>
+        <li>Sign-in sends members to their profile and administrators to the admin workspace</li>
+        <li>The return-path parameter accepts only same-origin paths; absolute URLs and protocol-relative hosts are rejected</li>
+        <li>Every routing rule carries an explicit note that client-side routing is presentation only and never authorization — the API must still enforce it</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot">07 · Milestone 3</div>
+</section>
+
+<!-- =============== 8 · MILESTONE 3 B =============== -->
+<section class="page">
+  <div class="eyebrow">Milestone 3 · Quality, accessibility and continuous integration</div>
+  <h2>Every required state, measured contrast,<br>and a build that now checks itself.</h2>
+  <div class="rule"></div>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>Required states across every route</h3>
+      <p>One shared component now covers loading, empty, error, forbidden, unavailable and retry, with the correct
+      assistive-technology roles and busy states. Error text is filtered: only a curated user-facing message is shown, so
+      an internal error, a stack or a raw backend string can never reach the screen.</p>
+      <ul style="margin-top:.07in">
+        <li>Sign-in never distinguishes "no such account" from "wrong password"</li>
+        <li>A permission denial offers no pointless retry; a service outage does</li>
+        <li>Explore shows a visible notice when browser storage is unavailable instead of failing silently</li>
+        <li>The admin queue has a real empty state with a reset action</li>
+      </ul>
+    </div>
+    <div class="blk">
+      <h3>Accessibility, measured not asserted</h3>
+      <p>An automated check implements the published contrast formulas, reads the colour tokens directly out of the
+      stylesheet so measured values can never drift from what ships, and asserts the AA threshold for every rendered
+      text-on-background pair in all three themes.</p>
+      <ul style="margin-top:.07in">
+        <li><strong>Five</strong> contrast failures in the admin panel fixed — the worst was 2.88:1 against a 4.5:1 requirement</li>
+        <li><strong>Two</strong> further failures found in the existing theme tokens that nobody knew about, including form error text at 2.22:1 — effectively unreadable — now 6.02:1</li>
+        <li>The keyboard skip link, previously hidden on admin pages, is present again</li>
+        <li>Sidebar controls given 44&nbsp;px minimum touch targets; reduced-motion preference respected</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:.22in">Verification gates — baseline against the Milestone 3 branch</h3>
+  <table>
+    <thead><tr><th>Gate</th><th class="num" style="width:1.5in">Before</th><th class="num" style="width:1.5in">After</th></tr></thead>
+    <tbody>
+      <tr><td>Automated test suite</td><td class="num">24 passing</td><td class="num"><strong>45 passing, 0 failing</strong></td></tr>
+      <tr><td>Type check</td><td class="num">Pass</td><td class="num"><strong>Pass</strong></td></tr>
+      <tr><td>Lint</td><td class="num">Pass</td><td class="num"><strong>Pass</strong></td></tr>
+      <tr><td>Production build</td><td class="num">33 static pages</td><td class="num"><strong>36 static pages</strong></td></tr>
+      <tr><td>Continuous integration</td><td class="num">None existed</td><td class="num"><strong>Runs on every pull request</strong></td></tr>
+      <tr><td>Raw colour values in the admin panel</td><td class="num">~110 lines of hard-coded hex</td><td class="num"><strong>Zero, asserted by test</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <h3>Why continuous integration mattered here</h3>
+    <p>The repository had no automated checks at all, which is how a branch with a failing test reached a pull request in
+    the first place. Install, test, type-check, lint and build now run automatically on every pull request into the
+    development and production branches. The build step deliberately pins the API origin empty, so each run proves the
+    documented no-backend default still builds. Twenty-one new tests cover the twelve-role catalogue, the role round-trip
+    from Step 1 to Step 2, post-sign-in landing paths, the open-redirect guard, the unified client, and the complete
+    account-creation flow with no backend.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot">08 · Milestone 3 quality</div>
+</section>
+
+<!-- =============== 9 · M3 EVIDENCE =============== -->
+<section class="page">
+  <div class="eyebrow">Milestone 3 evidence · Join, verification and responsive behaviour</div>
+  <h2>The surfaces Milestone 3 owns.</h2>
+  <p class="lede">Desktop captured at 1440&nbsp;px, mobile at 390&nbsp;px, both from production on September 3, 2026.</p>
+
+  <div class="shots g2">
+    <div class="shot-wrap"><div class="shot"><img src="shots/d-join.png" alt="Join step 1"></div>
+      <div class="cap">Join, Step 1 of 4 — the twelve-role grid live in production</div></div>
+    <div class="shot-wrap"><div class="shot"><img src="shots/d-admin-verification.png" alt="Admin verification queue"></div>
+      <div class="cap">Admin verification queue — cases, status and waiting time</div></div>
+  </div>
+
+  <div class="shots g3" style="margin-top:.2in">
+    <div class="shot-wrap"><div class="shot"><img src="shots/m-join.png" alt="Join on mobile"></div>
+      <div class="cap">Join · 390 px</div></div>
+    <div class="shot-wrap"><div class="shot"><img src="shots/m-explore.png" alt="Explore on mobile"></div>
+      <div class="cap">Explore · 390 px</div></div>
+    <div class="shot-wrap"><div class="shot"><img src="shots/m-community.png" alt="Community on mobile"></div>
+      <div class="cap">Community News · 390 px</div></div>
+  </div>
+
+  <div class="callout" style="margin-top:.18in">
+    <h3>What the admin queue shows, and what it does not yet</h3>
+    <p>The queue renders real case rows — organization, type, market, verification status and days waiting — with a
+    sortable order and a live count. It is running on a clearly-labelled sample queue. Case detail with evidence,
+    decision reasons and confirmation is the part that needs the backend's verification-case contract, which has not
+    been supplied.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot">09 · Milestone 3 evidence</div>
+</section>
+
+<!-- =============== 10 · METRICS =============== -->
+<section class="page">
+  <div class="eyebrow">Verified metrics</div>
+  <h2>Every number below was checked directly,<br>not carried forward from a report.</h2>
+  <div class="rule"></div>
+
+  <div class="stats">
+    <div class="stat"><div class="n">13</div><div class="l">Routes returning HTTP 200 in production</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">Legacy paths redirecting correctly</div></div>
+    <div class="stat"><div class="n">45</div><div class="l">Tests passing, zero failing</div></div>
+    <div class="stat"><div class="n">36</div><div class="l">Static pages in the production build</div></div>
+  </div>
+
+  <div class="stats" style="margin-top:.24in">
+    <div class="stat"><div class="n">7</div><div class="l">Contrast failures found and fixed</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">Themes checked for AA compliance</div></div>
+    <div class="stat"><div class="n">15</div><div class="l">Pull requests opened, 9 merged</div></div>
+    <div class="stat"><div class="n">77</div><div class="l">Commits on the development branch</div></div>
+  </div>
+
+  <h3 style="margin-top:.3in">Source for each number</h3>
+  <table>
+    <thead><tr><th style="width:2.05in">Metric</th><th style="width:.95in">Value</th><th>How it was verified</th></tr></thead>
+    <tbody>
+      <tr><td>Routes live in production</td><td><strong>13</strong></td><td>Direct HTTP probe of every route on <code>bridge-connected-signal.netlify.app</code>, 2026-09-03. All returned 200.</td></tr>
+      <tr><td>Legacy redirects</td><td><strong>3</strong></td><td>Same probe: <code>/studio</code>→<code>/create</code>, <code>/business</code>→<code>/my-profile</code>, <code>/signal</code>→<code>/explore</code>, each a 301 to the correct target. Confirmed again in a live browser.</td></tr>
+      <tr><td>Deploy environments</td><td><strong>2</strong></td><td>Production and preview both probed; the identical route set and redirect behaviour returned on both.</td></tr>
+      <tr><td>Tests passing</td><td><strong>45</strong></td><td>Recorded in the Milestone 3 build report from a clean install, and independently re-run by continuous integration on the pull request.</td></tr>
+      <tr><td>Static pages built</td><td><strong>36</strong></td><td>Production build output on the Milestone 3 branch, against 33 on the baseline.</td></tr>
+      <tr><td>Continuous integration</td><td><strong>Passing</strong></td><td>Four workflow runs on the Milestone 3 pull request, all successful; the combined test / type-check / lint / build check completed in 44 seconds on the most recent run.</td></tr>
+      <tr><td>Contrast failures fixed</td><td><strong>7</strong></td><td>Five in the admin panel plus two pre-existing theme-token failures, each with a measured before-and-after ratio in the build report and asserted by an automated check.</td></tr>
+      <tr><td>Themes verified</td><td><strong>3</strong></td><td>Modern Network, Trusted Current and Botanical, each asserted against the AA threshold by the automated contrast test.</td></tr>
+      <tr><td>Member roles</td><td><strong>12</strong></td><td>Counted on the live <code>/join</code> screen and in the shared role catalogue that both join steps read from.</td></tr>
+      <tr><td>Geographic coverage</td><td><strong>50 states + D.C.</strong></td><td>State selector enumerated on the live Explore route.</td></tr>
+      <tr><td>Pull requests</td><td><strong>15 opened · 9 merged</strong></td><td>Repository pull-request history, 2026-08-31 to 2026-09-03.</td></tr>
+      <tr><td>Commits on development</td><td><strong>77</strong></td><td>Commit count on the development branch, first commit 2026-07-11.</td></tr>
+    </tbody>
+  </table>
+
+  <p class="tiny">Route counts refer to distinct application routes reachable in production. The static-page count is higher
+  because it includes generated profile pages. Three routes built in Milestone 3 — sign-in, account creation and the admin
+  entry redirect — are not counted as live: they return 404 in production today because the branch that adds them has not
+  been merged.</p>
+
+  <div class="spacer"></div>
+  <div class="foot">10 · Verified metrics</div>
+</section>
+
+<!-- =============== 11 · INTEGRATION =============== -->
+<section class="page">
+  <div class="eyebrow">Integration · The contract handed to Greencubes</div>
+  <h2>What the front end promises the backend,<br>and what is still outstanding.</h2>
+  <div class="rule"></div>
+  <p class="lede">
+    Two documents were published on August 31 and handed over: an integration pipeline describing repository ownership,
+    the branch and review model, hosting, access and the security rules; and an API contract naming every endpoint the
+    front end already calls, with request and response shapes and the exact status mapping expected.
+  </p>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>Delivered and independently verified</h3>
+      <ul>
+        <li>Server-side role enforcement that correctly rejects both missing and forged credentials on every protected route</li>
+        <li>A real cross-origin allowlist naming the exact production, preview and local origins, returning nothing for an unknown origin</li>
+        <li>Strong response security headers and a consistent error envelope</li>
+        <li>Working health and version endpoints</li>
+        <li>Registration, sign-in, password recovery and email re-verification screens</li>
+        <li>An admin verification queue sending filters as real server-side parameters</li>
+      </ul>
+    </div>
+    <div class="blk">
+      <h3>Outstanding before Milestone 3 can close</h3>
+      <ul>
+        <li>Six of the nine required session claims are absent — including the age-eligibility signal that the 21+ gate depends on, which today has no server-authoritative source</li>
+        <li>One missing response header currently prevents cookie sessions from working; it is the single root cause behind three separate defects</li>
+        <li>Access and refresh tokens are being written to browser storage, against the written security rule</li>
+        <li>No route table or response examples, so the front end defensively probes several possible response shapes</li>
+        <li>The verification-case contract — paginated cases, case detail, evidence references, decisions with reason codes and audit events</li>
+        <li>Backend repository, branch, commit and staging origin — the precondition set on August 31 for turning mock mode off</li>
+        <li>Storage rules: buckets, file types, size limits, signed URLs and retention</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <h3>One approved screen was replaced and has been restored</h3>
+    <p>The backend delivery removed the Join Step 1 role grid and replaced it with a sign-up card. That deleted the only
+    place the product captures a member's role — which the organization onboarding and the verification flow both depend
+    on — and removed the exact screen whose Step 2 and Step 4 product approval is still open with the client. Rather than
+    reverting the work, both screens were kept: Step 1 remains the entry point unchanged, and account creation became its
+    own Step 2. Nothing was lost on either side.</p>
+  </div>
+
+  <div class="callout">
+    <h3>The security posture is the strongest part of the backend delivery</h3>
+    <p>Real server-side role checks, a correct origin allowlist and strong headers are the hard parts and they are done
+    properly. The outstanding items above are contract and documentation gaps, not architectural ones, and they are
+    inexpensive to close.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot">11 · Integration</div>
+</section>
+
+<!-- =============== 12 · NEXT =============== -->
+<section class="page">
+  <div class="eyebrow">What happens next</div>
+  <h2>Three lanes, three owners.</h2>
+  <div class="rule"></div>
+  <p class="lede">Milestone 3 closes when the backend contract lands and the product decisions on the join flow are made.
+  Nothing below is blocked on more than one party.</p>
+
+  <div class="grid3">
+    <div class="blk">
+      <div class="owner">With Greencubes</div>
+      <h3 style="margin-top:.05in">The backend contract</h3>
+      <ul>
+        <li>Add the one missing response header that restores cookie sessions</li>
+        <li>Move access and refresh tokens out of browser storage</li>
+        <li>Supply the six missing session claims, age eligibility first</li>
+        <li>Reconcile the two session endpoints and settle one shape per concept</li>
+        <li>Publish the route table and the verification-queue response schema</li>
+        <li>Return backend repository, branch, commit and staging origin</li>
+        <li>Move admin search and filtering server-side</li>
+        <li>Confirm the Milestone 2 credential rotation is complete</li>
+      </ul>
+    </div>
+    <div class="blk">
+      <div class="owner">With the client</div>
+      <h3 style="margin-top:.05in">Product decisions</h3>
+      <ul>
+        <li><strong>Route-by-route accept or revise</strong> on all five Milestone 2 routes — this is the outstanding acceptance</li>
+        <li><strong>Join Step 2 and Step 4 product approval</strong> — Melissa and Tori</li>
+        <li>Default Community News view: News Grid or classic feed</li>
+        <li>What evidence each of the twelve roles must supply for verification</li>
+        <li>What the public "Verified" badge promises</li>
+        <li>Which profile and contact fields are public, member-only or protected</li>
+        <li>First market and priority role for launch</li>
+        <li>Formal brand approval of the purple direction already in production</li>
+      </ul>
+    </div>
+    <div class="blk">
+      <div class="owner">With Momentum</div>
+      <h3 style="margin-top:.05in">Delivery</h3>
+      <ul>
+        <li>Merge the Milestone 3 hardening branch once the backend contract is settled</li>
+        <li>Settle the session transport decision with Greencubes</li>
+        <li>Bind the front end to the staging origin and turn mock mode off</li>
+        <li>Build Join Steps 3 and 4 once approved</li>
+        <li>Make age eligibility server-authoritative</li>
+        <li>Update the integration contract and pipeline documents as the backend lands</li>
+        <li>Keep one canonical milestone map so no number is ambiguous</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:.24in">
+    <h3>The single most useful thing that can happen this week</h3>
+    <p>A dated, written accept-or-revise on the five review routes. Everything downstream — Join Steps 3 and 4, the
+    directory work, the verification policy — currently waits behind a product decision rather than behind engineering
+    capacity. The build is ready for it.</p>
+  </div>
+
+  <div class="callout warn">
+    <h3>Milestone 4 has not started</h3>
+    <p>The Directory MVP is the next contracted milestone and no work has begun on it. The Explore and profile screens
+    on the review build are Milestone 2 UX running on sample data — they are not a directory. Production directory data,
+    connected search, the claim and correction workflow and contact-request routing are all Milestone 4 scope.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot">12 · What happens next</div>
+</section>
+
+<!-- =============== 13 · METHOD =============== -->
+<section class="page dark">
+  <div class="cover-arc arc-b" style="right:-3.1in;bottom:-3.0in"></div>
+  <div class="eyebrow">Evidence and method</div>
+  <h2 style="margin-top:.12in">How this report was assembled.</h2>
+  <div class="rule"></div>
+  <p class="lede" style="max-width:6.4in">
+    Nothing in this document is reported from memory. Every status, count and claim traces to a live check, a repository
+    artifact, a deployed build or a dated message. Where evidence was missing, the report says so rather than filling
+    the gap.
+  </p>
+
+  <div class="grid2" style="margin-top:.1in">
+    <div class="blk">
+      <h3 style="color:#fff;border-bottom-color:rgba(216,208,221,.25)">What was checked directly</h3>
+      <ul style="color:var(--lav)">
+        <li style="color:var(--lav)">Every production and preview route probed for status and redirect behaviour on 2026-09-03</li>
+        <li style="color:var(--lav)">Each screen walked in a live browser and its content read, at desktop and mobile widths</li>
+        <li style="color:var(--lav)">All screenshots in this report captured from production the same day</li>
+        <li style="color:var(--lav)">Repository history, pull requests and continuous-integration results read from source</li>
+        <li style="color:var(--lav)">Test, build and accessibility figures taken from a clean verified run and re-confirmed by automated checks</li>
+      </ul>
+    </div>
+    <div class="blk">
+      <h3 style="color:#fff;border-bottom-color:rgba(216,208,221,.25)">Stated limits</h3>
+      <ul style="color:var(--lav)">
+        <li style="color:var(--lav)">No client acceptance is claimed anywhere in this report, because none has been recorded with a date and a source</li>
+        <li style="color:var(--lav)">Milestone 1 was delivered and paid, but its formal acceptance was never captured as an artifact</li>
+        <li style="color:var(--lav)">The Milestone 2 backend was conditionally accepted pending evidence that is still outstanding</li>
+        <li style="color:var(--lav)">Milestone 3 is in progress. Its frontend work is built and passing checks but is not merged and not live</li>
+        <li style="color:var(--lav)">Milestone 4 and everything after it has not started</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+  <div style="border-top:1px solid rgba(216,208,221,.22); padding-top:.2in">
+    <div style="display:flex;align-items:center;gap:.2in">
+      <img src="bridge-mark.svg" alt="" style="width:.52in">
+      <div>
+        <div style="font-size:13pt;font-weight:800;letter-spacing:.04em">BRIDGE</div>
+        <div style="font-size:6.6pt;font-weight:700;letter-spacing:.19em;text-transform:uppercase;color:var(--purple);margin-top:.02in">Connect. Grow. Fight Together.</div>
+      </div>
+    </div>
+    <p style="font-size:7.4pt;color:var(--lav);margin-top:.16in;max-width:5.6in;line-height:1.55">
+      Prepared by Momentum Digital · September 3, 2026 · Covering contract Milestones 1, 2 and 3.
+      A companion evidence index maps every claim and figure in this report to its source.
+    </p>
+  </div>
+
+  <div class="foot">13 · Evidence and method</div>
+</section>
+
+</body>
+</html>

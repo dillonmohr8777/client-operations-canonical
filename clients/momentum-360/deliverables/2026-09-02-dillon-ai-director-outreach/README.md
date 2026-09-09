@@ -2,12 +2,25 @@
 
 Client route: `momentum-360`  
 Prepared: 2026-09-02  
-Status: Wave 1 sent 41 stiff notes. Wave 2 sent 200 human hometown notes from chamber published emails.  
-Sends: 41 wave 1, 200 wave 2  
+Reconciled: 2026-09-03 against live Gmail SENT state<br>
+Status: 241 unique prospect messages are verified SENT: 41 in wave 1 and 200 in wave 2. SENT is not proof of inbox delivery.<br>
 From mailbox: `dillonmohr8777@gmail.com`  
 CC: none  
 Brand pages: Need Momentum and Momentum 360 only  
 Not used: Immortal site, Philadelphia radar, UPS Store list
+
+## Current truth state
+
+- 241 unique recipient and subject pairs are present in Gmail SENT.
+- No duplicate recipients or duplicate recipient and subject pairs were found across the two waves.
+- Two explicit bounce notices and two automated absence replies were found.
+- Zero verified human replies were found at reconciliation time.
+- 239 messages had no explicit bounce notice. That is not delivery proof.
+- Wave 2 has 200 exact recipient and subject matches between the local manifest and Gmail.
+- Wave 1 has 41 Gmail SENT messages, but the local log contains only 7 receipt entries. The 34 missing local receipts were not reconstructed or invented.
+- Twenty one wave 1 Gmail subjects differ from the local planned subjects. Gmail is authoritative for what was sent; the local files remain historical planning evidence.
+
+The aggregate reconciliation record is `sends/gmail-reconciliation-2026-09-03.json`.
 
 This is Dillon reaching Erie and Pittsburgh owners as AI Marketing Director. He grew up in Erie, so every Erie note uses that hometown line plus a place taken from the official site. The company proof is the live Need Momentum and Momentum 360 sites. Sean and Mac stay off the thread.
 
@@ -77,9 +90,9 @@ The list is built. Source is OpenStreetMap website tags, not the radar and not G
 
 See `list/README.md`. Emails are not invented. A row becomes sendable only after a published mailbox is taken from the official site and Dillon approves the exact preview.
 
-## First unsent samples
+## Historical review samples
 
-Review copies are in Dillon's Gmail inbox. From and to are both `dillonmohr8777@gmail.com`. No prospect was mailed.
+These owner-only review copies were created before the prospect waves. From and to are both `dillonmohr8777@gmail.com`. They are historical review artifacts, not evidence that the later prospect waves remained unsent.
 
 - `REVIEW | Fugh Refrigeration outreach preview`
 - `REVIEW | Bay House Erie outreach preview`
@@ -91,6 +104,6 @@ Repo copies remain at:
 - Fugh Refrigeration, Pittsburgh and Western PA: `drafts/fugh-refrigeration.html`
 - Bay House / Pier 6, Erie bayfront: `drafts/bay-house-erie.html`
 
-## One decision
+## Current control
 
-Open `REVIEW | Bay House Erie hometown rewrite` in Gmail. Approve that Erie voice, or mark the edits. After that, the next move is the 32-row review batch, still unsent until you say send.
+Do not send or follow up from this package based on the historical plan. Any future outreach requires a new exact preview, current suppression and reply review, and Dillon's action-specific approval. The two bounce notices and two automated absence replies should be handled as response-state evidence, not as proof about the other messages.

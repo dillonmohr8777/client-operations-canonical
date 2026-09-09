@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html class="html blog wp-theme-Belfor" lang="en-US">
+  <head>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <script>
+       window.dataLayer = window.dataLayer ||[];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('consent','default',{
+         'ad_storage':'denied',
+         'analytics_storage':'denied',
+         'ad_user_data':'denied',
+         'ad_personalization':'denied',
+         'personalization_storage':'denied',
+         'functionality_storage':'granted',
+         'security_storage':'granted',
+         'wait_for_update': 500
+       });
+       gtag("set", "ads_data_redaction", true);
+       gtag("set", "url_passthrough",true);
+     </script>
+     
+    <script src="https://cmp.osano.com/VvUzIwaal7/1a9351d4-9819-4212-a07f-f591e3d23bae/osano.js"></script>
+    
+    <style>
+      #bk-google-maps-consent-tooltip {
+        display: none;
+        min-height: 160px;
+        padding: 28px 20px;
+        margin: 200px auto 24px;
+        border: 1px solid #d7d7d7;
+        border-radius: 8px;
+        background: #f7f7f7;
+        color: #222;
+        text-align: center;
+        box-sizing: border-box;
+        max-width: 900px;
+      }
+    
+      #bk-google-maps-consent-tooltip.is-visible {
+        display: block;
+      }
+    
+      #bk-google-maps-consent-tooltip strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 20px;
+      }
+    
+      #bk-google-maps-consent-tooltip button {
+        display: inline-block;
+        margin-top: 16px;
+        padding: 10px 16px;
+        border-radius: 4px;
+        border: 0;
+        background: #005baa;
+        color: #fff;
+        font-weight: 700;
+        cursor: pointer;
+      }
+    </style>
+    
+    <script data-uc-allowed="true">
+    (function () {
+      'use strict';
+    
+      var tooltipId = 'bk-google-maps-consent-tooltip';
+    
+      function isLocationsPage() {
+        return window.location.pathname.replace(/\/+$/, '/') === '/about/locations/';
+      }
+    
+      function openConsentPreferences() {
+        if (window.UC_UI && typeof window.UC_UI.showSecondLayer === 'function') {
+          window.UC_UI.showSecondLayer();
+        }
+      }
+    
+      function findFindLocationHeading() {
+        var headings = document.querySelectorAll('h1, h2, h3, h4');
+    
+        for (var i = 0; i < headings.length; i++) {
+          if ((headings[i].textContent || '').trim().toLowerCase() === 'find a location') {
+            return headings[i];
+          }
+        }
+    
+        return null;
+      }
+    
+      function mapIsVisible() {
+        var visibleMapSelectors = [
+          '.gm-style',
+          'iframe[src*="google.com/maps"]',
+          'iframe[src*="maps.google.com"]',
+          'script[src*="maps.googleapis.com"]:not([type="text/plain"])'
+        ];
+    
+        for (var i = 0; i < visibleMapSelectors.length; i++) {
+          if (document.querySelector(visibleMapSelectors[i])) {
+            return true;
+          }
+        }
+    
+        return false;
+      }
+    
+      function locationFinderAppearsVisible() {
+        var heading = findFindLocationHeading();
+    
+        if (!heading) {
+          return false;
+        }
+    
+        var section = heading.closest('section') || heading.parentNode;
+    
+        if (!section) {
+          return false;
+        }
+    
+        var sectionText = (section.textContent || '').trim().toLowerCase();
+    
+        /*
+         * The blocked state usually leaves the section with only heading/form text.
+         * The working state has a rendered Google map element elsewhere on the page.
+         */
+        return mapIsVisible() || sectionText.indexOf('enter zip') !== -1;
+      }
+    
+      function removeTooltip() {
+        var existing = document.getElementById(tooltipId);
+    
+        if (existing && existing.parentNode) {
+          existing.parentNode.removeChild(existing);
+        }
+      }
+    
+      function insertTooltip() {
+        if (!isLocationsPage()) {
+          return;
+        }
+    
+        if (mapIsVisible()) {
+          removeTooltip();
+          return;
+        }
+    
+        if (document.getElementById(tooltipId)) {
+          return;
+        }
+    
+        var heading = findFindLocationHeading();
+    
+        if (!heading || !heading.parentNode) {
+          return;
+        }
+    
+        var tooltip = document.createElement('div');
+        tooltip.id = tooltipId;
+        tooltip.className = 'is-visible';
+        tooltip.setAttribute('role', 'status');
+        tooltip.setAttribute('aria-live', 'polite');
+    
+        tooltip.innerHTML =
+          '<strong>Map unavailable</strong>' +
+          '<span>Google Maps and the location finder are blocked because cookie consent has not been granted. Update your privacy preferences to view this section.</span><br>' +
+          '<button type="button">Manage Privacy Preferences</button>';
+    
+        tooltip.querySelector('button').addEventListener('click', openConsentPreferences);
+    
+        heading.parentNode.insertBefore(tooltip, heading.nextSibling);
+      }
+    
+      function checkMapState() {
+        if (!isLocationsPage()) {
+          return;
+        }
+    
+        if (mapIsVisible()) {
+          removeTooltip();
+          return;
+        }
+    
+        insertTooltip();
+      }
+    
+      function runChecks() {
+        setTimeout(checkMapState, 1500);
+        setTimeout(checkMapState, 3000);
+        setTimeout(checkMapState, 5000);
+      }
+    
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', runChecks);
+      } else {
+        runChecks();
+      }
+    
+      window.addEventListener('load', runChecks);
+      window.addEventListener('UC_UI_CMP_EVENT', runChecks);
+      window.addEventListener('UC_UI_INITIALIZED', runChecks);
+    })();
+    </script>
+    
+    <link rel="alternate" type="application/rss+xml" title="1-800 WATER DAMAGE Feed" href="https://www.1800waterdamage.com/feed/">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    
+	
+	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v24.8.1 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>1-800 WATER DAMAGE News | Property Restoration Experts</title>
+	<meta name="description" content="Stay in the loop with 1-800 WATER DAMAGE! Be informed with the latest updates and valuable information on our news page." />
+	<link rel="canonical" href="https://www.1800waterdamage.com/about/news/" />
+	<link rel="next" href="https://www.1800waterdamage.com/about/news/page/2/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="1-800 WATER DAMAGE News | Property Restoration Experts" />
+	<meta property="og:description" content="Stay in the loop with 1-800 WATER DAMAGE! Be informed with the latest updates and valuable information on our news page." />
+	<meta property="og:url" content="https://www.1800waterdamage.com/about/news/" />
+	<meta property="og:site_name" content="1-800 WATER DAMAGE" />
+	<meta property="og:image" content="https://www.1800waterdamage.com/wp-content/uploads/2020/05/Water_flood_1920x610-4.jpg" />
+	<meta property="og:image:width" content="1920" />
+	<meta property="og:image:height" content="610" />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":["WebPage","CollectionPage"],"@id":"https://www.1800waterdamage.com/about/news/","url":"https://www.1800waterdamage.com/about/news/","name":"1-800 WATER DAMAGE News | Property Restoration Experts","isPartOf":{"@id":"https://www.1800waterdamage.com/#website"},"datePublished":"2020-05-06T14:54:44+00:00","dateModified":"2024-12-31T19:03:05+00:00","description":"Stay in the loop with 1-800 WATER DAMAGE! Be informed with the latest updates and valuable information on our news page.","breadcrumb":{"@id":"https://www.1800waterdamage.com/about/news/#breadcrumb"},"inLanguage":"en-US"},{"@type":"BreadcrumbList","@id":"https://www.1800waterdamage.com/about/news/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.1800waterdamage.com/"},{"@type":"ListItem","position":2,"name":"About","item":"https://www.1800waterdamage.com/about/"},{"@type":"ListItem","position":3,"name":"Latest News"}]},{"@type":"WebSite","@id":"https://www.1800waterdamage.com/#website","url":"https://www.1800waterdamage.com/","name":"1-800 WATER DAMAGE","description":"Restoring What Matters Most™","publisher":{"@id":"https://www.1800waterdamage.com/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.1800waterdamage.com/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https://www.1800waterdamage.com/#organization","name":"1-800 WATER DAMAGE","url":"https://www.1800waterdamage.com/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.1800waterdamage.com/#/schema/logo/image/","url":"https://www.1800waterdamage.com/wp-content/uploads/2023/03/logo-with-tagline-vertical-square.jpg","contentUrl":"https://www.1800waterdamage.com/wp-content/uploads/2023/03/logo-with-tagline-vertical-square.jpg","width":600,"height":600,"caption":"1-800 WATER DAMAGE"},"image":{"@id":"https://www.1800waterdamage.com/#/schema/logo/image/"}}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//www.google.com' />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style*=border-color]){border-style:solid}html :where([style*=border-top-color]){border-top-style:solid}html :where([style*=border-right-color]){border-right-style:solid}html :where([style*=border-bottom-color]){border-bottom-style:solid}html :where([style*=border-left-color]){border-left-style:solid}html :where([style*=border-width]){border-style:solid}html :where([style*=border-top-width]){border-top-style:solid}html :where([style*=border-right-width]){border-right-style:solid}html :where([style*=border-bottom-width]){border-bottom-style:solid}html :where([style*=border-left-width]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='LeadConnector-css' href='https://www.1800waterdamage.com/wp-content/plugins/leadconnector/public/css/lc-public.css?ver=1.7' media='all' />
+<link rel='stylesheet' id='syn-form-validation-css' href='https://www.1800waterdamage.com/wp-content/plugins/syn-custom/css/form-validation.css?ver=7.0.4' media='all' />
+<link rel='stylesheet' id='contact-form-7-css' href='https://www.1800waterdamage.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.0.3' media='all' />
+<link rel='stylesheet' id='wpcf7-redirect-script-frontend-css' href='https://www.1800waterdamage.com/wp-content/plugins/wpcf7-redirect/build/css/wpcf7-redirect-frontend.min.css?ver=1.1' media='all' />
+<link rel='stylesheet' id='spam-protect-for-contact-form7-css' href='https://www.1800waterdamage.com/wp-content/plugins/wp-contact-form-7-spam-blocker/frontend/css/spam-protect-for-contact-form7.css?ver=1.0.0' media='all' />
+<link rel='stylesheet' id='bugherd-dashboard-plugin-styles-css' href='https://www.1800waterdamage.com/wp-content/plugins/bugherd-dashboard/public/assets/css/public.css?ver=1.0.0' media='all' />
+<link rel='stylesheet' id='Flynt/assets-css' href='https://www.1800waterdamage.com/wp-content/themes/Belfor/dist/assets/main.css' media='all' />
+<script id="bfg-cookies-js" src="https://www.1800waterdamage.com/wp-content/plugins/bfg-custom//js/js.cookie.js?ver=7.0.4"></script>
+<script id="bfg-ppc-redirect-js" src="https://www.1800waterdamage.com/wp-content/plugins/bfg-custom//js/ppc-redirect.js?ver=7.0.4"></script>
+<script id="jquery-js" src="https://www.1800waterdamage.com/wp-includes/js/jquery/jquery.js?ver=3.7.1"></script>
+<script id="jquery-maskedinput-js" src="https://www.1800waterdamage.com/wp-content/plugins/syn-custom/js/jquery.maskedinput.js?ver=1.3.1"></script>
+<script id="syn-form-validation-js-extra">
+var SynVal = {"icon":"https://www.1800waterdamage.com/wp-content/plugins/syn-custom/img/ajax-loader.gif"};
+//# sourceURL=syn-form-validation-js-extra
+</script>
+<script id="syn-form-validation-js" src="https://www.1800waterdamage.com/wp-content/plugins/syn-custom/js/form-validation.js?ver=7.0.4"></script>
+<script id="wp-rt-1-js" src="https://www.1800waterdamage.com/wp-content/plugins/wp-reviewtrackers//js/teaser.js?ver=7.0.4"></script>
+<script id="wp-rt-2-js" src="https://www.1800waterdamage.com/wp-content/plugins/wp-reviewtrackers//js/vendors_aggregate_rating_full_page_teaser.js?ver=7.0.4"></script>
+<script id="wp-rt-3-js" src="https://www.1800waterdamage.com/wp-content/plugins/wp-reviewtrackers//js/vendors_full_page_teaser.js?ver=7.0.4"></script>
+<script id="wp-rt-4-js" src="https://www.1800waterdamage.com/wp-content/plugins/wp-reviewtrackers//js/vendors_teaser.js?ver=7.0.4"></script>
+<script id="wp-rt-5-js" src="https://www.1800waterdamage.com/wp-content/plugins/wp-reviewtrackers//js/widget-init.js?ver=7.0.4"></script>
+<script id="spam-protect-for-contact-form7-js" src="https://www.1800waterdamage.com/wp-content/plugins/wp-contact-form-7-spam-blocker/frontend/js/spam-protect-for-contact-form7.js?ver=1.0.0"></script>
+<script id="bugherd-dashboard-plugin-script-js" src="https://www.1800waterdamage.com/wp-content/plugins/bugherd-dashboard/public/assets/js/public.js?ver=1.0.0"></script>
+<script src="//scripts.iconnode.com/110947.js"></script>
+<style>
+	.section-btn {
+		display: flex;
+	}
+	.section-btn.btn-center,
+	.cta .section-btn {
+		display: flex;
+		justify-content: center;
+	}
+	.cta {
+		padding: 30px !important;
+	}
+	.cta .section-btn a.btn-yellow {
+		color: #204c71 !important;
+	}
+	.cta span {
+		color: #ffffff;
+	}
+	.cta span a {
+		color: #ffffff !important;
+		text-decoration: underline !important;
+	}
+	.page-id-6721 [is="flynt-block-testimonials"],
+	.page-id-6465 [is="flynt-block-testimonials"],
+	.page-id-1912 [is="flynt-block-testimonials"],
+	.page-id-6860 [is="flynt-block-testimonials"],
+	.page-id-1934 [is="flynt-block-testimonials"],
+	.page-id-6887 [is="flynt-block-testimonials"],
+	.page-id-6951 [is="flynt-block-testimonials"],
+	.page-id-6954 [is="flynt-block-testimonials"] {
+		background-position: center center !important;
+	}
+	.video-row.text-left {
+		text-align: left;
+	}
+	.section-3 .section-btn a,
+	a.btn-yellow {
+		background: #fff100;
+		border-radius: 5px;
+		color: #204c71;
+		font-size: 16px;
+		font-weight: 800 !important;
+		text-transform: uppercase;
+		text-decoration: none !important;
+		padding: 25px;
+		vertical-align: middle;
+	}
+	@media (min-width: 1250px) {
+		.post-template-default:not(.home) .internal-hero-banner {
+			padding: 80px 0px;
+		}
+	}
+</style>
+
+<meta name="google-site-verification" content="pvQMhPYf5EN1_2hkBQycWPftHkXCXOpeexI-ubY3bQU" />
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="cxqFGTLlKgNq2BflbmeXAQ" async></script>
+
+
+
+
+<script>
+document.addEventListener('click', function(event) {
+	// Check if the clicked element is a link
+	let link = event.target.closest('a');
+	if (link) {
+		let linkHref = link.href;
+		gtag('event', 'click', {
+			'link_url': linkHref,
+			'link_text': link.innerText || link.title || link.id || 'unknown'
+		});
+	}
+});
+</script><script type="text/javascript">
+_linkedin_partner_id = "8155234";
+window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script><script type="text/javascript">
+(function(l) {
+if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+window.lintrk.q=[]}
+var s = document.getElementsByTagName("script")[0];
+var b = document.createElement("script");
+b.type = "text/javascript";b.async = true;
+b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+s.parentNode.insertBefore(b, s);})(window.lintrk);
+</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8155234&fmt=gif" />
+</noscript><link rel="icon" href="https://www.1800waterdamage.com/wp-content/uploads/2020/05/cropped-800Water-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://www.1800waterdamage.com/wp-content/uploads/2020/05/cropped-800Water-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://www.1800waterdamage.com/wp-content/uploads/2020/05/cropped-800Water-180x180.png" />
+<meta name="msapplication-TileImage" content="https://www.1800waterdamage.com/wp-content/uploads/2020/05/cropped-800Water-270x270.png" />
+
+  </head>
+  <body class=" site-1">
+    <!-- wp_body_open scripts -->
+    
+    
+    <!-- wp_body_open scripts -->
+    
+<a class="skip-link screen-reader-text" href="#mainContent">Skip to content</a>
+          <div class="pageWrapper">
+        <header class="mainHeader">
+                      <nav is="flynt-navigation-main" class="flyntComponent">
+
+  <nav is="flynt-navigation-top" class="flyntComponent">
+    <div class="wrapper">
+      <div class="container centerMaxWidthContainer">
+				<!-- Drew Edit 2023-07-13: Adding Dynamic Social Media Icons and Links to Left Side of Top bar -->
+				<ul class='top-social-menu'>
+											<li class='social-menu-item '>
+						  <a class="social-menu-link facebook" href="https://www.facebook.com/1800WaterDamageCorp/" target="_blank" rel="noopener noreferrer" aria-label="Like us on Facebook (opens in a new window)" role="link"><i class="fab fa-facebook-square" aria-hidden="true" aria-label="Like us on Facebook (opens in a new window)"></i></a>
+						</li>
+				    						<li class='social-menu-item '>
+						  <a class="social-menu-link facebook" href="https://www.instagram.com/1800waterdamage/" target="_blank" rel="noopener noreferrer" aria-label="Like us on Facebook (opens in a new window)" role="link"><i class="fab fa-instagram-square" aria-hidden="true" aria-label="Like us on Instagram (opens in a new window)"></i></a>
+						</li>
+				    						<li class='social-menu-item '>
+						  <a class="social-menu-link facebook" href="https://twitter.com/1800WaterDamage" target="_blank" rel="noopener noreferrer" aria-label="Like us on Facebook (opens in a new window)" role="link"><i class="fab fa-twitter-square" aria-hidden="true" aria-label="Follow us on Twitter (opens in a new window)"></i></a>
+						</li>
+				    						<li class='social-menu-item '>
+						  <a class="social-menu-link facebook" href="https://www.linkedin.com/company/1-800-water-damage" target="_blank" rel="noopener noreferrer" aria-label="Like us on Facebook (opens in a new window)" role="link"><i class="fab fa-linkedin" aria-hidden="true" aria-label="Connect with us on LinkedIn (opens in a new window)"></i></a>
+						</li>
+				    						<li class='social-menu-item '>
+						  <a class="social-menu-link facebook" href="https://www.youtube.com/channel/UCeKhsAwz6yVxH2WBjsXxLpA" target="_blank" rel="noopener noreferrer" aria-label="Like us on Facebook (opens in a new window)" role="link"><i class="fab fa-youtube" aria-hidden="true" aria-label="Watch us on YouTube (opens in a new window)"></i></a>
+						</li>
+				    				</ul>
+        <ul class="top-menu">
+          <li class="top-menu-item">
+                          <a class="top-menu-link" aria-label="Water Damage Restoration Near Me" href="/about/locations/"> Water Damage Restoration Near Me <i class="fas fa-map-marker-alt"></i></a>
+                      </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <div class="container centerMaxWidthContainer" id="topNavContainer">
+      <a class="logo" href="https://www.1800waterdamage.com/">
+        <img class="logo-image" src="https://www.1800waterdamage.com/wp-content/themes/Belfor/dist/Components/NavigationMain/Assets/logo.png" alt="1-800 WATER DAMAGE - Logo Main">
+      </a>
+            <div role="navigation" aria-label="Main menu" id="topNavBar">
+        <ul class='menu nav'><li class='menu-item mega--menu'><a class='menu-link' aria-label='Services' href='https://www.1800waterdamage.com/services/'>Services</a><ul class='nav-drop'><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Water &amp; Flood Damage Restoration' href='https://www.1800waterdamage.com/services/water-flood-damage-restoration/'>Water &amp; Flood Damage Restoration</a><ul class='mega-nav-drop'><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Water Removal &amp; Extraction' href='https://www.1800waterdamage.com/services/water-flood-damage-restoration/water-removal-extraction/'>Water Removal &amp; Extraction</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Flood Damage Restoration' href='https://www.1800waterdamage.com/services/water-flood-damage-restoration/flood-damage/'>Flood Damage Restoration</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Pipe Burst Repair' href='https://www.1800waterdamage.com/services/water-flood-damage-restoration/pipe-burst-repair/'>Pipe Burst Repair</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Commercial Water Damage' href='https://www.1800waterdamage.com/services/water-flood-damage-restoration/commercial-water-damage-restoration/'>Commercial Water Damage</a></li></ul></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Fire &amp; Smoke Damage' href='https://www.1800waterdamage.com/services/fire-smoke-damage-restoration/'>Fire &amp; Smoke Damage</a><ul class='mega-nav-drop'><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Electrical Fire' href='https://www.1800waterdamage.com/services/fire-smoke-damage-restoration/electrical-fire-restoration/'>Electrical Fire</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Kitchen Fire' href='https://www.1800waterdamage.com/services/fire-smoke-damage-restoration/kitchen-fire-restoration/'>Kitchen Fire</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Housefires' href='https://www.1800waterdamage.com/services/fire-smoke-damage-restoration/housefires/'>Housefires</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Wildfire' href='https://www.1800waterdamage.com/services/fire-smoke-damage-restoration/wildfire-damage-restoration-services/'>Wildfire</a></li></ul></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Sewage Cleanup' href='https://www.1800waterdamage.com/services/sewage-cleanup/'>Sewage Cleanup</a><ul class='mega-nav-drop'><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Sewage Backup Cleanup' href='https://www.1800waterdamage.com/services/sewage-cleanup/sewage-backup-cleanup/'>Sewage Backup Cleanup</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Septic Tank Failure Cleanup' href='https://www.1800waterdamage.com/services/sewage-cleanup/septic-tank-failure-cleanup/'>Septic Tank Failure Cleanup</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Toilet Overflow Cleanup' href='https://www.1800waterdamage.com/services/sewage-cleanup/toilet-overflow-cleanup/'>Toilet Overflow Cleanup</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Professional Odor Removal Services' href='https://www.1800waterdamage.com/services/sewage-cleanup/odor-removal/'>Professional Odor Removal Services</a></li></ul></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Commercial Restoration Services' href='https://www.1800waterdamage.com/services/commercial-restoration-services/'>Commercial Restoration Services</a></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Mold Damage' href='https://www.1800waterdamage.com/services/mold-damage-restoration/'>Mold Damage</a><ul class='mega-nav-drop'><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Mold Removal Services' href='https://www.1800waterdamage.com/services/mold-damage-restoration/mold-removal-remediation/'>Mold Removal Services</a></li></ul></li></ul></li><li class='menu-item mega--menu'><a class='menu-link' aria-label='About' href='https://www.1800waterdamage.com/about/'>About</a><ul class='nav-drop'><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='About Us' href='https://www.1800waterdamage.com/about/about-us/'>About Us</a></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Locations' href='https://www.1800waterdamage.com/about/locations/'>Locations</a></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Careers' href='https://1-800-water-damage-careers.careerplug.com/' target='_blank'>Careers</a></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Partnerships' href='https://www.1800waterdamage.com/about/partnerships/'>Partnerships</a></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Latest News' href='https://www.1800waterdamage.com/about/news/'>Latest News</a></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Continuing Education' href='https://www.1800waterdamage.com/about/continuing-education/'>Continuing Education</a></li></ul></li><li class='menu-item mega--menu'><a class='menu-link' aria-label='Why 1-800-WATER-DAMAGE?' href='https://www.1800waterdamage.com/why-1800waterdamage/'>Why 1-800-WATER-DAMAGE?</a></li><li class='menu-item mega--menu'><a class='menu-link' aria-label='Request Service' href='https://www.1800waterdamage.com/request-service/'>Request Service</a></li></ul>
+      </div>
+            <div class="emergency__service">
+        24/7 Emergency Service <br>
+        <span>
+          <a class="phone" href="tel:+1-(800) 928-3732" title="Call 1-800-Water-Damage">(800) 928-3732</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</nav>
+<div></div>
+            <nav is="flynt-navigation-burger" class="flyntComponent">
+<nav is="flynt-navigation-top" class="flyntComponent">
+  <div class="wrapper">
+    <div class="container centerMaxWidthContainer">
+              <ul class="top-menu">
+                      <li class="top-menu-item ">
+              <a class="top-menu-link" aria-label="Services" href="https://www.1800waterdamage.com/services/" >Services</a>
+            </li>
+                      <li class="top-menu-item ">
+              <a class="top-menu-link" aria-label="About" href="https://www.1800waterdamage.com/about/" >About</a>
+            </li>
+                      <li class="top-menu-item ">
+              <a class="top-menu-link" aria-label="Why 1-800-WATER-DAMAGE?" href="https://www.1800waterdamage.com/why-1800waterdamage/" >Why 1-800-WATER-DAMAGE?</a>
+            </li>
+                      <li class="top-menu-item ">
+              <a class="top-menu-link" aria-label="Request Service" href="https://www.1800waterdamage.com/request-service/" >Request Service</a>
+            </li>
+                  </ul>
+          </div>
+  </div>
+</nav>
+
+  <div class="container centerMaxWidthContainer">
+    <a class="logo" href="https://www.1800waterdamage.com/">
+  <img class="logo-image" src="https://www.1800waterdamage.com/wp-content/themes/Belfor/dist/Components/NavigationBurger/Assets/logo.png" alt="1-800 WATER DAMAGE - Logo Mobile">
+</a>
+                  <a class="top-menu-link first" href="/about/locations/" aria-label="Water Damage Restoration Near Me"><i class="fas fa-map-marker-alt"></i>Water Damage<br /> Near Me</a>
+            <button class="hamburger" type="button" data-toggle-menu aria-label="Toggle Menu">
+  <span class="hamburger-barPrimary"></span>
+  <span class="hamburger-barSecondary"></span>
+</button>
+      </div>
+      <div class="mobileMenu">
+<ul class='menu nav'><li class='menu-item mega--menu'><a class='menu-link' aria-label='Services' href='https://www.1800waterdamage.com/services/'>Services</a><ul class='nav-drop'><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Water &amp; Flood Damage Restoration' href='https://www.1800waterdamage.com/services/water-flood-damage-restoration/'>Water &amp; Flood Damage Restoration</a><ul class='mega-nav-drop'><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Water Removal &amp; Extraction' href='https://www.1800waterdamage.com/services/water-flood-damage-restoration/water-removal-extraction/'>Water Removal &amp; Extraction</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Flood Damage Restoration' href='https://www.1800waterdamage.com/services/water-flood-damage-restoration/flood-damage/'>Flood Damage Restoration</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Pipe Burst Repair' href='https://www.1800waterdamage.com/services/water-flood-damage-restoration/pipe-burst-repair/'>Pipe Burst Repair</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Commercial Water Damage' href='https://www.1800waterdamage.com/services/water-flood-damage-restoration/commercial-water-damage-restoration/'>Commercial Water Damage</a></li></ul></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Fire &amp; Smoke Damage' href='https://www.1800waterdamage.com/services/fire-smoke-damage-restoration/'>Fire &amp; Smoke Damage</a><ul class='mega-nav-drop'><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Electrical Fire' href='https://www.1800waterdamage.com/services/fire-smoke-damage-restoration/electrical-fire-restoration/'>Electrical Fire</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Kitchen Fire' href='https://www.1800waterdamage.com/services/fire-smoke-damage-restoration/kitchen-fire-restoration/'>Kitchen Fire</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Housefires' href='https://www.1800waterdamage.com/services/fire-smoke-damage-restoration/housefires/'>Housefires</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Wildfire' href='https://www.1800waterdamage.com/services/fire-smoke-damage-restoration/wildfire-damage-restoration-services/'>Wildfire</a></li></ul></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Sewage Cleanup' href='https://www.1800waterdamage.com/services/sewage-cleanup/'>Sewage Cleanup</a><ul class='mega-nav-drop'><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Sewage Backup Cleanup' href='https://www.1800waterdamage.com/services/sewage-cleanup/sewage-backup-cleanup/'>Sewage Backup Cleanup</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Septic Tank Failure Cleanup' href='https://www.1800waterdamage.com/services/sewage-cleanup/septic-tank-failure-cleanup/'>Septic Tank Failure Cleanup</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Toilet Overflow Cleanup' href='https://www.1800waterdamage.com/services/sewage-cleanup/toilet-overflow-cleanup/'>Toilet Overflow Cleanup</a></li><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Professional Odor Removal Services' href='https://www.1800waterdamage.com/services/sewage-cleanup/odor-removal/'>Professional Odor Removal Services</a></li></ul></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Commercial Restoration Services' href='https://www.1800waterdamage.com/services/commercial-restoration-services/'>Commercial Restoration Services</a></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Mold Damage' href='https://www.1800waterdamage.com/services/mold-damage-restoration/'>Mold Damage</a><ul class='mega-nav-drop'><li class='mega-nav-drop-item'><a class='mega-nav-drop-link' aria-label='Mold Removal Services' href='https://www.1800waterdamage.com/services/mold-damage-restoration/mold-removal-remediation/'>Mold Removal Services</a></li></ul></li></ul></li><li class='menu-item mega--menu'><a class='menu-link' aria-label='About' href='https://www.1800waterdamage.com/about/'>About</a><ul class='nav-drop'><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='About Us' href='https://www.1800waterdamage.com/about/about-us/'>About Us</a></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Locations' href='https://www.1800waterdamage.com/about/locations/'>Locations</a></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Careers' href='https://1-800-water-damage-careers.careerplug.com/' target='_blank'>Careers</a></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Partnerships' href='https://www.1800waterdamage.com/about/partnerships/'>Partnerships</a></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Latest News' href='https://www.1800waterdamage.com/about/news/'>Latest News</a></li><li class='nav-drop-item mega--children'><a class='nav-drop-link' aria-label='Continuing Education' href='https://www.1800waterdamage.com/about/continuing-education/'>Continuing Education</a></li></ul></li><li class='menu-item mega--menu'><a class='menu-link' aria-label='Why 1-800-WATER-DAMAGE?' href='https://www.1800waterdamage.com/why-1800waterdamage/'>Why 1-800-WATER-DAMAGE?</a></li><li class='menu-item mega--menu'><a class='menu-link' aria-label='Request Service' href='https://www.1800waterdamage.com/request-service/'>Request Service</a></li></ul>
+</div>  </nav>
+
+                  </header>
+        <main class="mainContent" id="mainContent">
+                        <div class="internal-hero-banner flyntComponent componentSpacing themeLight" is="flynt-hero-banner" style="background:#204C71 url( https://www.1800waterdamage.com/wp-content/uploads/2020/05/services_1920x610.jpg )  no-repeat 100%/cover">
+  <div class="container">
+    <div class="box box--imageLeft">
+      <div class="box-inner box-inner--archive">
+        <h1>Latest News</h1>
+        <div id="pac-container"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flyntComponent themeLight" is="flynt-grid-posts-archive">
+  
+  <div class="container centerMaxWidthContainer">
+    <div class="preContent">
+            <h2><span style="font-weight: 400;">Stay Up to Date</span></h2>
+<p><span style="font-weight: 400;">At 1-800 WATER DAMAGE, we want to keep our customers and community informed of the latest news and happenings. Browse our collection of news, tips, and information.</span></p>
+
+    </div>
+
+    <form role="search" method="get" id="searchform" class="searchform" action="https://www.1800waterdamage.com">
+        <div>
+          <label for="post-search">Search by Keyword or Phrase…</label>
+          <input id="post-search" type="text" value="" name="s" id="s" />
+          <input class="blue-bttn" type="submit" id="searchsubmit" value="Search" />
+        </div>
+      </form>
+
+    <ul class="posts">
+              <li class="post boxShadow">
+        <div class="loader-inner ball-pulse"></div>
+                                   <figure class="figure">
+                <img class="figure-image lazyload"
+                  src="https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-54-424x283-c-default.jpg"
+                  srcset="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nNDI0JyBoZWlnaHQ9JzI4MycgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48L3N2Zz4="
+                  data-srcset="
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-54-1280x853-c-default.jpg 1280w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-54-750x500-c-default.jpg 750w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-54-424x283-c-default.jpg 424w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-54-375x250-c-default.jpg 375w"
+                  data-sizes="auto"
+                  alt="">
+
+                                     <div class="post-inner">
+            <p class="tips-title"></p>
+          <a class="post-link" href="https://www.1800waterdamage.com/fire-damage-insurance-claim/">
+            <h3 class="h3 post-title">Fire Damage Insurance Claim: How A Restoration Company Can Help</h3>
+          </a>
+            <p class="post-excerpt">Fire Damage Insurance Claim: How A Restoration Company Can Help Enter Your Zip: GO A fire damage insurance claim can feel overwhelming when you are also dealing with smoke, soot, odors, water&hellip;</p>
+          </div>
+        </li>
+              <li class="post boxShadow">
+        <div class="loader-inner ball-pulse"></div>
+                                   <figure class="figure">
+                <img class="figure-image lazyload"
+                  src="https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-52-424x283-c-default.jpg"
+                  srcset="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nNDI0JyBoZWlnaHQ9JzI4MycgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48L3N2Zz4="
+                  data-srcset="
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-52-1280x853-c-default.jpg 1280w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-52-750x500-c-default.jpg 750w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-52-424x283-c-default.jpg 424w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-52-375x250-c-default.jpg 375w"
+                  data-sizes="auto"
+                  alt="">
+
+                                     <div class="post-inner">
+            <p class="tips-title"></p>
+          <a class="post-link" href="https://www.1800waterdamage.com/soot-damage-restoration/">
+            <h3 class="h3 post-title">When to Seek Out Soot Damage Restoration After a Fire</h3>
+          </a>
+            <p class="post-excerpt">When to Seek Out Soot Damage Restoration After a Fire Enter Your Zip: GO A fire can leave a property covered in residue long after the flames are out. Walls may look&hellip;</p>
+          </div>
+        </li>
+              <li class="post boxShadow">
+        <div class="loader-inner ball-pulse"></div>
+                                   <figure class="figure">
+                <img class="figure-image lazyload"
+                  src="https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-50-424x283-c-default.jpg"
+                  srcset="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nNDI0JyBoZWlnaHQ9JzI4MycgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48L3N2Zz4="
+                  data-srcset="
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-50-1280x853-c-default.jpg 1280w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-50-750x500-c-default.jpg 750w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-50-424x283-c-default.jpg 424w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-50-375x250-c-default.jpg 375w"
+                  data-sizes="auto"
+                  alt="">
+
+                                     <div class="post-inner">
+            <p class="tips-title"></p>
+          <a class="post-link" href="https://www.1800waterdamage.com/what-to-look-for-water-damage-services/">
+            <h3 class="h3 post-title">Key Qualities to Look for in Water Damage Restoration Services</h3>
+          </a>
+            <p class="post-excerpt">Key Qualities to Look for in Water Damage Restoration Services Enter Your Zip: GO After a flood, leak, or burst pipe, choosing the right restoration company matters. Water can spread quickly, damage&hellip;</p>
+          </div>
+        </li>
+              <li class="post boxShadow">
+        <div class="loader-inner ball-pulse"></div>
+                                   <figure class="figure">
+                <img class="figure-image lazyload"
+                  src="https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-48-424x283-c-default.jpg"
+                  srcset="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nNDI0JyBoZWlnaHQ9JzI4MycgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48L3N2Zz4="
+                  data-srcset="
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-48-1280x853-c-default.jpg 1280w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-48-750x500-c-default.jpg 750w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-48-424x283-c-default.jpg 424w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-48-375x250-c-default.jpg 375w"
+                  data-sizes="auto"
+                  alt="">
+
+                                     <div class="post-inner">
+            <p class="tips-title"></p>
+          <a class="post-link" href="https://www.1800waterdamage.com/signs-of-water-damage-under-floor/">
+            <h3 class="h3 post-title">Signs of Water Damage Under Your Floor: What to Look For</h3>
+          </a>
+            <p class="post-excerpt">Signs of Water Damage Under Your Floor: What to Look For Enter Your Zip: GO Water damage under a floor can be frustrating because it often stays hidden until the surface starts&hellip;</p>
+          </div>
+        </li>
+              <li class="post boxShadow">
+        <div class="loader-inner ball-pulse"></div>
+                                   <figure class="figure">
+                <img class="figure-image lazyload"
+                  src="https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-46-424x283-c-default.jpg"
+                  srcset="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nNDI0JyBoZWlnaHQ9JzI4MycgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48L3N2Zz4="
+                  data-srcset="
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-46-1280x853-c-default.jpg 1280w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-46-750x500-c-default.jpg 750w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-46-424x283-c-default.jpg 424w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/08/unnamed-46-375x250-c-default.jpg 375w"
+                  data-sizes="auto"
+                  alt="">
+
+                                     <div class="post-inner">
+            <p class="tips-title"></p>
+          <a class="post-link" href="https://www.1800waterdamage.com/air-conditioner-mold-removal/">
+            <h3 class="h3 post-title">How to Clean Mold From Your Air Conditioner Unit</h3>
+          </a>
+            <p class="post-excerpt">&lt;h1&gt;How to Clean Mold From Your Air Conditioner Unit&lt;/h1&gt; Enter Your Zip: GO A musty smell from an air conditioner may be a sign of mold growth where moisture, dust, and limited&hellip;</p>
+          </div>
+        </li>
+              <li class="post boxShadow">
+        <div class="loader-inner ball-pulse"></div>
+                                   <figure class="figure">
+                <img class="figure-image lazyload"
+                  src="https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/unnamed-35-424x283-c-default.jpg"
+                  srcset="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nNDI0JyBoZWlnaHQ9JzI4MycgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48L3N2Zz4="
+                  data-srcset="
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/unnamed-35-1280x853-c-default.jpg 1280w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/unnamed-35-750x500-c-default.jpg 750w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/unnamed-35-424x283-c-default.jpg 424w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/unnamed-35-375x250-c-default.jpg 375w"
+                  data-sizes="auto"
+                  alt="">
+
+                                     <div class="post-inner">
+            <p class="tips-title"></p>
+          <a class="post-link" href="https://www.1800waterdamage.com/home-summer-flood-preparation-checklist/">
+            <h3 class="h3 post-title">Home Flood Preparation Checklist: Stay Ahead of Summer Storms</h3>
+          </a>
+            <p class="post-excerpt">Home Flood Preparation Checklist: Stay Ahead of Summer Storms Enter Your Zip: GO Summer storms often bring heavy rain, strong winds, and fast-changing conditions. For homeowners, that means water near the foundation,&hellip;</p>
+          </div>
+        </li>
+              <li class="post boxShadow">
+        <div class="loader-inner ball-pulse"></div>
+                                   <figure class="figure">
+                <img class="figure-image lazyload"
+                  src="https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/unnamed-34-424x283-c-default.jpg"
+                  srcset="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nNDI0JyBoZWlnaHQ9JzI4MycgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48L3N2Zz4="
+                  data-srcset="
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/unnamed-34-1280x853-c-default.jpg 1280w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/unnamed-34-750x500-c-default.jpg 750w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/unnamed-34-424x283-c-default.jpg 424w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/unnamed-34-375x250-c-default.jpg 375w"
+                  data-sizes="auto"
+                  alt="">
+
+                                     <div class="post-inner">
+            <p class="tips-title"></p>
+          <a class="post-link" href="https://www.1800waterdamage.com/commercial-flood-damage/">
+            <h3 class="h3 post-title">Common Causes Of Commercial Flood Damage</h3>
+          </a>
+            <p class="post-excerpt">Common Causes Of Commercial Flood Damage Enter Your Zip: GO Commercial flood damage can interrupt business operations and leave owners facing setbacks across multiple departments. Water intrusion can affect inventory, equipment, structural&hellip;</p>
+          </div>
+        </li>
+              <li class="post boxShadow">
+        <div class="loader-inner ball-pulse"></div>
+                                   <figure class="figure">
+                <img class="figure-image lazyload"
+                  src="https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/Copy-of-1800WD-Techs-with-Truck-e1782848031706-424x283-c-default.jpg"
+                  srcset="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nNDI0JyBoZWlnaHQ9JzI4MycgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48L3N2Zz4="
+                  data-srcset="
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/Copy-of-1800WD-Techs-with-Truck-e1782848031706-1280x853-c-default.jpg 1280w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/Copy-of-1800WD-Techs-with-Truck-e1782848031706-750x500-c-default.jpg 750w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/Copy-of-1800WD-Techs-with-Truck-e1782848031706-424x283-c-default.jpg 424w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/Copy-of-1800WD-Techs-with-Truck-e1782848031706-375x250-c-default.jpg 375w"
+                  data-sizes="auto"
+                  alt="1800WD Techs with Truck">
+
+                                     <div class="post-inner">
+            <p class="tips-title"></p>
+          <a class="post-link" href="https://www.1800waterdamage.com/whats-that-smell-post-disaster-odors/">
+            <h3 class="h3 post-title">What’s That Smell? Post-Disaster Odors</h3>
+          </a>
+            <p class="post-excerpt">What’s That Smell? Post-Disaster Odors Enter Your Zip: GO Sometimes, after a disaster such as flooding or a fire, odors can remain and diminish the livability of the space. Strong&hellip;</p>
+          </div>
+        </li>
+              <li class="post boxShadow">
+        <div class="loader-inner ball-pulse"></div>
+                                   <figure class="figure">
+                <img class="figure-image lazyload"
+                  src="https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/unnamed-31-424x283-c-default.jpg"
+                  srcset="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nNDI0JyBoZWlnaHQ9JzI4MycgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48L3N2Zz4="
+                  data-srcset="
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/unnamed-31-1280x853-c-default.jpg 1280w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/unnamed-31-750x500-c-default.jpg 750w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/unnamed-31-424x283-c-default.jpg 424w,
+                    https://www.1800waterdamage.com/wp-content/uploads/dynamic/2026/06/unnamed-31-375x250-c-default.jpg 375w"
+                  data-sizes="auto"
+                  alt="">
+
+                                     <div class="post-inner">
+            <p class="tips-title"></p>
+          <a class="post-link" href="https://www.1800waterdamage.com/prevent-soot-damage/">
+            <h3 class="h3 post-title">Can You Prevent Soot Damage After A Fire? What the Experts Say</h3>
+          </a>
+            <p class="post-excerpt">Can You Prevent Soot Damage After A Fire? What the Experts Say Enter Your Zip: GO A fire can leave damage long after the flames are gone. One of the biggest problems&hellip;</p>
+          </div>
+        </li>
+          </ul>
+              
+      <div class="pagination pagination--center">
+      <div class="pagination-loadMore">
+      <a data-action="loadMore" href="https://www.1800waterdamage.com/about/news/page/2/" class="blue-bttn button button--small">Load More</a>
+      </div>
+    </div>
+        </div>
+</div>
+
+                  </main>
+        <footer class="mainFooter">
+                      <div class="flyntComponent themeDark" is="flynt-navigation-footer">
+  <div class="container centerMaxWidthContainer">
+      <div class="content">
+        <h2>How May We Help You? 
+            <a href="https://www.1800waterdamage.com/request-service/">Request Service</a>
+        </h2>
+      </div>
+  </div>
+  <div class="container centerMaxWidthContainer">
+    <div class="grid grid--columns3">
+      <div class="grid-content--left grid-item">
+        <a class="logo" href="https://www.1800waterdamage.com/">
+          <img class="logo-image" src="https://www.1800waterdamage.com/wp-content/themes/Belfor/dist/Components/NavigationFooter/Assets/logo.png" alt="1-800 WATER DAMAGE - Logo Footer">
+        </a>
+      </div>
+
+      <div class="grid-content grid-item">
+              <h2>Quick Links</h2>
+        <nav class="navigation">
+          <ul class="menu menu--level-0">
+      <li class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-1375">
+      <a class="menu-link" aria-label="About Us" href="https://www.1800waterdamage.com/about/about-us/">About Us</a>
+          </li>
+      <li class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-316">
+      <a class="menu-link" aria-label="Why 1-800-WATER-DAMAGE?" href="https://www.1800waterdamage.com/why-1800waterdamage/">Why 1-800-WATER-DAMAGE?</a>
+          </li>
+      <li class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-8162">
+      <a class="menu-link" aria-label="Property Pointers" href="https://www.1800waterdamage.com/video-series/">Property Pointers</a>
+          </li>
+      <li class=" menu-item menu-item-type-custom menu-item-object-custom menu-item-4790">
+      <a class="menu-link" aria-label="Careers" href="https://1-800-water-damage-careers.careerplug.com/" target="_blank">Careers</a>
+          </li>
+      <li class=" menu-item menu-item-type-custom menu-item-object-custom menu-item-8475">
+      <a class="menu-link" aria-label="Franchise Opportunities" href="https://1800waterdamagefranchise.com/">Franchise Opportunities</a>
+          </li>
+      <li class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-2693">
+      <a class="menu-link" aria-label="Contact Us" href="https://www.1800waterdamage.com/contact/">Contact Us</a>
+          </li>
+      <li class=" menu-item menu-item-type-custom menu-item-object-custom menu-item-2041">
+      <a class="menu-link" aria-label="Español" href="/spanish/">Español</a>
+          </li>
+      <li class=" menu-item menu-item-type-post_type menu-item-object-page menu-item-4367">
+      <a class="menu-link" aria-label="1-800-Water-Damage Locations" href="https://www.1800waterdamage.com/about/locations-list/">1-800-Water-Damage Locations</a>
+          </li>
+  </ul>
+                  </nav>
+            </div>
+
+      <div class="grid-content--right grid-item">
+        <h2>24/7 Emergency Service</h2>
+        <div id="emergencyPhone" class="content-item phone"><i class="fas fa-phone-volume"></i><a href="tel:+1-(800) 928-3732" title="Call 1-800-Water-Damage">(800) 928-3732</a></div>
+        <div class="content-item social"><nav is="flynt-navigation-social" class="flyntComponent">
+  <div class="wrapper">
+    <div class="container centerMaxWidthContainer">
+              <ul class="social-menu">
+                      <li class="social-menu-item ">
+              <a class="social-menu-link facebook" href="https://www.facebook.com/1800WaterDamageCorp/" target="_blank" rel="noopener noreferrer"  aria-label="Like us on Facebook (opens in a new window)"
+>
+                <i class="fab fa-facebook-square" aria-hidden="true" aria-label="Like us on Facebook (opens in a new window)"></i></a>
+            </li>
+                      <li class="social-menu-item ">
+              <a class="social-menu-link instagram" href="https://www.instagram.com/1800waterdamage/" target="_blank" rel="noopener noreferrer"  aria-label="Follow us on Instagram (opens in a new window)"
+>
+                <i class="fab fa-instagram-square" aria-hidden="true" aria-label="Like us on Instagram (opens in a new window)"></i></a>
+            </li>
+                      <li class="social-menu-item ">
+              <a class="social-menu-link twitter" href="https://twitter.com/1800WaterDamage" target="_blank" rel="noopener noreferrer"  aria-label="Follow us on Twitter (opens in a new window)"
+>
+                <i class="fab fa-twitter-square" aria-hidden="true" aria-label="Follow us on Twitter (opens in a new window)"></i></a>
+            </li>
+                      <li class="social-menu-item ">
+              <a class="social-menu-link linkedin" href="https://www.linkedin.com/company/1-800-water-damage" target="_blank" rel="noopener noreferrer"  aria-label="Connect with us on LinkedIn (opens in a new window)"
+>
+                <i class="fab fa-linkedin" aria-hidden="true" aria-label="Connect with us on LinkedIn (opens in a new window)"></i></a>
+            </li>
+                      <li class="social-menu-item ">
+              <a class="social-menu-link youtube" href="https://www.youtube.com/channel/UCeKhsAwz6yVxH2WBjsXxLpA" target="_blank" rel="noopener noreferrer"  aria-label="Subscribe to us on YouTube (opens in a new window)"
+>
+                <i class="fab fa-youtube" aria-hidden="true" aria-label="Watch us on YouTube (opens in a new window)"></i></a>
+            </li>
+                  </ul>
+          </div>
+  </div>
+</nav>
+
+
+</div>
+        <div id="email" class="content-item email"><i class="fas fa-envelope"></i><a href="mailto:info@1800waterdamage.com">info@1800waterdamage.com</a></div>
+        <div id="address" class="content-item location"><i class="fas fa-map-marker-alt"></i>
+        <a target="_blank" aria-label="731 FAIRFIELD COURT, Ann Arbor, MI, 48108 (opens in new window)" href="https://maps.google.com/?q=731 FAIRFIELD COURT, Ann Arbor, MI, 48108">
+          731 FAIRFIELD COURT, Ann Arbor, MI, 48108          </a>
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+  <div class="container centerMaxWidthContainer footer--bottom">
+    <div class="grid grid--columns2">
+        <div class="grid-content--left grid-item">
+          <p>©2020, Belfor Franchise Group, LLC and its affiliates. All rights reserved. This site and all of its content is protected under applicable law, including laws of the U.S. and other countries. Each location is independently owned and operated.</p>
+        </div>
+        <div class="grid-content--right grid-item">
+          <a href="/privacy/">Privacy Policy</a> | <a href="/accessibility/">Accessibility</a>
+        </div>
+    </div>
+  </div>
+</div>
+
+                  </footer>
+      </div>
+        <script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/Belfor/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+	<!-- Start Upgrade Browser - Less Than IE9 -->
+	<!--[if lt IE 9]>
+	<link rel="stylesheet" href="https://www.1800waterdamage.com/wp-content/plugins/syn-frontend/assets/css/upgrade-browser.css">
+	<div class="ie7no overlay"></div>
+	<div class="lightboxnoie7">
+		<p class="title">We're sorry. Our site does not support your browser.</p>
+		<p class="toptext">In order to view the CB Structures site, you will need to upgrade your browser. <br>Choose one of the <strong>free</strong> upgrades below.</p>
+		<div class="imgcont">
+			<ul>
+				<li>
+					<a href="http://www.mozilla.org/en-US/firefox/new/" target="_blank">
+						<span class="browsername">Firefox</span>
+						<img src="https://www.1800waterdamage.com/wp-content/plugins/syn-frontend/assets/images/upgrade-browser/firefox.jpg" />
+					</a>
+				</li>
+				<li>
+					<a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">
+						<span class="browsername">Chrome</span>
+						<img src="https://www.1800waterdamage.com/wp-content/plugins/syn-frontend/assets/images/upgrade-browser/chrome.jpg" />
+					</a>
+				</li>
+				<li class="last">
+					<a href="http://www.microsoft.com/en-us/download/details.aspx?id=13950" target="_blank" class="switchable">
+						<span class="browsername">Internet Explorer</span>
+						<img src="https://www.1800waterdamage.com/wp-content/plugins/syn-frontend/assets/images/upgrade-browser/ie.jpg" />
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+    <script type="text/javascript">
+      jQuery('.ie7no.overlay, .lightboxnoie7').show();
+      jQuery('body, html').css({'overflow':'hidden'});
+    </script>
+	<![endif]-->
+	<!-- End Upgrade Browser - Less Than IE9 -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '844319880095246');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code --><div id="location-modal" class="modal flyntComponent" is="location-not-found" style="display: none;">
+  <div class="modal-content" style="background: url(/wp-content/uploads/2020/05/1800-water-girl.png) no-repeat right 0 #fff;">
+    <span id="loccloseBttn" class="close">×</span>
+    <h2 class="modalTitle">Your Zip Code is Outside Our Service Area.</h2>
+    <p>1-800 WATER DAMAGE does not currently provide restoration services in your zip code.</p>
+<p>Please contact us and we’ll see what we can do to help!</p>
+    <a href="https://www.1800waterdamage.com/contact/" class="blue-bttn">Contact Us</a>
+  </div>
+</div><script id="wp-hooks-js" src="https://www.1800waterdamage.com/wp-includes/js/dist/hooks.min.js?ver=7496969728ca0f95732d"></script>
+<script id="wp-i18n-js" src="https://www.1800waterdamage.com/wp-includes/js/dist/i18n.min.js?ver=781d11515ad3d91786ec"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script id="swv-js" src="https://www.1800waterdamage.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.0.3"></script>
+<script id="contact-form-7-js" src="https://www.1800waterdamage.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.0.3"></script>
+<script id="wpcf7-redirect-script-js-extra">
+var wpcf7r = {"ajax_url":"https://www.1800waterdamage.com/wp-admin/admin-ajax.php"};
+//# sourceURL=wpcf7-redirect-script-js-extra
+</script>
+<script id="wpcf7-redirect-script-js" src="https://www.1800waterdamage.com/wp-content/plugins/wpcf7-redirect/build/js/wpcf7r-fe.js?ver=1.1"></script>
+<script id="google-invisible-recaptcha-js-before">
+var renderInvisibleReCaptcha = function() {
+
+    for (var i = 0; i < document.forms.length; ++i) {
+        var form = document.forms[i];
+        var holder = form.querySelector('.inv-recaptcha-holder');
+
+        if (null === holder) continue;
+		holder.innerHTML = '';
+
+         (function(frm){
+			var cf7SubmitElm = frm.querySelector('.wpcf7-submit');
+            var holderId = grecaptcha.render(holder,{
+                'sitekey': '6LcN23waAAAAACiWqym6ntOgEDBw7sNINOfVjZ2O', 'size': 'invisible', 'badge' : 'bottomright',
+                'callback' : function (recaptchaToken) {
+					if((null !== cf7SubmitElm) && (typeof jQuery != 'undefined')){jQuery(frm).submit();grecaptcha.reset(holderId);return;}
+					 HTMLFormElement.prototype.submit.call(frm);
+                },
+                'expired-callback' : function(){grecaptcha.reset(holderId);}
+            });
+
+			if(null !== cf7SubmitElm && (typeof jQuery != 'undefined') ){
+				jQuery(cf7SubmitElm).off('click').on('click', function(clickEvt){
+					clickEvt.preventDefault();
+					grecaptcha.execute(holderId);
+				});
+			}
+			else
+			{
+				frm.onsubmit = function (evt){evt.preventDefault();grecaptcha.execute(holderId);};
+			}
+
+
+        })(form);
+    }
+};
+
+//# sourceURL=google-invisible-recaptcha-js-before
+</script>
+<script id="google-invisible-recaptcha-js" async defer src="https://www.google.com/recaptcha/api.js?onload=renderInvisibleReCaptcha&#038;render=explicit"></script>
+<script id="Flynt/assets-js-extra">
+var FlyntData = {"templateDirectoryUri":"https://www.1800waterdamage.com/wp-content/themes/Belfor"};
+var googlemap_deps = {"domain":"https://www.1800waterdamage.com","blog_id":"1","site_title":"1-800 WATER DAMAGE","APIIntegration":"","googleMapAPI":"AIzaSyDOk2DvMbnxLjKyMkhJ-9rp_5Nw1XaBQHM","iframe":"1","radius":"50","singleLocation":"1","useRadius":"1","limit":"3"};
+//# sourceURL=Flynt%2Fassets-js-extra
+</script>
+<script id="Flynt/assets-js" src="https://www.1800waterdamage.com/wp-content/themes/Belfor/dist/assets/main.js" defer></script>
+
+    <!-- wpFooter scripts -->
+      
+    <!-- end wpFooter scripts -->
+    
+    <div class="wpFooter">
+    </div>
+  </body>
+
+  <div class="loader-inner ball-clip-rotate-multiple"><div></div><div></div></div>
+  <!-- Begin TVSquared Tracking Code -->
+<script type="text/javascript" defer>
+  var _tvq = window._tvq = window._tvq || [];
+      (function() {
+          var u = (("https:" == document.location.protocol) ?
+          "https://collector-40668.us.tvsquared.com/"
+          :
+          "http://collector-40668.us.tvsquared.com/"
+          );
+          _tvq.push(['setSiteId', "TV-5490363618-1"]);
+          _tvq.push(['setTrackerUrl', u + 'tv2track.php']);
+          _tvq.push([function() {
+              this.deleteCustomVariable(5, 'page')
+          }]);
+          _tvq.push(['trackPageView']);
+          var d = document,
+              g = d.createElement('script'),
+              s = d.getElementsByTagName('script')[0];
+          g.type = 'text/javascript';
+          g.defer = true;
+          g.async = true;
+          g.src = u + 'tv2track.js';
+          s.parentNode.insertBefore(g, s);
+      })();
+</script>
+<!-- End TVSquared Tracking Code -->
+<script type="text/javascript" src="https://amplify.review-alerts.com/widget-init.js"></script>
+<script>
+(function () {
+  function removeOsanoDescribedBy() {
+  var link = document.querySelector(
+    'a.osano-cm-storage-policy[aria-describedby="osano-cm-aria.newWindow"]'
+  );
+
+  if (link) {
+    link.removeAttribute('aria-describedby');
+    link.setAttribute('target', '_parent');
+  }
+  }
+
+  document.addEventListener('DOMContentLoaded', removeOsanoDescribedBy);
+  window.addEventListener('load', removeOsanoDescribedBy);
+
+  window.setInterval(removeOsanoDescribedBy, 1000);
+})();
+</script>
+
+<script>
+(function () {
+  function updateOsanoDivWindow() {
+  var link = document.querySelector('div.osano-cm-window__info-dialog');
+
+  if (link) {
+    link.removeAttribute('aria-labelledby');
+  }
+  }
+
+  updateOsanoDivWindow();
+
+  document.addEventListener('DOMContentLoaded', updateOsanoDivWindow);
+  window.addEventListener('load', updateOsanoDivWindow);
+
+  window.setInterval(updateOsanoDivWindow, 1000);
+})();
+</script>
+
+<script>
+(function () {
+  function cleanText(value) {
+  return (value || '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  }
+
+  function getContextLabel(svg) {
+  const title = svg.querySelector('title');
+  if (title && cleanText(title.textContent)) {
+    return cleanText(title.textContent);
+  }
+
+  const linkOrButton = svg.closest('a, button');
+
+  if (linkOrButton) {
+    const explicitLabel = cleanText(
+    linkOrButton.getAttribute('aria-label')
+    );
+
+    if (explicitLabel) {
+    return explicitLabel + ' icon';
+    }
+
+    const linkText = cleanText(linkOrButton.textContent);
+
+    if (linkText) {
+    return linkText + ' icon';
+    }
+  }
+
+  const container = svg.closest(
+    'article, li, .card, [class*="card"], [class*="item"], ' +
+    '[class*="feature"], [class*="service"], section, div'
+  );
+
+  if (container) {
+    const heading = container.querySelector(
+    'h1, h2, h3, h4, h5, h6, .title, [class*="title"]'
+    );
+
+    if (heading) {
+    const headingText = cleanText(heading.textContent);
+
+    if (headingText) {
+      return headingText + ' icon';
+    }
+    }
+  }
+
+  return 'Informational icon';
+  }
+
+  function fixBlankSvgLabels() {
+  document
+    .querySelectorAll('svg[role="img"][aria-labelledby]')
+    .forEach(function (svg) {
+    const labelledBy = cleanText(
+      svg.getAttribute('aria-labelledby')
+    );
+
+    if (!labelledBy) {
+      return;
+    }
+
+    const ids = labelledBy.split(/\s+/);
+
+    const referencedElements = ids.map(function (id) {
+      return document.getElementById(id);
+    });
+
+    const hasAccessibleText = referencedElements.some(
+      function (element) {
+      return element && cleanText(element.textContent);
+      }
+    );
+
+    // Leave valid aria-labelledby relationships alone.
+    if (hasAccessibleText) {
+      return;
+    }
+
+    svg.removeAttribute('aria-labelledby');
+    svg.setAttribute('aria-label', getContextLabel(svg));
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', fixBlankSvgLabels);
+  window.addEventListener('load', fixBlankSvgLabels);
+
+  // Handles SVGs added after the initial page load.
+  window.setInterval(fixBlankSvgLabels, 1000);
+})();
+</script>
+</html>

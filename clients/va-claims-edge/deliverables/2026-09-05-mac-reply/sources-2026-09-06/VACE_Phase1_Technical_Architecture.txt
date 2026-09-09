@@ -1,0 +1,279 @@
+MOMENTUM DIGITAL
+Custom Software, Digital Growth & Ownership-First Development
+
+
+Technical Architecture Document
+VA Claims Edge - VACE Platform
+
+Client
+VA Claims (David Fisher)
+Agency
+Momentum Digital
+Date
+June 2026
+Phase
+Phase 1 of 5
+
+
+1. Executive Summary
+This document outlines the complete technical architecture for the VA Claims Edge (VACE) platform - a custom-built client management system designed to give VA Claims full situational awareness over 200+ active client relationships simultaneously.
+The system is purpose-built around VA Claims' 11-step advisory process and replaces the need for generic CRM tools like Monday.com with a focused, noise-free platform that tracks exactly what matters: who is stuck, whose court the ball is in, and who owes money.
+
+2. Technology Stack
+2.1 Frontend Framework
+Technology
+Version
+Purpose
+Next.js (React)
+Latest Stable Version
+Frontend framework - server-side rendering, routing, API routes
+Tailwind CSS
+Latest Stable Version
+Utility-first CSS - fast, clean, consistent styling
+shadcn/ui
+Latest Stable Version
+Pre-built UI components - tables, modals, forms
+
+2.2 Backend & Database
+Technology
+Service
+Purpose
+Supabase
+Cloud hosted
+PostgreSQL database, authentication, real-time updates, row-level security
+PostgreSQL
+via Supabase
+Relational database - clients, advisors, notes, events, payment tracking
+Next.js API Routes
+Built-in
+Server-side API endpoints for AI, notifications, and data operations
+
+2.3 Infrastructure & Integrations
+Service
+Provider
+Purpose
+Hosting & Deployment
+Vercel
+Zero-config deployment, global CDN, automatic HTTPS, instant updates
+Email Notifications
+Resend
+Automated transactional emails - daily alerts, threshold notifications
+AI Engine
+Anthropic (Claude)
+Natural language client queries, pre-call briefings, anomaly detection
+Version Control
+GitHub
+Code repository, version history, team collaboration
+Authentication
+Supabase Auth
+Secure login, session management, role-based access
+
+3. System Architecture Overview
+The VACE platform is structured as a modern web application with a clear separation between the client-facing frontend, the server-side backend logic, and the cloud-hosted database. All components are connected through secure API calls and real-time subscriptions.
+
+3.1 Architecture Layers
+Layer 1 - Frontend (Client Browser)
+Next.js React application served via Vercel CDN
+All dashboard views, client tables, modals, and forms
+Real-time updates via Supabase subscriptions
+Dillon Mohr owns: UI design, component styling, animations, page layouts
+
+Layer 2 - Backend API (Server)
+Next.js API routes handle server-side logic
+AI assistant endpoint - fetches client data, sends to Anthropic API, returns response
+Notification engine - scheduled cron job checks thresholds and sends emails
+Authentication middleware - protects all dashboard routes
+Obaid owns: all backend logic, API routes, cron jobs, security
+
+Layer 3 - Database (Supabase / PostgreSQL)
+All client data, advisor data, notes, timeline events stored here
+Row Level Security (RLS) ensures data is protected
+Real-time listeners push updates to the dashboard instantly
+Supabase Auth manages user sessions and tokens
+
+3.2 Data Flow
+David logs in via the login page - Supabase Auth validates credentials and sets a secure session cookie
+Dashboard loads - Next.js server component fetches client data from Supabase and renders the page
+David clicks a client - client detail panel opens with live data from Supabase
+David advances a step - frontend sends update to Supabase, database updates, UI reflects instantly
+Daily cron job runs at midnight - checks all clients for threshold breaches, sends email alerts via Resend
+David asks the AI a question - Next.js API route fetches all client data, sends to Anthropic API with context, returns intelligent response
+
+4. Database Schema
+4.1 Core Tables
+clients
+Column
+Type
+Description
+id
+UUID
+Unique client identifier (auto-generated)
+first_name
+TEXT
+Client first name
+last_name
+TEXT
+Client last name
+email
+TEXT
+Client email address
+phone
+TEXT
+Client phone number
+advisor_id
+UUID
+Foreign key linking to advisors table
+current_step
+INTEGER
+Current step in the 11-step process (1-11)
+days_in_step
+INTEGER
+Number of days client has been in current step
+onus
+TEXT
+Who the ball is in the court of: 'us' or 'client'
+status
+TEXT
+Client status: 'active', 'at-risk', or 'stuck'
+last_contact
+DATE
+Date of last interaction with client
+cp_exam_date
+DATE
+Date C&P exam timer was started (Payment Watch)
+notes
+TEXT
+General notes on the client
+is_active
+BOOLEAN
+Whether client is currently active
+created_at
+TIMESTAMP
+When the client profile was created
+
+advisors
+Column
+Type
+Description
+id
+UUID
+Unique advisor identifier
+name
+TEXT
+Advisor full name
+email
+TEXT
+Advisor email address
+role
+TEXT
+Advisor role: 'Advisor' or 'Senior Advisor'
+is_active
+BOOLEAN
+Whether advisor is currently active
+created_at
+TIMESTAMP
+When the advisor was added
+
+notes
+Column
+Type
+Description
+id
+UUID
+Unique note identifier
+client_id
+UUID
+Foreign key linking to clients table
+content
+TEXT
+The note content
+logged_by
+TEXT
+Name of person who logged the note
+created_at
+TIMESTAMP
+When the note was created
+
+timeline_events
+Column
+Type
+Description
+id
+UUID
+Unique event identifier
+client_id
+UUID
+Foreign key linking to clients table
+event_type
+TEXT
+Type of event: step_change, note, contact, payment
+description
+TEXT
+What happened
+logged_by
+TEXT
+Who logged the event
+created_at
+TIMESTAMP
+When the event occurred
+
+5. Security Architecture
+5.1 Authentication
+Supabase Auth handles all login, session management, and token validation
+Email and password authentication - no third-party social login required
+Secure HTTP-only session cookies - cannot be accessed by JavaScript
+Next.js middleware validates session on every request to protected routes
+Unauthenticated users are automatically redirected to the login page
+
+5.2 Row Level Security (RLS)
+Supabase RLS policies ensure database-level access control
+Even if an API key were exposed, unauthorized users cannot read or write client data
+Policies will be configured in Phase 2 before any real client data is entered
+
+
+5.3 Environment Variables
+All API keys and secrets stored as environment variables - never in code
+Vercel environment variable management used for production
+Local development uses .env.local files which are excluded from version control
+
+6. AI Integration Architecture
+The AI assistant is powered by Anthropic's Claude API and is designed to give David natural language access to his entire client database without needing to navigate filters or tables.
+
+6.1 How It Works
+David types a question in plain English in the AI Assistant interface
+The Next.js API route receives the question
+The route fetches all current client data from Supabase
+The client data is formatted into a structured context document
+The question and context are sent to the Anthropic Claude API
+Claude returns an intelligent, data-grounded response
+The response is displayed in the chat interface
+
+6.2 AI Capabilities
+Natural language queries - 'Which clients have been stuck for over 60 days?'
+Pre-call briefings - 'Summarize Bill Smith before my 2pm call'
+Advisor-specific queries - 'Who is Donnie's most at-risk client?'
+Contact gap detection - 'Which clients haven't been contacted in 30+ days?'
+Anomaly detection - flag clients moving unusually slow compared to peers
+
+7. Team Responsibilities
+Team Member
+Role
+Responsibilities
+Obaid
+Developer, Database & Tech Lead
+Backend, database, AI integration, authentication, deployment, security, maintenance
+Dillon Mohr
+AI, UX & Frontend Lead
+UI/UX design, frontend components, animations, page layouts, visual design
+James Frederick
+Account Manager
+Client communication, phase approvals, weekly updates
+Mac Frederick
+Sales & Ops
+Project oversight, client relationship, contract management
+Luke Mazur
+Sales & Ops Support
+Supporting sales and operations
+
+
+Momentum Digital - VA Claims Edge Platform - Phase 1 Technical Architecture

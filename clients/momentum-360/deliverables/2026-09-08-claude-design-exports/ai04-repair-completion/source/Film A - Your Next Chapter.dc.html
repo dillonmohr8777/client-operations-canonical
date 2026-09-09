@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/colors.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/typography.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/radius.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/motion.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/semantic.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/base.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/styles.css">
+<script src="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/_ds_bundle.js"></script>
+<style>
+html,body{margin:0;padding:0;background:#fff}
+body{color:var(--ink);font-family:var(--body);font-size:var(--size-body);line-height:var(--leading-body)}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--navy);text-decoration:underline}
+::selection{background:var(--gold);color:var(--night)}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:5px}
+input[type=range]{accent-color:var(--gold)}
+</style>
+</helmet>
+<div style="max-width:1440px;margin:0 auto;padding:36px clamp(20px,4vw,48px) 72px">
+
+  <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:20px">
+    <div style="max-width:24ch">
+      <p style="margin:0 0 10px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Film A · 26 seconds · 16:9</p>
+      <h1 style="margin:0;font-family:var(--display);font-weight:900;font-size:clamp(2rem,3.4vw,3rem);line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy);text-wrap:balance">Your next chapter.</h1>
+    </div>
+    <p style="margin:0;max-width:52ch;font-size:var(--size-support);color:var(--muted);text-wrap:pretty">A dimensional book you can turn by hand, and a 26-second automated pass that turns it for you. Four proposed AI workflows, one spread each.</p>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:18px 0 14px">
+    <div style="display:flex;gap:8px;flex-wrap:wrap" ref="{{ modeRow }}">
+      <button type="button" onClick="{{ onFilm }}" ref="{{ btnFilm }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer">Play the film</button>
+      <button type="button" onClick="{{ onHand }}" ref="{{ btnHand }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Turn it by hand</button>
+    </div>
+    <div style="flex:1"></div>
+    <button type="button" onClick="{{ onSound }}" ref="{{ btnSound }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Sound off</button>
+    <button type="button" onClick="{{ onStatic }}" ref="{{ btnStatic }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Static version</button>
+  </div>
+
+  <div ref="{{ stageWrap }}" style="position:relative">
+    <div ref="{{ stage }}" tabindex="0" data-om-exportable-video-with-duration-secs="26" data-screen-label="Film A 00.0s" style="position:relative;width:100%;aspect-ratio:16/9;background:#03172e;border-radius:var(--radius);overflow:hidden;container-type:size;touch-action:pan-y;cursor:grab">
+      <canvas ref="{{ canvas }}" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+
+      <div ref="{{ caption }}" style="position:absolute;left:0;bottom:5.5cqh;opacity:0;display:flex;align-items:flex-end;gap:1.6cqw;background:#03172e;padding:1.4cqh 2.6cqw 1.4cqh 4.2cqw">
+        <span ref="{{ capNum }}" style="font-family:var(--display);font-weight:900;font-size:5.4cqw;line-height:.9;color:#efb928">01</span>
+        <span style="display:block;width:2.6cqw;height:1px;background:#efb928;margin-bottom:1.1cqh"></span>
+        <span ref="{{ capText }}" style="font-family:var(--body);font-weight:900;font-size:1.35cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#d5e4f1;margin-bottom:.5cqh">SEO + AI search</span>
+      </div>
+
+      <div ref="{{ endcard }}" style="position:absolute;left:6cqw;top:50%;transform:translateY(-50%);opacity:0;max-width:44cqw">
+        <img src="assets/momentum-logo.png" alt="Momentum" style="display:block;width:19cqw;height:auto;margin-bottom:3.4cqh">
+        <p style="margin:0 0 1.8cqh;font-family:var(--body);font-weight:900;font-size:1.35cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">Need momentum?</p>
+        <p style="margin:0;font-family:var(--display);font-weight:900;font-size:3.5cqw;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:#fff;text-wrap:balance">Let’s map your first AI workflow<span style="color:#efb928">.</span></p>
+      </div>
+
+      <div ref="{{ hint }}" style="position:absolute;right:3.2cqw;top:3.2cqh;padding:.9cqh 1.8cqw;border:1px solid rgb(255 255 255 / 14%);border-radius:24px;font-size:1.2cqw;font-weight:900;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#d5e4f1;opacity:0">Drag to turn · ← →</div>
+
+      <div ref="{{ loading }}" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:var(--size-label);font-weight:900;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#52677c">Preparing the film</div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:16px 0 0">
+      <button type="button" onClick="{{ onToggle }}" ref="{{ btnPlay }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);width:96px;padding:9px 0;border-radius:8px;border:1px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer">Pause</button>
+      <button type="button" onClick="{{ onReplay }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Replay</button>
+      <input type="range" min="0" max="1000" defaultValue="0" ref="{{ scrub }}" onInput="{{ onScrub }}" aria-label="Scrub the film" style="flex:1;min-width:200px;height:22px">
+      <span ref="{{ timeLabel }}" style="font-size:var(--size-note);font-weight:900;color:var(--muted);font-variant-numeric:tabular-nums;min-width:78px;text-align:right">0.0 / 26.0s</span>
+      <label style="display:flex;align-items:center;gap:8px;font-size:var(--size-note);font-weight:900;color:var(--muted)">Duration
+        <select ref="{{ durSel }}" defaultValue="26" onChange="{{ onDur }}" aria-label="Playback duration" style="font-family:var(--body);font-size:var(--size-note);font-weight:900;color:var(--navy);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="20">20 s</option>
+          <option value="26">26 s</option>
+          <option value="34">34 s</option>
+        </select>
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:var(--size-note);font-weight:900;color:var(--muted)">Frame
+        <select ref="{{ frameSel }}" defaultValue="16:9" onChange="{{ onFrame }}" aria-label="Composition frame" style="font-family:var(--body);font-size:var(--size-note);font-weight:900;color:var(--navy);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="16:9">16:9</option>
+          <option value="9:16">9:16 mobile</option>
+        </select>
+      </label>
+    </div>
+
+    <p ref="{{ runtimeNote }}" style="margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:var(--size-note);color:var(--muted);line-height:var(--leading-note)">Rendered with WebGL (three.js): five sheets with real thickness, cast shadows and per-vertex page bend. Drag horizontally or use the arrow keys to turn pages by hand; the 26-second pass runs with no interaction. Sound stays off until you turn it on.</p>
+  </div>
+
+  <div ref="{{ staticBoard }}" style="display:none;padding-top:32px">
+    <p style="margin:0 0 8px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Static version · no motion</p>
+    <h2 style="margin:0 0 26px;font-family:var(--display);font-weight:900;font-size:clamp(1.7rem,2.6vw,2.4rem);line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">The same four spreads, held still.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:32px">
+      <div style="display:flex;flex-direction:column;gap:14px;padding-bottom:22px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;overflow:hidden">
+          <img src="assets/artwork/icon-search.png" alt="Ceramic search icon" style="width:78%;height:78%;object-fit:contain">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">01 · SEO + AI search</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.6rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Get found.</h3>
+        <p style="margin:0;font-size:var(--size-support);color:var(--ink);text-wrap:pretty">A proposed agent that watches how local buyers ask — in search results and in AI answers — and keeps your pages worth citing.</p>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Question and citation tracking · Page and schema fixes, queued · Written for people first</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;padding-bottom:22px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;overflow:hidden">
+          <img src="assets/artwork/icon-phone.png" alt="Ceramic response icon" style="width:78%;height:78%;object-fit:contain">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">02 · Lead intake + routing</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.6rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Follow through.</h3>
+        <p style="margin:0;font-size:var(--size-support);color:var(--ink);text-wrap:pretty">A proposed agent that catches the missed call, asks the questions you approve, and hands a real person the next step.</p>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Missed call to text, in seconds · Qualifying questions you wrote · Routed to the right crew</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;padding-bottom:22px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;overflow:hidden">
+          <img src="assets/artwork/icon-build.png" alt="Ceramic build icon" style="width:78%;height:78%;object-fit:contain">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">03 · Content + creative workflows</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.6rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Make it yours.</h3>
+        <p style="margin:0;font-size:var(--size-support);color:var(--ink);text-wrap:pretty">A proposed workflow built on your own words and photographs, drafting in your voice and stopping for your sign-off.</p>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Drafts from your material only · Photo and caption pairing · Nothing publishes unapproved</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;padding-bottom:22px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;overflow:hidden">
+          <img src="assets/artwork/icon-operations.png" alt="Ceramic operations icon" style="width:78%;height:78%;object-fit:contain">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">04 · Operations + reporting</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.6rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Keep the work connected.</h3>
+        <p style="margin:0;font-size:var(--size-support);color:var(--ink);text-wrap:pretty">A proposed operating layer that keeps the job, the crew and the report on the same page, and shows the names behind the numbers.</p>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Jobs and crews in step · Named leads, not just totals · A report you can read aloud</p>
+      </div>
+    </div>
+    <div style="margin-top:34px;padding:28px 32px;background:#072d53;border-radius:var(--radius)">
+      <img src="assets/momentum-logo.png" alt="Momentum" style="display:block;width:210px;height:auto;margin-bottom:18px">
+      <p style="margin:0 0 8px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--gold);font-weight:900">Need momentum?</p>
+      <p style="margin:0;font-family:var(--display);font-weight:900;font-size:clamp(1.5rem,2.4vw,2.2rem);line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:#fff">Let’s map your first AI workflow<span style="color:var(--gold)">.</span></p>
+    </div>
+  </div>
+
+  <p style="margin:34px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:var(--size-note);color:var(--muted);line-height:var(--leading-note);max-width:72ch">Private concept film · September 2026. The four workflows are proposed agent packaging for review, not deployed products, and no client result, metric or availability claim is made. Artwork is the original Momentum ceramic collection; the logo is the exact master.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:940}}">
+class Component extends DCLogic {
+  R = ['stage', 'stageWrap', 'canvas', 'caption', 'capNum', 'capText', 'endcard', 'hint', 'loading', 'runtimeNote', 'staticBoard', 'btnFilm', 'btnHand', 'btnSound', 'btnStatic', 'btnPlay', 'scrub', 'timeLabel', 'durSel', 'frameSel', 'modeRow'].reduce((o, n) => { o[n] = React.createRef(); return o; }, {});
+  r = new Proxy({}, { get: (_, k) => (this.R[k] ? this.R[k].current : undefined) });
+
+  SP = [
+    { n: '01', kicker: 'SEO + AI search', title: 'Get found.', beat: 'Answer the question first.',
+      body: 'A proposed agent that watches how local buyers ask — in search results and in AI answers — and keeps your pages worth citing.',
+      pts: ['Question and citation tracking', 'Page and schema fixes, queued', 'Written for people first'],
+      art: 'assets/artwork/icon-search.png', alt: 'Ceramic search icon' },
+    { n: '02', kicker: 'Lead intake + routing', title: 'Follow through.', beat: 'Every call gets an answer.',
+      body: 'A proposed agent that catches the missed call, asks the questions you approve, and hands a real person the next step.',
+      pts: ['Missed call to text, in seconds', 'Qualifying questions you wrote', 'Routed to the right crew'],
+      art: 'assets/artwork/icon-phone.png', alt: 'Ceramic response icon' },
+    { n: '03', kicker: 'Content + creative workflows', title: 'Make it yours.', beat: 'Your voice, on the record.',
+      body: 'A proposed workflow built on your own words and photographs, drafting in your voice and stopping for your sign-off.',
+      pts: ['Drafts from your material only', 'Photo and caption pairing', 'Nothing publishes unapproved'],
+      art: 'assets/artwork/icon-build.png', alt: 'Ceramic build icon' },
+    { n: '04', kicker: 'Operations + reporting', title: 'Keep the work connected.', beat: 'One thread, end to end.',
+      body: 'A proposed operating layer that keeps the job, the crew and the report on the same page, and shows the names behind the numbers.',
+      pts: ['Jobs and crews in step', 'Named leads, not just totals', 'A report you can read aloud'],
+      art: 'assets/artwork/icon-operations.png', alt: 'Ceramic operations icon' }
+  ];
+
+  W = 1.0; H = 1.36; T = 0.012; AUTH = 26; NS = 5;
+  t = 0; playing = true; mode = 'film'; sound = false; staticMode = false;
+  frame = '16:9'; dur = 26; pp = 0; ppTarget = 0; dragging = false; lastTurn = -1;
+
+  componentDidMount() {
+    if (this.r.durSel) this.r.durSel.value = '26';
+    if (this.r.frameSel) this.r.frameSel.value = '16:9';
+    const rm = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (rm.matches) { this.staticMode = true; }
+    requestAnimationFrame(() => requestAnimationFrame(() => this.syncSel()));
+    this.boot();
+  }
+
+  componentWillUnmount() { this.dead = true; if (this.raf) cancelAnimationFrame(this.raf); }
+
+  // ---------- boot ----------
+  async boot() {
+    const stage = this.r.stage, cv = this.r.canvas;
+    if (this.staticMode) this.applyStatic(true);
+    stage.addEventListener('data-om-seek-to-time-frame', this.onSeek);
+    stage.addEventListener('pointerdown', this.onDown);
+    stage.addEventListener('keydown', this.onKey);
+    window.addEventListener('pointermove', this.onMove);
+    window.addEventListener('pointerup', this.onUp);
+    this.ro = new ResizeObserver(() => this.resize());
+    this.ro.observe(stage);
+
+    try {
+      await Promise.all([
+        document.fonts.load('900 64px Archivo'), document.fonts.load('400 26px Nunito'),
+        document.fonts.load('900 26px Nunito'), document.fonts.ready
+      ]);
+    } catch (e) { /* fonts fall back */ }
+
+    let imgs;
+    try {
+      imgs = await this.loadImages({
+        s1: 'assets/artwork/icon-search.png', s2: 'assets/artwork/icon-phone.png',
+        s3: 'assets/artwork/icon-build.png', s4: 'assets/artwork/icon-operations.png',
+        momo: 'assets/artwork/hero-mascot.png', mark: 'assets/momentum-mark.png'
+      });
+    } catch (e) { imgs = {}; }
+    this.imgs = imgs;
+
+    let THREE = null;
+    try { THREE = await import('https://unpkg.com/three@0.184.0/build/three.module.js'); }
+    catch (e) { THREE = null; }
+    if (this.dead) return;
+
+    if (!THREE || !this.hasWebGL()) {
+      this.r.loading.textContent = '';
+      this.r.runtimeNote.textContent = 'WebGL / three.js could not load in this runtime, so the dimensional book cannot render here. No CSS stand-in is being passed off as WebGL: the static readable version below is shown instead, and the film source still renders in any WebGL-capable browser.';
+      this.staticMode = true; this.applyStatic(true); this.playing = false;
+      return;
+    }
+    this.THREE = THREE;
+    try { this.build(); } catch (e) {
+      this.r.loading.textContent = '';
+      this.r.runtimeNote.textContent = 'The WebGL scene failed to build in this runtime (' + (e && e.message ? e.message : 'unknown error') + '). Showing the static readable version instead.';
+      this.staticMode = true; this.applyStatic(true); this.playing = false; return;
+    }
+    this.r.loading.style.display = 'none';
+    this.resize();
+    this.last = performance.now();
+    this.raf = requestAnimationFrame(this.loop);
+  }
+
+  hasWebGL() {
+    try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); }
+    catch (e) { return false; }
+  }
+
+  loadImages(map) {
+    const keys = Object.keys(map);
+    return Promise.all(keys.map(k => new Promise((res, rej) => {
+      const im = new Image(); im.onload = () => res([k, im]); im.onerror = () => rej(new Error(map[k])); im.src = map[k];
+    }))).then(pairs => { const o = {}; pairs.forEach(p => o[p[0]] = p[1]); return o; });
+  }
+
+  // ---------- page textures ----------
+  cvs(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; }
+
+  wrap(ctx, text, x, y, max, lh) {
+    const words = String(text).split(' '); let line = ''; let yy = y;
+    for (let i = 0; i < words.length; i++) {
+      const test = line ? line + ' ' + words[i] : words[i];
+      if (ctx.measureText(test).width > max && line) { ctx.fillText(line, x, yy); line = words[i]; yy += lh; }
+      else line = test;
+    }
+    if (line) ctx.fillText(line, x, yy);
+    return yy + lh;
+  }
+
+  caret(ctx, x, y, s, color) {
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = s * 0.085; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + s, y); ctx.moveTo(x + s * 0.62, y - s * 0.28); ctx.lineTo(x + s, y); ctx.lineTo(x + s * 0.62, y + s * 0.28); ctx.stroke(); ctx.restore();
+  }
+
+  contain(ctx, im, x, y, w, h) {
+    if (!im) return;
+    const r = Math.min(w / im.width, h / im.height), dw = im.width * r, dh = im.height * r;
+    ctx.drawImage(im, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
+  }
+
+  faceCover() {
+    const w = 880, h = 1196, c = this.cvs(w, h), x = c.getContext('2d');
+    x.fillStyle = '#03172e'; x.fillRect(0, 0, w, h);
+    x.strokeStyle = '#efb928'; x.lineWidth = 1.5; x.strokeRect(40, 40, w - 80, h - 80);
+    this.contain(x, this.imgs.mark, 76, 84, 150, 150);
+    x.fillStyle = '#d5e4f1'; x.font = '900 22px Nunito'; x.letterSpacing = '2.2px';
+    x.fillText('MOMENTUM AI · FILM A', 76, 300);
+    x.letterSpacing = '0px';
+    x.fillStyle = '#ffffff'; x.font = '900 104px Archivo';
+    x.fillText('Your', 72, 470); x.fillText('next', 72, 566);
+    x.fillText('chapter', 72, 662);
+    const wd = x.measureText('chapter').width; x.fillStyle = '#efb928'; x.fillText('.', 72 + wd, 662);
+    x.strokeStyle = 'rgba(255,255,255,0.14)'; x.lineWidth = 1;
+    x.beginPath(); x.moveTo(72, 720); x.lineTo(w - 72, 720); x.stroke();
+    x.fillStyle = '#d5e4f1'; x.font = '400 27px Nunito';
+    this.wrap(x, 'Four proposed AI workflows for a local service business. One spread each, in the order the work actually moves.', 72, 776, w - 150, 42);
+    x.fillStyle = '#52677c'; x.font = '900 20px Nunito'; x.letterSpacing = '2px';
+    x.fillText('PRIVATE CONCEPT EDITION · SEPTEMBER 2026', 72, h - 88);
+    return c;
+  }
+
+  faceArt(s, im) {
+    const w = 880, h = 1196, c = this.cvs(w, h), x = c.getContext('2d');
+    x.fillStyle = '#ffffff'; x.fillRect(0, 0, w, h);
+    x.fillStyle = '#03172e'; x.fillRect(0, 0, w, 238);
+    x.fillStyle = '#efb928'; x.font = '900 116px Archivo'; x.fillText(s.n, 62, 172);
+    const nw = x.measureText(s.n).width;
+    x.fillStyle = '#d5e4f1'; x.font = '900 23px Nunito'; x.letterSpacing = '2.2px';
+    x.fillText(s.kicker.toUpperCase(), 62 + nw + 34, 172);
+    x.letterSpacing = '0px';
+    this.contain(x, im, 40, 268, w - 80, 660);
+    x.strokeStyle = '#d5e0e9'; x.lineWidth = 1;
+    x.beginPath(); x.moveTo(62, 1006); x.lineTo(w - 62, 1006); x.stroke();
+    x.fillStyle = '#52677c'; x.font = '400 24px Nunito';
+    x.fillText('Original ceramic scene · Momentum collection', 62, 1064);
+    x.fillStyle = '#1766ab'; x.font = '900 21px Nunito'; x.letterSpacing = '2.2px';
+    x.fillText('MOMENTUM AI · CONCEPT', 62, 1120);
+    x.letterSpacing = '0px';
+    return c;
+  }
+
+  faceCopy(s) {
+    const w = 880, h = 1196, c = this.cvs(w, h), x = c.getContext('2d');
+    x.fillStyle = '#ffffff'; x.fillRect(0, 0, w, h);
+    x.fillStyle = '#1766ab'; x.font = '900 23px Nunito'; x.letterSpacing = '2.2px';
+    x.fillText(s.kicker.toUpperCase(), 72, 152);
+    x.letterSpacing = '0px';
+    x.strokeStyle = '#d5e0e9'; x.lineWidth = 1; x.beginPath(); x.moveTo(72, 190); x.lineTo(w - 72, 190); x.stroke();
+    x.fillStyle = '#072d53'; x.font = '900 86px Archivo';
+    const bare = s.title.replace('.', ''), res = this.wrap2(x, bare, 70, 300, w - 140, 96);
+    x.fillStyle = '#efb928'; x.fillText('.', 70 + res.last, res.baseline);
+    let yy = res.y;
+    x.fillStyle = '#102d49'; x.font = '900 38px Nunito';
+    yy = this.wrap(x, s.beat, 72, yy + 26, w - 150, 50);
+    x.fillStyle = '#102d49'; x.font = '400 33px Nunito';
+    yy = this.wrap(x, s.body, 72, yy + 40, w - 140, 52);
+    x.strokeStyle = '#d5e0e9'; x.beginPath(); x.moveTo(72, yy + 24); x.lineTo(w - 72, yy + 24); x.stroke();
+    let ly = yy + 94;
+    s.pts.forEach(p => {
+      this.caret(x, 72, ly - 11, 34, '#1766ab');
+      x.fillStyle = '#102d49'; x.font = '400 30px Nunito'; x.fillText(p, 128, ly);
+      ly += 60;
+    });
+    x.fillStyle = '#52677c'; x.font = '900 21px Nunito'; x.letterSpacing = '2.2px';
+    x.fillText('PROPOSED AGENT ROLE · FOR REVIEW', 72, h - 88);
+    return c;
+  }
+
+  wrap2(ctx, text, x0, y, max, lh) {
+    const words = String(text).split(' '); let line = ''; let yy = y;
+    for (let i = 0; i < words.length; i++) {
+      const test = line ? line + ' ' + words[i] : words[i];
+      if (ctx.measureText(test).width > max && line) { ctx.fillText(line, x0, yy); line = words[i]; yy += lh; }
+      else line = test;
+    }
+    ctx.fillText(line, x0, yy);
+    return { y: yy + lh, baseline: yy, last: ctx.measureText(line).width };
+  }
+
+  faceColophon() {
+    const w = 880, h = 1196, c = this.cvs(w, h), x = c.getContext('2d');
+    x.fillStyle = '#f0f5f9'; x.fillRect(0, 0, w, h);
+    this.contain(x, this.imgs.momo, 90, 210, w - 180, 560);
+    x.fillStyle = '#072d53'; x.font = '900 52px Archivo';
+    x.fillText('Clear roles.', 72, 880); x.fillText('Your approval.', 72, 944);
+    x.fillStyle = '#52677c'; x.font = '400 24px Nunito';
+    this.wrap(x, 'Private concept film · September 2026. Proposed packaging for review, not a deployed product.', 72, 1010, w - 150, 38);
+    return c;
+  }
+
+  faceFlat(color, dark) {
+    const w = 880, h = 1196, c = this.cvs(w, h), x = c.getContext('2d');
+    x.fillStyle = color; x.fillRect(0, 0, w, h);
+    if (dark) { this.contain(x, this.imgs.mark, w / 2 - 90, h / 2 - 90, 180, 180); }
+    else { x.strokeStyle = '#d5e0e9'; x.lineWidth = 1; x.strokeRect(56, 56, w - 112, h - 112); }
+    return c;
+  }
+
+  tex(canvas, mirror) {
+    const T = this.THREE, t = new T.CanvasTexture(canvas);
+    t.colorSpace = T.SRGBColorSpace; t.anisotropy = 4;
+    if (mirror) { t.wrapS = T.RepeatWrapping; t.repeat.x = -1; t.offset.x = 1; }
+    return t;
+  }
+
+  // ---------- geometry ----------
+  sheetFace(up, mirrorU) {
+    const T = this.THREE, N = 26, W = this.W, H = this.H, th = this.T / 2;
+    const g = new T.BufferGeometry(), pos = [], uv = [], idx = [];
+    for (let i = 0; i <= N; i++) {
+      const x = (i / N) * W, u = mirrorU ? 1 - i / N : i / N;
+      pos.push(x, up ? th : -th, -H / 2); uv.push(u, 1);
+      pos.push(x, up ? th : -th, H / 2); uv.push(u, 0);
+    }
+    for (let i = 0; i < N; i++) {
+      const a = i * 2, b = a + 1, c = a + 2, d = a + 3;
+      if (up) { idx.push(a, b, d, a, d, c); } else { idx.push(a, d, b, a, c, d); }
+    }
+    g.setAttribute('position', new T.Float32BufferAttribute(pos, 3));
+    g.setAttribute('uv', new T.Float32BufferAttribute(uv, 2));
+    g.setIndex(idx); g.computeVertexNormals();
+    return g;
+  }
+
+  sheetEdge() {
+    const T = this.THREE, g = new T.BoxGeometry(this.W, this.T * 0.94, this.H * 0.998, 26, 1, 1);
+    g.translate(this.W / 2, 0, 0);
+    return g;
+  }
+
+  makeSheet(frontCanvas, backCanvas) {
+    const T = this.THREE, grp = new T.Group();
+    const paper = new T.MeshStandardMaterial({ color: 0xf4f7fa, roughness: 0.96, metalness: 0 });
+    const mkMesh = (geo, mat) => {
+      const m = new T.Mesh(geo, mat);
+      m.castShadow = true; m.receiveShadow = true;
+      m.userData.orig = Float32Array.from(geo.attributes.position.array);
+      grp.add(m); return m;
+    };
+    const front = mkMesh(this.sheetFace(true, false), new T.MeshStandardMaterial({ map: this.tex(frontCanvas, false), roughness: 0.85, metalness: 0 }));
+    const back = mkMesh(this.sheetFace(false, true), new T.MeshStandardMaterial({ map: this.tex(backCanvas, false), roughness: 0.85, metalness: 0 }));
+    const edge = mkMesh(this.sheetEdge(), paper);
+    grp.userData = { front: front, back: back, edge: edge, angle: -1 };
+    return grp;
+  }
+
+  build() {
+    const T = this.THREE, W = this.W, H = this.H;
+    const sc = new T.Scene(); sc.background = new T.Color(0x03172e);
+    const cam = new T.PerspectiveCamera(30, 16 / 9, 0.1, 40);
+    const rn = new T.WebGLRenderer({ canvas: this.r.canvas, antialias: true, preserveDrawingBuffer: true });
+    rn.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+    rn.shadowMap.enabled = true; rn.shadowMap.type = T.PCFShadowMap;
+    rn.outputColorSpace = T.SRGBColorSpace;
+
+    sc.add(new T.HemisphereLight(0x9fc4e8, 0x03172e, 0.42));
+    const key = new T.DirectionalLight(0xffffff, 1.5);
+    key.position.set(-1.9, 3.2, 1.5); key.castShadow = true;
+    key.shadow.mapSize.set(1024, 1024);
+    const sh = key.shadow.camera; sh.left = -2.6; sh.right = 2.6; sh.top = 2.6; sh.bottom = -2.6; sh.near = 0.2; sh.far = 9;
+    key.shadow.bias = -0.0007; key.shadow.radius = 3;
+    sc.add(key);
+    const fill = new T.DirectionalLight(0x2f7fc4, 0.42); fill.position.set(2.6, 1.4, 2.4); sc.add(fill);
+    const rim = new T.DirectionalLight(0xefb928, 0.18); rim.position.set(0.4, 1.0, -2.6); sc.add(rim);
+
+    const book = new T.Group(); sc.add(book);
+
+    // back board + spine
+    const board = new T.Mesh(new T.BoxGeometry(W * 1.03, 0.022, H * 1.03), new T.MeshStandardMaterial({ color: 0x072d53, roughness: 0.72 }));
+    board.position.set(W * 1.03 / 2 - 0.012, -0.055, 0); board.castShadow = true; board.receiveShadow = true; book.add(board);
+    const endpaper = new T.Mesh(new T.PlaneGeometry(W, H), new T.MeshStandardMaterial({ map: this.tex(this.faceFlat('#f0f5f9', false), false), roughness: 0.95 }));
+    endpaper.rotation.x = -Math.PI / 2; endpaper.rotation.z = Math.PI; endpaper.position.set(W / 2, -0.0425, 0); endpaper.receiveShadow = true; book.add(endpaper);
+    const spine = new T.Mesh(new T.BoxGeometry(0.05, 0.104, H * 1.03), new T.MeshStandardMaterial({ color: 0x03172e, roughness: 0.6 }));
+    spine.position.set(-0.03, -0.005, 0); spine.castShadow = true; book.add(spine);
+
+    const A = this.SP;
+    const faces = [
+      [this.faceCover(), this.faceArt(A[0], this.imgs.s1)],
+      [this.faceCopy(A[0]), this.faceArt(A[1], this.imgs.s2)],
+      [this.faceCopy(A[1]), this.faceArt(A[2], this.imgs.s3)],
+      [this.faceCopy(A[2]), this.faceArt(A[3], this.imgs.s4)],
+      [this.faceCopy(A[3]), this.faceColophon()]
+    ];
+    this.sheets = faces.map((f, i) => { const s = this.makeSheet(f[0], f[1]); book.add(s); return s; });
+
+    this.g = { sc: sc, cam: cam, rn: rn, book: book, T: T };
+    this.applyFrame(this.frameAt(0));
+  }
+
+  // ---------- bend ----------
+  bend(grp, angle) {
+    if (Math.abs(grp.userData.angle - angle) < 0.0004) return;
+    grp.userData.angle = angle;
+    const W = this.W, curl = 0.085 * Math.sin(angle);
+    ['front', 'back', 'edge'].forEach(k => {
+      const m = grp.userData[k], p = m.geometry.attributes.position, o = m.userData.orig;
+      for (let i = 0; i < p.count; i++) {
+        const x = o[i * 3], y = o[i * 3 + 1], z = o[i * 3 + 2];
+        const u = Math.max(0, Math.min(1, x / W));
+        const th = angle * (0.68 + 0.32 * u);
+        const cs = Math.cos(th), sn = Math.sin(th);
+        p.setXYZ(i, x * cs - y * sn, x * sn + y * cs + Math.sin(Math.PI * u) * curl, z);
+      }
+      p.needsUpdate = true; m.geometry.computeVertexNormals();
+    });
+  }
+
+  // ---------- timeline ----------
+  ez(x) { const t = Math.max(0, Math.min(1, x)); return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  smooth(x) { const t = Math.max(0, Math.min(1, x)); return t * t * (3 - 2 * t); }
+  lerp(a, b, k) { return a + (b - a) * k; }
+  lerp3(a, b, k) { return [this.lerp(a[0], b[0], k), this.lerp(a[1], b[1], k), this.lerp(a[2], b[2], k)]; }
+
+  TURN0 = 3.6; TURND = 1.5; CYCLE = 4.0; CLOSE = 19.6; ENDT = 21.6;
+
+  frameAt(t) {
+    const mob = this.frame === '9:16';
+    const angles = [0, 0, 0, 0, 0];
+    if (t < this.CLOSE) {
+      for (let i = 0; i < 4; i++) angles[i] = Math.PI * this.ez((t - (this.TURN0 + i * this.CYCLE)) / this.TURND);
+    } else {
+      for (let i = 0; i < 4; i++) {
+        const st = this.CLOSE + (3 - i) * 0.16;
+        angles[i] = Math.PI * (1 - this.ez((t - st) / 0.9));
+      }
+    }
+    // camera presets
+    const FAR = { cam: [2.7, 2.5, 3.6], tgt: [1.7, 0, 0.1] };
+    const COVER = { cam: [1.02, 1.86, 2.02], tgt: [0.52, 0, 0] };
+    const SPREAD = { cam: [0.06, 2.42, 2.62], tgt: [0.02, -0.04, 0] };
+    const ENDF = { cam: [0.55, 2.2, 2.72], tgt: [0.5, -0.04, 0] };
+    let cam, tgt;
+    if (t < 2.5) { const k = this.smooth(t / 2.5); cam = this.lerp3(FAR.cam, COVER.cam, k); tgt = this.lerp3(FAR.tgt, COVER.tgt, k); }
+    else if (t < 4.9) { const k = this.smooth((t - 3.5) / 1.4); cam = this.lerp3(COVER.cam, SPREAD.cam, k); tgt = this.lerp3(COVER.tgt, SPREAD.tgt, k); }
+    else if (t < this.CLOSE) { cam = SPREAD.cam.slice(); tgt = SPREAD.tgt.slice(); cam[2] -= 0.3 * this.smooth((t - 4.9) / (this.CLOSE - 4.9)); }
+    else { const k = this.smooth((t - this.CLOSE) / 2.0); cam = this.lerp3(SPREAD.cam, ENDF.cam, k); tgt = this.lerp3(SPREAD.tgt, ENDF.tgt, k); }
+    // continuous drift
+    cam[0] += 0.15 * Math.sin(t * 0.66) * (t > 2.2 ? 1 : 0);
+    cam[1] += 0.05 * Math.sin(t * 0.51 + 1.1);
+    tgt[0] += 0.08 * Math.sin(t * 0.66 + 0.5) * (t > 2.2 ? 1 : 0);
+
+    // book placement
+    const bk = { x: 0, y: 0, z: 0, ry: -0.14 };
+    if (t < 2.5) { const k = this.smooth(t / 2.5); bk.x = this.lerp(2.3, 0, k); bk.y = this.lerp(0.42, 0, k); bk.ry = this.lerp(-1.12, -0.16, k); }
+    else if (t < this.ENDT) { bk.ry = -0.16 + 0.05 * Math.sin(t * 0.42); }
+    else { const k = this.smooth((t - this.ENDT) / 2.4); bk.x = this.lerp(0, 0.42, k); bk.ry = this.lerp(-0.16, -0.62, k); bk.y = this.lerp(0, -0.05, k); }
+    if (mob) { bk.y -= 0.1; }
+
+    // caption window
+    let ci = -1, ca = 0;
+    for (let i = 0; i < 4; i++) {
+      const a = this.TURN0 + i * this.CYCLE + this.TURND * 0.72, b = a + (i < 3 ? 2.9 : 2.9);
+      if (t >= a && t < b + 0.5) { ci = i; ca = Math.min(this.smooth((t - a) / 0.45), this.smooth((b + 0.5 - t) / 0.45)); }
+    }
+    const endA = this.smooth((t - 22.1) / 0.8);
+    const hintA = this.mode === 'film' ? Math.min(this.smooth((t - 1.4) / 0.6), this.smooth((4.6 - t) / 0.5)) : 1;
+    return { angles: angles, cam: cam, tgt: tgt, book: bk, ci: ci, ca: Math.max(0, ca), endA: endA, hintA: Math.max(0, hintA), t: t };
+  }
+
+  frameInteractive() {
+    const mob = this.frame === '9:16';
+    const angles = [0, 0, 0, 0, 0];
+    for (let i = 0; i < 4; i++) angles[i] = Math.PI * this.ez(Math.max(0, Math.min(1, this.pp - i)));
+    const closed = this.pp < 0.25;
+    const COVER = { cam: [1.02, 1.86, 2.02], tgt: [0.52, 0, 0] };
+    const SPREAD = { cam: [0.06, 2.4, 2.6], tgt: [0.02, -0.04, 0] };
+    const k = this.smooth(this.pp / 0.6);
+    let cam = this.lerp3(COVER.cam, SPREAD.cam, k), tgt = this.lerp3(COVER.tgt, SPREAD.tgt, k);
+    cam[0] += (this.px || 0) * 0.3; cam[1] += (this.py || 0) * 0.18;
+    const ci = Math.max(-1, Math.min(3, Math.round(this.pp) - 1));
+    const ca = this.pp >= 0.9 ? Math.min(1, (this.pp - 0.85) * 3) : 0;
+    return { angles: angles, cam: cam, tgt: tgt, book: { x: 0, y: mob ? -0.1 : 0, z: 0, ry: -0.16 }, ci: ci, ca: ca, endA: Math.max(0, Math.min(1, (this.pp - 4.15) * 2.2)), hintA: 1, t: -1 };
+  }
+
+  applyStatic(on) {
+    this.staticMode = on;
+    this.r.staticBoard.style.display = on ? 'block' : 'none';
+    this.r.stageWrap.style.display = on ? 'none' : 'block';
+    if (this.r.btnStatic) {
+      this.r.btnStatic.textContent = on ? 'Motion version' : 'Static version';
+      this.r.btnStatic.style.background = on ? 'var(--navy)' : '#fff';
+      this.r.btnStatic.style.color = on ? '#fff' : 'var(--navy)';
+      this.r.btnStatic.style.borderColor = on ? 'var(--navy)' : 'var(--line)';
+    }
+  }
+
+  applyFrame(f) {
+    if (!this.g) return;
+    const g = this.g, T = g.T;
+    for (let i = 0; i < this.sheets.length; i++) {
+      const a = f.angles[i] || 0, s = this.sheets[i];
+      this.bend(s, a);
+      const kk = this.smooth(a / Math.PI);
+      const yR = (this.NS - 1 - i) * this.T * 1.05, yL = i * this.T * 1.05;
+      s.position.y = this.lerp(yR, yL, kk) + 0.075 * Math.sin(kk * Math.PI);
+    }
+    g.book.position.set(f.book.x, f.book.y, f.book.z); g.book.rotation.y = f.book.ry;
+    // dolly along the view axis so the whole spread fits whatever aspect the frame is —
+    // the viewing angle is unchanged, the camera just moves further out in portrait.
+    const fit = Math.min(3.4, Math.max(1, (16 / 9) / Math.max(0.4, g.cam.aspect || 16 / 9)));
+    g.cam.position.set(
+      f.tgt[0] + (f.cam[0] - f.tgt[0]) * fit,
+      f.tgt[1] + (f.cam[1] - f.tgt[1]) * fit,
+      f.tgt[2] + (f.cam[2] - f.tgt[2]) * fit
+    );
+    g.cam.lookAt(f.tgt[0], f.tgt[1], f.tgt[2]);
+    // overlays
+    const cap = this.r.caption;
+    cap.style.opacity = String(f.ca);
+    cap.style.transform = 'translateY(' + ((1 - f.ca) * 14).toFixed(2) + 'px)';
+    if (f.ci >= 0) { this.r.capNum.textContent = this.SP[f.ci].n; this.r.capText.textContent = this.SP[f.ci].kicker; }
+    const e = this.r.endcard;
+    e.style.opacity = String(Math.min(1, f.endA * 1.2));
+    e.style.clipPath = 'inset(0 ' + ((1 - f.endA) * 100).toFixed(1) + '% 0 0)';
+    this.r.hint.style.opacity = String(f.hintA * 0.9);
+    g.rn.render(g.sc, g.cam);
+    if (f.t >= 0) {
+      this.r.stage.setAttribute('data-screen-label', 'Film A ' + f.t.toFixed(1) + 's');
+      if (this.r.scrub && !this.scrubbing) this.r.scrub.value = String(Math.round((f.t / this.AUTH) * 1000));
+      if (this.r.timeLabel) this.r.timeLabel.textContent = (f.t / this.AUTH * this.dur).toFixed(1) + ' / ' + this.dur.toFixed(1) + 's';
+      this.syncSel();
+    } else {
+      this.r.stage.setAttribute('data-screen-label', 'Film A · turning by hand · page ' + this.pp.toFixed(2));
+    }
+  }
+
+  // Overlay type is authored in cqw; a 9:16 frame is far narrower, so the same cqw value
+  // reads too small. Scale the authored cqw bases rather than re-authoring the overlays.
+  scaleType(k) {
+    if (!this._ts) {
+      this._ts = [];
+      this.r.stage.querySelectorAll('*').forEach(el => {
+        const s = el.getAttribute('style') || '';
+        const f = /font-size:\s*([\d.]+)cqw/.exec(s);
+        if (f) this._ts.push([el, 'fontSize', parseFloat(f[1])]);
+        if (el.tagName === 'IMG') { const w = /width:\s*([\d.]+)cqw/.exec(s); if (w) this._ts.push([el, 'width', parseFloat(w[1])]); }
+      });
+    }
+    for (const [el, prop, base] of this._ts) el.style[prop] = (base * k).toFixed(3) + 'cqw';
+    this.r.endcard.style.maxWidth = k > 1 ? '86cqw' : '44cqw';
+  }
+
+  resize() {
+    if (!this.g) return;
+    const s = this.r.stage, w = s.clientWidth || 960, h = s.clientHeight || 540;
+    this.g.rn.setSize(w, h, false);
+    this.g.cam.aspect = w / Math.max(1, h); this.g.cam.updateProjectionMatrix();
+    this.applyFrame(this.mode === 'film' ? this.frameAt(this.t) : this.frameInteractive());
+  }
+
+  loop = (now) => {
+    if (this.dead) return;
+    this.raf = requestAnimationFrame(this.loop);
+    const dt = Math.min(0.05, (now - this.last) / 1000); this.last = now;
+    if (this.mode === 'film') {
+      if (this.playing && !this.staticMode) {
+        this.t += dt * (this.AUTH / this.dur);
+        if (this.t >= this.AUTH) { this.t = this.AUTH; this.playing = false; this.syncPlay(); }
+        this.chime();
+      }
+      this.applyFrame(this.frameAt(this.t));
+    } else {
+      if (!this.dragging) this.pp += (this.ppTarget - this.pp) * Math.min(1, dt * 7.5);
+      this.applyFrame(this.frameInteractive());
+    }
+  };
+
+  chime() {
+    const i = Math.floor((this.t - this.TURN0) / this.CYCLE);
+    if (i >= 0 && i < 4 && i !== this.lastTurn && (this.t - (this.TURN0 + i * this.CYCLE)) < 0.4) { this.lastTurn = i; this.paper(); }
+    if (this.t < this.TURN0) this.lastTurn = -1;
+  }
+
+  // ---------- synthesized paper sound (opt-in only) ----------
+  paper() {
+    if (!this.sound) return;
+    try {
+      const ac = this.ac || (this.ac = new (window.AudioContext || window.webkitAudioContext)());
+      const dur = 0.42, sr = ac.sampleRate, buf = ac.createBuffer(1, Math.floor(sr * dur), sr), d = buf.getChannelData(0);
+      let seed = 12345;
+      for (let i = 0; i < d.length; i++) { seed = (seed * 1103515245 + 12345) & 0x7fffffff; d[i] = (seed / 0x7fffffff) * 2 - 1; }
+      const src = ac.createBufferSource(); src.buffer = buf;
+      const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.Q = 0.7;
+      bp.frequency.setValueAtTime(700, ac.currentTime); bp.frequency.exponentialRampToValueAtTime(2600, ac.currentTime + dur);
+      const gn = ac.createGain();
+      gn.gain.setValueAtTime(0.0001, ac.currentTime);
+      gn.gain.exponentialRampToValueAtTime(0.16, ac.currentTime + 0.06);
+      gn.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + dur);
+      src.connect(bp); bp.connect(gn); gn.connect(ac.destination); src.start();
+    } catch (e) { /* audio unavailable */ }
+  }
+
+  // ---------- interaction ----------
+  onSeek = (e) => {
+    const d = (e && e.detail) || {};
+    const time = typeof d.time === 'number' ? d.time : (typeof d.frame === 'number' ? d.frame / 30 : 0);
+    this.mode = 'film'; this.playing = false; this.syncMode(); this.syncPlay();
+    this.t = Math.max(0, Math.min(this.AUTH, time * (this.AUTH / this.dur)));
+    this.lastTurn = 99;
+    if (this.g) this.applyFrame(this.frameAt(this.t));
+  };
+
+  onDown = (e) => {
+    if (this.staticMode || !this.g) return;
+    this.r.stage.focus({ preventScroll: true });
+    if (this.mode !== 'interactive') { this.setMode('interactive'); this.ppTarget = this.pp = Math.max(0, Math.round(this.pp)); }
+    this.dragging = true; this.dx = e.clientX; this.dp = this.pp;
+    this.r.stage.style.cursor = 'grabbing';
+  };
+
+  onMove = (e) => {
+    if (!this.g) return;
+    const r = this.r.stage.getBoundingClientRect();
+    this.px = (e.clientX - r.left) / r.width - 0.5; this.py = (e.clientY - r.top) / r.height - 0.5;
+    if (!this.dragging) return;
+    this.pp = Math.max(0, Math.min(4.6, this.dp + (this.dx - e.clientX) / 330));
+  };
+
+  onUp = () => {
+    if (!this.dragging) return;
+    this.dragging = false; this.r.stage.style.cursor = 'grab';
+    this.ppTarget = Math.max(0, Math.min(4.6, Math.round(this.pp * 1) ));
+    if (this.pp > 4.3) this.ppTarget = 4.6;
+  };
+
+  onKey = (e) => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    e.preventDefault();
+    if (this.mode !== 'interactive') { this.setMode('interactive'); this.ppTarget = this.pp = Math.max(0, Math.round(this.pp)); }
+    this.ppTarget = Math.max(0, Math.min(4, Math.round(this.ppTarget) + (e.key === 'ArrowRight' ? 1 : -1)));
+  };
+
+  syncSel() {
+    if (this.r.durSel && this.r.durSel.value !== String(this.dur)) this.r.durSel.value = String(this.dur);
+    if (this.r.frameSel && this.r.frameSel.value !== this.frame) this.r.frameSel.value = this.frame;
+  }
+
+  setMode(m) {
+    this.mode = m;
+    if (m === 'film') { this.playing = true; this.lastTurn = -1; this.last = performance.now(); }
+    this.syncMode(); this.syncPlay();
+  }
+
+  syncMode() {
+    const on = { background: 'var(--navy)', color: '#fff', borderColor: 'var(--navy)' }, off = { background: '#fff', color: 'var(--navy)', borderColor: 'var(--line)' };
+    const set = (el, s) => { if (!el) return; el.style.background = s.background; el.style.color = s.color; el.style.borderColor = s.borderColor; };
+    set(this.r.btnFilm, this.mode === 'film' ? on : off);
+    set(this.r.btnHand, this.mode === 'interactive' ? on : off);
+  }
+
+  syncPlay() { if (this.r.btnPlay) this.r.btnPlay.textContent = this.playing && this.mode === 'film' ? 'Pause' : 'Play'; }
+
+  renderVals() {
+    return {
+      ...this.R,
+      onFilm: () => { this.t = this.mode === 'film' ? this.t : 0; this.setMode('film'); },
+      onHand: () => { this.setMode('interactive'); this.ppTarget = this.pp = Math.max(0.0, Math.round(this.pp)); },
+      onToggle: () => { if (this.mode !== 'film') { this.setMode('film'); return; } if (this.t >= this.AUTH - 0.01) this.t = 0; this.playing = !this.playing; this.last = performance.now(); this.syncPlay(); },
+      onReplay: () => { this.t = 0; this.lastTurn = -1; this.setMode('film'); },
+      onScrub: (e) => {
+        this.mode = 'film'; this.playing = false; this.scrubbing = true; this.syncMode(); this.syncPlay();
+        this.t = (Number(e.target.value) / 1000) * this.AUTH; this.lastTurn = 99;
+        if (this.g) this.applyFrame(this.frameAt(this.t));
+        clearTimeout(this.sT); this.sT = setTimeout(() => { this.scrubbing = false; }, 250);
+      },
+      onDur: (e) => {
+        this.dur = Number(e.target.value);
+        this.r.stage.setAttribute('data-om-exportable-video-with-duration-secs', String(this.dur));
+        if (this.g) this.applyFrame(this.frameAt(this.t));
+      },
+      onFrame: (e) => {
+        this.frame = e.target.value;
+        this.r.stage.style.aspectRatio = this.frame === '9:16' ? '9/16' : '16/9';
+        this.r.stage.style.maxWidth = this.frame === '9:16' ? '420px' : 'none';
+        this.r.stage.style.marginLeft = this.frame === '9:16' ? 'auto' : '0';
+        this.r.stage.style.marginRight = this.frame === '9:16' ? 'auto' : '0';
+        this.scaleType(this.frame === '9:16' ? 2.2 : 1);
+        requestAnimationFrame(() => this.resize());
+      },
+      onSound: () => {
+        this.sound = !this.sound;
+        const b = this.r.btnSound;
+        b.textContent = this.sound ? 'Sound on' : 'Sound off';
+        b.style.background = this.sound ? 'var(--navy)' : '#fff';
+        b.style.color = this.sound ? '#fff' : 'var(--navy)';
+        b.style.borderColor = this.sound ? 'var(--navy)' : 'var(--line)';
+        if (this.sound) this.paper();
+      },
+      onStatic: () => { this.applyStatic(!this.staticMode); }
+    };
+  }
+}
+</script>
+</body>
+</html>

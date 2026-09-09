@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/colors.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/typography.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/radius.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/motion.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/semantic.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/base.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/styles.css">
+<script src="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/_ds_bundle.js"></script>
+<style>
+html,body{margin:0;padding:0;background:#fff}
+body{color:var(--ink);font-family:var(--body);font-size:var(--size-body);line-height:var(--leading-body)}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--navy);text-decoration:underline}
+::selection{background:var(--gold);color:var(--night)}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:5px}
+input[type=range]{accent-color:var(--gold)}
+</style>
+</helmet>
+<div style="max-width:1440px;margin:0 auto;padding:36px clamp(20px,4vw,48px) 72px">
+
+  <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:20px">
+    <div style="max-width:26ch">
+      <p style="margin:0 0 10px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">The Next Chapter series · four × 12 seconds</p>
+      <h1 style="margin:0;font-family:var(--display);font-weight:900;font-size:clamp(2rem,3.4vw,3rem);line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy);text-wrap:balance">One book. One service at a time.</h1>
+    </div>
+    <p style="margin:0;max-width:52ch;font-size:var(--size-support);color:var(--muted);text-wrap:pretty">The same dimensional book as Film A, cut into four separately exportable episodes. Each one opens, holds a single readable service story, and closes on the mark with one next step.</p>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:10px;padding:20px 0 6px" ref="{{ epRow }}">
+    <button type="button" onClick="{{ onEp0 }}" ref="{{ ep0 }}" style="display:flex;flex-direction:column;gap:4px;align-items:flex-start;text-align:left;font-family:var(--body);padding:12px 20px;border-radius:12px;border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer;min-width:190px;flex:1">
+      <span style="font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;font-weight:900;opacity:.72">Episode 01</span>
+      <span style="font-family:var(--display);font-weight:900;font-size:1.15rem;letter-spacing:var(--tracking-display)">Search</span>
+    </button>
+    <button type="button" onClick="{{ onEp1 }}" ref="{{ ep1 }}" style="display:flex;flex-direction:column;gap:4px;align-items:flex-start;text-align:left;font-family:var(--body);padding:12px 20px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;min-width:190px;flex:1">
+      <span style="font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;font-weight:900;opacity:.72">Episode 02</span>
+      <span style="font-family:var(--display);font-weight:900;font-size:1.15rem;letter-spacing:var(--tracking-display)">Design</span>
+    </button>
+    <button type="button" onClick="{{ onEp2 }}" ref="{{ ep2 }}" style="display:flex;flex-direction:column;gap:4px;align-items:flex-start;text-align:left;font-family:var(--body);padding:12px 20px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;min-width:190px;flex:1">
+      <span style="font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;font-weight:900;opacity:.72">Episode 03</span>
+      <span style="font-family:var(--display);font-weight:900;font-size:1.15rem;letter-spacing:var(--tracking-display)">Marketing</span>
+    </button>
+    <button type="button" onClick="{{ onEp3 }}" ref="{{ ep3 }}" style="display:flex;flex-direction:column;gap:4px;align-items:flex-start;text-align:left;font-family:var(--body);padding:12px 20px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;min-width:190px;flex:1">
+      <span style="font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;font-weight:900;opacity:.72">Episode 04</span>
+      <span style="font-family:var(--display);font-weight:900;font-size:1.15rem;letter-spacing:var(--tracking-display)">Automation</span>
+    </button>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:12px 0 14px">
+    <p ref="{{ epLine }}" style="margin:0;font-size:var(--size-note);font-weight:900;color:var(--muted)">Episode 01 · Search · 12 s · route #search</p>
+    <div style="flex:1"></div>
+    <button type="button" onClick="{{ onSound }}" ref="{{ btnSound }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Sound off</button>
+    <button type="button" onClick="{{ onStatic }}" ref="{{ btnStatic }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Static version</button>
+  </div>
+
+  <div ref="{{ stageWrap }}" style="position:relative">
+    <div ref="{{ stage }}" tabindex="0" data-om-exportable-video-with-duration-secs="12" data-screen-label="Series · Search · 00.0s" style="position:relative;width:100%;aspect-ratio:16/9;background:#03172e;border-radius:var(--radius);overflow:hidden;container-type:size;touch-action:pan-y;outline-offset:4px">
+      <canvas ref="{{ canvas }}" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+
+      <div ref="{{ vign }}" style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 45%, rgb(3 23 46 / 0%) 42%, rgb(3 23 46 / 46%) 100%);opacity:0"></div>
+
+      <div ref="{{ caption }}" style="position:absolute;left:0;bottom:6cqh;opacity:0;display:flex;align-items:flex-end;gap:1.6cqw;background:#03172e;padding:1.4cqh 2.6cqw 1.4cqh 4.2cqw">
+        <span ref="{{ capNum }}" style="font-family:var(--display);font-weight:900;font-size:5.4cqw;line-height:.9;color:#efb928">01</span>
+        <span style="display:block;width:2.6cqw;height:1px;background:#efb928;margin-bottom:1.1cqh"></span>
+        <span ref="{{ capText }}" style="font-family:var(--body);font-weight:900;font-size:1.35cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#d5e4f1;margin-bottom:.5cqh">SEO + AI SEARCH</span>
+      </div>
+
+      <div ref="{{ endcard }}" style="position:absolute;left:6cqw;top:50%;transform:translateY(-50%);opacity:0;max-width:44cqw">
+        <img src="assets/momentum-logo.png" alt="Momentum" style="display:block;width:19cqw;height:auto;margin-bottom:3.4cqh">
+        <p style="margin:0 0 1.8cqh;font-family:var(--body);font-weight:900;font-size:1.35cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">Need momentum?</p>
+        <p ref="{{ endLine }}" style="margin:0;font-family:var(--display);font-weight:900;font-size:3.3cqw;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:#fff;text-wrap:balance">Let’s see how you show up today<span style="color:#efb928">.</span></p>
+      </div>
+
+      <div ref="{{ epBadge }}" style="position:absolute;right:3.2cqw;top:3.4cqh;padding:.9cqh 1.8cqw;border:1px solid rgb(255 255 255 / 14%);border-radius:24px;font-size:1.2cqw;font-weight:900;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#d5e4f1;opacity:0">Episode 01 · Search</div>
+
+      <div ref="{{ loading }}" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:var(--size-label);font-weight:900;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#52677c">Preparing the episode</div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:16px 0 0">
+      <button type="button" onClick="{{ onToggle }}" ref="{{ btnPlay }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);width:96px;padding:9px 0;border-radius:8px;border:1px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer">Pause</button>
+      <button type="button" onClick="{{ onReplay }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Replay</button>
+      <input type="range" min="0" max="1000" defaultValue="0" ref="{{ scrub }}" onInput="{{ onScrub }}" aria-label="Scrub the episode" style="flex:1;min-width:200px;height:22px">
+      <span ref="{{ timeLabel }}" style="font-size:var(--size-note);font-weight:900;color:var(--muted);font-variant-numeric:tabular-nums;min-width:78px;text-align:right">0.0 / 12.0s</span>
+      <label style="display:flex;align-items:center;gap:8px;font-size:var(--size-note);font-weight:900;color:var(--muted)">Duration
+        <select ref="{{ durSel }}" defaultValue="12" onChange="{{ onDur }}" aria-label="Playback duration" style="font-family:var(--body);font-size:var(--size-note);font-weight:900;color:var(--navy);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="10">10 s</option>
+          <option value="12">12 s</option>
+          <option value="16">16 s</option>
+        </select>
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:var(--size-note);font-weight:900;color:var(--muted)">Frame
+        <select ref="{{ frameSel }}" defaultValue="16:9" onChange="{{ onFrame }}" aria-label="Composition frame" style="font-family:var(--body);font-size:var(--size-note);font-weight:900;color:var(--navy);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="16:9">16:9</option>
+          <option value="9:16">9:16 mobile</option>
+        </select>
+      </label>
+    </div>
+
+    <p ref="{{ runtimeNote }}" style="margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:var(--size-note);color:var(--muted);line-height:var(--leading-note)">Same WebGL book as Film A: five sheets with real thickness, cast shadows and per-vertex bend. Each episode is a deterministic 12-second pass — 0–2 s opens, 2–8 s holds one service story, 8–12 s closes on the mark. Arrow keys change episode, space plays and pauses. Sound stays off until you turn it on.</p>
+  </div>
+
+  <div ref="{{ staticBoard }}" style="display:none;padding-top:32px">
+    <p style="margin:0 0 8px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Static version · no motion</p>
+    <h2 style="margin:0 0 26px;font-family:var(--display);font-weight:900;font-size:clamp(1.7rem,2.6vw,2.4rem);line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">All four episodes, held still.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:32px">
+      <div style="display:flex;flex-direction:column;gap:14px;padding-bottom:22px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;overflow:hidden">
+          <img src="assets/artwork/search-mascot.png" alt="Momo reading a local search result" style="width:80%;height:80%;object-fit:contain">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Episode 01 · SEO + AI search</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.6rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Be there when they ask.</h3>
+        <p style="margin:0;font-size:var(--size-support);color:var(--ink);text-wrap:pretty">A proposed service story: watch how local buyers actually ask — in search results and in AI answers — and keep your pages worth quoting.</p>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">The questions your buyers type and say · Pages and schema kept answerable · Written for a person, not a crawler</p>
+        <p style="margin:0;font-size:var(--size-note);font-weight:900;color:var(--navy)">Next step — Let’s see how you show up today.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;padding-bottom:22px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;overflow:hidden">
+          <img src="assets/artwork/build-mascot.png" alt="Momo assembling a brand kit" style="width:80%;height:80%;object-fit:contain">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Episode 02 · Brand + website design</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.6rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Make it recognizably yours.</h3>
+        <p style="margin:0;font-size:var(--size-support);color:var(--ink);text-wrap:pretty">A proposed service story: one look that carries from the truck to the job site to the estimate, built from your own materials.</p>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Your marks, colours and photographs · A site that loads and reads clearly · One kit the whole crew can use</p>
+        <p style="margin:0;font-size:var(--size-note);font-weight:900;color:var(--navy)">Next step — Let’s walk your homepage together.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;padding-bottom:22px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;overflow:hidden">
+          <img src="assets/artwork/audience-mascot.png" alt="Momo presenting to a neighbourhood audience" style="width:80%;height:80%;object-fit:contain">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Episode 03 · Campaigns + content</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.6rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Give the idea somewhere to go.</h3>
+        <p style="margin:0;font-size:var(--size-support);color:var(--ink);text-wrap:pretty">A proposed service story: put the offer where the neighbourhood already looks, and give every click a page that finishes the thought.</p>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">One offer, said plainly · A landing page per promise · Follow-up that sounds like you</p>
+        <p style="margin:0;font-size:var(--size-note);font-weight:900;color:var(--navy)">Next step — Let’s pick one campaign to build.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;padding-bottom:22px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;overflow:hidden">
+          <img src="assets/artwork/operations-mascot.png" alt="Momo keeping the moving parts in step" style="width:80%;height:80%;object-fit:contain">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Episode 04 · Operations + follow-up</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.6rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Keep the work connected.</h3>
+        <p style="margin:0;font-size:var(--size-support);color:var(--ink);text-wrap:pretty">A proposed service story: the enquiry, the crew and the report stay on one thread, and every reported number keeps the name behind it.</p>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Intake routed to the right crew · Jobs and calendars in step · Named leads, not just totals</p>
+        <p style="margin:0;font-size:var(--size-note);font-weight:900;color:var(--navy)">Next step — Let’s map your first workflow.</p>
+      </div>
+    </div>
+    <div style="margin-top:34px;padding:28px 32px;background:#072d53;border-radius:var(--radius)">
+      <img src="assets/momentum-logo.png" alt="Momentum" style="display:block;width:210px;height:auto;margin-bottom:18px">
+      <p style="margin:0 0 8px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--gold);font-weight:900">Need momentum?</p>
+      <p style="margin:0;font-family:var(--display);font-weight:900;font-size:clamp(1.5rem,2.4vw,2.2rem);line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:#fff">One book, four chapters, one next step<span style="color:var(--gold)">.</span></p>
+    </div>
+  </div>
+
+  <p style="margin:34px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:var(--size-note);color:var(--muted);line-height:var(--leading-note);max-width:72ch">Private concept series · September 2026. The four episodes are proposed service stories for review, not deployed products, and no client result, metric or availability claim is made. Artwork is the original Momentum ceramic collection; the logo is the exact master.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:980},&quot;startEpisode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;search&quot;,&quot;design&quot;,&quot;marketing&quot;,&quot;automation&quot;],&quot;default&quot;:&quot;search&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Episode&quot;},&quot;defaultDuration&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;10&quot;,&quot;12&quot;,&quot;16&quot;],&quot;default&quot;:&quot;12&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Episode&quot;},&quot;vignette&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Look&quot;}}">
+class Component extends DCLogic {
+  R = ['stage', 'stageWrap', 'canvas', 'caption', 'capNum', 'capText', 'endcard', 'endLine', 'epBadge', 'epLine', 'loading', 'runtimeNote', 'staticBoard', 'vign', 'btnSound', 'btnStatic', 'btnPlay', 'scrub', 'timeLabel', 'durSel', 'frameSel', 'ep0', 'ep1', 'ep2', 'ep3'].reduce((o, n) => { o[n] = React.createRef(); return o; }, {});
+  r = new Proxy({}, { get: (_, k) => (this.R[k] ? this.R[k].current : undefined) });
+
+  EP = [
+    { id: 'search', n: '01', name: 'Search', kicker: 'SEO + AI search', title: 'Be there when they ask.',
+      beat: 'The question comes first.',
+      body: 'A proposed service story: watch how local buyers actually ask — in search results and in AI answers — and keep your pages worth quoting.',
+      pts: ['The questions your buyers type and say', 'Pages and schema kept answerable', 'Written for a person, not a crawler'],
+      next: 'Let’s see how you show up today', art: 'assets/artwork/search-mascot.png', icon: 'assets/artwork/icon-search.png' },
+    { id: 'design', n: '02', name: 'Design', kicker: 'Brand + website design', title: 'Make it recognizably yours.',
+      beat: 'Look like the crew that shows up.',
+      body: 'A proposed service story: one look that carries from the truck to the job site to the estimate, built from your own materials.',
+      pts: ['Your marks, colours and photographs', 'A site that loads and reads clearly', 'One kit the whole crew can use'],
+      next: 'Let’s walk your homepage together', art: 'assets/artwork/build-mascot.png', icon: 'assets/artwork/icon-build.png' },
+    { id: 'marketing', n: '03', name: 'Marketing', kicker: 'Campaigns + content', title: 'Give the idea somewhere to go.',
+      beat: 'An idea needs a destination.',
+      body: 'A proposed service story: put the offer where the neighbourhood already looks, and give every click a page that finishes the thought.',
+      pts: ['One offer, said plainly', 'A landing page per promise', 'Follow-up that sounds like you'],
+      next: 'Let’s pick one campaign to build', art: 'assets/artwork/audience-mascot.png', icon: 'assets/artwork/icon-audience.png' },
+    { id: 'automation', n: '04', name: 'Automation', kicker: 'Operations + follow-up', title: 'Keep the work connected.',
+      beat: 'One thread, end to end.',
+      body: 'A proposed service story: the enquiry, the crew and the report stay on one thread, and every reported number keeps the name behind it.',
+      pts: ['Intake routed to the right crew', 'Jobs and calendars in step', 'Named leads, not just totals'],
+      next: 'Let’s map your first workflow', art: 'assets/artwork/operations-mascot.png', icon: 'assets/artwork/icon-operations.png' }
+  ];
+
+  W = 1.0; H = 1.36; T = 0.012; AUTH = 12; NS = 5;
+  OPEN = 2.0; TURN = 2.0; TURND = 1.25; CLOSE = 8.0; CLOSED = 0.95; ENDT = 9.4;
+  t = 0; playing = true; sound = false; staticMode = false; ep = 0;
+  frame = '16:9'; dur = 12; mob = false; lastTurn = -1;
+
+  componentDidMount() {
+    const props = this.props || {};
+    const want = String(props.startEpisode || 'search');
+    const hash = (location.hash || '').replace('#', '').toLowerCase();
+    const byHash = this.EP.findIndex(e => e.id === hash);
+    const byProp = this.EP.findIndex(e => e.id === want);
+    this.ep = byHash >= 0 ? byHash : (byProp >= 0 ? byProp : 0);
+    this.dur = Number(props.defaultDuration || 12) || 12;
+    this.vignette = props.vignette !== false;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.staticMode = true;
+    window.addEventListener('hashchange', this.onHash);
+    requestAnimationFrame(() => requestAnimationFrame(() => { this.syncSel(); this.syncEp(); }));
+    this.boot();
+  }
+
+  componentWillUnmount() {
+    this.dead = true;
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.ro) this.ro.disconnect();
+    window.removeEventListener('hashchange', this.onHash);
+    window.removeEventListener('keydown', this.onKey);
+  }
+
+  async boot() {
+    const stage = this.r.stage;
+    if (this.staticMode) this.applyStatic(true);
+    if (this.r.vign) this.r.vign.style.opacity = this.vignette ? '1' : '0';
+    stage.addEventListener('data-om-seek-to-time-frame', this.onSeek);
+    stage.addEventListener('keydown', this.onKey);
+    this.ro = new ResizeObserver(() => this.resize());
+    this.ro.observe(stage);
+
+    try {
+      await Promise.all([
+        document.fonts.load('900 64px Archivo'), document.fonts.load('400 26px Nunito'),
+        document.fonts.load('900 26px Nunito'), document.fonts.ready
+      ]);
+    } catch (e) { /* fonts fall back */ }
+
+    const map = { mark: 'assets/momentum-mark.png' };
+    this.EP.forEach((e, i) => { map['a' + i] = e.art; map['i' + i] = e.icon; });
+    try { this.imgs = await this.loadImages(map); } catch (e) { this.imgs = {}; }
+
+    let THREE = null;
+    try { THREE = await import('https://unpkg.com/three@0.184.0/build/three.module.js'); } catch (e) { THREE = null; }
+    if (this.dead) return;
+
+    if (!THREE || !this.hasWebGL()) {
+      this.r.loading.textContent = '';
+      this.r.runtimeNote.textContent = 'WebGL / three.js could not load in this runtime, so the dimensional book cannot render here. No CSS stand-in is being passed off as WebGL: the static readable version below is shown instead, and the episode source still renders in any WebGL-capable browser.';
+      this.staticMode = true; this.applyStatic(true); this.playing = false;
+      return;
+    }
+    this.THREE = THREE;
+    try { this.build(); } catch (e) {
+      this.r.loading.textContent = '';
+      this.r.runtimeNote.textContent = 'The WebGL scene failed to build in this runtime (' + (e && e.message ? e.message : 'unknown error') + '). Showing the static readable version instead.';
+      this.staticMode = true; this.applyStatic(true); this.playing = false; return;
+    }
+    this.r.loading.style.display = 'none';
+    this.resize();
+    this.last = performance.now();
+    this.raf = requestAnimationFrame(this.loop);
+  }
+
+  hasWebGL() {
+    try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); }
+    catch (e) { return false; }
+  }
+
+  loadImages(map) {
+    const keys = Object.keys(map);
+    return Promise.all(keys.map(k => new Promise((res, rej) => {
+      const im = new Image(); im.onload = () => res([k, im]); im.onerror = () => rej(new Error(map[k])); im.src = map[k];
+    }))).then(pairs => { const o = {}; pairs.forEach(p => o[p[0]] = p[1]); return o; });
+  }
+
+  // ---------- page painting ----------
+  cvs(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; }
+
+  wrap(ctx, text, x, y, max, lh) {
+    const words = String(text).split(' '); let line = ''; let yy = y;
+    for (let i = 0; i < words.length; i++) {
+      const test = line ? line + ' ' + words[i] : words[i];
+      if (ctx.measureText(test).width > max && line) { ctx.fillText(line, x, yy); line = words[i]; yy += lh; }
+      else line = test;
+    }
+    if (line) ctx.fillText(line, x, yy);
+    return yy + lh;
+  }
+
+  wrap2(ctx, text, x0, y, max, lh) {
+    const words = String(text).split(' '); let line = ''; let yy = y;
+    for (let i = 0; i < words.length; i++) {
+      const test = line ? line + ' ' + words[i] : words[i];
+      if (ctx.measureText(test).width > max && line) { ctx.fillText(line, x0, yy); line = words[i]; yy += lh; }
+      else line = test;
+    }
+    ctx.fillText(line, x0, yy);
+    return { y: yy + lh, baseline: yy, last: ctx.measureText(line).width };
+  }
+
+  caret(ctx, x, y, s, color) {
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = s * 0.085; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + s, y);
+    ctx.moveTo(x + s * 0.62, y - s * 0.28); ctx.lineTo(x + s, y); ctx.lineTo(x + s * 0.62, y + s * 0.28);
+    ctx.stroke(); ctx.restore();
+  }
+
+  contain(ctx, im, x, y, w, h) {
+    if (!im) return;
+    const r = Math.min(w / im.width, h / im.height), dw = im.width * r, dh = im.height * r;
+    ctx.drawImage(im, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
+  }
+
+  // paper-craft details, drawn not imported: torn top edge, tape strips, stitch rule
+  tape(ctx, x, y, w, h, rot) {
+    ctx.save(); ctx.translate(x, y); ctx.rotate(rot);
+    ctx.fillStyle = 'rgba(239,185,40,0.34)'; ctx.fillRect(-w / 2, -h / 2, w, h);
+    ctx.strokeStyle = 'rgba(239,185,40,0.5)'; ctx.lineWidth = 1; ctx.strokeRect(-w / 2, -h / 2, w, h);
+    ctx.restore();
+  }
+
+  stitch(ctx, x0, x1, y, color) {
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.setLineDash([9, 9]); ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke(); ctx.restore();
+  }
+
+  torn(ctx, w, y, up, color) {
+    ctx.save(); ctx.fillStyle = color; ctx.beginPath();
+    ctx.moveTo(0, up ? y - 26 : y + 26);
+    let seed = 7;
+    for (let x = 0; x <= w; x += 22) {
+      seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+      const j = (seed / 0x7fffffff - 0.5) * 16;
+      ctx.lineTo(x, y + j);
+    }
+    ctx.lineTo(w, up ? y - 26 : y + 26); ctx.closePath(); ctx.fill(); ctx.restore();
+  }
+
+  faceCover(e) {
+    const w = 880, h = 1196, c = this.cvs(w, h), x = c.getContext('2d');
+    x.fillStyle = '#03172e'; x.fillRect(0, 0, w, h);
+    x.strokeStyle = '#efb928'; x.lineWidth = 1.5; x.strokeRect(40, 40, w - 80, h - 80);
+    this.contain(x, this.imgs.mark, 76, 84, 148, 148);
+    x.fillStyle = '#d5e4f1'; x.font = '900 22px Nunito'; x.letterSpacing = '2.2px';
+    x.fillText('THE NEXT CHAPTER SERIES', 76, 296);
+    x.fillStyle = '#efb928';
+    x.fillText('EPISODE ' + e.n + ' · ' + e.name.toUpperCase(), 76, 336);
+    x.letterSpacing = '0px';
+    x.fillStyle = '#ffffff'; x.font = '900 92px Archivo';
+    const res = this.wrap2(x, e.title.replace('.', ''), 72, 500, w - 150, 100);
+    x.fillStyle = '#efb928'; x.fillText('.', 72 + res.last, res.baseline);
+    this.stitch(x, 72, w - 72, res.y + 22, 'rgba(255,255,255,0.2)');
+    x.fillStyle = '#d5e4f1'; x.font = '400 27px Nunito';
+    this.wrap(x, e.kicker + ' — one proposed service story, twelve seconds.', 72, res.y + 92, w - 150, 42);
+    x.fillStyle = '#52677c'; x.font = '900 20px Nunito'; x.letterSpacing = '2px';
+    x.fillText('PRIVATE CONCEPT EDITION · SEPTEMBER 2026', 72, h - 88);
+    return c;
+  }
+
+  faceArt(e, im, icon) {
+    const w = 880, h = 1196, c = this.cvs(w, h), x = c.getContext('2d');
+    x.fillStyle = '#f0f5f9'; x.fillRect(0, 0, w, h);
+    x.fillStyle = '#03172e'; x.fillRect(0, 0, w, 214);
+    this.torn(x, w, 214, false, '#03172e');
+    x.fillStyle = '#efb928'; x.font = '900 108px Archivo'; x.fillText(e.n, 62, 158);
+    const nw = x.measureText(e.n).width;
+    x.fillStyle = '#d5e4f1'; x.font = '900 23px Nunito'; x.letterSpacing = '2.2px';
+    x.fillText(e.kicker.toUpperCase(), 62 + nw + 34, 158);
+    x.letterSpacing = '0px';
+
+    // taped scrapbook plate holding the original ceramic scene
+    const px = 66, py = 300, pw = w - 132, ph = 640;
+    x.save(); x.translate(px + pw / 2, py + ph / 2); x.rotate(-0.012); x.translate(-pw / 2, -ph / 2);
+    x.fillStyle = 'rgba(3,23,46,0.16)'; x.fillRect(8, 12, pw, ph);
+    x.fillStyle = '#ffffff'; x.fillRect(0, 0, pw, ph);
+    x.strokeStyle = '#d5e0e9'; x.lineWidth = 1; x.strokeRect(0, 0, pw, ph);
+    x.fillStyle = '#03172e'; x.fillRect(18, 18, pw - 36, ph - 96);
+    this.contain(x, im, 30, 30, pw - 60, ph - 120);
+    x.fillStyle = '#52677c'; x.font = '400 22px Nunito';
+    x.fillText('Original ceramic scene · Momentum collection', 22, ph - 34);
+    x.restore();
+    this.tape(x, px + 40, py + 6, 150, 40, -0.16);
+    this.tape(x, px + pw - 44, py + ph - 4, 150, 40, -0.14);
+
+    this.contain(x, icon, 62, 982, 124, 124);
+    x.fillStyle = '#072d53'; x.font = '900 31px Archivo';
+    const by = this.wrap(x, e.beat, 210, 1030, w - 274, 40);
+    x.fillStyle = '#1766ab'; x.font = '900 21px Nunito'; x.letterSpacing = '2.2px';
+    x.fillText('MOMENTUM AI · CONCEPT', 210, by + 16);
+    x.letterSpacing = '0px';
+    return c;
+  }
+
+  faceCopy(e) {
+    const w = 880, h = 1196, c = this.cvs(w, h), x = c.getContext('2d');
+    x.fillStyle = '#ffffff'; x.fillRect(0, 0, w, h);
+    x.fillStyle = '#1766ab'; x.font = '900 23px Nunito'; x.letterSpacing = '2.2px';
+    x.fillText(e.kicker.toUpperCase(), 72, 150);
+    x.letterSpacing = '0px';
+    this.stitch(x, 72, w - 72, 190, '#c3d3e0');
+    x.fillStyle = '#072d53'; x.font = '900 82px Archivo';
+    const res = this.wrap2(x, e.title.replace('.', ''), 70, 300, w - 140, 92);
+    x.fillStyle = '#efb928'; x.fillText('.', 70 + res.last, res.baseline);
+    let yy = res.y;
+    x.fillStyle = '#102d49'; x.font = '900 37px Nunito';
+    yy = this.wrap(x, e.beat, 72, yy + 24, w - 150, 50);
+    x.fillStyle = '#102d49'; x.font = '400 32px Nunito';
+    yy = this.wrap(x, e.body, 72, yy + 36, w - 140, 50);
+    this.stitch(x, 72, w - 72, yy + 26, '#c3d3e0');
+    let ly = yy + 96;
+    e.pts.forEach(p => {
+      this.caret(x, 72, ly - 11, 34, '#1766ab');
+      x.fillStyle = '#102d49'; x.font = '400 30px Nunito'; x.fillText(p, 128, ly);
+      ly += 58;
+    });
+    x.fillStyle = '#52677c'; x.font = '900 21px Nunito'; x.letterSpacing = '2.2px';
+    x.fillText('PROPOSED SERVICE STORY · FOR REVIEW', 72, h - 88);
+    return c;
+  }
+
+  faceClose(e) {
+    const w = 880, h = 1196, c = this.cvs(w, h), x = c.getContext('2d');
+    x.fillStyle = '#f0f5f9'; x.fillRect(0, 0, w, h);
+    this.contain(x, this.imgs.mark, w / 2 - 84, 300, 168, 168);
+    x.fillStyle = '#1766ab'; x.font = '900 22px Nunito'; x.letterSpacing = '2.2px';
+    const k = 'NEXT STEP', kw = x.measureText(k).width;
+    x.fillText(k, (w - kw) / 2, 560);
+    x.letterSpacing = '0px';
+    x.fillStyle = '#072d53'; x.font = '900 54px Archivo'; x.textAlign = 'center';
+    this.wrap(x, e.next + '.', w / 2, 646, w - 200, 66);
+    x.textAlign = 'left';
+    this.stitch(x, 150, w - 150, 830, '#c3d3e0');
+    x.fillStyle = '#52677c'; x.font = '400 24px Nunito'; x.textAlign = 'center';
+    this.wrap(x, 'Private concept series · September 2026. Proposed packaging for review, not a deployed product.', w / 2, 890, w - 200, 38);
+    x.textAlign = 'left';
+    return c;
+  }
+
+  faceFlat(color, dark) {
+    const w = 880, h = 1196, c = this.cvs(w, h), x = c.getContext('2d');
+    x.fillStyle = color; x.fillRect(0, 0, w, h);
+    if (dark) this.contain(x, this.imgs.mark, w / 2 - 90, h / 2 - 90, 180, 180);
+    else { x.strokeStyle = '#dde6ee'; x.lineWidth = 1; x.strokeRect(56, 56, w - 112, h - 112); }
+    return c;
+  }
+
+  tex(canvas) {
+    const T = this.THREE, t = new T.CanvasTexture(canvas);
+    t.colorSpace = T.SRGBColorSpace; t.anisotropy = 4;
+    return t;
+  }
+
+  // ---------- geometry (same engine as Film A) ----------
+  sheetFace(up, mirrorU) {
+    const T = this.THREE, N = 26, W = this.W, H = this.H, th = this.T / 2;
+    const g = new T.BufferGeometry(), pos = [], uv = [], idx = [];
+    for (let i = 0; i <= N; i++) {
+      const x = (i / N) * W, u = mirrorU ? 1 - i / N : i / N;
+      pos.push(x, up ? th : -th, -H / 2); uv.push(u, 1);
+      pos.push(x, up ? th : -th, H / 2); uv.push(u, 0);
+    }
+    for (let i = 0; i < N; i++) {
+      const a = i * 2, b = a + 1, c = a + 2, d = a + 3;
+      if (up) idx.push(a, b, d, a, d, c); else idx.push(a, d, b, a, c, d);
+    }
+    g.setAttribute('position', new T.Float32BufferAttribute(pos, 3));
+    g.setAttribute('uv', new T.Float32BufferAttribute(uv, 2));
+    g.setIndex(idx); g.computeVertexNormals();
+    return g;
+  }
+
+  sheetEdge() {
+    const T = this.THREE, g = new T.BoxGeometry(this.W, this.T * 0.94, this.H * 0.998, 26, 1, 1);
+    g.translate(this.W / 2, 0, 0);
+    return g;
+  }
+
+  makeSheet(frontCanvas, backCanvas) {
+    const T = this.THREE, grp = new T.Group();
+    const paper = new T.MeshStandardMaterial({ color: 0xf4f7fa, roughness: 0.96, metalness: 0 });
+    const mk = (geo, mat) => {
+      const m = new T.Mesh(geo, mat);
+      m.castShadow = true; m.receiveShadow = true;
+      m.userData.orig = Float32Array.from(geo.attributes.position.array);
+      grp.add(m); return m;
+    };
+    const front = mk(this.sheetFace(true, false), new T.MeshStandardMaterial({ map: this.tex(frontCanvas), roughness: 0.85, metalness: 0 }));
+    const back = mk(this.sheetFace(false, true), new T.MeshStandardMaterial({ map: this.tex(backCanvas), roughness: 0.85, metalness: 0 }));
+    const edge = mk(this.sheetEdge(), paper);
+    grp.userData = { front: front, back: back, edge: edge, angle: -1 };
+    return grp;
+  }
+
+  // Only the top sheet turns in an episode; the four beneath stay closed so the
+  // block keeps its real thickness, shadow and edge highlight.
+  loadEpisode(i) {
+    this.ep = i;
+    const e = this.EP[i];
+    if (this.g) {
+      const set = (mesh, canvas) => {
+        const old = mesh.material.map;
+        mesh.material.map = this.tex(canvas);
+        mesh.material.needsUpdate = true;
+        if (old) old.dispose();
+      };
+      set(this.sheets[0].userData.front, this.faceCover(e));
+      set(this.sheets[0].userData.back, this.faceArt(e, this.imgs['a' + i], this.imgs['i' + i]));
+      set(this.sheets[1].userData.front, this.faceCopy(e));
+      set(this.sheets[1].userData.back, this.faceClose(e));
+    }
+    if (this.r.endLine) this.r.endLine.innerHTML = e.next.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '<span style="color:#efb928">.</span>';
+    if (this.r.epBadge) this.r.epBadge.textContent = 'Episode ' + e.n + ' · ' + e.name;
+    if (this.r.epLine) this.r.epLine.textContent = 'Episode ' + e.n + ' · ' + e.name + ' · ' + this.dur.toFixed(0) + ' s · route #' + e.id;
+    if (location.hash.replace('#', '') !== e.id) history.replaceState(null, '', '#' + e.id);
+    this.syncEp();
+    this.t = 0; this.lastTurn = -1; this.playing = !this.staticMode; this.syncPlay();
+    this.last = performance.now();
+    if (this.g) this.applyFrame(this.frameAt(0));
+  }
+
+  build() {
+    const T = this.THREE, W = this.W, H = this.H;
+    const sc = new T.Scene(); sc.background = new T.Color(0x03172e);
+    const cam = new T.PerspectiveCamera(30, 16 / 9, 0.1, 40);
+    const rn = new T.WebGLRenderer({ canvas: this.r.canvas, antialias: true, preserveDrawingBuffer: true });
+    rn.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+    rn.shadowMap.enabled = true; rn.shadowMap.type = T.PCFShadowMap;
+    rn.outputColorSpace = T.SRGBColorSpace;
+
+    sc.add(new T.HemisphereLight(0x9fc4e8, 0x03172e, 0.42));
+    const key = new T.DirectionalLight(0xffffff, 1.5);
+    key.position.set(-1.9, 3.2, 1.5); key.castShadow = true;
+    key.shadow.mapSize.set(1024, 1024);
+    const sh = key.shadow.camera; sh.left = -2.6; sh.right = 2.6; sh.top = 2.6; sh.bottom = -2.6; sh.near = 0.2; sh.far = 9;
+    key.shadow.bias = -0.0007; key.shadow.radius = 3;
+    sc.add(key);
+    const fill = new T.DirectionalLight(0x2f7fc4, 0.42); fill.position.set(2.6, 1.4, 2.4); sc.add(fill);
+    const rim = new T.DirectionalLight(0xefb928, 0.18); rim.position.set(0.4, 1.0, -2.6); sc.add(rim);
+
+    const book = new T.Group(); sc.add(book);
+    const board = new T.Mesh(new T.BoxGeometry(W * 1.03, 0.022, H * 1.03), new T.MeshStandardMaterial({ color: 0x072d53, roughness: 0.72 }));
+    board.position.set(W * 1.03 / 2 - 0.012, -0.055, 0); board.castShadow = true; board.receiveShadow = true; book.add(board);
+    const endpaper = new T.Mesh(new T.PlaneGeometry(W, H), new T.MeshStandardMaterial({ map: this.tex(this.faceFlat('#f0f5f9', false)), roughness: 0.95 }));
+    endpaper.rotation.x = -Math.PI / 2; endpaper.rotation.z = Math.PI; endpaper.position.set(W / 2, -0.0425, 0); endpaper.receiveShadow = true; book.add(endpaper);
+    const spine = new T.Mesh(new T.BoxGeometry(0.05, 0.104, H * 1.03), new T.MeshStandardMaterial({ color: 0x03172e, roughness: 0.6 }));
+    spine.position.set(-0.03, -0.005, 0); spine.castShadow = true; book.add(spine);
+
+    const e = this.EP[this.ep];
+    const faces = [
+      [this.faceCover(e), this.faceArt(e, this.imgs['a' + this.ep], this.imgs['i' + this.ep])],
+      [this.faceCopy(e), this.faceClose(e)],
+      [this.faceFlat('#ffffff', false), this.faceFlat('#f7fafc', false)],
+      [this.faceFlat('#ffffff', false), this.faceFlat('#f7fafc', false)],
+      [this.faceFlat('#ffffff', false), this.faceFlat('#eef4f8', false)]
+    ];
+    this.sheets = faces.map(f => { const s = this.makeSheet(f[0], f[1]); book.add(s); return s; });
+
+    this.g = { sc: sc, cam: cam, rn: rn, book: book, T: T };
+    this.loadEpisode(this.ep);
+  }
+
+  bend(grp, angle) {
+    if (Math.abs(grp.userData.angle - angle) < 0.0004) return;
+    grp.userData.angle = angle;
+    const W = this.W, curl = 0.085 * Math.sin(angle);
+    ['front', 'back', 'edge'].forEach(k => {
+      const m = grp.userData[k], p = m.geometry.attributes.position, o = m.userData.orig;
+      for (let i = 0; i < p.count; i++) {
+        const x = o[i * 3], y = o[i * 3 + 1], z = o[i * 3 + 2];
+        const u = Math.max(0, Math.min(1, x / W));
+        const th = angle * (0.68 + 0.32 * u);
+        const cs = Math.cos(th), sn = Math.sin(th);
+        p.setXYZ(i, x * cs - y * sn, x * sn + y * cs + Math.sin(Math.PI * u) * curl, z);
+      }
+      p.needsUpdate = true; m.geometry.computeVertexNormals();
+    });
+  }
+
+  ez(x) { const t = Math.max(0, Math.min(1, x)); return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  smooth(x) { const t = Math.max(0, Math.min(1, x)); return t * t * (3 - 2 * t); }
+  lerp(a, b, k) { return a + (b - a) * k; }
+  lerp3(a, b, k) { return [this.lerp(a[0], b[0], k), this.lerp(a[1], b[1], k), this.lerp(a[2], b[2], k)]; }
+
+  // 16:9 holds the whole spread; 9:16 is recomposed on the single page that carries
+  // the words, closer and lower, rather than shrinking the same wide framing.
+  presets() {
+    if (this.mob) return {
+      FAR: { cam: [1.95, 3.9, 4.5], tgt: [1.3, 0, 0.05] },
+      COVER: { cam: [0.5, 3.12, 2.9], tgt: [0.5, 0, 0] },
+      SPREAD: { cam: [0.5, 3.18, 2.7], tgt: [0.5, -0.02, 0] },
+      END: { cam: [0.5, 3.34, 2.88], tgt: [0.5, -0.05, 0] }
+    };
+    return {
+      FAR: { cam: [2.7, 2.5, 3.6], tgt: [1.7, 0, 0.1] },
+      COVER: { cam: [1.02, 1.86, 2.02], tgt: [0.52, 0, 0] },
+      SPREAD: { cam: [0.06, 2.42, 2.62], tgt: [0.02, -0.04, 0] },
+      END: { cam: [0.55, 2.2, 2.72], tgt: [0.5, -0.04, 0] }
+    };
+  }
+
+  frameAt(t) {
+    const P = this.presets();
+    const angles = [0, 0, 0, 0, 0];
+    angles[0] = t < this.CLOSE
+      ? Math.PI * this.ez((t - this.TURN) / this.TURND)
+      : Math.PI * (1 - this.ez((t - this.CLOSE) / this.CLOSED));
+
+    let cam, tgt;
+    if (t < this.OPEN) { const k = this.smooth(t / this.OPEN); cam = this.lerp3(P.FAR.cam, P.COVER.cam, k); tgt = this.lerp3(P.FAR.tgt, P.COVER.tgt, k); }
+    else if (t < 3.5) { const k = this.smooth((t - 2.05) / 1.45); cam = this.lerp3(P.COVER.cam, P.SPREAD.cam, k); tgt = this.lerp3(P.COVER.tgt, P.SPREAD.tgt, k); }
+    else if (t < this.CLOSE) { cam = P.SPREAD.cam.slice(); tgt = P.SPREAD.tgt.slice(); cam[2] -= 0.16 * this.smooth((t - 3.5) / (this.CLOSE - 3.5)); }
+    else { const k = this.smooth((t - this.CLOSE) / 1.6); cam = this.lerp3(P.SPREAD.cam, P.END.cam, k); tgt = this.lerp3(P.SPREAD.tgt, P.END.tgt, k); }
+    // restrained drift only
+    const d = t > 2.1 ? 1 : 0;
+    cam[0] += 0.07 * Math.sin(t * 0.5) * d;
+    cam[1] += 0.025 * Math.sin(t * 0.41 + 1.1);
+
+    const bk = { x: 0, y: 0, z: 0, ry: -0.16 };
+    if (t < this.OPEN) { const k = this.smooth(t / this.OPEN); bk.x = this.lerp(2.3, 0, k); bk.y = this.lerp(0.42, 0, k); bk.ry = this.lerp(-1.05, -0.16, k); }
+    else if (t < this.ENDT) bk.ry = -0.16 + 0.03 * Math.sin(t * 0.42);
+    else {
+      const k = this.smooth((t - this.ENDT) / 1.8);
+      bk.x = this.lerp(0, this.mob ? 0.14 : 0.4, k);
+      bk.ry = this.lerp(-0.16, -0.55, k);
+      bk.y = this.lerp(0, -0.04, k);
+      // in portrait the end card holds the lower third, so lift the book out of it
+      if (this.mob) bk.z = this.lerp(0, -0.3, k);
+    }
+    if (this.mob) { bk.y -= 0.06; bk.ry *= 0.34; }
+
+    const ca = Math.min(this.smooth((t - 3.2) / 0.5), this.smooth((this.CLOSE - t) / 0.5));
+    const endA = this.smooth((t - this.ENDT) / 0.8);
+    const badgeA = Math.min(this.smooth((t - 0.9) / 0.5), this.smooth((3.4 - t) / 0.4));
+    return { angles: angles, cam: cam, tgt: tgt, book: bk, ca: Math.max(0, ca), endA: endA, badgeA: Math.max(0, badgeA), t: t };
+  }
+
+  applyStatic(on) {
+    this.staticMode = on;
+    this.r.staticBoard.style.display = on ? 'block' : 'none';
+    this.r.stageWrap.style.display = on ? 'none' : 'block';
+    const b = this.r.btnStatic;
+    if (b) {
+      b.textContent = on ? 'Motion version' : 'Static version';
+      b.style.background = on ? 'var(--navy)' : '#fff';
+      b.style.color = on ? '#fff' : 'var(--navy)';
+      b.style.borderColor = on ? 'var(--navy)' : 'var(--line)';
+    }
+  }
+
+  applyFrame(f) {
+    if (!this.g) return;
+    const g = this.g, e = this.EP[this.ep];
+    for (let i = 0; i < this.sheets.length; i++) {
+      const a = f.angles[i] || 0, s = this.sheets[i];
+      this.bend(s, a);
+      const kk = this.smooth(a / Math.PI);
+      const yR = (this.NS - 1 - i) * this.T * 1.05, yL = i * this.T * 1.05;
+      s.position.y = this.lerp(yR, yL, kk) + 0.075 * Math.sin(kk * Math.PI);
+    }
+    g.book.position.set(f.book.x, f.book.y, f.book.z); g.book.rotation.y = f.book.ry;
+    const asp = g.cam.aspect || 16 / 9;
+    const fit = asp >= 1 ? Math.min(1.7, Math.max(1, (16 / 9) / asp)) : 1;
+    g.cam.position.set(
+      f.tgt[0] + (f.cam[0] - f.tgt[0]) * fit,
+      f.tgt[1] + (f.cam[1] - f.tgt[1]) * fit,
+      f.tgt[2] + (f.cam[2] - f.tgt[2]) * fit
+    );
+    g.cam.lookAt(f.tgt[0], f.tgt[1], f.tgt[2]);
+
+    const cap = this.r.caption;
+    cap.style.opacity = String(f.ca);
+    cap.style.transform = 'translateY(' + ((1 - f.ca) * 14).toFixed(2) + 'px)';
+    this.r.capNum.textContent = e.n;
+    this.r.capText.textContent = e.kicker.toUpperCase();
+    const ec = this.r.endcard;
+    ec.style.opacity = String(Math.min(1, f.endA * 1.2));
+    ec.style.clipPath = 'inset(0 ' + ((1 - f.endA) * 100).toFixed(1) + '% 0 0)';
+    this.r.epBadge.style.opacity = String(f.badgeA * 0.9);
+    g.rn.render(g.sc, g.cam);
+
+    this.r.stage.setAttribute('data-screen-label', 'Series · ' + e.name + ' · ' + f.t.toFixed(1) + 's');
+    if (this.r.scrub && !this.scrubbing) this.r.scrub.value = String(Math.round((f.t / this.AUTH) * 1000));
+    if (this.r.timeLabel) this.r.timeLabel.textContent = (f.t / this.AUTH * this.dur).toFixed(1) + ' / ' + this.dur.toFixed(1) + 's';
+    this.syncSel();
+  }
+
+  // Overlay type is authored in cqw; a 9:16 frame is far narrower, so scale the
+  // authored bases and re-place the end card rather than re-authoring the overlays.
+  compose() {
+    const k = this.mob ? 2.15 : 1;
+    if (!this._ts) {
+      this._ts = [];
+      this.r.stage.querySelectorAll('*').forEach(el => {
+        const s = el.getAttribute('style') || '';
+        const f = /font-size:\s*([\d.]+)cqw/.exec(s);
+        if (f) this._ts.push([el, 'fontSize', parseFloat(f[1])]);
+        if (el.tagName === 'IMG') { const w = /width:\s*([\d.]+)cqw/.exec(s); if (w) this._ts.push([el, 'width', parseFloat(w[1])]); }
+      });
+    }
+    for (const it of this._ts) it[0].style[it[1]] = (it[2] * k).toFixed(3) + 'cqw';
+    const ec = this.r.endcard;
+    if (this.mob) {
+      ec.style.maxWidth = '84cqw'; ec.style.top = 'auto'; ec.style.bottom = '0'; ec.style.transform = 'none';
+      ec.style.left = '0'; ec.style.right = '0'; ec.style.background = '#03172e';
+      ec.style.padding = '5cqh 8cqw 7cqh';
+      this.r.caption.style.bottom = 'auto'; this.r.caption.style.top = '15cqh';
+    } else {
+      ec.style.maxWidth = '44cqw'; ec.style.top = '50%'; ec.style.bottom = 'auto'; ec.style.transform = 'translateY(-50%)';
+      ec.style.left = '6cqw'; ec.style.right = 'auto'; ec.style.background = 'none'; ec.style.padding = '0';
+      this.r.caption.style.bottom = '6cqh'; this.r.caption.style.top = 'auto';
+    }
+  }
+
+  resize() {
+    if (!this.g) return;
+    const s = this.r.stage, w = s.clientWidth || 960, h = s.clientHeight || 540;
+    const mob = w / Math.max(1, h) < 1.05;
+    if (mob !== this.mob) { this.mob = mob; this.compose(); }
+    this.g.rn.setSize(w, h, false);
+    this.g.cam.aspect = w / Math.max(1, h); this.g.cam.updateProjectionMatrix();
+    this.applyFrame(this.frameAt(this.t));
+  }
+
+  loop = (now) => {
+    if (this.dead) return;
+    this.raf = requestAnimationFrame(this.loop);
+    const dt = Math.min(0.05, (now - this.last) / 1000); this.last = now;
+    if (this.playing && !this.staticMode) {
+      this.t += dt * (this.AUTH / this.dur);
+      if (this.t >= this.AUTH) { this.t = this.AUTH; this.playing = false; this.syncPlay(); }
+      this.cue();
+    }
+    this.applyFrame(this.frameAt(this.t));
+  };
+
+  cue() {
+    const marks = [this.TURN, this.CLOSE];
+    for (let i = 0; i < marks.length; i++) {
+      if (this.lastTurn < i && this.t >= marks[i] && this.t < marks[i] + 0.4) { this.lastTurn = i; this.paper(); }
+    }
+    if (this.t < this.TURN) this.lastTurn = -1;
+  }
+
+  paper() {
+    if (!this.sound) return;
+    try {
+      const ac = this.ac || (this.ac = new (window.AudioContext || window.webkitAudioContext)());
+      const dur = 0.42, sr = ac.sampleRate, buf = ac.createBuffer(1, Math.floor(sr * dur), sr), d = buf.getChannelData(0);
+      let seed = 12345;
+      for (let i = 0; i < d.length; i++) { seed = (seed * 1103515245 + 12345) & 0x7fffffff; d[i] = (seed / 0x7fffffff) * 2 - 1; }
+      const src = ac.createBufferSource(); src.buffer = buf;
+      const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.Q = 0.7;
+      bp.frequency.setValueAtTime(700, ac.currentTime);
+      bp.frequency.exponentialRampToValueAtTime(2600, ac.currentTime + dur);
+      const gn = ac.createGain();
+      gn.gain.setValueAtTime(0.0001, ac.currentTime);
+      gn.gain.exponentialRampToValueAtTime(0.16, ac.currentTime + 0.06);
+      gn.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + dur);
+      src.connect(bp); bp.connect(gn); gn.connect(ac.destination); src.start();
+    } catch (e) { /* audio unavailable */ }
+  }
+
+  onHash = () => {
+    const h = (location.hash || '').replace('#', '').toLowerCase();
+    const i = this.EP.findIndex(e => e.id === h);
+    if (i >= 0 && i !== this.ep) this.loadEpisode(i);
+  };
+
+  onSeek = (e) => {
+    const d = (e && e.detail) || {};
+    const time = typeof d.time === 'number' ? d.time : (typeof d.frame === 'number' ? d.frame / 30 : 0);
+    this.playing = false; this.syncPlay();
+    this.t = Math.max(0, Math.min(this.AUTH, time * (this.AUTH / this.dur)));
+    this.lastTurn = 9;
+    if (this.g) this.applyFrame(this.frameAt(this.t));
+  };
+
+  onKey = (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const n = (this.ep + (e.key === 'ArrowRight' ? 1 : 3)) % 4;
+      this.loadEpisode(n);
+    } else if (e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault(); this.toggle();
+    } else if (e.key >= '1' && e.key <= '4') {
+      e.preventDefault(); this.loadEpisode(Number(e.key) - 1);
+    }
+  };
+
+  toggle() {
+    if (this.t >= this.AUTH - 0.01) this.t = 0;
+    this.playing = !this.playing; this.last = performance.now(); this.syncPlay();
+  }
+
+  syncSel() {
+    if (this.r.durSel && this.r.durSel.value !== String(this.dur)) this.r.durSel.value = String(this.dur);
+    if (this.r.frameSel && this.r.frameSel.value !== this.frame) this.r.frameSel.value = this.frame;
+  }
+
+  syncEp() {
+    for (let i = 0; i < 4; i++) {
+      const b = this.r['ep' + i];
+      if (!b) continue;
+      const on = i === this.ep;
+      b.style.background = on ? 'var(--navy)' : '#fff';
+      b.style.color = on ? '#fff' : 'var(--navy)';
+      b.style.borderColor = on ? 'var(--navy)' : 'var(--line)';
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+  }
+
+  syncPlay() { if (this.r.btnPlay) this.r.btnPlay.textContent = this.playing ? 'Pause' : 'Play'; }
+
+  renderVals() {
+    const go = (i) => () => { if (this.staticMode) this.applyStatic(false); this.loadEpisode(i); this.r.stage.focus({ preventScroll: true }); };
+    return {
+      ...this.R,
+      onEp0: go(0), onEp1: go(1), onEp2: go(2), onEp3: go(3),
+      onToggle: () => this.toggle(),
+      onReplay: () => { this.t = 0; this.lastTurn = -1; this.playing = true; this.last = performance.now(); this.syncPlay(); },
+      onScrub: (e) => {
+        this.playing = false; this.scrubbing = true; this.syncPlay();
+        this.t = (Number(e.target.value) / 1000) * this.AUTH; this.lastTurn = 9;
+        if (this.g) this.applyFrame(this.frameAt(this.t));
+        clearTimeout(this.sT); this.sT = setTimeout(() => { this.scrubbing = false; }, 250);
+      },
+      onDur: (e) => {
+        this.dur = Number(e.target.value);
+        this.r.stage.setAttribute('data-om-exportable-video-with-duration-secs', String(this.dur));
+        const ep = this.EP[this.ep];
+        if (this.r.epLine) this.r.epLine.textContent = 'Episode ' + ep.n + ' · ' + ep.name + ' · ' + this.dur.toFixed(0) + ' s · route #' + ep.id;
+        if (this.g) this.applyFrame(this.frameAt(this.t));
+      },
+      onFrame: (e) => {
+        this.frame = e.target.value;
+        const s = this.r.stage, p = this.frame === '9:16';
+        s.style.aspectRatio = p ? '9/16' : '16/9';
+        s.style.maxWidth = p ? '420px' : 'none';
+        s.style.marginLeft = p ? 'auto' : '0';
+        s.style.marginRight = p ? 'auto' : '0';
+        requestAnimationFrame(() => this.resize());
+      },
+      onSound: () => {
+        this.sound = !this.sound;
+        const b = this.r.btnSound;
+        b.textContent = this.sound ? 'Sound on' : 'Sound off';
+        b.style.background = this.sound ? 'var(--navy)' : '#fff';
+        b.style.color = this.sound ? '#fff' : 'var(--navy)';
+        b.style.borderColor = this.sound ? 'var(--navy)' : 'var(--line)';
+        if (this.sound) this.paper();
+      },
+      onStatic: () => this.applyStatic(!this.staticMode)
+    };
+  }
+}
+</script>
+</body>
+</html>

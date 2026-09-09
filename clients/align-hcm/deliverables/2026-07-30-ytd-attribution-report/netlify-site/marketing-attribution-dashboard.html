@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Align HCM — Marketing Attribution Dashboard</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --page:#0a1424; --surface:#0d1a2e; --panel:#132540; --panel2:#172c4c;
+    --ink:#ffffff; --ink2:#aebdd1; --ink3:#8fa0b8;
+    --hairline:rgba(255,255,255,0.10); --grid:#22344f; --baseline:#33486a;
+    --accent:#f0863c; --accents:#f6b980;
+    --ev-direct:#d95926; --ev-assist:#199e70; --ev-temp:#3987e5; --ev-none:#8fa0b8;
+    --good:#0ca30c; --covered:#199e70; --missed:#d95926;
+    --font:system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { background:var(--page); }
+  body { font-family:var(--font); background:var(--page); color:var(--ink); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  .wrap { max-width:1320px; margin:0 auto; padding:26px 28px 60px; }
+  svg text { font-family:var(--font); }
+
+  /* header */
+  .top { display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; padding-bottom:18px; border-bottom:1px solid var(--hairline); margin-bottom:22px; }
+  .top .kick { font-size:11.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
+  .top h1 { font-size:28px; font-weight:700; letter-spacing:-.01em; margin-top:6px; }
+  .top .meta { text-align:right; font-size:12px; color:var(--ink3); line-height:1.7; }
+  .conf { display:inline-block; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--accents); border:1px solid rgba(240,134,60,.4); border-radius:999px; padding:4px 11px; }
+
+  /* kpi strip */
+  .kpis { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin-bottom:22px; }
+  .kpi { background:var(--panel); border:1px solid var(--hairline); border-radius:12px; padding:16px 16px 15px; position:relative; overflow:hidden; }
+  .kpi::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--bar,var(--ev-temp)); }
+  .kpi .v { font-size:32px; font-weight:650; line-height:1; }
+  .kpi .l { font-size:11.5px; color:var(--ink2); margin-top:8px; line-height:1.3; }
+  .kpi .s { font-size:10.5px; color:var(--ink3); margin-top:5px; }
+
+  /* card grid */
+  .grid { display:grid; grid-template-columns:repeat(12,1fr); gap:16px; }
+  .card { background:var(--panel); border:1px solid var(--hairline); border-radius:14px; padding:20px 22px; }
+  .card h2 { font-size:14px; font-weight:650; letter-spacing:.01em; }
+  .card .sub { font-size:11.5px; color:var(--ink3); margin-top:3px; line-height:1.4; }
+  .col-4 { grid-column:span 4; } .col-5 { grid-column:span 5; } .col-6 { grid-column:span 6; }
+  .col-7 { grid-column:span 7; } .col-8 { grid-column:span 8; } .col-12 { grid-column:span 12; }
+
+  .legend { display:flex; flex-wrap:wrap; gap:14px; font-size:11.5px; color:var(--ink2); margin-top:12px; }
+  .legend .k { display:inline-flex; align-items:center; gap:6px; }
+  .sw { width:10px; height:10px; border-radius:3px; display:inline-block; }
+  .sw.dot { border-radius:50%; } .sw.hollow { background:var(--panel); border:2px solid var(--ev-none); width:8px; height:8px; }
+
+  .big-callout { display:flex; align-items:baseline; gap:14px; margin:6px 0 2px; flex-wrap:wrap; }
+  .big-callout .n { font-size:44px; font-weight:650; line-height:1; }
+  .big-callout .t { font-size:12.5px; color:var(--ink2); max-width:360px; line-height:1.4; }
+
+  table { width:100%; border-collapse:collapse; font-size:12.5px; margin-top:6px; }
+  th { text-align:left; font-size:10px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--ink3); padding:7px 10px; border-bottom:1px solid var(--baseline); }
+  td { padding:8px 10px; border-bottom:1px solid var(--grid); color:var(--ink2); }
+  td.name { color:var(--ink); font-weight:600; }
+  td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  .tag { display:inline-block; font-size:10px; font-weight:600; padding:2px 8px; border-radius:999px; border:1px solid var(--hairline); color:var(--ink2); }
+  .tag.hot { border-color:var(--accent); color:var(--accent); }
+  .tag.zero { border-color:rgba(240,134,60,.5); color:var(--accents); }
+
+  .ladder { display:grid; gap:10px; margin-top:4px; }
+  .rung { display:grid; grid-template-columns:110px 1fr; gap:14px; align-items:center; }
+  .rung .amt { font-size:24px; font-weight:650; text-align:right; font-variant-numeric:tabular-nums; }
+  .rung .meta .tier { font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+  .rung .meta .why { font-size:11.5px; color:var(--ink3); margin-top:2px; line-height:1.35; }
+
+  #tip { position:fixed; pointer-events:none; z-index:50; display:none; background:#060d18; border:1px solid var(--hairline); border-radius:8px; padding:9px 11px; font-size:12px; line-height:1.5; color:var(--ink2); max-width:260px; box-shadow:0 8px 24px rgba(0,0,0,.5); }
+  #tip b { color:var(--ink); }
+
+  .note { font-size:11.5px; color:var(--ink3); line-height:1.5; }
+  .flag { color:var(--accents); font-weight:600; }
+
+  @media (max-width:1100px){
+    .kpis{grid-template-columns:repeat(3,1fr);}
+    .col-4,.col-5,.col-6,.col-7,.col-8{grid-column:span 12;}
+  }
+
+  /* Mobile is a distinct reading experience, not a squeezed desktop canvas. */
+  @media (max-width:640px){
+    .wrap { width:100%; padding:18px 14px 44px; }
+    .top { display:block; margin-bottom:16px; padding-bottom:16px; }
+    .top h1 { max-width:15ch; margin-top:7px; font-size:clamp(25px,8vw,34px); line-height:1.04; letter-spacing:-.035em; }
+    .top .kick { font-size:10px; line-height:1.45; }
+    .top .meta { margin-top:14px; padding-top:12px; border-top:1px solid var(--hairline); text-align:left; font-size:11px; line-height:1.65; }
+    .conf { margin-top:6px; padding:4px 9px; font-size:9px; }
+
+    .kpis { grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; margin-bottom:12px; }
+    .kpi { min-height:132px; padding:14px 12px 12px 15px; border-radius:11px; }
+    .kpi::before { width:3px; }
+    .kpi .v { font-size:clamp(27px,9vw,36px); letter-spacing:-.035em; }
+    .kpi .l { margin-top:8px; font-size:11px; line-height:1.25; }
+    .kpi .s { margin-top:5px; font-size:9.5px; line-height:1.3; overflow-wrap:anywhere; }
+
+    .grid { display:block; }
+    .card { width:100%; margin-bottom:12px; padding:17px 15px; border-radius:12px; overflow:hidden; }
+    .card h2 { font-size:15px; line-height:1.25; }
+    .card .sub { margin-top:5px; font-size:11px; line-height:1.45; }
+    .card svg { display:block; width:100%; height:auto; margin-top:8px; }
+    .legend { gap:8px 12px; margin-top:8px; font-size:10.5px; line-height:1.35; }
+    .big-callout { display:grid; grid-template-columns:auto 1fr; align-items:start; gap:10px; }
+    .big-callout .n { font-size:34px; }
+    .big-callout .t { font-size:11px; }
+    .ladder { gap:15px; }
+    .rung { grid-template-columns:86px minmax(0,1fr); gap:11px; align-items:start; }
+    .rung .amt { font-size:21px; }
+    .rung .meta .tier { font-size:9.5px; }
+    .rung .meta .why { font-size:10.5px; }
+
+    table { display:block; width:100%; overflow-x:auto; overscroll-behavior-inline:contain; scrollbar-width:thin; font-size:11.5px; }
+    table thead, table tbody { min-width:600px; }
+    th { white-space:nowrap; padding:7px 8px; }
+    td { min-width:86px; padding:8px; white-space:normal; }
+    td.name { min-width:145px; }
+    .note { font-size:10.5px; }
+    #tip { display:none !important; }
+  }
+
+  @media (max-width:390px){
+    .wrap { padding-inline:11px; }
+    .kpis { grid-template-columns:1fr; }
+    .kpi { min-height:0; display:grid; grid-template-columns:90px 1fr; grid-template-rows:auto auto; column-gap:12px; align-items:center; }
+    .kpi .v { grid-row:1 / span 2; }
+    .kpi .l { align-self:end; margin-top:0; }
+    .kpi .s { align-self:start; }
+    .card { padding-inline:13px; }
+    .rung { grid-template-columns:76px minmax(0,1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div>
+      <div class="kick">Align HCM · Revenue Operating Dashboard</div>
+      <h1>Marketing-Sourced &amp; Marketing-Influenced Pipeline</h1>
+    </div>
+    <div class="meta">
+      HubSpot snapshot · <b id="asOfLabel" style="color:var(--ink2)">July 15, 2026</b><br>
+      <span id="windowLabel">YTD through Jul 15 · Program start Apr 1</span><br>
+      <span class="conf">Confidential · lead PII &amp; pipeline</span>
+    </div>
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpis">
+    <div class="kpi" style="--bar:var(--ev-temp)"><div id="kpiQualified" class="v">22</div><div class="l">Qualified buyer leads YTD</div><div id="kpiQualifiedSub" class="s">from 77 unique identities</div></div>
+    <div class="kpi" style="--bar:var(--accent)"><div id="kpiCoverage" class="v" style="color:var(--accent)">59%</div><div class="l">Buyer follow-up coverage</div><div id="kpiCoverageSub" class="s">13 worked · 9 with no logged follow-up</div></div>
+    <div class="kpi" style="--bar:var(--ev-direct)"><div id="kpiEvidence" class="v">3</div><div class="l">Leads with marketing evidence</div><div id="kpiEvidenceSub" class="s">1 direct · 2 assisted</div></div>
+    <div class="kpi" style="--bar:var(--accent)"><div id="kpiInfluenced" class="v" style="color:var(--accents)">$100K</div><div class="l">Evidence-weighted influence</div><div id="kpiInfluencedSub" class="s">modeled separately from sourced revenue</div></div>
+    <div class="kpi" style="--bar:var(--covered)"><div id="kpiLinkage" class="v" style="color:var(--accents)">57%</div><div class="l">Program deal contact linkage</div><div id="kpiLinkageSub" class="s">56 of 99 program deals linked</div></div>
+    <div class="kpi" style="--bar:var(--accent)"><div id="kpiMissedHot" class="v">7</div><div class="l">Missed <b>Hot</b> buyers</div><div id="kpiMissedHotSub" class="s">5 assigned but idle</div></div>
+  </div>
+
+  <div class="grid">
+
+    <!-- FOLLOW-UP COVERAGE -->
+    <div class="card col-4">
+      <h2>Follow-up coverage</h2>
+      <div class="sub">Buyer leads with a logged activity after submission</div>
+      <svg id="coverage" width="100%" viewBox="0 0 360 150" role="img" aria-label="13 of 22 buyer leads followed up, 9 with no logged follow-up"></svg>
+      <div class="legend">
+        <span class="k"><span class="sw" style="background:var(--covered)"></span>Followed up (<span id="coverageLegendWorked">13</span>)</span>
+        <span class="k"><span class="sw" style="background:var(--missed)"></span>No logged follow-up (<span id="coverageLegendMissed">9</span>)</span>
+      </div>
+    </div>
+
+    <!-- LEAD ATTRIBUTION TIERS -->
+    <div class="card col-8">
+      <h2>Where the 22 qualified leads actually came from</h2>
+      <div class="sub">Evidence tier — a form submission proves the site converted the visitor, not that marketing created the demand</div>
+      <svg id="tiers" width="100%" viewBox="0 0 900 190" role="img" aria-label="Lead attribution by evidence tier: 1 direct, 2 assisted, 8 temporal, 11 unattributed, 0 traceable social"></svg>
+    </div>
+
+    <!-- OPEN PIPELINE COHORTS -->
+    <div class="card col-7">
+      <h2>Open pipeline &amp; deal cohorts</h2>
+      <div id="cohortSub" class="sub">Pre-program (Jan 1–Mar 31) vs program period (Apr 1–Jul 15) — movement, not proven causation</div>
+      <svg id="cohorts" width="100%" viewBox="0 0 760 210" role="img" aria-label="Open pipeline rose from 4.52M to 10.33M; open deals 13 to 32; deal creation velocity down 23.6 percent"></svg>
+      <div class="legend">
+        <span class="k"><span class="sw dot" style="background:var(--ev-temp)"></span>Pre-program YTD</span>
+        <span class="k"><span class="sw dot" style="background:var(--ev-direct)"></span>Program period</span>
+      </div>
+    </div>
+
+    <!-- CLOSED-WON ATTRIBUTION -->
+    <div class="card col-5">
+      <h2>Closed-won this year — and what came from marketing</h2>
+      <div id="wonSub" class="sub">$3.68M won across 90 deals YTD</div>
+      <svg id="won" width="100%" viewBox="0 0 420 150" role="img" aria-label="2.77M won pre-program, 908K won in program period, 0 attributed to marketing"></svg>
+      <div class="big-callout" style="margin-top:10px">
+        <div id="wonCalloutAmount" class="n" style="color:var(--accents)">Needs linkage</div>
+        <div class="t"><b id="wonCalloutTotal" style="color:var(--ink)">of $3.68M</b> closed-won is currently measurable. <span id="wonCalloutText">Won revenue is not yet connected to a direct or assisted marketing touch.</span></div>
+      </div>
+    </div>
+
+    <!-- CONFIDENCE LADDER -->
+    <div class="card col-7">
+      <h2>How much pipeline can be claimed</h2>
+      <div class="sub">Three honest numbers — label modeled influence separately from sourced revenue</div>
+      <div class="ladder" style="margin-top:12px">
+        <div class="rung"><div id="confidenceCorrelated" class="amt" style="color:var(--ev-temp)">$10.33M</div><div class="meta"><div class="tier" style="color:var(--ev-temp)">Correlated</div><div id="confidenceCorrelatedWhy" class="why">Open pipeline on deals created in the program period ($10,326,920). Temporal only — the ceiling, never the claim.</div></div></div>
+        <div class="rung"><div id="confidenceModeled" class="amt" style="color:var(--accent)">$100K</div><div class="meta"><div class="tier" style="color:var(--accent)">Modeled</div><div id="confidenceModeledWhy" class="why">Conservative evidence-weighted influence (~1.0% of program open pipeline). Planning estimate — not sourced revenue.</div></div></div>
+        <div class="rung"><div id="confidenceProven" class="amt" style="color:var(--accents)">Not linked</div><div class="meta"><div class="tier" style="color:var(--ev-none)">Proven</div><div id="confidenceProvenWhy" class="why">Directly attributed owned-marketing pipeline. The direct AI lead is not connected to a deal.</div></div></div>
+      </div>
+    </div>
+
+    <!-- ATTRIBUTION HEALTH -->
+    <div class="card col-5">
+      <h2>Attribution health — why the numbers read low</h2>
+      <div class="sub">The measurement chain, not marketing, is what's broken</div>
+      <table>
+        <tbody>
+          <tr><td class="name">Program deals with no contact</td><td class="num"><span id="healthNoContact" class="flag">41 of 96</span></td></tr>
+          <tr><td class="name">Won deals with direct/assisted evidence</td><td class="num"><span id="healthWonEvidence" class="flag">Not linked</span></td></tr>
+          <tr><td class="name">Traceable social-media buyer leads</td><td class="num"><span id="healthSocial" class="tag zero">UTMs missing</span></td></tr>
+          <tr><td class="name">Evidence-weighted share of program pipeline</td><td id="healthModeledShare" class="num">0.97%</td></tr>
+          <tr><td class="name">Deal-creation velocity vs pre-program</td><td class="num"><span id="healthVelocity" class="flag">−23.6%</span></td></tr>
+        </tbody>
+      </table>
+      <div class="note" style="margin-top:12px">Absence of evidence here is a plumbing failure — deals unlinked from contacts and social links without UTMs — not proof marketing had no influence.</div>
+    </div>
+
+    <!-- MISSED HOT LEADS -->
+    <div class="card col-7">
+      <h2>Recover first — the missed buyers leaking value</h2>
+      <div class="sub">Ranked by lead score · no logged follow-up · ready response strategy in the register</div>
+      <table>
+        <thead><tr><th>Lead</th><th>Company</th><th class="num">Score</th><th>Fit</th><th>Submitted</th><th>Owner</th></tr></thead>
+        <tbody id="missedRows"></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="note" style="margin-top:26px; padding-top:16px; border-top:1px solid var(--hairline)">
+    <span id="sourceNote">Sources: <b style="color:var(--ink2)">live HubSpot attribution refresh</b> · HubSpot snapshot July 15, 2026 · No messages were sent and no leads were contacted in generating this view. Re-run the private refresh job before presenting if pipeline stages have changed.</span>
+  </div>
+</div>
+
+<div id="tip" role="tooltip"></div>
+
+<script>
+const svgNS="http://www.w3.org/2000/svg";
+const C={surface:"#0d1a2e",ink:"#fff",ink2:"#aebdd1",ink3:"#8fa0b8",grid:"#22344f",base:"#33486a",
+  covered:"#199e70",missed:"#d95926",temp:"#3987e5",direct:"#d95926",assist:"#199e70",none:"#8fa0b8",accent:"#f0863c",accents:"#f6b980"};
+function E(t,a,p){const e=document.createElementNS(svgNS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;}
+function T(p,x,y,s,o={}){const t=E("text",{x,y,fill:o.fill||C.ink2,"font-size":o.size||12,"font-weight":o.w||400,"text-anchor":o.a||"start",...(o.tab?{"font-variant-numeric":"tabular-nums"}:{})},p);t.textContent=s;return t;}
+const tip=document.getElementById("tip");
+function bind(n,html){n.style.cursor="default";n.addEventListener("mousemove",e=>{tip.innerHTML=html;tip.style.display="block";const pad=14,w=tip.offsetWidth,h=tip.offsetHeight;let x=e.clientX+pad,y=e.clientY+pad;if(x+w>innerWidth-8)x=e.clientX-w-pad;if(y+h>innerHeight-8)y=e.clientY-h-pad;tip.style.left=x+"px";tip.style.top=y+"px";});n.addEventListener("mouseleave",()=>tip.style.display="none");}
+function rr(p,x,y,w,h,fill,r=4,opts={}){r=Math.min(r,h/2,w/2);const d=`M${x},${y+r} a${r},${r} 0 0 1 ${r},${-r} h${w-2*r} a${r},${r} 0 0 1 ${r},${r} v${h-r} h${-w} z`;const a={d,fill};if(opts.stroke){a.fill="none";a.stroke=opts.stroke;a["stroke-width"]=opts.sw||2;}return E("path",a,p);}
+
+function num(value){const n=Number(value);return Number.isFinite(n)?n:0;}
+function money(value){return "$"+Math.round(num(value)).toLocaleString("en-US");}
+function compactMoney(value){const n=num(value);if(Math.abs(n)>=1e6)return "$"+(n/1e6).toFixed(2)+"M";if(Math.abs(n)>=1e3)return "$"+Math.round(n/1e3)+"K";return "$"+Math.round(n).toLocaleString("en-US");}
+function pct(value){const n=num(value);return `${n>=0?"+":"−"}${Math.abs(n).toFixed(1)}%`;}
+function setText(id,value){const node=document.getElementById(id);if(node)node.textContent=String(value);}
+function colorFor(key){return ({temp:C.temp,direct:C.direct,assist:C.assist,none:C.none})[key]||C.none;}
+function clearSvg(id){const s=document.getElementById(id);s.replaceChildren();return s;}
+
+/* ---- live text layer: same visual treatment, refreshed data ---- */
+function renderText(d){
+  const f=d.followUp,t=d.totals,c=d.cohorts,cf=d.confidence,h=d.health,a=d.attributionDepth;
+  setText("asOfLabel",d.asOfLabel);
+  setText("windowLabel",d.windowLabel);
+  setText("kpiQualified",f.qualified);
+  setText("kpiQualifiedSub",`from ${f.uniqueIdentities} unique identities`);
+  setText("kpiCoverage",`${f.coveragePct}%`);
+  setText("kpiCoverageSub",`${f.followed} worked · ${f.missed} with no logged follow-up`);
+  setText("kpiEvidence",a.attributableJourney);
+  setText("kpiEvidenceSub",`${a.journeyCoveragePct}% of buyers have an attributable journey`);
+  setText("kpiInfluenced",compactMoney(a.influencedPipeline));
+  setText("kpiInfluencedSub",`evidence weighted from ${compactMoney(a.programOpenPipeline)} program pipeline`);
+  setText("kpiLinkage",`${a.contactLinkagePct}%`);
+  setText("kpiLinkageSub",`${a.contactLinkedDeals} of ${a.programDeals} program deals linked`);
+  setText("kpiMissedHot",f.hotMissed);
+  setText("kpiMissedHotSub",`${f.assignedMissed} assigned but idle`);
+  setText("coverageLegendWorked",f.followed);
+  setText("coverageLegendMissed",f.missed);
+  const preEnd=new Date(new Date(d.programStart).getTime()-86400000);
+  setText("cohortSub",`Pre-program (Jan 1–${new Intl.DateTimeFormat("en-US",{month:"short",day:"numeric",timeZone:"UTC"}).format(preEnd)}) vs program period (${d.programStartLabel}–${d.asOfShortLabel}) — movement, not proven causation`);
+  setText("wonSub",`${compactMoney(t.wonYtd)} won across ${t.wonDealsYtd} deals YTD`);
+  setText("wonCalloutAmount",cf.provenWonRevenue?compactMoney(cf.provenWonRevenue):"Needs linkage");
+  setText("wonCalloutTotal",`of ${compactMoney(t.wonYtd)}`);
+  setText("wonCalloutText",cf.wonTouchDeals?`${cf.wonTouchDeals} won deal${cf.wonTouchDeals===1?"":"s"} carry a direct or assisted touch.`:"Won revenue is not yet connected to a direct or assisted marketing touch.");
+  setText("confidenceCorrelated",compactMoney(cf.correlated));
+  setText("confidenceCorrelatedWhy",`Open pipeline on deals created in the program period (${money(cf.correlated)}). Temporal only — the ceiling, never the claim.`);
+  setText("confidenceModeled",compactMoney(cf.modeled));
+  setText("confidenceModeledWhy",`Conservative evidence-weighted influence (~${cf.modeledSharePct.toFixed(1)}% of program open pipeline). Planning estimate — not sourced revenue.`);
+  setText("confidenceProven",cf.proven?compactMoney(cf.proven):"Not linked");
+  setText("confidenceProvenWhy",t.direct===1?"Directly attributed owned-marketing pipeline. The one direct lead (Lori Dillon, ChatGPT) was never converted.":"Directly attributed owned-marketing pipeline. Proven sourced revenue remains separate from modeled influence.");
+  setText("healthNoContact",`${h.programDealsWithoutContacts} of ${h.programDeals}`);
+  setText("healthWonEvidence",h.wonDealsWithEvidence?`${h.wonDealsWithEvidence} of ${h.wonDealsYtd}`:"Not linked");
+  setText("healthSocial",h.traceableSocial?`${h.traceableSocial}`:"UTMs missing");
+  setText("healthModeledShare",`${h.modeledSharePct.toFixed(2)}%`);
+  setText("healthVelocity",pct(h.dealCreationRateChangePct));
+  document.getElementById("sourceNote").innerHTML=`Sources: <b style="color:var(--ink2)">${d.source}</b> · HubSpot snapshot ${d.asOfLabel} · The page checks for new published source output every minute. HubSpot source freshness depends on the private refresh job. No messages were sent and no leads were contacted in generating this view.`;
+}
+
+/* ---- follow-up coverage: single stacked bar ---- */
+function renderCoverage(d){const f=d.followUp,s=clearSvg("coverage");const x=20,w=320,y=40,h=44,tot=Math.max(1,f.qualified);
+  const cov=f.followed,mis=f.missed,cw=cov/tot*w,mw=mis/tot*w,gap=2;
+  const b1=rr(s,x,y,Math.max(0,cw-gap),h,C.covered,6);bind(b1,`<b>${cov} followed up</b><br>${f.coveragePct}% of ${tot} buyer leads`);
+  const b2=rr(s,x+cw,y,Math.max(0,mw),h,C.missed,6);bind(b2,`<b>${mis} with no logged follow-up</b><br>${100-f.coveragePct}% of ${tot} buyer leads · ${f.hotMissed} are Hot`);
+  T(s,x,y-10,`${cov} worked`,{fill:C.ink,w:650,size:13});T(s,x+w,y-10,`${mis} missed`,{fill:C.accents,w:650,size:13,a:"end"});
+  T(s,x+cw/2,y+h+22,`${f.coveragePct}%`,{fill:C.ink,w:650,size:15,a:"middle"});T(s,x+cw+mw/2,y+h+22,`${100-f.coveragePct}%`,{fill:C.accents,w:650,size:13,a:"middle"});
+  s.setAttribute("aria-label",`${cov} of ${tot} buyer leads followed up, ${mis} with no logged follow-up`);
+}
+
+/* ---- lead attribution tiers ---- */
+function renderTiers(d){const s=clearSvg("tiers"),total=Math.max(1,d.followUp.qualified);const rows=d.tiers.map((row)=>[row.label,num(row.value),colorFor(row.color),Boolean(row.hollow)]);
+  const padL=200,padR=60,x0=padL,w=900-padL-padR,max=Math.max(11,...rows.map((row)=>row[1])),rowH=34,y0=14;
+  rows.forEach((row,i)=>{const[lab,n,col,hollow]=row,y=y0+i*rowH,bh=18,by=y+(rowH-bh)/2;T(s,padL-12,by+bh/2+4,lab,{a:"end",fill:C.ink2,size:12.5});E("rect",{x:x0,y:by,width:w,height:bh,rx:4,fill:"#172c4c"},s);
+    if(n===0)T(s,x0+8,by+bh/2+4,"0 — tracking gap, not a verdict",{fill:C.accents,size:11.5,w:600});
+    else{const bw=Math.max(6,n/max*w),bar=hollow?rr(s,x0,by,bw,bh,null,4,{stroke:C.none,sw:2}):rr(s,x0,by,bw,bh,col,4);T(s,x0+bw+8,by+bh/2+4,n,{fill:C.ink,w:650,size:13,tab:true});bind(bar,`<b>${lab}</b><br>${n} of ${total} qualified buyer leads`);}
+  });
+  s.setAttribute("aria-label",`Lead attribution by evidence tier: ${rows.map((row)=>`${row[1]} ${row[0]}`).join(", ")}`);
+}
+
+/* ---- pipeline cohorts: 3 grouped metrics ---- */
+function renderCohorts(d){const s=clearSvg("cohorts"),c=d.cohorts;
+  const groups=[
+    {t:"Open pipeline",pre:c.pre.openPipeline,prog:c.program.openPipeline,delta:c.openPipelineChangeLabel,up:c.openPipelineChangePct>=0,f:v=>compactMoney(v)},
+    {t:"Open deals",pre:c.pre.openDeals,prog:c.program.openDeals,delta:c.openDealChangeLabel,up:c.openDealChangePct>=0,f:v=>`${v}`},
+    {t:"Deals / 30 days",pre:c.pre.dealCreationRatePer30Days,prog:c.program.dealCreationRatePer30Days,delta:c.dealCreationRateChangeLabel,up:c.dealCreationRateChangePct>=0,f:v=>v.toFixed(1)},
+  ];
+  const gw=240,base=150,maxH=104;
+  groups.forEach((g,gi)=>{const gx=20+gi*gw,max=Math.max(1,g.pre,g.prog)*1.15,bw=44,cx1=gx+58,cx2=gx+140,bh=v=>Math.max(4,v/max*maxH);T(s,gx+100,26,g.t,{fill:C.ink2,size:12.5,w:600,a:"middle"});
+    [["Pre-program",g.pre,C.temp,cx1],["Program",g.prog,C.direct,cx2]].forEach(([lab,v,col,cx])=>{const hh=bh(v),yy=base-hh,bar=rr(s,cx-bw/2,yy,bw,hh,col,4);bind(bar,`<b>${g.t} · ${lab}</b><br>${g.f(v)}`);T(s,cx,yy-8,g.f(v),{fill:C.ink,w:650,size:12.5,a:"middle"});T(s,cx,base+18,lab,{fill:C.ink3,size:10.5,a:"middle"});});
+    T(s,gx+100,base+38,g.delta,{fill:g.up?C.accent:C.ink3,w:700,size:14,a:"middle"});E("line",{x1:gx+16,y1:base,x2:gx+184,y2:base,stroke:C.base,"stroke-width":1},s);
+  });
+  s.setAttribute("aria-label",`Open pipeline rose from ${compactMoney(c.pre.openPipeline)} to ${compactMoney(c.program.openPipeline)}; open deals ${c.pre.openDeals} to ${c.program.openDeals}; deal creation velocity ${c.dealCreationRateChangeLabel}`);
+}
+
+/* ---- closed-won: two cohort bars + attributed marker ---- */
+function renderWon(d){const s=clearSvg("won"),c=d.cohorts,cf=d.confidence,padL=78,x0=padL,w=420-padL-58,max=Math.max(1,c.pre.wonRevenue,c.program.wonRevenue)*1.1;
+  const rows=[["Pre-program won","Pre-prog",c.pre.wonRevenue,c.pre.wonDeals,C.temp],["Program-period won","Program",c.program.wonRevenue,c.program.wonDeals,C.direct]];
+  rows.forEach((row,i)=>{const[lab,shortLab,v,deals,col]=row,y=24+i*46,bh=22,by=y;T(s,padL-10,by+bh/2+4,shortLab,{a:"end",fill:C.ink2,size:11.5});const bw=Math.max(6,v/max*w),bar=rr(s,x0,by,bw,bh,col,4);bind(bar,`<b>${lab}</b><br>${money(v)} · ${deals} deals won<br><span style="color:#f6b980">${money(cf.provenWonRevenue)} attributed to marketing</span>`);T(s,x0+bw+8,by+bh/2+4,compactMoney(v),{fill:C.ink,w:650,size:12,tab:true});});
+  T(s,padL-10,132,"Attributed",{a:"end",fill:C.accents,size:11.5,w:600});T(s,x0,132,cf.provenWonRevenue?`${compactMoney(cf.provenWonRevenue)} — won deals carry a direct/assisted touch`:"Needs linkage — won revenue lacks a direct/assisted touch",{fill:C.accents,size:11.5,w:600});
+  s.setAttribute("aria-label",`${compactMoney(c.pre.wonRevenue)} won pre-program, ${compactMoney(c.program.wonRevenue)} won in program period, ${compactMoney(cf.provenWonRevenue)} attributed to marketing`);
+}
+
+/* ---- missed hot leads table ---- */
+function renderMissed(d){const tb=document.getElementById("missedRows");tb.replaceChildren();
+  d.missedBuyers.forEach((row)=>{const tr=document.createElement("tr");const cells=[row.name,row.company,row.score,row.fit,row.submittedLabel,row.owner];cells.forEach((value,index)=>{const td=document.createElement("td");if(index===0)td.className="name";if(index===2)td.className="num";if(index===3){const tag=document.createElement("span");tag.className=`tag ${row.fit==="Hot"?"hot":""}`;tag.textContent=value;td.appendChild(tag);}else if(index===5&&String(value).includes("idle")){const tag=document.createElement("span");tag.className="tag zero";tag.textContent=value;td.appendChild(tag);}else td.textContent=value;tr.appendChild(td);});tb.appendChild(tr);});
+}
+
+function render(d){renderText(d);renderCoverage(d);renderTiers(d);renderCohorts(d);renderWon(d);renderMissed(d);}
+async function refresh(){try{const response=await fetch(`data.json?refresh=${Date.now()}`,{cache:"no-store"});if(!response.ok)throw new Error(`data.json HTTP ${response.status}`);render(await response.json());}catch(error){console.error("Live dashboard refresh failed",error);}}
+refresh();
+setInterval(refresh,60000);
+</script>
+</body>
+</html>

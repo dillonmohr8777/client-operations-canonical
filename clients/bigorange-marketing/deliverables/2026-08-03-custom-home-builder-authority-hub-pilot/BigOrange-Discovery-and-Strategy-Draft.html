@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BigOrange Custom Home Builder Authority Hub - Discovery and Strategy Draft</title>
+  <style>
+    :root { --orange:#ff6500; --ink:#202020; --muted:#66615d; --paper:#fffaf5; --line:#eaded3; --soft:#fff0e4; --green:#2d6a4f; }
+    * { box-sizing:border-box; }
+    html, body { margin:0; padding:0; background:#e9e5e1; color:var(--ink); font-family:Arial, Helvetica, sans-serif; }
+    @page { size:Letter; margin:0; }
+    .page { position:relative; width:8.5in; height:11in; padding:.62in .68in .58in; margin:0 auto 18px; background:#fff; overflow:hidden; break-after:page; page-break-after:always; }
+    .page:last-child { break-after:auto; page-break-after:auto; }
+    @media print { body{background:#fff;} .page{margin:0;} }
+    .brand { display:flex; align-items:center; justify-content:space-between; height:.35in; margin-bottom:.32in; }
+    .brand img { width:1.7in; height:auto; display:block; }
+    .page-no { font-size:9px; color:#8b8178; letter-spacing:.08em; }
+    .eyebrow { color:var(--orange); font-size:10px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; margin-bottom:11px; }
+    h1 { margin:0 0 16px; font-size:34px; line-height:1.03; letter-spacing:-.035em; }
+    h2 { margin:0 0 10px; font-size:22px; line-height:1.15; letter-spacing:-.02em; }
+    h3 { margin:0 0 6px; font-size:13px; line-height:1.2; }
+    p { margin:0 0 11px; font-size:11px; line-height:1.48; }
+    .lede { font-size:15px; line-height:1.4; color:#4d4945; max-width:6.65in; }
+    .rule { height:4px; width:100%; background:var(--orange); margin:16px 0 20px; }
+    .footer { position:absolute; left:.68in; right:.68in; bottom:.32in; display:flex; justify-content:space-between; color:#8b8178; font-size:8px; }
+    .cover { background:var(--paper); display:flex; flex-direction:column; justify-content:space-between; padding:.7in .72in .62in; }
+    .cover .brand { margin:0; }
+    .cover h1 { font-size:52px; max-width:6.4in; margin:0 0 20px; }
+    .cover .subtitle { max-width:5.9in; font-size:17px; line-height:1.45; color:#4c4844; }
+    .cover .status { border-left:6px solid var(--orange); padding:13px 16px; background:#fff; max-width:6.6in; font-size:12px; line-height:1.5; }
+    .cover-bottom { display:flex; justify-content:space-between; align-items:flex-end; font-size:10px; color:#6f6760; }
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .panel { border-top:4px solid var(--orange); background:#fffaf6; padding:14px 15px; }
+    .panel p:last-child, .panel ul:last-child { margin-bottom:0; }
+    .good { border-top-color:var(--green); background:#f4faf7; }
+    .pending { border-top-color:#a76a00; background:#fff8ea; }
+    .blocked { border-top-color:#8f3229; background:#fff4f2; }
+    ul, ol { margin:7px 0 11px; padding-left:18px; }
+    li { margin:0 0 7px; font-size:10.5px; line-height:1.4; }
+    .callout { margin:16px 0; padding:13px 15px; border-left:5px solid var(--orange); background:var(--soft); }
+    .callout strong { display:block; margin-bottom:4px; font-size:12px; }
+    .metric-row { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:14px 0 18px; }
+    .metric { border-bottom:2px solid var(--line); padding:10px 4px 12px; }
+    .metric b { display:block; font-size:24px; color:var(--orange); margin-bottom:2px; }
+    .metric span { font-size:9px; color:var(--muted); line-height:1.3; }
+    table { width:100%; border-collapse:collapse; table-layout:fixed; margin:10px 0 14px; }
+    th { background:var(--ink); color:#fff; text-align:left; padding:8px 7px; font-size:8px; letter-spacing:.06em; text-transform:uppercase; }
+    td { border-bottom:1px solid var(--line); padding:7px; vertical-align:top; font-size:8.7px; line-height:1.3; }
+    tr:nth-child(even) td { background:#fffaf6; }
+    .tight td { padding:6px 7px; }
+    .rank { color:var(--orange); font-weight:800; }
+    .flow { display:grid; grid-template-columns:1fr; gap:8px; margin:12px 0; }
+    .flow-row { display:grid; grid-template-columns:1.22in 1fr; gap:12px; padding:10px 12px; border-left:4px solid var(--orange); background:#fffaf6; }
+    .flow-row b { font-size:11px; }
+    .flow-row span { font-size:10px; line-height:1.35; color:#4d4945; }
+    .timeline { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px; }
+    .phase { padding:14px; background:#fffaf6; border-bottom:4px solid var(--orange); min-height:3.25in; }
+    .phase .num { font-size:28px; font-weight:800; color:var(--orange); }
+    .phase h3 { font-size:14px; margin:5px 0 9px; }
+    .source { padding:9px 0; border-bottom:1px solid var(--line); }
+    .source b { display:block; font-size:10px; margin-bottom:3px; }
+    .source span { display:block; color:var(--muted); font-size:9px; line-height:1.35; }
+    .decision { display:grid; grid-template-columns:.38in 1fr; gap:10px; padding:12px 0; border-bottom:1px solid var(--line); }
+    .decision .n { width:.32in; height:.32in; border:2px solid var(--orange); color:var(--orange); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:11px; }
+    .decision b { display:block; font-size:12px; margin-bottom:3px; }
+    .decision p { font-size:10px; margin:0; }
+    .small { font-size:9px; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <section class="page cover">
+    <div class="brand"><img src="assets/bigorange-logo-orange.png" alt="BigOrange Marketing"><span class="page-no">DISCOVERY DRAFT · AUGUST 4, 2026</span></div>
+    <div>
+      <div class="eyebrow">Paid pilot project · discovery and strategy draft</div>
+      <h1>Custom Home Builder Authority Hub</h1>
+      <p class="subtitle">A concise research, keyword, architecture, technical SEO, AI-search, and roadmap package for review before expert validation or WordPress implementation.</p>
+      <div class="rule"></div>
+      <div class="status"><strong>This is not the final presentation or a publication-ready content package.</strong><br>The keyword research and public-site analysis are complete. The content drafts remain provisional until Janice's interview, factual review, and verified WordPress staging QA.</div>
+    </div>
+    <div class="cover-bottom"><span>Prepared for BigOrange Marketing</span><span>United States · Custom home builder marketing</span></div>
+  </section>
+
+  <section class="page">
+    <div class="brand"><img src="assets/bigorange-logo-orange.png" alt="BigOrange Marketing"><span class="page-no">02</span></div>
+    <div class="eyebrow">Status and scope</div>
+    <h1>What is ready, what is provisional, and what still needs a human.</h1>
+    <p class="lede">The package is useful now for a working session. It should not be presented as fully complete, accepted, implemented, or published.</p>
+    <div class="rule"></div>
+    <div class="grid-3">
+      <div class="panel good"><h3>Ready for review</h3><ul><li>Public-site and page inventory</li><li>Competitor pattern review</li><li>62-row Semrush keyword map</li><li>Authority architecture</li><li>Technical and AI-search work order</li><li>90-day and 12-month roadmaps</li><li>Janice interview guide</li></ul></div>
+      <div class="panel pending"><h3>Working drafts</h3><ul><li>Authority pillar copy</li><li>Two supporting articles</li><li>FAQ set and schema graph</li><li>WordPress metadata</li><li>Internal-link recommendations</li></ul><p class="small">These are source material for review, not approved client voice or final publish copy.</p></div>
+      <div class="panel blocked"><h3>Not completed</h3><ul><li>Janice SME interview</li><li>SME factual approval</li><li>Verified WordPress role and staging target</li><li>Implementation and production QA</li><li>Publication and final acceptance</li></ul></div>
+    </div>
+    <div class="callout"><strong>The right next milestone</strong>Use this report to align on the direction, then conduct the 60-minute SME interview. Final copy and any publication decision come after that review.</div>
+    <div class="footer"><span>BigOrange Custom Home Builder Authority Hub</span><span>Discovery and strategy draft</span></div>
+  </section>
+
+  <section class="page">
+    <div class="brand"><img src="assets/bigorange-logo-orange.png" alt="BigOrange Marketing"><span class="page-no">03</span></div>
+    <div class="eyebrow">Executive recommendation</div>
+    <h1>Keep the existing builder URL. Give it a clearer job.</h1>
+    <p class="lede">Evolve <strong>/marketing-agency-for-builders/</strong> into the authority hub instead of launching a second page that competes for the same topic.</p>
+    <div class="metric-row">
+      <div class="metric"><b>2,057</b><span>visible words in the August 3 public inventory</span></div>
+      <div class="metric"><b>43</b><span>H1-H3 headings detected</span></div>
+      <div class="metric"><b>83</b><span>internal-link instances</span></div>
+      <div class="metric"><b>34</b><span>images, with two missing-alt cases</span></div>
+    </div>
+    <div class="grid-2">
+      <div><h2>Why preserve it</h2><ul><li>It already contains builder-specific proof and established internal links.</li><li>A second core URL would introduce avoidable cannibalization risk.</li><li>The existing page can become a clear root for strategy, visibility, website conversion, proof, and measurement.</li></ul></div>
+      <div><h2>What should change</h2><ul><li>Lead with the custom-home-buyer decision journey.</li><li>Replace tactic inventory with a practical growth blueprint.</li><li>Add direct answers, visible sourcing, expert review, and purposeful internal links.</li><li>Measure qualified conversations, not traffic alone.</li></ul></div>
+    </div>
+    <div class="callout"><strong>Central promise</strong>Help the right homeowner understand a builder's fit, process, proof, and next step before another builder earns the call.</div>
+    <p class="small">Source: live public page inventory and single Lighthouse lab captures, August 3, 2026. Lab data is diagnostic and is not field Core Web Vitals.</p>
+    <div class="footer"><span>Executive recommendation</span><span>03</span></div>
+  </section>
+
+  <section class="page">
+    <div class="brand"><img src="assets/bigorange-logo-orange.png" alt="BigOrange Marketing"><span class="page-no">04</span></div>
+    <div class="eyebrow">Market position</div>
+    <h1>The opening is not a longer service list. It is a clearer decision system.</h1>
+    <p class="lede">The reviewed agencies commonly claim builder specialization. BigOrange can differentiate by connecting buyer trust, search visibility, content production, and lead quality in one understandable plan.</p>
+    <table>
+      <thead><tr><th style="width:17%">Pattern</th><th style="width:30%">What the market already shows</th><th>BigOrange opportunity</th></tr></thead>
+      <tbody>
+        <tr><td>Specialization</td><td>Builder expertise and long sales cycles are common positioning themes.</td><td>Put the homeowner's decision journey first and show how the system works.</td></tr>
+        <tr><td>Proof</td><td>Case metrics, reviews, awards, and former-builder credibility appear frequently.</td><td>Use approved proof with source, starting point, work, timeframe, and result.</td></tr>
+        <tr><td>AI search</td><td>Current agencies discuss AI visibility, often with aggressive claims.</td><td>Use source-backed guidance and no guaranteed placement language.</td></tr>
+        <tr><td>Resources</td><td>Large content libraries signal authority but can become generic.</td><td>Turn each SME interview into a small, validated cluster with a clear reader job.</td></tr>
+        <tr><td>Lead volume</td><td>Traffic and lead-count language dominates.</td><td>Own the quality-of-lead conversation: fit, market, project type, readiness, and sales acceptance.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>White-space position</strong>A warm, practical builder-marketing guide that shows its work, explains AI search without magic, and connects visibility to qualified demand.</div>
+    <p class="small">Directional public-page review: BigOrange, Diamond Group, Lasso Up, OuterBox, Savo Group, Red Olive, and BuilderKick. Public positioning is not proof of private performance.</p>
+    <div class="footer"><span>Market and competitor direction</span><span>04</span></div>
+  </section>
+
+  <section class="page">
+    <div class="brand"><img src="assets/bigorange-logo-orange.png" alt="BigOrange Marketing"><span class="page-no">05</span></div>
+    <div class="eyebrow">Semrush keyword priorities</div>
+    <h1>Lead with accessible builder-specific demand.</h1>
+    <p class="lede">The validated map contains 62 selected, mapped, deferred, and rejected decisions. These ten directions create the strongest first build sequence.</p>
+    <table class="tight">
+      <thead><tr><th style="width:7%">#</th><th style="width:40%">Query</th><th style="width:17%">US vol.</th><th style="width:13%">KD</th><th>Recommended asset</th></tr></thead>
+      <tbody>
+        <tr><td class="rank">1</td><td>SEO for home builders</td><td>590</td><td>2%</td><td>Subpillar</td></tr>
+        <tr><td class="rank">2</td><td>custom home builder marketing</td><td>480</td><td>9%</td><td>Authority pillar</td></tr>
+        <tr><td class="rank">3</td><td>home builder website not generating leads</td><td>880</td><td>4%</td><td>Supporting article</td></tr>
+        <tr><td class="rank">4</td><td>custom home builder target market segments</td><td>1,000</td><td>17%</td><td>Supporting guide</td></tr>
+        <tr><td class="rank">5</td><td>home builder marketing</td><td>1,000</td><td>28%</td><td>Category expansion</td></tr>
+        <tr><td class="rank">6</td><td>home builder website design</td><td>480</td><td>15%</td><td>Service support</td></tr>
+        <tr><td class="rank">7</td><td>home building marketing</td><td>390</td><td>12%</td><td>Map to pillar</td></tr>
+        <tr><td class="rank">8</td><td>home builder digital marketing</td><td>320</td><td>23%</td><td>Subpillar</td></tr>
+        <tr><td class="rank">9</td><td>home builder marketing plan</td><td>320</td><td>15%</td><td>Guide and template</td></tr>
+        <tr><td class="rank">10</td><td>home builder marketing ideas</td><td>320</td><td>19%</td><td>Supporting article</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>Recommended wedge</strong>Pair “SEO for home builders” with the existing builder authority page, then support the cluster with website-conversion, audience-strategy, and local-visibility content.</div>
+    <p class="small">Source: authenticated Semrush, United States desktop database, checked August 4, 2026. Volume, KD, intent, and CPC are directional research inputs, not traffic or ranking guarantees. The attached CSV preserves all 62 decisions.</p>
+    <div class="footer"><span>Keyword opportunity map</span><span>05</span></div>
+  </section>
+
+  <section class="page">
+    <div class="brand"><img src="assets/bigorange-logo-orange.png" alt="BigOrange Marketing"><span class="page-no">06</span></div>
+    <div class="eyebrow">Authority architecture</div>
+    <h1>One hub organizes three buyer decisions.</h1>
+    <p class="lede">Every new asset should answer a specific question and link back to one authority root. No duplicate core pages. No content confetti.</p>
+    <div class="flow">
+      <div class="flow-row"><b>Authority hub</b><span>Custom Home Builder Marketing: positioning, website trust, visibility, proof, measurement, and the next right step.</span></div>
+      <div class="flow-row"><b>Strategy</b><span>Buyer journey, target market, marketing plan, referral dependence, and lead quality.</span></div>
+      <div class="flow-row"><b>Search and AI</b><span>SEO for home builders, local visibility, answer-ready content, citations, entities, and AI discovery.</span></div>
+      <div class="flow-row"><b>Website conversion</b><span>Required website elements, proof architecture, project stories, process clarity, accessibility, speed, and measurement.</span></div>
+      <div class="flow-row"><b>Proof layer</b><span>Approved case stories, reviews, awards, FAQs, checklists, and a future benchmark with explicit methodology.</span></div>
+    </div>
+    <div class="grid-2">
+      <div><h2>Drafted now</h2><ul><li>One provisional authority pillar</li><li>Two provisional supporting articles</li><li>Eight FAQs and a proposed schema graph</li></ul></div>
+      <div><h2>Planned next</h2><ul><li>Three subpillars and nine supporting articles</li><li>Downloads and case-study intake</li><li>Webinar and benchmark concepts remain later-phase opportunities</li></ul></div>
+    </div>
+    <div class="footer"><span>Content architecture</span><span>06</span></div>
+  </section>
+
+  <section class="page">
+    <div class="brand"><img src="assets/bigorange-logo-orange.png" alt="BigOrange Marketing"><span class="page-no">07</span></div>
+    <div class="eyebrow">Technical and AI-search work order</div>
+    <h1>Fix the critical path before adding more weight.</h1>
+    <div class="metric-row">
+      <div class="metric"><b>26</b><span>mobile Lighthouse performance</span></div>
+      <div class="metric"><b>28.6s</b><span>mobile LCP lab snapshot</span></div>
+      <div class="metric"><b>2,650ms</b><span>mobile TBT lab proxy</span></div>
+      <div class="metric"><b>67</b><span>desktop performance</span></div>
+    </div>
+    <ol>
+      <li><strong>Find the real mobile LCP element and request chain.</strong> Do not guess from the score alone.</li>
+      <li><strong>Remove hero video, carousel, or heavy background media from the critical path.</strong> Use a lightweight poster first.</li>
+      <li><strong>Cut unused page-builder CSS and long JavaScript tasks.</strong> Audit sliders, animation, chat, tracking duplication, and third parties.</li>
+      <li><strong>Improve accessibility and information structure.</strong> Preserve visible focus, semantic headings, descriptive alt text, contrast, keyboard access, and reduced motion.</li>
+      <li><strong>Make the page easy to retrieve and cite.</strong> Use visible direct answers, stable entity details, named authorship, review dates, internal links, and structured data that matches the page.</li>
+      <li><strong>Re-test before release.</strong> Validate mobile, desktop, forms, metadata, schema, crawl access, and rollback evidence in staging.</li>
+    </ol>
+    <div class="callout"><strong>AI-search boundary</strong>There is no magic tag or guaranteed answer placement. Crawl access, indexability, clear answers, reputable citations, consistent entities, and real proof are controllable inputs.</div>
+    <p class="small">Single Lighthouse lab captures from August 3, 2026 are diagnostic, not field Core Web Vitals. Final implementation requires verified WordPress staging access.</p>
+    <div class="footer"><span>Technical SEO and AI search</span><span>07</span></div>
+  </section>
+
+  <section class="page">
+    <div class="brand"><img src="assets/bigorange-logo-orange.png" alt="BigOrange Marketing"><span class="page-no">08</span></div>
+    <div class="eyebrow">90-day roadmap</div>
+    <h1>Validate first. Publish in a controlled sequence.</h1>
+    <div class="timeline">
+      <div class="phase"><div class="num">01</div><h3>Days 1-30</h3><ul><li>Conduct Janice's interview and factual review.</li><li>Apply the Semrush map to page briefs.</li><li>Confirm WordPress role, staging target, and rollback route.</li><li>Revise the hub and two drafts.</li><li>Fix priority mobile and accessibility issues.</li><li>Define qualified-demand measurement.</li></ul></div>
+      <div class="phase"><div class="num">02</div><h3>Days 31-60</h3><ul><li>Publish only after review and approval.</li><li>Build the three subpillar guides.</li><li>Add local SEO, AI-visibility, and marketing-plan content.</li><li>Connect reciprocal internal links and breadcrumbs.</li><li>Create the first practical download.</li></ul></div>
+      <div class="phase"><div class="num">03</div><h3>Days 61-90</h3><ul><li>Add buyer-choice, referral, and lead-quality content.</li><li>Publish the first approved case story.</li><li>Test one meaningful CTA hypothesis.</li><li>Review search queries and sales feedback.</li><li>Refresh the hub with verified evidence.</li></ul></div>
+    </div>
+    <div class="callout"><strong>Release rule</strong>No asset moves from working draft to published content without a named source, human factual review, editorial QA, approval record, and rollback path.</div>
+    <div class="footer"><span>90-day implementation roadmap</span><span>08</span></div>
+  </section>
+
+  <section class="page">
+    <div class="brand"><img src="assets/bigorange-logo-orange.png" alt="BigOrange Marketing"><span class="page-no">09</span></div>
+    <div class="eyebrow">Editorial workflow</div>
+    <h1>One expert hour becomes a source, not a content vending machine.</h1>
+    <p class="lede">AI can organize, compare, outline, and repurpose. It cannot supply BigOrange's experience, client proof, or final judgment.</p>
+    <div class="flow">
+      <div class="flow-row"><b>1. Frame</b><span>Define the reader, decision, source boundary, and claim exclusions.</span></div>
+      <div class="flow-row"><b>2. Interview</b><span>Capture decisions, mistakes, objections, language, examples, and caveats from Janice or the assigned SME.</span></div>
+      <div class="flow-row"><b>3. Extract</b><span>Build a claim table, FAQ candidates, article angles, proof gaps, and internal-link opportunities.</span></div>
+      <div class="flow-row"><b>4. Verify</b><span>Separate firsthand expertise, approved client evidence, official guidance, and statements that still need a source.</span></div>
+      <div class="flow-row"><b>5. Draft</b><span>Create answer-first copy with explicit placeholders instead of invented expertise.</span></div>
+      <div class="flow-row"><b>6. Review</b><span>SME truth check, editorial quality check, accessibility and technical QA, approval, then publication.</span></div>
+    </div>
+    <div class="callout"><strong>Quality floor</strong>Direct answer, original expertise, source quality, audience specificity, internal-link value, scanability, accessibility, conversion clarity, fact-check completion, and human approval.</div>
+    <div class="footer"><span>AI-assisted editorial workflow</span><span>09</span></div>
+  </section>
+
+  <section class="page">
+    <div class="brand"><img src="assets/bigorange-logo-orange.png" alt="BigOrange Marketing"><span class="page-no">10</span></div>
+    <div class="eyebrow">12-month direction</div>
+    <h1>Authority compounds when evidence compounds.</h1>
+    <div class="grid-2">
+      <div class="panel"><h3>Quarter 1 · Foundation</h3><p>Validate expertise, evolve the hub, publish the first approved cluster, fix technical priorities, and establish measurement.</p></div>
+      <div class="panel"><h3>Quarter 2 · Proof</h3><p>Add buyer-decision content, local-market guidance, case-study intake, nurture support, and sales feedback.</p></div>
+      <div class="panel"><h3>Quarter 3 · Distribution</h3><p>Repurpose approved expertise across email, social, briefing, and practical tools without creating channel-specific filler.</p></div>
+      <div class="panel"><h3>Quarter 4 · Original authority</h3><p>Consolidate the cluster and publish an original benchmark only when the methodology and evidence can be shown.</p></div>
+    </div>
+    <h2 style="margin-top:20px">Sustainable rhythm</h2>
+    <table>
+      <thead><tr><th style="width:20%">Cadence</th><th>Recommended operating rhythm</th></tr></thead>
+      <tbody><tr><td>Monthly</td><td>One SME session, one substantial article, one existing-page refresh, and a short FAQ batch.</td></tr><tr><td>Quarterly</td><td>One proof asset or briefing, one technical and accessibility audit, and one performance review.</td></tr><tr><td>Annually</td><td>One original research asset and a full cluster consolidation review.</td></tr></tbody>
+    </table>
+    <div class="callout"><strong>North star</strong>Become the most useful and transparent marketing resource for growth-minded custom home builders, measured by qualified demand and repeat use rather than an unprovable “number one” claim.</div>
+    <div class="footer"><span>12-month authority roadmap</span><span>10</span></div>
+  </section>
+
+  <section class="page">
+    <div class="brand"><img src="assets/bigorange-logo-orange.png" alt="BigOrange Marketing"><span class="page-no">11</span></div>
+    <div class="eyebrow">Evidence and limits</div>
+    <h1>The package shows its work and labels what it cannot prove.</h1>
+    <div class="source"><b>BigOrange public website and builder page</b><span>Live public inventory and content review captured August 3, 2026. Public evidence does not establish private traffic, leads, rankings, conversions, or revenue.</span></div>
+    <div class="source"><b>Lighthouse lab captures</b><span>Single mobile and desktop diagnostic runs captured August 3, 2026. These are not CrUX field data or a production pass/fail verdict.</span></div>
+    <div class="source"><b>Semrush keyword research</b><span>United States desktop database checked August 4, 2026. The attached 62-row CSV preserves volume, KD, CPC, intent, selection rationale, and decision.</span></div>
+    <div class="source"><b>Competitor public pages</b><span>Diamond Group, Lasso Up, OuterBox, Savo Group, Red Olive, and BuilderKick. Used for public positioning and content-pattern comparison only.</span></div>
+    <div class="source"><b>Official technical guidance</b><span>Google Search and Core Web Vitals documentation plus current OpenAI, Perplexity, and Anthropic crawler guidance referenced in the technical source package.</span></div>
+    <div class="source"><b>Missing evidence</b><span>No Janice interview transcript, approved firsthand example, verified WordPress staging session, private analytics, CRM outcome, or final client acceptance is represented as complete.</span></div>
+    <div class="callout"><strong>Safe use</strong>Use this document for discovery alignment, prioritization, and interview preparation. Do not use it as proof that final content, WordPress implementation, publication, or performance outcomes are complete.</div>
+    <div class="footer"><span>Evidence standard</span><span>11</span></div>
+  </section>
+
+  <section class="page">
+    <div class="brand"><img src="assets/bigorange-logo-orange.png" alt="BigOrange Marketing"><span class="page-no">12</span></div>
+    <div class="eyebrow">Working-session decisions</div>
+    <h1>Four decisions unlock the real final deliverable.</h1>
+    <div class="decision"><div class="n">1</div><div><b>Confirm the authority-hub direction.</b><p>Keep and evolve the existing builder URL, with one root page and three supporting decision paths.</p></div></div>
+    <div class="decision"><div class="n">2</div><div><b>Schedule Janice's 60-minute SME interview.</b><p>Capture firsthand process, objections, proof, language, examples, and factual corrections before final copy.</p></div></div>
+    <div class="decision"><div class="n">3</div><div><b>Name the WordPress staging and review owners.</b><p>Verify a role-specific, revocable access route, staging target, approval owner, technical QA checklist, and rollback path.</p></div></div>
+    <div class="decision"><div class="n">4</div><div><b>Define final acceptance and presentation timing.</b><p>Confirm when the revised copy, implementation proof, and final presentation should be reviewed and accepted.</p></div></div>
+    <div class="callout"><strong>Recommended next action</strong>Approve the discovery direction, conduct the SME interview, then revise the three working drafts before any final presentation or WordPress publication.</div>
+    <p class="small">The full internal package includes the Semrush CSV, detailed research, technical specification, interview guide, roadmaps, and provisional WordPress drafts.</p>
+    <div class="footer"><span>Decision and handoff</span><span>12</span></div>
+  </section>
+</body>
+</html>

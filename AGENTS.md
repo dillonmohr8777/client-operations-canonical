@@ -188,6 +188,8 @@ account changes.
 
 ## Communication-triggered paid media
 
+- For Google Ads work, apply `paid-media/GOOGLE-ADS-SKILL-WORKFLOW.md`, instituted at Dillon's request on September 5, 2026. Use its installed triage, tracking, offline-import, delivery, query and reporting skills as relevant; current account evidence and official Google documentation outrank generic third-party heuristics. Preserve exact client routing and current authorization.
+
 - Use `workflows/communication-triggered-ad-launch.workflow.json` when an authorized Gmail, Slack, or direct user request implies a campaign launch, expansion, restart, or group of new locations. Treat the communication as a trigger to infer and build the complete deliverable chain, not as permission to guess missing commercial terms.
 - `registry/paid-media-roster.json` is the only current paid-media eligibility source. Google Ads routes are KJB, Replenish, Omega, Onsite, and Fresh Blends for Kwik Trip Ice Box campaigns. Meta Ads routes are Shadow Heating and KJB. Fagan Painting is not running ads and is excluded until Dillon explicitly reactivates it through a new roster change. A client absent from the exact platform roster must not receive planning, optimization, provider packets, or launch work for that platform.
 - Resolve the source to exactly one active client and one canonical requester reference. A person's name alone is never a route. In particular, `registry-contact:replenish-7-eleven:0` routes only to Replenish / 7-Eleven, while `registry-contact:fresh-blends-kwik-trip:0` routes only to Fresh Blends / Kwik Trip. Never combine those brands, locations, accounts, landing pages, campaign history, or budgets.

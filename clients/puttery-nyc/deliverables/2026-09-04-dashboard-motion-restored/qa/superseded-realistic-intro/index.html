@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Puttery NYC operational readiness, attribution pilot dashboard, and integration discovery workspace." />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <title>Puttery NYC · Attribution Pilot Control</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Fugaz+One&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="media.js"></script>
+    <script src="champion-intro.js"></script>
+  </head>
+  <body>
+    <!--
+      THESIS: A Puttery course marshal board turns attribution uncertainty into a playable route with explicit gates, refusing the generic executive KPI wall.
+      OWN-WORLD: Exact Puttery wordmark, black and white fields, hot pink action, teal verification, green readiness, and angular scorecard geometry.
+      STORY: Understand the pilot, inspect every source, answer the integration questions, then leave with a defensible go or blocked decision.
+      FIRST VIEWPORT: Brand rail above a split scoreboard where the marketing to revenue route and discovery progress are visible without scrolling.
+      FORM: Course marshal tee sheet, grounded candidate 4, seed 6c91a192.
+      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+    -->
+    <script>
+      window.playPutteryIntro = function (force, bypassChampion) {
+        if (!bypassChampion && window.PUTTERY_INTRO_MEDIA?.champion && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          var championKey = "putteryChampionIntroSeen20260904";
+          try { if (!force && localStorage.getItem(championKey) === "1") return; } catch (_) {}
+          var started = window.playPutteryChampionIntro({
+            onStarted: function () { try { localStorage.setItem(championKey, "1"); } catch (_) {} },
+            onFallback: function () { window.playPutteryIntro(true, true); }
+          });
+          if (started) return;
+        }
+        try {
+          if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+          if (!force && localStorage.getItem("putteryIntroSeenMotionRestored20260904") === "1") return;
+          localStorage.setItem("putteryIntroSeenMotionRestored20260904", "1");
+        } catch (e) { return; }
+
+        var previousIntro = document.querySelector(".pilot-intro");
+        if (previousIntro) previousIntro.remove();
+        var intro = document.createElement("div");
+        intro.className = "pilot-intro";
+        intro.setAttribute("aria-hidden", "true");
+        intro.innerHTML =
+          '<div class="pi-stage">' +
+            '<img class="pi-mark" src="assets/puttery-logo.svg" width="163" height="40" alt="" />' +
+            '<span class="pi-rule"></span>' +
+            '<span class="pi-stamp">NYC ATTRIBUTION PILOT</span>' +
+            '<span class="pi-putt"><span class="pi-ball"></span><span class="pi-cup"></span></span>' +
+          '</div>';
+        document.body.appendChild(intro);
+
+        function done() {
+          intro.classList.add("pi-out");
+          setTimeout(function () { intro.remove(); }, 420);
+          removeEventListener("keydown", done);
+          removeEventListener("wheel", done);
+        }
+        intro.addEventListener("click", done);
+        addEventListener("keydown", done);
+        addEventListener("wheel", done, { passive: true });
+        setTimeout(done, 2100);
+      };
+      window.playPutteryIntro(false);
+    </script>
+
+    <a class="skip-link" href="#main-content">Skip to pilot overview</a>
+
+    <header class="topbar">
+      <div class="brand-lockup">
+        <img src="assets/puttery-logo.svg" width="163" height="40" alt="Puttery" />
+        <span class="location-tag">NEW YORK CITY</span>
+        <span class="pilot-tag">ATTRIBUTION PILOT</span>
+      </div>
+      <div class="topbar-actions">
+        <label class="period-control" for="period-select">
+          <span>Modeled view</span>
+          <select id="period-select">
+            <option value="30d">Last 30 days</option>
+            <option value="7d">Last 7 days</option>
+          </select>
+        </label>
+        <button class="action-button secondary" id="replay-intro" type="button">Replay intro</button>
+        <button class="action-button secondary" id="motion-toggle" type="button" aria-pressed="false">Pause motion</button>
+        <button class="action-button secondary" id="export-answers" type="button">Export answers</button>
+        <button class="action-button secondary" id="reset-view" type="button">Reset view</button>
+      </div>
+    </header>
+
+    <aside class="truth-strip" aria-label="Modeled data disclosure">
+      <strong>MODELED DEMONSTRATION DATA</strong>
+      <span>No live guest, advertising, or payment records are loaded into this page. Verified integration status is reported separately below.</span>
+    </aside>
+
+    <div class="app-shell">
+      <aside class="section-rail" aria-label="Dashboard sections">
+        <p class="rail-title">Pilot control</p>
+        <nav>
+          <a class="rail-link active" href="#overview"><span>Overview</span><small>What we are proving</small></a>
+          <a class="rail-link" href="#live-status"><span>Current status</span><small>What is verified now</small></a>
+          <a class="rail-link" href="#outcomes"><span>Outcome map</span><small>What counts and why</small></a>
+          <a class="rail-link" href="#integrations"><span>Integrations</span><small>Ten source systems</small></a>
+          <a class="rail-link" href="#discovery"><span>Discovery lab</span><small>Answer every blocker</small></a>
+          <a class="rail-link" href="#reconciliation"><span>Revenue truth</span><small>Prevent double counting</small></a>
+          <a class="rail-link" href="#rollout"><span>Pilot plan</span><small>Phases and acceptance</small></a>
+          <a class="rail-link" href="#next-action"><span>Next action</span><small>Who does what</small></a>
+        </nav>
+        <div class="rail-golf-loop" data-golf-loop-slot aria-hidden="true">
+          <div class="rail-golf-fallback"><span class="rail-putt-line"></span><span class="rail-golf-ball"></span><span class="rail-golf-cup"></span></div>
+        </div>
+        <div class="rail-status">
+          <span class="status-dot" aria-hidden="true"></span>
+          <div>
+            <strong id="rail-progress">0 of 0 resolved</strong>
+            <small id="rail-gate">Discovery not started</small>
+          </div>
+        </div>
+      </aside>
+
+      <main id="main-content" tabindex="-1">
+        <section id="overview" class="hero-section section-block" aria-labelledby="overview-title">
+          <div class="hero-copy">
+            <p class="venue-line">PUTTERY NYC · 446 W 14TH ST · PILOT VENUE</p>
+            <div class="mobile-scoreboard" aria-label="Mobile discovery readiness">
+              <div><span>Discovery</span><strong id="mobile-readiness-percent">0%</strong></div>
+              <div><span>Current gate</span><strong id="mobile-current-gate">Reconciliation pending</strong></div>
+              <div class="mobile-score-track" aria-hidden="true"><span id="mobile-score-fill"></span></div>
+            </div>
+            <h1 id="overview-title" data-split>Know which marketing creates booked guests, completed visits, and collected revenue.</h1>
+            <p class="course-note">every gate here is a real shot, not a status colour</p>
+            <p class="hero-summary">This control separates verified engineering progress from modeled business outcomes. It shows exactly what is built, what remains unconnected, and which vendor action moves the Puttery NYC pilot forward.</p>
+            <div class="hero-actions">
+              <a class="action-button primary" href="#live-status">Review current status</a>
+              <a class="text-action" href="#discovery">Continue integration discovery</a>
+            </div>
+          </div>
+
+          <div class="pilot-scoreboard" aria-label="Pilot readiness summary">
+            <div class="scoreboard-head">
+              <span>Discovery worksheet</span>
+              <strong id="readiness-percent">0%</strong>
+            </div>
+            <div class="score-track putt-track" aria-hidden="true"><span id="score-fill"></span><span class="putt-ball"></span><span class="putt-cup"></span></div>
+            <dl class="score-grid">
+              <div><dt>Questions resolved</dt><dd id="questions-resolved">0 / 0</dd></div>
+              <div><dt>Blocking answers</dt><dd id="blocking-open">0 open</dd></div>
+              <div><dt>Dashboard source feeds</dt><dd>0 / 9</dd></div>
+              <div><dt>Current gate</dt><dd id="current-gate">Reconciliation pending</dd></div>
+            </dl>
+            <p id="readiness-explainer">Webhook receipt is verified. Controlled-event confirmation, delivery reconciliation, export recovery, and the remaining source access still gate reporting.</p>
+          </div>
+
+          <div class="course-band" aria-hidden="true">
+            <img src="assets/higgsfield-course-band.svg" alt="" width="2688" height="1536" />
+          </div>
+        </section>
+
+        <section id="live-status" class="status-section section-block light-section" aria-labelledby="status-title">
+          <div class="section-heading split-heading status-heading">
+            <div>
+              <h2 id="status-title" data-status-field="headline" data-split>Reservation webhook receiving.</h2>
+              <p data-status-field="summary">NYC filtering is verified. Reconcile the received deliveries and confirm source access before turning this engineering progress into attribution reporting.</p>
+            </div>
+            <div class="status-stamp">
+              <span id="status-state" class="platform-state gated" data-status-field="stateLabel">Reporting held</span>
+              <time id="status-updated" datetime="2026-09-04T23:03:21Z" data-status-field="snapshotLabel">September 4, 2026 · 7:03 PM ET</time>
+            </div>
+          </div>
+
+          <div class="status-scorecard" aria-label="Current Tock integration verification">
+            <div><span>Account route</span><strong data-status-field="accountRoute">NYC 37824</strong><small data-status-field="accountRouteDetail">Business group 28086 · venue filter verified</small></div>
+            <div><span>Receiver test baseline</span><strong data-status-field="receiverTests">13 / 13</strong><small data-status-field="receiverTestsDetail">Receiver checks · September 4</small></div>
+            <div><span>Relay test baseline</span><strong data-status-field="relayTests">18 / 18</strong><small data-status-field="relayTestsDetail">Relay checks · September 4</small></div>
+            <div><span>Reservation webhook</span><strong data-status-field="liveFeed">Receiving</strong><small data-status-field="liveFeedDetail">Reservation webhook · not performance reporting</small></div>
+          </div>
+
+          <div class="status-route-layout">
+            <div>
+              <h3>Launch path</h3>
+              <ol id="status-milestones" class="status-milestones"><li class="complete"><span class="milestone-marker">1</span><div><strong>NYC route bound</strong><p>Business group 28086 is filtered to Puttery NYC business 37824. Retained records in the inspected receiver use the NYC business ID.</p></div><span class="milestone-status">Verified</span></li><li class="complete"><span class="milestone-marker">2</span><div><strong>Local test baseline</strong><p>The source package records 13 receiver checks and 18 relay checks. These are the existing engineering test baseline, separate from the current health readback.</p></div><span class="milestone-status">Documented</span></li><li class="complete"><span class="milestone-marker">3</span><div><strong>Reservation webhook</strong><p>The public relay and local receiver were healthy and receiving on September 4. This is an engineering snapshot, not a live dashboard feed.</p></div><span class="milestone-status">Receiving</span></li><li class="current"><span class="milestone-marker">4</span><div><strong>Reconcile deliveries</strong><p>Confirm the intended test event with Tock, resolve the cumulative relay-to-receiver difference, and verify replay and export recovery.</p></div><span class="milestone-status">Pending</span></li><li class="waiting"><span class="milestone-marker">5</span><div><strong>Tracking and source access</strong><p>Confirm Data Exports, the website and tag container, GA4, Google Ads, Meta, and applicable event-system access for the NYC pilot.</p></div><span class="milestone-status">Access needed</span></li><li class="locked"><span class="milestone-marker">6</span><div><strong>Production reporting</strong><p>Daily source totals, approved measurement definitions, consent, commercial readiness, and exact account mapping must pass before attribution or media feedback.</p></div><span class="milestone-status">Held</span></li></ol>
+            </div>
+            <div class="status-next" aria-labelledby="vendor-action-title">
+              <h3 id="vendor-action-title">Next verification step</h3>
+              <p class="status-next-action" data-status-field="nextAction">Confirm the intended test event with Tock, reconcile relay-to-receiver delivery totals, and establish Data Exports recovery. Confirm web tracking and advertising account access next.</p>
+              <p class="status-boundary" data-status-field="dataBoundary">Webhook health is engineering evidence. It does not prove completed visits, attributed revenue, or media conversions. Guest records stay outside this page.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="route-section section-block" aria-labelledby="route-title">
+          <div class="section-heading compact-heading">
+            <h2 id="route-title">The evidence route</h2>
+            <p>Each handoff must preserve a stable identifier or move down to a clearly labeled aggregate result.</p>
+          </div>
+          <ol class="evidence-route">
+            <li>
+              <span class="route-marker">A</span>
+              <div><strong>Marketing touch</strong><p>Google, Meta, organic, email, direct, or partner traffic enters through a governed Puttery link.</p><small>UTM · click ID · consent · landing page</small></div>
+            </li>
+            <li>
+              <span class="route-marker">B</span>
+              <div><strong>Tock reservation</strong><p>Booking, party, status, value, cancellation, and service timing are recorded at reservation grain.</p><small>Reservation ID · business ID · transaction ID</small></div>
+            </li>
+            <li>
+              <span class="route-marker">C</span>
+              <div><strong>Completed venue visit</strong><p>Seated, completed, no show, transferred, and refunded outcomes remain distinct.</p><small>Service status · completed time · covers</small></div>
+            </li>
+            <li>
+              <span class="route-marker">D</span>
+              <div><strong>Toast collected revenue</strong><p>Net sales, payments, refunds, tax, tips, and venue revenue centers close the operating loop.</p><small>Restaurant GUID · check GUID · payment GUID</small></div>
+            </li>
+          </ol>
+        </section>
+
+        <section class="metric-section section-block" aria-labelledby="modeled-title">
+          <div class="section-heading compact-heading">
+            <h2 id="modeled-title">What the finished view can show</h2>
+            <p>These values are illustrative. Their purpose is to demonstrate definitions, not report Puttery performance.</p>
+          </div>
+          <div class="metric-scorecard">
+            <div><span>Ad spend</span><strong data-metric="spend">$2,500</strong><small>Modeled · ad platforms</small></div>
+            <div><span>Tagged visits</span><strong data-metric="visits">3,842</strong><small>Modeled · first party</small></div>
+            <div><span>Tock bookings</span><strong data-metric="bookings">214</strong><small>Modeled · reservation grain</small></div>
+            <div><span>Completed visits</span><strong data-metric="completed">168</strong><small>Modeled · status adjusted</small></div>
+            <div><span>Toast net sales</span><strong data-metric="revenue">$24,186</strong><small>Modeled · collected commerce</small></div>
+            <div><span>Exact match coverage</span><strong data-metric="coverage">61%</strong><small>Modeled · never hidden</small></div>
+          </div>
+        </section>
+
+        <section id="outcomes" class="section-block light-section" aria-labelledby="outcomes-title">
+          <div class="section-heading">
+            <h2 id="outcomes-title">The pilot must answer three business questions</h2>
+            <p>Every chart, integration, and data request exists to support one of these decisions.</p>
+          </div>
+          <div class="decision-lines">
+            <article><img class="outcome-mark" src="assets/outcome-booking.svg" alt="" aria-hidden="true" width="120" height="120" /><span>BOOKING</span><h3>Which campaigns create real Tock reservations?</h3><p>Separate clicks and checkout starts from completed bookings, then account for edits, transfers, cancellations, and refunds.</p></article>
+            <article><img class="outcome-mark" src="assets/outcome-visit.svg" alt="" aria-hidden="true" width="120" height="120" /><span>VISIT</span><h3>Which reservations become completed Puttery visits?</h3><p>Keep reservation creation and service completion as separate conversion events so paid media is not optimized toward future cancellations.</p></article>
+            <article><img class="outcome-mark" src="assets/outcome-revenue.svg" alt="" aria-hidden="true" width="120" height="120" /><span>REVENUE</span><h3>What collected Toast revenue can be joined exactly?</h3><p>Report exact matches, platform-level outcomes, and unmatched value separately. Never turn a timing guess into a person-level match.</p></article>
+          </div>
+          <div class="truth-callout">
+            <strong>Truth rule</strong>
+            <p>Tock booked value, Tripleseat event value, deposits, and Toast sales describe different financial facts. They are never added into one revenue total.</p>
+          </div>
+        </section>
+
+        <section id="integrations" class="section-block" aria-labelledby="integrations-title">
+          <div class="section-heading split-heading">
+            <div>
+              <h2 id="integrations-title">Puttery integration map</h2>
+              <p>Ten source lanes support the pilot. The reservation webhook is receiving and NYC filtering is verified. Reconciliation, Data Exports recovery, and additional venue access and usage still require confirmation.</p>
+            </div>
+            <div class="legend" aria-label="Integration status legend">
+              <span><i class="legend-dot ready"></i>Documented route</span>
+              <span><i class="legend-dot verify"></i>Must verify</span>
+              <span><i class="legend-dot gated"></i>Access gated</span>
+            </div>
+          </div>
+          <div id="platform-grid" class="platform-grid"></div>
+          <div class="portfolio-later">
+            <strong>Portfolio expansion, not the Puttery core pilot</strong>
+            <p>Resy and Eventbrite remain in the architecture for Rory’s Rooftop, Easy Tiger, and High Line Comedy Club. Their questions are included so the Puttery design does not create a dead end.</p>
+          </div>
+        </section>
+
+        <section id="discovery" class="section-block discovery-section" aria-labelledby="discovery-title">
+          <div class="section-heading split-heading">
+            <div>
+              <h2 id="discovery-title">Integration discovery lab</h2>
+              <p>Work through every question with the client. Answers save only in this browser and can be exported as JSON for implementation planning.</p>
+            </div>
+            <div class="discovery-summary" aria-live="polite">
+              <strong id="discovery-percent">0%</strong>
+              <span id="discovery-summary-text">No questions resolved</span>
+            </div>
+          </div>
+
+          <div class="discovery-controls">
+            <label for="platform-filter">Platform
+              <select id="platform-filter"><option value="all">All platforms</option></select>
+            </label>
+            <label for="status-filter">Answer status
+              <select id="status-filter">
+                <option value="all">All answers</option>
+                <option value="unanswered">Unanswered</option>
+                <option value="resolved">Resolved</option>
+                <option value="blocked">Answered no</option>
+              </select>
+            </label>
+            <label class="search-control" for="question-search">Find a question
+              <input id="question-search" type="search" placeholder="Search access, IDs, refunds, consent…" />
+            </label>
+          </div>
+
+          <div id="question-list" class="question-list"></div>
+          <p id="empty-questions" class="empty-state" hidden>No questions match these filters. Clear a filter to continue.</p>
+        </section>
+
+        <section id="reconciliation" class="section-block light-section" aria-labelledby="reconciliation-title">
+          <div class="section-heading">
+            <h2 id="reconciliation-title">Revenue truth and reconciliation</h2>
+            <p>The easiest dashboard to understand is the one that refuses to rename different financial facts as the same number.</p>
+          </div>
+          <div class="reconciliation-layout">
+            <div class="definition-table" role="table" aria-label="Financial measure definitions" tabindex="0">
+              <div class="definition-row head" role="row"><span role="columnheader">Measure</span><span role="columnheader">Authority</span><span role="columnheader">What it means</span><span role="columnheader">Can it be summed?</span></div>
+              <div class="definition-row" role="row"><strong role="cell">Booked value</strong><span role="cell">Tock</span><span role="cell">Reservation or prepaid booking value at service grain</span><span role="cell">No, not with Toast</span></div>
+              <div class="definition-row" role="row"><strong role="cell">Event pipeline</strong><span role="cell">Tripleseat</span><span role="cell">Prospective or contracted event value</span><span role="cell">No, pipeline only</span></div>
+              <div class="definition-row" role="row"><strong role="cell">Event cash collected</strong><span role="cell">Tripleseat</span><span role="cell">Deposits and recorded event payments net of refunds</span><span role="cell">Reconcile, do not add</span></div>
+              <div class="definition-row" role="row"><strong role="cell">POS net sales</strong><span role="cell">Toast</span><span role="cell">Realized venue sales under an agreed tax, tip, and refund rule</span><span role="cell">Primary commerce total</span></div>
+              <div class="definition-row" role="row"><strong role="cell">Matched revenue</strong><span role="cell">Derived</span><span role="cell">Toast sales joined through an approved deterministic method</span><span role="cell">Subset of Toast sales</span></div>
+            </div>
+            <div class="match-ladder">
+              <h3>Match confidence ladder</h3>
+              <ol>
+                <li><strong>Exact platform ID</strong><span>Reservation, transaction, event, order, or check identifier survives the handoff.</span></li>
+                <li><strong>Approved deterministic identity</strong><span>Consented, normalized identity is transformed and joined under an approved privacy design.</span></li>
+                <li><strong>Platform source</strong><span>The vendor confirms source or campaign at aggregate grain, without a person-level join.</span></li>
+                <li><strong>Unmatched</strong><span>The outcome remains visible but is excluded from exact attribution and media optimization.</span></li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <section id="rollout" class="section-block" aria-labelledby="rollout-title">
+          <div class="section-heading">
+            <h2 id="rollout-title">Puttery pilot plan</h2>
+            <p>The sequence reduces risk before engineering and before any advertising decision is made from incomplete outcomes.</p>
+          </div>
+          <div class="phase-track">
+            <article><span>2–4 working days</span><h3>Access and schema proof</h3><p>Confirm accounts, IDs, plans, permissions, payloads, exports, timezones, and KPI definitions.</p><strong>Gate: two source days reconcile</strong></article>
+            <article><span>1–2 weeks</span><h3>Batch reporting MVP</h3><p>Land Tock, Toast, Tripleseat, analytics, and advertising extracts in an auditable source model.</p><strong>Gate: daily totals and freshness pass</strong></article>
+            <article><span>1–2 weeks</span><h3>Attribution pilot</h3><p>Launch governed links, test identifiers, add webhooks with overlap backfills, and measure match coverage.</p><strong>Gate: test campaign traces end to end</strong></article>
+            <article><span>1–2 weeks</span><h3>Revenue feedback</h3><p>Publish only verified completed visits and matched commerce back to media in shadow mode.</p><strong>Gate: no duplicate or modeled uploads</strong></article>
+          </div>
+
+          <div class="acceptance-board">
+            <div>
+              <h3>Acceptance criteria</h3>
+              <ul>
+                <li>Every source mapped to the correct Puttery location and timezone</li>
+                <li>Two venue days reconcile to approved source totals and definitions</li>
+                <li>Transaction, reservation, and event identifiers deduplicate correctly</li>
+                <li>Cancellations, no shows, transfers, refunds, and reopened checks remain visible</li>
+                <li>Exact, platform source, and unmatched coverage is reported separately</li>
+                <li>No modeled value is uploaded as a production conversion</li>
+              </ul>
+            </div>
+            <div class="commercial-scope">
+              <h3>Commercial boundary</h3>
+              <strong>$2,500–$3,500</strong>
+              <p>Discovery plus one Puttery proof when authorized access is ready.</p>
+              <small>Production hosting, ongoing ingestion, portfolio rollout, vendor fees, legal review, and managed support are priced after discovery.</small>
+            </div>
+          </div>
+        </section>
+
+        <section id="next-action" class="section-block final-section" aria-labelledby="next-title">
+          <div>
+            <h2 id="next-title">The next move is a reconciled NYC event.</h2>
+            <p>Confirm the intended test event with Tock, reconcile relay-to-receiver delivery totals, and establish Data Exports recovery. Confirm web tracking and advertising account access next.</p>
+          </div>
+          <div class="owner-board">
+            <article><strong>Tock</strong><p>Confirm the intended NYC test event, secure credential route, and Data Exports recovery. Expanded access reviews include Toast, guest profile, and walk-in routes.</p></article>
+            <article><strong>Momentum</strong><p>Reconcile received deliveries, preserve only privacy-safe reservation facts, and document value, update, and recovery behavior.</p></article>
+            <article><strong>Joint decision</strong><p>Approve production reporting only after hosting, commercial, consent, source-account, and reconciliation gates pass.</p></article>
+          </div>
+          <a class="action-button primary inverse" href="#discovery">Open the discovery lab</a>
+        </section>
+      </main>
+    </div>
+
+    <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+
+    <noscript>
+      <div class="noscript-note">JavaScript is required for filtering, answer capture, progress, and export. The dashboard content remains readable without it.</div>
+    </noscript>
+    <script src="status.js" defer></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>

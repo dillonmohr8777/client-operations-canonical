@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>BigOrange Builder Hub Page Speed Follow-Up</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --orange: #c94f00;
+      --orange-dark: #843400;
+      --ink: #18202b;
+      --muted: #535e6d;
+      --line: #d8dee7;
+      --wash: #fff5eb;
+      --paper: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html { background: #eef1f5; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #eef1f5;
+      font: 16px/1.62 Arial, Helvetica, sans-serif;
+    }
+    main {
+      width: min(940px, 100%);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: clamp(32px, 7vw, 72px);
+      background: var(--paper);
+    }
+    h1, h2, h3 { color: var(--ink); line-height: 1.12; text-wrap: balance; }
+    h1 { max-width: 15ch; margin: 0; font-size: clamp(2.35rem, 7vw, 4.7rem); letter-spacing: -.035em; }
+    h2 { margin: 3rem 0 1rem; font-size: clamp(1.55rem, 3vw, 2.15rem); letter-spacing: -.02em; }
+    h3 { margin: 0 0 .35rem; font-size: 1.08rem; }
+    p, li { max-width: 72ch; }
+    a { color: var(--orange-dark); text-underline-offset: .18em; }
+    a:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
+    ::selection { color: #fff; background: var(--orange-dark); }
+    .meta { margin: 1.25rem 0 2.4rem; color: var(--muted); }
+    .summary {
+      margin: 2rem 0 0;
+      padding: 1.25rem 1.35rem;
+      border: 1px solid #efc7aa;
+      border-radius: 14px;
+      background: var(--wash);
+      font-size: 1.08rem;
+    }
+    .summary strong { color: var(--orange-dark); }
+    table { width: 100%; margin: 1.1rem 0; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+    th, td { padding: .8rem .75rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; }
+    td:first-child { font-weight: 700; }
+    .mobile { color: #8c2e0a; font-weight: 700; }
+    .desktop { color: #245e3d; font-weight: 700; }
+    .diagnosis {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      overflow: hidden;
+      margin: 1.2rem 0;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--line);
+    }
+    .diagnosis div { min-width: 0; padding: 1rem; background: var(--paper); }
+    .diagnosis b { display: block; font-size: 1.6rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+    .diagnosis span { color: var(--muted); font-size: .9rem; }
+    ol { max-width: 72ch; margin: 1rem 0; padding-inline-start: 1.4rem; }
+    ol li { margin: 0 0 1rem; padding-inline-start: .35rem; }
+    .boundary { margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .92rem; }
+    @media (max-width: 680px) {
+      main { padding: 28px 18px 42px; }
+      .diagnosis { grid-template-columns: 1fr; }
+      table, thead, tbody, tr, th, td { display: block; }
+      thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+      tr { padding: .8rem 0; border-bottom: 1px solid var(--line); }
+      td { padding: .22rem 0; border: 0; }
+      td::before { display: inline-block; width: 7rem; color: var(--muted); font-size: .78rem; font-weight: 700; text-transform: uppercase; }
+      td:nth-child(1)::before { content: "Metric"; }
+      td:nth-child(2)::before { content: "Mobile"; }
+      td:nth-child(3)::before { content: "Desktop"; }
+    }
+    @media print {
+      html, body { background: #fff; }
+      main { width: auto; min-height: 0; padding: .45in; }
+      h2 { break-after: avoid; }
+      tr, .summary, .diagnosis, li { break-inside: avoid; }
+      a { color: var(--orange-dark); text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Builder hub page speed follow-up</h1>
+  <p class="meta">BigOrange Marketing · Prepared September 4, 2026 · Page reviewed: <code>/marketing-agency-for-builders/</code></p>
+
+  <p class="summary"><strong>The short version:</strong> the August 20 Lighthouse evidence points to a mobile front-end payload and execution problem, not a slow origin server. Desktop was serviceable. Mobile was not. The practical fix is to make the first screen dramatically lighter, delay nonessential forms and tracking, and stop loading page-builder assets the page does not use.</p>
+
+  <h2>What the dated lab run measured</h2>
+  <table aria-label="August 20 Lighthouse results">
+    <thead>
+      <tr><th>Metric</th><th>Mobile</th><th>Desktop</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Performance score</td><td class="mobile">32</td><td class="desktop">75</td></tr>
+      <tr><td>First Contentful Paint</td><td class="mobile">14.2 seconds</td><td class="desktop">1.3 seconds</td></tr>
+      <tr><td>Largest Contentful Paint</td><td class="mobile">36.1 seconds</td><td class="desktop">2.7 seconds</td></tr>
+      <tr><td>Speed Index</td><td class="mobile">14.5 seconds</td><td class="desktop">2.8 seconds</td></tr>
+      <tr><td>Total Blocking Time</td><td class="mobile">1.11 seconds</td><td class="desktop">20 milliseconds</td></tr>
+      <tr><td>SEO score</td><td>92</td><td>92</td></tr>
+    </tbody>
+  </table>
+
+  <p>The approximately 40 millisecond root document response was healthy in both runs. That matters because it narrows the diagnosis: the origin server was not the primary cause of the slow mobile result.</p>
+
+  <h2>Where the weight came from</h2>
+  <div class="diagnosis" aria-label="Mobile page load diagnosis">
+    <div><b>7.5 MB</b><span>total transfer size</span></div>
+    <div><b>219</b><span>network requests</span></div>
+    <div><b>71</b><span>JavaScript files</span></div>
+    <div><b>4.16 MB</b><span>images</span></div>
+    <div><b>2.59 MB</b><span>scripts</span></div>
+    <div><b>2.91 MB</b><span>third party resources</span></div>
+  </div>
+
+  <p>Lighthouse estimated about 703 KB of avoidable JavaScript and 62 KB of avoidable CSS. The largest image files were roughly 0.8 MB to 1.2 MB each. The page also loaded HubSpot forms and meetings code, reCAPTCHA, several Google analytics and advertising libraries, Beaver Builder and PowerPack assets, multiple font families, and a Font Awesome file that returned a 404.</p>
+
+  <h2>Recommended repair order</h2>
+  <ol>
+    <li><h3>Make the first screen light and deterministic</h3>Choose one correctly sized hero image, serve responsive modern formats, give it explicit dimensions, and preload only the asset the browser will actually paint. The dated run appeared to request both the original PNG and a WebP derivative.</li>
+    <li><h3>Delay forms, meetings, and reCAPTCHA until intent</h3>Load HubSpot form or meeting dependencies when the form is near the viewport or after the visitor chooses to interact. Do not make the first screen pay for conversion tools that are not yet visible.</li>
+    <li><h3>Reconcile analytics and advertising tags</h3>Audit the active GTM, Google Analytics, and Google Ads loads so the same job is not being performed by overlapping containers or direct tags. Preserve required measurement, but remove duplication and fire noncritical tags later.</li>
+    <li><h3>Unload unused page-builder assets</h3>Conditionally remove Beaver Builder, PowerPack, carousel, Swiper, Magnific Popup, icon, and layout assets when the page does not use those components. The dated run showed Swiper as almost entirely unused on this route.</li>
+    <li><h3>Reduce font work and fix the failed font request</h3>Keep only the weights used above the fold, use a sensible fallback stack, apply font display behavior, and repair or remove the Font Awesome request that returned 404.</li>
+    <li><h3>Rebuild, then measure the same way</h3>Run at least three mobile and three desktop lab tests after the approved repair, use the median result, and compare field Core Web Vitals separately when enough traffic data is available. A single Lighthouse run is diagnostic evidence, not a traffic or ranking forecast.</li>
+  </ol>
+
+  <h2>What this means for search</h2>
+  <p>Page experience can matter, but a Lighthouse score is not a direct ranking promise. The right goal is a page that loads quickly enough for real visitors, preserves the measurement and conversion functions the team needs, and still carries the strongest answer, proof, internal links, and editorial quality.</p>
+
+  <p class="boundary"><strong>Evidence boundary:</strong> these numbers come from saved Lighthouse lab reports captured August 20, 2026. They should be rechecked on the live page before remediation and measured again after the approved changes. No live site changes are claimed in this brief.</p>
+</main>
+</body>
+</html>

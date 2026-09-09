@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Align HCM SmartCare Site Health and SEO Report — August 11, 2026</title>
+  <style>
+    :root {
+      --navy: #0b1d2d;
+      --navy-2: #17324d;
+      --orange: #f05a28;
+      --orange-dark: #a84216;
+      --paper: #f4efe7;
+      --sky: #eaf6fc;
+      --green: #157a50;
+      --ink: #101820;
+      --muted: #53606b;
+      --line: #d7dee3;
+    }
+    * { box-sizing: border-box; }
+    @page { size: Letter landscape; margin: 0; }
+    html, body { margin: 0; background: #dce2e6; color: var(--ink); font-family: "Segoe UI", Arial, sans-serif; }
+    body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .page {
+      width: 11in;
+      height: 8.5in;
+      margin: 0 auto;
+      padding: .3in .4in .28in;
+      overflow: hidden;
+      background: #fff;
+      position: relative;
+    }
+    header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 11px; }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img { width: 110px; height: auto; display: block; }
+    .brand-rule { width: 1px; height: 36px; background: var(--line); }
+    .report-label { color: var(--navy); font-size: 12px; line-height: 1.25; font-weight: 800; }
+    .date { color: #46545f; font-size: 11px; text-align: right; line-height: 1.45; }
+    .status { display: inline-block; margin-top: 4px; padding: 5px 9px; border-radius: 999px; background: #e5f4ed; color: #0f6843; font-size: 10px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+    .hero { background: var(--navy); color: #fff; padding: 15px 20px; border-radius: 14px; display: grid; grid-template-columns: 1.5fr .5fr; gap: 22px; align-items: end; }
+    .hero h1 { margin: 0 0 5px; max-width: 650px; font-size: 26px; line-height: 1.02; letter-spacing: -.025em; }
+    .hero p { margin: 0; max-width: 720px; color: #d6e1e9; font-size: 12px; line-height: 1.38; }
+    .index-block { padding: 11px 13px; background: rgba(255,255,255,.07); border-radius: 10px; }
+    .index-block strong { display: block; color: #fff; font-size: 20px; margin-bottom: 4px; }
+    .index-block span { color: #d8e3ea; font-size: 11px; line-height: 1.35; }
+    .kpis { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 8px 0; }
+    .kpi { min-height: 74px; background: #f3f6f7; padding: 9px 10px 7px; }
+    .kpi.good .value { color: var(--green); }
+    .kpi.watch .value { color: var(--orange-dark); }
+    .kpi .value { font-size: 22px; line-height: 1; font-weight: 900; color: var(--navy); letter-spacing: -.03em; }
+    .kpi .label { margin-top: 5px; font-size: 11px; line-height: 1.15; font-weight: 800; color: #35424d; }
+    .kpi .sub { margin-top: 3px; font-size: 10px; line-height: 1.2; color: #53606b; }
+    .band { display: grid; grid-template-columns: .84fr 1.16fr; gap: 10px; }
+    .panel { min-height: 130px; border: 1px solid var(--line); border-radius: 12px; padding: 11px 13px; }
+    .panel h2 { margin: 0 0 8px; font-size: 12px; line-height: 1.2; color: var(--navy); letter-spacing: .03em; text-transform: uppercase; }
+    .checks { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; }
+    .check { display: flex; gap: 7px; font-size: 11px; line-height: 1.25; color: #35424d; }
+    .check::before { content: "✓"; flex: 0 0 auto; width: 14px; height: 14px; border-radius: 50%; display: grid; place-items: center; background: #e5f4ed; color: var(--green); font-size: 8px; font-weight: 900; }
+    .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+    .tier { background: var(--navy); color: #fff; padding: 9px 10px; min-height: 88px; }
+    .tier:first-child { background: var(--orange-dark); }
+    .tier small { display: block; color: #fff; font-size: 10px; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 5px; }
+    .tier strong { display: block; font-size: 14px; margin-bottom: 4px; }
+    .tier span { color: #e6edf2; font-size: 11px; line-height: 1.25; }
+    .section-title { margin: 9px 0 6px; display: flex; align-items: center; gap: 10px; color: var(--navy); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+    .section-title::after { content: ""; height: 1px; background: var(--line); flex: 1; }
+    .issues { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .issue { min-height: 100px; background: var(--paper); padding: 10px 11px; border-radius: 10px; }
+    .issue .rank { color: var(--orange-dark); font-size: 10px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+    .issue strong { display: block; margin: 4px 0 3px; color: var(--navy); font-size: 12px; line-height: 1.2; }
+    .issue p { margin: 0; color: #3f4b54; font-size: 11px; line-height: 1.25; }
+    .coverage { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+    .coverage div { padding: 7px 8px; background: #f3f6f7; }
+    .coverage strong { display: inline-block; color: var(--green); font-size: 18px; line-height: 1; margin-right: 5px; }
+    .coverage span { display: inline; color: #3f4b54; font-size: 10px; line-height: 1.15; }
+    .evidence { margin-top: 8px; padding: 9px 11px; background: var(--sky); display: grid; grid-template-columns: 1.25fr .75fr; gap: 18px; font-size: 11px; line-height: 1.3; color: #334957; }
+    .evidence strong { color: var(--navy); }
+    footer { position: absolute; left: .4in; right: .4in; bottom: .18in; display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line); padding-top: 6px; color: #4f5d67; font-size: 9px; line-height: 1.3; }
+    footer a { color: var(--navy-2); text-decoration: none; }
+    @media print { html, body { background: #fff; } .page { margin: 0; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="brand">
+        <img src="https://www.alignhcm.com/hubfs/Align%20HCM%20logo.png" alt="Align HCM">
+        <span class="brand-rule"></span>
+        <div class="report-label">SmartCare<br>Site Health &amp; SEO Snapshot</div>
+      </div>
+      <div class="date">August 11, 2026<br><span class="status">Live update verified</span></div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>SmartCare is indexable, visible in search, and now aligned to the new three-tier model.</h1>
+        <p>The production template, public HTML, responsive rendering, crawl controls, metadata, and structured data were verified after publication. The largest remaining opportunity is mobile speed, driven primarily by third-party HubSpot and analytics JavaScript.</p>
+      </div>
+      <div class="index-block">
+        <strong>Indexability verified</strong>
+        <span>HTTP 200 · self-canonical · robots allowed · sitemap listed · no noindex · Google result present</span>
+      </div>
+    </section>
+
+    <section class="kpis" aria-label="Key site health metrics">
+      <div class="kpi good"><div class="value">124/124</div><div class="label">Sitemap URLs healthy</div><div class="sub">100% returned HTTP 200</div></div>
+      <div class="kpi good"><div class="value">100%</div><div class="label">Metadata coverage</div><div class="sub">Titles, descriptions, canonicals</div></div>
+      <div class="kpi good"><div class="value">100</div><div class="label">SmartCare SEO</div><div class="sub">Lighthouse lab audit</div></div>
+      <div class="kpi good"><div class="value">97</div><div class="label">Desktop performance</div><div class="sub">LCP 1.1s · TBT 0ms</div></div>
+      <div class="kpi watch"><div class="value">45</div><div class="label">Mobile performance</div><div class="sub">LCP 8.9s · TBT 598ms</div></div>
+      <div class="kpi good"><div class="value">100</div><div class="label">Accessibility</div><div class="sub">Desktop and mobile final runs</div></div>
+    </section>
+
+    <section class="band">
+      <div class="panel">
+        <h2>Technical index signals</h2>
+        <div class="checks">
+          <div class="check">Self-referencing canonical URL</div>
+          <div class="check">No page or header noindex directive</div>
+          <div class="check">Allowed by live robots.txt</div>
+          <div class="check">Included in the 124-URL sitemap</div>
+          <div class="check">One H1 and two JSON-LD blocks</div>
+          <div class="check">Current search-result presence confirmed</div>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>SmartCare changes now live</h2>
+        <div class="tiers">
+          <div class="tier"><small>Stability &amp; issue triage</small><strong>Stabilize</strong><span>Prioritized action plan and rapid issue resolution.</span></div>
+          <div class="tier"><small>Continuous optimization</small><strong>Optimize</strong><span>System improvements, reporting, integrations, and adoption.</span></div>
+          <div class="tier"><small>Strategic partnership</small><strong>Optimize Plus</strong><span>Senior roadmap guidance and proactive platform management.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <h2 class="section-title">Prioritized optimization queue</h2>
+    <section class="issues">
+      <article class="issue"><div class="rank">Priority 1</div><strong>Reduce mobile JavaScript cost</strong><p>Audit HubSpot analytics, banner, collected-forms, and Google tagging. The final lab run showed 2.5s of main-thread work, with third-party scripts dominating CPU time.</p></article>
+      <article class="issue"><div class="rank">Priority 2</div><strong>Tighten search snippets</strong><p>Rewrite 12 titles outside the 25–65 character quality band and 20 descriptions outside 70–165 characters. Case studies make up most long-description outliers.</p></article>
+      <article class="issue"><div class="rank">Priority 3</div><strong>Remove the stale GUID URL</strong><p>One sitemap URL canonicals to the homepage and creates the only duplicate title/description group. Remove the stale row from HubSpot's sitemap controls.</p></article>
+      <article class="issue"><div class="rank">Priority 4</div><strong>Clean content-template signals</strong><p>Correct the duplicate H1 on the HCM vendor selection checklist and validate author markup across the 64 blog URLs flagged by the automated crawl.</p></article>
+    </section>
+
+    <h2 class="section-title">Site-wide crawl coverage</h2>
+    <section class="coverage" aria-label="Site-wide metadata coverage">
+      <div><strong>0</strong><span>Missing titles</span></div>
+      <div><strong>0</strong><span>Missing descriptions</span></div>
+      <div><strong>0</strong><span>Missing canonicals</span></div>
+      <div><strong>0</strong><span>Missing H1s</span></div>
+      <div><strong>0</strong><span>Missing JSON-LD</span></div>
+      <div><strong>0</strong><span>Missing tracking</span></div>
+    </section>
+
+    <section class="evidence">
+      <div><strong>Delivered optimizations:</strong> three-tier SmartCare redesign; accessible form labels; corrected case-label, footer, and cookie-control contrast; explicit hero-image dimensions; desktop/mobile overflow and console verification.</div>
+      <div><strong>Measurement note:</strong> Lighthouse 13.4.1 lab scores are point-in-time diagnostics, not Search Console field data or revenue attribution.</div>
+    </section>
+
+    <footer>
+      <span>Sources: live HubSpot CMS API readback, public robots.txt and sitemap.xml, 124-URL crawl, Lighthouse mobile/desktop, and current search-result presence.</span>
+      <a href="https://www.alignhcm.com/align-hcm-smartcare">alignhcm.com/align-hcm-smartcare</a>
+    </footer>
+  </main>
+</body>
+</html>

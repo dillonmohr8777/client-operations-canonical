@@ -1,0 +1,693 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link type="text/css" rel="stylesheet" media="all" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+
+<!-- 
+<link rel="stylesheet" href="https://use.typekit.net/adu7xvh.css">
+ -->
+<script src="https://kit.fontawesome.com/8836d48d0e.js" crossorigin="anonymous"></script>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Esteban&family=Montserrat:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playfair Display:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="jPushMenu.css" />
+<script src="jPushMenu.js"></script>
+
+
+<script>
+jQuery(document).ready(function($) {
+	$('.mobileMenu').jPushMenu();
+});
+</script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-vsvoGFEDeElLsnlRAodplz0mSa9zFBY"></script>
+	<script>
+	var map; // Declare map variable in the global scope
+
+	function initMap() {
+	map = new google.maps.Map(document.getElementById('alphamap'), {
+		zoom: 10,
+		center: { lat: 40.3839126200252, lng: -75.32032388028716 }
+	});
+
+	var customIcon = {
+		url: 'images/alpha-map-icon.png',
+		scaledSize: new google.maps.Size(125,161), // Adjusted size to 150px wide
+		origin: new google.maps.Point(0, 0),
+		anchor: new google.maps.Point(75, 75) // Adjust anchor to match new size
+	};
+
+	var marker = new google.maps.Marker({
+		position: { lat: 40.3839126200252, lng: -75.32032388028716 },
+		map: map,
+		icon: customIcon
+	});
+
+	// Add a click event listener to the marker
+	marker.addListener('click', function() {
+		window.open('https://www.google.com/maps/dir/?api=1&destination=40.3839126200252,-75.32032388028716', '_blank');
+	});
+	}
+
+	window.addEventListener('load', function() {
+	// Initialize the map
+	initMap();
+	});
+	</script>
+	
+	<style>
+	#alphamap {
+		width: 500px;
+		height: 250px;
+	}
+	
+	@media screen and (max-width: 1250px) {
+		.mapHrsOuter {
+			width: 100%
+		}
+		.mapHrsInner {
+			margin: 0 auto;
+		}
+	}
+	</style>
+	
+	
+	
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <style>
+
+@media screen and (max-width: 1049px) {
+	.logosm {display:none;}
+}
+@media screen and (min-width: 1050px) {
+	.logosm {display:inline;}
+	.logosm img{width:166px;}
+	.logolg {display:none;}
+}
+
+</style>
+<button class="mobileMenu menu-left push-body" class="mobile-mast-toggle">
+<img src="imagesQP/toggle.png" /></button>
+<div class="masthead">
+	<div class="masthead-inner">
+		<a href="index.php" class="logosm"><img src="images/alphalogosmall.png"/></a>
+		<a href="index.php" class="logolg"><img src="images/alphalogolg.png"/></a>
+		<ul class="main-nav">
+	<li><a href="index.php">Home</a></li>
+	<li><a href="about.php">About >></a>
+		<ul class="sub-nav">
+			<li><a href="team.php">Team</a></li>
+		</ul>
+	</li>
+	<li><a href="services.php">Services >></a>
+		<ul class="sub-nav">
+			<li><a href="dogs.php">Dogs</a></li>
+			<li><a href="exotics.php">Exotics</a></li>
+			<li><a href="cats.php">Cats</a></li>
+		</ul>
+	</li>
+	<li><a href="schedule&rx.php">Schedule & Rx >></a>
+		<ul class="sub-nav">
+			<li><a href="https://olsr3.covetrus.com/#?AID=O6rypS318WJe7E6oG46MvVG46HQE6RLVG88Mv2TJZ" target="_blank">Schedule Appt.</a></li>
+			<li><a href="https://alphaveterinary.covetruspharmacy.com/" target="_blank">Prescriptions</a></li>
+		</ul>
+	</li>
+	<li class="phone-nav"><a href="tel://215-257-4717"><i class="fa-solid fa-phone"></i>(215) 257-4717</a></li>
+</ul>
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left">
+	<h3 style="height:auto;"><img src="images/alphalogosmall.png" /></h3>
+	<a href="index.php">Home</a>
+	<a href="about.php">About</a>
+		<a class="mobile-sub-link" href="team.php">Team</a>
+	<a href="services.php">Services</a>
+		<a class="mobile-sub-link" href="dogs.php">Dogs</a>
+		<a class="mobile-sub-link" href="exotics.php">Exotics</a>
+		<a class="mobile-sub-link" href="cats.php">Cats</a>
+
+	<a href="schedule&rx.php">Schedule & Rx</a>
+		<a class="mobile-sub-link" href="https://olsr3.covetrus.com/#?AID=O6rypS318WJe7E6oG46MvVG46HQE6RLVG88Mv2TJZ" target="_blank">Schedule Appt.</a>
+		<a class="mobile-sub-link" href="https://alphaveterinary.covetruspharmacy.com/" target="_blank">Prescriptions</a>
+	<a href="tel://215-257-4717">(215) 257-4717</a>
+</nav>	</div>
+</div>
+
+    <div class="top3outer"> <!-- New wrapper to center .top3container -->
+        <div class="top3container">
+            <a href="dogs.php" style="text-decoration: none; color: inherit;">
+                <div class="top3imagediv">
+                    <img src="images/dogs2.jpg" alt="Image">
+                    <div class="top3overlay"><p>Dogs</p></div>
+                </div>
+            </a>
+            <a href="exotics.php">
+                <div class="top3imagediv">
+                    <img src="images/exotics2.jpg" alt="Image">
+                    <div class="top3overlay"><p>Exotics</p></div>
+                </div>
+            </a>
+            <a href="cats.php" style="text-decoration: none; color: inherit;">
+                <div class="top3imagediv">
+                    <img src="images/cats2.jpg" alt="Image">
+                    <div class="top3overlay"><p>cats</p></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="full-width-height">
+        <div class="centered-content"> <h1>Welcome to Alpha Vet Hospital</h1></div>
+    </div>
+    
+    <div class="contentWrapper">
+        <div class="contentText" style="background: white;">
+
+  <div style="flex; align-items: center; justify-content: center;margin:50px 0px;"> 
+   
+   <!-- <img src="images/firework.jpg" alt="Image" style="display: inline-block;"> -->
+   
+   <!-- <h1 style="text-align: center; font-size: 40px; color: orange; margin: 0 20px;">Alight snow - you win. We'll open at 2pm Monday Feb 23rd. Is it spring yet? </h1> -->
+    
+    <!--  <img src="images/firework.jpg" alt="Image" style="display: inline-block;">
+</div> -->
+
+            <p style="color: red;">PLEASE CHECK BELOW FOR UPDATED SATURDAY HOURS (JULY 2026)</p>
+            <h1>Welcome to Alpha Vet Hospital - We're here for you and your pet at every stage of life.</h1>
+            <h2>Your Other Family Doctor!</h2>
+            
+            <ul>
+            <li>New puppy/new kitten education</li>
+            <li>Exotic companion mammal and reptile education</li>
+            <li>Treatment for illnesses and injuries</li>
+            <li>Geriatric care and maintenance</li>
+            </ul>
+            <a href="about.php" class="learnButton">Learn More <i class="fa-solid fa-greater-than"></i></a>
+        </div>
+        <div class="contentImgDiv">
+            <img src="images/dog-cat.jpg" alt="Image">
+        </div>
+    </div><!-- contInner -->
+    
+    <div class="testimonyInner" style="background: #64d3f7; align-items: center;padding: 34px;">
+    <div class="testimonyInnerText testimonyText" style="background: linear-gradient(to bottom,  #eaebff 0%,#ffffff 100%);">
+    <div class="testimonyInnerText2">
+        <div class="QuoteBtn">
+            <img src="images/testimonial-up.png" onclick="showNextTestimonial('up')">
+        </div>
+        <div class="QuoteTxt1 addtransition">
+             <span ID="testQuotMark">“</span>
+            <p>Every time I've visited, now over 25 years, visit they treat my dog as if it were their own.</p>
+            <p class="testimonySig">-- Jerome Litvin, Harleysville</p>
+        </div>
+        <div class="QuoteTxt2 addtransition" style="display:none;">
+             <span ID="testQuotMark">“</span>
+            <p> The staff are friendly, efficient, professional, compassionate and continue to maintain the family atmosphere which drew me to Alpha.</p>
+            <p class="testimonySig">-- Carol Mumbauer; client for 20 plus years</p>
+        </div>
+        <div class="QuoteTxt3 addtransition" style="display:none;">
+             <span ID="testQuotMark">“</span>
+            <p>Thank you everyone for believing in what you are doing. You made Fenwick feel like one of the family right away and he loved you right back.</p>
+            <p class="testimonySig">-- Bob and Claire Powers of Jeffersonville</p>
+        </div>
+        <div class="QuoteTxt4 addtransition" style="display:none;">
+             <span ID="testQuotMark">“</span>
+            <p>Alpha went above and beyond. My husky was in great pain and sent a technician to my house with meds. I see their love every time I visit.</p>
+            <p class="testimonySig">-- Lisa Thornton of Perkasie; client since 1990.</p>
+        </div>
+        <div class="QuoteTxt5 addtransition" style="display:none;">
+             <span ID="testQuotMark">“</span>
+            <p>Alpha has always been there for the birth, care and passing for three generations of our Scottish Terriers – now over 20 years. They are my family and friends.</p>
+            <p class="testimonySig">-- Alan and Darla Weaver</p>
+        </div>
+        <div class="QuoteTxt6 addtransition" style="display:none;">
+             <span ID="testQuotMark">“</span>
+            <p>Everyone greets me and my dogs by name and gives them belly rubs. I could not ask for more.</p>
+            <p class="testimonySig">-- Melissa Swope of Perkasie</p>
+        </div>
+        <div class="QuoteBtn">
+            <img src="images/testimonial-down.png" onclick="showNextTestimonial('down')">
+        </div>
+    </div>
+    </div>
+        <div class="testimonyImgDiv" style="padding:0;">
+        <img src="images/hands-paws.jpg" alt="Image">
+        </div>
+    </div>
+
+    
+    <style>
+.submit-email {border-radius:4px; background:#fafafa; color:#333; padding:5px 10px; margin-left:10px; cursor:pointer;}
+.submit-email:hover {background:#333; color:#fafafa;}
+.email-invalid {box-shadow: 0 0 4px #a00;}
+</style>
+
+<style>
+.rounded-button {
+	background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none!important;
+    /* display: block; */
+    font-size: 20px;
+    margin: 4px auto;
+    cursor: pointer;
+    border-radius: 12px;
+    font-family: Arial;
+	font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+#contact-name {
+    background-image: url(images/iconname.gif);
+    background-repeat: no-repeat;
+    background-position: 6px 8px;
+    background-size: 30px 30px;
+}
+#contact-msg {
+    background-image: url(images/iconmsg.gif);
+    background-repeat: no-repeat;
+    background-position: 6px 8px;
+    background-size: 36px 36px;
+}
+#contact-phone {
+    background-image: url(images/iconphone.gif);
+    background-repeat: no-repeat;
+    background-position: 8px 8px;
+    background-size: 30px 30px;
+}
+#contact-email {
+    background-image: url(images/iconemail.gif);
+    background-repeat: no-repeat;
+background-position: 6px 9px;
+    background-size: 30px 30px;
+}
+.contact-input {
+    position: absolute;
+    left: 45px;
+    top: 10px;
+    width: calc(100% - 60px);
+    height: 27px;
+    border: none;
+    background-color: transparent;
+    color: black;
+    text-transform: uppercase;
+}
+.contact-item {
+    background-color: #eee;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    min-height: 50px;
+    position: relative;
+    border: 1px solid black;
+    box-shadow: 0 0 8px rgba(128, 128, 128, 0.25);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 30px 30px;
+    width: 50%;
+    box-sizing: border-box;
+}
+.message-sent {
+    display: none;
+    text-align: center;
+    background: #f1f1f1;
+    border: 1px solid #c0c0c0;
+    color: #060;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 8px rgba(128, 128, 128, 0.25);
+    margin: auto;
+    width: 80%; /* Adjust width as necessary */
+    max-width: 500px; /* Ensure it doesn't get too wide */
+}
+
+.contact-form {
+    position: relative;
+    min-height: 335px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+</style>
+
+    <div class="contactOuter">
+        <div class="contactInner">
+            <div class="contact-form">
+                <h1>Contact</h1>
+                <div class="contact-item" id="contact-name">
+                    <input type="text" placeholder="Name" class="contact-input" id="contact_name" onclick="$(this).removeClass('validation');">
+                </div>
+                <div class="contact-item" id="contact-phone">
+                    <input type="text" placeholder="Phone" class="contact-input" id="contact_phone" onclick="$(this).removeClass('validation');">
+                </div>
+                <div class="contact-item" id="contact-email">
+                    <input type="email" placeholder="Email" class="contact-input" id="contact_email" onclick="$(this).removeClass('validation');">
+                </div>
+                <div class="contact-item" id="contact-msg">
+                    <input type="text" placeholder="Message" class="contact-input" id="contact_message" onclick="$(this).removeClass('validation');">
+                </div>
+                <div>
+                    <a href="#" id="submitbtn"><input type="submit" value="Send to Alpha Vet" class="rounded-button"></a>
+                </div>
+                <div class="message-sent">Your message has been sent!</div>
+            </div>
+            <div class="contactImg">
+                <img src="images/guinea.jpg" alt="Image">
+            </div>
+        </div><!-- contactInner -->
+    </div><!-- contactOuter -->
+
+	<div style="max-height: 600px;" class="contentInner mapHrsBackClr">
+		<div class="mapWrapper">
+			<div id="alphamap">
+			</div>
+		</div>
+		<div class="LocHrsCont">
+			<ul class="locList LeftLocBox">
+				<li>Hours</li>
+				<li>Monday:</li>
+				<li>Tuesday:</li>
+				<li>Wednesday:</li>
+				<li>Thursday:<br><br></li>
+				<li>Friday:</li>
+				<li>Saturday:</li>
+			</ul>
+			<ul class="locList MidLocBox">
+				<li style="color: rgba(0, 0, 0, 0);"><span>.</span></li>
+				<li><span>9:00 AM-7:00 PM</span></li>
+				<li><span>9:00 AM-7:00 PM</span></li>
+				<li><span>9:00 AM-7:00 PM</span></li>
+				<li><span>9:00 AM-12:00 PM<br>&amp; 4:00 PM-7:00 PM</span></li>
+				<li><span>9:00 AM-3:00 PM</span></li>
+				<li><span>OPEN EVERY OTHER SATURDAY</span></li>
+				<li><span>9:00 AM-12:00 PM</span></li>
+			</ul>
+			<ul class="locList RightLocBox">
+				<li>Alpha Veterinary Hospital will be closed for the following Holidays:</li>
+				<li>Memorial Day</li>
+				<li>Independence Day</li>
+				<li>Labor Day</li>
+				<li>Thanksgiving</li>
+				<li>Christmas Eve</li>
+				<li>Christmas Day</li>
+				<li>New Year's Eve</li>
+				<li>New Year's Day</li>
+			</ul>
+		</div><!-- LocHrsCont -->
+	</div><!-- contentInner -->
+
+<div class="footer">
+	<div class="footer-inner">
+		<div class="footer-images">
+			<a class="footer-logo"><img src="images/alphalogosmall.png"/></a>
+			<a class="footer-woman-owned-left"><img src="images/womanowned.png"/></a>
+		</div>
+		<div class="footer-contact">
+			<p>Alpha Veterinary Hospital<br/>1430 Bethlehem Pike<br/>Sellersville, PA 18960</p>
+			<p>Phone: <a href="tel://215-257-4717"><i class="fa-solid fa-phone"></i>(215) 257-4717</a><br/>Texting: (215) 257-4717</p>
+		</div>
+		<div class="footer-woman-owned-right">
+			<img src="images/womanowned.png">
+		</div>
+		<div class="footer-rights">
+			� 2024 Alpha Veterinary Hospital<br>All Rights Reserved.<br><a href="termsandconditions.php" target="blank">Terms & Conditions</a><br><a href="privacypolicy.php" target="blank">Privacy Policy</a>
+		</div>
+	</div>
+</div>
+
+
+    <script>
+        $(document).ready(function () {
+            console.log("jQuery is loaded and ready!");
+            var vdtn = 0;
+
+            $("#submitbtn").click(function (event) {
+                event.preventDefault(); // Prevent form from submitting normally
+
+                $('*').removeClass('validation');
+                vdtn = 0; // Reset validation flag
+
+                // Check if name is empty
+                if ($('#contact_name').val() == '') {
+                    $('#contact_name').addClass('validation');
+                    vdtn = 1;
+                }
+
+                // Check if phone is empty
+                if ($('#contact_phone').val() == '') {
+                    $('#contact_phone').addClass('validation');
+                    vdtn = 1;
+                }
+
+                // Check if email is valid
+                if (!validateEmail($('#contact_email').val())) {
+                    $('#contact_email').addClass('validation');
+                    vdtn = 1;
+                }
+
+                // Check if message is empty
+                if ($('#contact_message').val() == '') {
+                    $('#contact_message').addClass('validation');
+                    vdtn = 1;
+                }
+
+                console.log("Validation status: ", vdtn);
+
+                // If no validation errors, proceed with AJAX submission
+                if (vdtn == 0) {
+                    console.log("Submitting form via AJAX");
+                    $.ajax({
+                        url: 'send-the-message.php',
+                        type: 'POST',
+                        data: {
+                            'name': $('#contact_name').val(),
+                            'phone': $('#contact_phone').val(),
+                            'email': $('#contact_email').val(),
+                            'message': $('#contact_message').val()
+                        },
+                        success: function (data) {
+                            console.log("Form submitted successfully: ", data);
+                            $('.contact-form .contact-item, .contact-form a').fadeOut(1000, function() {
+                                $('.message-sent').fadeIn(1000);
+                            });
+                        },
+                        error: function (request, error) {
+                            console.log("Error submitting form: ", request, error);
+                            alert('An error occurred.');
+                        }
+                    });
+                } else {
+                    console.log("Form validation failed");
+                    alert("Fill in missing fields.");
+                }
+            });
+
+            function validateEmail(sEmail) {
+                var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+                return filter.test(sEmail);
+            }
+        });
+    </script>
+
+    <script>
+	$('.block-image').hover(
+		function(){
+			$('.block-slider-left-inner').hide();
+			$( "body" ).find( ".block-image a" ).removeClass( "lightenbg" );
+			//$('.block-slider-left-inner').css({'bottom':'-30px'});
+			$('.block-slider-title').html($(this).find('h2').html());
+			$('.block-slider-content').html($(this).find('p').html());
+			$('.block-slider-left-inner').fadeIn(200);
+			//$('.block-slider-left-inner').css({'bottom':'00px'});
+		},
+		function(){
+			$('.block-slider-left-inner').hide();
+			$('.block-slider-title').text('Lorem Ipsum');
+			$('.block-slider-content').text('asd asdpokpsk p po op kopkop kopk opop kop kopkop okpk opkop kpo koko ko.');
+			$('.block-slider-left-inner').fadeIn(200);
+		}
+	);
+	
+	$('.block-slider-right').hover(
+		function(){$('.block-slider-right-overlay').fadeOut(11);},
+		function(){$('.block-slider-right-overlay').fadeIn(300);}
+	);
+
+	var currentslide = 9;
+	var currentelement;
+	$('.left-arr').on('click', function(){
+		$('.block-slider-right-overlay').fadeOut(300);
+		$( "body" ).find( ".block-image a" ).removeClass( "lightenbg" );
+		currentslide--;
+		if (currentslide < 0) currentslide = 8;
+		currentelement = $( "body" ).find( ".block-image" ).eq( currentslide );
+		$(currentelement).find('a').addClass('lightenbg');
+		$('.block-slider-left-inner').hide();
+		$('.block-slider-title').html($(currentelement).find('h2').html());
+		$('.block-slider-content').html($(currentelement).find('p').html());
+		$('.block-slider-left-inner').fadeIn(200);
+	});
+	
+	$('.right-arr').on('click', function(){
+		$('.block-slider-right-overlay').fadeOut(300);
+		$( "body" ).find( ".block-image a" ).removeClass( "lightenbg" );
+		currentslide++
+		if (currentslide > 8) currentslide = 0;
+		currentelement = $( "body" ).find( ".block-image" ).eq( currentslide );
+		$(currentelement).find('a').addClass('lightenbg');
+		$('.block-slider-left-inner').hide();
+		$('.block-slider-title').html($(currentelement).find('h2').html());
+		$('.block-slider-content').html($(currentelement).find('p').html());
+		$('.block-slider-left-inner').fadeIn(200);
+	});
+	
+</script>
+<style>
+    .alerttext {color:#8b1a6c; font-size:22px;margin: 24px;}
+#modal {
+    background-color: #faeaff; 
+    background-image: url('images/back-pets.png'); 
+    background-size: 65% 65%; 
+    border: 3px solid #5f2b6f;
+    box-shadow: 0 0 40px 25px rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none; /* Ensure it is hidden by default */
+}
+    .container {
+        overflow: hidden; /* Clear floats */
+    }
+    #close {
+        position: absolute; /* Position the close button */
+        top: -20px; /* At the top */
+        right: -20px; /* At the right */
+    }
+    .box {
+        width: 50%; /* Adjust the width as needed */
+        height: auto; /* Adjust the height as needed */
+        float: left;
+        box-sizing: border-box; /* Ensures padding and border are included in the width and height */
+        border: 0px solid black;
+    }
+</style>
+
+
+<div id="overlay" style="display:none;"></div>
+<div id="modal">
+    <img id="close" src="images/btn.png" />
+    <div class="box box1">
+        <h2 class="alerttext">Join us for Pet Fest on May 30th. Enjoy an afternoon of fun, food, and wagging tails!</h2>
+    </div>
+    <div class="box box2">
+        <img id="alertImage" src="images/alertsquirrel.jpg" />
+    </div>
+</div>
+
+<script>
+    var showModal = false; // Set this flag to true or false as needed
+
+	document.addEventListener('DOMContentLoaded', function() {
+		var overlay = document.getElementById('overlay');
+		var modal = document.getElementById('modal');
+		var alertImage = document.getElementById('alertImage');
+
+		if (showModal) {
+			overlay.style.display = 'block';
+			modal.style.display = 'block';
+
+			alertImage.onload = function() {
+				modal.style.width = alertImage.clientWidth * 2 + 'px';
+				modal.style.height = alertImage.clientHeight + 'px';
+				centerModal(modal);
+			};
+
+			// If the image is already loaded
+			if (alertImage.complete) {
+				modal.style.width = alertImage.clientWidth * 2 + 'px';
+				modal.style.height = alertImage.clientHeight + 'px';
+				centerModal(modal);
+			}
+		} else {
+			overlay.style.display = 'none';
+			modal.style.display = 'none';
+		}
+
+		$("#overlay, #close").on("click", function(){
+			$("#overlay").fadeOut();
+			$("#modal").fadeOut();
+		});
+	});
+
+	function centerModal(modal) {
+		modal.style.top = '50%';
+		modal.style.left = '50%';
+		modal.style.transform = 'translate(-50%, -50%)';
+	}
+</script>
+
+<script>
+// Initially display the first testimonial
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.QuoteTxt1').style.display = 'block';
+    document.querySelector('.QuoteTxt1').style.opacity = '1';
+
+    function showNextTestimonial(direction) {
+        var currentTestimonial;
+        var nextTestimonial;
+
+        for (var i = 1; i <= 6; i++) {
+            if (document.querySelector('.QuoteTxt' + i).style.opacity === '1') {
+                  currentTestimonial = i;
+                  break;
+            }
+        }
+
+        if (direction === 'up') {
+            nextTestimonial = currentTestimonial % 6 + 1;
+        } else if (direction === 'down') {
+            nextTestimonial = currentTestimonial - 1 === 0 ? 6 : currentTestimonial - 1;
+        }
+
+        // Fade out the current testimonial
+        document.querySelector('.QuoteTxt' + currentTestimonial).style.transition = 'opacity 0.75s ease';
+        document.querySelector('.QuoteTxt' + currentTestimonial).style.opacity = '0';
+
+        setTimeout(function () {
+            // Hide the current testimonial after fading out
+            document.querySelector('.QuoteTxt' + currentTestimonial).style.display = 'none';
+            // Display the next testimonial
+            document.querySelector('.QuoteTxt' + nextTestimonial).style.display = 'block';
+            // Start fading in the next testimonial
+            setTimeout(function () {
+                  document.querySelector('.QuoteTxt' + nextTestimonial).style.transition = 'opacity 0.75s ease';
+                  document.querySelector('.QuoteTxt' + nextTestimonial).style.opacity = '1';
+            }, 50); // Delay the fade-in effect slightly to ensure proper rendering
+        }, 750);
+    }
+
+    document.querySelector('.QuoteBtn img').addEventListener('click', function() {
+        var direction = this.getAttribute('onclick').includes('up') ? 'up' : 'down';
+        showNextTestimonial(direction);
+    });
+});
+</script>
+</body>
+</html>

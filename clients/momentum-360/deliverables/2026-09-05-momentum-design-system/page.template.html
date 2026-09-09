@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Momentum Design System v1.0.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito+Sans:wght@400;600;800&family=Caveat:wght@700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ---- tokens (generated: tokens/momentum.tokens.css) ---- */
+{{TOKENS_CSS}}
+/* ---- components (generated: tokens/momentum.components.css) ---- */
+{{COMPONENTS_CSS}}
+/* ---- page-only scaffolding for this reference sheet ---- */
+.p-skip { position: absolute; left: -9999px; }
+.p-skip:focus { left: var(--m-s-4); top: var(--m-s-4); z-index: 40; background: var(--m-accent);
+  color: var(--m-on-accent); padding: var(--m-s-3) var(--m-s-5); border-radius: var(--m-r-pill); }
+
+.p-stat { display: grid; gap: var(--m-s-1); }
+.p-stat b { font-family: var(--m-font-display); font-size: var(--m-fs-h2); line-height: 1; }
+.p-stat span { font-size: var(--m-fs-micro); text-transform: uppercase;
+  letter-spacing: var(--m-track-caps); font-weight: var(--m-weight-bold); }
+.p-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--m-s-6) var(--m-s-5); }
+
+/* drift rails - one row per site, no cards */
+.p-rail { display: grid; grid-template-columns: minmax(0, 15rem) 1fr auto; gap: var(--m-s-4);
+  align-items: center; padding-block: var(--m-s-3); border-bottom: 1px solid var(--m-line); }
+.p-rail:first-child { border-top: 1px solid var(--m-line); }
+.p-rail__name { font-weight: var(--m-weight-bold); font-size: var(--m-fs-sm); }
+.p-rail__bar { display: flex; height: 2.5rem; border-radius: var(--m-r-sm); overflow: hidden;
+  border: 1px solid var(--m-line); }
+.p-rail__bar span { flex: 1; display: grid; place-items: center; font-family: var(--m-font-mono);
+  font-size: 0.62rem; letter-spacing: 0; }
+.p-rail__score { font-family: var(--m-font-mono); font-size: var(--m-fs-sm); font-weight: 600;
+  text-align: right; min-width: 8.5rem; }
+.p-bad { color: var(--m-danger); }
+.p-ok { color: var(--m-success); }
+@media (max-width: 780px) { .p-rail { grid-template-columns: 1fr; } .p-rail__score { text-align: left; } }
+
+/* measured contrast table */
+.p-tablewrap { overflow-x: auto; border: 1px solid var(--m-line); border-radius: var(--m-r-md); }
+table.p-t { border-collapse: collapse; width: 100%; min-width: 46rem; font-size: var(--m-fs-sm); }
+.p-t th, .p-t td { text-align: left; padding: var(--m-s-3) var(--m-s-4);
+  border-bottom: 1px solid var(--m-line); vertical-align: middle; }
+.p-t th { font-size: var(--m-fs-micro); text-transform: uppercase; letter-spacing: var(--m-track-caps);
+  font-weight: var(--m-weight-bold); color: var(--m-muted); background: var(--m-surface); }
+.p-t tr:last-child td { border-bottom: 0; }
+.p-t td.num { font-family: var(--m-font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.p-chip { display: inline-flex; align-items: center; gap: var(--m-s-2); font-family: var(--m-font-mono);
+  font-size: var(--m-fs-xs); }
+.p-chip i { width: 1.1rem; height: 1.1rem; border-radius: var(--m-r-sm);
+  border: 1px solid var(--m-line-strong); display: inline-block; }
+.p-verdict { font-weight: var(--m-weight-bold); font-size: var(--m-fs-xs);
+  text-transform: uppercase; letter-spacing: var(--m-track-caps); }
+
+/* swatch stack */
+.p-swatches { display: grid; gap: var(--m-s-2); }
+.p-sw { display: grid; grid-template-columns: 4.5rem minmax(0, 13rem) 1fr;
+  gap: var(--m-s-4); align-items: center; padding: var(--m-s-2) 0; }
+.p-sw__blob { height: 3.25rem; border-radius: var(--m-r-md); border: 1px solid var(--m-line-strong); }
+.p-sw__name { font-family: var(--m-font-mono); font-size: var(--m-fs-xs); }
+.p-sw__use { font-size: var(--m-fs-sm); color: var(--m-muted); }
+@media (max-width: 700px) { .p-sw { grid-template-columns: 4.5rem 1fr; } .p-sw__use { grid-column: 2; } }
+
+/* type ladder */
+.p-step { display: grid; grid-template-columns: minmax(0, 11rem) 1fr; gap: var(--m-s-5);
+  align-items: baseline; padding-block: var(--m-s-4); border-bottom: 1px solid var(--m-line); }
+.p-step__meta { font-family: var(--m-font-mono); font-size: var(--m-fs-xs); color: var(--m-muted); }
+.p-step__spec { overflow: hidden; }
+@media (max-width: 700px) { .p-step { grid-template-columns: 1fr; } }
+
+/* space / radius / elevation band - deliberately unequal columns */
+.p-band { display: grid; grid-template-columns: 5fr 4fr 3fr; gap: var(--m-s-7); align-items: start; }
+@media (max-width: 900px) { .p-band { grid-template-columns: 1fr; } }
+.p-spacebar { display: grid; gap: var(--m-s-2); }
+.p-spacebar div { display: flex; align-items: center; gap: var(--m-s-3);
+  font-family: var(--m-font-mono); font-size: var(--m-fs-xs); }
+.p-spacebar i { display: block; height: 0.85rem; background: var(--m-brand); border-radius: var(--m-r-sm); }
+.p-radii { display: flex; flex-wrap: wrap; gap: var(--m-s-4); }
+.p-radii figure { margin: 0; text-align: center; }
+.p-radii div { width: 5rem; height: 3.5rem; background: var(--m-surface);
+  border: 2px solid var(--m-line-strong); }
+.p-radii figcaption { font-family: var(--m-font-mono); font-size: var(--m-fs-xs);
+  margin-top: var(--m-s-2); color: var(--m-muted); }
+.p-elev { display: grid; gap: var(--m-s-5); }
+.p-elev div { background: var(--m-paper); border-radius: var(--m-r-md); padding: var(--m-s-5);
+  font-family: var(--m-font-mono); font-size: var(--m-fs-xs); }
+
+/* motion lab */
+.p-motion { display: grid; grid-template-columns: minmax(0, 20rem) 1fr; gap: var(--m-s-7); align-items: start; }
+@media (max-width: 860px) { .p-motion { grid-template-columns: 1fr; } }
+.p-track { border-top: 1px solid var(--m-on-deep-muted); padding-top: var(--m-s-4); display: grid; gap: var(--m-s-4); }
+.p-track div { display: grid; grid-template-columns: minmax(0, 9rem) 1fr; gap: var(--m-s-4);
+  align-items: center; font-family: var(--m-font-mono); font-size: var(--m-fs-xs); }
+.p-dot { width: 1.6rem; height: 1.6rem; border-radius: var(--m-r-pill); background: var(--m-accent); }
+.p-track.is-run .p-dot { transform: translateX(calc(100% * 6)); }
+.p-track .p-dot { transition-property: transform; }
+
+/* the do-not list, on the accent field */
+.p-nope { display: grid; gap: var(--m-s-4); list-style: none; margin: 0; padding: 0; max-width: 54rem; }
+.p-nope li { font-family: var(--m-font-display); text-transform: uppercase;
+  font-size: var(--m-fs-h3); line-height: 1.1; display: grid;
+  grid-template-columns: 2.4rem 1fr; gap: var(--m-s-4); align-items: baseline; }
+.p-nope li b { font-family: var(--m-font-mono); font-size: var(--m-fs-h4); font-weight: 600; }
+.p-nope li em { display: block; font-family: var(--m-font-text); font-style: normal;
+  text-transform: none; font-size: var(--m-fs-sm); font-weight: 400; margin-top: var(--m-s-2);
+  letter-spacing: 0; max-width: 44rem; }
+
+.p-note { font-size: var(--m-fs-sm); color: var(--m-muted); max-width: var(--m-measure); }
+.p-section--deep .p-note { color: var(--m-on-deep-muted); }
+.p-tag { display: inline-block; font-family: var(--m-font-mono); font-size: var(--m-fs-xs);
+  padding: 0.15rem 0.5rem; border-radius: var(--m-r-sm); border: 1px solid currentColor; }
+</style>
+</head>
+<body>
+<a class="p-skip" href="#main">Skip to content</a>
+
+<!-- ============ 1. NAV ============ -->
+<header class="m-nav" id="nav">
+  <div class="m-wrap m-nav__in">
+    <div class="m-nav__brand">
+      <span class="m-nav__caption">We build the proof.</span>
+      <span class="m-nav__mark">Momentum</span>
+    </div>
+    <nav aria-label="Sections">
+      <ul class="m-nav__links">
+        <li><a href="#drift">Drift</a></li>
+        <li><a href="#color">Color</a></li>
+        <li><a href="#type">Type</a></li>
+        <li><a href="#components">Components</a></li>
+      </ul>
+    </nav>
+    <a class="m-btn m-btn--sm" href="#rules">The do-not list</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ 2. HERO - asymmetric 7/5 on the deep field ============ -->
+<section class="m-hero">
+  <div class="m-wrap m-hero__grid">
+    <div>
+      <div class="m-hero__rule"></div>
+      <p class="m-eyebrow">Momentum Digital &middot; Philadelphia &middot; v1.0.0 &middot; {{DATE}}</p>
+      <h1 class="m-display">Tokens<br>that ship</h1>
+      <p class="m-lead m-muted" style="margin-top: var(--m-s-5)">
+        Every value here was read out of something already live and measured, not chosen
+        because it looked right. The numbers below are this page auditing itself.
+      </p>
+    </div>
+    <div class="p-stats m-rise">
+      {{HERO_STATS}}
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. DRIFT - horizontal rails, one per site, no cards ============ -->
+<section class="m-section" id="drift">
+  <div class="m-wrap">
+    <div class="m-head m-head--split">
+      <div>
+        <p class="m-eyebrow">Finding 01</p>
+        <h2 class="m-h2">Ten sites, ten palettes,<br>one broken pair</h2>
+      </div>
+      <p class="p-note">
+        The radar batch shares a kit and re-tints it per prospect. The tint is the point.
+        What is not the point: the same two pairs fail on nearly every site, because the
+        kit derives them instead of measuring them.
+      </p>
+    </div>
+    <div>
+      {{DRIFT_RAILS}}
+    </div>
+    <p class="p-note" style="margin-top: var(--m-s-5)">{{DRIFT_CAPTION}}</p>
+  </div>
+</section>
+
+<!-- ============ 4. THE DO-NOT LIST - accent field, full stop ============ -->
+<section class="m-section m-section--brand" id="rules" style="background: var(--m-accent); color: var(--m-on-accent)">
+  <div class="m-wrap">
+    <p class="m-eyebrow" style="color: var(--m-on-accent); opacity: .72">Not folklore. Rules.</p>
+    <h2 class="m-h2" style="margin-bottom: var(--m-s-7)">
+      <span class="m-strike"><s>Guidelines</s></span>
+      <span class="m-script" style="color: var(--m-on-accent)">banned outright</span>
+    </h2>
+    <ul class="p-nope">
+      <li><b>01</b><span>No AI purple
+        <em>No indigo-to-violet gradients, no #6366f1 family. The single loudest tell that
+        nobody made a decision. Note that sangillo-tire-center currently ships
+        <code>--brand:#583E7D</code>, the closest any live build comes to the line.</em></span></li>
+      <li><b>02</b><span>No neon glow
+        <em>No glowing borders, no saturated box-shadows. Elevation in this system is two
+        steps of neutral shadow and nothing else.</em></span></li>
+      <li><b>03</b><span>No glassmorphism
+        <em>No frosted translucent panels over blurred backdrops. Surfaces here are opaque,
+        which is also the only way contrast stays measurable.</em></span></li>
+      <li><b>04</b><span>No floating gradient orbs
+        <em>No soft blurred colour blobs drifting behind content. If a section needs depth,
+        it gets a real crop, a real rule, or a real photograph.</em></span></li>
+      <li><b>05</b><span>No three-equal-card feature row
+        <em>Three identical icon-heading-blurb cards is the reflexive layout that variance 9
+        exists to prevent. <code>.m-cards</code> is 7fr / 5fr for exactly this reason and
+        cannot be made equal without editing the component.</em></span></li>
+    </ul>
+    <p class="p-note" style="color: var(--m-on-accent); opacity: .8; margin-top: var(--m-s-7)">
+      Dials: visual variance 9/10 &middot; motion 8/10 &middot; information density 4/10.
+      This page runs density higher than 4 on purpose, because it is a reference sheet that
+      gets read, not a page that gets presented.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 5. COLOR - swatch stack, then the full measured matrix ============ -->
+<section class="m-section" id="color">
+  <div class="m-wrap">
+    <p class="m-eyebrow">Tokens 01</p>
+    <h2 class="m-h2">Color</h2>
+    <p class="m-lead m-muted" style="margin-block: var(--m-s-4) var(--m-s-7)">
+      Brand blue and the accent orange are measured off needmomentum.com. Everything else
+      was chosen to make a specific measured pair pass.
+    </p>
+    <div class="p-swatches">
+      {{SWATCHES}}
+    </div>
+
+    <h3 class="m-h3" style="margin-block: var(--m-s-8) var(--m-s-4)">Every pair, measured</h3>
+    <p class="p-note" style="margin-bottom: var(--m-s-5)">
+      Produced by <code>audit/contrast.py</code>, which parses this system's stylesheet
+      rather than a copy of its values. AA needs 4.5:1 for body text and 3:1 for large text
+      (24px, or 18.66px at 700+).
+    </p>
+    <div class="p-tablewrap">
+      <table class="p-t">
+        <caption class="p-skip">Measured WCAG AA contrast for every text-on-background pair in the Momentum design system</caption>
+        <thead><tr>
+          <th scope="col">Foreground</th><th scope="col">Background</th><th scope="col">Use</th>
+          <th scope="col">Size</th><th scope="col">Ratio</th><th scope="col">Needs</th><th scope="col">Verdict</th>
+        </tr></thead>
+        <tbody>{{CONTRAST_ROWS}}</tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. TYPE - vertical specimen ladder on the surface tone ============ -->
+<section class="m-section m-section--surface" id="type">
+  <div class="m-wrap">
+    <p class="m-eyebrow">Tokens 02</p>
+    <h2 class="m-h2">Type</h2>
+    <p class="p-note" style="margin-block: var(--m-s-4) var(--m-s-7)">
+      Three families, no more. Archivo Black for display, Nunito Sans for everything read,
+      Caveat for the one script accent. All three ship on all ten radar builds.
+      needmomentum.com currently renders five families on the homepage.
+      Steps are ratio-spaced so the jumps are real: density 4 means type carries the page.
+    </p>
+    {{TYPE_LADDER}}
+  </div>
+</section>
+
+<!-- ============ 7. SPACE / RADIUS / ELEVATION - unequal 5/4/3 band ============ -->
+<section class="m-section">
+  <div class="m-wrap">
+    <p class="m-eyebrow">Tokens 03</p>
+    <h2 class="m-h2" style="margin-bottom: var(--m-s-7)">Space, radius, elevation</h2>
+    <div class="p-band">
+      <div>
+        <h3 class="m-h4" style="margin-bottom: var(--m-s-4)">Space</h3>
+        <div class="p-spacebar">{{SPACE_BARS}}</div>
+        <p class="p-note" style="margin-top: var(--m-s-4)">
+          Section rhythm is <code>clamp(4.5rem, 9vw, 8rem)</code>, gutter
+          <code>clamp(1.25rem, 4vw, 3rem)</code>, both measured off the radar kit.
+        </p>
+      </div>
+      <div>
+        <h3 class="m-h4" style="margin-bottom: var(--m-s-4)">Radius</h3>
+        <div class="p-radii">{{RADII}}</div>
+        <p class="p-note" style="margin-top: var(--m-s-4)">
+          Four values. The radar builds ship six and agree on all six across ten sites.
+          needmomentum.com renders twenty distinct radii on one page.
+        </p>
+      </div>
+      <div>
+        <h3 class="m-h4" style="margin-bottom: var(--m-s-4)">Elevation</h3>
+        <div class="p-elev">
+          <div style="box-shadow: var(--m-elev-1)">--m-elev-1<br>hover lift, cards</div>
+          <div style="box-shadow: var(--m-elev-2)">--m-elev-2<br>nav, floating rails</div>
+        </div>
+        <p class="p-note" style="margin-top: var(--m-s-4)">Two steps, both neutral. No coloured shadow anywhere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. MOTION - deep field, interactive ============ -->
+<section class="m-section m-section--deep p-section--deep">
+  <div class="m-wrap">
+    <p class="m-eyebrow">Tokens 04</p>
+    <h2 class="m-h2" style="margin-bottom: var(--m-s-6)">Motion</h2>
+    <div class="p-motion">
+      <div>
+        <p class="p-note">
+          Two curves. <code>--m-ease</code> is what all ten radar builds run.
+          <code>--m-ease-swap</code> is Papa's header caption-to-mark swap, measured frame
+          by frame at 0.8s in the desktop spec, and it is reserved for that one move.
+        </p>
+        <p style="margin-top: var(--m-s-5)">
+          <button class="m-btn m-btn--sm" id="run" type="button">Run the durations</button>
+        </p>
+      </div>
+      <div class="p-track" id="track">{{MOTION_ROWS}}</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. COMPONENTS ============ -->
+<section class="m-section" id="components">
+  <div class="m-wrap">
+    <p class="m-eyebrow">Components</p>
+    <h2 class="m-h2">The grammar already shipping</h2>
+    <p class="p-note" style="margin-block: var(--m-s-4) var(--m-s-8)">
+      Nav, hero, section, pill, card, accordion, logo wall, footer. Every one of these is
+      on this page as itself, not as a picture of itself.
+    </p>
+
+    <h3 class="m-h3" style="margin-bottom: var(--m-s-5)">Pill</h3>
+    <p style="display: flex; flex-wrap: wrap; gap: var(--m-s-4); align-items: center; margin: 0 0 var(--m-s-4)">
+      <a class="m-btn" href="#components">Start today</a>
+      <a class="m-btn m-btn--ghost" href="#components">Learn more</a>
+      <a class="m-btn m-btn--sm" href="#components">Small</a>
+    </p>
+    <p class="p-note">
+      60px tall, 40px inline padding, full pill, uppercase 800, 150ms on colour and 250ms on
+      the lift. Papa's measured button, plus a displacement so the hover moves rather than
+      only tints. Label is <code>--m-on-accent</code> at 7.19:1, never white: white on this
+      orange is 2.58:1.
+    </p>
+
+    <h3 class="m-h3" style="margin-block: var(--m-s-8) var(--m-s-5)">Card</h3>
+    <div class="m-cards">
+      <article class="m-card">
+        <p class="m-card__k">37</p>
+        <h4 class="m-h4">Failing pairs across the ten live radar builds</h4>
+        <p class="m-body m-muted" style="margin-top: var(--m-s-3)">
+          Out of 120 token pairs measured. Eight of ten sites carry at least one.
+        </p>
+      </article>
+      <article class="m-card m-card--deep">
+        <p class="m-card__k">0</p>
+        <h4 class="m-h4">Failing pairs in this system</h4>
+        <p class="m-body" style="margin-top: var(--m-s-3); color: var(--m-on-deep-muted)">
+          26 pairs, checked on every ground each colour actually lands on.
+        </p>
+      </article>
+      <article class="m-card m-card--accent">
+        <p class="m-card__k">7fr / 5fr</p>
+        <h4 class="m-h4">Why this row is not three equal cards</h4>
+        <p class="m-body" style="margin-top: var(--m-s-3)">
+          <code>.m-cards</code> is unequal by construction, and a third child spans the row.
+          The banned layout is not available without editing the component.
+        </p>
+      </article>
+    </div>
+
+    <h3 class="m-h3" style="margin-block: var(--m-s-8) var(--m-s-5)">Accordion</h3>
+    <div class="m-acc">
+      <details>
+        <summary>Branding</summary>
+        <div class="m-acc__body">80px rows, uppercase, all closed on load, no chrome but the rule.
+          Papa's measured 82px pitch. Native <code>&lt;details&gt;</code>, so it works with no JS
+          and is keyboard-operable for free.</div>
+      </details>
+      <details>
+        <summary>Marketing</summary>
+        <div class="m-acc__body">The <code>+</code> rotates 45 degrees to an <code>x</code> on open,
+          250ms on the shared ease. Under reduced motion the duration collapses to 0.01ms and the
+          state still changes.</div>
+      </details>
+      <details>
+        <summary>Websites</summary>
+        <div class="m-acc__body">Hover nudges the label 0.75rem right and recolours it to
+          <code>--m-accent-ink</code> at 6.18:1. Displacement, not a tint.</div>
+      </details>
+    </div>
+
+    <h3 class="m-h3" style="margin-block: var(--m-s-8) var(--m-s-5)">Logo wall</h3>
+  </div>
+  <div class="m-wall">
+    <div class="m-wall__track">{{LOGO_WALL}}</div>
+  </div>
+  <div class="m-wrap">
+    <p class="p-note" style="margin-top: var(--m-s-4)">
+      Papa's measured wall: 210px items, greyscale at 40 percent, full colour on hover, pausing
+      on hover, on a grey stripe. CSS marquee rather than Owl Carousel. Under reduced motion the
+      animation stops and the track wraps, so nothing is hidden.
+      Wordmarks stand in for real client logos here; a live build uses source-checked assets.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ 10. FOOTER ============ -->
+<footer class="m-footer">
+  <div class="m-wrap">
+    <p class="m-script">Let's build</p>
+    <h2 class="m-h2" style="margin-top: var(--m-s-3)">Something measurable</h2>
+    <p class="m-lead" style="color: var(--m-on-brand-muted); margin-top: var(--m-s-5)">
+      Pull the tokens, not the screenshots.
+    </p>
+    <p style="margin-top: var(--m-s-6)"><a class="m-btn" href="#main">Back to the top</a></p>
+    <div class="m-footer__rule"></div>
+    <div class="m-footer__fine">
+      <span>Momentum Digital / Momentum 360 &middot; Philadelphia</span>
+      <span>tokens/momentum.tokens.css &middot; tokens/momentum.components.css</span>
+      <span>Generated {{DATE}} &middot; private, noindex</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav caption-to-mark swap: a class toggle at a threshold, exactly as Papa does it.
+// Nothing here is scroll-linked; the CSS transition does the work.
+(function () {
+  var nav = document.getElementById('nav');
+  var swap = function () { nav.classList.toggle('is-swapped', window.scrollY > 240); };
+  swap();
+  addEventListener('scroll', swap, { passive: true });
+
+  // Scroll reveal. The hidden state is only armed if we can also un-hide it.
+  if ('IntersectionObserver' in window) {
+    document.documentElement.classList.add('js-reveal');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -12% 0px' });
+    document.querySelectorAll('.m-rise').forEach(function (el) { io.observe(el); });
+  }
+
+  var run = document.getElementById('run'), track = document.getElementById('track');
+  run.addEventListener('click', function () {
+    track.classList.remove('is-run');
+    void track.offsetWidth;
+    track.classList.add('is-run');
+  });
+})();
+</script>
+</body>
+</html>

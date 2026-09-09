@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bar Crawl USA Worked Page Analytics</title>
+  <style>
+    @font-face{font-family:"Barlow Condensed";src:url("BarlowCondensed-800.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap}
+    @font-face{font-family:"Barlow Condensed";src:url("BarlowCondensed-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+    :root{--ink:#111317;--paper:#f3eee4;--white:#fffdf8;--violet:#30207d;--cobalt:#244fce;--coral:#b83a2f;--mist:#d8d0c4;--quiet:#605d58;--bluewash:#dce4ff}
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#d7d3cb;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+    body{padding:24px}
+    .sheet{position:relative;width:11in;height:8.5in;margin:0 auto 24px;background:var(--paper);overflow:hidden;box-shadow:0 18px 46px rgba(17,19,23,.18);page-break-after:always}
+    .sheet:last-child{page-break-after:auto}
+    .pad{padding:.42in .48in .52in}
+    .dark{background:var(--ink);color:var(--white)}
+    .violet{background:var(--violet);color:var(--white)}
+    h1,h2,h3,p{margin:0}
+    h1,h2,h3{font-family:"Barlow Condensed",Arial,sans-serif;text-transform:uppercase}
+    h1{font-size:47pt;line-height:.84;letter-spacing:-.025em}
+    h2{font-size:25pt;line-height:.9;letter-spacing:-.015em}
+    h3{font-size:15pt;line-height:1}
+    p,li{font-size:8.7pt;line-height:1.38}
+    .brandbar{height:.63in;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid currentColor;padding:0 .48in;font:500 9px/1 "Barlow Condensed",sans-serif;letter-spacing:.11em;text-transform:uppercase}
+    .brandbar img.logo{width:142px;height:34px;object-fit:contain;object-position:left center}
+    .partner{display:flex;align-items:center;gap:9px;font-weight:700;letter-spacing:.04em}
+    .partner img{width:26px;height:26px;border-radius:7px}
+    .folio{position:absolute;left:.48in;right:.48in;bottom:.2in;display:flex;align-items:center;justify-content:space-between;font:500 7.5px/1 "Barlow Condensed",sans-serif;letter-spacing:.1em;text-transform:uppercase}
+    .folio .rule{height:1px;flex:1;margin:0 15px;background:currentColor;opacity:.38}
+    .cover-grid{display:grid;grid-template-columns:4.2in 1fr;min-height:6.95in}
+    .cover-left{padding:.42in .48in .35in;display:flex;flex-direction:column;background:var(--paper)}
+    .cover-left h1 strong{display:block;color:var(--violet);font-size:62pt}
+    .prepared{margin-top:.2in;padding:.1in 0;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);font:800 13pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--coral)}
+    .scope-copy{margin-top:.22in;max-width:3.35in;font-size:9.5pt}
+    .source-bars{margin-top:auto}
+    .source{display:grid;grid-template-columns:1.05in 1fr;gap:.13in;padding:.1in 0;border-top:1px solid var(--ink)}
+    .source:last-child{border-bottom:1px solid var(--ink)}
+    .source b{font:800 10pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--violet)}
+    .source span{font-size:7.7pt;line-height:1.25}
+    .cover-right{position:relative;background:var(--violet);color:white;padding:.42in .42in .35in;display:flex;flex-direction:column}
+    .cover-right .big{font:800 145pt/.72 "Barlow Condensed",sans-serif;letter-spacing:-.055em}
+    .cover-right h2{font-size:34pt;margin-top:.08in}
+    .metric-strip{margin-top:auto;border-top:2px solid white;border-bottom:1px solid white}
+    .metric{display:grid;grid-template-columns:1.3in 1fr;align-items:center;padding:.12in 0;border-bottom:1px solid rgba(255,255,255,.35)}
+    .metric:last-child{border-bottom:0}
+    .metric strong{font:800 25pt/1 "Barlow Condensed",sans-serif;color:#ff9e8f}
+    .metric span{font:500 9pt/1.2 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .ads-stamp{position:absolute;right:.34in;top:.3in;border:2px solid var(--coral);color:#ff9e8f;padding:8px 12px;transform:rotate(3deg);font:800 10pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .page-title{display:grid;grid-template-columns:1fr 2.3in;gap:.3in;align-items:end;padding-bottom:.12in;border-bottom:3px solid currentColor}
+    .page-title p{font-size:8pt;color:var(--quiet)}
+    .dark .page-title p,.violet .page-title p{color:#ddd8ef}
+    .ledger{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:.16in}
+    .ledger th{background:var(--ink);color:white;padding:7px 7px;text-align:right;font:800 7.3pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.03em;border-right:1px solid #444}
+    .ledger th:first-child{text-align:left;width:37%}
+    .ledger th:nth-child(2){width:8%}.ledger th:nth-child(3){width:8%}.ledger th:nth-child(4){width:10%}.ledger th:nth-child(5){width:8%}.ledger th:nth-child(6){width:10%}.ledger th:nth-child(7){width:7%}.ledger th:nth-child(8){width:7%}
+    .ledger td{padding:6px 7px;border-bottom:1px solid #aaa49a;text-align:right;font:500 8.1pt/1.08 "Barlow Condensed",sans-serif;font-variant-numeric:tabular-nums}
+    .ledger tbody tr:nth-child(even){background:rgba(36,79,206,.07)}
+    .ledger td:first-child{text-align:left}
+    .page-name{display:block;font:800 9pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .path{display:block;margin-top:3px;font:500 6.8pt/1.1 "Barlow Condensed",sans-serif;color:var(--quiet);overflow-wrap:anywhere}
+    .ledger td.hot{color:var(--violet);font-weight:800}
+    .ledger td.win{background:var(--bluewash);font-weight:800}
+    .table-note{margin-top:.12in;display:flex;justify-content:space-between;gap:.25in;font-size:7.3pt;color:var(--quiet)}
+    .callouts{display:grid;grid-template-columns:repeat(3,1fr);gap:.18in;margin-top:.22in}
+    .callout{box-shadow:inset 0 6px 0 var(--coral);padding-top:.18in}
+    .callout:nth-child(2){box-shadow:inset 0 6px 0 var(--cobalt)}
+    .callout:nth-child(3){box-shadow:inset 0 6px 0 var(--violet)}
+    .callout strong{display:block;font:800 19pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .callout p{margin-top:6px;color:var(--quiet)}
+    .final-grid{display:grid;grid-template-columns:3.2in 1fr;gap:.34in;margin-top:.22in}
+    .new-listings{background:var(--ink);color:white;padding:.22in}
+    .new-listings h3{font-size:23pt}
+    .listing{padding:.16in 0;border-top:1px solid white}
+    .listing:first-of-type{margin-top:.16in}
+    .listing strong{display:flex;justify-content:space-between;gap:12px;font:800 13pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .listing strong span{color:#ff9e8f}
+    .listing p{margin-top:5px;color:#d9d5e7;overflow-wrap:anywhere}
+    .listing-stats{margin-top:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .listing-stats div{border-top:1px solid #6e6a75;padding-top:6px}
+    .listing-stats b{display:block;font:800 15pt/1 "Barlow Condensed",sans-serif;color:#aebdff}
+    .listing-stats span{font-size:6.8pt;text-transform:uppercase}
+    .decisions h3{font-size:23pt;color:var(--violet)}
+    .decision{padding:.14in 0;border-top:1px solid var(--ink)}
+    .decision:first-of-type{margin-top:.15in}
+    .decision:last-child{border-bottom:1px solid var(--ink)}
+    .decision b{font:800 13pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .decision p{margin-top:6px;color:var(--quiet)}
+    .close{margin-top:.2in;background:var(--coral);padding:.15in .18in;font:800 17pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    @media print{html,body{background:white}body{padding:0}.sheet{margin:0;box-shadow:none}}
+    @page{size:Letter landscape;margin:0}
+    @media screen and (max-width:1100px){body{padding:0}.sheet{width:100%;height:auto;min-height:100vh;margin:0;overflow:visible}.cover-grid,.final-grid,.page-title{grid-template-columns:1fr}.cover-left,.cover-right{min-width:0}.cover-left h1{font-size:33pt;overflow-wrap:anywhere}.cover-left h1 strong{font-size:44pt}.brandbar{padding:0 24px}.pad{padding:28px 22px 66px}.cover-right{min-height:62vh}.cover-right .big{font-size:110pt}.ledger,.ledger thead,.ledger tbody,.ledger tr,.ledger th,.ledger td{display:block}.ledger thead{display:none}.ledger tr{padding:12px 0;border-bottom:2px solid var(--ink)}.ledger td{display:grid;grid-template-columns:120px minmax(0,1fr);text-align:left;border:0;padding:4px 0}.ledger td:before{content:attr(data-label);font:800 8pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--quiet)}.ledger td:first-child{display:block}.callouts{grid-template-columns:1fr}.folio{left:22px;right:22px}}
+  </style>
+</head>
+<body>
+  <!-- THESIS: A premium event operations ledger makes twenty-four exact worked pages effortless to scan and refuses the generic dashboard cover. OWN-WORLD: Bone call sheets, ultraviolet data fields, near-black ledgers, coral stamps, condensed display type, and tabular alignment. STORY: Andy sees the total body of work, exact page-level performance, organic standouts, and the next optimization priorities. FIRST VIEWPORT: A formal source sheet on the left meets a broad ultraviolet field with the 24-page count and three decisive totals. FORM: Event operations call sheet, chosen from the delegated comparison board, seed 76111628. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md -->
+  <section class="sheet">
+    <header class="brandbar"><img class="logo" src="bar-crawl-usa.webp" alt="Bar Crawl USA"><div class="partner"><img src="momentum-360-m-circle.png" alt="Momentum 360"><span>Momentum 360 · Analytics book</span></div></header>
+    <div class="cover-grid"><div class="cover-left"><h1>Worked page <strong>analytics</strong></h1><div class="prepared">Prepared for Andy Zirger · August 10, 2026</div><p class="scope-copy">Every page confirmed as completed or added during the June and July production cycles, with exact landing-page traffic and Google organic visibility for the current reporting windows.</p><div class="source-bars"><div class="source"><b>GA4</b><span>July 13 to August 9 · landing-page traffic across all acquisition channels</span></div><div class="source"><b>Search Console</b><span>July 12 to August 8 · Google organic clicks, impressions, CTR, and average position</span></div><div class="source"><b>Google Ads</b><span>July 1 to July 31 · $0 spend, 0 impressions, and 0 clicks</span></div></div></div><div class="cover-right"><div class="ads-stamp">No Google Ads in July</div><div class="big">24</div><h2>pages in the worked-page ledger</h2><div class="metric-strip"><div class="metric"><strong>2,647</strong><span>Landing-page sessions</span></div><div class="metric"><strong>267</strong><span>Google organic clicks</span></div><div class="metric"><strong>13,407</strong><span>Google organic impressions</span></div></div></div></div>
+    <footer class="folio"><span>Bar Crawl USA · Worked page analytics</span><i class="rule"></i><span>01 / 05</span></footer>
+  </section>
+
+  <section class="sheet pad">
+    <div class="page-title"><h2>June hub and city SEO</h2><p>Ten pages completed in the June optimization cycle. Exact paths stay visible so each metric can be tied to the correct page.</p></div>
+    <table class="ledger"><thead><tr><th>Page and exact path</th><th>Sessions</th><th>Active</th><th>Avg engage</th><th>Clicks</th><th>Impressions</th><th>CTR</th><th>Pos.</th></tr></thead><tbody>
+      <tr><td data-label="Page"><span class="page-name">Ugly Sweater Bar Crawl</span><span class="path">/ugly-sweater-bar-crawl</span></td><td data-label="Sessions">5</td><td data-label="Active">5</td><td data-label="Avg engage">8s</td><td data-label="Clicks">0</td><td data-label="Impressions">281</td><td data-label="CTR">0%</td><td data-label="Position">22.1</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Boos &amp; Booze Halloween Bar Crawl</span><span class="path">/boos-booze-halloween-bar-crawl</span></td><td data-label="Sessions">40</td><td data-label="Active">36</td><td data-label="Avg engage">36s</td><td data-label="Clicks">3</td><td data-label="Impressions">268</td><td data-label="CTR">1.1%</td><td data-label="Position">26.1</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Holiday Bar Party Bus</span><span class="path">/holiday-bar-party-bus</span></td><td data-label="Sessions">6</td><td data-label="Active">5</td><td data-label="Avg engage">1m 21s</td><td data-label="Clicks">7</td><td data-label="Impressions">521</td><td data-label="CTR">1.3%</td><td data-label="Position">14.6</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Onesie Bar Crawl</span><span class="path">/onesie-bar-crawl</span></td><td data-label="Sessions">2</td><td data-label="Active">2</td><td data-label="Avg engage">0s</td><td data-label="Clicks">—</td><td data-label="Impressions">—</td><td data-label="CTR">—</td><td data-label="Position">—</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Bar Crawl USA Events</span><span class="path">/bar-crawl-usa-events</span></td><td data-label="Sessions">65</td><td data-label="Active">51</td><td data-label="Avg engage">41s</td><td data-label="Clicks">7</td><td data-label="Impressions" class="hot">3,488</td><td data-label="CTR">0.2%</td><td data-label="Position">27.3</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Cleveland Bar Crawls</span><span class="path">/cleveland-bar-crawls</span></td><td data-label="Sessions">37</td><td data-label="Active">31</td><td data-label="Avg engage">22s</td><td data-label="Clicks" class="win">33</td><td data-label="Impressions">1,849</td><td data-label="CTR">1.8%</td><td data-label="Position">14.9</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Portland Bar Crawls</span><span class="path">/portland-bar-crawls</span></td><td data-label="Sessions">36</td><td data-label="Active">31</td><td data-label="Avg engage">17s</td><td data-label="Clicks" class="win">24</td><td data-label="Impressions">696</td><td data-label="CTR">3.4%</td><td data-label="Position">12.0</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Birmingham Bar Crawls</span><span class="path">/birmingham-bar-crawls</span></td><td data-label="Sessions">18</td><td data-label="Active">17</td><td data-label="Avg engage">42s</td><td data-label="Clicks">16</td><td data-label="Impressions">998</td><td data-label="CTR">1.6%</td><td data-label="Position">33.8</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Cincinnati Bar Crawls</span><span class="path">/cincinnati-bar-crawls</span></td><td data-label="Sessions">24</td><td data-label="Active">19</td><td data-label="Avg engage">13s</td><td data-label="Clicks">16</td><td data-label="Impressions">1,506</td><td data-label="CTR">1.1%</td><td data-label="Position">23.1</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Columbus Bar Crawls</span><span class="path">/columbus-bar-crawls</span></td><td data-label="Sessions">9</td><td data-label="Active">9</td><td data-label="Avg engage">12s</td><td data-label="Clicks">9</td><td data-label="Impressions">570</td><td data-label="CTR">1.6%</td><td data-label="Position" class="win">8.2</td></tr>
+    </tbody></table>
+    <div class="table-note"><span>Group total: 242 sessions · 115 Google organic clicks · 10,177 impressions</span><span>CTR: 1.13%</span></div>
+    <footer class="folio"><span>June worked pages</span><i class="rule"></i><span>02 / 05</span></footer>
+  </section>
+
+  <section class="sheet pad">
+    <div class="page-title"><h2>July Halloween event SEO · 1 of 2</h2><p>The first six pages in the twelve-page July event optimization set.</p></div>
+    <table class="ledger"><thead><tr><th>Page and exact path</th><th>Sessions</th><th>Active</th><th>Avg engage</th><th>Clicks</th><th>Impressions</th><th>CTR</th><th>Pos.</th></tr></thead><tbody>
+      <tr><td data-label="Page"><span class="page-name">Cincinnati Halloween</span><span class="path">/event/cincinnati-boos-booze-halloween-bar-crawl</span></td><td data-label="Sessions">16</td><td data-label="Active">15</td><td data-label="Avg engage">29s</td><td data-label="Clicks">8</td><td data-label="Impressions">334</td><td data-label="CTR">2.4%</td><td data-label="Position">15.2</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Portland Halloween</span><span class="path">/event/portland-boos-booze-halloween-bar-crawl</span></td><td data-label="Sessions">13</td><td data-label="Active">12</td><td data-label="Avg engage">45s</td><td data-label="Clicks">9</td><td data-label="Impressions">270</td><td data-label="CTR">3.3%</td><td data-label="Position" class="win">10.2</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Cleveland West Park Halloween</span><span class="path">/event/cleveland-boos-booze-halloween-bar-crawl-west-park-bars</span></td><td data-label="Sessions">25</td><td data-label="Active">22</td><td data-label="Avg engage" class="hot">51s</td><td data-label="Clicks" class="win">18</td><td data-label="Impressions">303</td><td data-label="CTR" class="win">5.9%</td><td data-label="Position">14.8</td></tr>
+      <tr><td data-label="Page"><span class="page-name">St. Pete Halloween</span><span class="path">/event/st-pete-boos-booze-halloween-bar-crawl</span></td><td data-label="Sessions">5</td><td data-label="Active">5</td><td data-label="Avg engage">6s</td><td data-label="Clicks">4</td><td data-label="Impressions">130</td><td data-label="CTR">3.1%</td><td data-label="Position">17.2</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Columbia Halloween</span><span class="path">/event/columbia-boos-booze-halloween-bar-crawl</span></td><td data-label="Sessions">23</td><td data-label="Active">17</td><td data-label="Avg engage">13s</td><td data-label="Clicks">4</td><td data-label="Impressions">336</td><td data-label="CTR">1.2%</td><td data-label="Position">16.3</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Greenville Halloween</span><span class="path">/event/greenville-boos-booze-halloween-bar-crawl</span></td><td data-label="Sessions">18</td><td data-label="Active">18</td><td data-label="Avg engage">18s</td><td data-label="Clicks">8</td><td data-label="Impressions">272</td><td data-label="CTR">2.9%</td><td data-label="Position">21.7</td></tr>
+    </tbody></table>
+    <div class="callouts"><article class="callout"><strong>West Park</strong><p>Strongest click volume and CTR on this sheet, with 18 clicks and a 5.9% organic CTR.</p></article><article class="callout"><strong>Portland</strong><p>Average position 10.2 places the page close to first-page visibility during the selected window.</p></article><article class="callout"><strong>Columbia</strong><p>336 impressions create the largest visibility base on this sheet and a clear snippet-improvement opportunity.</p></article></div>
+    <footer class="folio"><span>July event pages · first set</span><i class="rule"></i><span>03 / 05</span></footer>
+  </section>
+
+  <section class="sheet pad">
+    <div class="page-title"><h2>July Halloween event SEO · 2 of 2</h2><p>The remaining six pages in the July event optimization set, including the strongest organic click page in the group.</p></div>
+    <table class="ledger"><thead><tr><th>Page and exact path</th><th>Sessions</th><th>Active</th><th>Avg engage</th><th>Clicks</th><th>Impressions</th><th>CTR</th><th>Pos.</th></tr></thead><tbody>
+      <tr><td data-label="Page"><span class="page-name">Birmingham Halloween</span><span class="path">/event/birmingham-boos-booze-halloween-bar-crawl</span></td><td data-label="Sessions">5</td><td data-label="Active">3</td><td data-label="Avg engage">7s</td><td data-label="Clicks">1</td><td data-label="Impressions">259</td><td data-label="CTR">0.4%</td><td data-label="Position">22.6</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Sarasota Halloween</span><span class="path">/event/sarasota-boos-booze-halloween-bar-crawl</span></td><td data-label="Sessions">18</td><td data-label="Active">12</td><td data-label="Avg engage">31s</td><td data-label="Clicks">11</td><td data-label="Impressions">112</td><td data-label="CTR" class="win">9.8%</td><td data-label="Position">11.9</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Roswell Halloween</span><span class="path">/event/roswell-boos-booze-halloween-bar-crawl-2</span></td><td data-label="Sessions">23</td><td data-label="Active">19</td><td data-label="Avg engage">9s</td><td data-label="Clicks">14</td><td data-label="Impressions">196</td><td data-label="CTR" class="win">7.1%</td><td data-label="Position">20.8</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Lakewood Halloween</span><span class="path">/event/lakewood-boos-booze-halloween-bar-crawl</span></td><td data-label="Sessions">35</td><td data-label="Active">22</td><td data-label="Avg engage">22s</td><td data-label="Clicks" class="win">15</td><td data-label="Impressions">274</td><td data-label="CTR" class="win">5.5%</td><td data-label="Position">15.3</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Macon Halloween</span><span class="path">/event/macon-boos-booze-halloween-bar-crawl</span></td><td data-label="Sessions">2</td><td data-label="Active">1</td><td data-label="Avg engage">4s</td><td data-label="Clicks">0</td><td data-label="Impressions">92</td><td data-label="CTR">0%</td><td data-label="Position">12.0</td></tr>
+      <tr><td data-label="Page"><span class="page-name">Atlanta Beltline Halloween</span><span class="path">/event/atlanta-beltline-halloween-bar-crawl</span></td><td data-label="Sessions" class="hot">77</td><td data-label="Active">56</td><td data-label="Avg engage">30s</td><td data-label="Clicks" class="win">41</td><td data-label="Impressions" class="hot">586</td><td data-label="CTR" class="win">7.0%</td><td data-label="Position" class="win">10.5</td></tr>
+    </tbody></table>
+    <div class="table-note"><span>Full July event group: 260 sessions · 133 Google organic clicks · 3,164 impressions</span><span>CTR: 4.20%</span></div>
+    <div class="callouts"><article class="callout"><strong>Atlanta Beltline</strong><p>Leads the twelve-page set with 41 organic clicks and 586 impressions.</p></article><article class="callout"><strong>Sarasota</strong><p>Highest CTR in the July event set at 9.8%, paired with an average position of 11.9.</p></article><article class="callout"><strong>Lakewood + Roswell</strong><p>Both pages combine double-digit clicks with CTR above 5% and provide useful patterns for the October builds.</p></article></div>
+    <footer class="folio"><span>July event pages · second set</span><i class="rule"></i><span>04 / 05</span></footer>
+  </section>
+
+  <section class="sheet pad">
+    <div class="page-title"><h2>New listings and next moves</h2><p>The two July additions are separated from the SEO cohorts, followed by the clearest actions from the full twenty-four-page ledger.</p></div>
+    <div class="final-grid"><aside class="new-listings"><h3>July new listings</h3><article class="listing"><strong>Beltline Bubbles &amp; Bites <span>901</span></strong><p>/event/beltline-bubbles-bites</p><div class="listing-stats"><div><b>713</b><span>Active users</span></div><div><b>6</b><span>Organic clicks</span></div><div><b>15%</b><span>Organic CTR</span></div></div></article><article class="listing"><strong>Alpharetta Bubbles &amp; Bites <span>1,244</span></strong><p>/event/alpharetta-bubbles-bites</p><div class="listing-stats"><div><b>1,039</b><span>Active users</span></div><div><b>13</b><span>Organic clicks</span></div><div><b>50%</b><span>Organic CTR</span></div></div></article><div class="close">2,145 combined sessions across the two new listings</div></aside>
+      <div class="decisions"><h3>What Andy should carry forward</h3><article class="decision"><b>Use Atlanta Beltline as the October quality benchmark</b><p>It combines the best organic click volume in the event set with strong CTR, visibility, and engaged traffic.</p></article><article class="decision"><b>Strengthen high-impression June pages</b><p>Bar Crawl USA Events, Cleveland, Cincinnati, and Birmingham already earn meaningful impressions. Refresh titles, descriptions, headings, and internal discovery around the strongest current intent.</p></article><article class="decision"><b>Reuse the winning local pattern</b><p>Sarasota, Roswell, Lakewood, West Park, and Atlanta Beltline show that focused local event pages can earn stronger organic response than broad generic pages.</p></article><article class="decision"><b>Keep August focused on the ten-page October slate</b><p>Carry the strongest local-page lessons into Atlanta, Cleveland, Cincinnati, Columbia, Greenville, Portland, St. Pete, Macon, Roswell, and Sarasota.</p></article></div>
+    </div>
+    <footer class="folio"><span>Analytics decisions · Prepared for Andy Zirger</span><i class="rule"></i><span>05 / 05</span></footer>
+  </section>
+</body>
+</html>

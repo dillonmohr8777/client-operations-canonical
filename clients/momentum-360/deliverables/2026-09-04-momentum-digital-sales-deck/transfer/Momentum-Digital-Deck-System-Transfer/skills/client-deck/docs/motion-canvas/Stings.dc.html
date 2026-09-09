@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #5AA7E0; } a:hover { color: #2A80C2; }
+
+    /* Each strip loops its own sting, so the sheet demonstrates rather than describes. */
+    @keyframes stRise  { 0%,8% { opacity:0; transform:translateY(10px) scale(.94); }
+                         40%,90% { opacity:1; transform:none; }
+                         100% { opacity:0; transform:translateY(10px) scale(.94); } }
+    @keyframes stRule  { 0%,26% { width:0; } 52%,90% { width:52%; } 100% { width:0; } }
+    @keyframes stSweep { 0%,24% { left:-38%; } 74%,100% { left:112%; } }
+    @keyframes stStamp { 0%,6% { opacity:0; transform:translateY(-34px) scale(1.06); }
+                         38%,90% { opacity:1; transform:none; }
+                         100% { opacity:0; transform:translateY(-34px) scale(1.06); } }
+    @keyframes stWipe  { 0%,8% { clip-path:inset(0 100% 0 0); }
+                         46%,90% { clip-path:inset(0 0 0 0); }
+                         100% { clip-path:inset(0 100% 0 0); } }
+    @keyframes stBar   { 0%,8% { left:0; opacity:1; } 46% { left:96%; opacity:1; }
+                         56%,100% { left:104%; opacity:0; } }
+    @keyframes stMark  { 0%,8% { opacity:0; transform:translateX(38px); }
+                         34%,90% { opacity:1; transform:none; }
+                         100% { opacity:0; transform:translateX(38px); } }
+    @keyframes stWord  { 0%,26% { clip-path:inset(0 100% 0 0); }
+                         60%,90% { clip-path:inset(0 0 0 0); }
+                         100% { clip-path:inset(0 100% 0 0); } }
+
+    .s-rise  .mark { animation: stRise 3.4s infinite cubic-bezier(.2,.9,.3,1.2); }
+    .s-rise  .rule { animation: stRule 3.4s infinite cubic-bezier(.16,.84,.32,1); }
+    .s-sweep .mark { animation: stRise 3.4s infinite cubic-bezier(.2,.9,.3,1.2); }
+    .s-sweep .band { animation: stSweep 3.4s infinite cubic-bezier(.4,0,.3,1); }
+    .s-stamp .mark { animation: stStamp 3.4s infinite cubic-bezier(.2,1.5,.4,1); }
+    .s-stamp .rule { animation: stRule 3.4s infinite cubic-bezier(.16,.84,.32,1); }
+    .s-wipe  .mark { animation: stWipe 3.4s infinite cubic-bezier(.4,0,.3,1); }
+    .s-wipe  .bar  { animation: stBar 3.4s infinite cubic-bezier(.4,0,.3,1); }
+    .s-split .mark { animation: stMark 3.4s infinite cubic-bezier(.2,.9,.3,1.2); }
+    .s-split .word { animation: stWord 3.4s infinite cubic-bezier(.3,.8,.3,1); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .stage * { animation: none !important; opacity: 1 !important;
+                 transform: none !important; clip-path: none !important; }
+      .band, .bar { display: none !important; }
+      .rule { width: 52% !important; }
+    }
+  </style>
+</helmet>
+
+<div style="width:1120px; background:#0A1825; font-family:Archivo, 'Helvetica Neue', Arial, sans-serif; color:#FFFFFF;">
+
+  <div style="padding:48px 64px 36px; position:relative; overflow:hidden;">
+    <div style="position:absolute; right:-70px; top:-110px; width:300px; height:300px; border-radius:50%; border:38px solid #112B3F;"></div>
+    <div style="position:relative;">
+      <div style="font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.24em; color:#5AA7E0; margin-bottom:18px;">CLIENT-LOGO &nbsp;/&nbsp; STINGS</div>
+      <div style="font-size:40px; font-weight:700; line-height:1.05; letter-spacing:-.02em;">Five ways in.</div>
+      <div style="font-size:15px; line-height:1.55; color:#9DB5C8; max-width:600px; margin-top:16px;">
+        Each is about two seconds and built from the client's own palette. Every one ships as
+        an MP4, a WebM with real transparency, a GIF, and a CSS only version that honors
+        <span style="font-family:'JetBrains Mono', monospace; font-size:13px; color:#BDD3E4;">prefers-reduced-motion</span>.
+      </div>
+    </div>
+  </div>
+
+  <sc-for list="{{stings}}" as="s" hint-placeholder-count="5">
+    <div style="display:grid; grid-template-columns:392px 1fr; gap:0; border-top:1px solid #1E4460;">
+
+      <!-- stage -->
+      <div class="stage {{s.cls}}" style="background:#112B3F; height:172px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+        <div style="position:relative; display:flex; flex-direction:column; align-items:center;">
+          <div style="position:relative; display:flex; align-items:center; gap:9px; overflow:hidden; padding:2px;">
+            <div class="mark" style="display:flex; align-items:center; gap:9px;">
+              <div style="width:26px; height:26px; border-radius:50%; border:3px solid #FFFFFF;"></div>
+              <div class="word" style="width:118px; height:13px; background:#FFFFFF; border-radius:1px;"></div>
+            </div>
+            <sc-if value="{{s.hasBand}}" hint-placeholder-val="{{true}}">
+              <div class="band" style="position:absolute; top:-8px; width:38%; height:44px; background:linear-gradient(90deg, rgba(90,167,224,0) 0%, rgba(90,167,224,.95) 50%, rgba(90,167,224,0) 100%); mix-blend-mode:screen; pointer-events:none;"></div>
+            </sc-if>
+            <sc-if value="{{s.hasBar}}" hint-placeholder-val="{{true}}">
+              <div class="bar" style="position:absolute; top:-6px; width:5px; height:40px; background:#5AA7E0;"></div>
+            </sc-if>
+          </div>
+          <div class="rule" style="height:3px; background:#2A80C2; margin-top:17px; width:0;"></div>
+        </div>
+      </div>
+
+      <!-- copy -->
+      <div style="padding:30px 64px 30px 40px; display:flex; flex-direction:column; justify-content:center;">
+        <div style="display:flex; align-items:baseline; gap:14px;">
+          <div style="font-size:23px; font-weight:700;">{{s.name}}</div>
+          <sc-if value="{{s.tag}}" hint-placeholder-val="{{true}}">
+            <div style="font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:.16em; color:#0A1825; background:#5AA7E0; padding:3px 8px; border-radius:2px;">{{s.tag}}</div>
+          </sc-if>
+        </div>
+        <div style="font-size:13.5px; line-height:1.6; color:#BDD3E4; margin-top:11px; max-width:560px;">{{s.what}}</div>
+        <div style="font-size:12.5px; line-height:1.55; color:#9DB5C8; margin-top:11px; max-width:560px;">
+          <span style="color:#5AA7E0; font-weight:600;">Use it</span> {{s.use}}
+        </div>
+      </div>
+    </div>
+  </sc-for>
+
+  <div style="border-top:1px solid #1E4460; padding:34px 64px 46px;">
+    <div style="display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:40px;">
+      <div>
+        <div style="font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:.18em; color:#5AA7E0; margin-bottom:10px;">THE ONE THAT NEEDED FIXING</div>
+        <div style="font-size:13px; line-height:1.6; color:#BDD3E4;">
+          Sweep first shipped with a white band, which was invisible: on a dark ground the mark is
+          already white, so white on white did nothing. The band is brand colored now, so the mark
+          lights up in the brand color as it passes.
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:.18em; color:#5AA7E0; margin-bottom:10px;">GROUND</div>
+        <div style="font-size:13px; line-height:1.6; color:#BDD3E4;">
+          Defaults to a deep tint of the brand color, computed from the logo itself.
+          <span style="font-family:'JetBrains Mono', monospace; font-size:12px; color:#FFFFFF;">--light</span> gives white
+          and switches the mark to its ink version, so contrast holds either way.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+
+<script data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      stings: [
+        { name: 'rise', tag: 'DEFAULT', cls: 's-rise', hasBand: false, hasBar: false,
+          what: 'The mark scales up and settles just past its size on an out-back curve, while a brand color rule draws underneath it.',
+          use: 'as the safe choice. It suits any mark, including one with no monogram to split.' },
+        { name: 'sweep', tag: 'MOST POP', cls: 's-sweep', hasBand: true, hasBar: false,
+          what: 'The mark settles, then a brand color specular band travels across it. The band is masked to the mark with an atop blend, so it lights the logo and never the ground.',
+          use: 'when the sting has to carry a moment on its own: a title card, an ad bumper, the end of a reel.' },
+        { name: 'stamp', tag: '', cls: 's-stamp', hasBand: false, hasBar: false,
+          what: 'The mark drops in from above and lands hard with a deeper overshoot, then a rule snaps out from the centre in both directions.',
+          use: 'for a confident, physical brand. It is the loudest of the five, so it wants a short cut.' },
+        { name: 'wipe', tag: '', cls: 's-wipe', hasBand: false, hasBar: false,
+          what: 'A brand color bar sweeps across and leaves the mark behind it, revealing rather than fading.',
+          use: 'when the logo sits over footage or a busy still, where a fade would read as a mistake.' },
+        { name: 'split', tag: 'NEEDS A LOCKUP', cls: 's-split', hasBand: false, hasBar: false,
+          what: 'The monogram lands first with an overshoot, then the wordmark slides out from behind it.',
+          use: 'when the mark has a clean monogram and wordmark split. The renderer only reports one when the gap is convincing.' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

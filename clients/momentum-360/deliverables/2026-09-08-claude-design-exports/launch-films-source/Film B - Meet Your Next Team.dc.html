@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/colors.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/typography.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/radius.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/motion.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/semantic.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/base.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/styles.css">
+<script src="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/_ds_bundle.js"></script>
+<style>
+html,body{margin:0;padding:0;background:#fff}
+body{color:var(--ink);font-family:var(--body);font-size:var(--size-body);line-height:var(--leading-body)}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--navy);text-decoration:underline}
+::selection{background:var(--gold);color:var(--night)}
+button:focus-visible,input:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:5px}
+input[type=range]{accent-color:var(--gold)}
+</style>
+</helmet>
+<div style="max-width:1440px;margin:0 auto;padding:36px clamp(20px,4vw,48px) 72px">
+
+  <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:20px">
+    <div style="max-width:24ch">
+      <p style="margin:0 0 10px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Film B · 25 seconds · 16:9</p>
+      <h1 style="margin:0;font-family:var(--display);font-weight:900;font-size:clamp(2rem,3.4vw,3rem);line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy);text-wrap:balance">Meet your next team.</h1>
+    </div>
+    <p style="margin:0;max-width:52ch;font-size:var(--size-support);color:var(--muted);text-wrap:pretty">A halftone trail uncovers six proposed agent roles. Move the pointer to reveal them yourself, or let the 25-second choreographed pass do it. Labels stay fully readable once revealed.</p>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:18px 0 14px">
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button type="button" onClick="{{ onFilm }}" ref="{{ btnFilm }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer">Play the film</button>
+      <button type="button" onClick="{{ onHand }}" ref="{{ btnHand }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Reveal by hand</button>
+    </div>
+    <div style="flex:1"></div>
+    <button type="button" onClick="{{ onSound }}" ref="{{ btnSound }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Sound off</button>
+    <button type="button" onClick="{{ onStatic }}" ref="{{ btnStatic }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Static version</button>
+  </div>
+
+  <div ref="{{ stageWrap }}">
+    <div ref="{{ stage }}" tabindex="0" data-om-exportable-video-with-duration-secs="25" data-screen-label="Film B 00.0s" style="position:relative;width:100%;aspect-ratio:16/9;background:#03172e;border-radius:var(--radius);overflow:hidden;container-type:size;touch-action:none;cursor:crosshair">
+
+      <div ref="{{ board }}" style="position:absolute;inset:0">
+        <span style="position:absolute;left:51cqw;top:4cqh;width:1px;height:34cqh;background:rgb(255 255 255 / 14%)"></span>
+        <span style="position:absolute;left:24cqw;top:47cqh;width:64cqw;height:1px;background:rgb(255 255 255 / 14%)"></span>
+
+        <div ref="{{ title }}" style="position:absolute;left:4cqw;top:8cqh;width:18cqw">
+          <p style="margin:0 0 1.6cqh;font-family:var(--body);font-weight:900;font-size:1.3cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">Film B · Momentum AI</p>
+          <p style="margin:0;font-family:var(--display);font-weight:900;font-size:2.9cqw;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:#fff">Meet your next team<span style="color:#efb928">.</span></p>
+        </div>
+
+        <p ref="{{ meta }}" style="position:absolute;right:4cqw;bottom:6cqh;margin:0;font-family:var(--body);font-weight:900;font-size:1.2cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#d5e4f1;text-align:right">Proposed agent roles · for review</p>
+
+        <div ref="{{ b0 }}" style="position:absolute;left:4cqw;top:40cqh;width:16cqw">
+          <div ref="{{ p0 }}" style="background:#fff;border-radius:var(--radius);overflow:hidden"><img src="assets/artwork/icon-search.png" alt="Ceramic search icon" style="display:block;width:100%;height:auto"></div>
+          <div ref="{{ l0 }}" style="padding-top:1.6cqh">
+            <p style="margin:0 0 .7cqh;font-family:var(--body);font-weight:900;font-size:1.15cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">01 · SEO</p>
+            <p style="margin:0;font-family:var(--display);font-weight:900;font-size:1.6cqw;line-height:1.15;letter-spacing:var(--tracking-display);color:#fff">Watches how buyers ask.</p>
+          </div>
+        </div>
+
+        <div ref="{{ b1 }}" style="position:absolute;left:24cqw;top:7cqh;width:26cqw">
+          <div ref="{{ p1 }}" style="border-radius:var(--radius);overflow:hidden;border:1px solid rgb(255 255 255 / 14%)"><img src="assets/artwork/search-mascot.png" alt="Momo studying a local business landscape" style="display:block;width:100%;height:auto"></div>
+          <div ref="{{ l1 }}" style="padding-top:1.6cqh">
+            <p style="margin:0 0 .7cqh;font-family:var(--body);font-weight:900;font-size:1.15cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">02 · AI search</p>
+            <p style="margin:0;font-family:var(--display);font-weight:900;font-size:1.9cqw;line-height:1.15;letter-spacing:var(--tracking-display);color:#fff">Keeps you answerable.</p>
+          </div>
+        </div>
+
+        <div ref="{{ b2 }}" style="position:absolute;left:55cqw;top:7cqh;width:18cqw">
+          <div ref="{{ p2 }}" style="border-radius:var(--radius);overflow:hidden;border:1px solid rgb(255 255 255 / 14%)"><img src="assets/artwork/phone-mascot.png" alt="Momo taking the next call" style="display:block;width:100%;height:auto"></div>
+          <div ref="{{ l2 }}" style="padding-top:1.6cqh">
+            <p style="margin:0 0 .7cqh;font-family:var(--body);font-weight:900;font-size:1.15cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">03 · Lead response</p>
+            <p style="margin:0;font-family:var(--display);font-weight:900;font-size:1.6cqw;line-height:1.15;letter-spacing:var(--tracking-display);color:#fff">Answers the missed call.</p>
+          </div>
+        </div>
+
+        <div ref="{{ b3 }}" style="position:absolute;left:78cqw;top:14cqh;width:11cqw">
+          <div ref="{{ p3 }}" style="background:#fff;border-radius:var(--radius);overflow:hidden"><img src="assets/artwork/icon-build.png" alt="Ceramic build icon" style="display:block;width:100%;height:auto"></div>
+          <div ref="{{ l3 }}" style="padding-top:1.6cqh">
+            <p style="margin:0 0 .7cqh;font-family:var(--body);font-weight:900;font-size:1.15cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">04 · Content</p>
+            <p style="margin:0;font-family:var(--display);font-weight:900;font-size:1.5cqw;line-height:1.15;letter-spacing:var(--tracking-display);color:#fff">Drafts in your voice.</p>
+          </div>
+        </div>
+
+        <div ref="{{ b4 }}" style="position:absolute;left:24cqw;top:53cqh;width:16cqw">
+          <div ref="{{ p4 }}" style="border-radius:var(--radius);overflow:hidden;border:1px solid rgb(255 255 255 / 14%)"><img src="assets/artwork/operations-mascot.png" alt="Momo with a coordinated view of the moving parts" style="display:block;width:100%;height:auto"></div>
+          <div ref="{{ l4 }}" style="padding-top:1.6cqh">
+            <p style="margin:0 0 .7cqh;font-family:var(--body);font-weight:900;font-size:1.15cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">05 · Operations</p>
+            <p style="margin:0;font-family:var(--display);font-weight:900;font-size:1.5cqw;line-height:1.15;letter-spacing:var(--tracking-display);color:#fff">Keeps the job on one thread.</p>
+          </div>
+        </div>
+
+        <div ref="{{ b5 }}" style="position:absolute;left:46cqw;top:53cqh;width:14cqw">
+          <div ref="{{ p5 }}" style="background:#fff;border-radius:var(--radius);overflow:hidden"><img src="assets/artwork/icon-proof.png" alt="Ceramic proof icon" style="display:block;width:100%;height:auto"></div>
+          <div ref="{{ l5 }}" style="padding-top:1.6cqh">
+            <p style="margin:0 0 .7cqh;font-family:var(--body);font-weight:900;font-size:1.15cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">06 · Reporting</p>
+            <p style="margin:0;font-family:var(--display);font-weight:900;font-size:1.5cqw;line-height:1.15;letter-spacing:var(--tracking-display);color:#fff">Names, not just numbers.</p>
+          </div>
+        </div>
+
+        <div ref="{{ beats }}" style="position:absolute;left:4cqw;bottom:6cqh;display:flex;flex-wrap:wrap;gap:1.6cqw;align-items:baseline">
+          <span ref="{{ beat0 }}" style="font-family:var(--display);font-weight:900;font-size:2cqw;letter-spacing:var(--tracking-display);color:#fff;opacity:0">Clear roles.</span>
+          <span ref="{{ beat1 }}" style="font-family:var(--display);font-weight:900;font-size:2cqw;letter-spacing:var(--tracking-display);color:#fff;opacity:0">Connected work.</span>
+          <span ref="{{ beat2 }}" style="font-family:var(--display);font-weight:900;font-size:2cqw;letter-spacing:var(--tracking-display);color:#efb928;opacity:0">Your approval.</span>
+        </div>
+      </div>
+
+      <canvas ref="{{ canvas }}" style="position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none"></canvas>
+
+      <div ref="{{ endcard }}" style="position:absolute;left:0;top:50%;transform:translateY(-50%);opacity:0;width:58cqw;padding:6cqh 6cqw;background:#03172e;pointer-events:none">
+        <img src="assets/momentum-logo.png" alt="Momentum" style="display:block;width:20cqw;height:auto;margin-bottom:3.4cqh">
+        <p style="margin:0 0 1.8cqh;font-family:var(--body);font-weight:900;font-size:1.3cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">Need momentum?</p>
+        <p style="margin:0;font-family:var(--display);font-weight:900;font-size:3.6cqw;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:#fff;text-wrap:balance">Explore your AI team<span style="color:#efb928">.</span></p>
+      </div>
+
+      <div ref="{{ hint }}" style="position:absolute;left:50%;bottom:3cqh;transform:translateX(-50%);padding:.9cqh 1.8cqw;border:1px solid rgb(255 255 255 / 14%);border-radius:24px;font-size:1.2cqw;font-weight:900;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#d5e4f1;opacity:0;pointer-events:none">Move to reveal · tap and drag on touch</div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:16px 0 0">
+      <button type="button" onClick="{{ onToggle }}" ref="{{ btnPlay }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);width:96px;padding:9px 0;border-radius:8px;border:1px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer">Pause</button>
+      <button type="button" onClick="{{ onReplay }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Replay</button>
+      <input type="range" min="0" max="1000" defaultValue="0" ref="{{ scrub }}" onInput="{{ onScrub }}" aria-label="Scrub the film" style="flex:1;min-width:200px;height:22px">
+      <span ref="{{ timeLabel }}" style="font-size:var(--size-note);font-weight:900;color:var(--muted);font-variant-numeric:tabular-nums;min-width:78px;text-align:right">0.0 / 25.0s</span>
+      <label style="display:flex;align-items:center;gap:8px;font-size:var(--size-note);font-weight:900;color:var(--muted)">Duration
+        <select ref="{{ durSel }}" defaultValue="25" onChange="{{ onDur }}" aria-label="Playback duration" style="font-family:var(--body);font-size:var(--size-note);font-weight:900;color:var(--navy);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="18">18 s</option>
+          <option value="25">25 s</option>
+          <option value="32">32 s</option>
+        </select>
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:var(--size-note);font-weight:900;color:var(--muted)">Frame
+        <select ref="{{ frameSel }}" defaultValue="16:9" onChange="{{ onFrame }}" aria-label="Composition frame" style="font-family:var(--body);font-size:var(--size-note);font-weight:900;color:var(--navy);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="16:9">16:9</option>
+          <option value="9:16">9:16 mobile</option>
+        </select>
+      </label>
+    </div>
+
+    <p ref="{{ runtimeNote }}" style="margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:var(--size-note);color:var(--muted);line-height:var(--leading-note)">The trail is a real halftone field: a 2D canvas resolves the pointer path into a dot grid at 10px pitch, and each dot drives the mask that dissolves a plate in. The choreographed pass is a pure function of time, so scrubbing and frame export land on the same image every time. Sound stays off until you turn it on.</p>
+  </div>
+
+  <div ref="{{ staticBoard }}" style="display:none;padding-top:32px">
+    <p style="margin:0 0 8px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Static version · no motion</p>
+    <h2 style="margin:0 0 26px;font-family:var(--display);font-weight:900;font-size:clamp(1.7rem,2.6vw,2.4rem);line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Six proposed roles, fully revealed.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:30px">
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);overflow:hidden;display:flex;align-items:center;justify-content:center">
+          <img src="assets/artwork/icon-search.png" alt="Ceramic search icon" style="width:100%;height:auto;display:block">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">01 · SEO</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.45rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Watches how buyers ask.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Proposed role: track the questions, keep the pages worth citing.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);overflow:hidden;display:flex;align-items:center;justify-content:center">
+          <img src="assets/artwork/search-mascot.png" alt="Momo studying a local business landscape" style="width:100%;height:auto;display:block">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">02 · AI search</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.45rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Keeps you answerable.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Proposed role: make sure an AI answer can find and quote you.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);overflow:hidden;display:flex;align-items:center;justify-content:center">
+          <img src="assets/artwork/phone-mascot.png" alt="Momo taking the next call" style="width:100%;height:auto;display:block">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">03 · Lead response</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.45rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Answers the missed call.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Proposed role: reply in seconds, ask what you would ask.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);overflow:hidden;display:flex;align-items:center;justify-content:center">
+          <img src="assets/artwork/icon-build.png" alt="Ceramic build icon" style="width:100%;height:auto;display:block">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">04 · Content</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.45rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Drafts in your voice.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Proposed role: draft from your own words and photographs only.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);overflow:hidden;display:flex;align-items:center;justify-content:center">
+          <img src="assets/artwork/operations-mascot.png" alt="Momo with a coordinated view of the moving parts" style="width:100%;height:auto;display:block">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">05 · Operations</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.45rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Keeps the job on one thread.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Proposed role: hold the job, the crew and the calendar in step.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);overflow:hidden;display:flex;align-items:center;justify-content:center">
+          <img src="assets/artwork/icon-proof.png" alt="Ceramic proof icon" style="width:100%;height:auto;display:block">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">06 · Reporting</p>
+        <h3 style="margin:0;font-family:var(--display);font-weight:900;font-size:1.45rem;line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:var(--navy)">Names, not just numbers.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Proposed role: match a reported conversion back to a named lead.</p>
+      </div>
+    </div>
+    <div style="margin-top:34px;padding:28px 32px;background:#072d53;border-radius:var(--radius)">
+      <img src="assets/momentum-logo.png" alt="Momentum" style="display:block;width:210px;height:auto;margin-bottom:18px">
+      <p style="margin:0 0 8px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--gold);font-weight:900">Need momentum?</p>
+      <p style="margin:0;font-family:var(--display);font-weight:900;font-size:clamp(1.5rem,2.4vw,2.2rem);line-height:var(--leading-display);letter-spacing:var(--tracking-display);color:#fff">Explore your AI team<span style="color:var(--gold)">.</span></p>
+    </div>
+  </div>
+
+  <p style="margin:34px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:var(--size-note);color:var(--muted);line-height:var(--leading-note);max-width:72ch">Private concept film · September 2026. The six roles are proposed agent packaging for review — none is described as built, deployed or available, and no client result or metric is claimed. Artwork is the original Momentum ceramic collection; the logo is the exact master.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:940}}">
+class Component extends DCLogic {
+  R = ['stage', 'stageWrap', 'canvas', 'board', 'title', 'meta', 'endcard', 'hint', 'staticBoard', 'runtimeNote',
+    'beats', 'beat0', 'beat1', 'beat2', 'btnFilm', 'btnHand', 'btnSound', 'btnStatic', 'btnPlay', 'scrub', 'timeLabel', 'durSel', 'frameSel',
+    'b0', 'b1', 'b2', 'b3', 'b4', 'b5', 'p0', 'p1', 'p2', 'p3', 'p4', 'p5', 'l0', 'l1', 'l2', 'l3', 'l4', 'l5'].reduce((o, n) => { o[n] = React.createRef(); return o; }, {});
+  r = new Proxy({}, { get: (_, k) => (this.R[k] ? this.R[k].current : undefined) });
+
+  AG = [
+    { n: '01', role: 'SEO', line: 'Watches how buyers ask.', note: 'Proposed role: track the questions, keep the pages worth citing.', art: 'assets/artwork/icon-search.png', alt: 'Ceramic search icon' },
+    { n: '02', role: 'AI search', line: 'Keeps you answerable.', note: 'Proposed role: make sure an AI answer can find and quote you.', art: 'assets/artwork/search-mascot.png', alt: 'Momo studying a local business landscape' },
+    { n: '03', role: 'Lead response', line: 'Answers the missed call.', note: 'Proposed role: reply in seconds, ask what you would ask.', art: 'assets/artwork/phone-mascot.png', alt: 'Momo taking the next call' },
+    { n: '04', role: 'Content', line: 'Drafts in your voice.', note: 'Proposed role: draft from your own words and photographs only.', art: 'assets/artwork/icon-build.png', alt: 'Ceramic build icon' },
+    { n: '05', role: 'Operations', line: 'Keeps the job on one thread.', note: 'Proposed role: hold the job, the crew and the calendar in step.', art: 'assets/artwork/operations-mascot.png', alt: 'Momo with a coordinated view of the moving parts' },
+    { n: '06', role: 'Reporting', line: 'Names, not just numbers.', note: 'Proposed role: match a reported conversion back to a named lead.', art: 'assets/artwork/icon-proof.png', alt: 'Ceramic proof icon' }
+  ];
+
+  // choreography: arrival second per agent
+  CUE = [3.2, 5.8, 8.4, 11.0, 13.6, 16.2];
+  AUTH = 25; STEP = 10;
+  t = 0; playing = true; mode = 'film'; sound = false; staticMode = false; frame = '16:9'; dur = 25;
+  rev = [0, 0, 0, 0, 0, 0]; trail = []; lastCue = -1;
+
+  POS = {
+    '16:9': [['4cqw', '40cqh', '16cqw'], ['24cqw', '7cqh', '26cqw'], ['55cqw', '7cqh', '18cqw'], ['78cqw', '14cqh', '11cqw'], ['24cqw', '53cqh', '16cqw'], ['46cqw', '53cqh', '14cqw']],
+    '9:16': [['6cqw', '15cqh', '40cqw'], ['52cqw', '15cqh', '42cqw'], ['6cqw', '42cqh', '42cqw'], ['54cqw', '38cqh', '30cqw'], ['6cqw', '66cqh', '42cqw'], ['56cqw', '62cqh', '32cqw']]
+  };
+
+  componentDidMount() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.staticMode = true;
+    const st = this.r.stage;
+    st.addEventListener('data-om-seek-to-time-frame', this.onSeek);
+    st.addEventListener('pointerdown', this.onDown);
+    st.addEventListener('pointermove', this.onMove);
+    st.addEventListener('pointerleave', () => { this.inside = false; });
+    st.addEventListener('keydown', this.onKey);
+    this.ro = new ResizeObserver(() => this.measure()); this.ro.observe(st);
+    for (let i = 0; i < 6; i++) {
+      const p = this.r['p' + i];
+      if (p) {
+        p.style.maskImage = 'radial-gradient(circle at center, #000 var(--dr, 0px), transparent 0)';
+        p.style.webkitMaskImage = 'radial-gradient(circle at center, #000 var(--dr, 0px), transparent 0)';
+        p.style.maskSize = '13px 13px'; p.style.webkitMaskSize = '13px 13px';
+        p.style.maskRepeat = 'repeat'; p.style.webkitMaskRepeat = 'repeat';
+      }
+    }
+    if (this.r.durSel) this.r.durSel.value = '25';
+    if (this.r.frameSel) this.r.frameSel.value = '16:9';
+    if (this.staticMode) this.applyStatic(true);
+    requestAnimationFrame(() => requestAnimationFrame(() => this.syncSel()));
+    this.measure();
+    this.last = performance.now();
+    this.raf = requestAnimationFrame(this.loop);
+  }
+
+  componentWillUnmount() { this.dead = true; if (this.raf) cancelAnimationFrame(this.raf); if (this.ro) this.ro.disconnect(); }
+
+  measure() {
+    const st = this.r.stage, cv = this.r.canvas;
+    if (!st || !cv) return;
+    const w = st.clientWidth || 960, h = st.clientHeight || 540, dpr = Math.min(1.5, window.devicePixelRatio || 1);
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    this.ctx = cv.getContext('2d'); this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    this.sw = w; this.sh = h;
+    this.gx = Math.ceil(w / this.STEP) + 1; this.gy = Math.ceil(h / this.STEP) + 1;
+    this.grid = new Float32Array(this.gx * this.gy);
+    const sr = st.getBoundingClientRect();
+    this.rects = [];
+    for (let i = 0; i < 6; i++) {
+      const el = this.r['b' + i];
+      if (!el) { this.rects.push({ x: 0, y: 0, w: 0, h: 0, cx: 0, cy: 0 }); continue; }
+      const b = el.getBoundingClientRect();
+      const rc = { x: b.left - sr.left, y: b.top - sr.top, w: b.width, h: b.height };
+      rc.cx = rc.x + rc.w / 2; rc.cy = rc.y + rc.h * 0.42;
+      this.rects.push(rc);
+    }
+    // Label boxes are kept clear of trail ink once their plate is revealed, so a
+    // pass of the cursor never leaves dots sitting on top of readable type.
+    this.lrects = [];
+    for (let i = 0; i < 6; i++) {
+      const el = this.r['l' + i];
+      if (!el) { this.lrects.push(null); continue; }
+      const b = el.getBoundingClientRect();
+      this.lrects.push({ x: b.left - sr.left - 3, y: b.top - sr.top - 2, w: b.width + 6, h: b.height + 4 });
+    }
+    this.applyFrame();
+  }
+
+  // ---------- easing ----------
+  sm(x) { const t = Math.max(0, Math.min(1, x)); return t * t * (3 - 2 * t); }
+  lerp(a, b, k) { return a + (b - a) * k; }
+
+  pathAt(t) {
+    const R = this.rects || [];
+    if (!R.length) return { x: 0, y: 0 };
+    const keys = [{ t: 1.4, p: [this.sw * 0.14, this.sh * 0.86] }];
+    for (let i = 0; i < 6; i++) keys.push({ t: this.CUE[i], p: [R[i].cx, R[i].cy] });
+    keys.push({ t: 18.8, p: [this.sw * 0.36, this.sh * 0.93] });
+    keys.push({ t: 24.9, p: [this.sw * 0.3, this.sh * 0.97] });
+    if (t <= keys[0].t) return { x: keys[0].p[0], y: keys[0].p[1] };
+    for (let i = 0; i < keys.length - 1; i++) {
+      const a = keys[i], b = keys[i + 1];
+      if (t >= a.t && t <= b.t) {
+        const span = b.t - a.t, local = (t - a.t) / span;
+        const k = this.sm((local - 0.32) / 0.68);
+        const nx = b.p[0] - a.p[0], ny = b.p[1] - a.p[1], len = Math.hypot(nx, ny) || 1;
+        const arc = Math.sin(Math.PI * k) * len * 0.1;
+        return { x: this.lerp(a.p[0], b.p[0], k) + (-ny / len) * arc, y: this.lerp(a.p[1], b.p[1], k) + (nx / len) * arc };
+      }
+    }
+    const l = keys[keys.length - 1];
+    return { x: l.p[0], y: l.p[1] };
+  }
+
+  // ---------- halftone field ----------
+  splat(pts) {
+    const g = this.grid, gx = this.gx, gy = this.gy, S = this.STEP;
+    if (!g) return;
+    g.fill(0);
+    const rad = 46, cells = Math.ceil(rad / S);
+    for (let n = 0; n < pts.length; n++) {
+      const p = pts[n], age = 1 - n / pts.length, w = age * age;
+      const ci = Math.round(p.x / S), cj = Math.round(p.y / S);
+      for (let j = cj - cells; j <= cj + cells; j++) {
+        if (j < 0 || j >= gy) continue;
+        for (let i = ci - cells; i <= ci + cells; i++) {
+          if (i < 0 || i >= gx) continue;
+          const dx = i * S - p.x, dy = j * S - p.y, d2 = dx * dx + dy * dy;
+          const v = Math.exp(-d2 / (rad * rad * 0.42)) * w;
+          const k = j * gx + i;
+          if (v > g[k]) g[k] = v;
+        }
+      }
+    }
+  }
+
+  overLabel(x, y) {
+    const L = this.lrects;
+    if (!L) return false;
+    for (let i = 0; i < L.length; i++) {
+      const r = L[i];
+      if (!r || this.rev[i] < 0.45) continue;
+      if (x >= r.x && x <= r.x + r.w && y >= r.y && y <= r.y + r.h) return true;
+    }
+    return false;
+  }
+
+  drawTrail(pts, head, alpha) {
+    const c = this.ctx, g = this.grid, gx = this.gx, gy = this.gy, S = this.STEP;
+    const A = alpha === undefined ? 1 : alpha;
+    if (!c) return;
+    c.clearRect(0, 0, this.sw, this.sh);
+    if (!g || A <= 0.01 || !pts.length) return;
+    // Only the cells the trail can actually touch — iterating the whole grid every frame
+    // was thousands of wasted arcs and starved the main thread.
+    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    for (const p of pts) {
+      if (p.x < x0) x0 = p.x; if (p.x > x1) x1 = p.x;
+      if (p.y < y0) y0 = p.y; if (p.y > y1) y1 = p.y;
+    }
+    const pad = 52;
+    const i0 = Math.max(0, Math.floor((x0 - pad) / S)), i1 = Math.min(gx - 1, Math.ceil((x1 + pad) / S));
+    const j0 = Math.max(0, Math.floor((y0 - pad) / S)), j1 = Math.min(gy - 1, Math.ceil((y1 + pad) / S));
+    for (let j = j0; j <= j1; j++) {
+      for (let i = i0; i <= i1; i++) {
+        const v = g[j * gx + i];
+        if (v < 0.055) continue;
+        if (this.overLabel(i * S, j * S)) continue;
+        const rr = Math.min(S * 0.48, v * S * 0.62);
+        c.beginPath();
+        c.fillStyle = v > 0.82 ? '#efb928' : '#1766ab';
+        c.globalAlpha = Math.min(1, 0.35 + v * 0.75) * A;
+        c.arc(i * S, j * S, rr, 0, 6.2832); c.fill();
+      }
+    }
+    c.globalAlpha = A;
+    if (head) {
+      c.beginPath(); c.fillStyle = '#efb928'; c.arc(head.x, head.y, 3.4, 0, 6.2832); c.fill();
+    }
+    c.globalAlpha = 1;
+  }
+
+  // ---------- frame ----------
+  applyFrame() {
+    if (this.staticMode || !this.rects) return;
+    const film = this.mode === 'film', t = this.t;
+    let head = null, pts = [];
+    if (film) {
+      head = this.pathAt(t);
+      for (let i = 0; i < 30; i++) pts.push(this.pathAt(Math.max(0, t - i * 0.03)));
+      for (let i = 0; i < 6; i++) this.rev[i] = Math.max(this.rev[i], this.sm((t - this.CUE[i] - 0.1) / 0.85));
+    } else {
+      head = this.ptr || { x: this.sw * 0.5, y: this.sh * 0.5 };
+      pts = this.trail.length ? this.trail.slice().reverse() : [head];
+    }
+    const trailA = film ? 1 - this.sm((t - 18.0) / 1.3) : 1;
+    this.splat(pts); this.drawTrail(pts, head, trailA);
+
+    if (!this._pm) this._pm = [-1, -1, -1, -1, -1, -1];
+    const MASK = 'radial-gradient(circle at center, #000 var(--dr, 0px), transparent 0)';
+    for (let i = 0; i < 6; i++) {
+      const m = Math.max(0, Math.min(1, this.rev[i])), el = this.r['b' + i], p = this.r['p' + i], l = this.r['l' + i];
+      if (!el) continue;
+      // A tiled radial mask re-rasterises the whole plate on every write, so only write
+      // when the reveal actually moved, and drop the mask once the plate is fully revealed.
+      const q = Math.round(m * 120) / 120;
+      if (q === this._pm[i]) continue;
+      this._pm[i] = q;
+      el.style.opacity = String(Math.min(1, q * 3));
+      el.style.transform = 'translateY(' + ((1 - q) * 16).toFixed(2) + 'px) scale(' + (0.97 + q * 0.03).toFixed(4) + ')';
+      if (p) {
+        if (q >= 1) {
+          if (p.style.maskImage !== 'none') { p.style.maskImage = 'none'; p.style.webkitMaskImage = 'none'; }
+        } else {
+          if (p.style.maskImage === 'none' || !p.style.maskImage) { p.style.maskImage = MASK; p.style.webkitMaskImage = MASK; }
+          p.style.setProperty('--dr', (q * 9.9).toFixed(2) + 'px');
+        }
+      }
+      if (l) l.style.opacity = String(this.sm((q - 0.55) / 0.4));
+    }
+
+    const allRev = this.rev.reduce((a, b) => a + (b > 0.9 ? 1 : 0), 0) === 6;
+    let bA = [0, 0, 0], endA = 0, titleA = 1, hintA = 0;
+    if (film) {
+      bA = [this.sm((t - 17.6) / 0.6), this.sm((t - 18.4) / 0.6), this.sm((t - 19.2) / 0.6)];
+      endA = this.sm((t - 21.0) / 0.8);
+      titleA = Math.min(this.sm((t - 0.4) / 0.7), 1 - this.sm((t - 20.6) / 0.7));
+      hintA = Math.min(this.sm((t - 1.2) / 0.6), 1 - this.sm((t - 4.0) / 0.6));
+    } else {
+      bA = allRev ? [1, 1, 1] : [0, 0, 0];
+      endA = allRev ? 1 : 0; titleA = 1; hintA = 1;
+    }
+    this.r.beat0.style.opacity = String(bA[0]);
+    this.r.beat1.style.opacity = String(bA[1]);
+    this.r.beat2.style.opacity = String(bA[2]);
+    this.r.title.style.opacity = String(titleA);
+    this.r.hint.style.opacity = String(hintA * 0.85);
+    const e = this.r.endcard;
+    e.style.opacity = String(Math.min(1, endA * 1.2));
+    e.style.clipPath = 'inset(0 ' + ((1 - endA) * 100).toFixed(1) + '% 0 0)';
+    this.r.board.style.opacity = String(1 - endA * 0.88);
+    this.r.meta.style.opacity = String(1 - endA);
+
+    if (film) {
+      this.r.stage.setAttribute('data-screen-label', 'Film B ' + t.toFixed(1) + 's');
+      if (this.r.scrub && !this.scrubbing) this.r.scrub.value = String(Math.round((t / this.AUTH) * 1000));
+      if (this.r.timeLabel) this.r.timeLabel.textContent = (t / this.AUTH * this.dur).toFixed(1) + ' / ' + this.dur.toFixed(1) + 's';
+      this.syncSel();
+    } else {
+      this.r.stage.setAttribute('data-screen-label', 'Film B · revealing by hand');
+    }
+  }
+
+  loop = (now) => {
+    if (this.dead) return;
+    if (window.__DIAG_NOLOOP) return;
+    this.raf = requestAnimationFrame(this.loop);
+    const dt = Math.min(0.05, (now - this.last) / 1000); this.last = now;
+    if (this.staticMode) return;
+    if (this.mode === 'film') {
+      if (this.playing) {
+        this.t += dt * (this.AUTH / this.dur);
+        if (this.t >= this.AUTH) { this.t = this.AUTH; this.playing = false; this.syncPlay(); }
+        this.chime();
+      }
+    } else {
+      if (this.inside && this.ptr) {
+        for (let i = 0; i < 6; i++) {
+          const r = this.rects[i];
+          const dx = Math.max(r.x - this.ptr.x, 0, this.ptr.x - (r.x + r.w));
+          const dy = Math.max(r.y - this.ptr.y, 0, this.ptr.y - (r.y + r.h));
+          const d = Math.hypot(dx, dy);
+          if (d < 46) {
+            const before = this.rev[i];
+            this.rev[i] = Math.min(1, this.rev[i] + dt * 1.7);
+            if (before < 0.5 && this.rev[i] >= 0.5) this.brush();
+          }
+        }
+      }
+      this.trail = this.trail.filter((p, i) => i > this.trail.length - 31);
+    }
+    this.applyFrame();
+  };
+
+  chime() {
+    for (let i = 0; i < 6; i++) {
+      if (this.t >= this.CUE[i] && this.lastCue < i) { this.lastCue = i; this.brush(); }
+    }
+    if (this.t < this.CUE[0]) this.lastCue = -1;
+  }
+
+  brush() {
+    if (!this.sound) return;
+    try {
+      const ac = this.ac || (this.ac = new (window.AudioContext || window.webkitAudioContext)());
+      const dur = 0.3, sr = ac.sampleRate, buf = ac.createBuffer(1, Math.floor(sr * dur), sr), d = buf.getChannelData(0);
+      let seed = 90210;
+      for (let i = 0; i < d.length; i++) { seed = (seed * 1103515245 + 12345) & 0x7fffffff; d[i] = ((seed / 0x7fffffff) * 2 - 1) * (1 - i / d.length); }
+      const src = ac.createBufferSource(); src.buffer = buf;
+      const f = ac.createBiquadFilter(); f.type = 'lowpass'; f.Q = 1.2;
+      f.frequency.setValueAtTime(2400, ac.currentTime); f.frequency.exponentialRampToValueAtTime(620, ac.currentTime + dur);
+      const gn = ac.createGain();
+      gn.gain.setValueAtTime(0.0001, ac.currentTime);
+      gn.gain.exponentialRampToValueAtTime(0.12, ac.currentTime + 0.04);
+      gn.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + dur);
+      src.connect(f); f.connect(gn); gn.connect(ac.destination); src.start();
+    } catch (e) { /* audio unavailable */ }
+  }
+
+  applyStatic(on) {
+    this.staticMode = on;
+    this.r.staticBoard.style.display = on ? 'block' : 'none';
+    this.r.stageWrap.style.display = on ? 'none' : 'block';
+    const b = this.r.btnStatic;
+    if (b) {
+      b.textContent = on ? 'Motion version' : 'Static version';
+      b.style.background = on ? 'var(--navy)' : '#fff';
+      b.style.color = on ? '#fff' : 'var(--navy)';
+      b.style.borderColor = on ? 'var(--navy)' : 'var(--line)';
+    }
+    if (!on) requestAnimationFrame(() => this.measure());
+  }
+
+  syncSel() {
+    if (this.r.durSel && this.r.durSel.value !== String(this.dur)) this.r.durSel.value = String(this.dur);
+    if (this.r.frameSel && this.r.frameSel.value !== this.frame) this.r.frameSel.value = this.frame;
+  }
+
+  setMode(m) {
+    this.mode = m;
+    if (m === 'film') { this.playing = true; this.last = performance.now(); }
+    else { this.playing = false; }
+    const on = { background: 'var(--navy)', color: '#fff', borderColor: 'var(--navy)' }, off = { background: '#fff', color: 'var(--navy)', borderColor: 'var(--line)' };
+    const set = (el, s) => { if (!el) return; el.style.background = s.background; el.style.color = s.color; el.style.borderColor = s.borderColor; };
+    set(this.r.btnFilm, m === 'film' ? on : off);
+    set(this.r.btnHand, m === 'interactive' ? on : off);
+    this.syncPlay();
+  }
+
+  syncPlay() { if (this.r.btnPlay) this.r.btnPlay.textContent = this.playing && this.mode === 'film' ? 'Pause' : 'Play'; }
+
+  onSeek = (e) => {
+    const d = (e && e.detail) || {};
+    const time = typeof d.time === 'number' ? d.time : (typeof d.frame === 'number' ? d.frame / 30 : 0);
+    this.mode = 'film'; this.playing = false; this.setMode('film'); this.playing = false; this.syncPlay();
+    this.t = Math.max(0, Math.min(this.AUTH, time * (this.AUTH / this.dur)));
+    this.rev = this.CUE.map(c => this.sm((this.t - c - 0.1) / 0.85));
+    this.lastCue = 99;
+    this.applyFrame();
+  };
+
+  onDown = (e) => {
+    if (this.staticMode) return;
+    this.r.stage.focus({ preventScroll: true });
+    if (this.mode !== 'interactive') this.setMode('interactive');
+    this.onMove(e);
+  };
+
+  onMove = (e) => {
+    if (this.staticMode) return;
+    const b = this.r.stage.getBoundingClientRect();
+    this.ptr = { x: e.clientX - b.left, y: e.clientY - b.top };
+    this.inside = true;
+    if (this.mode === 'interactive') {
+      this.trail.push(this.ptr);
+      if (this.trail.length > 34) this.trail.shift();
+    }
+  };
+
+  onKey = (e) => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      if (this.mode !== 'film') { this.setMode('film'); return; }
+      this.playing = !this.playing; this.last = performance.now(); this.syncPlay();
+    }
+  };
+
+  reset() { this.rev = [0, 0, 0, 0, 0, 0]; this.lastCue = -1; this.trail = []; this._pm = null; }
+
+  // Plate type is authored in cqw; the 9:16 frame is much narrower, so scale the authored
+  // cqw bases up rather than re-authoring every label for portrait.
+  scaleType(k) {
+    if (!this._ts) {
+      this._ts = [];
+      this.r.stage.querySelectorAll('*').forEach(el => {
+        const s = el.getAttribute('style') || '';
+        const f = /font-size:\s*([\d.]+)cqw/.exec(s);
+        if (f) this._ts.push([el, 'fontSize', parseFloat(f[1])]);
+        if (el.tagName === 'IMG') { const w = /width:\s*([\d.]+)cqw/.exec(s); if (w) this._ts.push([el, 'width', parseFloat(w[1])]); }
+      });
+    }
+    for (const [el, prop, base] of this._ts) el.style[prop] = (base * k).toFixed(3) + 'cqw';
+    this.r.endcard.style.width = k > 1 ? '100cqw' : '58cqw';
+  }
+
+  renderVals() {
+    return {
+      ...this.R,
+      onFilm: () => { this.reset(); this.t = 0; this.setMode('film'); },
+      onHand: () => { this.reset(); this.setMode('interactive'); this.applyFrame(); },
+      onToggle: () => {
+        if (this.mode !== 'film') { this.reset(); this.t = 0; this.setMode('film'); return; }
+        if (this.t >= this.AUTH - 0.01) { this.t = 0; this.reset(); }
+        this.playing = !this.playing; this.last = performance.now(); this.syncPlay();
+      },
+      onReplay: () => { this.reset(); this.t = 0; this.setMode('film'); },
+      onScrub: (e) => {
+        this.mode = 'film'; this.playing = false; this.scrubbing = true; this.syncPlay();
+        this.t = (Number(e.target.value) / 1000) * this.AUTH;
+        this.rev = this.CUE.map(c => this.sm((this.t - c - 0.1) / 0.85));
+        this.lastCue = 99; this.applyFrame();
+        clearTimeout(this.sT); this.sT = setTimeout(() => { this.scrubbing = false; }, 250);
+      },
+      onDur: (e) => {
+        this.dur = Number(e.target.value);
+        this.r.stage.setAttribute('data-om-exportable-video-with-duration-secs', String(this.dur));
+        this.applyFrame();
+      },
+      onFrame: (e) => {
+        this.frame = e.target.value;
+        const st = this.r.stage;
+        st.style.aspectRatio = this.frame === '9:16' ? '9/16' : '16/9';
+        st.style.maxWidth = this.frame === '9:16' ? '420px' : 'none';
+        st.style.marginLeft = this.frame === '9:16' ? 'auto' : '0';
+        st.style.marginRight = this.frame === '9:16' ? 'auto' : '0';
+        this.scaleType(this.frame === '9:16' ? 2.2 : 1);
+        const P = this.POS[this.frame];
+        for (let i = 0; i < 6; i++) {
+          const el = this.r['b' + i];
+          if (!el) continue;
+          el.style.left = P[i][0]; el.style.top = P[i][1]; el.style.width = P[i][2];
+        }
+        this.r.title.style.width = this.frame === '9:16' ? '80cqw' : '27cqw';
+        requestAnimationFrame(() => this.measure());
+      },
+      onSound: () => {
+        this.sound = !this.sound;
+        const b = this.r.btnSound;
+        b.textContent = this.sound ? 'Sound on' : 'Sound off';
+        b.style.background = this.sound ? 'var(--navy)' : '#fff';
+        b.style.color = this.sound ? '#fff' : 'var(--navy)';
+        b.style.borderColor = this.sound ? 'var(--navy)' : 'var(--line)';
+        if (this.sound) this.brush();
+      },
+      onStatic: () => { this.applyStatic(!this.staticMode); }
+    };
+  }
+}
+</script>
+</body>
+</html>
