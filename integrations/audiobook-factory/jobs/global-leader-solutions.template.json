@@ -1,0 +1,46 @@
+{
+  "_comment": [
+    "PRODUCTION TEMPLATE - Global Leader Solutions. Copy once per course.",
+    "Fill 'sources' with that course's real files (workbook .docx/.pdf and/or lesson .vtt/.srt).",
+    "Run the proof pass first:  node bin/afx.js build jobs/gls-01-<slug>.json --provider local",
+    "Resolve every flag in script.md, get the script signed off, THEN run --provider elevenlabs.",
+    "Distribution profile: 'lms' for in-platform audio, 'podcast' for the member feed. See docs/distribution.md before choosing 'acx'."
+  ],
+  "title": "COURSE TITLE HERE",
+  "author": "Dr. Andrew Campbell",
+  "narrator": "Synthetic narration",
+  "publisher": "Global Leader Solutions",
+  "description": "COURSE DESCRIPTION HERE",
+  "copyright": "(c) Global Leader Solutions",
+  "link": "https://globalleadersolutions.com",
+
+  "profile": "podcast",
+  "provider": "local",
+  "model": "eleven_multilingual_v2",
+  "voice": "REPLACE_WITH_CLONED_VOICE_ID",
+
+  "lexiconFile": "../config/lexicon/gls.json",
+  "maxChars": 2400,
+  "minChapterChars": 400,
+  "outDir": "../out/gls/COURSE-SLUG-HERE",
+  "feedBaseUrl": "",
+
+  "settings": {
+    "stability": 0.5,
+    "similarityBoost": 0.85,
+    "style": 0.0,
+    "speakerBoost": true,
+    "instructions": "Measured, warm, authoritative. A senior leadership educator speaking to practitioners, not performing. Let the pauses carry the weight."
+  },
+  "mastering": { "segmentGapSec": 0.5 },
+
+  "credits": {
+    "opening": "COURSE TITLE. By Doctor Andrew Campbell. Published by Global Leader Solutions. This recording uses synthetic narration.",
+    "closing": "This has been COURSE TITLE, by Doctor Andrew Campbell, published by Global Leader Solutions. Narration for this edition was produced synthetically with the author's authorisation."
+  },
+
+  "sources": [
+    { "file": "../source/gls/COURSE-SLUG/workbook.docx", "title": "Workbook" },
+    { "file": "../source/gls/COURSE-SLUG/lesson-01.vtt", "title": "Lesson One" }
+  ]
+}
