@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en" class="no-js" data-palette="#1c5cab,#3987e5,#6da7ec">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Modeled proof of concept for NYC Entertainment Portfolio attribution: marketing touch to collected revenue, with every match method kept separate."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#061423" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#e4d9c6" media="(prefers-color-scheme: light)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="NYC Entertainment Portfolio · Attribution Pass" />
+    <meta
+      property="og:description"
+      content="Modeled proof: marketing touch to collected revenue, with exact / platform-source / unmatched evidence kept separate."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23061423'/%3E%3Cpath d='M4 26V14l5-6 4 4 4-7 4 8 3-4 4 5v12' fill='none' stroke='%23f26824' stroke-width='2'/%3E%3Cpath d='M3 26h26' stroke='%23f26824' stroke-width='2'/%3E%3C/svg%3E"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Public+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>NYC Entertainment Portfolio · Attribution Pass</title>
+    <script>
+      document.documentElement.classList.replace("no-js", "js");
+      try {
+        var t = localStorage.getItem("nyc-attr-theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <!--
+      THESIS: Attribution is an accountable service handoff, not a wall of KPI cards.
+      OWN-WORLD: Midnight desk, ivory service tickets, orange as chrome only, blue ink as the
+        one data hue, clipped corners, perforations, ledger rules, status stamps.
+      STORY: The operator watches a touch become a booking, a visit, and a collected-revenue
+        record - then sees exactly which handoff leaks and what unlocks the next one.
+      ENCODING: One ordinal blue ramp carries every quantity (exact / source / unmatched).
+        Brand orange never carries data. Status never carries meaning by hue alone -
+        always glyph + word + ink.
+      FIRST VIEWPORT: Venue rail left, coverage meter and the four-stage pass centre,
+        readiness and next actions right.
+    -->
+    <a class="skip-link" href="#main-content">Skip to attribution overview</a>
+
+    <header class="commandbar">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M5 33V17l6-8 5 5 5-9 5 10 4-5 5 7v16" />
+          <path d="M4 33h32M12 33V22m8 11V18m8 15V23" />
+        </svg>
+        <div class="brand-copy">
+          <p class="brand-name">NYC Entertainment Portfolio</p>
+          <p class="brand-sub">Attribution operations proof</p>
+        </div>
+      </div>
+
+      <p class="mode-stamp">
+        <span>Modeled data</span>
+        <strong>Demonstration only</strong>
+      </p>
+
+      <div class="filterbar" role="group" aria-label="View filters">
+        <label class="field">
+          <span>Reporting view</span>
+          <select id="period-select">
+            <option value="30">30-day model</option>
+            <option value="7">7-day model</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Evidence tier</span>
+          <select id="tier-select">
+            <option value="all">All tiers</option>
+            <option value="exact">Exact match only</option>
+            <option value="source">Platform source only</option>
+            <option value="unmatched">Unmatched only</option>
+          </select>
+        </label>
+
+        <button class="btn" id="theme-toggle" type="button" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-sun">
+            <circle cx="12" cy="12" r="4.2" />
+            <path d="M12 2.4v2.6M12 19v2.6M2.4 12H5m14 0h2.6M5.2 5.2l1.9 1.9m9.8 9.8 1.9 1.9m0-13.6-1.9 1.9M7.1 16.9l-1.9 1.9" />
+          </svg>
+          <span id="theme-label">Daylight</span>
+        </button>
+
+        <button class="btn" id="reset-view" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 12a8 8 0 1 0 2.34-5.66L4 8.68M4 4v4.68h4.68" />
+          </svg>
+          Reset
+        </button>
+      </div>
+    </header>
+
+    <div class="shell">
+      <!-- ───────────── venue rail ───────────── -->
+      <aside class="rail rail--venues" aria-labelledby="venue-heading">
+        <div class="rail-head">
+          <h2 id="venue-heading">Venue pass</h2>
+          <p>4 identified · 1 unresolved</p>
+        </div>
+
+        <div class="venue-tabs" role="tablist" aria-label="Venue model" aria-orientation="vertical" id="venue-tabs">
+          <button class="vtab is-active" type="button" role="tab" id="vtab-portfolio"
+                  aria-selected="true" aria-controls="main-content" data-venue="portfolio" tabindex="0">
+            <span class="vtab-idx">All</span>
+            <span class="vtab-copy">
+              <strong>Portfolio</strong>
+              <small>All sourced concepts</small>
+            </span>
+            <span class="tag tag--warn"><i aria-hidden="true">~</i>Modeled</span>
+          </button>
+          <button class="vtab" type="button" role="tab" id="vtab-puttery"
+                  aria-selected="false" aria-controls="main-content" data-venue="puttery" tabindex="-1">
+            <span class="vtab-idx">01</span>
+            <span class="vtab-copy">
+              <strong>Puttery NYC</strong>
+              <small>Tock · Toast</small>
+            </span>
+            <span class="tag tag--good"><i aria-hidden="true">✓</i>Identified</span>
+          </button>
+          <button class="vtab" type="button" role="tab" id="vtab-highline"
+                  aria-selected="false" aria-controls="main-content" data-venue="highline" tabindex="-1">
+            <span class="vtab-idx">02</span>
+            <span class="vtab-copy">
+              <strong>High Line Comedy Club</strong>
+              <small>Tock · Eventbrite</small>
+            </span>
+            <span class="tag tag--warn"><i aria-hidden="true">~</i>Mixed</span>
+          </button>
+          <button class="vtab" type="button" role="tab" id="vtab-rorys"
+                  aria-selected="false" aria-controls="main-content" data-venue="rorys" tabindex="-1">
+            <span class="vtab-idx">03</span>
+            <span class="vtab-copy">
+              <strong>Rory’s Rooftop</strong>
+              <small>Resy · Toast</small>
+            </span>
+            <span class="tag tag--good"><i aria-hidden="true">✓</i>Identified</span>
+          </button>
+          <button class="vtab" type="button" role="tab" id="vtab-easy-tiger"
+                  aria-selected="false" aria-controls="main-content" data-venue="easy-tiger" tabindex="-1">
+            <span class="vtab-idx">04</span>
+            <span class="vtab-copy">
+              <strong>Easy Tiger</strong>
+              <small>Resy · Toast</small>
+            </span>
+            <span class="tag tag--good"><i aria-hidden="true">✓</i>Identified</span>
+          </button>
+          <button class="vtab vtab--blocked" type="button" role="tab" id="vtab-unknown"
+                  aria-selected="false" aria-controls="main-content" data-venue="unknown" tabindex="-1">
+            <span class="vtab-idx">05</span>
+            <span class="vtab-copy">
+              <strong>Venue unresolved</strong>
+              <small>Source mapping required</small>
+            </span>
+            <span class="tag tag--bad"><i aria-hidden="true">✕</i>Blocked</span>
+          </button>
+        </div>
+
+        <p class="rail-note">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3a9 9 0 1 0 9 9 9 9 0 0 0-9-9Zm0 5v5m0 3v.01" />
+          </svg>
+          <span>Consumer brands may not equal merchant locations. The venue crosswalk is the first production gate.</span>
+        </p>
+
+        <p class="rail-hint">
+          <kbd>1</kbd>–<kbd>6</kbd> switch venue · <kbd>T</kbd> theme
+        </p>
+      </aside>
+
+      <!-- ───────────── main board ───────────── -->
+      <main id="main-content" class="board" tabindex="-1" role="tabpanel" aria-labelledby="board-title">
+        <div class="board-head">
+          <h1 id="board-title">From marketing touch to realized revenue</h1>
+          <p id="board-context" role="status">
+            Portfolio model · 30-day illustrative view · not live performance.
+          </p>
+        </div>
+
+        <!-- ── card: coverage ── -->
+        <section class="card card--cover" aria-labelledby="cover-title">
+          <div class="card-head">
+            <div>
+              <h2 id="cover-title">Evidence coverage of collected revenue</h2>
+              <p>Every dollar Toast collected, split by the strongest evidence that reaches it.</p>
+            </div>
+            <button class="linkbtn" type="button" data-table-toggle="cover-table" aria-expanded="false" aria-controls="cover-table">
+              Table view
+            </button>
+          </div>
+
+          <div class="cover-grid">
+            <div class="hero">
+              <p class="hero-label">Exact match coverage</p>
+              <p class="hero-figure" id="hero-coverage">61%</p>
+              <p class="hero-note" id="hero-coverage-note">of collected revenue carries a platform token or ID</p>
+            </div>
+
+            <div class="meter-wrap">
+              <figure class="meter-fig">
+                <figcaption class="sr-only">
+                  Collected revenue by evidence tier: exact match, platform source, and unmatched.
+                </figcaption>
+                <div class="meter" id="coverage-meter" role="img" aria-labelledby="meter-desc">
+                  <span class="meter-seg meter-seg--exact" data-seg="exact"></span>
+                  <span class="meter-seg meter-seg--source" data-seg="source"></span>
+                  <span class="meter-seg meter-seg--unmatched" data-seg="unmatched"></span>
+                </div>
+                <p class="sr-only" id="meter-desc"></p>
+                <div class="meter-axis" aria-hidden="true">
+                  <span>$0</span>
+                  <span id="meter-axis-end">$7,200</span>
+                </div>
+              </figure>
+
+              <ul class="legend" id="coverage-legend">
+                <li><i class="key key--exact"></i><span class="key-name">Exact match</span><b data-legend="exact">$4,392</b></li>
+                <li><i class="key key--source"></i><span class="key-name">Platform source</span><b data-legend="source">$908</b></li>
+                <li><i class="key key--unmatched"></i><span class="key-name">Unmatched</span><b data-legend="unmatched">$1,900</b></li>
+              </ul>
+            </div>
+          </div>
+
+          <table class="datatable" id="cover-table" hidden>
+            <caption>Collected revenue by evidence tier</caption>
+            <thead>
+              <tr><th scope="col">Evidence tier</th><th scope="col">Value</th><th scope="col">Share of collected</th><th scope="col">Method</th></tr>
+            </thead>
+            <tbody id="cover-table-body"></tbody>
+          </table>
+        </section>
+
+        <!-- ── card: the pass ── -->
+        <section class="card card--pass" aria-labelledby="pass-title">
+          <div class="card-head">
+            <div>
+              <h2 id="pass-title">The attribution pass</h2>
+              <p>Four handoffs. Each stage keeps its own unit — the ribbons carry the pass-through rate.</p>
+            </div>
+            <button class="linkbtn" type="button" data-table-toggle="pass-table" aria-expanded="false" aria-controls="pass-table">
+              Table view
+            </button>
+          </div>
+
+          <ol class="pass" id="pass">
+            <li class="stage" data-stage="touch">
+              <p class="stage-tag"><span class="stage-num">1</span> Marketing touch</p>
+              <p class="stage-figure" data-figure="clicks">3,842</p>
+              <p class="stage-unit">tagged visits</p>
+              <dl class="stage-sub">
+                <div><dt>Spend</dt><dd data-figure="spend">$2,500</dd></div>
+                <div><dt>Tracked source</dt><dd data-figure="sourceCoverage">78%</dd></div>
+              </dl>
+              <p class="stage-src">Google Ads · Meta · owned links</p>
+            </li>
+
+            <li class="ribbon" data-ribbon="0">
+              <div class="ribbon-viz" aria-hidden="true"></div>
+              <p class="ribbon-label">
+                <b data-rate="0">5.6%</b>
+                <span>booking rate</span>
+                <small data-leak="0">3,628 visits did not book</small>
+              </p>
+            </li>
+
+            <li class="stage" data-stage="booking">
+              <p class="stage-tag"><span class="stage-num">2</span> Booking or inquiry</p>
+              <p class="stage-figure" data-figure="bookings">214</p>
+              <p class="stage-unit">bookings</p>
+              <dl class="stage-sub">
+                <div><dt>Event leads</dt><dd data-figure="leads">18</dd></div>
+                <div><dt>Booked value</dt><dd data-figure="booked">$9,000</dd></div>
+              </dl>
+              <p class="stage-src">Tock · Resy · Eventbrite · Tripleseat</p>
+            </li>
+
+            <li class="ribbon" data-ribbon="1">
+              <div class="ribbon-viz" aria-hidden="true"></div>
+              <p class="ribbon-label">
+                <b data-rate="1">78.5%</b>
+                <span>show rate</span>
+                <small data-leak="1">46 no-show or refunded</small>
+              </p>
+            </li>
+
+            <li class="stage" data-stage="visit">
+              <p class="stage-tag"><span class="stage-num">3</span> Visit or event</p>
+              <p class="stage-figure" data-figure="completed">168</p>
+              <p class="stage-unit">completed visits</p>
+              <dl class="stage-sub">
+                <div><dt>Covers</dt><dd data-figure="covers">412</dd></div>
+                <div><dt>No-show / refund</dt><dd data-figure="loss">21</dd></div>
+              </dl>
+              <p class="stage-src">Booking status · check-in · event state</p>
+            </li>
+
+            <li class="ribbon" data-ribbon="2">
+              <div class="ribbon-viz" aria-hidden="true"></div>
+              <p class="ribbon-label">
+                <b data-rate="2">73.6%</b>
+                <span>evidence capture</span>
+                <small data-leak="2">$1,900 collected without a trail</small>
+              </p>
+            </li>
+
+            <li class="stage stage--last" data-stage="revenue">
+              <p class="stage-tag"><span class="stage-num">4</span> Realized revenue</p>
+              <p class="stage-figure" data-figure="revenue">$7,200</p>
+              <p class="stage-unit">Toast net sales collected</p>
+              <dl class="stage-sub">
+                <div><dt>Matched revenue</dt><dd data-figure="matched">$5,300</dd></div>
+                <div><dt>Collected ROAS</dt><dd data-figure="roas">2.1×</dd></div>
+              </dl>
+              <p class="stage-src">Toast checks · payments · refunds</p>
+            </li>
+          </ol>
+
+          <table class="datatable" id="pass-table" hidden>
+            <caption>Attribution pass — stage values and pass-through rates</caption>
+            <thead>
+              <tr><th scope="col">Stage</th><th scope="col">Headline</th><th scope="col">Unit</th><th scope="col">Pass-through to next</th><th scope="col">Basis</th></tr>
+            </thead>
+            <tbody id="pass-table-body"></tbody>
+          </table>
+        </section>
+
+        <!-- ── card: reconciliation ── -->
+        <section class="card card--recon reveal" aria-labelledby="recon-title">
+          <div class="card-head">
+            <div>
+              <h2 id="recon-title">Reconciliation close</h2>
+              <p>Two different economic stages, shown side by side on one dollar axis. They are never summed.</p>
+            </div>
+            <span class="chip chip--warn"><i aria-hidden="true">~</i>Modeled · not finance-ready</span>
+          </div>
+
+          <figure class="recon">
+            <figcaption class="sr-only">Booked value compared with Toast collected revenue, split into matched and unmatched.</figcaption>
+
+            <p class="recon-name">
+              Booked value
+              <small>Tock · Resy · Eventbrite · Tripleseat</small>
+            </p>
+            <div class="recon-track">
+              <span class="recon-bar recon-bar--ref" id="recon-booked-bar"></span>
+            </div>
+            <b class="recon-val" id="recon-booked">$9,000</b>
+
+            <p class="recon-guard">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 9 9 0 0 0-9-9Zm0 5v5m0 3v.01" /></svg>
+              <span>Booked value is a commitment; Toast net sales is cash collected. The gap is stage and timing, <strong>not</strong> attributed leakage.</span>
+            </p>
+
+            <p class="recon-name">
+              Toast collected
+              <small>Net sales after explicit adjustments</small>
+            </p>
+            <div class="recon-track">
+              <span class="recon-bar recon-bar--split" id="recon-collected-bar">
+                <i class="recon-seg recon-seg--matched" id="recon-seg-matched"></i>
+                <i class="recon-seg recon-seg--unmatched" id="recon-seg-unmatched"></i>
+              </span>
+            </div>
+            <b class="recon-val" id="recon-collected">$7,200</b>
+
+            <div class="recon-axis" aria-hidden="true">
+              <span>$0</span><span id="recon-axis-mid">$5,000</span><span id="recon-axis-end">$10,000</span>
+            </div>
+
+            <p class="recon-math">
+              <span>Matched <b id="recon-matched">$5,300</b></span>
+              <span class="op" aria-hidden="true">+</span>
+              <span>Unmatched <b id="recon-unmatched">$1,900</b></span>
+              <span class="op" aria-hidden="true">=</span>
+              <span>Collected <b id="recon-total">$7,200</b></span>
+            </p>
+          </figure>
+        </section>
+
+        <!-- ── card: evidence tickets ── -->
+        <section class="card card--tickets reveal" aria-labelledby="ticket-title">
+          <div class="card-head">
+            <div>
+              <h2 id="ticket-title">Evidence tickets</h2>
+              <p id="ticket-count">Illustrative records — match methods stay separate, never blended.</p>
+            </div>
+            <!-- this legend keys the ticket STAMPS, so it uses the status
+                 glyph + word - not the blue ramp, which keys quantities -->
+            <ul class="legend legend--stamps">
+              <li class="tag tag--good"><i aria-hidden="true">✓</i>Exact</li>
+              <li class="tag tag--warn"><i aria-hidden="true">~</i>Platform source</li>
+              <li class="tag tag--bad"><i aria-hidden="true">✕</i>Unmatched</li>
+            </ul>
+          </div>
+          <div id="ticket-list" class="tickets"></div>
+        </section>
+
+        <details class="method reveal">
+          <summary>Measurement rules and production gates</summary>
+          <div class="method-grid">
+            <div>
+              <h3>Truth hierarchy</h3>
+              <ol class="ranked">
+                <li>Exact platform token or ID</li>
+                <li>Consented deterministic HMAC identity</li>
+                <li>Platform source at aggregate grain</li>
+                <li>Modeled aggregate inference</li>
+                <li>Unmatched</li>
+              </ol>
+            </div>
+            <div>
+              <h3>Never combine</h3>
+              <p>Tripleseat event value, Eventbrite ticket gross, Tock/Resy booked value, and Toast net sales represent different economic stages. They appear side by side and are never summed.</p>
+            </div>
+            <div>
+              <h3>Production gate</h3>
+              <p>Conversion reporting stays <em>pending validation</em> until venue IDs, source access, KPI definitions, refund and no-show handling, and seven consecutive source deliveries all reconcile.</p>
+            </div>
+          </div>
+        </details>
+      </main>
+
+      <!-- ───────────── operations rail ───────────── -->
+      <aside class="rail rail--ops" aria-label="Data readiness and next actions">
+        <section class="ops-block" id="source-readiness" aria-labelledby="ready-title">
+          <div class="rail-head">
+            <h2 id="ready-title">Source readiness</h2>
+            <p>Documented capability versus account proof</p>
+          </div>
+
+          <table class="readiness">
+            <caption class="sr-only">Source readiness by gate</caption>
+            <thead>
+              <tr>
+                <th scope="col">Source</th>
+                <th scope="col"><abbr title="Public API or export path is documented">Doc</abbr></th>
+                <th scope="col"><abbr title="Account and credential access is granted">Acc</abbr></th>
+                <th scope="col"><abbr title="A test pull has reconciled">Pull</abbr></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><span class="src-row"><span class="src-abbr">ADS</span>Google + Meta</span></th>
+                <td><span class="pip pip--good" title="Documented"><i aria-hidden="true">✓</i><span class="sr-only">Done</span></span></td>
+                <td><span class="pip pip--bad" title="Account mapping not supplied"><i aria-hidden="true">✕</i><span class="sr-only">Blocked</span></span></td>
+                <td><span class="pip pip--bad" title="Not started"><i aria-hidden="true">✕</i><span class="sr-only">Blocked</span></span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="src-row"><span class="src-abbr">TK</span>Tock</span></th>
+                <td><span class="pip pip--good" title="API and webhooks documented"><i aria-hidden="true">✓</i><span class="sr-only">Done</span></span></td>
+                <td><span class="pip pip--warn" title="Tier needs verification"><i aria-hidden="true">~</i><span class="sr-only">Verify</span></span></td>
+                <td><span class="pip pip--bad" title="Not started"><i aria-hidden="true">✕</i><span class="sr-only">Blocked</span></span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="src-row"><span class="src-abbr">RY</span>Resy</span></th>
+                <td><span class="pip pip--good" title="Documented"><i aria-hidden="true">✓</i><span class="sr-only">Done</span></span></td>
+                <td><span class="pip pip--bad" title="Enterprise access is contract-gated"><i aria-hidden="true">✕</i><span class="sr-only">Blocked</span></span></td>
+                <td><span class="pip pip--bad" title="Not started"><i aria-hidden="true">✕</i><span class="sr-only">Blocked</span></span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="src-row"><span class="src-abbr">TS</span>Toast</span></th>
+                <td><span class="pip pip--good" title="API and export path documented"><i aria-hidden="true">✓</i><span class="sr-only">Done</span></span></td>
+                <td><span class="pip pip--warn" title="Tier needs verification"><i aria-hidden="true">~</i><span class="sr-only">Verify</span></span></td>
+                <td><span class="pip pip--bad" title="Not started"><i aria-hidden="true">✕</i><span class="sr-only">Blocked</span></span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="src-row"><span class="src-abbr">3S</span>Tripleseat</span></th>
+                <td><span class="pip pip--good" title="OAuth2 and webhooks documented"><i aria-hidden="true">✓</i><span class="sr-only">Done</span></span></td>
+                <td><span class="pip pip--warn" title="Role needs verification"><i aria-hidden="true">~</i><span class="sr-only">Verify</span></span></td>
+                <td><span class="pip pip--bad" title="Not started"><i aria-hidden="true">✕</i><span class="sr-only">Blocked</span></span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="src-row"><span class="src-abbr">EB</span>Eventbrite</span></th>
+                <td><span class="pip pip--good" title="Orders and webhooks documented"><i aria-hidden="true">✓</i><span class="sr-only">Done</span></span></td>
+                <td><span class="pip pip--bad" title="Account mapping not supplied"><i aria-hidden="true">✕</i><span class="sr-only">Blocked</span></span></td>
+                <td><span class="pip pip--bad" title="Not started"><i aria-hidden="true">✕</i><span class="sr-only">Blocked</span></span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="ready-key">
+            <span class="pip pip--good"><i aria-hidden="true">✓</i></span> documented
+            <span class="pip pip--warn"><i aria-hidden="true">~</i></span> verify
+            <span class="pip pip--bad"><i aria-hidden="true">✕</i></span> blocked
+          </p>
+        </section>
+
+        <section class="ops-block" aria-labelledby="action-title">
+          <div class="rail-head">
+            <h2 id="action-title">Next action queue</h2>
+            <p>Ordered by what unlocks truthful reporting</p>
+          </div>
+          <ol class="actions">
+            <li>
+              <span class="act-idx">1</span>
+              <div>
+                <strong>Resolve the venue crosswalk</strong>
+                <p>Name the fifth concept and map merchant, booking, event, and POS location IDs.</p>
+                <small>Prospect + Momentum · gate 01</small>
+              </div>
+            </li>
+            <li>
+              <span class="act-idx">2</span>
+              <div>
+                <strong>Pull one source week</strong>
+                <p>Export Tock, Resy, Toast, Tripleseat, and Eventbrite records for two venue-days.</p>
+                <small>Data ops · gate 02</small>
+              </div>
+            </li>
+            <li>
+              <span class="act-idx">3</span>
+              <div>
+                <strong>Prove the join spine</strong>
+                <p>Test UTMs, platform IDs, refund and no-show states, and one Tripleseat-to-Toast event check.</p>
+                <small>Growth + engineering · gate 03</small>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <section class="ops-block ops-block--scope" aria-labelledby="scope-title">
+          <h2 id="scope-title">Recommended commercial scope</h2>
+          <p class="scope-figure">$2,500<span>–</span>$3,500</p>
+          <p>Fits discovery plus a single-venue proof once access is ready.</p>
+          <ul class="scope-not">
+            <li>Not a five-brand production warehouse</li>
+            <li>Not real-time attribution</li>
+            <li>Not finance-grade revenue reporting</li>
+          </ul>
+          <a class="scope-link" href="#source-readiness">Review the readiness gates</a>
+        </section>
+      </aside>
+    </div>
+
+    <footer class="footsig">
+      <p>Modeled proof of concept · every figure illustrative until source exports reconcile · prepared by Momentum 360</p>
+    </footer>
+
+    <noscript>
+      <p class="noscript-note">
+        Venue switching and the charts need JavaScript. The portfolio 30-day model is shown above and every
+        figure is also available in each card’s table view.
+      </p>
+    </noscript>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
