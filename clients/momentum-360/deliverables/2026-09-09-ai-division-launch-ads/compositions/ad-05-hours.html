@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link rel="stylesheet" href="assets/momentum.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      /* Momo sits on a card rather than as a cutout: the source stills are
+         RGB with no alpha, and the card is how the Momo film itself presents
+         him. Layered contact + ambient shadow, no glow. */
+      #c5 {
+        display: grid;
+        grid-template-columns: 420px minmax(0, 1fr);
+        align-items: center;
+        gap: 88px;
+        justify-content: initial;
+        text-align: left;
+        padding: 0 148px;
+      }
+      #momo-card {
+        width: 420px;
+        height: 420px;
+        border-radius: 26px;
+        overflow: hidden;
+        background: var(--m-deep-raised);
+        filter: drop-shadow(0 3px 6px rgba(6, 10, 12, 0.45))
+          drop-shadow(0 22px 48px rgba(6, 10, 12, 0.35));
+        will-change: transform, opacity;
+      }
+      #momo-card img {
+        display: block;
+        width: 420px;
+        height: 420px;
+        object-fit: cover;
+      }
+      #c5-copy {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      #c5-copy .lockup {
+        text-align: left;
+        font-size: 116px;
+      }
+      #c5-copy .lanes-rule {
+        width: 700px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="ad05"
+      data-start="0"
+      data-duration="15"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- A · deep · left build -->
+      <div id="a5" class="slide s-deep a-left clip" data-start="0" data-duration="5" data-track-index="1">
+        <span class="d d-md on-deep-muted a5l">AN AI DIVISION</span>
+        <span class="d d-md on-deep a5l">WHOSE PRODUCT</span>
+        <span class="d d-md on-deep a5l">IS ONE PERSON'S</span>
+        <span class="rule a5r"></span>
+      </div>
+
+      <!-- B · brand fill · single hit -->
+      <div id="b5" class="slide s-brand a-center clip" data-start="5" data-duration="5" data-track-index="2">
+        <span class="d d-xl on-brand b5l">HOURS</span>
+        <span class="eyebrow on-brand b5e" style="margin-top: 40px">Is not an AI division</span>
+      </div>
+
+      <!-- C · deep · Momo + payoff -->
+      <div id="c5" class="slide s-deep clip" data-start="10" data-duration="5" data-track-index="3">
+        <div id="momo-card"><img src="assets/momo.png" alt="Momo" /></div>
+        <div id="c5-copy">
+          <span class="eyebrow on-deep-brand c5e">Every offer ships with its agent</span>
+          <span class="d d-sm on-deep c5a" style="margin-top: 22px">MEET MOMO.</span>
+          <span class="lanes-rule c5r" style="margin: 30px 0"></span>
+          <span class="lockup on-deep c5m">MOMENTUM <em class="on-deep-brand">AI</em></span>
+          <span class="url on-deep-brand c5u" style="margin-top: 26px">needmomentum.com</span>
+        </div>
+      </div>
+
+      <div id="wipe1" class="wipe clip" data-start="4.6" data-duration="0.8" data-track-index="9"></div>
+      <div id="wipe2" class="wipe clip" data-start="9.6" data-duration="0.8" data-track-index="9"></div>
+    </div>
+
+    <script>
+      const E = "expo.out";
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo(".a5l", { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.9, ease: E, stagger: 0.15 }, 0.15);
+      tl.fromTo(".a5r", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 1.0);
+      tl.to(".a5l", { yPercent: -16, opacity: 0, duration: 0.5, ease: "power2.in", stagger: 0.05 }, 4.4);
+      tl.to(".a5r", { scaleX: 0, duration: 0.4, ease: "power2.in" }, 4.4);
+
+      tl.fromTo(".b5l", { scale: 0.66, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: E }, 5.15);
+      tl.fromTo(".b5e", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E }, 5.9);
+      tl.to(".b5l", { scale: 1.05, duration: 2.2, ease: "none" }, 6.2);
+      tl.to([".b5l", ".b5e"], { opacity: 0, duration: 0.4, ease: "power2.in" }, 9.5);
+
+      // Momo lands with weight, then holds a slow idle float — the detail that
+      // makes the reference feel alive rather than pasted on.
+      tl.fromTo("#momo-card", { y: -70, scale: 0.86, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.85, ease: "back.out(1.5)" }, 10.1);
+      tl.to("#momo-card", { y: -10, duration: 2.0, ease: "sine.inOut", yoyo: true, repeat: 1 }, 11.0);
+
+      tl.fromTo(".c5e", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E }, 10.5);
+      tl.fromTo(".c5a", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: E }, 10.75);
+      tl.fromTo(".c5r", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 11.0);
+      tl.fromTo(".c5m", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: E }, 11.2);
+      tl.fromTo(".c5u", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E }, 11.8);
+
+      tl.fromTo("#wipe1", { xPercent: -105 }, { xPercent: 0, duration: 0.22, ease: "power3.in" }, 4.78);
+      tl.to("#wipe1", { xPercent: 105, duration: 0.26, ease: "power3.out" }, 5.0);
+      tl.fromTo("#wipe2", { xPercent: -105 }, { xPercent: 0, duration: 0.22, ease: "power3.in" }, 9.78);
+      tl.to("#wipe2", { xPercent: 105, duration: 0.26, ease: "power3.out" }, 10.0);
+
+      window.__timelines["ad05"] = tl;
+    </script>
+  </body>
+</html>

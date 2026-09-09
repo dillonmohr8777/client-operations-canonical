@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link rel="stylesheet" href="assets/momentum.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      #bars {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+      }
+      .bar {
+        background: var(--m-brand);
+        transform-origin: top center;
+        will-change: transform;
+      }
+      #mark {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 26px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="stingopen"
+      data-start="0"
+      data-duration="3"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div id="s" class="slide s-deep clip" data-start="0" data-duration="3" data-track-index="1">
+        <!-- six brand bars drop in, then clear — the campaign wipe as an open -->
+        <div id="bars">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </div>
+        <div id="mark">
+          <span class="lockup on-deep" id="lock">MOMENTUM <em class="on-deep-brand">AI</em></span>
+          <span class="lanes-rule" id="lr" style="width: 620px"></span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const E = "expo.out";
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo(".bar", { scaleY: 0 }, { scaleY: 1, duration: 0.42, ease: "power3.in", stagger: 0.05 }, 0);
+      tl.to(".bar", { scaleY: 0, transformOrigin: "bottom center", duration: 0.5, ease: "power3.out", stagger: 0.05 }, 0.75);
+      tl.fromTo("#lock", { scale: 0.86, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: E }, 1.05);
+      tl.fromTo("#lr", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: E }, 1.4);
+
+      window.__timelines["stingopen"] = tl;
+    </script>
+  </body>
+</html>

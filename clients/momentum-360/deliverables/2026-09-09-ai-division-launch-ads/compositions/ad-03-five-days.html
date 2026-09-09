@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link rel="stylesheet" href="assets/momentum.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      #three-layer {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        display: block;
+        z-index: 0;
+      }
+      #b3 {
+        padding: 0;
+      }
+      #b3-type {
+        position: absolute;
+        left: 148px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        max-width: 900px;
+      }
+      #numeral {
+        display: block;
+        font-family: var(--m-font-display);
+        font-weight: 400;
+        font-size: 300px;
+        line-height: 0.82;
+        letter-spacing: -0.04em;
+        color: var(--m-brand-lift);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="ad03"
+      data-start="0"
+      data-duration="15"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- A · panel · left stack, type only -->
+      <div id="a3" class="slide s-panel a-left clip" data-start="0" data-duration="5" data-track-index="1">
+        <span class="d d-lg on-light a3l">MOST AGENCIES</span>
+        <span class="d d-lg on-light a3l">SEND YOU A</span>
+        <span class="d d-lg on-light-muted a3l">SLIDE DECK.</span>
+        <span class="rule rule-brand a3r"></span>
+      </div>
+
+      <!-- B · deep · type left, machined cylinder right -->
+      <div id="b3" class="slide s-deep clip" data-start="5" data-duration="5" data-track-index="2">
+        <canvas id="three-layer"></canvas>
+        <div id="b3-type">
+          <span class="d d-lg on-deep b3l">WE SEND THE</span>
+          <span class="d d-lg on-deep b3l">WORKING</span>
+          <span class="d d-lg on-deep-brand b3l">PROTOTYPE.</span>
+        </div>
+      </div>
+
+      <!-- C · deep-raised · numeral + payoff -->
+      <div id="c3" class="slide s-raised payoff clip" data-start="10" data-duration="5" data-track-index="3">
+        <span id="numeral">5</span>
+        <span class="eyebrow on-deep-muted c3e">Working days</span>
+        <span class="lockup d-md on-deep c3m">MOMENTUM <em class="on-deep-brand">AI</em></span>
+        <span class="url on-deep-brand c3u">needmomentum.com</span>
+      </div>
+
+      <div id="wipe1" class="wipe clip" data-start="4.6" data-duration="0.8" data-track-index="9"></div>
+      <div id="wipe2" class="wipe clip" data-start="9.6" data-duration="0.8" data-track-index="9"></div>
+    </div>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.181.2/+esm";
+      import { mountHero } from "./assets/hero.js";
+
+      // A machined cylinder — a built, solid object. Entrance/exit shifted +5s
+      // because this hero lives on slide B, not slide A.
+      mountHero({
+        canvas: "three-layer",
+        geometry: new THREE.CylinderGeometry(1.15, 1.15, 1.5, 64, 1),
+        x: 2.4,
+        scale: 1.15,
+        spin: 0.6,
+        inAt: 5.1,
+        outAt: 9.35,
+      });
+    </script>
+
+    <script>
+      const E = "expo.out";
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo(".a3l", { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.9, ease: E, stagger: 0.14 }, 0.15);
+      tl.fromTo(".a3r", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 0.85);
+      tl.to(".a3l", { yPercent: -16, opacity: 0, duration: 0.5, ease: "power2.in", stagger: 0.05 }, 4.4);
+      tl.to(".a3r", { scaleX: 0, duration: 0.4, ease: "power2.in" }, 4.4);
+
+      tl.fromTo(".b3l", { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.9, ease: E, stagger: 0.14 }, 5.2);
+      tl.to(".b3l", { yPercent: -16, opacity: 0, duration: 0.5, ease: "power2.in", stagger: 0.05 }, 9.4);
+
+      tl.fromTo("#numeral", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, ease: E }, 10.1);
+      tl.fromTo(".c3e", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: E }, 10.7);
+      tl.fromTo(".c3m", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: E }, 11.0);
+      tl.fromTo(".c3u", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E }, 11.6);
+
+      tl.fromTo("#wipe1", { xPercent: -105 }, { xPercent: 0, duration: 0.22, ease: "power3.in" }, 4.78);
+      tl.to("#wipe1", { xPercent: 105, duration: 0.26, ease: "power3.out" }, 5.0);
+      tl.fromTo("#wipe2", { xPercent: -105 }, { xPercent: 0, duration: 0.22, ease: "power3.in" }, 9.78);
+      tl.to("#wipe2", { xPercent: 105, duration: 0.26, ease: "power3.out" }, 10.0);
+
+      window.__timelines["ad03"] = tl;
+    </script>
+  </body>
+</html>

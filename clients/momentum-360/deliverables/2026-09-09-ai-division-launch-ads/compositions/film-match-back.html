@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link rel="stylesheet" href="assets/momentum.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      /* ---- Beat 2: the pipeline ---- */
+      #pipe {
+        position: absolute;
+        left: 148px;
+        right: 148px;
+        top: 190px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 64px;
+        align-items: stretch;
+      }
+      .stage {
+        border: 3px solid var(--m-on-deep-muted);
+        border-radius: 16px;
+        padding: 54px 48px;
+        min-height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        will-change: transform, opacity;
+      }
+      .stage-no {
+        font-family: var(--m-font-text);
+        font-weight: 800;
+        font-size: 29px;
+        letter-spacing: 0.18em;
+        color: var(--m-brand-lift);
+      }
+      .stage-label {
+        font-family: var(--m-font-display);
+        font-weight: 400;
+        font-size: 54px;
+        line-height: 1.06;
+        letter-spacing: -0.02em;
+        color: var(--m-on-deep);
+      }
+      .stage-sub {
+        font-family: var(--m-font-text);
+        font-weight: 600;
+        font-size: 29px;
+        color: var(--m-on-deep-muted);
+      }
+      /* The token that travels the pipeline — one object, three stops. */
+      #rail {
+        position: absolute;
+        left: 148px;
+        right: 148px;
+        top: 812px;
+        height: 4px;
+        background: var(--m-on-deep-muted);
+        opacity: 0.35;
+        transform-origin: left center;
+      }
+      #token {
+        position: absolute;
+        left: 148px;
+        top: 790px;
+        width: 48px;
+        height: 48px;
+        border-radius: 999px;
+        background: var(--m-brand-lift);
+        will-change: transform;
+      }
+
+      /* ---- Beat 3: the ledger ---- */
+      #ledger {
+        position: absolute;
+        left: 148px;
+        right: 148px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .lrow {
+        display: grid;
+        grid-template-columns: 90px 1fr 280px 180px 190px;
+        align-items: center;
+        gap: 30px;
+        padding: 22px 0;
+        border-bottom: 2px solid var(--m-line, #dcd6cc);
+        will-change: transform, opacity;
+      }
+      .lno,
+      .lsrc,
+      .ldate {
+        font-family: var(--m-font-text);
+        font-weight: 700;
+        font-size: 32px;
+        color: var(--m-muted);
+      }
+      .lname {
+        height: 40px;
+        border-radius: 3px;
+        background: var(--m-line-strong, #8e8578);
+        opacity: 0.42;
+      }
+      .lmatch {
+        font-family: var(--m-font-text);
+        font-weight: 800;
+        font-size: 29px;
+        letter-spacing: 0.12em;
+        color: var(--m-brand);
+        text-align: right;
+        will-change: opacity;
+      }
+      #ledger-note {
+        position: absolute;
+        left: 148px;
+        bottom: 96px;
+        font-family: var(--m-font-text);
+        font-weight: 600;
+        font-size: 31px;
+        color: var(--m-muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="matchback"
+      data-start="0"
+      data-duration="20"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- 1 · panel · the claim -->
+      <div id="s1" class="slide s-panel a-left clip" data-start="0" data-duration="5" data-track-index="1">
+        <span class="eyebrow on-light-muted s1e">What the dashboard tells you</span>
+        <span class="d d-lg on-light s1l" style="margin-top: 36px">YOUR REPORT SAYS</span>
+        <span class="d d-lg on-light-brand s1l">32 CONVERSIONS.</span>
+        <span class="rule rule-brand s1r"></span>
+      </div>
+
+      <!-- 2 · deep · the pipeline -->
+      <div id="s2" class="slide s-deep clip" data-start="5" data-duration="6" data-track-index="2">
+        <div id="pipe">
+          <div class="stage st">
+            <span class="stage-no">01</span>
+            <span class="stage-label">FORM SUBMITTED</span>
+            <span class="stage-sub">One intake, one destination</span>
+          </div>
+          <div class="stage st">
+            <span class="stage-no">02</span>
+            <span class="stage-label">DEDUPED &amp; CHECKED</span>
+            <span class="stage-sub">Exceptions queued, not dropped</span>
+          </div>
+          <div class="stage st">
+            <span class="stage-no">03</span>
+            <span class="stage-label">MATCHED TO A NAME</span>
+            <span class="stage-sub">Destination readback confirms it</span>
+          </div>
+        </div>
+        <div id="rail"></div>
+        <div id="token"></div>
+      </div>
+
+      <!-- 3 · paper · the ledger -->
+      <div id="s3" class="slide s-paper clip" data-start="11" data-duration="5" data-track-index="3">
+        <div id="ledger">
+          <div class="lrow"><span class="lno">01</span><span class="lname"></span><span class="lsrc">Google Ads</span><span class="ldate">Sep 02</span><span class="lmatch">MATCHED</span></div>
+          <div class="lrow"><span class="lno">02</span><span class="lname"></span><span class="lsrc">Google Ads</span><span class="ldate">Sep 03</span><span class="lmatch">MATCHED</span></div>
+          <div class="lrow"><span class="lno">03</span><span class="lname"></span><span class="lsrc">Organic</span><span class="ldate">Sep 03</span><span class="lmatch">MATCHED</span></div>
+          <div class="lrow"><span class="lno">04</span><span class="lname"></span><span class="lsrc">Meta</span><span class="ldate">Sep 05</span><span class="lmatch">MATCHED</span></div>
+          <div class="lrow"><span class="lno">05</span><span class="lname"></span><span class="lsrc">Google Ads</span><span class="ldate">Sep 06</span><span class="lmatch">MATCHED</span></div>
+          <div class="lrow"><span class="lno">06</span><span class="lname"></span><span class="lsrc">Referral</span><span class="ldate">Sep 08</span><span class="lmatch">MATCHED</span></div>
+        </div>
+        <span id="ledger-note">Names are masked here. You get them in full.</span>
+      </div>
+
+      <!-- 4 · deep · payoff -->
+      <div id="s4" class="slide s-deep payoff clip" data-start="16" data-duration="4" data-track-index="4">
+        <span class="d d-sm on-deep s4a">EVERY ACCEPTED LEAD</span>
+        <span class="d d-sm on-deep-brand s4a">HAS A NAME.</span>
+        <span class="lanes-rule s4r"></span>
+        <span class="lockup d-md on-deep s4m">MOMENTUM <em class="on-deep-brand">AI</em></span>
+        <span class="url on-deep-brand s4u">needmomentum.com</span>
+      </div>
+
+      <div id="wipe1" class="wipe clip" data-start="4.6" data-duration="0.8" data-track-index="9"></div>
+      <div id="wipe2" class="wipe clip" data-start="10.6" data-duration="0.8" data-track-index="9"></div>
+      <div id="wipe3" class="wipe clip" data-start="15.6" data-duration="0.8" data-track-index="9"></div>
+    </div>
+
+    <script>
+      const E = "expo.out";
+      const tl = gsap.timeline({ paused: true });
+
+      // 1 — the claim
+      tl.fromTo(".s1e", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E }, 0.15);
+      tl.fromTo(".s1l", { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.9, ease: E, stagger: 0.14 }, 0.4);
+      tl.fromTo(".s1r", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 1.1);
+      tl.to([".s1l", ".s1e", ".s1r"], { opacity: 0, duration: 0.45, ease: "power2.in" }, 4.4);
+
+      // 2 — stages build, then one token walks them
+      tl.fromTo(".st", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: E, stagger: 0.16 }, 5.15);
+      // 3 columns across 1624px of usable width, gap 64: each ~498px wide.
+      tl.fromTo("#rail", { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: E }, 5.7);
+      tl.fromTo("#token", { x: 232, opacity: 0 }, { x: 232, opacity: 1, duration: 0.3, ease: "none" }, 6.1);
+      tl.to("#token", { x: 794, duration: 0.75, ease: "power2.inOut" }, 7.0);
+      tl.to("#token", { x: 1356, duration: 0.75, ease: "power2.inOut" }, 8.2);
+      tl.to("#token", { scale: 1.9, duration: 0.35, ease: "back.out(2)" }, 9.0);
+      tl.to([".st", "#token", "#rail"], { opacity: 0, duration: 0.4, ease: "power2.in" }, 10.4);
+
+      // 3 — ledger resolves row by row, MATCHED lands after each
+      tl.fromTo(".lrow", { x: 46, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: E, stagger: 0.1 }, 11.15);
+      tl.fromTo(".lmatch", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none", stagger: 0.1 }, 11.55);
+      tl.fromTo("#ledger-note", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E }, 12.6);
+      tl.to([".lrow", "#ledger-note"], { opacity: 0, duration: 0.4, ease: "power2.in" }, 15.4);
+
+      // 4 — payoff
+      tl.fromTo(".s4a", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: 0.75, ease: E, stagger: 0.12 }, 16.15);
+      tl.fromTo(".s4r", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 16.7);
+      tl.fromTo(".s4m", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: E }, 16.95);
+      tl.fromTo(".s4u", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E }, 17.5);
+
+      // signature wipes over all three cuts
+      [[4.78, "#wipe1", 5.0], [10.78, "#wipe2", 11.0], [15.78, "#wipe3", 16.0]].forEach(function (w) {
+        tl.fromTo(w[1], { xPercent: -105 }, { xPercent: 0, duration: 0.22, ease: "power3.in" }, w[0]);
+        tl.to(w[1], { xPercent: 105, duration: 0.26, ease: "power3.out" }, w[2]);
+      });
+
+      window.__timelines["matchback"] = tl;
+    </script>
+  </body>
+</html>

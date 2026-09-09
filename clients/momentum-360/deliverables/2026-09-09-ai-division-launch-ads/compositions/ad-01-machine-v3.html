@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link rel="stylesheet" href="assets/momentum.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      /* UPGRADE PASS — three changes from ad-01-machine-3d:
+         1. beats are 6.2 / 3.2 / 5.6, not 5 / 5 / 5
+         2. type reveals from behind a hard mask edge, not opacity
+         3. the hero drifts BEHIND the type and crops the frame on purpose  */
+
+      #three-layer {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        display: block;
+        z-index: 0;
+      }
+      #a1 { padding: 0; }
+      #a1-type {
+        position: absolute;
+        left: 148px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2; /* type sits IN FRONT of the form, so they occupy one space */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+      }
+      /* A real masked reveal: the line travels up from behind a hard edge and
+         is clipped until it arrives. Opacity fades read as soft; this reads
+         as printed. Padding+negative margin keeps descenders from clipping. */
+      .mask {
+        display: block;
+        overflow: hidden;
+        padding-bottom: 0.09em;
+        margin-bottom: -0.09em;
+      }
+      #b1-wrap,
+      #c1 { z-index: 2; }
+      #c1 { gap: 44px; }
+      #c1 .lockup { font-size: 148px; }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="15"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- A · 0 → 6.2s · the long setup, so the form has time to travel -->
+      <div id="a1" class="slide s-deep clip" data-start="0" data-duration="6.2" data-track-index="1">
+        <canvas id="three-layer"></canvas>
+        <div id="a1-type">
+          <span class="mask" data-layout-allow-overflow><span class="d d-lg on-deep al">MOMENTUM</span></span>
+          <span class="mask" data-layout-allow-overflow><span class="d d-lg on-deep al">BUILT THE</span></span>
+          <span class="mask" data-layout-allow-overflow><span class="d d-lg on-deep-brand al">MACHINE.</span></span>
+          <span class="rule ar"></span>
+        </div>
+      </div>
+
+      <!-- B · 6.2 → 9.4s · SHORT. It is a hit, not a paragraph. -->
+      <div id="b1" class="slide s-brand a-center clip" data-start="6.2" data-duration="3.2" data-track-index="2">
+        <div id="b1-wrap">
+          <span class="mask" data-layout-allow-overflow><span class="d d-xl on-brand bl">NOW WE BUILD</span></span>
+          <span class="mask" data-layout-allow-overflow><span class="d d-xl on-brand bl">YOURS.</span></span>
+        </div>
+      </div>
+
+      <!-- C · 9.4 → 15s · the long resolve, time enough to read and act -->
+      <div id="c1" class="slide s-deep payoff clip" data-start="9.4" data-duration="5.6" data-track-index="3">
+        <span class="mask" data-layout-allow-overflow><span class="lockup on-deep cm">MOMENTUM <em class="on-deep-brand">AI</em></span></span>
+        <span class="lanes-rule cr"></span>
+        <div class="lanes">
+          <span class="lane on-deep-muted cn">AEO / GEO</span>
+          <span class="lane on-deep-muted cn">AI DESIGN</span>
+          <span class="lane on-deep-muted cn">AI MARKETING</span>
+          <span class="lane on-deep-muted cn">AI AUTOMATION</span>
+        </div>
+        <span class="url on-deep-brand cu">needmomentum.com</span>
+      </div>
+
+      <div id="wipe1" class="wipe clip" data-start="5.8" data-duration="0.8" data-track-index="9"></div>
+      <div id="wipe2" class="wipe clip" data-start="9.0" data-duration="0.8" data-track-index="9"></div>
+    </div>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.181.2/+esm";
+      import { mountHero } from "./assets/hero.js";
+
+      const clamp01 = (v) => Math.min(1, Math.max(0, v));
+      const easeInOut = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+
+      mountHero({
+        canvas: "three-layer",
+        geometry: new THREE.TorusKnotGeometry(1.32, 0.42, 260, 40, 2, 3),
+        scale: 1.3,
+        spin: 0.46,
+        inAt: 0.1,
+        outAt: 5.55,
+        // Deliberate crop: the form starts well off the right edge and is only
+        // ever partly in frame. That is a composition decision, not the
+        // accident the auto-fit clamp exists to prevent.
+        allowCrop: true,
+        // It travels left across the whole beat, passing BEHIND the headline
+        // instead of sitting politely in its own column.
+        xOf: (t) => 3.5 - 2.0 * easeInOut(clamp01(t / 5.6)),
+        // Slow push in. Barely perceptible frame to frame, clearly felt overall.
+        camZOf: (t) => 8.5 - 0.7 * clamp01(t / 6.0),
+      });
+    </script>
+
+    <script>
+      const E = "expo.out";
+      const tl = gsap.timeline({ paused: true });
+
+      // A — masked reveal, wider stagger because the beat is longer
+      tl.fromTo(".al", { yPercent: 115 }, { yPercent: 0, duration: 1.0, ease: E, stagger: 0.17 }, 0.2);
+      tl.fromTo(".ar", { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: E }, 1.15);
+      tl.to(".al", { yPercent: -115, duration: 0.55, ease: "power3.in", stagger: 0.06 }, 5.55);
+      tl.to(".ar", { scaleX: 0, duration: 0.4, ease: "power2.in" }, 5.55);
+
+      // B — fast in, hold, fast out. 3.2s total.
+      tl.fromTo(".bl", { yPercent: 115 }, { yPercent: 0, duration: 0.62, ease: E, stagger: 0.1 }, 6.35);
+      tl.to("#b1-wrap", { scale: 1.04, duration: 1.9, ease: "none" }, 7.1);
+      tl.to(".bl", { yPercent: -115, duration: 0.45, ease: "power3.in", stagger: 0.05 }, 8.95);
+
+      // C — the resolve gets room
+      tl.fromTo(".cm", { yPercent: 115 }, { yPercent: 0, duration: 0.95, ease: E }, 9.6);
+      tl.fromTo(".cr", { scaleX: 0 }, { scaleX: 1, duration: 0.85, ease: E }, 10.1);
+      tl.fromTo(".cn", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E, stagger: 0.09 }, 10.35);
+      tl.fromTo(".cu", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E }, 11.1);
+
+      tl.fromTo("#wipe1", { xPercent: -105 }, { xPercent: 0, duration: 0.22, ease: "power3.in" }, 5.98);
+      tl.to("#wipe1", { xPercent: 105, duration: 0.26, ease: "power3.out" }, 6.2);
+      tl.fromTo("#wipe2", { xPercent: -105 }, { xPercent: 0, duration: 0.22, ease: "power3.in" }, 9.18);
+      tl.to("#wipe2", { xPercent: 105, duration: 0.26, ease: "power3.out" }, 9.4);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
