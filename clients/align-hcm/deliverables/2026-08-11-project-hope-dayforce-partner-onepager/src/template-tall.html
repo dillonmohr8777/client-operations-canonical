@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Project HOPE — Partner Offer for Dayforce Sellers</title>
+<style>
+/*FONTS*/
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0A1628;
+  --slate:#1E3050;
+  --orange:#E8832A;
+  --orange-hot:#F05A28;
+  --surface:#F6F8FB;
+  --line:#DFE5EC;
+  --text:#18202F;
+  --muted:#586274;
+  --muted-on-dark:#B3BECD;
+}
+html,body{width:8.5in;height:14in}
+body{
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+  color:var(--text);background:#fff;
+  -webkit-font-smoothing:antialiased;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+@page{size:8.5in 14in;margin:0}
+.page{width:8.5in;height:14in;display:flex;flex-direction:column;overflow:hidden;position:relative}
+
+.topbar{height:6pt;background:linear-gradient(90deg,var(--orange) 0%,var(--orange-hot) 55%,#C2410C 100%);flex:none}
+
+/* ---------- header ---------- */
+.hdr{
+  flex:none;background:var(--ink);color:#fff;padding:17pt 30pt 16pt;
+  display:flex;align-items:center;justify-content:space-between;gap:22pt;
+}
+.hdr-copy{flex:1 1 auto;min-width:0}
+h1{font-size:31.5pt;font-weight:800;letter-spacing:-.024em;line-height:1;color:#fff;white-space:nowrap}
+.h1sub{
+  font-size:18.5pt;font-weight:700;letter-spacing:-.014em;line-height:1.1;
+  color:var(--orange);margin-top:5pt;white-space:nowrap;
+}
+.hdr-kicker{
+  font-size:9.2pt;font-weight:400;line-height:1.4;color:#BAC5D7;margin-top:9pt;text-wrap:balance;
+  max-width:290pt;
+  padding-left:10pt;border-left:1.8pt solid rgba(232,131,42,.6);
+}
+
+/* ---------- co-brand lockup ---------- */
+.cobrand{display:flex;align-items:center;gap:16pt;flex:none}
+.cobrand .align-logo{width:104pt;height:auto;display:block}
+.cobrand .rule{width:.8pt;height:50pt;background:rgba(255,255,255,.26)}
+.partner{text-align:center}
+/* real logo when one is supplied; see build.py */
+.df-logo{display:block;width:94pt;height:auto;color:#fff}
+.df-label{
+  font-size:6.8pt;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--orange);margin-top:6pt;
+}
+/* text designation used until the official logo file is dropped in */
+.df-badge{
+  border:1.1pt solid rgba(232,131,42,.7);border-radius:5pt;padding:6pt 9pt;
+  font-size:7.6pt;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+  line-height:1.5;color:var(--orange);white-space:nowrap;text-align:center;
+}
+
+/* ---------- body shell ---------- */
+.main{flex:1;padding:22pt 30pt 24pt;display:flex;flex-direction:column;min-height:0;justify-content:space-between}
+section{flex:none}
+
+.shead{display:flex;align-items:center;gap:10pt;margin-bottom:6.5pt}
+.shead .lbl{
+  font-size:7.4pt;font-weight:800;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--orange);white-space:nowrap;display:flex;align-items:center;gap:7pt;
+}
+.shead .lbl::before{content:"";display:block;width:15pt;height:1.8pt;background:var(--orange);flex:none}
+h2{font-size:17pt;font-weight:800;letter-spacing:-.018em;line-height:1.1;color:var(--ink);white-space:nowrap}
+.shead .tail{flex:1;height:1pt;background:var(--line)}
+
+/* ---------- 1. five reasons ---------- */
+.reasons{display:grid;grid-template-columns:repeat(5,1fr);gap:7.5pt}
+.reason{
+  background:var(--surface);border:.9pt solid var(--line);border-radius:5pt;
+  padding:9pt;position:relative;overflow:hidden;display:flex;flex-direction:column;
+}
+.reason::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3pt;
+  background:linear-gradient(90deg,var(--orange),var(--orange-hot));
+}
+.reason .num{
+  position:absolute;top:9pt;right:9pt;
+  font-size:7.6pt;font-weight:800;letter-spacing:.09em;color:var(--orange);
+}
+.reason h3{
+  font-size:11pt;font-weight:800;letter-spacing:-.016em;line-height:1.13;color:var(--ink);
+  margin-bottom:5pt;min-height:25pt;padding-right:16pt;
+}
+.reason p{font-size:9.4pt;font-weight:400;line-height:1.38;color:var(--muted);text-wrap:pretty}
+
+/* ---------- 2. HOPE stages ---------- */
+.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:7.5pt}
+.stage{border:.9pt solid var(--line);border-radius:5.5pt;overflow:hidden;display:flex;flex-direction:column;background:#fff}
+.stage .top{background:var(--ink);color:#fff;padding:8pt 10pt;position:relative}
+.stage .top .idx{
+  position:absolute;top:8pt;right:10pt;font-size:17pt;font-weight:800;
+  color:rgba(255,255,255,.13);line-height:1;letter-spacing:-.03em;
+}
+.stage .name{font-size:12.6pt;font-weight:800;letter-spacing:.03em;line-height:1}
+.stage .wk{font-size:8.8pt;font-weight:600;opacity:.72;margin-top:5pt}
+.stage .hrs{font-size:8.2pt;font-weight:700;color:var(--orange);margin-top:2.5pt}
+.stage .mid{padding:8.5pt 10pt 7.5pt;flex:1}
+.stage .mid p{font-size:9.4pt;font-weight:400;line-height:1.38;color:var(--text);text-wrap:pretty}
+.stage .btm{border-top:.9pt dashed #D6DEE8;background:var(--surface);padding:7pt 10pt 7.5pt}
+.stage .btm .k{font-size:7pt;font-weight:800;letter-spacing:.14em;color:var(--orange);display:block;margin-bottom:3pt}
+.stage .btm .v{font-size:8.6pt;font-weight:600;line-height:1.3;color:var(--slate)}
+
+/* ---------- 3. the offer ---------- */
+.offer{background:var(--ink);border-radius:6.5pt;overflow:hidden;display:grid;grid-template-columns:1fr .8pt 1fr}
+.offer .split{background:rgba(255,255,255,.16)}
+.ocol{padding:11pt 14pt 11.5pt}
+.ocol .ohead{
+  display:flex;align-items:center;gap:8pt;margin-bottom:8pt;
+  padding-bottom:7.5pt;border-bottom:.9pt solid rgba(255,255,255,.14);
+}
+.ocol .ohead .tag{
+  font-size:7pt;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--ink);
+  background:var(--orange);border-radius:3pt;padding:3pt 6.5pt;white-space:nowrap;
+}
+.ocol .ohead h3{font-size:12.8pt;font-weight:800;letter-spacing:-.014em;color:#fff;white-space:nowrap}
+.olist{display:flex;flex-direction:column;gap:6.5pt}
+.oitem{display:flex;gap:8pt;align-items:flex-start}
+.oitem .ck{
+  flex:none;width:11pt;height:11pt;border-radius:50%;background:rgba(232,131,42,.16);
+  border:.9pt solid rgba(232,131,42,.6);position:relative;margin-top:1pt;
+}
+.oitem .ck::after{
+  content:"";position:absolute;left:3.1pt;top:2.6pt;width:3.4pt;height:1.7pt;
+  border-left:1.6pt solid var(--orange);border-bottom:1.6pt solid var(--orange);transform:rotate(-45deg);
+}
+.oitem p{font-size:9.7pt;font-weight:500;line-height:1.36;color:#E8EDF5;text-wrap:pretty}
+
+/* ---------- 4. three steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:11pt}
+.step{border-left:2.8pt solid var(--orange);padding:1pt 0 1pt 11pt}
+.step .n{font-size:7.4pt;font-weight:800;letter-spacing:.13em;color:var(--orange);margin-bottom:3.5pt;text-transform:uppercase}
+.step h3{font-size:11.4pt;font-weight:800;letter-spacing:-.016em;line-height:1.13;color:var(--ink);margin-bottom:4pt}
+.step p{font-size:9.4pt;font-weight:400;line-height:1.38;color:var(--muted);text-wrap:pretty}
+
+/* ---------- contact: flat, no card, no glow ---------- */
+.ftr{
+  flex:none;background:var(--ink);color:#fff;padding:16pt 30pt 17pt;
+  display:flex;align-items:center;justify-content:space-between;gap:24pt;position:relative;
+}
+.ftr::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2.6pt;
+  background:linear-gradient(90deg,var(--orange),var(--orange-hot) 60%,transparent);
+}
+.ftr-l{display:flex;align-items:center;gap:18pt;min-width:0}
+.ftr-l .align-logo{width:124pt;height:auto;display:block;flex:none}
+.ftr-l .vr{width:.8pt;height:48pt;background:rgba(255,255,255,.24);flex:none}
+.who .k{
+  font-size:7.2pt;font-weight:800;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:5pt;
+}
+.who .nm{font-size:18pt;font-weight:800;letter-spacing:-.02em;line-height:1.05;color:#fff}
+.who .rl{font-size:10.2pt;font-weight:500;color:var(--muted-on-dark);margin-top:4pt}
+.ftr-r{text-align:right;flex:none}
+.ftr-r .em{font-size:11.6pt;font-weight:700;color:#fff;letter-spacing:-.01em}
+.ftr-r .ph{font-size:13.6pt;font-weight:800;color:var(--orange);letter-spacing:-.014em;margin-top:5pt}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar"></div>
+
+  <header class="hdr">
+    <div class="hdr-copy">
+      <h1>Your Deal Is Stalled.</h1>
+      <div class="h1sub">We Can Help You Get It Moving.</div>
+      <div class="hdr-kicker">A partner offer exclusively for Dayforce reps with stuck opportunities.</div>
+    </div>
+    <div class="cobrand">
+      <svg class="align-logo" viewBox="0 0 1410 642"><use href="#align-logo"/></svg>
+      <div class="rule"></div>
+      <div class="partner"><!--PARTNER_MARK--></div>
+    </div>
+  </header>
+
+  <div class="main">
+
+    <section id="s1">
+      <div class="shead">
+        <div class="lbl">Why it stalled</div>
+        <h2>Five Reasons Good Dayforce Deals Stop Moving</h2>
+        <div class="tail"></div>
+      </div>
+      <div class="reasons">
+        <div class="reason"><div class="num">01</div><h3>No Executive Sponsor</h3>
+          <p>Your champion can't get the deal approved. Nobody above them is bought in.</p></div>
+        <div class="reason"><div class="num">02</div><h3>No Business Case</h3>
+          <p>The prospect likes Dayforce but can't justify the spend. Finance is blocking the PO.</p></div>
+        <div class="reason"><div class="num">03</div><h3>Competing Priorities</h3>
+          <p>A merger, reorg, or IT project is pulling budget and attention away from HCM.</p></div>
+        <div class="reason"><div class="num">04</div><h3>Scope Uncertainty</h3>
+          <p>The prospect doesn't know what they need. The problem was never defined clearly enough to buy against.</p></div>
+        <div class="reason"><div class="num">05</div><h3>Budget Not Confirmed</h3>
+          <p>The opportunity is real but the money isn't allocated. The deal is sitting in a future fiscal year with no reason to pull forward.</p></div>
+      </div>
+    </section>
+
+    <section id="s2">
+      <div class="shead">
+        <div class="lbl">Project HOPE</div>
+        <h2>We Do the Diagnostic Work That Builds the Case to Buy</h2>
+        <div class="tail"></div>
+      </div>
+      <div class="stages">
+        <div class="stage">
+          <div class="top"><span class="idx">01</span><div class="name">DISCOVER</div>
+            <div class="wk">1-2 weeks</div><div class="hrs">Client's time: ~3-4 hrs</div></div>
+          <div class="mid"><p>Stakeholder interviews and current-state mapping. We find the exec with the pain and the authority.</p></div>
+          <div class="btm"><span class="k">Solves</span><span class="v">No exec sponsor, scope uncertainty</span></div>
+        </div>
+        <div class="stage">
+          <div class="top"><span class="idx">02</span><div class="name">DIAGNOSE</div>
+            <div class="wk">2-3 weeks</div><div class="hrs">Client's time: ~4-6 hrs</div></div>
+          <div class="mid"><p>Module utilization audit, spend reconciliation, and capability gap assessment.</p></div>
+          <div class="btm"><span class="k">Solves</span><span class="v">No business case, scope uncertainty</span></div>
+        </div>
+        <div class="stage">
+          <div class="top"><span class="idx">03</span><div class="name">DESIGN</div>
+            <div class="wk">1-2 weeks</div><div class="hrs">Client's time: ~2-3 hrs</div></div>
+          <div class="mid"><p>Prioritized fix list with effort, cost, and ROI. CFO-ready business case built for approval.</p></div>
+          <div class="btm"><span class="k">Solves</span><span class="v">No business case, budget not confirmed</span></div>
+        </div>
+        <div class="stage">
+          <div class="top"><span class="idx">04</span><div class="name">DELIVER</div>
+            <div class="wk">1 week</div><div class="hrs">Client's time: ~1-2 hrs</div></div>
+          <div class="mid"><p>CHRO readout with a sequenced roadmap that creates urgency and a clear decision point.</p></div>
+          <div class="btm"><span class="k">Solves</span><span class="v">Competing priorities, no exec sponsor</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="s3">
+      <div class="shead">
+        <div class="lbl">The offer</div>
+        <h2>Project HOPE: At No Charge to You or Your Prospect</h2>
+        <div class="tail"></div>
+      </div>
+      <div class="offer">
+        <div class="ocol">
+          <div class="ohead"><span class="tag">Prospect</span><h3>What Your Prospect Gets</h3></div>
+          <div class="olist">
+            <div class="oitem"><span class="ck"></span><p>A full five-week HOPE engagement at no charge</p></div>
+            <div class="oitem"><span class="ck"></span><p>Utilization map, spend-vs-value scorecard, and capability gap read</p></div>
+            <div class="oitem"><span class="ck"></span><p>A CFO-ready business case and prioritized roadmap</p></div>
+            <div class="oitem"><span class="ck"></span><p>An executive readout built to create a decision point</p></div>
+          </div>
+        </div>
+        <div class="split"></div>
+        <div class="ocol">
+          <div class="ohead"><span class="tag">You</span><h3>What You Get</h3></div>
+          <div class="olist">
+            <div class="oitem"><span class="ck"></span><p>A re-engaged prospect with a funded business case</p></div>
+            <div class="oitem"><span class="ck"></span><p>An exec sponsor who now owns the problem</p></div>
+            <div class="oitem"><span class="ck"></span><p>A clear scope that removes the uncertainty stalling the deal</p></div>
+            <div class="oitem"><span class="ck"></span><p>A reason to get back in the room</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="s4">
+      <div class="shead">
+        <div class="lbl">How to refer a deal</div>
+        <h2>Three Steps. No Overhead.</h2>
+        <div class="tail"></div>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="n">Step 01</div><h3>Flag the stalled opportunity</h3>
+          <p>Send us the account name and a one-line description of where it is stuck.</p></div>
+        <div class="step"><div class="n">Step 02</div><h3>We scope it together</h3>
+          <p>30-minute call to confirm fit. We handle the prospect conversation from there.</p></div>
+        <div class="step"><div class="n">Step 03</div><h3>We deliver. You close.</h3>
+          <p>HOPE produces the business case and executive readout. You walk back in with momentum.</p></div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="ftr">
+    <div class="ftr-l">
+      <svg class="align-logo" viewBox="0 0 1410 642"><use href="#align-logo"/></svg>
+      <div class="vr"></div>
+      <div class="who">
+        <div class="k">Refer a stalled deal</div>
+        <div class="nm">Ben Harrison</div>
+        <div class="rl">SVP Sales &amp; Marketing, Align HCM</div>
+      </div>
+    </div>
+    <div class="ftr-r">
+      <div class="em">ben.harrison@alignhcm.com</div>
+      <div class="ph">+1 416 831 9972</div>
+    </div>
+  </footer>
+
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<!--SYMBOLS-->
+</defs></svg>
+<!--MEASURE-->
+</body>
+</html>
