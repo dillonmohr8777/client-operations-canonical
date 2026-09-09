@@ -1,0 +1,557 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Nunito+Sans:wght@400;700;800&amp;family=Caveat:wght@600&amp;display=swap">
+  <style>
+:root{--bg:#FBF8F4;--bg2:#F0ECE5;--ink:#14181B;--blue:#155E86;--blue2:#3897CC;--or:#E27113;--or2:#A35309;--dark:#0E1417;--dk2:#1A2226;--pale:#F4F1EC;--mut:#636465;--mut2:#8A9296;--rl:#DCD6CC;--rail:270px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 'Nunito Sans','Segoe UI',system-ui,sans-serif}
+.disp{font-family:'Archivo Black','Arial Black',Impact,sans-serif;letter-spacing:-.02em}
+a{color:var(--blue)}a:hover{color:var(--blue2)}:focus-visible{outline:3px solid var(--or);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--dark);color:var(--pale);padding:8px 14px;z-index:9}.skip:focus{left:8px}
+.ribbon{position:sticky;top:0;z-index:8;background:var(--dark);color:var(--pale);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:9px 20px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.ribbon span{color:var(--or)}.ribbon button{background:transparent;color:var(--pale);border:1px solid var(--mut2);font:inherit;letter-spacing:.1em;padding:4px 10px;cursor:pointer}.ribbon button:hover{border-color:var(--or)}
+.wrap{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);min-height:100vh}
+nav.toc{position:sticky;top:34px;align-self:start;height:calc(100vh - 34px);overflow:auto;padding:28px 20px 40px 28px;border-right:1px solid var(--rl);background:var(--bg2)}
+nav.toc .lk{margin-bottom:22px}nav.toc img{height:26px;width:auto;display:block}
+nav.toc .eyebrow{margin-bottom:10px}nav.toc a{display:grid;grid-template-columns:34px 1fr;gap:8px;align-items:baseline;padding:8px 6px;text-decoration:none;color:var(--ink);font-size:13.5px;font-weight:700;line-height:1.3;border-top:1px solid var(--rl)}
+nav.toc a .tn{font-family:'Archivo Black','Arial Black',Impact,sans-serif;color:var(--blue);font-size:15px}nav.toc a.on{background:var(--bg);box-shadow:inset 3px 0 0 var(--or)}
+main{min-width:0}.eyebrow{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.cover{position:relative;overflow:hidden;background:var(--bg2);padding:64px 64px 56px;min-height:88vh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);grid-template-rows:auto 1fr auto;gap:28px 48px;align-items:center}.cover .lk,.cover .meta{grid-column:1/-1}
+.cover .lk img{height:38px;width:auto;display:block}.cover .big{font-size:clamp(46px,6.2vw,88px);line-height:1;margin:8px 0 0;max-width:none}
+.cover .sub{font-family:Caveat,'Segoe Script',cursive;font-weight:600;font-size:clamp(24px,2.6vw,34px);line-height:1.2;color:var(--or2);transform:rotate(-1.5deg);transform-origin:left;max-width:22ch;margin-top:18px}
+.cover .art{width:100%;aspect-ratio:4/3;object-fit:cover;box-shadow:24px 28px 0 rgba(226,113,19,.28);animation:fl 7s ease-in-out infinite}
+.cover .meta{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;position:relative}.cover .meta b{display:block;font-size:15px}.cover .meta small{color:var(--mut);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:11px}
+.cover .mark{height:44px;width:auto}
+.draft{margin:0 64px;background:var(--dark);color:var(--pale);padding:26px 32px;box-shadow:14px 16px 0 rgba(226,113,19,.28)}.draft .eyebrow{color:var(--or)}.draft ol{margin:10px 0 0;padding-left:20px;font-size:14.5px;line-height:1.5;color:#D8DCDE}
+.rd,.note,.pre{max-width:720px;padding:0 64px}.pre{padding-top:44px}
+.op{position:relative;overflow:hidden;padding:88px 64px 40px;margin-top:56px;border-top:1px solid var(--rl)}
+.ghost{position:absolute;top:-28px;right:-4%;font-family:'Archivo Black','Arial Black',Impact,sans-serif;font-size:clamp(180px,22vw,320px);line-height:1;letter-spacing:-.04em;color:var(--rl);user-select:none}
+.rule{position:absolute;left:44px;top:88px;width:3px;height:0;background:var(--blue)}
+h2{font-family:'Archivo Black','Arial Black',Impact,sans-serif;letter-spacing:-.02em;font-size:clamp(34px,4.4vw,60px);line-height:1.04;max-width:min(16ch,66%);margin:14px 0 0;position:relative}
+.band{display:flex;align-items:flex-end;gap:24px;margin-top:34px;position:relative}.band img{width:min(520px,60%);aspect-ratio:16/9;object-fit:cover;box-shadow:18px 20px 0 rgba(226,113,19,.28)}
+.glyph{display:inline-block;width:64px;height:64px}.glyph .ic{width:100%;height:100%;fill:none;stroke:var(--blue);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}.ic .s3{stroke:var(--or)}
+.rv{opacity:0}.rv.in{opacity:1}.rv.in .ghost{animation:g 1.2s cubic-bezier(.16,1,.3,1) both}.rv.in .rule{animation:w .8s cubic-bezier(.85,0,.15,1) both}.rv.in h2,.rv.in .eyebrow,.rv.in .band{animation:r .8s cubic-bezier(.16,1,.3,1) both}.rv.in .band{animation-delay:.28s}
+.in .ic path,.in .ic circle,.in .ic rect{stroke-dasharray:160;stroke-dashoffset:160;animation:d 1.4s cubic-bezier(.16,1,.3,1) forwards}.in .ic .s2{animation-delay:.25s}.in .ic .s3{animation-delay:.5s}
+.lanes .glyph .ic{animation:spin 14s linear infinite}.lanes .glyph:nth-child(odd) .ic{animation-direction:reverse}
+@keyframes r{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}@keyframes g{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}@keyframes w{to{height:300px}}@keyframes d{to{stroke-dashoffset:0}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes fl{50%{transform:translateY(-8px)}}
+.rd h3{font-size:22px;font-weight:800;line-height:1.2;margin:38px 0 8px}.rd p{margin:0 0 18px}.rd li{margin:6px 0}.rd blockquote{margin:22px 0;padding:18px 24px;border-left:3px solid var(--or);background:var(--bg2)}
+.rd strong{font-weight:800}.rd code{font:600 .92em ui-monospace,Consolas,monospace;background:var(--bg2);padding:1px 5px}
+.tw{overflow-x:auto;margin:22px -8px}table{border-collapse:collapse;min-width:100%;font-size:14.5px}th{text-align:left;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);padding:10px 8px;border-bottom:2px solid var(--blue)}td{padding:9px 8px;border-top:1px solid var(--rl);vertical-align:top}
+.src{display:inline;font-style:normal;font-size:11.5px;color:var(--mut);background:var(--bg2);border:1px solid var(--rl);padding:1px 6px;margin-left:4px;vertical-align:1px}.src::before{content:"source · "}body.nosrc .src{display:none}
+.note{margin:28px auto 0 0;background:var(--bg2);padding:22px 28px;border-left:3px solid var(--blue)}.note p{margin:8px 0 0;font-size:15px;color:var(--mut)}
+.dgm{margin:44px 64px;max-width:900px;background:var(--dark);color:var(--pale);padding:30px 32px 26px;box-shadow:24px 28px 0 rgba(226,113,19,.28)}.dgm .eyebrow{color:var(--blue2)}
+.dgm .nodes{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.dgm button{background:var(--dk2);color:var(--pale);border:1px solid var(--mut2);font:800 13px 'Nunito Sans',sans-serif;padding:10px 14px;cursor:pointer;text-align:left}.dgm button[aria-pressed=true]{background:var(--or);color:var(--dark);border-color:var(--or)}
+.dgm .out{font-size:16px;line-height:1.55;min-height:3.2em;margin-top:8px}.dgm .out a{color:var(--blue2)}
+body.js .ws .rd ol{list-style:none;padding:0;margin:18px 0;border-bottom:1px solid var(--rl)}body.js .ws .rd ol li{display:grid;grid-template-columns:26px 1fr;gap:14px;align-items:start;padding:10px 12px;margin:0;border-top:1px solid var(--rl);cursor:pointer}
+.ws .rd ol li .bx{width:24px;height:24px;border:2px solid #8E8578;margin-top:3px;display:grid;place-items:center}.ws .rd ol li.done{background:var(--bg2)}.ws .rd ol li.done .bx{background:var(--blue);border-color:var(--blue)}.ws .rd ol li.done .bx::after{content:"";width:10px;height:6px;border:2.4px solid #fff;border-top:0;border-right:0;transform:translateY(-2px) rotate(-45deg)}
+.score{margin:28px 64px 8px;max-width:720px;background:var(--dark);color:var(--pale);padding:20px 26px;box-shadow:14px 16px 0 rgba(226,113,19,.28);display:grid;grid-template-columns:130px 1fr;gap:20px;align-items:center}.score .n{font-family:'Archivo Black',sans-serif;font-size:56px;line-height:1;color:var(--or)}.score .bar{height:6px;background:var(--dk2);margin-top:12px}.score .bar i{display:block;height:6px;background:var(--or);width:0;transition:width .5s cubic-bezier(.16,1,.3,1)}
+.lanes{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px;margin:26px 0}.lane{border-top:2px solid var(--blue);padding-top:12px}.lane .glyph{width:44px;height:44px}.ln{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-top:8px}
+.back{padding:56px 64px 80px;border-top:1px solid var(--rl);max-width:900px}.back ul{font-size:12.5px;color:var(--mut);line-height:1.5;padding-left:18px;word-break:break-all}.back .kw{font-size:12px;color:var(--mut2)}
+.ribbon .nv{display:flex;gap:6px}.ribbon .nv button{min-width:34px;padding:4px 8px;font-size:15px;line-height:1}
+@media(max-width:1099px){.wrap{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:0;border-bottom:1px solid var(--rl)}.cover,.op,.draft,.dgm,.score{padding-left:28px;padding-right:28px;margin-left:0;margin-right:0}.rd,.note,.pre{padding-left:28px;padding-right:28px}.cover .art{position:static;width:100%;max-width:none;margin-top:16px}.rule{left:14px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1}.rv.in *,.in .ic *,.lanes .ic,.score .bar i{animation:none!important;transition:none!important;stroke-dashoffset:0!important}.rule{height:300px}}
+@media print{.ribbon,nav.toc,.nav,.dgm button{display:none!important}.wrap{display:block}.rv{opacity:1}.rule{height:300px}.ic *{stroke-dashoffset:0!important}.ch{break-before:page}.cover{min-height:auto;break-after:page}.op{page-break-inside:avoid}body{font-size:12.5px}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}.cover .art{position:static;width:100%;margin-top:14px}}
+</style>
+</helmet>
+<div style="width:100%;min-height:100vh;background:#FBF8F4">
+<a class="skip" href="#ch-1">Skip to chapter one</a>
+<div class="ribbon" role="status"><div>Review draft · <span>not publishable</span> · status: draft</div><div class="nv"><button id="pv" aria-label="Previous chapter">‹</button><button id="nx" aria-label="Next chapter">›</button><button id="srcbtn" aria-pressed="false">Sources: shown</button></div></div>
+<div class="wrap">
+<nav class="toc" aria-label="Contents"><div class="lk"><img src="momentum-logo.png" alt="Momentum"></div><div class="eyebrow">What's inside</div><a href="#sec-who-this-is-for-and-who-it-isn-t" data-t="sec-who-this-is-for-and-who-it-isn-t"><span class="tn"></span><span>Who this is for, and who it isn&#x27;t</span></a><a href="#ch-1" data-t="ch-1"><span class="tn">01</span><span>Why is Google answering the question instead of showing my website?</span></a><a href="#ch-2" data-t="ch-2"><span class="tn">02</span><span>What is AEO, and how is it different from SEO and GEO?</span></a><a href="#ch-3" data-t="ch-3"><span class="tn">03</span><span>Does AI search replace Google for a local business?</span></a><a href="#ch-4" data-t="ch-4"><span class="tn">04</span><span>How do I find out whether ChatGPT recommends my business today?</span></a><a href="#ch-5" data-t="ch-5"><span class="tn">05</span><span>Which sources do AI engines actually cite in my category, and can a small business get in?</span></a><a href="#ch-6" data-t="ch-6"><span class="tn">06</span><span>How do I get my business to show up in ChatGPT and Google&#x27;s AI answers?</span></a><a href="#ch-7" data-t="ch-7"><span class="tn">07</span><span>How do I measure AI visibility when there is no ranking?</span></a><a href="#ch-8" data-t="ch-8"><span class="tn">08</span><span>What does AEO cost, and what should a retainer include?</span></a><a href="#sec-frequently-asked-questions" data-t="sec-frequently-asked-questions"><span class="tn"></span><span>Frequently asked questions</span></a><a href="#sec-what-to-do-monday" data-t="sec-what-to-do-monday"><span class="tn"></span><span>What to do Monday</span></a><a href="#sec-about-momentum-ai" data-t="sec-about-momentum-ai"><span class="tn"></span><span>About Momentum AI</span></a></nav>
+<main id="top">
+<section class="cover"><div class="lk"><img src="momentum-logo.png" alt="Momentum"></div>
+<div><div class="eyebrow">Momentum AI Field Notes, No. 1</div><h1 class="disp big">Show Up When They Ask AI</h1><div class="sub">How a local service business gets found in ChatGPT, Gemini and Google&#x27;s AI answers</div></div>
+<img class="art" src="particles-cream.jpg" alt="">
+<div class="meta"><div><b>Dillon Mohr</b><small>Momentum Digital · Philadelphia · 8297 words</small></div><img class="mark" src="momentum-mark.png" alt="Momentum mark"></div></section>
+<aside class="draft"><div class="eyebrow">Publication review · publishable: false</div><ol><li>Draft is complete and every number is sourced, but four gates are open before it can ship under Dillon&#x27;s name.</li><li>(1) Dillon has to read it as himself: it is ghostwritten in first person and every &quot;I&quot; claim is his to keep or cut.</li><li>(2) The retainer price is deliberately withheld in chapter 8 because PLAN.md marks it as proposed and awaiting Mac&#x27;s sign-off; insert or leave out once decided.</li><li>(3) needmomentum.com/answer-engine-optimization/ exists in Google&#x27;s index but its body could not be fetched, so the book does not link to it; someone with a browser should check what it is before publishing.</li><li>(4) Client stories are anonymized per the evidence bank&#x27;s map; if Mac wants any of them named, permission must be on file first. The one reference to a public needmomentum.com case study (&quot;AI visibility score&quot;) should be re-confirmed against sales-deck/README.md item 4. Also reconcile the &quot;AI Engine Optimization&quot; expansion that appears in the August press release summary; this book uses &quot;Answer Engine Optimization&quot; throughout.</li></ol></aside>
+<div class="pre"><h1 hidden>Show Up When They Ask AI</h1>
+
+
+<aside class="note"><div class="eyebrow">Reader\'s note · how to read the brackets</div><p> Every number in this book has a source in square brackets. Search volumes are monthly, United States, from a keyword tool's index on September 7, 2026; they are estimates from that tool, not counts of people. Client figures are labeled the way our evidence file labels them: "platform total" means a number a platform reported, "verified outcome" means a number we reconciled to a real record. Paths that start with <code>research/</code> are inside the folder this book was written in (<code>...\momentum-360\deliverables\2026-09-07-google-aistudio-batch\</code>). Paths that start with <code>clients/</code> are inside <code>...\client-operations\clients\</code>. <code>PLAN.md</code> is the AI division plan dated September 4, 2026. Where I have no evidence, I say so in the sentence.</p></aside>
+
+</div>
+<section class="dgm" aria-label="How the chapters fit together"><div class="eyebrow">The method, chapter by chapter</div><div class="nodes"><button data-i="0" aria-pressed="false">01 · Why is Google answering the…</button><button data-i="1" aria-pressed="false">02 · What is AEO, and how…</button><button data-i="2" aria-pressed="false">03 · Does AI search replace Google…</button><button data-i="3" aria-pressed="false">04 · How do I find out…</button><button data-i="4" aria-pressed="false">05 · Which sources do AI engines…</button><button data-i="5" aria-pressed="false">06 · How do I get my…</button><button data-i="6" aria-pressed="false">07 · How do I measure AI…</button><button data-i="7" aria-pressed="false">08 · What does AEO cost, and…</button></div><div class="out" id="dout">Pick a chapter. Its own short answer appears here, in the book's words.</div></section>
+<section class="ch sec" id="sec-who-this-is-for-and-who-it-isn-t-w"><header class="op rv"><div class="rule"></div><h2 id="sec-who-this-is-for-and-who-it-isn-t" tabindex="-1">Who this is for, and who it isn't</h2></header><div class="rd">
+<p>This is for the owner of a real business with trucks, chairs, a front desk or a courtroom. Contractors. HVAC. Landscaping. Painting. Bridal. Restaurants. Law. Dental. You've been running for years. You've paid for SEO and probably for ads. Now a salesperson has said "AEO" to you, and you want to know what it is before you spend anything on it.</p>
+<p>Here is the honest range you're being asked to spend. The one Pennsylvania agency that prints a price for AI-search work starts at $3,000 a month <cite class="src">https://www.webfx.com/seo/services/ai-search-optimization/, fetched 2026-09-07, via research/aeo-geo-topic-research.md §2</cite>. That same agency's own cost guide puts small-business retainers at $1,500 to $5,000 a month <cite class="src">https://www.webfx.com/blog/ai/generative-engine-optimization-cost/, dated 2026-05-26, via research/aeo-geo-topic-research.md §2</cite>. That's a truck payment. You should know what it buys.</p>
+<p>By the end you'll know three things. The twenty questions your buyers ask an AI. Whether your business is in any of the answers today. And the six page changes that make a business citable, with a way to measure it monthly that doesn't depend on a ranking number.</p>
+<p><strong>Who it isn't for.</strong> If you sell nationally online, the mechanics are different and the case studies you want aren't in here. If you want a guarantee that you'll be cited, nobody honest can give you one and I won't try. If your phone rings and nobody picks up, fix that first. I'll show you our own numbers on that in chapter 3, because we had the same problem.</p>
+<p>One more thing before we start. This book is written for AI engines as well as for you. Each chapter opens with a short direct answer to its question. That's on purpose. If the book is any good, an engine should be able to quote it.</p>
+
+</div></section><section class="ch" id="s1" data-n="1"><header class="op rv"><div class="ghost" aria-hidden="true">01</div><div class="rule"></div><div class="eyebrow">Chapter 01</div><h2 id="ch-1" tabindex="-1">Why is Google answering the question instead of showing my website?</h2><div class="band"><img src="hero-polyhedron.jpg" alt=""><span class="glyph"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle class="s1" cx="20" cy="20" r="11"/><path class="s2" d="M29 29l11 11"/><path class="s3" d="M14 20h12M20 14v12"/></svg></span></div></header><div class="rd">
+<p><strong>Short answer.</strong> Because the search engine started reading the pages and writing the answer itself. Google calls it an AI Overview. ChatGPT and Gemini do it for every question. The buyer gets a paragraph, sometimes with three or four sources named. If your business is one of the sources, you're in the answer. If not, the buyer never sees you.</p>
+<p>For twenty years the game was simple. Someone typed "furnace repair near me". Google showed ten links and a map. If you were in the top three, you got the call. Everything an SEO agency sold you was about moving up that list.</p>
+<p>That list is still there. Something now sits on top of it.</p>
+<p>An AI Overview is a paragraph Google writes by reading a handful of pages and summarizing them. It appears above the links. It names some of the pages it read. Those are called citations. A lot of people are looking at this thing: "ai overviews" is searched about 110,000 times a month in the US, up from 33,100 in August 2025, with a peak of 201,000 in April 2026 <cite class="src">research/aeo-geo-topic-research.md §1, cluster 3</cite>. "google search ai mode" gets 18,100 a month and "ai search" gets 22,200 <cite class="src">research/aeo-geo-topic-research.md §1, cluster 4</cite>. People are not confused about whether this exists. They're trying to figure out what to do about it.</p>
+<p>ChatGPT and Gemini do the same job with no list underneath. Ask either one "who's a good HVAC company in Hampshire, Illinois" and you get a paragraph, a few names, and maybe a few links. There is no position one. There is named, or not named.</p>
+<p>That's the change. You used to be ranked. Now you're quoted, or you're not.</p>
+<h3>What our own site taught me</h3>
+<p>I'd rather show you our numbers than someone else's.</p>
+<p>We ran a check on needmomentum.com against a year of Google AI Overview answers, observed from August 26, 2025 to August 3, 2026. The tool found our domain cited 81 times <cite class="src">research/aeo-geo-topic-research.md §2, <code>inspect_ai_visibility</code></cite>. That sounds fine until you look at what got cited.</p>
+<p>Five sampled answers named us. The questions were "online marketing company in usa", "google ads management near me", "custom designed website", "google postcards", and "community guidelines ig" <cite class="src">research/aeo-geo-topic-research.md §2</cite>. The page cited for "google postcards" is an old how-to we wrote about verifying a Google Business Profile with the postcard Google mails you. It was cited alongside five pages from support.google.com. A ten-year-old agency in Philadelphia, sitting next to Google's own help desk, because we once explained a procedure plainly.</p>
+<p>None of the five was about AI. Not one. The pages that earn us citations are specific, boring, procedural pages. Not the homepage. Not the page that says we're great.</p>
+<p>That's the lesson of this whole book in one paragraph. Engines quote pages that answer a specific question in plain words. They don't quote adjectives.</p>
+<h3>Nobody has written the plain answer</h3>
+<p>Here's what the buyer actually types: "how to get your business on chatgpt". The keyword tool returned no volume for it, which usually means the phrase is too new or too varied to index <cite class="src">research/aeo-geo-topic-research.md §1, cluster 2</cite>. But the page-one results are real: a Reddit thread first, then OpenAI's own business page, then a string of marketing agencies <cite class="src">research/aeo-geo-topic-research.md §1, cluster 2</cite>. For "how to show up in chatgpt search results for local business" it's Reddit, then a YouTube video, then more agencies and Quora <cite class="src">research/aeo-geo-topic-research.md §1, cluster 2</cite>.</p>
+<p>Google's "People also ask" box under that search lists three questions: "How to appear in ChatGPT results?", "How do I get ChatGPT to recommend my business?", and "How do I promote my business on ChatGPT?" <cite class="src">research/aeo-geo-topic-research.md §1, cluster 2</cite>.</p>
+<p>Those are your questions. The answers on page one are written by people selling software or by strangers on a forum. Nobody with a book of service-business clients had written it plainly. So this is that.</p>
+
+</div></section><section class="ch" id="s2" data-n="2"><header class="op rv"><div class="ghost" aria-hidden="true">02</div><div class="rule"></div><div class="eyebrow">Chapter 02</div><h2 id="ch-2" tabindex="-1">What is AEO, and how is it different from SEO and GEO?</h2><div class="band"><img src="fold.jpg" alt=""><span class="glyph"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><rect class="s1" x="8" y="8" width="32" height="32" rx="2"/><path class="s2" d="M8 20h32M20 20v20"/><circle class="s3" cx="30" cy="30" r="4"/></svg></span></div></header><div class="rd">
+<p><strong>Short answer.</strong> AEO stands for answer engine optimization: making your business the one an AI names when someone asks a question you can answer. SEO gets a page ranked in a list of links. GEO is the same job as AEO with a different label. Buyers say "AEO". Use that word and stop worrying about the other one.</p>
+<p>Three acronyms, one table.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th></th>
+<th>SEO</th>
+<th>AEO</th>
+<th>GEO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stands for</td>
+<td>Search engine optimization</td>
+<td>Answer engine optimization</td>
+<td>Generative engine optimization</td>
+</tr>
+<tr>
+<td>Goal</td>
+<td>Rank a page in a list of links</td>
+<td>Be named or cited inside an AI's answer</td>
+<td>Same as AEO</td>
+</tr>
+<tr>
+<td>Where it shows</td>
+<td>The ten blue links and the map</td>
+<td>Google AI Overviews and AI Mode, ChatGPT, Gemini, Perplexity, Copilot</td>
+<td>Same as AEO</td>
+</tr>
+<tr>
+<td>What you measure</td>
+<td>Position, clicks, impressions</td>
+<td>Whether you're named, in which engine, for which question, on which date</td>
+<td>Same as AEO</td>
+</tr>
+<tr>
+<td>What you change</td>
+<td>Titles, links, speed, content</td>
+<td>Direct answers, FAQs, your Google profile, reviews, author, schema, crawler access</td>
+<td>Same as AEO</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>SEO</strong> is the thing you already paid for. It gets a page into the list. It still matters, because engines read pages Google can crawl. If your site can't be crawled, it can't be quoted. AEO sits on top of SEO. It doesn't replace it.</p>
+<p><strong>AEO</strong> is about the paragraph, not the list. The engine reads a set of pages and writes an answer. Your job is to be one of the pages it reads and trusts enough to name.</p>
+<p><strong>GEO</strong> is the same job. Someone coined "generative engine optimization" for engines that generate text, which is all of them now. The distinction is academic and the market has already voted.</p>
+<h3>Why "AEO" is the word</h3>
+<p>Look at what people type. "what is aeo" is searched about 4,400 times a month in the US, with low competition. Two years ago, in August 2024, it was 140. By July 2026 it was 6,600 <cite class="src">research/aeo-geo-topic-research.md §1, cluster 1</cite>. That's a forty-seven-fold rise in twenty-four months. "answer engine optimization" spelled out is 2,400 and flat <cite class="src">research/aeo-geo-topic-research.md §1, cluster 1</cite>.</p>
+<p>"generative engine optimization" is 4,400 a month and falling: 6,600 in August and September 2025, down to 2,900 by July 2026 <cite class="src">research/aeo-geo-topic-research.md §1, cluster 1</cite>.</p>
+<p>And the number of people asking which is which? "answer engine optimization vs generative engine optimization" gets 70 searches a month <cite class="src">research/aeo-geo-topic-research.md §1, cluster 1</cite>. Seventy people. That's the entire market for the distinction. I've just served it.</p>
+<p>You'll also see "AI engine optimization", about 390 searches a month <cite class="src">research/aeo-geo-topic-research.md §1, cluster 1</cite>. Same three letters, different expansion. "Answer engine" is the one this book uses, because the thing you're trying to get into is an answer.</p>
+<h3>Who wrote the definitions you'll find</h3>
+<p>Search "what is aeo" and page one is a software vendor, HubSpot, a content-science blog, Coursera, Digiday and Salesforce <cite class="src">research/aeo-geo-topic-research.md §1, cluster 1</cite>. Every one of them is written for a marketer at a company with a marketing department. None of them is written for someone who owns three trucks and answers the phone from the cab.</p>
+<p>The mechanics are the same for you. The priorities aren't. A software company needs to be cited for "best CRM for real estate". You need to be cited for "who does stamped concrete in Vacaville". Yours is easier, because fewer people are competing for the sentence. It's also less forgiving, because a wrong answer sends someone to your competitor's driveway.</p>
+
+</div></section><section class="ch" id="s3" data-n="3"><header class="op rv"><div class="ghost" aria-hidden="true">03</div><div class="rule"></div><div class="eyebrow">Chapter 03</div><h2 id="ch-3" tabindex="-1">Does AI search replace Google for a local business?</h2><div class="band"><img src="page-writes.jpg" alt=""><span class="glyph"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path class="s1" d="M8 20v8h8l14 8V12L16 20z"/><path class="s2" d="M34 18q6 6 0 12"/><path class="s3" d="M38 14q10 10 0 20"/></svg></span></div></header><div class="rd">
+<p><strong>Short answer.</strong> No. Google is still where the AI answer shows up most of the time. What changed is what Google does with your page: it may quote it instead of listing it. ChatGPT and Gemini are growing as places people ask. Your listing, your reviews and your phone still decide whether the job gets booked.</p>
+<p>This question gets asked a lot, and the tool I used had no volume for the exact phrase "does ai search replace google". The page-one results tell you the mood: a Reddit thread first, a TIME article from May 20, 2026 second, then an SEO firm's article titled "Will AI replace Google? The answer is no", then a LinkedIn research post, Medium, Quora and MIT Technology Review <cite class="src">research/aeo-geo-topic-research.md §1, cluster 4</cite>. Journalists, forums and one SEO company saying no.</p>
+<p>Here's the two-sided evidence I trust more than an opinion piece. About 110,000 people a month search "ai overviews" <cite class="src">research/aeo-geo-topic-research.md §1, cluster 3</cite>. About 5,400 a month search "hide google ai overviews chrome extension" <cite class="src">research/aeo-geo-topic-research.md §1, cluster 3</cite>. Some people want the thing gone. It's still there. Both of those groups are your customers.</p>
+<p>On the other side, "chatgpt for small business" went from 720 searches a month in August 2025 to 9,900 in July 2026 <cite class="src">research/aeo-geo-topic-research.md §1, cluster 2</cite>. Owners are trying the tool themselves. Their customers are too.</p>
+<h3>The one percentage with a name on it</h3>
+<p>I've seen exactly one agency put a number on how much of its own business comes from AI answers. Seer Interactive, an enterprise agency in Philadelphia, says on its site that since January 2025, 15% of its inbound conversions have come from someone who found them in an LLM <cite class="src">seerinteractive.com GEO service page, "Updated August 2026", via research/aeo-geo-topic-research.md §2</cite>.</p>
+<p>That's their number, about their leads, in their market. It's not yours. I don't have a percentage like that for a contractor or a dentist. Nobody on our client list has an AI-search baseline older than a few days, so I can't produce one <cite class="src">research/evidence-bank.md §E, gap 8</cite>. That's what chapter 4 fixes. In six months you'll have that number for your own business, and it will be worth more than any industry figure.</p>
+<h3>What doesn't change</h3>
+<p>Three things decide whether the job gets booked, and AI search touches none of them.</p>
+<p><strong>Your Google Business Profile.</strong> Still the listing on the map. Still the thing the AI reads for hours, address, reviews and services.</p>
+<p><strong>Your reviews.</strong> Still the proof. The engine reads them the same way a customer does.</p>
+<p><strong>Your phone.</strong> Here's ours. In July 2026, through the 27th, our own agency's call tracking logged 352 calls: 263 inbound, 101 answered, 162 missed. A 38.4% answer rate, with zero calls assigned to an owner <cite class="src">research/evidence-bank.md §A.17, platform total</cite>. That's us. The agency that sells lead generation. We missed six out of ten calls in July. We set up after-hours routing and a missed-call text that same week <cite class="src">research/evidence-bank.md §A.17</cite>, and by August 11 a one-day read showed 23 calls, 11 answered, 9 missed <cite class="src">research/evidence-bank.md §A.17, platform total</cite>. Better. Not fixed.</p>
+<p>AI search will not answer your phone. Neither will SEO. Before you spend on either, check your own answer rate. If it looks like ours did, that's your first project, and it costs less than a retainer.</p>
+<h3>What a service business should do</h3>
+<p>Keep the SEO basics. Add the AEO layer on top. Measure both, separately, and never let one report blur into the other. The rest of this book is the AEO layer.</p>
+
+</div></section><section class="ch" id="s4" data-n="4"><header class="op rv"><div class="ghost" aria-hidden="true">04</div><div class="rule"></div><div class="eyebrow">Chapter 04</div><h2 id="ch-4" tabindex="-1">How do I find out whether ChatGPT recommends my business today?</h2><div class="band"><img src="bird-plate.jpg" alt=""><span class="glyph"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle class="s1" cx="24" cy="24" r="8"/><path class="s2" d="M24 4v8M24 36v8M4 24h8M36 24h8M10 10l6 6M32 32l6 6M38 10l-6 6M16 32l-6 6"/><circle class="s3" cx="24" cy="24" r="3"/></svg></span></div></header><div class="rd">
+<p><strong>Short answer.</strong> Ask it. Write the twenty questions your buyers ask, type each one into two engines, and write down four things per question: the engine, the exact wording, the date, and which businesses or sources it named. That's your baseline. It takes an afternoon. Most businesses find they're in none of the answers, which is worth knowing before spending money.</p>
+<p>This is the part every vendor skips, because it's free and because the result is usually embarrassing. Do it anyway. You can't improve a number you haven't written down.</p>
+<h3>Where the twenty questions come from</h3>
+<p><strong>1. Search Console.</strong> If your site is connected to Google Search Console, it shows the real phrases people typed before your site appeared. Here's what that looks like on a real account. We pulled five days of data, August 21 to 25, 2026, for a Pittsburgh residential and commercial painting company. Result: 1 click, 4,306 impressions, average position around 23 <cite class="src">clients/fagan-painting/organic-search/2026-08-27-aeo-baseline.md, Search Console table; platform total</cite>. The one click was on the company's own name. Four thousand people saw the listing for non-brand searches. One person clicked, and that person already knew the company.</p>
+<p>From those five days we took eight live queries and added two from the site's own FAQ and navigation, for a ten-query set. The live ones included "affordable painters", "are flat and matte paint the same", "best interior painters pittsburgh pa", "best painting companies pittsburgh" and "bridgeville pa painting company" <cite class="src">clients/fagan-painting/organic-search/2026-08-27-aeo-baseline.md, "Ten-query monitoring set"</cite>. The two we added were "interior house painting pittsburgh" and "exterior house painting pittsburgh", and the file marks them as proposed, not live data, until the client reviews them. That distinction matters. Don't mix what you measured with what you guessed.</p>
+<p>Start with your own Search Console. Take the top ten to fifteen real queries that aren't your business name.</p>
+<p><strong>2. The "People also ask" box.</strong> Google already tells you how buyers phrase things. Search your service and your town and read the box. For the ChatGPT question the box gave us "How to appear in ChatGPT results?", "How do I get ChatGPT to recommend my business?" and "How do I promote my business on ChatGPT?" <cite class="src">research/aeo-geo-topic-research.md §1, cluster 2</cite>. Copy the phrasing exactly. The engine's phrasing is the buyer's phrasing.</p>
+<p><strong>3. The phone.</strong> Ask whoever answers it what people ask before they book. "How much for a two-story exterior?" "Do you do same-day?" "Are you licensed in Solano County?" Those are questions an engine gets asked too.</p>
+<p>A good mix for a local service business: five that include your town or "near me", ten about specific services, and five about cost, timing and whether it's worth it. Twenty.</p>
+<h3>Two engines</h3>
+<p>Pick two. I'd pick ChatGPT and Google, because Google's AI Overview and AI Mode are where the volume is (chapter 1) and ChatGPT is where owners are going (chapter 3). Gemini is a fair third. You'll run the same twenty in both.</p>
+<p>One honest note about measurement tools. The tool we used to check our own site covers Google AI Overviews only. It does not see ChatGPT, Gemini, Claude, Perplexity or Copilot <cite class="src">research/aeo-geo-topic-research.md, "How to read the numbers"</cite>. For those you type the question yourself and record what comes back. That's fine. That's what the tools are doing anyway, at scale.</p>
+<h3>The log</h3>
+<p>Make a spreadsheet with these columns:</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Engine</th>
+<th>Exact prompt</th>
+<th>Date</th>
+<th>Named?</th>
+<th>Sources it cited</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>Fill one row per question per engine. Forty rows. Under "Named?" write yes or no, and if yes, whether it was you or a competitor. Under "Sources" copy the domains the engine linked or mentioned. That column is the most useful thing you'll produce all month, and chapter 5 explains why.</p>
+<p>Those four fields, engine, prompt, date and source, aren't my idea of tidiness. They are the rule our visibility program runs on: every reported observation has an engine, a prompt, a date and a source <cite class="src">PLAN.md, "Three offers with finite delivery contracts"</cite>. If a vendor's report doesn't have those four columns, it isn't a report. It's a mood.</p>
+<h3>What I don't have yet</h3>
+<p>I haven't finished this twenty-question run on needmomentum.com. The plan was to have it in this edition, dated, so you could see the author eat his own cooking. It's not done. What I have is the tool's count from chapter 1: 81 citations across a year of Google AI Overviews, none of them on the topic of this book <cite class="src">research/aeo-geo-topic-research.md §2</cite>. That's my starting point, and it's not a good one. I'd rather print that than a screenshot I picked.</p>
+<p>The tool that produced our count also says, in its own notes, that "small and new brands may legitimately show zero" <cite class="src">research/aeo-geo-topic-research.md §2, scope note</cite>. If you run your twenty and get zero, that's not a failure. That's a baseline. On the painting account, the team couldn't run the ChatGPT and Perplexity checks that day because the web host's bot protection was blocking the crawlers and they ran out of time, so the first baseline there is Search Console only, and the file says so <cite class="src">clients/fagan-painting/organic-search/2026-08-27-aeo-baseline.md, "Not done"</cite>. A gap you name is a baseline. A gap you hide is a lie.</p>
+
+</div></section><section class="ch" id="s5" data-n="5"><header class="op rv"><div class="ghost" aria-hidden="true">05</div><div class="rule"></div><div class="eyebrow">Chapter 05</div><h2 id="ch-5" tabindex="-1">Which sources do AI engines actually cite in my category, and can a small business get in?</h2><div class="band"><img src="paper-city.jpg" alt=""><span class="glyph"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle class="s1" cx="20" cy="20" r="11"/><path class="s2" d="M29 29l11 11"/><path class="s3" d="M14 20h12M20 14v12"/></svg></span></div></header><div class="rd">
+<p><strong>Short answer.</strong> In Google's AI answers about answer engine optimization, the most-cited sources are YouTube, Reddit, Semrush, Google's own developer docs, LinkedIn and Quora. One agency makes the top twenty. Platforms and forums win because they hold thousands of specific answers. A small business gets in by being specific, and by answering where the engine already reads.</p>
+<p>We asked the tool which sources get cited most in Google AI Overviews on the topic "answer engine optimization". It's my category, not yours, but the shape is what matters. Here's the top twenty, by citation count and share <cite class="src">research/aeo-geo-topic-research.md §2, <code>discover_ai_citations</code>, category confidence "explicit"</cite>:</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Source</th>
+<th style="text-align: right;">Citations</th>
+<th style="text-align: right;">Share</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>youtube.com</td>
+<td style="text-align: right;">5,000</td>
+<td style="text-align: right;">28.3%</td>
+</tr>
+<tr>
+<td>reddit.com</td>
+<td style="text-align: right;">2,456</td>
+<td style="text-align: right;">13.9%</td>
+</tr>
+<tr>
+<td>semrush.com</td>
+<td style="text-align: right;">1,464</td>
+<td style="text-align: right;">8.3%</td>
+</tr>
+<tr>
+<td>developers.google.com</td>
+<td style="text-align: right;">1,352</td>
+<td style="text-align: right;">7.7%</td>
+</tr>
+<tr>
+<td>linkedin.com</td>
+<td style="text-align: right;">856</td>
+<td style="text-align: right;">4.9%</td>
+</tr>
+<tr>
+<td>mtu.edu</td>
+<td style="text-align: right;">680</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>quora.com</td>
+<td style="text-align: right;">592</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>wix.com</td>
+<td style="text-align: right;">504</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>en.wikipedia.org</td>
+<td style="text-align: right;">456</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>digitalmarketinginstitute.com</td>
+<td style="text-align: right;">456</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>coursera.org</td>
+<td style="text-align: right;">440</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>searchengineland.com</td>
+<td style="text-align: right;">424</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>searchenginejournal.com</td>
+<td style="text-align: right;">408</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>salesforce.com</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>medium.com</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>bruceclay.com</td>
+<td style="text-align: right;">376</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>shopify.com</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>forbes.com</td>
+<td style="text-align: right;">360</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>moz.com</td>
+<td style="text-align: right;">352</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>ahrefs.com</td>
+<td style="text-align: right;">328</td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table></div>
+<p>Read it again. YouTube and Reddit together hold 42% of citations. Reddit and Quora together hold 17%. A university is in there. One agency, Bruce Clay, is in the top twenty. Everyone else selling AEO services, and there are hundreds of us, is below the line.</p>
+<h3>Why forums beat agencies</h3>
+<p>A thread on r/smallbusiness has forty replies from forty people, each answering a specific question, each dated. Your homepage has one adjective and a stock photo of a handshake. The engine is looking for the specific answer. The forum has it. You don't. That's the whole story.</p>
+<p>It isn't that the engine prefers Reddit. It's that Reddit is where the specific answers are sitting. Put a specific answer somewhere the engine reads, and you become a source. Our postcard page from chapter 1 is the proof: one procedural page, cited next to five Google support pages.</p>
+<h3>Where we sit</h3>
+<p>We ran the same check on our own domain against five agencies the tool grouped with us, over the same year of Google AI Overview answers <cite class="src">research/aeo-geo-topic-research.md §2, competitor set</cite>:</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Domain</th>
+<th style="text-align: right;">Citations</th>
+<th style="text-align: right;">Share of set</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>thriveagency.com</td>
+<td style="text-align: right;">4,998</td>
+<td style="text-align: right;">42.78%</td>
+</tr>
+<tr>
+<td>webfx.com</td>
+<td style="text-align: right;">4,981</td>
+<td style="text-align: right;">42.63%</td>
+</tr>
+<tr>
+<td>seerinteractive.com</td>
+<td style="text-align: right;">1,070</td>
+<td style="text-align: right;">9.16%</td>
+</tr>
+<tr>
+<td>1digitalagency.com</td>
+<td style="text-align: right;">553</td>
+<td style="text-align: right;">4.73%</td>
+</tr>
+<tr>
+<td>needmomentum.com</td>
+<td style="text-align: right;">81</td>
+<td style="text-align: right;">0.69%</td>
+</tr>
+<tr>
+<td>muscularmarketing.com</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0%</td>
+</tr>
+</tbody>
+</table></div>
+<p>Fifth of six. The one below us publishes a page titled "AEO for Franchises in Philadelphia" and has zero citations in the sample <cite class="src">research/aeo-geo-topic-research.md §2</cite>. Writing about AEO and being cited for anything are two different things. I'm printing this table because I'd want to see it before hiring anyone, and because in six months I intend to re-run it and print the difference, whichever way it goes.</p>
+<p>Nobody local owns this yet. Across the seed searches for AEO, GEO and "ai marketing agency", no Philadelphia agency appears in the top ten of the organic overlap <cite class="src">research/aeo-geo-topic-research.md §2, <code>discover_competitors</code></cite>. That includes us. It's an open field.</p>
+<h3>Can a small business get in? Three ways.</h3>
+<p><strong>Own the procedure page.</strong> One page that answers one question completely: how to pick a sheen for a bathroom, what a stamped concrete repair involves, how to choose a bridal appointment length. Dated. Named author. Specific to your town when the question is local. This is the postcard page, for your trade.</p>
+<p><strong>Answer where the engine reads.</strong> When a Reddit or Quora thread asks your question, answer it there, plainly, as yourself. Post the same answer as a short video. Our own content plan says to do exactly this for our blog posts, because those surfaces hold 42% of citations in the category <cite class="src">research/aeo-geo-topic-research.md §4, format notes</cite>. It feels like giving away the answer. It is. That's what a source does.</p>
+<p><strong>Be named in sources the engine already trusts.</strong> Your Google Business Profile, the review sites, the local directory pages. The engine reads those before it reads you. If they say you do stamped concrete in Fairfield, the engine believes it.</p>
+<p>I don't have a citation map for HVAC in Illinois or bridal in Philadelphia. The tool ran out of credit before I could ask <cite class="src">research/aeo-geo-topic-research.md §6</cite>. When you run your own twenty questions, your "Sources" column is that map. Build it yourself and it's yours.</p>
+
+</div></section><section class="ch" id="s6" data-n="6"><header class="op rv"><div class="ghost" aria-hidden="true">06</div><div class="rule"></div><div class="eyebrow">Chapter 06</div><h2 id="ch-6" tabindex="-1">How do I get my business to show up in ChatGPT and Google's AI answers?</h2><div class="band"><img src="scrapbook.jpg" alt=""><span class="glyph"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><rect class="s1" x="8" y="8" width="32" height="32" rx="2"/><path class="s2" d="M8 20h32M20 20v20"/><circle class="s3" cx="30" cy="30" r="4"/></svg></span></div></header><div class="rd">
+<p><strong>Short answer.</strong> Let the crawlers in, then fix six things: one service page per service that answers the question in its first 200 words, a complete Google Business Profile, reviews that name the service and the town, an FAQ page whose answers match the questions, a named author, and schema that says what you are. Then re-run the twenty questions.</p>
+<p>Everything below comes from audits we've actually run on live sites. The examples are anonymized. Where I have a finding but no measured result, I say so.</p>
+<h3>Zero: let them in</h3>
+<p>Before any of the six, check whether an AI crawler can read your site. On the Pittsburgh painting company's site, the web host's bot protection returned a captcha to anything that wasn't Google, which blocked the www version, the sitemap and the content feed for every non-Google visitor. The robots file had a truncated rule, <code>Disallow: /header</code>, that nobody had written on purpose. And nothing explicitly allowed GPTBot, PerplexityBot, ClaudeBot or Google-Extended <cite class="src">clients/fagan-painting/organic-search/2026-08-27-aeo-baseline.md, "Live verification" and "Site-health issues"</cite>. Google could fetch the homepage. The AI crawlers couldn't get past the front door.</p>
+<p>You can't be cited by something that can't read you. Ask your web host, or whoever built the site, two questions: does bot protection block non-Google crawlers, and does robots.txt allow the AI ones. Keep human bot protection on. Let the named crawlers through.</p>
+<h3>One: the service page</h3>
+<p>One page per service. Not one page listing nine services. In the first 200 words: what the service is, how it works, what prep looks like, what an estimate involves, and links to the related pages. That's the spec we wrote for the painting company's priority pages: residential, interior, exterior, cabinet, commercial, HOA, each area page, the FAQ and the estimate page <cite class="src">clients/fagan-painting/organic-search/2026-08-27-aeo-baseline.md, "First AEO implementation lane"</cite>.</p>
+<p>Then make sure the page can take the call. A Colorado Springs landscaping and concrete contractor was sending paid traffic to a page where "Get Started" and "Contact us" both linked back to the homepage, the phone number was plain text instead of a tap-to-call link, the header misspelled "Concrete" as "CONRETE", and one section still had placeholder copy <cite class="src">research/evidence-bank.md §B, story S5</cite>. That page was receiving money. A page that can't take a call can't take a citation either, because the engine reads the same broken page the customer does.</p>
+<p>We published a dedicated estimate page for that contractor on August 5 with tracking wired, and converted the phone number to a tap-to-call link on September 5, verified on desktop and on a phone-size screen <cite class="src">research/evidence-bank.md §A.2, verified change</cite>. The file says in plain words that the change "does not prove a connected call". I'm quoting that because it's the right way to write a result down.</p>
+<h3>Two: the Google Business Profile</h3>
+<p>Every field. Categories, services, hours, photos, service area, posts. The AI reads this before it reads your website. It's the one source about your business that Google itself maintains, which is why our single most-cited page is a how-to about verifying one by postcard, sitting next to five of Google's own support pages <cite class="src">research/aeo-geo-topic-research.md §2</cite>.</p>
+<p>The access lesson first. On the Colorado Springs account, a twelve-post batch scheduled for August 17 through September 6 never published, because no Google account we could use had manager rights on the profile <cite class="src">research/evidence-bank.md §A.2, "GBP 12-post batch produced but blocked"</cite>. Get manager access before anyone promises you anything. Same rule for your ads account.</p>
+<p>What I don't have: any measurement showing that a profile change moved an AI citation. We have counts of posts published. We don't have a visibility delta for any of them <cite class="src">research/evidence-bank.md §E, gap 5</cite>. The principle stands on its own. The proof is what your twenty-question re-run will produce.</p>
+<h3>Three: reviews that say something</h3>
+<p>Engines read review text, not just the star. A review that says "replaced our furnace in Hampshire in one day, in January" is a source. It has a service, a town, a season. Five stars and "great guys" is a mood.</p>
+<p>Ask for the service and the town when you ask for the review. "Would you mention it was the exterior job on Maple Street?" Most people will.</p>
+<p>I can't show you a review that moved a citation. There's no such measurement in our files <cite class="src">research/evidence-bank.md §E, gap 8</cite>. What I can tell you is that review sites and forums are where the engines are already reading, per chapter 5, and text with nouns in it beats text without.</p>
+<h3>Four: an FAQ whose answers match the questions</h3>
+<p>Questions in the buyer's words. Answers of forty to sixty words. Visible on the page, not hidden in a tab that needs a click.</p>
+<p>And read them. The painting company's FAQ page had "How do I choose the right paint colors and sheens?" answered with the text about moving furniture, because someone pasted the wrong block and nobody read it back <cite class="src">clients/fagan-painting/organic-search/2026-08-27-aeo-baseline.md, "Live verification", FAQ row</cite>. The engine read that. Imagine what it concluded.</p>
+<p>One more from a different account, because it shows the right way to label a number. For a multi-city events company selling themed bar-crawl tickets, we rebuilt ten city pages with nine sections, five FAQs each, and FAQ schema. An internal launch-readiness check scored them 92 out of 100 on average. The last line of the evidence file says that score "is an internal launch readiness score. It is not a Google ranking, an AIOSEO score, or a ranking guarantee" <cite class="src">research/evidence-bank.md §B, story S14</cite>. That sentence is in the file because without it the number would be misread. Put the same sentence on anything a vendor hands you.</p>
+<h3>Five: a named author</h3>
+<p>A person. Name, role, years, town, a photo, a page. Engines weigh who is saying it, and "the team" isn't a who.</p>
+<p>We got this wrong ourselves. Our August 2026 press release, the one announcing an Inc. 5000 listing, named no clients, no case studies, and included no quote from me <cite class="src">PRWeb, 2026-08-21, via research/aeo-geo-topic-research.md §2</cite>. That's the opposite of this advice. This book has my name on the cover partly to fix it.</p>
+<h3>Six: schema that says what you are</h3>
+<p>Schema is a block of code that tells the engine, in a format it can't misread, what kind of thing your page is. A local business. A painting contractor. An FAQ page.</p>
+<p>The painting company's homepage was carrying Product schema. Google's own inspection showed "Product snippets" as the rich result type. On a painting company site <cite class="src">clients/fagan-painting/organic-search/2026-08-27-aeo-baseline.md, "Homepage GSC inspect"</cite>. The engine was being told the homepage sold a product. The fix is a LocalBusiness or trade-specific type, plus FAQPage only where the visible questions and answers match what's in the code.</p>
+<p>Two rules from that same file, which I'd make everyone follow. Don't put anything in schema that isn't visible on the page. And don't invent pricing, service radius or guarantees for the code. The site already stated a two-year warranty; that fact can go in. A street address that isn't on the page can't <cite class="src">clients/fagan-painting/organic-search/2026-08-27-aeo-baseline.md, "Site-health issues", item 6</cite>.</p>
+<h3>Then re-run the twenty</h3>
+<p>Two page changes a month is a real pace. It's what our program commits to, and it's what a six-hour monthly budget honestly covers <cite class="src">PLAN.md, "Three offers with finite delivery contracts"</cite>. Make the changes, wait a few weeks, run the forty rows again, and compare the "Named?" column.</p>
+<p>Here's what I can't give you in this chapter, and I want to be exact about it. I don't have a before-and-after citation screenshot for any of these six changes on any client site. Not one. The pages I described launched between July and September 2026, and nobody has measured the citation change on them yet <cite class="src">research/evidence-bank.md §E, gaps 2 and 8</cite>. I'm telling you this so you know what a real baseline costs. It costs time. Anyone showing you a before-and-after three weeks after you sign is showing you something else.</p>
+
+</div></section><section class="ch" id="s7" data-n="7"><header class="op rv"><div class="ghost" aria-hidden="true">07</div><div class="rule"></div><div class="eyebrow">Chapter 07</div><h2 id="ch-7" tabindex="-1">How do I measure AI visibility when there is no ranking?</h2><div class="band"><img src="momo.jpg" alt=""><span class="glyph"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path class="s1" d="M8 20v8h8l14 8V12L16 20z"/><path class="s2" d="M34 18q6 6 0 12"/><path class="s3" d="M38 14q10 10 0 20"/></svg></span></div></header><div class="rd">
+<p><strong>Short answer.</strong> You log observations, not positions. Every entry has four fields: engine, exact prompt, date and the sources named. Re-run the same twenty prompts monthly on the same engines. Report "named in 6 of 20 on ChatGPT, 3 of 20 on Google AI Overview, September 7" and keep that separate from calls and booked jobs, which you count from the phone and the CRM.</p>
+<p>People want a number. "ai overviews tracker" is searched about 720 times a month, and the intent is commercial: buyers looking to pay for measurement <cite class="src">research/aeo-geo-topic-research.md §1, cluster 3</cite>. There are trackers. Here's what to know about them before you buy one.</p>
+<h3>What a tracker actually measures</h3>
+<p>The one we used to check our own site measures one thing: whether a domain was cited as a source in Google AI Overviews, across a sampled set of prompts, in an observed window. It states its own confidence at 0.6, and it does not cover ChatGPT, Gemini, Claude, Perplexity or Copilot at all <cite class="src">research/aeo-geo-topic-research.md, "How to read the numbers"</cite>. Directional. Useful. I'd use it. I wouldn't bill on it, and I wouldn't let anyone bill me on it without the prompt list underneath.</p>
+<p>One of the case studies on our own website lists an "AI visibility score" for a client <cite class="src">research/evidence-bank.md §A.18, platform total, publicly published</cite>. It's a tool's number. This chapter is my argument for showing the prompt log instead of the score.</p>
+<h3>The four fields, and the two columns</h3>
+<p>Engine. Exact prompt. Date. Sources named. Every observation, every month. That's the rule our visibility program reports on <cite class="src">PLAN.md, "Three offers with finite delivery contracts"</cite>, and it's the rule I'd hold any vendor to, including us.</p>
+<p>Then the second rule, which is the one that keeps you honest. Our reporting standard, quoted from the file that builds our client reports: "Platform activity is reported separately from qualified inquiries, appointments, estimates, bookings, and revenue. Conversion reporting remains pending validation wherever the exact action definition, attribution window, or downstream outcome is not fully reconciled" <cite class="src">research/evidence-bank.md, introduction, quoting <code>reports-data.mjs</code> line 3</cite>.</p>
+<p>In plain words: the number a platform gives you goes in one column. The number of real people who called, booked or paid goes in another. They never share a cell.</p>
+<h3>Why the two columns matter</h3>
+<p>Here's what a platform total looks like next to a verified outcome.</p>
+<p>A Pittsburgh painting company had an automation that fired every time a website form came in. Between June 15 and July 12, 2026, it fired 22 times. We read every notification body. Four were qualified inquiries from real people. Eighteen were solicitations, tests or duplicate replies <cite class="src">research/evidence-bank.md §A.6, verified outcome, classified from raw notification bodies</cite>. Twenty-two "leads" on a dashboard. Four people.</p>
+<p>A Philadelphia bridal boutique had a Google campaign live at $20 a day that served 54,814 impressions for $585.42 over about thirty days and reported zero conversions <cite class="src">research/evidence-bank.md §A.1, platform total</cite>. Zero wasn't the result. Zero was the tracking. The campaign's conversion goal wasn't set to the form on the page. The file that documents it refused to touch bids or budget until the appointment path was proved end to end, and listed its guesses as hypotheses, not findings <cite class="src">research/evidence-bank.md §B, story S3</cite>. A platform number can be wrong in both directions. Twenty-two can mean four. Zero can mean the counter's unplugged.</p>
+<h3>The notification that had nothing in it</h3>
+<p>This is the lesson I most want you to take from the chapter, and it's one we learned on our own book of business.</p>
+<p>We had promised three clients the same thing, thirteen times between them: a list of which real people their reported conversions were. Not "13 conversions". Names. One landscaping client had heard it nine times. A fourth client's report was stuck waiting on it. We couldn't produce it for any of them.</p>
+<p>The reason was small. The automation that emailed us each new lead was sending a message that contained one line, a link reading "open this Zap run in Zapier", and nothing else. No name, no phone, no source. The one account where it did work, a painting company, had the same tool configured to write the lead's fields into the body of the email. Same automation. One setting. Thirteen promises, one configuration <cite class="src">research/evidence-bank.md §B, story S1; PLAN.md, "Match-back: the differentiator, and the defect underneath it"</cite>.</p>
+<p>The fix is a settings change, not a reporting project. I'm not selling named-lead reporting until it works on every account we run, because selling it now would repeat the thirteen promises at a larger scale. But the lesson costs you nothing. Open one of your own lead notifications right now. Does it contain the person, or a link to the person? If it's a link, nobody can match your leads to your marketing, and any report claiming to has a hole in it.</p>
+<h3>What to demand from an AEO report</h3>
+<p>Four things, every month.</p>
+<ol>
+<li>The full prompt log. All twenty questions, both engines, dated, with the "Named?" column.</li>
+<li>The sources named, not just "you were cited". If you were named next to three competitors and a Reddit thread, you should see all four.</li>
+<li>The page changes made that month, with links.</li>
+<li>Your own outcome column, from your phone and your CRM, kept separate and labeled as yours.</li>
+</ol>
+<p>If a vendor hands you a score with no prompt list, ask for the prompts. If they can't produce them, the score is theirs, not yours.</p>
+<h3>Cadence</h3>
+<p>Monthly. Same day of the month. Same engines. Same twenty prompts. Add prompts when you add services; never swap one silently, because the moment you do, the trend line breaks and nobody notices for a year. Date everything. Write the gaps down as gaps.</p>
+
+</div></section><section class="ch" id="s8" data-n="8"><header class="op rv"><div class="ghost" aria-hidden="true">08</div><div class="rule"></div><div class="eyebrow">Chapter 08</div><h2 id="ch-8" tabindex="-1">What does AEO cost, and what should a retainer include?</h2><div class="band"><img src="particles-cream.jpg" alt=""><span class="glyph"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle class="s1" cx="24" cy="24" r="8"/><path class="s2" d="M24 4v8M24 36v8M4 24h8M36 24h8M10 10l6 6M32 32l6 6M38 10l-6 6M16 32l-6 6"/><circle class="s3" cx="24" cy="24" r="3"/></svg></span></div></header><div class="rd">
+<p><strong>Short answer.</strong> Published agency prices for AI-search work start around $1,500 a month for a small business and run to $5,000; the one Pennsylvania agency printing a price starts at $3,000. A fair retainer for one location includes a dated twenty-question baseline on two engines, two page improvements a month, monthly re-measurement, and a report that shows every prompt. Nobody honest guarantees a citation.</p>
+<h3>The public anchors</h3>
+<p>WebFX, in Harrisburg, is the only Pennsylvania agency I found that prints a price for this work. Its AI search optimization page says "Starting at $3,000/month" and names three things it delivers: "AI query research &amp; targeting strategy", "Content assets for building authority", and "Exclusive AI visibility tracking software" <cite class="src">https://www.webfx.com/seo/services/ai-search-optimization/, fetched 2026-09-07, via research/aeo-geo-topic-research.md §2</cite>. It names the platforms it covers as Google AI Overviews and AI Mode, ChatGPT, Perplexity, Copilot and Meta AI.</p>
+<p>The same agency's cost article, dated May 26, 2026, gives ranges: $1,500 to $5,000 a month for a small business, $5,000 to $25,000 or more for a mid-sized company, $25,000 to $50,000 or more for enterprise, and $10 to $1,000 or more a month for do-it-yourself tools <cite class="src">https://www.webfx.com/blog/ai/generative-engine-optimization-cost/, dated 2026-05-26, via research/aeo-geo-topic-research.md §2</cite>.</p>
+<p>A Philadelphia list of AEO and GEO firms, updated June 25, 2026, names ten companies and prints no prices for any of them <cite class="src">lengreo.com, "10 Best AEO, GEO, and LLMO Companies in Philadelphia", via research/aeo-geo-topic-research.md §2</cite>. We're on it, at number ten. I'd rather be honest about the ranking than pretend the list doesn't exist.</p>
+<h3>What agencies pay to reach you</h3>
+<p>This tells you something about the quotes you're getting. A click on a Google ad for "generative engine optimization agency" costs $114.49. For "generative engine optimization companies" it's $190.62. For "best answer engine optimization services" it's $91.20 <cite class="src">research/aeo-geo-topic-research.md §1, cluster 5, CPC column</cite>. Agencies are paying up to $190 for one click from someone like you. That cost is inside the retainer you're quoted. A book is a cheaper way to reach you, which is one reason this one exists.</p>
+<h3>What a fair retainer includes</h3>
+<p>For one business at one location, this is the scope I'd expect and the scope our own program is written to <cite class="src">PLAN.md, "Three offers with finite delivery contracts", AI Visibility Program row</cite>:</p>
+<ul>
+<li>One domain, one location.</li>
+<li>A baseline of twenty buyer questions, run across two named engines, dated.</li>
+<li>A written list of technical and content priorities, in order.</li>
+<li>Two useful page improvements a month, each passing a technical and editorial check.</li>
+<li>Monthly re-measurement of the same twenty questions.</li>
+<li>A report where every observation carries engine, prompt, date and source.</li>
+<li>One consolidated revision round and one thirty-minute review each month.</li>
+</ul>
+<p>And this, which our plan states in its own words: the program "cannot guarantee rankings, citations, qualified leads or revenue", and engine variation and referral evidence are reported separately <cite class="src">PLAN.md, "Three offers with finite delivery contracts"</cite>. Two page changes a month is not a lot. It's what six hours honestly covers. Anyone promising ten changes a month at the same price is either working for free or not doing them.</p>
+<h3>What to skip</h3>
+<ul>
+<li><strong>Guarantees.</strong> Of citations, of rankings, of leads. The engine isn't theirs to promise.</li>
+<li><strong>Scores without prompts.</strong> Chapter 7. If they can't show the log, the score is decoration.</li>
+<li><strong>A rebuild you didn't ask for.</strong> AEO does not require a new website. It requires six fixes on the one you have.</li>
+<li><strong>Tools before fixes.</strong> A $300-a-month tracker measuring a site the crawlers can't read is measuring nothing.</li>
+<li><strong>Anything that names ChatGPT citations without a date.</strong> Engines change their answers. An undated citation is a story.</li>
+</ul>
+<h3>What ours costs</h3>
+<p>I'm not printing it. Our price is being set for a first group of clients, and I'd rather not print a number I'll have to correct in the second edition. It sits inside the published band above. Ask me on the call and I'll tell you the figure and what it includes, which is the list in this chapter.</p>
+<h3>Why the call is fifteen minutes</h3>
+<p>Two things happened this summer that shaped the offer. In August we sent two hand-built, sixteen-page AI-search audits to two prospects. Both reached the quote stage. Neither signed <cite class="src">research/evidence-bank.md §A.17, verified delivery, commercial unsigned</cite>. Then in early September we sent 241 cold emails to businesses in Erie and Pittsburgh. Two bounced, two got auto-replies, and zero got a reply from a human <cite class="src">research/evidence-bank.md §A.17, verified outcome</cite>. The audit got attention and no signature. The email got nothing.</p>
+<p>So the way in is short and free. Fifteen minutes. I'll bring three observations about your business, each with its evidence, and one suggested next step <cite class="src">PLAN.md, "Three offers with finite delivery contracts", qualification snapshot</cite>. Not a pitch deck. Three things I found and one thing I'd do first. If the observations aren't useful, you've lost fifteen minutes and you keep the notes.</p>
+
+</div></section><section class="ch sec" id="sec-frequently-asked-questions-w"><header class="op rv"><div class="rule"></div><h2 id="sec-frequently-asked-questions" tabindex="-1">Frequently asked questions</h2></header><div class="rd">
+<p><strong>What does AEO stand for?</strong>
+Answer engine optimization. It's the work of making your business the one an AI names when someone asks a question you can answer. About 4,400 people a month search the phrase "what is aeo" in the US, up from 140 two years ago <cite class="src">research/aeo-geo-topic-research.md §1, cluster 1</cite>.</p>
+<p><strong>Is AEO the same as GEO?</strong>
+Same job, different label. GEO stands for generative engine optimization; searches for it are falling while "AEO" rises <cite class="src">research/aeo-geo-topic-research.md §1, cluster 1</cite>. Use whichever your vendor uses, but ask them the same four questions: which engines, which prompts, what date, which sources.</p>
+<p><strong>How do I get ChatGPT to recommend my business?</strong>
+Be a source it can read and trust. Let the AI crawlers in, write one service page per service with a direct answer in the first 200 words, complete your Google Business Profile, collect reviews that name the service and the town, fix your FAQ, name an author, and add correct schema. Then run your twenty questions again and see what changed.</p>
+<p><strong>Do I need to stop doing SEO?</strong>
+No. Engines read pages that Google can crawl, so SEO is the floor AEO stands on. Keep the basics and add the AEO layer. Measure them separately.</p>
+<p><strong>How long until my business shows up in an AI answer?</strong>
+I don't have a client number for that, and I haven't seen an honest one from anyone else. Nobody on our roster has an AI-search baseline old enough to answer it <cite class="src">research/evidence-bank.md §E, gap 8</cite>. Take your baseline now, make two changes a month, and re-measure monthly. You'll have your own answer in a few months.</p>
+<p><strong>What is a Google AI Overview?</strong>
+A paragraph Google writes above the search results by reading several pages and summarizing them, with some of those pages named as sources. About 110,000 people a month search the term, and about 5,400 a month search for a way to hide it <cite class="src">research/aeo-geo-topic-research.md §1, cluster 3</cite>.</p>
+<p><strong>Can I track AI visibility?</strong>
+Yes, by keeping a log: engine, exact prompt, date, sources named, re-run monthly. Paid trackers exist; the one we used measures Google AI Overviews only and states its own confidence at 0.6 <cite class="src">research/aeo-geo-topic-research.md, "How to read the numbers"</cite>. Treat tracker numbers as directional and keep your own log.</p>
+<p><strong>How much does AEO cost?</strong>
+Published small-business retainers run $1,500 to $5,000 a month, and the one Pennsylvania agency printing a price starts at $3,000 <cite class="src">WebFX pages via research/aeo-geo-topic-research.md §2</cite>. A fair retainer includes a dated twenty-question baseline, two page changes a month, and a report with every prompt shown.</p>
+<p><strong>Does my Google Business Profile help with AI answers?</strong>
+It's the one source about your business that Google maintains, and engines read it first. Complete every field and get manager access before anyone promises you posting. I don't have a measurement showing a profile change moved a citation yet <cite class="src">research/evidence-bank.md §E, gap 5</cite>; the principle is sound and your own re-measurement will test it.</p>
+<p><strong>Can an agency guarantee I'll be cited?</strong>
+No. The engines belong to Google, OpenAI and the others, and they change their answers without notice. Our own program states in writing that it cannot guarantee rankings, citations, leads or revenue <cite class="src">PLAN.md, "Three offers with finite delivery contracts"</cite>. Anyone who guarantees it is guaranteeing something they don't control.</p>
+
+</div></section><section class="ch sec ws" id="sec-what-to-do-monday-w"><header class="op rv"><div class="rule"></div><h2 id="sec-what-to-do-monday" tabindex="-1">What to do Monday</h2></header><div class="rd">
+<p>One page. Do it in order. Most of it costs nothing but an afternoon.</p>
+<ol>
+<li><strong>Check your phone.</strong> Pull last month's call log. Count answered and missed. If the answer rate is below what you'd accept from an employee, that's project one. Ours was 38.4% in July <cite class="src">research/evidence-bank.md §A.17, platform total</cite>.</li>
+<li><strong>Open one lead notification.</strong> Does it contain the person's name and number, or a link to a dashboard? If it's a link, change the setting before anyone promises you named leads.</li>
+<li><strong>Pull Search Console.</strong> Export the top fifteen non-brand queries from the last 28 days. Those are the start of your twenty.</li>
+<li><strong>Read the "People also ask" box</strong> for your main service and your town. Copy five phrasings exactly.</li>
+<li><strong>Write the twenty.</strong> Five with your town or "near me", ten about specific services, five about cost, timing and whether it's worth it.</li>
+<li><strong>Run them in two engines.</strong> ChatGPT and Google. Forty rows: engine, exact prompt, date, named or not, sources cited. Save the file with the date in the name.</li>
+<li><strong>Ask your web host two questions.</strong> Does bot protection block non-Google crawlers? Does robots.txt allow GPTBot, PerplexityBot, ClaudeBot and Google-Extended? Get both fixed.</li>
+<li><strong>Check your Google Business Profile access.</strong> Confirm who holds manager rights. If it's a former employee or an old agency, reclaim it this week.</li>
+<li><strong>Read your own FAQ page out loud.</strong> Every answer. If one answers the wrong question, fix it today.</li>
+<li><strong>Pick the first service page.</strong> Your highest-value service. Rewrite the first 200 words to answer the question directly. Make the phone number tap-to-call. Click every button and confirm where it goes.</li>
+<li><strong>Check your schema.</strong> Use Google's rich results test on your homepage. If it says "Product" and you're not selling a product, that's page change number two.</li>
+<li><strong>Put a name on it.</strong> Add an author box with a real person, role, years and town to the pages you fix.</li>
+<li><strong>Put the re-run on the calendar.</strong> Same day next month. Same forty rows. Compare the "Named?" column and write down what changed and what you changed.</li>
+</ol>
+<p>If you'd rather someone else pulled the first three observations, that's what the fifteen minutes is for.</p>
+
+</div><div class="score" aria-live="polite"><div class="n" id="sc">0 / 0</div><div><div class="eyebrow" style="color:var(--blue2)">Monday worksheet</div><div>Tick what you&#39;ve done. Kept on this device only.</div><div class="bar"><i id="bar"></i></div></div></div></section><section class="ch sec" id="sec-about-momentum-ai-w"><header class="op rv"><div class="rule"></div><h2 id="sec-about-momentum-ai" tabindex="-1">About Momentum AI</h2></header><div class="rd">
+<p>Momentum AI is the AI division of Momentum Digital, a Philadelphia agency founded in 2015. The website is needmomentum.com.</p>
+<p>The division runs four lanes: AEO / GEO, AI Design, AI Marketing and AI Automation. This book is the first of five field notes, one for each thing we're asked about most. It covers the first lane. The next one covers the missed call.</p>
+<p>Everything in these pages is built from our own audits, our own reporting rules, and our own numbers, including the ones that don't flatter us. Momentum built the machine. Now we build yours.</p>
+<p><strong>The offer is fifteen minutes.</strong> A free snapshot of your business: three observations, each with its evidence, and one suggested next step. No deck. Ask for it at needmomentum.com.</p>
+<p><em>Built, not prompted.</em></p><div class="lanes"><div class="lane"><span class="glyph"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle class="s1" cx="20" cy="20" r="11"/><path class="s2" d="M29 29l11 11"/><path class="s3" d="M14 20h12M20 14v12"/></svg></span><div class="ln">01 · AEO / GEO</div></div><div class="lane"><span class="glyph"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><rect class="s1" x="8" y="8" width="32" height="32" rx="2"/><path class="s2" d="M8 20h32M20 20v20"/><circle class="s3" cx="30" cy="30" r="4"/></svg></span><div class="ln">02 · AI Design</div></div><div class="lane"><span class="glyph"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path class="s1" d="M8 20v8h8l14 8V12L16 20z"/><path class="s2" d="M34 18q6 6 0 12"/><path class="s3" d="M38 14q10 10 0 20"/></svg></span><div class="ln">03 · AI Marketing</div></div><div class="lane"><span class="glyph"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle class="s1" cx="24" cy="24" r="8"/><path class="s2" d="M24 4v8M24 36v8M4 24h8M36 24h8M10 10l6 6M32 32l6 6M38 10l-6 6M16 32l-6 6"/><circle class="s3" cx="24" cy="24" r="3"/></svg></span><div class="ln">04 · AI Automation</div></div></div></div></section>
+<section class="back"><div class="eyebrow">Frontmatter sources (20)</div><ul><li>C:\Users\dillo\Documents\Codex\projects\client-operations\clients\momentum-360\deliverables\2026-09-07-google-aistudio-batch\research\aeo-geo-topic-research.md</li><li>C:\Users\dillo\Documents\Codex\projects\client-operations\clients\momentum-360\deliverables\2026-09-07-google-aistudio-batch\research\evidence-bank.md</li><li>C:\Users\dillo\Documents\Codex\projects\client-operations\clients\momentum-360\deliverables\2026-09-07-google-aistudio-batch\research\copy-skills-scan.md</li><li>C:\Users\dillo\Documents\Codex\projects\client-operations\clients\momentum-360\deliverables\2026-09-07-google-aistudio-batch\SPOT-SCRIPT.md</li><li>C:\Users\dillo\Documents\Codex\projects\client-operations\clients\momentum-360\deliverables\2026-09-07-google-aistudio-batch\refs\analysis\16acc20e.md</li><li>C:\Users\dillo\Documents\Codex\projects\client-operations\clients\momentum-360\deliverables\2026-09-07-google-aistudio-batch\refs\analysis\84e6931b.md</li><li>C:\Users\dillo\Documents\Codex\projects\client-operations\clients\momentum-360\deliverables\2026-09-07-google-aistudio-batch\refs\analysis\dcba6119.md</li><li>C:\Users\dillo\Documents\Codex\projects\client-operations\clients\momentum-360\deliverables\2026-09-07-google-aistudio-batch\refs\analysis\e1d559e0.md</li><li>C:\Users\dillo\Documents\Codex\projects\client-operations\clients\momentum-360\deliverables\2026-09-07-google-aistudio-batch\refs\analysis\fa06592b.md</li><li>C:\Users\dillo\Documents\Codex\projects\client-operations\clients\momentum-360\deliverables\2026-09-04-ai-division-plan\PLAN.md</li><li>C:\Users\dillo\Documents\Codex\projects\client-operations\clients\momentum-360\deliverables\2026-08-21-pre-sale-ai-search-audits\README.md</li><li>C:\Users\dillo\Documents\Codex\projects\client-operations\clients\fagan-painting\organic-search\2026-08-27-aeo-baseline.md</li><li>C:\Users\dillo\repos\dillon-os\12_Brain\03_Concepts\Dillon Voice Profile.md</li><li>C:\Users\dillo\repos\dillon-os\02_Campaigns\AI Site Builder Outreach Engine\Outreach Copy - Dillon Voice.md</li><li>https://www.webfx.com/seo/services/ai-search-optimization/ (fetched 2026-09-07, via the research file)</li><li>https://www.webfx.com/blog/ai/generative-engine-optimization-cost/ (dated 2026-05-26, fetched 2026-09-07, via the research file)</li><li>seerinteractive.com GEO service page, &quot;Updated August 2026&quot; (via the research file)</li><li>1digitalagency.com AEO services page (via the research file)</li><li>lengreo.com &quot;10 Best AEO, GEO, and LLMO Companies in Philadelphia&quot; (updated 2026-06-25, via the research file)</li><li>PRWeb, Momentum Digital Inc. 5000 release, 2026-08-21 (via the research file)</li></ul><p class="kw">Target query: what is aeo · Keywords: what is aeo, answer engine optimization, how to get your business on chatgpt, how do I get chatgpt to recommend my business, how to rank in ai overviews, does ai search replace google, ai overviews tracker, answer engine optimization services, generative engine optimization</p></section>
+</main></div>
+</div>
+</x-dc>
+<script>var DIAG=[{"n": 1, "t": "Why is Google answering the question instead of showing my website?", "s": "Because the search engine started reading the pages and writing the answer itself. Google calls it an AI Overview. ChatGPT and Gemini do it for every question. The buyer gets a paragraph, sometimes with three or four sources named. If your business is one of the sources, you're in the answer. If not, the buyer never sees you."}, {"n": 2, "t": "What is AEO, and how is it different from SEO and GEO?", "s": "AEO stands for answer engine optimization: making your business the one an AI names when someone asks a question you can answer. SEO gets a page ranked in a list of links. GEO is the same job as AEO with a different label. Buyers say \"AEO\". Use that word and stop worrying about the other one."}, {"n": 3, "t": "Does AI search replace Google for a local business?", "s": "No. Google is still where the AI answer shows up most of the time. What changed is what Google does with your page: it may quote it instead of listing it. ChatGPT and Gemini are growing as places people ask. Your listing, your reviews and your phone still decide whether the job gets booked."}, {"n": 4, "t": "How do I find out whether ChatGPT recommends my business today?", "s": "Ask it. Write the twenty questions your buyers ask, type each one into two engines, and write down four things per question: the engine, the exact wording, the date, and which businesses or sources it named. That's your baseline. It takes an afternoon. Most businesses find they're in none of the answers, which is worth knowing before spending money."}, {"n": 5, "t": "Which sources do AI engines actually cite in my category, and can a small business get in?", "s": "In Google's AI answers about answer engine optimization, the most-cited sources are YouTube, Reddit, Semrush, Google's own developer docs, LinkedIn and Quora. One agency makes the top twenty. Platforms and forums win because they hold thousands of specific answers. A small business gets in by being specific, and by answering where the engine already reads."}, {"n": 6, "t": "How do I get my business to show up in ChatGPT and Google's AI answers?", "s": "Let the crawlers in, then fix six things: one service page per service that answers the question in its first 200 words, a complete Google Business Profile, reviews that name the service and the town, an FAQ page whose answers match the questions, a named author, and schema that says what you are. Then re-run the twenty questions."}, {"n": 7, "t": "How do I measure AI visibility when there is no ranking?", "s": "You log observations, not positions. Every entry has four fields: engine, exact prompt, date and the sources named. Re-run the same twenty prompts monthly on the same engines. Report \"named in 6 of 20 on ChatGPT, 3 of 20 on Google AI Overview, September 7\" and keep that separate from calls and booked jobs, which you count from the phone and the CRM."}, {"n": 8, "t": "What does AEO cost, and what should a retainer include?", "s": "Published agency prices for AI-search work start around $1,500 a month for a small business and run to $5,000; the one Pennsylvania agency printing a price starts at $3,000. A fair retainer for one location includes a dated twenty-question baseline on two engines, two page improvements a month, monthly re-measurement, and a report that shows every prompt. Nobody honest guarantees a citation."}],BOOK=1;
+(function(){document.body.classList.add('js');var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var rv=document.querySelectorAll('.rv');if('IntersectionObserver' in window&&!rm){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -12% 0px'});rv.forEach(function(x){io.observe(x)})}else{rv.forEach(function(x){x.classList.add('in')})}
+var links=[].slice.call(document.querySelectorAll('nav.toc a')),hs=links.map(function(a){return document.getElementById(a.getAttribute('data-t'))});
+function mark(){var y=scrollY+140,cur=0;hs.forEach(function(h,i){if(h&&h.offsetTop<=y)cur=i});links.forEach(function(a,i){a.classList.toggle('on',i===cur)})}addEventListener('scroll',mark,{passive:true});mark();
+function go(d){var y=scrollY+120,i=0;hs.forEach(function(h,k){if(h&&h.offsetTop<=y)i=k});var t=hs[Math.min(Math.max(i+d,0),hs.length-1)];if(t){t.scrollIntoView({behavior:rm?'auto':'smooth'});t.focus({preventScroll:true})}}
+document.getElementById('pv').onclick=function(){go(-1)};document.getElementById('nx').onclick=function(){go(1)};
+addEventListener('keydown',function(e){if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;if(e.key==='ArrowRight'||e.key===']')go(1);if(e.key==='ArrowLeft'||e.key==='[')go(-1)});
+var sb=document.getElementById('srcbtn');sb.onclick=function(){var off=document.body.classList.toggle('nosrc');sb.textContent=off?'Sources: hidden':'Sources: shown';sb.setAttribute('aria-pressed',off)};
+var D=DIAG,out=document.getElementById('dout');document.querySelectorAll('.dgm button').forEach(function(b){b.onclick=function(){document.querySelectorAll('.dgm button').forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');var d=D[+b.dataset.i];out.innerHTML='<strong>'+d.t+'</strong> — '+d.s+' <a href="#ch-'+d.n+'">Read chapter '+d.n+' →</a>'}});
+var ws=document.querySelector('.ws .rd ol');if(ws){var key='mai-ws-'+BOOK,st={};try{st=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}
+var lis=[].slice.call(ws.children),sc=document.getElementById('sc'),bar=document.getElementById('bar');lis.forEach(function(li,i){li.innerHTML='<span class="t">'+li.innerHTML+'</span>';var bx=document.createElement('span');bx.className='bx';li.insertBefore(bx,li.firstChild);li.setAttribute('role','checkbox');li.tabIndex=0;if(st[i])li.classList.add('done');li.setAttribute('aria-checked',!!st[i]);
+function tg(){li.classList.toggle('done');st[i]=li.classList.contains('done');li.setAttribute('aria-checked',st[i]);try{localStorage.setItem(key,JSON.stringify(st))}catch(e){}upd()}li.onclick=tg;li.onkeydown=function(e){if(e.key===' '||e.key==='Enter'){e.preventDefault();tg()}}});
+function upd(){var n=lis.filter(function(l){return l.classList.contains('done')}).length;sc.textContent=n+' / '+lis.length;bar.style.width=(100*n/lis.length)+'%'}upd()}
+})();
+</script>
+</body>
+</html>

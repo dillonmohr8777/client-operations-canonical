@@ -1,0 +1,247 @@
+MOMENTUM DIGITAL
+Custom Software, Digital Growth & Ownership-First Development
+
+
+Development Roadmap
+VA Claims Edge - VACE Platform
+
+Client
+VA Claims (David Fisher)
+Agency
+Momentum Digital
+Date
+June 2026
+Phase
+Phase 1 of 5
+
+
+1. Project Overview
+This document outlines the complete development roadmap for the VACE platform across five phases. Each phase builds directly on the previous one, with no throwaway work. The client approves each phase before the next begins.
+
+Phase
+Focus
+Timeline
+Phase 1
+Discovery, Strategy & Technical Planning
+Approx. 2 weeks - Client approval required before Phase 2 begins
+Phase 2
+Environment, Tools & Core Setup
+Approx. 2-3 weeks - Client approval required before Phase 3 begins
+Phase 3
+Core Development & Feature Buildout
+Approx. 4-5 weeks - Client approval required before Phase 4 begins
+Phase 4
+Testing, Revisions & Optimization
+Approx. 2-3 weeks - Client approval required before Phase 5 begins
+Phase 5
+Final Delivery, Handoff & Launch
+Approx. 1-2 weeks - Final client approval and project close
+
+2. Phase 1 - Discovery, Strategy & Technical Planning
+
+Deliverables
+Technical Architecture Document (this document set)
+Feature & Workflow Document
+Development Roadmap
+Database schema design
+Tool and platform selection confirmed
+Team roles and responsibilities defined
+
+Tech Lead Tasks (Obaid)
+Finalize technology stack decisions
+Design complete database schema
+Document security and authentication approach
+Define AI integration architecture
+Identify all feature dependencies and build order
+
+Frontend Lead Tasks (Dillon)
+Review feature list and begin UI/UX planning
+Define page structure and navigation
+Identify design system - typography, colors, components
+Create initial wireframes for key pages
+
+Approval Criteria
+Client has reviewed and approved all three Phase 1 documents
+All team members are aligned on scope, tools, and responsibilities
+
+3. Phase 2 - Software Environment, Tools & Core Setup
+
+Deliverables
+Live development environment accessible via URL
+Database fully configured with all tables and security policies
+Authentication system working - login, logout, protected routes
+GitHub repository with full codebase
+All third-party accounts configured - Vercel, Supabase, Resend, Anthropic
+Client provided with access to their accounts and credentials
+
+Tech Lead Tasks (Obaid)
+Set up Next.js project on new dedicated GitHub repository
+Configure Supabase project - all tables, relationships, seed data
+Implement Row Level Security (RLS) policies
+Build authentication - login page, middleware, session management
+Configure Vercel deployment - environment variables, domain
+Set up Resend account and test email delivery
+Configure Anthropic API account and test connection
+
+Frontend Lead Tasks (Dillon)
+Implement design system - colors, typography, spacing tokens
+Build core layout components - sidebar, topbar, page wrapper
+Build the login page with brand styling
+Establish component library for reuse across all pages
+
+Approval Criteria
+David can log in to the live URL with his credentials
+All accounts and credentials have been handed over
+Database is visible in Supabase with correct structure
+
+4. Phase 3 - Core Development & Feature Buildout
+
+Features Being Built
+Main dashboard with stat cards and progress pipeline
+Client list with search, filter, and sort
+Client detail panel - step progression, onus toggle, notes
+Add/edit/remove client functionality
+Alerts page - critical, warning, action needed
+Advisors page - add, view stats, remove advisors
+AI Assistant - natural language client queries
+Payment Watch - C&P exam timer, two-group view, mark as paid
+Automated daily notification engine
+Days-in-step automation - auto-increments daily
+Settings page - configurable thresholds and admin email
+
+Tech Lead Tasks (Obaid)
+Build all backend API routes and server logic
+Implement Anthropic AI integration with client data context
+Build automated notification engine with Resend
+Set up Supabase cron job for daily days-in-step increment
+Build Payment Watch backend logic
+Implement all database queries for each feature
+Code review on all frontend integrations
+
+Frontend Lead Tasks (Dillon)
+Build all page UI - dashboard, clients, alerts, advisors, AI, settings
+Build client detail panel with animations
+Build Payment Watch page UI
+Ensure full mobile responsiveness across all pages
+Polish animations, transitions, and loading states
+
+Approval Criteria
+All listed features are working in the live environment
+David has tested adding, updating, and progressing real clients
+AI assistant is responding correctly to client queries
+Payment Watch is correctly grouping clients by exam date
+
+5. Phase 4 - Testing, Revisions & Optimization
+
+Focus Areas
+Full QA testing across all features and pages
+Cross-browser testing - Chrome, Safari, Firefox, Edge
+Mobile device testing - iOS and Android
+Performance optimization - page load times, database query speed
+Security audit - RLS policies, auth flows, API security
+Up to two rounds of client-requested revisions within agreed scope
+Bug fixes from testing and client feedback
+UX improvements based on real usage
+
+Tech Lead Tasks (Obaid)
+Backend performance optimization
+Security review and hardening
+Database query optimization
+Bug fixes on all backend issues
+Automated notification testing
+
+Frontend Lead Tasks (Dillon)
+Frontend bug fixes and polish
+Mobile responsiveness final pass
+Animation and transition refinements
+Accessibility improvements
+Client revision implementation
+
+Approval Criteria
+All known bugs resolved
+Client has approved the revised system after revisions
+Performance meets acceptable load time standards
+
+6. Phase 5 - Final Delivery, Handoff & Launch Support
+
+Deliverables
+Final production build deployed to client's Vercel account
+All credentials, API keys, and account access handed over to client
+GitHub repository transferred or access granted to client
+User documentation - how to use the system
+Admin documentation - how to manage advisors, settings, and users
+Training session with David and the team
+30-day post-launch support window
+
+Tech Lead Tasks (Obaid)
+Final production deployment and configuration
+Environment variable handover to client accounts
+Database backup configuration
+Technical documentation for codebase
+Post-launch monitoring and support
+
+Frontend Lead Tasks (Dillon)
+Final visual polish and cleanup
+User-facing documentation
+Training materials - screenshots, walkthroughs
+
+Approval Criteria
+David has confirmed full access to all accounts and systems
+Training session completed
+System is running on the client's own accounts and infrastructure
+Final project approval signed off
+
+7. Feature Dependency Map
+Some features must be built before others. This map shows the build order to avoid blocking work.
+
+Feature
+Depends On
+Phase
+Authentication
+Nothing - built first
+Phase 2
+Database Schema
+Authentication
+Phase 2
+Dashboard
+Database Schema
+Phase 3
+Client Detail Panel
+Dashboard
+Phase 3
+Add Client Modal
+Dashboard
+Phase 3
+Alerts Page
+Dashboard + Client data
+Phase 3
+Advisors Page
+Database Schema
+Phase 3
+AI Assistant
+All client data + Anthropic API
+Phase 3
+Payment Watch
+Client Detail Panel
+Phase 3
+Notification Engine
+Alerts logic + Resend
+Phase 3
+Settings Page
+Notification Engine
+Phase 3
+Days-in-Step Automation
+Database + Cron job
+Phase 3
+Testing & Revisions
+All Phase 3 features
+Phase 4
+Documentation
+All features complete
+Phase 5
+Client Handoff
+Phase 4 approval
+Phase 5
+
+
+Momentum Digital - VA Claims Edge Platform - Phase 1 Development Roadmap

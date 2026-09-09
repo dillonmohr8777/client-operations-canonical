@@ -1,0 +1,2347 @@
+<!doctype html >
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      class="ios-preview-native-scroll">
+<head>
+    <meta charset="utf-8">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    window._currentDevice = 'desktop';
+    window.Parameters = window.Parameters || {
+        HomeUrl: 'https://www.confidentsmiledental.com/',
+
+        SystemID: 'US_DIRECT_PRODUCTION',
+        SiteAlias: '40b788dd',
+        SiteType: atob('RFVEQU9ORQ=='),
+        PublicationDate: 'May 05, 2026',
+        ExternalUid: null,
+        IsSiteMultilingual: false,
+        InitialPostAlias: '',
+        InitialPostPageUuid: '',
+        InitialDynamicItem: '',
+        DynamicPageInfo: {
+            isDynamicPage: false,
+            base64JsonRowData: 'null',
+        },
+        InitialPageAlias: 'home',
+        InitialPageUuid: 'a09599c557b34719a0034dd4d1304880',
+        InitialPageId: '1205230397',
+        InitialEncodedPageAlias: 'aG9tZQ==',
+        InitialHeaderUuid: '475aa9dbf79b4d70997abe6674a71382',
+        CurrentPageUrl: '',
+        IsCurrentHomePage: true,
+        AllowAjax: false,
+        AfterAjaxCommand: null,
+        HomeLinkText: 'Back To Home',
+        UseGalleryModule: false,
+        CurrentThemeName: 'Layout Theme',
+        ThemeVersion: '500000',
+        DefaultPageAlias: '',
+        RemoveDID: true,
+        WidgetStyleID: null,
+        IsHeaderFixed: true,
+        IsHeaderSkinny: true,
+        IsBfs: true,
+        StorePageAlias: 'null',
+        StorePagesUrls: 'e30=',
+        IsNewStore: 'false',
+        StorePath: '',
+        StoreId: 'null',
+        StoreVersion: 0,
+        StoreBaseUrl: '',
+        StoreCleanUrl: true,
+        StoreDisableScrolling: true,
+        IsStoreSuspended: false,
+        HasCustomDomain: true,
+        SimpleSite: false,
+        showCookieNotification: false,
+        cookiesNotificationMarkup: 'null',
+        translatedPageUrl: '',
+        isFastMigrationSite: false,
+        sidebarPosition: 'NA',
+        currentLanguage: 'en',
+        currentLocale: 'en',
+        NavItems: '{}',
+        errors: {
+            general: 'There was an error connecting to the page.<br/> Make sure you are not offline.',
+            password: 'Incorrect name/password combination',
+            tryAgain: 'Try again'
+        },
+        
+        mapConsent: {
+            message: 'This content is served by a third party, {0}. If enabled, {0} may collect information about your activity.',
+            enable: 'Enable'
+        },
+        NavigationAreaParams: {
+            ShowBackToHomeOnInnerPages: true,
+            NavbarSize: 4,
+            NavbarLiveHomePage: 'https://www.confidentsmiledental.com/',
+            BlockContainerSelector: '.dmBody',
+            NavbarSelector: '#dmNav:has(a)',
+            SubNavbarSelector: '#subnav_main'
+        },
+        hasCustomCode: false,
+        planID: '7',
+        customTemplateId: 'null',
+        siteTemplateId: 'null',
+        productId: 'DM_DIRECT',
+        disableTracking: false,
+        pageType: 'FROM_SCRATCH',
+        isRuntimeServer: true,
+        isInEditor: false,
+        isInPreview: false,
+        hasNativeStore: false,
+        defaultLang: 'en',
+        hamburgerMigration: null,
+        isFlexSite: false
+    };
+
+    window.Parameters.LayoutID = {};
+    window.Parameters.LayoutID[window._currentDevice] = 6;
+    window.Parameters.LayoutVariationID = {};
+    window.Parameters.LayoutVariationID[window._currentDevice] = 5;
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Injecting site-wide to the head -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="d_track_campaign">
+    (function() {
+        if (!window.location.search) {
+            return;
+        }
+        const cleanParams = window.location.search.substring(1); // Strip ?
+        const queryParams = cleanParams.split('&');
+
+        const expires = 'expires=' + new Date().getTime() + 24 * 60 * 60 * 1000;
+        const domain = 'domain=' + window.location.hostname;
+        const path = "path=/";
+
+        queryParams.forEach((param) => {
+            const [key, value = ''] = param.split('=');
+            if (key.startsWith('utm_')) {
+                const cookieName = "_dm_rt_" + key.substring(4);
+                const cookie = cookieName + "=" + value;
+                const joined = [cookie, expires, domain, path].join(";");
+                document.cookie = joined;
+            }
+        });
+    }());
+</script>
+<script type="text/javascript" id="d_track_referrer">
+    (function() {
+        const cookieName = '_dm_entry_referrer';
+        const referrer = document.referrer;
+        if (!referrer) {
+            return;
+        }
+        let referrerOrigin;
+        try {
+            referrerOrigin = new URL(referrer).origin;
+        } catch (e) {
+            return;
+        }
+        // 'null' is what an opaque origin (sandboxed iframe, file://) serializes to.
+        if (!referrerOrigin || referrerOrigin === 'null' || referrerOrigin === window.location.origin) {
+            return;
+        }
+        try {
+            const existing = document.cookie
+                .split('; ')
+                .find((candidate) => candidate.indexOf(cookieName + '=') === 0);
+            if (existing && decodeURIComponent(existing.slice(cookieName.length + 1))) {
+                return;
+            }
+            // No expiry: session-scoped, matching the _dm_rt_ cookies above that a submission
+            // reads alongside this one (session-scoped in practice â see FBN-5389).
+            const secure = window.location.protocol === 'https:' ? ';Secure' : '';
+            document.cookie = cookieName + '=' + encodeURIComponent(referrerOrigin)
+                + ';path=/;SameSite=Lax' + secure;
+        } catch (e) {
+            return;
+        }
+    }());
+</script>
+<script type="text/javascript" >
+    var _dm_gaq = {};
+    var _gaq = _gaq || [];
+    var _dm_insite = [];
+</script>
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23751425-1"></script>
+
+<script type="text/javascript" id="d_track_ga">
+    window.dataLayer = window.dataLayer || [];
+    _dm_gaq.siteAlias = '40b788dd';
+    _dm_gaq.externalGaqID = 'non-empty';
+
+    function gtag() { dataLayer.push(arguments); }
+
+    function pushInsiteImpressions(id) {
+        _dm_insite.forEach((rule) => {
+            _dm_gaq.pushEvent(id, 'insite_impression', 'insite', rule.ruleType + '__' + rule.ruleId);
+        });
+    }
+
+    _dm_gaq.pushEvent = function(trackingId, event, category, label, value, additionalParams = {}) {
+        const eventProps = {
+            event_category: category,
+            event_label: label,
+            value,
+            ...additionalParams
+        };
+        gtag('event', event, eventProps);
+    }
+
+    gtag('js', new Date())
+
+    
+gtag('set', 'developer_id.dMDU5Nj', true);
+gtag('set', 'developer_id.dMWY5NG', true);
+gtag('config', 'UA-23751425-1', {
+    'send_page_view': false,
+    'linker': {
+        'domains': ['www.confidentsmiledental.com']
+    }
+});
+
+    _dm_gaq.pushEvent('', 'page_view');
+
+    pushInsiteImpressions(_dm_gaq.externalGaqID);
+</script>
+
+
+
+
+
+<!-- End Injecting site-wide to the head -->
+
+<!-- Inject secured cdn script -->
+
+
+<!-- ========= Meta Tags ========= -->
+<script>
+    try {
+    if (
+        navigator.serviceWorker &&
+        navigator.serviceWorker.getRegistrations &&
+        location.protocol === 'https:'
+    ) {
+        // remove all service workers
+        navigator.serviceWorker
+            .getRegistrations()
+            .then(function (registrations) {
+                if (registrations && registrations.length) {
+                    console.log('unregistering service workers');
+                    registrations.forEach(function (registration) {
+                        registration.unregister();
+                    });
+                }
+            });
+        // clear caches
+        if (caches) {
+            caches.keys().then(function (keyList) {
+                if (keyList && keyList.length) {
+                    console.log('deleting caches');
+                    keyList.forEach(function (key) {
+                        if (key && key.indexOf('druntime') === 0) {
+                            caches.delete(key);
+                        }
+                    });
+                }
+            });
+        }
+    }
+} catch (err) {
+    // not a secured location
+}
+</script>
+
+
+
+<link rel="canonical" href="https://www.confidentsmiledental.com/">
+
+<meta id="view" name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover">
+<meta name="dm:lcp-preload" content="dm:lcp-frozen">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!--Add favorites icons-->
+
+<link rel="icon" type="image/x-icon" href="https://irp-cdn.multiscreensite.com/40b788dd/site_favicon_16_1510596232139.ico"/>
+
+<!-- End favorite icons -->
+<link rel="preconnect" href="https://irp.cdn-website.com"/>
+<link rel="preconnect" href="https://irp.cdn-website.com" crossorigin/>
+<link rel="preconnect" href="https://static.cdn-website.com"/>
+
+
+
+<!-- render the required CSS and JS in the head section -->
+<script id='d-js-dmapi'>
+    window.SystemID = 'US_DIRECT_PRODUCTION';
+
+    if (!window.dmAPI) {
+        window.dmAPI = {
+            registerExternalRuntimeComponent: function () {
+            },
+            getCurrentDeviceType: function () {
+                return window._currentDevice;
+            },
+            runOnReady: (ns, fn) => {
+                const safeFn = dmAPI.toSafeFn(fn);
+                ns = ns || 'global_' + Math.random().toString(36).slice(2, 11);
+                const eventName = 'afterAjax.' + ns;
+
+                if (document.readyState === 'complete') {
+                    $.DM.events.off(eventName).on(eventName, safeFn);
+                    setTimeout(function () {
+                        safeFn({
+                            isAjax: false,
+                        });
+                    }, 0);
+                } else {
+                    window?.waitForDeferred?.('dmAjax', () => {
+                        $.DM.events.off(eventName).on(eventName, safeFn);
+                        safeFn({
+                            isAjax: false,
+                        });
+                    });
+                }
+            },
+            toSafeFn: (fn) => {
+                if (fn?.safe) {
+                    return fn;
+                }
+                const safeFn = function (...args) {
+                    try {
+                        return fn?.apply(null, args);
+                    } catch (e) {
+                        console.log('function failed ' + e.message);
+                    }
+                };
+                safeFn.safe = true;
+                return safeFn;
+            }
+        };
+    }
+
+    if (!window.requestIdleCallback) {
+        window.requestIdleCallback = function (fn) {
+            setTimeout(fn, 0);
+        }
+    }
+</script>
+
+<!-- loadCSS function header.jsp-->
+
+
+
+
+
+
+<script id="d-js-load-css">
+/**
+ * There are a few <link> tags with CSS resource in them that are preloaded in the page
+ * in each of those there is a "onload" handler which invokes the loadCSS callback
+ * defined here.
+ * We are monitoring 3 main CSS files - the runtime, the global and the page.
+ * When each load we check to see if we can append them all in a batch. If threre
+ * is no page css (which may happen on inner pages) then we do not wait for it
+ */
+(function () {
+  let cssLinks = {};
+  function loadCssLink(link) {
+    link.onload = null;
+    link.rel = "stylesheet";
+    link.type = "text/css";
+  }
+  
+    function checkCss() {
+      const pageCssLink = document.querySelector("[id*='CssLink']");
+      const widgetCssLink = document.querySelector("[id*='widgetCSS']");
+
+        if (cssLinks && cssLinks.runtime && cssLinks.global && (!pageCssLink || cssLinks.page) && (!widgetCssLink || cssLinks.widget)) {
+            const storedRuntimeCssLink = cssLinks.runtime;
+            const storedPageCssLink = cssLinks.page;
+            const storedGlobalCssLink = cssLinks.global;
+            const storedWidgetCssLink = cssLinks.widget;
+
+            storedGlobalCssLink.disabled = true;
+            loadCssLink(storedGlobalCssLink);
+
+            if (storedPageCssLink) {
+                storedPageCssLink.disabled = true;
+                loadCssLink(storedPageCssLink);
+            }
+
+            if(storedWidgetCssLink) {
+                storedWidgetCssLink.disabled = true;
+                loadCssLink(storedWidgetCssLink);
+            }
+
+            storedRuntimeCssLink.disabled = true;
+            loadCssLink(storedRuntimeCssLink);
+
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    storedRuntimeCssLink.disabled = false;
+                    storedGlobalCssLink.disabled = false;
+                    if (storedPageCssLink) {
+                      storedPageCssLink.disabled = false;
+                    }
+                    if (storedWidgetCssLink) {
+                      storedWidgetCssLink.disabled = false;
+                    }
+                    // (SUP-4179) Clear the accumulated cssLinks only when we're
+                    // sure that the document has finished loading and the document 
+                    // has been parsed.
+                    if(document.readyState === 'interactive') {
+                      cssLinks = null;
+                    }
+                }, 0);
+            });
+        }
+    }
+  
+
+  function loadCSS(link) {
+    try {
+      var urlParams = new URLSearchParams(window.location.search);
+      var noCSS = !!urlParams.get("nocss");
+      var cssTimeout = urlParams.get("cssTimeout") || 0;
+
+      if (noCSS) {
+        return;
+      }
+      if (link.href && link.href.includes("d-css-runtime")) {
+        cssLinks.runtime = link;
+        checkCss();
+      } else if (link.id === "siteGlobalCss") {
+        cssLinks.global = link;
+        checkCss();
+      } 
+      
+      else if (link.id && link.id.includes("CssLink")) {
+        cssLinks.page = link;
+        checkCss();
+      } else if (link.id && link.id.includes("widgetCSS")) {
+        cssLinks.widget = link;
+        checkCss();
+      }
+      
+      else {
+        requestIdleCallback(function () {
+          window.setTimeout(function () {
+            loadCssLink(link);
+          }, parseInt(cssTimeout, 10));
+        });
+      }
+    } catch (e) {
+      throw e
+    }
+  }
+  window.loadCSS = window.loadCSS || loadCSS;
+})();
+</script>
+
+
+
+<script data-role="deferred-init" type="text/javascript">
+    /* usage: window.getDeferred(<deferred name>).resolve() or window.getDeferred(<deferred name>).promise.then(...)*/
+    function Def() {
+        this.promise = new Promise((function (a, b) {
+            this.resolve = a, this.reject = b
+        }).bind(this))
+    }
+
+    const defs = {};
+    window.getDeferred = function (a) {
+        return null == defs[a] && (defs[a] = new Def), defs[a]
+    }
+    window.waitForDeferred = function (b, a, c) {
+        let d = window?.getDeferred?.(b);
+        d
+            ? d.promise.then(a)
+            : c && ["complete", "interactive"].includes(document.readyState)
+                ? setTimeout(a, 1)
+                : c
+                    ? document.addEventListener("DOMContentLoaded", a)
+                    : console.error(`Deferred  does not exist`);
+    };
+</script>
+<style id="forceCssIncludes">
+    /* This file is auto-generated from a `scss` file with the same name */
+
+.videobgwrapper{overflow:hidden;position:absolute;z-index:0;width:100%;height:100%;top:0;left:0;pointer-events:none;border-radius:inherit}.videobgframe{position:absolute;width:101%;height:100%;top:50%;left:50%;transform:translateY(-50%) translateX(-50%);object-fit:fill}#dm video.videobgframe{margin:0}@media (max-width:767px){.dmRoot .dmPhotoGallery.newPhotoGallery:not(.photo-gallery-done){min-height:80vh}}@media (min-width:1025px){.dmRoot .dmPhotoGallery.newPhotoGallery:not(.photo-gallery-done){min-height:45vh}}@media (min-width:768px) and (max-width:1024px){.responsiveTablet .dmPhotoGallery.newPhotoGallery:not(.photo-gallery-done){min-height:45vh}}#dm [data-show-on-page-only]{display:none!important}#dmRoot div.stickyHeaderFix div.site_content{margin-top:0!important}#dmRoot div.stickyHeaderFix div.hamburger-header-container{position:relative}@media (min-width:768px) and (max-width:1024px){.responsiveTablet #dm .dmInner .hide-for-medium,[data-hidden-on-tablet]{display:none!important}}
+    
+
+</style>
+<style id="cssVariables" type="text/css">
+    
+</style>
+
+
+<style id="hideAnimFix">
+  .dmDesktopBody:not(.editGrid) [data-anim-desktop]:not([data-anim-desktop='none']), .dmDesktopBody:not(.editGrid) [data-anim-extended] {
+    visibility: hidden;
+  }
+
+  .dmDesktopBody:not(.editGrid) .dmNewParagraph[data-anim-desktop]:not([data-anim-desktop='none']), .dmDesktopBody:not(.editGrid) .dmNewParagraph[data-anim-extended] {
+    visibility: hidden !important;
+  }
+
+  #dmRoot:not(.editGrid) .flex-element [data-anim-extended] {
+    visibility: hidden;
+  }
+
+</style>
+
+
+
+<style id="criticalCss">
+    @charset "UTF-8";.display_None,.dmPopupMask{display:none}@font-face{font-family:FontAwesome;font-display:block;src:url(https://static.cdn-website.com/fonts/fontawesome-webfont.eot?v=6);src:url(https://static.cdn-website.com/fonts/fontawesome-webfont.eot?#iefix&v=6) format("embedded-opentype"),url(https://static.cdn-website.com/fonts/fontawesome-webfont.woff?v=6) format("woff"),url(https://static.cdn-website.com/fonts/fontawesome-webfont.ttf?v=6) format("truetype"),url(https://static.cdn-website.com/fonts/fontawesome-webfont.svg#fontawesomeregular?v=6) format("svg");font-weight:400;font-style:normal}@font-face{font-family:Amiko;font-style:normal;font-weight:400;font-display:swap;src:url(https://irp.cdn-website.com/fonts/s/amiko/v15/WwkQxPq1DFK04uqieV8.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:Verdana;font-style:normal;font-weight:700;src:local("Verdana Bold"),local("Verdana-Bold"),url(https://dd-cdn.multiscreensite.com/fonts/additionalfonts/cd26fb9258467dcb2.woff) format("woff");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215;font-display:swap}@font-face{font-family:Amiko;font-style:normal;font-weight:700;font-display:swap;src:url(https://irp.cdn-website.com/fonts/s/amiko/v15/WwkdxPq1DFK04uIZXErDEIU.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}.dmInner{min-height:100vh!important;position:relative;min-width:768px!important}.dmPopup,.dmPopupMask{position:fixed;left:0}.dmDisplay_None{display:none!important}.clearfix:after{clear:both;visibility:hidden;line-height:0;height:0}.clearfix:after,.clearfix:before{content:" ";display:table}.clearfix{display:inline-block}#dm .dmWidget .icon{font-size:26px}body.dmRoot #dm .dmOuter .dmInner .dmWidget .icon.hasFontIcon{height:26px;margin-top:-13px;line-height:normal;text-align:center;background-image:none}.dmRoot .hasFontIcon{background-image:none!important}.dmPopupMask{margin:0;width:10px;z-index:1000000999;top:0}#dmRoot .dmPopup,.dmPopup,.dmPopupClose:before,[data-display-type=block]{display:block}.dmPopup{text-align:left;top:10px;width:93%;z-index:1000009999!important;box-sizing:border-box;background:#f5f5f5;overflow-y:auto;height:100%}.dmPopup .dmPopupTitle{text-align:left;font:700 19px Helvetica,Arial;margin:20px 20px 35px;color:#999}#dmPopup{opacity:0}.dmPopupClose,.dmPopupClose:before{position:absolute;visibility:visible}.dmPopupClose{border-radius:25px;width:27px;height:27px;z-index:1;background-color:rgba(255,255,255,.4);top:12px;right:12px}.dmPopupClose:before{font-size:20px;color:#000;top:3px;right:3px}body.dmDesktopBody:not(.mac) .data::-webkit-scrollbar{width:5px;height:5px}body.dmDesktopBody:not(.mac) .data::-webkit-scrollbar-track{background:rgba(0,0,0,.1)}body.dmDesktopBody:not(.mac) .data::-webkit-scrollbar-thumb{background:#c8c8c8;box-shadow:inset 0 1px 2px #454545;border-radius:45px}.dmRespRow.fullBleedMode>.dmRespColsWrapper{width:100%!important;max-width:100%!important}.dmRespRow.fullBleedMode{padding-left:0!important;padding-right:0!important}#dm .dmRespRow .dmRespColsWrapper{display:flex}#dm .hasBackgroundOverlay:not(.dmPopupPage):not(.layout-drawer){position:relative!important}#dm .hasBackgroundOverlay:not(.hasExtraLayerOverlay):before{display:block!important;position:absolute!important;top:0!important;left:0!important;width:100%!important;height:100%!important;content:" "!important;border-radius:inherit}#dm .dmInner .dmWidget.align-center,.align-center{margin-left:auto;margin-right:auto}body.fix-mobile-scrolling{overflow:initial}#dmRoot{text-decoration-skip-ink:none}#dm .flexslider[sliderscriptparams*="isFade: true"] .slides li,#dm .flexslider[sliderscriptparams*="'isFade':true"] .slides li{width:100%!important;float:left!important;margin-right:-100%!important;position:relative!important}#dm .flexslider .slides li:first-child>img{width:100%;height:100%;object-fit:contain;position:absolute;display:block}#dm .flexslider[sliderscriptparams*="'stretch':true"] .slides li:first-child img,#dm .flexslider[sliderscriptparams*="stretch: true"] .slides li:first-child img{object-fit:cover}body{-webkit-overflow-scrolling:touch}@media (min-width:1025px){:root{--btn-text-font-size:15px}}@media (min-width:768px) and (max-width:1024px){:root{--btn-text-font-size:15px}}nav{display:block}html{font-family:Source Sans Pro;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0}img{border:0;max-width:100%;-ms-interpolation-mode:bicubic;display:inline-block}svg:not(:root){overflow:hidden}button{font-family:inherit;font-size:100%;margin:0;line-height:normal;text-transform:none;-webkit-appearance:button}button::-moz-focus-inner{border:0;padding:0}*,:after,:before{box-sizing:border-box}.dmRespRow.dmRespRowNoPadding{padding:0}.dmRespRow{padding-top:15px;padding-bottom:15px}.dmRespRow:after,.dmRespRow:before{content:" ";display:table}.dmRespRow:after{clear:both}.dmRespRow,.dmRespRow .dmRespColsWrapper{max-width:960px;position:relative;margin:0 auto;width:100%}.dmRespRow .dmRespCol{position:relative;width:100%;display:inline-block;vertical-align:top;float:left}.dmRespRow .dmRespCol>*{max-width:100%}.dmDesktopBody .dmRespRow .large-6{position:relative;width:50%}.dmDesktopBody .dmRespRow .large-12{position:relative;width:100%}[class*=" dm-common-icons-"]{speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:dm-common-icons!important}.dm-common-icons-close:before{content:"\e901"}#dm div.dmContent [class*=" icon-"],[class*=" icon-"]{font-family:FontAwesome!important;font-weight:400;font-style:normal;text-decoration:inherit;-webkit-font-smoothing:antialiased}[class*=" icon-"]:before{text-decoration:none;display:inline-block;speak:none}a [class*=" icon-"]{display:inline}[class*=" icon-"]{display:inline;width:auto;height:auto;line-height:normal;vertical-align:baseline;background-image:none;background-position:0 0;background-repeat:repeat;margin-top:0}.icon-star:before{content:"\f005"}.icon-phone:before{content:"\f095"}.icon-angle-right:before{content:"\f105"}.icon-angle-down:before{content:"\f107"}#dm .dmRespRow .dmRespCol>.dmWidget{overflow:initial}@media (min-width:768px){#dm .dmRespRow .dmRespCol>.dmWidget{width:280px;max-width:100%}}@media (max-width:767px){#dm .dmInner .dmWidget{width:100%}}#dm .dmInner .dmWidget:not(.displayNone){display:inline-block}#dm .dmInner .dmWidget:not(.flexButton):not(.displayNone)[data-display-type=block]{display:block}#dm .dmInner .dmWidget{text-decoration:none;margin:10px 0;clear:both;position:relative;text-align:center;line-height:22px;box-shadow:none;background-image:none;padding:0;height:auto;border-style:solid;white-space:nowrap}#dm .dmInner .dmWidget.slide-button{margin-bottom:0}#dm .dmInner .dmWidget:after{content:"";display:inline-block;height:100%;vertical-align:middle;width:0;margin-right:-.25em}#dm .dmInner .dmWidget .iconBg{position:absolute;left:0;width:50px;top:50%;margin-top:-13px}.dmWidget.dmUserImg .icon{background-size:27px;background-repeat:no-repeat;background-position:50%;width:27px;height:27px;display:inline-block}#dm .dmWidget .text{display:inline-block;vertical-align:middle;font-size:1.125em;line-height:normal;white-space:normal;padding:10px 7px;max-width:98%}#dm .dmWidget.slide-button:after{display:none}p.rteBlock{margin:0}.dmImageSlider{height:350px;position:relative;clear:both}.flexslider{-webkit-transform:translate3d(0,0,0);padding:0;-webkit-transform:translateZ(0);direction:ltr;margin:0;zoom:1;opacity:1!important}html:not(.ios-preview) #dm .hasStickyHeader .dmInner div.dmHeaderContainer{position:fixed!important;z-index:101;width:100%;min-width:768px}[data-video-bg]{min-height:100px}body:not(.responsiveTablet) #dm .dmInner .dmBody .hide-for-large,body:not(.responsiveTablet) .hide-for-large{display:none!important}.imageWidget{position:relative}.imageWidget a{font-style:italic;text-align:center}.imageWidget img[width][height]{height:auto}.slides{margin:0;padding:0;list-style:none}.flexslider,.flexslider .slides>li{height:100%;overflow:hidden;position:relative}.flexslider .slides{height:100%;zoom:1}.flexslider .slides>li{display:none;text-align:center}.flexslider .slides img{width:100%;display:block;margin:auto}.slides:after{content:" ";display:block;clear:both;visibility:hidden;line-height:0;height:0}#dm div.dmRespCol>*,.flexslider .slides>li .slide-inner *{line-height:normal}html[xmlns] .slides{display:block}.flexslider .color-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.25);display:block}.flexslider .slides>li .slide-inner{font-weight:700;color:#fff;position:absolute;z-index:1;visibility:hidden}.flexslider .slides>li .slide-inner .slide-title{margin:0}.flexslider .slides>li .slide-inner .slide-text{margin:0;font-size:19px;font-weight:400;white-space:pre-line}#dm .dmInner .flexslider .slides>li .slide-inner .slide-button{margin-top:20px;margin-left:auto;margin-right:auto}.flexslider .slides>li[layout=center] .slide-inner{max-width:70%;max-height:80%}#dm .flexslider .slides .dmWidget .text{max-width:100%;width:100%;padding:10px 20px!important}#dm .dmInner .flexslider.ed-version .slide-button{-js-display:inline-flex;display:inline-flex;justify-content:center;align-items:center}.flexslider.ed-version .slides img{display:none}#dm .dmBody a.u_1097339932 .iconBg,#dm .dmBody a.u_1139040359 .iconBg,#dm .dmBody a.u_1328727602 .iconBg,#dm .dmBody a.u_1351848195 .iconBg,#dm .dmBody a.u_1363086438 .iconBg,#dm .dmBody a.u_1478454047 .iconBg,#dm .dmBody a.u_1484351267 .iconBg,#dm .dmBody a.u_1505859780 .iconBg,.flexslider.ed-version[layout=bottom] .slides>li .slide-inner .slide-button,.flexslider.ed-version[layout=bottom] .slides>li .slide-inner .slide-title{display:none!important}.flexslider.ed-version[layout=bottom] .slides>li{position:relative}.flexslider.ed-version[layout=bottom] .slides>li .slide-inner{width:100%;max-width:100%;background-color:rgba(0,0,0,.5);margin-left:0!important;margin-top:0!important;max-height:100%;padding:15px 30px;top:auto!important;bottom:0!important;left:0!important}.dmNewParagraph[data-version] .text-align-left{text-align:left!important}.dmNewParagraph[data-version]{line-height:initial}.dmNewParagraph[data-version] p{margin-top:0;margin-bottom:0}.gr-Main-Container,.gr-Main-Container div,.gr-Main-Container img{position:relative;display:block;width:100%;height:auto;padding:0;margin:0;text-align:left;line-height:1.5em;text-decoration:none;box-sizing:border-box;-webkit-touch-callout:none}.widget-Loader-Container{display:flex;align-items:center;justify-content:center;width:100%;height:100%;z-index:1}.widget-Loader-Container svg{max-width:200px;animation:2s linear infinite svg-animation}.widget-Loader-Container svg circle.one{display:block;fill:transparent;stroke:#c3c3c3;stroke-width:3px}.widget-Loader-Container svg circle.two{animation:3s linear infinite circle-animation;display:block;fill:transparent;stroke:#FFA400;stroke-linecap:round;stroke-dasharray:253;stroke-dashoffset:250;stroke-width:3px;transform-origin:50% 50%}@keyframes circle-animation{0%{stroke-dashoffset:250;transform:rotate(0)}50%{stroke-dashoffset:75;transform:rotate(45deg)}100%{stroke-dashoffset:250;transform:rotate(360deg)}}@keyframes svg-animation{0%{transform:rotateZ(0)}100%{transform:rotateZ(360deg)}}div.gr-Header-Section{display:flex;flex-direction:row;flex-wrap:wrap;align-content:flex-start;justify-content:space-between;align-items:center;margin-bottom:30px;padding:18px 24px 24px;border-radius:5px;background-color:rgba(17,17,17,.05)}div.gr-Title-Column{width:50%}div.gr-Image-Wrapper{display:flex;flex-direction:row;flex-wrap:nowrap;align-content:center;justify-content:flex-start;align-items:center}div.gr-Image-Wrapper img{width:auto;height:40px;margin-right:10px}div.gr-Image-Wrapper span{font-size:30px;line-height:2em}div.gr-Button-Column{width:50%;display:flex;justify-content:flex-end}div.swiper-wrapper{display:flex}img[width][height]{height:auto}*{border:0 solid #333;scrollbar-arrow-color:#fff;scrollbar-track-color:#F2F2F2;scrollbar-face-color:silver;scrollbar-highlight-color:silver;scrollbar-3dlight-color:silver;scrollbar-shadow-color:silver;scrollbar-darkshadow-color:silver;scrollbar-width:12px}body{width:100%;overflow:hidden;-webkit-text-size-adjust:100%!important;-ms-text-size-adjust:100%!important}A IMG{border:none}h1,h3,ul{margin-left:0;margin-right:0}.dmInner *{-webkit-font-smoothing:antialiased}.clearfix,a,img,li,ul{vertical-align:top}#iscrollBody,#site_content{position:relative}.dmOuter{word-wrap:break-word}.dmInner{font-size:16px;background:#fff;color:#666}.dmDesktopBody .dmInner{min-width:960px}.dmInner a{color:#463939}.dmInner ul:not(.defaultList){padding:0}.dmHeader{background:#68ccd1;color:#666;text-align:center;position:relative;width:100%;max-width:100%}DIV.dmBody{padding:0;clear:both}.dmContent{margin:0;padding:0}#site_content ul:not(.defaultList){-webkit-padding-start:0;-moz-padding-start:0;list-style-position:inside}#innerBar{position:relative;height:36px;width:100%;font-size:20px;margin:0;z-index:80}#dm .dmRespRow.dmRespRowNoPadding{padding:0}.dmRespRowsWrapper{max-width:960px;margin:0 auto}.dmRespCol>[dmle_extension]:not(:first-child){margin-top:10px}.dmLargeBody .imageWidget:not(.displayNone){display:inline-block;max-width:100%}.imageWidget:not(.displayNone) img{width:100%}h3{font-weight:400;font-size:23px}#dm .dmRespColsWrapper{display:block}.dmNewParagraph{text-align:left;margin:8px 0;padding:2px 0}.dmLargeBody .dmRespRowsWrapper>.dmRespRow .dmRespCol,.dmLargeBody .fHeader .dmRespRow .dmRespCol{padding-left:.75%;padding-right:.75%}.dmLargeBody .dmRespRowsWrapper>.dmRespRow .dmRespCol:first-child,.dmLargeBody .fHeader .dmRespRow .dmRespCol:first-child{padding-left:0;padding-right:1.5%}.dmLargeBody .dmRespRowsWrapper>.dmRespRow .dmRespCol:last-child,.dmLargeBody .fHeader .dmRespRow .dmRespCol:last-child{padding-right:0;padding-left:1.5%}.dmLargeBody .dmRespRowsWrapper>.dmRespRow .dmRespCol:only-child,.dmLargeBody .fHeader .dmRespRow .dmRespCol:only-child{padding-left:0;padding-right:0}#innerBar.lineInnerBar{display:table;width:100%;box-shadow:none;-webkit-box-shadow:none;-moz-box-shadow:none;font-size:20px;margin-top:30px;margin-bottom:30px;background-color:transparent;color:#666}#innerBar .titleLine{display:table-cell;vertical-align:middle;width:50%}.dmPageTitleRow:not(#innerBar){display:none}.titleLine hr{min-height:1px;background-color:rgba(102,102,102,.2)}.dmStandardDesktop{display:block}#dmFirstContainer .dmRespRowsWrapper:after,#dmFirstContainer .dmRespRowsWrapper:before{content:"";display:table}.dmInner a{outline:0;vertical-align:inherit}.dmLinksMenu>ul{display:block;margin:0;font-size:inherit}.dmStandardDesktop{margin:0 auto}#dm .dmInner .dmWidget{color:#f7f7f7;background-color:#68ccd1}.dmButtonLink .icon:not(.hasFontIcon){background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAYAAACN1PRVAAABe0lEQVR42mNgGKzg////LD9+/Oj7/v37fiDtTlPLgJY4APF/EAZadhZoOTstLdsGswyEv337FkVLX/1Btgzou/M08R26r2jmO6Ch9ui+QvLdOaDv2KiVAnmAhm7HZhESTgSlVKIN/fjxo9DPnz+1gNgfGDSFQDwJ6Op1QIOuErAIhD8D8REgXgTEbUCcAsSOQKyA4WugYBwQP8UVVBTgX0B8EGQ+smWnqWwJOj6NbFktDS16BsRVKEEJjKNSGlj04NevX/pYEwnQwhJqWgRMbHp4UyWVfPiQoEVoFv4i06LbRFuElGj2kGMZycUXKCMCM/QZMi0rJtVXckD8lsxgXEqSZUDXWZCbOECVKqk+S6QgJT798uWLONGWAV3Xg8fla6Gp9Tqu8vDr168mpPhsKxZDQKnTGSkR8UEtfYSuFmhZACmWzUbSfBzoGz9caj9//iwGVNMIxK+R9NiRkkAsgRr2AvF8oCsNicgqrEC1sUC8D4hnAfm8DCMKAAAXjj6cSGGUMwAAAABJRU5ErkJggg==);background-position:50% 50%;background-repeat:no-repeat;width:27px;height:27px}#dm .dmDivider{display:block;margin:10px 0}body{background-color:#eee}.dmDivider{min-height:2px;border:currentColor;color:grey;background:0 0}#dm .dmDividerWrapper{display:block}.main-navigation.unifiednav{-js-display:flex;display:flex;justify-content:flex-start;align-items:stretch;overflow:visible}.main-navigation.unifiednav ul{list-style:none;padding:0;margin:0;font-size:1rem}.main-navigation.unifiednav .unifiednav__container{-js-display:flex;display:flex;justify-content:flex-start;list-style:none}.main-navigation.unifiednav:not(.unifiednav_vertical)>.unifiednav__container{flex-wrap:wrap}.main-navigation.unifiednav .unifiednav__container>.unifiednav__item-wrap{-js-display:flex;display:flex;justify-content:flex-start;position:relative;font-weight:400}.main-navigation.unifiednav .unifiednav__container:not([data-depth])>.unifiednav__item-wrap::after,.main-navigation.unifiednav .unifiednav__container:not([data-depth])>.unifiednav__item-wrap::before{content:'';align-self:center;font-weight:700}.main-navigation.unifiednav:not(.unifiednav_vertical)[data-divider=PIPE] .unifiednav__container:not([data-depth])>.unifiednav__item-wrap:not(:last-child)::after{content:'|'}.main-navigation.unifiednav:not(.unifiednav_vertical)[data-divider=PIPE] .unifiednav__container:not([data-depth])>.unifiednav__item-wrap:not(:last-child)::before{content:''}.main-navigation.unifiednav .unifiednav__container>.unifiednav__item-wrap>.unifiednav__item{-js-display:flex;display:flex;justify-content:flex-start;align-items:center;flex-direction:row;color:inherit;text-decoration:none;position:relative;padding:12px 15px;margin:0;font-weight:inherit;letter-spacing:.03em}.main-navigation.unifiednav .unifiednav__container:not([data-depth])>.unifiednav__item-wrap>.unifiednav__item{padding:0 15px}.main-navigation.unifiednav .unifiednav__container>.unifiednav__item-wrap>.unifiednav__item .nav-item-text{white-space:nowrap}.main-navigation.unifiednav .unifiednav__container:not([data-depth])>.unifiednav__item-wrap>.unifiednav__item .nav-item-text::after,.main-navigation.unifiednav .unifiednav__container:not([data-depth])>.unifiednav__item-wrap>.unifiednav__item .nav-item-text::before{content:'';width:100%;height:0;border:0 solid transparent;border-top-color:currentColor;display:block;opacity:0}.main-navigation.unifiednav .unifiednav__container:not([data-depth])>.unifiednav__item-wrap>.unifiednav__item.dmNavItemSelected .nav-item-text::after,.main-navigation.unifiednav .unifiednav__container:not([data-depth])>.unifiednav__item-wrap>.unifiednav__item.dmNavItemSelected .nav-item-text::before{opacity:1}.main-navigation.unifiednav.effect-bottom{padding:calc(12px - .2em - 2px) 15px}.main-navigation.unifiednav.effect-bottom .unifiednav__container:not([data-depth])>.unifiednav__item-wrap>.unifiednav__item .nav-item-text::after,.main-navigation.unifiednav.effect-bottom .unifiednav__container:not([data-depth])>.unifiednav__item-wrap>.unifiednav__item .nav-item-text::before{transform:scaleX(0);border-top-width:2px}.main-navigation.unifiednav.effect-bottom .unifiednav__container:not([data-depth])>.unifiednav__item-wrap>.unifiednav__item .nav-item-text::after{margin-top:.2em}.main-navigation.unifiednav.effect-bottom .unifiednav__container:not([data-depth])>.unifiednav__item-wrap>.unifiednav__item .nav-item-text::before{margin-bottom:.2em;border-top-color:transparent}.main-navigation.unifiednav.effect-bottom .unifiednav__container:not([data-depth])>.unifiednav__item-wrap>.unifiednav__item.dmNavItemSelected .nav-item-text::after,.main-navigation.unifiednav.effect-bottom .unifiednav__container:not([data-depth])>.unifiednav__item-wrap>.unifiednav__item.dmNavItemSelected .nav-item-text::before{transform:scaleX(1)}.main-navigation.unifiednav .unifiednav__container .unifiednav__item:not(.unifiednav__item_has-sub-nav) .icon{display:none}.main-navigation.unifiednav .unifiednav__container[data-depth='1']{min-width:100%}.main-navigation.unifiednav .unifiednav__container[data-depth]{position:absolute;top:0;left:0;flex-direction:column;opacity:0;z-index:100;background-color:#faf9f9}.main-navigation.unifiednav .unifiednav__container[data-depth='0']{top:100%;transform:translateY(-10px)}.main-navigation.unifiednav:not(.unifiednav_vertical) .unifiednav__container[data-depth='0']{left:15px}.main-navigation.unifiednav .unifiednav__container>.unifiednav__item-wrap .unifiednav__container>.unifiednav__item-wrap{flex-direction:column}.main-navigation.unifiednav .unifiednav__container[data-depth]>.unifiednav__item-wrap .unifiednav__item{padding:15px 30px 15px 15px;margin:0}.main-navigation.unifiednav .unifiednav__container[data-depth]>.unifiednav__item-wrap:not(:last-child)::after{content:''!important;width:100%;height:0;color:#ececec;align-self:center;border:0 solid currentColor}.main-navigation.unifiednav[layout-sub=submenu_horizontal_2] .unifiednav__container[data-depth]{color:#999}.main-navigation.unifiednav[layout-sub=submenu_horizontal_2] .unifiednav__container[data-depth]>.unifiednav__item-wrap:not(:last-child)::after{border-top-width:1px}.main-navigation.unifiednav:not(.unifiednav_vertical) .unifiednav__container[data-depth='1']{transform:translateX(-10%) translateY(0);left:100%}.main-navigation.unifiednav .unifiednav__container>.unifiednav__item-wrap>.unifiednav__item.unifiednav__item_has-sub-nav .icon{display:initial;padding-left:10px;margin-left:0}.main-navigation.unifiednav .unifiednav__container[data-depth] .unifiednav__item_has-sub-nav .icon{transform:rotate(0)}.main-navigation.unifiednav:not(.unifiednav_vertical)>.unifiednav__container{justify-content:inherit}#dm .dmBody .dmRespRowsWrapper{max-width:none;background-color:transparent}.dmLargeBody .dmRespRow{width:100%;max-width:none;margin-left:0;margin-right:0;padding-left:40px;padding-right:40px}#dm .fHeader .dmHeaderContent.freeHeaderRow1{padding:30px 0}.dm-bfs.dm-layout-home div.dmInner{background-color:#fff}.dmStandardDesktop .dmHeader{background-color:#68ccd1;max-width:100%}#dm .p_hfcontainer nav.main-navigation.unifiednav{min-width:9em!important;text-align:initial!important}#dm .main-navigation.unifiednav .unifiednav__container[data-depth]{background-color:transparent}#dm .main-navigation.unifiednav[layout-sub=submenu_horizontal_2] .unifiednav__container[data-depth]{background-color:#faf9f9}#dm .main-navigation.unifiednav .unifiednav__container[data-depth]>.unifiednav__item-wrap:not(:last-child)::after{color:#d1d1d1}#dm .main-navigation.unifiednav:not([data-nav-structure=VERTICAL])>.unifiednav__container{flex-wrap:wrap;justify-content:inherit}#dm .main-navigation.unifiednav:not([data-nav-structure=VERTICAL])>.unifiednav__container .nav-item-text::before{text-align:left}#dm .main-navigation.unifiednav:not([data-nav-structure=VERTICAL]) .unifiednav__container:not([data-depth])>.unifiednav__item-wrap:not(:last-child)::after,#dm .main-navigation.unifiednav:not([data-nav-structure=VERTICAL]) .unifiednav__container:not([data-depth])>.unifiednav__item-wrap:not(:last-child)::before,#dm .main-navigation.unifiednav:not([data-nav-structure=VERTICAL])[data-divider]:not([data-direction=RIGHT]) .unifiednav__container:not([data-depth])>.unifiednav__item-wrap:not(:last-child)::before{content:''}#dm .main-navigation.unifiednav:not([data-nav-structure=VERTICAL])[data-divider=PIPE] .unifiednav__container:not([data-depth])>.unifiednav__item-wrap:not(:last-child)::after{content:'|'}.dmRoot:not(.dmTabletBody):not(.dmMobileBody) #dm .main-navigation.unifiednav:not([data-nav-structure=SPLIT]) .unifiednav__container[data-depth='1']{max-height:65vh;overflow-y:auto}.dmRoot:not(.dmTabletBody):not(.dmMobileBody) #dm .main-navigation.unifiednav:not([data-nav-structure=SPLIT]) .unifiednav__container[data-depth='1'] .unifiednav__item-wrap{flex-shrink:0}.standardHeaderLayout .dmHeader{float:none;display:block;height:auto}#dm .dmDividerWrapper{margin:10px 0}#dm .dmDividerWrapper .dmDivider{margin:0}#dm div.dmContent h1{color:#666}#dm div.dmContent h3{color:#243f5b;color:rgba(36,63,91,1)}#dm div.dmInner,#dm div.dmInner .dmRespCol{font-family:Amiko,"Amiko Fallback";color:rgba(129,129,129,1);font-weight:400;font-size:16px}#dm div.dmContent h1,#dm div.dmContent h3{font-family:Raleway,"Raleway Fallback";font-weight:700}#dm div.dmContent h1{color:rgba(0,0,0,1)}#dm div.dmContent h3{font-size:24px}.dmLargeBody .dmBody .dmRespRowsWrapper{background-color:transparent}#dm div.dmInner h3{font-family:Verdana,"Verdana Fallback"}#dm .dmContent .dmRespRow{background-color:rgba(0,0,0,0)}#dm DIV.dmOuter DIV.dmInner{background-color:rgba(255,255,255,1)}#dm div.dmContent h1,#dm div.dmContent h1 *{font-size:50px;line-height:initial}@media all{:root{--btn-text-direction:ltr;--btn-border-r-color:var(--btn-border-color);--btn-border-l-color:var(--btn-border-color);--btn-border-b-width:var(--btn-border-width);--btn-border-width:2px;--btn-border-radius:6px;--btn-border-t-width:var(--btn-border-width);--btn-border-tl-radius:var(--btn-border-radius);--btn-border-br-radius:var(--btn-border-radius);--btn-border-bl-radius:var(--btn-border-radius);--btn-bg-color:rgb(36, 63, 91);--btn-border-color:rgba(0, 0, 0, 0);--btn-border-tr-radius:var(--btn-border-radius);--btn-border-r-width:var(--btn-border-width);--btn-bg-image:none;--btn-border-b-color:var(--btn-border-color);--btn-border-l-width:var(--btn-border-width);--btn-border-t-color:var(--btn-border-color);--btn-text-align:center;--btn-text-color:rgb(255, 255, 255);--btn-text-decoration:none;--btn-text-font-weight:400;--btn-icon-color:rgb(247, 247, 247);--btn-icon-fill:rgb(247, 247, 247);--btn-icon-wrpr-display:block;--btn-hover-border-b-color:var(--btn-hover-border-color);--btn-hover-bg:var(--btn-bg-color);--btn-hover-border-t-color:var(--btn-hover-border-color);--btn-hover-border-r-color:var(--btn-hover-border-color);--btn-hover-border-l-color:var(--btn-hover-border-color);--btn-hover-border-color:rgb(255, 255, 255);--btn-hover-text-color:var(--btn-text-color);--btn-hover-text-font-weight:var(--btn-text-font-weight);--btn-hover-text-decoration:var(--btn-text-decoration);--btn-hover-text-font-style:var(--btn-text-font-style)}}@media (min-width:0px) and (max-width:767px){:root{--btn-text-font-size:15px}}#dm .dmOuter .dmInner .dmWidget[data-buttonstyle=THICK_BORDER_ROUND] .iconBg{display:none}#dm .dmWidget:not([data-buttonstyle]){background-clip:border-box;border-radius:6px;padding:0 0 0 40px}#dm .dmWidget:not([data-buttonstyle]) .text{padding:10px 7px}#dm .dmWidget:not([data-buttonstyle]) .iconBg{display:block}#dm div.dmInner #site_content .dmWidget{background-color:var(--btn-bg-color);background-image:var(--btn-bg-image);border-color:var(--btn-border-color);border-bottom-color:var(--btn-border-b-color);border-left-color:var(--btn-border-l-color);border-right-color:var(--btn-border-r-color);border-top-color:var(--btn-border-t-color);border-radius:var(--btn-border-radius);border-bottom-left-radius:var(--btn-border-bl-radius);border-bottom-right-radius:var(--btn-border-br-radius);border-top-left-radius:var(--btn-border-tl-radius);border-top-right-radius:var(--btn-border-tr-radius);border-width:var(--btn-border-width);border-bottom-width:var(--btn-border-b-width);border-left-width:var(--btn-border-l-width);border-right-width:var(--btn-border-r-width);border-top-width:var(--btn-border-t-width);direction:var(--btn-text-direction);text-align:var(--btn-text-align)}#dm div.dmInner #site_content .dmWidget span.text{color:var(--btn-text-color);font-size:var(--btn-text-font-size);font-weight:var(--btn-text-font-weight);text-decoration:var(--btn-text-decoration)}#dm div.dmInner #site_content .dmWidget span.icon{color:var(--btn-icon-color);fill:var(--btn-icon-fill)}#dm div.dmInner #site_content .dmWidget:not([data-buttonstyle]) .iconBg{display:var(--btn-icon-wrpr-display)}#dm .dmInner div.dmHeader{background-color:rgba(255,255,255,.71)!important;background-repeat:no-repeat!important;background-image:url(https://lirp.cdn-website.com/12d60cfb/dms3rep/multi/opt/event-venue_01-1026x619-1920w.png),url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABhGlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw0AcxV9TpUUqHSwo4pChOlkQFemoVShChVArtOpgcukXNGlIUlwcBdeCgx+LVQcXZ10dXAVB8APEzc1J0UVK/F9aaBHjwXE/3t173L0DhEaFaVbPBKDptplOJsRsblUMvEJAGEEMIi4zy5iTpBQ8x9c9fHy9i/Es73N/jn41bzHAJxLPMsO0iTeIZzZtg/M+cYSVZJX4nHjcpAsSP3JdafEb56LLAs+MmJn0PHGEWCx2sdLFrGRqxNPEUVXTKV/ItljlvMVZq9RY+578haG8vrLMdZojSGIRS5AgQkENZVRgI0arToqFNO0nPPzDrl8il0KuMhg5FlCFBtn1g//B726twtRkKymUAHpfHOdjFAjsAs2643wfO07zBPA/A1d6x19tAPFP0usdLXoEhLeBi+uOpuwBlzvA0JMhm7Ir+WkKhQLwfkbflAMGboG+tVZv7X2cPgAZ6ip1AxwcAmNFyl73eHewu7d/z7T7+wFwJnKmZ9+MiwAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAd0SU1FB+UCDwksLkLIPkkAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAAC0lEQVQI12NgAAIAAAUAAeImBZsAAAAASUVORK5CYII=)!important;background-size:cover!important}#dm .dmInner div.dmHeader.u_hcontainer,#dm .dmInner div.u_hcontainer,#dm .p_hfcontainer div.u_1571063569{background-image:none!important;background-repeat:no-repeat!important;background-size:cover!important}#dm .dmInner div.dmHeader.u_hcontainer{background-color:rgba(255,255,255,1)!important;padding-top:10px!important;padding-bottom:10px!important}#dm .dmInner div.u_hcontainer{background-color:#ccdbe5!important}#dm .p_hfcontainer .u_1072607595.main-navigation.unifiednav:not(.unifiednav_vertical) .unifiednav__container:not([data-depth])>.unifiednav__item-wrap:not(:last-child)::after,#dm .p_hfcontainer .u_1072607595.main-navigation.unifiednav:not(.unifiednav_vertical) .unifiednav__container:not([data-depth])>.unifiednav__item-wrap:not(:last-child)::before{font-size:18px!important}#dm .p_hfcontainer nav.u_1072607595.main-navigation.unifiednav .unifiednav__container:not([data-depth])>.unifiednav__item-wrap>.unifiednav__item{color:rgba(36,63,91,1)!important;font-weight:700!important;font-size:18px!important}#dm .p_hfcontainer div.u_1571063569{background-color:rgba(0,0,0,0)!important}#dm .p_hfcontainer nav.u_1072607595.main-navigation.unifiednav .unifiednav__container[data-depth]{background-color:rgba(250,249,249,.95)!important;box-shadow:rgba(0,0,0,.25) 0 3px 11px 0!important;-moz-box-shadow:rgba(0,0,0,.25) 0 3px 11px 0!important;-webkit-box-shadow:rgba(0,0,0,.25) 0 3px 11px 0!important}#dm .p_hfcontainer nav.u_1072607595.main-navigation.unifiednav .unifiednav__container[data-depth] .unifiednav__item{color:rgba(72,69,69,1)!important}#dm .p_hfcontainer .u_1072607595.main-navigation.unifiednav:not([image]) .unifiednav__container[data-depth="0"]{top:calc(100% - 0px - 0px)!important}#dm .p_hfcontainer .u_1072607595.main-navigation.unifiednav[data-nav-structure=HORIZONTAL] .unifiednav__container:not([data-depth])>.unifiednav__item-wrap:not(:last-child) .unifiednav__container[data-depth="0"]{left:15px!important}#dm .dmBody div.u_1711951918,#dm .p_hfcontainer div.u_1211591181,#dm .p_hfcontainer div.u_1571063569,#dm .p_hfcontainer nav.u_1072607595{top:0!important;left:0!important;position:relative!important;height:auto!important}#dm .dmInner div.fHeader .dmHeader[freeheader=true]{padding:0!important}#dm .p_hfcontainer div.u_1571063569{float:none!important;max-width:none!important;width:100%!important;min-width:0!important;text-align:center!important;background-position:0 0!important;margin:0 auto!important;padding:0 20px!important}#dm .d-page-1716942098 DIV.dmInner,#dm .dmBody .u_1038749177{background-position:50% 0!important}#dm .p_hfcontainer nav.u_1072607595{float:none!important;width:100%!important;max-width:100%!important;justify-content:center!important;align-items:stretch!important;min-width:0!important;text-align:center!important;padding:6.8px 15px!important;margin:10px auto 0!important}#dm .p_hfcontainer div.u_1211591181{float:none!important;width:460px!important;max-width:calc(100% - 554px)!important;min-width:25px!important;text-align:center!important;display:block!important;padding:0!important;margin:0 auto!important}.stickyHeaderSpacer{height:130.98px!important}#dm .dmBody a.u_1429667453 span.icon{background-image:url(https://lirp.cdn-website.com/40b788dd/dms3rep/multi/opt/icontooth-128x128-1920w.png),url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABhGlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw0AcxV9TpUUqHSwo4pChOlkQFemoVShChVArtOpgcukXNGlIUlwcBdeCgx+LVQcXZ10dXAVB8APEzc1J0UVK/F9aaBHjwXE/3t173L0DhEaFaVbPBKDptplOJsRsblUMvEJAGEEMIi4zy5iTpBQ8x9c9fHy9i/Es73N/jn41bzHAJxLPMsO0iTeIZzZtg/M+cYSVZJX4nHjcpAsSP3JdafEb56LLAs+MmJn0PHGEWCx2sdLFrGRqxNPEUVXTKV/ItljlvMVZq9RY+578haG8vrLMdZojSGIRS5AgQkENZVRgI0arToqFNO0nPPzDrl8il0KuMhg5FlCFBtn1g//B726twtRkKymUAHpfHOdjFAjsAs2643wfO07zBPA/A1d6x19tAPFP0usdLXoEhLeBi+uOpuwBlzvA0JMhm7Ir+WkKhQLwfkbflAMGboG+tVZv7X2cPgAZ6ip1AxwcAmNFyl73eHewu7d/z7T7+wFwJnKmZ9+MiwAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAd0SU1FB+UCDwksLkLIPkkAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAAC0lEQVQI12NgAAIAAAUAAeImBZsAAAAASUVORK5CYII=)!important}#dm .dmBody .u_1711951918:before{opacity:.5!important;background-color:#f6f5f5!important}#dm .dmBody div.u_1711951918:before{opacity:.92!important;background-color:rgba(250,249,249,1)!important}#dm .dmBody div.u_1587642262{display:block!important}#dm .dmBody div.u_1711951918{background-color:rgba(0,0,0,0)!important;background-image:url(https://lirp.cdn-website.com/40b788dd/dms3rep/multi/opt/AdobeStock_2074848-1920x-1920w.jpeg),url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABhGlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw0AcxV9TpUUqHSwo4pChOlkQFemoVShChVArtOpgcukXNGlIUlwcBdeCgx+LVQcXZ10dXAVB8APEzc1J0UVK/F9aaBHjwXE/3t173L0DhEaFaVbPBKDptplOJsRsblUMvEJAGEEMIi4zy5iTpBQ8x9c9fHy9i/Es73N/jn41bzHAJxLPMsO0iTeIZzZtg/M+cYSVZJX4nHjcpAsSP3JdafEb56LLAs+MmJn0PHGEWCx2sdLFrGRqxNPEUVXTKV/ItljlvMVZq9RY+578haG8vrLMdZojSGIRS5AgQkENZVRgI0arToqFNO0nPPzDrl8il0KuMhg5FlCFBtn1g//B726twtRkKymUAHpfHOdjFAjsAs2643wfO07zBPA/A1d6x19tAPFP0usdLXoEhLeBi+uOpuwBlzvA0JMhm7Ir+WkKhQLwfkbflAMGboG+tVZv7X2cPgAZ6ip1AxwcAmNFyl73eHewu7d/z7T7+wFwJnKmZ9+MiwAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAd0SU1FB+UCDwksLkLIPkkAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAAC0lEQVQI12NgAAIAAAUAAeImBZsAAAAASUVORK5CYII=)!important;border-style:solid!important;border-width:0!important}#dm .dmBody a.u_1352291622{background-color:#243f5b!important}#dm .dmBody .u_1089804103:before{opacity:.5!important;background-color:#676767!important}#dm .dmBody h1.u_1244941636{background-color:rgba(255,255,255,.28)!important}#dm .dmBody div.u_1089804103:before{background-color:rgba(36,63,91,1)!important;opacity:.44!important}#dm .dmBody a.u_1322189022{background-color:#243f5b!important}#dm .dmBody div.u_1089804103{background-image:url(https://lirp.cdn-website.com/40b788dd/dms3rep/multi/opt/2017-11-13_12-34-51-1920w.jpg),url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABhGlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw0AcxV9TpUUqHSwo4pChOlkQFemoVShChVArtOpgcukXNGlIUlwcBdeCgx+LVQcXZ10dXAVB8APEzc1J0UVK/F9aaBHjwXE/3t173L0DhEaFaVbPBKDptplOJsRsblUMvEJAGEEMIi4zy5iTpBQ8x9c9fHy9i/Es73N/jn41bzHAJxLPMsO0iTeIZzZtg/M+cYSVZJX4nHjcpAsSP3JdafEb56LLAs+MmJn0PHGEWCx2sdLFrGRqxNPEUVXTKV/ItljlvMVZq9RY+578haG8vrLMdZojSGIRS5AgQkENZVRgI0arToqFNO0nPPzDrl8il0KuMhg5FlCFBtn1g//B726twtRkKymUAHpfHOdjFAjsAs2643wfO07zBPA/A1d6x19tAPFP0usdLXoEhLeBi+uOpuwBlzvA0JMhm7Ir+WkKhQLwfkbflAMGboG+tVZv7X2cPgAZ6ip1AxwcAmNFyl73eHewu7d/z7T7+wFwJnKmZ9+MiwAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAd0SU1FB+UCDwksLkLIPkkAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAAC0lEQVQI12NgAAIAAAUAAeImBZsAAAAASUVORK5CYII=)!important;border-style:solid!important;border-width:0!important;background-color:rgba(0,0,0,0)!important}#dm .dmBody .u_1587642262{width:100%!important}#dm .dmBody .u_1674891153:before{opacity:.5!important;background-color:#fff!important}#dm .dmBody div.u_1674891153:before{background-color:rgba(204,219,229,1)!important;opacity:.9!important}#dm .dmBody div.u_1541505501 hr{color:rgba(128,128,128,0)!important}#dm .dmBody div.u_1674891153{background-repeat:no-repeat!important;background-image:url(https://lirp.cdn-website.com/40b788dd/dms3rep/multi/opt/AdobeStock_16749528-1920x-1920w.jpeg),url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAABhGlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw0AcxV9TpUUqHSwo4pChOlkQFemoVShChVArtOpgcukXNGlIUlwcBdeCgx+LVQcXZ10dXAVB8APEzc1J0UVK/F9aaBHjwXE/3t173L0DhEaFaVbPBKDptplOJsRsblUMvEJAGEEMIi4zy5iTpBQ8x9c9fHy9i/Es73N/jn41bzHAJxLPMsO0iTeIZzZtg/M+cYSVZJX4nHjcpAsSP3JdafEb56LLAs+MmJn0PHGEWCx2sdLFrGRqxNPEUVXTKV/ItljlvMVZq9RY+578haG8vrLMdZojSGIRS5AgQkENZVRgI0arToqFNO0nPPzDrl8il0KuMhg5FlCFBtn1g//B726twtRkKymUAHpfHOdjFAjsAs2643wfO07zBPA/A1d6x19tAPFP0usdLXoEhLeBi+uOpuwBlzvA0JMhm7Ir+WkKhQLwfkbflAMGboG+tVZv7X2cPgAZ6ip1AxwcAmNFyl73eHewu7d/z7T7+wFwJnKmZ9+MiwAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAd0SU1FB+UCDwksLkLIPkkAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAAC0lEQVQI12NgAAIAAAUAAeImBZsAAAAASUVORK5CYII=)!important;background-size:cover!important}#dm .d-page-1716942098 DIV.dmInner{background-repeat:no-repeat!important;background-image:none!important;background-size:cover!important;background-attachment:fixed!important}#dm .dmBody div.u_1089804103,#dm .dmBody div.u_1711951918{background-size:100%!important;background-repeat:no-repeat!important;background-attachment:fixed!important}#dm .dmBody div.u_1711951918{background-position:50% 50%!important;float:none!important;width:100%!important;max-width:none!important;min-width:0!important;text-align:center!important;padding:0!important;margin:0 auto!important}#dm .dmBody a.u_1322189022,#dm .dmBody a.u_1352291622{top:0!important;left:0!important;width:280px!important;position:relative!important;height:44px!important;min-width:0!important;margin:0 auto!important;text-align:center!important}#dm .dmBody a.u_1352291622{float:none!important;max-width:100%!important;padding:0 0 0 40px!important}#dm .dmBody div.u_1929866273{padding-bottom:0!important;padding-left:0!important;padding-right:0!important}#dm .dmBody a.u_1322189022{float:none!important;max-width:100%!important;padding:0 0 0 40px!important}#dm .dmBody div.u_1089804103,#dm .dmBody h1.u_1244941636{height:auto!important;float:none!important;top:0!important;left:0!important;position:relative!important;width:100%!important}#dm .dmBody h1.u_1244941636{max-width:calc(100% - 0px)!important;min-width:25px!important;text-align:left!important;display:block!important;padding:0 0 2px!important;margin:0 auto 8px!important}#dm .dmBody div.u_1089804103{background-position:top center!important;max-width:none!important;min-width:0!important;text-align:center!important;padding:281px 0!important;margin:0 auto!important}#dm .dmBody div.u_1337248135,#dm .dmBody div.u_1587642262,#dm .dmBody div.u_1739185615,#dm .dmBody div.u_1817527473{float:none!important;top:0!important;left:0!important;position:relative!important;text-align:center!important;padding:0!important}#dm .dmBody div.u_1131725369{height:638px!important}#dm .dmBody div.u_1739185615,#dm .dmBody div.u_1817527473{width:100%!important;height:auto!important;max-width:none!important;min-width:0!important;margin:0 auto!important}#dm .dmBody div.u_1337248135 .slides .slide-text{font-size:24px!important}#dm .dmBody div.u_1337248135{height:683px!important;width:100%!important;max-width:calc(100% - 0px)!important;min-width:25px!important;margin:0 auto!important}#dm .dmBody div.u_1587642262{width:571.58px!important;max-width:100%!important;min-width:0!important;margin:0!important}#dm .dmBody div.u_1743044475,#dm .dmBody h3.u_1002252849{height:auto!important;max-width:100%!important;padding:2px 0!important;float:none!important;top:0!important;left:0!important;width:calc(100% - 0px)!important;position:relative!important;min-width:25px!important}#dm .dmBody h3.u_1002252849{text-align:left!important;margin:59px 36.32px 0 0!important}#dm .dmBody div.u_1743044475{display:block!important;margin:24px 36.32px 0 0!important}#dm .dmBody a.u_1429667453{box-shadow:none!important;-moz-box-shadow:none!important;-webkit-box-shadow:none!important;display:block!important;float:none!important;top:0!important;left:0!important;width:calc(100% - 0px)!important;position:relative!important;height:55.98px!important;max-width:213.97px!important;min-width:25px!important;text-align:center!important;padding:0!important;margin:16px 0 0!important}#dm .dmBody div.u_1541505501,#dm .dmBody div.u_1674891153{float:none!important;top:0!important;left:0!important;position:relative!important;height:auto!important;max-width:100%!important;min-width:0!important;text-align:start!important}#dm .dmBody div.u_1674891153{background-attachment:fixed!important;width:auto!important;padding:0 40px!important;margin:0!important}#dm .dmBody div.u_1541505501{width:100%!important;padding:0!important;margin:0 auto!important}#\31 015363503,#\31 072607595,#\31 097339932,#\31 101394195,#\31 139040359,#\31 249294731,#\31 258565073,#\31 325281975,#\31 327520115,#\31 328727602,#\31 333528656,#\31 351848195,#\31 358086068,#\31 363086438,#\31 453547012,#\31 478454047,#\31 484351267,#\31 505859780,#\31 605112827,#\31 618005341,#\31 719919217,#\31 807376427,#\31 911165480,#\31 945027303,#\31 970595009,#\31 983519991{order:0;flex-direction:row} #dm .dmPhotoGallery.newPhotoGallery .dmPhotoGalleryHolder:not(.photo-gallery-done) {display: none;} @media (max-width:767px){ [data-hidden-on-mobile] {display:none!important}}
+    .dmDesktopBody [data-anim-desktop]:not([data-anim-desktop='none']) {
+      visibility: hidden;
+    }
+
+    
+</style>
+
+
+
+<style id="fontFallbacks">
+    @font-face {
+  font-family: "Raleway Fallback";
+  src: local('Arial');
+  ascent-override: 89.616%;
+  descent-override: 22.3087%;
+  size-adjust: 104.892%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Roboto Fallback";
+  src: local('Arial');
+  ascent-override: 92.6709%;
+  descent-override: 24.3871%;
+  size-adjust: 100.1106%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Montserrat Fallback";
+  src: local('Arial');
+  ascent-override: 84.9466%;
+  descent-override: 22.0264%;
+  size-adjust: 113.954%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Verdana Fallback";
+  src: local('Arial');
+  ascent-override: 87.306%;
+  descent-override: 18.2329%;
+  size-adjust: 115.1549%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Amiko Fallback";
+  src: local('Arial');
+  ascent-override: 82.254%;
+  descent-override: 35.9861%;
+  size-adjust: 112.8212%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Playball Fallback";
+  src: local('Arial');
+  ascent-override: 112.7247%;
+  descent-override: 35.5973%;
+  size-adjust: 84.2761%;
+  line-gap-override: 0%;
+ }
+</style>
+
+
+<!-- End render the required css and JS in the head section -->
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.confidentsmiledental.com/">
+
+  <title>
+    Confident Smile Dental
+  </title>
+  <meta name="description" content="Confident Smile Dental
+33 W. Ridge Pike, STE 225 
+Limerick,PA 19468
+
+610.489.8889 phone"/>
+
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="Confident Smile Dental"/>
+  <meta name="twitter:description" content="Confident Smile Dental
+33 W. Ridge Pike, STE 225 
+Limerick,PA 19468
+
+610.489.8889 phone"/>
+  <meta property="og:description" content="Confident Smile Dental
+33 W. Ridge Pike, STE 225 
+Limerick,PA 19468
+
+610.489.8889 phone"/>
+  <meta property="og:title" content="Confident Smile Dental"/>
+
+
+
+
+<!-- SYS- VVNfRElSRUNUX1BST0RVQ1RJT04= -->
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body id="dmRoot" data-page-alias="home"  class="dmRoot dmDesktopBody fix-mobile-scrolling addCanvasBorder dmResellerSite dmLargeBody "
+      style="padding:0;margin:0;"
+      
+    >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ========= Site Content ========= -->
+<div id="dm" class='dmwr'>
+    
+    <div class="dm_wrapper standard-var5 widgetStyle-3 standard">
+         <div dmwrapped="true" id="1901957768" class="dm-home-page" themewaschanged="true"> <div dmtemplateid="StandardLayoutMultiD" class="standardHeaderLayout dm-bfs dm-layout-home hasAnimations inMiniHeaderMode hasStickyHeader dmPageBody d-page-1716942098 inputs-css-clean dmFreeHeader" id="dm-outer-wrapper" data-page-class="1716942098" data-soch="true" data-background-parallax-selector=".dmHomeSection1, .dmSectionParallex"> <div id="dmStyle_outerContainer" class="dmOuter"> <div id="dmStyle_innerContainer" class="dmInner"> <div class="dmLayoutWrapper standard-var dmStandardDesktop"> <div> <div id="iscrollBody"> <div id="site_content"> <div class="dmHeaderContainer fHeader d-header-wrapper"> <div id="hcontainer" class="u_hcontainer dmHeader p_hfcontainer" freeheader="true" data-scrollable-target="body" data-scrollable-target-threshold="1" data-scroll-responder-id="1" logo-size-target="66%"> <div dm:templateorder="85" class="dmHeaderResp dmHeaderStack noSwitch" id="1709005236"> <div class="u_1571063569 dmRespRow dmHeaderContent freeHeaderRow1 fullBleedChanged fullBleedMode" id="1571063569"> <div class="dmRespColsWrapper clearfix" id="1618005341"> <div class="u_1094704816 dmRespCol small-12 medium-12 large-12" id="1094704816"> <span id="1502642489"></span> 
+ <div class="u_1211591181 imageWidget align-center" data-widget-type="image" id="1211591181" data-element-type="image"> <a href="/" id="1485731214"><img src="https://irp.cdn-website.com//40b788dd/dms3rep/multi/opt/4d465b70-136c-4f55-b32b-5bfc22bfa368-619x99.dm.edit_zOQxFd-364w.png" id="1359425209" class="u_1359425209" dm_changed="true" onerror="handleImageLoadError(this)" height="48.546875" width="303.59375"/></a> 
+</div> 
+ <nav class="u_1072607595 effect-bottom main-navigation unifiednav dmLinksMenu" role="navigation" layout-main="horizontal_nav_layout_4" layout-sub="submenu_horizontal_2" data-show-vertical-sub-items="HOVER" data-divider="PIPE" id="1072607595" dmle_extension="onelinksmenu" data-element-type="onelinksmenu" navigation_id="" data-logo-src="https://irp-cdn.multiscreensite.com/40b788dd/dms3rep/multi/4d465b70-136c-4f55-b32b-5bfc22bfa368-619x99.dm.edit_zOQxFd.png" wr="true" icon="true" surround="true" adwords="" navigation-id="unifiedNav"> <ul role="menubar" class="unifiednav__container unav-top  " data-auto="navigation-pages"> <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/" class="unifiednav__item unav-item unav-top-item  dmNavItemSelected  dmUDNavigationItem_00  " target="" data-target-page-alias="" aria-current="page" data-auto="selected-page"> <span class="nav-item-text " data-link-text="
+         Home
+        " data-auto="page-text-style">Home<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" aria-haspopup="true" aria-expanded="false" data-sub-nav-menu="true" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/about" class="unifiednav__item unav-item unav-top-item  dmUDNavigationItem_010101455040  unifiednav__item_has-sub-nav" target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         About
+        " data-auto="page-text-style">About<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+ <ul role="menu" class="unifiednav__container unifiednav__container_sub-nav unav-sub" data-depth="0" data-auto="sub-pages"> <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="1"> <a href="/meet-the-doctor3" class="unifiednav__item unav-item   dmUDNavigationItem_010101660975  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+           Meet the Doctor
+          " data-auto="page-text-style">Meet the Doctor<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="1"> <a href="/gallery" class="unifiednav__item unav-item   dmUDNavigationItem_010101269667  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+           Before & After Pics
+          " data-auto="page-text-style">Before &amp; After Pics<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="1"> <a href="/newpage" class="unifiednav__item unav-item   dmUDNavigationItem_010101989967  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+           Financing & Insurance
+          " data-auto="page-text-style">Financing &amp; Insurance<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+</li> 
+</ul> 
+</li> 
+ <li role="menuitem" aria-haspopup="true" aria-expanded="false" data-sub-nav-menu="true" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/services" class="unifiednav__item unav-item unav-top-item  dmUDNavigationItem_010101608984  unifiednav__item_has-sub-nav" target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         Services
+        " data-auto="page-text-style">Services<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+ <ul role="menu" class="unifiednav__container unifiednav__container_sub-nav unav-sub" data-depth="0" data-auto="sub-pages"> <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="1"> <a href="/dental-implants" class="unifiednav__item unav-item   dmUDNavigationItem_010101147061  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+           Dental Implants
+          " data-auto="page-text-style">Dental Implants<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" aria-haspopup="true" aria-expanded="false" data-sub-nav-menu="true" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="1"> <a href="/restorative-dentistry" class="unifiednav__item unav-item   dmUDNavigationItem_010101239310  unifiednav__item_has-sub-nav" target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+           Restorative Dentistry
+          " data-auto="page-text-style">Restorative Dentistry<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+ <ul role="menu" class="unifiednav__container unifiednav__container_sub-nav unav-sub" data-depth="1" data-auto="sub-pages"> <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="2"> <a href="/restorative-dentistry#CrownsandBridges" class="unifiednav__item unav-item   dmUDNavigationItem_010101345471  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+             Crowns and Bridges
+            " data-auto="page-text-style">Crowns and Bridges<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="2"> <a href="/restorative-dentistry#PorcelainVeneers" class="unifiednav__item unav-item   dmUDNavigationItem_010101547210  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+             Porcelain Veneers
+            " data-auto="page-text-style">Porcelain Veneers<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="2"> <a href="/restorative-dentistry#PorcelainInlayOnlays" class="unifiednav__item unav-item   dmUDNavigationItem_01010164098  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+             Porcelain Inlay Onlays
+            " data-auto="page-text-style">Porcelain Inlay Onlays<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="2"> <a href="/restorative-dentistry#ToothFractures" class="unifiednav__item unav-item   dmUDNavigationItem_010101498654  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+             Tooth Fractures
+            " data-auto="page-text-style">Tooth Fractures<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+</li> 
+</ul> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="1"> <a href="/endodontic-dentistry" class="unifiednav__item unav-item   dmUDNavigationItem_010101528565  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+           Endodontic Dentistry
+          " data-auto="page-text-style">Endodontic Dentistry<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="1"> <a href="/periodontal-treatment" class="unifiednav__item unav-item   dmUDNavigationItem_010101888397  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+           Periodontal Treatment
+          " data-auto="page-text-style">Periodontal Treatment<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" aria-haspopup="true" aria-expanded="false" data-sub-nav-menu="true" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="1"> <a href="/oral-surgery" class="unifiednav__item unav-item   dmUDNavigationItem_010101371125  unifiednav__item_has-sub-nav" target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+           Oral Surgery
+          " data-auto="page-text-style">Oral Surgery<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+ <ul role="menu" class="unifiednav__container unifiednav__container_sub-nav unav-sub" data-depth="1" data-auto="sub-pages"> <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="2"> <a href="/oral-surgery#ToothExtraction" class="unifiednav__item unav-item   dmUDNavigationItem_010101582196  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+             Tooth Extraction
+            " data-auto="page-text-style">Tooth Extraction<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+</li> 
+</ul> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="1"> <a href="/pediatric-dentistry" class="unifiednav__item unav-item   dmUDNavigationItem_010101849185  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+           Pediatric Dentistry
+          " data-auto="page-text-style">Pediatric Dentistry<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" aria-haspopup="true" aria-expanded="false" data-sub-nav-menu="true" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="1"> <a href="/cosmetic-dentistry" class="unifiednav__item unav-item   dmUDNavigationItem_010101352096  unifiednav__item_has-sub-nav" target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+           Cosmetic Dentistry
+          " data-auto="page-text-style">Cosmetic Dentistry<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+ <ul role="menu" class="unifiednav__container unifiednav__container_sub-nav unav-sub" data-depth="1" data-auto="sub-pages"> <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="2"> <a href="/cosmetic-dentistry#TeethWhitening" class="unifiednav__item unav-item   dmUDNavigationItem_010101317585  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+             Teeth Whitening
+            " data-auto="page-text-style">Teeth Whitening<span class="icon icon-angle-right"></span> 
+</span> 
+</a> 
+</li> 
+</ul> 
+</li> 
+</ul> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/schedule" class="unifiednav__item unav-item unav-top-item  dmUDNavigationItem_010101305575  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         Schedule Appointment
+        " data-auto="page-text-style">Schedule Appointment<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/testimonials" class="unifiednav__item unav-item unav-top-item  dmUDNavigationItem_010101632996  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         Testimonials
+        " data-auto="page-text-style">Testimonials<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/contact" class="unifiednav__item unav-item unav-top-item  dmUDNavigationItem_010101592657  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         Contact
+        " data-auto="page-text-style">Contact<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+</ul> 
+</nav> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div class="stickyHeaderSpacer" id="stickyHeaderSpacer" data-new="true"></div> 
+ <div class="dmRespRow dmRespRowStable dmRespRowNoPadding dmPageTitleRow "> <div class="dmRespColsWrapper"> <div class="large-12 dmRespCol"> <div id="innerBar" class="innerBar lineInnerBar dmDisplay_None"> <div class="titleLine display_None"><hr/></div> 
+<!-- Page title is hidden in css for new responsive sites. It is left here only so we don't break old sites. Don't copy it to new layouts --> <div id="pageTitleText"></div> 
+ <div class="titleLine display_None"><hr/></div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div dmwrapped="true" id="dmFirstContainer" class="dmBody u_dmStyle_template_home dm-home-page" themewaschanged="true"> <div id="allWrapper" class="allWrapper"><!-- navigation placeholders --> <div id="dm_content" class="dmContent" role="main"> <div dm:templateorder="170" class="dmHomeRespTmpl mainBorder dmRespRowsWrapper dmFullRowRespTmpl" id="1716942098"> <div class="u_1955393734 dmRespRow hide-for-medium hide-for-large" style="text-align: center;" id="1955393734"> <div class="dmRespColsWrapper" id="1983519991"> <div class="dmRespCol small-12 medium-12 large-12" id="1294085688"> <span id="1522966909"></span> 
+ <a class="u_1352291622 default dmDefaultGradient align-center dmCall voipReplacement dmWidget dmNoMark dmWwr" href="tel:610-489-8889" contenteditable="false" onclick=";return dm_gaq_push_event('ClickToCall', 'Call',null,'40b788dd', this);" id="1352291622" dmle_extension="clicktocall" data-element-type="clicktocall" wr="true" data-display-type="block" icon="true" surround="true" description="Call Us" adwords="" icon-name="icon-phone" phone="610-489-8889" text="" image=""> <span class="iconBg" aria-hidden="true"> <span class="icon hasFontIcon icon-phone"></span> 
+</span> 
+ <span class="text">Call Us</span> 
+</a> 
+</div> 
+</div> 
+</div> 
+ <div class="u_1817527473 dmRespRow fullBleedChanged fullBleedMode" style="text-align: center;" id="1817527473"> <div class="dmRespColsWrapper" id="1807376427"> <div class="dmRespCol small-12 medium-12 large-12" id="1691695889"> <span id="1192380788"></span> 
+ <div class="u_1337248135 flex-container dmImageSlider dmNoMargin dmNoMark" data-widget-type="imageSlider" dmle_volatile_widget="true" data-element-type="dSliderId" id="1337248135"> <div class="flexslider ed-version nav-layout-2" sliderscriptparams="{'stretch':true,'animation':true,'randomize':false,'directionNav':false,'isAutoPlay':true,'isFade':true,'controlNav':false,'slideshowSpeed':5000,'animationDuration':600,'pausePlay':true}" id="1595140303" layout="bottom"> <ul class="slides" id="1073166332"> <li layout="center" position="center" animation="none" show-content="true" color-overlay="true" text-background="true" id="1231912294" class=""><img dm="true" src="https://irp.cdn-website.com//40b788dd/dms3rep/multi/opt/002-2304w.jpg" id="1915910019" alt="" onerror="handleImageLoadError(this)" height="683.0" width="1920.0"/> <div class="color-overlay" id="1654043632"></div> 
+ <div class="slide-inner" id="1981733067"> <div class="text-wrapper" id="1385101397"> <h3 class="slide-title" id="1786800274">Slide title</h3> 
+ <div class="slide-text richText" id="1083803958" style=""><p class="rteBlock">&nbsp;Smile with Confidence&nbsp;</p></div></div> 
+ <div class="slide-button dmWidget clearfix" id="1756856064"> <span class="iconBg" id="1371591957"> <span class="icon hasFontIcon icon-star" id="1248571402"></span> 
+</span> 
+ <span class="text" id="1398174807">Button</span> 
+</div> 
+</div> 
+</li> 
+ <li layout="center" position="center" animation="none" show-content="true" color-overlay="true" text-background="true" id="1478797529" class=""><img dm="true" src="https://irp.cdn-website.com//40b788dd/dms3rep/multi/opt/003-2304w.jpg" id="1302387103" alt="" onerror="handleImageLoadError(this)" height="683.0" width="1920.0"/> <div class="color-overlay" id="1717572174"></div> 
+ <div class="slide-inner" id="1960515770"> <div class="text-wrapper" id="1853021410"> <h3 class="slide-title" id="1633393749">Slide title</h3> 
+ <div class="slide-text richText" id="1191324208" style=""><p class="rteBlock">&nbsp;Smile with Confidence&nbsp;</p></div></div> 
+ <div class="slide-button dmWidget clearfix" id="1051645125"> <span class="iconBg" id="1425085101"> <span class="icon hasFontIcon icon-star" id="1848664097"></span> 
+</span> 
+ <span class="text" id="1823042462">Button</span> 
+</div> 
+</div> 
+</li> 
+ <li layout="center" position="center" animation="none" show-content="true" color-overlay="true" text-background="true" id="1694029238" class=""><img dm="true" src="https://irp.cdn-website.com//40b788dd/dms3rep/multi/opt/004-2304w.jpg" id="1290091913" alt="" onerror="handleImageLoadError(this)" height="683.0" width="1920.0"/> <div class="color-overlay" id="1632377331"></div> 
+ <div class="slide-inner" id="1035953249"> <div class="text-wrapper" id="1013480896"> <h3 class="slide-title" id="1046992868">Slide title</h3> 
+ <div class="slide-text richText" id="1455706083" style=""><p class="rteBlock">&nbsp;Smile with Confidence&nbsp;</p></div></div> 
+ <div class="slide-button dmWidget clearfix" id="1767548211"> <span class="iconBg" id="1138945722"> <span class="icon hasFontIcon icon-star" id="1343708727"></span> 
+</span> 
+ <span class="text" id="1863868550">Button</span> 
+</div> 
+</div> 
+</li> 
+ <li layout="center" position="center" animation="none" show-content="true" color-overlay="true" text-background="true" id="1277465201" class=""><img dm="true" src="https://irp.cdn-website.com//40b788dd/dms3rep/multi/opt/005-2304w.jpg" id="1902633787" alt="" onerror="handleImageLoadError(this)" height="683.0" width="1920.0"/> <div class="color-overlay" id="1746791262"></div> 
+ <div class="slide-inner" id="1989571063"> <div class="text-wrapper" id="1144974031"> <h3 class="slide-title" id="1986891678">Slide title</h3> 
+ <div class="slide-text richText" id="1160759080" style=""><p class="rteBlock">&nbsp;Smile with Confidence&nbsp;</p></div></div> 
+ <div class="slide-button dmWidget clearfix" id="1024873557"> <span class="iconBg" id="1909437437"> <span class="icon hasFontIcon icon-star" id="1827162359"></span> 
+</span> 
+ <span class="text" id="1577590804">Button</span> 
+</div> 
+</div> 
+</li> 
+ <li layout="center" position="center" animation="none" show-content="true" color-overlay="true" text-background="true" id="1193624044" class=""><img dm="true" src="https://irp.cdn-website.com//40b788dd/dms3rep/multi/opt/006-2304w.jpg" id="1941746942" alt="" onerror="handleImageLoadError(this)" height="683.0" width="1920.0"/> <div class="color-overlay" id="1547016425"></div> 
+ <div class="slide-inner" id="1943058420"> <div class="text-wrapper" id="1922429474"> <h3 class="slide-title" id="1319000113">Slide title</h3> 
+ <div class="slide-text richText" id="1907085320" style=""><p class="rteBlock">&nbsp;Smile with Confidence&nbsp;</p></div></div> 
+ <div class="slide-button dmWidget clearfix" id="1874037590"> <span class="iconBg" id="1046830803"> <span class="icon hasFontIcon icon-star" id="1785014541"></span> 
+</span> 
+ <span class="text" id="1311947925">Button</span> 
+</div> 
+</div> 
+</li> 
+</ul> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div class="u_1711951918 dmRespRow dmSectionNoParallax hasBackgroundOverlay" style="text-align: center;" id="1711951918"> <div class="dmRespColsWrapper" id="1970595009"> <div class="u_1136658027 dmRespCol small-12 medium-6 large-6" id="1136658027"> <h3 class="u_1002252849 dmNewParagraph" id="1002252849" style="transition: none 0s ease 0s; display: block;" data-element-type="paragraph">Welcome to Confident Smile Dental</h3> <div class="u_1743044475 dmNewParagraph" id="1743044475" style="transition: opacity 1s ease-in-out 0s; display: block;" data-version="5"><p class="text-align-left"><span style="display: initial;">We here at Confident Smile Dental will make your visit a comfortable and painless experience. &nbsp;Conveniently located in Collegeville,PA.&nbsp;</span></p><p class="text-align-left"><span style="display: initial;"><br/></span></p></div> <a data-display-type="block" class="u_1429667453 align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient dmUserImg" file="false" href="/about" id="1429667453" data-element-type="dButtonLinkId"> <span class="iconBg" id="1931044779"> <span class="icon hasFontIconstar" id="1708416624"></span> 
+</span> 
+ <span class="text" id="1212101903">Learn More</span> 
+</a> 
+</div> 
+ <div class="dmRespCol small-12 medium-6 large-6" id="1297009930"> <div class="u_1587642262 imageWidget" data-widget-type="image" id="1587642262" data-element-type="image"><img src="https://irp.cdn-website.com/40b788dd/dms3rep/multi/opt/2022-06-14_22-33-45-558w.jpg" id="1177141425" dm_changed="true" class="u_1177141425" data-dm-image-path="https://irp.cdn-website.com/40b788dd/dms3rep/multi/2022-06-14_22-33-45.jpg" width="882" height="855" onerror="handleImageLoadError(this)"/></div> 
+</div> 
+</div> 
+</div> 
+ <div class="dmRespRow" id="1475973796"> <div class="dmRespColsWrapper" id="1453547012"> <div class="dmRespCol large-12 medium-12 small-12" id="1716892329"> <div class="dmDividerWrapper clearfix" data-element-type="dDividerId" data-layout="divider-style-1" data-widget-version="2" id="1660624845"><hr class="dmDivider" style="border-width:2px; border-top-style:solid; color:grey;" id="1101002939"/></div> 
+</div> 
+</div> 
+</div> 
+ <div class="dmRespRow" style="text-align: center;" id="1042951077"> <div class="dmRespColsWrapper" id="1333528656"> <div class="dmRespCol small-12 medium-6 large-6" id="1530328612"> <div class="u_1196892513 imageWidget align-center" data-element-type="image" data-widget-type="image" id="1196892513"><img src="https://irp.cdn-website.com//40b788dd/dms3rep/multi/opt/AAFE-blog-post-469w.png" id="1740020245" class="" data-dm-image-path="https://irp-cdn.multiscreensite.com/40b788dd/dms3rep/multi/AAFE-blog-post.png" onerror="handleImageLoadError(this)" loading="lazy" height="260.40625" width="391.0"/></div> 
+</div> 
+ <div class="dmRespCol small-12 medium-6 large-6" id="1250823831"> <div class="u_1243569114 dmNewParagraph" data-element-type="paragraph" id="1243569114" style="text-align: center; transition: opacity 1s ease-in-out 0s;"><b><i>Now providing Botox and Dermal Fillers injections</i></b></div> <div class="imageWidget align-center u_1151617143" data-element-type="image" data-widget-type="image" id="1151617143"><img src="https://irp.cdn-website.com//40b788dd/dms3rep/multi/opt/20180223_130237+-+Copy-558w.jpg" id="1250198382" class="" data-dm-image-path="https://irp-cdn.multiscreensite.com/40b788dd/dms3rep/multi/20180223_130237+-+Copy.jpg" onerror="handleImageLoadError(this)" loading="lazy" height="186.234375" width="465.609375"/></div> 
+ <div class="u_1731006292 dmNewParagraph" data-element-type="paragraph" id="1731006292" style="transition: opacity 1s ease-in-out 0s;"><b>AAFE certified</b>&nbsp; (American Academy of Facial Esthetics)</div></div> 
+</div> 
+</div> 
+ <div class="u_1879643998 dmRespRow" style="text-align: center;" id="1879643998"> <div class="dmRespColsWrapper" id="1327520115"> <div class="dmRespCol small-12 medium-12 large-12" id="1429342045"> <h3 class="u_1611213044 dmNewParagraph" id="1611213044" style="transition: opacity 1s ease-in-out;" data-element-type="paragraph"><div style="text-align: center;"><font color="#284053"><span style="font-size: 30px;"><b>Our services</b></span></font></div></h3></div> 
+</div> 
+</div> 
+ <div class="u_1673982084 dmRespRow" style="text-align: center;" id="1673982084"> <div class="dmRespColsWrapper" id="1249294731"> <div class="dmRespCol small-12 u_1041309334 medium-3 large-3" id="1041309334"> <span id="1442824616"></span> 
+ <div class="u_1218516416 graphicWidget" data-widget-type="graphic" id="1218516416" data-anim-desktop="slideInCombo" data-element-type="graphic" data-anim-extended="eyJkZXNrdG9wIjp7InRyaWdnZXIiOiJlbnRyYW5jZSIsImFuaW1hdGlvbiI6InNsaWRlSW5Db21ibyIsImR1cmF0aW9uIjoxLCJkZWxheSI6MCwiaW50ZW5zaXR5IjoxLCJkaXIiOiJsZWZ0In19"> <a href="/pediatric-dentistry" id="1487909428" file="false" aria-label="if_Dental_-_Tooth_-_Dentist_-_Dentistry_11_2185080.svg"> <svg enable-background="new 0 0 91 91" height="91px" id="1820447773" version="1.1" viewbox="0 0 91 91" width="91px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg u_1820447773" data-icon-custom="true" data-icon-name="if_Dental_-_Tooth_-_Dentist_-_Dentistry_11_2185080.svg" data-hover-effect="float"> <g id="1986267643"> <g id="1560600379"> <path d="M71.896,30.395c-0.183-4.91-2.102-7.731-5.043-9.768c-2.957-1.994-7.138-2.93-11.285-2.92    c-3.844-0.009-7.629,0.794-10.188,1.953l-1.021,0.453l-1.026-0.453c-2.047-0.933-4.901-1.621-7.944-1.866l-5.237,0.07    c-3.089,0.349-6.042,1.25-8.283,2.769c-2.942,2.03-4.865,4.856-5.047,9.758c-0.004,0.389-0.016,0.753-0.016,1.087    c0.058,6.923,1.646,9.425,3.573,12.917c1.985,3.433,4.262,7.83,4.201,15.962c-0.006,9.441,1.595,14.98,3.335,17.908    c1.769,2.943,2.362,3.383,4.293,3.383c2.041,0,2.747-2.057,2.828-3.143c0.394-3.994-0.287-10.242,1.682-16.904    c0.567-1.842,1.259-4.154,2.643-6.236c1.862-2.813,6.896-5.008,10.006,0c1.323,2.125,2.07,4.395,2.633,6.236    c1.515,5.076,1.951,10.385,1.597,14.434c-0.488,5.629,2.815,5.613,2.92,5.613c1.756,0,2.523-0.439,4.291-3.383    c1.741-2.928,3.344-8.465,3.336-17.908c-0.057-8.15,2.224-12.529,4.209-15.968c1.927-3.492,3.5-5.987,3.563-12.911    C71.911,31.132,71.902,30.774,71.896,30.395z" fill="#F4F2E8" id="1221575006"></path> 
+ <path d="M74.118,30.703l-0.007-0.392c-0.191-5.15-2.096-8.807-6.019-11.521c-3.154-2.128-7.581-3.299-12.461-3.299    h-0.129c-3.937,0-8.062,0.804-11.017,2.143l-0.128,0.057l-0.106-0.047c-2.337-1.064-5.421-1.796-8.685-2.059    c-0.069-0.005-0.145-0.009-0.207-0.006l-5.238,0.069c-0.074,0.001-0.146,0.007-0.22,0.014c-3.648,0.413-6.856,1.496-9.292,3.146    c-3.903,2.693-5.812,6.348-6.003,11.56L14.6,30.833c-0.004,0.225-0.008,0.439-0.008,0.663c0.059,7.141,1.683,10.066,3.563,13.455    l0.307,0.552c2.006,3.466,3.959,7.47,3.904,14.853c-0.007,10.656,1.979,16.236,3.651,19.051c1.859,3.098,3.008,4.455,6.189,4.455    c3.052,0,4.844-2.611,5.032-5.141c0.125-1.27,0.148-2.727,0.173-4.27c0.057-3.484,0.128-7.822,1.422-12.199l0.044-0.146    c0.542-1.76,1.155-3.756,2.326-5.518c0.657-0.992,2.052-1.998,3.446-1.998c1.08,0,2.032,0.654,2.834,1.943    c1.176,1.891,1.854,3.941,2.391,5.699c1.311,4.393,1.874,9.479,1.512,13.609c-0.244,2.818,0.299,4.975,1.612,6.408    c1.371,1.496,3.035,1.611,3.513,1.611h0.002c3.004,0,4.338-1.375,6.195-4.465c1.668-2.805,3.657-8.385,3.646-19.055    c-0.05-7.359,1.907-11.371,3.935-14.884l0.272-0.494c1.878-3.388,3.502-6.315,3.564-13.487    C74.127,31.225,74.123,30.968,74.118,30.703z M66.688,42.817l-0.256,0.463c-2.21,3.828-4.564,8.623-4.506,17.078    c0.01,10.16-1.891,14.871-3.021,16.768c-1.36,2.266-1.591,2.307-2.349,2.309c-0.417-0.068-0.951-0.969-0.758-3.207    c0.414-4.727-0.199-10.287-1.684-15.273c-0.671-2.191-1.483-4.527-2.87-6.758c-1.615-2.6-3.956-4.031-6.595-4.031    c-3.11,0-5.825,1.998-7.138,3.977c-1.522,2.295-2.268,4.717-2.866,6.664l-0.054,0.168c-1.471,4.982-1.547,9.654-1.607,13.408    c-0.024,1.51-0.046,2.814-0.158,3.959c-0.001,0.01-0.146,1.094-0.62,1.094c-0.932,0-1.008,0-2.389-2.301    c-1.133-1.906-3.031-6.617-3.025-16.76c0.063-8.482-2.289-13.27-4.477-17.05l-0.29-0.522c-1.718-3.094-2.959-5.329-3.009-11.323    c0-0.178,0.005-0.367,0.009-0.563l0.006-0.441c0.139-3.736,1.363-6.134,4.077-8.008c1.807-1.224,4.289-2.049,7.183-2.389    l5.021-0.067c2.688,0.226,5.273,0.832,7.127,1.676l0.932,0.412l6.975,3.699c0.331,0.175,0.686,0.258,1.036,0.258    c0.793,0,1.56-0.427,1.958-1.177c0.572-1.08,0.161-2.42-0.919-2.994l-2.535-1.345c1.78-0.391,3.734-0.617,5.615-0.617h0.129    c3.949,0,7.589,0.927,9.963,2.526c2.729,1.889,3.952,4.289,4.089,7.98l0.007,0.356c0.005,0.237,0.01,0.468,0.01,0.673    C69.643,37.485,68.404,39.721,66.688,42.817z" fill="#3B6A75" id="1456556465"></path> 
+ <path d="M76.009,54.783c-0.855,0-1.851-0.313-2.577-1.221c-1.621-2.025-0.865-5.695,2.525-12.268    c5.591-10.835,3.123-21.451-6.287-27.042c-9.771-5.803-25.941-0.409-26.104-0.354c-0.414,0.143-0.859,0.155-1.282,0.044    c-0.079-0.021-7.997-2.106-14.719-1.936c-7.115,0.182-13.041,3.251-15.852,8.209c-7.294,12.878,4.204,30.937,4.321,31.119    c0.44,0.682,0.474,1.549,0.086,2.262c-0.388,0.711-1.134,1.156-1.945,1.156H2.482c-1.224,0-2.215-0.992-2.215-2.215    s0.991-2.213,2.215-2.213h7.896c-3.322-6.435-9.095-20.679-2.516-32.291C11.445,11.71,18.768,7.802,27.453,7.579    c6.289-0.162,13.206,1.399,15.328,1.92c3.359-1.038,18.729-5.243,29.15,0.945c11.41,6.78,14.608,19.993,7.961,32.879    c-2.048,3.968-2.644,6.025-2.805,7H88.52c1.223,0,2.214,0.992,2.214,2.215c0,1.221-0.991,2.213-2.214,2.213H76.477    C76.328,54.771,76.171,54.783,76.009,54.783z" fill="#68C1E0" id="1067041217"></path> 
+</g> 
+ <path d="M27.596,40.761c-0.714,0-1.415-0.345-1.842-0.982c-1.883-2.813-1.839-7.321,0.105-10.964   c1.567-2.937,4.089-4.619,6.917-4.619c1.223,0,2.214,0.99,2.214,2.214c0,1.222-0.991,2.214-2.214,2.214   c-1.563,0-2.558,1.428-3.013,2.277c-1.131,2.119-1.279,4.996-0.331,6.414c0.681,1.018,0.408,2.393-0.607,3.072   C28.448,40.639,28.021,40.761,27.596,40.761z" fill="#FFFFFF" id="1081124914"></path> 
+</g> 
+</svg> 
+</a> 
+</div> 
+ <a data-display-type="block" class="align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient flexButton u_1351848195" file="false" href="/pediatric-dentistry" data-element-type="dButtonLinkId" id="1351848195" data-buttonstyle="THICK_BORDER_ROUND"> <span class="iconBg" aria-hidden="true" id="1435756247"> <span class="icon hasFontIcon icon-star" id="1762637723"></span> 
+</span> 
+ <span class="text" id="1120488434">Preventative Dentistry</span> 
+</a> 
+</div> 
+ <div class="dmRespCol small-12 u_1796315250 medium-3 large-3" id="1796315250"> <span id="1286856397"></span> 
+ <div class="u_1557944671 graphicWidget" data-widget-type="graphic" id="1557944671" data-anim-desktop="fadeInUp" data-element-type="graphic"> <a href="/restorative-dentistry#PorcelainInlayOnlays" id="1906026745" file="false" aria-label="if_Dental_-_Tooth_-_Dentist_-_Dentistry_15_2185064.svg"> <svg enable-background="new 0 0 91 91" height="91px" id="1908338915" version="1.1" viewbox="0 0 91 91" width="91px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg u_1908338915" data-icon-custom="true" data-icon-name="if_Dental_-_Tooth_-_Dentist_-_Dentistry_15_2185064.svg" data-hover-effect="float"> <g id="1003777792"> <g id="1420985289"> <g id="1497526522"> <path d="M74.202,15.77c-0.192-5.12-2.188-8.059-5.252-10.18c-3.087-2.079-7.446-3.055-11.771-3.046     C53.178,2.535,49.236,3.379,46.57,4.58l-1.072,0.473L44.434,4.58c-2.134-0.975-5.118-1.688-8.281-1.943L30.694,2.71     c-3.222,0.362-6.296,1.304-8.638,2.889c-3.066,2.113-5.066,5.057-5.258,10.165c-0.009,0.415-0.042,0.791-0.016,1.135     c0.573,7.176,1.343,9.554,3.001,13.464c0.491,1.151,1.274,2.277,1.879,3.624h10.423c0,0,2.87,0.053,3.644-2.662v-3.55     c0,0-0.329-3.071,3.091-3.071H52.18c3.424,0,3.095,3.071,3.095,3.071v3.55c0.771,2.715,3.64,2.662,3.64,2.662h9.714     c0,0,1.534,0,2.938-3.522c2.113-5.308,2.254-7.111,2.65-13.566C74.239,16.542,74.209,16.167,74.202,15.77z" fill="#F4F2E8" id="1833023079"></path> 
+ <path d="M52.188,41.36l-6.686,0.881c-0.614,0.137-0.966,0.234-0.966,0.234l-3.534-1.131     c-23.438-4.51-15.539,19.176-15.539,19.176c1.25,2.975,1.143,5.051,1.003,10.707c-0.157,6.194,1.488,10.924,3.112,13.848     c1.654,2.942,2.205,3.381,4.001,3.381c1.901,0,2.558-2.057,2.642-3.142c0.364-3.987-0.275-6.194,1.563-12.845     c0.529-1.846,1.177-4.142,2.462-6.223c1.735-2.806,6.429-5,9.331,0c1.225,2.123,2.041,4.349,2.453,6.223     c0.821,3.765,1.148,8.51,1.488,10.379c0.808,4.404,2.619,5.607,2.719,5.607c1.638,0,2.352-0.438,3.998-3.381     c1.627-2.924,2.857-8.151,3.115-13.848c0.248-5.665,0.992-7.799,2.242-10.773C70.409,43.601,60.017,41.078,52.188,41.36z" fill="#F4F2E8" id="1111286809"></path> 
+</g> 
+ <g id="1572672506"> <path d="M76.339,16.072l-0.013-0.383c-0.199-5.308-2.159-9.073-6.188-11.862     c-3.264-2.198-7.844-3.408-12.897-3.408l-0.124-0.001c-4.059,0-8.329,0.831-11.403,2.217l-0.212,0.093l-0.185-0.082     c-2.405-1.099-5.599-1.854-8.994-2.129c-0.066-0.004-0.131-0.004-0.198-0.006l-5.459,0.073c-0.068,0.001-0.14,0.005-0.209,0.012     c-3.768,0.424-7.085,1.545-9.605,3.251c-4.016,2.768-5.978,6.529-6.178,11.869l-0.011,0.328     c-0.015,0.361-0.022,0.699,0.002,1.022c0.594,7.437,1.419,10.014,3.164,14.127c0.293,0.688,0.656,1.335,1.006,1.962     c0.31,0.551,0.629,1.119,0.891,1.7c0.342,0.765,1.101,1.254,1.938,1.254l10.435,0.001c1.663,0,4.732-0.887,5.677-4.207     c0.053-0.189,0.081-0.385,0.081-0.581v-3.55c0-0.076,0-0.104-0.008-0.181c-0.01-0.165,0.036-0.468,0.146-0.582     c0.079-0.085,0.344-0.184,0.827-0.184H52.18c0.484,0,0.75,0.1,0.83,0.184c0.108,0.115,0.155,0.417,0.15,0.536     c-0.009,0.076-0.013,0.151-0.013,0.227v3.55c0,0.196,0.028,0.392,0.081,0.581c0.942,3.321,4.01,4.207,5.674,4.207l9.726-0.002     c0.698,0,3.113-0.35,4.914-4.859c2.275-5.707,2.407-7.853,2.798-14.217C76.359,16.724,76.352,16.403,76.339,16.072z      M69.592,29.675c-0.587,1.468-1.108,2.012-1.318,2.186h-9.364c-0.276-0.006-1.149-0.088-1.511-0.895v-3.121     c0.031-0.551,0.016-2.292-1.223-3.671c-0.654-0.729-1.881-1.598-3.996-1.598h-13.36c-2.114,0-3.339,0.869-3.993,1.597     c-1.24,1.38-1.254,3.121-1.224,3.672v3.12c-0.363,0.81-1.237,0.89-1.518,0.896h-9.108c-0.148-0.274-0.295-0.534-0.434-0.782     c-0.31-0.551-0.602-1.073-0.803-1.545c-1.59-3.751-2.292-5.959-2.838-12.796c-0.014-0.162,0-0.335,0.007-0.521l0.012-0.374     c0.147-3.959,1.446-6.499,4.325-8.484c1.918-1.298,4.538-2.17,7.581-2.524l5.25-0.069c2.837,0.238,5.556,0.874,7.493,1.759     l0.995,0.442l7.256,3.85c1.035,0.552,2.324,0.156,2.874-0.882c0.169-0.317,0.248-0.659,0.248-0.996     c-0.001-0.76-0.411-1.495-1.13-1.878l-3.078-1.633c2-0.481,4.243-0.756,6.38-0.756h0.124c4.155,0,7.991,0.979,10.5,2.668     c2.892,2.002,4.189,4.547,4.336,8.466c0.002,0.146,0.008,0.288,0.015,0.429c0.006,0.184,0.016,0.359,0.006,0.534     C71.715,22.942,71.613,24.601,69.592,29.675z" fill="#3B6A75" id="1881355958"></path> 
+ <path d="M52.112,39.238c-1.172,0.042-2.089,1.027-2.047,2.201c0.043,1.172,1.033,2.076,2.202,2.047     c3.572-0.13,8.331,0.359,10.723,3.413c2.063,2.632,2.262,6.956,0.596,12.853c-1.294,3.087-2.096,5.446-2.356,11.382     c-0.232,5.15-1.351,10.217-2.849,12.906c-0.74,1.328-1.125,1.887-1.443,2.122c-0.387-0.571-0.959-1.695-1.325-3.691     c-0.11-0.606-0.228-1.638-0.366-2.832c-0.263-2.278-0.59-5.112-1.138-7.623c-0.497-2.264-1.452-4.688-2.689-6.834     c-2.015-3.468-4.715-4.021-6.144-4.041c-0.031,0-0.063,0-0.093,0c-2.95,0-5.507,1.994-6.742,3.991     c-1.416,2.293-2.111,4.712-2.667,6.655l-0.035,0.119c-1.378,4.983-1.435,7.64-1.49,10.206c-0.022,0.993-0.043,1.934-0.145,3.043     c-0.043,0.566-0.328,1.106-0.521,1.178c-0.775,0-0.856,0-2.143-2.288c-1.132-2.037-3.007-6.405-2.847-12.762l0.017-0.653     c0.131-5.212,0.192-7.613-1.15-10.85c-0.902-2.759-2.438-10.494,0.911-14.315c2.165-2.473,6.24-3.163,12.107-2.054l2.898,0.928     v5.217l-2.534-2.535l-3.006,3.006l6.163,6.163c0.398,0.399,0.939,0.622,1.503,0.622c0.564,0,1.104-0.223,1.503-0.622l6.158-6.163     l-3.006-3.005l-2.53,2.532v-7.322c0-0.015,0-0.029,0-0.044v-8.645h-4.251v6.331l-1.725-0.552     c-0.082-0.026-0.163-0.048-0.247-0.063c-7.521-1.447-12.985-0.304-16.232,3.403c-5.659,6.458-1.887,18.043-1.724,18.534     c0.018,0.05,0.036,0.1,0.058,0.149c1.021,2.436,0.979,4.133,0.852,9.174l-0.018,0.656c-0.185,7.363,2.039,12.517,3.387,14.941     c1.745,3.104,2.826,4.465,5.854,4.465c2.867,0,4.565-2.567,4.758-5.071c0.112-1.225,0.136-2.284,0.157-3.308     c0.051-2.413,0.103-4.692,1.332-9.146l0.028-0.099c0.51-1.78,1.09-3.798,2.197-5.592c0.61-0.986,1.877-1.977,3.127-1.977     c0.011,0,0.021,0,0.031,0.001c0.943,0.014,1.794,0.66,2.524,1.92c1.024,1.772,1.811,3.768,2.217,5.613     c0.502,2.301,0.815,5.017,1.066,7.199c0.151,1.32,0.271,2.363,0.407,3.108c0.875,4.774,3.131,7.35,4.811,7.35     c2.87,0,4.125-1.378,5.857-4.471c1.852-3.322,3.115-8.851,3.384-14.788c0.235-5.414,0.942-7.344,2.077-10.044     c0.033-0.077,0.061-0.156,0.085-0.238c2.097-7.342,1.659-12.979-1.302-16.762C63.57,40.746,58.653,39.01,52.112,39.238z" fill="#3B6A75" id="1943370687"></path> 
+</g> 
+</g> 
+ <path d="M66.385,23.497c-0.131,0-0.266-0.014-0.398-0.043c-1.02-0.221-1.669-1.226-1.449-2.245   c1.542-7.146-4.458-9.757-4.715-9.865c-0.963-0.405-1.414-1.512-1.011-2.474c0.405-0.962,1.512-1.415,2.475-1.012   c3.169,1.332,8.702,6.004,6.946,14.146C68.04,22.891,67.258,23.497,66.385,23.497z" fill="#FFFFFF" id="1873907224"></path> 
+</g> 
+</svg> 
+</a> 
+</div> 
+ <a data-display-type="block" class="align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient flexButton u_1363086438" file="false" href="/pediatric-dentistry" data-element-type="dButtonLinkId" id="1363086438" data-buttonstyle="THICK_BORDER_ROUND"> <span class="iconBg" aria-hidden="true" id="1888335593"> <span class="icon hasFontIcon icon-star" id="1816824597"></span> 
+</span> 
+ <span class="text" id="1047957407">Porcelain Inlay/Onlays</span> 
+</a> 
+</div> 
+ <div class="dmRespCol small-12 u_1751958478 medium-3 large-3" id="1751958478"> <span id="1432827672"></span> 
+ <div class="u_1808105351 graphicWidget" data-widget-type="graphic" id="1808105351" data-anim-desktop="fadeInUp" data-element-type="graphic"> <a href="/restorative-dentistry#ToothFractures" id="1246588080" file="false" aria-label="if_Dental_-_Tooth_-_Dentist_-_Dentistry_03_2185087.svg"> <svg enable-background="new 0 0 91 91" height="91px" id="1508939411" version="1.1" viewbox="0 0 91 91" width="91px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg u_1508939411" data-icon-custom="true" data-icon-name="if_Dental_-_Tooth_-_Dentist_-_Dentistry_03_2185087.svg" data-hover-effect="float"> <g id="1105824032"> <g id="1021641724"> <path d="M83.365,20.611l-0.01-0.584c-0.237-6.334-2.563-10.814-7.337-14.11c-3.938-2.654-9.497-4.117-15.747-4.117    h-0.112c-4.986,0-10.204,1.012-13.942,2.706l-0.719,0.316l-0.703-0.311c-2.899-1.321-6.908-2.266-10.995-2.592    c-0.048-0.004-0.098-0.007-0.144-0.005l-6.902,0.091c-0.053,0.001-0.106,0.004-0.157,0.011c-4.594,0.52-8.614,1.872-11.635,3.916    c-4.763,3.284-7.09,7.763-7.33,14.145l-0.007,0.668c-0.005,0.27-0.009,0.528-0.009,0.785c0.075,9.072,2.136,12.789,4.52,17.09    l0.392,0.704c2.739,4.731,5.402,10.19,5.33,20.248c-0.013,13.737,2.503,20.855,4.618,24.418c2.43,4.042,3.644,5.215,7.005,5.215    c3.562,0,5.117-3.344,5.289-5.56c0.156-1.618,0.188-3.507,0.222-5.506c0.073-4.678,0.167-10.498,1.933-16.465l0.055-0.178    c0.705-2.292,1.581-5.146,3.229-7.634c1.035-1.56,3.249-3.235,5.669-3.235c1.923,0,3.564,1.074,4.88,3.195    c1.576,2.541,2.519,5.273,3.302,7.838c1.769,5.944,2.533,12.838,2.044,18.438c-0.29,3.324,0.303,5.818,1.77,7.419    c1.474,1.605,3.289,1.688,3.64,1.688h0.002c3.07,0,4.51-1.07,7-5.223c2.11-3.549,4.627-10.666,4.618-24.421    c-0.069-10.047,2.597-15.51,5.353-20.271l0.363-0.658c2.382-4.303,4.443-8.02,4.525-17.115    C83.377,21.22,83.371,20.921,83.365,20.611z" fill="#F4F2E8" id="1740058952"></path> 
+ <path d="M84.157,20.659l-0.012-0.663c-0.246-6.598-2.681-11.275-7.683-14.732    c-4.068-2.741-9.782-4.251-16.186-4.251h-0.116c-5.092,0-10.43,1.04-14.257,2.772L45.5,3.962l-0.375-0.167    c-3.022-1.377-7.021-2.322-11.256-2.661c-0.072-0.006-0.148-0.009-0.22-0.007l-6.903,0.091c-0.079,0.001-0.158,0.005-0.234,0.014    c-4.721,0.535-8.862,1.931-11.993,4.051C9.536,8.719,7.1,13.395,6.854,20.055l-0.01,0.584c-0.006,0.306-0.012,0.599-0.012,0.894    c0.079,9.257,2.18,13.052,4.611,17.445l0.407,0.736c2.683,4.635,5.297,9.983,5.227,19.852    c-0.012,13.915,2.562,21.173,4.731,24.826c2.392,3.974,3.756,5.594,7.675,5.594c3.662,0,5.829-3.176,6.073-6.268    c0.162-1.652,0.192-3.557,0.224-5.574c0.074-4.629,0.167-10.388,1.899-16.244l0.048-0.154c0.688-2.249,1.545-5.051,3.138-7.452    c0.951-1.434,2.981-2.886,5.017-2.886c1.631,0,3.049,0.951,4.213,2.825c1.53,2.464,2.452,5.139,3.215,7.649    c1.743,5.854,2.496,12.637,2.013,18.146c-0.308,3.553,0.357,6.25,1.978,8.017c1.651,1.802,3.643,1.942,4.215,1.942h0.002    c3.71,0,5.3-1.65,7.675-5.607c2.162-3.638,4.737-10.894,4.729-24.826c-0.066-9.849,2.549-15.205,5.259-19.889l0.363-0.658    c2.435-4.396,4.54-8.192,4.624-17.495C84.168,21.235,84.162,20.952,84.157,20.659z M75.427,36.728l-0.346,0.626    c-2.877,4.973-5.939,11.204-5.866,22.22c0.008,13.523-2.544,19.841-4.063,22.396c-1.977,3.294-2.397,3.312-3.611,3.312    c-0.074-0.006-0.461-0.056-0.802-0.453c-0.375-0.433-0.968-1.581-0.725-4.387c0.54-6.159-0.258-13.409-2.195-19.911    c-0.859-2.829-1.906-5.853-3.723-8.773c-2.021-3.259-4.937-5.053-8.211-5.053c-3.886,0-7.291,2.508-8.938,4.992    c-1.973,2.974-2.939,6.135-3.717,8.676l-0.054,0.174c-1.92,6.494-2.019,12.611-2.097,17.525c-0.031,2.004-0.058,3.729-0.206,5.233    c-0.002,0.021-0.191,1.979-1.386,1.979c-1.459,0-1.646,0-3.636-3.305c-1.521-2.564-4.075-8.884-4.065-22.39    c0.08-11.035-2.983-17.261-5.834-22.186l-0.388-0.702c-2.294-4.147-3.955-7.143-4.023-15.186c0-0.247,0.006-0.508,0.011-0.783    l0.009-0.56c0.189-5.129,1.875-8.422,5.616-11c2.248-1.522,5.257-2.583,8.742-3.106l9.216,9.492H24.641    c-0.931,0-1.774,0.547-2.15,1.398c-0.378,0.85-0.219,1.843,0.405,2.532l12.812,14.172c0.464,0.515,1.104,0.776,1.747,0.776    c0.562,0,1.127-0.201,1.579-0.606c0.964-0.871,1.04-2.36,0.167-3.323l-9.258-10.243h10.757c0.945,0,1.799-0.565,2.167-1.436    c0.368-0.872,0.179-1.877-0.479-2.556L32.27,5.854l1.333-0.018c3.613,0.3,7.096,1.116,9.594,2.254l1.274,0.565l9.182,4.874    c0.351,0.187,0.729,0.274,1.101,0.274c0.842,0,1.658-0.453,2.081-1.25c0.609-1.149,0.173-2.573-0.976-3.182l-4.646-2.466    c2.751-0.746,5.951-1.185,9.052-1.185h0.001c0.001,0,0.105,0,0.107,0c5.303,0,10.209,1.257,13.438,3.433    c3.756,2.596,5.44,5.892,5.631,10.956l0.01,0.64c0.005,0.263,0.011,0.516,0.011,0.745C79.387,29.581,77.726,32.579,75.427,36.728z    " fill="#3B6A75" id="1701705767"></path> 
+ <path d="M72.013,27.88c-0.146,0-0.294-0.015-0.443-0.047c-1.128-0.243-1.847-1.355-1.604-2.485    c1.69-7.83-4.945-10.804-5.23-10.927c-1.056-0.458-1.549-1.685-1.097-2.742c0.451-1.06,1.672-1.557,2.729-1.11    c3.511,1.475,9.634,6.646,7.688,15.661C73.845,27.21,72.978,27.88,72.013,27.88z" fill="#FFFFFF" id="1533950452"></path> 
+</g> 
+</g> 
+</svg> 
+</a> 
+</div> 
+ <a data-display-type="block" class="align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient flexButton u_1328727602" file="false" href="/restorative-dentistry#ToothFractures" data-element-type="dButtonLinkId" id="1328727602" data-buttonstyle="THICK_BORDER_ROUND"> <span class="iconBg" aria-hidden="true" id="1405016477"> <span class="icon hasFontIcon icon-star" id="1196072123"></span> 
+</span> 
+ <span class="text" id="1403478954">Fracture Restoration</span> 
+</a> 
+</div> 
+ <div class="dmRespCol small-12 u_1183471635 medium-3 large-3" id="1183471635"> <span id="1290405097"></span> 
+ <div class="u_1297154581 graphicWidget" data-widget-type="graphic" id="1297154581" data-element-type="graphic" data-anim-extended="eyJkZXNrdG9wIjp7InRyaWdnZXIiOiJlbnRyYW5jZSIsImFuaW1hdGlvbiI6InNsaWRlSW5Db21ibyIsImRpciI6InJpZ2h0In19" data-anim-desktop="slideInCombo"> <a href="/cosmetic-dentistry#TeethWhitening" id="1139804713" file="false" aria-label="if_Dental_-_Tooth_-_Dentist_-_Dentistry_04_2185086.svg"> <svg enable-background="new 0 0 91 91" height="91px" id="1092826335" version="1.1" viewbox="0 0 91 91" width="91px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg u_1092826335" data-icon-custom="true" data-icon-name="if_Dental_-_Tooth_-_Dentist_-_Dentistry_04_2185086.svg" data-hover-effect="float"> <g id="1977259579"> <g id="1338855773"> <circle cx="43.031" cy="40.224" fill="#9AE0FF" r="38.655" id="1174251768"></circle> 
+ <g id="1875833745"> <path d="M72.782,34.678l-0.005-0.393c-0.188-5.035-2.041-8.599-5.841-11.222     c-3.12-2.106-7.522-3.266-12.398-3.266h-0.129c-3.945,0-8.074,0.801-11.034,2.138l-0.477,0.213l-0.467-0.207     c-2.294-1.044-5.46-1.789-8.684-2.047c-0.045-0.003-0.092-0.005-0.134-0.004l-5.409,0.069c-0.048,0.001-0.095,0.003-0.143,0.009     c-3.634,0.413-6.815,1.484-9.213,3.105c-3.793,2.616-5.646,6.18-5.829,11.246l-0.007,0.47c-0.006,0.232-0.011,0.458-0.011,0.681     c0.06,7.156,1.685,10.089,3.565,13.486l0.313,0.561c2.131,3.678,4.208,7.923,4.152,15.769     c-0.011,10.808,1.974,16.423,3.646,19.236c1.953,3.247,2.932,4.19,5.668,4.19c2.627,0,4.179-2.301,4.351-4.545     c0.126-1.28,0.151-2.77,0.176-4.345c0.059-3.649,0.134-8.191,1.511-12.832l0.034-0.115c0.546-1.792,1.226-4.021,2.511-5.956     c0.782-1.176,2.448-2.442,4.271-2.442c1.43,0,2.654,0.811,3.646,2.406c1.226,1.977,1.96,4.103,2.567,6.097     c1.379,4.636,1.974,10.007,1.592,14.367c-0.231,2.667,0.253,4.678,1.441,5.977c0.939,1.024,2.167,1.39,3.004,1.39h0.002     c2.672,0,3.806-1.099,5.662-4.195c1.669-2.804,3.658-8.416,3.648-19.24c-0.052-7.834,2.023-12.082,4.172-15.789l0.288-0.521     c1.881-3.396,3.504-6.33,3.567-13.509C72.792,35.207,72.788,34.948,72.782,34.678z" fill="#F4F2E8" id="1509888967"></path> 
+ <path d="M73.499,34.608l-0.007-0.352c-0.196-5.28-2.146-9.022-6.155-11.79c-3.237-2.185-7.782-3.388-12.796-3.388     h-0.138c-4.041,0-8.278,0.824-11.325,2.2l-0.183,0.082l-0.168-0.075c-2.404-1.093-5.573-1.84-8.924-2.107     c-0.066-0.005-0.135-0.007-0.199-0.006l-5.408,0.069c-0.072,0.001-0.144,0.006-0.216,0.014c-3.746,0.425-7.039,1.537-9.539,3.227     c-3.997,2.759-5.948,6.5-6.141,11.831l-0.009,0.463c-0.004,0.238-0.008,0.467-0.008,0.7c0.061,7.339,1.728,10.347,3.655,13.828     l0.319,0.575c2.082,3.591,4.11,7.737,4.057,15.406c-0.01,10.971,2.031,16.713,3.75,19.606c1.896,3.156,3.063,4.539,6.283,4.539     c3.065,0,4.871-2.636,5.063-5.19c0.13-1.312,0.155-2.815,0.181-4.408c0.06-3.605,0.133-8.091,1.477-12.631l0.035-0.113     c0.562-1.837,1.197-3.92,2.425-5.771c0.699-1.054,2.187-2.12,3.672-2.12c1.163,0,2.185,0.694,3.035,2.063     c1.176,1.899,1.894,3.978,2.489,5.924c1.353,4.553,1.938,9.822,1.563,14.101c-0.249,2.876,0.299,5.07,1.629,6.522     c1.381,1.506,3.055,1.623,3.534,1.623h0.002c3.041,0,4.394-1.4,6.278-4.547c1.716-2.881,3.76-8.621,3.75-19.613     c-0.05-7.653,1.979-11.803,4.082-15.437l0.288-0.521c1.928-3.481,3.591-6.488,3.658-13.854     C73.51,35.185,73.505,34.902,73.499,34.608z M66.081,47.226l-0.269,0.489c-2.276,3.928-4.698,8.851-4.64,17.574     c0.007,10.525-1.967,15.414-3.142,17.386c-1.447,2.415-1.717,2.446-2.546,2.446c-0.576-0.07-1.1-1.177-0.902-3.46     c0.427-4.86-0.203-10.584-1.729-15.719c-0.686-2.241-1.518-4.636-2.954-6.952c-1.642-2.646-4.021-4.104-6.698-4.104     c-3.163,0-5.928,2.033-7.265,4.049c-1.574,2.373-2.34,4.88-2.955,6.895l-0.04,0.131c-1.517,5.122-1.596,9.935-1.659,13.802     c-0.024,1.567-0.047,2.92-0.164,4.104c-0.001,0.012-0.145,1.256-0.77,1.256c-1.033,0-1.117,0-2.582-2.438     c-1.177-1.98-3.149-6.874-3.141-17.38c0.063-8.74-2.361-13.659-4.613-17.544l-0.3-0.543c-1.779-3.21-3.065-5.53-3.116-11.756     c0-0.19,0.004-0.39,0.008-0.599l0.007-0.444c0.143-3.906,1.422-6.414,4.262-8.374c1.889-1.276,4.476-2.137,7.489-2.492     l5.198-0.065c2.788,0.231,5.475,0.858,7.4,1.734l0.987,0.438l7.191,3.817c0.322,0.171,0.669,0.252,1.009,0.252     c0.772,0,1.521-0.416,1.906-1.145c0.557-1.052,0.157-2.356-0.894-2.915l-2.936-1.559c1.94-0.456,4.106-0.717,6.181-0.717h0.138     c4.103,0,7.888,0.967,10.365,2.638c2.853,1.97,4.131,4.479,4.276,8.345l0.006,0.315c0.005,0.267,0.01,0.521,0.01,0.751     C69.145,41.693,67.859,44.014,66.081,47.226z" fill="#3B6A75" id="1230253438"></path> 
+ <g id="1397837358"> <path d="M86.267,14.553c-6.361,0-6.479-8.489-6.482-8.845c0-0.003,0-0.007,0-0.011c0-0.001,0-0.003,0-0.004      c0-0.004,0-0.009,0-0.014c-0.001-0.002-0.001-0.003,0-0.003c-0.001-0.002-0.001-0.003,0-0.003c0-0.001,0-0.002,0-0.003      c-0.019-1.173-0.976-2.117-2.154-2.117c-1.188,0-2.152,0.962-2.155,2.15c-0.002,0.368-0.123,8.85-6.483,8.85      c-0.003,0-0.005,0-0.008,0c-0.001,0-0.003,0-0.005,0h-0.001c-0.001,0-0.002,0-0.004,0c-1.184,0.01-2.139,0.972-2.139,2.156      c0,1.184,0.956,2.146,2.14,2.155c0.681,0.013,6.5,0.381,6.5,8.846c0,1.189,0.966,2.155,2.155,2.155s2.154-0.966,2.154-2.156      c0-8.479,5.836-8.833,6.482-8.847c1.189,0,2.154-0.965,2.154-2.154C88.421,15.518,87.456,14.553,86.267,14.553z M77.628,19.377      c-0.698-1.074-1.521-1.934-2.396-2.61c0.98-0.801,1.77-1.777,2.396-2.841c0.629,1.063,1.418,2.04,2.397,2.841      C79.15,17.443,78.327,18.303,77.628,19.377z" fill="#99B3B7" id="1649477560"></path> 
+ <path d="M42.075,39.234c-6.18,0-6.297-8.264-6.299-8.611c0-1.188-0.961-2.149-2.149-2.151      c-0.002,0-0.004,0-0.005,0c-1.185,0-2.148,0.96-2.154,2.146c-0.002,0.352-0.119,8.616-6.301,8.616      c-1.189,0-2.154,0.965-2.154,2.154c0,1.191,0.965,2.156,2.154,2.156c0.258,0,6.301,0.098,6.301,8.608      c0,1.19,0.965,2.155,2.154,2.155s2.154-0.965,2.154-2.155c0-8.247,5.673-8.596,6.299-8.608c1.19,0,2.155-0.965,2.155-2.156      C44.23,40.199,43.266,39.234,42.075,39.234z M33.621,43.914c-0.667-1.009-1.445-1.823-2.272-2.471      c0.922-0.764,1.672-1.688,2.272-2.692c0.601,1.004,1.35,1.929,2.272,2.692C35.066,42.091,34.287,42.905,33.621,43.914z" fill="#99B3B7" id="1432050433"></path> 
+ <path d="M16.692,14.381c-3.676,0-3.821-4.908-3.825-5.459c0-0.003,0-0.005,0-0.007s0-0.005,0-0.007      c-0.007-1.185-0.969-2.143-2.155-2.143c-1.188,0-2.151,0.961-2.154,2.148c-0.005,0.563-0.151,5.467-3.823,5.467      c-1.19,0-2.155,0.965-2.155,2.156c0,1.19,0.965,2.156,2.155,2.156c0.391,0,3.823,0.152,3.823,5.456      c0,1.191,0.965,2.156,2.154,2.156c1.19,0,2.155-0.965,2.155-2.155c0-5.089,3.21-5.439,3.825-5.457      c1.19,0,2.155-0.966,2.155-2.156C18.848,15.346,17.883,14.381,16.692,14.381z M10.712,17.248      c-0.205-0.247-0.421-0.477-0.644-0.687c0.231-0.236,0.446-0.486,0.644-0.749c0.199,0.263,0.414,0.513,0.646,0.749      C11.135,16.771,10.919,17.001,10.712,17.248z" fill="#99B3B7" id="1534151811"></path> 
+</g> 
+</g> 
+ <path d="M62.55,39.989c-0.04,0-0.08,0-0.121-0.003c-1.057-0.065-1.859-0.975-1.794-2.031    c0.109-1.781-0.036-5.071-2.253-7.086c-0.781-0.711-0.84-1.924-0.127-2.707c0.713-0.782,1.924-0.84,2.707-0.128    c2.52,2.291,3.762,5.897,3.497,10.158C64.396,39.208,63.553,39.989,62.55,39.989z" fill="#FFFFFF" id="1422531106"></path> 
+</g> 
+</g> 
+</svg> 
+</a> 
+</div> 
+ <a data-display-type="block" class="align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient flexButton u_1139040359" file="false" href="/cosmetic-dentistry" data-element-type="dButtonLinkId" id="1139040359" data-buttonstyle="THICK_BORDER_ROUND"> <span class="iconBg" aria-hidden="true" id="1491685246"> <span class="icon hasFontIcon icon-star" id="1969193033"></span> 
+</span> 
+ <span class="text" id="1102626337">Teeth Whitening</span> 
+</a> 
+</div> 
+</div> 
+</div> 
+ <div class="u_1279410042 dmRespRow" style="text-align: center;" id="1279410042"> <div class="dmRespColsWrapper" id="1015363503"> <div class="dmRespCol small-12 u_1292392008 medium-3 large-3" id="1292392008"> <span id="1461964708"></span> 
+ <div class="u_1909507364 graphicWidget" data-widget-type="graphic" id="1909507364" data-element-type="graphic"> <a href="/oral-surgery#ToothExtraction" id="1972335209" file="false" aria-label="if_Dental_-_Tooth_-_Dentist_-_Dentistry_06_2185081.svg"> <svg enable-background="new 0 0 91 91" height="91px" id="1171745192" version="1.1" viewbox="0 0 91 91" width="91px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg u_1171745192" data-icon-custom="true" data-icon-name="if_Dental_-_Tooth_-_Dentist_-_Dentistry_06_2185081.svg" data-hover-effect="float"> <g id="1141158405"> <path d="M88.825,45.366c-0.049-1.097-0.952-1.959-2.05-1.959H77.1c-3.211,0-5.207,2.646-5.9,4.249l-8.059,16.774   c-3.013,6.272-10.027,10.018-18.769,10.018h-0.001c-3.135,0-6.325-0.482-9.484-1.435C23.777,69.669,17.874,58.446,19.822,51   l0.875-3.875c0.386-0.881,1.239-1.689,0.396-2.979c-0.997-1.522-1.922-0.74-4.88-0.74H4.222c-1.097,0-2,0.862-2.049,1.959   c-0.03,0.663-0.05,1.328-0.05,1.999c0,23.918,19.458,43.376,43.377,43.376c23.916,0,43.376-19.458,43.376-43.376   C88.876,46.694,88.855,46.028,88.825,45.366z" fill="#FF889C" id="1440728160"></path> 
+ <g id="1989213667"> <path d="M79.417,27.061c1.401-4.335,0.622-7.398-1.295-10.1c-1.938-2.673-5.282-4.82-8.896-6.127    c-3.343-1.225-6.894-1.729-9.479-1.524l-1.039,0.068l-0.753-0.721c-1.482-1.463-3.75-2.969-6.316-4.145l-4.582-1.601    c-2.804-0.677-5.654-0.825-8.091-0.221c-3.198,0.835-5.776,2.686-7.484,6.894c-0.125,0.337-0.253,0.654-0.36,0.94    c-2.148,6.048-1.562,8.723-0.993,12.376c0.645,3.618,1.231,8.164-1.4,15.229c-3.005,8.215-3.367,13.542-2.778,16.646    c0.607,3.12,0.982,3.69,2.667,4.302c1.775,0.648,3.039-0.917,3.46-1.838c1.606-3.353,2.995-9.01,6.822-14.178    c1.077-1.43,2.412-3.218,4.272-4.596c2.52-1.854,7.597-2.167,8.712,3.178c0.477,2.271,0.412,4.479,0.316,6.263    c-0.298,4.896-1.602,9.657-3.191,13.065c-2.212,4.749,0.667,5.785,0.763,5.818c1.524,0.556,2.338,0.417,4.802-1.587    c2.45-1.993,5.601-6.306,8.589-14.53c2.532-7.109,5.904-10.197,8.728-12.558c2.787-2.429,4.948-4.102,7.199-10.109    C79.195,27.709,79.302,27.391,79.417,27.061z" fill="#F4F2E8" id="1132822642"></path> 
+ <path d="M79.783,15.756c-2.084-2.872-5.585-5.306-9.852-6.849c-2.938-1.076-6.224-1.693-9.013-1.693    c-0.464,0-0.909,0.017-1.305,0.048l-0.14,0.009l-0.077-0.074c-1.691-1.67-4.144-3.284-6.904-4.55    c-0.058-0.025-0.117-0.05-0.178-0.07l-4.581-1.602c-0.064-0.022-0.13-0.042-0.196-0.058c-3.28-0.791-6.411-0.876-9.09-0.21    c-4.256,1.11-7.074,3.687-8.888,8.16l-0.372,0.971c-2.216,6.236-1.731,9.297-1.171,12.841l0.092,0.582    c0.647,3.649,1.082,7.747-1.31,14.164c-3.391,9.273-3.43,14.762-2.864,17.744c0.641,3.287,1.212,4.833,3.976,5.836    c0.505,0.184,1.021,0.278,1.535,0.278c2.241,0,3.821-1.719,4.479-3.156c0.512-1.065,0.991-2.322,1.5-3.652    c1.154-3.018,2.59-6.773,5.151-10.23c1.04-1.38,2.216-2.944,3.811-4.125c0.689-0.509,1.667-0.823,2.555-0.823    c1.584,0,2.544,0.906,2.933,2.769c0.409,1.952,0.374,3.908,0.277,5.719c-0.258,4.238-1.381,8.845-3.003,12.323    c-1.113,2.392-1.322,4.45-0.621,6.119c0.583,1.384,1.705,2.2,2.539,2.493c0.519,0.189,1.216,0.406,2.01,0.406    c1.61,0,2.976-0.854,4.788-2.329c2.345-1.907,5.847-6.13,9.227-15.433c2.29-6.427,5.264-9.29,8.144-11.7l0.39-0.338    c2.714-2.354,5.057-4.388,7.391-10.617c0.072-0.199,0.145-0.405,0.218-0.618l0.137-0.397    C82.841,23.144,82.341,19.356,79.783,15.756z M77.479,26.383l-0.13,0.374c-0.065,0.189-0.127,0.373-0.186,0.53    c-1.96,5.234-3.75,6.788-6.229,8.938l-0.365,0.317c-3.139,2.626-6.708,6.047-9.339,13.431c-3.218,8.854-6.365,12.346-7.955,13.64    c-1.433,1.164-1.987,1.408-2.2,1.408c-0.115,0-0.317-0.053-0.556-0.138c-0.35-0.174-0.546-1.128,0.347-3.042    c1.857-3.979,3.089-9.011,3.381-13.823c0.114-2.102,0.149-4.379-0.357-6.792c-0.789-3.776-3.386-6.031-6.948-6.031    c-1.771,0-3.588,0.591-4.995,1.622c-2.078,1.539-3.505,3.436-4.701,5.024c-2.864,3.869-4.412,7.915-5.656,11.167    c-0.499,1.304-0.929,2.43-1.382,3.377c-0.187,0.409-0.59,0.793-0.765,0.793c-0.03,0-0.075-0.01-0.13-0.03    c-0.81-0.294-0.876-0.316-1.352-2.755c-0.382-2.017-0.542-6.722,2.687-15.548c2.746-7.372,2.213-12.28,1.505-16.259l-0.085-0.547    c-0.512-3.236-0.88-5.574,0.975-10.798l0.338-0.886c1.301-3.204,3.126-4.901,6.079-5.673c1.954-0.483,4.421-0.413,7.019,0.2    l4.391,1.534c2.27,1.049,4.322,2.395,5.667,3.721l0.723,0.693l4.857,5.39c0.405,0.449,0.963,0.678,1.524,0.678    c0.489,0,0.98-0.174,1.372-0.525c0.843-0.759,0.91-2.057,0.151-2.898l-1.781-1.977c1.688,0.226,3.479,0.655,5.145,1.264    c3.458,1.251,6.349,3.22,7.921,5.386C78.227,20.653,78.53,23.13,77.479,26.383z" fill="#3B6A75" id="1151581258"></path> 
+</g> 
+ <g id="1761711855"> <path d="M44.275,76.114c-3.415,0-6.985-0.518-10.571-1.598c-13.564-4.084-19.178-16.673-16.6-25.995    c0.031-0.117,0.074-0.231,0.127-0.342l1.317-2.742c-0.247-0.125-0.896-0.354-2.336-0.354H4.222c-1.132,0-2.051-0.919-2.051-2.052    c0-1.134,0.919-2.053,2.051-2.053h11.991c2.958,0,4.88,0.741,5.877,2.265c0.845,1.29,0.693,2.774,0.309,3.656l-1.387,2.886    c-1.945,7.444,2.768,17.458,13.875,20.802c12.217,3.68,24.1,0.068,28.257-8.583l8.056-16.775c0.693-1.604,2.689-4.25,5.9-4.25    h9.676c1.133,0,2.052,0.918,2.052,2.053c0,1.133-0.919,2.052-2.052,2.052H77.1c-1.313,0-2.141,1.789-2.148,1.807l-8.109,16.892    C63.079,71.612,54.352,76.114,44.275,76.114z" fill="#F16B72" id="1416640862"></path> 
+</g> 
+ <path d="M39.475,20.824c-1.007,0-1.823-0.816-1.823-1.824c0-4.2,1.688-7.53,4.633-9.138   c2.663-1.452,5.959-1.225,8.815,0.611c0.847,0.545,1.092,1.673,0.547,2.521s-1.672,1.093-2.521,0.548   c-1.741-1.121-3.6-1.294-5.095-0.479c-1.736,0.948-2.731,3.112-2.731,5.937C41.3,20.008,40.482,20.824,39.475,20.824z" fill="#FFFFFF" id="1729699172"></path> 
+</g> 
+</svg> 
+</a> 
+</div> 
+ <a data-display-type="block" class="align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient flexButton u_1484351267" file="false" href="/oral-surgery" data-element-type="dButtonLinkId" id="1484351267" data-buttonstyle="THICK_BORDER_ROUND"> <span class="iconBg" aria-hidden="true" id="1377037379"> <span class="icon hasFontIcon icon-star" id="1942419915"></span> 
+</span> 
+ <span class="text" id="1874433776">Painless Tooth Extraction</span> 
+</a> 
+</div> 
+ <div class="dmRespCol small-12 u_1103326080 medium-3 large-3" id="1103326080"> <span id="1879263320"></span> 
+ <div class="u_1382583009 graphicWidget" data-widget-type="graphic" id="1382583009" data-element-type="graphic"> <a id="1018863140" file="false" class="" href="/periodontal-treatment" aria-label="if_Dental_-_Tooth_-_Dentist_-_Dentistry_19_2185062.svg"> <svg enable-background="new 0 0 91 91" height="91px" id="1007218828" version="1.1" viewbox="0 0 91 91" width="91px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg u_1007218828" data-icon-custom="true" data-icon-name="if_Dental_-_Tooth_-_Dentist_-_Dentistry_19_2185062.svg" data-hover-effect="float"> <g id="1755512657"> <path d="M83.404,20.244l-0.01-0.603C83.16,13.399,80.874,8.99,76.196,5.759c-3.906-2.639-9.439-4.09-15.582-4.09   h-0.216c-4.972,0-10.184,1.01-13.938,2.699l-0.96,0.428l-0.949-0.424c-2.878-1.31-6.879-2.252-11.075-2.59l-7.113,0.104   c-4.572,0.516-8.566,1.855-11.558,3.883c-4.677,3.221-6.963,7.625-7.196,13.883l-0.002,0.125c-0.01,0.486-0.019,0.938-0.019,1.357   c0.071,9.059,2.13,12.773,4.513,17.074l0.402,0.727c2.819,4.875,5.564,10.5,5.486,20.863c-0.002,13.838,2.508,20.961,4.614,24.504   c2.415,4.018,3.446,5.029,6.623,5.029c3.015,0,4.605-2.668,4.806-5.131c0.16-1.621,0.188-3.527,0.222-5.55   c0.075-4.784,0.169-10.744,1.988-16.889l0.045-0.143c0.728-2.375,1.634-5.328,3.364-7.945c1.134-1.707,3.567-3.543,6.24-3.543   c2.133,0,4.018,1.217,5.443,3.518c1.646,2.654,2.617,5.467,3.419,8.104c1.843,6.192,2.608,13.102,2.098,18.951   c-0.28,3.211,0.273,5.602,1.647,7.1c1.331,1.453,2.958,1.527,3.271,1.527h0.003c2.896,0,4.193-0.986,6.615-5.031   c2.108-3.535,4.624-10.66,4.621-24.508c-0.071-10.343,2.676-15.979,5.504-20.881l0.358-0.646c2.489-4.488,4.456-8.031,4.54-17.143   C83.415,20.844,83.41,20.549,83.404,20.244z M61.773,88.313L61.773,88.313L61.773,88.313L61.773,88.313z" fill="#F4F2E8" id="1118751887"></path> 
+ <g id="1962902071"> <path d="M70.374,42.336l-0.233-0.004c-3.705,0-4.539,3.678-5.146,6.362c-0.234,1.033-0.555,2.445-0.92,2.701    c-0.058,0.037-0.091,0.053-0.092,0.058c-0.185-0.048-0.613-0.505-0.899-0.808c-0.95-1.008-2.298-2.447-4.644-2.055    c-3.083,0.516-4.959,4.219-5.805,6.381l-0.161,0.416l0.193,0.4c1.01,2.067,1.702,4.182,2.246,5.965    c1.844,6.193,2.607,13.102,2.098,18.951c-0.279,3.211,0.273,5.602,1.647,7.1c1.331,1.453,2.958,1.527,3.271,1.527h0.004    c2.894,0,4.191-0.986,6.613-5.031c2.11-3.535,4.625-10.66,4.623-24.508c-0.044-6.197,0.906-11.291,2.99-16.031l0.628-1.43    L70.374,42.336z" fill="#F6DABB" id="1342445751"></path> 
+ <path d="M39.079,42.346c-3.123-0.442-5.749,1.773-7.611,3.355c-0.525,0.448-1.94,1.491-3.684,1.493    c-1.174,0-2.273-0.487-3.27-1.45c-0.739-0.718-1.596-1.08-2.544-1.08c-1.543,0-3.197,0.971-4.915,2.883l-0.37,0.41l0.145,0.535    c0.919,3.411,1.35,7.108,1.318,11.307c-0.002,13.838,2.508,20.961,4.614,24.504c2.415,4.019,3.445,5.029,6.623,5.029    c3.015,0,4.604-2.668,4.808-5.131c0.158-1.621,0.189-3.527,0.222-5.55c0.076-4.784,0.168-10.743,1.987-16.889l0.044-0.145    c0.729-2.373,1.636-5.326,3.366-7.943c0.996-1.498,2.698-2.75,4.447-3.268l1.155-0.343l-0.529-1.082    C42.861,44.84,40.906,42.607,39.079,42.346z" fill="#F6DABB" id="1972691584"></path> 
+</g> 
+ <g id="1017754643"> <path d="M84.676,20.183l-0.009-0.59c-0.253-6.68-2.713-11.407-7.76-14.889c-4.113-2.778-9.896-4.31-16.282-4.31    l-0.106,0.002l-0.131-0.002c-5.135,0-10.539,1.054-14.442,2.81l-0.443,0.197l-0.423-0.188c-3.048-1.388-7.096-2.347-11.402-2.697    C33.604,0.51,33.53,0.508,33.46,0.51l-7.013,0.096c-0.076,0-0.151,0.007-0.227,0.015c-4.774,0.539-8.967,1.954-12.137,4.1    c-5.038,3.467-7.499,8.191-7.748,14.906l-0.002,0.125c-0.01,0.497-0.019,0.955-0.019,1.393c0.073,9.381,2.204,13.229,4.672,17.683    l0.414,0.748c2.73,4.725,5.391,10.176,5.314,20.225c-0.002,14.127,2.604,21.474,4.797,25.162c2.41,4.012,3.783,5.645,7.714,5.645    c3.652,0,5.821-3.177,6.073-6.278c0.164-1.674,0.195-3.605,0.228-5.65c0.076-4.711,0.167-10.572,1.935-16.539l0.037-0.119    c0.742-2.422,1.583-5.168,3.216-7.637c0.981-1.479,3.074-2.975,5.18-2.975c1.692,0,3.16,0.979,4.361,2.916    c1.57,2.532,2.505,5.25,3.277,7.797c1.775,5.961,2.543,12.867,2.052,18.475c-0.313,3.582,0.353,6.299,1.978,8.072    c1.648,1.798,3.64,1.938,4.209,1.938h0.005c3.726,0,5.323-1.666,7.708-5.651c2.192-3.674,4.806-11.022,4.803-25.172    c-0.069-10.021,2.592-15.481,5.346-20.257l0.358-0.646c2.473-4.459,4.609-8.313,4.694-17.756    C84.686,20.824,84.681,20.509,84.676,20.183z M36.892,51.849c-2.001,3.023-2.984,6.24-3.776,8.824l-0.043,0.141    c-1.951,6.591-2.051,12.8-2.129,17.789c-0.032,2.034-0.062,3.79-0.209,5.313c-0.002,0.021-0.207,2.104-1.507,2.104    c-1.497,0-1.728,0-3.778-3.414c-1.549-2.604-4.149-9.032-4.147-22.791c0.03-4.023-0.356-7.408-0.992-10.337    c0.509-0.782,1.179-1.507,1.46-1.569c0.001,0,0.1,0.034,0.285,0.215c3.727,3.605,8.413,2.646,11.402,0.098    c1.484-1.263,3.327-2.845,4.955-2.606c0.489,0.176,1.314,1.41,2,2.868C38.921,49.417,37.697,50.634,36.892,51.849z M65.549,82.602    c-2.039,3.406-2.479,3.418-3.76,3.418c-0.075-0.006-0.503-0.056-0.878-0.487c-0.394-0.451-1.013-1.644-0.761-4.539    c0.548-6.244-0.264-13.6-2.228-20.193c-0.581-1.918-1.255-3.925-2.19-5.939c0.667-1.217,1.841-2.793,3.098-3.004    c0.495-0.082,0.777,0.099,1.688,1.062c0.761,0.806,2.775,2.94,5.288,1.195c1.423-0.986,1.829-2.785,2.261-4.689    c0.744-3.295,1.188-3.795,2.005-3.781l1.655,0.073c-1.226,3.708-2.065,8.225-2.024,14.082    C69.704,73.579,67.1,80.002,65.549,82.602z M75.98,36.657l-0.341,0.616c-0.704,1.219-1.418,2.515-2.096,3.933l-3.272-0.144    c-4.995-0.25-6.078,4.705-6.677,7.351c-0.059,0.264-0.131,0.574-0.205,0.879c-1.042-1.039-2.729-2.385-5.316-1.955    c-2.157,0.361-3.786,1.746-4.935,3.168c-1.944-2.38-4.465-3.683-7.246-3.683c-0.388,0-0.769,0.031-1.146,0.078    c-1.007-2.297-2.866-5.417-5.646-5.816c-3.709-0.532-6.661,1.983-8.614,3.647c-1.062,0.905-3.152,2.118-5.241,0.099    c-1.564-1.515-3.145-1.616-4.194-1.433c-0.836,0.145-1.58,0.519-2.23,0.994c-1.022-2.74-2.24-5.02-3.426-7.072l-0.396-0.715    c-2.342-4.228-4.033-7.28-4.098-15.479c0-0.391,0.009-0.82,0.018-1.283l0.001-0.084c0.195-5.246,1.919-8.613,5.75-11.25    c2.521-1.707,5.961-2.853,9.955-3.318l6.787-0.095c3.695,0.309,7.25,1.143,9.786,2.299l1.268,0.562l9.364,4.966    c0.343,0.182,0.71,0.268,1.072,0.268c0.821,0,1.615-0.441,2.027-1.219c0.594-1.12,0.167-2.506-0.951-3.1l-4.938-2.619    c2.855-0.801,6.188-1.273,9.347-1.273h0.237c5.402,0,10.4,1.283,13.697,3.508c3.841,2.651,5.564,6.024,5.762,11.218l0.008,0.551    c0.005,0.301,0.01,0.59,0.01,0.848C80.027,29.362,78.33,32.421,75.98,36.657z" fill="#3B6A75" id="1795582090"></path> 
+ <path d="M30.848,60.396c-0.701-1.055-2.124-1.338-3.178-0.639c-1.054,0.701-1.34,2.123-0.639,3.178l0.126,0.189    c0.441,0.664,1.169,1.022,1.911,1.022c0.436,0,0.877-0.125,1.267-0.382c1.054-0.701,1.341-2.125,0.64-3.18L30.848,60.396z" fill="#3B6A75" id="1013123245"></path> 
+ <path d="M26.439,53.783l-0.127-0.189c-0.703-1.055-2.125-1.332-3.18-0.633c-1.053,0.705-1.336,2.129-0.632,3.18    l0.126,0.189c0.442,0.663,1.168,1.02,1.908,1.02c0.438,0,0.881-0.127,1.271-0.387C26.86,56.258,27.143,54.834,26.439,53.783z" fill="#3B6A75" id="1353126875"></path> 
+ <path d="M27.505,67.666c-1.266,0-2.292,1.024-2.292,2.291v0.227c0,1.267,1.026,2.293,2.292,2.293    c1.267,0,2.293-1.027,2.292-2.293v-0.227C29.797,68.69,28.771,67.666,27.505,67.666z" fill="#3B6A75" id="1319674020"></path> 
+ <path d="M64.614,71.087c-1.239-0.266-2.457,0.52-2.726,1.758l-0.048,0.223c-0.266,1.237,0.521,2.457,1.758,2.726    c0.163,0.035,0.325,0.051,0.485,0.051c1.057,0,2.007-0.734,2.24-1.809l0.048-0.224C66.638,72.575,65.852,71.354,64.614,71.087z" fill="#3B6A75" id="1792052667"></path> 
+ <path d="M66.352,63.105c-1.237-0.274-2.459,0.511-2.73,1.746l-0.049,0.222c-0.273,1.235,0.509,2.461,1.745,2.731    c0.166,0.037,0.331,0.055,0.495,0.055c1.052,0,2-0.73,2.235-1.801l0.049-0.221C68.37,64.602,67.588,63.377,66.352,63.105z" fill="#3B6A75" id="1533147965"></path> 
+</g> 
+ <path d="M21.896,33.213c-0.944,0-1.851-0.527-2.293-1.432c-2.657-5.453-2.707-15.457,4.11-20.063   c1.166-0.791,2.75-0.482,3.537,0.684s0.479,2.75-0.685,3.537c-4.142,2.797-4.178,9.929-2.383,13.609   c0.616,1.264,0.092,2.789-1.173,3.406C22.65,33.129,22.27,33.213,21.896,33.213z" fill="#FFFFFF" id="1137676671"></path> 
+</g> 
+</svg> 
+</a> 
+</div> 
+ <a data-display-type="block" class="align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient flexButton u_1478454047" file="false" href="/periodontal-treatment" data-element-type="dButtonLinkId" id="1478454047" data-buttonstyle="THICK_BORDER_ROUND"> <span class="iconBg" aria-hidden="true" id="1558135481"> <span class="icon hasFontIcon icon-star" id="1728009806"></span> 
+</span> 
+ <span class="text" id="1937145798">Advanced Gum Disease Treatment</span> 
+</a> 
+</div> 
+ <div class="dmRespCol small-12 u_1562774672 medium-3 large-3" id="1562774672"> <span id="1221739434"></span> 
+ <div class="u_1795762208 graphicWidget" data-widget-type="graphic" id="1795762208" data-element-type="graphic"> <a id="1535730354" file="false" class="" href="/endodontic-dentistry" aria-label="if_Dental_-_Tooth_-_Dentist_-_Dentistry_17_2185063.svg"> <svg enable-background="new 0 0 91 91" height="91px" id="1365062136" version="1.1" viewbox="0 0 91 91" width="91px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg u_1365062136" data-icon-custom="true" data-icon-name="if_Dental_-_Tooth_-_Dentist_-_Dentistry_17_2185063.svg" data-hover-effect="float"> <g id="1983553665"> <path d="M77.869,67.013c0,13.94-13.815,23.708-32.779,23.708s-33.558-9.768-33.558-23.708   c0-4.122-1.067-10.28,2.947-11.449c6.436-1.875,17.253-1.097,30.61-1.097c13.484,0,25.436,0,30.771,0.548   C79.917,55.433,77.869,62.982,77.869,67.013z" fill="#FF889C" id="1723997704"></path> 
+ <g id="1325184140"> <g id="1627908374"> <path d="M27.688,53.337c-6.456-1.876-13.073-0.083-13.352-0.006c-0.933,0.26-1.479,1.225-1.221,2.159     c0.258,0.934,1.222,1.481,2.159,1.226c0.058-0.016,5.954-1.601,11.434-0.007c0.163,0.048,0.329,0.069,0.491,0.069     c0.761,0,1.463-0.497,1.684-1.266C29.155,54.582,28.62,53.607,27.688,53.337z" fill="#F16B72" id="1881630007"></path> 
+ <path d="M76.435,53.337c-6.457-1.877-13.074-0.083-13.353-0.006c-0.934,0.26-1.479,1.225-1.22,2.159     c0.256,0.934,1.219,1.481,2.156,1.226c0.06-0.016,5.961-1.601,11.434-0.007c0.164,0.048,0.329,0.069,0.492,0.069     c0.76,0,1.461-0.497,1.684-1.266C77.9,54.582,77.366,53.607,76.435,53.337z" fill="#F16B72" id="1476677507"></path> 
+</g> 
+ <path d="M69.821,34.087c-0.162-4.364-1.868-6.868-4.479-8.671c-2.624-1.771-6.338-2.605-10.019-2.596    c-3.414-0.01-6.773,0.711-9.042,1.734l-0.911,0.402l-0.906-0.402c-1.817-0.83-4.356-1.439-7.055-1.658l-4.648,0.063    c-2.742,0.312-5.364,1.107-7.357,2.46c-2.611,1.799-4.315,4.308-4.479,8.66c-0.007,0.351-0.012,0.671-0.012,0.966    c0.048,6.147,1.458,8.365,3.167,11.467c1.766,3.053,3.782,6.953,3.729,14.171c-0.004,8.382,1.418,13.301,2.963,15.903    c1.573,2.614,2.103,3.003,3.813,3.003c1.812,0,2.433-1.828,2.51-2.794c0.353-3.544-0.257-9.09,1.494-15.008    c0.504-1.64,1.121-3.683,2.344-5.534c1.656-2.494,6.123-4.444,8.884,0c1.171,1.891,1.841,3.895,2.34,5.534    c1.344,4.505,1.729,9.219,1.417,12.815c-0.438,5.003,2.493,4.986,2.589,4.986c1.562,0,2.241-0.389,3.805-3.003    c1.553-2.603,2.975-7.521,2.97-15.903c-0.047-7.234,1.973-11.118,3.737-14.173c1.707-3.101,3.104-5.316,3.161-11.464    C69.836,34.742,69.827,34.427,69.821,34.087z" fill="#F4F2E8" id="1618559047"></path> 
+ <path d="M71.584,34.29l-0.007-0.267c-0.166-4.505-1.829-7.698-5.25-10.063c-2.766-1.867-6.649-2.896-10.995-2.896    c-0.002,0-0.075-0.001-0.077-0.001c-3.445,0-7.068,0.707-9.678,1.885l-0.201,0.088l-0.178-0.079    c-2.047-0.936-4.76-1.577-7.643-1.812c-0.057-0.004-0.112-0.007-0.166-0.005l-4.648,0.063c-0.059,0.001-0.116,0.005-0.175,0.011    c-3.211,0.364-6.028,1.316-8.156,2.759c-3.404,2.346-5.068,5.535-5.237,10.067c-0.008,0.365-0.012,0.698-0.012,1.017    c0.049,6.279,1.475,8.853,3.125,11.832l0.278,0.5c1.794,3.104,3.542,6.685,3.492,13.292c-0.005,9.411,1.742,14.33,3.215,16.809    c1.611,2.68,2.602,3.854,5.316,3.854c2.567,0,4.086-2.218,4.257-4.376c0.11-1.123,0.133-2.415,0.154-3.783    c0.049-3.104,0.112-6.968,1.271-10.883l0.027-0.093c0.488-1.585,1.039-3.382,2.101-4.986c0.615-0.928,1.926-1.867,3.237-1.867    c1.035,0,1.941,0.612,2.69,1.819c1.028,1.664,1.642,3.445,2.149,5.113c1.168,3.919,1.673,8.465,1.351,12.16    c-0.214,2.445,0.247,4.307,1.371,5.533c1.157,1.265,2.561,1.362,2.964,1.362h0.002c2.568,0,3.716-1.188,5.314-3.858    c1.471-2.464,3.222-7.38,3.216-16.813c-0.042-6.59,1.708-10.176,3.521-13.316l0.245-0.442c1.652-2.982,3.076-5.558,3.135-11.868    C71.594,34.804,71.588,34.554,71.584,34.29z M65.386,45.216l-0.23,0.42c-1.948,3.37-4.021,7.594-3.974,15.052    c0.007,9.076-1.7,13.295-2.719,15c-1.274,2.129-1.516,2.149-2.276,2.149c-0.055-0.007-0.248-0.043-0.425-0.252    c-0.187-0.222-0.603-0.939-0.437-2.827c0.363-4.175-0.176-9.085-1.488-13.479c-0.549-1.813-1.28-3.937-2.525-5.95    c-1.395-2.244-3.409-3.481-5.675-3.481c-2.682,0-5.027,1.726-6.165,3.439c-1.34,2.028-1.999,4.173-2.527,5.895l-0.033,0.11    c-1.302,4.394-1.368,8.521-1.422,11.84c-0.022,1.349-0.04,2.515-0.142,3.526c-0.001,0.012-0.133,1.179-0.76,1.179    c-0.918,0-1.014,0-2.304-2.145c-1.018-1.713-2.721-5.938-2.718-14.994c0.056-7.478-2.018-11.696-3.946-15.031l-0.263-0.478    c-1.536-2.769-2.646-4.771-2.688-10.143c0-0.283,0.005-0.59,0.012-0.901c0.126-3.393,1.239-5.569,3.709-7.271    c1.63-1.107,3.872-1.853,6.484-2.159l4.478-0.058c2.422,0.202,4.744,0.747,6.401,1.505l0.886,0.393l6.148,3.258    c0.261,0.141,0.543,0.205,0.818,0.205c0.631,0,1.239-0.34,1.555-0.933c0.454-0.856,0.127-1.919-0.729-2.373l-2.744-1.455    c1.736-0.43,3.696-0.678,5.564-0.678h0.141c3.539,0,6.808,0.837,8.953,2.283c2.483,1.718,3.596,3.897,3.72,7.264l0.006,0.244    c0.005,0.235,0.011,0.461,0.011,0.663C68.032,40.438,66.922,42.442,65.386,45.216z" fill="#3B6A75" id="1093580216"></path> 
+ <path d="M57.365,45.654c-0.3-0.933-2.528-6.662-11.894-7.194c-8.147-0.458-11.518,5.685-12.169,9.051    c-6.638,26.595,0.89,36.098,1.213,36.49c0.348,0.419,0.849,0.636,1.354,0.636c0.394,0,0.79-0.131,1.117-0.4    c0.747-0.616,0.851-1.723,0.233-2.471c-0.06-0.074-5.329-6.765-2.116-25.769c0.068-0.126,0.138-0.25,0.175-0.395    c0.07-0.287,1.812-7.018,7.419-6.596c0.979,0.071,1.808-0.656,1.878-1.623c0.069-0.966-0.656-1.807-1.623-1.877    c-2.347-0.171-4.279,0.469-5.85,1.51c0.733-1.901,2.81-5.359,8.169-5.05c7.34,0.416,8.693,4.577,8.739,4.729    c0.018,0.063,0.041,0.127,0.063,0.187c0.006,0.014,0.077,0.202,0.19,0.569c-1.617-1.112-3.689-1.812-6.316-1.64    c-0.967,0.063-1.7,0.899-1.637,1.866c0.062,0.968,0.887,1.712,1.865,1.637c5.978-0.381,7.26,5.894,7.317,6.19    c0.048,0.249,0.156,0.465,0.292,0.66c0.519,5.817,0.528,14.438-1.366,26.093c-0.156,0.957,0.494,1.859,1.45,2.014    c0.96,0.157,1.859-0.494,2.016-1.451C61.863,58.359,57.788,46.761,57.365,45.654z" fill="#F16B72" id="1618071557"></path> 
+ <path d="M45.197,14.289V6.7c0-2.577-2.085-4.665-4.662-4.665c-2.579,0-4.665,2.088-4.665,4.665v7.589H45.197z" fill="#9AE0FF" id="1923172506"></path> 
+ <polygon fill="#68C1E0" points="65.978,8.868 45.197,6.852 45.197,10.494 65.978,15.903   " id="1275626687"></polygon> 
+ <g id="1151485957"> <rect fill="#9AE0FF" height="7.034" width="13.864" x="65.976" y="8.868" id="1651836350"></rect> 
+ <path d="M79.84,7.113H66.057L46.779,5.243c-0.662-2.839-3.207-4.963-6.244-4.963     c-3.541,0-6.421,2.881-6.421,6.421v9.344h4.558L33.785,45.93c-0.444,1.286-3.21,9.697-3.089,19.429     c0.012,0.962,0.795,1.733,1.754,1.733c0.008,0,0.016,0,0.024,0.001c0.969-0.012,1.745-0.808,1.733-1.777     c-0.121-9.699,2.908-18.271,2.938-18.356c0.035-0.102,0.063-0.206,0.08-0.311l5.004-30.604h4.722v-3.279l18.583,4.838     c0.011,0.003,0.021,0.001,0.032,0.004c0.132,0.032,0.267,0.053,0.408,0.053H79.84c0.97,0,1.757-0.786,1.757-1.757V8.868     C81.597,7.898,80.81,7.113,79.84,7.113z M43.442,12.534h-2.773c0,0-0.001,0-0.001,0h-3.044V6.7c0-1.604,1.307-2.91,2.911-2.91     c1.602,0,2.907,1.306,2.907,2.91v0.151v3.643V12.534z M46.952,8.785l17.269,1.677v3.171L46.952,9.137V8.785z M78.085,14.148     H67.733v-3.524h10.352V14.148z" fill="#3B6A75" id="1193658739"></path> 
+</g> 
+</g> 
+ <path d="M63.136,40.05c-0.136,0-0.274-0.019-0.413-0.055c-0.83-0.229-1.319-1.085-1.093-1.917   c1.486-5.427-2.113-6.896-2.529-7.047c-0.805-0.289-1.233-1.176-0.953-1.983c0.283-0.808,1.158-1.239,1.967-0.967   c2.369,0.8,6.369,4.091,4.525,10.821C64.45,39.595,63.822,40.05,63.136,40.05z" fill="#FFFFFF" id="1061988449"></path> 
+</g> 
+</svg> 
+</a> 
+</div> 
+ <a data-display-type="block" class="align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient flexButton u_1097339932" file="false" href="/endodontic-dentistry" data-element-type="dButtonLinkId" id="1097339932" data-buttonstyle="THICK_BORDER_ROUND"> <span class="iconBg" aria-hidden="true" id="1921876779"> <span class="icon hasFontIcon icon-star" id="1921391524"></span> 
+</span> 
+ <span class="text" id="1305113546">Advanced Root Canal Treatment</span> 
+</a> 
+</div> 
+ <div class="dmRespCol small-12 u_1518640658 medium-3 large-3" id="1518640658"> <span id="1098746822"></span> 
+ <div class="u_1261811886 graphicWidget" data-widget-type="graphic" id="1261811886" data-element-type="graphic"> <a href="/about#Ammenities" id="1784065489" file="false" aria-label="if_Dental_-_Tooth_-_Dentist_-_Dentistry_21_2185082.svg"> <svg enable-background="new 0 0 91 91" height="91px" id="1115240826" version="1.1" viewbox="0 0 91 91" width="91px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svg u_1115240826" data-icon-custom="true" data-icon-name="if_Dental_-_Tooth_-_Dentist_-_Dentistry_21_2185082.svg" data-hover-effect="float"> <g id="1832801884"> <circle cx="45.503" cy="48.433" fill="#9AE0FF" r="36.418" id="1236702811"></circle> 
+ <g id="1222699086"> <polygon fill="#F4F2E8" points="83.873,74.296 62.836,63.313 35.522,63.313 2.496,28.724 9.379,22.39 39.39,54.547 65.269,54.547     88.504,66.556   " id="1435047372"></polygon> 
+ <path d="M26.316,13.175c3.431-4.612,9.953-5.576,14.569-2.149c4.617,3.431,5.578,9.951,2.15,14.569L26.316,13.175z    " fill="#F4F2E8" id="1330544547"></path> 
+ <g id="1713363070"> <rect fill="#68C1E0" height="7.672" width="47.293" x="24.102" y="77.556" id="1924979365"></rect> 
+ <path d="M90.634,65.95c-0.168-0.59-0.568-1.081-1.112-1.36l-15.912-8.224V5.769c0-1.222-0.992-2.212-2.215-2.212     H50.011c-0.388,0-0.77,0.103-1.105,0.294l-7.957,4.586c-1.903-1.095-4.04-1.678-6.263-1.678c-3.98,0-7.773,1.905-10.146,5.095     l-1.321,1.777l20.276,15.063l1.32-1.777c3.492-4.705,3.204-11.054-0.3-15.424l6.089-3.509h18.578v46.094l-2.896-1.496     c-0.314-0.164-0.663-0.247-1.017-0.247H52.284l2.667-5.442h8.497v-4.427H40.706v4.427h9.313l-2.667,5.442h-7L10.998,20.878     c-0.83-0.889-2.222-0.943-3.118-0.117l-6.884,6.335c-0.437,0.402-0.694,0.962-0.713,1.556c-0.02,0.596,0.2,1.173,0.611,1.603     L33.92,64.843c0.111,0.117,0.236,0.218,0.368,0.306v10.194h-12.4v12.1h51.722v-12.1H59.907v-9.815h2.385L82.85,76.26     c0.325,0.17,0.677,0.251,1.021,0.251c0.757,0,1.488-0.387,1.902-1.078l4.631-7.74C90.72,67.168,90.802,66.538,90.634,65.95z      M42.334,22.315l-12.679-9.419c1.418-1.103,3.169-1.709,5.029-1.709c1.769,0,3.456,0.559,4.88,1.617     C42.578,15.042,43.613,18.969,42.334,22.315z M69.183,79.77v3.245H26.315V79.77h7.973v0.001h25.619V79.77H69.183z M38.716,75.343     v-9.813H55.48v9.813H38.716z M83.046,71.367L63.859,61.352c-0.316-0.166-0.668-0.251-1.024-0.251H36.47L5.654,28.827l3.606-3.318     l28.51,30.55c0.419,0.449,1.005,0.704,1.619,0.704h25.34l20.666,10.679L83.046,71.367z" fill="#3B6A75" id="1720820977"></path> 
+</g> 
+</g> 
+</g> 
+</svg> 
+</a> 
+</div> 
+ <a data-display-type="block" class="align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient flexButton u_1505859780" file="false" href="/about#Ammenities" data-element-type="dButtonLinkId" id="1505859780" data-buttonstyle="THICK_BORDER_ROUND"> <span class="iconBg" aria-hidden="true" id="1624413830"> <span class="icon hasFontIcon icon-star" id="1403477995"></span> 
+</span> 
+ <span class="text" id="1939035870">Comfortable Amenities</span> 
+</a> 
+</div> 
+</div> 
+</div> 
+ <div class="dmRespRow" style="text-align: center;" id="1336606726"> <div class="dmRespColsWrapper" id="1258565073"> <div class="dmRespCol small-12 medium-12 large-12" id="1389683002"> <span id="1601255939"></span> 
+ <a data-display-type="block" class="u_1189666620 align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient" file="false" href="/schedule" id="1189666620" icon-name="icon-calendar" data-element-type="dButtonLinkId" data-buttonstyle="FLAT_ROUND_ICON"> <span class="iconBg" id="1604594677"> <span class="icon hasFontIconstar hasFontIcon icon-calendar" id="1303955401"></span> 
+</span> 
+ <span class="text" id="1179428115">Schedule Appointment</span> 
+</a> 
+</div> 
+</div> 
+</div> 
+ <div class="u_1080347227 dmRespRow dmSectionNoParallax hasBackgroundOverlay fullBleedChanged fullBleedMode lazy" style="text-align: center;" id="1080347227" data-background-image="https://lirp.cdn-website.com/40b788dd/dms3rep/multi/opt/AdobeStock_16749528-1920x-12823042-1920w.jpeg"> <div class="dmRespColsWrapper" id="1325281975"> <div class="u_1454083402 dmRespCol small-12 large-8 medium-8" id="1454083402"> <span id="1763692394"></span> 
+ <h3 class="u_1912908840 dmNewParagraph" id="1912908840" style="transition: opacity 1s ease-in-out; display: block;" data-element-type="paragraph">OUR DOCTOR</h3> <div class="u_1659315345 dmNewParagraph" id="1659315345" style="transition: opacity 1s ease-in-out; display: block;"><div style="text-align: left;">Dr. Azad Iskender is dedicated to high quality dentistry and patient satisfaction. Dr. Iskender received his first dental degree in 1992 in Eastern Europe. He then moved to New York City where he received his DDS degree from the New York University College of Dentistry. Dr. Iskender has over 20 years of experience as a practicing dentist.</div></div> <a data-display-type="block" class="u_1313475089 align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient dmCoreImg" file="false" href="/meet-the-doctor3" id="1313475089" icon-name="icon-comments-alt" data-element-type="dButtonLinkId"> <span class="iconBg" id="1182660504"> <span class="icon hasFontIconstar hasFontIcon icon-comments-alt" id="1003045110"></span> 
+</span> 
+ <span class="text" id="1281401374">Meet the Doctor</span> 
+</a> 
+</div> 
+ <div class="u_1855689977 dmRespCol small-12 large-4 medium-4" id="1855689977"> <div data-widget-type="image" class="u_1398390014 imageWidget" id="1398390014" data-element-type="image"><img src="https://irp.cdn-website.com//40b788dd/import/base/dms3rep/multi/opt/img_3335-640x409-447w.jpg" alt="" title="" id="1190261265" data-dm-image-path="http://confidentsmiledental.com/images/img_3335.jpg" onerror="handleImageLoadError(this)" loading="lazy" height="238.359375" width="373.0"/></div> 
+</div> 
+</div> 
+</div> 
+ <div class="dmRespRow fullBleedChanged fullBleedMode u_1052137657" style="text-align: center;" id="1052137657"> <div class="dmRespColsWrapper" id="1605112827"> <div class="dmRespCol small-12 medium-3 large-3" id="1255449632"> <div class="u_1326759932 imageWidget align-center" data-widget-type="image" id="1326759932" data-element-type="image"><img src="https://irp.cdn-website.com//40b788dd/dms3rep/multi/opt/laser004-288w.png" id="1041847298" class="" data-dm-image-path="https://irp-cdn.multiscreensite.com/40b788dd/dms3rep/multi/laser004.png" onerror="handleImageLoadError(this)" loading="lazy" height="240.0" width="240.0"/></div> 
+</div> 
+ <div class="dmRespCol small-12 medium-3 large-3" id="1395806673"> <div class="u_1907143995 imageWidget align-center" data-widget-type="image" id="1907143995" data-element-type="image"><img src="https://irp.cdn-website.com//40b788dd/dms3rep/multi/opt/invisalign001-285h.png" id="1255753943" class="" data-dm-image-path="https://irp-cdn.multiscreensite.com/40b788dd/dms3rep/multi/invisalign001.png" onerror="handleImageLoadError(this)" loading="lazy" height="238.0" width="237.0"/></div> 
+</div> 
+ <div class="dmRespCol small-12 medium-3 large-3" id="1020938622"> <div class="u_1590174598 imageWidget align-center" data-widget-type="image" id="1590174598" data-anim-desktop="bounceInRight" data-element-type="image"> <a href="/cosmetic-dentistry#TeethWhitening" id="1646800328" file="false"><img src="https://irp.cdn-website.com//40b788dd/dms3rep/multi/opt/zoom002-301w.png" id="1876747792" class="" data-dm-image-path="https://irp-cdn.multiscreensite.com/40b788dd/dms3rep/multi/zoom002.png" onerror="handleImageLoadError(this)" loading="lazy" height="125.96875" width="251.6300048828125"/></a> 
+</div> 
+</div> 
+ <div class="dmRespCol small-12 medium-3 large-3" id="1166781329"> <div class="imageWidget align-center u_1243788441" data-widget-type="image" id="1243788441" data-element-type="image"><img src="https://irp.cdn-website.com//40b788dd/dms3rep/multi/opt/giftcard001-286w.png" id="1103721714" class="" data-dm-image-path="https://irp-cdn.multiscreensite.com/40b788dd/dms3rep/multi/giftcard001.png" onerror="handleImageLoadError(this)" loading="lazy" height="195.96875" width="239.0"/></div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div class="dmFooterContainer"> <div id="fcontainer" class="u_fcontainer f_hcontainer dmFooter p_hfcontainer"> <div dm:templateorder="250" class="dmFooterResp generalFooter" id="1943048428"> <div class="u_1725049324 dmRespRow" style="text-align: center;" id="1725049324" mode="2"> <div class="dmRespColsWrapper" id="1358086068"> <div class="u_1848182343 dmRespCol hide-for-small small-12 medium-12 large-12" id="1848182343"> <a data-display-type="block" class="u_1496465755 align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmCoreImg" file="false" href="/contact" id="1496465755" icon-name="icon-comments-alt" data-element-type="dButtonLinkId"> <span class="iconBg" id="1377405867"> <span class="icon hasFontIconstar hasFontIcon icon-comments-alt" id="1308071236"></span> 
+</span> 
+ <span class="text" id="1255973588">Contact Us</span> 
+</a> 
+ <div class="u_1260273197 dmNewParagraph" id="1260273197" style="transition: opacity 1s ease-in-out; line-height: initial; text-align: center;" data-element-type="paragraph" data-version="5"> <h6 class="text-align-center size-16"><span class="font-size-16" style="font-weight: normal; display: initial;">Confident Smile Dental</span></h6> 
+<p class="size-16"><span class="font-size-16" style="font-weight: normal; display: initial; color: rgb(204, 219, 229);">803 W. Main Street Ste. 1</span></p> <h6 class="text-align-center size-16"><span class="font-size-16" style="font-weight: normal; display: initial;">Collegeville, PA 19426</span></h6> 
+ <h6 class="text-align-center"><span class="font-size-16" style="font-weight: normal; display: initial;"><br/></span></h6> 
+ <h6 class="text-align-center size-16"><span class="font-size-16" style="font-weight: normal; display: initial;">610.489.8889 phone</span></h6> 
+ <h6 class="text-align-center size-16"><span class="font-size-16" style="font-weight: normal; display: initial;">610.489.8891 fax</span></h6> 
+<p><br/></p></div> <div class="u_1689717092 align-center text-align-center dmSocialHub gapSpacing" id="1689717092" dmle_extension="social_hub" data-element-type="social_hub" wr="true" networks="" icon="true" surround="true" adwords=""> <div class="socialHubWrapper"> <div class="socialHubInnerDiv "> <a href="https://facebook.com/confidentsmiledental" target="_blank" dm_dont_rewrite_url="true" aria-label="facebook" onclick="dm_gaq_push_event &amp;&amp; dm_gaq_push_event(&apos;socialLink&apos;, &apos;click&apos;, &apos;Facebook&apos;)"> <span class="dmSocialFacebook dm-social-icons-facebook oneIcon socialHubIcon style5" aria-hidden="true" data-hover-effect=""></span> 
+</a> 
+ <a href="http://yelp.com/biz/confident-smile-dental-royersford" target="_blank" dm_dont_rewrite_url="true" aria-label="yelp" onclick="dm_gaq_push_event &amp;&amp; dm_gaq_push_event(&apos;socialLink&apos;, &apos;click&apos;, &apos;Yelp&apos;)"> <span class="dmSocialYelp dm-social-icons-yelp oneIcon socialHubIcon style5" aria-hidden="true" data-hover-effect=""></span> 
+</a> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div class="u_1660595903 dmRespRow" style="text-align: center;" id="1660595903"> <div class="dmRespColsWrapper" id="1911165480"> <div class="dmRespCol small-12 medium-12 large-12" id="1055166400"> <span id="1849161015"></span> 
+ <div class="dmNewParagraph u_1995756926" id="1995756926" style=""><div style="text-align: center;"><span style="font-size: 12px;">&copy; Confident Smile Dental</span></div><div style="text-align: center;"><span style="font-size: 12px;"><br/></span></div></div> <div class="u_1565693751 imageWidget align-center" data-widget-type="image" id="1565693751" data-element-type="image"> <a href="https://goo.gl/8DpwKw" id="1528655631" file="false" class="" target="_blank"><img src="https://irp.cdn-website.com//40b788dd/dms3rep/multi/opt/19whiteeyes_white-30w.png" id="1696928766" class="" data-dm-image-path="https://irp-cdn.multiscreensite.com/40b788dd/dms3rep/multi/19whiteeyes_white.png" onerror="handleImageLoadError(this)" loading="lazy" height="25.0" width="25.0"/></a> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div id="1236746004" dmle_extension="powered_by" data-element-type="powered_by" icon="true" surround="false"></div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+
+    </div>
+</div>
+<!--  Add full CSS and Javascript before the close tag of the body if needed -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Google Fonts Include -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- loadCSS function fonts.jsp-->
+
+
+
+<link rel="preload" href="https://irp.cdn-website.com/fonts/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Amiko:ital,wght@0,400;0,600;0,700&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&family=Playball:ital,wght@0,400&amp;subset=latin-ext&amp;display=swap"  as="style" fetchpriority="low" onload="loadCSS(this)" />
+
+
+
+
+
+<!-- RT CSS Include d-css-runtime-desktop-one-package-structured-global-->
+<link rel="preload" as="style" fetchpriority="low" onload="loadCSS(this)" href="https://static.cdn-website.com/mnlt/production/6737/_dm/s/rt/dist/css/d-css-runtime-desktop-one-package-structured-global.min.css" />
+
+<!-- End of RT CSS Include -->
+
+<link rel="preload" href="https://irp.cdn-website.com/WIDGET_CSS/fc7ded63f79993702e6fba61e8e6b77f.css" id="widgetCSS" as="style" fetchpriority="low" onload="loadCSS(this)" />
+
+<!-- Support `img` size attributes -->
+<style>img[width][height] {
+  height: auto;
+}</style>
+
+<!-- Support showing sticky element on page only -->
+<style>
+  body[data-page-alias="home"] #dm [data-show-on-page-only="home"] {
+    display: block !important;
+  }
+</style>
+
+<!-- This is populated in Ajax navigation -->
+<style id="pageAdditionalWidgetsCss" type="text/css">
+</style>
+
+
+
+
+<!-- Site CSS -->
+<link rel="preload" href="https://irp.cdn-website.com/40b788dd/files/40b788dd_withFlex_1.min.css?v=131" id="siteGlobalCss" as="style" fetchpriority="low" onload="loadCSS(this)" />
+
+
+
+<style id="customWidgetStyle" type="text/css">
+    
+</style>
+<style id="innerPagesStyle" type="text/css">
+    
+</style>
+
+
+<style
+        id="additionalGlobalCss" type="text/css"
+>
+</style>
+
+<!-- Page CSS -->
+<link rel="preload" href="https://irp.cdn-website.com/40b788dd/files/40b788dd_home_withFlex_1.min.css?v=131" id="homeCssLink" as="style" fetchpriority="low" onload="loadCSS(this)" />
+
+<style id="pagestyle" type="text/css">
+    
+</style>
+
+<style id="pagestyleDevice" type="text/css">
+    
+</style>
+
+<!-- Flex Sections CSS -->
+
+
+
+
+
+<style id="globalFontSizeStyle" type="text/css">
+    .font-size-16, .size-16, .size-16 > font { font-size: 16px !important; }
+</style>
+<style id="pageFontSizeStyle" type="text/css">
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ========= JS Section ========= -->
+<script>
+    var isWLR = true;
+
+    window.customWidgetsFunctions = {};
+    window.customWidgetsStrings = {};
+    window.collections = {};
+    window.currentLanguage = "ENGLISH"
+    window.isSitePreview = false;
+</script>
+
+
+
+<script>
+    window.customWidgetsFunctions["f6ba52a1b66d4987903b87fdb476a9ce~269"] = function (element, data, api) {
+        let actionLink = "https://googlereviews.api-files.com/admin/php/actions.php";
+let create = new Create();
+let siteID = data.siteId;
+let device = data.device;
+let headerHeight = $('.dmHeaderContainer').css("position") == "fixed" ? parseFloat($('.dmHeaderContainer').outerHeight()) : 0;
+let scrollTo = $(element).offset().top - headerHeight - 30;
+let noReviewText = "No Reviews Yet!";
+let starIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="width: 25px; height: auto;">
+                    <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                </svg>`;
+
+let reviewList = data.config.reviewList;
+let emptyReview = data.config.emptyReview;
+let hideEmptyReview = data.config.hideEmptyReview;
+let hideImage = data.config.hideImage ? 'hideImage' : '';
+let hideHeader = data.config.hideHeader;
+let shadow = data.config.shadow;
+let starColor = data.config.starColor;
+
+let layout = data.config.layout;
+let type = data.config.type;
+
+// Filter Options
+let lowestRating = parseFloat(data.config.lowestRating);
+let sortBy = data.config.sortBy ? data.config.sortBy : "default";
+
+let transReviews = data.config.transReviews;
+
+// Slider Options
+let autoplay = data.config.autoplay;
+let autoplayDelay = data.config.autoplayDelay;
+let loop = data.config.loop;
+let pagination = data.config.pagination;
+let navigation = data.config.navigation;
+let desktopSlidesPerView = data.config.desktopSlidesPerView;
+let tabletSlidesPerView = data.config.tabletSlidesPerView;
+let mobileSlidesPerView = data.config.mobileSlidesPerView;
+
+// Pagination Options
+let desktopPageSize = parseInt(data.config.desktopPageSize);
+let tabletPageSize = parseInt(data.config.tabletPageSize);
+let mobilePageSize = parseInt(data.config.mobilePageSize);
+
+// Card Options
+let cardDesktop = data.config.cardDesktop
+let cardTablet = data.config.cardTablet
+let cardMobile = data.config.cardMobile
+
+// List Options
+let defaultShown = data.config.defaultShown;
+let buttonAlignment = data.config.buttonAlignment;
+
+// Read More
+let desktopCollapsedLine = data.config.desktopCollapsedLine;
+let tabletCollapsedLine = data.config.tabletCollapsedLine;
+let mobileCollapsedLine = data.config.mobileCollapsedLine;
+
+// Schema.org Markup
+// let schemaMarkup = data.config.schemaMarkup;
+let schemaMarkup = true;
+let ballonBackground = data.config.ballonBackground;
+let slidesPerView, pageSize, cardPerRow, collapsedLine, activeLocation, reviewsLength, rating_average;
+
+switch (device) {
+	case 'desktop':
+		slidesPerView = desktopSlidesPerView;
+		pageSize = desktopPageSize;
+		cardPerRow = cardDesktop;
+		break;
+	case 'tablet':
+		slidesPerView = tabletSlidesPerView;
+		pageSize = tabletPageSize;
+		cardPerRow = cardTablet;
+		break;
+	default:
+		slidesPerView = mobileSlidesPerView;
+		pageSize = mobilePageSize;
+		cardPerRow = cardMobile;
+}
+
+//CREATE MULTIPLE LINK SOURCE CSS
+cssLibrary('fontAwesomeSource', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+cssLibrary('paginationCss', 'https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css');
+cssLibrary('swiperCSS', 'https://unpkg.com/swiper/swiper-bundle.min.css');
+
+
+dmAPI.runOnReady('init', function () {
+	dmAPI.loadScript('https://cdnjs.cloudflare.com/ajax/libs/Readmore.js/2.0.2/readmore.js', function () {
+		dmAPI.loadScript('https://unpkg.com/swiper/swiper-bundle.min.js', function () {
+			dmAPI.loadScript('https://irt-cdn.multiscreensite.com/8914113fe39e47bcb3040f2b64f71b02/files/uploaded/paginates.min.js', function () {
+				dmAPI.loadScript('https://cdnjs.cloudflare.com/ajax/libs/luxon/3.0.3/luxon.min.js', function () {
+
+					// GET BUSINESS DETAILS FOR PLACE ID
+					let businessDetailsOption = {
+						action: "Fetch Account Owner Details",
+						tableName: "Site Widgets",
+						columnName: "Site Name",
+						keyword: siteID
+					}
+
+					let checkDetails = action(businessDetailsOption);
+					checkDetails.then(resp => {
+						activeLocation = JSON.parse(resp).response.records[0].fields['Active Location'];
+						let companyDetails = JSON.parse(resp).response.records[0].fields['Company Details'];
+						let splitCompanyDetails = companyDetails.split("~");
+						let fixedCompanyDetails = splitCompanyDetails.map((i, index) => {
+							let afterDescription = i.substring(i.indexOf(`","address"`));
+							let rawDescription = i.substring(i.indexOf("description") + 14).replace(afterDescription, "");
+							let formattedDescription = rawDescription.replaceAll('"', '\\"');
+							let fixedDescription = i.replace(rawDescription, formattedDescription);
+							return fixedDescription;
+						});
+
+						let activeCompany = fixedCompanyDetails.map(i => JSON.parse(i));
+						let activeCompanyList = reviewButton(activeCompany);
+
+						$(element).find('div.gr-Button-Column').html(activeCompanyList);
+
+						let numButton = $(element).find("div.gr-Buttons-Wrapper a").length > 5 ? $(element).find("div.gr-Buttons-Wrapper").css({
+							"overflow-y": "scroll"
+						}) : '';
+					});
+
+					// GET REVIEWS FROM ACTIVE LOCATION
+					let options = {
+						action: "Get Reviews",
+						tableName: "Site Widgets",
+						columnName: "Site Name",
+						keyword: siteID
+					};
+
+					let getReviews = action(options);
+					getReviews.then((response, request) => {
+						let resp = JSON.parse(response).response;
+						if (request == "success") {
+							if (resp.length >= 1) {
+								userReviews(response)
+								schemaMarkup && schema(resp)
+								
+								$("div.gr-Rate-Star.rate-1 svg:nth-child(-n+1), div.gr-Rate-Star.rate-2 svg:nth-child(-n+2), div.gr-Rate-Star.rate-3 svg:nth-child(-n+3), div.gr-Rate-Star.rate-4 svg:nth-child(-n+4), div.gr-Rate-Star.rate-5 svg:nth-child(-n+5)").css("fill", starColor);
+							} else {
+								if (data.inEditor) {
+									$(element).find('.gr-Main-Container').html(`<div class="gr-Section-NoResults">
+																						<i class="fas fa-exclamation-circle"></i>
+																						<div class="gr-NoResults-Text">${noReviewText}</div>
+																					</div>`);
+								} else {
+									setTimeout(preloader(), 3000);
+								}
+							}
+						} else {
+							if (data.inEditor) {
+								$(element).find('.gr-Main-Container').html(`<div class="gr-Section-NoResults">
+																					<i class="fas fa-exclamation-circle"></i>
+																					<div class="gr-NoResults-Text">Error on Data Structure</div>
+																				</div>`);
+							} else {
+								setTimeout(preloader(), 3000);
+							}
+						}
+					});
+					
+					$(element).find('div.ballon div.gr-Rate-Wrapper').css({
+                    	"background-color": `${ballonBackground}`
+                    });
+                    
+                    $(element).find('div.ballon div.gr-Arrow-Container').css({
+                    	"border-top-color": `${ballonBackground}`
+                    })
+
+					if (shadow && layout !== 'ballon') $(element).find("div.gr-Main-Container").addClass("swiper-shadow");
+
+					hideHeader && $(element).find(".gr-Header-Section").hide();
+
+					$('div.swiper div div.swiper-slide').mouseenter(function () {
+						$(this).css({
+							"cursor": "grab"
+						})
+					}).mouseleave(function () {
+						$(this).css({
+							"cursor": "default"
+						})
+					}).mousedown(function () {
+						$(this).css({
+							"cursor": "grabbing"
+						})
+					})
+
+				});
+			});
+		});
+	});
+});
+
+function reviewButton(items) {
+	const removeDup = removeDuplicatedKey(items, 'placeID');
+	// const removeDup = removeDuplicates(items.map(i => locationDetails = JSON.parse(i)), 'placeID');
+	if (removeDup.length > 1) {
+		return `<nav>
+                    <label for="touch">
+                        <span>Write a review</span>
+                    </label>               
+                    <input type="checkbox" id="touch"> 
+                    <div class="gr-Buttons-Wrapper">
+                        ${createButton(removeDup)}
+                    </div>
+                </nav>`;
+	} else {
+		return createButton(removeDup);
+	}
+}
+
+function createButton(removeDup) {
+	return removeDup.map(function (i) {
+		if (!activeLocation.includes(i.locationName)) return '';
+		return `<a class="gr-Location-Button" href="https://search.google.com/local/writereview?placeid=${i.placeID}" target="_blank">
+                    <div class="gr-Location-Name">
+                        <p>${i.locationName}</p>
+                    </div>
+				</a>`;
+	}).join('');
+}
+
+function userReviews(response) {
+	let raw_reviews = JSON.parse(response).response;
+	if (!raw_reviews) {
+		$(element).find('.gr-Main-Container').html(`
+			<div class="gr-Section-NoResults">
+				<i class="fas fa-exclamation-circle"></i>
+				<div class="gr-NoResults-Text">${noReviewText}</div>
+			</div>
+		`);
+		$(element).find(".widget-Loader-Container").hide();
+		$(element).find(".gr-Main-Container").show();
+	}
+
+	let reviews = raw_reviews.filter(i => {
+// 		let comment = i.comment ? i.comment : i.review ? i.review.comment : "";
+		let review = i.original_review ? i.original_review : i.review ? i.translated_review : "";
+
+		if (hideEmptyReview == true) {
+			if (!review) return
+		}
+
+		let userRating = i.starRating ? create.numRate(i.starRating) : create.numRate(i.review.starRating);
+		return userRating >= lowestRating;
+	});
+
+	reviewsLength = reviews.length;
+
+	let totalRating = raw_reviews.map((i) => {
+		return create.numRate(i.review ? i.review.starRating : i.starRating);
+	});
+
+	rating_average = totalRating.reduce((a, b) => {
+		return a + b;
+	}) / totalRating.length;
+
+	$(element).find('.gr-Title-Ratings').html(`<span>Average</span>: ${rating_average.toFixed(2)} rating out of ${totalRating.length} reviews`);
+
+	if (Object.keys(JSON.parse(response).response).length <= 0) {
+		$(element).find('.googleReview-Section-Results').html(`
+				<div class="googleReview-Section-NoResults">
+					<svg width="50px" height="50px" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <g id="#000000ff">
+                        <path opacity="1.00" d=" M 121.40 21.55 C 144.36 20.07 167.74 26.29 186.87 39.09 C 208.00 53.06 223.90 74.76 230.69 99.18 C 237.74 124.07 235.30 151.53 223.84 174.73 C 213.09 196.82 194.47 214.96 172.09 225.10 C 149.20 235.61 122.52 237.52 98.35 230.43 C 73.57 223.33 51.69 206.82 37.92 185.04 C 24.72 164.44 19.09 139.17 22.15 114.90 C 24.97 91.29 36.12 68.81 53.09 52.16 C 71.17 34.17 95.91 23.02 121.40 21.55 M 124.28 75.36 C 119.98 76.88 117.11 81.38 117.34 85.91 C 117.36 103.61 117.27 121.32 117.38 139.02 C 117.41 144.57 122.43 149.43 127.97 149.31 C 133.53 149.45 138.58 144.60 138.61 139.03 C 138.71 121.02 138.70 103.01 138.62 85.01 C 138.70 77.99 130.76 72.65 124.28 75.36 M 124.43 160.66 C 117.68 162.72 115.14 171.98 119.67 177.31 C 124.42 183.66 136.01 181.83 138.08 173.98 C 141.17 166.05 132.32 157.36 124.43 160.66 Z" />
+                        </g>
+                    </svg>
+					<div class="googleReview-NoResults-Text">${noReviewText}</div>
+				</div>`);
+		$(element).find(".widget-Loader-Container").hide();
+		$(element).find(".gr-Main-Container").show();
+		return;
+	}
+
+	let reviewsDOM = create.layoutDOM(reviews);
+	$(element).find('.swiper-wrapper').html(reviewsDOM);
+
+	if (type == "slider") {
+		$(element).find(".gr-Main-Container").addClass("swiper");
+		const collapseDescription = setTimeout(readMoreDescription, 100);
+
+		if (navigation && type == "slider") {
+			$(element).find(".gr-Main-Container").append(`<div class="swiper-button-next"></div><div class="swiper-button-prev"></div>`);
+		}
+
+		if (pagination && type == "slider") {
+			$(element).find(".gr-Main-Container").append(`<div class="swiper-pagination"></div>`);
+		}
+
+		const swiper = new Swiper('.swiper', {
+			loop,
+			slidesPerView,
+			spaceBetween: 20,
+			autoplay: {
+				delay: autoplayDelay,
+				disableOnInteraction: true,
+			},
+			pagination: {
+				el: '.swiper-pagination',
+				dynamicBullets: true,
+				clickable: true,
+			},
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+		})
+
+		if (!autoplay) swiper.autoplay.stop()
+
+	} else if (type == "list") {
+		$(element).find(".gr-Main-Container").addClass("list");
+		$(element).find(".gr-Main-Container").append(`<div class="swiper-load-button"><div class="swiper-load-more">Show More</div><div class="swiper-load-less">Show Less</div></div>`);
+		$(element).find("div.gr-Text-Description").removeClass('text-ellipsis');
+		// const collapseDescription = setTimeout(readMoreDescription, 100);
+
+		if (buttonAlignment == 'right') {
+			$(element).find('div.swiper-load-button div').css({
+				"margin-right": "0"
+			});
+		}
+
+		if (buttonAlignment == 'left') {
+			$(element).find('div.swiper-load-button div').css({
+				"margin-left": "0"
+			});
+		}
+
+		loadMoreLess();
+
+	} else {
+		$(element).find(".gr-Main-Container").addClass("grid");
+		$(element).find(".gr-Main-Container").pagination({
+			dataSource: reviews,
+			pageSize,
+			callback: function (data, pagination) {
+				let structure = data.length != 0 ? create.layoutDOM(data) : `
+					<div class="googleReview-Section-NoResults">
+						<svg width="50px" height="50px" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg">
+							<g id="#000000ff">
+							<path opacity="1.00" d=" M 121.40 21.55 C 144.36 20.07 167.74 26.29 186.87 39.09 C 208.00 53.06 223.90 74.76 230.69 99.18 C 237.74 124.07 235.30 151.53 223.84 174.73 C 213.09 196.82 194.47 214.96 172.09 225.10 C 149.20 235.61 122.52 237.52 98.35 230.43 C 73.57 223.33 51.69 206.82 37.92 185.04 C 24.72 164.44 19.09 139.17 22.15 114.90 C 24.97 91.29 36.12 68.81 53.09 52.16 C 71.17 34.17 95.91 23.02 121.40 21.55 M 124.28 75.36 C 119.98 76.88 117.11 81.38 117.34 85.91 C 117.36 103.61 117.27 121.32 117.38 139.02 C 117.41 144.57 122.43 149.43 127.97 149.31 C 133.53 149.45 138.58 144.60 138.61 139.03 C 138.71 121.02 138.70 103.01 138.62 85.01 C 138.70 77.99 130.76 72.65 124.28 75.36 M 124.43 160.66 C 117.68 162.72 115.14 171.98 119.67 177.31 C 124.42 183.66 136.01 181.83 138.08 173.98 C 141.17 166.05 132.32 157.36 124.43 160.66 Z" />
+							</g>
+						</svg>
+						<div class="googleReview-NoResults-Text">${noReviewText}</div>
+					</div>`;
+				$(element).find('div.swiper-wrapper').html(structure);
+				const collapseDescription = setTimeout(readMoreDescription, 100);
+				$(element).find('div.gr-Main-Container.grid div.swiper-wrapper').css({'grid-template-columns': `repeat(${cardPerRow}, 1fr)`})
+			},
+			afterPageOnClick: function () {
+				window.scrollTo({
+					top: scrollTo,
+					behavior: 'smooth'
+				});
+			},
+			afterNextOnClick: function () {
+				window.scrollTo({
+					top: scrollTo,
+					behavior: 'smooth'
+				});
+			},
+			afterPreviousOnClick: function () {
+				window.scrollTo({
+					top: scrollTo,
+					behavior: 'smooth'
+				});
+			},
+			afterPaging: function () {
+				$('.googleReview-Panel-Item').hide().fadeIn();
+			}
+		});
+	}
+
+	switch (layout) {
+		case 'postcard':
+			$(element).find(".swiper-wrapper").addClass("postcard");
+			break;
+		case 'ballon':
+			$(element).find(".swiper-wrapper").addClass("ballon");
+			break;
+		default:
+			$(element).find(".swiper-wrapper").addClass("classic");
+	}
+
+	setTimeout(preloader(), 3000);
+
+}
+
+function Create() {
+	this.layoutDOM = (obj) => {
+		let key = sortBy == "NtoO" || sortBy == "OtoN" ? "createTime" : "starRating";
+
+		if (sortBy) {
+			obj.sort((a, b) => {
+				let sort_a = a[key] ? this.numRate(a[key]) : this.numRate(a.review[key]);
+				let sort_b = b[key] ? this.numRate(b[key]) : this.numRate(b.review[key]);
+				switch (sortBy) {
+					case "LtoH":
+						return sort_a < sort_b ? -1 : 1;
+					case "HtoL":
+						return sort_a > sort_b ? -1 : 1;
+					case "OtoN":
+						return sort_a < sort_b ? -1 : 1;
+					case "NtoO":
+						return sort_a > sort_b ? -1 : 1;
+					default:
+						return obj;
+				}
+			});
+		}
+
+		let noData = `<div class="gr-Section-NoResults">
+							<i class="fas fa-exclamation-circle"></i>
+							<div class="gr-NoResults-Text">${obj.length} result found.</div>
+						</div>`;
+		return obj.length != 0 ? create.structure(obj) : noData;
+	}
+
+	this.structure = (obj) => {
+		return obj.map(i => {
+			let displayName = i.displayName ? i.displayName : i.review.displayName;
+			let defaultImage = `https://via.placeholder.com/150.png?text=${displayName.charAt(0)}`;
+			let reviewsText = transReviews ? i.translated_review : i.original_review;
+ 			// let comment = i.comment ? i.comment : i.review ? i.review.comment : "";
+			let userRating = i.starRating ? this.numRate(i.starRating) : this.numRate(i.review.starRating);
+			let profilePhotoUrl = i.profilePhotoUrl ? i.profilePhotoUrl : i.review.profilePhotoUrl;
+			let createTime = i.createTime ? i.createTime : i.review.createTime;
+			let DateTime = luxon.DateTime;
+			let friendlyDate = DateTime.fromISO(createTime).toLocaleString(DateTime.DATE_FULL);
+			let newDate = DateTime.fromISO(createTime).toRelative();
+
+			return `<div class="swiper-slide gr-Section-Slide">
+						<div>
+							<div class="gr-Img-Wrapper ${hideImage}">
+								<img src="${profilePhotoUrl ? i.profilePhotoUrl : defaultImage}" alt="${displayName}'s Image" draggable="false">
+							</div>
+							<div class="gr-Info-Wrapper">
+								<div class="gr-Info-Text">
+									<div class="gr-Text-Name">${displayName}</div>
+									<div class="gr-Text-Date" title="${friendlyDate}">${newDate}</div>
+								</div>
+							</div>
+							<div class="gr-Rate-Wrapper">
+								<div class="gr-Rate-Star rate-${userRating}">
+								    ${starIcon}${starIcon}${starIcon}${starIcon}${starIcon}
+								</div>
+								<div class="gr-Arrow-Container"></div>
+								<div class="gr-Text-Description text-ellipsis">${reviewsText ? reviewsText : ''}</div>
+							</div>
+						</div>
+					</div>`;
+		}).join(""); //<div class="gr-Text-Description text-ellipsis">${reviewsText ? reviewsText : ''}</div>  ||  <div class="gr-Text-Description text-ellipsis">${comment ? comment.replace('(Translated by Google) ','') :""}</div>
+		//<i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+	};
+
+	this.numRate = (str) => {
+		let rates = ['ZERO', 'ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
+		if (!rates.includes(str)) {
+			return new Date(str);
+		}
+		return rates.indexOf(str);
+	};
+}
+
+function schema(resp) {
+
+	let schemaData = ''
+    resp.reverse().slice(0, 1).map(i => {
+        let addressRegion, postalCode, streetAddress, phoneNumber;
+        let splitCompanyDetails = i.company_details.split("~");
+        splitCompanyDetails.filter(j => {
+            let data = JSON.parse(j);
+            if (data.locationName == i.active_location) {
+                addressRegion = data.regionCode
+                postalCode = data.PostalCode
+                streetAddress = data.Street
+                phoneNumber = data.phoneNumber
+            }
+        })
+    
+    schemaData = `
+            {
+                "@context": "https://schema.org/",
+                "@type": "Review",
+                "itemReviewed": {
+                    "@type": "Organization",
+                    "image": "",
+                    "name": "${i.active_location}",
+                    "servesCuisine": "",
+                    "priceRange": "",
+                    "telephone": "${phoneNumber}",
+                    "address" :{
+                        "@type": "PostalAddress",
+                        "streetAddress": "${streetAddress}",
+                        "addressLocality": "",
+                        "addressRegion": "",
+                        "postalCode": "${postalCode}",
+                        "addressCountry": "${addressRegion}"
+                    }
+                },
+                "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": "${create.numRate(i.starRating)}"
+                },
+                "name": "${i.original_review}",
+                "author": {
+                    "@type": "Person",
+                    "name": "${i.displayName}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": ""
+                }
+            }
+        `
+    })
+    
+    const script = document.createElement('script')
+    script.setAttribute('type', 'application/ld+json')
+    script.textContent = schemaData
+    $(element).append(script)
+}
+
+function loadMoreLess() {
+
+	// let defaultShown = 3; //3 || 6 || 9
+	$(`div.swiper-wrapper div.gr-Section-Slide:lt(${defaultShown})`).show();
+	$('div.swiper-load-less').hide();
+
+	$('div.swiper-load-more').on('click', function (e) {
+
+		e.preventDefault();
+		// $('div.swiper-load-less').show();
+
+		shown = $('div.swiper-wrapper div.gr-Section-Slide:visible').length + 3;
+		
+		if (shown < reviewsLength) {
+			$('div.swiper-wrapper div.gr-Section-Slide:lt(' + shown + ')').show();
+		} else {
+			$('div.swiper-wrapper div.gr-Section-Slide:lt(' + shown + ')').show();
+			$('div.swiper-load-more').hide();
+			$('div.swiper-load-less').show();
+		}
+
+		$('html,body').animate({
+			scrollTop: $(this).offset().top
+		}, 1000)
+	})
+	// .on('mouseup', function () {
+	// 	const collapseDescription = setTimeout(readMoreDescription, 100);
+	// })
+
+	$('div.swiper-load-less').on('click', function (e) {
+
+		e.preventDefault();
+		// const collapseDescription = setTimeout(readMoreDescription, 100);
+		$(`div.swiper-wrapper div.gr-Section-Slide:lt(${defaultShown})`).show();
+		$('div.swiper-load-more').show();
+
+		// if (shown >= reviewsLength) {
+		// 	$('div.swiper-load-more').hide()
+		// 	$(this).show()
+		// } else {
+		// 	$('div.swiper-load-more').show()
+		// 	$(this).hide();
+		// }
+
+		$('html,body').animate({
+			scrollTop: $(this).offset().top
+		}, 1000)
+	})
+
+}
+
+function readMoreDescription() {
+	let textHeightArr = [];
+
+	$(element).find("div.gr-Text-Description").each((index, element) => {
+		let textHeight = $(element).height();
+		textHeightArr.push(textHeight);
+	})
+
+	let collapsedHeight = textHeightArr.reduce(function (accumulatedValue, currentValue) {
+		return Math.max(accumulatedValue, currentValue);
+	});
+
+	$(element).find("div.ballon div div.gr-Rate-Wrapper").css({
+		"min-height": `${collapsedHeight + 104.5}px`
+	});
+
+	$(element).find("div.gr-Text-Description").removeClass('text-ellipsis');
+
+	$(element).find('div.gr-Text-Description').readmore({
+		speed: 500,
+		collapsedHeight,
+		moreLink: '<div class="gr-Text-ReadMore"><span class="text">Read More</span></div>',
+		lessLink: '<div class="gr-Text-ReadMore"><span class="text">Read Less</span></div>',
+		embedCSS: true,
+		startOpen: false
+	});
+}
+
+function cssLibrary(id, href) {
+	if (!document.getElementById(id)) {
+		var head = document.getElementsByTagName('head')[0];
+		var link = document.createElement('link');
+		link.id = id;
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = href;
+		link.crossOrigin = 'anonymous';
+		head.appendChild(link);
+	}
+}
+
+function action(data) {
+	return $.ajax({
+		url: actionLink,
+		method: "POST",
+		data: JSON.stringify(data)
+	});
+}
+
+function getParameterByName(name, url) {
+	if (!url) url = window.location.href;
+	name = name.replace(/[\[\]]/g, '\\$&');
+	var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+function removeDuplicates(array, key) {
+	return array.reduce(function (arr, item) {
+		const removed = arr.filter(function (i) {
+			return i[key] !== item[key];
+		});
+		return [...removed, item];
+	}, []);
+}
+
+function removeDuplicatedKey(arr, key) {
+	return [...new Map(arr.map(item => [item[key], item])).values()]
+}
+
+function preloader() {
+	$(element).find('div.widget-Loader-Container').fadeOut().remove()
+	$(element).find('div.gr-Main-Container').fadeIn()
+}
+    };
+</script>
+
+
+<script type="text/javascript">
+
+    var d_version = "production_6737";
+    var build = "2026-08-27T10_52_42";
+    window['v' + 'ersion'] = d_version;
+
+    function buildEditorParent() {
+        window.isMultiScreen = true;
+        window.editorParent = {};
+        window.previewParent = {};
+        window.assetsCacheQueryParam = "?version=2026-08-27T10_52_42";
+        try {
+            var _p = window.parent;
+            if (_p && _p.document && _p.$ && _p.$.dmfw) {
+                window.editorParent = _p;
+            } else if (_p.isSitePreview) {
+                window.previewParent = _p;
+            }
+        } catch (e) {
+
+        }
+    }
+
+    buildEditorParent();
+</script>
+
+
+<!-- Load jQuery -->
+
+<script type="text/javascript" id='d-js-jquery'
+        src="https://static.cdn-website.com/libs/jquery/jquery-3.7.0.min.js"></script>
+
+<!-- End Load jQuery -->
+
+
+<!-- Injecting site-wide before scripts -->
+
+<!-- End Injecting site-wide to the head -->
+
+
+
+<script>
+    var _jquery = window.$;
+
+    var jqueryAliases = ['$', 'jquery', 'jQuery'];
+
+    jqueryAliases.forEach((alias) => {
+        Object.defineProperty(window, alias, {
+            get() {
+                return _jquery;
+            },
+            set() {
+                console.warn("Trying to over-write the global jquery object!");
+            }
+        });
+    });
+    window.jQuery.migrateMute = true;
+</script>
+
+
+
+
+<script>
+    window.cookiesNotificationMarkupPreview = 'null';
+</script>
+
+<!-- HEAD RT JS Include -->
+<script id='d-js-params'>
+    window.INSITE = window.INSITE || {};
+    window.INSITE.device = "desktop";
+
+    window.rtCommonProps = {};
+    rtCommonProps["rt.ajax.ajaxScriptsFix"] =true;
+    rtCommonProps["rt.pushnotifs.sslframe.encoded"] = 'aHR0cHM6Ly97c3ViZG9tYWlufS5wdXNoLW5vdGlmcy5jb20=';
+    rtCommonProps["runtimecollector.url"] = 'https://rtc.multiscreensite.com';
+    rtCommonProps["performance.tabletPreview.removeScroll"] = 'false';
+    rtCommonProps["inlineEditGrid.snap"] =true;
+    rtCommonProps["popup.insite.cookie.ttl"] = '0.5';
+    rtCommonProps["rt.pushnotifs.force.button"] =true;
+    rtCommonProps["common.mapbox.token"] = 'pk.eyJ1IjoiZGFubnliMTIzIiwiYSI6ImNqMGljZ256dzAwMDAycXBkdWxwbDgzeXYifQ.Ck5P-0NKPVKAZ6SH98gxxw';
+    rtCommonProps["common.mapbox.js.override"] =false;
+    rtCommonProps["common.here.appId"] = 'iYvDjIQ2quyEu0rg0hLo';
+    rtCommonProps["common.here.appCode"] = '1hcIxLJcbybmtBYTD9Z1UA';
+    rtCommonProps["isCoverage.test"] =false;
+    rtCommonProps["ecommerce.ecwid.script"] = 'https://app.multiscreenstore.com/script.js';
+    rtCommonProps["common.resources.dist.cdn"] =true;
+    rtCommonProps["common.build.dist.folder"] = 'production/6737';
+    rtCommonProps["common.resources.cdn.host"] = 'https://static.cdn-website.com';
+    rtCommonProps["common.resources.folder"] = 'https://static.cdn-website.com/mnlt/production/6737';
+    rtCommonProps["common.fonts.api.v2.url"] = 'https://irp.cdn-website.com/fonts/css2?family=';
+    rtCommonProps["feature.flag.runtime.backgroundSlider.preload.slowly"] =true;
+    rtCommonProps["feature.flag.runtime.newAnimation.enabled"] =true;
+    rtCommonProps["feature.flag.runtime.newAnimation.jitAnimation.enabled"] =true;
+    rtCommonProps["feature.flag.sites.google.analytics.gtag"] =true;
+    rtCommonProps["feature.flag.runOnReadyNewTask"] =true;
+    rtCommonProps["isAutomation.test"] =false;
+    rtCommonProps["booking.cal.api.domain"] = 'api.cal.com';
+
+    
+    rtCommonProps['common.mapsProvider'] = 'google';
+    
+    rtCommonProps["google.places.key"] = 'QUl6YVN5QTF4RjFQbUg2RWdWVWpFX3BKNWlNS1dGRVFTS3MxN2VV';
+    
+    rtCommonProps['common.mapsProvider.version'] = '0.52.0';
+    rtCommonProps['common.geocodeProvider'] = 'google';
+    rtCommonProps['server.for.resources'] = '';
+    rtCommonProps['feature.flag.lazy.widgets'] = true;
+    rtCommonProps['feature.flag.single.wow'] = false;
+    rtCommonProps['feature.flag.disallowPopupsInEditor'] = true;
+    rtCommonProps['feature.flag.mark.anchors'] = true;
+    rtCommonProps['captcha.public.key'] = '6LffcBsUAAAAAMU-MYacU-6QHY4iDtUEYv_Ppwlz';
+    rtCommonProps['captcha.invisible.public.key'] = '6LeiWB8UAAAAAHYnVJM7_-7ap6bXCUNGiv7bBPME';
+    rtCommonProps["images.sizes.small"] =160;
+    rtCommonProps["images.sizes.mobile"] =640;
+    rtCommonProps["images.sizes.tablet"] =1280;
+    rtCommonProps["images.sizes.desktop"] =1920;
+    rtCommonProps["modules.resources.cdn"] =true;
+    rtCommonProps["import.images.storage.imageCDN"] = 'https://irp.cdn-website.com/';
+    rtCommonProps["feature.flag.runtime.inp.threshold"] =150;
+    rtCommonProps["feature.flag.performance.logs"] =false;
+    rtCommonProps["site.widget.form.captcha.type"] = 'g_recaptcha';
+    rtCommonProps["friendly.captcha.site.key"] = 'FCMGSQG9GVNMFS8K';
+    rtCommonProps["cookiebot.mapbox.consent.category"] = 'marketing';
+    rtCommonProps["termly.mapbox.consent.category"] = 'performance';
+    // feature flags that's used out of runtime module (in  legacy files)
+    rtCommonProps["platform.monolith.personalization.dateTimeCondition.popupMsgAction.moveToclient.enabled"] =true;
+
+    window.rtFlags = {};
+    rtFlags["unsuspendEcwidStoreOnRuntime.enabled"] =true;
+    rtFlags["scripts.widgetCount.enabled"] =true;
+    rtFlags["fnb.animations.tracking.enabled"] =true;
+    rtFlags["ecom.ecwidNewUrlStructure.enabled"] = false;
+    rtFlags["ecom.ecwid.accountPage.emptyBaseUrl.enabled"] = true;
+    rtFlags["ecom.ecwid.accountPage.repeatOrderRedirect.enabled"] = false;
+    rtFlags["ecom.ecwid.pages.links.disable.listeners"] = true;
+    rtFlags["ecom.ecwid.storefrontV3.enabled"] = false;
+    rtFlags["ecom.ecwid.old.store.fix.facebook.share"] = true;
+    rtFlags["ecom.monolith.legacy.js.api.disabled.for.new.sites"] = false;
+    rtFlags["feature.flag.photo.gallery.exact.size"] =true;
+    rtFlags["geocode.search.localize"] =false;
+    rtFlags["feature.flag.runtime.newAnimation.asyncInit.setTimeout.enabled"] =false;
+    rtFlags["twitter.heightLimit.enabled"] = true;
+    rtFlags["runtime.lottieOverflow"] =false;
+    rtFlags["runtime.monitoring.sentry.ignoreErrors"] = "";
+    rtFlags["streamline.monolith.personalization.supportMultipleConditions.enabled"] =false;
+    rtFlags["flex.animation.design.panel.layout"] =true;
+    rtFlags["runtime.cwv.report.cls.enabled"] =false;
+    rtFlags["runtime.cwv.report.lcp.enabled"] =false;
+    rtFlags["runtime.lcp.preload.selfheal.enabled"] =true;
+    rtFlags["runtime.lcp.preload.bootstrap.enabled"] =true;
+    rtFlags["runtime.lcp.preload.monitor.enabled"] =false;
+    rtFlags["runtime.customwidget.heightpin.enabled"] =true;
+    rtFlags["contact.form.useActiveForm"] =true;
+    rtFlags["contact.form.custom.errors.enabled"] =false;
+    rtFlags["runtime.ssr.productStore.internal.observer"] =true;
+    rtFlags["runtime.ssr.productCustomizations"] =true;
+    rtFlags["runtime.ssr.runtime.filter-sort.newFilterSortWidgetWithOptions.enabled"] =true;
+    rtFlags["runtime.ssr.ssrSlider.jumpThreshold.enabled"] =true;
+    rtFlags["runtime.ssr.native.booker.enabled"] =false;
+    rtFlags["termly.map.consent.overlay.enabled"] =false;
+    rtFlags["editor.widget.form.a11y"] =true;
+</script>
+<script src="https://static.cdn-website.com/mnlt/production/6737/_dm/s/rt/dist/scripts/d-js-one-runtime-unified-desktop.min.js"  id="d-js-core"></script>
+
+<!-- End of HEAD RT JS Include -->
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://static.cdn-website.com/mnlt/production/6737/_dm/s/rt/dist/scripts/d-js-jquery-migrate.min.js" ></script>
+
+
+
+
+
+<script>
+    
+    $(window).bind("orientationchange", function (e) {
+        $.layoutManager.initLayout();
+        
+    });
+    $(document).resize(function () {
+        
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="d_track_sp">
+    ;(function(p,l,o,w,i,n,g){if(!p[i]){p.GlobalSnowplowNamespace=p.GlobalSnowplowNamespace||[];
+        p.GlobalSnowplowNamespace.push(i);p[i]=function(){(p[i].q=p[i].q||[]).push(arguments)
+        };p[i].q=p[i].q||[];n=l.createElement(o);g=l.getElementsByTagName(o)[0];n.async=1;
+        n.src=w;g.parentNode.insertBefore(n,g)}}(window,document,"script","//d32hwlnfiv2gyn.cloudfront.net/sp-2.0.0-dm-0.1.min.js","snowplow"));
+    window.dmsnowplow  = window.snowplow;
+
+    dmsnowplow('newTracker', 'cf', 'd32hwlnfiv2gyn.cloudfront.net', { // Initialise a tracker
+        appId: '40b788dd'
+    });
+
+    // snowplow queries element styles so we wait until CSS calculations are done.
+    requestAnimationFrame(() => {
+        dmsnowplow('trackPageView');
+        _dm_insite.forEach((rule) => {
+            // Specifically in popup only the client knows if it is shown or not so we don't always want to track its impression here
+            // the tracking is in popup.js
+            if (rule.actionName !== "popup") {
+                dmsnowplow('trackStructEvent', 'insite', 'impression', rule.ruleType, rule.ruleId);
+            }
+            window?.waitForDeferred?.('dmAjax', () => {
+                $.DM.events.trigger('event-ruleTriggered', {value: rule});
+            });
+        });
+    });
+</script>
+
+
+
+<div style="display:none;" id="P6iryBW0Wu"></div>
+
+<!-- photoswipe markup -->
+
+
+
+
+
+
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div id="fb-root"
+        data-locale="en"></div>
+<!-- Alias: 40b788dd -->
+<div class="dmPopupMask" id="dmPopupMask"></div>
+<div id="dmPopup" class="dmPopup">
+	<div class="dmPopupCloseWrapper"> <div class="dmPopupClose dm-common-icons-close oneIcon" onclick="dmHidePopup(event);"></div> </div>
+ 	<div class="dmPopupTitle"> <span></span> Share by:</div> 
+	<div class="data"></div>
+</div><script id="d_track_personalization">
+	window?.waitForDeferred?.('dmAjax', () => {
+		// Collects client data and updates cookies used by smart sites
+		window.expireDays = 365;
+		window.visitLength = 30 * 60000;
+		$.setCookie("dm_timezone_offset", (new Date()).getTimezoneOffset(), window.expireDays);
+			setSmartSiteCookiesInternal("dm_this_page_view","dm_last_page_view","dm_total_visits","dm_last_visit");
+	});
+</script>
+<script type="text/javascript">
+    
+    Parameters.NavigationAreaParams.MoreButtonText = 'MORE';
+    
+    Parameters.NavigationAreaParams.LessButtonText = 'LESS';
+    Parameters.HomeLinkText = 'Home';
+    </script>
+<!--  End Script tags -->
+<!--  Site Wide Html Markup -->
+<!--  Site Wide Html Markup -->
+</body>
+</html>

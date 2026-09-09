@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bar Crawl USA Halloween Landing Page Launch Scorecard</title>
+  <style>
+    @font-face{font-family:"Barlow Condensed";src:url("BarlowCondensed-800.woff2") format("woff2");font-weight:800;font-display:swap}
+    @font-face{font-family:"Barlow Condensed";src:url("BarlowCondensed-500.woff2") format("woff2");font-weight:500;font-display:swap}
+    :root{--ink:#111317;--paper:#f3eee4;--white:#fffdf8;--violet:#30207d;--cobalt:#244fce;--coral:#b83a2f;--coral-light:#ff9e8f;--quiet:#5c5a58;--mist:#d8d0c4;--wash:#dce4ff;--rule:#aaa49a;--green:#16724d}
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#d7d3cb;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+    body{padding:24px}
+    .sheet{position:relative;width:8.5in;height:11in;margin:0 auto 24px;background:var(--paper);overflow:hidden;box-shadow:0 18px 46px rgba(17,19,23,.18);page-break-after:always}
+    .sheet:last-child{page-break-after:auto}
+    .pad{padding:.46in .5in .58in}
+    .dark{background:var(--ink);color:var(--white)}
+    .violet{background:var(--violet);color:var(--white)}
+    h1,h2,h3,p{margin:0}
+    h1,h2,h3{font-family:"Barlow Condensed",Arial,sans-serif;text-transform:uppercase}
+    h1{font-size:50pt;line-height:.84;letter-spacing:-.025em}
+    h2{font-size:30pt;line-height:.9;letter-spacing:-.02em}
+    h3{font-size:17pt;line-height:1}
+    p,li{font-size:9.2pt;line-height:1.42}
+    a{color:inherit}
+    .brandbar{height:.68in;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid currentColor;padding:0 .5in;font:500 9pt/1 "Barlow Condensed",sans-serif;letter-spacing:.09em;text-transform:uppercase}
+    .brandbar img.logo{width:146px;height:36px;object-fit:contain;object-position:left center}
+    .partner{display:flex;align-items:center;gap:9px;font-weight:800}
+    .partner img{width:28px;height:28px;border-radius:8px}
+    .folio{position:absolute;left:.5in;right:.5in;bottom:.23in;display:flex;align-items:center;gap:14px;font:500 7.8pt/1 "Barlow Condensed",sans-serif;letter-spacing:.08em;text-transform:uppercase}
+    .folio i{height:1px;flex:1;background:currentColor;opacity:.4}
+    .cover-grid{display:grid;grid-template-columns:3.05in 1fr;min-height:9.72in}
+    .score-field{background:var(--violet);color:white;padding:.55in .38in;display:flex;flex-direction:column;overflow:hidden}
+    .score-field .score{font:800 132pt/.68 "Barlow Condensed",sans-serif;letter-spacing:-.04em;color:var(--coral-light)}
+    .score-field .outof{font:800 28pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--wash);margin-top:.12in}
+    .score-field .label{font:800 20pt/.98 "Barlow Condensed",sans-serif;text-transform:uppercase;margin-top:.2in}
+    .score-field .verified{margin-top:auto;border-top:1px solid white;padding-top:.16in;font:500 8.4pt/1.35 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .cover-main{padding:.56in .46in .4in;display:flex;flex-direction:column}
+    .cover-main h1 strong{display:block;color:var(--violet);font-size:58pt}
+    .date-line{margin-top:.24in;padding:.11in 0;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);font:800 13pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--coral)}
+    .cover-copy{margin-top:.24in;font-size:10.5pt;max-width:3.7in}
+    .snapshot{margin-top:auto;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+    .snapshot div{display:grid;grid-template-columns:1.1in 1fr;align-items:center;padding:.13in 0;border-bottom:1px solid var(--ink)}
+    .snapshot div:last-child{border-bottom:0}
+    .snapshot b{font:800 25pt/1 "Barlow Condensed",sans-serif;color:var(--violet)}
+    .snapshot span{font:500 9pt/1.15 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .stamp{position:absolute;right:.42in;bottom:.66in;border:2px solid var(--coral);color:var(--coral);padding:9px 13px;transform:rotate(-3deg);font:800 10.5pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.06em}
+    .page-title{display:grid;grid-template-columns:1fr 2.25in;gap:.3in;align-items:end;padding-bottom:.14in;border-bottom:3px solid currentColor}
+    .page-title p{font-size:8.3pt;color:var(--quiet)}
+    .dark .page-title p,.violet .page-title p{color:var(--white)}
+    .metric-band{display:grid;grid-template-columns:repeat(5,1fr);margin-top:.22in;border-top:2px solid currentColor;border-bottom:2px solid currentColor}
+    .metric-band div{padding:.16in .1in;border-right:1px solid currentColor}
+    .metric-band div:last-child{border-right:0}
+    .metric-band .lead{background:var(--violet);color:white}
+    .dark .metric-band .lead,.violet .metric-band .lead{background:var(--white);color:var(--violet)}
+    .metric-band b{display:block;font:800 24pt/1 "Barlow Condensed",sans-serif}
+    .metric-band span{display:block;margin-top:5px;font:500 7.2pt/1.15 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .rubric{margin-top:.25in}
+    .rubric-row{display:grid;grid-template-columns:1.75in .65in 1fr;gap:.16in;align-items:center;padding:.15in 0;border-bottom:1px solid currentColor}
+    .rubric-row:first-child{border-top:1px solid currentColor}
+    .rubric-row h3{font-size:15pt}
+    .rubric-row b{font:800 17pt/1 "Barlow Condensed",sans-serif;text-align:right;color:var(--violet)}
+    .rubric-row p{font-size:8.5pt}
+    .readout{margin-top:.25in;display:grid;grid-template-columns:1.35in 1fr;background:var(--ink);color:white}
+    .readout strong{padding:.18in;font:800 17pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--coral-light)}
+    .readout p{padding:.18in;border-left:1px solid var(--quiet)}
+    .score-list{margin-top:.23in}
+    .score-row{display:grid;grid-template-columns:1.5in .52in 1fr;gap:.14in;align-items:center;padding:.105in 0;border-bottom:1px solid currentColor}
+    .score-row:first-child{border-top:1px solid currentColor}
+    .score-row h3{font-size:13.5pt}
+    .score-row b{font:800 18pt/1 "Barlow Condensed",sans-serif;text-align:right;color:var(--coral-light)}
+    .score-row a{font:500 7.7pt/1.2 "Barlow Condensed",sans-serif;text-decoration:none;overflow-wrap:anywhere}
+    .paper-list .score-row b{color:var(--violet)}
+    .note{margin-top:.2in;padding:.15in .18in;background:var(--wash);color:var(--violet);font-size:8.4pt;line-height:1.35}
+    .proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:.2in;margin-top:.25in}
+    .proof{background:var(--white);padding:.22in .2in .18in;box-shadow:inset 0 6px 0 var(--cobalt)}
+    .proof:nth-child(2),.proof:nth-child(3){box-shadow:inset 0 6px 0 var(--coral)}
+    .proof h3{font-size:20pt}
+    .proof p{margin-top:.09in;color:var(--quiet)}
+    .proof ul{padding-left:18px;margin:.12in 0 0}
+    .proof li{margin:.035in 0}
+    .architecture{margin-top:.25in}
+    .flow{display:grid;grid-template-columns:1fr .3in 1fr .3in 1fr;align-items:stretch}
+    .flow article{background:var(--white);color:var(--ink);padding:.2in}
+    .flow article:nth-of-type(2){background:var(--wash)}
+    .flow article:nth-of-type(3){background:var(--coral-light)}
+    .flow h3{font-size:17pt}
+    .flow p{margin-top:.08in;font-size:8.3pt}
+    .arrow{display:grid;place-items:center;font:800 20pt/1 "Barlow Condensed",sans-serif}
+    .signal-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:.22in;margin-top:.25in}
+    .signal{background:var(--white);color:var(--ink);padding:.22in}
+    .signal h3{font-size:22pt;color:var(--violet)}
+    .signal .big{font:800 40pt/.9 "Barlow Condensed",sans-serif;color:var(--coral);margin-top:.12in}
+    .signal p{margin-top:.1in}
+    .signal.darkbox{background:var(--violet);color:white}
+    .signal.darkbox h3{color:var(--coral-light)}
+    .signal.darkbox .big{color:var(--white)}
+    .ledger{margin-top:.25in}
+    .ledger-row{display:grid;grid-template-columns:1.22in 1fr 1.15in;gap:.18in;padding:.17in 0;border-bottom:1px solid currentColor;align-items:start}
+    .ledger-row:first-child{border-top:1px solid currentColor}
+    .ledger-row b{font:800 18pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--coral-light)}
+    .ledger-row h3{font-size:16pt}
+    .ledger-row p{margin-top:5px}
+    .ledger-row span{font:500 8.8pt/1.2 "Barlow Condensed",sans-serif;text-transform:uppercase;text-align:right;color:var(--wash)}
+    .close{margin-top:.34in;font:800 38pt/.9 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--coral-light);max-width:6.8in}
+    .source{font-size:7.5pt;color:var(--quiet);margin-top:.18in}
+    .dark .source,.violet .source{color:var(--wash)}
+    @media print{html,body{background:white}body{padding:0}.sheet{margin:0;box-shadow:none}}
+    @page{size:Letter portrait;margin:0}
+    @media screen and (max-width:850px){
+      body{padding:0}.sheet{width:100%;height:auto;min-height:100vh;margin:0;overflow:visible}
+      .cover-grid,.page-title,.proof-grid,.signal-grid{grid-template-columns:minmax(0,1fr)}
+      .score-field{min-height:58vh}.cover-main{min-height:88vh}
+      .brandbar{padding:0 22px}.pad{padding:28px 22px 68px}
+      .metric-band{grid-template-columns:1fr 1fr}.metric-band div{border-bottom:1px solid currentColor}
+      .rubric-row,.score-row,.ledger-row{grid-template-columns:1fr}
+      .rubric-row b,.score-row b,.ledger-row span{text-align:left}
+      .flow{grid-template-columns:1fr}.arrow{padding:10px}
+      .readout{grid-template-columns:1fr}.readout p{border-left:0;border-top:1px solid var(--quiet)}
+      .stamp{position:static;display:inline-block;margin:20px 22px 56px}.folio{left:22px;right:22px}
+    }
+  </style>
+</head>
+<body>
+  <!-- THESIS: Ten newly published pages become a launch ledger, refusing the generic SEO audit and its unearned single score. OWN-WORLD: Bone call sheets, ultraviolet score fields, near-black operational ledgers, cobalt proof fields, coral status marks, and condensed event-production type. STORY: The team sees the 92 score, understands the weighted evidence, opens every page, confirms the tracking sheet update, and knows the two remaining access tasks. FIRST VIEWPORT: A full-height ultraviolet 92 field sits beside the launch title, verified date, and three decisive shipment counts. FORM: The first and strongest structure for an ordinary extension of the approved After-Hours Producer Dossier, rebuilt as a six-sheet readiness ledger; no concept seed applies because the established world and proof sequence were fixed. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md -->
+  <section class="sheet">
+    <header class="brandbar"><img class="logo" src="bar-crawl-usa.webp" alt="Bar Crawl USA"><div class="partner"><img src="momentum-360-m-circle.png" alt="Momentum 360"><span>Bar Crawl USA · Halloween launch scorecard</span></div></header>
+    <div class="cover-grid">
+      <aside class="score-field"><div class="score">92</div><div class="outof">out of 100</div><div class="label">Average launch readiness across ten Halloween pages</div><div class="verified">Live verification · August 27, 2026<br>Desktop and mobile QA · August 26, 2026<br>Event tracking sheet · rows 54 through 63</div></aside>
+      <main class="cover-main"><h1>Halloween landing pages <strong>launch scorecard</strong></h1><div class="date-line">Prepared for the Bar Crawl USA team · August 27, 2026</div><p class="cover-copy">All ten pages are live, indexable, locally written, connected to secure Eventbrite checkout, and recorded in the event tracking sheet. The score measures launch readiness. It is not a Google ranking or a promise of position.</p><div class="snapshot"><div><b>10</b><span>Live city landing pages</span></div><div><b>20</b><span>Desktop and mobile QA passes</span></div><div><b>10</b><span>Tracking sheet rows added and verified</span></div></div></main>
+    </div>
+    <div class="stamp">Verified live · ready to mature</div>
+    <footer class="folio"><span>Bar Crawl USA · Halloween launch</span><i></i><span>01 / 06</span></footer>
+  </section>
+
+  <section class="sheet pad">
+    <div class="page-title"><h2>How the score works</h2><p>A weighted internal readiness model built from current live behavior, content depth, search fundamentals, ticket UX, and measurement status.</p></div>
+    <div class="metric-band"><div class="lead"><b>25/25</b><span>Index and crawl</span></div><div><b>23/25</b><span>Local content</span></div><div><b>19/20</b><span>Ticket UX</span></div><div><b>15/15</b><span>Schema and links</span></div><div><b>10/15</b><span>Measurement ops</span></div></div>
+    <div class="rubric">
+      <div class="rubric-row"><h3>Index and crawl</h3><b>25</b><p>HTTP 200, canonical URL, no noindex directive, fresh page sitemap entry, one clear H1, and a descriptive title.</p></div>
+      <div class="rubric-row"><h3>Local content</h3><b>23</b><p>Source safe city copy, practical route context, 11 sections, five visible FAQs, verified images, and a distinct local search focus.</p></div>
+      <div class="rubric-row"><h3>Ticket experience</h3><b>19</b><p>Visible ticket section, secure Eventbrite modal checkout, correct city event mapping, and separate Cleveland ticket choices.</p></div>
+      <div class="rubric-row"><h3>Schema and links</h3><b>15</b><p>FAQPage and BreadcrumbList structured data plus official event, city hub, Halloween hub, and local authority links.</p></div>
+      <div class="rubric-row"><h3>Measurement operations</h3><b>10</b><p>Checkout initiation measurement is live. Completed order reconciliation and manual indexing remain access dependent.</p></div>
+    </div>
+    <div class="readout"><strong>What 92 means</strong><p>The page fundamentals are strong enough to publish, crawl, convert, and mature. The final eight points are not visual polish. They belong to organizer side completed order validation and full Search Console indexing access.</p></div>
+    <p class="source">Evidence: current live HTTP and markup verification, August 26 desktop and mobile QA, sitemap readback, production Eventbrite modal test, and Google Sheet readback.</p>
+    <footer class="folio"><span>Weighted readiness rubric</span><i></i><span>02 / 06</span></footer>
+  </section>
+
+  <section class="sheet dark pad">
+    <div class="page-title"><h2>Ten live page scores</h2><p>Every page passed the same technical and mobile gates. Small score differences reflect source completeness and multi-event ticket handling.</p></div>
+    <div class="score-list">
+      <div class="score-row"><h3>Atlanta</h3><b>91</b><a href="https://barcrawlusa.com/atlanta-halloween-bar-crawls-2026/">barcrawlusa.com/atlanta-halloween-bar-crawls-2026/</a></div>
+      <div class="score-row"><h3>Cleveland</h3><b>93</b><a href="https://barcrawlusa.com/cleveland-halloween-bar-crawls-2026/">barcrawlusa.com/cleveland-halloween-bar-crawls-2026/</a></div>
+      <div class="score-row"><h3>Cincinnati</h3><b>92</b><a href="https://barcrawlusa.com/cincinnati-halloween-bar-crawl-2026/">barcrawlusa.com/cincinnati-halloween-bar-crawl-2026/</a></div>
+      <div class="score-row"><h3>Columbia, SC</h3><b>92</b><a href="https://barcrawlusa.com/columbia-sc-halloween-bar-crawl-2026/">barcrawlusa.com/columbia-sc-halloween-bar-crawl-2026/</a></div>
+      <div class="score-row"><h3>Greenville, SC</h3><b>92</b><a href="https://barcrawlusa.com/greenville-sc-halloween-bar-crawl-2026/">barcrawlusa.com/greenville-sc-halloween-bar-crawl-2026/</a></div>
+      <div class="score-row"><h3>Portland, ME</h3><b>92</b><a href="https://barcrawlusa.com/portland-me-halloween-bar-crawl-2026/">barcrawlusa.com/portland-me-halloween-bar-crawl-2026/</a></div>
+      <div class="score-row"><h3>St. Pete</h3><b>92</b><a href="https://barcrawlusa.com/st-pete-halloween-bar-crawl-2026/">barcrawlusa.com/st-pete-halloween-bar-crawl-2026/</a></div>
+      <div class="score-row"><h3>Macon</h3><b>92</b><a href="https://barcrawlusa.com/macon-ga-halloween-bar-crawl-2026/">barcrawlusa.com/macon-ga-halloween-bar-crawl-2026/</a></div>
+      <div class="score-row"><h3>Roswell</h3><b>92</b><a href="https://barcrawlusa.com/roswell-ga-halloween-bar-crawl-2026/">barcrawlusa.com/roswell-ga-halloween-bar-crawl-2026/</a></div>
+      <div class="score-row"><h3>Sarasota</h3><b>91</b><a href="https://barcrawlusa.com/sarasota-halloween-bar-crawl-2026/">barcrawlusa.com/sarasota-halloween-bar-crawl-2026/</a></div>
+    </div>
+    <div class="note">Cleveland receives one additional point for handling two separate event dates and ticket choices in one clear guide. Atlanta and Sarasota each retain one source completeness deduction: Midtown has no verified 2026 record yet, and Sarasota does not publish one complete event-wide operating window.</div>
+    <footer class="folio"><span>Live URL ledger</span><i></i><span>03 / 06</span></footer>
+  </section>
+
+  <section class="sheet pad">
+    <div class="page-title"><h2>What shipped on every page</h2><p>Five pages use the proven Tacos and Tequila campaign rhythm. Five use distinct layouts while preserving the same search, ticket, and brand standards.</p></div>
+    <div class="proof-grid">
+      <article class="proof"><h3>Search foundation</h3><ul><li>Unique city title and meta description</li><li>One H1 and clean canonical URL</li><li>Indexable status and fresh sitemap entry</li><li>FAQ and breadcrumb structured data</li></ul></article>
+      <article class="proof"><h3>Local usefulness</h3><ul><li>Verified date, district, route, and check-in facts</li><li>Five visible traveler questions</li><li>City hub and Halloween hub links</li><li>Official local planning resource</li></ul></article>
+      <article class="proof"><h3>Conversion path</h3><ul><li>Visible tickets section</li><li>Secure Eventbrite modal checkout</li><li>Correct city event assignment</li><li>Separate West Park and Lakewood choices</li></ul></article>
+      <article class="proof"><h3>Quality control</h3><ul><li>Desktop and mobile rendering verified</li><li>No horizontal overflow</li><li>No broken loaded images</li><li>No visible dash punctuation in page copy</li></ul></article>
+    </div>
+    <div class="readout"><strong>Personality without drift</strong><p>The pages share a clear Bar Crawl USA voice and conversion system, but they do not read like ten duplicated templates. Local district details, route logic, group planning advice, timing, and imagery give each market a real reason to exist.</p></div>
+    <p class="source">All ten pages returned HTTP 200 and preserved their title, H1, canonical, FAQ schema, Eventbrite code, and indexable state on August 27.</p>
+    <footer class="folio"><span>Content, SEO, and experience</span><i></i><span>04 / 06</span></footer>
+  </section>
+
+  <section class="sheet violet pad">
+    <div class="page-title"><h2>Ticket and measurement architecture</h2><p>The spring setup counted a form submit proxy. This build separates the page click from the completed Eventbrite order so reporting can be reconciled correctly.</p></div>
+    <div class="architecture">
+      <div class="flow">
+        <article><h3>Landing page</h3><p>The visitor opens the city guide, reviews the local details, and chooses the correct ticket option.</p></article>
+        <div class="arrow">→</div>
+        <article><h3>Checkout initiation</h3><p>The secure Eventbrite modal opens and the page records begin_checkout with city, page, and event identifiers.</p></article>
+        <div class="arrow">→</div>
+        <article><h3>Order reconciliation</h3><p>The completion callback is ready. Organizer side access is still required to validate completed order reporting against real purchases.</p></article>
+      </div>
+    </div>
+    <div class="signal-grid">
+      <article class="signal"><h3>Verified in production</h3><div class="big">1 live modal</div><p>The Atlanta checkout opened the expected Eventbrite event in a secure iframe, and the page data layer recorded the matching checkout initiation.</p></article>
+      <article class="signal darkbox"><h3>Implemented across</h3><div class="big">10 pages</div><p>Every city page contains the same measurement contract. Cleveland maps its two ticket choices separately.</p></article>
+    </div>
+    <div class="readout"><strong>Reporting language</strong><p>Checkout initiation is live and verified. Completed purchase reporting remains pending validation until the Bar Crawl USA Eventbrite organization is accessible and a real order can be reconciled end to end.</p></div>
+    <footer class="folio"><span>Ticket integration and attribution</span><i></i><span>05 / 06</span></footer>
+  </section>
+
+  <section class="sheet dark pad">
+    <div class="page-title"><h2>Recorded, submitted, and next</h2><p>The page work is complete. The remaining actions depend on account permissions rather than additional landing page production.</p></div>
+    <div class="ledger">
+      <div class="ledger-row"><b>Recorded</b><div><h3>Event Tracking Sheet updated</h3><p>Rows 54 through 63 now contain all ten published pages, live URLs, focus terms, event sources, metadata, and verified ticket and SEO notes.</p></div><span>Read back successfully</span></div>
+      <div class="ledger-row"><b>Submitted</b><div><h3>Sitemap and robots discovery</h3><p>All ten URLs appear in the page sitemap with fresh August 26 timestamps. Search Console accepted a robots recrawl request.</p></div><span>Crawl path open</span></div>
+      <div class="ledger-row"><b>Pending</b><div><h3>Manual indexing requests</h3><p>The connected Google account can inspect the property but does not have full Search Console access required for manual URL submission.</p></div><span>Owner access needed</span></div>
+      <div class="ledger-row"><b>Pending</b><div><h3>Completed order reconciliation</h3><p>The Dillon Eventbrite login is valid but currently has no Bar Crawl USA organization or event permissions. Organizer access is needed for purchase validation.</p></div><span>Organizer access needed</span></div>
+      <div class="ledger-row"><b>Next</b><div><h3>Let the pages mature</h3><p>Protect the live URLs, avoid unnecessary slug changes, monitor index coverage and impressions, and improve only from real query and order evidence.</p></div><span>Measure before revising</span></div>
+    </div>
+    <div class="close">The pages are ready. Access is the remaining lever.</div>
+    <p class="source">Event Tracking Sheet: <a href="https://docs.google.com/spreadsheets/d/1Ytm8ljnXH460SETVCCA6r7ADvHI2Jx4MrX8F9PBWi9Q/edit">BarCrawl Event Tracking Sheet</a></p>
+    <footer class="folio"><span>Prepared for Bar Crawl USA · August 27, 2026</span><i></i><span>06 / 06</span></footer>
+  </section>
+</body>
+</html>

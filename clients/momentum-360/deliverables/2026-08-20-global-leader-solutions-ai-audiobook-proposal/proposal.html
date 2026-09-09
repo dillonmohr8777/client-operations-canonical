@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Global Leader Solutions AI Narration Proposal — Momentum 360</title>
+  <style>
+    @font-face {
+      font-family: "Space Grotesk";
+      src: url("assets/SpaceGrotesk.woff2") format("woff2");
+      font-weight: 300 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --night: #041027;
+      --navy: #071632;
+      --navy-2: #0b2147;
+      --command: #143564;
+      --blue: #2f82ff;
+      --blue-soft: #72b7ff;
+      --cyan: #7be7ff;
+      --gold: #f2b63d;
+      --gold-deep: #a86800;
+      --paper: #f4f7fb;
+      --ink: #09152b;
+      --slate: #53627a;
+      --line: #d8e0eb;
+      --white: #ffffff;
+      --green: #48d597;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #d7deea; color: var(--ink); }
+    body { font-family: "Segoe UI", Arial, sans-serif; }
+    @page { size: Letter; margin: 0; }
+
+    .page {
+      position: relative;
+      width: 8.5in;
+      height: 11in;
+      padding: .56in .62in .48in;
+      overflow: hidden;
+      page-break-after: always;
+      background: var(--paper);
+    }
+    .page:last-child { page-break-after: auto; }
+    .page.dark { color: var(--white); background: var(--navy); }
+    .page.night { color: var(--white); background: var(--night); }
+
+    .grid-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .16;
+      background-image:
+        linear-gradient(rgba(123,231,255,.16) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(123,231,255,.16) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+    }
+
+    .page-inner { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; min-height: .36in; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand img { width: 38px; height: 38px; object-fit: contain; border-radius: 50%; }
+    .brand-word { font-family: "Space Grotesk", "Segoe UI", sans-serif; font-weight: 700; letter-spacing: .08em; font-size: 12px; text-transform: uppercase; }
+    .kicker { font-family: "Space Grotesk", "Segoe UI", sans-serif; font-size: 9px; line-height: 1.2; font-weight: 700; letter-spacing: .21em; text-transform: uppercase; color: var(--gold); }
+    .dark .muted, .night .muted { color: #aab9cf; }
+    .page-no { font-family: "Space Grotesk", "Segoe UI", sans-serif; font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: #8fa0b8; }
+
+    h1, h2, h3, .display { font-family: "Space Grotesk", "Segoe UI", sans-serif; margin: 0; }
+    h1 { font-size: 45px; line-height: .96; letter-spacing: -.045em; }
+    h2 { font-size: 32px; line-height: 1.02; letter-spacing: -.035em; }
+    h3 { font-size: 16px; line-height: 1.12; letter-spacing: -.015em; }
+    p { font-size: 11.5px; line-height: 1.5; margin: 0; }
+    small { font-size: 8.5px; line-height: 1.35; }
+
+    .rule { height: 1px; background: var(--line); margin: 17px 0 19px; }
+    .dark .rule, .night .rule { background: rgba(123,231,255,.22); }
+    .gold-rule { width: 64px; height: 4px; border-radius: 3px; background: var(--gold); margin: 15px 0 20px; }
+
+    .cover { padding: .52in .62in .5in; }
+    .cover .hero { margin-top: .65in; width: 88%; }
+    .cover h1 { font-size: 58px; line-height: .88; max-width: 6.6in; }
+    .cover .lead { font-size: 16px; line-height: 1.45; color: #d6e0ee; max-width: 5.7in; margin-top: 22px; }
+    .cover .price-lockup { display: flex; align-items: baseline; gap: 14px; margin-top: 30px; }
+    .cover .price { font-family: "Space Grotesk"; font-size: 54px; line-height: 1; font-weight: 700; color: var(--gold); }
+    .cover .price-copy { font-family: "Space Grotesk"; font-size: 13px; font-weight: 600; letter-spacing: .03em; color: var(--white); }
+    .cover .prepared { margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding-top: 24px; border-top: 1px solid rgba(123,231,255,.24); }
+    .cover .prepared strong { display: block; font-family: "Space Grotesk"; font-size: 12px; margin-bottom: 4px; }
+    .cover .prepared span { font-size: 10px; color: #aab9cf; }
+
+    .orbit { position: absolute; right: -.82in; top: 1.18in; width: 4.65in; height: 4.65in; opacity: .62; }
+    .orbit .ring { position: absolute; border: 1px solid rgba(123,231,255,.36); border-radius: 50%; }
+    .orbit .r1 { inset: 7%; }
+    .orbit .r2 { inset: 22%; border-color: rgba(47,130,255,.48); }
+    .orbit .r3 { inset: 36%; border-color: rgba(242,182,61,.5); }
+    .orbit .core { position: absolute; inset: 43%; border-radius: 50%; background: var(--gold); box-shadow: 0 0 30px rgba(242,182,61,.45); }
+    .orbit .node { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 14px rgba(123,231,255,.75); }
+    .orbit .n1 { top: 14%; left: 48%; }
+    .orbit .n2 { top: 48%; left: 10%; }
+    .orbit .n3 { top: 69%; left: 77%; background: var(--gold); box-shadow: 0 0 14px rgba(242,182,61,.7); }
+    .orbit::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, rgba(47,130,255,.16), transparent 68%); }
+
+    .section-head { margin-top: 28px; display: grid; grid-template-columns: 1fr 2.6fr; gap: 28px; align-items: end; }
+    .section-head .summary { color: var(--slate); font-size: 11px; line-height: 1.5; }
+    .dark .section-head .summary, .night .section-head .summary { color: #b8c5d8; }
+
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+    .metric { padding: 17px 16px 15px; border-top: 3px solid var(--blue); background: var(--white); box-shadow: 0 10px 28px rgba(9,21,43,.07); }
+    .metric .num { font-family: "Space Grotesk"; font-weight: 700; font-size: 27px; color: var(--ink); }
+    .metric .label { margin-top: 4px; font-size: 9px; text-transform: uppercase; letter-spacing: .13em; font-weight: 700; color: var(--slate); }
+    .metric.gold { border-top-color: var(--gold); }
+    .metric.cyan { border-top-color: var(--cyan); }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px; }
+    .panel { padding: 18px; background: var(--white); border: 1px solid var(--line); border-radius: 12px; }
+    .panel.dark-panel { background: var(--navy-2); color: var(--white); border-color: rgba(114,183,255,.22); }
+    .panel h3 { margin-bottom: 10px; }
+    .panel p { color: var(--slate); }
+    .panel.dark-panel p { color: #bcc9db; }
+    .panel .accent { color: var(--gold-deep); font-weight: 700; }
+    .dark-panel .accent { color: var(--gold); }
+
+    ul.clean { margin: 9px 0 0; padding: 0; list-style: none; }
+    ul.clean li { position: relative; padding-left: 15px; margin: 7px 0; font-size: 10.5px; line-height: 1.42; }
+    ul.clean li::before { content: ""; position: absolute; left: 0; top: .52em; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+    .dark ul.clean li::before, .night ul.clean li::before, .dark-panel ul.clean li::before { background: var(--cyan); }
+    ul.clean.gold li::before { background: var(--gold); }
+
+    .callout { margin-top: 20px; display: grid; grid-template-columns: 1.3in 1fr; gap: 18px; align-items: center; padding: 16px 18px; background: var(--ink); color: var(--white); border-radius: 12px; }
+    .callout .big { font-family: "Space Grotesk"; font-size: 25px; font-weight: 700; color: var(--gold); }
+    .callout p { color: #c8d4e4; }
+
+    .workflow { margin-top: 26px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .step { position: relative; min-height: 1.23in; padding: 16px 16px 14px 52px; background: rgba(255,255,255,.035); border: 1px solid rgba(114,183,255,.22); border-radius: 12px; }
+    .step .idx { position: absolute; left: 15px; top: 15px; width: 27px; height: 27px; border-radius: 50%; display: grid; place-items: center; font-family: "Space Grotesk"; font-size: 10px; font-weight: 700; color: var(--night); background: var(--gold); }
+    .step h3 { font-size: 14px; margin-bottom: 6px; }
+    .step p { color: #b9c7da; font-size: 10px; line-height: 1.42; }
+
+    .tech-strip { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    .tech { padding: 13px; border-top: 2px solid var(--cyan); background: var(--navy-2); }
+    .tech strong { display: block; font-family: "Space Grotesk"; font-size: 13px; margin-bottom: 5px; }
+    .tech span { display: block; color: #b9c7da; font-size: 9px; line-height: 1.35; }
+
+    .budget-grid { display: grid; grid-template-columns: 2.15in 1fr; gap: 28px; margin-top: 26px; align-items: start; }
+    .price-card { padding: 22px 20px; background: var(--navy); color: var(--white); border-radius: 18px; box-shadow: 0 18px 42px rgba(9,21,43,.18); }
+    .price-card .price { font-family: "Space Grotesk"; font-size: 48px; line-height: 1; font-weight: 700; color: var(--gold); }
+    .price-card .fixed { margin-top: 6px; font-family: "Space Grotesk"; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .price-card p { color: #b9c7da; font-size: 10px; margin-top: 15px; }
+    .budget-lines { border-top: 1px solid var(--line); }
+    .budget-line { display: grid; grid-template-columns: 1fr .72in; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+    .budget-line strong { font-size: 11px; }
+    .budget-line span { text-align: right; font-family: "Space Grotesk"; font-size: 13px; font-weight: 700; color: var(--gold-deep); }
+    .budget-line p { grid-column: 1 / -1; font-size: 9.5px; color: var(--slate); margin-top: -7px; }
+
+    .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
+    .scope { padding: 17px; border: 1px solid var(--line); background: var(--white); }
+    .scope h3 { margin-bottom: 9px; }
+    .scope.in { border-top: 4px solid var(--green); }
+    .scope.out { border-top: 4px solid var(--gold); }
+
+    .timeline { margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .time { padding: 12px; background: #eaf0f7; border-left: 3px solid var(--blue); }
+    .time strong { display: block; font-family: "Space Grotesk"; font-size: 12px; margin-bottom: 4px; }
+    .time span { display: block; color: var(--slate); font-size: 9px; line-height: 1.35; }
+
+    .decision { margin-top: 26px; display: grid; grid-template-columns: 1.45fr 1fr; gap: 24px; }
+    .decision-card { padding: 24px; background: rgba(255,255,255,.045); border: 1px solid rgba(114,183,255,.25); border-radius: 18px; }
+    .decision-card h2 { font-size: 29px; }
+    .decision-card p { color: #bdc9da; margin-top: 12px; }
+    .decision-card .cta { margin-top: 20px; display: inline-block; padding: 11px 16px; background: var(--gold); color: var(--night); font-family: "Space Grotesk"; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; border-radius: 7px; }
+    .requirements { padding-top: 3px; }
+    .req { display: grid; grid-template-columns: 25px 1fr; gap: 10px; align-items: start; margin-bottom: 15px; }
+    .req .check { width: 22px; height: 22px; border: 1px solid rgba(123,231,255,.5); border-radius: 50%; display: grid; place-items: center; color: var(--cyan); font-size: 11px; }
+    .req strong { display: block; font-family: "Space Grotesk"; font-size: 11px; margin-bottom: 3px; }
+    .req span { display: block; color: #aebbd0; font-size: 9px; line-height: 1.35; }
+
+    .guardrail { margin-top: 22px; padding: 16px 18px; border-left: 4px solid var(--gold); background: rgba(242,182,61,.08); }
+    .guardrail strong { display: block; font-family: "Space Grotesk"; font-size: 12px; color: var(--gold); margin-bottom: 5px; }
+    .guardrail p { color: #c1ccdb; font-size: 10px; }
+
+    .sources { margin-top: auto; padding-top: 13px; border-top: 1px solid rgba(123,231,255,.2); color: #91a3bd; }
+    .sources strong { color: #d5deeb; }
+    .sources a { color: #a9d8ff; text-decoration: none; }
+
+    .footer { margin-top: auto; padding-top: 13px; display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid var(--line); color: var(--slate); font-size: 8.5px; }
+    .dark .footer, .night .footer { border-top-color: rgba(123,231,255,.2); color: #8fa0b8; }
+    .footer strong { color: var(--ink); }
+    .dark .footer strong, .night .footer strong { color: var(--white); }
+
+    @media print {
+      html, body { background: transparent; }
+      .page { margin: 0; box-shadow: none; }
+      a { color: inherit; }
+    }
+  </style>
+</head>
+<body>
+  <section class="page night grid-bg cover">
+    <div class="orbit" aria-hidden="true">
+      <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
+      <div class="core"></div><div class="node n1"></div><div class="node n2"></div><div class="node n3"></div>
+    </div>
+    <div class="page-inner">
+      <div class="topbar">
+        <div class="brand">
+          <img src="assets/momentum-logo.png" alt="Momentum 360 mark">
+          <div class="brand-word">Momentum 360</div>
+        </div>
+        <div class="kicker">Prepared proposal</div>
+      </div>
+      <div class="hero">
+        <div class="kicker">AI narration system / August 20, 2026</div>
+        <div class="gold-rule"></div>
+        <h1>Turn 20+ courses into an audio library.</h1>
+        <p class="lead">One polished narrator. A repeatable production system. A hard budget cap with the right scope controls.</p>
+        <div class="price-lockup">
+          <div class="price">$600</div>
+          <div class="price-copy">fixed project budget<br><span class="muted">no recurring client fee</span></div>
+        </div>
+      </div>
+      <div class="prepared">
+        <div>
+          <strong>Prepared for</strong>
+          <span>Global Leader Solutions<br>Dr. Andrew Campbell</span>
+        </div>
+        <div>
+          <strong>Recommended by</strong>
+          <span>Momentum 360<br>AI assisted content production</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="page-inner">
+      <div class="topbar">
+        <div class="brand"><img src="assets/momentum-logo.png" alt=""><div class="brand-word">Momentum 360</div></div>
+        <div class="page-no">01 / The ask</div>
+      </div>
+      <div class="section-head">
+        <div><div class="kicker" style="color:var(--gold-deep)">What we heard</div></div>
+        <div><h2>Easy to generate.<br>Expensive to fix badly.</h2></div>
+      </div>
+      <div class="rule"></div>
+      <p class="summary" style="font-size:12px;color:var(--slate);max-width:6.7in">The opportunity is to convert more than 20 leadership courses, each roughly 10–30 pages, into useful audio editions. AI makes the narration affordable. The real work is deciding what should be spoken, standardizing the scripts, correcting names and acronyms, and packaging consistent files.</p>
+
+      <div class="metrics">
+        <div class="metric"><div class="num">20+</div><div class="label">course titles</div></div>
+        <div class="metric gold"><div class="num">200–600</div><div class="label">estimated source pages</div></div>
+        <div class="metric cyan"><div class="num">5.5–16.7h</div><div class="label">planning audio range*</div></div>
+      </div>
+
+      <div class="two-col">
+        <div class="panel">
+          <h3>The volume reality</h3>
+          <p>At a planning assumption of 250 words per page and 150 spoken words per minute, the collection could contain roughly <span class="accent">50,000–150,000 words</span>. Actual word count, not page count, must control the final scope.</p>
+        </div>
+        <div class="panel dark-panel">
+          <h3>The $600 reality</h3>
+          <p>The budget works only with <span class="accent">one narrator, clean source files, repeatable formatting, batch rendering, and one consolidated correction round</span>. A custom performance for every title would exceed the budget.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="big">125K</div>
+        <p><strong>Recommended narrated-word ceiling.</strong> All supplied titles can be included if the spoken text stays at or below 125,000 words after worksheets, tables, citations, quizzes, and repeated page furniture are removed.</p>
+      </div>
+
+      <div class="footer">
+        <div><strong>Planning note:</strong> estimates are illustrative until the source files are counted.</div>
+        <div>Global Leader Solutions / AI narration proposal</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page dark grid-bg">
+    <div class="page-inner">
+      <div class="topbar">
+        <div class="brand"><img src="assets/momentum-logo.png" alt=""><div class="brand-word">Momentum 360</div></div>
+        <div class="page-no">02 / Production system</div>
+      </div>
+      <div class="section-head">
+        <div><div class="kicker">The lean route</div></div>
+        <div><h2>One proof. One voice.<br>One controlled batch.</h2></div>
+      </div>
+      <div class="workflow">
+        <div class="step"><div class="idx">01</div><h3>Inventory and count</h3><p>Collect the course files, map titles and sections, count narrative words, and flag tables, worksheets, citations, or image-only content.</p></div>
+        <div class="step"><div class="idx">02</div><h3>Approve a 60-second proof</h3><p>Test three licensed stock voices on the same passage. Approve one voice, tone, pace, and pronunciation direction before bulk generation.</p></div>
+        <div class="step"><div class="idx">03</div><h3>Normalize the scripts</h3><p>Remove non-spoken page furniture, expand important acronyms, mark pauses, standardize headings, and build one pronunciation sheet.</p></div>
+        <div class="step"><div class="idx">04</div><h3>Batch-render by section</h3><p>Generate short, recoverable sections rather than one giant file. This contains errors and makes targeted fixes inexpensive.</p></div>
+        <div class="step"><div class="idx">05</div><h3>Quality control</h3><p>Run duration and file checks, review every opening and ending, listen at accelerated speed, and repair only the flagged sections.</p></div>
+        <div class="step"><div class="idx">06</div><h3>Package and hand off</h3><p>Deliver one master MP3 per course, consistently named section files where headings exist, and a manifest showing title, duration, and status.</p></div>
+      </div>
+
+      <div class="tech-strip">
+        <div class="tech"><strong>ElevenLabs Pro</strong><span>One month at the current $99 list price. Paid plans include commercial use; Pro lists 500,000 credits.</span></div>
+        <div class="tech"><strong>Batch efficiency</strong><span>Flash and Turbo models use 0.5 credits per character on self-serve plans, protecting generation capacity.</span></div>
+        <div class="tech"><strong>Audacity</strong><span>Free, open-source editing for clean trims, loudness normalization, metadata, and final MP3 export.</span></div>
+      </div>
+
+      <div class="guardrail">
+        <strong>Use a stock voice, not a clone.</strong>
+        <p>Voice cloning adds consent, testing, and revision risk. It is not required to create a professional leadership-library experience and is intentionally excluded from the $600 plan.</p>
+      </div>
+
+      <div class="footer">
+        <div><strong>Core principle:</strong> generate in small sections so one pronunciation fix never forces a full-course rerender.</div>
+        <div>Momentum 360 / Every angle. One next move.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="page-inner">
+      <div class="topbar">
+        <div class="brand"><img src="assets/momentum-logo.png" alt=""><div class="brand-word">Momentum 360</div></div>
+        <div class="page-no">03 / Scope and budget</div>
+      </div>
+      <div class="section-head">
+        <div><div class="kicker" style="color:var(--gold-deep)">Fixed project</div></div>
+        <div><h2>Put the money into quality control.</h2></div>
+      </div>
+
+      <div class="budget-grid">
+        <div class="price-card">
+          <div class="price">$600</div>
+          <div class="fixed">all-in project cap</div>
+          <p>The software is the small part of the spend. Most of the budget stays with script preparation, quality control, corrections, and organized delivery.</p>
+        </div>
+        <div class="budget-lines">
+          <div class="budget-line"><strong>Licensed narration engine</strong><span>$99</span><p>One paid production month with commercial-use rights and enough planned capacity for the scoped library.</p></div>
+          <div class="budget-line"><strong>Intake, cleanup, and batch setup</strong><span>$180</span><p>Inventory, word count, speech cleanup, pronunciation sheet, file naming, and generation template.</p></div>
+          <div class="budget-line"><strong>Rendering, QA, corrections, exports</strong><span>$251</span><p>Batch generation, structured review, targeted repairs, loudness normalization, MP3 packaging, and manifest.</p></div>
+          <div class="budget-line"><strong>Regeneration and contingency reserve</strong><span>$70</span><p>Protects the fixed price against difficult pronunciations, corrupted source sections, or limited rerenders.</p></div>
+        </div>
+      </div>
+
+      <div class="scope-grid">
+        <div class="scope in">
+          <h3>Included</h3>
+          <ul class="clean">
+            <li>All supplied course titles within 125,000 narrated words</li>
+            <li>One licensed stock narrator and one 60-second approval proof</li>
+            <li>Light speech cleanup without changing the teaching</li>
+            <li>Pronunciation support for supplied names and acronyms</li>
+            <li>One master MP3 per course plus section files when headings already exist</li>
+            <li>One consolidated technical-correction round</li>
+            <li>Delivery manifest with filenames, titles, durations, and status</li>
+          </ul>
+        </div>
+        <div class="scope out">
+          <h3>Intentionally excluded</h3>
+          <ul class="clean gold">
+            <li>Custom voice cloning or celebrity-style imitation</li>
+            <li>Major rewriting, fact-checking, or instructional redesign</li>
+            <li>Music, sound effects, character voices, or dramatization</li>
+            <li>Kajabi, WordPress, LMS, Audible, or retailer upload and configuration</li>
+            <li>ACX-specific retail mastering, ISBNs, cover art, or distribution</li>
+            <li>Unlimited revisions or preference changes after voice approval</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="time"><strong>Day 1</strong><span>Files received, counted, and scope confirmed.</span></div>
+        <div class="time"><strong>Day 2</strong><span>Voice proof approved; production template locked.</span></div>
+        <div class="time"><strong>Days 3–10</strong><span>Batch production, QA, corrections, and delivery.</span></div>
+      </div>
+
+      <div class="footer">
+        <div><strong>Price condition:</strong> complete, editable source text and one decision-maker for voice approval.</div>
+        <div>Proposal pricing valid for 14 days</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page night grid-bg">
+    <div class="page-inner">
+      <div class="topbar">
+        <div class="brand"><img src="assets/momentum-logo.png" alt=""><div class="brand-word">Momentum 360</div></div>
+        <div class="page-no">04 / Decision</div>
+      </div>
+      <div class="section-head">
+        <div><div class="kicker">Ready to begin</div></div>
+        <div><h2>A small approval gate<br>protects the whole budget.</h2></div>
+      </div>
+
+      <div class="decision">
+        <div class="decision-card">
+          <div class="kicker">Recommended authorization</div>
+          <div class="gold-rule"></div>
+          <h2>Approve the $600 project after the narrated-word count is confirmed.</h2>
+          <p>Momentum 360 will first validate the files against the 125,000-word ceiling. Once the voice proof is approved, the rest of the library moves through one repeatable production system.</p>
+          <div class="cta">Approve fixed-scope production</div>
+        </div>
+        <div class="requirements">
+          <div class="req"><div class="check">1</div><div><strong>Course source files</strong><span>Editable Word, PDF, or exported course text, organized by title.</span></div></div>
+          <div class="req"><div class="check">2</div><div><strong>Narration exclusions</strong><span>Confirm whether worksheets, quizzes, references, and tables should be spoken.</span></div></div>
+          <div class="req"><div class="check">3</div><div><strong>Pronunciation list</strong><span>Names, acronyms, branded frameworks, and any required emphasis.</span></div></div>
+          <div class="req"><div class="check">4</div><div><strong>Voice decision</strong><span>One approver selects the voice, pacing, and tone from the sample.</span></div></div>
+          <div class="req"><div class="check">5</div><div><strong>Rights confirmation</strong><span>Global Leader Solutions confirms it owns or controls the source-text rights.</span></div></div>
+        </div>
+      </div>
+
+      <div class="guardrail">
+        <strong>No surprise-overage rule</strong>
+        <p>If the narrated text exceeds 125,000 words, the fee stays at $600. We preserve the cap by removing nonessential spoken material or delivering the highest-priority titles first. Any broader scope requires a new written approval.</p>
+      </div>
+
+      <div class="sources">
+        <small><strong>Pricing and licensing snapshot, August 20, 2026.</strong> ElevenLabs public pricing lists Pro at $99/month with 500,000 credits; its help center states that paid plans include commercial use when the customer owns the input rights. Its credit guide states that Flash and Turbo models use 0.5 credits per text character on self-serve plans. Audacity describes its editor as free and open source. Sources: <a href="https://elevenlabs.io/pricing">elevenlabs.io/pricing</a>, <a href="https://help.elevenlabs.io/hc/en-us/articles/27562020846481-What-are-credits">ElevenLabs credit guide</a>, <a href="https://help.elevenlabs.io/hc/en-us/articles/13313564601361-Can-I-publish-the-content-I-generate-on-the-platform">ElevenLabs commercial-use guide</a>, <a href="https://www.audacityteam.org/">audacityteam.org</a>. Vendor prices and terms can change; final setup is rechecked before purchase.</small>
+      </div>
+
+      <div class="footer">
+        <div><strong>Momentum 360</strong> · momentumvirtualtours.com · (215) 607-6482</div>
+        <div>Prepared for Global Leader Solutions</div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

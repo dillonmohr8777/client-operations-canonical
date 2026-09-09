@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <style>
+    body { margin: 0; }
+    a { color: #2A80C2; } a:hover { color: #17557F; }
+
+    /* Every demo chip loops so the spec shows the move rather than naming it. */
+    @keyframes dcRise   { 0%,6%  { opacity:0; transform:translateY(14px); }
+                          34%,88%{ opacity:1; transform:none; }
+                          100%   { opacity:0; transform:translateY(14px); } }
+    @keyframes dcPop    { 0%,6%  { opacity:0; transform:scale(.84); }
+                          36%,88%{ opacity:1; transform:scale(1); }
+                          100%   { opacity:0; transform:scale(.84); } }
+    @keyframes dcSettle { 0%,6%  { opacity:0; transform:scale(1.08); }
+                          40%,88%{ opacity:1; transform:scale(1); }
+                          100%   { opacity:0; transform:scale(1.08); } }
+    @keyframes dcFade   { 0%,6%  { opacity:0; } 36%,88% { opacity:1; } 100% { opacity:0; } }
+    @keyframes dcWipeR  { 0%,6%  { clip-path:inset(0 100% 0 0); }
+                          38%,88%{ clip-path:inset(0 0 0 0); }
+                          100%   { clip-path:inset(0 100% 0 0); } }
+    @keyframes dcWipeL  { 0%,6%  { clip-path:inset(0 0 0 100%); }
+                          38%,88%{ clip-path:inset(0 0 0 0); }
+                          100%   { clip-path:inset(0 0 0 100%); } }
+    @keyframes dcWipeD  { 0%,6%  { clip-path:inset(0 0 100% 0); }
+                          38%,88%{ clip-path:inset(0 0 0 0); }
+                          100%   { clip-path:inset(0 0 100% 0); } }
+
+    .demo > * { animation-duration: 3.2s; animation-iteration-count: infinite;
+                animation-timing-function: cubic-bezier(.16,.84,.32,1); }
+    .rise   > * { animation-name: dcRise; }
+    .pop    > * { animation-name: dcPop; }
+    .settle > * { animation-name: dcSettle; }
+    .fade   > * { animation-name: dcFade; }
+    .wipeR  > * { animation-name: dcWipeR; }
+    .wipeL  > * { animation-name: dcWipeL; }
+    .wipeD  > * { animation-name: dcWipeD; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .demo > * { animation: none !important; opacity: 1 !important;
+                  transform: none !important; clip-path: none !important; }
+    }
+  </style>
+</helmet>
+
+<div style="width:1120px; background:#FFFFFF; font-family:Archivo, 'Helvetica Neue', Arial, sans-serif; color:#0F151B;">
+
+  <!-- header -->
+  <div style="background:#0A1825; color:#FFFFFF; padding:56px 64px 48px; position:relative; overflow:hidden;">
+    <div style="position:absolute; right:-90px; top:-70px; width:360px; height:360px; border-radius:50%; border:44px solid #112B3F;"></div>
+    <div style="position:relative;">
+      <div style="font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.24em; color:#5AA7E0; margin-bottom:20px;">CLIENT-DECK &nbsp;/&nbsp; MOTION SYSTEM</div>
+      <div style="font-size:52px; font-weight:700; line-height:1.02; letter-spacing:-.02em; max-width:660px;">Every shape says<br>what it is.</div>
+      <div style="font-size:16px; line-height:1.55; color:#9DB5C8; max-width:600px; margin-top:22px;">
+        The kit stamps each shape with <span style="font-family:'JetBrains Mono', monospace; font-size:14px; color:#BDD3E4;">role:&lt;name&gt;</span>.
+        The choreographer reads those names and gives every role a move that suits what it is,
+        instead of fading everything uniformly because it cannot tell a rule from a headline.
+      </div>
+    </div>
+  </div>
+
+  <!-- legend strip -->
+  <div style="display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:0; border-bottom:1px solid #E2EAF1;">
+    <div style="padding:22px 24px 22px 64px; border-right:1px solid #E2EAF1;">
+      <div style="font-size:26px; font-weight:700; color:#2A80C2;">55<span style="font-size:15px;">ms</span></div>
+      <div style="font-size:12px; color:#5A6772; margin-top:4px;">Stagger between content</div>
+    </div>
+    <div style="padding:22px 24px; border-right:1px solid #E2EAF1;">
+      <div style="font-size:26px; font-weight:700; color:#2A80C2;">0<span style="font-size:15px;">ms</span></div>
+      <div style="font-size:12px; color:#5A6772; margin-top:4px;">Structure, always</div>
+    </div>
+    <div style="padding:22px 24px; border-right:1px solid #E2EAF1;">
+      <div style="font-size:26px; font-weight:700; color:#2A80C2;">18</div>
+      <div style="font-size:12px; color:#5A6772; margin-top:4px;">Content effects, capped</div>
+    </div>
+    <div style="padding:22px 24px;">
+      <div style="font-size:26px; font-weight:700; color:#2A80C2;">70<span style="font-size:15px;">%</span></div>
+      <div style="font-size:12px; color:#5A6772; margin-top:4px;">Deceleration on every move</div>
+    </div>
+  </div>
+
+  <!-- the map -->
+  <div style="padding:44px 64px 56px;">
+
+    <!-- column heads -->
+    <div style="display:grid; grid-template-columns:250px 108px 74px 1fr 132px; gap:20px; align-items:end; padding-bottom:12px; border-bottom:1.5px solid #CBD8E3;">
+      <div style="font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:.18em; color:#2A80C2;">ROLE</div>
+      <div style="font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:.18em; color:#2A80C2;">MOVE</div>
+      <div style="font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:.18em; color:#2A80C2;">DUR</div>
+      <div style="font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:.18em; color:#2A80C2;">WHY</div>
+      <div style="font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:.18em; color:#2A80C2; text-align:right;">DEMO</div>
+    </div>
+
+    <sc-for list="{{groups}}" as="g" hint-placeholder-count="6">
+      <div style="margin-top:30px;">
+        <div style="font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#0F151B; margin-bottom:6px;">{{g.name}}</div>
+        <div style="font-size:12.5px; color:#5A6772; margin-bottom:14px; max-width:760px; line-height:1.5;">{{g.note}}</div>
+
+        <sc-for list="{{g.rows}}" as="r" hint-placeholder-count="4">
+          <div style="display:grid; grid-template-columns:250px 108px 74px 1fr 132px; gap:20px; align-items:center; padding:13px 0; border-bottom:1px solid #E2EAF1;">
+            <div style="font-family:'JetBrains Mono', monospace; font-size:13px; font-weight:600; color:#0F151B;">{{r.role}}</div>
+            <div style="font-size:13px; font-weight:600; color:{{r.tone}};">{{r.move}}</div>
+            <div style="font-family:'JetBrains Mono', monospace; font-size:12px; color:#5A6772;">{{r.dur}}</div>
+            <div style="font-size:12.5px; color:#5A6772; line-height:1.5;">{{r.why}}</div>
+            <div class="demo {{r.cls}}" style="justify-self:end; width:120px; height:34px; display:flex; align-items:center; justify-content:flex-end; overflow:hidden;">
+              <div style="{{r.chip}}"></div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-for>
+
+    <!-- never -->
+    <div style="margin-top:34px; background:#F1F6FA; padding:24px 28px;">
+      <div style="font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#0F151B; margin-bottom:8px;">Never animated</div>
+      <div style="display:flex; gap:28px; align-items:baseline; flex-wrap:wrap;">
+        <div style="font-family:'JetBrains Mono', monospace; font-size:13px; font-weight:600;">role:static</div>
+        <div style="font-family:'JetBrains Mono', monospace; font-size:13px; font-weight:600;">role:foot</div>
+        <div style="font-size:12.5px; color:#5A6772; line-height:1.5; flex:1; min-width:340px;">
+          Page numbers and footnotes are furniture. They are on the slide the moment it arrives,
+          because animating them draws the eye to the least important thing in the room.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const bar = (w, c) => `width:${w}px;height:10px;background:${c};`;
+    const txt = (w) => `width:${w}px;height:9px;background:#0F151B;border-radius:1px;`;
+    const num = (w) => `width:${w}px;height:22px;background:#2A80C2;border-radius:2px;`;
+
+    return {
+      groups: [
+        {
+          name: 'Structure',
+          note: 'Lands first, at zero delay, so the slide is composed the instant it arrives. Only content staggers.',
+          rows: [
+            { role: 'panel-left',  move: 'Wipe right', dur: '420', tone: '#17557F', cls: 'wipeR',
+              why: 'A full bleed panel grows from the edge it bleeds off, never fades in place', chip: bar(112, '#0A1825') },
+            { role: 'panel-right', move: 'Wipe left',  dur: '420', tone: '#17557F', cls: 'wipeL',
+              why: 'Same move, mirrored, so the direction always matches the anchor', chip: bar(112, '#0A1825') },
+            { role: 'panel-top',   move: 'Wipe down',  dur: '420', tone: '#17557F', cls: 'wipeD',
+              why: 'Case study bands drop from the top edge', chip: bar(112, '#0A1825') },
+            { role: 'motif',       move: 'Fade',       dur: '900', tone: '#5A6772', cls: 'fade',
+              why: 'The oversized monogram is atmosphere. Slow, and it never moves', chip: 'width:34px;height:34px;border-radius:50%;border:7px solid #D6E6F2;' },
+            { role: 'logo',        move: 'Fade',       dur: '320', tone: '#5A6772', cls: 'fade',
+              why: 'Present, not announced', chip: 'width:76px;height:17px;background:#2A80C2;border-radius:2px;' },
+          ],
+        },
+        {
+          name: 'Headings',
+          note: 'Rise is a fade plus a small upward translate. The travel scales with the type: a 54pt display moves further than an 11pt kicker.',
+          rows: [
+            { role: 'kicker',  move: 'Rise 0.020', dur: '280', tone: '#2A80C2', cls: 'rise',
+              why: 'Smallest travel. It is a label, not an entrance', chip: txt(58) },
+            { role: 'title',   move: 'Rise 0.032', dur: '420', tone: '#2A80C2', cls: 'rise',
+              why: 'The slide headline, so it carries the most travel of the standard set', chip: txt(104) },
+            { role: 'display', move: 'Rise 0.038', dur: '480', tone: '#2A80C2', cls: 'rise',
+              why: 'Opener only. Longest and furthest, because it is the first thing anyone sees', chip: txt(116) },
+            { role: 'sub',     move: 'Rise 0.024', dur: '340', tone: '#2A80C2', cls: 'rise',
+              why: 'Follows the title closely enough to read as one unit', chip: txt(88) },
+          ],
+        },
+        {
+          name: 'Figures',
+          note: 'The number is the hero, so the number is the only thing that scales. Everything else in the deck moves on one axis or not at all.',
+          rows: [
+            { role: 'hero',         move: 'Pop 84%',  dur: '520', tone: '#C0392B', cls: 'pop',
+              why: 'The single largest figure on a case study. Deepest scale, longest hold', chip: num(96) },
+            { role: 'figure',       move: 'Pop 88%',  dur: '420', tone: '#C0392B', cls: 'pop',
+              why: 'Every supporting statistic. Enough scale to register, not enough to bounce', chip: num(66) },
+            { role: 'figure-label', move: 'Fade',     dur: '260', tone: '#5A6772', cls: 'fade',
+              why: 'Labels arrive under their number without competing with it', chip: txt(70) },
+            { role: 'numeral',      move: 'Settle',   dur: '900', tone: '#23A455', cls: 'settle',
+              why: 'The giant section numeral is already huge, so it settles down from 106% rather than up', chip: 'width:52px;height:34px;background:#112B3F;border-radius:2px;' },
+          ],
+        },
+        {
+          name: 'Lists and process',
+          note: 'Editorial rows read top to bottom. The head leads, the body follows a beat later.',
+          rows: [
+            { role: 'row-head',  move: 'Rise 0.018', dur: '300', tone: '#2A80C2', cls: 'rise',
+              why: 'Leads its row', chip: txt(76) },
+            { role: 'row-body',  move: 'Fade',       dur: '280', tone: '#5A6772', cls: 'fade',
+              why: 'Arrives with its head, without a second direction of travel', chip: txt(112) },
+            { role: 'step-num',  move: 'Pop 88%',    dur: '320', tone: '#C0392B', cls: 'pop',
+              why: 'A step number is a small figure, so it gets the figure treatment', chip: num(30) },
+            { role: 'step-head', move: 'Rise 0.018', dur: '280', tone: '#2A80C2', cls: 'rise',
+              why: 'Matches row-head, because it is the same thing in a different layout', chip: txt(72) },
+          ],
+        },
+        {
+          name: 'Rules',
+          note: 'A hairline should draw, not appear. This is the detail that most reads as considered.',
+          rows: [
+            { role: 'rule-h', move: 'Wipe right', dur: '460', tone: '#17557F', cls: 'wipeR',
+              why: 'Draws left to right, in reading direction', chip: 'width:112px;height:2px;background:#CBD8E3;' },
+            { role: 'rule-v', move: 'Wipe down',  dur: '340', tone: '#17557F', cls: 'wipeD',
+              why: 'Column separators draw downward, faster because they are shorter', chip: 'width:2px;height:30px;background:#CBD8E3;' },
+          ],
+        },
+        {
+          name: 'Everything else',
+          note: 'Two defaults, so an untagged shape is never louder than a tagged one.',
+          rows: [
+            { role: 'block', move: 'Fade', dur: '320', tone: '#5A6772', cls: 'fade',
+              why: 'Filled regions, tables and charts the kit does not name', chip: 'width:96px;height:30px;background:#F1F6FA;border:1px solid #E2EAF1;' },
+            { role: 'body',  move: 'Fade', dur: '280', tone: '#5A6772', cls: 'fade',
+              why: 'Any text with no more specific role', chip: txt(100) },
+          ],
+        },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

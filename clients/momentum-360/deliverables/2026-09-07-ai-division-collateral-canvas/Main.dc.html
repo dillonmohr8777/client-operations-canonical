@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Nunito+Sans:wght@400;700;800&amp;family=Caveat:wght@600&amp;display=swap">
+  <style>
+    body { margin: 0; background: #0E1417; }
+    a { color: #3897CC; } a:hover { color: #F4F1EC; }
+    @keyframes mRise   { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+    @keyframes mFade   { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes mWipeL  { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 0); } }
+    @keyframes mSettle { from { opacity: 0; transform: rotate(-4deg) scale(1.08); } to { opacity: 1; transform: rotate(-4deg) scale(1); } }
+    .rise   { animation: mRise 800ms cubic-bezier(.16,1,.3,1) both; }
+    .fade   { animation: mFade 500ms cubic-bezier(.2,.7,.2,1) both; }
+    .wipe   { animation: mWipeL 800ms cubic-bezier(.85,0,.15,1) both; }
+    .settle { animation: mSettle 800ms cubic-bezier(.16,1,.3,1) both; }
+    .d1 { animation-delay: 70ms; }  .d2 { animation-delay: 140ms; } .d3 { animation-delay: 210ms; }
+    .d4 { animation-delay: 280ms; } .d5 { animation-delay: 350ms; } .d6 { animation-delay: 420ms; }
+    .d7 { animation-delay: 560ms; } .d8 { animation-delay: 700ms; }
+    @media (prefers-reduced-motion: reduce) {
+      .rise, .fade, .wipe, .settle { animation-duration: 1ms; animation-delay: 0ms; }
+    }
+  </style>
+</helmet>
+
+<div style="position: relative; width: 816px; height: 1056px; overflow: hidden; background: #0E1417; color: #F4F1EC; font-family: 'Nunito Sans', 'Segoe UI', system-ui, sans-serif;">
+
+  <!-- signal band bleeding off the right edge; wipes in from that edge -->
+  <div class="wipe" style="position: absolute; top: 0; right: 0; width: 112px; height: 1056px; background: #E27113;"></div>
+
+  <!-- top row: logo + edition -->
+  <div style="position: absolute; top: 56px; left: 64px; right: 176px; display: flex; justify-content: space-between; align-items: center;">
+    <img class="fade" src="momentum-logo-white.png" alt="Momentum" style="width: 186px; height: 40px; object-fit: contain; object-position: left center;">
+    <div class="fade d2" style="font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #8A9296;">Field guide 01 · 2026</div>
+  </div>
+
+  <!-- kicker -->
+  <div class="rise d1" style="position: absolute; top: 236px; left: 64px; font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #3897CC;">Momentum AI Division · Philadelphia</div>
+
+  <!-- title, three lines, each its own entrance -->
+  <div style="position: absolute; top: 272px; left: 64px; width: 600px; font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 108px; line-height: 0.92; letter-spacing: -0.02em; color: #F4F1EC;">
+    <div class="rise d2">Show up</div>
+    <div class="rise d3">in the</div>
+    <div class="rise d4">answer.</div>
+  </div>
+
+  <!-- subtitle -->
+  <div class="rise d5" style="position: absolute; top: 640px; left: 64px; width: 520px; font-size: 22px; line-height: 1.45; color: #F4F1EC;">
+    How Philadelphia businesses get recommended by ChatGPT, Google AI Overviews and Perplexity, and what it costs when they don't.
+  </div>
+
+  <!-- the one script accent on the page -->
+  <div class="settle d7" style="position: absolute; top: 762px; left: 66px; transform: rotate(-4deg); font-family: Caveat, 'Segoe Script', cursive; font-size: 34px; font-weight: 600; color: #E27113;">the answer is the new first page</div>
+
+  <!-- hairline + author block -->
+  <div class="fade d6" style="position: absolute; left: 64px; right: 176px; top: 900px; height: 1px; background: #1A2226;"></div>
+  <div class="rise d8" style="position: absolute; left: 64px; top: 926px; display: flex; gap: 48px; align-items: flex-start;">
+    <div>
+      <div style="font-size: 16px; font-weight: 800; color: #F4F1EC;">Dillon Mohr</div>
+      <div style="font-size: 14px; color: #8A9296; margin-top: 2px;">AI Marketing Director, Momentum Digital</div>
+    </div>
+    <div>
+      <div style="font-size: 16px; font-weight: 800; color: #F4F1EC;">needmomentum.com</div>
+      <div style="font-size: 14px; color: #8A9296; margin-top: 2px;">Inc. 5000, three consecutive years</div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

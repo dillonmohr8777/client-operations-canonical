@@ -1,5 +1,11 @@
 # Tags 2 Go operating context
 
+## Current stop state
+
+- On 2026-08-24 Sean Boyle directed Dillon to stop all work for Tags 2 Go.
+- Treat the client as inactive for new production, reporting, optimization, and communication work until Dillon or Sean explicitly reactivates it.
+- This is an operational stop, not independent authorization to pause or mutate a live advertising account.
+
 ## Current verified scope
 
 - Tags 2 Go is an active Momentum 360 Google Ads client with an exact Slack route `#tags-2-go`.

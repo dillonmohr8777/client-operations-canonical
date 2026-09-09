@@ -1,0 +1,1441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow, noarchive">
+<title>Built in Bricks</title>
+<meta name="description" content="Private review deck. BigOrange Marketing WordPress SEO, AEO and GEO walkthrough, September 3 2026.">
+<link rel="icon" href="assets/logo-mark.png">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   BigOrange · September 3 2026 leadership review
+   Palette + faces taken from the client's own design tokens
+   (DESIGN.md: drawing-paper, builder-ink, deep-orange, plan-line,
+   muted-copy) and from bigorange-logo-orange.png -> #FF7C00.
+   ═══════════════════════════════════════════════════════════ */
+
+@font-face{font-family:Unbounded;src:url("assets/fonts/unbounded.woff2") format("woff2");font-weight:200 900;font-style:normal;font-display:swap}
+@font-face{font-family:Manrope;src:url("assets/fonts/manrope.woff2") format("woff2");font-weight:200 900;font-style:normal;font-display:swap}
+
+:root{
+  color-scheme:light;
+
+  --paper:#F6F2EA;
+  --paper-2:#FBF8F3;
+  --ink:#191919;
+  --orange:#FF7C00;
+  --ember:#B94800;
+  --plan:#D8D0C4;
+  --plan-soft:#E7E0D5;
+  --slate:#69645E;
+  --blueprint:#1B4664;
+
+  --ok:#1F6B45;
+  --warn:#96601A;
+  --stop:#A32E24;
+
+  --dsp:Unbounded,"Segoe UI Variable Display","Helvetica Neue",Arial,sans-serif;
+  --bdy:Manrope,"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+
+  --ease:cubic-bezier(.16,1,.3,1);
+  --mx:50%;--my:35%;
+  --r:16px;
+}
+
+/* deliberately single-theme: a warm paper board, painted explicitly,
+   so it holds on any host ground. */
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--bdy);font-size:16px;line-height:1.5;font-weight:400;
+  overflow:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+
+/* ── ambient ground ───────────────────────────────────────── */
+.field{position:fixed;inset:-14%;z-index:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(88px);will-change:transform}
+.o1{width:50vw;height:50vw;left:-8vw;top:-10vw;background:radial-gradient(circle at 42% 42%,rgba(255,124,0,.30),rgba(255,124,0,0) 68%);animation:d1 68s var(--ease) infinite alternate}
+.o2{width:42vw;height:42vw;right:-6vw;top:14vh;background:radial-gradient(circle at 52% 46%,rgba(185,72,0,.20),rgba(185,72,0,0) 70%);animation:d2 86s var(--ease) infinite alternate}
+.o3{width:36vw;height:36vw;left:34vw;bottom:-16vw;background:radial-gradient(circle at 50% 50%,rgba(27,70,100,.13),rgba(27,70,100,0) 70%);animation:d3 98s var(--ease) infinite alternate}
+@keyframes d1{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(13vw,9vh,0) scale(1.16)}}
+@keyframes d2{from{transform:translate3d(0,0,0) scale(1.08)}to{transform:translate3d(-11vw,13vh,0) scale(.94)}}
+@keyframes d3{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-15vw,-11vh,0) scale(1.2)}}
+.paperline{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(var(--plan-soft) 1px,transparent 1px),linear-gradient(90deg,var(--plan-soft) 1px,transparent 1px);
+  background-size:88px 88px;
+  -webkit-mask-image:radial-gradient(120% 90% at 50% 40%,#000 25%,transparent 78%);
+  mask-image:radial-gradient(120% 90% at 50% 40%,#000 25%,transparent 78%)}
+
+/* ── frosted panel ────────────────────────────────────────── */
+.panel{
+  position:relative;border-radius:var(--r);
+  background:linear-gradient(158deg,rgba(255,255,255,.86),rgba(255,255,255,.62) 52%,rgba(255,255,255,.74));
+  backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    inset 0 0 0 1px rgba(25,25,25,.055),
+    0 1px 2px rgba(60,45,30,.06),
+    0 18px 40px -22px rgba(60,45,30,.30);
+  overflow:hidden;
+}
+.panel::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:radial-gradient(58% 88% at var(--mx) var(--my),rgba(255,255,255,.55),rgba(255,255,255,0) 60%)}
+.panel--plain::after{display:none}
+.panel--lift{box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 0 0 1px rgba(25,25,25,.06),0 2px 4px rgba(60,45,30,.07),0 34px 64px -28px rgba(60,45,30,.42)}
+.panel--key{box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 0 0 1.5px rgba(255,124,0,.45),0 2px 4px rgba(60,45,30,.07),0 26px 54px -26px rgba(185,72,0,.34)}
+
+/* ── deck shell ───────────────────────────────────────────── */
+.deck{position:relative;z-index:2;height:100vh;height:100dvh;display:flex;flex-direction:column}
+.stage{position:relative;flex:1;min-height:0}
+.slide{
+  position:absolute;inset:0;display:grid;align-content:center;gap:clamp(14px,1.7vh,26px);
+  padding:clamp(26px,4vh,54px) clamp(26px,5vw,88px) clamp(72px,9vh,92px);
+  opacity:0;visibility:hidden;transform:translate3d(0,26px,0);
+  transition:opacity .58s var(--ease),transform .58s var(--ease),visibility 0s linear .58s;
+  overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--plan) transparent;
+}
+.slide.is-active{opacity:1;visibility:visible;transform:none;transition-delay:0s,0s,0s}
+.slide.is-prev{transform:translate3d(0,-20px,0)}
+
+/* ── type ─────────────────────────────────────────────────── */
+.eyebrow{font-family:var(--bdy);font-weight:700;font-size:clamp(10px,.75vw,12px);letter-spacing:.19em;
+  text-transform:uppercase;color:var(--ember);margin:0;display:flex;align-items:center;gap:12px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--plan);max-width:190px}
+h1{font-family:var(--dsp);font-weight:730;font-size:clamp(38px,5.6vw,86px);line-height:.9;letter-spacing:-.045em;margin:0;text-wrap:balance}
+h2{font-family:var(--dsp);font-weight:700;font-size:clamp(25px,3.05vw,45px);line-height:1;letter-spacing:-.038em;margin:0;text-wrap:balance}
+h3{font-family:var(--dsp);font-weight:640;font-size:clamp(15px,1.2vw,19px);line-height:1.15;letter-spacing:-.02em;margin:0}
+.accent{color:var(--ember);display:block}
+.lede{font-size:clamp(15.5px,1.28vw,21px);line-height:1.5;color:var(--ink);max-width:60ch;margin:0;font-weight:450}
+.sub{color:var(--slate);font-size:clamp(13px,1vw,15.5px);line-height:1.55;max-width:72ch;margin:0}
+.tiny{font-size:clamp(10.5px,.76vw,12.5px);color:var(--slate);line-height:1.5;margin:0;letter-spacing:.005em}
+.mono{font-variant-numeric:tabular-nums;font-weight:600;letter-spacing:.01em}
+p{margin:0 0 .65em}p:last-child{margin-bottom:0}
+strong{font-weight:700}
+.num{font-family:var(--dsp);font-weight:730;letter-spacing:-.05em;font-variant-numeric:tabular-nums;color:var(--ember);line-height:.85}
+
+/* ── grids ────────────────────────────────────────────────── */
+.cols{display:grid;gap:clamp(11px,1.15vw,20px)}
+.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.split{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:clamp(16px,2vw,34px);align-items:center}
+.split--w{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr)}
+.card{padding:clamp(13px,1.3vw,22px);display:flex;flex-direction:column;gap:7px;min-width:0}
+.stat{padding:clamp(13px,1.35vw,24px);display:flex;flex-direction:column;gap:5px;min-width:0}
+.stat .num{font-size:clamp(26px,3.2vw,50px)}
+.stat .lab{font-size:clamp(11.5px,.9vw,14px);font-weight:600;line-height:1.28;color:var(--ink)}
+.stat .src{font-size:clamp(9.5px,.68vw,11px);color:var(--slate);line-height:1.4;font-weight:500}
+
+/* ── chips / status ───────────────────────────────────────── */
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;
+  font-size:clamp(9.5px,.69vw,11px);font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;
+  background:rgba(255,255,255,.8);box-shadow:inset 0 0 0 1px rgba(25,25,25,.10);color:var(--ink)}
+.chip::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.chip--ok{color:var(--ok);box-shadow:inset 0 0 0 1px rgba(31,107,69,.32);background:rgba(31,107,69,.07)}
+.chip--pend{color:var(--warn);box-shadow:inset 0 0 0 1px rgba(150,96,26,.34);background:rgba(150,96,26,.08)}
+.chip--stop{color:var(--stop);box-shadow:inset 0 0 0 1px rgba(163,46,36,.32);background:rgba(163,46,36,.07)}
+.chip--none{color:var(--blueprint);box-shadow:inset 0 0 0 1px rgba(27,70,100,.28);background:rgba(27,70,100,.06)}
+
+/* ── tables ───────────────────────────────────────────────── */
+.tbl{width:100%;border-collapse:collapse;font-size:clamp(11.5px,.9vw,14px)}
+.tbl th{font-size:clamp(9.5px,.68vw,11px);letter-spacing:.13em;text-transform:uppercase;color:var(--ember);
+  text-align:left;font-weight:700;padding:0 11px 8px;border-bottom:1px solid var(--plan)}
+.tbl td{padding:8px 11px;border-bottom:1px solid var(--plan-soft);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td.d{color:var(--slate)}
+.tbl td.m{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--blueprint)}
+.tbl td.rt{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.scroller{overflow-x:auto;max-width:100%}
+
+/* ── lists ────────────────────────────────────────────────── */
+.ticks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+.ticks li{position:relative;display:block;min-width:0;padding-left:19px;overflow-wrap:break-word;
+  font-size:clamp(12.5px,.95vw,15px);line-height:1.45}
+.ticks li::before{content:"";position:absolute;left:0;top:.72em;width:9px;height:5px;border-radius:1px;
+  background:var(--orange);box-shadow:inset 0 .5px 0 rgba(255,255,255,.5)}
+.ticks--q li::before{background:var(--plan)}
+
+/* ── figures ──────────────────────────────────────────────── */
+.shot{border-radius:12px;overflow:hidden;position:relative;margin:0;background:var(--paper-2);
+  box-shadow:inset 0 0 0 1px rgba(25,25,25,.08),0 26px 54px -26px rgba(60,45,30,.48)}
+.shot img{display:block;width:100%;height:auto}
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:20px 12px 9px;
+  background:linear-gradient(transparent,rgba(25,25,25,.86));color:#F6F2EA;
+  font-size:clamp(9.5px,.69vw,11.5px);font-weight:600;letter-spacing:.05em}
+.shot--ph{max-width:min(186px,25vh);margin:0 auto;border-radius:16px}
+
+/* ═══ 1 · INTRO OVERTURE ══════════════════════════════════ */
+.overture{display:grid;justify-items:center;align-content:center;gap:clamp(7px,1.25vh,20px);text-align:center;min-height:0}
+.overture h1{font-size:clamp(28px,min(5.4vw,7.6vh),80px)}
+.overture .lede{font-size:clamp(14px,min(1.25vw,2.1vh),20px);max-width:52ch}
+
+.wordmark{position:relative;display:flex;align-items:baseline;justify-content:center;gap:.005em;
+  font-family:var(--dsp);font-weight:730;font-size:clamp(26px,min(7.6vw,9vh),112px);line-height:1;letter-spacing:-.05em;
+  color:var(--ink);height:1.05em}
+.ltr{position:relative;display:inline-block}
+/* the sizing glyph keeps the slot width stable while faces swap */
+.ltr>.sizer{visibility:hidden}
+.face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .09s linear;will-change:opacity}
+.face.on{opacity:1}
+
+/* the seven treatments, each a different medium, not a recolour */
+.f-true{color:var(--ink)}
+.f-brick{
+  color:transparent;-webkit-background-clip:text;background-clip:text;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.85) 0 1.5px,transparent 1.5px 11px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.85) 0 1.5px,transparent 1.5px 23px),
+    linear-gradient(160deg,#FF9430,#FF7C00 45%,#C24A00);
+  filter:drop-shadow(0 1px 0 rgba(0,0,0,.14))}
+.f-blue{
+  color:transparent;-webkit-text-stroke:1.6px var(--blueprint);paint-order:stroke fill;
+  background-image:repeating-linear-gradient(90deg,var(--blueprint) 0 1px,transparent 1px 9px);
+  -webkit-background-clip:text;background-clip:text;opacity:.98}
+.f-marker{color:var(--ember);font-family:var(--bdy);font-weight:800;font-style:italic;
+  transform:rotate(-4deg) skewX(-7deg);text-shadow:2px 2px 0 rgba(185,72,0,.20)}
+/* letterpress: struck into the paper, dark enough to read, shadowed to look debossed */
+.f-press{color:#4A423A;text-shadow:0 1.5px 0 rgba(255,255,255,.92),0 -1px 1px rgba(60,45,30,.5)}
+.f-photo{color:transparent;-webkit-background-clip:text;background-clip:text;
+  background-image:url("assets/texture-framing.webp");background-size:220% auto;background-position:38% 46%}
+.f-dot{color:transparent;-webkit-background-clip:text;background-clip:text;
+  background-image:radial-gradient(circle at center,var(--ink) 1.4px,transparent 1.6px);background-size:6px 6px}
+.f-scrap{color:var(--ink);font-family:var(--bdy);font-weight:800;background:#FFFDF7;
+  transform:rotate(3deg);box-shadow:0 2px 0 rgba(60,45,30,.10),0 8px 16px -8px rgba(60,45,30,.5);
+  clip-path:polygon(2% 6%,14% 0,31% 7%,48% 1%,66% 8%,84% 2%,98% 9%,96% 92%,80% 99%,63% 93%,44% 100%,26% 92%,9% 99%,3% 90%)}
+
+.sparks{position:absolute;inset:-14%;pointer-events:none;overflow:visible}
+.spark{position:absolute;width:14px;height:14px;opacity:0;will-change:transform,opacity;
+  background:conic-gradient(from 0deg,transparent 0 8%,currentColor 12% 13%,transparent 17% 33%,currentColor 37% 38%,transparent 42% 58%,currentColor 62% 63%,transparent 67% 83%,currentColor 87% 88%,transparent 92%);
+  -webkit-mask-image:radial-gradient(circle,#000 62%,transparent 70%);mask-image:radial-gradient(circle,#000 62%,transparent 70%)}
+@keyframes sparkPop{0%{opacity:0;transform:translate3d(0,0,0) scale(.2) rotate(0)}
+  22%{opacity:1;transform:translate3d(var(--sx),var(--sy),0) scale(1.15) rotate(38deg)}
+  100%{opacity:0;transform:translate3d(calc(var(--sx)*1.9),calc(var(--sy)*1.9),0) scale(.35) rotate(88deg)}}
+.spark.go{animation:sparkPop .72s var(--ease) forwards}
+
+/* true logo resolve */
+.resolve{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;
+  transition:opacity .5s ease;pointer-events:none}
+.resolve img{height:100%;width:auto;max-width:100%;object-fit:contain}
+.wordmark.resolved .resolve{opacity:1}
+/* belt and braces: the cycling letters must leave nothing behind the real mark */
+.wordmark.resolved .ltr{opacity:0;pointer-events:none;transition:opacity .35s ease,visibility 0s linear .35s;visibility:hidden}
+.wordmark.resolved .face{opacity:0}
+
+/* the brick house that rises into frame */
+.riser{--rw:min(44vw,25vh,248px);position:relative;width:var(--rw);aspect-ratio:221/283;
+  transform:translate3d(0,120%,0);opacity:0;will-change:transform,opacity}
+.riser.up{transform:translate3d(0,0,0);opacity:1;transition:transform 1.15s var(--ease),opacity .5s ease}
+/* the brick layer fades as a group: a filling animation on each brick would
+   otherwise out-rank any opacity transition set on the bricks themselves */
+.riser .bricks{position:absolute;inset:0;opacity:1;transition:opacity .5s ease .1s}
+.riser .exact{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .55s ease}
+.riser.locked .exact{opacity:1}
+.riser.locked .bricks{opacity:0}
+.brick{position:absolute;width:8.371%;height:3.18%;border-radius:1.2px;
+  background:linear-gradient(152deg,#FF9836,#FF7C00 44%,#DC6600);
+  box-shadow:inset 0 .7px 0 rgba(255,255,255,.55),inset 0 -.7px 0 rgba(0,0,0,.16);
+  transform:translate3d(var(--dx),var(--dy),0) rotate(var(--rot)) scale(var(--sc));opacity:0;
+  will-change:transform,opacity}
+.building .brick{animation:land .88s var(--ease) var(--delay) forwards}
+@keyframes land{
+  0%{opacity:0;transform:translate3d(var(--dx),var(--dy),0) rotate(var(--rot)) scale(var(--sc))}
+  14%{opacity:1}
+  70%{transform:translate3d(0,5%,0) rotate(0deg) scale(1)}
+  85%{transform:translate3d(0,-1.6%,0) rotate(0deg) scale(1)}
+  100%{opacity:1;transform:translate3d(0,0,0) rotate(0deg) scale(1)}}
+.sheen{position:absolute;inset:0;overflow:hidden;pointer-events:none;border-radius:4px}
+.sheen::before{content:"";position:absolute;top:-40%;bottom:-40%;left:-45%;width:32%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.85),transparent);
+  transform:translate3d(-70%,0,0) rotate(10deg);opacity:0}
+.riser.locked .sheen::before{animation:sweep 1.35s var(--ease) .1s 1}
+@keyframes sweep{0%{opacity:0;transform:translate3d(-70%,0,0) rotate(10deg)}
+  16%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translate3d(430%,0,0) rotate(10deg)}}
+
+/* orbiting workstream chips */
+.orbit{position:absolute;inset:0;pointer-events:none}
+.ochip{position:absolute;left:50%;top:50%;padding:5px 11px;border-radius:999px;white-space:nowrap;
+  font-size:clamp(9px,.68vw,11px);font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink);background:rgba(255,255,255,.92);
+  box-shadow:inset 0 0 0 1px rgba(25,25,25,.12),0 6px 16px -8px rgba(60,45,30,.5);
+  /* floor the orbit radius so chips clear the mark on short viewports too */
+  --orb:max(var(--rw),172px);--ox:calc(var(--orb)*var(--fx));--oy:calc(var(--orb)*var(--fy));
+  transform:translate3d(-50%,-50%,0) translate3d(var(--ox),var(--oy),0) scale(.7);opacity:0;
+  transition:opacity .5s var(--ease) var(--od),transform .7s var(--ease) var(--od);will-change:transform,opacity}
+.riser.locked .ochip{opacity:1;transform:translate3d(-50%,-50%,0) translate3d(var(--ox),var(--oy),0) scale(1)}
+
+.stagger{opacity:0;transform:translate3d(0,14px,0);
+  transition:opacity .6s var(--ease) var(--sd),transform .6s var(--ease) var(--sd)}
+.overture.told .stagger{opacity:1;transform:none}
+
+.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;border-radius:999px;border:0;cursor:pointer;
+  font-family:var(--bdy);font-size:clamp(12px,.92vw,14.5px);font-weight:700;letter-spacing:.01em;
+  /* every gradient stop kept dark enough that white label text clears 4.5:1 */
+  color:#FFFFFF;background:linear-gradient(160deg,#BE4D04,#AE4300 55%,#963700);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.34),0 10px 22px -12px rgba(150,55,0,.9);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.pill:hover{transform:translateY(-1.5px);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 14px 26px -12px rgba(150,55,0,1)}
+.replay{position:absolute;left:0;bottom:0;min-height:44px;padding:5px 12px;border-radius:999px;cursor:pointer;
+  font-family:var(--bdy);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--slate);background:rgba(255,255,255,.8);border:0;box-shadow:inset 0 0 0 1px rgba(25,25,25,.10);
+  transition:color .25s ease}
+.replay:hover{color:var(--ember)}
+
+/* ═══ 6 · PINNED SCROLL-SCRUB CENTREPIECE ════════════════ */
+.slide--pin{padding:0;align-content:start;overflow-y:auto;scroll-behavior:smooth}
+.pin-track{position:relative;height:520vh;width:100%}
+.pin-stage{position:sticky;top:0;height:100vh;height:100dvh;display:grid;
+  grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);align-items:center;
+  padding:clamp(24px,4vh,48px) clamp(26px,5vw,80px);gap:clamp(16px,2.4vw,44px)}
+
+.pin-copy{position:relative;display:grid;gap:14px;align-content:center;z-index:2}
+.pin-intro{display:grid;gap:14px;opacity:1;transition:opacity .35s ease}
+
+/* the hairline rule + callouts, exactly the Apple port-label move */
+.pin-calls{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);
+  display:grid;gap:12px;padding-left:22px;opacity:0;pointer-events:none}
+.pin-calls::before{content:"";position:absolute;left:0;top:-6%;bottom:-6%;width:1px;background:var(--ink);
+  transform:scaleY(var(--rulescale,0));transform-origin:top;transition:transform .5s var(--ease)}
+.call{opacity:0;transform:translate3d(0,10px,0);will-change:transform,opacity}
+.call .k{font-family:var(--dsp);font-weight:700;font-size:clamp(17px,1.75vw,30px);line-height:1.08;letter-spacing:-.03em;display:block}
+.call .v{font-size:clamp(11.5px,.88vw,14px);color:var(--slate);line-height:1.4;margin-top:3px;display:block}
+
+.pin-figure{position:relative;display:grid;place-items:center;perspective:1400px;z-index:1}
+.turn{position:relative;width:min(36vw,34vh,320px);aspect-ratio:221/283;transform-style:preserve-3d;
+  will-change:transform}
+.turn .exact{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.turn .back{position:absolute;inset:0;display:grid;place-items:center;transform:rotateY(180deg);
+  backface-visibility:hidden}
+.turn .front{backface-visibility:hidden}
+/* the reverse face: a blueprint elevation of the same mark */
+.bp{width:100%;height:100%;border-radius:6px;background:
+  repeating-linear-gradient(0deg,rgba(255,255,255,.16) 0 1px,transparent 1px 15px),
+  repeating-linear-gradient(90deg,rgba(255,255,255,.16) 0 1px,transparent 1px 15px),
+  linear-gradient(158deg,#245A80,#1B4664 60%,#12324A);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.28),0 24px 50px -24px rgba(18,50,74,.7);
+  display:grid;place-items:center;padding:12%}
+.bp img{width:100%;height:auto;opacity:.92;filter:brightness(0) invert(1)}
+
+.pin-cap{position:absolute;left:0;right:0;bottom:8%;text-align:center;pointer-events:none}
+.capline{position:absolute;left:0;right:0;font-size:clamp(11px,.82vw,13px);font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--slate);opacity:0;will-change:opacity}
+
+.pin-dims{position:absolute;inset:0;pointer-events:none}
+.dim{position:absolute;font-family:var(--dsp);font-weight:640;font-size:clamp(15px,1.5vw,26px);
+  color:var(--blueprint);opacity:0;will-change:opacity;letter-spacing:-.02em}
+.dim--l{left:2%;top:44%;transform:rotate(-90deg)}
+.dim--b{left:50%;bottom:20%;transform:translateX(-50%)}
+
+.pin-progress{position:absolute;right:clamp(18px,2.6vw,40px);top:50%;transform:translateY(-50%);
+  display:grid;gap:7px;z-index:3}
+.pin-progress i{display:block;width:3px;height:22px;border-radius:2px;background:var(--plan);
+  transition:background .3s ease,transform .3s var(--ease);transform-origin:center}
+.pin-progress i.on{background:var(--orange);transform:scaleX(1.7)}
+.pin-hint{position:absolute;left:50%;bottom:clamp(14px,2.4vh,26px);transform:translateX(-50%);
+  font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--slate);
+  opacity:var(--hintop,1);transition:opacity .4s ease}
+
+/* ═══ carousel ═══════════════════════════════════════════ */
+.carou{position:relative;display:grid;gap:12px}
+.carou-view{overflow:hidden;border-radius:var(--r)}
+.carou-rail{display:flex;transition:transform .6s var(--ease);will-change:transform}
+.carou-item{flex:0 0 100%;padding:clamp(16px,1.9vw,30px);display:grid;gap:10px}
+.carou-nav{display:flex;align-items:center;gap:10px;justify-content:flex-end}
+.cbtn{width:34px;height:34px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;
+  background:rgba(255,255,255,.9);box-shadow:inset 0 0 0 1px rgba(25,25,25,.12),0 4px 12px -6px rgba(60,45,30,.5);
+  color:var(--ink);font-size:15px;line-height:1;transition:transform .25s var(--ease),color .25s ease}
+.cbtn:hover{transform:translateY(-1px);color:var(--ember)}
+.cdots{display:flex;gap:6px;margin-right:auto}
+.cdots i{width:20px;height:3px;border-radius:2px;background:var(--plan);transition:background .3s ease}
+.cdots i.on{background:var(--orange)}
+
+/* ═══ simulated ledger UI (illustration) ═════════════════ */
+.ui{border-radius:12px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(25,25,25,.10),0 24px 50px -26px rgba(60,45,30,.5);
+  background:var(--paper-2)}
+.ui-bar{display:flex;align-items:center;gap:8px;padding:9px 12px;background:rgba(25,25,25,.045);
+  border-bottom:1px solid var(--plan-soft)}
+.ui-bar b{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--slate)}
+.ui-dot{width:8px;height:8px;border-radius:50%;background:var(--plan)}
+.ui-body{padding:2px 0}
+.ui-row{display:grid;grid-template-columns:minmax(0,2.1fr) auto auto auto;gap:10px;align-items:center;
+  padding:8px 12px;border-bottom:1px solid var(--plan-soft);font-size:clamp(10.5px,.79vw,12.5px)}
+.ui-row:last-child{border-bottom:0}
+.ui-row.hd{font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:clamp(9px,.65vw,10.5px);color:var(--ember)}
+.ui-url{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink)}
+.ui-p{font-weight:800;font-size:10px;letter-spacing:.06em;padding:2px 7px;border-radius:4px;color:#fff}
+.p0{background:var(--stop)}.p1{background:var(--warn)}.p2{background:var(--blueprint)}
+.spark-bar{display:flex;gap:2px;align-items:flex-end;height:16px}
+.spark-bar i{width:3px;background:var(--orange);border-radius:1px;opacity:.8}
+
+/* ═══ presenter bar ══════════════════════════════════════ */
+.bar{position:relative;z-index:3;flex:none;display:flex;align-items:center;gap:clamp(10px,1.3vw,22px);
+  padding:9px clamp(16px,3vw,40px) 11px;border-top:1px solid var(--plan);
+  background:rgba(255,255,255,.72);backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);
+  font-size:clamp(10px,.74vw,12px);font-weight:600;letter-spacing:.04em}
+.bar .sec{color:var(--ink);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .budget{color:var(--ember);white-space:nowrap;font-weight:700}
+.bar .sp{flex:1}
+.bar .clock{color:var(--slate);white-space:nowrap;font-variant-numeric:tabular-nums;cursor:pointer;
+  padding:4px 10px;border-radius:999px;border:0;background:rgba(255,255,255,.9);font-family:var(--bdy);
+  font-size:inherit;font-weight:700;box-shadow:inset 0 0 0 1px rgba(25,25,25,.12)}
+.bar .clock.run{color:var(--ink);box-shadow:inset 0 0 0 1px rgba(255,124,0,.55)}
+.bar .clock.over{color:var(--stop);box-shadow:inset 0 0 0 1px rgba(163,46,36,.55)}
+.bar .count{color:var(--slate);white-space:nowrap;font-variant-numeric:tabular-nums}
+.bar .hint{color:var(--slate);white-space:nowrap;font-weight:500}
+.segrail{position:absolute;left:0;right:0;top:-1px;height:2px;display:flex;gap:2px}
+.segrail span{flex:var(--w);background:var(--plan-soft);position:relative;overflow:hidden}
+.segrail span i{position:absolute;inset:0;background:linear-gradient(90deg,var(--ember),var(--orange));
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+
+/* ═══ overview ═══════════════════════════════════════════ */
+.ov{position:fixed;inset:0;z-index:20;display:none;background:rgba(246,242,234,.9);
+  backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);
+  padding:clamp(18px,3vh,40px) clamp(20px,4vw,56px);overflow-y:auto}
+.ov.open{display:block}
+.ov-hd{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:clamp(14px,2.2vh,26px)}
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(182px,1fr));gap:12px}
+.ov-i{text-align:left;cursor:pointer;padding:13px;border-radius:12px;display:grid;gap:5px;border:0;font:inherit;
+  background:rgba(255,255,255,.82);box-shadow:inset 0 0 0 1px rgba(25,25,25,.09),0 6px 16px -10px rgba(60,45,30,.5);
+  transition:transform .28s var(--ease),box-shadow .28s var(--ease)}
+.ov-i:hover,.ov-i:focus-visible{transform:translateY(-3px);box-shadow:inset 0 0 0 1px rgba(255,124,0,.5),0 12px 24px -12px rgba(60,45,30,.6)}
+.ov-i.cur{box-shadow:inset 0 0 0 2px var(--orange),0 12px 24px -12px rgba(185,72,0,.6)}
+.ov-i .n{font-size:10px;font-weight:800;letter-spacing:.13em;color:var(--ember)}
+.ov-i .t{font-weight:700;font-size:13.5px;line-height:1.22;color:var(--ink)}
+.ov-i .s{font-size:10px;color:var(--slate);font-weight:600;letter-spacing:.04em}
+
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px;border-radius:5px}
+
+/* ═══ click-through navigation ════════════════════ */
+.navpad{position:fixed;right:clamp(12px,2.2vw,26px);bottom:clamp(46px,6.2vh,58px);z-index:12;
+  display:flex;align-items:center;gap:10px;pointer-events:none}
+.navpad>*{pointer-events:auto}
+.navpos{font-family:var(--bdy);font-weight:800;font-size:13px;letter-spacing:.04em;color:var(--ink);
+  font-variant-numeric:tabular-nums;background:rgba(255,255,255,.94);border-radius:999px;
+  padding:8px 12px;min-height:34px;display:grid;place-items:center;
+  box-shadow:inset 0 0 0 1px rgba(25,25,25,.14),0 6px 16px -10px rgba(60,45,30,.6)}
+.navbtn{border:0;cursor:pointer;display:grid;place-items:center;font-family:var(--bdy);line-height:1;
+  transition:transform .22s var(--ease),box-shadow .22s var(--ease),background .22s ease}
+.navbtn--prev{width:46px;height:46px;border-radius:50%;font-size:24px;font-weight:700;color:var(--ink);
+  background:rgba(255,255,255,.96);box-shadow:inset 0 0 0 1.5px rgba(25,25,25,.22),0 6px 16px -8px rgba(60,45,30,.6)}
+.navbtn--next{width:64px;height:64px;border-radius:50%;font-size:30px;font-weight:700;color:#fff;
+  background:linear-gradient(150deg,var(--orange),var(--ember));
+  box-shadow:0 2px 0 rgba(255,255,255,.35) inset,0 10px 26px -8px rgba(185,72,0,.85),0 0 0 3px rgba(255,255,255,.85)}
+.navbtn:hover{transform:translateY(-2px)}
+.navbtn--next:hover{box-shadow:0 2px 0 rgba(255,255,255,.35) inset,0 14px 30px -8px rgba(185,72,0,.95),0 0 0 3px rgba(255,255,255,.9)}
+.navbtn[disabled]{opacity:.35;cursor:default;transform:none}
+/* copy that would otherwise run under the floating arrows */
+@media (min-width:1025px){.nav-clear{padding-right:215px}}
+@media (max-width:640px){
+  .navpad{bottom:clamp(44px,6vh,54px);right:10px;gap:8px}
+  .navbtn--prev{width:48px;height:48px}
+  .navbtn--next{width:60px;height:60px}
+  .navpos{font-size:12px;padding:8px 10px;min-height:44px}
+  .cbtn{width:44px;height:44px;font-size:18px}
+  .bar .clock{min-height:44px}
+  .pill{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+  .replay{min-height:44px;display:inline-flex;align-items:center}
+}
+
+/* ═══ responsive ═════════════════════════════════════════ */
+@media (max-width:1024px){
+  .split,.split--w{grid-template-columns:minmax(0,1fr)}
+  .c3,.c4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pin-stage{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr;gap:12px}
+  .pin-calls{position:relative;top:auto;transform:none}
+  /* keep copy clear of the floating next/prev cluster */
+  .slide{padding-bottom:96px}
+  .pin-stage{padding-bottom:128px}
+  .pin-cap{position:relative;bottom:auto;height:2.6em;margin-top:8px;text-align:left;padding-right:180px}
+  .pin-hint{display:none}
+}
+@media (max-width:640px){
+  .c2,.c3,.c4{grid-template-columns:minmax(0,1fr)}
+  .slide{padding:20px 16px 14px}
+  .bar .hint,.bar .budget{display:none}
+  .pin-track{height:420vh}
+  .orbit{display:none}          /* the same five labels are the callouts on the pinned slide */
+}
+@media (max-height:560px){.slide{align-content:start}}
+
+/* ═══ reduced motion, clean static composition ══════════ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important}
+  .slide{scroll-behavior:auto}
+  .orb{animation:none;opacity:.6}
+  .brick{opacity:0!important;animation:none!important}
+  .riser{transform:none!important;opacity:1!important}
+  .riser .exact{opacity:1!important}
+  .riser .ochip{opacity:1!important;transform:translate3d(-50%,-50%,0) translate3d(var(--ox),var(--oy),0)!important}
+  .ltr{opacity:0!important}
+  .resolve{opacity:1!important}
+  .stagger{opacity:1!important;transform:none!important}
+  .sheen,.sparks{display:none}
+  .panel::after{display:none}
+  /* the pinned sequence becomes a static composition, every callout visible */
+  .pin-track{height:auto}
+  .pin-stage{position:static;height:auto;min-height:0}
+  .pin-calls{position:relative;top:auto;transform:none;opacity:1!important;padding-left:22px}
+  .pin-calls::before{transform:scaleY(1)!important}
+  .call{opacity:1!important;transform:none!important}
+  .turn{transform:none!important}
+  .turn .back{display:none}
+  .capline{position:relative;opacity:1!important;margin-bottom:4px}
+  .pin-cap{position:relative;bottom:auto;margin-top:10px;height:auto;text-align:center;padding-right:0}
+  .dim{opacity:1!important}
+  .pin-hint{display:none}
+}
+
+/* ═══ print / PDF ════════════════════════════════════════ */
+@media print{
+  @page{size:1600px 900px;margin:0}
+  html,body{overflow:visible;height:auto;background:var(--paper)}
+  .field,.paperline{position:absolute;height:900px}
+  .orb{animation:none}
+  .deck{height:auto;display:block}
+  .stage{position:static;height:auto}
+  .slide{position:relative;inset:auto;width:1600px;height:900px;opacity:1!important;visibility:visible!important;
+    transform:none!important;page-break-after:always;break-after:page;overflow:hidden;
+    background:linear-gradient(158deg,#FBF8F3,#F3EEE4)}
+  .slide:last-of-type{page-break-after:auto;break-after:auto}
+  /* the scroll track must collapse to exactly one page, or it spills blanks */
+  .slide--pin{padding:clamp(26px,4vh,54px) clamp(26px,5vw,88px);display:block}
+  .pin-track{height:100%;overflow:hidden}
+  .pin-stage{position:static;height:100%;padding:0;align-items:center}
+  .pin-calls{position:relative;top:auto;transform:none;opacity:1!important}
+  .pin-calls::before{transform:scaleY(1)!important}
+  .call{opacity:1!important;transform:none!important}
+  .turn{transform:none!important}.turn .back{display:none}
+  .capline{position:relative;opacity:1!important}.pin-cap{position:relative;bottom:auto}
+  .pin-progress,.pin-hint{display:none}
+  .brick{display:none}.ltr{opacity:0}.resolve{opacity:1}
+  .riser{transform:none;opacity:1}.riser .exact{opacity:1}.riser .ochip{opacity:1;transform:translate3d(-50%,-50%,0) translate3d(var(--ox),var(--oy),0)}
+  .stagger{opacity:1;transform:none}
+  .bar,.ov,.replay,.sheen,.sparks,.navpad{display:none!important}
+  .panel{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(255,255,255,.8)}
+  .panel::after{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="field" aria-hidden="true"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+<div class="paperline" aria-hidden="true"></div>
+
+<div class="deck">
+<main class="stage" id="stage">
+
+<!-- ══════════ 1 · OVERTURE ══════════ -->
+<section class="slide" data-sec="0" aria-label="Opening">
+  <div class="overture" id="overture">
+    <div class="wordmark" id="wordmark" role="img" aria-label="BigOrange">
+      <div class="sparks" id="sparks" aria-hidden="true"></div>
+      <div class="resolve"><img src="assets/logo-wordmark.png" alt=""></div>
+    </div>
+
+    <div class="riser" id="riser">
+      <div class="bricks" id="riserBricks" aria-hidden="true"></div>
+      <img class="exact" src="assets/logo-mark.png" alt="">
+      <div class="sheen" aria-hidden="true"></div>
+      <div class="orbit" aria-hidden="true">
+        <span class="ochip" style="--fx:-.92;--fy:-.40;--od:.10s">Authority hub</span>
+        <span class="ochip" style="--fx:.90;--fy:-.26;--od:.20s">Content engine</span>
+        <span class="ochip" style="--fx:-1.00;--fy:.16;--od:.30s">WordPress build</span>
+        <span class="ochip" style="--fx:.96;--fy:.30;--od:.40s">AEO · GEO structure</span>
+        <span class="ochip" style="--fx:-.16;--fy:.62;--od:.50s">Five-blog package</span>
+      </div>
+    </div>
+
+    <h1 class="stagger" style="--sd:.05s">Looks simple.<span class="accent">Built deep.</span></h1>
+    <p class="lede stagger" style="--sd:.16s;text-align:center">You already rank. The system that got you there was never written down. We wrote it down, applied it to all 370 live URLs, and built the first pages with it.</p>
+    <button class="pill stagger" style="--sd:.27s" type="button" id="beginBtn">Start the walkthrough →</button>
+    <p class="tiny stagger" style="--sd:.36s">Private leadership review · Thursday, September 3, 2026 · nothing in this deck is published</p>
+    <button class="replay" type="button" id="replayBtn">Replay</button>
+  </div>
+</section>
+
+<!-- ══════════ 2 · THESIS ══════════ -->
+<section class="slide" data-sec="0" aria-label="The engagement in one line">
+  <p class="eyebrow">The whole engagement in one line</p>
+  <h2>One reader job per URL, answered in blocks a machine can lift, published only after a human says yes.</h2>
+  <div class="cols c4">
+    <div class="stat panel"><span class="num">370</span><span class="lab">live URLs inventoried and scored</span><span class="src">live-site-health.md · 2026‑09‑01</span></div>
+    <div class="stat panel"><span class="num">17</span><span class="lab">builder terms ranking on one hub, 13 of them in positions 1 to 3</span><span class="src">Moz snapshot · 2026‑08‑14 · pending re‑export</span></div>
+    <div class="stat panel"><span class="num">9</span><span class="lab">WordPress drafts staged, private, ready to review</span><span class="src">IDs 5546 · 5585 · 5550 · 5552 · 5619 to 5627</span></div>
+    <div class="stat panel"><span class="num">0</span><span class="lab">pages published, redirected or changed on the live site</span><span class="src">Public page 1381 untouched</span></div>
+  </div>
+  <p class="sub">Forty minutes: twenty on what exists, ten on what it means, ten on the decisions only you can make. Every figure on these slides traces to a file in the package sent September 2. The map is <strong>evidence-index.md</strong>.</p>
+</section>
+
+<!-- ══════════ 3 · WHERE WE STARTED ══════════ -->
+<section class="slide" data-sec="1" aria-label="Where we started">
+  <p class="eyebrow">Where BigOrange was</p>
+  <h2>An approved pilot, a mature site, and no shared definition of “done”.</h2>
+  <div class="split">
+    <div class="panel card">
+      <h3>What was agreed</h3>
+      <div class="scroller"><table class="tbl"><tbody>
+        <tr><td class="m">Jul 27</td><td>Margee approves the pillar project: “proceed with the approved project building the pillar into our WordPress website.”</td></tr>
+        <tr><td class="m">Jul 27</td><td><strong>Evolve the existing builder page</strong> rather than build a new URL, to preserve the authority it already holds.</td></tr>
+        <tr><td class="m">Jul 29</td><td>Paula: Semrush access is not possible under BigOrange’s licence rules. <strong>Moz</strong> becomes the rank source.</td></tr>
+        <tr><td class="m">Aug 17</td><td>Emelia sends the Moz export, rankings by engine variant, through <strong>2026‑08‑14</strong>.</td></tr>
+        <tr><td class="m">Aug 28</td><td>Janice SME interview recorded. Permission coding still open on most of it.</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="cols" style="gap:12px">
+      <div class="panel card">
+        <h3>The commercial frame</h3>
+        <p class="sub">The pilot was approved as a fixed hour cap across two milestones: discovery and strategy, then build. That cap has not changed.</p>
+        <p class="sub">The five new blogs, the branded PDF set and this walkthrough sit <strong>outside</strong> that cap and carry no additional charge.</p>
+        <p class="tiny">Invoice recipient, billing details and due date remain unconfirmed. That is one of today’s asks.</p>
+      </div>
+      <div class="panel card panel--key">
+        <h3>The one thing that never happened</h3>
+        <p class="sub">No deliverable has had written client sign‑off yet. Every inbound message since July has been logistics: access, scheduling, the Moz file.</p>
+        <p class="sub"><strong>That is what today is for.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 4 · SITE AS FOUND ══════════ -->
+<section class="slide" data-sec="1" aria-label="The site as we found it">
+  <p class="eyebrow">Where BigOrange was · public fetch, September 1</p>
+  <h2>370 published URLs. Five defects doing quiet damage.</h2>
+  <div class="split split--w">
+    <div class="cols c2" style="gap:10px;align-content:start">
+      <div class="stat panel"><span class="num">370</span><span class="lab">unique published URLs</span><span class="src">299 posts · 71 pages</span></div>
+      <div class="stat panel"><span class="num">349</span><span class="lab">URLs in the Yoast sitemap</span><span class="src">299 posts · 50 pages</span></div>
+      <div class="stat panel"><span class="num">21</span><span class="lab">published pages missing from the page sitemap</span><span class="src">REST vs sitemap diff</span></div>
+      <div class="stat panel"><span class="num">15</span><span class="lab">published pages carrying Yoast nofollow</span><span class="src">0 posts affected</span></div>
+    </div>
+    <div class="panel card">
+      <h3>The five highest‑leverage defects</h3>
+      <div class="scroller"><table class="tbl">
+        <thead><tr><th>Defect</th><th>Where</th><th>Why it costs you</th></tr></thead>
+        <tbody>
+          <tr><td><strong>“Stategic”</strong> typo</td><td class="m">homepage</td><td class="d">Sits in the meta description, Open Graph <em>and</em> the Yoast JSON‑LD. Those are the three surfaces search and answer engines read first. This is the page that owns your two Cincinnati terms.</td></tr>
+          <tr><td><strong>Four H1 tags</strong></td><td class="m">/ai-search-optimization-services/</td><td class="d">No single primary topic for an extractor to latch onto, on the page that sells AI search optimisation.</td></tr>
+          <tr><td><strong>index, nofollow</strong></td><td class="m">/ai-search-optimization-services/</td><td class="d">Indexed, but every internal link out of it is discounted. Isolated from the MSP, builder and StoryBrand hubs. Owns zero tracked keywords.</td></tr>
+          <tr><td><strong>Sitemap drift</strong></td><td class="m">21 pages</td><td class="d">Indexed campaign landers that are also nofollow and absent from the sitemap. The link graph and the sitemap tell two different stories.</td></tr>
+          <tr><td><strong>Missing alt text</strong></td><td class="m">8 of 50 homepage images</td><td class="d">Accessibility and image search, on your highest‑traffic page.</td></tr>
+        </tbody>
+      </table></div>
+      <p class="tiny">evidence/live-site-health.md · playbook/SITEWIDE-HEALTH-AND-RANKING.md. Public HTML and REST, 2026‑09‑01T23:13:52Z. Origin recovered after the August 31 HTTP 520.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 5 · BASELINE ══════════ -->
+<section class="slide" data-sec="1" aria-label="Baseline performance">
+  <p class="eyebrow">Where BigOrange was · the uncomfortable number</p>
+  <h2>Your strongest commercial URL<span class="accent">is also your slowest.</span></h2>
+  <div class="split">
+    <div class="panel card">
+      <h3>Lighthouse: /marketing-agency-for-builders/ (page 1381)</h3>
+      <div class="scroller"><table class="tbl">
+        <thead><tr><th>Metric</th><th class="rt">Mobile</th><th class="rt">Desktop</th></tr></thead>
+        <tbody>
+          <tr><td>Performance</td><td class="rt" style="color:var(--stop)">32</td><td class="rt">75</td></tr>
+          <tr><td>Largest Contentful Paint</td><td class="rt" style="color:var(--stop)">36.1 s</td><td class="rt">2.7 s</td></tr>
+          <tr><td>Total Blocking Time</td><td class="rt">1,110 ms</td><td class="rt">20 ms</td></tr>
+          <tr><td>Accessibility</td><td class="rt">86</td><td class="rt">86</td></tr>
+          <tr><td>Best practices</td><td class="rt">54</td><td class="rt">54</td></tr>
+          <tr><td>SEO</td><td class="rt">92</td><td class="rt">92</td></tr>
+        </tbody>
+      </table></div>
+      <p class="tiny">lighthouse-mobile-2026-08-20.json / -desktop-, fetched 2026‑08‑20T18:19Z, simulated throttling. Directional lab evidence, not field Core Web Vitals. Suspects: Elementor widget CSS on a Beaver&nbsp;Builder page, render‑blocking assets, ~703&nbsp;KiB unused JavaScript, unsized images.</p>
+    </div>
+    <div class="cols" style="gap:12px;align-content:center">
+      <div class="panel card panel--key">
+        <h3>Read that next to this</h3>
+        <p class="sub">That same URL holds <strong>17 of your 21 tracked builder keywords</strong>, and <strong>13 of them sit in positions 1 to 3</strong>.</p>
+        <p class="sub">A 36‑second mobile LCP on the single most valuable commercial page you own is not cosmetic. It is the highest‑leverage fix on the list.</p>
+      </div>
+      <div class="panel card">
+        <h3>The starting line, for honesty</h3>
+        <p class="sub">Google Search Console, July 2026 web search: <strong>389 clicks</strong>, <strong>210K impressions</strong>.</p>
+        <p class="tiny">Reported 2026‑08‑04. This predates almost all of the work in this deck. It is a <strong>baseline</strong>, not a result, and it is the only third‑party performance figure in the package.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 6 · PINNED SCRUB CENTREPIECE ══════════ -->
+<section class="slide slide--pin" data-sec="2" id="pinSlide" aria-label="What we built, scroll sequence">
+  <div class="pin-track">
+    <div class="pin-stage">
+
+      <div class="pin-copy">
+        <div class="pin-intro" id="pinIntro">
+          <p class="eyebrow">The WordPress build</p>
+          <h2>Built in bricks.<span class="accent">Literally.</span></h2>
+          <p class="sub">Your audience builds custom homes. So we built the thing in Bricks, one course at a time, nothing load‑bearing until it was inspected. Turn it over and see what is actually in there.</p>
+        </div>
+
+        <div class="pin-calls" id="pinCalls">
+          <div class="call" data-call="0"><span class="k">Authority hub</span><span class="v">One commercial URL per vertical, updated in place, never a competing second pillar.</span></div>
+          <div class="call" data-call="1"><span class="k">Content engine</span><span class="v">One SME interview → hub update, articles, FAQs, checklist, emails. Permission‑coded throughout.</span></div>
+          <div class="call" data-call="2"><span class="k">Nine reusable blocks</span><span class="v">Answer, definition, decision table, FAQ, entity, sources, how‑to, cluster links, schema.</span></div>
+          <div class="call" data-call="3"><span class="k">AEO and GEO structure</span><span class="v">Visible FAQs matched word‑for‑word to FAQPage JSON‑LD. No schema without a visible answer.</span></div>
+          <div class="call" data-call="4"><span class="k">Six gates before publish</span><span class="v">Brief, SME truth, editorial, SEO, technical, publication, each with a named owner.</span></div>
+        </div>
+      </div>
+
+      <div class="pin-figure">
+        <div class="turn" id="turn">
+          <img class="exact front" src="assets/logo-mark.png" alt="The BigOrange mark, assembled from bricks">
+          <div class="back"><div class="bp"><img src="assets/logo-mark.png" alt=""></div></div>
+        </div>
+        <div class="pin-dims" aria-hidden="true">
+          <span class="dim dim--l" id="dimL">370 URLs</span>
+          <span class="dim dim--b" id="dimB">9 drafts</span>
+        </div>
+        <div class="pin-cap">
+          <span class="capline" data-cap="0">The face you ship</span>
+          <span class="capline" data-cap="1">The structure underneath</span>
+        </div>
+      </div>
+
+      <div class="pin-progress" id="pinDots" aria-hidden="true"></div>
+      <p class="pin-hint" id="pinHint">Tap the arrow, or scroll, to turn it</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 7 · DIRECTION A ══════════ -->
+<section class="slide" data-sec="2" aria-label="Direction A: Cinematic Authority">
+  <p class="eyebrow">The WordPress build · direction A</p>
+  <div class="split split--w">
+    <div class="cols" style="gap:13px;align-content:center">
+      <h2>Cinematic Authority</h2>
+      <p class="lede">Premium editorial storytelling, architectural imagery, layered proof, one clear consultation path.</p>
+      <div class="panel card">
+        <p class="tiny" style="font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ember)">Private preview</p>
+        <p class="sub mono" style="color:var(--ink)">bigorange.marketing/?page_id=<strong>5546</strong>&amp;preview=true</p>
+      </div>
+      <ul class="ticks"><li>One visible H1</li><li>Three working consultation CTAs</li><li>FAQ interaction verified</li></ul>
+    </div>
+    <figure class="shot">
+      <img src="assets/wp-5546-cinematic-hero.png" alt="Cinematic Authority WordPress draft, desktop hero" loading="lazy">
+      <figcaption>WP draft 5546 · desktop 1425×868 · captured 2026‑08‑24</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ══════════ 8 · DIRECTION B ══════════ -->
+<section class="slide" data-sec="2" aria-label="Direction B: Orange Press">
+  <p class="eyebrow">The WordPress build · direction B</p>
+  <div class="split split--w">
+    <div class="cols" style="gap:13px;align-content:center">
+      <h2>Orange Press</h2>
+      <p class="lede">Bolder BigOrange energy, press‑inspired layouts, interactive content moments, the resolved particle logo.</p>
+      <div class="panel card">
+        <p class="tiny" style="font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ember)">Private preview</p>
+        <p class="sub mono" style="color:var(--ink)">bigorange.marketing/?page_id=<strong>5585</strong>&amp;preview=true</p>
+      </div>
+      <ul class="ticks"><li>Mobile nav, connected‑system slider and industry slider verified</li><li>Keyboard focus and reduced‑motion behaviour retained</li><li>No error‑level console messages</li></ul>
+    </div>
+    <figure class="shot">
+      <img src="assets/wp-5585-orangepress-hero.png" alt="Orange Press WordPress draft, desktop hero" loading="lazy">
+      <figcaption>WP draft 5585 · desktop 1425×868 · captured 2026‑08‑24</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ══════════ 9 · QA + IDS ══════════ -->
+<section class="slide" data-sec="2" aria-label="Verification and the draft register">
+  <p class="eyebrow">The WordPress build · verification</p>
+  <h2>Nine drafts. Every one private. Your live page never moved.</h2>
+  <div class="split split--w">
+    <div class="panel card panel--plain">
+      <div class="scroller"><table class="tbl">
+        <thead><tr><th>WP ID</th><th>What it is</th><th>State</th></tr></thead>
+        <tbody>
+          <tr><td class="m">1381</td><td>/marketing-agency-for-builders/, the live public hub</td><td><span class="chip chip--none">Untouched</span></td></tr>
+          <tr><td class="m">5546</td><td>Cinematic Authority, pillar direction A</td><td><span class="chip chip--pend">Private draft</span></td></tr>
+          <tr><td class="m">5585</td><td>Orange Press, pillar direction B</td><td><span class="chip chip--pend">Private draft</span></td></tr>
+          <tr><td class="m">5550</td><td>What a Custom Home Builder Website Must Include</td><td><span class="chip chip--stop">Blocked</span></td></tr>
+          <tr><td class="m">5552</td><td>Five Articles Every Custom Home Builder Blog Needs</td><td><span class="chip chip--pend">Private draft</span></td></tr>
+          <tr><td class="m">5619 to 5627</td><td>The five new growth blogs, 6,093 words</td><td><span class="chip chip--pend">Private draft</span></td></tr>
+        </tbody>
+      </table></div>
+      <p class="tiny">Beaver Builder is the primary builder (fl-builder). Elementor One is still installed and its residual CSS is a live performance suspect on builder pages. A rollback snapshot of 1381 is staged as draft 5545.</p>
+    </div>
+    <div class="cols" style="gap:12px">
+      <div class="panel card">
+        <h3>Verified 2026‑08‑24 on the live private previews</h3>
+        <ul class="ticks">
+          <li>Inspected at <strong>390, 768, 1024 and 1440&nbsp;px</strong>, with no horizontal overflow at any width</li>
+          <li>One visible H1 each · no broken images · three working CTAs each</li>
+          <li>Keyboard focus and reduced‑motion behaviour retained</li>
+          <li>No error‑level console messages · design detector clean</li>
+        </ul>
+      </div>
+      <div class="cols c2" style="gap:12px">
+        <figure class="shot shot--ph"><img src="assets/wp-5546-cinematic-mobile.png" alt="Cinematic Authority on mobile" loading="lazy"></figure>
+        <figure class="shot shot--ph"><img src="assets/wp-5585-orangepress-mobile.png" alt="Orange Press on mobile" loading="lazy"></figure>
+      </div>
+      <p class="tiny nav-clear">375×812 captures. 5546 left, 5585 right. The editorial builder imagery is art direction for review, not BigOrange client work or performance proof; replace with approved project photography before publication.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 10 · CONTENT ENGINE ══════════ -->
+<section class="slide" data-sec="3" aria-label="The content engine">
+  <p class="eyebrow">The authority hub and the content engine</p>
+  <h2>A hub is not a page.<span class="accent">It is a rule about who owns which question.</span></h2>
+  <div class="split">
+    <div class="panel card">
+      <h3>The architecture, cloned per vertical</h3>
+      <pre class="tiny" style="font-size:clamp(10.5px,.8vw,12.5px);line-height:1.75;margin:2px 0 0;white-space:pre-wrap;color:var(--slate)">Industry hub: one commercial URL, updated in place
+ ├── Supporting posts: definitions, checklists, examples
+ ├── Topic pages: visibility, website, local, lead-gen
+ ├── FAQ companion inside the hub, never a second FAQ URL
+ └── Links: hub ↔ cluster ↔ book-appointment</pre>
+      <p class="sub" style="margin-top:10px">Six rules travel with it. A keyword variation is not a page. Commercial queries sit on the hub; definitions sit on supporting URLs. Proof pages are not second hubs. Unranked high‑volume terms get an owner, not a post‑mortem. Generic head terms stay off the must‑own list. Undefined service lines stay blocked.</p>
+    </div>
+    <div class="cols c2" style="gap:11px;align-content:start">
+      <div class="stat panel"><span class="num">24</span><span class="lab">assets in the authority content model</span><span class="src">2026‑08‑28 proposal</span></div>
+      <div class="stat panel"><span class="num">19</span><span class="lab">production drafts with matching schema candidates</span><span class="src">26,845 words · QA pass, 0 errors</span></div>
+      <div class="stat panel"><span class="num">9</span><span class="lab">reusable blocks a WordPress editor can install once</span><span class="src">CLIENT-SCALE-SYSTEM.md §3</span></div>
+      <div class="stat panel"><span class="num">6</span><span class="lab">human review gates, each with a named owner</span><span class="src">ai-assisted-editorial-workflow.md</span></div>
+    </div>
+  </div>
+  <p class="tiny">Quality scorecard: every asset is scored 0 to 2 on ten criteria: direct answer, original expertise, source quality, audience specificity, internal‑link value, scanability, accessibility, conversion clarity, fact‑check completion, human approval. <strong>Nothing publishes below 17/20</strong> without a documented exception.</p>
+</section>
+
+<!-- ══════════ 11 · TWO LANES ══════════ -->
+<section class="slide" data-sec="4" aria-label="Two lanes">
+  <p class="eyebrow">The SEO, AEO and GEO plan</p>
+  <h2>Two lanes, one system.</h2>
+  <div class="cols c2">
+    <div class="panel card panel--key">
+      <h3>Lane A: finish the builder hub</h3>
+      <div class="cols c3" style="gap:8px;margin:4px 0">
+        <div><span class="num" style="font-size:clamp(23px,2.4vw,36px)">21</span><p class="tiny">tracked</p></div>
+        <div><span class="num" style="font-size:clamp(23px,2.4vw,36px)">17</span><p class="tiny">ranked</p></div>
+        <div><span class="num" style="font-size:clamp(23px,2.4vw,36px)">13</span><p class="tiny">in positions 1 to 3</p></div>
+      </div>
+      <p class="sub">Every ranked builder term in the snapshot sits on <strong>one URL</strong>, /marketing-agency-for-builders/. Including <em>agency for home builders</em>, <em>home builder marketing agency</em> and <em>marketing agency for home builders</em>, all at position 1.</p>
+      <p class="sub">Four builder terms are unranked. That is unfinished hub work, not evidence something failed.</p>
+    </div>
+    <div class="panel card">
+      <h3>Lane B: apply the same contract to what already ranks</h3>
+      <div class="cols c3" style="gap:8px;margin:4px 0">
+        <div><span class="num" style="font-size:clamp(23px,2.4vw,36px)">150</span><p class="tiny">tracked</p></div>
+        <div><span class="num" style="font-size:clamp(23px,2.4vw,36px)">61</span><p class="tiny">ranked</p></div>
+        <div><span class="num" style="font-size:clamp(23px,2.4vw,36px)">27</span><p class="tiny">distinct URLs</p></div>
+      </div>
+      <p class="sub">MSP (80 tracked terms), StoryBrand (26), manufacturing (3), landscaping (1), Cincinnati (4). Fourteen to protect, twenty‑seven to improve, twenty in the 11 to 20 opportunity band.</p>
+      <p class="sub">The answer is not more builder articles. It is the same block contract, page by page, on pages that already earned their position.</p>
+    </div>
+  </div>
+  <p class="tiny">emelia-moz-analysis.md. From 27,802 historical export rows, the 177 rows dated 2026‑08‑14 collapse to 171 unique keywords across 28 ranking URLs. <strong>These are an August 14 snapshot, not live current ranks. Treat every ranking figure in this deck as pending re‑export.</strong> Moz is the only rank source; Semrush validation was not available.</p>
+</section>
+
+<!-- ══════════ 12 · FAMILIES ══════════ -->
+<section class="slide" data-sec="4" aria-label="Cannibalisation families">
+  <p class="eyebrow">The plan · the part nobody enjoys</p>
+  <h2>Eight families where two of your pages compete for the same reader.</h2>
+  <div class="split split--w">
+    <div class="panel card panel--plain">
+      <div class="scroller"><table class="tbl">
+        <thead><tr><th>Family</th><th class="rt">Terms / URLs</th><th>The call</th></tr></thead>
+        <tbody>
+          <tr><td>storybrand‑website</td><td class="rt">10 / 5</td><td class="d">Five owners is fine <em>only if</em> each H1 states the modifier</td></tr>
+          <tr><td>msp‑marketing‑agency</td><td class="rt">6 / 2</td><td class="d">Engine split: comparison page ranks mobile, hub ranks desktop</td></tr>
+          <tr><td>storybrand‑examples</td><td class="rt">6 / 2</td><td class="d">Hero page owns website examples; BrandScript terms move off it</td></tr>
+          <tr><td>storybrand‑brandscript</td><td class="rt">5 / 3</td><td class="d">BrandScript URL owns the examples, not the hero page</td></tr>
+          <tr><td>storybrand‑certified‑guide</td><td class="rt">4 / 3</td><td class="d">Desktop ranks the cost page, mobile ranks the free page</td></tr>
+          <tr><td>cincinnati‑agency</td><td class="rt">3 / 2</td><td class="d">Homepage owns city terms; hub keeps builder+Cincinnati only</td></tr>
+          <tr><td>it‑marketing</td><td class="rt">3 / 2</td><td class="d">Definition page owns “it marketing”; content page owns types</td></tr>
+          <tr><td>msp‑website</td><td class="rt">3 / 2</td><td class="d">Examples page owns “msp website”; lead‑gen keeps StoryBrand terms</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="cols" style="gap:12px;align-content:center">
+      <div class="panel card"><h3>And one slug collision</h3><p class="sub">/home-builder-marketing-agency/ is a <strong>post</strong>, a case study, with a slug that reads as a second agency page beside /marketing-agency-for-builders/. Retitle toward the case, or redirect.</p></div>
+      <div class="panel card"><h3>Eight builder satellites</h3><p class="sub">Eight live builder URLs own <strong>zero</strong> tracked keywords in the snapshot. Re‑job them as proof, case or archive. Do not let them accumulate hub terms.</p></div>
+      <div class="panel card"><h3>Fifteen unranked terms with real volume</h3><p class="sub">Including <em>managed services provider marketing</em> (vol 501 to 850) and <em>msp website</em> (201 to 500). Each gets an existing owner, not a new thin page.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 13 · LEDGER / PRODUCT ══════════ -->
+<section class="slide" data-sec="4" aria-label="The ledger and the client-scale product">
+  <p class="eyebrow">The plan · why this is worth more than one pillar page</p>
+  <h2>The same method,<span class="accent">packaged as something you can sell.</span></h2>
+  <div class="split">
+    <div class="cols" style="gap:12px">
+      <div class="panel card">
+        <h3>Export in → page map out</h3>
+        <p class="sub">A client hands you their Moz or Semrush export. The script joins it to their WordPress REST and sitemap and returns the same columns every time: one row per keyword, one owned URL per reader job, a bucket, a health flag, a priority.</p>
+        <p class="sub">The contract does not change by vertical. Copy, SME, imagery and hub URL do. <strong>Eleven page templates</strong> are already named, so a marketer can be told which one a URL is, and what it therefore owes.</p>
+      </div>
+      <div class="cols c4" style="gap:9px">
+        <div class="stat panel"><span class="num">370</span><span class="lab">URLs scored</span></div>
+        <div class="stat panel"><span class="num">39</span><span class="lab">deep write‑ups</span></div>
+        <div class="stat panel"><span class="num">30</span><span class="lab">health flags</span></div>
+        <div class="stat panel"><span class="num">8</span><span class="lab">P0 items</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="ui">
+        <div class="ui-bar"><span class="ui-dot"></span><span class="ui-dot"></span><span class="ui-dot"></span><b>All-pages ledger · 370 rows · illustration</b></div>
+        <div class="ui-body">
+          <div class="ui-row hd"><span>URL</span><span>KWS</span><span>BEST</span><span>P</span></div>
+          <div class="ui-row"><span class="ui-url">/marketing-agency-for-builders/</span><span class="mono">17</span><span class="mono">1</span><span class="ui-p p0">P0</span></div>
+          <div class="ui-row"><span class="ui-url">/</span><span class="mono">2</span><span class="mono">9</span><span class="ui-p p0">P0</span></div>
+          <div class="ui-row"><span class="ui-url">/msp-it-services-marketing-agency/</span><span class="mono">6</span><span class="mono">3</span><span class="ui-p p0">P0</span></div>
+          <div class="ui-row"><span class="ui-url">/who-is-the-hero-of-your-website…/</span><span class="mono">8</span><span class="mono">1</span><span class="ui-p p0">P0</span></div>
+          <div class="ui-row"><span class="ui-url">/ai-search-optimization-services/</span><span class="mono">0</span><span class="mono">n/a</span><span class="ui-p p0">P0</span></div>
+          <div class="ui-row"><span class="ui-url">/msp-marketing-resources/</span><span class="mono">13</span><span class="mono">5</span><span class="ui-p p1">P1</span></div>
+          <div class="ui-row"><span class="ui-url">/storybrand-brandscript-examples/</span><span class="mono">3</span><span class="mono">7</span><span class="ui-p p1">P1</span></div>
+          <div class="ui-row"><span class="ui-url">/google-ads-for-manufacturing-firms/</span><span class="mono">1</span><span class="mono">16</span><span class="ui-p p2">P2</span></div>
+        </div>
+      </div>
+      <p class="tiny" style="margin-top:8px">Illustration of the ledger view. Real rows from all-pages-ledger.csv, filterable in review-ui/index.html. Ranks are the 2026‑08‑14 snapshot, pending re‑export.</p>
+    </div>
+  </div>
+  <p class="sub">The honest sales line: the demonstration is <strong>the method and the artifacts</strong>, not a promised rank, traffic number, lead count or AI citation. When a prospect asks you to guarantee page one, this system is the reason you can say no and still win the room.</p>
+</section>
+
+<!-- ══════════ 14 · FIVE BLOGS (carousel) ══════════ -->
+<section class="slide" data-sec="5" aria-label="Five-blog growth package">
+  <p class="eyebrow">The five‑blog growth package · September 2</p>
+  <h2>Five articles aimed at five terms you track<span class="accent">and do not yet own.</span></h2>
+  <div class="split">
+    <div class="carou" id="carou">
+      <div class="carou-view"><div class="carou-rail panel panel--plain" id="carouRail">
+        <div class="carou-item"><p class="eyebrow" style="margin-bottom:2px">Blog 01 · WP 5619</p><h3>11 Home Builder Marketing Ideas That Build Trust Before the First Call</h3><p class="sub">Target: <strong>marketing ideas for homebuilders</strong>, unranked on 2026‑08‑14.</p><p class="tiny mono">1,420 words · 5 visible FAQs · BlogPosting + BreadcrumbList</p></div>
+        <div class="carou-item"><p class="eyebrow" style="margin-bottom:2px">Blog 02 · WP 5621</p><h3>Home Builder Advertising: Where to Spend First and What to Measure</h3><p class="sub">Target: <strong>advertising for builders</strong>, unranked, volume 51 to 100.</p><p class="tiny mono">1,221 words · 5 visible FAQs · BlogPosting + BreadcrumbList</p></div>
+        <div class="carou-item"><p class="eyebrow" style="margin-bottom:2px">Blog 03 · WP 5623</p><h3>Home Builder Marketing Automation: 7 Follow‑Ups Worth Automating</h3><p class="sub">Target: <strong>home builder marketing automation</strong>, unranked.</p><p class="tiny mono">1,118 words · 5 visible FAQs · BlogPosting + BreadcrumbList</p></div>
+        <div class="carou-item"><p class="eyebrow" style="margin-bottom:2px">Blog 04 · WP 5625</p><h3>How to Choose Home Builder Marketing Solutions Without Buying Random Tactics</h3><p class="sub">Target: <strong>home builder marketing solutions</strong>, unranked.</p><p class="tiny mono">1,109 words · 5 visible FAQs · BlogPosting + BreadcrumbList</p></div>
+        <div class="carou-item"><p class="eyebrow" style="margin-bottom:2px">Blog 05 · WP 5627</p><h3>When Should a Custom Home Builder Hire a Marketing Agency?</h3><p class="sub">Target: <strong>custom home builder marketing agency</strong>, position 13, the page‑two opportunity.</p><p class="tiny mono">1,225 words · 5 visible FAQs · BlogPosting + BreadcrumbList</p></div>
+      </div></div>
+      <div class="carou-nav">
+        <span class="cdots" id="cdots" aria-hidden="true"></span>
+        <button class="cbtn" type="button" id="cPrev" aria-label="Previous article">‹</button>
+        <button class="cbtn" type="button" id="cNext" aria-label="Next article">›</button>
+      </div>
+    </div>
+    <div class="cols c2" style="gap:11px;align-content:center">
+      <div class="stat panel"><span class="num">6,093</span><span class="lab">words across five articles</span><span class="src">blog-manifest.json</span></div>
+      <div class="stat panel"><span class="num">25</span><span class="lab">visible FAQs, each with matching schema</span><span class="src">schema/BLOG-01…05</span></div>
+      <div class="stat panel"><span class="num">PASS</span><span class="lab">QA report, zero errors</span><span class="src">qa-report.json</span></div>
+      <div class="stat panel"><span class="num">4 / 5</span><span class="lab">target terms unranked in the snapshot</span><span class="src">pending re‑export</span></div>
+    </div>
+  </div>
+  <p class="tiny">Each article requires factual review, approved imagery, final link and metadata review, rendered WordPress QA and a named release owner before it goes anywhere. This work sits outside the approved pilot cap at no additional charge.</p>
+</section>
+
+<!-- ══════════ 15 · VALIDATED vs PENDING ══════════ -->
+<section class="slide" data-sec="6" aria-label="Validated versus pending">
+  <p class="eyebrow">Evidence · the slide most decks leave out</p>
+  <h2>What is verified,<span class="accent">and what is still a promise.</span></h2>
+  <div class="cols c2">
+    <div class="panel card">
+      <h3 style="color:var(--ok)">Verified</h3>
+      <ul class="ticks">
+        <li>Public site inventory: 370 URLs, sitemap, robots, plugin stack. Fetched 2026‑09‑01.</li>
+        <li>Health defects: typo, four H1s, nofollow, sitemap gaps, alt text. Read from rendered HTML and the REST API.</li>
+        <li>Draft QA on 5546 and 5585: four breakpoints, H1 count, CTAs, keyboard, console. 2026‑08‑24.</li>
+        <li>Lighthouse baseline on 1381: mobile 32, LCP 36.1 s. Lab run 2026‑08‑20.</li>
+        <li>Five‑blog QA: 6,093 words, 25 FAQs, zero errors.</li>
+        <li>Moz export provenance: file hash and row count reconciled to Emelia’s August 17 email.</li>
+      </ul>
+    </div>
+    <div class="panel card">
+      <h3 style="color:var(--warn)">Pending: labelled, not hidden</h3>
+      <ul class="ticks ticks--q">
+        <li><strong>Every ranking figure is an August 14 snapshot.</strong> Not live ranks. Nothing here claims movement since.</li>
+        <li><strong>No Semrush validation.</strong> Licence rules blocked access; Moz is the single rank source.</li>
+        <li><strong>Private drafts not re‑read since August 31.</strong> The HTTP 520 made the readback stale; the passkey gate is human‑only.</li>
+        <li><strong>Janice’s factual review has not happened.</strong> Her interview language, and the Homearama example, stay behind permission review. Most of the transcript is not cleared for quotation.</li>
+        <li><strong>Post 5550 is blocked.</strong> The markdown answers “why leads are thin”; the WordPress draft answers “what a site must include”. Two reader jobs, one post ID. Someone has to choose.</li>
+        <li><strong>Conversion reporting is unvalidated</strong> until the analytics and CRM chain is confirmed end to end.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="tiny">The canonical queue item for this engagement is <strong>blocked</strong> on exactly four things: Janice SME review, Moz or Semrush validation, verified WordPress staging access, and invoice timing. No ranking, traffic, lead, revenue, rich‑result or AI‑citation outcome is promised anywhere in this package.</p>
+</section>
+
+<!-- ══════════ 16 · NEXT 90 ══════════ -->
+<section class="slide" data-sec="7" aria-label="The next ninety days">
+  <p class="eyebrow">What happens next</p>
+  <h2>Ninety days of controllable work.</h2>
+  <div class="cols c3">
+    <div class="panel card">
+      <p class="eyebrow" style="margin-bottom:2px">Days 1 to 14 · health and protect</p>
+      <ul class="ticks">
+        <li>Authenticated readback of drafts 5546, 5585, 5550, 5552</li>
+        <li>Fix <strong>Stategic</strong> in meta, OG and schema; rewrite the description; add the missing alt text</li>
+        <li>AI page: one H1, decide index+follow vs noindex, strip the “outrank competitors” promise</li>
+        <li>Classify the 15 nofollow pages and 21 sitemap gaps into owner, campaign‑noindex or confirmation‑noindex</li>
+        <li>Protect refresh on five slipping position 1 to 3 URLs</li>
+      </ul>
+    </div>
+    <div class="panel card">
+      <p class="eyebrow" style="margin-bottom:2px">Days 15 to 45 · improve and collapse</p>
+      <ul class="ticks">
+        <li>Resolve the two engine splits: one title, one H1, one canonical per query</li>
+        <li>Move BrandScript terms onto the BrandScript URL</li>
+        <li>Apply the block contract to the top ownership URLs</li>
+        <li>Reconcile post 5550 before any supporting article publishes</li>
+        <li>Begin mobile performance work on live 1381. A staging confirmation run is required</li>
+      </ul>
+    </div>
+    <div class="panel card">
+      <p class="eyebrow" style="margin-bottom:2px">Days 46 to 90 · fill the gaps</p>
+      <ul class="ticks">
+        <li>Publish the builder supporting path, the five new blogs; hub stays the commercial owner</li>
+        <li>Write owners for the high‑volume unranked MSP and manufacturing terms</li>
+        <li>Re‑job the eight builder satellites as proof or archive</li>
+        <li>Pick one landscaping hub slug</li>
+        <li><strong>Re‑export Moz and compare to August 14.</strong> Do not narrate movement from memory.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="sub">Dates are a work order, not predicted ranking dates. Janice was explicit that ninety days is not much time and six months is more realistic for a program to get rolling. Publication, redirects on live commercial URLs, spend and invoicing each stay a separate approval.</p>
+</section>
+
+<!-- ══════════ 17 · THE ASK ══════════ -->
+<section class="slide" data-sec="7" aria-label="The decision">
+  <p class="eyebrow">The decision · what I need from you today</p>
+  <h2>Three in the room.<span class="accent">Four you can send back in writing.</span></h2>
+  <div class="cols c3">
+    <div class="panel card panel--key">
+      <p class="eyebrow" style="margin-bottom:0">Decide today · 1</p>
+      <h3>Which pillar direction?</h3>
+      <p class="sub"><strong>Cinematic Authority (5546)</strong>, <strong>Orange Press (5585)</strong>, or a bounded combination. Nothing goes to staging until this is chosen.</p>
+    </div>
+    <div class="panel card panel--key">
+      <p class="eyebrow" style="margin-bottom:0">Decide today · 2</p>
+      <h3>Who is the factual reviewer?</h3>
+      <p class="sub">Name the person and the date. Janice is the subject‑matter source but is not on this invite, so her review needs scheduling, or a different named reviewer.</p>
+    </div>
+    <div class="panel card panel--key">
+      <p class="eyebrow" style="margin-bottom:0">Decide today · 3</p>
+      <h3>Where does the first repair sprint go?</h3>
+      <p class="sub">My recommendation: the <strong>homepage typo and the AI page robots</strong> first, an hour of work on the two surfaces that are visibly wrong, then mobile performance on 1381.</p>
+    </div>
+  </div>
+  <div class="cols c4">
+    <div class="panel card"><h3>4 · Image briefs</h3><p class="sub">Approve the briefs or supply approved project photography. Current imagery is art direction, not client proof.</p></div>
+    <div class="panel card"><h3>5 · First two to release</h3><p class="sub">Which two of the five blogs go first, after QA.</p></div>
+    <div class="panel card"><h3>6 · Measurement chain</h3><p class="sub">Confirm how a web enquiry becomes a CRM record, so “qualified lead” means one thing.</p></div>
+    <div class="panel card"><h3>7 · Phase 2 and invoicing</h3><p class="sub">Is social, downloadables and webinar a separate scope? And who receives the invoice, on what terms?</p></div>
+  </div>
+  <p class="sub">Everything in this package is built, QA’d and staged. <strong>Not one item is waiting on more work.</strong> Every one is waiting on a decision.</p>
+</section>
+
+</main>
+
+<div class="navpad" role="group" aria-label="Deck navigation">
+  <button class="navbtn navbtn--prev" id="navPrev" type="button" aria-label="Previous step">‹</button>
+  <span class="navpos" id="navPos" aria-live="polite">1 / 17</span>
+  <button class="navbtn navbtn--next" id="navNext" type="button" aria-label="Next step">›</button>
+</div>
+
+<div class="bar" role="toolbar" aria-label="Presenter controls">
+  <div class="segrail" id="segrail" aria-hidden="true"></div>
+  <span class="sec" id="barSec">Opening</span>
+  <span class="budget" id="barBudget">2 min</span>
+  <span class="sp"></span>
+  <button class="clock" id="clock" type="button" aria-label="Presenter timer, press T to start or stop">00:00 / 40:00</button>
+  <span class="count" id="barCount">1 / 17</span>
+  <span class="hint">← → move · Esc grid · T timer · F full</span>
+</div>
+</div>
+
+<div class="ov" id="ov" role="dialog" aria-modal="true" aria-label="Slide overview">
+  <div class="ov-hd"><h2>All slides</h2><p class="tiny">Click a slide, or press Escape to close</p></div>
+  <div class="ov-grid" id="ovGrid"></div>
+</div>
+
+<script>
+(function(){
+"use strict";
+var RM=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ── 40-minute section model ───────────────────────────── */
+var SECTIONS=[
+  {name:"Opening",min:2},{name:"Where BigOrange was",min:4},{name:"The WordPress build",min:7},
+  {name:"Authority hub & content engine",min:6},{name:"SEO, AEO & GEO plan",min:7},
+  {name:"Five-blog growth package",min:4},{name:"Evidence & honest status",min:5},{name:"What happens next",min:5}
+];
+(function(){var t=0;SECTIONS.forEach(function(s){s.start=t;t+=s.min;});SECTIONS.total=t;})();
+function mmss(s){s=Math.max(0,Math.round(s));return String((s/60)|0).padStart(2,"0")+":"+String(s%60).padStart(2,"0");}
+
+var slides=[].slice.call(document.querySelectorAll(".slide")),
+    stage=document.getElementById("stage"),cur=0;
+
+/* ── brick geometry, derived from the real logo alpha ──── */
+var BRICKS="-0.0,0.0|8.37,0.0|75.34,0.0|-4.16,3.18|4.16,3.18|12.58,3.18|20.9,3.18|62.81,3.18|71.13,3.18|79.55,3.18|-0.0,6.36|8.37,6.36|16.74,6.36|25.11,6.36|58.6,6.36|66.97,6.36|75.34,6.36|-4.16,9.54|4.16,9.54|12.58,9.54|20.9,9.54|29.32,9.54|54.39,9.54|62.81,9.54|71.13,9.54|79.55,9.54|-0.0,12.72|8.37,12.72|16.74,12.72|25.11,12.72|33.48,12.72|58.6,12.72|66.97,12.72|75.34,12.72|4.16,15.9|12.58,15.9|20.9,15.9|29.32,15.9|37.65,15.9|54.39,15.9|62.81,15.9|71.13,15.9|8.37,19.08|16.74,19.08|25.11,19.08|33.48,19.08|41.86,19.08|58.6,19.08|66.97,19.08|4.16,22.26|12.58,22.26|20.9,22.26|29.32,22.26|37.65,22.26|62.81,22.26|8.37,25.44|16.74,25.44|25.11,25.44|33.48,25.44|41.86,25.44|12.58,28.62|20.9,28.62|29.32,28.62|37.65,28.62|46.06,28.62|8.37,31.8|16.74,31.8|25.11,31.8|33.48,31.8|41.86,31.8|50.23,31.8|58.6,31.8|66.97,31.8|75.34,31.8|83.71,31.8|92.08,31.8|4.16,34.98|12.58,34.98|20.9,34.98|29.32,34.98|37.65,34.98|46.06,34.98|54.39,34.98|62.81,34.98|71.13,34.98|79.55,34.98|87.87,34.98|96.29,34.98|8.37,38.16|16.74,38.16|25.11,38.16|33.48,38.16|41.86,38.16|50.23,38.16|58.6,38.16|66.97,38.16|75.34,38.16|83.71,38.16|92.08,38.16|4.16,41.34|12.58,41.34|20.9,41.34|29.32,41.34|37.65,41.34|46.06,41.34|54.39,41.34|62.81,41.34|71.13,41.34|79.55,41.34|87.87,41.34|96.29,41.34|8.37,44.52|16.74,44.52|25.11,44.52|33.48,44.52|41.86,44.52|50.23,44.52|58.6,44.52|66.97,44.52|75.34,44.52|83.71,44.52|92.08,44.52|4.16,47.7|12.58,47.7|20.9,47.7|29.32,47.7|37.65,47.7|46.06,47.7|54.39,47.7|62.81,47.7|71.13,47.7|79.55,47.7|87.87,47.7|96.29,47.7|8.37,50.88|16.74,50.88|25.11,50.88|33.48,50.88|41.86,50.88|50.23,50.88|58.6,50.88|66.97,50.88|75.34,50.88|83.71,50.88|92.08,50.88|4.16,54.06|12.58,54.06|20.9,54.06|29.32,54.06|37.65,54.06|46.06,54.06|54.39,54.06|62.81,54.06|71.13,54.06|79.55,54.06|87.87,54.06|96.29,54.06|8.37,57.24|16.74,57.24|25.11,57.24|33.48,57.24|41.86,57.24|50.23,57.24|58.6,57.24|66.97,57.24|75.34,57.24|83.71,57.24|92.08,57.24|4.16,60.42|12.58,60.42|20.9,60.42|29.32,60.42|37.65,60.42|46.06,60.42|54.39,60.42|62.81,60.42|71.13,60.42|79.55,60.42|87.87,60.42|96.29,60.42|8.37,63.6|16.74,63.6|25.11,63.6|33.48,63.6|41.86,63.6|50.23,63.6|58.6,63.6|66.97,63.6|75.34,63.6|83.71,63.6|92.08,63.6|4.16,66.78|12.58,66.78|20.9,66.78|29.32,66.78|37.65,66.78|46.06,66.78|54.39,66.78|62.81,66.78|71.13,66.78|79.55,66.78|87.87,66.78|96.29,66.78|8.37,69.96|16.74,69.96|25.11,69.96|33.48,69.96|41.86,69.96|50.23,69.96|58.6,69.96|66.97,69.96|75.34,69.96|83.71,69.96|92.08,69.96|4.16,73.14|12.58,73.14|20.9,73.14|29.32,73.14|37.65,73.14|46.06,73.14|54.39,73.14|62.81,73.14|71.13,73.14|79.55,73.14|87.87,73.14|96.29,73.14|8.37,76.33|16.74,76.33|25.11,76.33|33.48,76.33|41.86,76.33|50.23,76.33|58.6,76.33|66.97,76.33|75.34,76.33|83.71,76.33|92.08,76.33|4.16,79.51|12.58,79.51|20.9,79.51|29.32,79.51|37.65,79.51|46.06,79.51|54.39,79.51|62.81,79.51|71.13,79.51|79.55,79.51|87.87,79.51|96.29,79.51|8.37,82.69|16.74,82.69|25.11,82.69|33.48,82.69|41.86,82.69|50.23,82.69|58.6,82.69|66.97,82.69|75.34,82.69|83.71,82.69|92.08,82.69|4.16,85.87|12.58,85.87|20.9,85.87|29.32,85.87|37.65,85.87|46.06,85.87|54.39,85.87|62.81,85.87|71.13,85.87|79.55,85.87|87.87,85.87|96.29,85.87|8.37,89.05|16.74,89.05|25.11,89.05|33.48,89.05|41.86,89.05|50.23,89.05|58.6,89.05|66.97,89.05|75.34,89.05|83.71,89.05|92.08,89.05|4.16,92.23|12.58,92.23|20.9,92.23|29.32,92.23|37.65,92.23|46.06,92.23|54.39,92.23|62.81,92.23|71.13,92.23|79.55,92.23|87.87,92.23|96.29,92.23|8.37,95.41|16.74,95.41|25.11,95.41|33.48,95.41|41.86,95.41|50.23,95.41|58.6,95.41|66.97,95.41|75.34,95.41|83.71,95.41|92.08,95.41|4.16,98.59|12.58,98.59|20.9,98.59|29.32,98.59|37.65,98.59|46.06,98.59|54.39,98.59|62.81,98.59|71.13,98.59|79.55,98.59|87.87,98.59|96.29,98.59".split("|");
+
+function buildBricks(host,stagger,base){
+  var frag=document.createDocumentFragment(),n=BRICKS.length,idx=[],i;
+  for(i=0;i<n;i++)idx.push(i);
+  idx.sort(function(a,b){ /* bottom courses land first, like real masonry */
+    return parseFloat(BRICKS[b].split(",")[1])-parseFloat(BRICKS[a].split(",")[1])||Math.random()-.5;});
+  for(var k=0;k<n;k++){
+    var p=BRICKS[idx[k]].split(","),x=parseFloat(p[0]),d=document.createElement("div");
+    d.className="brick";d.style.left=p[0]+"%";d.style.top=p[1]+"%";
+    d.style.setProperty("--dx",(((x<48)?-1:1)*(90+Math.random()*180)).toFixed(0)+"%");
+    d.style.setProperty("--dy",(-70-Math.random()*150).toFixed(0)+"%");
+    d.style.setProperty("--rot",(Math.random()*44-22).toFixed(1)+"deg");
+    d.style.setProperty("--sc",(0.72+Math.random()*0.22).toFixed(2));
+    d.style.setProperty("--delay",(base+k*stagger).toFixed(3)+"s");
+    frag.appendChild(d);
+  }
+  host.appendChild(frag);return n;
+}
+
+/* ═══════ THE OVERTURE ═══════════════════════════════════ */
+var WORD="BigOrange".split(""),
+    FACES=["f-brick","f-blue","f-marker","f-press","f-photo","f-dot","f-scrap"],
+    CYCLE=[0,2,3,5,7,8],                 /* which letter slots animate */
+    wordmark=document.getElementById("wordmark"),
+    sparksHost=document.getElementById("sparks"),
+    overture=document.getElementById("overture"),
+    riser=document.getElementById("riser"),
+    letters=[],timers=[],sparkPool=[],sparkI=0,introTimers=[];
+
+(function initWordmark(){
+  var resolve=wordmark.querySelector(".resolve");
+  WORD.forEach(function(ch,i){
+    var l=document.createElement("span");l.className="ltr";
+    var sz=document.createElement("span");sz.className="sizer";sz.textContent=ch;l.appendChild(sz);
+    var stack=[];
+    var t=document.createElement("span");t.className="face f-true on";t.textContent=ch;l.appendChild(t);stack.push(t);
+    if(CYCLE.indexOf(i)>-1){
+      FACES.forEach(function(f){
+        var s=document.createElement("span");s.className="face "+f;s.textContent=ch;l.appendChild(s);stack.push(s);
+      });
+    }
+    letters.push({el:l,stack:stack,n:stack.length});
+    wordmark.insertBefore(l,resolve);
+  });
+  for(var s=0;s<20;s++){
+    var sp=document.createElement("div");sp.className="spark";sparksHost.appendChild(sp);sparkPool.push(sp);
+  }
+})();
+
+function popSparks(letterEl,count){
+  if(RM)return;
+  var r=letterEl.getBoundingClientRect(),h=sparksHost.getBoundingClientRect();
+  var cx=r.left-h.left+r.width/2,cy=r.top-h.top+r.height/2;
+  for(var i=0;i<count;i++){
+    var sp=sparkPool[sparkI=(sparkI+1)%sparkPool.length],a=Math.random()*Math.PI*2,d=26+Math.random()*46;
+    sp.style.left=(cx-7)+"px";sp.style.top=(cy-7)+"px";
+    sp.style.color=(i%3===0)?"#1B4664":(i%3===1?"#FF7C00":"#B94800");
+    sp.style.setProperty("--sx",(Math.cos(a)*d).toFixed(0)+"px");
+    sp.style.setProperty("--sy",(Math.sin(a)*d).toFixed(0)+"px");
+    sp.classList.remove("go");void sp.offsetWidth;sp.classList.add("go");
+  }
+}
+function showFace(L,k){
+  for(var i=0;i<L.n;i++)L.stack[i].classList.toggle("on",i===k);
+}
+
+function runOverture(){
+  clearTimers();
+  wordmark.classList.remove("resolved");
+  riser.classList.remove("up","building","locked");
+  overture.classList.remove("told");
+  letters.forEach(function(L){showFace(L,0);});
+
+  if(RM){ /* static composition: resolved wordmark, resolved mark, copy visible */
+    wordmark.classList.add("resolved");riser.classList.add("up","locked");overture.classList.add("told");
+    return;
+  }
+  /* 1 · letters cycle through seven media, each on its own rhythm */
+  CYCLE.forEach(function(slot,n){
+    var L=letters[slot],period=132+n*29;
+    timers.push(setInterval(function(){
+      var k=1+((Math.random()*(L.n-1))|0);
+      showFace(L,k);
+      if(Math.random()<.5)popSparks(L.el,2+((Math.random()*2)|0));
+    },period));
+  });
+  /* 2 · resolve to the true wordmark, stop only the letter cycling here,
+         never the timeline that follows it */
+  introTimers.push(setTimeout(function(){
+    clearCycle();
+    letters.forEach(function(L){showFace(L,0);});
+    CYCLE.forEach(function(s,n){introTimers.push(setTimeout(function(){popSparks(letters[s].el,3);},n*55));});
+    introTimers.push(setTimeout(function(){wordmark.classList.add("resolved");},420));
+  },2700));
+  /* 3 · the brick form rises into frame and assembles */
+  introTimers.push(setTimeout(function(){
+    riser.classList.add("up");
+    introTimers.push(setTimeout(function(){riser.classList.add("building");},260));
+  },3250));
+  /* 4 · settle, sheen sweep, chips orbit out */
+  introTimers.push(setTimeout(function(){riser.classList.add("locked");},3250+260+RISE_END*1000));
+  /* 5 · headline, pill, meta, staggered */
+  introTimers.push(setTimeout(function(){overture.classList.add("told");},3250+260+RISE_END*1000+340));
+}
+function clearCycle(){timers.forEach(clearInterval);timers=[];}
+function clearTimers(){clearCycle();introTimers.forEach(clearTimeout);introTimers=[];}
+var RISE_N=buildBricks(document.getElementById("riserBricks"),0.0052,0),
+    RISE_END=RISE_N*0.0052+0.88;
+
+document.getElementById("replayBtn").addEventListener("click",function(e){e.stopPropagation();runOverture();});
+document.getElementById("beginBtn").addEventListener("click",function(e){e.stopPropagation();go(1);});
+
+/* ═══════ POINTER-REACTIVE SPECULAR SHEEN ════════════════ */
+var pend=false,pxv=50,pyv=35;
+function sheen(){pend=false;
+  document.documentElement.style.setProperty("--mx",pxv.toFixed(1)+"%");
+  document.documentElement.style.setProperty("--my",pyv.toFixed(1)+"%");}
+if(!RM)window.addEventListener("pointermove",function(e){
+  pxv=e.clientX/window.innerWidth*100;pyv=e.clientY/window.innerHeight*100;
+  if(!pend){pend=true;requestAnimationFrame(sheen);}},{passive:true});
+
+/* ═══════ PINNED SCROLL-SCRUB SEQUENCE ═══════════════════ */
+var pin=document.getElementById("pinSlide"),
+    turn=document.getElementById("turn"),
+    pinIntro=document.getElementById("pinIntro"),
+    pinCalls=document.getElementById("pinCalls"),
+    callEls=[].slice.call(pinCalls.querySelectorAll(".call")),
+    capEls=[].slice.call(document.querySelectorAll(".capline")),
+    dimL=document.getElementById("dimL"),dimB=document.getElementById("dimB"),
+    pinHint=document.getElementById("pinHint"),
+    pinDots=document.getElementById("pinDots"),
+    STEPS=7,rafOn=false,lastP=-1;
+
+(function(){for(var i=0;i<STEPS;i++){pinDots.appendChild(document.createElement("i"));}})();
+var dotEls=[].slice.call(pinDots.children);
+
+function clamp01(v){return v<0?0:v>1?1:v;}
+function ramp(p,a,b){return clamp01((p-a)/(b-a));}
+
+/* Layout geometry is measured once and cached, so the per-frame loop never
+   forces a synchronous layout after writing styles. */
+var pinMax=0;
+function measurePin(){pinMax=pin.scrollHeight-pin.clientHeight;}
+window.addEventListener("resize",function(){measurePin();lastP=-1;onPinScroll();},{passive:true});
+
+/* one rAF loop, one cheap scrollTop read per frame, writes only transform + opacity */
+function scrub(){
+  rafOn=false;
+  var max=pinMax;
+  var p=max>0?clamp01(pin.scrollTop/max):0;
+  if(Math.abs(p-lastP)<0.0008)return;
+  lastP=p;
+
+  /* the mark turns through 200 degrees across the whole track */
+  turn.style.transform="rotateY("+(p*200).toFixed(2)+"deg) rotateX("+((1-p)*9-3).toFixed(2)+"deg) translateZ(0)";
+
+  /* copy hands off to callouts */
+  pinIntro.style.opacity=(1-ramp(p,.06,.20)).toFixed(3);
+  var callsIn=ramp(p,.14,.24);
+  pinCalls.style.opacity=callsIn.toFixed(3);
+  pinCalls.style.setProperty("--rulescale",callsIn.toFixed(3));
+
+  /* dimension annotations, like the 5-inch ticks */
+  dimL.style.opacity=(ramp(p,.05,.13)*(1-ramp(p,.30,.42))).toFixed(3);
+  dimB.style.opacity=(ramp(p,.09,.17)*(1-ramp(p,.32,.44))).toFixed(3);
+
+  /* five callouts fade in at fixed scroll thresholds */
+  for(var i=0;i<callEls.length;i++){
+    var a=.20+i*.115,o=ramp(p,a,a+.075);
+    callEls[i].style.opacity=o.toFixed(3);
+    callEls[i].style.transform="translate3d(0,"+((1-o)*10).toFixed(1)+"px,0)";
+  }
+  /* caption crossfades as the mark passes 90 degrees, Front ports -> Back ports */
+  var flip=ramp(p,.40,.56);
+  capEls[0].style.opacity=(1-flip).toFixed(3);
+  capEls[1].style.opacity=flip.toFixed(3);
+
+  pinHint.style.setProperty("--hintop",(1-ramp(p,.02,.10)).toFixed(3));
+  var step=Math.min(STEPS-1,Math.round(p*(STEPS-1)));
+  for(var d=0;d<STEPS;d++)dotEls[d].classList.toggle("on",d<=step);
+}
+function onPinScroll(){if(!rafOn){rafOn=true;requestAnimationFrame(scrub);}}
+pin.addEventListener("scroll",onPinScroll,{passive:true});
+
+var pinAt=0,pinLock=0;
+function pinStep(){return pinAt;}
+/* own the tween rather than trusting CSS smooth scroll, which some
+   embedded viewers drop entirely and would strand the arrow mid-sequence */
+var pinAnim=null;
+function pinGo(step){
+  pinAt=Math.max(0,Math.min(STEPS-1,step));
+  var to=pinMax*(pinAt/(STEPS-1)),from=pin.scrollTop,dur=RM?0:430,t0=performance.now();
+  pinLock=Date.now()+dur+280;
+  if(pinAnim)cancelAnimationFrame(pinAnim);
+  var restore=pin.style.scrollBehavior;pin.style.scrollBehavior="auto";
+  (function frame(now){
+    var k=dur?Math.min(1,(now-t0)/dur):1;
+    pin.scrollTop=from+(to-from)*(1-Math.pow(1-k,3));
+    if(k<1){pinAnim=requestAnimationFrame(frame);}
+    else{pinAnim=null;pin.style.scrollBehavior=restore;}
+  })(t0);
+}
+/* a manual scroll still counts, but not the frames of our own smooth scroll */
+pin.addEventListener("scroll",function(){
+  if(Date.now()<pinLock)return;
+  pinAt=pinMax>0?Math.round(pin.scrollTop/pinMax*(STEPS-1)):0;},{passive:true});
+
+/* ═══════ CAROUSEL ═══════════════════════════════════════ */
+var rail=document.getElementById("carouRail"),cdots=document.getElementById("cdots"),ci=0,
+    cN=rail.children.length;
+(function(){for(var i=0;i<cN;i++)cdots.appendChild(document.createElement("i"));})();
+var cdotEls=[].slice.call(cdots.children);
+function carou(n){ci=(n+cN)%cN;rail.style.transform="translate3d("+(-ci*100)+"%,0,0)";
+  cdotEls.forEach(function(d,i){d.classList.toggle("on",i===ci);});}
+document.getElementById("cPrev").addEventListener("click",function(e){e.stopPropagation();carou(ci-1);paintNav();});
+document.getElementById("cNext").addEventListener("click",function(e){e.stopPropagation();carou(ci+1);paintNav();});
+carou(0);
+var carouSlide=document.getElementById("carou").closest(".slide");
+
+/* ═══════ NAVIGATION ═════════════════════════════════════ */
+var barSec=document.getElementById("barSec"),barBudget=document.getElementById("barBudget"),
+    barCount=document.getElementById("barCount"),segrail=document.getElementById("segrail"),
+    ov=document.getElementById("ov"),ovGrid=document.getElementById("ovGrid"),clockEl=document.getElementById("clock"),
+    navPos=document.getElementById("navPos"),navPrev=document.getElementById("navPrev"),navNext=document.getElementById("navNext");
+
+SECTIONS.forEach(function(s){var e=document.createElement("span");e.style.setProperty("--w",s.min);
+  e.appendChild(document.createElement("i"));segrail.appendChild(e);});
+var segEls=[].slice.call(segrail.children);
+
+function secOf(i){return parseInt(slides[i].dataset.sec,10)||0;}
+function paint(){
+  var si=secOf(cur),s=SECTIONS[si];
+  barSec.textContent=s.name;
+  barBudget.textContent=s.min+" min · starts "+s.start+":00";
+  barCount.textContent=(cur+1)+" / "+slides.length;
+  navPos.textContent=(cur+1)+" / "+slides.length;
+  paintNav();
+  /* fill each section segment by how far through that section we are */
+  var inSec=slides.filter(function(x){return secOf(slides.indexOf(x))===si;}).length;
+  var posInSec=0,c=0;
+  for(var i=0;i<slides.length;i++){if(secOf(i)===si){if(i===cur)posInSec=c;c++;}}
+  segEls.forEach(function(e,i){
+    var f=i<si?1:(i===si?(posInSec+1)/inSec:0);
+    e.firstChild.style.transform="scaleX("+f.toFixed(3)+")";});
+  [].slice.call(ovGrid.children).forEach(function(e,i){e.classList.toggle("cur",i===cur);});
+}
+function go(i,force){
+  i=Math.max(0,Math.min(slides.length-1,i));
+  if(i===cur&&!force)return;
+  slides.forEach(function(s,j){
+    s.classList.toggle("is-active",j===i);
+    s.classList.toggle("is-prev",j<i);
+    s.setAttribute("aria-hidden",j===i?"false":"true");});
+  var back=i<cur;
+  cur=i;
+  if(slides[i]!==pin)slides[i].scrollTop=0;
+  if(slides[i]===carouSlide)carou(back?cN-1:0);
+  paint();
+  try{history.replaceState(null,"","#"+(i+1));}catch(e){}
+  if(i===0)runOverture();
+  if(slides[i]===pin){measurePin();lastP=-1;pinAt=(back&&!RM)?STEPS-1:0;pinLock=Date.now()+700;
+    if(pinAnim){cancelAnimationFrame(pinAnim);pinAnim=null;}
+    var sbv=pin.style.scrollBehavior;pin.style.scrollBehavior="auto";
+    pin.scrollTop=pinMax*(pinAt/(STEPS-1));pin.style.scrollBehavior=sbv;scrub();}
+}
+
+slides.forEach(function(s,i){
+  var b=document.createElement("button");b.type="button";b.className="ov-i";
+  var h=s.querySelector("h1,h2");
+  b.innerHTML='<span class="n">'+String(i+1).padStart(2,"0")+'</span><span class="t"></span><span class="s"></span>';
+  b.querySelector(".t").textContent=h?h.textContent.replace(/\s+/g," ").trim():(s.getAttribute("aria-label")||"Slide");
+  b.querySelector(".s").textContent=SECTIONS[secOf(i)].name;
+  b.addEventListener("click",function(){go(i);ov.classList.remove("open");});
+  ovGrid.appendChild(b);
+});
+
+var t0=null,tick=null;
+function paintClock(){var el=t0?(Date.now()-t0)/1000:0;
+  clockEl.textContent=mmss(el)+" / "+SECTIONS.total+":00";
+  clockEl.classList.toggle("run",!!t0);clockEl.classList.toggle("over",el>SECTIONS.total*60);}
+function toggleTimer(){if(t0){t0=null;clearInterval(tick);tick=null;}else{t0=Date.now();tick=setInterval(paintClock,1000);}paintClock();}
+clockEl.addEventListener("click",function(e){e.stopPropagation();toggleTimer();});
+
+/* does the current slide still have an internal beat left in direction d? */
+function inStep(d){
+  if(slides[cur]===pin&&!RM){var s=pinStep();return d>0?s<STEPS-1:s>0;}
+  if(slides[cur]===carouSlide){return d>0?ci<cN-1:ci>0;}
+  return false;
+}
+function paintNav(){
+  navPrev.disabled=(cur===0&&!inStep(-1));
+  navNext.disabled=(cur===slides.length-1&&!inStep(1));
+}
+function next(){
+  if(slides[cur]===pin&&!RM){var s=pinStep();if(s<STEPS-1){pinGo(s+1);return;}}
+  if(slides[cur]===carouSlide&&ci<cN-1){carou(ci+1);paintNav();return;}
+  go(cur+1);
+}
+function prev(){
+  if(slides[cur]===pin&&!RM){var s=pinStep();if(s>0){pinGo(s-1);return;}}
+  if(slides[cur]===carouSlide&&ci>0){carou(ci-1);paintNav();return;}
+  go(cur-1);
+}
+navNext.addEventListener("click",function(e){e.stopPropagation();next();});
+navPrev.addEventListener("click",function(e){e.stopPropagation();prev();});
+pin.addEventListener("scroll",paintNav,{passive:true});
+document.addEventListener("keydown",function(e){
+  if(e.metaKey||e.ctrlKey||e.altKey)return;
+  var open=ov.classList.contains("open");
+  if(open&&e.key!=="Escape"&&e.key!=="Tab"&&e.key!=="Enter"&&e.key!==" ")return;
+  switch(e.key){
+    case "ArrowRight":case "ArrowDown":case "PageDown":case " ":case "Enter":
+      if(open)return;e.preventDefault();next();break;
+    case "ArrowLeft":case "ArrowUp":case "PageUp":e.preventDefault();prev();break;
+    case "Home":e.preventDefault();go(0);break;
+    case "End":e.preventDefault();go(slides.length-1);break;
+    case "Escape":e.preventDefault();ov.classList.toggle("open");
+      if(ov.classList.contains("open")&&ovGrid.children[cur])ovGrid.children[cur].focus();break;
+    case "t":case "T":e.preventDefault();toggleTimer();break;
+    case "f":case "F":e.preventDefault();
+      if(document.fullscreenElement)document.exitFullscreen();
+      else if(document.documentElement.requestFullscreen)document.documentElement.requestFullscreen();
+      break;
+  }
+});
+stage.addEventListener("click",function(e){
+  if(e.target.closest("a,button,input,select,textarea"))return;
+  if(window.getSelection&&String(window.getSelection()))return;
+  if(slides[cur]===pin)return;      /* the pinned slide is scrubbed, not clicked */
+  next();
+});
+
+var h=parseInt((location.hash||"#1").slice(1),10);
+go(isFinite(h)&&h>0?h-1:0,true);
+paintClock();
+
+/* ?still=1 settles every sequence immediately, used to render the PDF stills
+   so the exported pages match exactly what is on screen mid-talk. */
+if(/[?&]still=1/.test(location.search)){
+  clearTimers();
+  letters.forEach(function(L){showFace(L,0);});
+  wordmark.classList.add("resolved");
+  riser.classList.add("up","building","locked");
+  overture.classList.add("told");
+  document.querySelectorAll('img[loading="lazy"]').forEach(function(im){im.loading="eager";});
+  var pm=location.search.match(/[?&]p=([\d.]+)/);
+  if(slides[cur]===pin){          /* wait for layout so the track has a real height */
+    setTimeout(function(){window.__deck.setP(pm?parseFloat(pm[1]):0.74);},400);
+  }
+}
+
+window.addEventListener("beforeprint",function(){
+  slides.forEach(function(s){s.classList.add("is-active");s.setAttribute("aria-hidden","false");});});
+window.addEventListener("afterprint",function(){go(cur,true);});
+
+/* expose a tiny hook so the frame-rate probe can drive the scrub deterministically */
+window.__deck={go:go,pinGo:pinGo,scrub:scrub,measurePin:measurePin,slides:slides,STEPS:STEPS,
+  setP:function(p){var prev=pin.style.scrollBehavior;pin.style.scrollBehavior="auto";
+    measurePin();lastP=-1;pin.scrollTop=pinMax*p;scrub();pin.style.scrollBehavior=prev;}};
+})();
+</script>
+</body>
+</html>

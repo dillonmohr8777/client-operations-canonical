@@ -1,0 +1,287 @@
+/* =========================================================================
+   MOMENTUM AI — LAUNCH AD SYSTEM
+   Five 15s landscape spots · 1920x1080
+
+   PALETTE: blue + white. Signal orange is deliberately absent from this set.
+   TYPE:    Archivo Black (display) + Nunito Sans (body) — the
+            momentum-design-system tokens.css v1.0.0 spec. Archivo Black is a
+            single-weight face: never set a numeric weight above 400 on it.
+   Colour values are literal copies of momentum-design-system/tokens.css.
+   Foreground tokens are legal ONLY on their named surface.
+   ========================================================================= */
+
+@font-face {
+  font-family: "Archivo Black";
+  src: url("fonts/ArchivoBlack-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: block;
+}
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("fonts/NunitoSans.ttf") format("truetype");
+  font-weight: 400 800;
+  font-display: block;
+}
+
+:root {
+  /* light surfaces */
+  --m-paper: #fbf8f4;
+  --m-panel: #f0ece5;
+  --m-ink: #14181b;
+  --m-muted: #636465;
+
+  /* dark surfaces */
+  --m-deep: #0e1417;
+  --m-deep-raised: #1a2226;
+  --m-on-deep: #f4f1ec;
+  --m-on-deep-muted: #8a9296;
+
+  /* brand blue — the spine of this set */
+  --m-brand: #155e86; /* legal on paper/panel   6.66 / 5.99 */
+  --m-brand-lift: #3897cc; /* legal on deep/raised   5.72 / 4.97 */
+  --m-on-brand: #ffffff; /* the ONLY fill that takes white  7.05 */
+
+  --m-font-display: "Archivo Black", "Anton", "Arial Black", sans-serif;
+  --m-font-text: "Nunito Sans", "Poppins", system-ui, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--m-deep);
+}
+body {
+  font-family: var(--m-font-text);
+}
+
+/* ---- Surfaces. No two adjacent slides may share one. ---- */
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 148px;
+}
+.s-deep {
+  background: var(--m-deep);
+}
+.s-raised {
+  background: var(--m-deep-raised);
+}
+.s-paper {
+  background: var(--m-paper);
+}
+.s-panel {
+  background: var(--m-panel);
+}
+.s-brand {
+  background: var(--m-brand);
+}
+
+/* ---- Alignment skeletons. Rotate so no two slides read alike. ---- */
+.a-left {
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+.a-center {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.a-split {
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+  padding-top: 150px;
+  padding-bottom: 150px;
+}
+
+/* ---- Display type. Archivo Black (single weight), headings only. ---- */
+.d {
+  display: block;
+  font-family: var(--m-font-display);
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  will-change: transform, opacity;
+}
+.d-xl {
+  font-size: 190px;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+}
+.d-lg {
+  font-size: 148px;
+}
+.d-md {
+  font-size: 112px;
+}
+.d-sm {
+  font-size: 78px;
+}
+
+/* ---- Foregrounds, named for their legal surface ---- */
+.on-deep {
+  color: var(--m-on-deep);
+}
+.on-deep-brand {
+  color: var(--m-brand-lift);
+}
+.on-deep-muted {
+  color: var(--m-on-deep-muted);
+}
+.on-light {
+  color: var(--m-ink);
+}
+.on-light-brand {
+  color: var(--m-brand);
+}
+.on-light-muted {
+  color: var(--m-muted);
+}
+.on-brand {
+  color: var(--m-on-brand);
+}
+
+/* ---- Support text ---- */
+.eyebrow {
+  display: block;
+  font-family: var(--m-font-text);
+  font-weight: 800;
+  font-size: 30px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  will-change: transform, opacity;
+}
+.body {
+  display: block;
+  font-family: var(--m-font-text);
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.35;
+  will-change: transform, opacity;
+}
+
+/* ---- Rule. Hard edge, zero blur — never a glow. ---- */
+.rule {
+  display: block;
+  height: 12px;
+  width: 420px;
+  background: var(--m-brand-lift);
+  margin-top: 44px;
+  transform-origin: left center;
+}
+.rule-brand {
+  background: var(--m-brand);
+}
+.rule-white {
+  background: var(--m-on-brand);
+}
+
+/* ---- Closing lockup, shared across all five spots ---- */
+.lockup {
+  display: block;
+  font-family: var(--m-font-display);
+  font-weight: 400;
+  font-size: 104px;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-align: center;
+}
+.lockup em {
+  font-style: normal;
+}
+.lanes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 44px;
+}
+.lane {
+  display: block;
+  font-family: var(--m-font-text);
+  font-weight: 800;
+  font-size: 30px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  will-change: transform, opacity;
+}
+.url {
+  display: block;
+  font-family: var(--m-font-text);
+  font-weight: 600;
+  font-size: 30px;
+  letter-spacing: 0.06em;
+}
+
+/* =========================================================================
+   PAYOFF SLIDE — shared across all five spots.
+   The v1 lockup floated at 104px in a large dark frame and read as
+   unfinished. This gives it weight: bigger type, a separator rule, lanes
+   as a single row.
+   ========================================================================= */
+.payoff {
+  justify-content: center;
+  align-items: center;
+  gap: 44px;
+}
+.payoff .lockup {
+  font-size: 148px;
+}
+.lanes-rule {
+  display: block;
+  height: 4px;
+  width: 880px;
+  background: var(--m-on-deep-muted);
+  opacity: 0.4;
+  transform-origin: center;
+}
+.lanes-rule-light {
+  background: var(--m-muted);
+}
+.lanes-rule-white {
+  background: var(--m-on-brand);
+  opacity: 0.55;
+}
+
+/* =========================================================================
+   SIGNATURE WIPE — one hard-edged brand-blue sweep covering each slide cut,
+   reused in all five so the set reads as one campaign.
+   Hard edge, zero blur. Never a glow.
+   ========================================================================= */
+.wipe {
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  background: var(--m-brand-lift);
+  z-index: 50;
+  will-change: transform;
+}
+
+/* =========================================================================
+   TWO-COLUMN landscape skeleton. Replaces a-split, which was tuned for
+   portrait and leaves a dead middle band plus an empty right half at 16:9.
+   ========================================================================= */
+.a-cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 96px;
+  justify-content: initial;
+  text-align: left;
+}
+.a-cols > * {
+  min-width: 0;
+}

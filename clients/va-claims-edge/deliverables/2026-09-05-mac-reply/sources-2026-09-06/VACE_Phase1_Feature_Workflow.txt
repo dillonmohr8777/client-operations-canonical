@@ -1,0 +1,173 @@
+MOMENTUM DIGITAL
+Custom Software, Digital Growth & Ownership-First Development
+
+
+Feature & Workflow Document
+VA Claims Edge - VACE Platform
+
+Client
+VA Claims (David Fisher)
+Agency
+Momentum Digital
+Date
+June 2026
+Phase
+Phase 1 of 5
+
+
+1. Platform Overview
+The VACE platform is a purpose-built client management system designed specifically around VA Claims' advisory business. Its core purpose is to give David Fisher complete situational awareness over every active client relationship - who is progressing, who is stuck, whose court the ball is in, and who may owe money.
+This is not a generic CRM. Every feature in this document was designed around the specific way VA Claims operates.
+
+2. User Roles
+Role
+Who
+Access Level
+Administrator
+David Fisher
+Full access to all clients, advisors, settings, AI assistant, and Payment Watch
+Advisor
+Donnie, Darious (future)
+View and manage assigned clients only - no access to other advisors' clients
+
+3. The 11-Step VA Claims Process
+Every client moves through the following 11 steps. The platform tracks exactly which step each client is in, how long they have been there, and whether the hold-up is on the team's side or the client's side.
+
+Step
+Name
+Description
+1
+Initial Intake
+Client signs up and enters their name, email, and phone. Profile is created.
+2
+Document Collection
+Client gathers and submits medical records and prior VA award letters.
+3
+Records Review
+Team reviews submitted records to assess the client's case.
+4
+Nexus Letter
+Team works with medical professionals to obtain a nexus letter linking condition to service.
+5
+DBQ Completion
+Disability Benefits Questionnaire is completed by a qualified medical provider.
+6
+Claim Submission
+The completed claim package is submitted to the VA.
+7
+VA Review
+VA is reviewing the submitted claim - client and team await decision.
+8
+C&P Exam Prep
+Team prepares client for the Compensation & Pension exam.
+9
+Exam Complete
+Client has completed their C&P exam. Results timer may be started here.
+10
+Decision Review
+VA decision has been received. Team reviews the rating and advises next steps.
+11
+Case Closed
+Process complete. Client has received their rating increase and payments are settled.
+
+4. Core Features
+4.1 Dashboard
+The main screen David sees when he logs in. Designed for immediate situational awareness without clicking through menus.
+Stat cards showing: total active clients, clients at risk (30+ days), clients stuck (60+ days), completed YTD
+Progress pipeline - visual bar showing how many clients are in each of the 11 steps
+Client list table with columns: Name, Advisor, Step, Days in Step, Onus, Status
+Color coding - red for stuck, amber for at risk, green for active
+Click any step in the pipeline to filter the client list by that step
+Filter tabs - All, Stuck, Waiting on Us, Waiting on Client
+Add Client button to create new profiles instantly
+
+4.2 Client Detail Panel
+Slides in from the right when any client row is clicked. Shows everything about one client in one place.
+Step progress bar - visual representation of completed vs remaining steps
+Client details: days in step, onus, last contact, status
+Advance Step button - moves client to next step, resets days counter
+Toggle Onus button - switches between 'Waiting on Us' and 'Waiting on Client'
+Notes section - add and view interaction logs and notes
+Timeline - chronological history of all events and interactions
+
+4.3 All Clients Page
+A dedicated page for viewing, searching, and managing the full client list.
+Search by client name
+Filter by status (active, at-risk, stuck)
+Filter by onus (waiting on us, waiting on client)
+Filter by step (any of the 11 steps)
+Sort by days in step, name, or step number
+All filters can be combined and cleared
+
+4.4 Alerts Page
+A dedicated page showing every client that needs attention, sorted by urgency.
+Critical alerts - clients 60+ days in current step
+Warning alerts - clients 30-59 days in current step
+Action needed alerts - onus on team for 14+ days
+Filter by alert type
+Click any alert to open the client detail panel and take action
+Summary cards showing counts per alert type
+
+4.5 Advisors Page
+Manage the advisory team - add, view stats, and remove advisors.
+Advisor cards showing: name, role, total clients, at-risk count, stuck count
+Add new advisor with name, email, and role
+Remove advisor with confirmation - clients remain in system pending reassignment
+
+4.6 AI Assistant
+Natural language interface for querying the entire client database without navigating filters.
+Ask questions in plain English and receive intelligent, data-grounded answers
+Pre-call briefings - ask for a summary of any client before a call
+Advisor queries - 'Who is Donnie's most at-risk client?'
+Gap detection - 'Which clients haven't been contacted in 30+ days?'
+Suggestion chips for common queries
+Full conversation history within each session
+
+4.7 Payment Watch (Phase 3 Feature)
+Tracks clients in the post-exam window when VA rating decisions are expected and payments may be owed to VA Claims.
+'Start Results Timer' button on each client profile - begins counting from that date
+Two client groups are monitored:
+60-120 days post-exam - likely received rating, payment probably due
+121+ days post-exam - outliers requiring special attention
+'Mark as Paid' button removes client from the Payment Watch list
+Clients re-enter the list if they go through the process again and the timer is restarted
+Dedicated Payment Watch page separate from the main dashboard
+
+4.8 Settings Page
+Admin-configurable settings without requiring code changes.
+Notification thresholds per step group - set how many days before an alert fires
+Admin email address for receiving notifications
+Future: additional notification channels
+
+5. Onus Tracking Logic
+One of the most unique features of the VACE platform. Every client is always in one of two states:
+
+State
+Meaning
+Display Color
+Waiting on Us
+The team needs to take the next action to move this client forward
+Blue
+Waiting on Client
+The client needs to take the next action before the team can proceed
+Amber
+
+The onus flag is manually toggled by the admin or advisor when the responsibility shifts. Alerts are generated when onus has been on the team for 14+ days without action.
+
+6. Notification System
+The automated notification engine runs on a daily schedule and proactively alerts David when clients breach time thresholds - so he doesn't have to check the dashboard manually every day.
+
+6.1 Notification Types
+Critical alert - client has been in current step for 60+ days
+Warning alert - client has been in current step for 30+ days
+Team action needed - onus has been on the team for 14+ days
+Payment Watch entry - client enters the 60-day post-exam window
+Payment Watch escalation - client crosses 121 days post-exam
+
+6.2 Delivery
+Daily email digest sent to the admin email address
+In-app alerts page always reflects current status
+Thresholds are configurable per step group in the Settings page
+
+
+Momentum Digital - VA Claims Edge Platform - Phase 1 Feature & Workflow Document

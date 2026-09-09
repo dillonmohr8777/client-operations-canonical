@@ -1,0 +1,333 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>layout audit</title>
+<!-- Dev-only. Every page x every width in ONE page load: the iframe is resized
+     and re-navigated per combination, so GSAP and Owl both initialise against
+     the width they are measured at (resizing after load leaves them stale and
+     gives false readings).
+
+       /audit.html            run the whole matrix, JSON on window.__AUDIT__
+       /audit.html?w=375      one width only
+
+     Visibility is strict on purpose: a collapsed accordion panel is height:0
+     with overflow:hidden, but its children still report full bounding boxes,
+     which reads as dozens of phantom overlaps. Anything under a clipped or
+     hidden ancestor is skipped, and so is anything positioned out of flow. -->
+<style>
+  body { font: 12px/1.4 ui-monospace, monospace; margin: 0; background: #111; color: #ddd; }
+  #f { position: fixed; left: -99999px; top: 0; border: 0; }
+  #out { padding: 10px; white-space: pre-wrap; }
+  .bad { color: #ff8b7a; } .ok { color: #8fe388; }
+</style>
+<iframe id="f" title="page under audit"></iframe>
+<pre id="out">running...</pre>
+<script>
+const SLUGS = ["", "anthony-gueriera-jr-insurance-agency-llc", "b-n-b-n-asian-bistro", "p-c-insurance-agency-llc", "rice-rice-ltd", "ward-insurance-associates-inc", "centurion-construction-group", "e-s-autoparts", "jarman-sales-service-inc", "ansarispharma-com", "havercrown-dental", "4-4-architecture", "a-new-dawn-therapeutic-massage", "advanced-specialty-flooring", "allure-skincare-nails-body", "always-dental-care", "andorra-family-dentistry", "attitude-alley-motorcycle-co-llc", "big-head-transport-llc", "bray-auto", "coco-nails"];
+const q = new URLSearchParams(location.search);
+/* Six phone widths, not one. The caption/menu collision the client hit was
+   invisible at 375 (exactly zero clearance) and obvious at 393-430, so the
+   sweep has to cover the sizes real phones report, not one token phone. */
+const WIDTHS = q.get('w') ? q.get('w').split(',').map(Number)
+                          : [360, 375, 393, 412, 430, 768, 1440];
+const f = document.getElementById('f');
+
+/* Two bars, not one. A mark has to READ (big enough to be a logo) and it may
+   not be UPSCALED past 1.4x the pixels the file actually has - the second bar
+   is the one that was missing, and it is what made the marks look mushy. */
+/* The phone hero slot is 88vw wide, not a constant, and the layout that
+   produces it starts at the 900 breakpoint - not at 420, where this bar used
+   to step. That mismatch made a mark FAIL at 430 (346px painted) that PASSED
+   at 412 (330px painted): the mark got bigger and the bar got harder, which
+   cannot be a real defect. Below 900 the bar therefore tracks the viewport the
+   slot is cut from, with 260 as the most it can ever demand; above it, the
+   desktop figure is a fixed box and 380 still applies. */
+const MARK_MIN = { header: 84, card: 120,
+  hero: w => (w <= 900 ? Math.min(260, Math.round(w * 0.68)) : 380) };
+const CAP = 1.4;
+const TAP_MIN = 44;
+
+function rgb(c) {
+  const m = String(c).match(/[\d.]+/g);
+  return m ? m.slice(0, 3).map(Number).concat(m.length > 3 ? +m[3] : 1) : null;
+}
+function lum(c) {
+  const v = rgb(c); if (!v) return null;
+  const t = x => { x /= 255; return x <= .03928 ? x / 12.92 : Math.pow((x + .055) / 1.055, 2.4); };
+  return .2126 * t(v[0]) + .7152 * t(v[1]) + .0722 * t(v[2]);
+}
+function ratio(a, b) {
+  const l1 = lum(a), l2 = lum(b);
+  if (l1 == null || l2 == null) return null;
+  return (Math.max(l1, l2) + .05) / (Math.min(l1, l2) + .05);
+}
+
+/* strict visibility: walk every ancestor, not just the element itself */
+function shown(el, win) {
+  for (let n = el; n && n.nodeType === 1; n = n.parentElement) {
+    const s = win.getComputedStyle(n);
+    if (s.display === 'none' || s.visibility === 'hidden' || +s.opacity < .05) return false;
+    if (n.classList.contains('accordion-collapse') && !n.classList.contains('show')) return false;
+    if (n.clientHeight === 0 && s.overflow !== 'visible' && n !== el) return false;
+  }
+  return true;
+}
+function inFlow(el, win) {
+  const p = win.getComputedStyle(el).position;
+  return p !== 'absolute' && p !== 'fixed';
+}
+
+/* the footer is a gradient; white text there must clear the LIGHTEST stop */
+function backdrops(el, win, doc) {
+  for (let n = el; n && n !== doc.documentElement; n = n.parentElement) {
+    const s = win.getComputedStyle(n);
+    if (s.backgroundImage && s.backgroundImage !== 'none') {
+      const stops = s.backgroundImage.match(/rgba?\([^)]+\)/g);
+      if (stops && stops.length) return stops;
+    }
+    const c = rgb(s.backgroundColor);
+    if (c && c[3] > .5) return [s.backgroundColor];
+  }
+  return ['rgb(255, 255, 255)'];
+}
+
+function audit(doc, win, W) {
+  const R = { hscroll: false, overlaps: [], clipped: [], marks: [], smallMarks: [],
+              overCap: [], repeats: [], contrast: [], tinyTap: [], illos: 0, plates: 0,
+              imgs: 0, brokenImgs: [], bridge: 0, proof: 0, capGap: null, capLines: 0,
+              capAdv: null, jsErrors: [] };
+  R.hscroll = doc.documentElement.scrollWidth > W + 1;
+  R.illos = doc.querySelectorAll('svg.illo').length;
+  /* Any ground painted behind a mark, under any of the names it has had.
+     .markground was the white panel; the generic case is a markbox whose only
+     child is another element rather than the mark itself. */
+  R.plates = doc.querySelectorAll('.markground, .markbox.plated, figure.plate').length +
+    [...doc.querySelectorAll('.markbox > *')].filter(n =>
+      !/^(IMG)$/.test(n.tagName) && !n.classList.contains('wordmark') &&
+      !n.classList.contains('pending_mark_label')).length;
+  const site = doc.documentElement.dataset.site || '';
+  const heroBg = win.getComputedStyle(doc.querySelector('.homeslider .backbgbox')).backgroundColor;
+  const headerBg = win.getComputedStyle(doc.querySelector('.header')).backgroundColor;
+  const heroArt = doc.querySelectorAll('.homeslider .backvid .illo').length;
+  const heroPhotos = doc.querySelectorAll('.homeslider .backvid .industry_hero').length;
+  const heroPending = doc.querySelectorAll('.homeslider .backvid .industry_hero_pending').length;
+  const heroMarks = doc.querySelectorAll('.home_logo .markbox img, .home_logo .wordmark').length;
+  R.heroSurface = site !== 'hub' &&
+    (heroArt !== 0 || heroBg !== headerBg ||
+     (heroPhotos !== 1 && heroPending !== 1) || heroMarks !== 0);
+  R.bridge = doc.querySelectorAll('section.bridge').length;
+  R.proof = doc.querySelectorAll('section.proof_wrapper').length;
+  R.jsErrors = (win.__ERR__ || []).slice(0, 6);
+
+  /* The header contract, measured rather than assumed. A block h4 reports its
+     whole column, so the painted TEXT is what gets measured: the caption's <a>
+     is inline, and its client rects are its line boxes. The gap is from the
+     rightmost of those to the menu button's left edge, and it has to be > 0 at
+     every width for the longest tagline in the batch. capAdv is the measured
+     cap advance per character of the script face, which is the constant the
+     stylesheet divides by - it is reported so it can be calibrated instead of
+     guessed. */
+  const capA = doc.querySelector('.logo_caption h4 a');
+  const btn = doc.querySelector('.mobile_menubtn');
+  if (capA && btn) {
+    const rects = [...capA.getClientRects()];
+    if (rects.length) {
+      const right = Math.max(...rects.map(r => r.right));
+      R.capGap = Math.round((btn.getBoundingClientRect().left - right) * 10) / 10;
+      R.capLines = rects.length;
+      const fs = parseFloat(win.getComputedStyle(capA).fontSize);
+      const chars = (capA.textContent || '').length;
+      if (fs && chars)
+        R.capAdv = Math.round(rects.reduce((a, r) => a + r.width, 0) / (chars * fs) * 1000)
+                   / 1000;
+    }
+  }
+  const keys = [...doc.querySelectorAll('svg.illo')]
+    .map(g => (String(g.getAttribute('class')).match(/il-[a-z0-9-]+/) || [''])[0])
+    .filter(Boolean);
+  for (const k of new Set(keys))
+    if (keys.filter(x => x === k).length > 1) R.repeats.push(k);
+
+  const txt = [...doc.querySelectorAll('h1,h2,h3,h4,h5,p,li,button,a,small,.wordmark,.mark_text')]
+    .filter(e => (e.textContent || '').trim() && shown(e, win));
+
+  for (const e of txt) {
+    if (e.scrollHeight > e.clientHeight + 2 && win.getComputedStyle(e).overflow !== 'visible')
+      R.clipped.push(e.tagName + '|' + (e.textContent || '').trim().slice(0, 34));
+  }
+
+  const boxes = txt.filter(e => inFlow(e, win))
+    .map(e => ({ e, t: (e.textContent || '').trim(), r: e.getBoundingClientRect() }))
+    .filter(o => o.r.width > 4 && o.r.height > 4);
+  for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
+    const a = boxes[i], b = boxes[j];
+    if (a.e.contains(b.e) || b.e.contains(a.e)) continue;
+    if (a.t.includes(b.t) || b.t.includes(a.t)) continue;
+    const ov = Math.max(0, Math.min(a.r.right, b.r.right) - Math.max(a.r.left, b.r.left)) *
+               Math.max(0, Math.min(a.r.bottom, b.r.bottom) - Math.max(a.r.top, b.r.top));
+    if (ov > 120) R.overlaps.push(a.t.slice(0, 22) + ' >< ' + b.t.slice(0, 22));
+  }
+
+  /* object-fit:contain letterboxes inside the element box, so the box is NOT
+     what the eye sees. Measure the painted glyph. */
+  const painted = el => {
+    const r = el.getBoundingClientRect();
+    const nw = el.naturalWidth, nh = el.naturalHeight;
+    if (!nw || !nh) return { width: r.width, height: r.height };
+    const s = Math.min(r.width / nw, r.height / nh);
+    return { width: nw * s, height: nh * s };
+  };
+  for (const m of doc.querySelectorAll('.markbox img, .markbox .wordmark, ' +
+                                       '.cardmark img, .cardmark .wordmark')) {
+    if (!shown(m, win)) continue;
+    const r = painted(m);
+    if (r.width < 1) continue;
+    const where = m.closest('.home_logo') ? 'hero'
+                : m.closest('header') ? 'header' : 'card';
+    const rec = where + ' ' + Math.round(r.width) + 'x' + Math.round(r.height);
+    R.marks.push(rec);
+    /* The upscale bar. A wordmark is vector and has no native pixel count, so
+       only raster marks are capped. */
+    if (m.naturalWidth && r.width > m.naturalWidth * CAP + 1)
+      R.overCap.push(rec + ' is ' + (r.width / m.naturalWidth).toFixed(2) + 'x of ' +
+                     m.naturalWidth + 'px native at ' + W);
+    /* The read bar. A hero mark passes on width OR height: a 17:1 wordmark can
+       only get big sideways, a near-square shield only vertically. */
+    const ok = where === 'hero'
+      ? (r.width >= MARK_MIN.hero(W) || r.height >= 120)
+      : where === 'header'
+        ? (r.width >= MARK_MIN.header || r.height >= 60)
+        : r.width >= (MARK_MIN[where] || 120);
+    if (!ok) R.smallMarks.push(rec + ' too small at ' + W);
+  }
+
+  /* Only measure an element that owns a text node. A <li> wrapping a white <a>
+     reports the body's inherited #666 and its child's text, which reads as a
+     failure that does not exist on screen. */
+  const ownsText = e => [...e.childNodes].some(n => n.nodeType === 3 && n.textContent.trim());
+  for (const e of txt) {
+    if (!ownsText(e)) continue;
+    const s = win.getComputedStyle(e);
+    const size = parseFloat(s.fontSize), bold = +s.fontWeight >= 700;
+    const need = (size >= 24 || (size >= 18.66 && bold)) ? 3 : 4.5;
+    for (const bg of backdrops(e, win, doc)) {
+      const cr = ratio(s.color, bg);
+      if (cr != null && cr < need - .01)
+        R.contrast.push((e.textContent || '').trim().slice(0, 26) + ' ' + cr.toFixed(2) +
+                        '<' + need + '  ' + s.color + ' on ' + bg);
+    }
+  }
+
+  for (const b of doc.querySelectorAll('button, a.btn, .accordion-button, .mobile_menubtn')) {
+    const r = b.getBoundingClientRect();
+    if (!shown(b, win) || r.width < 2 || r.height < 2) continue;
+    if (r.height < TAP_MIN || r.width < TAP_MIN)
+      R.tinyTap.push(((b.textContent || b.getAttribute('aria-label') || b.id || '?').trim()
+                      .slice(0, 18)) + ' ' + Math.round(r.width) + 'x' + Math.round(r.height));
+  }
+
+  const imgs = [...doc.images];
+  R.imgs = imgs.length;
+  R.brokenImgs = imgs.filter(i => !i.complete || !i.naturalWidth).map(i => i.src);
+  R.noAlt = imgs.filter(i => !i.alt).length;
+  return R;
+}
+
+/* load + two painted frames + fonts + the frame agreeing about its own width.
+   Every wait is raced against a timeout: this pane throttles rAF in a frame it
+   is not painting, and an un-raced requestAnimationFrame in here hangs the
+   whole sweep on the first combination. */
+const nap = ms => new Promise(r => setTimeout(r, ms));
+const frame = win => new Promise(r => { win.requestAnimationFrame(r); setTimeout(r, 80); });
+
+async function settle(w) {
+  const win = f.contentWindow, doc = f.contentDocument;
+  if (!win || !doc) return { ok: false, why: 'no document' };
+  if (doc.readyState !== 'complete')
+    await Promise.race([new Promise(r => win.addEventListener('load', r)), nap(8000)]);
+  await frame(win); await frame(win);
+  if (doc.fonts && doc.fonts.ready) await Promise.race([doc.fonts.ready, nap(4000)]);
+  await nap(400);                                   // illustration + logo decode
+  await frame(win); await frame(win);
+  for (let i = 0; i < 40 && win.innerWidth !== w; i++) await nap(50);
+  return win.innerWidth === w
+    ? { ok: true, width: win.innerWidth }
+    : { ok: false, why: 'innerWidth ' + win.innerWidth + ' != ' + w };
+}
+
+(async () => {
+  const results = {}, out = document.getElementById('out');
+  for (const w of WIDTHS) {
+    f.style.width = w + 'px';
+    f.style.height = (w <= 420 ? 812 : 900) + 'px';
+    for (const slug of SLUGS) {
+      const url = slug ? '/sites/' + slug + '/' : '/';
+      out.textContent = 'loading ' + w + ' ' + (slug || 'HUB');
+      /* the page URL is busted but the stylesheet is not, and a cached
+         site.css from a previous build makes this harness lie */
+      await Promise.race([
+        new Promise(r => { f.onload = r; f.src = url + '?audit=' + w + '&t=' + Date.now(); }),
+        nap(15000)]);
+      try { for (const l of f.contentDocument.querySelectorAll('link[href^="/css/"]'))
+        l.href = l.getAttribute('href').split('?')[0] + '?v=' + Date.now(); } catch (e) {}
+      /* An earlier version of this harness measured on a fixed timer after
+         setting f.style.width, and reported stale layout: nine rows at 768
+         identical to their 375 values, and a page's numbers attributed to the
+         previously loaded document. Nothing is measured now until the frame
+         has fired load, painted twice, its fonts are ready, and its own
+         innerWidth agrees with the width we asked for. If that never happens
+         the combination is recorded as an error rather than as a number. */
+      const key = w + '|' + (slug || 'HUB');
+      const settled = await settle(w);
+      if (!settled.ok) { results[key] = { error: 'never settled: ' + settled.why }; continue; }
+      try { results[key] = audit(f.contentDocument, f.contentWindow, w);
+            results[key].measuredWidth = settled.width; }
+      catch (err) { results[key] = { error: String(err).slice(0, 120) }; }
+    }
+  }
+  window.__AUDIT__ = results;
+  const FIELDS = ['hscroll', 'overlaps', 'clipped', 'smallMarks', 'overCap', 'repeats',
+                  'contrast', 'tinyTap', 'plates', 'heroSurface', 'brokenImgs', 'noAlt',
+                  'jsErrors'];
+  let bad = 0;
+  const lines = Object.entries(results).map(([k, r]) => {
+    const hits = FIELDS.map(field => {
+      const v = r[field];
+      const n = Array.isArray(v) ? v.length : (v === true ? 1 : (typeof v === 'number' ? v : 0));
+      return n ? field + '=' + n : null;
+    }).filter(Boolean);
+    /* the caption may never reach the menu, and the page must carry its
+       lower-half row and its green section */
+    if (r.capGap != null && r.capGap <= 0) hits.push('capGap=' + r.capGap);
+    if (r.capGap == null && !r.error) hits.push('capGap=unmeasured');
+    if (r.proof !== 1 && !r.error) hits.push('proof=' + r.proof);
+    if (r.bridge !== 1 && !r.error) hits.push('bridge=' + r.bridge);
+    if (hits.length) bad++;
+    const hero = (r.marks || []).find(m => m.startsWith('hero')) || 'hero -';
+    const head = (r.marks || []).find(m => m.startsWith('header')) || 'header -';
+    return (hits.length ? 'FAIL ' : 'ok   ') + k.padEnd(24) +
+           'illos=' + String(r.illos).padEnd(3) +
+           'gap=' + String(r.capGap).padEnd(7) +
+           'ln=' + String(r.capLines).padEnd(3) +
+           'adv=' + String(r.capAdv).padEnd(7) +
+           hero.padEnd(26) + head.padEnd(22) + (hits.join(' ') || 'clean');
+  });
+  window.__AUDIT_FAILS__ = bad;
+  /* the distinct findings, deduped - 33 combinations otherwise print the same
+     string 33 times and the actual defect is buried */
+  const seen = new Map();
+  for (const [k, r] of Object.entries(results))
+    for (const field of ['overlaps', 'clipped', 'smallMarks', 'overCap', 'repeats',
+                         'contrast', 'tinyTap'])
+      for (const s of (r[field] || [])) {
+        const key = field + ' :: ' + s;
+        if (!seen.has(key)) seen.set(key, []);
+        if (seen.get(key).length < 3) seen.get(key).push(k);
+      }
+  const detail = [...seen.entries()].map(([k, where]) =>
+    '  ' + k + '   [' + where.join(', ') + (where.length >= 3 ? ', ...' : '') + ']');
+  out.innerHTML = '<span class="' + (bad ? 'bad' : 'ok') + '">AUDIT ' + bad + ' of ' +
+    Object.keys(results).length + ' combinations with findings</span>\n\n' + lines.join('\n') +
+    '\n\n--- ' + seen.size + ' distinct findings ---\n' + detail.join('\n');
+  document.title = bad ? ('AUDIT ' + bad + ' FAIL') : 'AUDIT PASS';
+})();
+</script>

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link rel="stylesheet" href="assets/momentum.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      #three-layer {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        display: block;
+        z-index: 0;
+      }
+      #b4 {
+        padding: 0;
+      }
+      #b4-type {
+        position: absolute;
+        left: 148px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+      }
+      .quote {
+        display: block;
+        font-family: var(--m-font-display);
+        font-weight: 400;
+        font-size: 104px;
+        line-height: 1.04;
+        letter-spacing: -0.025em;
+        will-change: transform, opacity;
+      }
+      /* Redacted lead rows. The names are deliberately blocked — a real
+         match-back names people only inside the private client report,
+         never in a public asset. */
+      #ledger {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        will-change: transform, opacity;
+      }
+      .row-no {
+        font-family: var(--m-font-text);
+        font-weight: 800;
+        font-size: 24px;
+        letter-spacing: 0.1em;
+        color: var(--m-muted);
+        width: 74px;
+        flex-shrink: 0;
+      }
+      .row-bar {
+        height: 30px;
+        background: var(--m-line-strong, #8e8578);
+        opacity: 0.34;
+        border-radius: 2px;
+      }
+      .row-date {
+        font-family: var(--m-font-text);
+        font-weight: 600;
+        font-size: 22px;
+        color: var(--m-muted);
+        margin-left: auto;
+        flex-shrink: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="ad04"
+      data-start="0"
+      data-duration="15"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- A · paper · TWO COLUMN (replaces a-split, which left a dead middle at 16:9) -->
+      <div id="a4" class="slide s-paper a-cols clip" data-start="0" data-duration="5" data-track-index="1">
+        <div>
+          <span class="eyebrow on-light-muted a4e">Every agency report, ever</span>
+          <span class="quote on-light a4l" style="margin-top: 36px">&ldquo;WE GOT YOU</span>
+          <span class="quote on-light a4l">32 LEADS</span>
+          <span class="quote on-light a4l">THIS MONTH.&rdquo;</span>
+        </div>
+        <div id="ledger">
+          <div class="row"><span class="row-no">01</span><span class="row-bar" style="width: 320px"></span><span class="row-date">Sep 02</span></div>
+          <div class="row"><span class="row-no">02</span><span class="row-bar" style="width: 260px"></span><span class="row-date">Sep 03</span></div>
+          <div class="row"><span class="row-no">03</span><span class="row-bar" style="width: 350px"></span><span class="row-date">Sep 03</span></div>
+          <div class="row"><span class="row-no">04</span><span class="row-bar" style="width: 210px"></span><span class="row-date">Sep 05</span></div>
+          <div class="row"><span class="row-no">05</span><span class="row-bar" style="width: 300px"></span><span class="row-date">Sep 06</span></div>
+          <div class="row"><span class="row-no">06</span><span class="row-bar" style="width: 240px"></span><span class="row-date">Sep 08</span></div>
+          <div class="row"><span class="row-no">07</span><span class="row-bar" style="width: 330px"></span><span class="row-date">Sep 08</span></div>
+        </div>
+      </div>
+
+      <!-- B · deep · two-word hit + torus -->
+      <div id="b4" class="slide s-deep clip" data-start="5" data-duration="5" data-track-index="2">
+        <canvas id="three-layer"></canvas>
+        <div id="b4-type">
+          <span class="d d-xl on-deep-brand b4l">FROM</span>
+          <span class="d d-xl on-deep b4l">WHO?</span>
+        </div>
+      </div>
+
+      <!-- C · deep · payoff -->
+      <div id="c4" class="slide s-deep payoff clip" data-start="10" data-duration="5" data-track-index="3">
+        <span class="d d-sm on-deep c4a">EVERY ACCEPTED LEAD</span>
+        <span class="d d-sm on-deep-brand c4a">HAS A RECEIPT.</span>
+        <span class="lanes-rule c4r"></span>
+        <span class="lockup d-md on-deep c4m">MOMENTUM <em class="on-deep-brand">AI</em></span>
+        <span class="url on-deep-brand c4u">needmomentum.com</span>
+      </div>
+
+      <div id="wipe1" class="wipe clip" data-start="4.6" data-duration="0.8" data-track-index="9"></div>
+      <div id="wipe2" class="wipe clip" data-start="9.6" data-duration="0.8" data-track-index="9"></div>
+    </div>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.181.2/+esm";
+      import { mountHero } from "./assets/hero.js";
+
+      // A torus — a closed loop, the attribution cycle. Hero lives on slide B.
+      mountHero({
+        canvas: "three-layer",
+        geometry: new THREE.TorusGeometry(1.25, 0.46, 40, 128),
+        x: 2.4,
+        scale: 1.05,
+        spin: 0.48,
+        inAt: 5.1,
+        outAt: 9.35,
+      });
+    </script>
+
+    <script>
+      const E = "expo.out";
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo(".a4e", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E }, 0.15);
+      tl.fromTo(".a4l", { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: E, stagger: 0.13 }, 0.4);
+      tl.fromTo(".row", { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: E, stagger: 0.07 }, 0.9);
+      tl.to([".a4l", ".a4e", ".row"], { opacity: 0, duration: 0.45, ease: "power2.in" }, 4.4);
+
+      tl.fromTo(".b4l", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.7, ease: E, stagger: 0.22 }, 5.15);
+      tl.to(".b4l", { opacity: 0, duration: 0.4, ease: "power2.in" }, 9.5);
+
+      tl.fromTo(".c4a", { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: 0.75, ease: E, stagger: 0.12 }, 10.15);
+      tl.fromTo(".c4r", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 10.75);
+      tl.fromTo(".c4m", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: E }, 11.0);
+      tl.fromTo(".c4u", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E }, 11.6);
+
+      tl.fromTo("#wipe1", { xPercent: -105 }, { xPercent: 0, duration: 0.22, ease: "power3.in" }, 4.78);
+      tl.to("#wipe1", { xPercent: 105, duration: 0.26, ease: "power3.out" }, 5.0);
+      tl.fromTo("#wipe2", { xPercent: -105 }, { xPercent: 0, duration: 0.22, ease: "power3.in" }, 9.78);
+      tl.to("#wipe2", { xPercent: 105, duration: 0.26, ease: "power3.out" }, 10.0);
+
+      window.__timelines["ad04"] = tl;
+    </script>
+  </body>
+</html>

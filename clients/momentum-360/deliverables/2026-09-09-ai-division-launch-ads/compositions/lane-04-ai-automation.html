@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link rel="stylesheet" href="assets/momentum.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      #three-layer {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        display: block;
+        z-index: 0;
+      }
+      #a { padding: 0; }
+      #a-type {
+        position: absolute;
+        left: 148px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        max-width: 900px;
+      }
+      #lane-name {
+        display: block;
+        font-family: var(--m-font-display);
+        font-weight: 400;
+        font-size: 116px;
+        line-height: 1.0;
+        letter-spacing: -0.03em;
+      }
+      #sub {
+        display: block;
+        font-family: var(--m-font-text);
+        font-weight: 600;
+        font-size: 46px;
+        line-height: 1.34;
+        max-width: 1380px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="lane04"
+      data-start="0"
+      data-duration="15"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- A · lane title + hero -->
+      <div id="a" class="slide s-paper clip" data-start="0" data-duration="5" data-track-index="1">
+        <canvas id="three-layer"></canvas>
+        <div id="a-type">
+          <span class="eyebrow on-light-brand al">LANE 04</span>
+          <span id="lane-name" class="on-light al" style="margin-top: 26px">AI AUTOMATION</span>
+          <span class="rule rule-brand ar"></span>
+        </div>
+      </div>
+
+      <!-- B · the promise -->
+      <div id="b" class="slide s-deep a-center clip" data-start="5" data-duration="5" data-track-index="2">
+        <span class="d d-md on-deep bl">EVERY ACCEPTED</span>
+        <span class="d d-md on-deep bl">LEAD HAS</span>
+        <span class="d d-md on-deep bl">A RECEIPT.</span>
+      </div>
+
+      <!-- C · payoff -->
+      <div id="c" class="slide s-deep payoff clip" data-start="10" data-duration="5" data-track-index="3">
+        <span id="sub" class="on-deep cs">One intake to one destination. Dedupe, an exception queue, destination readback.</span>
+        <span class="lanes-rule cr"></span>
+        <span class="lockup d-md on-deep cm">MOMENTUM <em class="on-deep-brand">AI</em></span>
+        <span class="url on-deep-brand cu">needmomentum.com</span>
+      </div>
+
+      <div id="wipe1" class="wipe clip" data-start="4.6" data-duration="0.8" data-track-index="9"></div>
+      <div id="wipe2" class="wipe clip" data-start="9.6" data-duration="0.8" data-track-index="9"></div>
+    </div>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.181.2/+esm";
+      import { mountHero } from "./assets/hero.js";
+
+      mountHero({
+        canvas: "three-layer",
+        geometry: new THREE.OctahedronGeometry(1.85, 0),
+        x: 2.35,
+        scale: 1.0,
+        spin: 0.46,
+      });
+    </script>
+
+    <script>
+      const E = "expo.out";
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo(".al", { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.9, ease: E, stagger: 0.14 }, 0.15);
+      tl.fromTo(".ar", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 0.9);
+      tl.to(".al", { yPercent: -18, opacity: 0, duration: 0.5, ease: "power2.in", stagger: 0.05 }, 4.4);
+      tl.to(".ar", { scaleX: 0, duration: 0.4, ease: "power2.in" }, 4.4);
+
+      tl.fromTo(".bl", { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.85, ease: E, stagger: 0.13 }, 5.15);
+      tl.to(".bl", { yPercent: -16, opacity: 0, duration: 0.5, ease: "power2.in", stagger: 0.05 }, 9.4);
+
+      tl.fromTo(".cs", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.75, ease: E }, 10.15);
+      tl.fromTo(".cr", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 10.7);
+      tl.fromTo(".cm", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: E }, 10.95);
+      tl.fromTo(".cu", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E }, 11.55);
+
+      tl.fromTo("#wipe1", { xPercent: -105 }, { xPercent: 0, duration: 0.22, ease: "power3.in" }, 4.78);
+      tl.to("#wipe1", { xPercent: 105, duration: 0.26, ease: "power3.out" }, 5.0);
+      tl.fromTo("#wipe2", { xPercent: -105 }, { xPercent: 0, duration: 0.22, ease: "power3.in" }, 9.78);
+      tl.to("#wipe2", { xPercent: 105, duration: 0.26, ease: "power3.out" }, 10.0);
+
+      window.__timelines["lane04"] = tl;
+    </script>
+  </body>
+</html>

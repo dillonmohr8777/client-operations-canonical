@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bridge Frontend Build and Community Content Report</title>
+  <style>
+    @page { size: Letter; margin: 0; }
+    * { box-sizing: border-box; }
+    :root { --ink:#faf7ff; --muted:#c3b9cf; --purple:#a45cff; --hot:#ddbcff; --bg:#09060d; --panel:#17111e; --panel2:#21162b; --line:rgba(221,188,255,.22); --green:#66e3ae; --coral:#ff7968; }
+    html, body { margin:0; padding:0; background:#050307; color:var(--ink); font-family:Arial, sans-serif; }
+    body { print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+    .page { width:8.5in; height:11in; padding:.48in .55in .42in; position:relative; overflow:hidden; page-break-after:always; background:radial-gradient(circle at 88% 8%, rgba(112,32,176,.35), transparent 30%), linear-gradient(155deg,#12091b 0%,#08050b 74%); }
+    .page:last-child { page-break-after:auto; }
+    .mast { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding-bottom:11px; }
+    .brand { display:flex; align-items:center; gap:11px; }
+    .brand img { width:43px; height:31px; object-fit:contain; }
+    .brand strong { font-size:17px; letter-spacing:.15em; }
+    .brand span, .period span { display:block; color:var(--muted); font-size:7.5px; text-transform:uppercase; letter-spacing:.13em; margin-top:3px; }
+    .period { text-align:right; }
+    .period strong { color:var(--hot); font-size:8.5px; letter-spacing:.11em; text-transform:uppercase; }
+    h1 { margin:31px 0 12px; font-size:44px; line-height:.98; letter-spacing:-.04em; max-width:690px; }
+    h2 { margin:0; font-size:23px; line-height:1.08; letter-spacing:-.025em; }
+    h3 { margin:0 0 7px; font-size:12.5px; }
+    p { margin:0; color:#ded7e7; font-size:10.5px; line-height:1.48; }
+    .accent { color:var(--purple); }
+    .lead { max-width:660px; font-size:13.5px; line-height:1.52; color:#ece5f4; }
+    .hero-rule { width:82px; height:4px; margin:21px 0; background:linear-gradient(90deg,var(--purple),#e2c5ff); border-radius:10px; }
+    .summary { margin-top:23px; border:1px solid var(--line); border-left:4px solid var(--purple); background:rgba(27,17,38,.88); border-radius:9px; padding:14px 16px; }
+    .summary strong { display:block; font-size:9px; color:var(--hot); text-transform:uppercase; letter-spacing:.12em; margin-bottom:6px; }
+    .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:17px; }
+    .metric { border:1px solid var(--line); background:rgba(29,18,40,.82); border-radius:9px; padding:11px; min-height:79px; }
+    .metric span { display:block; font-size:7.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.1em; }
+    .metric b { display:block; font-size:24px; margin:7px 0 4px; }
+    .metric small { color:#d0c6dc; font-size:7.5px; line-height:1.34; display:block; }
+    .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:11px; margin-top:15px; }
+    .card { border:1px solid var(--line); background:rgba(25,16,35,.86); border-radius:9px; padding:13px; }
+    .card.purple { background:linear-gradient(145deg,rgba(91,26,145,.88),rgba(29,15,41,.93)); }
+    ul { margin:8px 0 0; padding-left:16px; }
+    li { color:#dcd4e5; font-size:9.5px; line-height:1.4; margin:4px 0; }
+    .footer { position:absolute; left:.55in; right:.55in; bottom:.25in; border-top:1px solid var(--line); padding-top:7px; display:flex; justify-content:space-between; color:#978aa5; font-size:7px; letter-spacing:.04em; }
+    .section-head { margin:25px 0 13px; display:flex; justify-content:space-between; gap:18px; align-items:end; }
+    .section-head p { max-width:280px; text-align:right; font-size:8.5px; color:var(--muted); }
+    .work { display:grid; grid-template-columns:30px 1fr 70px; gap:11px; padding:9px 0; border-top:1px solid var(--line); align-items:start; }
+    .work .num { color:var(--purple); font-size:16px; font-weight:800; line-height:1; }
+    .work strong { display:block; font-size:10px; margin-bottom:3px; }
+    .work p { font-size:8.8px; line-height:1.38; }
+    .work em { font-style:normal; color:var(--green); font-size:7.5px; text-transform:uppercase; letter-spacing:.09em; text-align:right; }
+    .proof { display:grid; grid-template-columns:1.15fr .85fr; gap:10px; margin-top:15px; }
+    .proof img { width:100%; height:191px; object-fit:cover; object-position:top; border:1px solid var(--line); border-radius:9px; background:#160d20; }
+    .proof img:last-child { object-position:center; }
+    .photo-strip { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:12px; }
+    .photo-strip figure { margin:0; }
+    .photo-strip img { width:100%; height:122px; object-fit:cover; border:1px solid var(--line); border-radius:8px; }
+    .photo-strip figcaption { color:var(--muted); font-size:7.5px; line-height:1.35; margin-top:5px; }
+    .status-row { display:grid; grid-template-columns:126px 1fr 82px; gap:11px; padding:10px 0; border-top:1px solid var(--line); align-items:center; }
+    .status-row b { font-size:9.5px; }
+    .status-row p { font-size:8.6px; }
+    .chip { justify-self:end; font-size:7.5px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; border-radius:99px; padding:5px 8px; background:rgba(102,227,174,.13); color:var(--green); border:1px solid rgba(102,227,174,.35); }
+    .chip.pending { background:rgba(221,188,255,.1); color:var(--hot); border-color:var(--line); }
+    .next { counter-reset:item; margin-top:12px; }
+    .next-item { counter-increment:item; display:grid; grid-template-columns:29px 1fr; gap:10px; border-top:1px solid var(--line); padding:10px 0; }
+    .next-item:before { content:counter(item,decimal-leading-zero); color:var(--purple); font-size:16px; font-weight:800; }
+    .next-item strong { display:block; font-size:9.7px; margin-bottom:3px; }
+    .next-item p { font-size:8.5px; }
+    .source { font-size:7.4px; color:#a195ad; line-height:1.4; }
+  </style>
+</head>
+<body>
+  <section class="page">
+    <header class="mast"><div class="brand"><img src="bridge-mark.svg" alt="Bridge mark"><div><strong>BRIDGE</strong><span>Frontend build report</span></div></div><div class="period"><strong>Community content and nationwide review</strong><span>Prepared August 31, 2026</span></div></header>
+    <h1>A richer Community feed, a nationwide contract, and <span class="accent">verified visual depth.</span></h1>
+    <div class="hero-rule"></div>
+    <p class="lead">The production Bridge frontend now demonstrates Tori&rsquo;s image-forward community-news direction with a larger fictional sample feed, complete state filtering, unique editorial photography, and explicit separation between prototype content and live market coverage.</p>
+    <div class="summary"><strong>Executive outcome</strong><p>Community News expanded from eight to twenty illustrative posts across twelve sample markets. Product introductions and vendor announcements now sit beside promotions, events, education, industry news, service updates, and market signals. Community and Explore retain all 50 states plus Washington, D.C. The public frontend is deployed at bridge-connected-signal.netlify.app; live member data, backend integration, and Tori&rsquo;s formal product decisions remain separate gates.</p></div>
+    <div class="metrics">
+      <div class="metric"><span>Sample posts</span><b>20</b><small>Image-led fictional Community stories</small></div>
+      <div class="metric"><span>Sample markets</span><b>12</b><small>Nationwide selector remains 52 options</small></div>
+      <div class="metric"><span>Editorial assets</span><b>56</b><small>56 unique hashes and one-time assignments</small></div>
+      <div class="metric"><span>Browser checks</span><b>52</b><small>Desktop and mobile confirmation suite</small></div>
+    </div>
+    <div class="grid2">
+      <div class="card purple"><h3>Built and verified</h3><ul><li>Visual News and Classic Feed treatments.</li><li>Category, market, and favorites controls.</li><li>Twenty distinct sample-post photographs.</li><li>Real raster film-grain overlay adapted to Bridge.</li><li>Nationwide empty states that never imply an empty market.</li></ul></div>
+      <div class="card"><h3>Truth boundary</h3><ul><li>Every business, post, and activity item remains fictional.</li><li>No paid placement or live market-coverage claim is made.</li><li>No formal Tori approval is inferred.</li><li>Production authentication and live APIs are not represented as connected.</li><li>Legal, verification, and editorial policy still require owners.</li></ul></div>
+    </div>
+    <footer class="footer"><span>Bridge · Frontend build and Community content report</span><span>01 / 04</span></footer>
+  </section>
+
+  <section class="page">
+    <header class="mast"><div class="brand"><img src="bridge-mark.svg" alt=""><div><strong>BRIDGE</strong><span>Current build ledger</span></div></div><div class="period"><strong>Reviewable production frontend</strong><span>Exact status, no implied backend completion</span></div></header>
+    <div class="section-head"><div><h2>What is built now.</h2></div><p>The build implements the reviewable frontend behavior while keeping client decisions and production integrations visibly separate.</p></div>
+    <div class="work"><span class="num">01</span><div><strong>Nationwide geography contract</strong><p>Community and Explore share All states, every U.S. state, and Washington, D.C. States without sample records explain the prototype boundary instead of implying unsupported markets.</p></div><em>Complete</em></div>
+    <div class="work"><span class="num">02</span><div><strong>Expanded Community sample feed</strong><p>Twenty image-led stories across twelve markets demonstrate promotions, product introductions, vendor announcements, events, education, market signals, service updates, and industry reporting.</p></div><em>Complete</em></div>
+    <div class="work"><span class="num">03</span><div><strong>Two feed behaviors</strong><p>Visual News provides the staggered digital-newspaper direction Tori preferred; Classic Feed preserves the simpler chronological comparison for her default-view decision.</p></div><em>Complete</em></div>
+    <div class="work"><span class="num">04</span><div><strong>Bridge-specific image system</strong><p>Fifty-six editorial assets have distinct binary hashes and one application assignment each. The reusable Bridge mark and raster grain texture are the only intentional shared visual primitives.</p></div><em>Complete</em></div>
+    <div class="work"><span class="num">05</span><div><strong>Create and audience controls</strong><p>Promotion creation demonstrates image or PDF upload intent, multi-audience selection, protected-detail restrictions, validation, review, draft, and persisted sample behavior.</p></div><em>Complete</em></div>
+    <div class="work"><span class="num">06</span><div><strong>Profiles and discovery</strong><p>Explore, public and verified profile views, useful member details, categories, favorites, directions, outside channels, and permissioned introduction language remain reviewable.</p></div><em>Complete</em></div>
+    <div class="work"><span class="num">07</span><div><strong>Entry and responsive behavior</strong><p>The 21+ review gate, keyboard focus, reduced motion, mobile layouts, image loading, overflow controls, and clean browser-console behavior are verified.</p></div><em>Complete</em></div>
+    <div class="work"><span class="num">08</span><div><strong>Mapped production deployment</strong><p>The verified development build was promoted through the existing Git and Netlify pipeline to bridge-connected-signal.netlify.app.</p></div><em>Live</em></div>
+    <div class="proof"><img src="community-top.png" alt="Bridge Community page top and controls"><img src="community-feed.png" alt="Bridge Community visual feed cards"></div>
+    <footer class="footer"><span>Bridge · Current frontend ledger</span><span>02 / 04</span></footer>
+  </section>
+
+  <section class="page">
+    <header class="mast"><div class="brand"><img src="bridge-mark.svg" alt=""><div><strong>BRIDGE</strong><span>Content and image direction</span></div></div><div class="period"><strong>Tori feedback reconciliation</strong><span>Image forward, still clearly illustrative</span></div></header>
+    <div class="section-head"><div><h2>Why the larger feed is the right prototype move.</h2></div><p>Tori asked for more pictures and less reading, a useful news feed, flexible post types, multiple audiences, favorites, and a nationwide network that stays manageable.</p></div>
+    <div class="grid2">
+      <div class="card purple"><h3>Directly answered</h3><ul><li>More pictures and a denser editorial rhythm.</li><li>Promotion as a distinct content type.</li><li>Product introductions and vendor announcements.</li><li>Events, education, industry news, and service availability.</li><li>Adult, retailer, verified-business, professional, and all-member audiences.</li><li>State, category, and favorites controls.</li></ul></div>
+      <div class="card"><h3>Deliberately not invented</h3><ul><li>Real operator activity or live market statistics.</li><li>Medical or treatment claims.</li><li>Paid placement policy.</li><li>Contributor and moderation authority.</li><li>Verification promises or protected-data rules.</li><li>Production ordering, menus, maps, or social integrations.</li></ul></div>
+    </div>
+    <div class="photo-strip">
+      <figure><img src="sample-retail.webp" alt="Sample retail buying scene"><figcaption>Retail planning: human, tactile, operational.</figcaption></figure>
+      <figure><img src="sample-media.webp" alt="Sample operator interview scene"><figcaption>Industry reporting: candid and evidence-led.</figcaption></figure>
+      <figure><img src="sample-operations.webp" alt="Sample facility education scene"><figcaption>Facility education: practical work, not stock posing.</figcaption></figure>
+    </div>
+    <div class="summary"><strong>Bridge visual direction</strong><p>The expanded image system uses one strong subject, asymmetric editorial cropping, restricted color, and visible print texture. Bridge retains its Connected purple and near-black identity, uses realistic cannabis-industry scenes, and applies a reusable static raster grain layer so the source photographs stay crisp.</p></div>
+    <div class="section-head" style="margin-top:20px"><div><h2>Verification evidence.</h2></div><p>The result is covered by machine-checkable provenance and a rendered browser suite.</p></div>
+    <div class="status-row"><b>Image uniqueness</b><p>56 editorial assets, 56 source assignments, and 56 unique SHA-256 hashes.</p><span class="chip">Passed</span></div>
+    <div class="status-row"><b>Community depth</b><p>20 image-led sample posts and all Tori-requested core post types.</p><span class="chip">Passed</span></div>
+    <div class="status-row"><b>Frontend build</b><p>Typecheck, lint, production build, and all 24 Phase 3 tests.</p><span class="chip">Passed</span></div>
+    <div class="status-row"><b>Rendered experience</b><p>52 desktop and mobile checks with no failed checks or browser errors.</p><span class="chip">Passed</span></div>
+    <footer class="footer"><span>Bridge Community content and image system</span><span>03 / 04</span></footer>
+  </section>
+
+  <section class="page">
+    <header class="mast"><div class="brand"><img src="bridge-mark.svg" alt=""><div><strong>BRIDGE</strong><span>Open decisions and dependencies</span></div></div><div class="period"><strong>What is still missing</strong><span>Decision, policy, content, and integration work</span></div></header>
+    <div class="section-head"><div><h2>The frontend demonstration is fuller. These gates still matter.</h2></div><p>None of the items below should be silently converted into product truth or production capability.</p></div>
+    <div class="status-row"><b>Default Community view</b><p>Tori still needs to choose Visual News or Classic Feed as the default.</p><span class="chip pending">Tori</span></div>
+    <div class="status-row"><b>Brand and imagery lock</b><p>Connected purple, the current Bridge mark, and the realistic grain treatment still need formal acceptance.</p><span class="chip pending">Tori</span></div>
+    <div class="status-row"><b>Editorial governance</b><p>Contributor eligibility, review, moderation, publishing authority, and paid-placement policy remain undefined.</p><span class="chip pending">Policy</span></div>
+    <div class="status-row"><b>Rollout priorities</b><p>First states and member roles must be selected before fictional samples are replaced with rollout content.</p><span class="chip pending">Decision</span></div>
+    <div class="status-row"><b>Verification and visibility</b><p>EIN-aware verification, public/member/protected fields, and connection permissions require exact policy.</p><span class="chip pending">Policy</span></div>
+    <div class="status-row"><b>Live data and APIs</b><p>Authentication, organizations, profiles, posts, files, search, favorites, and audit behavior need an inspectable integrated vertical slice.</p><span class="chip pending">Integration</span></div>
+    <div class="status-row"><b>External providers</b><p>Menus, ordering, maps, and social-channel providers need selection and approved connection boundaries.</p><span class="chip pending">Integration</span></div>
+    <div class="status-row"><b>Commercial concepts</b><p>Founding pricing, payment timing, membership tiers, and Bridge League rules remain proposals.</p><span class="chip pending">Decision</span></div>
+    <div class="next">
+      <div class="next-item"><div><strong>Use the live frontend for Tori&rsquo;s structured accept-or-revise review</strong><p>Record route decisions, the default feed, image direction, rollout markets, and any must-keep or reject notes.</p></div></div>
+      <div class="next-item"><div><strong>Lock policy before replacing fictional content</strong><p>Define roles, verification, visibility, editorial governance, and market claims with named owners.</p></div></div>
+      <div class="next-item"><div><strong>Connect one inspectable vertical slice</strong><p>Promotion creation plus protected profile projection remains the recommended first end-to-end integration proof.</p></div></div>
+      <div class="next-item"><div><strong>Run integrated acceptance and release QA</strong><p>Prove success, denial, failure, audit, security, responsive, and recovery behavior against the approved API contract.</p></div></div>
+    </div>
+    <div class="summary" style="margin-top:13px"><strong>Current status</strong><p>Frontend production deployment: live and verified. Tori formal acceptance: pending. Live backend integration: not proven by this report. All screenshots, business names, posts, and activity shown here are review examples.</p></div>
+    <p class="source" style="margin-top:11px">Source basis: Tori-provided 39-minute feedback transcript summary; Bridge Phase 2 product contract and acceptance materials; Phase 3 feedback reconciliation; current production repository and Netlify deployment; image provenance manifest; automated type, lint, test, build, and rendered browser QA records.</p>
+    <footer class="footer"><span>Bridge · Exact current state and remaining gates</span><span>04 / 04</span></footer>
+  </section>
+</body>
+</html>

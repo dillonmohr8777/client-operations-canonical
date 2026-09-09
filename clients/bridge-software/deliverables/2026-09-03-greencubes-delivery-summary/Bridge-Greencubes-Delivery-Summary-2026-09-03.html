@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bridge — The Greencubes Delivery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#9b4df6;
+    --indigo:#4b0082;
+    --ink:#1a1a1a;
+    --muted:#5f5964;
+    --lav:#d8d0dd;
+    --lav-bg:#f4f0f7;
+    --lav-line:#e6dfec;
+    --black:#0a0510;
+    --white:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{
+    font-family:'Poppins','Segoe UI',system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    font-size:9.1pt;
+    line-height:1.5;
+    background:var(--white);
+  }
+  @page{ size:8.5in 11in; margin:0; }
+
+  .page{
+    width:8.5in; height:11in;
+    padding:0.62in 0.66in 0.55in;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    background:var(--white);
+    display:flex; flex-direction:column;
+  }
+  .page:last-child{page-break-after:auto}
+  .page.dark{background:var(--black); color:var(--white)}
+
+  .eyebrow{
+    font-size:6.6pt; font-weight:700; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--indigo);
+  }
+  .page.dark .eyebrow{color:var(--purple)}
+
+  .foot{
+    position:absolute; right:0.66in; bottom:0.5in;
+    font-size:6.6pt; font-weight:600; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--muted);
+  }
+  .page.dark .foot{color:var(--lav)}
+
+  h1{font-size:30pt; font-weight:800; line-height:1.08; letter-spacing:-.018em}
+  h2{font-size:17pt; font-weight:700; line-height:1.18; letter-spacing:-.012em; margin-top:.05in}
+  h3{font-size:10.2pt; font-weight:700; line-height:1.3}
+  .accent{color:var(--purple)}
+  .lede{font-size:9.4pt; color:#3d3745; line-height:1.62; margin-top:.11in; max-width:6.6in}
+  .page.dark .lede{color:var(--lav)}
+  .rule{width:.62in; height:3px; background:var(--purple); margin:.13in 0 .14in; border-radius:2px}
+
+  .cover-arc{position:absolute; border:1.5px solid rgba(155,77,246,.30); border-radius:50%}
+  .arc-a{width:6.2in;height:6.2in; left:-2.7in; top:-2.35in}
+  .arc-b{width:6.6in;height:6.6in; right:-2.6in; bottom:-2.5in}
+  .cover-head{display:flex; justify-content:space-between; align-items:flex-start; position:relative; z-index:2}
+  .mark-row{display:flex; flex-direction:column; gap:.10in}
+  .mark-row img{width:.86in}
+  .wordmark{font-size:23pt; font-weight:800; letter-spacing:.045em; line-height:1}
+  .conf{
+    border:1px solid rgba(216,208,221,.42); border-radius:100px;
+    padding:.055in .18in; font-size:6.6pt; font-weight:600;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--lav);
+  }
+  .cover-body{position:relative; z-index:2; margin-top:1.5in}
+  .cover-tag{font-size:7.4pt;font-weight:700;letter-spacing:.19em;text-transform:uppercase;color:var(--purple);margin-bottom:.12in}
+  .cover-abstract{font-size:9.5pt; line-height:1.62; color:var(--lav); max-width:5.6in; margin-top:.2in}
+  .meta{display:grid; grid-template-columns:repeat(3,1fr); gap:.3in; margin-top:.32in; padding-top:.17in; border-top:1px solid rgba(216,208,221,.28); max-width:6.2in}
+  .meta dt{font-size:7pt; font-weight:700; letter-spacing:.03em; color:var(--white); margin-bottom:.035in}
+  .meta dd{font-size:8.1pt; color:var(--lav)}
+
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:.22in; margin:.2in 0 .06in}
+  .stat{border-top:2.5px solid var(--indigo); padding-top:.09in}
+  .stat .n{font-size:20pt; font-weight:800; color:var(--indigo); line-height:1; letter-spacing:-.02em}
+  .stat .l{font-size:6.5pt; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:.06in; line-height:1.42}
+
+  .duo{display:grid; grid-template-columns:1fr 1fr; gap:.2in; margin-top:.17in}
+  .panel{border-radius:.13in; padding:.19in .21in}
+  .panel.light{background:linear-gradient(160deg,#faf7fd,#f3edf9); border:1px solid var(--lav-line)}
+  .panel.dark{background:var(--black); color:var(--white)}
+  .panel h3{margin-bottom:.09in}
+  .panel.dark h3{color:var(--white)}
+
+  ul.tick{list-style:none}
+  ul.tick li{position:relative; padding-left:.16in; margin-bottom:.075in; font-size:8.2pt; line-height:1.46}
+  ul.tick li::before{content:''; position:absolute; left:0; top:.062in; width:.055in; height:.055in; border-radius:50%; background:var(--purple)}
+  .panel.dark ul.tick li{color:var(--lav)}
+
+  .callout{background:var(--lav-bg); border-left:3px solid var(--indigo); padding:.13in .19in; border-radius:0 .07in .07in 0; margin-top:.14in}
+  .callout h3{font-size:9.4pt; margin-bottom:.04in}
+  .callout p{font-size:8.1pt; line-height:1.5; color:#453e4d}
+  .callout.warn{background:#fdf5ee; border-left-color:#c2691c}
+  .callout.miraj{background:#f3edf9; border-left-color:var(--purple)}
+  .callout.miraj h3{color:var(--indigo)}
+
+  table{width:100%; border-collapse:collapse; margin-top:.13in; font-size:7.6pt}
+  th{
+    text-align:left; font-size:6.3pt; font-weight:700; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--muted);
+    border-bottom:1.5px solid var(--indigo); padding:0 .09in .055in 0;
+  }
+  td{padding:.07in .09in .07in 0; border-bottom:1px solid var(--lav-line); vertical-align:top; line-height:1.42}
+  td strong{font-weight:600}
+  code{font-family:'Consolas','SF Mono',monospace; font-size:.94em; background:var(--lav-bg); padding:.01in .05in; border-radius:3px; color:var(--indigo)}
+  .page.dark code{background:rgba(216,208,221,.14); color:var(--lav)}
+
+  .pill{display:inline-block; font-size:6.1pt; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.024in .09in; border-radius:100px; white-space:nowrap}
+  .p-done{background:#e7f4ec; color:#1c6b3d}
+  .p-prog{background:#f0e9fb; color:#5b21b6}
+  .p-wait{background:#fdf3e6; color:#95541a}
+  .p-block{background:#fbeaea; color:#992222}
+
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:.26in; margin-top:.16in}
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:.2in; margin-top:.16in}
+  .blk h3{font-size:9pt; margin-bottom:.06in; padding-bottom:.045in; border-bottom:1px solid var(--lav-line)}
+  .blk p{font-size:8pt; color:#453e4d; line-height:1.5}
+  .blk ul{list-style:none; margin-top:.05in}
+  .blk li{position:relative; padding-left:.16in; margin-bottom:.062in; font-size:7.9pt; line-height:1.44; color:#453e4d}
+  .blk li::before{content:''; position:absolute; left:0; top:.048in; width:.05in; height:.05in; border-radius:50%; background:var(--purple)}
+  .owner{font-size:6.4pt; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--purple)}
+  .tiny{font-size:7pt; color:var(--muted); line-height:1.5; margin-top:.1in}
+  .spacer{flex:1}
+
+  .qa{margin-top:.16in}
+  .qa .q{font-size:9.6pt; font-weight:700; color:var(--indigo); margin-top:.16in}
+  .qa .a{font-size:8.4pt; color:#3d3745; line-height:1.56; margin-top:.045in; max-width:6.8in}
+
+  .say-table td{font-size:7.9pt}
+  .say-yes{color:#1c6b3d; font-weight:600}
+  .say-no{color:#992222; font-weight:600}
+
+  .gloss{display:grid; grid-template-columns:1fr 1fr; gap:.05in .4in; margin-top:.14in}
+  .gterm{margin-bottom:.135in}
+  .gterm .g-t{font-size:8.4pt; font-weight:700; color:var(--indigo)}
+  .gterm .g-d{font-size:7.9pt; color:#453e4d; line-height:1.42; margin-top:.02in}
+</style>
+</head>
+<body>
+
+<!-- =============== 1 · COVER =============== -->
+<section class="page dark">
+  <div class="cover-arc arc-a"></div>
+  <div class="cover-arc arc-b"></div>
+
+  <div class="cover-head">
+    <div class="mark-row">
+      <img src="bridge-mark.svg" alt="Bridge mark">
+      <div class="wordmark">BRIDGE</div>
+    </div>
+    <div class="conf">Confidential · Client Meeting</div>
+  </div>
+
+  <div class="cover-body">
+    <div class="cover-tag">Connect. Grow. Fight Together.</div>
+    <h1>The Greencubes<br>delivery.<br><span class="accent">What has shipped,<br>and what is next.</span></h1>
+    <p class="cover-abstract">
+      A record of what Miraj Mor's team at Greencubes has built on Bridge, prepared so Dillon
+      can present it accurately in Miraj's place. It covers the account and verification work,
+      the security behind it, what a visitor can see today, and exactly what is built, what is
+      merged, and what is live.
+    </p>
+    <dl class="meta">
+      <div><dt>Prepared</dt><dd>September 3, 2026</dd></div>
+      <div><dt>Covers</dt><dd>Milestone 3, Accounts and Verification</dd></div>
+      <div><dt>Status</dt><dd>Functionally complete, pending merge</dd></div>
+    </dl>
+  </div>
+
+  <div class="foot">Bridge · Greencubes Delivery Summary</div>
+</section>
+
+<!-- =============== 2 · OPENING SUMMARY =============== -->
+<section class="page">
+  <div class="eyebrow">Opening summary</div>
+  <h2>Greencubes has built a secure, working backend.<br>It is not merged, and it is not live yet.</h2>
+  <div class="rule"></div>
+  <p class="lede">
+    Miraj Mor's team at Greencubes has delivered a genuinely secure Bridge backend: real server
+    side role checks, a correct allowlist of which addresses may even talk to it, and, as of
+    today, the one missing piece of the puzzle that had been blocking cookie based sign in. Paired
+    with the account creation screen Greencubes built by adopting Momentum's reference design,
+    the first two steps of the four step Join flow now work end to end against the real backend
+    on a review build. Steps 3 and 4, the organization details and the verification review, are
+    still ahead of us: they need backend work that has not started and a product decision that
+    only Melissa and Tori can make. The branch carrying all of this, pull request 16, is complete
+    and clear to merge, but it has not been merged, so none of it is visible to a real visitor yet.
+  </p>
+
+  <div class="stats">
+    <div class="stat"><div class="n">2 of 4</div><div class="l">Join flow steps working end to end on the review build</div></div>
+    <div class="stat"><div class="n">38</div><div class="l">Files in the pull request that carries this work</div></div>
+    <div class="stat"><div class="n">6</div><div class="l">Review routes returning correctly on the preview address</div></div>
+    <div class="stat"><div class="n">4</div><div class="l">Lines left to fix before that branch is ready to merge</div></div>
+  </div>
+
+  <div class="duo">
+    <div class="panel light">
+      <h3>What to say with confidence</h3>
+      <ul class="tick">
+        <li>The backend now sends the header that lets a secure cookie session work at all</li>
+        <li>Both the session check and the identity check correctly refuse an unproven visitor</li>
+        <li>Greencubes folded its sign in work into the one shared contract Momentum's frontend already uses, instead of running a second, separate path</li>
+        <li>Step 1 of Join, the twelve role grid, and the new Step 2, account creation, both run against the real backend on the review address today</li>
+        <li>The branch is reviewed as mergeable; nothing is fighting it technically</li>
+      </ul>
+    </div>
+    <div class="panel dark">
+      <h3>What to be careful not to say</h3>
+      <ul class="tick">
+        <li>That any of this is live. It is not, until the branch merges</li>
+        <li>That Steps 3 and 4 are built. No screens exist for them yet</li>
+        <li>That the client has approved Steps 2 and 4. That decision is still open</li>
+        <li>That Miraj's own account of cookies, logout, and tests is independently reconfirmed end to end. Some of it is; the rest is his report, stated as his report</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h3>The one line to remember</h3>
+    <p>Greencubes fixed the exact thing that was broken, on time, and the fix is good. What is left
+    is a small cleanup, a merge, and a decision that belongs to Melissa and Tori rather than to
+    either engineering team.</p>
+  </div>
+
+  <div class="foot">02 · Opening summary</div>
+</section>
+
+<!-- =============== 3 · JOIN STEPS 2-4, PART A =============== -->
+<section class="page">
+  <div class="eyebrow">The Join flow · Part one of two</div>
+  <h2>Steps 2 to 4 are the heart of this delivery.<br>Here is what each one does.</h2>
+  <div class="rule"></div>
+  <p class="lede">
+    Joining Bridge is a four step sequence. Step 1, choosing a role from twelve options, has been
+    live in production for some time. Steps 2 to 4, covered below, are where this round of work
+    concentrated: a real account, a real organization record, and a real verification review.
+  </p>
+
+  <table>
+    <thead><tr><th style="width:1.05in">Step</th><th style="width:2.5in">What it captures</th><th style="width:2.0in">What the backend must provide</th><th style="width:.95in">Status</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Step 1 of 4</strong><br><code>/join</code></td>
+        <td>The member's role, chosen from a grid of twelve. Each role shows its own next step requirements and a founding member pricing note.</td>
+        <td>Nothing new. This step has always run on its own.</td>
+        <td><span class="pill p-done">Live in production</span></td>
+      </tr>
+      <tr>
+        <td><strong>Step 2 of 4</strong><br><code>/join/account</code></td>
+        <td>Account creation: display name, email, password, and confirmation. Shows the role chosen in Step 1 with a link back to change it.</td>
+        <td>Registration and sign in that return a working session. Delivered today, header and all.</td>
+        <td><span class="pill p-prog">Built, pending merge</span></td>
+      </tr>
+      <tr>
+        <td><strong>Step 3 of 4</strong><br><em>no route yet</em></td>
+        <td>Organization details: legal name, public name, EIN, license, location, and a named contact owner.</td>
+        <td>A way to save a partly filled organization record against the member's account between visits. Not started.</td>
+        <td><span class="pill p-block">Awaiting backend and approval</span></td>
+      </tr>
+      <tr>
+        <td><strong>Step 4 of 4</strong><br><em>no route yet</em></td>
+        <td>Verification evidence and review submission: uploading documents, a safe summary of what was submitted, and a case an admin can decide on.</td>
+        <td>Secure upload handling, document scanning, and a verification case record. Not started.</td>
+        <td><span class="pill p-block">Awaiting backend and approval</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="grid2" style="margin-top:.22in">
+    <div class="blk">
+      <h3>Why Step 2 counts as a real milestone</h3>
+      <p>Step 2 is not a mock screen. On the review build it posts to Greencubes' own backend, gets
+      a real answer back, and the resulting session is what carries a member into their profile.
+      That is the difference between a screen that looks finished and a screen that is finished.</p>
+    </div>
+    <div class="blk">
+      <h3>Why Steps 3 and 4 are not close, technically</h3>
+      <p>There is nowhere for the data to go yet. Saving an organization's draft, accepting a
+      document upload, and opening a verification case are all backend capabilities that have not
+      been started. Building the screens before that exists would mean another mock, which is the
+      opposite of what this round of work was trying to fix.</p>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot">03 · The Join flow, part one</div>
+</section>
+
+<!-- =============== 4 · JOIN STEPS 2-4, PART B =============== -->
+<section class="page">
+  <div class="eyebrow">The Join flow · Part two of two</div>
+  <h2>What is concretely built, and the one<br>decision that is not an engineering problem.</h2>
+  <div class="rule"></div>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>What pull request 16 concretely does</h3>
+      <ul>
+        <li>Removes the file that had been writing a sign in token into the browser's own storage. There is nowhere left in the browser for that proof to sit</li>
+        <li>Removes the second, separate sign in client Greencubes had added, folding registration, sign in, and sign out into the one shared contract every other Bridge screen already calls</li>
+        <li>Keeps the setting that tells the browser to send its cookie along with each request, which a cookie session depends on</li>
+        <li>Restores the twelve role grid as Step 1 exactly as it was, and gives account creation its own Step 2 address</li>
+        <li>Touches 38 files across the frontend, reviewed and marked clear to merge</li>
+      </ul>
+    </div>
+    <div class="blk">
+      <h3>What still has to happen before Steps 3 and 4 can be built</h3>
+      <ul>
+        <li>Greencubes has to build the organization draft, the upload, and the verification case capabilities described on the previous page</li>
+        <li>Melissa and Tori have to decide what evidence each of the twelve roles must actually submit</li>
+        <li>Melissa and Tori also have to decide what the public "Verified" badge is promising to someone who sees it on a profile</li>
+        <li>Only once both of those land does building Steps 3 and 4 become a normal engineering task rather than a guess</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <h3>Do not represent Steps 2 and 4 as client approved</h3>
+    <p>This has been stated plainly to the whole team, in writing, since the end of August: Step 2
+    and Step 4 product approval is still with Melissa and Tori, and those screens should not be
+    represented as client approved. That instruction still stands today, and it is the reason
+    Steps 3 and 4 are described here as awaiting a decision rather than awaiting a schedule.</p>
+  </div>
+
+  <div class="callout">
+    <h3>Where to see Steps 1 and 2 today</h3>
+    <p>Both run against the real backend right now on Greencubes' own review address, detailed in
+    the next section. That address is not the one the client normally uses, and nothing on it is
+    visible to a real visitor until the branch merges.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot">04 · The Join flow, part two</div>
+</section>
+
+<!-- =============== 5 · WHAT THE BACKEND TEAM BUILT =============== -->
+<section class="page">
+  <div class="eyebrow">The backend, in plain language</div>
+  <h2>The part nobody sees, that everything<br>else depends on.</h2>
+  <div class="rule"></div>
+  <p class="lede">
+    Greencubes built the piece of Bridge that decides who is allowed to do what. Three things
+    about it stand out, and all three were checked directly today rather than taken on trust.
+  </p>
+
+  <div class="grid2">
+    <div class="blk">
+      <h3>The server says no by default</h3>
+      <p>A request with no proof of login, and a request carrying a faked one, are both refused
+      by the two most important checks: the session check and the "who is this" check. Checked
+      directly against the live backend today, both return the correct refusal every time.</p>
+    </div>
+    <div class="blk">
+      <h3>Only Bridge's own addresses get an answer</h3>
+      <p>The backend keeps a list of exactly which Bridge web addresses are allowed to ask it
+      anything. An address that is not on that list gets nothing back. This is what stops another
+      website from quietly borrowing a Bridge member's session.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:.2in">Cookie sessions versus a token in the browser</h3>
+  <div class="callout" style="margin-top:.09in">
+    <p style="font-size:8.6pt;line-height:1.6">
+    A cookie session means the server hands the browser a small, locked box that only the server
+    can open again to prove it is really you. A token stored in the browser means that proof sits
+    out in the open on the device itself, which is far easier for a stray, malicious bit of code
+    on the page to find and copy.
+    </p>
+  </div>
+  <p style="font-size:8pt;color:#453e4d;line-height:1.5;margin-top:.09in;max-width:6.7in">
+    That is why the fix matters. As of today, the backend sends the header that allows the locked
+    box approach to work at all, and Greencubes removed the file that had been leaving a copy of
+    the proof sitting in the browser's storage. Less sits exposed on the visitor's device than did
+    a day ago.
+  </p>
+
+  <div class="callout miraj" style="margin-top:.18in">
+    <h3>What Miraj reports, stated as his report</h3>
+    <p>Dillon has independently confirmed the header above and the two correct refusals. The rest
+    of this list is Greencubes' own account, current as of September 2 and 3, and has not yet been
+    reconfirmed against a live signed in session: sign in issues a secure cookie the page's own
+    scripts cannot read, the credentialed cross origin rule works end to end, the session check
+    authenticates through that cookie, a fallback token method still works for other callers,
+    signing out clears the cookie and revokes the session on the server, a session check right
+    after signing out correctly comes back unauthenticated, every admin and member only address is
+    protected on the server rather than only hidden on the screen, and Greencubes' own tests pass.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot">05 · The backend, in plain language</div>
+</section>
+
+<!-- =============== 6 · THE DEMO =============== -->
+<section class="page">
+  <div class="eyebrow">The demo · What it shows, and what it does not</div>
+  <h2>A working preview, built from Greencubes'<br>own branch and the real backend.</h2>
+  <div class="rule"></div>
+  <p class="lede">
+    Every address below was checked directly today on Greencubes' review build, which is the one
+    place this work can currently be shown. It is not the client's normal address, and nothing on
+    it is visible to a real visitor until the branch merges.
+  </p>
+
+  <table>
+    <thead><tr><th style="width:1.55in">Address</th><th style="width:.8in">Result</th><th>What it shows</th></tr></thead>
+    <tbody>
+      <tr><td><code>/</code> (home)</td><td><span class="pill p-done">200</span></td><td>The real backend is compiled into this build, not a stand in.</td></tr>
+      <tr><td><code>/login</code></td><td><span class="pill p-done">200</span></td><td>The sign in screen Greencubes built, wired to the real backend.</td></tr>
+      <tr><td><code>/join</code></td><td><span class="pill p-done">200</span></td><td>Step 1, the twelve role grid, restored and unchanged.</td></tr>
+      <tr><td><code>/join/account</code></td><td><span class="pill p-done">200</span></td><td>Step 2, account creation, built by Greencubes on Momentum's screen design.</td></tr>
+      <tr><td><code>/my-profile</code></td><td><span class="pill p-done">200</span></td><td>Where a signed in member lands.</td></tr>
+      <tr><td><code>/admin/dashboard</code></td><td><span class="pill p-done">200</span></td><td>The administrator workspace Greencubes built.</td></tr>
+      <tr><td><code>/admin</code></td><td><span class="pill p-block">404</span></td><td>The short address alone does not yet forward to the dashboard. A small fix, not built yet.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="grid2" style="margin-top:.22in">
+    <div class="blk">
+      <h3>What the demo can show today</h3>
+      <p>A visitor can pick a role, create an account against the real backend, sign in, sign out,
+      and reach both the member profile and the administrator workspace. That is a genuine,
+      working slice of Bridge, not a script.</p>
+    </div>
+    <div class="blk">
+      <h3>What the demo cannot show</h3>
+      <p>There is nothing to click through for organization details or for submitting verification
+      evidence. Those screens do not exist yet, for the reasons on the previous page. Typing the
+      short admin address on its own currently lands on a not found page rather than the
+      dashboard.</p>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <h3>One caution for the room</h3>
+    <p>This review build is reachable only by its own specific address, tied to Greencubes'
+    branch. If it is shown in the meeting, it should be introduced as a preview of work still
+    pending merge, not as the site the client already has a link to.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot">06 · The demo</div>
+</section>
+
+<!-- =============== 7 · ANTICIPATED QUESTIONS =============== -->
+<section class="page">
+  <div class="eyebrow">Anticipated questions</div>
+  <h2>Short, accurate answers to the five<br>questions most likely to come up.</h2>
+  <div class="rule"></div>
+
+  <div class="qa">
+    <div class="q">Is it live?</div>
+    <div class="a">No. It works today on Greencubes' own preview address, with the real backend
+    behind it. The production address the client normally uses still runs the older build until
+    that branch is reviewed and merged.</div>
+
+    <div class="q">Is it secure?</div>
+    <div class="a">The parts that are built are secure by the measures that matter most, and those
+    were checked directly today: the server refuses a request with no login proof or a faked one,
+    and only Bridge's own addresses can reach it at all. Sign in now uses a cookie that the page's
+    own scripts cannot read, according to Greencubes, which closes the gap a browser stored token
+    leaves open.</div>
+
+    <div class="q">When can we launch this piece?</div>
+    <div class="a">The remaining engineering is small: four lines across three files still point at
+    the wrong repository and need correcting, then the branch needs a review and a merge. The
+    larger open item is not an engineering task. It is a decision only Melissa and Tori can make,
+    on what evidence each role must submit and what the "Verified" badge promises.</div>
+
+    <div class="q">What is left?</div>
+    <div class="a">Fix the stale repository reference, merge the branch, add the one redirect so
+    the short admin address works, and independently reconfirm Greencubes' cookie and session
+    claims once real sign ins are possible. Then build Steps 3 and 4 once the client decision above
+    is made and the backend can save an organization's draft and accept evidence.</div>
+
+    <div class="q">Who owns what?</div>
+    <div class="a">Greencubes owns the merge readiness and the backend work Steps 3 and 4 still
+    need. Momentum owns the admin redirect, the independent recheck, and building Steps 3 and 4
+    once approved. Melissa and Tori own the evidence and badge decision. Each item below has one
+    named owner.</div>
+  </div>
+
+  <div class="foot">07 · Anticipated questions</div>
+</section>
+
+<!-- =============== 8 · SAY THIS, NOT THAT =============== -->
+<section class="page">
+  <div class="eyebrow">Say this, not that</div>
+  <h2>Built, merged, live, and accepted are<br>four different words. Keep them apart.</h2>
+  <div class="rule"></div>
+  <p class="lede">
+    The single most common way a status update becomes inaccurate is trading one of these four
+    words for another. This page exists so nobody in the room has to reach for the right one on
+    the spot.
+  </p>
+
+  <table class="say-table">
+    <thead><tr><th style="width:2.9in">Say this</th><th>Not that</th></tr></thead>
+    <tbody>
+      <tr><td class="say-yes">Steps 1 and 2 are built and working on the review address.</td><td class="say-no">Steps 1 and 2 are live.</td></tr>
+      <tr><td class="say-yes">Pull request 16 is complete and clear to merge.</td><td class="say-no">Pull request 16 is merged.</td></tr>
+      <tr><td class="say-yes">The backend now sends the header that cookie sessions need.</td><td class="say-no">Sign in is completely done.</td></tr>
+      <tr><td class="say-yes">Steps 3 and 4 are designed, and are waiting on backend work and a client decision.</td><td class="say-no">Steps 3 and 4 are built.</td></tr>
+      <tr><td class="say-yes">Greencubes delivered a secure backend for what has been built so far.</td><td class="say-no">The backend is entirely finished.</td></tr>
+      <tr><td class="say-yes">Miraj reports the cookie and logout behavior works end to end.</td><td class="say-no">Dillon has confirmed the cookie and logout behavior works end to end.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="margin-top:.22in">
+    <h3>A quick way to check any sentence before saying it</h3>
+    <p><strong>Built</strong> means the code exists and passes its checks on a branch.
+    <strong>Merged</strong> means that branch has joined the shared branch everyone deploys from.
+    <strong>Live</strong> means a real visitor can reach it today. <strong>Accepted</strong> means
+    the client has said yes to it, in writing, with a date. All four can be true of the same
+    feature at completely different times, and today, for this work, only the first is true.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot">08 · Say this, not that</div>
+</section>
+
+<!-- =============== 9 · OUTSTANDING =============== -->
+<section class="page">
+  <div class="eyebrow">What is outstanding</div>
+  <h2>Every remaining item, with exactly<br>one owner each.</h2>
+  <div class="rule"></div>
+
+  <div class="grid3">
+    <div class="blk">
+      <div class="owner">Greencubes</div>
+      <h3 style="margin-top:.05in">The branch and the backend</h3>
+      <ul>
+        <li>Correct the four lines across three files that still point at the wrong repository</li>
+        <li>Get pull request 16 reviewed and merged into the shared branch</li>
+        <li>Build the organization draft, upload, and verification case work that Steps 3 and 4 need</li>
+      </ul>
+    </div>
+    <div class="blk">
+      <div class="owner">Momentum, Dillon</div>
+      <h3 style="margin-top:.05in">Frontend and verification</h3>
+      <ul>
+        <li>Add the redirect so the short admin address lands on the dashboard instead of a not found page</li>
+        <li>Independently reconfirm Miraj's cookie, session, and logout claims once real sign ins are possible, rather than relying on his report alone</li>
+        <li>Build Steps 3 and 4 once the backend work and the client decision below both land</li>
+      </ul>
+    </div>
+    <div class="blk">
+      <div class="owner">Client, Melissa and Tori</div>
+      <h3 style="margin-top:.05in">The one decision that blocks the rest</h3>
+      <ul>
+        <li>Decide what verification evidence each of the twelve roles must actually supply</li>
+        <li>Decide what the public "Verified" badge is promising to someone who sees it</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:.28in">
+    <h3>The single most useful thing that can happen this week</h3>
+    <p>A dated answer from Melissa and Tori on the evidence and badge questions above. Everything
+    else outstanding is a normal engineering task with a known owner. That one is not, and it is
+    the only item genuinely holding Steps 3 and 4 back from starting.</p>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="foot">09 · What is outstanding</div>
+</section>
+
+<!-- =============== 10 · GLOSSARY + CLOSE =============== -->
+<section class="page dark">
+  <div class="cover-arc arc-b" style="right:-3.1in;bottom:-3.0in"></div>
+  <div class="eyebrow">Glossary</div>
+  <h2 style="margin-top:.1in">Eight terms, in plain language.</h2>
+  <div class="rule"></div>
+
+  <div class="gloss">
+    <div class="gterm"><div class="g-t">Cookie session</div><div class="g-d" style="color:var(--lav)">A sign in method where the server hands the browser a small, secure file that proves who is signed in, instead of the browser holding the proof itself.</div></div>
+    <div class="gterm"><div class="g-t">HttpOnly</div><div class="g-d" style="color:var(--lav)">A setting on that secure file that keeps the page's own scripts from ever reading it, so a malicious script cannot steal it.</div></div>
+    <div class="gterm"><div class="g-t">Bearer token</div><div class="g-d" style="color:var(--lav)">A sign in credential the browser stores and sends itself. More convenient for some code, more exposed if a script on the page is ever compromised.</div></div>
+    <div class="gterm"><div class="g-t">Allowlist of origins</div><div class="g-d" style="color:var(--lav)">The backend's list of exactly which Bridge web addresses may ask it for anything at all. Anyone else gets no answer.</div></div>
+    <div class="gterm"><div class="g-t">Server side role check</div><div class="g-d" style="color:var(--lav)">A permission check the backend itself enforces, so a member cannot see or do more than their role allows even if the screen is tricked.</div></div>
+    <div class="gterm"><div class="g-t">Merged versus live</div><div class="g-d" style="color:var(--lav)">Merged means the code has joined the shared branch. Live means a real visitor can reach it. A branch can be finished and still be neither.</div></div>
+    <div class="gterm"><div class="g-t">Preview build</div><div class="g-d" style="color:var(--lav)">A working copy of the site anyone with the link can open, built from one specific branch, used for review before anything reaches real visitors.</div></div>
+    <div class="gterm"><div class="g-t">Verification case</div><div class="g-d" style="color:var(--lav)">Bridge's internal record of a member's submitted evidence and its review status, from submission through an admin's decision.</div></div>
+  </div>
+
+  <div class="spacer"></div>
+  <div style="border-top:1px solid rgba(216,208,221,.22); padding-top:.2in">
+    <div style="display:flex;align-items:center;gap:.2in">
+      <img src="bridge-mark.svg" alt="" style="width:.52in">
+      <div>
+        <div style="font-size:13pt;font-weight:800;letter-spacing:.04em">BRIDGE</div>
+        <div style="font-size:6.6pt;font-weight:700;letter-spacing:.19em;text-transform:uppercase;color:var(--purple);margin-top:.02in">Connect. Grow. Fight Together.</div>
+      </div>
+    </div>
+    <p style="font-size:7.4pt;color:var(--lav);margin-top:.16in;max-width:5.8in;line-height:1.55">
+      Prepared by Momentum Digital, September 3, 2026, so Dillon can present the Greencubes
+      delivery accurately in Miraj's place. A companion evidence index maps every claim in this
+      document to its source.
+    </p>
+  </div>
+
+  <div class="foot">10 · Glossary</div>
+</section>
+
+</body>
+</html>

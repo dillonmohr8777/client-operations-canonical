@@ -1,0 +1,40 @@
+<!doctype html><meta charset="utf-8"><title>Radar 20 &#8212; contact sheet</title>
+<meta name="robots" content="noindex, nofollow">
+<style>body{margin:0;background:#0f1113;color:#e8eaed;font:13px/1.4 system-ui,sans-serif}
+h1{font:600 16px system-ui;margin:14px 16px 3px}
+.sub{margin:0 16px 12px;color:#9aa0a6;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:11px;padding:0 16px 18px}
+.cell{background:#17191c;border:1px solid #2a2d31;border-radius:9px;overflow:hidden}
+.cap{padding:6px 9px;font-size:11px;color:#d2d6da;border-bottom:1px solid #2a2d31;
+ white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.win{width:100%;height:286px;overflow:hidden;position:relative;background:#fff}
+iframe{width:1440px;height:1760px;border:0;transform:scale(.2417);transform-origin:0 0;position:absolute;left:0;top:0}
+</style>
+<h1>Prospect previews &#8212; 20 selected routes + hub</h1>
+<div class="sub"><a href="/" style="color:#8ab4f8">&#8592; hub</a> &middot; each page rendered at 1440 wide, scaled to fit</div>
+<div class="grid" id="g"></div>
+<script>
+const S=[["", "HUB — all twenty"],
+["anthony-gueriera-jr-insurance-agency-llc", "Anthony Gueriera Jr. Insurance Agency LLC"],
+["b-n-b-n-asian-bistro", "Bàn Bàn Asian Bistro"],
+["p-c-insurance-agency-llc", "P & C Insurance Agency LLC"],
+["rice-rice-ltd", "Rice & Rice, Ltd."],
+["ward-insurance-associates-inc", "Ward Insurance Associates Inc."],
+["centurion-construction-group", "Centurion Construction Group"],
+["e-s-autoparts", "E&S Autoparts"],
+["jarman-sales-service-inc", "Jarman Sales & Service, Inc"],
+["ansarispharma-com", "ansarispharma.com"],
+["havercrown-dental", "HaverCrown Dental"],
+["4-4-architecture", "4/4 Architecture"],
+["a-new-dawn-therapeutic-massage", "A New Dawn Therapeutic Massage"],
+["advanced-specialty-flooring", "Advanced Specialty Flooring"],
+["allure-skincare-nails-body", "Allure - Skincare. Nails. Body."],
+["always-dental-care", "Always Dental Care"],
+["andorra-family-dentistry", "Andorra Family Dentistry"],
+["attitude-alley-motorcycle-co-llc", "Attitude Alley Motorcycle Co LLC"],
+["big-head-transport-llc", "Big Head Transport, LLC"],
+["bray-auto", "Bray Auto"],
+["coco-nails", "CoCo Nails"]];
+document.getElementById('g').innerHTML=S.map(([s,l])=>
+ `<div class="cell"><div class="cap">${l}</div><div class="win"><iframe loading="lazy" title="${l}" src="${s?'/sites/'+s+'/':'/index.html'}"></iframe></div></div>`).join('');
+</script>

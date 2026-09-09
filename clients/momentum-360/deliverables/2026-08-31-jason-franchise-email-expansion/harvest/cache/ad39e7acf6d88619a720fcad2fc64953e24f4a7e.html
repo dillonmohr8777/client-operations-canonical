@@ -1,0 +1,815 @@
+<!doctype html>
+
+  <html class="no-js"  lang="en-US">
+
+	<head>
+		<meta charset="utf-8">
+<script type="text/javascript">
+/* <![CDATA[ */
+var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function(){gform.scriptsLoaded=!0}),document.addEventListener("gform/theme/scripts_loaded",function(){gform.themeScriptsLoaded=!0}),window.addEventListener("DOMContentLoaded",function(){gform.domLoaded=!0}),gform={domLoaded:!1,scriptsLoaded:!1,themeScriptsLoaded:!1,isFormEditor:()=>"function"==typeof InitializeEditor,callIfLoaded:function(o){return!(!gform.domLoaded||!gform.scriptsLoaded||!gform.themeScriptsLoaded&&!gform.isFormEditor()||(gform.isFormEditor()&&console.warn("The use of gform.initializeOnLoaded() is deprecated in the form editor context and will be removed in Gravity Forms 3.1."),o(),0))},initializeOnLoaded:function(o){gform.callIfLoaded(o)||(document.addEventListener("gform_main_scripts_loaded",()=>{gform.scriptsLoaded=!0,gform.callIfLoaded(o)}),document.addEventListener("gform/theme/scripts_loaded",()=>{gform.themeScriptsLoaded=!0,gform.callIfLoaded(o)}),window.addEventListener("DOMContentLoaded",()=>{gform.domLoaded=!0,gform.callIfLoaded(o)}))},hooks:{action:{},filter:{}},addAction:function(o,r,e,t){gform.addHook("action",o,r,e,t)},addFilter:function(o,r,e,t){gform.addHook("filter",o,r,e,t)},doAction:function(o){gform.doHook("action",o,arguments)},applyFilters:function(o){return gform.doHook("filter",o,arguments)},removeAction:function(o,r){gform.removeHook("action",o,r)},removeFilter:function(o,r,e){gform.removeHook("filter",o,r,e)},addHook:function(o,r,e,t,n){null==gform.hooks[o][r]&&(gform.hooks[o][r]=[]);var d=gform.hooks[o][r];null==n&&(n=r+"_"+d.length),gform.hooks[o][r].push({tag:n,callable:e,priority:t=null==t?10:t})},doHook:function(r,o,e){var t;if(e=Array.prototype.slice.call(e,1),null!=gform.hooks[r][o]&&((o=gform.hooks[r][o]).sort(function(o,r){return o.priority-r.priority}),o.forEach(function(o){"function"!=typeof(t=o.callable)&&(t=window[t]),"action"==r?t.apply(null,e):e[0]=t.apply(null,e)})),"filter"==r)return e[0]},removeHook:function(o,r,t,n){var e;null!=gform.hooks[o][r]&&(e=(e=gform.hooks[o][r]).filter(function(o,r,e){return!!(null!=n&&n!=o.tag||null!=t&&t!=o.priority)}),gform.hooks[o][r]=e)}});
+/* ]]> */
+</script>
+
+		
+		<!-- Force IE to use the latest rendering engine available -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<!-- Mobile Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta class="foundation-mq">
+		
+		<!-- If Site Icon isn't set in customizer -->
+		
+		<link rel="pingback" href="https://brothersgutters.com/xmlrpc.php">
+
+		<script src="https://kit.fontawesome.com/fd20fafb45.js" crossorigin="anonymous"></script>
+
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-NMG77KZ');</script>
+		<!-- End Google Tag Manager -->
+
+		<!-- leashed ai chatbot font -->
+		<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;700&display=swap" rel="stylesheet"/>
+
+		<!-- warm up Google Fonts / Chatbot domains -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="preconnect" href="https://chatbot.leashed.ai" crossorigin>
+		<link rel="preconnect" href="https://d1bxzntrold33u.cloudfront.net" crossorigin>
+		<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+
+		<!-- preload the Font CSS and then apply it -->
+		<link  rel="preload"  as="style"  href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;700&display=swap"  onload="this.onload=null;this.rel='stylesheet'">
+		<link  rel="preload"  as="style"  href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"  onload="this.rel='stylesheet'">
+
+		<script
+    src="https://www.datadoghq-browser-agent.com/us1/v6/datadog-rum.js"
+    type="text/javascript">
+</script>
+<!-- comment out datadog init for now
+<script>
+	// Datadog RUM Initialization
+    window.DD_RUM && window.DD_RUM.init({
+      clientToken: 'pub3f12de6269fe954f13d55205fc72df10',
+      applicationId: '720ae84d-64ae-48cf-91bd-c17aa2ef13d4',
+      // `site` refers to the Datadog site parameter of your organization
+      // see https://docs.datadoghq.com/getting_started/site/
+      site: 'datadoghq.com',
+      service: 'brothersgutters',
+      env: 'prod',
+      // Specify a version number to identify the deployed version of your application in Datadog
+      // version: '1.0.0',
+      sessionSampleRate: 100,
+      sessionReplaySampleRate: 20,
+      trackBfcacheViews: true,
+      defaultPrivacyLevel: 'mask-user-input',
+    });
+</script> 
+-->
+
+		<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	
+<!-- Google Tag Manager -->
+<script>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KXVL2CWZ');
+</script>
+<!-- End Google Tag Manager -->
+<!-- G4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SWR6MEY3FX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SWR6MEY3FX');
+</script>
+
+<!-- End Google G4 -->
+
+<script type="text/javascript">
+    adroll_adv_id = "U6RCZ7LICVHVTJE4UH2LF3";
+    adroll_pix_id = "EVBOJH4BWBAVXPSHTGKMFI";
+    adroll_version = "2.0";
+
+    (function (w, d, e, o, a) {
+        w.__adroll_loaded = true;
+        w.adroll = w.adroll || [];
+        w.adroll.f = ['setProperties', 'identify', 'track', 'identify_email', 'get_cookie'];
+        var roundtripUrl = "https://s.adroll.com/j/" + adroll_adv_id + "/roundtrip.js";
+
+        for (a = 0; a < w.adroll.f.length; a++) {
+            w.adroll[w.adroll.f[a]] = w.adroll[w.adroll.f[a]] || (function (n) {
+                return function () {
+                    w.adroll.push([n, arguments]);
+                };
+            })(w.adroll.f[a]);
+        }
+
+        e = d.createElement('script');
+        o = d.getElementsByTagName('script')[0];
+        e.async = true;
+        e.src = roundtripUrl;
+        o.parentNode.insertBefore(e, o);
+    })(window, document);
+
+    adroll.track("pageView");
+</script>
+
+<script>
+    adroll.track("pageView", {
+        segment_name: "b9902cd2"
+    });
+</script>
+
+<script>
+    adroll.track("pageView", {
+        segment_name: "60968204"
+    });
+</script>
+<link rel='dns-prefetch' href='//js.hs-scripts.com' />
+<link rel='dns-prefetch' href='//maps.googleapis.com' />
+<link rel='dns-prefetch' href='//brothersgutters.com' />
+<link rel='dns-prefetch' href='//www.google.com' />
+<link rel='dns-prefetch' href='//use.fontawesome.com' />
+
+
+<title>Get a free guard or seamless rain gutter installation quote</title>
+            <meta name="description" content="Get your free gutter installation quote today. The brothers that just do gutters are an award winning gutter company."/>
+            <meta property="og:title" content="Get a free guard or seamless rain gutter installation quote"/>
+            <meta property="og:description" content="Get your free gutter installation quote today. The brothers that just do gutters are an award winning gutter company."/><meta property='og:image' content='https://brothersgutters.com/wp-content/uploads/2024/12/logo.svg'/>
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/brothersgutters.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.2"}};
+/*! This file is auto-generated */
+!function(s,n){var o,i,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),a=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===a[t]})}function u(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);for(var n=e.getImageData(16,16,1,1),a=0;a<n.data.length;a++)if(0!==n.data[a])return!1;return!0}function f(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\udedf")}return!1}function g(e,t,n,a){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):s.createElement("canvas"),o=r.getContext("2d",{willReadFrequently:!0}),i=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(function(e){i[e]=t(o,e,n,a)}),i}function t(e){var t=s.createElement("script");t.src=e,t.defer=!0,s.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",i=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){s.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+g.toString()+"("+[JSON.stringify(i),f.toString(),p.toString(),u.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"}),r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=function(e){c(n=e.data),r.terminate(),t(n)})}catch(e){}c(n=g(i,f,p,u))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://brothersgutters.com/wp-includes/css/dist/block-library/style.min.css?ver=6.8.2' type='text/css' media='all' />
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--cta-color: #00d084;--wp--preset--color--dark-blue: #093F6A;--wp--preset--color--blue: #216EAB;--wp--preset--color--light-gray: #EDEDED;--wp--preset--color--body-text: #818485;--wp--preset--color--title-text: #4D5154;--wp--preset--color--very-brand-white: #fefefe;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='prefix-font-awesome-css' href='https://use.fontawesome.com/releases/v5.0.6/css/all.css?ver=6.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='gp-limit-dates-css' href='https://brothersgutters.com/wp-content/plugins/gp-limit-dates/css/gp-limit-dates.min.css?ver=1.1.35' type='text/css' media='all' />
+<link rel='stylesheet' id='gravity_forms_theme_reset-css' href='https://brothersgutters.com/wp-content/plugins/gravityforms/assets/css/dist/gravity-forms-theme-reset.min.css?ver=2.9.29' type='text/css' media='all' />
+<link rel='stylesheet' id='gravity_forms_theme_foundation-css' href='https://brothersgutters.com/wp-content/plugins/gravityforms/assets/css/dist/gravity-forms-theme-foundation.min.css?ver=2.9.29' type='text/css' media='all' />
+<link rel='stylesheet' id='gravity_forms_theme_framework-css' href='https://brothersgutters.com/wp-content/plugins/gravityforms/assets/css/dist/gravity-forms-theme-framework.min.css?ver=2.9.29' type='text/css' media='all' />
+<link rel='stylesheet' id='gravity_forms_orbital_theme-css' href='https://brothersgutters.com/wp-content/plugins/gravityforms/assets/css/dist/gravity-forms-orbital-theme.min.css?ver=2.9.29' type='text/css' media='all' />
+<link rel='stylesheet' id='kadence-blocks-rowlayout-css' href='https://brothersgutters.com/wp-content/plugins/kadence-blocks/dist/style-blocks-rowlayout.css?ver=3.6.6' type='text/css' media='all' />
+<link rel='stylesheet' id='kadence-blocks-column-css' href='https://brothersgutters.com/wp-content/plugins/kadence-blocks/dist/style-blocks-column.css?ver=3.6.6' type='text/css' media='all' />
+<style id='kadence-blocks-advancedheading-inline-css' type='text/css'>
+	.wp-block-kadence-advancedheading mark{background:transparent;border-style:solid;border-width:0}
+	.wp-block-kadence-advancedheading mark.kt-highlight{color:#f76a0c;}
+	.kb-adv-heading-icon{display: inline-flex;justify-content: center;align-items: center;}
+	.is-layout-constrained > .kb-advanced-heading-link {display: block;}.wp-block-kadence-advancedheading.has-background{padding: 0;}.kb-screen-reader-text{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);}
+</style>
+<style id='kadence-blocks-global-variables-inline-css' type='text/css'>
+:root {--global-kb-font-size-sm:clamp(0.8rem, 0.73rem + 0.217vw, 0.9rem);--global-kb-font-size-md:clamp(1.1rem, 0.995rem + 0.326vw, 1.25rem);--global-kb-font-size-lg:clamp(1.75rem, 1.576rem + 0.543vw, 2rem);--global-kb-font-size-xl:clamp(2.25rem, 1.728rem + 1.63vw, 3rem);--global-kb-font-size-xxl:clamp(2.5rem, 1.456rem + 3.26vw, 4rem);--global-kb-font-size-xxxl:clamp(2.75rem, 0.489rem + 7.065vw, 6rem);}:root {--global-palette1: #3182CE;--global-palette2: #2B6CB0;--global-palette3: #1A202C;--global-palette4: #2D3748;--global-palette5: #4A5568;--global-palette6: #718096;--global-palette7: #EDF2F7;--global-palette8: #F7FAFC;--global-palette9: #ffffff;}
+</style>
+<style id='kadence_blocks_css-inline-css' type='text/css'>
+.kb-row-layout-id12_1eed81-50 > .kt-row-column-wrap{max-width:1200px;padding-top:64px;padding-right:24px;padding-bottom:64px;padding-left:24px;grid-template-columns:minmax(0, 1fr);}.kb-row-layout-id12_1eed81-50{background-color:#112a4c;}.kb-row-layout-id12_1eed81-50 ,.kb-row-layout-id12_1eed81-50 h1,.kb-row-layout-id12_1eed81-50 h2,.kb-row-layout-id12_1eed81-50 h3,.kb-row-layout-id12_1eed81-50 h4,.kb-row-layout-id12_1eed81-50 h5,.kb-row-layout-id12_1eed81-50 h6{color:#ffffff;}@media all and (max-width: 767px){.kb-row-layout-id12_1eed81-50 > .kt-row-column-wrap{padding-top:32px;padding-bottom:32px;grid-template-columns:minmax(0, 1fr);}}.kadence-column12_5a598c-fe > .kt-inside-inner-col{column-gap:var(--global-kb-gap-sm, 1rem);}.kadence-column12_5a598c-fe > .kt-inside-inner-col{flex-direction:column;}.kadence-column12_5a598c-fe > .kt-inside-inner-col > .aligncenter{width:100%;}@media all and (max-width: 1024px){.kadence-column12_5a598c-fe > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}@media all and (max-width: 767px){.kadence-column12_5a598c-fe > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}.wp-block-kadence-advancedheading.kt-adv-heading12_637fe0-a4, .wp-block-kadence-advancedheading.kt-adv-heading12_637fe0-a4[data-kb-block="kb-adv-heading12_637fe0-a4"]{text-align:center;}.wp-block-kadence-advancedheading.kt-adv-heading12_637fe0-a4 mark.kt-highlight, .wp-block-kadence-advancedheading.kt-adv-heading12_637fe0-a4[data-kb-block="kb-adv-heading12_637fe0-a4"] mark.kt-highlight{-webkit-box-decoration-break:clone;box-decoration-break:clone;}.wp-block-kadence-advancedheading.kt-adv-heading12_637fe0-a4 img.kb-inline-image, .wp-block-kadence-advancedheading.kt-adv-heading12_637fe0-a4[data-kb-block="kb-adv-heading12_637fe0-a4"] img.kb-inline-image{width:150px;display:inline-block;}.kb-row-layout-id12_7b2b73-b7 > .kt-row-column-wrap{column-gap:64px;max-width:1200px;padding-top:64px;padding-bottom:64px;grid-template-columns:minmax(0, calc(60% - ((64px * 1 )/2)))minmax(0, calc(40% - ((64px * 1 )/2)));}@media all and (max-width: 1024px){.kb-row-layout-id12_7b2b73-b7 > .kt-row-column-wrap{grid-template-columns:minmax(0, calc(60% - ((64px * 1 )/2)))minmax(0, calc(40% - ((64px * 1 )/2)));}}@media all and (max-width: 767px){.kb-row-layout-id12_7b2b73-b7 > .kt-row-column-wrap{padding-top:32px;padding-bottom:32px;grid-template-columns:minmax(0, 1fr);}}.kadence-column12_dc9d02-9a > .kt-inside-inner-col{column-gap:var(--global-kb-gap-sm, 1rem);}.kadence-column12_dc9d02-9a > .kt-inside-inner-col{flex-direction:column;}.kadence-column12_dc9d02-9a > .kt-inside-inner-col > .aligncenter{width:100%;}@media all and (max-width: 1024px){.kadence-column12_dc9d02-9a > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}@media all and (max-width: 767px){.kadence-column12_dc9d02-9a > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}.wp-block-kadence-advancedheading.kt-adv-heading12_daa952-d0, .wp-block-kadence-advancedheading.kt-adv-heading12_daa952-d0[data-kb-block="kb-adv-heading12_daa952-d0"]{margin-bottom:16px;}.wp-block-kadence-advancedheading.kt-adv-heading12_daa952-d0 mark.kt-highlight, .wp-block-kadence-advancedheading.kt-adv-heading12_daa952-d0[data-kb-block="kb-adv-heading12_daa952-d0"] mark.kt-highlight{-webkit-box-decoration-break:clone;box-decoration-break:clone;}.wp-block-kadence-advancedheading.kt-adv-heading12_daa952-d0 img.kb-inline-image, .wp-block-kadence-advancedheading.kt-adv-heading12_daa952-d0[data-kb-block="kb-adv-heading12_daa952-d0"] img.kb-inline-image{width:150px;display:inline-block;}.wp-block-kadence-advancedheading.kt-adv-heading12_7335c9-9b, .wp-block-kadence-advancedheading.kt-adv-heading12_7335c9-9b[data-kb-block="kb-adv-heading12_7335c9-9b"]{margin-bottom:0px;}.wp-block-kadence-advancedheading.kt-adv-heading12_7335c9-9b mark.kt-highlight, .wp-block-kadence-advancedheading.kt-adv-heading12_7335c9-9b[data-kb-block="kb-adv-heading12_7335c9-9b"] mark.kt-highlight{-webkit-box-decoration-break:clone;box-decoration-break:clone;}.wp-block-kadence-advancedheading.kt-adv-heading12_7335c9-9b img.kb-inline-image, .wp-block-kadence-advancedheading.kt-adv-heading12_7335c9-9b[data-kb-block="kb-adv-heading12_7335c9-9b"] img.kb-inline-image{width:150px;display:inline-block;}.kadence-column12_2075ac-b1 > .kt-inside-inner-col{column-gap:var(--global-kb-gap-sm, 1rem);}.kadence-column12_2075ac-b1 > .kt-inside-inner-col{flex-direction:column;}.kadence-column12_2075ac-b1 > .kt-inside-inner-col > .aligncenter{width:100%;}@media all and (max-width: 1024px){.kadence-column12_2075ac-b1 > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}@media all and (max-width: 767px){.kadence-column12_2075ac-b1 > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}.kb-row-layout-id12_ff54c3-89 > .kt-row-column-wrap{column-gap:64px;max-width:1200px;padding-top:64px;padding-bottom:64px;grid-template-columns:minmax(0, calc(50% - ((64px * 1 )/2)))minmax(0, calc(50% - ((64px * 1 )/2)));}.kb-row-layout-id12_ff54c3-89{background-color:#efefef;}@media all and (max-width: 1024px){.kb-row-layout-id12_ff54c3-89 > .kt-row-column-wrap{grid-template-columns:minmax(0, calc(50% - ((64px * 1 )/2)))minmax(0, calc(50% - ((64px * 1 )/2)));}}@media all and (max-width: 767px){.kb-row-layout-id12_ff54c3-89 > .kt-row-column-wrap{padding-top:32px;padding-bottom:32px;grid-template-columns:minmax(0, 1fr);}.kb-row-layout-id12_ff54c3-89 > .kt-row-column-wrap > .wp-block-kadence-column:nth-child(1 of *:not(style)){order:2;}.kb-row-layout-id12_ff54c3-89 > .kt-row-column-wrap > .wp-block-kadence-column:nth-child(2 of *:not(style)){order:1;}.kb-row-layout-id12_ff54c3-89 > .kt-row-column-wrap > .wp-block-kadence-column:nth-child(3 of *:not(style)){order:12;}.kb-row-layout-id12_ff54c3-89 > .kt-row-column-wrap > .wp-block-kadence-column:nth-child(4 of *:not(style)){order:11;}.kb-row-layout-id12_ff54c3-89 > .kt-row-column-wrap > .wp-block-kadence-column:nth-child(5 of *:not(style)){order:22;}.kb-row-layout-id12_ff54c3-89 > .kt-row-column-wrap > .wp-block-kadence-column:nth-child(6 of *:not(style)){order:21;}.kb-row-layout-id12_ff54c3-89 > .kt-row-column-wrap > .wp-block-kadence-column:nth-child(7 of *:not(style)){order:32;}.kb-row-layout-id12_ff54c3-89 > .kt-row-column-wrap > .wp-block-kadence-column:nth-child(8 of *:not(style)){order:31;}}.kadence-column12_bf76c6-f0 > .kt-inside-inner-col{column-gap:var(--global-kb-gap-sm, 1rem);}.kadence-column12_bf76c6-f0 > .kt-inside-inner-col{flex-direction:column;}.kadence-column12_bf76c6-f0 > .kt-inside-inner-col > .aligncenter{width:100%;}@media all and (max-width: 1024px){.kadence-column12_bf76c6-f0 > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}@media all and (max-width: 767px){.kadence-column12_bf76c6-f0 > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}.wp-block-kadence-advancedheading.kt-adv-heading12_dd83b1-67, .wp-block-kadence-advancedheading.kt-adv-heading12_dd83b1-67[data-kb-block="kb-adv-heading12_dd83b1-67"]{margin-bottom:16px;}.wp-block-kadence-advancedheading.kt-adv-heading12_dd83b1-67 mark.kt-highlight, .wp-block-kadence-advancedheading.kt-adv-heading12_dd83b1-67[data-kb-block="kb-adv-heading12_dd83b1-67"] mark.kt-highlight{-webkit-box-decoration-break:clone;box-decoration-break:clone;}.wp-block-kadence-advancedheading.kt-adv-heading12_dd83b1-67 img.kb-inline-image, .wp-block-kadence-advancedheading.kt-adv-heading12_dd83b1-67[data-kb-block="kb-adv-heading12_dd83b1-67"] img.kb-inline-image{width:150px;display:inline-block;}.wp-block-kadence-advancedheading.kt-adv-heading12_daa03a-52, .wp-block-kadence-advancedheading.kt-adv-heading12_daa03a-52[data-kb-block="kb-adv-heading12_daa03a-52"]{margin-bottom:5px;}.wp-block-kadence-advancedheading.kt-adv-heading12_daa03a-52 mark.kt-highlight, .wp-block-kadence-advancedheading.kt-adv-heading12_daa03a-52[data-kb-block="kb-adv-heading12_daa03a-52"] mark.kt-highlight{-webkit-box-decoration-break:clone;box-decoration-break:clone;}.wp-block-kadence-advancedheading.kt-adv-heading12_daa03a-52 img.kb-inline-image, .wp-block-kadence-advancedheading.kt-adv-heading12_daa03a-52[data-kb-block="kb-adv-heading12_daa03a-52"] img.kb-inline-image{width:150px;display:inline-block;}.wp-block-kadence-advancedheading.kt-adv-heading12_f0bef0-97, .wp-block-kadence-advancedheading.kt-adv-heading12_f0bef0-97[data-kb-block="kb-adv-heading12_f0bef0-97"]{font-size:22px;line-height:35px;}.wp-block-kadence-advancedheading.kt-adv-heading12_f0bef0-97[data-kb-block="kb-adv-heading12_f0bef0-97"]{display:flex;gap:0.25em;align-items:center;}.wp-block-kadence-advancedheading.kt-adv-heading12_f0bef0-97[data-kb-block="kb-adv-heading12_f0bef0-97"] .kb-adv-heading-icon svg{width:1em;height:1em;}.wp-block-kadence-advancedheading.kt-adv-heading12_f0bef0-97[data-kb-block="kb-adv-heading12_f0bef0-97"] .kb-adv-heading-icon{color:#212529;}.wp-block-kadence-advancedheading.kt-adv-heading12_f0bef0-97 mark.kt-highlight, .wp-block-kadence-advancedheading.kt-adv-heading12_f0bef0-97[data-kb-block="kb-adv-heading12_f0bef0-97"] mark.kt-highlight{-webkit-box-decoration-break:clone;box-decoration-break:clone;}.wp-block-kadence-advancedheading.kt-adv-heading12_f0bef0-97 img.kb-inline-image, .wp-block-kadence-advancedheading.kt-adv-heading12_f0bef0-97[data-kb-block="kb-adv-heading12_f0bef0-97"] img.kb-inline-image{width:150px;display:inline-block;}.wp-block-kadence-advancedheading.kt-adv-heading12_f0bef0-97[data-kb-block="kb-adv-heading12_f0bef0-97"] a, .kt-adv-heading-link12_f0bef0-97, .kt-adv-heading-link12_f0bef0-97 .kt-adv-heading12_f0bef0-97[data-kb-block="kb-adv-heading12_f0bef0-97"]{color:#212529;}.wp-block-kadence-advancedheading.kt-adv-heading12_f0bef0-97[data-kb-block="kb-adv-heading12_f0bef0-97"] a, a.kb-advanced-heading-link.kt-adv-heading-link12_f0bef0-97{text-decoration:underline;}.wp-block-kadence-advancedheading.kt-adv-heading12_f0bef0-97[data-kb-block="kb-adv-heading12_f0bef0-97"] a:hover, a.kb-advanced-heading-link.kt-adv-heading-link12_f0bef0-97:hover{text-decoration:underline;}.wp-block-kadence-advancedheading.kt-adv-heading12_6a4e56-4b, .wp-block-kadence-advancedheading.kt-adv-heading12_6a4e56-4b[data-kb-block="kb-adv-heading12_6a4e56-4b"]{margin-bottom:5px;}.wp-block-kadence-advancedheading.kt-adv-heading12_6a4e56-4b mark.kt-highlight, .wp-block-kadence-advancedheading.kt-adv-heading12_6a4e56-4b[data-kb-block="kb-adv-heading12_6a4e56-4b"] mark.kt-highlight{-webkit-box-decoration-break:clone;box-decoration-break:clone;}.wp-block-kadence-advancedheading.kt-adv-heading12_6a4e56-4b img.kb-inline-image, .wp-block-kadence-advancedheading.kt-adv-heading12_6a4e56-4b[data-kb-block="kb-adv-heading12_6a4e56-4b"] img.kb-inline-image{width:150px;display:inline-block;}.wp-block-kadence-advancedheading.kt-adv-heading12_f74648-b8, .wp-block-kadence-advancedheading.kt-adv-heading12_f74648-b8[data-kb-block="kb-adv-heading12_f74648-b8"]{font-size:22px;line-height:35px;}.wp-block-kadence-advancedheading.kt-adv-heading12_f74648-b8[data-kb-block="kb-adv-heading12_f74648-b8"]{display:flex;gap:0.25em;align-items:baseline;}.wp-block-kadence-advancedheading.kt-adv-heading12_f74648-b8[data-kb-block="kb-adv-heading12_f74648-b8"] .kb-adv-heading-icon svg{width:1em;height:1em;}.wp-block-kadence-advancedheading.kt-adv-heading12_f74648-b8[data-kb-block="kb-adv-heading12_f74648-b8"] .kb-adv-heading-icon{color:#212529;}.wp-block-kadence-advancedheading.kt-adv-heading12_f74648-b8 mark.kt-highlight, .wp-block-kadence-advancedheading.kt-adv-heading12_f74648-b8[data-kb-block="kb-adv-heading12_f74648-b8"] mark.kt-highlight{-webkit-box-decoration-break:clone;box-decoration-break:clone;}.wp-block-kadence-advancedheading.kt-adv-heading12_f74648-b8 img.kb-inline-image, .wp-block-kadence-advancedheading.kt-adv-heading12_f74648-b8[data-kb-block="kb-adv-heading12_f74648-b8"] img.kb-inline-image{width:150px;display:inline-block;}.wp-block-kadence-advancedheading.kt-adv-heading12_f74648-b8[data-kb-block="kb-adv-heading12_f74648-b8"] a, .kt-adv-heading-link12_f74648-b8, .kt-adv-heading-link12_f74648-b8 .kt-adv-heading12_f74648-b8[data-kb-block="kb-adv-heading12_f74648-b8"]{color:#212529;}.wp-block-kadence-advancedheading.kt-adv-heading12_f74648-b8[data-kb-block="kb-adv-heading12_f74648-b8"] a, a.kb-advanced-heading-link.kt-adv-heading-link12_f74648-b8{text-decoration:underline;}.wp-block-kadence-advancedheading.kt-adv-heading12_f74648-b8[data-kb-block="kb-adv-heading12_f74648-b8"] a:hover, a.kb-advanced-heading-link.kt-adv-heading-link12_f74648-b8:hover{text-decoration:underline;}.wp-block-kadence-advancedheading.kt-adv-heading12_c41206-ed, .wp-block-kadence-advancedheading.kt-adv-heading12_c41206-ed[data-kb-block="kb-adv-heading12_c41206-ed"]{margin-bottom:5px;}.wp-block-kadence-advancedheading.kt-adv-heading12_c41206-ed mark.kt-highlight, .wp-block-kadence-advancedheading.kt-adv-heading12_c41206-ed[data-kb-block="kb-adv-heading12_c41206-ed"] mark.kt-highlight{-webkit-box-decoration-break:clone;box-decoration-break:clone;}.wp-block-kadence-advancedheading.kt-adv-heading12_c41206-ed img.kb-inline-image, .wp-block-kadence-advancedheading.kt-adv-heading12_c41206-ed[data-kb-block="kb-adv-heading12_c41206-ed"] img.kb-inline-image{width:150px;display:inline-block;}.kadence-column12_6ab142-82 > .kt-inside-inner-col{column-gap:var(--global-kb-gap-sm, 1rem);}.kadence-column12_6ab142-82 > .kt-inside-inner-col{flex-direction:column;}.kadence-column12_6ab142-82 > .kt-inside-inner-col > .aligncenter{width:100%;}@media all and (max-width: 1024px){.kadence-column12_6ab142-82 > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}@media all and (max-width: 767px){.kadence-column12_6ab142-82 > .kt-inside-inner-col{flex-direction:column;justify-content:center;}}
+</style>
+<link rel='stylesheet' id='site-css-css' href='https://brothersgutters.com/wp-content/themes/BrothersGutters/assets/styles/style.css?ver=1780349414' type='text/css' media='all' />
+<script type="text/javascript" src="https://brothersgutters.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="https://brothersgutters.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="text/javascript" defer='defer' src="https://brothersgutters.com/wp-content/plugins/gravityforms/js/jquery.json.min.js?ver=2.9.29" id="gform_json-js"></script>
+<script type="text/javascript" id="gform_gravityforms-js-extra">
+/* <![CDATA[ */
+var gf_global = {"gf_currency_config":{"name":"U.S. Dollar","symbol_left":"$","symbol_right":"","symbol_padding":"","thousand_separator":",","decimal_separator":".","decimals":2,"code":"USD"},"base_url":"https:\/\/brothersgutters.com\/wp-content\/plugins\/gravityforms","number_formats":[],"spinnerUrl":"https:\/\/brothersgutters.com\/wp-content\/plugins\/gravityforms\/images\/spinner.svg","version_hash":"b867f8f724787d1e99ee5517d8192b0e","strings":{"newRowAdded":"New row added.","rowRemoved":"Row removed","formSaved":"The form has been saved.  The content contains the link to return and complete the form."}};
+var gform_i18n = {"datepicker":{"days":{"monday":"Mo","tuesday":"Tu","wednesday":"We","thursday":"Th","friday":"Fr","saturday":"Sa","sunday":"Su"},"months":{"january":"January","february":"February","march":"March","april":"April","may":"May","june":"June","july":"July","august":"August","september":"September","october":"October","november":"November","december":"December"},"firstDay":1,"iconText":"Select date"}};
+var gf_legacy_multi = {"2":""};
+var gform_gravityforms = {"strings":{"invalid_file_extension":"This type of file is not allowed. Must be one of the following:","delete_file":"Delete this file","in_progress":"in progress","file_exceeds_limit":"File exceeds size limit","illegal_extension":"This type of file is not allowed.","max_reached":"Maximum number of files reached","unknown_error":"There was a problem while saving the file on the server","currently_uploading":"Please wait for the uploading to complete","cancel":"Cancel","cancel_upload":"Cancel this upload","cancelled":"Cancelled","error":"Error","message":"Message"},"vars":{"images_url":"https:\/\/brothersgutters.com\/wp-content\/plugins\/gravityforms\/images"}};
+/* ]]> */
+</script>
+<script type="text/javascript" defer='defer' src="https://brothersgutters.com/wp-content/plugins/gravityforms/js/gravityforms.min.js?ver=2.9.29" id="gform_gravityforms-js"></script>
+<script type="text/javascript" id="gform_conditional_logic-js-extra">
+/* <![CDATA[ */
+var gf_legacy = {"is_legacy":""};
+/* ]]> */
+</script>
+<script type="text/javascript" defer='defer' src="https://brothersgutters.com/wp-content/plugins/gravityforms/js/conditional_logic.min.js?ver=2.9.29" id="gform_conditional_logic-js"></script>
+<script type="text/javascript" defer='defer' src="https://www.google.com/recaptcha/api.js?hl=en&amp;ver=6.8.2#038;render=explicit" id="gform_recaptcha-js"></script>
+<script type="text/javascript" defer='defer' src="https://brothersgutters.com/wp-content/plugins/gravityforms/assets/js/dist/utils.min.js?ver=3f278756f0a3032bed328ff6a9f6c01d" id="gform_gravityforms_utils-js"></script>
+<link rel="https://api.w.org/" href="https://brothersgutters.com/wp-json/" />
+<link rel='shortlink' href='https://brothersgutters.com/?p=12' />
+
+
+			<!-- DO NOT COPY THIS SNIPPET! Start of Page Analytics Tracking for HubSpot  plugin v11.3.43-->
+			<script class="hsq-set-content-id" data-content-id="standard-page">
+				var _hsq = _hsq || [];
+				_hsq.push(["setContentType", "standard-page"]);
+			</script>
+			<!-- DO NOT COPY THIS SNIPPET! End of Page Analytics Tracking for HubSpot  plugin -->
+			<meta name="ti-site-data" content="eyJyIjoiMTowITc6NyEzMDo4IiwibyI6Imh0dHBzOlwvXC9icm90aGVyc2d1dHRlcnMuY29tXC93cC1hZG1pblwvYWRtaW4tYWpheC5waHA/YWN0aW9uPXRpX29ubGluZV91c2Vyc19nb29nbGUmYW1wO3A9JTJGY29udGFjdC11cyUyRiZhbXA7X3dwbm9uY2U9MGQ1NTU2ZGJmNyJ9" /><link rel="icon" href="https://brothersgutters.com/wp-content/uploads/2024/12/win8-tile-icon.png-125x125.png" sizes="32x32" />
+<link rel="icon" href="https://brothersgutters.com/wp-content/uploads/2024/12/win8-tile-icon.png.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://brothersgutters.com/wp-content/uploads/2024/12/win8-tile-icon.png.png" />
+<meta name="msapplication-TileImage" content="https://brothersgutters.com/wp-content/uploads/2024/12/win8-tile-icon.png.png" />
+
+	</head>
+			
+	<body class="wp-singular page-template page-template-template-full-width page-template-template-full-width-php page page-id-12 wp-custom-logo wp-theme-BrothersGutters">
+
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXVL2CWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- G4 -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SWR6MEY3FX"></script>
+<!-- End Google Tag Manager --><!--bodytag_custom--><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMG77KZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="off-canvas-overlay hide-for-large" aria-expanded="false" id="off-canvas-overlay"></div>
+		<div class="off-canvas-wrapper">
+			
+			<!-- Load off-canvas container. Feel free to remove if not using. -->			
+			
+<div class="off-canvas position-right" id="off-canvas" data-off-canvas>
+	<div>
+<div class="grid-container off-canvas-heading">
+		<div class="grid-x grid-margin-x grid-padding-x align-middle" style='border-bottom:1px solid #23507A; padding-bottom:10px;' >
+			<div class="small-6 cell" style='margin:0'>
+				<div class="off-canvas-header">
+				<a data-toggle="off-canvas" aria-label="button toggles the mobile menu" class="menu-button" id="closeMenuButton">					<!-- <span aria-label="menu links" class="menu-text show-for-sr">Menu</span> -->
+					<!--<span class="burger-icon fa fa-bars" aria-hidden="true">Close</span>-->
+					<span class="close-offcanvas float-left" aria-hidden="true"><img src="/wp-content/uploads/2024/12/v6-icon-1.svg" alt="Close Menu"></span>
+					</a>
+				</div>
+			</div>	
+		</div>
+	</div>
+	<ul id="offcanvas-nav" class="vertical menu accordion-menu" data-accordion-menu><li id="menu-item-235" class="three-col menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-235"><a href="#">Rain Gutters</a>
+<ul class="vertical menu">
+	<li id="menu-item-165" class="first-col top-level menu-item menu-item-type-post_type menu-item-object-page menu-item-165"><a href="https://brothersgutters.com/rain-gutters/">Rain Gutters</a></li>
+	<li id="menu-item-243" class="first-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-243"><a href="https://brothersgutters.com/rain-gutters/seamless-gutters/">Seamless Gutters</a></li>
+	<li id="menu-item-259" class="first-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-259"><a href="https://brothersgutters.com/rain-gutters/sizes/">Gutter Sizes</a></li>
+	<li id="menu-item-255" class="first-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-255"><a href="https://brothersgutters.com/rain-gutters/sizes/5-inch/">5" Gutters</a></li>
+	<li id="menu-item-256" class="first-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-256"><a href="https://brothersgutters.com/rain-gutters/sizes/6-inch/">6" Gutters</a></li>
+	<li id="menu-item-257" class="first-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-257"><a href="https://brothersgutters.com/rain-gutters/sizes/7-inch/">7" Gutters</a></li>
+	<li id="menu-item-248" class="sec-col menu-item menu-item-type-post_type menu-item-object-page menu-item-248"><a href="https://brothersgutters.com/rain-gutters/specialty-styles/">Specialty Materials</a></li>
+	<li id="menu-item-250" class="sec-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-250"><a href="https://brothersgutters.com/rain-gutters/specialty-styles/copper-gutters/">Copper Gutters</a></li>
+	<li id="menu-item-252" class="sec-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-252"><a href="https://brothersgutters.com/rain-gutters/specialty-styles/galvanized-gutters/">Galvanized Gutters</a></li>
+	<li id="menu-item-251" class="sec-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-251"><a href="https://brothersgutters.com/rain-gutters/specialty-styles/galvalume-gutters/">Galvalume Gutters</a></li>
+	<li id="menu-item-249" class="sec-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-249"><a href="https://brothersgutters.com/rain-gutters/specialty-styles/colored-aluminum-gutters/">Colored Aluminum Gutters</a></li>
+	<li id="menu-item-260" class="third-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-260"><a href="https://brothersgutters.com/rain-gutters/guards/">Gutter Guards</a></li>
+	<li id="menu-item-41528" class="third-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-41528"><a href="https://brothersgutters.com/rain-gutters/guards/broguard/">BroGuard</a></li>
+</ul>
+</li>
+<li id="menu-item-236" class="two-col menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-236"><a href="#">Services</a>
+<ul class="vertical menu">
+	<li id="menu-item-167" class="top-level first-col menu-item menu-item-type-post_type menu-item-object-page menu-item-167"><a href="https://brothersgutters.com/gutter-services/">Services</a></li>
+	<li id="menu-item-261" class="first-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-261"><a href="https://brothersgutters.com/gutter-services/exterior-solutions/">Exterior Solutions</a></li>
+	<li id="menu-item-264" class="first-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-264"><a href="https://brothersgutters.com/gutter-services/exterior-solutions/under-deck-ceiling-systems/">Under Deck Ceiling Systems</a></li>
+	<li id="menu-item-265" class="first-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-265"><a href="https://brothersgutters.com/gutter-services/exterior-solutions/underground-gutter-drainage/">Underground Gutter Drainage</a></li>
+	<li id="menu-item-262" class="first-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-262"><a href="https://brothersgutters.com/gutter-services/exterior-solutions/fascia-board/">Fascia Board</a></li>
+	<li id="menu-item-263" class="first-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-263"><a href="https://brothersgutters.com/gutter-services/exterior-solutions/heated-gutter/">Heated Gutter</a></li>
+	<li id="menu-item-266" class="first-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-266"><a href="https://brothersgutters.com/gutter-services/exterior-solutions/snow-guards/">Snow Guards</a></li>
+	<li id="menu-item-270" class="sec-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-270"><a href="https://brothersgutters.com/gutter-services/installation/">Installation</a></li>
+	<li id="menu-item-269" class="sec-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-269"><a href="https://brothersgutters.com/gutter-services/maintenance-program/">Maintenance Program</a></li>
+	<li id="menu-item-268" class="sec-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-268"><a href="https://brothersgutters.com/gutter-services/repair/">Gutter Repair</a></li>
+	<li id="menu-item-267" class="sec-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-267"><a href="https://brothersgutters.com/gutter-services/cleaning/">Gutter Cleaning</a></li>
+	<li id="menu-item-41403" class="sec-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-41403"><a href="https://brothersgutters.com/gutter-services/fire-hardening/">Fire Hardening</a></li>
+	<li id="menu-item-41821" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-41821"><a href="https://brothersgutters.com/gutter-services/exterior-solutions/ice-dam-removal/">Ice Dam Removal</a></li>
+</ul>
+</li>
+<li id="menu-item-237" class="one-col menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-237"><a href="#">About</a>
+<ul class="vertical menu">
+	<li id="menu-item-16" class="top-level first-col menu-item menu-item-type-post_type menu-item-object-page menu-item-16"><a href="https://brothersgutters.com/about-us/">About Us</a></li>
+	<li id="menu-item-238" class="parent-page first-col menu-item menu-item-type-post_type menu-item-object-page menu-item-238"><a href="https://brothersgutters.com/about-us/achievements/">Achievements</a></li>
+	<li id="menu-item-15" class="parent-page first-col menu-item menu-item-type-post_type menu-item-object-page menu-item-15"><a href="https://brothersgutters.com/about-us/blog/">Blog</a></li>
+	<li id="menu-item-18033" class="parent-page first-col menu-item menu-item-type-post_type menu-item-object-page menu-item-18033"><a href="https://brothersgutters.com/gutters-for-good/">Gutters for Good</a></li>
+</ul>
+</li>
+<li id="menu-item-17" class="contact menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-12 current_page_item menu-item-17 active"><a href="https://brothersgutters.com/contact-us/" aria-current="page">Contact</a></li>
+</ul></div>
+<div class='btm-links'>
+		<a href="/careers/">Careers</a>
+		<a href="https://www.brothersfranchise.com/">Franchise Opportunities</a>
+	</div>
+</div>
+			
+			<div class="off-canvas-content" data-off-canvas-content>
+				
+				<header class="header" role="banner">
+							
+					 <!-- This navs will be applied to the topbar, above all content 
+						  To see additional nav styles, visit the /parts directory -->
+					 <a href="#content-jumpto" id="skip-nav">Skip Main Navigation</a>
+<div class='top-blue-bar'>
+<div class="inner-blue-bar">
+
+	<div class='zip-locator'>
+		<p class='show-for-large'>Find your local Solutionist<sup>©</sup></p>
+		<form role="search" method="post" class="search-form" action="/service-areas/">
+    <div class="input-group">
+		<input type="text" class="input-group-field search-field" placeholder="Enter Zip Code" name="postalcode" 
+			maxlength="5" 
+			pattern="^\d{5}$" 
+			title="Please enter a 5-digit zip code" 
+			oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+        <div class="input-group-button">
+            <input type="submit" class="button" value="Search">
+        </div>
+    </div>
+</form>
+	</div>
+
+	<div class="blue-bar-menu">
+	<ul id="bluebar-nav" class="menu"><li id="menu-item-161" class="phone-link menu-item menu-item-type-custom menu-item-object-custom menu-item-161"><a href="tel:+18665503569">866-550-3569</a></li>
+<li id="menu-item-162" class="show-for-large menu-item menu-item-type-post_type menu-item-object-page menu-item-162"><a href="https://brothersgutters.com/careers/">Careers</a></li>
+<li id="menu-item-163" class="show-for-large menu-item menu-item-type-custom menu-item-object-custom menu-item-163"><a href="https://www.brothersfranchise.com/">Franchise Opportunities</a></li>
+</ul>	
+	</div>
+
+	</div>
+</div>
+<div class="sticky sticky-topbar" data-sticky data-options="anchor: page; marginTop: 0; stickyOn: small;">
+	<div class="top-bar" id="top-bar-menu">
+		<div>
+			<ul class="menu">
+				<li><a href="https://brothersgutters.com/" class="custom-logo-link" rel="home"><img width="104" height="55" src="https://brothersgutters.com/wp-content/uploads/2024/12/the_brothers_that_just_do_gutters_logo_2020_on_white-2.png" class="custom-logo" alt="The Brothers That Just Do Gutters" decoding="async" /></a></li>
+			</ul>
+			
+		</div>
+		<div class="show-for-large nav-links">
+			<ul id="main-nav" class="medium-horizontal menu" data-responsive-menu="accordion medium-dropdown"><li class="three-col menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-235"><a href="#">Rain Gutters</a>
+<ul class="menu">
+	<li class="first-col top-level menu-item menu-item-type-post_type menu-item-object-page menu-item-165"><a href="https://brothersgutters.com/rain-gutters/">Rain Gutters</a></li>
+	<li class="first-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-243"><a href="https://brothersgutters.com/rain-gutters/seamless-gutters/">Seamless Gutters</a></li>
+	<li class="first-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-259"><a href="https://brothersgutters.com/rain-gutters/sizes/">Gutter Sizes</a></li>
+	<li class="first-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-255"><a href="https://brothersgutters.com/rain-gutters/sizes/5-inch/">5" Gutters</a></li>
+	<li class="first-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-256"><a href="https://brothersgutters.com/rain-gutters/sizes/6-inch/">6" Gutters</a></li>
+	<li class="first-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-257"><a href="https://brothersgutters.com/rain-gutters/sizes/7-inch/">7" Gutters</a></li>
+	<li class="sec-col menu-item menu-item-type-post_type menu-item-object-page menu-item-248"><a href="https://brothersgutters.com/rain-gutters/specialty-styles/">Specialty Materials</a></li>
+	<li class="sec-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-250"><a href="https://brothersgutters.com/rain-gutters/specialty-styles/copper-gutters/">Copper Gutters</a></li>
+	<li class="sec-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-252"><a href="https://brothersgutters.com/rain-gutters/specialty-styles/galvanized-gutters/">Galvanized Gutters</a></li>
+	<li class="sec-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-251"><a href="https://brothersgutters.com/rain-gutters/specialty-styles/galvalume-gutters/">Galvalume Gutters</a></li>
+	<li class="sec-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-249"><a href="https://brothersgutters.com/rain-gutters/specialty-styles/colored-aluminum-gutters/">Colored Aluminum Gutters</a></li>
+	<li class="third-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-260"><a href="https://brothersgutters.com/rain-gutters/guards/">Gutter Guards</a></li>
+	<li class="third-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-41528"><a href="https://brothersgutters.com/rain-gutters/guards/broguard/">BroGuard</a></li>
+</ul>
+</li>
+<li class="two-col menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-236"><a href="#">Services</a>
+<ul class="menu">
+	<li class="top-level first-col menu-item menu-item-type-post_type menu-item-object-page menu-item-167"><a href="https://brothersgutters.com/gutter-services/">Services</a></li>
+	<li class="first-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-261"><a href="https://brothersgutters.com/gutter-services/exterior-solutions/">Exterior Solutions</a></li>
+	<li class="first-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-264"><a href="https://brothersgutters.com/gutter-services/exterior-solutions/under-deck-ceiling-systems/">Under Deck Ceiling Systems</a></li>
+	<li class="first-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-265"><a href="https://brothersgutters.com/gutter-services/exterior-solutions/underground-gutter-drainage/">Underground Gutter Drainage</a></li>
+	<li class="first-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-262"><a href="https://brothersgutters.com/gutter-services/exterior-solutions/fascia-board/">Fascia Board</a></li>
+	<li class="first-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-263"><a href="https://brothersgutters.com/gutter-services/exterior-solutions/heated-gutter/">Heated Gutter</a></li>
+	<li class="first-col child-page menu-item menu-item-type-post_type menu-item-object-page menu-item-266"><a href="https://brothersgutters.com/gutter-services/exterior-solutions/snow-guards/">Snow Guards</a></li>
+	<li class="sec-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-270"><a href="https://brothersgutters.com/gutter-services/installation/">Installation</a></li>
+	<li class="sec-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-269"><a href="https://brothersgutters.com/gutter-services/maintenance-program/">Maintenance Program</a></li>
+	<li class="sec-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-268"><a href="https://brothersgutters.com/gutter-services/repair/">Gutter Repair</a></li>
+	<li class="sec-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-267"><a href="https://brothersgutters.com/gutter-services/cleaning/">Gutter Cleaning</a></li>
+	<li class="sec-col parent-page menu-item menu-item-type-post_type menu-item-object-page menu-item-41403"><a href="https://brothersgutters.com/gutter-services/fire-hardening/">Fire Hardening</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-41821"><a href="https://brothersgutters.com/gutter-services/exterior-solutions/ice-dam-removal/">Ice Dam Removal</a></li>
+</ul>
+</li>
+<li class="one-col menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-237"><a href="#">About</a>
+<ul class="menu">
+	<li class="top-level first-col menu-item menu-item-type-post_type menu-item-object-page menu-item-16"><a href="https://brothersgutters.com/about-us/">About Us</a></li>
+	<li class="parent-page first-col menu-item menu-item-type-post_type menu-item-object-page menu-item-238"><a href="https://brothersgutters.com/about-us/achievements/">Achievements</a></li>
+	<li class="parent-page first-col menu-item menu-item-type-post_type menu-item-object-page menu-item-15"><a href="https://brothersgutters.com/about-us/blog/">Blog</a></li>
+	<li class="parent-page first-col menu-item menu-item-type-post_type menu-item-object-page menu-item-18033"><a href="https://brothersgutters.com/gutters-for-good/">Gutters for Good</a></li>
+</ul>
+</li>
+<li class="contact menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-12 current_page_item menu-item-17 active"><a href="https://brothersgutters.com/contact-us/" aria-current="page">Contact</a></li>
+</ul>	
+		</div>
+		<div class="free-quote-btn">
+		<style>.wp-block-kadence-advancedbtn.kb-btns19_99d3f6-d0{gap:var(--global-kb-gap-xs, 0.5rem );justify-content:center;align-items:center;}.kt-btns19_99d3f6-d0 .kt-button{font-weight:normal;font-style:normal;}.kt-btns19_99d3f6-d0 .kt-btn-wrap-0{margin-right:5px;}.wp-block-kadence-advancedbtn.kt-btns19_99d3f6-d0 .kt-btn-wrap-0 .kt-button{color:#555555;border-color:#555555;}.wp-block-kadence-advancedbtn.kt-btns19_99d3f6-d0 .kt-btn-wrap-0 .kt-button:hover, .wp-block-kadence-advancedbtn.kt-btns19_99d3f6-d0 .kt-btn-wrap-0 .kt-button:focus{color:#ffffff;border-color:#444444;}.wp-block-kadence-advancedbtn.kt-btns19_99d3f6-d0 .kt-btn-wrap-0 .kt-button::before{display:none;}.wp-block-kadence-advancedbtn.kt-btns19_99d3f6-d0 .kt-btn-wrap-0 .kt-button:hover, .wp-block-kadence-advancedbtn.kt-btns19_99d3f6-d0 .kt-btn-wrap-0 .kt-button:focus{background:#444444;}</style>
+<div class="wp-block-kadence-advancedbtn kb-buttons-wrap kb-btns19_99d3f6-d0"><style>ul.menu .wp-block-kadence-advancedbtn .kb-btn19_380624-c0.kb-button{width:initial;}.wp-block-kadence-advancedbtn .kb-btn19_380624-c0.kb-button{color:#212529;background:#ff8100;font-size:22px;line-height:30px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-right-radius:8px;border-bottom-left-radius:8px;padding-top:8px;padding-right:24px;padding-bottom:6px;padding-left:24px;}.wp-block-kadence-advancedbtn .kb-btn19_380624-c0.kb-button:hover, .wp-block-kadence-advancedbtn .kb-btn19_380624-c0.kb-button:focus{color:#212529;background:#ffb56b;}@media all and (max-width: 767px){.wp-block-kadence-advancedbtn .kb-btn19_380624-c0.kb-button{font-size:16px;line-height:16px;padding-right:12px;padding-left:12px;}}</style><a class="kb-button kt-button button kb-btn19_380624-c0 kt-btn-size-xlarge kt-btn-width-type-auto kb-btn-global-fill  kt-btn-has-text-true kt-btn-has-svg-false  font-acumin-bold get-free-quote-btn wp-block-kadence-singlebtn" href="/get-a-free-quote/"><span class="kt-btn-inner-text">Get A Free Quote</span></a></div>
+			 
+		</div>
+		<div class="hide-for-large">
+			<ul class="menu">
+				<li><button class="menu-icon" type="button" data-toggle="off-canvas" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="off-canvas-menu"></button></li>
+				<!-- <li><a data-toggle="off-canvas">Menu</a></li> -->
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="content-jumpto"></div>	 	
+				</header> <!-- end .header -->
+			
+	<div class="content">
+	
+		<div class="inner-content grid-x grid-margin-x grid-padding-x">
+	
+		    <main class="main small-12 medium-12 large-12 cell" role="main">
+				
+				
+					
+<article id="post-12" class="post-12 page type-page status-publish hentry" role="article" itemscope itemtype="http://schema.org/WebPage">
+						
+	
+					
+    <section class="entry-content" itemprop="text">
+	    <div class="kb-row-layout-wrap kb-row-layout-id12_1eed81-50 alignfull kt-row-has-bg wp-block-kadence-rowlayout"><div class="kt-row-column-wrap kt-has-1-columns kt-row-layout-equal kt-tab-layout-inherit kt-mobile-layout-row kt-row-valign-top kb-theme-content-width">
+
+<div class="wp-block-kadence-column kadence-column12_5a598c-fe"><div class="kt-inside-inner-col">
+<h1 class="kt-adv-heading12_637fe0-a4 wp-block-kadence-advancedheading" data-kb-block="kb-adv-heading12_637fe0-a4">Contact Us</h1>
+</div></div>
+
+</div></div>
+
+<div class="kb-row-layout-wrap kb-row-layout-id12_7b2b73-b7 alignfull wp-block-kadence-rowlayout"><div class="kt-row-column-wrap kt-has-2-columns kt-row-layout-left-golden kt-tab-layout-inherit kt-mobile-layout-row kt-row-valign-top kb-theme-content-width">
+
+<div class="wp-block-kadence-column kadence-column12_dc9d02-9a"><div class="kt-inside-inner-col">
+<h2 class="kt-adv-heading12_daa952-d0 wp-block-kadence-advancedheading" data-kb-block="kb-adv-heading12_daa952-d0">Get A Free Gutter Guard or Seamless Rain Gutter Installation Quote!</h2>
+
+
+
+<p class="kt-adv-heading12_7335c9-9b wp-block-kadence-advancedheading" data-kb-block="kb-adv-heading12_7335c9-9b">If you are tired of just imagining your home with a gutter system that works properly, and you have not yet inquired with us, please take a few moments to fill out and submit the form so we can have a Solutionist© come out to your home to begin the process of turning your vision into a reality.</p>
+</div></div>
+
+
+
+<div class="wp-block-kadence-column kadence-column12_2075ac-b1 contact-page-form"><div class="kt-inside-inner-col">
+                <div class='gf_browser_unknown gform_wrapper gform-theme gform-theme--foundation gform-theme--framework gform-theme--orbital' data-form-theme='orbital' data-form-index='0' id='gform_wrapper_2' style='display:none'><style>#gform_wrapper_2[data-form-index="0"].gform-theme,[data-parent-form="2_0"]{--gf-color-primary: #ff8100;--gf-color-primary-rgb: 255, 129, 0;--gf-color-primary-contrast: #212529;--gf-color-primary-contrast-rgb: 33, 37, 41;--gf-color-primary-darker: #CD4F00;--gf-color-primary-lighter: #FFB332;--gf-color-secondary: #ffffff;--gf-color-secondary-rgb: 255, 255, 255;--gf-color-secondary-contrast: #212529;--gf-color-secondary-contrast-rgb: 33, 37, 41;--gf-color-secondary-darker: #F5F5F5;--gf-color-secondary-lighter: #FFFFFF;--gf-color-out-ctrl-light: rgba(17, 35, 55, 0.1);--gf-color-out-ctrl-light-rgb: 17, 35, 55;--gf-color-out-ctrl-light-darker: rgba(33, 37, 41, 0.35);--gf-color-out-ctrl-light-lighter: #F5F5F5;--gf-color-out-ctrl-dark: #212529;--gf-color-out-ctrl-dark-rgb: 33, 37, 41;--gf-color-out-ctrl-dark-darker: #212529;--gf-color-out-ctrl-dark-lighter: rgba(33, 37, 41, 0.65);--gf-color-in-ctrl: #ffffff;--gf-color-in-ctrl-rgb: 255, 255, 255;--gf-color-in-ctrl-contrast: #212529;--gf-color-in-ctrl-contrast-rgb: 33, 37, 41;--gf-color-in-ctrl-darker: #F5F5F5;--gf-color-in-ctrl-lighter: #FFFFFF;--gf-color-in-ctrl-primary: #212529;--gf-color-in-ctrl-primary-rgb: 33, 37, 41;--gf-color-in-ctrl-primary-contrast: #fff;--gf-color-in-ctrl-primary-contrast-rgb: 255, 255, 255;--gf-color-in-ctrl-primary-darker: #000000;--gf-color-in-ctrl-primary-lighter: #53575B;--gf-color-in-ctrl-light: rgba(17, 35, 55, 0.1);--gf-color-in-ctrl-light-rgb: 17, 35, 55;--gf-color-in-ctrl-light-darker: rgba(33, 37, 41, 0.35);--gf-color-in-ctrl-light-lighter: #F5F5F5;--gf-color-in-ctrl-dark: #212529;--gf-color-in-ctrl-dark-rgb: 33, 37, 41;--gf-color-in-ctrl-dark-darker: #212529;--gf-color-in-ctrl-dark-lighter: rgba(33, 37, 41, 0.65);--gf-radius: 2px;--gf-font-size-secondary: 14px;--gf-font-size-tertiary: 13px;--gf-icon-ctrl-number: url("data:image/svg+xml,%3Csvg width='8' height='14' viewBox='0 0 8 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M4 0C4.26522 5.96046e-08 4.51957 0.105357 4.70711 0.292893L7.70711 3.29289C8.09763 3.68342 8.09763 4.31658 7.70711 4.70711C7.31658 5.09763 6.68342 5.09763 6.29289 4.70711L4 2.41421L1.70711 4.70711C1.31658 5.09763 0.683417 5.09763 0.292893 4.70711C-0.0976311 4.31658 -0.097631 3.68342 0.292893 3.29289L3.29289 0.292893C3.48043 0.105357 3.73478 0 4 0ZM0.292893 9.29289C0.683417 8.90237 1.31658 8.90237 1.70711 9.29289L4 11.5858L6.29289 9.29289C6.68342 8.90237 7.31658 8.90237 7.70711 9.29289C8.09763 9.68342 8.09763 10.3166 7.70711 10.7071L4.70711 13.7071C4.31658 14.0976 3.68342 14.0976 3.29289 13.7071L0.292893 10.7071C-0.0976311 10.3166 -0.0976311 9.68342 0.292893 9.29289Z' fill='rgba(33, 37, 41, 0.65)'/%3E%3C/svg%3E");--gf-icon-ctrl-select: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.292893 0.292893C0.683417 -0.097631 1.31658 -0.097631 1.70711 0.292893L5 3.58579L8.29289 0.292893C8.68342 -0.0976311 9.31658 -0.0976311 9.70711 0.292893C10.0976 0.683417 10.0976 1.31658 9.70711 1.70711L5.70711 5.70711C5.31658 6.09763 4.68342 6.09763 4.29289 5.70711L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683418 0.292893 0.292893Z' fill='rgba(33, 37, 41, 0.65)'/%3E%3C/svg%3E");--gf-icon-ctrl-search: url("data:image/svg+xml,%3Csvg width='640' height='640' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M256 128c-70.692 0-128 57.308-128 128 0 70.691 57.308 128 128 128 70.691 0 128-57.309 128-128 0-70.692-57.309-128-128-128zM64 256c0-106.039 85.961-192 192-192s192 85.961 192 192c0 41.466-13.146 79.863-35.498 111.248l154.125 154.125c12.496 12.496 12.496 32.758 0 45.254s-32.758 12.496-45.254 0L367.248 412.502C335.862 434.854 297.467 448 256 448c-106.039 0-192-85.962-192-192z' fill='rgba(33, 37, 41, 0.65)'/%3E%3C/svg%3E");--gf-label-space-y-secondary: var(--gf-label-space-y-md-secondary);--gf-ctrl-border-color: #212529;--gf-ctrl-size: var(--gf-ctrl-size-md);--gf-ctrl-label-color-primary: #112337;--gf-ctrl-label-color-secondary: #112337;--gf-ctrl-choice-size: var(--gf-ctrl-choice-size-md);--gf-ctrl-checkbox-check-size: var(--gf-ctrl-checkbox-check-size-md);--gf-ctrl-radio-check-size: var(--gf-ctrl-radio-check-size-md);--gf-ctrl-btn-font-size: var(--gf-ctrl-btn-font-size-md);--gf-ctrl-btn-padding-x: var(--gf-ctrl-btn-padding-x-md);--gf-ctrl-btn-size: var(--gf-ctrl-btn-size-md);--gf-ctrl-btn-border-color-secondary: #212529;--gf-ctrl-file-btn-bg-color-hover: #EBEBEB;--gf-field-img-choice-size: var(--gf-field-img-choice-size-md);--gf-field-img-choice-card-space: var(--gf-field-img-choice-card-space-md);--gf-field-img-choice-check-ind-size: var(--gf-field-img-choice-check-ind-size-md);--gf-field-img-choice-check-ind-icon-size: var(--gf-field-img-choice-check-ind-icon-size-md);--gf-field-pg-steps-number-color: rgba(17, 35, 55, 0.8);}</style><div id='gf_2' class='gform_anchor' tabindex='-1'></div>
+                        <div class='gform_heading'>
+							<p class='gform_required_legend'>&quot;<span class="gfield_required gfield_required_asterisk">*</span>&quot; indicates required fields</p>
+                        </div><form method='post' enctype='multipart/form-data' target='gform_ajax_frame_2' id='gform_2'  action='/contact-us/#gf_2' data-formid='2' novalidate>
+                        <div class='gform-body gform_body'><div id='gform_fields_2' class='gform_fields top_label form_sublabel_below description_below validation_below'><fieldset id="field_2_4" class="gfield gfield--type-name gfield--input-type-name gfield--width-full gfield_contains_required field_sublabel_hidden_label gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><legend class='gfield_label gform-field-label gfield_label_before_complex' >Name<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></legend><div class='ginput_complex ginput_container ginput_container--name no_prefix has_first_name no_middle_name has_last_name no_suffix gf_name_has_2 ginput_container_name gform-grid-row' id='input_2_4'>
+                            
+                            <span id='input_2_4_3_container' class='name_first gform-grid-col gform-grid-col--size-auto' >
+                                                    <input type='text' name='input_4.3' id='input_2_4_3' value=''   aria-required='true'   placeholder='First Name*'  />
+                                                    <label for='input_2_4_3' class='gform-field-label gform-field-label--type-sub hidden_sub_label screen-reader-text'>First</label>
+                                                </span>
+                            
+                            <span id='input_2_4_6_container' class='name_last gform-grid-col gform-grid-col--size-auto' >
+                                                    <input type='text' name='input_4.6' id='input_2_4_6' value=''   aria-required='true'   placeholder='Last Name*'  />
+                                                    <label for='input_2_4_6' class='gform-field-label gform-field-label--type-sub hidden_sub_label screen-reader-text'>Last</label>
+                                                </span>
+                            
+                        </div></fieldset><div id="field_2_5" class="gfield gfield--type-email gfield--input-type-email gfield--width-full gfield_contains_required field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_5'>Email<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_email'>
+                            <input name='input_5' id='input_2_5' type='email' value='' class='large'   placeholder='Email*' aria-required="true" aria-invalid="false"  />
+                        </div></div><div id="field_2_3" class="gfield gfield--type-phone gfield--input-type-phone gfield--width-half gfield_contains_required field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_3'>Phone<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_phone'><input name='input_3' id='input_2_3' type='tel' value='' class='large'  placeholder='Phone*' aria-required="true" aria-invalid="false"   /></div></div><div id="field_2_16" class="gfield gfield--type-text gfield--input-type-text gfield--width-half gfield_contains_required field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_16'>Zip<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_text'><input name='input_16' id='input_2_16' type='text' value='' class='large'    placeholder='Zip Code*' aria-required="true" aria-invalid="false"   /></div></div><fieldset id="field_2_11" class="gfield gfield--type-radio gfield--type-choice gfield--input-type-radio gfield--width-full schedule-radios gfield_contains_required field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><legend class='gfield_label gform-field-label' >Would you like to schedule your estimate online right now?<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></legend><div class='ginput_container ginput_container_radio'><div class='gfield_radio' id='input_2_11'>
+			<div class='gchoice gchoice_2_11_0'>
+					<input class='gfield-choice-input' name='input_11' type='radio' value='Yes'  id='choice_2_11_0' onchange='gformToggleRadioOther( this )'    />
+					<label for='choice_2_11_0' id='label_2_11_0' class='gform-field-label gform-field-label--type-inline'>Yes</label>
+			</div>
+			<div class='gchoice gchoice_2_11_1'>
+					<input class='gfield-choice-input' name='input_11' type='radio' value='No'  id='choice_2_11_1' onchange='gformToggleRadioOther( this )'    />
+					<label for='choice_2_11_1' id='label_2_11_1' class='gform-field-label gform-field-label--type-inline'>No</label>
+			</div></div></div></fieldset><fieldset id="field_2_33" class="gfield gfield--type-radio gfield--type-choice gfield--input-type-radio gfield--width-full schedule-radios non-schedule gfield_contains_required field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><legend class='gfield_label gform-field-label' >Would you like to provide more information to speed up this process?<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></legend><div class='ginput_container ginput_container_radio'><div class='gfield_radio' id='input_2_33'>
+			<div class='gchoice gchoice_2_33_0'>
+					<input class='gfield-choice-input' name='input_33' type='radio' value='Yes'  id='choice_2_33_0' onchange='gformToggleRadioOther( this )'    />
+					<label for='choice_2_33_0' id='label_2_33_0' class='gform-field-label gform-field-label--type-inline'>Yes</label>
+			</div>
+			<div class='gchoice gchoice_2_33_1'>
+					<input class='gfield-choice-input' name='input_33' type='radio' value='No'  id='choice_2_33_1' onchange='gformToggleRadioOther( this )'    />
+					<label for='choice_2_33_1' id='label_2_33_1' class='gform-field-label gform-field-label--type-inline'>No</label>
+			</div></div></div></fieldset><fieldset id="field_2_12" class="gfield gfield--type-address gfield--input-type-address gfield--width-full scheduler-address gfield_contains_required field_sublabel_hidden_label gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><legend class='gfield_label gform-field-label gfield_label_before_complex' >Address<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></legend>    
+                    <div class='ginput_complex ginput_container has_street has_city has_state ginput_container_address gform-grid-row' id='input_2_12' >
+                         <span class='ginput_full address_line_1 ginput_address_line_1 gform-grid-col' id='input_2_12_1_container' >
+                                        <input type='text' name='input_12.1' id='input_2_12_1' value=''   placeholder='Street Address*' aria-required='true'    />
+                                        <label for='input_2_12_1' id='input_2_12_1_label' class='gform-field-label gform-field-label--type-sub hidden_sub_label screen-reader-text'>Street Address</label>
+                                    </span><span class='ginput_left address_city ginput_address_city gform-grid-col' id='input_2_12_3_container' >
+                                    <input type='text' name='input_12.3' id='input_2_12_3' value=''   placeholder='City*' aria-required='true'    />
+                                    <label for='input_2_12_3' id='input_2_12_3_label' class='gform-field-label gform-field-label--type-sub hidden_sub_label screen-reader-text'>City</label>
+                                 </span><span class='ginput_right address_state ginput_address_state gform-grid-col' id='input_2_12_4_container' >
+                                        <select name='input_12.4' id='input_2_12_4'     aria-required='true'    ><option value='' selected='selected'>State*</option><option value='Alabama' >Alabama</option><option value='Alaska' >Alaska</option><option value='American Samoa' >American Samoa</option><option value='Arizona' >Arizona</option><option value='Arkansas' >Arkansas</option><option value='California' >California</option><option value='Colorado' >Colorado</option><option value='Connecticut' >Connecticut</option><option value='Delaware' >Delaware</option><option value='District of Columbia' >District of Columbia</option><option value='Florida' >Florida</option><option value='Georgia' >Georgia</option><option value='Guam' >Guam</option><option value='Hawaii' >Hawaii</option><option value='Idaho' >Idaho</option><option value='Illinois' >Illinois</option><option value='Indiana' >Indiana</option><option value='Iowa' >Iowa</option><option value='Kansas' >Kansas</option><option value='Kentucky' >Kentucky</option><option value='Louisiana' >Louisiana</option><option value='Maine' >Maine</option><option value='Maryland' >Maryland</option><option value='Massachusetts' >Massachusetts</option><option value='Michigan' >Michigan</option><option value='Minnesota' >Minnesota</option><option value='Mississippi' >Mississippi</option><option value='Missouri' >Missouri</option><option value='Montana' >Montana</option><option value='Nebraska' >Nebraska</option><option value='Nevada' >Nevada</option><option value='New Hampshire' >New Hampshire</option><option value='New Jersey' >New Jersey</option><option value='New Mexico' >New Mexico</option><option value='New York' >New York</option><option value='North Carolina' >North Carolina</option><option value='North Dakota' >North Dakota</option><option value='Northern Mariana Islands' >Northern Mariana Islands</option><option value='Ohio' >Ohio</option><option value='Oklahoma' >Oklahoma</option><option value='Oregon' >Oregon</option><option value='Pennsylvania' >Pennsylvania</option><option value='Puerto Rico' >Puerto Rico</option><option value='Rhode Island' >Rhode Island</option><option value='South Carolina' >South Carolina</option><option value='South Dakota' >South Dakota</option><option value='Tennessee' >Tennessee</option><option value='Texas' >Texas</option><option value='Utah' >Utah</option><option value='U.S. Virgin Islands' >U.S. Virgin Islands</option><option value='Vermont' >Vermont</option><option value='Virginia' >Virginia</option><option value='Washington' >Washington</option><option value='West Virginia' >West Virginia</option><option value='Wisconsin' >Wisconsin</option><option value='Wyoming' >Wyoming</option><option value='Armed Forces Americas' >Armed Forces Americas</option><option value='Armed Forces Europe' >Armed Forces Europe</option><option value='Armed Forces Pacific' >Armed Forces Pacific</option></select>
+                                        <label for='input_2_12_4' id='input_2_12_4_label' class='gform-field-label gform-field-label--type-sub hidden_sub_label screen-reader-text'>State</label>
+                                      </span><input type='hidden' class='gform_hidden' name='input_12.6' id='input_2_12_6' value='United States' />
+                    <div class='gf_clear gf_clear_complex'></div>
+                </div></fieldset><div id="field_2_31" class="gfield gfield--type-select gfield--input-type-select gfield--width-half select-service gfield_contains_required field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_31'>Service<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_select'><select name='input_31' id='input_2_31' class='large gfield_select'    aria-required="true" aria-invalid="false" ><option value='' selected='selected' class='gf_placeholder'>Select a Service*</option><option value='Installation / Replacement' >Installation / Replacement</option><option value='Gutter Guards' >Gutter Guards</option><option value='Gutter Repair' >Gutter Repair</option><option value='Gutter Cleaning' >Gutter Cleaning</option><option value='Other' >Other</option></select></div></div><div id="field_2_32" class="gfield gfield--type-date gfield--input-type-date gfield--input-type-datepicker gfield--datepicker-default-icon gfield--width-half preferred-date gfield_contains_required field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_32'>Date<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_date'>
+                            <input name='input_32' id='input_2_32' type='text' value='' class='datepicker gform-datepicker mdy datepicker_with_icon gdatepicker_with_icon'   placeholder='Preferred Date*' aria-describedby="input_2_32_date_format" aria-invalid="false" aria-required="true"/>
+                            <span id='input_2_32_date_format' class='screen-reader-text'>MM slash DD slash YYYY</span>
+                        </div>
+                        <input type='hidden' id='gforms_calendar_icon_input_2_32' class='gform_hidden' value='https://brothersgutters.com/wp-content/plugins/gravityforms/images/datepicker/datepicker.svg'/></div><div id="field_2_13" class="gfield gfield--type-textarea gfield--input-type-textarea gfield--width-full about-project field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_13'>About Your Project</label><div class='ginput_container ginput_container_textarea'><textarea name='input_13' id='input_2_13' class='textarea small'    placeholder='About Your Project - Please describe your gutter concerns or type of project you are looking for us to provide a solution for.'  aria-invalid="false"   rows='10' cols='50'></textarea></div></div><fieldset id="field_2_19" class="gfield gfield--type-checkbox gfield--type-choice gfield--input-type-checkbox gfield--width-full sms-about-project field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><legend class='gfield_label gform-field-label gfield_label_before_complex' >I agree to receive text messages from The Brother That Just Do Gutters, LLC. about my estimate, appointment scheduling, and service updates. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out or HELP for assistance. See our Privacy Policy and Terms of Service.</legend><div class='ginput_container ginput_container_checkbox'><div class='gfield_checkbox ' id='input_2_19'><div class='gchoice gchoice_2_19_1'>
+								<input class='gfield-choice-input' name='input_19.1' type='checkbox'  value='Messaging frequency varies based on your project needs. You can opt out at any time by replying STOP. Reply HELP if you are experiencing issues. Message/data rates apply.'  id='choice_2_19_1'   />
+								<label for='choice_2_19_1' id='label_2_19_1' class='gform-field-label gform-field-label--type-inline'>I agree to receive text messages from The Brother That Just Do Gutters, LLC. about my estimate, appointment scheduling, and service updates. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out or HELP for assistance. See our Privacy Policy and Terms of Service.</label>
+							</div></div></div></fieldset><fieldset id="field_2_21" class="gfield gfield--type-checkbox gfield--type-choice gfield--input-type-checkbox gfield--width-full sms-marketing field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><legend class='gfield_label gform-field-label gfield_label_before_complex' >I agree to receive text messages from The Brothers That Just Do Gutters, LLC. related to my inquiry and our services. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out or HELP for assistance. See our Privacy Policy and Terms of Service.</legend><div class='ginput_container ginput_container_checkbox'><div class='gfield_checkbox ' id='input_2_21'><div class='gchoice gchoice_2_21_1'>
+								<input class='gfield-choice-input' name='input_21.1' type='checkbox'  value='Messaging frequency varies based on your project needs. You can opt out at any time by replying STOP. Reply HELP if you are experiencing issues. Message/data rates apply.'  id='choice_2_21_1'   />
+								<label for='choice_2_21_1' id='label_2_21_1' class='gform-field-label gform-field-label--type-inline'>I agree to receive text messages from The Brothers That Just Do Gutters, LLC. related to my inquiry and our services. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out or HELP for assistance. See our Privacy Policy and Terms of Service.</label>
+							</div></div></div></fieldset><div id="field_2_30" class="gfield gfield--type-html gfield--input-type-html gfield--width-full consent-message gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  >Messaging frequency varies based on your project needs. You can opt out at any time by replying STOP. Reply HELP if you are experiencing issues. Message/data rates apply.
+<br><br>
+By submitting this form, you authorize The Brothers That Just Do Gutters to reach out to you about your project. We will never share your personal information with third parties for marketing purposes. You can opt out at any time.
+Consent is not a condition of purchase.
+<a href="/terms" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a> |
+<a href="/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> | <a href="/sms-terms-conditions" target="_blank" rel="noopener noreferrer">SMS Terms &amp; Conditions</a></div><div id="field_2_24" class="gfield gfield--type-captcha gfield--input-type-captcha gfield--width-full field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_24'>CAPTCHA</label><div id='input_2_24' class='ginput_container ginput_recaptcha' data-sitekey='6LdbFLIqAAAAAPtMhWfbI5jt4Nuzz0ll2kZA95ap'  data-theme='light' data-tabindex='-1' data-size='invisible' data-badge='bottomright'></div></div><div id="field_2_15" class="gfield gfield--type-hidden gfield--input-type-hidden gfield--width-full gform_hidden field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><div class='ginput_container ginput_container_text'><input name='input_15' id='input_2_15' type='hidden' class='gform_hidden'  aria-invalid="false" value='https://brothersgutters.com/contact-us/' /></div></div><div id="field_2_22" class="gfield gfield--type-hidden gfield--input-type-hidden gfield--width-full gform_hidden field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><div class='ginput_container ginput_container_text'><input name='input_22' id='input_2_22' type='hidden' class='gform_hidden'  aria-invalid="false" value='' /></div></div><div id="field_2_34" class="gfield gfield--type-hidden gfield--input-type-hidden gfield--width-full gform_hidden field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><div class='ginput_container ginput_container_text'><input name='input_34' id='input_2_34' type='hidden' class='gform_hidden'  aria-invalid="false" value='0' /></div></div><div id="field_2_20" class="gfield gfield--type-hidden gfield--input-type-hidden gfield--width-full gform_hidden field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><div class='ginput_container ginput_container_text'><input name='input_20' id='input_2_20' type='hidden' class='gform_hidden'  aria-invalid="false" value='https://brothersgutters.com' /></div></div><div id="field_2_25" class="gfield gfield--type-hidden gfield--input-type-hidden gfield--width-full gform_hidden field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><div class='ginput_container ginput_container_text'><input name='input_25' id='input_2_25' type='hidden' class='gform_hidden'  aria-invalid="false" value='' /></div></div><div id="field_2_26" class="gfield gfield--type-hidden gfield--input-type-hidden gfield--width-full gform_hidden field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><div class='ginput_container ginput_container_text'><input name='input_26' id='input_2_26' type='hidden' class='gform_hidden'  aria-invalid="false" value='' /></div></div><div id="field_2_27" class="gfield gfield--type-hidden gfield--input-type-hidden gfield--width-full gform_hidden field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><div class='ginput_container ginput_container_text'><input name='input_27' id='input_2_27' type='hidden' class='gform_hidden'  aria-invalid="false" value='' /></div></div><div id="field_2_28" class="gfield gfield--type-hidden gfield--input-type-hidden gfield--width-full gform_hidden field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><div class='ginput_container ginput_container_text'><input name='input_28' id='input_2_28' type='hidden' class='gform_hidden'  aria-invalid="false" value='' /></div></div><div id="field_2_29" class="gfield gfield--type-hidden gfield--input-type-hidden gfield--width-full gform_hidden field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><div class='ginput_container ginput_container_text'><input name='input_29' id='input_2_29' type='hidden' class='gform_hidden'  aria-invalid="false" value='' /></div></div></div></div>
+        <div class='gform-footer gform_footer top_label'> <input type='submit' id='gform_submit_button_2' class='gform_button button' onclick='gform.submission.handleButtonClick(this);' data-submission-type='submit' value='Submit'  /> <input type='hidden' name='gform_ajax' value='form_id=2&amp;title=&amp;description=&amp;tabindex=0&amp;theme=orbital&amp;styles={&quot;theme&quot;:&quot;orbital&quot;,&quot;inputBorderRadius&quot;:&quot;2&quot;,&quot;inputBorderColor&quot;:&quot;#212529&quot;,&quot;inputBackgroundColor&quot;:&quot;#ffffff&quot;,&quot;inputColor&quot;:&quot;#212529&quot;,&quot;inputPrimaryColor&quot;:&quot;#212529&quot;,&quot;descriptionColor&quot;:&quot;#212529&quot;,&quot;buttonPrimaryBackgroundColor&quot;:&quot;#ff8100&quot;,&quot;buttonPrimaryColor&quot;:&quot;#212529&quot;}&amp;hash=d8b6d7ed0f5a19550c3dff3313ef9faa' />
+            <input type='hidden' class='gform_hidden' name='gform_submission_method' data-js='gform_submission_method_2' value='iframe' />
+            <input type='hidden' class='gform_hidden' name='gform_theme' data-js='gform_theme_2' id='gform_theme_2' value='orbital' />
+            <input type='hidden' class='gform_hidden' name='gform_style_settings' data-js='gform_style_settings_2' id='gform_style_settings_2' value='{&quot;theme&quot;:&quot;orbital&quot;,&quot;inputBorderRadius&quot;:&quot;2&quot;,&quot;inputBorderColor&quot;:&quot;#212529&quot;,&quot;inputBackgroundColor&quot;:&quot;#ffffff&quot;,&quot;inputColor&quot;:&quot;#212529&quot;,&quot;inputPrimaryColor&quot;:&quot;#212529&quot;,&quot;descriptionColor&quot;:&quot;#212529&quot;,&quot;buttonPrimaryBackgroundColor&quot;:&quot;#ff8100&quot;,&quot;buttonPrimaryColor&quot;:&quot;#212529&quot;}' />
+            <input type='hidden' class='gform_hidden' name='is_submit_2' value='1' />
+            <input type='hidden' class='gform_hidden' name='gform_submit' value='2' />
+            
+            <input type='hidden' class='gform_hidden' name='gform_currency' data-currency='USD' value='SHJhSaVx5q3za5Jbl1Qa80riyuZxnsYp4aFR8m3PiA0IoQb0V9MBnRg3dRwqizNNsjFnSGcM67/C/PrdyWolLQ/LyKNfgPIsQ6US5/St3/0tw0k=' />
+            <input type='hidden' class='gform_hidden' name='gform_unique_id' value='' />
+            <input type='hidden' class='gform_hidden' name='state_2' value='WyJ7XCIxMVwiOltcIjE3NmJjZTI3ZDhlMDA0OTY2NzE0YjY1MTU3ZGY5ZmU3XCIsXCJjNGU5NWNkMzUxMWE4YTNlNmZiYzg4ZmM5NWM2OWM4OFwiXSxcIjMzXCI6W1wiMTc2YmNlMjdkOGUwMDQ5NjY3MTRiNjUxNTdkZjlmZTdcIixcImM0ZTk1Y2QzNTExYThhM2U2ZmJjODhmYzk1YzY5Yzg4XCJdLFwiMzFcIjpbXCIxZDc3NTI2ZGMxNjc0ZDdiMTNlMmY0ZmJmZGY5MDUwYlwiLFwiN2JmOGE2NzM3NmRkNGFlNWM4NTc3ZTZiOThlNTI5ZjFcIixcIjI1YzY4YjU1MWZmMDExMmU2ZGY0Yzk2ZjBhMDE5NjI2XCIsXCIzMGMyNDgyN2QyMzM4YTkyYmViZTg4ZTMwY2IxZDc2Y1wiLFwiODBkOWRkMTE4MDViYTFmNjM3ZDUwODcxZDVhYzhlZTRcIl0sXCIxOS4xXCI6XCJhYjU0ZGZhY2U2MWI4YjA5NmE1NzlhMWU3YzNiMmE3MFwiLFwiMjEuMVwiOlwiYWI1NGRmYWNlNjFiOGIwOTZhNTc5YTFlN2MzYjJhNzBcIn0iLCI2MjUwYjdmMDBkMzY4ODM1NGM0MDUwNmE0ZmU3MzMwNCJd' />
+            <input type='hidden' autocomplete='off' class='gform_hidden' name='gform_target_page_number_2' id='gform_target_page_number_2' value='0' />
+            <input type='hidden' autocomplete='off' class='gform_hidden' name='gform_source_page_number_2' id='gform_source_page_number_2' value='1' />
+            <input type='hidden' name='gform_field_values' value='' />
+            
+        </div>
+                        </form>
+                        </div>
+		                <iframe style='display:none;width:0px;height:0px;' src='about:blank' name='gform_ajax_frame_2' id='gform_ajax_frame_2' title='This iframe contains the logic required to handle Ajax powered Gravity Forms.'></iframe>
+		                <script type="text/javascript">
+/* <![CDATA[ */
+ gform.initializeOnLoaded( function() {gformInitSpinner( 2, 'https://brothersgutters.com/wp-content/plugins/gravityforms/images/spinner.svg', false );jQuery('#gform_ajax_frame_2').on('load',function(){var contents = jQuery(this).contents().find('*').html();var is_postback = contents.indexOf('GF_AJAX_POSTBACK') >= 0;if(!is_postback){return;}var form_content = jQuery(this).contents().find('#gform_wrapper_2');var is_confirmation = jQuery(this).contents().find('#gform_confirmation_wrapper_2').length > 0;var is_redirect = contents.indexOf('gformRedirect(){') >= 0;var is_form = form_content.length > 0 && ! is_redirect && ! is_confirmation;var mt = parseInt(jQuery('html').css('margin-top'), 10) + parseInt(jQuery('body').css('margin-top'), 10) + 100;if(is_form){form_content.find('form').css('opacity', 0);jQuery('#gform_wrapper_2').html(form_content.html());if(form_content.hasClass('gform_validation_error')){jQuery('#gform_wrapper_2').addClass('gform_validation_error');} else {jQuery('#gform_wrapper_2').removeClass('gform_validation_error');}setTimeout( function() { /* delay the scroll by 50 milliseconds to fix a bug in chrome */ jQuery(document).scrollTop(jQuery('#gform_wrapper_2').offset().top - mt); }, 50 );if(window['gformInitDatepicker']) {gformInitDatepicker();}if(window['gformInitPriceFields']) {gformInitPriceFields();}var current_page = jQuery('#gform_source_page_number_2').val();gformInitSpinner( 2, 'https://brothersgutters.com/wp-content/plugins/gravityforms/images/spinner.svg', false );jQuery(document).trigger('gform_page_loaded', [2, current_page]);window['gf_submitting_2'] = false;}else if(!is_redirect){var confirmation_content = jQuery(this).contents().find('.GF_AJAX_POSTBACK').html();if(!confirmation_content){confirmation_content = contents;}jQuery('#gform_wrapper_2').replaceWith(confirmation_content);jQuery(document).scrollTop(jQuery('#gf_2').offset().top - mt);jQuery(document).trigger('gform_confirmation_loaded', [2]);window['gf_submitting_2'] = false;wp.a11y.speak(jQuery('#gform_confirmation_message_2').text());}else{jQuery('#gform_2').append(contents);if(window['gformRedirect']) {gformRedirect();}}jQuery(document).trigger("gform_pre_post_render", [{ formId: "2", currentPage: "current_page", abort: function() { this.preventDefault(); } }]);        if (event && event.defaultPrevented) {                return;        }        const gformWrapperDiv = document.getElementById( "gform_wrapper_2" );        if ( gformWrapperDiv ) {            const visibilitySpan = document.createElement( "span" );            visibilitySpan.id = "gform_visibility_test_2";            gformWrapperDiv.insertAdjacentElement( "afterend", visibilitySpan );        }        const visibilityTestDiv = document.getElementById( "gform_visibility_test_2" );        let postRenderFired = false;        function triggerPostRender() {            if ( postRenderFired ) {                return;            }            postRenderFired = true;            gform.core.triggerPostRenderEvents( 2, current_page );            if ( visibilityTestDiv ) {                visibilityTestDiv.parentNode.removeChild( visibilityTestDiv );            }        }        function debounce( func, wait, immediate ) {            var timeout;            return function() {                var context = this, args = arguments;                var later = function() {                    timeout = null;                    if ( !immediate ) func.apply( context, args );                };                var callNow = immediate && !timeout;                clearTimeout( timeout );                timeout = setTimeout( later, wait );                if ( callNow ) func.apply( context, args );            };        }        const debouncedTriggerPostRender = debounce( function() {            triggerPostRender();        }, 200 );        if ( visibilityTestDiv && visibilityTestDiv.offsetParent === null ) {            const observer = new MutationObserver( ( mutations ) => {                mutations.forEach( ( mutation ) => {                    if ( mutation.type === 'attributes' && visibilityTestDiv.offsetParent !== null ) {                        debouncedTriggerPostRender();                        observer.disconnect();                    }                });            });            observer.observe( document.body, {                attributes: true,                childList: false,                subtree: true,                attributeFilter: [ 'style', 'class' ],            });        } else {            triggerPostRender();        }    } );} ); 
+/* ]]&gt; */
+</script>
+</div></div>
+
+</div></div>
+
+<div class="kb-row-layout-wrap kb-row-layout-id12_ff54c3-89 alignfull kt-row-has-bg wp-block-kadence-rowlayout"><div class="kt-row-column-wrap kt-has-2-columns kt-row-layout-left-golden kt-tab-layout-inherit kt-mobile-layout-row kt-row-valign-top kt-inner-column-height-full kb-theme-content-width">
+
+<div class="wp-block-kadence-column kadence-column12_bf76c6-f0"><div class="kt-inside-inner-col">
+<h2 class="kt-adv-heading12_dd83b1-67 wp-block-kadence-advancedheading" data-kb-block="kb-adv-heading12_dd83b1-67">Contact Info</h2>
+
+
+
+<p class="kt-adv-heading12_daa03a-52 wp-block-kadence-advancedheading" data-kb-block="kb-adv-heading12_daa03a-52">Phone</p>
+
+
+<a class="kb-advanced-heading-link kt-adv-heading-link12_f0bef0-97 hls-underline" href="tel:8665503569"><p class="kt-adv-heading12_f0bef0-97 wp-block-kadence-advancedheading kt-adv-heading-has-icon hls-underline" data-kb-block="kb-adv-heading12_f0bef0-97"><span class="kb-svg-icon-wrap kb-adv-heading-icon kb-svg-icon-kb-custom-1475 kb-adv-heading-icon-side-left"><svg viewBox="0 0 21 21"  fill="currentColor" xmlns="http://www.w3.org/2000/svg"  aria-hidden="true"><path d="M6.42773 1.47656L7.99023 5.22656C8.26367 5.85156 8.10742 6.59375 7.56055 7.02344L5.64648 8.625C6.93555 11.3594 9.16211 13.5859 11.8965 14.875L13.498 12.9609C13.9277 12.4141 14.6699 12.2578 15.2949 12.5313L19.0449 14.0938C19.7871 14.3672 20.1387 15.1875 19.9434 15.9297L19.0059 19.3672C18.8105 20.0313 18.2246 20.5 17.5215 20.5C7.83398 20.5 0.0214844 12.6875 0.0214844 3C0.0214844 2.29688 0.490234 1.71094 1.1543 1.51563L4.5918 0.578125C5.33398 0.382813 6.1543 0.734375 6.42773 1.47656Z"/></svg></span><span class="kb-adv-text-inner">866-550-3569</span></p></a>
+
+
+<p class="kt-adv-heading12_6a4e56-4b wp-block-kadence-advancedheading" data-kb-block="kb-adv-heading12_6a4e56-4b">Hours of Operation</p>
+
+
+<p class="kt-adv-heading12_f74648-b8 wp-block-kadence-advancedheading kt-adv-heading-has-icon" data-kb-block="kb-adv-heading12_f74648-b8"><span class="kb-svg-icon-wrap kb-adv-heading-icon kb-svg-icon-kb-custom-1476 kb-adv-heading-icon-side-left"><svg viewBox="0 0 18 21"  fill="currentColor" xmlns="http://www.w3.org/2000/svg"  aria-hidden="true"><path d="M5.27148 0.5C5.93555 0.5 6.52148 1.08594 6.52148 1.75V3L11.5215 3V1.75C11.5215 1.08594 12.0684 0.5 12.7715 0.5C13.4355 0.5 14.0215 1.08594 14.0215 1.75V3L15.8965 3C16.9121 3 17.7715 3.85938 17.7715 4.875V6.75L0.271484 6.75L0.271484 4.875C0.271484 3.85938 1.0918 3 2.14648 3L4.02148 3V1.75C4.02148 1.08594 4.56836 0.5 5.27148 0.5ZM0.271484 8L17.7715 8L17.7715 18.625C17.7715 19.6797 16.9121 20.5 15.8965 20.5L2.14648 20.5C1.0918 20.5 0.271484 19.6797 0.271484 18.625L0.271484 8ZM3.39648 10.5C3.04492 10.5 2.77148 10.8125 2.77148 11.125L2.77148 13.625C2.77148 13.9766 3.04492 14.25 3.39648 14.25L14.6465 14.25C14.959 14.25 15.2715 13.9766 15.2715 13.625L15.2715 11.125C15.2715 10.8125 14.959 10.5 14.6465 10.5L3.39648 10.5Z"/></svg></span><span class="kb-adv-text-inner">Monday-Friday, 9 AM to 5 PM</span></p>
+
+
+<p class="kt-adv-heading12_c41206-ed wp-block-kadence-advancedheading" data-kb-block="kb-adv-heading12_c41206-ed"></p>
+</div></div>
+
+
+
+<div class="wp-block-kadence-column kadence-column12_6ab142-82"><div class="kt-inside-inner-col"></div></div>
+
+</div></div>	</section> <!-- end article section -->
+						
+
+
+					
+</article> <!-- end article -->					
+											
+
+			</main> <!-- end #main -->
+		    
+		</div> <!-- end #inner-content -->
+	
+	</div> <!-- end #content -->
+
+
+<footer class="footer" role="contentinfo">
+	<!-- <h4>Footer Information</h4> -->
+	<div class="subfooter">
+
+		<section class="footer-logo">
+
+			
+<figure class="wp-block-image size-large e"><img loading="lazy" decoding="async" width="232" height="120" src="https://brothersgutters.com/wp-content/uploads/2022/01/the_brothers_that_just_do_gutters_logo_2020_on_dark-1.svg" alt="" class="wp-image-177" /></figure>
+		</section>
+
+		<a href="/service-areas/" aria-label='Find a location' class='hide-for-medium mobile-only-links'>Find a Location</a>
+
+		<section>
+			<ul id="footer-links" class="menu"><li id="menu-item-292" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-292"><a href="https://brothersgutters.com/rain-gutters/">Rain Gutters</a>
+<ul class="sub-menu">
+	<li id="menu-item-295" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-295"><a href="https://brothersgutters.com/rain-gutters/seamless-gutters/">Seamless Gutters</a></li>
+	<li id="menu-item-294" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-294"><a href="https://brothersgutters.com/rain-gutters/sizes/">Sizes</a></li>
+	<li id="menu-item-296" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-296"><a href="https://brothersgutters.com/rain-gutters/specialty-styles/">Specialty Materials</a></li>
+	<li id="menu-item-297" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-297"><a href="https://brothersgutters.com/rain-gutters/styles/">Styles</a></li>
+	<li id="menu-item-293" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-293"><a href="https://brothersgutters.com/rain-gutters/guards/">Guards</a></li>
+</ul>
+</li>
+<li id="menu-item-298" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-298"><a href="https://brothersgutters.com/gutter-services/">Gutter Services</a>
+<ul class="sub-menu">
+	<li id="menu-item-300" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-300"><a href="https://brothersgutters.com/gutter-services/exterior-solutions/">Exterior Solutions</a></li>
+	<li id="menu-item-301" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-301"><a href="https://brothersgutters.com/gutter-services/installation/">Installation</a></li>
+	<li id="menu-item-302" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-302"><a href="https://brothersgutters.com/gutter-services/maintenance-program/">Maintenance Program</a></li>
+	<li id="menu-item-303" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-303"><a href="https://brothersgutters.com/gutter-services/repair/">Repair</a></li>
+	<li id="menu-item-299" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-299"><a href="https://brothersgutters.com/gutter-services/cleaning/">Cleaning</a></li>
+</ul>
+</li>
+<li id="menu-item-31" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-31 active"><a href="https://brothersgutters.com/about-us/">About Us</a>
+<ul class="sub-menu">
+	<li id="menu-item-304" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-304"><a href="https://brothersgutters.com/about-us/achievements/">Achievements</a></li>
+	<li id="menu-item-30" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30"><a href="https://brothersgutters.com/about-us/blog/">Blog</a></li>
+	<li id="menu-item-32" class="bold-footer-link show-for-medium menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-12 current_page_item menu-item-32 active"><a href="https://brothersgutters.com/contact-us/" aria-current="page">Contact Us</a></li>
+</ul>
+</li>
+<li id="menu-item-309" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-309 active"><a href="https://brothersgutters.com/careers/">Careers</a>
+<ul class="sub-menu">
+	<li id="menu-item-310" class="bold-footer-link show-for-medium menu-item menu-item-type-post_type menu-item-object-page menu-item-310"><a href="https://brothersgutters.com/service-areas/">Find a Location</a></li>
+	<li id="menu-item-311" class="bold-footer-link show-for-medium menu-item menu-item-type-post_type menu-item-object-page menu-item-311"><a href="https://brothersgutters.com/payment-options/">Payment Options</a></li>
+	<li id="menu-item-326" class="bold-footer-link hide-for-medium menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-12 current_page_item menu-item-326 active"><a href="https://brothersgutters.com/contact-us/" aria-current="page">Contact Us</a></li>
+	<li id="menu-item-325" class="bold-footer-link hide-for-medium menu-item menu-item-type-custom menu-item-object-custom menu-item-325"><a href="https://www.brothersfranchise.com/">Franchise Opportunities</a></li>
+</ul>
+</li>
+</ul>		</section>
+
+		<a href="/payment-options/" aria-label='Payment options' class='hide-for-medium mobile-only-links'>Payment Options</a>
+
+		<section class='right-col'>
+			<div class="social">
+				<a href='https://www.facebook.com/BrothersGuttersFranchising' aria-label='Brothers gutters facebook' target='_blank'><i class="fa-brands fa-facebook-f"></i></a>
+				<a href='https://twitter.com/brothersgutters' aria-label='Brothers gutters x-twitter' target='_blank'><i class="fa-brands fa-x-twitter"></i></a>
+				<a href='https://www.linkedin.com/company/the-brothers-that-just-do-gutters/' aria-label='Brothers gutters linkedin' target='_blank'><i class="fa-brands fa-linkedin-in"></i></a>
+				<a href='https://www.youtube.com/user/brothersgutters' aria-label='Brothers gutters youtube' target='_blank'><i class="fa-brands fa-youtube"></i></a>
+				<a href='https://www.instagram.com/brothersguttersfranchising/' aria-label='Brothers gutters instagram' target='_blank'><i class="fa-brands fa-instagram"></i></a>
+				<a href='https://www.houzz.com/professionals/roofing-and-gutters/the-brothers-that-just-do-gutters-pfvwus-pf~1199748060?' aria-label='Brothers gutters Houzz' target='_blank'><i class="fa-brands fa-houzz"></i></a>
+			</div>
+			<a href="tel:+18665503569" aria-label='Call us at 866-550-3569'><i class="fa-solid fa-phone"></i> 866-550-3569</a>
+			<a href="https://www.brothersfranchise.com/" aria-label='Franchise Opportunities' class='font-acumin-bold show-for-medium' target='_blank'>Franchise Opportunities</a>
+		</section>
+	</div>
+
+	<div class="inner-footer">
+		<div class='inner-content'>
+			<div>
+				<p class="source-org copyright">The Brothers that just do Gutters LLC &copy; 2026 All Rights Reserved</p>
+			</div>
+
+			<div>
+				<nav role="navigation">
+					<ul id="tos-nav" class="menu text-right"><li id="menu-item-41442" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-41442"><a href="https://brothersgutters.com/sms-terms-conditions/">SMS Terms &amp; Conditions</a></li>
+<li id="menu-item-84" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-84"><a rel="privacy-policy" href="https://brothersgutters.com/privacy-policy/">Privacy Policy</a></li>
+<li id="menu-item-316" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-316"><a href="https://brothersgutters.com/terms/">Terms of Use</a></li>
+<li id="menu-item-317" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-317"><a href="/sitemap">Sitemap</a></li>
+</ul>				</nav>
+			</div>
+
+		</div>
+	</div> <!-- end #inner-footer -->
+
+</footer> <!-- end .footer -->
+
+<div class='hide-for-medium mobile-sticky-footer'>
+	<a href='tel:' aria-label='Call us at ' class="call-us-btn"><i class="fa-solid fa-phone"></i> <span>Call Us</span></a>
+	<svg xmlns="http://www.w3.org/2000/svg" width="2" height="39" viewBox="0 0 2 39" fill="none">
+		<path d="M1 0.503906V38.4961" stroke="black" />
+	</svg>
+	<a href='/get-a-free-quote/' aria-label='Get a Quote' class="text-us-btn"><span>Get a Quote</span> <i class="Xfa-solid Xfa-mobile"></i></a>
+</div>
+
+</div> <!-- end .off-canvas-content -->
+
+</div> <!-- end .off-canvas-wrapper -->
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/BrothersGutters\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<link rel='stylesheet' id='kadence-blocks-advancedbtn-css' href='https://brothersgutters.com/wp-content/plugins/kadence-blocks/dist/style-blocks-advancedbtn.css?ver=3.6.6' type='text/css' media='all' />
+<link rel='stylesheet' id='kb-button-deprecated-styles-css' href='https://brothersgutters.com/wp-content/plugins/kadence-blocks/includes/assets/css/kb-button-deprecated-style.min.css?ver=3.6.6' type='text/css' media='all' />
+<script type="text/javascript" id="leadin-script-loader-js-js-extra">
+/* <![CDATA[ */
+var leadin_wordpress = {"userRole":"visitor","pageType":"page","leadinPluginVersion":"11.3.43"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://js.hs-scripts.com/2632098.js?integration=&amp;ver=11.3.43" id="leadin-script-loader-js-js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjSFUZe1WHWTZqar_UOfi7zfYSNEcffC0&amp;libraries=places" id="google-places-api-js"></script>
+<script type="text/javascript" id="my-script-js-extra">
+/* <![CDATA[ */
+var bgSchedulerConfig = {"todayYmd":"2026-08-31","earliestBookableYmd":"2026-09-01","canViewDebug":""};
+var googlePlacesConfig = {"apiKey":"AIzaSyCjSFUZe1WHWTZqar_UOfi7zfYSNEcffC0","forms":[{"formId":5,"addressFieldId":8,"cityFieldId":10,"stateFieldId":11,"zipFieldId":9},{"formId":2,"addressFieldId":"12.1","cityFieldId":"12.3","stateFieldId":"12.4","zipFieldId":16,"stateValueFormat":"long"}]};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://brothersgutters.com/wp-content/themes/BrothersGutters/../BrothersGutters/functions/scheduling/scheduling-functions.js?dl=1788193787&amp;ver=1.0.0" id="my-script-js"></script>
+<script type="text/javascript" src="https://brothersgutters.com/wp-includes/js/dist/dom-ready.min.js?ver=f77871ff7694fffea381" id="wp-dom-ready-js"></script>
+<script type="text/javascript" src="https://brothersgutters.com/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6" id="wp-hooks-js"></script>
+<script type="text/javascript" src="https://brothersgutters.com/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6" id="wp-i18n-js"></script>
+<script type="text/javascript" id="wp-i18n-js-after">
+/* <![CDATA[ */
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://brothersgutters.com/wp-includes/js/dist/a11y.min.js?ver=3156534cc54473497e14" id="wp-a11y-js"></script>
+<script type="text/javascript" src="https://brothersgutters.com/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3" id="jquery-ui-core-js"></script>
+<script type="text/javascript" src="https://brothersgutters.com/wp-includes/js/jquery/ui/datepicker.min.js?ver=1.13.3" id="jquery-ui-datepicker-js"></script>
+<script type="text/javascript" id="jquery-ui-datepicker-js-after">
+/* <![CDATA[ */
+jQuery(function(jQuery){jQuery.datepicker.setDefaults({"closeText":"Close","currentText":"Today","monthNames":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"nextText":"Next","prevText":"Previous","dayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"dayNamesShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"dayNamesMin":["S","M","T","W","T","F","S"],"dateFormat":"MM d, yy","firstDay":1,"isRTL":false});});
+/* ]]> */
+</script>
+<script type="text/javascript" defer='defer' src="https://brothersgutters.com/wp-content/plugins/gravityforms/js/datepicker-legacy.min.js?ver=2.9.29" id="gform_datepicker_legacy-js"></script>
+<script type="text/javascript" defer='defer' src="https://brothersgutters.com/wp-content/plugins/gravityforms/js/datepicker.min.js?ver=2.9.29" id="gform_datepicker_init-js"></script>
+<script type="text/javascript" defer='defer' src="https://brothersgutters.com/wp-content/plugins/gravityforms/js/jquery.maskedinput.min.js?ver=2.9.29" id="gform_masked_input-js"></script>
+<script type="text/javascript" defer='defer' src="https://brothersgutters.com/wp-content/plugins/gravityforms/js/placeholders.jquery.min.js?ver=2.9.29" id="gform_placeholder-js"></script>
+<script type="text/javascript" defer='defer' src="https://brothersgutters.com/wp-content/plugins/gravityforms/assets/js/dist/vendor-theme.min.js?ver=4f8b3915c1c1e1a6800825abd64b03cb" id="gform_gravityforms_theme_vendors-js"></script>
+<script type="text/javascript" id="gform_gravityforms_theme-js-extra">
+/* <![CDATA[ */
+var gform_theme_config = {"common":{"form":{"honeypot":{"version_hash":"b867f8f724787d1e99ee5517d8192b0e"},"ajax":{"ajaxurl":"https:\/\/brothersgutters.com\/wp-admin\/admin-ajax.php","ajax_submission_nonce":"cc5accde96","i18n":{"step_announcement":"Step %1$s of %2$s, %3$s","unknown_error":"There was an unknown error processing your request. Please try again."}},"product_meta":{"2":null},"pagination":{"2":""}}},"hmr_dev":"","public_path":"https:\/\/brothersgutters.com\/wp-content\/plugins\/gravityforms\/assets\/js\/dist\/","config_nonce":"a539ee8240"};
+/* ]]> */
+</script>
+<script type="text/javascript" defer='defer' src="https://brothersgutters.com/wp-content/plugins/gravityforms/assets/js/dist/scripts-theme.min.js?ver=7383fdf9ccf5533a5ee9c6a7a5ad6800" id="gform_gravityforms_theme-js"></script>
+<script type="text/javascript" id="gp-limit-dates-js-extra">
+/* <![CDATA[ */
+var GPLimitDatesData = {"serverTimezoneOffset":"-240","strings":{"invalidDate":"Invalid Date"}};
+var GPLimitDatesData2 = {"32":{"minDate":"","minDateMod":"","minDateExcludeBeforeToday":"","minDateExcludeBeforeTodayMod":"","maxDate":"","maxDateMod":"","daysOfWeek":false,"exceptions":"","dateFormat":"mdy","disableAll":false,"inlineDatepicker":false,"disableInlineDatePickerDefaultDate":false,"shouldUseServerTime":true}};
+var GPLimitDatesData2 = {"32":{"minDate":"","minDateMod":"","minDateExcludeBeforeToday":"","minDateExcludeBeforeTodayMod":"","maxDate":"","maxDateMod":"","daysOfWeek":false,"exceptions":"","dateFormat":"mdy","disableAll":false,"inlineDatepicker":false,"disableInlineDatePickerDefaultDate":false,"shouldUseServerTime":true}};
+/* ]]> */
+</script>
+<script type="text/javascript" defer='defer' src="https://brothersgutters.com/wp-content/plugins/gp-limit-dates/js/gp-limit-dates.min.js?ver=1.1.35" id="gp-limit-dates-js"></script>
+<script type="text/javascript" src="https://brothersgutters.com/wp-content/themes/BrothersGutters/assets/scripts/scripts.js?ver=1767718397" id="site-js-js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+ gform.initializeOnLoaded( function() { jQuery(document).on('gform_post_render', function(event, formId, currentPage){if(formId == 2) {gf_global["number_formats"][2] = {"4":{"price":false,"value":false},"5":{"price":false,"value":false},"3":{"price":false,"value":false},"16":{"price":false,"value":false},"11":{"price":false,"value":false},"33":{"price":false,"value":false},"12":{"price":false,"value":false},"31":{"price":false,"value":false},"32":{"price":false,"value":false},"13":{"price":false,"value":false},"19":{"price":false,"value":false},"21":{"price":false,"value":false},"30":{"price":false,"value":false},"24":{"price":false,"value":false},"15":{"price":false,"value":false},"22":{"price":false,"value":false},"34":{"price":false,"value":false},"20":{"price":false,"value":false},"25":{"price":false,"value":false},"26":{"price":false,"value":false},"27":{"price":false,"value":false},"28":{"price":false,"value":false},"29":{"price":false,"value":false}};if(window['jQuery']){if(!window['gf_form_conditional_logic'])window['gf_form_conditional_logic'] = new Array();window['gf_form_conditional_logic'][2] = { logic: { 11: {"field":{"enabled":true,"actionType":"show","logicType":"all","rules":[{"fieldId":"34","operator":"is","value":"1"}]},"nextButton":null,"section":null},33: {"field":{"enabled":true,"actionType":"show","logicType":"all","rules":[{"fieldId":"34","operator":"is","value":"0"}]},"nextButton":null,"section":null},12: {"field":{"enabled":true,"actionType":"show","logicType":"any","rules":[{"fieldId":"11","operator":"is","value":"Yes"},{"fieldId":"33","operator":"is","value":"Yes"}]},"nextButton":null,"section":null},31: {"field":{"enabled":true,"actionType":"show","logicType":"all","rules":[{"fieldId":"11","operator":"is","value":"Yes"}]},"nextButton":null,"section":null},32: {"field":{"enabled":true,"actionType":"show","logicType":"all","rules":[{"fieldId":"11","operator":"is","value":"Yes"}]},"nextButton":null,"section":null},13: {"field":{"enabled":true,"actionType":"show","logicType":"any","rules":[{"fieldId":"11","operator":"is","value":"Yes"},{"fieldId":"33","operator":"is","value":"Yes"}]},"nextButton":null,"section":null} }, dependents: { 11: [11],33: [33],12: [12],31: [31],32: [32],13: [13] }, animation: 0, defaults: {"4":{"4.2":"","4.3":"","4.4":"","4.6":"","4.8":""},"12":{"12.1":"","12.2":"","12.3":"","12.4":"","12.5":"","12.6":"United States"},"15":"https:\/\/brothersgutters.com\/contact-us\/","34":"0","20":"https:\/\/brothersgutters.com"}, fields: {"4":[],"5":[],"3":[],"16":[],"11":[12,31,32,13],"33":[12,13],"12":[],"31":[],"32":[],"13":[],"19":[],"21":[],"30":[],"24":[],"15":[],"22":[],"34":[11,33],"20":[],"25":[],"26":[],"27":[],"28":[],"29":[]} }; if(!window['gf_number_format'])window['gf_number_format'] = 'decimal_dot';jQuery(document).ready(function(){gform.utils.trigger({ event: 'gform/conditionalLogic/init/start', native: false, data: { formId: 2, fields: null, isInit: true } });window['gformInitPriceFields']();gf_apply_rules(2, [11,33,12,31,32,13], true);jQuery('#gform_wrapper_2').show();jQuery('#gform_wrapper_2 form').css('opacity', '');jQuery(document).trigger('gform_post_conditional_logic', [2, null, true]);gform.utils.trigger({ event: 'gform/conditionalLogic/init/end', native: false, data: { formId: 2, fields: null, isInit: true } });} );} if(typeof Placeholders != 'undefined'){
+                        Placeholders.enable();
+                    }jQuery('#input_2_3').mask('(999) 999-9999').bind('keypress', function(e){if(e.which == 13){jQuery(this).blur();} } );} } );jQuery(document).on('gform_post_conditional_logic', function(event, formId, fields, isInit){} ) } ); 
+/* ]]> */
+</script>
+<script type="text/javascript">
+/* <![CDATA[ */
+ gform.initializeOnLoaded( function() {jQuery(document).trigger("gform_pre_post_render", [{ formId: "2", currentPage: "1", abort: function() { this.preventDefault(); } }]);        if (event && event.defaultPrevented) {                return;        }        const gformWrapperDiv = document.getElementById( "gform_wrapper_2" );        if ( gformWrapperDiv ) {            const visibilitySpan = document.createElement( "span" );            visibilitySpan.id = "gform_visibility_test_2";            gformWrapperDiv.insertAdjacentElement( "afterend", visibilitySpan );        }        const visibilityTestDiv = document.getElementById( "gform_visibility_test_2" );        let postRenderFired = false;        function triggerPostRender() {            if ( postRenderFired ) {                return;            }            postRenderFired = true;            gform.core.triggerPostRenderEvents( 2, 1 );            if ( visibilityTestDiv ) {                visibilityTestDiv.parentNode.removeChild( visibilityTestDiv );            }        }        function debounce( func, wait, immediate ) {            var timeout;            return function() {                var context = this, args = arguments;                var later = function() {                    timeout = null;                    if ( !immediate ) func.apply( context, args );                };                var callNow = immediate && !timeout;                clearTimeout( timeout );                timeout = setTimeout( later, wait );                if ( callNow ) func.apply( context, args );            };        }        const debouncedTriggerPostRender = debounce( function() {            triggerPostRender();        }, 200 );        if ( visibilityTestDiv && visibilityTestDiv.offsetParent === null ) {            const observer = new MutationObserver( ( mutations ) => {                mutations.forEach( ( mutation ) => {                    if ( mutation.type === 'attributes' && visibilityTestDiv.offsetParent !== null ) {                        debouncedTriggerPostRender();                        observer.disconnect();                    }                });            });            observer.observe( document.body, {                attributes: true,                childList: false,                subtree: true,                attributeFilter: [ 'style', 'class' ],            });        } else {            triggerPostRender();        }    } ); 
+/* ]]> */
+</script>
+<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2632098.js"></script>
+<!-- End of HubSpot Embed Code -->
+
+<!-- leashed ai chatbot -->
+<leashed-chatbot
+	api-base-url="https://chatbot.leashed.ai"
+	small-screen-max-height="600px"
+	large-screen-max-height="1000px"
+	public-key="RAjhPVBEWmztvqnUloLkFMySiHgXBwcaY59OdJ6TpxNKQZeCfG7u0rD318sA"
+	captcha-version="v2"
+	font-family="acumin-pro, sans-serif"
+	chat-button-font-family="Zilla Slab, serif" ,
+	chat-button-color="linear-gradient(263.31deg, #FF8100 0%, #F9C187 99.94%)"
+	chat-button-y-adjustment="45px"
+	title-bar-color="linear-gradient(360deg, #FF8100 0%, #F9C187 100%)" chat-button-title="Chat" compact
+	title-bar-logo-width="154px"
+	title-bar-logo-height="82px"
+	chat-button-logo="https://d1bxzntrold33u.cloudfront.net/brothers-gutters-chat-logo-orange.svg"
+	title-bar-logo="https://d1bxzntrold33u.cloudfront.net/brothers-gutters-combo-dark.svg"
+	action-button-colors="#005A8B" user-message-color="#FF810026" agent-message-color="#F5F5F5">
+</leashed-chatbot>
+<script src="https://d1bxzntrold33u.cloudfront.net/leashed-chatbot.iife.js"></script>
+
+<!-- End of leashed ai chatbot -->
+<!-- Google Ads tracking ADA compliant script -->
+<script>
+	window.addEventListener('load', function() {
+		document.querySelectorAll('iframe').forEach(function(iframe) {
+			const isGoogleAdsIframe =
+				iframe.dataset.taggingId?.startsWith('AW-') ||
+				iframe.src?.includes('google.com');
+
+			if (isGoogleAdsIframe) {
+				iframe.setAttribute('aria-hidden', 'true');
+				iframe.setAttribute('title', 'Google Ads tracking iframe');
+				iframe.style.display = 'none';
+				iframe.style.width = '0';
+				iframe.style.height = '0';
+			}
+		});
+	});
+</script>
+
+<script>
+	window.addEventListener('load', function() {
+		const iframe = document.getElementById('li_sync_frame');
+		if (iframe) {
+			iframe.setAttribute('aria-hidden', 'true');
+			iframe.setAttribute('title', 'Ads tracking iframe');
+			iframe.style.display = 'none';
+			iframe.style.width = '0';
+			iframe.style.height = '0';
+		}
+	});
+</script>
+
+
+
+</body>
+
+</html> <!-- end page -->

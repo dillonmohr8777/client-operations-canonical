@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/colors.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/typography.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/radius.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/motion.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/semantic.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/base.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/styles.css">
+<script src="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap">
+<style>
+html,body{margin:0;padding:0;background:#fff}
+body{color:var(--ink);font-family:var(--body);font-size:var(--size-body);line-height:var(--leading-body)}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--navy);text-decoration:underline}
+::selection{background:var(--gold);color:var(--night)}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:5px}
+input[type=range]{accent-color:var(--gold)}
+</style>
+</helmet>
+<div style="max-width:1440px;margin:0 auto;padding:36px clamp(20px,4vw,48px) 72px">
+
+  <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:20px">
+    <div style="max-width:23ch">
+      <p style="margin:0 0 10px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">AI 01 · 18 s · 30 fps · intelligence made visible</p>
+      <h1 style="margin:0;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:clamp(2.1rem,3.6vw,3.2rem);line-height:1.02;letter-spacing:-.03em;color:var(--navy);text-wrap:balance">Atomic Assembly.</h1>
+    </div>
+    <p style="margin:0;max-width:50ch;font-size:var(--size-support);color:var(--muted);text-wrap:pretty">One lit atom takes one impulse. The reaction runs outward through three thousand particles on deliberate trajectories, gathers into three coordinated structures, then joins into a single sculptural system. Transparent RGBA object layer — the background below is preview only.</p>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:18px 0 12px">
+    <p ref="{{ beatLine }}" style="margin:0;font-size:var(--size-note);font-weight:900;color:var(--muted)">01 · The atom · 0–3 s</p>
+    <div style="flex:1"></div>
+    <span style="font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--muted);font-weight:900">Preview bg</span>
+    <div style="display:flex;gap:6px">
+      <button type="button" onClick="{{ onBgNavy }}" ref="{{ bgNavy }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-note);padding:8px 13px;border-radius:8px;border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer">Navy</button>
+      <button type="button" onClick="{{ onBgWhite }}" ref="{{ bgWhite }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-note);padding:8px 13px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">White</button>
+      <button type="button" onClick="{{ onBgChecker }}" ref="{{ bgChecker }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-note);padding:8px 13px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Checker</button>
+    </div>
+    <button type="button" onClick="{{ onSound }}" ref="{{ btnSound }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Sound off</button>
+    <button type="button" onClick="{{ onStatic }}" ref="{{ btnStatic }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Reduced motion</button>
+  </div>
+
+  <div ref="{{ stageWrap }}" style="position:relative">
+    <div ref="{{ stage }}" tabindex="0" data-om-exportable-video-with-duration-secs="18" data-screen-label="AI 01 · 00.0s" style="position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;touch-action:pan-y;cursor:grab;outline-offset:4px">
+      <div ref="{{ bgLayer }}" style="position:absolute;inset:0;background:#03172e"></div>
+      <canvas ref="{{ canvas }}" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+      <div ref="{{ loading }}" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:var(--size-label);font-weight:900;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#52677c">Seeding the reaction</div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:16px 0 0">
+      <button type="button" onClick="{{ onToggle }}" ref="{{ btnPlay }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);width:92px;padding:9px 0;border-radius:8px;border:1px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer">Pause</button>
+      <button type="button" onClick="{{ onReplay }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Replay</button>
+      <input type="range" min="0" max="1000" defaultValue="0" ref="{{ scrub }}" onInput="{{ onScrub }}" aria-label="Scrub the film" style="flex:1;min-width:180px;height:22px">
+      <span ref="{{ timeLabel }}" style="font-size:var(--size-note);font-weight:900;color:var(--muted);font-variant-numeric:tabular-nums;min-width:78px;text-align:right">0.0 / 18.0s</span>
+      <span ref="{{ frameLabel }}" style="font-size:var(--size-note);font-weight:900;color:var(--blue);font-variant-numeric:tabular-nums;min-width:112px;text-align:right">frame 000 / 540</span>
+      <label style="display:flex;align-items:center;gap:8px;font-size:var(--size-note);font-weight:900;color:var(--muted)">Duration
+        <select ref="{{ durSel }}" defaultValue="18" onChange="{{ onDur }}" aria-label="Playback duration" style="font-family:var(--body);font-size:var(--size-note);font-weight:900;color:var(--navy);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="14">14 s</option>
+          <option value="18">18 s</option>
+          <option value="24">24 s</option>
+        </select>
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:var(--size-note);font-weight:900;color:var(--muted)">Frame
+        <select ref="{{ frameSel }}" defaultValue="16:9" onChange="{{ onFrame }}" aria-label="Composition frame" style="font-family:var(--body);font-size:var(--size-note);font-weight:900;color:var(--navy);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="16:9">16:9</option>
+          <option value="9:16">9:16 authored</option>
+        </select>
+      </label>
+    </div>
+
+    <p ref="{{ runtimeNote }}" style="margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:var(--size-note);color:var(--muted);line-height:var(--leading-note)">Renderer is alpha-preserving: <code style="font-family:ui-monospace,monospace;font-size:.94em;background:var(--paper);padding:1px 5px;border-radius:3px">alpha: true</code>, clear alpha 0, no scene background, no fog, no ground plane and no shadow catcher. Particle blending is normal rather than additive so destination alpha accumulates and the exported edge holds over white and over navy. The exact logo master and the launch line are textured planes inside the same scene, so one RGBA pass carries the whole frame. Drag to shuttle · ← → beats · space play/pause · Home/End.</p>
+  </div>
+
+  <div ref="{{ staticBoard }}" style="display:none;padding-top:32px">
+    <p style="margin:0 0 8px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Reduced-motion poster · no animation</p>
+    <div style="background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(28px,4vw,56px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:28px;align-items:start">
+        <div>
+          <p style="margin:0 0 10px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">AI 01</p>
+          <h2 style="margin:0 0 14px;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:clamp(1.9rem,3vw,2.7rem);line-height:1.02;letter-spacing:-.03em;color:var(--navy)">One idea.<br>A chain reaction<span style="color:var(--gold)">.</span></h2>
+          <p style="margin:0;font-size:var(--size-support);color:var(--ink);max-width:34ch;text-wrap:pretty">One impulse enters a single lit atom. The reaction runs outward on deliberate trajectories and resolves into one coordinated system.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:1.5rem;color:var(--gold);min-width:2.2ch">01</span><span style="font-size:var(--size-note);color:var(--ink)">A beautifully lit blue-white atom, already present. One impulse.</span></div>
+          <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:1.5rem;color:var(--gold);min-width:2.2ch">02</span><span style="font-size:var(--size-note);color:var(--ink)">An ordered chain reaction through three thousand crisp particles with real spatial depth.</span></div>
+          <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:1.5rem;color:var(--gold);min-width:2.2ch">03</span><span style="font-size:var(--size-note);color:var(--ink)">Three coordinated structures assemble from the same matter, then join into one system.</span></div>
+          <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:1.5rem;color:var(--gold);min-width:2.2ch">04</span><span style="font-size:var(--size-note);color:var(--ink)">The field clears and the exact Momentum logo holds with the launch line.</span></div>
+        </div>
+      </div>
+      <div style="margin-top:34px;padding-top:26px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:22px;align-items:center">
+        <img src="assets/momentum-logo.png" alt="Momentum" style="display:block;width:196px;height:auto">
+        <div>
+          <p style="margin:0 0 4px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Introducing our AI division</p>
+          <p style="margin:0;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:1.5rem;line-height:1.04;letter-spacing:-.03em;color:var(--navy)">One idea. A chain reaction<span style="color:var(--gold)">.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin:30px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:var(--size-note);color:var(--muted);line-height:var(--leading-note);max-width:74ch">Private concept film · September 2026 · <a href="REFERENCES.md">REFERENCES.md</a> · <a href="FILM-MANIFEST.md">FILM-MANIFEST.md</a>. Original geometry and particles throughout; no client result, metric or availability claim is made. The wordmark is the exact master and is never typeset or redrawn. Display type is Bricolage Grotesque under the approved exception; Nunito Sans carries all reading type.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900},&quot;defaultDuration&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;14&quot;,&quot;18&quot;,&quot;24&quot;],&quot;default&quot;:&quot;18&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Timing&quot;}}">
+class Component extends DCLogic {
+  R = ['stage', 'stageWrap', 'canvas', 'bgLayer', 'loading', 'runtimeNote', 'staticBoard', 'beatLine', 'btnSound', 'btnStatic', 'btnPlay', 'scrub', 'timeLabel', 'frameLabel', 'durSel', 'frameSel', 'bgNavy', 'bgWhite', 'bgChecker'].reduce((o, n) => { o[n] = React.createRef(); return o; }, {});
+  r = new Proxy({}, { get: (_, k) => (this.R[k] ? this.R[k].current : undefined) });
+
+  BEATS = [
+    { t: 0, n: '01', k: 'The atom', span: '0–3 s' },
+    { t: 3.0, n: '02', k: 'Chain reaction', span: '3–8 s' },
+    { t: 8.0, n: '03', k: 'Three structures', span: '8–14 s' },
+    { t: 14.0, n: '04', k: 'The mark', span: '14–18 s' }
+  ];
+  N = 3000;
+
+  componentDidMount() { this.boot(); }
+  componentWillUnmount() { this.dead = true; if (this.rt) this.rt.unmount(); }
+
+  async boot() {
+    const K = await import('./film-kit.js');
+    this.K = K;
+    if (this.dead) return;
+
+    const faceInfo = await K.ensureDisplayFace(3500);
+    this.face = faceInfo.face;
+    this.bricolage = faceInfo.bricolage;
+
+    try { this.imgs = await K.loadImages({ logo: 'assets/momentum-logo.png' }); }
+    catch (e) { this.imgs = null; }
+
+    const T = await K.loadThree();
+    if (this.dead) return;
+
+    this.rt = new K.FilmRuntime({
+      id: 'ai01',
+      label: 'AI 01',
+      stage: this.r.stage,
+      canvas: this.r.canvas,
+      authored: 18,
+      beats: this.BEATS,
+      refs: Object.assign({}, this.R, { bgBtns: [this.R.bgNavy, this.R.bgWhite, this.R.bgChecker] }),
+      renderFrameAt: (t) => this.render(t),
+      onResize: (w, h, mob, ch) => this.onResize(w, h, mob, ch),
+      onCue: (t, on) => this.cue(t, on),
+      resetCue: () => { this.lastCue = -1; }
+    }).mount();
+    this.sfx = new K.Sfx();
+    this.lastCue = -1;
+    // the select's defaultValue does not survive the template mount, so the control
+    // is pinned to the real authored duration rather than showing a stale option
+    if (this.r.durSel) this.r.durSel.value = String(this.rt.dur);
+    if (this.r.frameSel) this.r.frameSel.value = this.rt.frame;
+
+    if (!T || !K.hasWebGL() || !this.imgs) {
+      this.r.loading.textContent = '';
+      this.r.runtimeNote.textContent = !this.imgs
+        ? 'The exact logo master could not be loaded, so the branded finish cannot render here. The reduced-motion poster is shown instead.'
+        : 'WebGL / three.js could not load in this runtime, so the particle scene cannot render here. Nothing is being substituted: the reduced-motion poster is shown instead, and the film renders in any WebGL-capable browser.';
+      this.rt.applyStatic(true);
+      return;
+    }
+    this.T = T;
+    try { this.build(); } catch (e) {
+      this.r.loading.textContent = '';
+      this.r.runtimeNote.textContent = 'The scene failed to build in this runtime (' + (e && e.message ? e.message : 'unknown') + '). Showing the reduced-motion poster instead.';
+      this.rt.applyStatic(true);
+      return;
+    }
+    this.r.loading.style.display = 'none';
+    if (!this.bricolage) this.r.runtimeNote.textContent += ' Note: the Bricolage Grotesque webfont did not load in this runtime, so display type painted in the system’s Archivo Black instead.';
+    if (this.rt.staticMode) this.rt.applyStatic(true);
+    this.rt.resize();
+    this.rt.start();
+  }
+
+  /* ---------- deterministic particle plan ---------- */
+  // Every particle's whole life is decided once, from a hash of its index: which
+  // generation of the chain it belongs to, where its branch carries it, which of the
+  // three structures claims it, and where it sits in the merged system. Nothing is
+  // random at playback, so frame n is identical on every pass.
+  plan() {
+    const K = this.K, N = this.N, P = [];
+    const GEN = 9;
+    for (let i = 0; i < N; i++) {
+      const gen = Math.min(GEN - 1, Math.floor(Math.pow(i / N, 0.72) * GEN));
+      // sixteen branches, each forking once past generation four: the reaction reads
+      // as ordered filaments propagating outward, not a sphere of dust
+      const BR = 16, br = i % BR;
+      const ba = (br / BR) * Math.PI * 2 + K.rnd(br * 7 + 1) * 0.34;
+      const bb = Math.acos(K.rn11(br * 7 + 2) * 0.8);
+      const fork = gen > 4 ? ((i % 3) - 1) * 0.3 : 0;
+      const fa = ba + fork;
+      const fdir = [Math.sin(bb) * Math.cos(fa), Math.cos(bb) * 0.8, Math.sin(bb) * Math.sin(fa)];
+      const dist = 0.26 + gen * 0.3 + K.rnd(i * 3 + 3) * 0.16;
+      const lat = 0.05;
+      const chain = [
+        fdir[0] * dist + K.rn11(i * 5 + 1) * lat,
+        fdir[1] * dist + K.rn11(i * 5 + 2) * lat,
+        fdir[2] * dist + K.rn11(i * 5 + 3) * lat
+      ];
+      const grp = i % 3;
+
+      // structure A — a double helix column
+      const hu = (i / N);
+      const hA = hu * Math.PI * 7.4 + grp;
+      const helix = [Math.cos(hA) * 0.58, (hu - 0.5) * 2.25, Math.sin(hA) * 0.58];
+      // structure B — an open cubic lattice
+      const g = 7, gi = i % (g * g * g);
+      const lx = (gi % g) / (g - 1) - 0.5, ly = (Math.floor(gi / g) % g) / (g - 1) - 0.5, lz = (Math.floor(gi / (g * g)) % g) / (g - 1) - 0.5;
+      const onShell = Math.abs(lx) > 0.32 || Math.abs(ly) > 0.32 || Math.abs(lz) > 0.32;
+      const lattice = onShell ? [lx * 1.9, ly * 1.9, lz * 1.9] : [lx * 2.5, ly * 2.5, lz * 2.5];
+      // structure C — a banded torus ring
+      const tu = (i / N) * Math.PI * 2, tv = K.rnd(i * 5 + 9) * Math.PI * 2;
+      const RR = 1.12, rr = 0.26;
+      const torus = [(RR + rr * Math.cos(tv)) * Math.cos(tu), rr * Math.sin(tv), (RR + rr * Math.cos(tv)) * Math.sin(tu)];
+      const target = grp === 0 ? helix : (grp === 1 ? lattice : torus);
+      const off = grp === 0 ? [-1.58, 0, 0] : (grp === 1 ? [0, 0.08, 0] : [1.58, 0, 0]);
+      const structure = [target[0] + off[0], target[1] + off[1], target[2] + off[2]];
+
+      // merged system — one sculptural spiral shell the three structures resolve into
+      const mu = i / N;
+      const mA = mu * Math.PI * 12.6;
+      const mR = 0.42 + 1.0 * Math.sin(mu * Math.PI);
+      const merged = [Math.cos(mA) * mR, (mu - 0.5) * 2.1, Math.sin(mA) * mR];
+
+      // the calm release ring the film clears into
+      const cA = mu * Math.PI * 2;
+      const calm = [Math.cos(cA) * 2.6, (K.rn11(i * 7 + 3)) * 0.09, Math.sin(cA) * 2.6];
+
+      const tone = K.rnd(i * 11 + 5);
+      P.push({
+        gen: gen, chain: chain, structure: structure, merged: merged, calm: calm,
+        u: mu,
+        size: 0.024 + K.rnd(i * 13 + 2) * 0.038 + (tone > 0.93 ? 0.03 : 0),
+        gold: tone > 0.94,
+        pale: tone > 0.55,
+        jit: [K.rn11(i * 17 + 1) * 0.055, K.rn11(i * 17 + 2) * 0.055, K.rn11(i * 17 + 3) * 0.055],
+        ph: K.rnd(i * 19 + 4) * Math.PI * 2,
+        d1: K.rnd(i * 23 + 6) * 0.3,
+        d2: K.rnd(i * 29 + 7) * 0.4
+      });
+    }
+    return P;
+  }
+
+  build() {
+    const T = this.T, K = this.K;
+    const sc = new T.Scene();
+    const cam = new T.PerspectiveCamera(38, 16 / 9, 0.08, 80);
+    const rn = K.makeRenderer(T, this.r.canvas);
+    K.studioLights(T, sc, { key: 1.35, fill: 0.6, rim: 0.34 });
+
+    this.P = this.plan();
+    this.pts = K.sizedPoints(T, this.N, { hard: true });
+    sc.add(this.pts);
+
+    // the atom: a faceted nucleus, three orbital rings, three electrons
+    const atom = new T.Group();
+    const nucleus = new T.Mesh(
+      new T.IcosahedronGeometry(0.3, 2),
+      new T.MeshStandardMaterial({ color: 0xdfeaf5, roughness: 0.24, metalness: 0.18, emissive: new T.Color(K.C.blue), emissiveIntensity: 0.22, flatShading: true })
+    );
+    atom.add(nucleus);
+    const halo = new T.Mesh(new T.SphereGeometry(0.42, 24, 20), K.glowMaterial(T, { color: K.C.electric, opacity: 0.14 }));
+    atom.add(halo);
+    this.rings = [];
+    for (let i = 0; i < 3; i++) {
+      const ring = new T.Mesh(
+        new T.TorusGeometry(0.62 + i * 0.13, 0.0075, 6, 96),
+        new T.MeshStandardMaterial({ color: i === 1 ? K.C.gold : K.C.blue, roughness: 0.3, metalness: 0.4, emissive: new T.Color(i === 1 ? K.C.gold : K.C.electric), emissiveIntensity: 0.4 })
+      );
+      // no ring sits edge-on to the opening camera, so each reads as an orbit
+      ring.rotation.set([0.5, 1.02, 1.46][i], [0.3, 0.72, 0.2][i], [0.15, -0.28, 0.5][i]);
+      atom.add(ring);
+      const e = new T.Mesh(new T.SphereGeometry(0.032, 12, 10), K.glowMaterial(T, { color: i === 1 ? K.C.gold : K.C.pale, opacity: 0.95, side: T.FrontSide }));
+      ring.add(e);
+      this.rings.push({ ring: ring, e: e, r: 0.62 + i * 0.13, sp: 1.5 + i * 0.55 });
+    }
+    this.atom = atom;
+    this.nucleus = nucleus;
+    this.halo = halo;
+    sc.add(atom);
+
+    // the impulse: one expanding shell, the only thing that happens in beat 01
+    this.impulse = new T.Mesh(new T.SphereGeometry(1, 30, 22), K.glowMaterial(T, { color: K.C.pale, opacity: 0 }));
+    sc.add(this.impulse);
+
+    // Spectrum's traveling beam, re-read as a pulse on the real contour of the merged
+    // system: the band is carried by the particles themselves (tinted and enlarged as
+    // it passes), since a tube drawn over them read as a separate gold hoop.
+
+    this.card = K.buildEndCard(T, this.imgs.logo, {
+      face: this.face,
+      kicker: 'Introducing our AI division',
+      line: 'One idea.|A chain reaction.'
+    });
+    cam.add(this.card);
+    this.card.position.set(0, 0, -5.2);
+    sc.add(cam);
+
+    this.g = { sc: sc, cam: cam, rn: rn };
+  }
+
+  onResize(cw, ch, mob, changed) {
+    if (!this.g) return;
+    const K = this.K;
+    this.g.rn.setSize(cw, ch, false);
+    K.fitCamera(this.g.cam, cw, ch, 38);
+    this.pts.material.uniforms.uScale.value = ch * Math.min(2, window.devicePixelRatio || 1) * 0.55;
+    if (this.card) {
+      this.card.position.z = mob ? -6.1 : -5.2;
+      this.card.scale.setScalar(1);
+    }
+  }
+
+  /* ---------- the film ---------- */
+  render(t) {
+    if (!this.g) return;
+    const T = this.T, K = this.K, g = this.g;
+    const lp = K.lp, sm = K.sm, ez = K.ez, eo = K.eo, cl = K.cl;
+
+    /* camera: macro on the atom, into the formation, through it, then out to frame
+       the three structures and settle for the mark */
+    let cam, tgt;
+    if (t < 3.0) {
+      const k = sm(t / 3.0);
+      cam = [lp(0.66, 0.22, k), lp(0.26, 0.44, k), lp(3.2, 2.5, k)];
+      tgt = [0, 0, 0];
+    } else if (t < 8.0) {
+      const k = ez(cl((t - 3.05) / 4.6, 0, 1));
+      cam = [lp(0.22, -0.72, k), lp(0.44, 1.15, k), lp(2.5, 1.05, k)];
+      tgt = [0, lp(0, 0.15, k), lp(0, -0.5, k)];
+    } else if (t < 14.0) {
+      const k = sm(cl((t - 8.0) / 5.4, 0, 1));
+      const arc = lp(-0.5, 1.05, k);
+      cam = [Math.sin(arc) * lp(4.3, 3.5, k), lp(1.45, 0.85, k), Math.cos(arc) * lp(4.3, 3.5, k)];
+      tgt = [0, lp(0.2, 0.02, k), 0];
+    } else {
+      const k = sm(cl((t - 14.0) / 3.4, 0, 1));
+      const arc = lp(1.05, 0.28, k);
+      cam = [Math.sin(arc) * lp(3.5, 5.4, k), lp(0.85, 0.38, k), Math.cos(arc) * lp(3.5, 5.4, k)];
+      tgt = [0, lp(0.02, 0, k), 0];
+    }
+    cam[1] += 0.045 * Math.sin(t * 0.42);
+    if (this.rt.mob) { cam[1] += 0.28; cam[0] *= 1.05; cam[2] *= 1.16; }
+    g.cam.position.set(cam[0], cam[1], cam[2]);
+    g.cam.lookAt(tgt[0], tgt[1], tgt[2]);
+
+    /* beat 01 — the atom, and the single impulse at 2.35 s */
+    const atomOut = sm((t - 3.15) / 0.85);
+    this.atom.visible = atomOut < 0.995;
+    if (this.atom.visible) {
+      const breathe = 1 + 0.02 * Math.sin(t * 1.9);
+      this.atom.scale.setScalar(lp(breathe, 0.2, atomOut));
+      this.nucleus.rotation.set(t * 0.24, t * 0.33, 0);
+      this.nucleus.material.emissiveIntensity = 0.22 + 0.5 * sm((t - 2.2) / 0.22) * (1 - sm((t - 2.9) / 0.7));
+      this.halo.material.opacity = (0.14 + 0.2 * sm((t - 2.25) / 0.3)) * (1 - atomOut);
+      this.rings.forEach((o, i) => {
+        o.ring.rotation.z += 0;
+        const a = t * o.sp + i * 2.1;
+        o.e.position.set(Math.cos(a) * o.r, Math.sin(a) * o.r, 0);
+        o.ring.material.emissiveIntensity = 0.4 + 0.55 * sm((t - 2.3) / 0.25) * (1 - sm((t - 3.0) / 0.6));
+        o.ring.material.opacity = 1;
+      });
+    }
+    const imp = cl((t - 2.35) / 1.15, 0, 1);
+    this.impulse.visible = imp > 0.001 && imp < 0.999;
+    if (this.impulse.visible) {
+      const rr = lp(0.34, 4.6, eo(imp));
+      this.impulse.scale.setScalar(rr);
+      this.impulse.material.opacity = 0.4 * (1 - imp) * (1 - imp);
+    }
+
+    /* beats 02–04 — the chain reaction and the structures */
+    const P = this.P, U = this.pts.userData;
+    const pos = U.pos.array, col = U.col.array, size = U.size.array, alpha = U.alpha.array;
+    const gold = new T.Color(K.C.gold), pale = new T.Color(0xeaf2fa), blue = new T.Color(K.C.electric);
+    const structK = ez(cl((t - 8.15) / 2.1, 0, 1));
+    const mergeK = ez(cl((t - 11.5) / 2.0, 0, 1));
+    const calmK = sm(cl((t - 14.15) / 1.5, 0, 1));
+    const fade = 1 - sm((t - 14.8) / 1.25);
+    // contour pulse: one bright band travelling the merged system's own parameter
+    const beamOn = Math.min(sm((t - 11.9) / 0.6), sm((15.2 - t) / 0.7));
+    const beamU = ((t - 11.9) * 0.42) % 1;
+
+    for (let i = 0; i < this.N; i++) {
+      const p = P[i];
+      const born = cl((t - (3.05 + p.gen * 0.42 + p.d1)) / 0.62, 0, 1);
+      const b = eo(born);
+      let x = p.chain[0] * b, y = p.chain[1] * b, z = p.chain[2] * b;
+      if (structK > 0) {
+        const kk = cl((structK - p.d2 * 0.35) / (1 - p.d2 * 0.3), 0, 1);
+        x = lp(x, p.structure[0], kk); y = lp(y, p.structure[1], kk); z = lp(z, p.structure[2], kk);
+      }
+      if (mergeK > 0) {
+        const kk = cl((mergeK - p.d2 * 0.3) / (1 - p.d2 * 0.26), 0, 1);
+        x = lp(x, p.merged[0], kk); y = lp(y, p.merged[1], kk); z = lp(z, p.merged[2], kk);
+      }
+      if (calmK > 0) {
+        x = lp(x, p.calm[0], calmK); y = lp(y, p.calm[1], calmK); z = lp(z, p.calm[2], calmK);
+      }
+      const wob = 0.5 + 0.5 * Math.sin(t * 1.15 + p.ph);
+      pos[i * 3] = x + p.jit[0] * wob;
+      pos[i * 3 + 1] = y + p.jit[1] * wob;
+      pos[i * 3 + 2] = z + p.jit[2] * wob;
+
+      let c = p.gold ? gold : (p.pale ? pale : blue);
+      // particles carry more presence once they are structure rather than reaction,
+      // so the three forms read against navy as well as white
+      let sz = p.size * lp(1.5, 1, born) * (1 + 0.5 * Math.max(structK, mergeK));
+      let al = born * fade;
+      if (beamOn > 0.01) {
+        const d = Math.abs(((p.u - beamU) % 1 + 1) % 1);
+        const near = Math.min(d, 1 - d);
+        if (near < 0.06) {
+          const kk = (1 - near / 0.06) * beamOn;
+          c = c.clone().lerp(gold, kk);
+          sz *= 1 + kk * 1.5;
+          al = Math.min(1, al * (1 + kk * 0.5));
+        }
+      }
+      col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b;
+      size[i] = sz;
+      alpha[i] = al;
+    }
+    U.flush();
+
+    K.playEndCard(this.card, sm((t - 14.55) / 2.5), this.rt.mob);
+    g.rn.render(g.sc, g.cam);
+  }
+
+  MARKS = [{ t: 2.35, k: 'impulse' }, { t: 3.1, k: 'chain' }, { t: 8.2, k: 'assemble' }, { t: 11.6, k: 'merge' }, { t: 14.6, k: 'settle' }];
+  cue(t, on) {
+    if (!on) return;
+    for (let i = 0; i < this.MARKS.length; i++) {
+      const m = this.MARKS[i];
+      if (this.lastCue < i && t >= m.t && t < m.t + 0.3) {
+        this.lastCue = i;
+        if (m.k === 'impulse') this.sfx.tone(0.34, 620, 180, 0.14);
+        else if (m.k === 'chain') this.sfx.noise(0.6, 900, 3400, 0.1, 0.8);
+        else if (m.k === 'assemble') this.sfx.noise(0.42, 2200, 700, 0.09, 1.2);
+        else if (m.k === 'merge') this.sfx.tone(0.5, 300, 140, 0.12);
+        else this.sfx.noise(0.7, 1400, 300, 0.07, 0.6, 'lowpass');
+      }
+    }
+    if (t < 2.0) this.lastCue = -1;
+  }
+
+  renderVals() {
+    return {
+      ...this.R,
+      onToggle: () => this.rt.toggle(),
+      onReplay: () => this.rt.replay(),
+      onScrub: (e) => {
+        this.rt.scrubbing = true;
+        this.rt.seek((Number(e.target.value) / 1000) * this.rt.AUTH);
+        clearTimeout(this.sT); this.sT = setTimeout(() => { this.rt.scrubbing = false; }, 250);
+      },
+      onDur: (e) => this.rt.setDur(e.target.value),
+      onFrame: (e) => this.rt.setFrame(e.target.value),
+      onBgNavy: () => this.rt.applyBg('navy'),
+      onBgWhite: () => this.rt.applyBg('white'),
+      onBgChecker: () => this.rt.applyBg('checker'),
+      onSound: () => { if (this.rt.toggleSound()) this.sfx.tone(0.2, 520, 300, 0.08); },
+      onStatic: () => this.rt.applyStatic(!this.rt.staticMode)
+    };
+  }
+}
+</script>
+</body>
+</html>

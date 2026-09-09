@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bar Crawl USA October 2026 Landing Page Playbook</title>
+  <style>
+    @font-face{font-family:"Barlow Condensed";src:url("BarlowCondensed-800.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap}
+    @font-face{font-family:"Barlow Condensed";src:url("BarlowCondensed-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+    :root{--ink:#111317;--paper:#f3eee4;--white:#fffdf8;--violet:#30207d;--cobalt:#244fce;--coral:#b83a2f;--mist:#d8d0c4;--quiet:#5c5a58;--line:#2a2927}
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#d7d3cb;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+    body{padding:24px}
+    .sheet{position:relative;width:8.5in;height:11in;margin:0 auto 24px;background:var(--paper);overflow:hidden;box-shadow:0 18px 46px rgba(17,19,23,.18);page-break-after:always}
+    .sheet:last-child{page-break-after:auto}
+    .pad{padding:.48in .52in .58in}
+    .dark{background:var(--ink);color:var(--white)}
+    .violet{background:var(--violet);color:var(--white)}
+    .brandbar{height:.72in;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid currentColor;padding:0 .52in;font:500 10px/1 "Barlow Condensed",sans-serif;letter-spacing:.12em;text-transform:uppercase}
+    .brandbar .brand{display:flex;align-items:center;gap:14px}
+    .brandbar img{width:150px;height:38px;object-fit:contain;object-position:left center}
+    .brandbar .prepared{text-align:right;line-height:1.45}
+    .partner{display:flex;align-items:center;gap:9px;font-weight:700;letter-spacing:.04em}
+    .partner img{width:28px;height:28px;border-radius:8px}
+    h1,h2,h3,p{margin:0}
+    h1,h2,h3{font-family:"Barlow Condensed",Arial,sans-serif;text-transform:uppercase}
+    h1{font-size:56pt;line-height:.82;letter-spacing:-.025em}
+    h2{font-size:28pt;line-height:.9;letter-spacing:-.015em}
+    h3{font-size:17pt;line-height:1}
+    p,li{font-size:9.3pt;line-height:1.42}
+    .folio{position:absolute;left:.52in;right:.52in;bottom:.24in;display:flex;align-items:center;justify-content:space-between;font:500 8px/1 "Barlow Condensed",sans-serif;letter-spacing:.1em;text-transform:uppercase}
+    .folio .rule{height:1px;flex:1;margin:0 16px;background:currentColor;opacity:.4}
+    .cover{background:var(--paper)}
+    .cover .brandbar{color:var(--ink)}
+    .cover-grid{display:grid;grid-template-columns:2.6in 1fr;min-height:8.85in}
+    .cover-number{position:relative;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .cover-number span{font:800 310pt/.75 "Barlow Condensed",sans-serif;letter-spacing:-.08em;transform:translateX(-7px)}
+    .cover-main{padding:.58in .5in .4in;display:flex;flex-direction:column}
+    .cover-main h1{font-size:42pt;line-height:.89;max-width:4.3in}
+    .cover-main h1 strong{display:block;color:var(--violet);font-size:54pt}
+    .andy{margin-top:.32in;padding:.12in 0;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);font:800 15pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--coral)}
+    .cover-copy{margin-top:.28in;max-width:3.9in;font-size:10.8pt;line-height:1.45}
+    .equation{margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+    .equation div{padding:.16in .12in;border-right:1px solid var(--ink)}
+    .equation div:last-child{border-right:0;background:var(--violet);color:white}
+    .equation b{display:block;font:800 27pt/1 "Barlow Condensed",sans-serif}
+    .equation span{display:block;margin-top:4px;font-size:7.4pt;line-height:1.25;text-transform:uppercase;letter-spacing:.05em}
+    .stamp{position:absolute;right:.42in;bottom:.7in;border:2px solid var(--coral);color:var(--coral);padding:9px 13px;transform:rotate(-4deg);font:800 11pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.06em}
+    .page-title{display:grid;grid-template-columns:1fr 2.05in;gap:.35in;align-items:end;padding-bottom:.18in;border-bottom:3px solid var(--ink)}
+    .page-title p{font-size:9pt;color:var(--quiet)}
+    .page-title.inverse{border-color:var(--white)}
+    .page-title.inverse p{color:#d8d3f7}
+    .roster{margin-top:.25in;border-top:1px solid var(--line)}
+    .roster-row{display:grid;grid-template-columns:.52in 1.65in 1.05in 1fr;align-items:center;min-height:.54in;border-bottom:1px solid var(--line)}
+    .roster-row .n{font:800 20pt/1 "Barlow Condensed",sans-serif;color:var(--violet)}
+    .roster-row strong{font:800 15pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .roster-row .date{font:800 11pt/1 "Barlow Condensed",sans-serif;color:var(--coral);text-transform:uppercase}
+    .roster-row span:last-child{font-size:8.4pt;color:var(--quiet)}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:.22in;margin-top:.24in}
+    .city-brief{position:relative;min-height:7.35in;background:var(--white);box-shadow:inset 0 10px 0 var(--coral);padding:.32in .25in .22in}
+    .city-brief:nth-child(2){box-shadow:inset 0 10px 0 var(--cobalt)}
+    .city-brief .city{font:800 34pt/.88 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .city-brief .target{margin-top:.14in;padding:.11in 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);font:500 9pt/1.25 "Barlow Condensed",sans-serif;color:var(--violet)}
+    .edition{margin-top:.25in}
+    .edition h3{display:flex;justify-content:space-between;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--ink)}
+    .edition h3 span{color:var(--coral)}
+    .edition p{margin-top:9px;color:#3c3b39}
+    .edition ul{margin:9px 0 0;padding-left:17px}
+    .edition li{margin:3px 0}
+    .status-line{position:absolute;left:.25in;right:.25in;bottom:.22in;padding-top:.12in;border-top:2px solid var(--ink);font:800 10pt/1.15 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .market-stack{margin-top:.23in}
+    .market{display:grid;grid-template-columns:.54in 1.7in 1.02in 1.68in 1fr;align-items:start;gap:.12in;padding:.16in 0;border-bottom:1px solid currentColor}
+    .market .n{font:800 22pt/1 "Barlow Condensed",sans-serif;color:var(--coral)}
+    .market h3{font-size:16pt}
+    .market .date{font:800 11pt/1 "Barlow Condensed",sans-serif;color:var(--cobalt);text-transform:uppercase}
+    .market .path{font:500 8pt/1.2 "Barlow Condensed",sans-serif;overflow-wrap:anywhere}
+    .market p{font-size:8.2pt;color:var(--quiet)}
+    .dark .market p{color:var(--white)}
+    .dark .market .date{color:#8aa8ff}
+    .hold{margin-top:.25in;display:grid;grid-template-columns:1.35in 1fr;background:var(--coral);color:var(--ink)}
+    .hold strong{padding:.18in;font:800 20pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .hold p{padding:.18in;background:var(--white);color:var(--ink)}
+    .specs{margin-top:.25in}
+    .spec{display:grid;grid-template-columns:1.5in 1fr;min-height:1.33in;border-top:1px solid var(--ink)}
+    .spec:last-child{border-bottom:1px solid var(--ink)}
+    .spec h3{padding:.18in .15in .12in 0;color:var(--violet)}
+    .spec .content{padding:.16in 0 .14in .22in;border-left:1px solid var(--ink)}
+    .spec ul{margin:0;padding-left:17px;columns:2;column-gap:.35in}
+    .spec li{break-inside:avoid;margin:0 0 6px}
+    .definition{margin-top:.25in;background:var(--violet);color:white;padding:.2in .22in;display:grid;grid-template-columns:1.35in 1fr;gap:.2in;align-items:center}
+    .definition strong{font:800 16pt/1 "Barlow Condensed",sans-serif;text-transform:uppercase}
+    .timeline{margin-top:.28in}
+    .phase{display:grid;grid-template-columns:1.15in 1fr 1.22in;gap:.18in;padding:.2in 0;border-top:1px solid var(--white);align-items:start}
+    .phase:last-child{border-bottom:1px solid var(--white)}
+    .phase b{font:800 20pt/1 "Barlow Condensed",sans-serif;color:#ff9d8f;text-transform:uppercase}
+    .phase p{color:var(--white)}
+    .phase .output{font:500 9pt/1.25 "Barlow Condensed",sans-serif;text-transform:uppercase;color:#a9bcff}
+    .owners{margin-top:.32in;display:grid;grid-template-columns:1fr 1fr;gap:.22in}
+    .owner{box-shadow:inset 0 5px 0 var(--coral);padding-top:.2in}
+    .owner:nth-child(2){box-shadow:inset 0 5px 0 #8aa8ff}
+    .owner h3{font-size:20pt}
+    .owner ul{padding-left:18px;margin:.12in 0 0}
+    .owner li{color:var(--white);margin:5px 0}
+    .action-layout{display:grid;grid-template-columns:2.3in 1fr;gap:.38in;margin-top:.3in}
+    .lockup{background:var(--ink);color:var(--paper);padding:.25in;min-height:6.9in;display:flex;flex-direction:column}
+    .lockup .big{font:800 118pt/.76 "Barlow Condensed",sans-serif;color:#ff8d7d}
+    .lockup h3{font-size:28pt;margin-top:.18in}
+    .lockup p{margin-top:.16in;color:#d9d2c7}
+    .lockup .cities{margin-top:auto;font:500 10pt/1.55 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.03em}
+    .actions{padding-top:.05in}
+    .action{padding:.18in 0;border-top:1px solid var(--ink)}
+    .action:last-child{border-bottom:1px solid var(--ink)}
+    .action h3{font-size:18pt;color:var(--violet)}
+    .action p{margin-top:7px;color:var(--quiet)}
+    .close-line{margin-top:.3in;font:800 28pt/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--coral)}
+    @media print{html,body{background:white}body{padding:0}.sheet{margin:0;box-shadow:none}}
+    @page{size:Letter portrait;margin:0}
+    @media screen and (max-width:850px){body{padding:0}.sheet{width:100%;height:auto;min-height:100vh;margin:0;overflow:visible}.cover-grid,.split,.action-layout,.page-title{grid-template-columns:1fr}.cover-number{min-height:42vh}.cover-number span{font-size:190pt}.cover-main{min-height:58vh}.brandbar{padding:0 24px}.pad{padding:28px 24px 70px}.market,.roster-row{grid-template-columns:48px 1fr}.market>*:nth-child(n+3),.roster-row>*:nth-child(n+3){grid-column:2}.city-brief{min-height:auto}.spec{grid-template-columns:1fr}.spec .content{border-left:0;padding-left:0}.spec ul{columns:1}.stamp{position:static;display:inline-block;margin:20px 24px 58px;transform:rotate(-2deg)}.folio{left:24px;right:24px}}
+  </style>
+</head>
+<body>
+  <!-- THESIS: An after-hours producer dossier turns ten confirmed markets into one decisive build book and refuses the generic agency-report grid. OWN-WORLD: Bone paper, near-black ledger bands, ultraviolet fields, coral status stamps, condensed display type, and strict call-sheet rules. STORY: Andy sees the locked count, each market brief, the shared build standard, and the immediate decisions. FIRST VIEWPORT: A cropped black 10 dominates the left while the playbook title and arithmetic lock the scope on the right. FORM: Nightclub door ledger plus production call sheet, grounded direction five, seed 76111628. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md -->
+  <section class="sheet cover">
+    <header class="brandbar"><div class="brand"><img src="bar-crawl-usa.webp" alt="Bar Crawl USA"></div><div class="partner"><img src="momentum-360-m-circle.png" alt="Momentum 360"><span>Momentum 360</span></div></header>
+    <div class="cover-grid"><div class="cover-number"><span>10</span></div><div class="cover-main"><h1>October landing page <strong>playbook</strong></h1><div class="andy">Prepared for Andy Zirger</div><p class="cover-copy">A locked production book for one Atlanta page, one Cleveland page, and eight additional October markets. Every page is built around unique local intent, event facts, useful attendee content, clean structure, and search readiness.</p><div class="equation"><div><b>1</b><span>Atlanta page<br>Beltline + Midtown</span></div><div><b>1</b><span>Cleveland page<br>West Park + Lakewood</span></div><div><b>8</b><span>Additional<br>confirmed markets</span></div></div></div></div>
+    <div class="stamp">Scope locked · Aug 10, 2026</div><footer class="folio"><span>Bar Crawl USA · October 2026</span><i class="rule"></i><span>01 / 08</span></footer>
+  </section>
+
+  <section class="sheet pad">
+    <div class="page-title"><h2>The ten-page roster</h2><p>Atlanta and Cleveland consolidate multiple local editions into one market page each. The other eight markets receive one page apiece.</p></div>
+    <div class="roster">
+      <div class="roster-row"><span class="n">01</span><strong>Atlanta</strong><span class="date">October</span><span>Beltline + Midtown editions</span></div>
+      <div class="roster-row"><span class="n">02</span><strong>Cleveland</strong><span class="date">Oct 24 + 31</span><span>West Park + Lakewood editions</span></div>
+      <div class="roster-row"><span class="n">03</span><strong>Cincinnati</strong><span class="date">Oct 24</span><span>Confirmed live event record</span></div>
+      <div class="roster-row"><span class="n">04</span><strong>Columbia</strong><span class="date">Oct 24</span><span>South Carolina market page</span></div>
+      <div class="roster-row"><span class="n">05</span><strong>Greenville</strong><span class="date">Oct 24</span><span>South Carolina market page</span></div>
+      <div class="roster-row"><span class="n">06</span><strong>Portland, ME</strong><span class="date">Oct 24</span><span>Maine named throughout</span></div>
+      <div class="roster-row"><span class="n">07</span><strong>St. Pete</strong><span class="date">Oct 24</span><span>St. Pete + St. Petersburg language</span></div>
+      <div class="roster-row"><span class="n">08</span><strong>Macon</strong><span class="date">Oct 31</span><span>Georgia market page</span></div>
+      <div class="roster-row"><span class="n">09</span><strong>Roswell</strong><span class="date">Oct 31</span><span>Georgia market page</span></div>
+      <div class="roster-row"><span class="n">10</span><strong>Sarasota</strong><span class="date">Oct 31</span><span>Florida market page</span></div>
+    </div>
+    <footer class="folio"><span>Production roster</span><i class="rule"></i><span>02 / 08</span></footer>
+  </section>
+
+  <section class="sheet pad">
+    <div class="page-title"><h2>Two city editions</h2><p>One page per city, with each local event presented as a distinct choice. The page structure stays consolidated without flattening the event facts.</p></div>
+    <div class="split">
+      <article class="city-brief"><div class="city">Atlanta</div><div class="target">/atlanta-halloween-bar-crawls-2026/</div><div class="edition"><h3>Beltline <span>Live</span></h3><p>Lead with Atlanta Halloween intent, then establish the Beltline setting, date, route area, event highlights, useful FAQs, and local proof.</p><ul><li>Live Beltline event record</li><li>Dedicated event section</li><li>Unique Event schema object</li></ul></div><div class="edition"><h3>Midtown <span>Confirm</span></h3><p>Reserve a complete Midtown section and release it when the current event record, date, time, and location facts are confirmed.</p><ul><li>Separate Midtown heading and facts</li><li>Clear neighborhood comparison</li><li>No duplicated local copy</li></ul></div><div class="status-line">One Atlanta URL · two fully separated editions</div></article>
+      <article class="city-brief"><div class="city">Cleveland</div><div class="target">/cleveland-halloween-bar-crawls-2026/</div><div class="edition"><h3>West Park <span>Oct 24</span></h3><p>Frame West Park as a complete local option with its own date, neighborhood context, event details, FAQs, and source-aligned structured data.</p><ul><li>Live West Park event record</li><li>Local search language</li><li>Distinct event section</li></ul></div><div class="edition"><h3>Lakewood <span>Oct 31</span></h3><p>Give Lakewood equal visual weight and preserve its separate date, community context, event facts, attendee guidance, and schema object.</p><ul><li>Live Lakewood event record</li><li>Clear date distinction</li><li>Independent content block</li></ul></div><div class="status-line">One Cleveland URL · two date-specific editions</div></article>
+    </div>
+    <footer class="folio"><span>Combined market architecture</span><i class="rule"></i><span>03 / 08</span></footer>
+  </section>
+
+  <section class="sheet pad">
+    <div class="page-title"><h2>October 24 markets</h2><p>Five individual pages built from verified live records and localized for the city, state, route area, and attendee questions.</p></div>
+    <div class="market-stack">
+      <article class="market"><span class="n">03</span><h3>Cincinnati</h3><span class="date">Oct 24</span><span class="path">/cincinnati-halloween-bar-crawl-2026/</span><p>Local event framing, route confidence, useful FAQs, metadata, schema, and internal links.</p></article>
+      <article class="market"><span class="n">04</span><h3>Columbia</h3><span class="date">Oct 24</span><span class="path">/columbia-sc-halloween-bar-crawl-2026/</span><p>Use South Carolina context to remove ambiguity and strengthen local relevance.</p></article>
+      <article class="market"><span class="n">05</span><h3>Greenville</h3><span class="date">Oct 24</span><span class="path">/greenville-sc-halloween-bar-crawl-2026/</span><p>Build distinctive city copy, event highlights, organizer proof, FAQs, and links.</p></article>
+      <article class="market"><span class="n">06</span><h3>Portland, ME</h3><span class="date">Oct 24</span><span class="path">/portland-me-halloween-bar-crawl-2026/</span><p>Name Maine in the title, headings, metadata, and supporting local context.</p></article>
+      <article class="market"><span class="n">07</span><h3>St. Pete</h3><span class="date">Oct 24</span><span class="path">/st-pete-halloween-bar-crawl-2026/</span><p>Cover both St. Pete and St. Petersburg language naturally without duplication.</p></article>
+    </div>
+    <footer class="folio"><span>October 24 build slate</span><i class="rule"></i><span>04 / 08</span></footer>
+  </section>
+
+  <section class="sheet dark pad">
+    <div class="page-title inverse"><h2>October 31 markets</h2><p>Three individual pages close the active ten-page production slate. Birmingham remains outside the count until its source date is corrected.</p></div>
+    <div class="market-stack">
+      <article class="market"><span class="n">08</span><h3>Macon</h3><span class="date">Oct 31</span><span class="path">/macon-ga-halloween-bar-crawl-2026/</span><p>Use Georgia context, event inclusions, route guidance, attendee FAQs, metadata, schema, and internal links.</p></article>
+      <article class="market"><span class="n">09</span><h3>Roswell</h3><span class="date">Oct 31</span><span class="path">/roswell-ga-halloween-bar-crawl-2026/</span><p>Keep Roswell and Georgia naming consistent and resolve the current source suffix during canonical planning.</p></article>
+      <article class="market"><span class="n">10</span><h3>Sarasota</h3><span class="date">Oct 31</span><span class="path">/sarasota-halloween-bar-crawl-2026/</span><p>Build around Sarasota local intent, event confidence, attendee decisions, FAQs, schema, and strong internal discovery.</p></article>
+    </div>
+    <div class="hold"><strong>Birmingham hold</strong><p>The public structured date currently reports 2065. Correct and reread that source before Birmingham is considered as an additional 2026 page.</p></div>
+    <footer class="folio"><span>October 31 build slate</span><i class="rule"></i><span>05 / 08</span></footer>
+  </section>
+
+  <section class="sheet pad">
+    <div class="page-title"><h2>The shared build standard</h2><p>Every page follows one operating system. The structure repeats; the local evidence and writing do not.</p></div>
+    <div class="specs">
+      <article class="spec"><h3>Search job</h3><div class="content"><ul><li>City or neighborhood + Halloween bar crawl intent</li><li>Unique title, description, H1, and supporting headings</li><li>Natural state naming where ambiguity exists</li><li>Clear internal links from relevant city and event hubs</li></ul></div></article>
+      <article class="spec"><h3>Page anatomy</h3><div class="content"><ul><li>Event name, date, time, and location context</li><li>Concise value statement and event highlights</li><li>Route area, arrival guidance, and useful FAQs</li><li>Approved imagery with meaningful alternative text</li></ul></div></article>
+      <article class="spec"><h3>Source integrity</h3><div class="content"><ul><li>Facts aligned to the current live event record</li><li>Distinct sections for combined city editions</li><li>Honest pending state for unconfirmed details</li><li>No invented venues, inclusions, times, or route claims</li></ul></div></article>
+      <article class="spec"><h3>Release quality</h3><div class="content"><ul><li>Valid Event schema for each event edition</li><li>Canonical, indexing, and sitemap checks</li><li>Mobile layout, links, images, and performance reviewed</li><li>Final editorial and operational signoff</li></ul></div></article>
+    </div>
+    <div class="definition"><strong>Definition of done</strong><p>Published, indexable, internally linked, mobile checked, schema valid, event facts aligned to the current source, and ready for October promotion.</p></div>
+    <footer class="folio"><span>Production standard</span><i class="rule"></i><span>06 / 08</span></footer>
+  </section>
+
+  <section class="sheet violet pad">
+    <div class="page-title inverse"><h2>Build now. Mature before October.</h2><p>The August build window gives every page time to be indexed, refined, and checked before the October event cycle.</p></div>
+    <div class="timeline">
+      <article class="phase"><b>Now</b><p>Confirm the Atlanta Midtown source facts and approve the combined Atlanta and Cleveland URL patterns.</p><span class="output">Scope and source lock</span></article>
+      <article class="phase"><b>August</b><p>Build all ten pages with unique local copy, media, metadata, schema, FAQs, and internal links. Submit the final URLs for indexing.</p><span class="output">Ten finished pages</span></article>
+      <article class="phase"><b>September</b><p>Hold paid activity. Monitor index coverage, strengthen thin sections, resolve source updates, and complete editorial QA.</p><span class="output">Organic maturation</span></article>
+      <article class="phase"><b>October</b><p>Run final event fact checks, confirm live-page quality, and activate the approved market promotion plan.</p><span class="output">Campaign readiness</span></article>
+    </div>
+    <div class="owners"><article class="owner"><h3>Momentum 360</h3><ul><li>Page architecture and working URLs</li><li>Local copy, metadata, schema, and internal links</li><li>Mobile, indexing, and final QA</li></ul></article><article class="owner"><h3>Bar Crawl USA</h3><ul><li>Current event facts and approved media</li><li>Midtown source confirmation</li><li>Operational review and final approval</li></ul></article></div>
+    <footer class="folio"><span>Rollout and ownership</span><i class="rule"></i><span>07 / 08</span></footer>
+  </section>
+
+  <section class="sheet pad">
+    <div class="page-title"><h2>Andy’s action sheet</h2><p>The production queue is ready. These are the decisions that unlock a clean August build.</p></div>
+    <div class="action-layout"><aside class="lockup"><div class="big">10</div><h3>Pages locked</h3><p>One Atlanta page. One Cleveland page. Eight additional market pages.</p><div class="cities">Atlanta · Cleveland · Cincinnati · Columbia · Greenville · Portland · St. Pete · Macon · Roswell · Sarasota</div></aside><div class="actions"><article class="action"><h3>Confirm Midtown</h3><p>Provide the current Atlanta Midtown event record, date, time, location details, and approved media.</p></article><article class="action"><h3>Approve two combined URLs</h3><p>Lock the recommended Atlanta and Cleveland landing-page patterns before implementation begins.</p></article><article class="action"><h3>Approve the August sequence</h3><p>Start with Atlanta and Cleveland, then complete the October 24 markets before the October 31 slate.</p></article><article class="action"><h3>Correct Birmingham separately</h3><p>Repair the 2065 source year and review Birmingham as an additional page after the active ten-page slate is underway.</p></article><div class="close-line">Every confirmed market is named. The build can start now.</div></div></div>
+    <footer class="folio"><span>Prepared for Andy Zirger · August 10, 2026</span><i class="rule"></i><span>08 / 08</span></footer>
+  </section>
+</body>
+</html>

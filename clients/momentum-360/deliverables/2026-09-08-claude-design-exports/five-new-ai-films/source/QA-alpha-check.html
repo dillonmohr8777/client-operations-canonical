@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Momentum AI films — alpha + timing QA</title>
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/colors.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/typography.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/styles.css">
+<style>
+  body{margin:0;font-family:var(--body);color:var(--ink);background:#fff;padding:24px 28px 60px}
+  h1{font-family:var(--display);font-weight:900;letter-spacing:var(--tracking-display);color:var(--navy);margin:0 0 6px;font-size:1.7rem}
+  .sub{margin:0 0 18px;color:var(--muted);font-size:var(--size-note);max-width:80ch}
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 0 16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:18px}
+  button{font-family:var(--body);font-weight:900;font-size:13px;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer}
+  button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+  .cell{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .cellhead{display:flex;justify-content:space-between;gap:8px;align-items:baseline;padding:10px 12px;border-bottom:1px solid var(--line);font-size:12px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}
+  iframe{display:block;width:100%;height:420px;border:0}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line)}
+  .pair div{padding:8px}
+  .pair canvas{display:block;width:100%;height:auto}
+  .lbl{font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+  .report{font-family:ui-monospace,monospace;font-size:11.5px;line-height:1.65;padding:10px 12px;border-top:1px solid var(--line);white-space:pre-wrap}
+  .ok{color:#12683f;font-weight:700}
+  .bad{color:#a3231f;font-weight:700}
+</style>
+</head>
+<body>
+<h1>Alpha + timing QA — five AI launch films</h1>
+<p class="sub">Each film runs in its own frame. The buttons drive every film's deterministic <code>renderFrameAt</code> at once, so all five are sampled at the same authored frame. The two small canvases under each film are the <em>same</em> captured RGBA object layer composited over white and over Momentum navy — the checks below them read those exact pixels.</p>
+
+<div class="bar">
+  <span class="lbl" style="margin:0">Frame</span>
+  <button data-t="0.4">0.4s</button>
+  <button data-t="2.6">2.6s</button>
+  <button data-t="5.5">5.5s</button>
+  <button data-t="9.0">9.0s</button>
+  <button data-t="12.5">12.5s</button>
+  <button data-t="16.2">16.2s</button>
+  <button data-t="17.9">17.9s</button>
+  <span class="lbl" style="margin:0 0 0 10px">Aspect</span>
+  <button id="a169" class="on">16:9</button>
+  <button id="a916">9:16</button>
+  <span class="lbl" style="margin:0 0 0 10px">Preview bg</span>
+  <button id="bnavy" class="on">navy</button>
+  <button id="bwhite">white</button>
+  <button id="bcheck">checker</button>
+  <button id="run" style="margin-left:10px;background:var(--gold);border-color:var(--gold);color:#03172e">Sample alpha now</button>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+const FILMS = [
+  { id: 'ai01', file: 'AI 01 - Atomic Assembly.dc.html', name: 'AI 01 Atomic Assembly' },
+  { id: 'ai02', file: 'AI 02 - Clear the Noise.dc.html', name: 'AI 02 Clear the Noise' },
+  { id: 'ai03', file: 'AI 03 - The Hours Return.dc.html', name: 'AI 03 The Hours Return' },
+  { id: 'ai04', file: 'AI 04 - Break the Frame.dc.html', name: 'AI 04 Break the Frame' },
+  { id: 'ai05', file: 'AI 05 - System Awake.dc.html', name: 'AI 05 System Awake' }
+];
+const NAVY = [3, 23, 46];
+
+const grid = document.getElementById('grid');
+FILMS.forEach(f => {
+  const cell = document.createElement('div');
+  cell.className = 'cell';
+  cell.innerHTML =
+    '<div class="cellhead"><span>' + f.name + '</span><span id="st-' + f.id + '">loading</span></div>' +
+    '<iframe id="if-' + f.id + '" src="' + encodeURI(f.file) + '" title="' + f.name + '"></iframe>' +
+    '<div class="pair"><div><p class="lbl">over white</p><canvas id="cw-' + f.id + '"></canvas></div>' +
+    '<div><p class="lbl">over navy</p><canvas id="cn-' + f.id + '"></canvas></div></div>' +
+    '<div class="report" id="rp-' + f.id + '">not sampled yet</div>';
+  grid.appendChild(cell);
+});
+
+function hook(f) {
+  const w = document.getElementById('if-' + f.id).contentWindow;
+  return w && w.__momentumFilm ? w.__momentumFilm[f.id] : null;
+}
+function stageOf(f) {
+  const d = document.getElementById('if-' + f.id).contentDocument;
+  return d ? d.querySelector('[data-om-exportable-video-with-duration-secs]') : null;
+}
+function canvasOf(f) {
+  const d = document.getElementById('if-' + f.id).contentDocument;
+  return d ? d.querySelector('canvas') : null;
+}
+
+function seekAll(sec) {
+  FILMS.forEach(f => {
+    const h = hook(f);
+    const st = document.getElementById('st-' + f.id);
+    if (!h) { st.textContent = 'no hook'; return; }
+    const r = h.seekSeconds(sec);
+    st.textContent = 'frame ' + Math.round(r.frame) + ' @ ' + r.seconds.toFixed(2) + 's';
+  });
+}
+function aspectAll(a) {
+  FILMS.forEach(f => { const h = hook(f); if (h) h.setAspect(a); });
+  document.getElementById('a169').className = a === '16:9' ? 'on' : '';
+  document.getElementById('a916').className = a === '9:16' ? 'on' : '';
+}
+function bgAll(kind) {
+  FILMS.forEach(f => {
+    const d = document.getElementById('if-' + f.id).contentDocument;
+    if (!d) return;
+    const btns = [...d.querySelectorAll('button')];
+    const want = kind === 'navy' ? /^navy$/i : (kind === 'white' ? /^white$/i : /^checker$/i);
+    const b = btns.find(x => want.test(x.textContent.trim()));
+    if (b) b.click();
+  });
+  document.getElementById('bnavy').className = kind === 'navy' ? 'on' : '';
+  document.getElementById('bwhite').className = kind === 'white' ? 'on' : '';
+  document.getElementById('bcheck').className = kind === 'checker' ? 'on' : '';
+}
+
+// Composite the SAME captured RGBA layer over white and over navy, then read the
+// real pixels back. A baked background would show up as alpha 255 everywhere and as
+// zero difference between the two composites.
+function sample(f) {
+  const src = canvasOf(f);
+  const rp = document.getElementById('rp-' + f.id);
+  if (!src) { rp.textContent = 'no canvas'; return; }
+  const W = 300, H = Math.max(1, Math.round(W * src.height / src.width));
+  const off = document.createElement('canvas');
+  off.width = W; off.height = H;
+  const ox = off.getContext('2d', { willReadFrequently: true });
+  ox.clearRect(0, 0, W, H);
+  ox.drawImage(src, 0, 0, W, H);
+  let data;
+  try { data = ox.getImageData(0, 0, W, H).data; }
+  catch (e) { rp.textContent = 'pixel read blocked: ' + e.message; return; }
+
+  const cw = document.getElementById('cw-' + f.id), cn = document.getElementById('cn-' + f.id);
+  [[cw, [255, 255, 255]], [cn, NAVY]].forEach(pair => {
+    const c = pair[0], bg = pair[1];
+    c.width = W; c.height = H;
+    const x = c.getContext('2d');
+    x.fillStyle = 'rgb(' + bg[0] + ',' + bg[1] + ',' + bg[2] + ')';
+    x.fillRect(0, 0, W, H);
+    x.drawImage(off, 0, 0);
+  });
+
+  let opaque = 0, clear = 0, soft = 0, dirtyClear = 0, maxA = 0;
+  const n = W * H;
+  for (let i = 0; i < n; i++) {
+    const a = data[i * 4 + 3];
+    if (a > maxA) maxA = a;
+    if (a === 0) {
+      clear++;
+      if (data[i * 4] > 8 || data[i * 4 + 1] > 8 || data[i * 4 + 2] > 8) dirtyClear++;
+    } else if (a === 255) opaque++;
+    else soft++;
+  }
+  // corners must be fully clear: any plate, vignette or fog fill would land here
+  const corner = (px, py) => data[((py * W) + px) * 4 + 3];
+  const corners = [corner(1, 1), corner(W - 2, 1), corner(1, H - 2), corner(W - 2, H - 2)];
+  const cornersClear = corners.every(a => a === 0);
+  // A baked background fills every corner to the same non-zero alpha. Subject matter
+  // legitimately touching one or two corners does not, so the two cases are reported
+  // separately instead of treating any covered corner as a failure.
+  const bakedBg = corners.every(a => a > 250) && corners[0] === corners[1] && corners[1] === corners[2] && corners[2] === corners[3];
+  const pct = (v) => (v / n * 100).toFixed(1) + '%';
+  const mark = (b) => b ? '<span class="ok">PASS</span>' : '<span class="bad">FAIL</span>';
+
+  rp.innerHTML =
+    'clear ' + pct(clear) + ' · soft edge ' + pct(soft) + ' · opaque ' + pct(opaque) + ' · peak a=' + maxA + '\n' +
+    'no baked background ' + mark(!bakedBg) + '  corners [' + corners.join(',') + ']' + (cornersClear ? ' all clear' : ' subject reaches an edge') + '\n' +
+    'no colour in fully-clear pixels ' + mark(dirtyClear === 0) + '  (' + dirtyClear + ' dirty)\n' +
+    'soft edge present (real AA, not hard cutout) ' + mark(soft > 0) + '\n' +
+    'subject present in frame ' + mark(opaque + soft > n * 0.001);
+}
+
+document.querySelectorAll('[data-t]').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('[data-t]').forEach(x => x.className = '');
+    b.className = 'on';
+    seekAll(parseFloat(b.dataset.t));
+    setTimeout(() => FILMS.forEach(sample), 260);
+  });
+});
+document.getElementById('a169').addEventListener('click', () => { aspectAll('16:9'); setTimeout(() => FILMS.forEach(sample), 400); });
+document.getElementById('a916').addEventListener('click', () => { aspectAll('9:16'); setTimeout(() => FILMS.forEach(sample), 400); });
+document.getElementById('bnavy').addEventListener('click', () => bgAll('navy'));
+document.getElementById('bwhite').addEventListener('click', () => bgAll('white'));
+document.getElementById('bcheck').addEventListener('click', () => bgAll('checker'));
+document.getElementById('run').addEventListener('click', () => FILMS.forEach(sample));
+
+window.__qa = {
+  films: FILMS.map(f => f.id),
+  seekAll: seekAll,
+  aspectAll: aspectAll,
+  bgAll: bgAll,
+  sampleAll: () => FILMS.forEach(sample),
+  report: () => FILMS.map(f => f.id + ': ' + document.getElementById('rp-' + f.id).textContent.replace(/\s+/g, ' ')),
+  status: () => FILMS.map(f => f.id + ' ' + (hook(f) ? 'hooked' : 'NO HOOK') + ' / ' + (canvasOf(f) ? 'canvas' : 'NO CANVAS'))
+};
+setTimeout(() => { seekAll(5.5); setTimeout(() => FILMS.forEach(sample), 500); }, 5200);
+</script>
+</body>
+</html>
