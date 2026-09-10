@@ -53,6 +53,7 @@ $blob = $null
 $secret = $null
 $results = @()
 $keyMeta = $null
+$creditsMeta = $null
 
 try {
   $ok = [Codex.OpenRouterCanary.NativeMethods]::CredRead($CredentialTarget, 1, 0, [ref]$credentialPtr)
@@ -144,6 +145,28 @@ try {
       errorClass = if ($keyStatus -eq 401) { "auth" } else { "request-failed" }
     }
   }
+
+  $creditsMeta = $null
+  try {
+    $creditsResponse = Invoke-WebRequest -Uri "https://openrouter.ai/api/v1/credits" -Method Get -Headers @{
+      Authorization = "Bearer $secret"
+    } -TimeoutSec 30
+    $creditsJson = $creditsResponse.Content | ConvertFrom-Json
+    $creditsMeta = [pscustomobject]@{
+      httpStatus = [int]$creditsResponse.StatusCode
+      totalCredits = $creditsJson.data.total_credits
+      totalUsage = $creditsJson.data.total_usage
+    }
+  } catch {
+    $creditsStatus = $null
+    try { $creditsStatus = [int]$_.Exception.Response.StatusCode } catch {}
+    $creditsMeta = [pscustomobject]@{
+      httpStatus = $creditsStatus
+      totalCredits = $null
+      totalUsage = $null
+      errorClass = if ($creditsStatus -eq 401) { "auth" } else { "request-failed" }
+    }
+  }
 } finally {
   $secret = $null
   if ($blob) { [Array]::Clear($blob, 0, $blob.Length) }
@@ -156,6 +179,7 @@ $payload = [pscustomobject]@{
   generatedAtUtc = [DateTime]::UtcNow.ToString("o")
   credentialTarget = $CredentialTarget
   keyMetadata = $keyMeta
+  credits = $creditsMeta
   liveCount = @($results | Where-Object { $_.live }).Count
   results = $results
 }

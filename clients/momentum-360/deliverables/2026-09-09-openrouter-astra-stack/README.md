@@ -17,10 +17,14 @@ What is true:
 What is false:
 
 - Creating a key does not make Astra or Fable free.
-- Live OpenRouter Astra pricing is paid. Official page: [openrouter.ai/openai/gpt-6-astra](https://openrouter.ai/openai/gpt-6-astra). OpenAI Flex $5 / $25 per million tokens, Standard $10 / $50, Fast $20 / $100. OpenAI’s own Astra page matches Standard $10 / $50.
+- Live OpenRouter Astra pricing is paid. Official page: [openrouter.ai/openai/gpt-6-astra](https://openrouter.ai/openai/gpt-6-astra). The 2026-09-10 public catalog still lists all seven frontier slugs as paid. Astra prompt/completion `0.00001` / `0.00005` (Standard $10 / $50 per million tokens). OpenAI Flex $5 / $25, Standard $10 / $50, Fast $20 / $100.
+- Composio’s connected OpenRouter account still reads **total_credits 0**, **total_usage 0.222579007**, `is_free_tier: true`.
 - The existing OpenRouter Telegram gateway key is authenticated and still returns **HTTP 402 Payment Required** for Astra, Fable 5.1, Opus 5, GPT-5.6 Sol, Grok 4.6, Gemini 3.8 Flash, and GLM 5.3 Flash.
 - Muse Spark 1.3 returns **403** on that key (policy / entitlement, not a free promo).
 - The advertised “free” GLM slug `z-ai/glm-5.2:free` returns **404**.
+- A connected OpenAI organization lists `gpt-6-astra` and `gpt-5.6-sol`, but live chat completions return **429 credit_balance_exhausted**.
+- GitHub Models catalog and inference are **410 retirement brownout** for all seven slugs.
+- The xAI daily-search key returns **403** on both `/v1/responses` and `/v1/chat/completions` for grok-4.6 / 4.5 / 4.
 
 ## What was instituted
 
@@ -51,10 +55,12 @@ The Telegram private gateway now has exact `/model` aliases for the TikTok set: 
 
 Canary scripts (no secrets in output):
 
-- `scripts/Invoke-OpenRouterFrontierCanary.ps1`
+- `scripts/Invoke-OpenRouterFrontierCanary.ps1` (now also probes `/api/v1/credits`)
+- `scripts/Extract-OpenRouterFrontierCatalog.ps1`
+- `scripts/Get-ModelCredentialPresence.ps1`
 - `scripts/Invoke-InferenceNetCanary.ps1`
 - `scripts/Invoke-TokenRouterFrontierCanary.ps1`
-- `scripts/Invoke-XaiFrontierCanary.ps1`
+- `scripts/Invoke-XaiFrontierCanary.ps1` (responses and chat)
 - `scripts/Invoke-PrefixedGatewayCanary.ps1`
 
 ## Do you have seven of the very best models?
@@ -73,11 +79,12 @@ Cursor on this machine already exposes these seven frontier rows:
 
 GPT-6 Astra is the missing API row. It is listed on OpenRouter and in `Invoke-Gpt6Astra.ps1`, but there is no stored OpenAI key and OpenRouter returns 402.
 
-The API-key stack tonight has **one** verified generation: DeepSeek V4 Pro on Inference.net.
+The API-key stack still has **zero** of the seven frontier slugs live. DeepSeek V4 Pro on Inference.net was a prior live generation, then tonight’s `local-ai-worker` recheck was blocked by the five-cent verification cap. That model is not one of the seven.
 
-The TikTok set (Astra, Fable, and the rest) unlocks on the API path only after one of these human gates:
+The TikTok set unlocks on the API path only after one of these human gates:
 
-1. Finish the existing OpenRouter funding handoff. The Sep 6 note still stands: credits were negative and the $6.21 checkout needed a Google Pay confirmation.
-2. Or paste a billed OpenAI project key into `Save-OpenAiApiCredential.ps1`, then run `Invoke-Gpt6Astra.ps1 -Prompt "Reply with the single word PONG" -ReasoningEffort low`.
+1. Finish the existing OpenRouter funding handoff. Credits are still `0` against `0.222579007` usage. The Sep 6 $6.21 Google Pay confirmation is still required.
+2. Or add credits to the already-connected OpenAI organization that lists Astra and Sol, then rerun the Composio chat canary.
+3. Or paste a billed OpenAI project key into `Save-OpenAiApiCredential.ps1`, then run `Invoke-Gpt6Astra.ps1 -Prompt "Reply with the single word PONG" -ReasoningEffort low`.
 
-Seven API-key frontier models are not live until those 402s become 200s.
+Seven API-key frontier models are not live until those 402s and 429s become 200s with `PONG`.
