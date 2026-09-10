@@ -1,0 +1,22 @@
+const fs=require('fs'),path=require('path');
+const {chromium}=require('C:/Users/dillo/Documents/Codex/2026-08-04/we-can-help-right-research-this-2/node_modules/@playwright/test');
+const AxeBuilder=require('C:/Users/dillo/Documents/Codex/2026-08-04/we-can-help-right-research-this-2/node_modules/@axe-core/playwright').default;
+const checks=[];const ok=(name,pass,details)=>checks.push({name,pass,details});
+(async()=>{
+ const browser=await chromium.launch({headless:true});
+ const mobile=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'no-preference'});const p=await mobile.newPage();
+ await p.goto('http://127.0.0.1:65515/',{waitUntil:'domcontentloaded'});
+ await p.waitForFunction(()=>document.querySelector('.champion-video')?.currentTime>=4.4);
+ await p.screenshot({path:path.join(__dirname,'mobile-champion-wordmark.png')});
+ const composition=await p.evaluate(()=>{const v=document.querySelector('.champion-video'),l=document.querySelector('.champion-logo').getBoundingClientRect();return{duration:v.duration,videoWidth:v.videoWidth,videoHeight:v.videoHeight,logoBottom:l.bottom,filmTop:(innerHeight-innerWidth*v.videoHeight/v.videoWidth)/2,fit:getComputedStyle(v).objectFit}});
+ ok('mobile wordmark clears whole golfer film',composition.logoBottom<composition.filmTop&&composition.fit==='contain',composition);
+ ok('verified six second champion source',Math.abs(composition.duration-6.0417)<.1,composition.duration);
+ const axe=await new AxeBuilder({page:p}).include('.champion-intro').analyze();ok('intro axe',axe.violations.length===0,axe.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target)})));
+ await p.getByRole('button',{name:'Skip intro',exact:true}).click();ok('Skip dismisses intro',await p.locator('.champion-intro').count()===0);
+ await mobile.close();
+ const desktop=await browser.newContext({viewport:{width:1280,height:720},reducedMotion:'no-preference'});await desktop.addInitScript(()=>localStorage.setItem('putteryChampionIntroSeen20260904','1'));const d=await desktop.newPage();
+ await d.goto('http://127.0.0.1:65515/',{waitUntil:'domcontentloaded'});await d.locator('[data-golf-loop-slot]').scrollIntoViewIfNeeded();await d.waitForFunction(()=>{const v=document.querySelector('[data-golf-loop-slot] video');return v&&v.currentTime>.1&&!v.paused});
+ const before=await d.locator('[data-golf-loop-slot] video').evaluate(v=>v.currentTime);await d.waitForTimeout(450);const after=await d.locator('[data-golf-loop-slot] video').evaluate(v=>v.currentTime);ok('rail video actually moves',after>before,{before,after});
+ await d.locator('[data-golf-loop-slot] video').evaluate(v=>v.dispatchEvent(new Event('error')));ok('late rail error restores golf fallback',await d.locator('[data-golf-loop-slot] .rail-golf-fallback').count()===1&&await d.locator('[data-golf-loop-slot] video').count()===0);
+ await desktop.close();await browser.close();fs.writeFileSync(path.join(__dirname,'champion-confirm.json'),JSON.stringify({checkedAt:new Date().toISOString(),checks},null,2));console.log(JSON.stringify({passed:checks.filter(c=>c.pass).length,total:checks.length,failures:checks.filter(c=>!c.pass)},null,2));if(checks.some(c=>!c.pass))process.exitCode=1;
+})().catch(e=>{console.error(e);process.exitCode=1});

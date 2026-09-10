@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-04T23:17:41.336Z",
+  "title": "Design System: Puttery NYC Attribution Pilot Control",
+  "extensions": {
+    "shadows": [
+      {
+        "name": "feedback",
+        "value": "0 8px 24px rgba(1,0,0,.2)",
+        "purpose": "Transient feedback only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state",
+        "value": "160ms ease-out",
+        "purpose": "Control state changes only. Disabled for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "max-1220",
+        "value": "1220px"
+      },
+      {
+        "name": "max-980",
+        "value": "980px"
+      },
+      {
+        "name": "max-720",
+        "value": "720px"
+      },
+      {
+        "name": "max-430",
+        "value": "430px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "action-primary",
+      "description": "Extracted from the implemented dashboard.",
+      "html": "<button class=\"ds-action-button ds-primary\">Review next step</button>",
+      "css": ".ds-action-button{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);min-height:44px;padding:10px 16px;border:1px solid transparent;border-radius:var(--control-radius);font-size:var(--sm);font-weight:800;text-decoration:none;cursor:pointer;transition:background-color 160ms ease-out,color 160ms ease-out}.ds-action-button.ds-primary{background:var(--pink);border-color:var(--pink);color:var(--black)}.ds-action-button.ds-primary:hover{background:var(--pink-dark);border-color:var(--pink-dark);color:var(--white)}:focus-visible{outline:3px solid var(--teal-dark);outline-offset:4px}"
+    },
+    {
+      "name": "Secondary action",
+      "kind": "button",
+      "refersTo": "action-secondary",
+      "description": "Extracted from the implemented dashboard.",
+      "html": "<button class=\"ds-action-button ds-secondary\">Export answers</button>",
+      "css": ".ds-action-button{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);min-height:44px;padding:10px 16px;border:1px solid transparent;border-radius:var(--control-radius);font-size:var(--sm);font-weight:800;text-decoration:none;cursor:pointer;transition:background-color 160ms ease-out,color 160ms ease-out}.ds-action-button.ds-secondary{background:transparent;color:inherit;border-color:currentColor}.ds-action-button.ds-secondary:hover{background:var(--white);color:var(--black)}:focus-visible{outline:3px solid var(--teal-dark);outline-offset:4px}"
+    },
+    {
+      "name": "Active navigation",
+      "kind": "nav",
+      "refersTo": "active-nav",
+      "description": "Extracted from the implemented dashboard.",
+      "html": "<a class=\"ds-rail-link ds-active\" href=\"#\">Current status</a>",
+      "css": ".ds-rail-link{display:flex;align-items:center;gap:var(--s3);padding:11px 12px;min-height:56px;border-radius:var(--control-radius);text-decoration:none;transition:background-color 160ms ease-out}.ds-rail-link.ds-active{color:var(--black);background:var(--teal)}:focus-visible{outline:3px solid var(--teal-dark);outline-offset:4px}"
+    },
+    {
+      "name": "Answer field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Extracted from the implemented dashboard.",
+      "html": "<label>Answer<select class=\"ds-field\"><option>Unanswered</option><option>Yes or verified</option></select></label>",
+      "css": ".ds-field{width:100%;min-width:0;min-height:44px;border:1px solid var(--dark-line);border-radius:var(--control-radius);padding:10px 12px;color:var(--white);background:var(--black);font-size:var(--sm)}:focus-visible{outline:3px solid var(--teal-dark);outline-offset:4px}"
+    },
+    {
+      "name": "Status label",
+      "kind": "chip",
+      "description": "Extracted from the implemented dashboard.",
+      "html": "<span class=\"ds-platform-state ds-gated\">Reporting held</span>",
+      "css": ".ds-platform-state{display:inline-flex;align-items:center;justify-content:center;width:fit-content;padding:4px 9px;border-radius:var(--control-radius);font-size:.6875rem;font-weight:800;line-height:1.5;white-space:nowrap}.ds-platform-state.ds-gated{color:var(--pink-dark);background:var(--pink-pale)}:focus-visible{outline:3px solid var(--teal-dark);outline-offset:4px}"
+    },
+    {
+      "name": "Next action",
+      "kind": "custom",
+      "refersTo": "action-panel",
+      "description": "Extracted from the implemented dashboard.",
+      "html": "<div class=\"ds-status-next\"><strong>Next action</strong><p>Confirm the intended test event and reconcile deliveries.</p></div>",
+      "css": ".ds-status-next{display:grid;grid-template-columns:140px minmax(0,1fr);gap:0 var(--s5);padding:var(--s5);background:var(--teal-pale);border-radius:var(--radius)}:focus-visible{outline:3px solid var(--teal-dark);outline-offset:4px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Course Marshal Board",
+    "overview": "**Creative North Star: \"The Course Marshal Board\"**\r\n\r\nThis scan documents the implemented September 4 refinement of the existing Puttery dashboard. It retains the exact wordmark, black field, pink actions, teal progress, and Fugaz One voice while bringing the current operating work into a compact hierarchy. The design is direct, precise, and recognizably Puttery.\r\n\r\n**Key Characteristics:**\r\n\r\n- Exact white Puttery wordmark on black.\r\n- Compact Fugaz One title; Manrope for operational reading.\r\n- Stable status semantics, spacious source rows, and native disclosures.\r\n- One outlined SVG icon family and quiet golf-dimple geometry.\r\n- No ambient animation or delayed content reveal.",
+    "keyCharacteristics": [
+      "Exact white Puttery wordmark on black.\r",
+      "Compact Fugaz One title; Manrope for operational reading.\r",
+      "Stable status semantics, spacious source rows, and native disclosures.\r",
+      "One outlined SVG icon family and quiet golf-dimple geometry.\r",
+      "No ambient animation or delayed content reveal."
+    ],
+    "rules": [
+      {
+        "name": "The Written Status Rule",
+        "body": "Readiness is always named in text, never conveyed by color alone.",
+        "section": "colors"
+      }
+    ],
+    "dos": [
+      "Do preserve the exact logo, current venue identity, and written status language.\r",
+      "Do keep actual engineering evidence separate from modeled performance.\r",
+      "Do make the next action and current state visible before lengthy discovery detail.\r",
+      "Do use the same icon stroke, spacing scale, and native disclosure behavior throughout.\r"
+    ],
+    "donts": [
+      "Don't turn webhook delivery updates into booking or revenue counts.\r",
+      "Don't animate the wordmark, delay text, or add ambient effects to operational work.\r",
+      "Don't display raw guest data, secrets, or local runtime endpoints.\r",
+      "Don't replace saved question IDs or the existing browser storage key.\r"
+    ]
+  }
+}

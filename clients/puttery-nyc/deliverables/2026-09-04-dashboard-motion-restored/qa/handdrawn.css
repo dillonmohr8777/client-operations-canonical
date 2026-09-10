@@ -1,0 +1,11 @@
+/* Hand-drawn intro requested by Dillon. The original page motion stays intact. */
+.champion-intro{position:fixed;inset:0;z-index:2000;background:#000;overflow:hidden;isolation:isolate}
+.sketch-scene{position:absolute;inset:0;display:grid;place-items:center;padding:24px}
+.sketch-canvas{display:block;width:min(1120px,100%);height:auto;max-height:90vh;overflow:visible}
+.champion-intro-controls{position:absolute;right:24px;top:24px;display:flex;gap:10px;z-index:2}
+.champion-intro-controls button{min-height:44px;padding:10px 16px;border:1px solid rgba(255,255,255,.6);border-radius:999px;color:var(--white);background:#000;font:700 .875rem var(--body-font,"Manrope","Segoe UI",sans-serif)}
+.champion-intro-controls button:hover{background:var(--pink);border-color:var(--pink);color:var(--black)}
+.champion-intro-controls button:focus-visible{outline:3px solid var(--yellow);outline-offset:4px}
+.champion-intro.export-intro .champion-intro-controls{visibility:hidden}
+@media(max-width:720px){.sketch-scene{padding:16px}.sketch-canvas{width:100%;max-height:80vh}.champion-intro-controls{right:16px;top:16px}.champion-intro-controls button{font-size:.75rem;padding:10px 12px}}
+@media(prefers-reduced-motion:reduce){.champion-intro{display:none}}

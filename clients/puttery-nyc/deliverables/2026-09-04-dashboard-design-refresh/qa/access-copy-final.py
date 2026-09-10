@@ -1,0 +1,17 @@
+from pathlib import Path
+root=Path(__file__).resolve().parents[1]
+j=(root/'app.js').read_text(encoding='utf-8')
+j=j.replace('state: "deferred",\n    stateLabel: "Deferred",','state: "verify",\n    stateLabel: "Access review requested",')
+j=j.replace('stateLabel: "Not requested",','stateLabel: "Access review requested",')
+j=j.replace('Authoritative Puttery commerce source for orders, checks, payments, refunds, and revenue centers.','Potential commerce source for orders, checks, payments, refunds, and revenue centers; confirm current NYC use.')
+j=j.replace('Restaurant GUID, management group, RMS tier, permissions, webhook eligibility, exports, closeout time, and Toast Tables use. All of it stays unanswered while Toast is out of scope.','Current NYC use, restaurant GUID, management group, RMS tier, permissions, webhook eligibility, exports, closeout time, and Toast Tables use. Access review has been requested.')
+j=j.replace('None needed in Phase 1. The 2026-08-27 kickoff deferred Toast to a later walk-in evaluation, and Tock now exposes a walk-in webhook that covers part of what Toast was wanted for.','Confirm the available reporting or export route and the NYC revenue definition. The earlier Phase 1 deferment is historical; this expanded access review now includes Toast.')
+j=j.replace('Resy confirmed a Guest Profile Ingest API and a real-time Guest Profile Webhook on this account, documented alongside the reservation products.','The vendor documented Guest Profile Ingest API and Guest Profile Webhook routes. Exact NYC enablement and permitted use still require confirmation.')
+j=j.replace('Tock\'s webhook setup offers reservations, walk-ins, and guest profile as separately selectable feeds.','Tock documents reservations, walk-ins, and guest profile as separately selectable feeds. Actual NYC enablement and usage remain unverified.')
+j=j.replace('A Guest Profile Ingest API and a real-time Guest Profile Webhook are both available on this account. Availability is confirmed; authorisation to use them is not.','The vendor documented Guest Profile Ingest API and real-time Guest Profile Webhook routes. Exact NYC enablement and authorisation to use guest identity still require confirmation.')
+(root/'app.js').write_text(j,encoding='utf-8')
+h=(root/'index.html').read_text(encoding='utf-8').replace('Toast remains deferred from Phase 1.','Additional venue connections await access and usage confirmation.')
+(root/'index.html').write_text(h,encoding='utf-8')
+p=(root/'PRODUCT.md').read_text(encoding='utf-8').replace('Toast is deferred from Phase 1.','The September 4 expanded access follow-up includes Toast, Tock Guest, and Tock Walk-in review; actual NYC usage and enablement remain unverified.')
+(root/'PRODUCT.md').write_text(p,encoding='utf-8')
+print('Final access-request copy reconciled; no question IDs changed.')

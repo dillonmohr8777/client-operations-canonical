@@ -1,0 +1,13 @@
+/* One new user-directed focal sequence; the original full page motion remains. */
+.champion-intro{position:fixed;inset:0;z-index:2000;background:var(--black);overflow:hidden;isolation:isolate}
+.champion-film{position:absolute;inset:0;display:grid;place-items:center}
+.champion-video{display:block;width:100%;height:100%;object-fit:contain;background:var(--black)}
+.champion-logo-track{position:absolute;inset:0;pointer-events:none}
+.champion-logo{position:absolute;left:var(--champion-logo-x,64%);top:var(--champion-logo-y,48%);width:clamp(260px,34vw,560px);height:auto;max-width:80vw;transform:translate(calc(-50% + var(--champion-travel,-60vw)),-50%);clip-path:inset(0 var(--champion-reveal,100%) 0 0);filter:drop-shadow(0 12px 24px rgba(0,0,0,.35))}
+.champion-settled .champion-video{opacity:.62;transition:opacity .6s ease-out}
+.champion-intro-controls{position:absolute;right:24px;top:24px;display:flex;gap:10px;z-index:2}
+.champion-intro-controls button{min-height:44px;padding:10px 16px;border:1px solid rgba(255,255,255,.6);border-radius:999px;color:var(--white);background:var(--black);font:700 .875rem var(--body-font,"Manrope","Segoe UI",sans-serif)}
+.champion-intro-controls button:hover{background:var(--pink);border-color:var(--pink);color:var(--black)}
+.champion-intro-controls button:focus-visible{outline:3px solid var(--yellow);outline-offset:4px}
+@media(max-width:720px){.champion-intro-controls{right:16px;top:16px}.champion-intro-controls button{font-size:.75rem;padding:10px 12px}.champion-logo{width:74vw;left:50%}.champion-video{object-fit:contain}}
+@media(prefers-reduced-motion:reduce){.champion-intro{display:none}}

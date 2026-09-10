@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-08T21:57:08.556Z",
+  "sources": [
+    {
+      "key": "Website",
+      "state": "verify",
+      "stateLabel": "Routes observed",
+      "confirmed": "The NYC location page links to the Puttery New York Tock checkout and the Tripleseat event inquiry form. A Google Tag Manager container appears in the page source.",
+      "unknown": "Tag firing, cross-domain identifiers and consent behavior require a controlled journey.",
+      "fallback": "Use the existing NYC booking route for a tagged booking test.",
+      "checkedAt": "2026-09-08T17:34:21.495Z"
+    },
+    {
+      "key": "Tripleseat",
+      "state": "verify",
+      "stateLabel": "Public form observed",
+      "confirmed": "The official NYC page links to the existing Tripleseat event form, party_request/19291.",
+      "unknown": "Private event, lead, booking and financial data access has not been verified.",
+      "fallback": "Keep event reporting pending until the exact private source and location mapping are verified.",
+      "checkedAt": "2026-09-08T17:34:21.495Z"
+    },
+    {
+      "key": "GTM",
+      "state": "verify",
+      "stateLabel": "Container observed",
+      "confirmed": "GTM-KMZKBB3 is present in the NYC page source.",
+      "unknown": "Container access, published configuration and actual event firing remain unverified.",
+      "fallback": "Inspect the mapped container and test consent and cross-domain behavior.",
+      "checkedAt": "2026-09-08T17:34:21.495Z"
+    },
+    {
+      "key": "Google Ads",
+      "state": "gated",
+      "stateLabel": "Account pending",
+      "confirmed": "The existing account selector was inspected; an exact NYC reporting account was not identified.",
+      "unknown": "Campaign identifiers, spend and conversion configuration remain unverified.",
+      "fallback": "Verify the exact Puttery account before retrieving reporting data.",
+      "checkedAt": "2026-09-08T17:34:21.495Z"
+    },
+    {
+      "key": "GA4",
+      "state": "gated",
+      "stateLabel": "Property pending",
+      "confirmed": "The existing Analytics selector was inspected; an exact Puttery property was not identified.",
+      "unknown": "Property access, stream, cross-domain settings and event collection remain unverified.",
+      "fallback": "Verify the property and trace one tagged booking.",
+      "checkedAt": "2026-09-08T17:34:21.495Z"
+    },
+    {
+      "key": "Meta",
+      "state": "gated",
+      "stateLabel": "Account pending",
+      "confirmed": "The exact NYC ad account and Dataset have not been verified.",
+      "unknown": "Campaign reporting, event receipt, consent and matching remain unverified.",
+      "fallback": "Confirm the existing NYC account and Dataset.",
+      "checkedAt": "2026-09-08T17:34:21.495Z"
+    },
+    {
+      "key": "Toast",
+      "state": "gated",
+      "stateLabel": "Source pending",
+      "confirmed": "Toast remains a planned source for the broader revenue view.",
+      "unknown": "Exact location mapping, private access and approved sales definitions have not been verified.",
+      "fallback": "Keep realized sales and ROAS pending until source access and finance reconciliation are complete.",
+      "checkedAt": "2026-09-08T17:34:21.495Z"
+    },
+    {
+      "key": "Tock Guest",
+      "state": "gated",
+      "stateLabel": "Outside current feed",
+      "confirmed": "The active integration reads reservation exports and reservation webhooks.",
+      "unknown": "Guest export ingestion has not been enabled or verified.",
+      "fallback": "Use reservation aggregates; guest information stays outside this public dashboard.",
+      "checkedAt": "2026-09-08T17:34:21.495Z"
+    },
+    {
+      "key": "Tock Walk-in",
+      "state": "ready",
+      "stateLabel": "Normalized",
+      "confirmed": "Tock confirmed that walk-ins omit reservationId and use walkinId. The NYC normalizer accepts that identifier, and the latest complete export has zero excluded rows.",
+      "unknown": "Approved value and attendance treatment, plus reconciliation to a realized-sales source, remain unverified.",
+      "fallback": "Include normalized walk-ins in reservation-state counts, but do not claim walk-in revenue or completed visits until source definitions are approved.",
+      "checkedAt": "2026-09-08T21:36:18.683Z"
+    }
+  ]
+}

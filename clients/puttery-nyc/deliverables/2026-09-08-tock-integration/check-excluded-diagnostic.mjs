@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {join} from 'node:path';
+const d=JSON.parse(readFileSync(join(process.env.LOCALAPPDATA,'Codex/ClientAccess/PutteryNYC/vendor-diagnostics/2026-09-08/excluded-export-diagnostic.json'),'utf8'));
+assert.equal(d.status,'verified');assert.equal(d.businessId,'37824');assert.equal(d.files.length,6);
+assert.equal(d.files.reduce((n,f)=>n+f.rows,0),27639);assert.equal(d.excluded.length,1);
+const e=d.excluded[0];assert.equal(e.filename,'reservation-4.json');assert.equal(e.recordNumber,e.arrayIndex+1);
+assert.equal(e.recordNumber,289);assert.equal(e.idPresent,false);assert.ok(!e.topLevelFields.includes('id'));
+assert.ok(/^[0-9]+$/.test(e.walkinId)&&BigInt(e.walkinId)>0n);assert.equal(e.fields.partySize,2);
+assert.equal(e.fields.dateTime,'2025-06-16T17:30');
+assert.equal(new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',dateStyle:'long',timeStyle:'short'}).format(new Date(e.fields.serviceDateTimestamp)),'June 16, 2025 at 5:30 PM');
+const allowed=['fileNumber','filename','lastModified','fileSha256','rows','arrayIndex','recordNumber','reason','topLevelFields','idPresent','idType','idNumericValue','versionId','walkinId','isCancelled','fields','recordSha256'];
+assert.ok(Object.keys(e).every(k=>allowed.includes(k)));
+assert.equal(d.guestDataPersisted,false);assert.equal(d.signedUrlsPersisted,false);
+assert.ok(d.files.every(f=>!f.filename.includes('?')&&/^[a-f0-9]{64}$/.test(f.fileSha256)));
+console.log(JSON.stringify({passed:true,checks:['six-file-scan','row-grain','absent-id','walkin-identifier','party-size','venue-local-time','diagnostic-field-allowlist','no-signed-links']}));

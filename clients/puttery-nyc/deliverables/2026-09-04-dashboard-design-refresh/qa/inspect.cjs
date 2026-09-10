@@ -1,0 +1,77 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const { chromium } = require('C:/Users/dillo/Documents/Codex/2026-08-04/we-can-help-right-research-this-2/node_modules/@playwright/test');
+const AxeBuilder = require('C:/Users/dillo/Documents/Codex/2026-08-04/we-can-help-right-research-this-2/node_modules/@axe-core/playwright').default;
+const root=path.resolve(__dirname,'..');
+const base='http://127.0.0.1:61484';
+const checks=[];
+function check(name,pass,details){checks.push({name,pass,details});}
+(async()=>{
+ const browser=await chromium.launch({headless:true});
+ for(const [name,width,height] of [['desktop',1440,1000],['mobile',390,844]]){
+  const context=await browser.newContext({viewport:{width,height},reducedMotion:'reduce'});
+  const page=await context.newPage();const errors=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
+  await page.goto(base);await page.evaluate(()=>document.fonts.ready);
+  check(name+' question database',await page.locator('.question-item').count()===69);
+  check(name+' integration lanes',await page.locator('.platform-card').count()===10);
+  const nextBox=await page.locator('.status-next').boundingBox();check(name+' next action visible in opening viewport',nextBox.y<height);
+  check(name+' current state',(await page.locator('#status-title').textContent())==='Reservation webhook receiving.');
+  check(name+' exact logo',await page.locator('.brand-lockup img').getAttribute('src')==='assets/puttery-logo.svg');
+  check(name+' default modeled collapse',!await page.locator('.modeled-disclosure').getAttribute('open'));
+  check(name+' overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  await page.screenshot({path:path.join(__dirname,name+'-overview.png')});
+  await page.locator('#live-status').evaluate(el=>el.scrollIntoView({block:'start'}));
+  await page.screenshot({path:path.join(__dirname,name+'-status.png')});
+  await page.locator('.platform-card[data-platform="Tock"]>summary').click();
+  await page.screenshot({path:path.join(__dirname,name+'-integrations.png')});
+  await page.getByRole('button',{name:'Review Tock questions'}).click();
+  check(name+' platform jump',await page.locator('#platform-filter').inputValue()==='Tock' && await page.locator('.question-item').count()===8);
+  await page.locator('#platform-filter').selectOption('all');
+  const first=page.locator('[data-answer-select]').first();
+  const note=page.locator('[data-answer-note]').first();
+  await first.selectOption('yes');await note.fill('QA local evidence');await note.blur();
+  check(name+' group progress',await page.locator('.question-group-progress').first().textContent()==='1 of 5 resolved');
+  await page.reload();
+  check(name+' answer persistence',await page.locator('[data-answer-select]').first().inputValue()==='yes'&&await page.locator('[data-answer-note]').first().inputValue()==='QA local evidence');
+  await page.locator('#discovery').evaluate(el=>el.scrollIntoView({block:'start'}));
+  await page.screenshot({path:path.join(__dirname,name+'-discovery.png')});
+  await page.locator('#question-search').fill('no-result-abc123');
+  check(name+' empty filter',await page.locator('#empty-questions').isVisible());
+  await page.getByRole('button',{name:'Clear question filters'}).click();
+  check(name+' clear filters',await page.locator('.question-item').count()===69);
+  await page.locator('.modeled-disclosure>summary').click();
+  await page.locator('#period-select').selectOption('7d');
+  check(name+' period changes',await page.locator('[data-metric="spend"]').textContent()==='$620');
+  await page.locator('#platform-filter').selectOption('Tock');
+  await page.locator('#question-search').fill('GA4');
+  await page.reload();
+  check(name+' URL view survives reload',await page.locator('#period-select').inputValue()==='7d'&&await page.locator('#platform-filter').inputValue()==='Tock'&&await page.locator('#question-search').inputValue()==='GA4');
+  await page.getByRole('button',{name:'Reset view'}).click();
+  check(name+' reset preserves answers',await page.locator('#period-select').inputValue()==='30d'&&await page.locator('[data-answer-select]').first().inputValue()==='yes');
+  const downloadPromise=page.waitForEvent('download');await page.getByRole('button',{name:'Export answers'}).click();const download=await downloadPromise;
+  const downloadPath=await download.path();const data=JSON.parse(fs.readFileSync(downloadPath,'utf8'));
+  check(name+' export compatibility',download.suggestedFilename()==='puttery-pilot-discovery-answers.json'&&data.questions.length===69&&data.questions[0].note==='QA local evidence'&&data.liveAccountsConnected===false);
+  await page.keyboard.press('Tab');
+  check(name+' focus visible',await page.evaluate(()=>getComputedStyle(document.activeElement).outlineStyle!=='none'));
+  const ax=await new AxeBuilder({page}).analyze();
+  check(name+' axe accessibility',ax.violations.length===0,ax.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})));
+  check(name+' no ambient animation',await page.evaluate(()=>[...document.querySelectorAll('*')].filter(e=>getComputedStyle(e).animationName!=='none').length===0));
+  check(name+' console',errors.length===0,errors);
+  if(name==='desktop'){
+   await page.setViewportSize({width:1265,height:714});await page.goto(base);
+   const rail=await page.locator('.section-rail').evaluate(el=>({scrollHeight:el.scrollHeight,clientHeight:el.clientHeight}));
+   const overlap=await page.evaluate(()=>{const a=document.querySelector('.rail-status').getBoundingClientRect(),b=document.querySelector('.section-rail nav').getBoundingClientRect();return a.top<b.bottom;});
+   check('short-height sidebar no overlap',!overlap,rail);
+   await page.screenshot({path:path.join(__dirname,'desktop-short.png')});
+   await page.setViewportSize({width:640,height:720});await page.goto(base);
+   check('zoom-equivalent no overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  }
+  await context.close();
+ }
+ const unavailable=await browser.newContext();const p=await unavailable.newPage();await p.addInitScript(()=>{Storage.prototype.setItem=function(){throw new DOMException('blocked','SecurityError')}});await p.goto(base);await p.locator('[data-answer-select]').first().selectOption('yes');check('blocked storage recovery message',(await p.locator('#save-state').textContent()).toLowerCase().includes('export a copy'));await unavailable.close();
+ await browser.close();
+ fs.writeFileSync(path.join(__dirname,'inspection.json'),JSON.stringify({checkedAt:new Date().toISOString(),checks},null,2));
+ console.log(JSON.stringify({passed:checks.filter(x=>x.pass).length,total:checks.length,failures:checks.filter(x=>!x.pass)},null,2));
+})().catch(e=>{console.error(e);process.exitCode=1});
