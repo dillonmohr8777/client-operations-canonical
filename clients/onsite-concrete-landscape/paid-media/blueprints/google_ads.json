@@ -6,9 +6,9 @@
   "routeState": "active",
   "patternStatus": "live-observed",
   "sourceEvidence": {
-    "observedAt": "2026-07-16T19:35:10Z",
-    "sourceClasses": ["user", "gmail", "live_platform"],
-    "summary": "Persistent Chrome verified the exact Onsite Google Ads route and an active Smart campaign named Onsite Concrete & Landscape. The live read showed an observed $4.39 daily budget, a $133 monthly maximum, two web conversions, and incomplete conversion setup. Those settings and metrics are readback evidence, not spend authority; conversion completion, lead quality, deduplication, disposition, and booked-job outcomes remain the gates before scaling.",
+    "observedAt": "2026-09-10T15:30:00Z",
+    "sourceClasses": ["user", "live_platform"],
+    "summary": "2026-09-10 live API readback: the $80/day Local Services system campaign was never the Onsite Search budget and is now paused with its budget disarmed to $1. Smart and PMax remain paused. The leftover mixed Solano Search is paused. The replacement package is paused Search campaign 24243107659 Onsite | Search | Concrete | Vacaville | 2026-09-10 at $15/day, Vacaville Presence only, Phrase/Exact concrete terms, Netlify landing page, existing call asset. Do not launch LSA, PMax, Smart, Display, Search Partners, or mixed concrete-plus-landscaping. Conversion setup remains a Primary-action soup; that is readback evidence, not spend authority.",
     "liveAccountVerified": true,
     "historicalOnly": false
   },
@@ -21,16 +21,16 @@
   },
   "buildContract": {
     "campaign": {
-      "type": "Smart campaign; PMax or Search only after conversion validation and an approved rebuild",
-      "bidStrategy": "Maximize conversions after primary-event validation",
-      "campaignNamingPattern": "Onsite Concrete & Landscape",
+      "type": "Search only; concrete Vacaville estimate intent. Do not launch LSA, PMax, Smart, Display, Search Partners, or combined concrete-and-landscaping.",
+      "bidStrategy": "Maximize clicks with an $8 CPC ceiling until one qualified-estimate Primary action is validated; then Maximize conversions without target CPA",
+      "campaignNamingPattern": "Onsite | Search | {Service} | {Market} | {ISO date}",
       "adGroupNamingPattern": "{Service} | {Intent} | {Market}"
     },
     "budgetBaseline": {
-      "daily": 4.39,
+      "daily": 15.0,
       "currency": "USD",
-      "basis": "Observed on the active Smart campaign with a $133 monthly maximum; this is a read-only baseline and never permission to spend.",
-      "observedAt": "2026-07-16T19:35:10Z",
+      "basis": "Aug 14 task-scoped Search package now created paused as campaign 24243107659. Historical Smart observation was $4.39/day with a $133 monthly maximum. The $80 LSA budget was not Onsite Search authority and is disarmed.",
+      "observedAt": "2026-09-10T15:30:00Z",
       "isSpendAuthority": false
     },
     "landingPage": {
@@ -50,7 +50,7 @@
       "copyRequirements": ["distinguish concrete and landscaping needs", "use verified Vacaville coverage", "avoid unsupported price, schedule, or warranty claims"]
     }
   },
-  "dailyOptimizationChecks": ["exact account and active Smart campaign readback", "budget pacing against the observed daily and monthly caps", "conversion-setup completion", "form and connected-call quality", "conversion deduplication", "available search-intent evidence", "landing-page and phone-path health", "change history"],
+  "dailyOptimizationChecks": ["exact account readback of paused versus enabled campaigns", "confirm LSA stays paused and disarmed", "budget pacing against the $15 Search package only after enablement", "conversion-setup completion", "form and connected-call quality", "conversion deduplication", "available search-intent evidence", "Netlify landing-page and phone-path health", "change history"],
   "antiRegressionRules": ["Do not count a phone click as a connected or qualified call.", "Do not count test submissions as customer leads.", "Do not treat the two observed web conversions as qualified estimates before disposition.", "Do not scale while conversion setup remains incomplete.", "Keep concrete and landscaping intent separately inspectable."],
   "learningPolicy": {
     "minimumComparableOutcomes": 3,

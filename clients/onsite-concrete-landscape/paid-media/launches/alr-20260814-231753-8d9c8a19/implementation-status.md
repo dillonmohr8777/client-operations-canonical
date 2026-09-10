@@ -1,36 +1,32 @@
 # Google Ads implementation status
 
-Updated: 2026-08-14
+Updated: 2026-09-10
 
 ## Current status
 
-`awaiting_fresh_google_verification`
+`created_paused_in_account`
 
-The approved campaign package remains in the existing Google Ads Search draft for account `103-371-5894`. The retry reached a publish-ready review showing `$15.00/day`, but Google opened another `Confirm it's you` challenge classified as `CAMPAIGN_BUDGET_INCREASE` before the staged budget can be treated as committed. The fresh Google Ads sign-in challenge and campaign review are both preserved as Chrome handoff tabs. No authentication challenge was accepted or bypassed by the agent.
+The Aug 14 concrete-only Vacaville Search package now exists in account `103-371-5894` as a paused campaign. It is not enabled. Standing `launch-authority.json` remains draft.
 
-## Saved in the draft
+## Live objects
 
-- Search campaign only.
-- Vacaville, California city targeting with Presence only.
-- English.
-- Search Partners off.
-- Display Network off.
-- AI Max off, including text customization and Final URL expansion.
-- Maximize Clicks with a temporary $4.00 maximum CPC limit while qualified conversion reporting remains unvalidated.
-- The draft review currently reports fourteen keywords and `Using only your keywords and match types`; live editing is still required to restore the approved twelve-keyword concrete-only set before publication. No Broad keyword may be accepted.
-- Concrete-only RSA with the reviewed fifteen headlines, four descriptions, approved landing-page UTM, and display paths.
-- Verified `(707) 628-5049` call asset attached to the RSA.
+- Campaign `Onsite | Search | Concrete | Vacaville | 2026-09-10` `24243107659` PAUSED
+- Budget `15867354918` $15/day, not shared
+- Ad group `Concrete | Estimate | Vacaville` `200131561636`
+- RSA `824274491756` to `https://onsite-gads-landing-page.netlify.app/` with the approved UTM set
+- Call asset `201657064075`
+- Phrase and Exact only. No Broad. Search Partners and Display off. Vacaville city Presence only.
 
-## Not yet applied
+## What was turned off the same day
 
-- The review now shows `$15.00/day`, but Google is requiring the fresh budget-increase verification before that value can be treated as committed.
-- The campaign has not been created or enabled.
-- The existing Smart campaign remains enabled.
-- Performance Max remains paused.
-- The saved ad schedule and optional sitelink, callout, structured-snippet, logo, and image assets require a fresh live readback after the challenge; reattach any item the refresh did not retain.
-- Campaign and ad-group renaming, negative-keyword installation, final paused readback, and replacement enablement remain pending until the fresh verification gate is cleared.
-- The primary `qualified_estimate` conversion still requires downstream reconciliation and must not be represented as validated.
+- Local Services system campaign `23068725075` paused and budget disarmed from $80/day to $1/day. That $80 was never the Onsite Search budget.
+- Leftover mixed Search `24183437726` paused. It mixed landscaping keywords and landed on the WordPress services page.
+- Smart and PMax remain paused.
 
-## Resume point
+## Still not done
 
-Complete the newly opened Google Ads sign-in challenge in the preserved Chrome handoff tab. Then resume the same draft, retry and save the `$15.00` average daily budget, recheck schedule and optional assets, create paused, install the reviewed negative keyword lists, rename the campaign and ad group, perform live readback, and enable the replacement only if QA passes. Pause the old Smart campaign only after the replacement is verified.
+- Enablement of `24243107659` needs an explicit Dillon enable.
+- Primary conversion soup is unchanged. Do not switch this campaign to Maximize Conversions until one qualified-estimate action is the Primary goal.
+- Optional sitelinks, callouts, structured snippet, logo, and image assets were not created in this pass.
+- Landscaping remains a later separate test.
+- Nicky SMS draft remains unsent.
