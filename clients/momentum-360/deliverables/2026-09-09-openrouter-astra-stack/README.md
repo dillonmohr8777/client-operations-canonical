@@ -62,6 +62,8 @@ Canary scripts (no secrets in output):
 - `scripts/Invoke-TokenRouterFrontierCanary.ps1`
 - `scripts/Invoke-XaiFrontierCanary.ps1` (responses and chat)
 - `scripts/Invoke-PrefixedGatewayCanary.ps1`
+- `scripts/Invoke-EnvKeyFrontierCanary.ps1`
+- `scripts/Invoke-DillonModelGatewayCanary.ps1`
 
 ## Do you have seven of the very best models?
 
@@ -81,10 +83,18 @@ GPT-6 Astra is the missing API row. It is listed on OpenRouter and in `Invoke-Gp
 
 The API-key stack still has **zero** of the seven frontier slugs live. DeepSeek V4 Pro on Inference.net was a prior live generation, then tonight’s `local-ai-worker` recheck was blocked by the five-cent verification cap. That model is not one of the seven.
 
+Additional routes hunted tonight, still not live:
+
+- `env://OPENROUTER_API_KEY` is an OpenRouter key and returns the same 402/403 pattern as the Telegram WinCred key.
+- `env://GEMINI_API_KEY` is present but is not a working Google AI Studio key for `gemini-3.8-flash`.
+- `gemini:antigravity` is a session blob, not a Gemini API key.
+- Dillon’s Vercel model gateway (`dillon-ai-model-gateway.vercel.app`) accepts the stored bearer token and then returns **403** on all seven slugs. Prior record: Vercel AI Gateway `customer_verification_required` until a human adds a payment card.
+
 The TikTok set unlocks on the API path only after one of these human gates:
 
 1. Finish the existing OpenRouter funding handoff. Credits are still `0` against `0.222579007` usage. The Sep 6 $6.21 Google Pay confirmation is still required.
 2. Or add credits to the already-connected OpenAI organization that lists Astra and Sol, then rerun the Composio chat canary.
-3. Or paste a billed OpenAI project key into `Save-OpenAiApiCredential.ps1`, then run `Invoke-Gpt6Astra.ps1 -Prompt "Reply with the single word PONG" -ReasoningEffort low`.
+3. Or complete Vercel AI Gateway billing verification for `dillon-ai-model-gateway`, then rerun `scripts/Invoke-DillonModelGatewayCanary.ps1`.
+4. Or paste a billed OpenAI project key into `Save-OpenAiApiCredential.ps1`, then run `Invoke-Gpt6Astra.ps1 -Prompt "Reply with the single word PONG" -ReasoningEffort low`.
 
 Seven API-key frontier models are not live until those 402s and 429s become 200s with `PONG`.
