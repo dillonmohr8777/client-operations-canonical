@@ -132,3 +132,45 @@ enabled. **Do not create a new MCC to solve API access.**
 4. Build a direct API client that sets `login-customer-id: 7038673437` on every
    call. No connector in the current stack sets that header.
 5. Until then, persistent Chrome remains the working surface, as it has been.
+
+---
+
+## Resolved 2026-09-09 evening
+
+| Step | State |
+|---|---|
+| Manager account identified | **703-867-3437**, Dillon Mohr Hermes Agent |
+| Google Ads API on `momentum-360-489301` | **Enabled** |
+| API access level | **Explorer**, approved on application |
+| Production API operations | **2,880 per day**, plus 15,000 on test accounts |
+| Client that sets `login-customer-id` | `scripts/google-ads-query.mjs` |
+| Refresh-token helper | `scripts/google-ads-get-refresh-token.mjs` |
+| Remaining | OAuth client and refresh token, Dillon's to create |
+
+Explorer covers campaign management and reporting on production accounts. **Basic
+was deliberately not requested**: it requires Brand Verification and consent to
+share Cloud branding information, and Explorer's 2,880 daily production operations
+are ample for reporting across this roster.
+
+### Finishing it
+
+1. Create an OAuth client, type **Web application**, in `momentum-360-489301`,
+   with redirect URI `http://localhost:8720/oauth2callback`. An existing client
+   named "Momentum 360 GBP Connect" is present but its redirect URIs are scoped to
+   that integration, so a dedicated client is cleaner.
+2. `node scripts/google-ads-get-refresh-token.mjs` and approve as
+   `dillonmohr8777@gmail.com`. **Run this yourself.** It prints a refresh token to
+   the terminal, which is a credential.
+3. Set `GOOGLE_ADS_CLIENT_ID`, `GOOGLE_ADS_CLIENT_SECRET`, `GOOGLE_ADS_REFRESH_TOKEN`
+   and `GOOGLE_ADS_DEVELOPER_TOKEN` in the shell.
+4. `node scripts/google-ads-query.mjs --accounts` should list the accounts under
+   the MCC. That is the end-to-end proof.
+
+Neither script reads a credential from disk or writes one. `--selfcheck` reports
+only which variable **names** are missing, never a value.
+
+### What this replaces
+
+The Composio `googleads` route stays broken and is not worth further effort: the
+tool exposes no `login-customer-id` parameter, so it cannot reach production child
+accounts no matter how access levels are configured.
