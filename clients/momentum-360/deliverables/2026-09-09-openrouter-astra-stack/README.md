@@ -32,18 +32,30 @@ These existing keys were attached to OmniRoute 3.8.48 without printing secret va
 | `Hermes/OpenRouter/Hermes Zero Credit` | OpenRouter Hermes Zero Credit | Authenticated. Frontier slugs 404 / 403. Name matches the empty-credit state. |
 | `Codex/TelegramModelGateway/InferenceNet` | Inference.net Personal Model Gateway | **DeepSeek V4 Pro 0813 live** through `local-ai-worker` (`PONG`, 79 tokens, ~$0.00015). Direct WinCred HTTP canary did not decode a usable status. OmniRoute marks this connection token as expired because of a storage-key mismatch, not because the Inference.net key is gone. |
 | TokenRouter via `env://OMNIROUTE_API_KEY` | TokenRouter Kimi K3 | Catalog live: 119 routed models, credential probe valid. Generation is not entitled: `kimi-k3-free` 503, Fable 5 / Opus 5 / GPT-5.6 Sol / Terra / Grok 4.5 / Gemini 3.6 Flash all 403. No `gpt-6-astra` row. |
+| `dpapi-bootstrap://xai/dillon-os/daily-x-search` | xAI Daily Search Gateway | Key present. Direct `api.x.ai/v1/responses` returns **403** for grok-4.6 / 4.5 / 4. Scope looks like search, not chat entitlement. |
 | `Codex/OpenAI/Momentum360/Astra` | not present | Direct OpenAI Astra launcher exists at `C:\Users\dillo\.codex\tools\Invoke-Gpt6Astra.ps1`. Key has not been saved. |
 | `Codex/ZAI/GLM-5.3-Flash` and Coding Plan | not present | Z.AI OmniRoute helpers exist. Keys have not been saved. |
 
-OmniRoute `providers test-all` can report `Unsupported state or unable to authenticate data` for newly written connections. That is a storage-encryption mismatch between `C:\Users\dillo\AppData\Local\Codex\OmniRoute` and `C:\Users\dillo\.omniroute`, not a missing key. Direct OpenRouter and Inference.net canaries do not depend on that decrypt path.
+OmniRoute now has dedicated openai-compatible provider nodes so slugs stay intact:
 
-OmniRoute also splits slugs such as `openai/gpt-6-astra` and `z-ai/glm-5.3-flash` into fake provider prefixes, then looks for `openai` / `z-ai` credentials instead of sending the full slug to OpenRouter. Use the canary scripts below, not `omniroute chat --model openai/gpt-6-astra`.
+| Prefix | Node | Upstream |
+| --- | --- | --- |
+| `openrouter-gw` | `openai-compatible-chat-4212900d-eee7-4df6-ad33-bec2ee4f1be0` | `https://openrouter.ai/api/v1` |
+| `inferencenet` | `openai-compatible-chat-7c8738b6-0b2c-45a2-a6f9-63c0f4341902` | `https://api.inference.net/v1` |
+| `xai` | `openai-compatible-responses-cfbf2a15-65d7-4b57-8478-703f254016a8` | `https://api.x.ai/v1` |
+| `tokenrouter` | existing | `https://api.tokenrouter.com/v1` |
+
+The earlier Inference.net connection registered as provider `openai` was deleted so `openai/gpt-6-astra` is no longer stolen by Inference.net. Prefixed OpenRouter canaries now reach OpenRouter (401/404 from the stored copy) instead of `No active credentials for provider: openai`. Direct WinCred OpenRouter canaries remain the generation source of truth and still return 402.
+
+The Telegram private gateway now has exact `/model` aliases for the TikTok set: `astra`, `fable`, `opus`, `muse`, `sol`, `grok`, `gemini`. Router tests: 13/13. Generation on those aliases still needs OpenRouter credits.
 
 Canary scripts (no secrets in output):
 
 - `scripts/Invoke-OpenRouterFrontierCanary.ps1`
 - `scripts/Invoke-InferenceNetCanary.ps1`
 - `scripts/Invoke-TokenRouterFrontierCanary.ps1`
+- `scripts/Invoke-XaiFrontierCanary.ps1`
+- `scripts/Invoke-PrefixedGatewayCanary.ps1`
 
 ## Do you have seven of the very best models?
 
