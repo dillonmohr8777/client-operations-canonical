@@ -122,10 +122,25 @@ try {
       $preview = if ($text.Length -gt 80) { $text.Substring(0, 80) } else { $text }
     } catch {
       try { $status = [int]$_.Exception.Response.StatusCode } catch {}
+      $bodyText = $null
+      try { $bodyText = [string]$_.ErrorDetails.Message } catch {}
+      if (-not $bodyText -and $_.Exception.Response) {
+        try {
+          $stream = $_.Exception.Response.GetResponseStream()
+          if ($stream) {
+            $reader = New-Object System.IO.StreamReader($stream)
+            $bodyText = $reader.ReadToEnd()
+            $reader.Dispose()
+          }
+        } catch {}
+      }
+      $providerCode = $null
+      if ($bodyText -match '"code"\s*:\s*"([^"]+)"') { $providerCode = $Matches[1] }
+      elseif ($bodyText -match 'customer_verification_required') { $providerCode = "customer_verification_required" }
       $errorClass = switch ($status) {
         401 { "auth" }
         402 { "payment-required" }
-        403 { "forbidden-or-limit" }
+        403 { if ($providerCode) { $providerCode } else { "forbidden-or-limit" } }
         404 { "model-missing" }
         429 { "rate-limit" }
         default { "request-failed" }

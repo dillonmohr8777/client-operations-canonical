@@ -18,13 +18,19 @@ What is false:
 
 - Creating a key does not make Astra or Fable free.
 - Live OpenRouter Astra pricing is paid. Official page: [openrouter.ai/openai/gpt-6-astra](https://openrouter.ai/openai/gpt-6-astra). The 2026-09-10 public catalog still lists all seven frontier slugs as paid. Astra prompt/completion `0.00001` / `0.00005` (Standard $10 / $50 per million tokens). OpenAI Flex $5 / $25, Standard $10 / $50, Fast $20 / $100.
-- Composio’s connected OpenRouter account still reads **total_credits 0**, **total_usage 0.222579007**, `is_free_tier: true`.
+- Composio’s connected OpenRouter account still reads **total_credits 0**, **total_usage 0.222579007**, `is_free_tier: true`. Astra chat completion is **402** with `This account never purchased credits.`
 - The existing OpenRouter Telegram gateway key is authenticated and still returns **HTTP 402 Payment Required** for Astra, Fable 5.1, Opus 5, GPT-5.6 Sol, Grok 4.6, Gemini 3.8 Flash, and GLM 5.3 Flash.
 - Muse Spark 1.3 returns **403** on that key (policy / entitlement, not a free promo).
 - The advertised “free” GLM slug `z-ai/glm-5.2:free` returns **404**.
 - A connected OpenAI organization lists `gpt-6-astra` and `gpt-5.6-sol`, but live chat completions return **429 credit_balance_exhausted**.
 - GitHub Models catalog and inference are **410 retirement brownout** for all seven slugs.
 - The xAI daily-search key returns **403** on both `/v1/responses` and `/v1/chat/completions` for grok-4.6 / 4.5 / 4.
+
+What is newly true on the unpaid path:
+
+- `openrouter/free` generates at **cost 0**. OmniRoute MCP returned `PONG`. Composio returned `PONG` via `dots-studio/dots-3-note-preview:free`.
+- Named unpaid `PONG` also landed for `nex-agi/nex-n2.5-pro:free`, `nex-agi/nex-n2.5-mini:free`, and `cohere/north-mini-code:free`. Those are not the seven frontier models.
+- The public catalog lists 21 zero-price rows. Many other `:free` slugs 404 with `free-model-training-violation-by-account`. Privacy settings were not changed.
 
 ## What was instituted
 
@@ -51,7 +57,7 @@ OmniRoute now has dedicated openai-compatible provider nodes so slugs stay intac
 
 The earlier Inference.net connection registered as provider `openai` was deleted so `openai/gpt-6-astra` is no longer stolen by Inference.net. Prefixed OpenRouter canaries now reach OpenRouter (401/404 from the stored copy) instead of `No active credentials for provider: openai`. Direct WinCred OpenRouter canaries remain the generation source of truth and still return 402.
 
-The Telegram private gateway now has exact `/model` aliases for the TikTok set: `astra`, `fable`, `opus`, `muse`, `sol`, `grok`, `gemini`. Router tests: 13/13. Generation on those aliases still needs OpenRouter credits.
+The Telegram private gateway now has exact `/model` aliases for the TikTok set plus the unpaid router: `astra`, `fable`, `opus`, `muse`, `sol`, `grok`, `gemini`, `free`. Router tests: 13/13. The paid aliases still need OpenRouter credits. `/model free` maps to `openrouter/free` at $0 / $0.
 
 Canary scripts (no secrets in output):
 
@@ -63,7 +69,8 @@ Canary scripts (no secrets in output):
 - `scripts/Invoke-XaiFrontierCanary.ps1` (responses and chat)
 - `scripts/Invoke-PrefixedGatewayCanary.ps1`
 - `scripts/Invoke-EnvKeyFrontierCanary.ps1`
-- `scripts/Invoke-DillonModelGatewayCanary.ps1`
+- `scripts/Invoke-DillonModelGatewayCanary.ps1` (now captures the exact 403 class)
+- `scripts/Get-AiCredentialNames.ps1`
 
 ## Do you have seven of the very best models?
 
@@ -81,14 +88,14 @@ Cursor on this machine already exposes these seven frontier rows:
 
 GPT-6 Astra is the missing API row. It is listed on OpenRouter and in `Invoke-Gpt6Astra.ps1`, but there is no stored OpenAI key and OpenRouter returns 402.
 
-The API-key stack still has **zero** of the seven frontier slugs live. DeepSeek V4 Pro on Inference.net was a prior live generation, then tonight’s `local-ai-worker` recheck was blocked by the five-cent verification cap. That model is not one of the seven.
+The API-key stack still has **zero** of the seven frontier slugs live. Unpaid OpenRouter generation is live, but it is the free router and three mid-tier `:free` slugs, not Astra / Fable / Opus / Muse / Sol / Grok / Gemini. DeepSeek V4 Pro on Inference.net was a prior live generation and is also not one of the seven.
 
 Additional routes hunted tonight, still not live:
 
 - `env://OPENROUTER_API_KEY` is an OpenRouter key and returns the same 402/403 pattern as the Telegram WinCred key.
 - `env://GEMINI_API_KEY` is present but is not a working Google AI Studio key for `gemini-3.8-flash`.
 - `gemini:antigravity` is a session blob, not a Gemini API key.
-- Dillon’s Vercel model gateway (`dillon-ai-model-gateway.vercel.app`) accepts the stored bearer token and then returns **403** on all seven slugs. Prior record: Vercel AI Gateway `customer_verification_required` until a human adds a payment card.
+- Dillon’s Vercel model gateway (`dillon-ai-model-gateway.vercel.app`) accepts the stored bearer token and then returns **403 `customer_verification_required`** on all seven slugs.
 
 The TikTok set unlocks on the API path only after one of these human gates:
 

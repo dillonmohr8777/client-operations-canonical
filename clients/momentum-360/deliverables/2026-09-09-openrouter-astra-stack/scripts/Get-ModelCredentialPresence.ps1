@@ -1,4 +1,6 @@
-param()
+param(
+  [string]$OutPath = (Join-Path $PSScriptRoot "..\credential-presence.json")
+)
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
@@ -54,10 +56,12 @@ $rows = foreach ($target in $targets) {
   }
 }
 
-[pscustomobject]@{
+$payload = [pscustomobject]@{
   generatedAtUtc = [DateTime]::UtcNow.ToString("o")
   locators = $rows
   envOmnirouteUser = [bool][Environment]::GetEnvironmentVariable("OMNIROUTE_API_KEY", "User")
   envOmnirouteProcess = [bool][Environment]::GetEnvironmentVariable("OMNIROUTE_API_KEY", "Process")
   xaiDpapiPresent = [bool](Test-Path -LiteralPath "C:\Users\dillo\AppData\Local\Codex\Secrets\xai-dillon-os-daily-x-search.dpapi")
-} | ConvertTo-Json -Depth 5
+}
+$payload | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $OutPath -Encoding utf8
+$payload | ConvertTo-Json -Depth 5

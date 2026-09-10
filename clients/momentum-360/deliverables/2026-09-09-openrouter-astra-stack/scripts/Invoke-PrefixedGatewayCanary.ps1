@@ -8,6 +8,7 @@ $ErrorActionPreference = "Stop"
 
 $targets = @(
   @{ id = "inference-deepseek"; model = "openai-compatible-chat-7c8738b6-0b2c-45a2-a6f9-63c0f4341902/deepseek-v4-pro-0813" },
+  @{ id = "openrouter-free"; model = "openrouter/free" },
   @{ id = "openrouter-astra"; model = "openai-compatible-chat-4212900d-eee7-4df6-ad33-bec2ee4f1be0/openai/gpt-6-astra" },
   @{ id = "openrouter-fable"; model = "openai-compatible-chat-4212900d-eee7-4df6-ad33-bec2ee4f1be0/anthropic/claude-fable-5.1" },
   @{ id = "xai-grok"; model = "openai-compatible-responses-cfbf2a15-65d7-4b57-8478-703f254016a8/grok-4.6" }

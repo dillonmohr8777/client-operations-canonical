@@ -30,10 +30,17 @@ $frontier = foreach ($id in $want) {
     }
   }
 }
+$freeModels = @($catalog.data | Where-Object {
+  $_.id -like "*:free" -or ([string]$_.pricing.prompt -eq "0" -and [string]$_.pricing.completion -eq "0")
+} | ForEach-Object { [string]$_.id } | Sort-Object -Unique)
+
 $payload = [pscustomobject]@{
   generatedAtUtc = [DateTime]::UtcNow.ToString("o")
   totalModels = @($catalog.data).Count
   frontier = $frontier
+  freeRouterId = "openrouter/free"
+  freeModelCount = $freeModels.Count
+  freeModelIds = $freeModels
 }
 $payload | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $OutPath -Encoding utf8
 $payload | ConvertTo-Json -Depth 6
