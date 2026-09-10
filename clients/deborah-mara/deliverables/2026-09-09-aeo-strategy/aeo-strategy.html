@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Deborah Mara — AI Search Visibility Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Smooch&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600;8..60,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: Letter; margin: 0; }
+
+  :root{
+    --navy:#00305B;        /* from her live site */
+    --navy-deep:#123F63;
+    --gold:#D1B46C;
+    --slate:#5A5F66;
+    --ink:#22262B;
+    --paper:#FFFFFF;
+    --wash:#F6F8FA;
+    --rule:#DCE2E8;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:"Inter",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+    color:var(--ink); font-size:10pt; line-height:1.6;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+
+  .page{
+    width:8.5in; min-height:11in; padding:0.85in 0.8in 0.7in;
+    position:relative; page-break-after:always; background:var(--paper);
+  }
+  .page:last-child{page-break-after:auto;}
+
+  /* ---------- cover ---------- */
+  .cover{
+    background:var(--navy); color:#fff; padding:0;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .cover-inner{padding:1.1in 0.9in 0.9in;}
+  .wordmark{
+    font-family:"Smooch",cursive; font-size:74pt; line-height:.9;
+    color:#fff; margin:0 0 6pt;
+  }
+  .wordmark-rule{width:110pt;height:2.5pt;background:var(--gold);margin:14pt 0 20pt;}
+  .cover-kicker{
+    font-size:8.5pt; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; margin:0 0 10pt;
+  }
+  .cover h1{
+    font-family:"Source Serif 4",Georgia,serif; font-weight:400;
+    font-size:33pt; line-height:1.14; margin:0 0 16pt; color:#fff;
+  }
+  .cover h1 em{font-style:italic; color:var(--gold);}
+  .cover-sub{font-size:11pt; line-height:1.6; color:#C6D3E0; max-width:5in; font-weight:300;}
+  .cover-foot{
+    background:var(--navy-deep); padding:22pt 0.9in;
+    display:flex; justify-content:space-between; align-items:flex-end;
+    font-size:8.5pt; color:#AFC2D4;
+  }
+  .cover-foot strong{color:#fff; display:block; font-size:9.5pt; font-weight:600;}
+
+  /* ---------- typography ---------- */
+  .kicker{
+    font-size:7.5pt; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--gold); font-weight:700; margin:0 0 6pt;
+  }
+  h2{
+    font-family:"Source Serif 4",Georgia,serif; font-weight:600;
+    font-size:19pt; line-height:1.2; color:var(--navy); margin:0 0 10pt;
+  }
+  h3{
+    font-size:11pt; font-weight:600; color:var(--navy); margin:18pt 0 6pt;
+    break-after:avoid;
+  }
+  h4{font-size:9.5pt;font-weight:600;margin:12pt 0 4pt;color:var(--navy-deep);}
+  p{margin:0 0 9pt;}
+  .lede{font-size:11.5pt; line-height:1.55; color:var(--slate); font-weight:300; margin-bottom:16pt;}
+  strong{font-weight:600;color:#000;}
+  .section-rule{height:2pt;background:var(--navy);width:46pt;margin:0 0 14pt;}
+
+  ul,ol{margin:0 0 10pt; padding-left:15pt;}
+  li{margin:3pt 0;}
+
+  /* ---------- components ---------- */
+  .callout{
+    border-left:3pt solid var(--gold); background:var(--wash);
+    padding:11pt 14pt; margin:14pt 0; break-inside:avoid;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .label{
+    font-size:7.5pt;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--navy);font-weight:700;margin-bottom:4pt;
+  }
+
+  table{width:100%;border-collapse:collapse;margin:12pt 0;font-size:8.5pt;break-inside:avoid;}
+  th{
+    background:var(--navy);color:#fff;text-align:left;padding:6pt 8pt;
+    font-weight:600;font-size:8pt;letter-spacing:.03em;
+  }
+  td{padding:6pt 8pt;border-bottom:.5pt solid var(--rule);vertical-align:top;}
+  tr:nth-child(even) td{background:#FAFCFD;}
+
+  code,.mono{
+    font-family:"Cascadia Mono",Consolas,"Courier New",monospace;
+    font-size:8pt;background:#EEF2F6;padding:1pt 3.5pt;border-radius:2pt;color:var(--navy-deep);
+  }
+  pre{
+    background:#0E2437;color:#DCE7F2;padding:11pt 13pt;border-radius:3pt;
+    font-family:"Cascadia Mono",Consolas,monospace;font-size:7.6pt;line-height:1.5;
+    overflow-x:auto;margin:9pt 0;break-inside:avoid;
+  }
+  pre .c{color:#7FA6C4;}
+  pre .k{color:var(--gold);}
+
+  .stat-row{display:flex;gap:10pt;margin:14pt 0;break-inside:avoid;}
+  .stat{
+    flex:1;border:.75pt solid var(--rule);border-top:2.5pt solid var(--gold);
+    padding:10pt 9pt;text-align:center;background:var(--paper);
+  }
+  .stat .n{font-family:"Source Serif 4",Georgia,serif;font-size:19pt;font-weight:600;color:var(--navy);line-height:1;}
+  .stat .l{font-size:7pt;letter-spacing:.09em;text-transform:uppercase;color:var(--slate);margin-top:5pt;line-height:1.35;}
+
+  .pri{display:inline-block;padding:1.5pt 6pt;border-radius:2pt;font-size:7pt;font-weight:700;letter-spacing:.07em;text-transform:uppercase;}
+  .pri-1{background:var(--navy);color:#fff;}
+  .pri-2{background:var(--gold);color:#3A2E10;}
+  .pri-3{background:#E4EAF0;color:var(--navy-deep);}
+
+  .foot{
+    position:absolute;bottom:0.42in;left:0.8in;right:0.8in;
+    display:flex;justify-content:space-between;
+    font-size:7pt;color:#9AA5B0;border-top:.5pt solid var(--rule);padding-top:6pt;
+  }
+  .no-break{break-inside:avoid;}
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<section class="page cover">
+  <div class="cover-inner">
+    <p class="wordmark">Deborah Mara</p>
+    <div class="wordmark-rule"></div>
+    <p class="cover-kicker">Answer Engine Optimization</p>
+    <h1>Getting found when the<br>search box is a <em>conversation</em>.</h1>
+    <p class="cover-sub">
+      A configuration-first plan to make Deborah the agent that ChatGPT, Perplexity,
+      Google AI Overviews and Claude name when someone asks who to trust in
+      Monmouth, Ocean and Mercer County — without writing a single blog post.
+    </p>
+  </div>
+  <div class="cover-foot">
+    <div>
+      <strong>Prepared for Deborah Mara</strong>
+      RE/MAX Homeland REALTORS · Central New Jersey
+    </div>
+    <div style="text-align:right">
+      <strong>Momentum 360</strong>
+      September 9, 2026
+    </div>
+  </div>
+</section>
+
+<!-- ============ PAGE 2 — THE SHIFT ============ -->
+<section class="page">
+  <p class="kicker">The shift</p>
+  <h2>Buyers stopped clicking. They started asking.</h2>
+  <div class="section-rule"></div>
+
+  <p class="lede">
+    "Who's a good realtor in Monmouth County?" used to return ten blue links.
+    Increasingly it returns one paragraph and three names. If Deborah is not one of
+    the three, the other seven links no longer matter.
+  </p>
+
+  <p>
+    Answer engines do not rank pages the way search engines do. They assemble an
+    answer from sources they can <strong>read, verify and corroborate</strong>. That
+    changes what wins. Volume of content matters less. Being unambiguously
+    machine-readable matters enormously.
+  </p>
+
+  <div class="callout">
+    <div class="label">Why this suits Deborah specifically</div>
+    <p>
+      Deborah is not going to write blogs, and this plan does not ask her to.
+      Almost everything that drives AI visibility is <strong>configuration, not
+      composition</strong> — structured data, crawler permissions, entity
+      consistency and a handful of evergreen pages built once. It is a fixed
+      amount of work, not a treadmill.
+    </p>
+  </div>
+
+  <h3>What the engines already have to work with</h3>
+  <p>
+    Her credibility is unusually strong for a single agent. These are the facts an
+    answer engine would quote — if it could read them.
+  </p>
+
+  <div class="stat-row">
+    <div class="stat"><div class="n">$145M+</div><div class="l">Closed since 2013</div></div>
+    <div class="stat"><div class="n">13</div><div class="l">Years with RE/MAX</div></div>
+    <div class="stat"><div class="n">32</div><div class="l">Transactions in 2025</div></div>
+    <div class="stat"><div class="n">100+</div><div class="l">Five-star reviews</div></div>
+  </div>
+
+  <div class="callout" style="border-left-color:var(--navy)">
+    <div class="label">The finding that starts this whole plan</div>
+    <p>
+      Her RE/MAX and RealTrends recognition are published on the site as
+      <strong>image files</strong> — <span class="mono">remax-819x1024.jpg</span> and
+      <span class="mono">realtrends-819x1024.jpg</span> — with <strong>empty alt
+      attributes</strong>. Every proof point she has earned is currently locked
+      inside a JPEG. To an AI crawler, that recognition does not exist.
+    </p>
+    <p style="margin-top:6pt">
+      Nothing else in this document delivers more for less effort than moving those
+      facts into text and structured data.
+    </p>
+  </div>
+
+  <div class="foot"><span>Deborah Mara · AI Search Visibility Strategy</span><span>2</span></div>
+</section>
+
+<!-- ============ PAGE 3 — PILLAR 1 & 2 ============ -->
+<section class="page">
+  <p class="kicker">Pillar one</p>
+  <h2>Let the AI crawlers in — explicitly.</h2>
+  <div class="section-rule"></div>
+
+  <p>
+    The site's <span class="mono">robots.txt</span> today contains a bare
+    <span class="mono">Disallow:</span> under a single wildcard rule. That is
+    permissive by accident rather than by decision, and it names none of the agents
+    that actually matter now. Make the invitation explicit, and audit it later.
+  </p>
+
+  <p>
+    The three OpenAI agents do different jobs and all three are worth allowing:
+    <span class="mono">GPTBot</span> gathers training data,
+    <span class="mono">OAI-SearchBot</span> builds the search index that ChatGPT
+    cites, and <span class="mono">ChatGPT-User</span> fetches a page live when a
+    user's question needs it. Blocking the second two removes her from citations.
+  </p>
+
+<pre><span class="c"># Answer engines — allow</span>
+<span class="k">User-agent:</span> GPTBot
+<span class="k">User-agent:</span> OAI-SearchBot
+<span class="k">User-agent:</span> ChatGPT-User
+<span class="k">User-agent:</span> PerplexityBot
+<span class="k">User-agent:</span> Perplexity-User
+<span class="k">User-agent:</span> ClaudeBot
+<span class="k">User-agent:</span> Claude-SearchBot
+<span class="k">User-agent:</span> Claude-User
+<span class="k">User-agent:</span> Google-Extended
+<span class="k">User-agent:</span> Applebot-Extended
+<span class="k">User-agent:</span> meta-externalagent
+<span class="k">Allow:</span> /
+
+<span class="c"># Everything else</span>
+<span class="k">User-agent:</span> *
+<span class="k">Allow:</span> /
+
+<span class="k">Sitemap:</span> https://[her-domain]/sitemap_index.xml</pre>
+
+  <div class="callout">
+    <div class="label">Do this before launch, not after</div>
+    <p>
+      The staging site is currently <span class="mono">index, follow</span> with a
+      live sitemap and a page title of <strong>"Home - WordPress Blog"</strong>.
+      Crawlers may already be indexing an unfinished site under a default name.
+      Either <span class="mono">noindex</span> it until launch, or finish the basics
+      now. Both are settings changes, not development.
+    </p>
+  </div>
+
+  <p class="kicker" style="margin-top:22pt">Pillar two</p>
+  <h2>Publish an <span class="mono" style="font-size:15pt">llms.txt</span>.</h2>
+  <div class="section-rule"></div>
+
+  <p>
+    An emerging convention: a single plain-language file at
+    <span class="mono">/llms.txt</span> that tells a language model what this site is
+    and what matters on it, without making it infer from navigation. It costs one
+    file. Adoption is still uneven, so treat it as cheap upside rather than a
+    guarantee.
+  </p>
+
+<pre><span class="c"># Deborah Mara — RE/MAX Homeland REALTORS</span>
+
+&gt; Real estate agent serving Monmouth, Ocean and Mercer
+&gt; counties, New Jersey. 13 years with RE/MAX, $145M+ in
+&gt; closed transactions since 2013, 32 transactions in 2025,
+&gt; 100+ five-star client reviews. Specialises in active adult
+&gt; and 55+ communities in central New Jersey.
+
+<span class="c">## Key pages</span>
+- [Selling in central NJ](/selling): timing, pricing, what to expect
+- [What your home is worth](/home-value): how NJ valuation works
+- [55+ communities](/active-adult): comparison of age-restricted communities
+- [Choosing an agent](/choosing-an-agent): questions to ask before signing
+
+<span class="c">## Contact</span>
+- Phone: 917.747.5055
+- Email: marasurrealestate@gmail.com</pre>
+
+  <div class="foot"><span>Deborah Mara · AI Search Visibility Strategy</span><span>3</span></div>
+</section>
+
+<!-- ============ PAGE 4 — SCHEMA ============ -->
+<section class="page">
+  <p class="kicker">Pillar three · highest impact</p>
+  <h2>Structured data — say it in a language machines cannot misread.</h2>
+  <div class="section-rule"></div>
+
+  <p>
+    Schema.org JSON-LD is how a machine learns, without guessing, that Deborah is a
+    real estate agent, at a named brokerage, serving three specific counties, with a
+    verifiable track record. This is the single highest-leverage item in the plan and
+    it is pure configuration.
+  </p>
+
+<pre>{
+  <span class="k">"@context"</span>: "https://schema.org",
+  <span class="k">"@type"</span>: "RealEstateAgent",
+  <span class="k">"name"</span>: "Deborah Mara",
+  <span class="k">"telephone"</span>: "+1-917-747-5055",
+  <span class="k">"email"</span>: "marasurrealestate@gmail.com",
+  <span class="k">"url"</span>: "https://[her-domain]/",
+  <span class="k">"image"</span>: "https://[her-domain]/deborah-mara.jpg",
+  <span class="k">"areaServed"</span>: [
+    {"@type":"AdministrativeArea","name":"Monmouth County, NJ"},
+    {"@type":"AdministrativeArea","name":"Ocean County, NJ"},
+    {"@type":"AdministrativeArea","name":"Mercer County, NJ"}
+  ],
+  <span class="k">"worksFor"</span>: {
+    "@type":"Organization",
+    "name":"RE/MAX Homeland REALTORS"
+  },
+  <span class="k">"knowsAbout"</span>: [
+    "Active adult communities","55+ housing",
+    "Residential resale","Downsizing","Central New Jersey"
+  ],
+  <span class="k">"sameAs"</span>: [
+    "https://www.homes.com/real-estate-agents/deborah-mara/1g6qce5/",
+    "https://www.ratemyagent.com/real-estate-agent/deborah-mara-b073h2/",
+    "[Facebook]","[Instagram]","[LinkedIn]","[Google Business Profile]"
+  ]
+}</pre>
+
+  <div class="callout">
+    <div class="label">The sameAs array is doing the heavy lifting</div>
+    <p>
+      Answer engines resolve identity by <strong>corroboration</strong>. When the same
+      name, phone and brokerage appear consistently across her site, Google Business
+      Profile, homes.com, RateMyAgent and her social profiles, she becomes a
+      confidently-known entity rather than a string of text. That confidence is what
+      earns a citation.
+    </p>
+  </div>
+
+  <h3>Also add</h3>
+  <table>
+    <tr><th style="width:26%">Schema type</th><th>Where and why</th></tr>
+    <tr><td><span class="mono">FAQPage</span></td><td>On each answer page. The format answer engines most readily lift from — a question, then a direct answer.</td></tr>
+    <tr><td><span class="mono">Person</span></td><td>Deborah herself, linked to the RealEstateAgent entity via <span class="mono">worksFor</span> and <span class="mono">jobTitle</span>.</td></tr>
+    <tr><td><span class="mono">BreadcrumbList</span></td><td>Once real URLs exist. Gives crawlers site structure.</td></tr>
+    <tr><td><span class="mono">AggregateRating</span></td><td>Only if the 100+ five-star reviews can be tied to a real, verifiable review source. Never fabricate or self-assert a rating — it violates platform policy and is the fastest way to lose trust signals entirely.</td></tr>
+  </table>
+
+  <div class="foot"><span>Deborah Mara · AI Search Visibility Strategy</span><span>4</span></div>
+</section>
+
+<!-- ============ PAGE 5 — ENTITY + CONTENT ============ -->
+<section class="page">
+  <p class="kicker">Pillar four</p>
+  <h2>One identity, stated identically, everywhere.</h2>
+  <div class="section-rule"></div>
+
+  <p>
+    The cheapest win available, and it requires no writing at all. Name, phone,
+    brokerage and service area must match <em>character for character</em> across
+    every profile. A mismatch — "Deb" in one place, a different phone in another —
+    splits her into two weaker entities that neither engine fully trusts.
+  </p>
+
+  <table>
+    <tr><th style="width:34%">Property</th><th>Action</th></tr>
+    <tr><td>Google Business Profile</td><td>Verify categories, service area, hours, phone. This is the strongest local signal there is.</td></tr>
+    <tr><td>homes.com profile</td><td>Already the chosen listings source. Confirm bio, contact and brokerage match.</td></tr>
+    <tr><td>RE/MAX Homeland roster</td><td>Confirm the brokerage page lists her with the same details.</td></tr>
+    <tr><td>RateMyAgent</td><td>Live and already carrying reviews. Link it in <span class="mono">sameAs</span>.</td></tr>
+    <tr><td>Facebook / Instagram / LinkedIn</td><td>Same name format, same phone, link back to the owned site.</td></tr>
+    <tr><td><strong>soldbymara.com</strong></td><td>RE/MAX-owned, no publish access. Do not fight it — point the owned site at the same entity so both corroborate.</td></tr>
+  </table>
+
+  <p class="kicker" style="margin-top:20pt">Pillar five</p>
+  <h2>Four pages instead of a blog.</h2>
+  <div class="section-rule"></div>
+
+  <p>
+    Answer engines cite pages that <strong>answer a question completely</strong>.
+    They rarely cite a homepage. Deborah needs four evergreen pages, built once by
+    us, not a posting schedule she will not keep.
+  </p>
+
+  <table>
+    <tr><th style="width:32%">Page</th><th>The question it owns</th></tr>
+    <tr><td>Central NJ market reality</td><td>"Is now a good time to sell in Monmouth / Ocean / Mercer?"</td></tr>
+    <tr><td>What your home is worth</td><td>"How do I find out what my house is worth without a Zillow guess?"</td></tr>
+    <tr><td>55+ communities in central NJ</td><td>"What are the best active adult communities in central New Jersey?"</td></tr>
+    <tr><td>Choosing an agent in NJ</td><td>"How do I pick an agent, and what should I ask?"</td></tr>
+  </table>
+
+  <div class="callout">
+    <div class="label">These pages are load-bearing for the whole plan</div>
+    <p>
+      They are also exactly what ChatGPT Ads requires — its documented best practice
+      is an answer-first, research-stage landing page — and what Google Search needs
+      for quality score, and what Meta needs as a credible destination.
+      <strong>Build once, point four channels at it.</strong>
+    </p>
+  </div>
+
+  <h4>A structural blocker to fix first</h4>
+  <p>
+    The site is currently one page with anchor links — <span class="mono">#about</span>,
+    <span class="mono">#buysell</span>, <span class="mono">#listings</span>. An answer
+    engine cannot cite a fragment. Without distinct URLs there is nothing for it to
+    point at, and the four pages above cannot exist.
+  </p>
+
+  <div class="foot"><span>Deborah Mara · AI Search Visibility Strategy</span><span>5</span></div>
+</section>
+
+<!-- ============ PAGE 6 — TECH + MEASURE ============ -->
+<section class="page">
+  <p class="kicker">Pillar six</p>
+  <h2>Technical hygiene the crawlers actually check.</h2>
+  <div class="section-rule"></div>
+
+  <table>
+    <tr><th style="width:30%">Item</th><th>Status today</th></tr>
+    <tr><td>Server-rendered HTML</td><td><strong>Good.</strong> WordPress serves real HTML. Content is not hidden behind JavaScript, which is where most modern sites lose crawlers.</td></tr>
+    <tr><td>Site title</td><td><strong>Broken.</strong> <span class="mono">"WordPress Blog"</span> — one untouched field in Settings → General, which also poisons every social share preview.</td></tr>
+    <tr><td>Heading hierarchy</td><td><strong>Broken.</strong> No <span class="mono">&lt;h1&gt;</span> anywhere; headings start at <span class="mono">h2</span>.</td></tr>
+    <tr><td>Image alt text</td><td><strong>Broken.</strong> Empty on every image, including both award badges.</td></tr>
+    <tr><td>Meta description</td><td><strong>Missing.</strong> Yoast is installed and can set it.</td></tr>
+    <tr><td>Internal links</td><td><strong>Broken.</strong> 19 of 32 links resolve to <span class="mono">#</span> or nothing.</td></tr>
+    <tr><td>Sitemap</td><td>Live, but publishing author and category sitemaps for content that does not exist.</td></tr>
+  </table>
+
+  <p class="kicker" style="margin-top:20pt">Measurement</p>
+  <h2>How we will know it is working.</h2>
+  <div class="section-rule"></div>
+
+  <p>
+    AI visibility is harder to measure than rankings, so measure it three ways and
+    do not pretend any one of them is complete.
+  </p>
+
+  <ol>
+    <li><strong>Referral traffic in GA4.</strong> Segment referrers for
+      <span class="mono">chatgpt.com</span>, <span class="mono">perplexity.ai</span>,
+      <span class="mono">claude.ai</span> and Gemini. Small numbers, high intent.</li>
+    <li><strong>Crawler hits in server logs.</strong> Confirm GPTBot, OAI-SearchBot,
+      PerplexityBot and ClaudeBot are actually fetching pages. This is the earliest
+      signal that the configuration took.</li>
+    <li><strong>Prompt testing, monthly.</strong> Ask the engines directly — "best
+      realtor in Monmouth County NJ", "who should I talk to about selling a 55+ home
+      in central New Jersey" — and record whether she is named. Manual, imperfect,
+      and the only true measure of the outcome we are buying.</li>
+  </ol>
+
+  <div class="callout">
+    <div class="label">Set expectations honestly</div>
+    <p>
+      Answer engines re-crawl and re-index on their own schedules. Structured data
+      and crawler permissions can take <strong>weeks</strong> to surface, and no
+      agency can guarantee a citation. What we control is making her the most
+      machine-legible, best-corroborated agent in her three counties — which is what
+      moves the odds.
+    </p>
+  </div>
+
+  <div class="foot"><span>Deborah Mara · AI Search Visibility Strategy</span><span>6</span></div>
+</section>
+
+<!-- ============ PAGE 7 — PRIORITY ============ -->
+<section class="page">
+  <p class="kicker">Sequence</p>
+  <h2>What to do, in what order.</h2>
+  <div class="section-rule"></div>
+
+  <p class="lede">
+    Ordered by return on effort. The first four items are settings changes and can be
+    done the day we have site access.
+  </p>
+
+  <table>
+    <tr><th style="width:8%">#</th><th style="width:46%">Action</th><th style="width:16%">Effort</th><th>Priority</th></tr>
+    <tr><td>1</td><td>Fix the site title and meta description in Settings → General and Yoast</td><td>5 minutes</td><td><span class="pri pri-1">Critical</span></td></tr>
+    <tr><td>2</td><td>Move award and credibility facts out of JPEGs into real text, and add alt text</td><td>1 hour</td><td><span class="pri pri-1">Critical</span></td></tr>
+    <tr><td>3</td><td>Add the <span class="mono">RealEstateAgent</span> + <span class="mono">Person</span> JSON-LD with full <span class="mono">sameAs</span></td><td>2 hours</td><td><span class="pri pri-1">Critical</span></td></tr>
+    <tr><td>4</td><td>Publish the explicit <span class="mono">robots.txt</span> and <span class="mono">llms.txt</span></td><td>30 minutes</td><td><span class="pri pri-1">Critical</span></td></tr>
+    <tr><td>5</td><td>Add a lead form and tappable phone — nothing converts without it</td><td>1 hour</td><td><span class="pri pri-1">Critical</span></td></tr>
+    <tr><td>6</td><td>Audit NAP consistency across GBP, homes.com, RE/MAX, RateMyAgent, socials</td><td>2 hours</td><td><span class="pri pri-2">High</span></td></tr>
+    <tr><td>7</td><td>Build the four answer pages on real URLs with <span class="mono">FAQPage</span> schema</td><td>1 week</td><td><span class="pri pri-2">High</span></td></tr>
+    <tr><td>8</td><td>Replace the Paris stock photo and the placeholder listings</td><td>2 hours</td><td><span class="pri pri-2">High</span></td></tr>
+    <tr><td>9</td><td>Fix the 19 dead links and promote the headline to <span class="mono">h1</span></td><td>1 hour</td><td><span class="pri pri-3">Medium</span></td></tr>
+    <tr><td>10</td><td>Stand up AI referral tracking and the monthly prompt test</td><td>2 hours</td><td><span class="pri pri-3">Medium</span></td></tr>
+  </table>
+
+  <h3>What we need from Deborah's side</h3>
+  <p>
+    Only one thing blocks all of it: <strong>administrator access to the
+    WordPress site</strong>. Application passwords are already enabled, so adding
+    <span class="mono">dillonmohr8777@gmail.com</span> as an administrator takes one
+    click from whoever holds access today, and can be revoked just as easily.
+  </p>
+
+  <div class="callout" style="border-left-color:var(--navy)">
+    <div class="label">One constraint that governs every page and ad</div>
+    <p>
+      US real estate advertising falls under the <strong>Fair Housing Act</strong>.
+      Copy must never suggest a preference or steer by race, colour, religion, sex,
+      familial status, national origin or disability. The 55+ material is lawful
+      under the Housing for Older Persons exception, but only when it refers to
+      genuinely age-restricted communities. Her broker at RE/MAX Homeland REALTORS
+      should review the pages before they go live.
+    </p>
+  </div>
+
+  <p style="margin-top:18pt;font-size:8.5pt;color:var(--slate);border-top:.5pt solid var(--rule);padding-top:8pt">
+    Findings in this document were read from the live staging site on 9 September 2026.
+    Crawler names and the <span class="mono">llms.txt</span> convention reflect current
+    published practice and should be re-verified at implementation, since the agents and
+    conventions are still changing.
+  </p>
+
+  <div class="foot"><span>Deborah Mara · AI Search Visibility Strategy · Momentum 360</span><span>7</span></div>
+</section>
+
+</body>
+</html>
