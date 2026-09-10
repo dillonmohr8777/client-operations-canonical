@@ -74,3 +74,61 @@ Neither exists in the current stack.
 Ad accounts are read-only unless Dillon asks for a specific change. Never pause,
 enable, or alter a budget or campaign without an explicit instruction naming the
 account and the change.
+
+---
+
+## End-to-end API path, traced 2026-09-09
+
+Traced through the Google Ads UI and Google Cloud console in persistent Chrome as
+`dillonmohr8777@gmail.com`. This supersedes the developer-token assumptions above.
+
+### 1. Google no longer gates on developer tokens
+
+The API Center for `703-867-3437` now carries this notice verbatim:
+
+> Google Ads API access has changed. Developer tokens are no longer required for
+> using the Google Ads API. API access levels are now managed exclusively in the
+> Google Cloud Console. The levels displayed on this page may no longer be
+> accurate and cannot be upgraded from this page.
+
+So "apply for Basic access from the API Center" is **obsolete advice**. Do not
+plan around it.
+
+### 2. What already exists
+
+- A developer token is present on the MCC, masked behind a **View token** control.
+  It was deliberately **not viewed, copied or recorded**. It is no longer the gate
+  in any case.
+- Access level still displays **Test Account**, which under the old model meant
+  production accounts return permission errors. The page itself warns this display
+  "may no longer be accurate".
+- Developer details are already complete: API contact `dillonmohr8777@gmail.com`,
+  company **Dillon Mohr Hermes Agency**, URL `momentumvirtualtours.com`, type
+  **Agency/SEM**, principal place of business United States, intended use recorded
+  as internal marketing operations and client reporting automation.
+
+### 3. The actual blocker
+
+In Google Cloud project **`momentum-360-489301`** (display name "Momentum 360"),
+the **Google Ads API is not enabled**. The API library page renders an **Enable**
+button rather than a management panel.
+
+Nothing downstream can work until that is enabled, regardless of tokens, MCC
+choice or connector.
+
+### 4. Creating a new manager account would not help
+
+A new MCC changes none of the above. The Composio connector still exposes no
+`login-customer-id` parameter, and the Cloud project still would not have the API
+enabled. **Do not create a new MCC to solve API access.**
+
+### 5. Order of operations if API access is wanted
+
+1. Decide whether `momentum-360-489301` is the right project. It is a Momentum
+   project, so enabling an API there may be Momentum's decision rather than
+   Dillon's. A personal Cloud project is the cleaner alternative.
+2. Enable the Google Ads API on the chosen project.
+3. Create an OAuth client and generate a refresh token for `dillonmohr8777@gmail.com`.
+4. Build a direct API client that sets `login-customer-id: 7038673437` on every
+   call. No connector in the current stack sets that header.
+5. Until then, persistent Chrome remains the working surface, as it has been.
