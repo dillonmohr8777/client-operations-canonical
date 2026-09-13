@@ -1,0 +1,734 @@
+/* ==========================================================================
+   Need Momentum — MOTION build · skin layer
+   tokens.css holds the palette, type scale, surfaces and motion tokens.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   The ambient field sits ABOVE the sections. A field underneath opaque
+   sections would simply be invisible, so it rides on top at low alpha and is
+   kept off running text by the occupancy grid in script.js. Inert in every
+   sense: no pointer events, aria-hidden, and it never scrolls with content.
+   -------------------------------------------------------------------------- */
+.nm-field {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  display: block;
+  max-width: 100%;
+}
+/* If the field never initialises (Save-Data, reduced motion, low-end) there is
+   nothing to see — no grey box, no empty frame. */
+.nm-field:not([style]) {
+  display: none;
+}
+
+/* Assembly canvases. `display:block; max-width:100%` plus the explicit style
+   width/height set in JS is what stops the old right-edge clipping. */
+.nm-cv {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  pointer-events: none;
+  z-index: 3;
+  display: block;
+  max-width: 100%;
+}
+
+/* --- topbar -------------------------------------------------------------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.9rem var(--gutter);
+  background: color-mix(in oklab, var(--navy) 88%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  backdrop-filter: blur(14px) saturate(1.3);
+  border-bottom: 1px solid var(--navy-line);
+}
+.lockup img {
+  width: clamp(126px, 12vw, 158px);
+  height: auto;
+}
+.topbar__nav {
+  display: none;
+  gap: 1.5rem;
+  margin-inline: auto;
+}
+.topbar__nav a {
+  position: relative;
+  font-size: var(--t-small);
+  font-weight: 600;
+  color: var(--on-navy);
+  text-decoration: none;
+  padding-block: 0.4rem;
+}
+.topbar__nav a::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--yellow);
+  scale: 0 1;
+  transform-origin: left;
+  transition: scale var(--d-ui) var(--ease);
+}
+.topbar__nav a:hover::after,
+.topbar__nav a:focus-visible::after {
+  scale: 1 1;
+}
+.topbar__act {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-left: auto;
+}
+.mt {
+  display: none;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 48px;
+  padding: 0 0.9rem;
+  background: transparent;
+  border: 1px solid var(--navy-line);
+  border-radius: var(--r-pill);
+  color: var(--on-navy);
+  font: inherit;
+  font-size: var(--t-mono);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.mt__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--yellow);
+}
+.mt[aria-pressed="false"] .mt__dot {
+  background: var(--muted-navy);
+}
+.menub {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  border: 1px solid var(--navy-line);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  /* Buttons default to a 13.33px UA font. Inheriting keeps every control on the
+     page's own scale instead of the browser's. */
+  font: inherit;
+}
+.menub span {
+  width: 20px;
+  height: 10px;
+  border-top: 2px solid var(--on-navy);
+  border-bottom: 2px solid var(--on-navy);
+}
+.mobile-nav {
+  position: relative;
+  z-index: 90;
+  display: grid;
+  gap: 0.2rem;
+  padding: 1rem var(--gutter) 1.5rem;
+  background: var(--navy);
+  border-bottom: 1px solid var(--navy-line);
+}
+.mobile-nav[hidden] {
+  display: none;
+}
+.mobile-nav a:not(.btn) {
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--navy-line);
+  font-size: var(--t-body);
+  font-weight: 700;
+  text-decoration: none;
+}
+.mobile-nav .btn {
+  margin-top: 0.9rem;
+  justify-self: start;
+}
+@media (min-width: 62rem) {
+  .topbar__nav,
+  .mt {
+    display: flex;
+  }
+  .menub,
+  .mobile-nav {
+    display: none !important;
+  }
+}
+
+/* --- shared bits --------------------------------------------------------- */
+.lede {
+  font-size: var(--t-lede);
+  margin-top: 1.4rem;
+  max-width: 34ch;
+}
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.9rem;
+}
+.addr {
+  font-style: normal;
+  margin-top: 1.4rem;
+  line-height: 1.9;
+  font-size: var(--t-body);
+}
+.addr a {
+  color: inherit;
+  font-weight: 700;
+}
+.endorse {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.2rem;
+  max-width: none;
+}
+.endorse img {
+  height: 30px;
+  width: auto;
+}
+.endorse span {
+  font-size: var(--t-mono);
+  font-weight: 700;
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--navy-line);
+}
+
+/* --- 1 · hero ------------------------------------------------------------ */
+.hero {
+  padding-block: clamp(2.5rem, 6vw, 5rem) var(--section-y);
+  position: relative;
+  isolation: isolate;
+}
+.hero::after {
+  /* one soft cobalt bloom — no streak, no line */
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset-inline-end: -14%;
+  top: -6%;
+  width: min(52rem, 100%);
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgb(47 130 255 / 0.16), transparent 62%);
+  pointer-events: none;
+}
+.hero__grid {
+  display: grid;
+}
+.hero__copy {
+  /* Measured, not guessed: "Need Momentum?" in Unbounded 700 at the 5.5rem
+     clamp ceiling is 977px. The column has to clear that or the "?" orphans
+     onto a third line. 68rem = 1088px, inside the 1240px shell. */
+  max-width: 68rem;
+}
+/* The particle stage is sized in % so it can never exceed its column, which is
+   the other half of the clipping fix. */
+.assemble {
+  position: relative;
+  display: block;
+  width: min(88%, 380px);
+  margin-bottom: clamp(1.5rem, 3vw, 2.4rem);
+}
+.assemble img {
+  width: 100%;
+  height: auto;
+  transition: opacity 0.26s ease-out;
+}
+.cred {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  margin-top: 2.4rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--navy-line);
+}
+.cred img {
+  height: 46px;
+  width: auto;
+}
+.cred__cap {
+  flex: 1 1 16rem;
+  font-size: var(--t-small);
+  font-weight: 600;
+  margin: 0;
+  max-width: none;
+}
+
+/* --- 2 · system --------------------------------------------------------- */
+/* This is the section that used to run off the right edge. It is now a normal
+   wrapping heading with a hard measure — there is no horizontal track to clip. */
+.sys__lines {
+  max-width: 22ch;
+}
+.sys__lines span {
+  display: block;
+}
+.sys__lines .hl {
+  color: var(--blue-deep);
+}
+.sys__lines .hl2 {
+  color: var(--yellow-deep);
+}
+.sys__kick {
+  margin-top: 2rem;
+  font-family: var(--body);
+  font-size: var(--t-mono);
+  font-weight: 800;
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--muted-paper);
+  max-width: none;
+}
+
+/* --- 3 · services deck -------------------------------------------------- */
+.deck__head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.deck__ctrl {
+  display: flex;
+  gap: 0.6rem;
+}
+.deck__btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid var(--muted-navy);
+  color: var(--on-navy);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: border-color var(--d-ui) var(--ease), background var(--d-ui) var(--ease);
+}
+.deck__btn:hover {
+  border-color: var(--yellow);
+  background: rgb(255 199 44 / 0.12);
+}
+.deck {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(82vw, 23rem);
+  gap: 1.25rem;
+  list-style: none;
+  padding: 2rem 0.4rem;
+  margin: 0 0 1rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain; /* stops the iOS back-swipe at the end */
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.deck::-webkit-scrollbar {
+  display: none;
+}
+.card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 2rem 1.75rem 1.75rem;
+  min-height: 21rem;
+  border-radius: var(--r-md);
+  background: rgb(255 255 255 / 0.045);
+  border: 1px solid var(--navy-line);
+  scroll-snap-align: center;
+  transition: border-color var(--d-ui) var(--ease), background var(--d-ui) var(--ease);
+}
+.card:hover,
+.card:focus-within {
+  border-color: rgb(255 199 44 / 0.5);
+  background: rgb(255 255 255 / 0.07);
+}
+/* The numeral is structure, not content: big, behind the text, low alpha, so it
+   anchors the card without competing with the title. */
+.card__no {
+  position: absolute;
+  z-index: -1;
+  top: -0.12em;
+  right: 0.4rem;
+  font-family: var(--display);
+  font-size: var(--t-numeral);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+  padding-bottom: 0.08em; /* the 0 overshoots a tight line box at this size */
+  color: rgb(47 130 255 / 0.2);
+  user-select: none;
+}
+.card__over {
+  font-size: var(--t-mono);
+  font-weight: 800;
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--yellow);
+  max-width: none;
+}
+.card h3 {
+  margin-bottom: 0.35rem;
+}
+.card > p:not(.card__over) {
+  color: var(--on-navy);
+}
+.card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: 1.1rem;
+  min-height: 44px;
+  font-weight: 700;
+  color: var(--yellow);
+  text-decoration: none;
+}
+.card__cta span {
+  transition: translate var(--d-ui) var(--ease);
+}
+.card__cta:hover span {
+  translate: 5px 0;
+}
+.deck__bar {
+  height: 3px;
+  background: rgb(255 255 255 / 0.1);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+.deck__bar span {
+  display: block;
+  height: 100%;
+  width: 17%;
+  background: var(--yellow);
+  transition: width var(--d-snap) linear;
+}
+
+/* --- 4 · credibility strip ---------------------------------------------- */
+.cred-strip__in {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+@media (min-width: 60rem) {
+  .cred-strip__in {
+    grid-template-columns: 1fr 1.15fr;
+  }
+}
+.cred-strip__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.6rem 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+@media (min-width: 48rem) {
+  .cred-strip__list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.cred-strip__list li {
+  min-width: 0;
+}
+.cred-strip__list strong {
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 3.2vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.cred-strip__list span {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: var(--t-small);
+  font-weight: 700;
+  color: var(--muted-paper);
+}
+
+/* --- 5 · work ----------------------------------------------------------- */
+.work__grid {
+  display: grid;
+  gap: 1.25rem;
+  list-style: none;
+  padding: 0;
+  margin: 2.5rem 0 0;
+}
+@media (min-width: 40rem) {
+  .work__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 64rem) {
+  .work__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.work__grid li {
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--paper-line);
+}
+.work__grid img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  transition: scale var(--d-gentle) var(--ease);
+}
+.work__grid li:hover img {
+  scale: 1.03;
+}
+.work__grid h3 {
+  margin: 0;
+  padding: 1.1rem 1.35rem 1.3rem;
+  font-size: var(--t-h3);
+}
+
+/* --- 6 · momentum 360 --------------------------------------------------- */
+.m360__grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+@media (min-width: 64rem) {
+  .m360__grid {
+    grid-template-columns: 1fr 1.05fr;
+  }
+}
+.m360__shot {
+  margin: 0;
+}
+.m360__shot img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-lg);
+}
+.m360__shot figcaption {
+  margin-top: 0.9rem;
+  font-size: var(--t-small);
+}
+
+/* --- 7 · founders ------------------------------------------------------- */
+.fnd {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: start;
+  margin-top: clamp(2.5rem, 6vw, 4.5rem);
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+  border-top: 1px solid var(--paper-line);
+}
+@media (min-width: 60rem) {
+  .fnd {
+    grid-template-columns: 0.72fr 1.28fr;
+  }
+  .fnd--flip .fnd__pic {
+    order: 2;
+  }
+}
+.fnd__pic {
+  margin: 0;
+}
+.fnd__pic img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-md);
+}
+.fnd__body h3 {
+  font-family: var(--display);
+  font-size: clamp(1.875rem, 3vw, 2.5rem);
+  letter-spacing: -0.03em;
+}
+.fnd__role {
+  margin-top: 0.35rem;
+  font-size: var(--t-mono);
+  font-weight: 800;
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--blue-deep);
+  max-width: none;
+}
+/* The bios read big, per the brief. The lead line is the one that assembles. */
+.fnd__lead {
+  position: relative;
+  margin-top: 1.6rem;
+  font-family: var(--sans);
+  font-size: clamp(1.375rem, 1.6vw + 1rem, 1.875rem);
+  font-weight: 600;
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  max-width: 30ch;
+}
+.fnd__p {
+  margin-top: 1.15rem;
+  font-size: var(--t-bio);
+  line-height: 1.62;
+  max-width: 62ch;
+}
+
+/* --- 8 · decision ------------------------------------------------------- */
+.dec__grid {
+  display: grid;
+  gap: 1.25rem;
+  list-style: none;
+  padding: 0;
+  margin: 2.5rem 0 0;
+  counter-reset: none;
+}
+@media (min-width: 52rem) {
+  .dec__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.dec__grid li {
+  padding: 1.9rem 1.7rem;
+  border-radius: var(--r-md);
+  background: rgb(255 255 255 / 0.045);
+  border: 1px solid var(--navy-line);
+}
+.dec__grid b {
+  font-family: var(--display);
+  font-size: 2rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--yellow);
+}
+.dec__grid h3 {
+  margin: 0.6rem 0 0.4rem;
+}
+.dec__grid p {
+  color: var(--on-navy);
+}
+
+/* --- 9 · audit ---------------------------------------------------------- */
+.audit__grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+}
+@media (min-width: 64rem) {
+  .audit__grid {
+    grid-template-columns: 1fr 1.05fr;
+  }
+}
+.form {
+  display: grid;
+  gap: 1rem;
+}
+.form label {
+  display: grid;
+  gap: 0.4rem;
+  font-size: var(--t-mono);
+  font-weight: 800;
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--on-yellow);
+}
+.form input,
+.form textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 0.8rem 1rem;
+  background: rgb(255 255 255 / 0.6);
+  border: 2px solid rgb(2 7 17 / 0.24);
+  border-radius: var(--r-sm);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--t-body);
+}
+.form input:focus-visible,
+.form textarea:focus-visible {
+  background: #fff;
+  border-color: var(--navy);
+  outline-color: var(--navy);
+}
+.form button {
+  justify-self: start;
+}
+.form__status:empty {
+  display: none;
+}
+.form__status {
+  font-size: var(--t-mono);
+  font-weight: 800;
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+}
+.hp {
+  position: absolute;
+  left: -9999px;
+}
+
+/* --- footer ------------------------------------------------------------- */
+.foot {
+  padding: var(--section-y) var(--gutter) 2rem;
+  border-top: 1px solid var(--navy-line);
+  position: relative;
+}
+.foot__grid {
+  display: grid;
+  gap: 2.5rem;
+}
+@media (min-width: 48rem) {
+  .foot__grid {
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  }
+}
+.foot img {
+  width: 170px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+.foot h2 {
+  font-family: var(--body);
+  font-size: var(--t-mono);
+  font-weight: 800;
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 1rem;
+  padding-bottom: 0;
+}
+.foot nav {
+  display: grid;
+  gap: 0.65rem;
+  align-content: start;
+}
+.foot nav a {
+  font-size: var(--t-small);
+  text-decoration: none;
+  color: var(--on-navy);
+}
+.foot nav a:hover {
+  color: var(--yellow);
+}
+.foot__legal {
+  width: 100%;
+  margin: 3rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--navy-line);
+  font-size: var(--t-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  max-width: none;
+}

@@ -1,0 +1,666 @@
+<!doctype html>
+<!--
+  DESIGN A — "Puts You On the Map"
+  Momentum · needmomentum.com homepage concept
+
+  THESIS: Momentum is the agency; being findable is the product. The globe is
+  the argument, not decoration.
+  WORLD: The existing earth/globe design, kept intact — near-black navy canvas,
+  Poppins + Source Serif 4 italic, an SVG wireframe globe, terminal-grade HUD
+  labels, gold pill CTAs, liquid glass panels.
+  WHAT CHANGED: Momentum is now the brand and Momentum 360 is a service with a
+  heritage moment that keeps its awards. Copy is cut roughly in half — every
+  section is visual-first and capped at 55 words of body copy.
+  NO CDN: the house _headers set script-src 'self', so all motion is
+  hand-rolled. Fonts are the only third-party origin.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#050810" />
+    <title>Momentum | Philadelphia Digital Marketing & 360 Virtual Tours Agency</title>
+    <meta
+      name="description"
+      content="Momentum is a Philadelphia agency that makes businesses findable: 360 virtual tours, photography, video, web, Google Ads, Google Business Profile and social. All 50 states, 10 countries."
+    />
+    <link rel="canonical" href="https://www.needmomentum.com/" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="../shared/assets/brand/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@600;700;800&family=Source+Serif+4:ital,wght@1,400&display=swap"
+    />
+    <link rel="stylesheet" href="../shared/tokens.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preload" as="image" href="../shared/assets/img/founders-duo-studio-720.avif" type="image/avif" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": "https://www.needmomentum.com/#organization",
+        "name": "Momentum",
+        "alternateName": ["Need Momentum", "Momentum Digital", "Momentum 360"],
+        "url": "https://www.needmomentum.com/",
+        "logo": "https://www.needmomentum.com/wp-content/uploads/2018/09/needmomentum_logo_blue.png",
+        "telephone": "+1-215-876-2954",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1635 Market Street #1601",
+          "addressLocality": "Philadelphia",
+          "addressRegion": "PA",
+          "postalCode": "19103",
+          "addressCountry": "US"
+        },
+        "founder": [
+          { "@type": "Person", "name": "Mac Frederick", "jobTitle": "Founder & CEO" },
+          { "@type": "Person", "name": "Sean Boyle", "jobTitle": "Partner" }
+        ],
+        "areaServed": [
+          { "@type": "Country", "name": "United States" },
+          { "@type": "City", "name": "Philadelphia" }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "360 Virtual Tours", "provider": { "@type": "Organization", "name": "Momentum 360" } } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial Photography" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "HD Videography" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Design & Development" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Ads Management" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Business Profile Management" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Media Management" } }
+          ]
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!-- §0 boot overlay: brands the first ~1.9s and sets the HUD vocabulary -->
+    <div class="boot" id="boot" aria-hidden="true">
+      <div class="boot__inner">
+        <img class="boot__mark" src="../shared/assets/brand/momentum-mark-paper.svg" alt="" width="96" height="95" />
+        <div class="boot__rail" role="progressbar" aria-label="Loading" aria-valuemin="0" aria-valuemax="100">
+          <span class="boot__fill"></span>
+        </div>
+        <p class="boot__status" id="bootStatus">INITIALISING SPATIAL LINK…</p>
+      </div>
+    </div>
+
+    <header class="nav-shell" id="top">
+      <div class="nav">
+        <a class="lockup" href="#top" aria-label="Momentum home">
+          <img src="../shared/assets/brand/momentum-lockup-paper.svg" alt="Momentum" width="176" height="34" />
+        </a>
+
+        <nav class="nav__links" aria-label="Primary">
+          <a href="#services">Services</a>
+          <a href="#tours">360 Tours</a>
+          <a href="#work">Work</a>
+          <a href="#coverage">Coverage</a>
+          <a href="#founders">About</a>
+        </nav>
+
+        <div class="nav__actions">
+          <button class="motion-toggle" id="motionToggle" type="button" aria-pressed="true">
+            <span class="motion-toggle__dot" aria-hidden="true"></span>
+            <span class="motion-toggle__label">Motion on</span>
+          </button>
+          <a class="btn btn--gold nav__cta" href="#plan">Get a free plan</a>
+          <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav">
+            <span aria-hidden="true"></span>
+            <b class="sr-only">Open menu</b>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-nav" id="mobileNav" hidden>
+        <a href="#services">Services</a>
+        <a href="#tours">360 Tours</a>
+        <a href="#work">Work</a>
+        <a href="#coverage">Coverage</a>
+        <a href="#founders">About</a>
+        <a href="#team">Team</a>
+        <a class="btn btn--gold" href="#plan">Get a free plan</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- §2 HERO ---------------------------------------------------------- -->
+      <section class="hero" id="hero" aria-labelledby="heroTitle">
+        <div class="hero__plate" aria-hidden="true">
+          <picture>
+            <source
+              type="image/avif"
+              srcset="../shared/assets/img/founders-lobby-conversation-960.avif 960w, ../shared/assets/img/founders-lobby-conversation-1280.avif 1280w"
+              sizes="100vw"
+            />
+            <img src="../shared/assets/img/founders-lobby-conversation-1280.webp" alt="" width="1280" height="720" />
+          </picture>
+        </div>
+
+        <div class="shell hero__grid">
+          <div class="hero__copy">
+            <p class="eyebrow">Philadelphia · All 50 states · 10 countries</p>
+            <h1 class="hero__h1" id="heroTitle">
+              <span class="hero__h1a">Momentum</span>
+              <span class="hero__h1b">Puts You On the&nbsp;Map</span>
+            </h1>
+            <p class="hero__sub">
+              One agency. Seven services. Every one of them decides whether people find you.
+            </p>
+
+            <ul class="chips" aria-label="Services">
+              <li><a href="#tours">360 Tours</a></li>
+              <li><a href="#services">Photography</a></li>
+              <li><a href="#services">Video</a></li>
+              <li><a href="#services">Web</a></li>
+              <li><a href="#services">Google Ads</a></li>
+              <li><a href="#services">Google Business Profile</a></li>
+              <li><a href="#services">Social</a></li>
+            </ul>
+
+            <div class="hero__cta">
+              <a class="btn btn--gold" href="#plan">Get a free plan</a>
+              <a class="btn btn--glass" href="#work">See the work</a>
+              <a class="hero__link" href="#reel">Watch the reel <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+
+          <!-- The globe: inline SVG wireframe, mouse-parallaxed in three depth
+               planes. Carried over from the existing design. -->
+          <div class="globe" id="globe">
+            <div class="globe__scan" aria-hidden="true"></div>
+            <svg class="globe__svg" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="gBlue" x1="0" y1="0" x2="200" y2="200">
+                  <stop offset="0%" stop-color="#0054A8" />
+                  <stop offset="50%" stop-color="#2A80C2" />
+                  <stop offset="100%" stop-color="#00224E" />
+                </linearGradient>
+                <linearGradient id="gGold" x1="0" y1="0" x2="200" y2="200">
+                  <stop offset="0%" stop-color="#F1B31E" />
+                  <stop offset="100%" stop-color="#A9760A" />
+                </linearGradient>
+                <radialGradient id="gGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(42,128,194,0.28)" />
+                  <stop offset="100%" stop-color="transparent" />
+                </radialGradient>
+                <filter id="fBlue" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="4" result="b" />
+                  <feComposite in="SourceGraphic" in2="b" operator="over" />
+                </filter>
+                <filter id="fGold" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="3" result="b" />
+                  <feComposite in="SourceGraphic" in2="b" operator="over" />
+                </filter>
+              </defs>
+
+              <!-- plane 1: slowest -->
+              <g class="gp gp--1">
+                <circle cx="100" cy="100" r="85" fill="url(#gGlow)" opacity=".6" />
+                <circle cx="100" cy="100" r="90" stroke="url(#gBlue)" stroke-width="1" stroke-dasharray="3 3" opacity=".4" />
+                <circle cx="100" cy="100" r="85" stroke="url(#gBlue)" stroke-width="1.8" opacity=".75" filter="url(#fBlue)" />
+                <circle cx="100" cy="100" r="60" stroke="url(#gBlue)" stroke-width=".75" opacity=".45" />
+              </g>
+
+              <!-- plane 2: the wireframe cage, rotates -->
+              <g class="gp gp--2">
+                <g class="globe__cage">
+                  <ellipse cx="100" cy="100" rx="90" ry="32" stroke="url(#gBlue)" stroke-width="1" opacity=".65" />
+                  <ellipse cx="100" cy="100" rx="32" ry="90" stroke="url(#gBlue)" stroke-width="1" opacity=".65" />
+                  <ellipse cx="100" cy="100" rx="90" ry="64" stroke="url(#gBlue)" stroke-width="1.2" opacity=".5" />
+                  <ellipse cx="100" cy="100" rx="64" ry="90" stroke="url(#gBlue)" stroke-width="1.2" opacity=".5" />
+                  <line x1="10" y1="100" x2="190" y2="100" stroke="url(#gBlue)" stroke-width="1.2" opacity=".55" />
+                  <line x1="100" y1="10" x2="100" y2="190" stroke="url(#gBlue)" stroke-width="1.2" opacity=".55" />
+                </g>
+              </g>
+
+              <!-- plane 3: fastest — the markers that make "on the map" literal -->
+              <g class="gp gp--3" filter="url(#fGold)">
+                <g class="marker marker--hq" data-label="Philadelphia · HQ">
+                  <circle cx="72" cy="78" r="3.4" fill="url(#gGold)" />
+                  <circle cx="72" cy="78" r="8" stroke="#F1B31E" stroke-width=".8" opacity=".5" />
+                </g>
+                <circle class="marker" cx="118" cy="66" r="2.2" fill="#F1B31E" opacity=".9" />
+                <circle class="marker" cx="136" cy="104" r="2.2" fill="#F1B31E" opacity=".8" />
+                <circle class="marker" cx="88" cy="126" r="2.2" fill="#F1B31E" opacity=".85" />
+                <circle class="marker" cx="58" cy="112" r="1.8" fill="#72BADE" opacity=".8" />
+                <circle class="marker" cx="112" cy="138" r="1.8" fill="#72BADE" opacity=".7" />
+                <circle class="marker" cx="146" cy="78" r="1.6" fill="#72BADE" opacity=".6" />
+              </g>
+            </svg>
+
+            <p class="globe__hud" id="globeHud">LAT 39.9526° N · LON 75.1652° W</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- §3 PROOF -------------------------------------------------------- -->
+      <section class="proof" id="proof" aria-label="Recognition">
+        <div class="shell">
+          <ul class="proof__nums">
+            <li><strong data-count="2" data-prefix="#">#2</strong><span>Philly 100</span></li>
+            <li><strong data-count="651" data-prefix="#">#651</strong><span>Inc. 5000</span></li>
+            <li><strong data-count="50">50</strong><span>States served</span></li>
+            <li><strong data-count="10">10</strong><span>Countries</span></li>
+          </ul>
+          <div class="marquee" aria-label="Awards and partnerships">
+            <div class="marquee__track">
+              <img src="../shared/assets/badge/philly-100-360.webp" alt="Philly 100 award" width="180" height="180" loading="lazy" />
+              <img src="../shared/assets/badge/inc-5000-363.webp" alt="Inc. 5000 honoree" width="180" height="180" loading="lazy" />
+              <img src="../shared/assets/badge/rankwatch-2024-320.webp" alt="RankWatch 2024" width="120" height="177" loading="lazy" />
+              <img src="../shared/assets/badge/best-of-pennsylvania-89.webp" alt="Best of Pennsylvania" width="89" height="89" loading="lazy" />
+              <span class="chip-cred">Google Partner</span>
+              <img src="../shared/assets/badge/philly-100-360.webp" alt="" aria-hidden="true" width="180" height="180" loading="lazy" />
+              <img src="../shared/assets/badge/inc-5000-363.webp" alt="" aria-hidden="true" width="180" height="180" loading="lazy" />
+              <img src="../shared/assets/badge/rankwatch-2024-320.webp" alt="" aria-hidden="true" width="120" height="177" loading="lazy" />
+              <img src="../shared/assets/badge/best-of-pennsylvania-89.webp" alt="" aria-hidden="true" width="89" height="89" loading="lazy" />
+              <span class="chip-cred" aria-hidden="true">Google Partner</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- §4 WHAT --------------------------------------------------------- -->
+      <section class="sect what" id="what" aria-labelledby="whatTitle">
+        <div class="shell grid grid--7-5">
+          <div class="reveal">
+            <p class="eyebrow">The agency</p>
+            <h2 id="whatTitle">Everything that makes you findable. Under one roof.</h2>
+            <p>
+              Most businesses buy tours from one vendor, ads from another, a website from a third.
+              Nothing connects. We run all seven from one Philadelphia office, on one plan.
+            </p>
+            <a class="link-gold" href="#services">See the seven <span aria-hidden="true">→</span></a>
+          </div>
+
+          <!-- Zero image bytes: the diagram is the visual -->
+          <figure class="converge reveal delay-1">
+            <svg viewBox="0 0 340 220" aria-labelledby="convTitle" role="img">
+              <title id="convTitle">Three disconnected vendors versus one connected agency</title>
+              <g class="conv__scatter" stroke="var(--line-strong)" fill="none">
+                <circle cx="46" cy="42" r="17" /><circle cx="40" cy="120" r="17" /><circle cx="58" cy="192" r="17" />
+                <path d="M63 42H150M57 120H150M75 192H150" stroke-dasharray="4 5" opacity=".5" />
+              </g>
+              <g class="conv__hub">
+                <circle cx="248" cy="112" r="40" fill="none" stroke="url(#gGold)" stroke-width="1.6" />
+                <circle cx="248" cy="112" r="10" fill="#F1B31E" />
+                <path d="M170 42q60 30 70 62M166 120h72M180 192q52 -30 62 -62" stroke="#F1B31E" stroke-width="1.2" fill="none" opacity=".85" />
+              </g>
+            </svg>
+            <figcaption>Seven services, one operator, one plan.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- §5 SERVICES ----------------------------------------------------- -->
+      <section class="sect services" id="services" aria-labelledby="svcTitle">
+        <div class="shell">
+          <p class="eyebrow reveal">Services</p>
+          <h2 class="reveal" id="svcTitle">Seven services. One operator.</h2>
+          <p class="reveal delay-1">Buy one. Buy all seven. The stack is designed to compound.</p>
+
+          <ul class="svc-grid">
+            <li class="svc svc--hero glass reveal" data-tilt>
+              <p class="svc__kicker">Heritage service</p>
+              <h3>360 Virtual Tours</h3>
+              <p>Your space, walkable straight from a Google search.</p>
+              <a class="link-gold" href="#tours">How it works <span aria-hidden="true">→</span></a>
+            </li>
+            <li class="svc glass reveal delay-1" data-tilt>
+              <h3>Photography</h3>
+              <p>Commercial stills built for listings, ads and profiles.</p>
+            </li>
+            <li class="svc glass reveal delay-2" data-tilt>
+              <h3>HD Videography</h3>
+              <p>Story-led video that survives a scroll and a boardroom.</p>
+            </li>
+            <li class="svc glass reveal" data-tilt>
+              <h3>Web Development</h3>
+              <p>Fast sites that turn attention into booked conversations.</p>
+            </li>
+            <li class="svc glass reveal delay-1" data-tilt>
+              <h3>Google Ads</h3>
+              <p>Paid search managed against pipeline, not impressions.</p>
+            </li>
+            <li class="svc glass reveal delay-2" data-tilt>
+              <h3>Google Business Profile</h3>
+              <p>The map pack is local demand. We defend your row.</p>
+            </li>
+            <li class="svc glass reveal delay-3" data-tilt>
+              <h3>Social Media</h3>
+              <p>Consistent publishing that compounds instead of resets.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- §6 MOMENTUM 360, demoted but honoured --------------------------- -->
+      <section class="sect tours" id="tours" aria-labelledby="toursTitle">
+        <div class="shell grid grid--5-7">
+          <div class="reveal">
+            <p class="endorse">
+              <picture>
+                <source type="image/avif" srcset="../shared/assets/brand/momentum-360-lockup-320.avif" />
+                <img src="../shared/assets/brand/momentum-360-lockup-320.webp" alt="Momentum 360" width="160" height="34" loading="lazy" />
+              </picture>
+              <span>a Momentum service</span>
+            </p>
+            <h2 id="toursTitle">Your space, walkable from a Google search.</h2>
+            <p>
+              We scan the room, publish it to Google Street View, and geo-tag the schema so the map
+              pack has something to rank. Immersive tours hold attention longer than photos do.
+            </p>
+            <div class="hero__cta">
+              <a class="btn btn--gold" href="#plan">Book a scan</a>
+              <a class="btn btn--glass" href="https://www.momentumvirtualtours.com/virtual-tour-case-studies/" rel="noopener">
+                Tour case studies
+              </a>
+            </div>
+            <p class="note">
+              Momentum 360 keeps its own name, its awards and its virtual-tour library. It is now one
+              service inside the agency rather than the front door.
+            </p>
+          </div>
+
+          <figure class="tour-frame glass reveal delay-1" data-tilt>
+            <picture>
+              <source type="image/avif" srcset="../shared/assets/badge/philly-100-360.avif" />
+              <img src="../shared/assets/badge/philly-100-360.webp" alt="Philly 100 recognition for Momentum" width="360" height="360" loading="lazy" />
+            </picture>
+            <figcaption>
+              <strong>#2 on the Philly 100</strong>
+              <span>and #651 on the Inc. 5000 — earned under the Momentum 360 name.</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- §7 MAP PACK ----------------------------------------------------- -->
+      <section class="sect mappack" id="mappack" aria-labelledby="mapTitle">
+        <div class="shell grid grid--5-7">
+          <div class="reveal">
+            <p class="eyebrow">Live simulation</p>
+            <h2 id="mapTitle">This is the row you want.</h2>
+          </div>
+
+          <div class="serp glass reveal delay-1" data-tilt>
+            <div class="serp__bar">
+              <span class="serp__q">commercial space near me with virtual tour</span>
+            </div>
+            <ol class="serp__rows">
+              <li class="serp__row serp__row--win">
+                <span class="serp__rank">1</span>
+                <span><strong>Your business</strong><em>360 tour · pro HDR · local schema</em></span>
+                <span class="serp__tag">Momentum</span>
+              </li>
+              <li class="serp__row"><span class="serp__rank">2</span><span>A competitor<em>Photos only</em></span></li>
+              <li class="serp__row"><span class="serp__rank">3</span><span>A competitor<em>No tour</em></span></li>
+              <li class="serp__row"><span class="serp__rank">4</span><span>A competitor<em>Unclaimed profile</em></span></li>
+            </ol>
+            <p class="serp__status" id="serpStatus">OPTIMISING MAP PACK…</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- §8 WORK --------------------------------------------------------- -->
+      <section class="sect work" id="work" aria-labelledby="workTitle">
+        <div class="shell">
+          <p class="eyebrow reveal">Case studies</p>
+          <h2 class="reveal" id="workTitle">Real accounts. Published results.</h2>
+          <ul class="case-grid">
+            <li class="case glass reveal" data-tilt>
+              <picture>
+                <source type="image/avif" srcset="../shared/assets/case/la-moving-google-ads-640.avif 640w, ../shared/assets/case/la-moving-google-ads-960.avif 960w" sizes="(min-width:64rem) 30vw, 92vw" />
+                <img src="../shared/assets/case/la-moving-google-ads-640.webp" alt="Google Ads case study for a Los Angeles moving company" width="640" height="427" loading="lazy" />
+              </picture>
+              <h3>LA moving company</h3>
+              <p>Google Ads</p>
+            </li>
+            <li class="case glass reveal delay-1" data-tilt>
+              <picture>
+                <source type="image/avif" srcset="../shared/assets/case/vista-river-hospice-seo-640.avif 640w, ../shared/assets/case/vista-river-hospice-seo-960.avif 960w" sizes="(min-width:64rem) 30vw, 92vw" />
+                <img src="../shared/assets/case/vista-river-hospice-seo-640.webp" alt="SEO and AEO case study for Vista River Hospice" width="640" height="427" loading="lazy" />
+              </picture>
+              <h3>Vista River Hospice</h3>
+              <p>SEO &amp; AEO</p>
+            </li>
+            <li class="case glass reveal delay-2" data-tilt>
+              <picture>
+                <source type="image/avif" srcset="../shared/assets/case/samuels-garage-door-seo-640.avif 640w, ../shared/assets/case/samuels-garage-door-seo-960.avif 960w" sizes="(min-width:64rem) 30vw, 92vw" />
+                <img src="../shared/assets/case/samuels-garage-door-seo-640.webp" alt="SEO and AEO case study for Samuels Garage Door" width="640" height="427" loading="lazy" />
+              </picture>
+              <h3>Samuels Garage Door</h3>
+              <p>SEO &amp; AEO</p>
+            </li>
+            <li class="case glass reveal" data-tilt>
+              <picture>
+                <source type="image/avif" srcset="../shared/assets/case/elite-doors-map-pack-640.avif 640w, ../shared/assets/case/elite-doors-map-pack-960.avif 960w" sizes="(min-width:64rem) 30vw, 92vw" />
+                <img src="../shared/assets/case/elite-doors-map-pack-640.webp" alt="Local map pack SEO case study for Elite Doors" width="640" height="330" loading="lazy" />
+              </picture>
+              <h3>Elite Doors</h3>
+              <p>Local map pack</p>
+            </li>
+            <li class="case glass reveal delay-1" data-tilt>
+              <picture>
+                <source type="image/avif" srcset="../shared/assets/case/ram-group-lsa-640.avif" />
+                <img src="../shared/assets/case/ram-group-lsa-640.webp" alt="Local Services Ads case study for Ram Group" width="640" height="528" loading="lazy" />
+              </picture>
+              <h3>Ram Group</h3>
+              <p>Local Services Ads</p>
+            </li>
+          </ul>
+          <p class="note reveal">
+            Each card links to the published study on the Momentum 360 library, which keeps its
+            search equity while this page carries the brand.
+          </p>
+        </div>
+      </section>
+
+      <!-- §9 REEL --------------------------------------------------------- -->
+      <section class="sect reel" id="reel" aria-labelledby="reelTitle">
+        <div class="shell">
+          <p class="eyebrow reveal">On camera</p>
+          <h2 class="reveal" id="reelTitle">Mac, unedited.</h2>
+          <ul class="reel-grid">
+            <li class="reveal">
+              <button class="facade" data-yt="TbmZvAmPP6I" type="button">
+                <picture>
+                  <source type="image/avif" srcset="../shared/assets/video/poster-TbmZvAmPP6I-640.avif 640w, ../shared/assets/video/poster-TbmZvAmPP6I-1280.avif 1280w" sizes="(min-width:64rem) 48vw, 92vw" />
+                  <img src="../shared/assets/video/poster-TbmZvAmPP6I-640.webp" alt="" width="640" height="360" loading="lazy" />
+                </picture>
+                <span class="facade__play" aria-hidden="true"></span>
+                <span class="facade__title">Lessons from building three 7-figure companies by 30</span>
+              </button>
+            </li>
+            <li class="reveal delay-1">
+              <button class="facade" data-yt="K41kmhSetmE" type="button">
+                <picture>
+                  <source type="image/avif" srcset="../shared/assets/video/poster-K41kmhSetmE-640.avif 640w, ../shared/assets/video/poster-K41kmhSetmE-1280.avif 1280w" sizes="(min-width:64rem) 48vw, 92vw" />
+                  <img src="../shared/assets/video/poster-K41kmhSetmE-640.webp" alt="" width="640" height="360" loading="lazy" />
+                </picture>
+                <span class="facade__play" aria-hidden="true"></span>
+                <span class="facade__title">Free Google Maps marketing with Google Business Profile</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- §10 COVERAGE ---------------------------------------------------- -->
+      <section class="sect coverage" id="coverage" aria-labelledby="covTitle">
+        <div class="shell grid grid--6-6">
+          <div class="reveal">
+            <p class="eyebrow">Coverage</p>
+            <h2 id="covTitle">Philadelphia office. National footprint.</h2>
+            <p>
+              We shoot and manage accounts in all fifty states and ten countries, run out of one
+              office at 1635 Market Street.
+            </p>
+            <address class="addr">
+              1635 Market Street #1601<br />Philadelphia, PA 19103<br />
+              <a href="tel:+12158762954">215-876-2954</a>
+            </address>
+          </div>
+          <figure class="reveal delay-1 cov-figure">
+            <picture>
+              <source type="image/avif" srcset="../shared/assets/img/philadelphia-momentum-360.avif" />
+              <img src="../shared/assets/img/philadelphia-momentum-360.webp" alt="Momentum recognised in Philadelphia" width="360" height="311" loading="lazy" />
+            </picture>
+            <figcaption>Philadelphia, where the map pack argument started.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- §11 FOUNDERS ---------------------------------------------------- -->
+      <section class="sect founders" id="founders" aria-labelledby="fndTitle">
+        <div class="shell">
+          <p class="eyebrow reveal">The founders</p>
+          <h2 class="reveal" id="fndTitle">Mac and Sean.</h2>
+          <div class="fnd-grid">
+            <figure class="fnd fnd--duo reveal">
+              <picture>
+                <source type="image/avif" srcset="../shared/assets/img/founders-duo-studio-480.avif 480w, ../shared/assets/img/founders-duo-studio-720.avif 720w, ../shared/assets/img/founders-duo-studio-1003.avif 1003w" sizes="(min-width:64rem) 38vw, 78vw" />
+                <img src="../shared/assets/img/founders-duo-studio-720.webp" alt="Mac Frederick and Sean Boyle photographed in the Momentum studio" width="720" height="1126" loading="lazy" />
+              </picture>
+            </figure>
+            <div class="fnd-copy">
+              <figure class="fnd reveal delay-1">
+                <picture>
+                  <source type="image/avif" srcset="../shared/assets/img/founder-mac-frederick-480.avif 480w, ../shared/assets/img/founder-mac-frederick-720.avif 720w" sizes="(min-width:64rem) 20vw, 44vw" />
+                  <img src="../shared/assets/img/founder-mac-frederick-480.webp" alt="Mac Frederick, founder and CEO" width="480" height="600" loading="lazy" />
+                </picture>
+                <figcaption><strong>Mac Frederick</strong><span>Founder &amp; CEO. Penn State, then Google.</span></figcaption>
+              </figure>
+              <figure class="fnd reveal delay-2">
+                <picture>
+                  <source type="image/avif" srcset="../shared/assets/img/founder-sean-boyle-480.avif 480w, ../shared/assets/img/founder-sean-boyle-720.avif 720w" sizes="(min-width:64rem) 20vw, 44vw" />
+                  <img src="../shared/assets/img/founder-sean-boyle-480.webp" alt="Sean Boyle, partner" width="480" height="600" loading="lazy" />
+                </picture>
+                <figcaption><strong>Sean Boyle</strong><span>Partner. Commercial real estate and tours.</span></figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="press glass reveal">
+            <picture>
+              <source type="image/avif" srcset="../shared/assets/img/press-modern-luxury-spread-399.avif" />
+              <img src="../shared/assets/img/press-modern-luxury-spread-399.webp" alt="Modern Luxury Men of Influence feature on Mac Frederick and Sean Boyle" width="200" height="251" loading="lazy" />
+            </picture>
+            <blockquote>
+              <p>Featured in <em>Modern Luxury</em>&rsquo;s Men of Influence spotlight.</p>
+              <cite>Photography by Phil Kramer</cite>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <!-- §12 PROCESS ----------------------------------------------------- -->
+      <section class="sect process" id="process" aria-labelledby="prcTitle">
+        <div class="shell">
+          <p class="eyebrow reveal">How it runs</p>
+          <h2 class="reveal" id="prcTitle">Four steps, every account.</h2>
+          <ol class="steps">
+            <li class="glass reveal"><span>01</span><h3>Audit</h3><p>We find where you are invisible.</p></li>
+            <li class="glass reveal delay-1"><span>02</span><h3>Capture</h3><p>Tours, stills and video in one visit.</p></li>
+            <li class="glass reveal delay-2"><span>03</span><h3>Publish</h3><p>Schema, profile and site, wired together.</p></li>
+            <li class="glass reveal delay-3"><span>04</span><h3>Compound</h3><p>Ads and content push the ranking further.</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- §13 FAQ --------------------------------------------------------- -->
+      <section class="sect faq" id="faq" aria-labelledby="faqTitle">
+        <div class="shell">
+          <p class="eyebrow reveal">Questions</p>
+          <h2 class="reveal" id="faqTitle">The ones we always get.</h2>
+          <div class="faq-list">
+            <details class="glass reveal">
+              <summary>Is Momentum 360 gone?</summary>
+              <p>No. It is the virtual-tour service inside Momentum, with its own name and its own case-study library.</p>
+            </details>
+            <details class="glass reveal delay-1">
+              <summary>Do I have to buy all seven services?</summary>
+              <p>No. Most accounts start with one and add the next when it pays for itself.</p>
+            </details>
+            <details class="glass reveal delay-2">
+              <summary>Do you work outside Philadelphia?</summary>
+              <p>Yes — all fifty states and ten countries, coordinated from the Philadelphia office.</p>
+            </details>
+            <details class="glass reveal delay-3">
+              <summary>What happens to the virtual-tours website?</summary>
+              <p>It keeps running and keeps its rankings. Nothing is switched off to launch this page.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- §14 PLAN -------------------------------------------------------- -->
+      <section class="sect plan" id="plan" aria-labelledby="planTitle">
+        <div class="shell plan__inner glass">
+          <div>
+            <p class="eyebrow">The ask</p>
+            <h2 id="planTitle">Get a free plan.</h2>
+            <p>Tell us the business and the market. We come back with where you are losing the map.</p>
+          </div>
+          <form class="form" name="plan" method="POST" data-netlify="true" action="/thanks">
+            <input type="hidden" name="form-name" value="plan" />
+            <p class="hp"><label>Do not fill this in <input name="bot-field" /></label></p>
+            <label>Name<input type="text" name="name" required autocomplete="name" /></label>
+            <label>Business<input type="text" name="business" required autocomplete="organization" /></label>
+            <label>Email<input type="email" name="email" required autocomplete="email" /></label>
+            <label>What are you trying to fix?<textarea name="goal" rows="3"></textarea></label>
+            <button class="btn btn--gold" type="submit">Send it</button>
+            <p class="form__status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="shell foot__grid">
+        <div>
+          <img class="foot__lockup" src="../shared/assets/brand/momentum-lockup-paper.svg" alt="Momentum" width="200" height="39" loading="lazy" />
+          <p class="note">Philadelphia digital marketing, photography and 360 virtual tours.</p>
+        </div>
+        <nav aria-label="Footer">
+          <h2>Services</h2>
+          <a href="#tours">360 Virtual Tours</a>
+          <a href="#services">Photography</a>
+          <a href="#services">HD Videography</a>
+          <a href="#services">Web Development</a>
+          <a href="#services">Google Ads</a>
+          <a href="#services">Google Business Profile</a>
+          <a href="#services">Social Media</a>
+        </nav>
+        <nav aria-label="Company">
+          <h2>Company</h2>
+          <a href="#founders">About</a>
+          <a href="#work">Case studies</a>
+          <a href="#coverage">Coverage</a>
+          <a href="#plan">Contact</a>
+          <a href="https://www.momentumvirtualtours.com/" rel="noopener">Momentum 360 tours</a>
+        </nav>
+        <div>
+          <h2>Philadelphia</h2>
+          <address class="addr">
+            1635 Market Street #1601<br />Philadelphia, PA 19103<br />
+            <a href="tel:+12158762954">215-876-2954</a>
+          </address>
+        </div>
+      </div>
+      <p class="foot__legal">
+        Design A concept · not the live site. Momentum 360 is a Momentum service.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
