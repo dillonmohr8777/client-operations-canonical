@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dayforce Integration Partner Scope: 15 Questions Before You Build</title>
+<link rel="stylesheet" href="../assets/review.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero__top">
+    <img class="hero__mark" src="../assets/align-hcm-logo.png" alt="Align HCM — Human Capital Management">
+    <div class="hero__stamp">Align HCM Blog &middot; Review PDF<br>Not for publication</div>
+  </div>
+  <div class="hero__eyebrow">Dayforce &middot; Implementation Readiness &middot; Decision</div>
+  <h1>Dayforce Integration Partner Scope:<br>15 Questions Before You Build</h1>
+  <div class="hero__chips">
+    <span class="chip">DF04</span>
+    <span class="chip">Keyword: Dayforce integration partner</span>
+    <span class="chip">BlogPosting plus BreadcrumbList</span>
+    <span class="chip">Plus Jakarta Sans + DM Sans</span>
+    <span class="chip">1,911 words</span>
+  </div>
+</header>
+
+<section class="brief">
+  <div class="rule-label">Editorial brief &middot; DF04</div>
+  <div class="brief__grid">
+    <div>
+      <div class="field__label">Primary keyword</div>
+      <div class="field__value">Dayforce integration partner</div>
+    </div>
+    <div>
+      <div class="field__label">Funnel / reader intent</div>
+      <div class="field__value">Decision and implementation</div>
+    </div>
+    <div>
+      <div class="field__label">Provisional URL</div>
+      <div class="field__value"><code>/blog/dayforce-integration-partner-scope</code></div>
+    </div>
+    <div>
+      <div class="field__label">Draft length</div>
+      <div class="field__value">1,911 words</div>
+    </div>
+    <div>
+      <div class="field__label">Recommended schema</div>
+      <div class="field__value">BlogPosting and BreadcrumbList</div>
+    </div>
+    <div>
+      <div class="field__label">Conversion CTA</div>
+      <div class="field__value">Ask Align HCM to lead a Dayforce integration-scope workshop.</div>
+    </div>
+  </div>
+  <div class="brief__grid brief__grid--full">
+    <div>
+      <div class="field__label">Meta description</div>
+      <div class="field__value">A Dayforce integration partner should define data, triggers, security, errors, testing, monitoring, and support. Ask these 15 questions before build begins.</div>
+    </div>
+    <div>
+      <div class="field__label">Series</div>
+      <div class="field__value">Dayforce implementation-readiness series &middot; Claude handoff 09 / 10</div>
+    </div>
+    <div>
+      <div class="field__label">Production note</div>
+      <div class="field__value">Preserve the title, direct answer, metadata, factual caveats, sources, and final CTA during the Claude implementation handoff.</div>
+    </div>
+  </div>
+</section>
+
+<section class="answer">
+  <div class="rule-label">Direct answer</div>
+  <p><strong>A Dayforce integration partner should define the business event, source and destination, data, transformations, timing, security, error handling, monitoring, testing, deployment, and support owner for every interface.</strong> A list of integration names is not a complete scope.</p>
+</section>
+
+<main class="flow">
+
+  <p>&ldquo;Five integrations included&rdquo; sounds precise until the work begins. One interface may be a scheduled outbound file with standard fields. Another may be a bidirectional flow involving several vendors, sensitive data, complex transformations, rapid processing, and round-the-clock operational monitoring.</p>
+  <p>The count is the same. The delivery risk is not.</p>
+  <p>Use the questions below before pricing, building, or approving a Dayforce integration.</p>
+
+  <div class="callout">
+    <div class="rule-label">Key takeaways</div>
+    <ul class="ul">
+      <li>Scope every interface around a business process, not only a system name.</li>
+      <li>Identify the authoritative source for each data element.</li>
+      <li>Define triggers, transformations, frequency, volume, and sequencing.</li>
+      <li>Design security, error handling, monitoring, and correction before build.</li>
+      <li>Include third-party coordination, end-to-end testing, and production deployment.</li>
+      <li>Assign steady-state ownership before go-live.</li>
+      <li>Compare partner quotes using interface complexity, deliverables, and responsibilities.</li>
+    </ul>
+  </div>
+
+  <h2>Why Dayforce integration scope needs more than an interface inventory</h2>
+  <p>Dayforce describes Integration Studio as an in-product way to create, manage, and deploy connections between Dayforce and other systems, using prebuilt connectors or custom integrations in a low-code setting.</p>
+  <p>That capability supports the build. It does not decide the business process or operating model.</p>
+  <p>The customer and its delivery team still have to determine:</p>
+  <ul class="ul">
+    <li>What information should move</li>
+    <li>Which system owns it</li>
+    <li>When it should move</li>
+    <li>What should happen when it is incomplete</li>
+    <li>Who can access it</li>
+    <li>How the team will know the flow failed</li>
+    <li>Who corrects the cause and the affected records</li>
+    <li>How a production change is approved</li>
+    <li>Who supports the interface after go-live</li>
+  </ul>
+  <p>Those are integration-design decisions. If they are missing from the statement of work, they will surface during build, testing, or production.</p>
+  <p>Timeliness and accessibility are part of how <a href="https://doi.org/10.1080/07421222.1996.11518099">data consumers judge quality</a>, not optional extras layered on afterwards. That is the argument for designing monitoring, error handling, and correction alongside the interface rather than in a later phase.</p>
+
+  <h2>Start with an integration register</h2>
+  <p>Create one row per interface before detailed design.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:33%">Register field</th>
+          <th>Example content</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Interface name</td><td>Dayforce to general ledger</td></tr>
+        <tr><td>Business purpose</td><td>Post payroll labor and liability entries</td></tr>
+        <tr><td>Source and destination</td><td>Dayforce to enterprise resource planning system</td></tr>
+        <tr><td>Direction</td><td>Outbound</td></tr>
+        <tr><td>Trigger and frequency</td><td>After payroll close</td></tr>
+        <tr><td>Data sensitivity</td><td>Payroll and financial</td></tr>
+        <tr><td>Delivery approach</td><td>File, API, prebuilt connector, or custom</td></tr>
+        <tr><td>Complexity</td><td>Low, medium, high, or critical</td></tr>
+        <tr><td>Business owner</td><td>Payroll or finance</td></tr>
+        <tr><td>Technical owner</td><td>Integration team</td></tr>
+        <tr><td>Third parties</td><td>Bank, carrier, vendor, or managed provider</td></tr>
+        <tr><td>Go-live phase</td><td>Wave or deployment date</td></tr>
+        <tr><td>Support owner</td><td>Named production team</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">The register is the portfolio view. Each row still needs a complete design.</p>
+
+  <figure>
+    <img src="../assets/illustration-09.webp" alt="A hub-and-spoke integration map with Dayforce at the centre connected to payroll, banking, benefits, identity, cloud, and monitoring endpoints.">
+    <p class="caption">Every spoke on the integration map needs a business purpose, an authoritative source, and a named owner for errors, monitoring, and support. Original Align HCM illustration.</p>
+  </figure>
+
+  <h2>The 15 questions to answer for every Dayforce integration</h2>
+
+  <h3><span class="n">1.</span> What business process does the integration support?</h3>
+  <p>Name the decision or transaction the interface enables.</p>
+  <p>&ldquo;Benefits carrier file&rdquo; is a system label. &ldquo;Transmit approved employee elections and dependent coverage after enrollment events&rdquo; is a business purpose. The second description makes requirements and testing easier to define.</p>
+
+  <h3><span class="n">2.</span> Which system is authoritative?</h3>
+  <p>Identify the system of record for each important field.</p>
+  <p>An interface may send employee identity from Dayforce while receiving deduction or enrollment results from another platform. A broad statement that &ldquo;Dayforce is the source&rdquo; can hide field-level ownership conflicts.</p>
+  <p>Document how corrections flow back to the authoritative system.</p>
+
+  <h3><span class="n">3.</span> What event triggers the interface?</h3>
+  <p>The trigger may be:</p>
+  <ul class="ul">
+    <li>A scheduled time</li>
+    <li>Payroll close</li>
+    <li>Employee hire or termination</li>
+    <li>Approved change</li>
+    <li>Benefit enrollment</li>
+    <li>Manager action</li>
+    <li>File arrival</li>
+    <li>Manual request</li>
+    <li>Upstream system event</li>
+  </ul>
+  <p>Define whether records should be sent immediately, accumulated, or held until approval.</p>
+
+  <h3><span class="n">4.</span> What data and objects are required?</h3>
+  <p>Create a field-level specification that includes:</p>
+  <ul class="ul">
+    <li>Source field</li>
+    <li>Target field</li>
+    <li>Definition</li>
+    <li>Format</li>
+    <li>Required or optional status</li>
+    <li>Valid values</li>
+    <li>Sensitivity</li>
+    <li>Transformation</li>
+    <li>Default</li>
+    <li>Rejection rule</li>
+  </ul>
+  <p>Do not infer data requirements from an old interface file without business validation.</p>
+
+  <h3><span class="n">5.</span> What transformations and mappings are required?</h3>
+  <p>Systems may use different codes, date formats, identifiers, organizational structures, and business definitions.</p>
+  <p>Document code mapping, concatenation, splitting, calculations, defaults, lookups, conditional rules, and effective-date handling. Assign a business owner to approve each consequential transformation.</p>
+
+  <h3><span class="n">6.</span> Is the flow inbound, outbound, or bidirectional?</h3>
+  <p>Direction affects error handling and ownership.</p>
+  <p>A bidirectional process needs rules for sequencing, conflicts, retries, and feedback. State what happens when one side succeeds and the return update fails.</p>
+
+  <h3><span class="n">7.</span> How often must it run?</h3>
+  <p>Frequency should follow the business need.</p>
+  <p>Daily, pay-period, near-real-time, event-driven, and on-demand flows create different monitoring and recovery requirements. Define cutoff times, time zones, calendars, holidays, and service expectations.</p>
+
+  <h3><span class="n">8.</span> What volume and performance requirements apply?</h3>
+  <p>Estimate normal and peak volume.</p>
+  <p>Open enrollment, seasonal hiring, annual compensation, acquisitions, and payroll close may produce loads far above normal. Define acceptable completion time, file size, throughput, and what happens when volume exceeds expectations.</p>
+
+  <h3><span class="n">9.</span> What security and privacy controls apply?</h3>
+  <p>For each interface, define:</p>
+  <ul class="ul">
+    <li>Authentication method</li>
+    <li>Encryption in transit and at rest</li>
+    <li>Least-privilege access</li>
+    <li>Sensitive fields</li>
+    <li>Credential ownership and rotation</li>
+    <li>Network restrictions</li>
+    <li>Logging</li>
+    <li>Retention</li>
+    <li>Privacy requirements</li>
+    <li>Security review and approval</li>
+  </ul>
+  <p>Avoid placing production secrets in design documents, tickets, test files, or email.</p>
+
+  <h3><span class="n">10.</span> How will errors be detected and handled?</h3>
+  <p>Design the negative path before production.</p>
+  <p>Define:</p>
+  <ul class="ul">
+    <li>File- and record-level validation</li>
+    <li>Rejected-record handling</li>
+    <li>Duplicate prevention</li>
+    <li>Retry behavior</li>
+    <li>Partial-success handling</li>
+    <li>Error messages</li>
+    <li>Business notification</li>
+    <li>Technical escalation</li>
+    <li>Manual correction</li>
+    <li>Reprocessing</li>
+    <li>Audit history</li>
+  </ul>
+  <p>&ldquo;The interface sends an alert&rdquo; is incomplete until the recipient, content, severity, response time, and correction process are known.</p>
+
+  <h3><span class="n">11.</span> Who monitors failures?</h3>
+  <p>Monitoring needs a named team and operating schedule.</p>
+  <p>Clarify who checks dashboards or alerts, who owns after-hours issues, who contacts third parties, and who verifies that corrected records reached the destination. If a managed provider monitors the interface, define the customer's visibility and escalation rights.</p>
+
+  <h3><span class="n">12.</span> What test data and scenarios are needed?</h3>
+  <p>Testing should cover:</p>
+  <ul class="ul">
+    <li>Valid routine records</li>
+    <li>Missing required fields</li>
+    <li>Invalid codes</li>
+    <li>Duplicate transactions</li>
+    <li>Out-of-sequence events</li>
+    <li>Retroactive changes</li>
+    <li>Large-volume processing</li>
+    <li>Security and access</li>
+    <li>Partial failures</li>
+    <li>Third-party downtime</li>
+    <li>Retry and recovery</li>
+    <li>End-to-end downstream results</li>
+  </ul>
+  <p>Dayforce's current HCM implementation guidance includes unit, integration, end-to-end, edge-case, and user-acceptance testing. Apply those levels to the interfaces that support payroll and workforce operations.</p>
+
+  <h3><span class="n">13.</span> Who owns third-party coordination?</h3>
+  <p>The Dayforce partner may not control a bank, carrier, finance vendor, identity provider, tax service, or legacy-system team.</p>
+  <p>Name the coordinator, contact, required specifications, test windows, certificates, approvals, dependencies, and escalation route. Include third-party calendar risk in the project plan.</p>
+
+  <h3><span class="n">14.</span> Who deploys and approves production changes?</h3>
+  <p>Define:</p>
+  <ul class="ul">
+    <li>Build ownership</li>
+    <li>Code or configuration review</li>
+    <li>Environment promotion</li>
+    <li>Security approval</li>
+    <li>Business approval</li>
+    <li>Production scheduling</li>
+    <li>Rollback</li>
+    <li>Emergency change</li>
+    <li>Release documentation</li>
+  </ul>
+  <p>Separate the person who builds the interface from the customer authority that approves business and production readiness.</p>
+
+  <h3><span class="n">15.</span> Who supports the integration after go-live?</h3>
+  <p>Every interface becomes part of an operating service.</p>
+  <p>Define the business owner, technical owner, severity model, coverage hours, response expectations, vendor escalation, maintenance, release impact review, documentation, and enhancement process.</p>
+  <p>If <a href="https://www.alignhcm.com/services/support">support</a> is not included in implementation pricing, identify the new agreement and transition date.</p>
+
+  <h2>Choose the delivery approach after requirements are clear</h2>
+  <p>The appropriate method depends on the business process and technical constraints.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:22%">Approach</th>
+          <th style="width:33%">Potential fit</th>
+          <th>Questions to confirm</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Prebuilt connector</td><td class="plain">A supported, repeatable use case</td><td>What configuration, data mapping, monitoring, and support remain?</td></tr>
+        <tr><td>Standard file</td><td class="plain">Scheduled batch exchange</td><td>How are files secured, acknowledged, rejected, corrected, and retained?</td></tr>
+        <tr><td>API integration</td><td class="plain">Timely system-to-system transactions</td><td>How are authentication, limits, retries, sequencing, and monitoring handled?</td></tr>
+        <tr><td>Custom integration</td><td class="plain">Requirements not met by standard approaches</td><td>Who owns design, build, documentation, testing, upgrades, and support?</td></tr>
+        <tr><td>Manual process</td><td class="plain">Low-volume or temporary exception</td><td>What controls, approvals, evidence, and replacement plan apply?</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Do not select an approach only because a tool can build it. Select the lowest-complexity method that satisfies the business, security, timing, and support requirements.</p>
+
+  <h2>How interface complexity changes the quote</h2>
+  <p>Use complexity bands to normalize proposals.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:24%">Complexity factor</th>
+          <th style="width:32%">Lower complexity</th>
+          <th>Higher complexity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Direction</td><td class="plain">One-way</td><td>Bidirectional</td></tr>
+        <tr><td>Timing</td><td class="plain">Scheduled batch</td><td>Event-driven or time-critical</td></tr>
+        <tr><td>Mapping</td><td class="plain">Direct fields</td><td>Many transformations and lookups</td></tr>
+        <tr><td>Systems</td><td class="plain">Two controlled endpoints</td><td>Several vendors and dependencies</td></tr>
+        <tr><td>Volume</td><td class="plain">Stable and modest</td><td>High or highly variable</td></tr>
+        <tr><td>Security</td><td class="plain">Standard approved pattern</td><td>Sensitive data or special controls</td></tr>
+        <tr><td>Errors</td><td class="plain">Whole-file retry</td><td>Record-level recovery and sequencing</td></tr>
+        <tr><td>Testing</td><td class="plain">Standard scenarios</td><td>Payroll-critical, regulated, or complex edge cases</td></tr>
+        <tr><td>Support</td><td class="plain">Business-hours review</td><td>High-availability monitoring and escalation</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">The statement of work should classify each interface, list assumptions, and describe what would trigger a scope change.</p>
+
+  <h2>What belongs in the integration statement of work</h2>
+  <p>Require:</p>
+  <ul class="ul">
+    <li>Integration register</li>
+    <li>Requirements and design documents</li>
+    <li>Field mapping and transformations</li>
+    <li>Security design</li>
+    <li>Error and monitoring design</li>
+    <li>Build and configuration</li>
+    <li>Test plan, scripts, and evidence</li>
+    <li>Third-party coordination</li>
+    <li>Deployment and rollback plan</li>
+    <li>Runbook and support documentation</li>
+    <li>Knowledge transfer</li>
+    <li>Acceptance criteria</li>
+    <li>Named customer responsibilities</li>
+    <li>Assumptions and exclusions</li>
+    <li>Change-control rules</li>
+  </ul>
+  <p>A methodology deck is not a deliverable list.</p>
+  <p><a href="https://doi.org/10.1016/S0377-2217(02)00547-7">ERP implementation research</a> attributes outcomes to project-management discipline and data accuracy rather than to the branding of a delivery method.</p>
+
+  <h2>Dayforce integration red flags</h2>
+  <ul class="ul">
+    <li>The quote prices interfaces by count alone.</li>
+    <li>System names replace business requirements.</li>
+    <li>The authoritative source is unclear.</li>
+    <li>Error handling is deferred until testing.</li>
+    <li>Monitoring means sending an email to an unnamed person.</li>
+    <li>Third-party coordination is excluded without a customer owner.</li>
+    <li>Test scope covers only successful records.</li>
+    <li>Security approval is planned after build.</li>
+    <li>Production deployment and rollback are not documented.</li>
+    <li>Ongoing support starts under a new agreement that has not been defined.</li>
+    <li>No one owns the interface after the project closes.</li>
+  </ul>
+
+  <h2>How Align HCM can help</h2>
+  <p>Align HCM's <a href="https://www.alignhcm.com/services/integration">integration services</a> support requirements, design, build coordination, testing, deployment, monitoring, and support planning across connected HCM systems.</p>
+  <p>Align also provides Dayforce <a href="https://www.alignhcm.com/services/implementation">implementation support</a>, <a href="https://www.alignhcm.com/services/data-conversion">data conversion</a>, <a href="https://www.alignhcm.com/services/client-side-services">client-side governance</a>, <a href="https://www.alignhcm.com/services/training">training</a>, and post-go-live services.</p>
+  <p><a href="https://www.alignhcm.com/contact">Contact Align HCM</a> for a free, no-obligation Dayforce integration-scope workshop or proposal review.</p>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    <div class="faq__item">
+      <div class="faq__q">What does a Dayforce integration partner do?</div>
+      <p class="faq__a">The role may include requirements, architecture, mapping, build, security, error handling, testing, deployment, documentation, and support. Buyers should confirm the exact contracted role and deliverables.</p>
+    </div>
+    <div class="faq__item">
+      <div class="faq__q">What is Dayforce Integration Studio?</div>
+      <p class="faq__a">Dayforce describes Integration Studio as an in-product solution for creating, managing, and deploying integrations through prebuilt connectors or custom low-code integrations.</p>
+    </div>
+    <div class="faq__item">
+      <div class="faq__q">How many Dayforce integrations will we need?</div>
+      <p class="faq__a">The number depends on the systems and business processes in scope. Inventory payroll, finance, benefits, banking, tax, identity, talent, time, data, and other dependencies before estimating.</p>
+    </div>
+    <div class="faq__item">
+      <div class="faq__q">Why should integrations be classified by complexity?</div>
+      <p class="faq__a">Two interfaces can require very different work based on direction, frequency, transformations, third parties, security, error handling, testing, and support. Complexity makes quote comparisons more meaningful.</p>
+    </div>
+    <div class="faq__item">
+      <div class="faq__q">Can Align HCM help scope Dayforce integrations?</div>
+      <p class="faq__a">Align HCM provides integration and client-side implementation services. The scope can include inventory, requirements, ownership, testing, go-live planning, and support readiness.</p>
+    </div>
+  </div>
+
+  <div class="cta">
+    <div>
+      <p class="cta__title">Conversion CTA</p>
+      <p class="cta__sub">Ask Align HCM to lead a Dayforce integration-scope workshop.</p>
+    </div>
+    <div class="cta__btn">Talk to an Align HCM expert</div>
+  </div>
+
+</main>
+
+<section class="prod">
+  <div class="dot-label">Publication notes</div>
+  <p>Recommended visual: a hub-and-spoke integration map with the fifteen scope questions grouped into Design, Protect, Test, Operate, and Own.</p>
+  <p>Image implementation: Upload the 1200x627 WebP to the production CMS or CDN, replace the relative review path, retain the descriptive alt text, and include the final image URL in Article <code>image</code> and WebPage <code>primaryImageOfPage</code> markup. This is an original Align HCM illustration; no third-party attribution is required.</p>
+  <p>Recommended schema: BlogPosting and BreadcrumbList. Keep the visible FAQ for readers and answer engines, but do not use FAQPage rich-result markup.</p>
+  <p>Recommended inbound links after publication: Dayforce implementation, Dayforce implementation cost, Dayforce data migration, and the Dayforce partner RFP scorecard.</p>
+  <p>Source URLs: the Dayforce and Align HCM source pages listed below are carried as link fields in the editorial master. Attach each production URL before publication; only URLs already verified against a live alignhcm.com path are printed in this review PDF.</p>
+</section>
+
+<section class="prod">
+  <div class="dot-label">Sources</div>
+  <ul class="sources">
+    <li><div class="sources__title">Dayforce implementation services and Integration Studio overview</div></li>
+    <li><div class="sources__title">Dayforce: How to implement an HCM system successfully</div></li>
+    <li><div class="sources__title">Dayforce Services Delivery Partners</div></li>
+    <li>
+      <div class="sources__title">Align HCM integration services</div>
+      <span class="sources__url">https://www.alignhcm.com/services/integration</span>
+    </li>
+    <li>
+      <div class="sources__title">Align HCM Dayforce implementation</div>
+      <span class="sources__url">https://www.alignhcm.com/services/implementation</span>
+    </li>
+    <li><div class="sources__title">Align HCM Dayforce services</div></li>
+  </ul>
+</section>
+<section class="prod">
+  <div class="dot-label">Research sources</div>
+  <p>Peer-reviewed and published research cited inline above. Every DOI was verified to resolve to the cited article.</p>
+  <ul class="sources">
+    <li>
+      <div class="sources__cite">Wang, R. Y., &amp; Strong, D. M. (1996). Beyond accuracy: What data quality means to data consumers. <i>Journal of Management Information Systems</i>, 12(4), 5&ndash;33.</div>
+      <span class="sources__url">https://doi.org/10.1080/07421222.1996.11518099</span>
+    </li>
+    <li>
+      <div class="sources__cite">Umble, E. J., Haft, R. R., &amp; Umble, M. M. (2003). Enterprise resource planning: Implementation procedures and critical success factors. <i>European Journal of Operational Research</i>, 146(2), 241&ndash;257.</div>
+      <span class="sources__url">https://doi.org/10.1016/S0377-2217(02)00547-7</span>
+    </li>
+  </ul>
+</section>
+
+
+</body>
+</html>

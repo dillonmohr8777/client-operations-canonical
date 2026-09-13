@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dayforce Parallel Testing: A Payroll Go-Live Checklist</title>
+<link rel="stylesheet" href="../assets/review.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero__top">
+    <img class="hero__mark" src="../assets/align-hcm-logo.png" alt="Align HCM — Human Capital Management">
+    <div class="hero__stamp">Align HCM Blog &middot; Review PDF<br>Not for publication</div>
+  </div>
+  <div class="hero__eyebrow">Dayforce &middot; Implementation Readiness &middot; Go-Live</div>
+  <h1>Dayforce Parallel Testing:<br>A Payroll Go-Live Checklist</h1>
+  <div class="hero__chips">
+    <span class="chip">DF02</span>
+    <span class="chip">Keyword: Dayforce parallel testing</span>
+    <span class="chip">BlogPosting plus BreadcrumbList</span>
+    <span class="chip">Plus Jakarta Sans + DM Sans</span>
+    <span class="chip">2,075 words</span>
+  </div>
+</header>
+
+<section class="brief">
+  <div class="rule-label">Editorial brief &middot; DF02</div>
+  <div class="brief__grid">
+    <div>
+      <div class="field__label">Primary keyword</div>
+      <div class="field__value">Dayforce parallel testing</div>
+    </div>
+    <div>
+      <div class="field__label">Funnel / reader intent</div>
+      <div class="field__value">Implementation and go-live</div>
+    </div>
+    <div>
+      <div class="field__label">Provisional URL</div>
+      <div class="field__value"><code>/blog/dayforce-payroll-parallel-testing-checklist</code></div>
+    </div>
+    <div>
+      <div class="field__label">Draft length</div>
+      <div class="field__value">2,075 words</div>
+    </div>
+    <div>
+      <div class="field__label">Recommended schema</div>
+      <div class="field__value">BlogPosting and BreadcrumbList</div>
+    </div>
+    <div>
+      <div class="field__label">Conversion CTA</div>
+      <div class="field__value">Ask Align HCM to review your Dayforce payroll test plan and exit criteria.</div>
+    </div>
+  </div>
+  <div class="brief__grid brief__grid--full">
+    <div>
+      <div class="field__label">Meta description</div>
+      <div class="field__value">Dayforce parallel testing should reconcile payroll by pay group, employee, and code. Use this checklist to manage variances and prove go-live readiness.</div>
+    </div>
+    <div>
+      <div class="field__label">Series</div>
+      <div class="field__value">Dayforce implementation-readiness series &middot; Claude handoff 07 / 10</div>
+    </div>
+    <div>
+      <div class="field__label">Production note</div>
+      <div class="field__value">Preserve the title, direct answer, metadata, factual caveats, sources, and final CTA during the Claude implementation handoff.</div>
+    </div>
+  </div>
+</section>
+
+<section class="answer">
+  <div class="rule-label">Direct answer</div>
+  <p><strong>Dayforce parallel testing should prove that payroll results reconcile by pay group, employee, earning, deduction, tax, and net pay within approved tolerances.</strong> Every material variance needs an owner, root cause, resolution, retest result, and final signoff before go-live.</p>
+</section>
+
+<main class="flow">
+
+  <p>Running the old and new payrolls at the same time is only the beginning. A parallel test creates evidence when the team uses comparable inputs, explains differences, corrects defects, and confirms that the results remain stable across representative pay periods.</p>
+  <p>The goal is not a perfect-looking summary. It is a controlled decision about whether payroll is ready to become the system of record.</p>
+
+  <div class="callout">
+    <div class="rule-label">Key takeaways</div>
+    <ul class="ul">
+      <li>Test each materially different pay group and rule set.</li>
+      <li>Reconcile company totals and employee-level results.</li>
+      <li>Compare earnings, deductions, taxes, hours, and net pay.</li>
+      <li>Assign an owner and root cause to every material variance.</li>
+      <li>Retest corrected configuration and data instead of closing issues from explanation alone.</li>
+      <li>Define go-live exit criteria before the first parallel cycle starts.</li>
+      <li>Keep the evidence required for payroll, finance, audit, and executive signoff.</li>
+    </ul>
+  </div>
+
+  <h2>What Dayforce parallel testing is designed to prove</h2>
+  <p>Parallel payroll testing compares results from Dayforce with results from the legacy payroll process for the same population and pay period.</p>
+  <p>Dayforce's current HCM implementation guide describes payroll parallel testing as processing at least one pay run in both systems and comparing the outputs before go-live. Dayforce Activate also includes a Payroll Comparison workflow that can upload legacy payroll data, calculate variances against Dayforce results, and track review status, owner, root cause, and comments.</p>
+  <p>The technology can accelerate the comparison. The customer still has to decide:</p>
+  <ul class="ul">
+    <li>Which populations and pay periods provide sufficient coverage</li>
+    <li>Which results should match</li>
+    <li>Which differences are expected</li>
+    <li>What tolerance is acceptable</li>
+    <li>Who owns each variance</li>
+    <li>What evidence is required to pass</li>
+    <li>Who can approve go-live</li>
+  </ul>
+  <p>Those decisions belong in the test strategy, not in the final week before launch.</p>
+  <p>Reconciliation is a data-quality question as much as a payroll one. <a href="https://doi.org/10.1080/07421222.1996.11518099">Wang and Strong</a> showed that data consumers judge quality across intrinsic, contextual, representational, and accessibility dimensions, so accuracy alone does not establish fitness for use. A matched company total is not, by itself, evidence that payroll is ready.</p>
+
+  <h2>Start with a payroll test charter</h2>
+  <p>Write a one-page charter before building detailed scripts.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:28%">Charter decision</th>
+          <th>What to document</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Objective</td><td>The payroll risks and business processes the test must prove</td></tr>
+        <tr><td>Scope</td><td>Legal entities, countries, pay groups, populations, and pay periods</td></tr>
+        <tr><td>Systems</td><td>Legacy payroll, Dayforce, time, benefits, finance, and external providers</td></tr>
+        <tr><td>Comparison level</td><td>Company, pay group, employee, code, hours, and net pay</td></tr>
+        <tr><td>Tolerances</td><td>Approved thresholds by result type and jurisdiction</td></tr>
+        <tr><td>Ownership</td><td>Test lead, payroll reviewers, data owners, configurators, and approvers</td></tr>
+        <tr><td>Defect process</td><td>Severity, assignment, correction, recalculation, and retest</td></tr>
+        <tr><td>Exit criteria</td><td>The measurable conditions required to recommend go-live</td></tr>
+        <tr><td>Evidence</td><td>Reports, approvals, variance log, defect history, and signoff package</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">If these decisions are unclear, the team may run payroll twice without learning whether the new process is safe.</p>
+
+  <h2>Test by pay group, not only by company total</h2>
+  <p>Company-level totals can balance while employee-level or pay-group errors remain hidden.</p>
+  <p>Dayforce's Payroll Comparison documentation directs customers with more than one pay group to create a separate test for each pay group. That distinction matters because pay calendars, frequencies, earning codes, deduction rules, taxes, unions, and approvals can vary.</p>
+  <p>Build a coverage inventory that includes:</p>
+  <ul class="ul">
+    <li>Pay group and frequency</li>
+    <li>Legal entity and jurisdiction</li>
+    <li>Employee types</li>
+    <li>Union or bargaining unit</li>
+    <li>Time-entry method</li>
+    <li>Payroll calendar</li>
+    <li>Special rules</li>
+    <li>Employee count</li>
+    <li>Representative test period</li>
+    <li>Required exception scenarios</li>
+  </ul>
+  <p>Do not assume that one biweekly group proves a weekly, semimonthly, monthly, union, or international group.</p>
+
+  <h2>Use comparable inputs</h2>
+  <p>A variance is useful only when the underlying inputs and periods are comparable.</p>
+  <p>Before calculation, confirm:</p>
+  <ul class="ul">
+    <li>The same employees are present in both populations.</li>
+    <li>The pay period and pay date are aligned.</li>
+    <li>Time, schedules, leave, bonuses, commissions, and one-time payments are equivalent.</li>
+    <li>New hires, transfers, terminations, and status changes use the same effective dates.</li>
+    <li>Benefit elections and deduction inputs are comparable.</li>
+    <li>Year-to-date balances and tax setup are loaded as required.</li>
+    <li>Legacy codes are mapped to their Dayforce equivalents.</li>
+    <li>Known timing differences are documented.</li>
+  </ul>
+  <p>Dayforce notes that its comparison workflow can map legacy payroll codes to Dayforce references and can compare organization and employee totals. Bad or mismatched inputs should not be treated as a configuration defect, but they must still be corrected or explained.</p>
+
+  <h2>What must be compared</h2>
+  <p>The exact list depends on country, configuration, and scope. The core comparison usually includes:</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:26%">Result area</th>
+          <th>Examples to reconcile</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Employee population</td><td>Active employees, paid employees, excluded employees, status, assignment</td></tr>
+        <tr><td>Time and units</td><td>Regular hours, overtime, premium hours, leave, units, shift inputs</td></tr>
+        <tr><td>Earnings</td><td>Salary, hourly pay, overtime, differentials, bonuses, commissions, retro pay</td></tr>
+        <tr><td>Deductions</td><td>Benefits, retirement, union dues, voluntary deductions, arrears</td></tr>
+        <tr><td>Taxes</td><td>Taxable wages, employee taxes, employer taxes, jurisdictional results</td></tr>
+        <tr><td>Net pay</td><td>Employee net amount and payment distribution</td></tr>
+        <tr><td>Employer costs</td><td>Employer contributions, taxes, benefits, and other liabilities</td></tr>
+        <tr><td>Accounting</td><td>General-ledger totals, costing, departments, projects, or labor allocation</td></tr>
+        <tr><td>Payments</td><td>Direct deposit, checks, off-cycle payments, reversals, and adjustments</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Dayforce Activate's current Payroll Comparison documentation supports comparison reporting for earnings, deductions, taxes, and net pay, with some country and feature limitations. Confirm the current product coverage for the project's jurisdictions and use supplemental controls where the tool does not compare a required result.</p>
+
+  <h2>Include routine and exception scenarios</h2>
+  <p>A normal payroll can pass while the scenarios most likely to create employee harm remain untested.</p>
+  <p>Select pay periods and employees that cover:</p>
+  <ul class="ul">
+    <li>New hires and rehires</li>
+    <li>Terminations and final pay</li>
+    <li>Transfers and multiple assignments</li>
+    <li>Overtime and premium rules</li>
+    <li>Shift differentials</li>
+    <li>Leave and unpaid time</li>
+    <li>Bonuses and commissions</li>
+    <li>Retroactive changes</li>
+    <li>Benefit changes and arrears</li>
+    <li>Garnishments</li>
+    <li>Union dues</li>
+    <li>Tax changes</li>
+    <li>Off-cycle payments</li>
+    <li>Reversals and corrections</li>
+    <li>Negative net-pay conditions</li>
+    <li>Cross-period adjustments</li>
+  </ul>
+  <p>Use production-like test data that protects sensitive information and follows the organization's security rules. Include enough real operating variation to challenge configuration and upstream inputs.</p>
+
+  <h2>Build a variance-management process</h2>
+  <p>A comparison report is not a resolution process.</p>
+  <p>Dayforce Activate can automatically identify variances and preserve review status, owner, root cause, and comments. Use those fields as part of a broader control model.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:28%">Variance field</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Unique ID</td><td>Keeps the issue traceable across reports and cycles</td></tr>
+        <tr><td>Pay group and employee</td><td>Shows the affected population</td></tr>
+        <tr><td>Result type</td><td>Earnings, deduction, tax, hours, net pay, or accounting</td></tr>
+        <tr><td>Legacy value</td><td>Establishes the comparison baseline</td></tr>
+        <tr><td>Dayforce value</td><td>Shows the new-system result</td></tr>
+        <tr><td>Difference</td><td>Quantifies the variance</td></tr>
+        <tr><td>Materiality</td><td>Determines priority and signoff impact</td></tr>
+        <tr><td>Owner</td><td>Assigns responsibility for investigation</td></tr>
+        <tr><td>Root cause</td><td>Identifies data, mapping, configuration, input, timing, or expected difference</td></tr>
+        <tr><td>Correction</td><td>Records the approved change</td></tr>
+        <tr><td>Retest result</td><td>Proves the correction worked</td></tr>
+        <tr><td>Status</td><td>Open, corrected, retested, accepted, or deferred</td></tr>
+        <tr><td>Approver</td><td>Identifies who accepted the final disposition</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Avoid &ldquo;explained&rdquo; as a final status. An explanation may prove that a difference is expected, but it should include the business basis and approval. A defect should be corrected and retested.</p>
+
+  <h2>Use a root-cause taxonomy</h2>
+  <p>Consistent root-cause categories make the test easier to manage and reveal systemic problems.</p>
+  <ul class="ul">
+    <li><strong>Source data:</strong> Missing, duplicate, stale, or incorrect legacy information</li>
+    <li><strong>Mapping:</strong> Legacy code mapped to the wrong Dayforce code</li>
+    <li><strong>Configuration:</strong> Rule, rate, eligibility, calculation, or effective-date defect</li>
+    <li><strong>Input timing:</strong> Different transactions or dates in the two systems</li>
+    <li><strong>Integration:</strong> Missing, rejected, delayed, duplicated, or transformed input</li>
+    <li><strong>Test setup:</strong> Wrong period, employee, environment, or comparison file</li>
+    <li><strong>Expected difference:</strong> Approved design or statutory treatment differs from legacy</li>
+    <li><strong>Product or environment issue:</strong> Confirmed behavior requiring vendor or technical support</li>
+  </ul>
+  <p>Trend the categories after every cycle. Many isolated mapping problems may point to a weak conversion process. Repeated input timing issues may indicate that the comparison is not controlled.</p>
+
+  <h2>Define tolerances carefully</h2>
+  <p>There is no single tolerance that is safe for every payroll result.</p>
+  <p>An organization may set a monetary filter for investigation, but it should also define zero-tolerance categories. A small net-pay difference can be material when it affects many employees, a statutory calculation, a benefit, or a protected wage requirement.</p>
+  <p>Define tolerances by:</p>
+  <ul class="ul">
+    <li>Result type</li>
+    <li>Employee versus company level</li>
+    <li>Jurisdiction</li>
+    <li>Root cause</li>
+    <li>Recurrence</li>
+    <li>Population affected</li>
+    <li>Financial and compliance consequence</li>
+  </ul>
+  <p>Document who approved each tolerance and how exceptions will be handled.</p>
+
+  <h2>Run more than one learning cycle when risk requires it</h2>
+  <p>The first cycle often proves the process as much as the payroll.</p>
+  <p>A practical sequence is:</p>
+  <ol class="ol ol--steps">
+    <li><strong>Process-establishment cycle:</strong> Confirm extraction, mapping, comparison, ownership, and reporting.</li>
+    <li><strong>Correction cycle:</strong> Prove that configuration and data fixes resolve identified variances.</li>
+    <li><strong>Stability cycle:</strong> Demonstrate repeatable results with additional employees, scenarios, or periods.</li>
+    <li><strong>Final readiness cycle:</strong> Produce the evidence used for go-live approval.</li>
+  </ol>
+  <p>The number of cycles should follow payroll complexity and unresolved risk, not a generic promise. If a material defect is found late, the team should identify which results and populations require retesting.</p>
+
+  <h2>Dayforce payroll go-live exit criteria</h2>
+  <p>Agree on the exit criteria before testing begins. Example categories include:</p>
+  <ul class="ul">
+    <li>All required pay groups and scenarios executed</li>
+    <li>Company and employee results reconciled within approved tolerances</li>
+    <li>No unresolved critical payroll defects</li>
+    <li>Material variances have approved root causes and dispositions</li>
+    <li>Corrected defects have passed retest</li>
+    <li>Integrations produced complete and timely payroll inputs</li>
+    <li>General-ledger and payment outputs passed validation</li>
+    <li>Payroll procedures and controls are documented</li>
+    <li>Administrators and support teams are trained</li>
+    <li>Cutover, contingency, escalation, and hypercare plans are approved</li>
+    <li>Payroll, finance, HRIS, implementation leadership, and the executive sponsor signed off</li>
+  </ul>
+  <p>Passing is a governance decision supported by evidence. It should not be an informal statement that the results &ldquo;look close.&rdquo;</p>
+  <p>That is also why <a href="https://doi.org/10.1016/S0377-2217(02)00547-7">ERP implementation research</a> lists data accuracy among the critical success factors: every uncorrected defect is inherited by the operation that runs on the system afterwards.</p>
+
+  <h2>A simple parallel-testing dashboard</h2>
+  <p>Report both progress and risk.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:58%">Metric</th>
+          <th>Current status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Pay groups planned / completed</td><td class="blank"></td></tr>
+        <tr><td>Test scenarios planned / passed</td><td class="blank"></td></tr>
+        <tr><td>Employees compared</td><td class="blank"></td></tr>
+        <tr><td>Material variances open</td><td class="blank"></td></tr>
+        <tr><td>Critical defects open</td><td class="blank"></td></tr>
+        <tr><td>Variances awaiting owner</td><td class="blank"></td></tr>
+        <tr><td>Corrections awaiting retest</td><td class="blank"></td></tr>
+        <tr><td>Exit criteria met</td><td class="blank"></td></tr>
+        <tr><td>Signoffs complete</td><td class="blank"></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Add a narrative for the highest-risk open items. A green percentage should never hide a small number of severe payroll issues.</p>
+
+  <h2>Common Dayforce parallel-testing mistakes</h2>
+  <ul class="ul">
+    <li>Comparing only company totals</li>
+    <li>Using one pay group to represent several different groups</li>
+    <li>Testing only routine employees and periods</li>
+    <li>Changing inputs without preserving the comparison baseline</li>
+    <li>Closing variances without root-cause evidence</li>
+    <li>Correcting configuration without rerunning affected scenarios</li>
+    <li>Letting the implementation partner approve customer payroll readiness</li>
+    <li>Defining tolerances after the results are known</li>
+    <li>Failing to reconcile time, integrations, accounting, and payments</li>
+    <li>Treating the final parallel run as the first complete rehearsal</li>
+  </ul>
+
+  <h2>How Align HCM can help</h2>
+  <p>Align HCM supports Dayforce customers across <a href="https://www.alignhcm.com/services/implementation">implementation</a> planning, <a href="https://www.alignhcm.com/services/data-conversion">data conversion</a>, testing governance, <a href="https://www.alignhcm.com/services/client-side-services">client-side readiness</a>, training, go-live support, and ongoing optimization.</p>
+  <p>That support can include building the coverage model, reviewing payroll scenarios, structuring variance governance, validating exit criteria, and preparing the customer team for cutover and hypercare.</p>
+  <p><a href="https://www.alignhcm.com/contact">Contact Align HCM</a> for a free, no-obligation review of your Dayforce payroll parallel-testing plan and go-live evidence.</p>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    <div class="faq__item">
+      <div class="faq__q">What is Dayforce parallel testing?</div>
+      <p class="faq__a">Dayforce parallel testing compares payroll results from Dayforce with results from the legacy process for equivalent employees, inputs, and pay periods before go-live.</p>
+    </div>
+    <div class="faq__item">
+      <div class="faq__q">Does every pay group need a separate test?</div>
+      <p class="faq__a">Dayforce's Payroll Comparison guidance states that organizations with more than one pay group should add a separate test for each group. The broader test plan should also account for materially different rules and populations.</p>
+    </div>
+    <div class="faq__item">
+      <div class="faq__q">What should be compared in a payroll parallel test?</div>
+      <p class="faq__a">Compare employee population, hours, earnings, deductions, taxes, employer costs, net pay, payments, and accounting results as applicable to the implementation.</p>
+    </div>
+    <div class="faq__item">
+      <div class="faq__q">Does a variance mean Dayforce is wrong?</div>
+      <p class="faq__a">No. A variance may come from source data, mapping, configuration, input timing, test setup, an integration, or an expected design difference. The team must determine and approve the root cause.</p>
+    </div>
+    <div class="faq__item">
+      <div class="faq__q">Who should approve payroll go-live?</div>
+      <p class="faq__a">The customer's authorized payroll and business leaders should approve readiness using defined exit criteria. Partners and vendors provide evidence and recommendations but should not replace customer accountability.</p>
+    </div>
+  </div>
+
+  <div class="cta">
+    <div>
+      <p class="cta__title">Conversion CTA</p>
+      <p class="cta__sub">Ask Align HCM to review your Dayforce payroll test plan and exit criteria.</p>
+    </div>
+    <div class="cta__btn">Talk to an Align HCM expert</div>
+  </div>
+
+</main>
+
+<section class="prod">
+  <div class="dot-label">Publication notes</div>
+  <p>Recommended visual: a pay-group testing flow from comparable inputs through company totals, employee results, variance ownership, retest, and go-live signoff. No artwork was supplied with this handoff, so this review PDF carries no figure.</p>
+  <p>Recommended schema: BlogPosting and BreadcrumbList. Keep the visible FAQ for readers and answer engines, but do not use FAQPage rich-result markup.</p>
+  <p>Recommended inbound links after publication: Dayforce implementation, the Dayforce partner RFP scorecard, the future data-migration article, and the future public-sector readiness article.</p>
+  <p>Source URLs: the Dayforce, Government of Canada, and Align HCM source pages listed below are carried as link fields in the editorial master. Attach each production URL before publication; only URLs already verified against a live alignhcm.com path are printed in this review PDF.</p>
+</section>
+
+<section class="prod">
+  <div class="dot-label">Sources</div>
+  <ul class="sources">
+    <li><div class="sources__title">Dayforce Activate: Payroll Comparison</div></li>
+    <li><div class="sources__title">Dayforce: How to implement an HCM system successfully</div></li>
+    <li><div class="sources__title">Government of Canada: Fall 2025 HR and pay progress report</div></li>
+    <li>
+      <div class="sources__title">Align HCM Dayforce implementation</div>
+      <span class="sources__url">https://www.alignhcm.com/services/implementation</span>
+    </li>
+    <li><div class="sources__title">Align HCM Dayforce services</div></li>
+  </ul>
+</section>
+<section class="prod">
+  <div class="dot-label">Research sources</div>
+  <p>Peer-reviewed and published research cited inline above. Every DOI was verified to resolve to the cited article.</p>
+  <ul class="sources">
+    <li>
+      <div class="sources__cite">Wang, R. Y., &amp; Strong, D. M. (1996). Beyond accuracy: What data quality means to data consumers. <i>Journal of Management Information Systems</i>, 12(4), 5&ndash;33.</div>
+      <span class="sources__url">https://doi.org/10.1080/07421222.1996.11518099</span>
+    </li>
+    <li>
+      <div class="sources__cite">Umble, E. J., Haft, R. R., &amp; Umble, M. M. (2003). Enterprise resource planning: Implementation procedures and critical success factors. <i>European Journal of Operational Research</i>, 146(2), 241&ndash;257.</div>
+      <span class="sources__url">https://doi.org/10.1016/S0377-2217(02)00547-7</span>
+    </li>
+  </ul>
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dayforce Data Migration Checklist: Clean, Map, Reconcile</title>
+<link rel="stylesheet" href="../assets/review.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero__top">
+    <img class="hero__mark" src="../assets/align-hcm-logo.png" alt="Align HCM — Human Capital Management">
+    <div class="hero__stamp">Align HCM Blog &middot; Review PDF<br>Not for publication</div>
+  </div>
+  <div class="hero__eyebrow">Dayforce &middot; Implementation Readiness &middot; Consideration</div>
+  <h1>Dayforce Data Migration Checklist:<br>Clean, Map, Reconcile</h1>
+  <div class="hero__chips">
+    <span class="chip">DF03</span>
+    <span class="chip">Keyword: Dayforce data migration</span>
+    <span class="chip">BlogPosting plus BreadcrumbList</span>
+    <span class="chip">Plus Jakarta Sans + DM Sans</span>
+    <span class="chip">2,014 words</span>
+  </div>
+</header>
+
+<section class="brief">
+  <div class="rule-label">Editorial brief &middot; DF03</div>
+  <div class="brief__grid">
+    <div>
+      <div class="field__label">Primary keyword</div>
+      <div class="field__value">Dayforce data migration</div>
+    </div>
+    <div>
+      <div class="field__label">Funnel / reader intent</div>
+      <div class="field__value">Consideration and implementation</div>
+    </div>
+    <div>
+      <div class="field__label">Provisional URL</div>
+      <div class="field__value"><code>/blog/dayforce-data-migration-checklist</code></div>
+    </div>
+    <div>
+      <div class="field__label">Draft length</div>
+      <div class="field__value">2,014 words</div>
+    </div>
+    <div>
+      <div class="field__label">Recommended schema</div>
+      <div class="field__value">BlogPosting and BreadcrumbList</div>
+    </div>
+    <div>
+      <div class="field__label">Conversion CTA</div>
+      <div class="field__value">Ask Align HCM to assess your Dayforce data-conversion readiness.</div>
+    </div>
+  </div>
+  <div class="brief__grid brief__grid--full">
+    <div>
+      <div class="field__label">Meta description</div>
+      <div class="field__value">Dayforce data migration requires more than loading files. Use this checklist to clean, map, test, reconcile, approve, and cut over your HCM data safely.</div>
+    </div>
+    <div>
+      <div class="field__label">Series</div>
+      <div class="field__value">Dayforce implementation-readiness series &middot; Claude handoff 08 / 10</div>
+    </div>
+    <div>
+      <div class="field__label">Production note</div>
+      <div class="field__value">Preserve the title, direct answer, metadata, factual caveats, sources, and final CTA during the Claude implementation handoff.</div>
+    </div>
+  </div>
+</section>
+
+<section class="answer">
+  <div class="rule-label">Direct answer</div>
+  <p><strong>A Dayforce data migration is ready only when the customer has decided what to retain, cleaned the source data, approved source-to-target mappings, completed trial conversions, reconciled totals and records, resolved exceptions, and signed off on the final cutover file.</strong></p>
+</section>
+
+<main class="flow">
+
+  <p>Loading data into Dayforce proves that a file was accepted. It does not prove that the right records moved, that values were transformed correctly, or that payroll and workforce operations can trust the result.</p>
+  <p>Treat Dayforce data migration as a controlled business workstream with technical execution. That means named data owners, repeatable rules, measurable reconciliation, and evidence for every approval.</p>
+
+  <div class="callout">
+    <div class="rule-label">Key takeaways</div>
+    <ul class="ul">
+      <li>Decide what data and history must move before extraction begins.</li>
+      <li>Assign a business owner to every data domain.</li>
+      <li>Clean source data before migration whenever possible.</li>
+      <li>Approve source-to-target mappings and transformation rules.</li>
+      <li>Run multiple trial conversions using repeatable processes.</li>
+      <li>Reconcile counts, values, balances, relationships, and exceptions.</li>
+      <li>Control late changes, delta loads, cutover, rollback, and final signoff.</li>
+      <li>Preserve legacy access and conversion evidence according to retention requirements.</li>
+    </ul>
+  </div>
+
+  <h2>Why Dayforce data migration is not only an IT task</h2>
+  <p>Technology teams can extract, transform, and load records. They usually cannot decide whether an employee status is correct, whether a benefit election is valid, whether a year-to-date payroll balance is complete, or which legacy history the business needs.</p>
+  <p>Dayforce's current implementation guidance says customers should identify what data needs to migrate, locate it, clean it before movement, verify employee records after migration, and preserve access to old data. Those activities require decisions from HR, payroll, benefits, finance, security, legal, and operations.</p>
+  <p>The customer owns the meaning of the data. A vendor or partner can provide templates, tools, and expertise, but business owners must approve the rules and results.</p>
+  <p><a href="https://doi.org/10.1080/07421222.1996.11518099">Wang and Strong's data-quality framework</a> makes the same point empirically. Consumers assess data across intrinsic, contextual, representational, and accessibility dimensions, which means fitness for use is a business judgement about context and purpose rather than a technical measure of correctness.</p>
+
+  <h2><span class="n">1.</span> Decide what belongs in Dayforce</h2>
+  <p>Start with retention and operating requirements, not with every field in the legacy database.</p>
+  <p>For each data domain, decide:</p>
+  <ul class="ul">
+    <li>What Dayforce needs to operate on day one</li>
+    <li>What history users need inside the new platform</li>
+    <li>What data should remain in a secure archive</li>
+    <li>What data must be retained for legal, payroll, tax, audit, or policy reasons</li>
+    <li>What information should not be migrated</li>
+    <li>Who can access retained legacy information</li>
+    <li>How long the organization must preserve it</li>
+  </ul>
+  <p>Moving unnecessary history can increase effort and risk. Moving too little can leave payroll, reporting, employee service, or compliance without required context.</p>
+  <p>Document the decision before files are built.</p>
+
+  <h2><span class="n">2.</span> Build a source-system inventory</h2>
+  <p>Data rarely comes from one clean HCM database.</p>
+  <p>Inventory every source that contributes to Dayforce, including:</p>
+  <ul class="ul">
+    <li>Core HR</li>
+    <li>Payroll</li>
+    <li>Time and attendance</li>
+    <li>Scheduling</li>
+    <li>Benefits administration</li>
+    <li>Recruiting and onboarding</li>
+    <li>Learning and talent</li>
+    <li>Identity and access systems</li>
+    <li>Finance and general ledger</li>
+    <li>Spreadsheets and local databases</li>
+    <li>Third-party providers</li>
+    <li>Acquired-company systems</li>
+    <li>Historical archives</li>
+  </ul>
+  <p>For each source, record the system owner, technical owner, extract method, file format, refresh frequency, data population, security classification, known issues, and planned retirement date.</p>
+  <p>This inventory also helps separate migration from ongoing integration. A one-time historical load and a recurring production feed require different designs.</p>
+
+  <h2><span class="n">3.</span> Assign owners by data domain</h2>
+  <p>One project-level &ldquo;data owner&rdquo; is rarely enough.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:24%">Data domain</th>
+          <th style="width:26%">Typical business owner</th>
+          <th>Approval focus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Person and employment</td><td class="plain">HR operations</td><td>Identity, status, dates, assignments, managers</td></tr>
+        <tr><td>Organization and jobs</td><td class="plain">HR and finance</td><td>Entities, departments, cost centers, job codes</td></tr>
+        <tr><td>Payroll</td><td class="plain">Payroll</td><td>Pay groups, elections, balances, earnings, deductions, taxes</td></tr>
+        <tr><td>Time and scheduling</td><td class="plain">Workforce operations</td><td>Policies, balances, schedules, time entries</td></tr>
+        <tr><td>Benefits</td><td class="plain">Benefits</td><td>Plans, eligibility, elections, dependents, beneficiaries</td></tr>
+        <tr><td>Security</td><td class="plain">HRIS and security</td><td>Roles, access, sensitive fields, segregation</td></tr>
+        <tr><td>Finance and costing</td><td class="plain">Finance</td><td>Accounts, cost allocation, labor distribution</td></tr>
+        <tr><td>Talent</td><td class="plain">Talent teams</td><td>Goals, reviews, skills, learning, recruiting history</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">The owner should approve definitions, cleanup rules, mappings, reconciliation, and final acceptance for the domain.</p>
+
+  <h2><span class="n">4.</span> Profile the source data</h2>
+  <p>Do not wait for the first failed load to discover data quality.</p>
+  <p>Profile each source for:</p>
+  <ul class="ul">
+    <li>Required fields that are blank</li>
+    <li>Duplicate people or identifiers</li>
+    <li>Invalid dates</li>
+    <li>Inactive values still in use</li>
+    <li>Orphaned records</li>
+    <li>Broken manager or organization relationships</li>
+    <li>Inconsistent codes</li>
+    <li>Unexpected formats</li>
+    <li>Out-of-range values</li>
+    <li>Conflicting records across systems</li>
+    <li>Employees assigned to the wrong population</li>
+    <li>Sensitive fields included without a business need</li>
+  </ul>
+  <p>Quantify the findings. &ldquo;Data needs cleanup&rdquo; is not actionable. &ldquo;Thirty-two active employees have no valid department and five share an employee identifier&rdquo; can be assigned and resolved.</p>
+
+  <h2><span class="n">5.</span> Clean the data at the source when possible</h2>
+  <p>Correcting source data provides a cleaner final extract and prevents the old system from remaining inconsistent during implementation.</p>
+  <p>When source correction is not possible, define an approved transformation rule. Every rule should state:</p>
+  <ul class="ul">
+    <li>The condition that triggers it</li>
+    <li>The value or format produced</li>
+    <li>The business owner</li>
+    <li>The approval date</li>
+    <li>The affected records</li>
+    <li>Whether the rule is temporary or permanent</li>
+    <li>How it will be tested</li>
+  </ul>
+  <p>Avoid hidden manual fixes inside one trial file. If the process cannot be repeated, the final cutover will not be controlled.</p>
+
+  <h2><span class="n">6.</span> Create a source-to-target mapping workbook</h2>
+  <p>The mapping workbook is the contract between business meaning and technical execution.</p>
+  <p>Include:</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:32%">Mapping field</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Data domain</td><td>Groups related records</td></tr>
+        <tr><td>Source system and field</td><td>Identifies the origin</td></tr>
+        <tr><td>Source definition</td><td>Explains what the value means today</td></tr>
+        <tr><td>Dayforce target</td><td>Identifies the destination object or field</td></tr>
+        <tr><td>Target definition</td><td>Confirms intended meaning</td></tr>
+        <tr><td>Transformation rule</td><td>Documents conversion logic</td></tr>
+        <tr><td>Default rule</td><td>Defines approved handling for blanks</td></tr>
+        <tr><td>Validation</td><td>Lists format, value, and relationship checks</td></tr>
+        <tr><td>Owner</td><td>Assigns business accountability</td></tr>
+        <tr><td>Status and version</td><td>Shows approval and change history</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Code mapping deserves the same discipline. Legacy earning, deduction, job, location, department, and benefit codes may not have one-to-one Dayforce equivalents.</p>
+
+  <h2><span class="n">7.</span> Protect data through the conversion process</h2>
+  <p>Migration files can contain highly sensitive personal and payroll information.</p>
+  <p>Define:</p>
+  <ul class="ul">
+    <li>Approved extraction and storage locations</li>
+    <li>Encryption in transit and at rest</li>
+    <li>Access by role</li>
+    <li>Secure transfer methods</li>
+    <li>File-retention and deletion rules</li>
+    <li>Non-production masking requirements</li>
+    <li>Vendor and partner access</li>
+    <li>Logging and incident escalation</li>
+    <li>Final destruction of temporary working files</li>
+  </ul>
+  <p>Use the minimum data required for each purpose. A test team should not receive sensitive fields simply because they exist in the source.</p>
+
+  <h2><span class="n">8.</span> Build repeatable extracts and load files</h2>
+  <p>Trial conversion should resemble final conversion.</p>
+  <p>Automate repeatable steps where practical, preserve version control, and record:</p>
+  <ul class="ul">
+    <li>Extract date and time</li>
+    <li>Source environment</li>
+    <li>Population criteria</li>
+    <li>File version</li>
+    <li>Transformation version</li>
+    <li>Record counts</li>
+    <li>Control totals</li>
+    <li>Load environment</li>
+    <li>Load result</li>
+    <li>Rejected records</li>
+    <li>Corrections and reruns</li>
+  </ul>
+  <p>Manual intervention should be visible, approved, and reproducible.</p>
+
+  <h2><span class="n">9.</span> Run multiple trial conversions</h2>
+  <p>One successful load is not enough.</p>
+  <p>A useful sequence includes:</p>
+  <ol class="ol ol--steps">
+    <li><strong>Structure trial:</strong> Prove formats, required fields, and basic mappings.</li>
+    <li><strong>Population trial:</strong> Load a broad and representative data set.</li>
+    <li><strong>Reconciliation trial:</strong> Prove counts, totals, relationships, and values.</li>
+    <li><strong>Process rehearsal:</strong> Execute the planned cutover steps and timings.</li>
+    <li><strong>Final conversion:</strong> Use approved extracts, transformations, and signoff controls.</li>
+  </ol>
+  <p>Each trial should reduce uncertainty. Track whether errors come from the source, mapping, transformation, load process, Dayforce configuration, or test environment.</p>
+
+  <figure>
+    <img src="../assets/illustration-08.webp" alt="A data-conversion working session mapping source files through transformation, validation, and reconciliation to a final signoff.">
+    <p class="caption">Conversion runs from source inventory through cleanup, mapping, trial loads, and reconciliation to a domain-based signoff. Original Align HCM illustration.</p>
+  </figure>
+
+  <h2><span class="n">10.</span> Reconcile more than record counts</h2>
+  <p>Record counts are necessary but incomplete.</p>
+  <p>Use several levels of reconciliation:</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:28%">Reconciliation level</th>
+          <th>Examples</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Population</td><td>Employees, dependents, assignments, jobs, plans, balances</td></tr>
+        <tr><td>Control totals</td><td>Salary, hours, year-to-date earnings, deductions, taxes, leave balances</td></tr>
+        <tr><td>Relationships</td><td>Manager hierarchy, department, position, dependent, beneficiary</td></tr>
+        <tr><td>Code distribution</td><td>Pay groups, job codes, locations, benefit plans, statuses</td></tr>
+        <tr><td>Sample validation</td><td>Detailed review of high-risk and representative employees</td></tr>
+        <tr><td>Exception review</td><td>Rejected, defaulted, transformed, or excluded records</td></tr>
+        <tr><td>Downstream result</td><td>Payroll, eligibility, security, reporting, and integration behavior</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Dayforce can contain the correct number of employees while still assigning them to the wrong department, manager, pay group, or security role. Reconciliation must test meaning, not only quantity.</p>
+  <p>Data accuracy is one of the critical success factors <a href="https://doi.org/10.1016/S0377-2217(02)00547-7">Umble, Haft and Umble</a> identify for ERP implementation, and it is the one most often assumed rather than demonstrated.</p>
+
+  <h2><span class="n">11.</span> Validate payroll and time data separately</h2>
+  <p>Payroll conversion has additional dependencies and consequences.</p>
+  <p>Validate, as applicable:</p>
+  <ul class="ul">
+    <li>Pay groups and calendars</li>
+    <li>Direct-deposit information</li>
+    <li>Earning and deduction elections</li>
+    <li>Tax setup</li>
+    <li>Garnishments</li>
+    <li>Benefit deductions</li>
+    <li>Year-to-date balances</li>
+    <li>Accrual and leave balances</li>
+    <li>Time entries</li>
+    <li>Rates and compensation history</li>
+    <li>Retroactive transactions</li>
+    <li>Employer liabilities</li>
+  </ul>
+  <p>Converted payroll data should feed the Dayforce parallel-testing process once that article is published. Data reconciliation and payroll comparison are related controls, but one does not replace the other.</p>
+
+  <h2><span class="n">12.</span> Control late changes and delta loads</h2>
+  <p>Data continues to change while implementation is underway.</p>
+  <p>Define:</p>
+  <ul class="ul">
+    <li>The configuration and data freeze dates</li>
+    <li>Which transactions can continue</li>
+    <li>How changes after the full extract are captured</li>
+    <li>How delta records are identified</li>
+    <li>Who approves late corrections</li>
+    <li>When the final extract runs</li>
+    <li>How duplicates and missed records are prevented</li>
+    <li>How the final load is reconciled</li>
+  </ul>
+  <p>Rehearse the delta process before cutover. A clean full-load process can still fail if late hires, terminations, pay changes, or benefit events are missed.</p>
+
+  <h2><span class="n">13.</span> Sign off on the final cutover</h2>
+  <p>The final approval should be explicit and domain-based.</p>
+  <p>Before signoff, confirm:</p>
+  <ul class="ul">
+    <li>Approved scope and retention decisions</li>
+    <li>Approved mapping and transformation versions</li>
+    <li>Successful final extract and load</li>
+    <li>Record and control-total reconciliation</li>
+    <li>Resolved or accepted exceptions</li>
+    <li>Validated security and access</li>
+    <li>Completed downstream testing</li>
+    <li>Confirmed delta-load results</li>
+    <li>Legacy archive available</li>
+    <li>Rollback or contingency plan ready</li>
+    <li>Business-owner approvals complete</li>
+  </ul>
+  <p>The technical team can confirm that the job ran. Business owners must confirm that the result is usable.</p>
+
+  <h2>Dayforce data migration red flags</h2>
+  <ul class="ul">
+    <li>The team plans to &ldquo;move everything&rdquo; without a retention decision.</li>
+    <li>Data cleanup has no owner or deadline.</li>
+    <li>Mapping decisions live only in email or consultant notes.</li>
+    <li>Trial files contain manual fixes that cannot be reproduced.</li>
+    <li>The project reports only accepted and rejected record counts.</li>
+    <li>Payroll balances are not reconciled to approved controls.</li>
+    <li>Testing uses a narrow sample that excludes complex employees.</li>
+    <li>Security is validated after the data is loaded.</li>
+    <li>Late changes and delta loads have not been rehearsed.</li>
+    <li>Legacy-system access will disappear immediately at go-live.</li>
+    <li>Final approval comes from the technical team alone.</li>
+  </ul>
+
+  <h2>How Align HCM can help</h2>
+  <p>Align HCM's <a href="https://www.alignhcm.com/services/data-conversion">data conversion services</a> help customers define scope, ownership, mapping, trial loads, reconciliation, exception management, and cutover readiness.</p>
+  <p>Align also supports Dayforce <a href="https://www.alignhcm.com/services/implementation">implementation</a>, <a href="https://www.alignhcm.com/services/integration">integrations</a>, <a href="https://www.alignhcm.com/services/client-side-services">client-side governance</a>, testing, training, and post-go-live support.</p>
+  <p><a href="https://www.alignhcm.com/contact">Contact Align HCM</a> for a free, no-obligation assessment of your Dayforce data-migration plan, mapping, or conversion risk.</p>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    <div class="faq__item">
+      <div class="faq__q">What data should be migrated to Dayforce?</div>
+      <p class="faq__a">Migrate the data required to operate Dayforce, support users, meet reporting and retention requirements, and complete payroll or workforce processes. Preserve other required history in an approved archive.</p>
+    </div>
+    <div class="faq__item">
+      <div class="faq__q">Who owns Dayforce data migration?</div>
+      <p class="faq__a">Technical teams and implementation partners execute much of the process, but customer business owners should approve definitions, cleanup, mappings, reconciliation, exceptions, and final acceptance.</p>
+    </div>
+    <div class="faq__item">
+      <div class="faq__q">How many trial conversions are needed?</div>
+      <p class="faq__a">The number depends on scope and risk. The project should run enough repeatable trials to prove structure, population, mappings, reconciliation, cutover timing, and final readiness.</p>
+    </div>
+    <div class="faq__item">
+      <div class="faq__q">Is a successful load the same as successful migration?</div>
+      <p class="faq__a">No. A successful load shows that records met technical requirements. Successful migration also requires complete scope, correct values and relationships, reconciliation, business validation, and signoff.</p>
+    </div>
+    <div class="faq__item">
+      <div class="faq__q">Can Align HCM assist with Dayforce data conversion?</div>
+      <p class="faq__a">Align HCM provides data-conversion and client-side implementation services. The exact role should be scoped around the customer's sources, history, payroll requirements, timeline, and internal capacity.</p>
+    </div>
+  </div>
+
+  <div class="cta">
+    <div>
+      <p class="cta__title">Conversion CTA</p>
+      <p class="cta__sub">Ask Align HCM to assess your Dayforce data-conversion readiness.</p>
+    </div>
+    <div class="cta__btn">Talk to an Align HCM expert</div>
+  </div>
+
+</main>
+
+<section class="prod">
+  <div class="dot-label">Publication notes</div>
+  <p>Recommended visual: a seven-stage conversion pipeline labeled Inventory, Clean, Map, Protect, Trial Load, Reconcile, and Sign Off.</p>
+  <p>Image implementation: Upload the 1200x627 WebP to the production CMS or CDN, replace the relative review path, retain the descriptive alt text, and include the final image URL in Article <code>image</code> and WebPage <code>primaryImageOfPage</code> markup. This is an original Align HCM illustration; no third-party attribution is required.</p>
+  <p>Recommended schema: BlogPosting and BreadcrumbList. Keep the visible FAQ for readers and answer engines, but do not use FAQPage rich-result markup.</p>
+  <p>Recommended inbound links after publication: Dayforce implementation, Dayforce implementation cost, the future integration-scope article, and the payroll parallel-testing article.</p>
+  <p>Source URLs: the Dayforce, Government of Canada, and Align HCM source pages listed below are carried as link fields in the editorial master. Attach each production URL before publication; only URLs already verified against a live alignhcm.com path are printed in this review PDF.</p>
+</section>
+
+<section class="prod">
+  <div class="dot-label">Sources</div>
+  <ul class="sources">
+    <li><div class="sources__title">Dayforce: How to implement an HCM system successfully</div></li>
+    <li><div class="sources__title">Dayforce: HCM deployment timeline and implementation plan</div></li>
+    <li><div class="sources__title">Dayforce Activate: Payroll Comparison</div></li>
+    <li><div class="sources__title">Government of Canada: Fall 2025 HR and pay progress report</div></li>
+    <li>
+      <div class="sources__title">Align HCM data conversion services</div>
+      <span class="sources__url">https://www.alignhcm.com/services/data-conversion</span>
+    </li>
+    <li>
+      <div class="sources__title">Align HCM Dayforce implementation</div>
+      <span class="sources__url">https://www.alignhcm.com/services/implementation</span>
+    </li>
+  </ul>
+</section>
+<section class="prod">
+  <div class="dot-label">Research sources</div>
+  <p>Peer-reviewed and published research cited inline above. Every DOI was verified to resolve to the cited article.</p>
+  <ul class="sources">
+    <li>
+      <div class="sources__cite">Wang, R. Y., &amp; Strong, D. M. (1996). Beyond accuracy: What data quality means to data consumers. <i>Journal of Management Information Systems</i>, 12(4), 5&ndash;33.</div>
+      <span class="sources__url">https://doi.org/10.1080/07421222.1996.11518099</span>
+    </li>
+    <li>
+      <div class="sources__cite">Umble, E. J., Haft, R. R., &amp; Umble, M. M. (2003). Enterprise resource planning: Implementation procedures and critical success factors. <i>European Journal of Operational Research</i>, 146(2), 241&ndash;257.</div>
+      <span class="sources__url">https://doi.org/10.1016/S0377-2217(02)00547-7</span>
+    </li>
+  </ul>
+</section>
+
+
+</body>
+</html>
