@@ -10,10 +10,26 @@
     function gtag(){ window.dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'AW-16794883273');
-    if (!sessionStorage.getItem('omega_form_conversion_fired')) {
-      gtag('event', 'conversion', { send_to: 'AW-16794883273/QzZeCKWOnvMbEMmptsg-' });
-      sessionStorage.setItem('omega_form_conversion_fired', '1');
-    }
+    // Fire the Ads conversion only when this page was reached by an actual
+    // accepted submission. Netlify serves /thank-you/ only after the POST
+    // passes netlify-honeypot="bot-field", so arriving here IS the acceptance
+    // signal -- but a direct visit, bookmark, refresh or shared link reaches
+    // this page too, and must not count. The marker is set by the form's
+    // submit handler and consumed exactly once here.
+    (function () {
+      var pending = false;
+      try {
+        pending = sessionStorage.getItem('omega_submit_pending') === '1';
+        if (pending) sessionStorage.removeItem('omega_submit_pending');
+      } catch (err) {
+        // sessionStorage unavailable (private mode). Fall back to requiring a
+        // same-origin referrer, which a direct visit or bookmark will not have.
+        pending = document.referrer.indexOf(window.location.origin) === 0;
+      }
+      if (pending) {
+        gtag('event', 'conversion', { send_to: 'AW-16794883273/QzZeCKWOnvMbEMmptsg-' });
+      }
+    })();
   </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16794883273"></script>
   <script>
