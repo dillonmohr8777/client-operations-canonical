@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GT Clinic | 90-Day Growth Strategy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Forum&family=Manrope:wght@400;500;600;700&display=swap');
+  :root{
+    --navy:#292b6f;--midnight:#171947;--gold:#b29955;--sky:#dceef2;
+    --paper:#f7f8f6;--ink:#1c2131;--muted:#667085;--rule:#d9dde5;
+    --white:#fff;--green:#28715c;--red:#9e3b42;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#dfe2e6;color:var(--ink);font-family:Manrope,Arial,sans-serif}
+  body{font-size:10.2pt;line-height:1.48}
+  .page{position:relative;width:8.5in;height:11in;margin:.22in auto;background:var(--paper);padding:.56in .62in .52in;overflow:hidden;break-after:page;page-break-after:always}
+  .page:last-child{break-after:auto;page-break-after:auto}
+  .dark{background:var(--midnight);color:#f2f4ff}
+  .page-no{position:absolute;right:.62in;bottom:.26in;color:var(--muted);font-size:7.5pt;letter-spacing:.08em}
+  .dark .page-no{color:#aeb5d0}
+  .rule{height:5px;background:linear-gradient(90deg,var(--navy) 0 76%,var(--gold) 76%)}
+  .dark .rule{background:linear-gradient(90deg,#797ad0 0 76%,var(--gold) 76%)}
+  .brand{display:flex;align-items:center;gap:13px;margin-top:14px}
+  .brand img{width:56px;height:56px;object-fit:contain;flex:0 0 auto}
+  .brand-name{font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);font-weight:700}
+  .dark .brand-name{color:#f2f4ff}
+  h1,h2,h3,.display,.number{font-family:Forum,Georgia,serif;font-weight:400}
+  h1{font-size:44pt;line-height:.95;letter-spacing:-.02em;margin:1.05in 0 .28in;max-width:6.85in}
+  h2{font-size:27pt;line-height:1.02;letter-spacing:-.015em;margin:.38in 0 .16in;color:var(--midnight);max-width:6.75in}
+  .dark h1,.dark h2,.dark h3{color:#fff}
+  h3{font-size:16pt;line-height:1.12;margin:0 0 7px;color:var(--navy)}
+  p{margin:0 0 9px}
+  ul,ol{margin:0;padding-left:1.15em}
+  li{margin:0 0 6px}
+  strong{font-weight:700}
+  .lead{font-size:13.2pt;line-height:1.52;max-width:6.75in;color:#d8dcef}
+  .thesis{font-family:Forum,Georgia,serif;font-size:22pt;line-height:1.13;color:#fff;max-width:6.9in}
+  .fine{font-size:8.5pt;line-height:1.45;color:var(--muted)}
+  .dark .fine{color:#bbc2da}
+  .label{font-size:7.2pt;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+  .section-head{display:grid;grid-template-columns:1.25in 1fr;gap:.25in;border-top:1px solid var(--rule);padding-top:.16in;margin-top:.24in}
+  .section-head .label{padding-top:5px}
+  .section-head h2{margin:0}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:.32in}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:.24in}
+  .four{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .metric{border-top:1px solid var(--rule);padding:.16in .12in .04in 0;margin-top:.12in}
+  .metric+.metric{padding-left:.17in;border-left:1px solid var(--rule)}
+  .number{display:block;font-size:26pt;line-height:1;color:var(--navy)}
+  .dark .number{color:#fff}
+  .metric small{display:block;font-size:7.4pt;line-height:1.3;color:var(--muted);margin-top:5px}
+  .dark .metric small{color:#bbc2da}
+  .status{display:inline-block;padding:3px 7px;border-radius:5px;background:#e6f2ee;color:var(--green);font-size:6.8pt;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+  .status.old{background:#f4eee0;color:#7b6429}
+  .band{margin:.22in 0;padding:.2in .22in;background:var(--sky);border-top:1px solid #bed6dc;border-bottom:1px solid #bed6dc}
+  .band p:last-child{margin-bottom:0}
+  .quote{font-family:Forum,Georgia,serif;font-size:19pt;line-height:1.18;color:var(--navy);border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:.2in 0;margin:.2in 0}
+  .stack{border-top:1px solid var(--rule);padding:.14in 0 .12in;display:grid;grid-template-columns:1.45in 1fr;gap:.22in}
+  .stack h3{font-family:Manrope,Arial,sans-serif;font-size:9.3pt;line-height:1.35;font-weight:700;margin:0;color:var(--navy)}
+  .dark .stack{border-color:#4d507f}.dark .stack h3{color:#dce0ff}
+  .stack p,.stack ul{margin:0}
+  .scope-row{display:grid;grid-template-columns:1.38in 2.2in 1fr;gap:.18in;border-top:1px solid var(--rule);padding:.13in 0}
+  .scope-row:last-child{border-bottom:1px solid var(--rule)}
+  .scope-row b{color:var(--navy)}
+  .system{display:grid;grid-template-columns:1.08in 1fr;gap:.22in;border-top:1px solid var(--rule);padding:.15in 0}
+  .system:last-child{border-bottom:1px solid var(--rule)}
+  .step{width:.54in;height:.54in;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:Forum,Georgia,serif;font-size:18pt;color:var(--midnight)}
+  .system-copy{display:grid;grid-template-columns:1.5in 1fr;gap:.18in}
+  .system-copy h3{margin-top:3px}
+  .timeline{position:relative;margin-top:.12in}
+  .phase{display:grid;grid-template-columns:.52in 1.18in 1fr;gap:.17in;padding:0 0 .18in;position:relative}
+  .phase:before{content:"";position:absolute;left:.255in;top:.47in;bottom:-.02in;width:1px;background:var(--gold)}
+  .phase:last-child:before{display:none}
+  .phase .step{width:.5in;height:.5in;font-size:15pt}
+  .phase-time{font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--navy);padding-top:.12in}
+  .phase h3{margin-top:.08in}
+  .check{display:grid;grid-template-columns:1fr 1fr;gap:0 .2in}
+  .check li{margin-bottom:5px}
+  .decision{display:grid;grid-template-columns:1fr 1fr;gap:.22in;margin-top:.18in}
+  .decision>div{border-top:1px solid var(--gold);padding-top:.12in}
+  .cover .brand{margin-top:0}
+  .cover .evidence{position:absolute;left:.62in;right:.62in;bottom:.62in;border:1px solid #565a89;padding:.18in}
+  .cover .evidence p{margin:4px 0 0;color:#d8dcef}
+  .cover:after{content:"";position:absolute;width:6.2in;height:6.2in;border:1px solid rgba(255,255,255,.25);border-radius:50%;right:-1.8in;top:1.35in}
+  .cover:before{content:"";position:absolute;width:7.6in;height:7.6in;border:1px solid rgba(178,153,85,.2);border-radius:50%;right:-2.35in;top:.65in}
+  .cover>*:not(.page-no):not(.evidence){position:relative;z-index:1}
+  .cover .evidence{z-index:2}
+  .cover .page-no{position:absolute;right:.62in;bottom:.26in;z-index:2}
+  .footer-lockup{position:absolute;left:.62in;right:.62in;bottom:.55in;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #4d507f;padding-top:.18in}
+  .footer-lockup .brand{margin:0}
+  .footer-lockup .fine{text-align:right}
+  @media screen and (max-width:850px){body{background:var(--paper)}.page{width:100%;height:auto;min-height:100vh;margin:0;padding:38px 24px 56px}.page-no{right:24px}.two,.three,.four,.section-head,.system-copy,.scope-row,.decision{grid-template-columns:1fr}.metric+.metric{border-left:0;padding-left:0}.check{grid-template-columns:1fr}.cover .evidence,.footer-lockup{position:relative;left:auto;right:auto;bottom:auto;margin-top:36px}.cover:before,.cover:after{display:none}h1{margin-top:72px;font-size:40pt}.page{overflow:visible}}
+  @media print{@page{size:Letter;margin:0}html,body{background:#fff}.page{margin:0;box-shadow:none;print-color-adjust:exact;-webkit-print-color-adjust:exact}.page-no{display:block}a{color:inherit;text-decoration:none}}
+</style>
+</head>
+<body>
+
+<section class="page dark cover">
+  <div class="rule"></div>
+  <div class="brand">
+    <img src="assets/gt-clinic-logo.png" width="128" height="128" alt="GT Aesthetic and Functional Medicine logo">
+    <div class="brand-name">GT Aesthetic &amp; Functional Medicine</div>
+  </div>
+  <h1>The first 90 days:<br>make physician authority easy to find, easy to trust, and easy to act on.</h1>
+  <p class="lead">A practical search, AI visibility, local presence, website, and paid media plan for Dr. Ghazala Farooqui and GT Clinic.</p>
+  <div class="evidence">
+    <div class="label">Prepared by Momentum Digital · 12 September 2026</div>
+    <p>Based on the confirmed engagement, the proposal correspondence, the 21 August audit, and a fresh review of the public website on 12 September.</p>
+  </div>
+  <div class="page-no">01</div>
+</section>
+
+<section class="page">
+  <div class="rule"></div>
+  <div class="section-head">
+    <div class="label">Executive direction</div>
+    <h2>Protect what is already strong. Connect the pieces that turn expertise into consultations.</h2>
+  </div>
+  <p class="quote">GT Clinic does not need a louder story. It needs one connected system that makes Dr. Farooqui's real expertise clear across the website, Google, Maps, AI answers, and the consultation path.</p>
+  <div class="three">
+    <div class="metric"><span class="number">01</span><strong>Be found</strong><small>Own the highest-value service and local questions with one clear page for each intent.</small></div>
+    <div class="metric"><span class="number">02</span><strong>Be trusted</strong><small>Make physician credentials, review, sources, and independent corroboration easy to verify.</small></div>
+    <div class="metric"><span class="number">03</span><strong>Be measured</strong><small>Connect rankings and paid traffic to privacy-safe consultation milestones.</small></div>
+  </div>
+  <div class="band">
+    <div class="label">Engagement now confirmed</div>
+    <p><strong>The $900 monthly quote was accepted 9 September 2026; the contract displays signatures from Ghazala Farooqui and Jesse.</strong> The client-specific quote states a six-month initial term followed by month-to-month service, with cancellation available at any time on 30 days paid notice. The media budget remains separate and set by GT Clinic. Google bills GT Clinic directly while Momentum receives management access. Any additional fee, software, or cost requires written client approval.</p>
+  </div>
+  <div class="two">
+    <div>
+      <h3>Preserve</h3>
+      <ul>
+        <li>Physician-led positioning and Dr. Farooqui's 20+ years of experience.</li>
+        <li>The clinic's aesthetic, regenerative, and functional medicine breadth.</li>
+        <li>The expanded service, FAQ, location, and physician content now live.</li>
+        <li>The exact clinic identity, address, phone, and brand artwork.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Connect</h3>
+      <ul>
+        <li>One intent, one canonical page, one clear consultation action.</li>
+        <li>Website, Business Profile, directories, and physician profiles.</li>
+        <li>Search Console, analytics, call or form outcomes, and reporting.</li>
+        <li>Google Ads only after the landing path and measurement are verified.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="page-no">02</div>
+</section>
+
+<section class="page">
+  <div class="rule"></div>
+  <div class="section-head">
+    <div class="label">Current state</div>
+    <h2>The public site has moved forward since the August audit. The next task is disciplined consolidation.</h2>
+  </div>
+  <div class="stack">
+    <h3><span class="status">Live now</span><br>Clearer homepage</h3>
+    <p>The homepage now has a primary heading, substantial aesthetic and functional medicine sections, prominent service pathways, and a visible consultation action.</p>
+  </div>
+  <div class="stack">
+    <h3><span class="status">Live now</span><br>Physician authority</h3>
+    <p>Dr. Farooqui's founder role, triple board certification, clinical experience, biography, training, and physician-performed model are prominent.</p>
+  </div>
+  <div class="stack">
+    <h3><span class="status">Live now</span><br>Answer content</h3>
+    <p>A dedicated physician-answered FAQ covers major service categories. Service and nearby-location pages contain local context, questions, and internal links.</p>
+  </div>
+  <div class="stack">
+    <h3><span class="status old">Validate</span><br>Conversion path</h3>
+    <p>Primary consultation links still lead to the website contact form. The form includes text-message consent language, but the Boulevard path and end-to-end measurement remain decisions to close.</p>
+  </div>
+  <div class="stack">
+    <h3><span class="status old">Validate</span><br>Medical and local claims</h3>
+    <p>Long FAQ and location pages include treatment, outcome, distance, competitor, and provider claims. Create a clinic-approved review standard, source ledger, and revision date before scaling them.</p>
+  </div>
+  <h3 style="margin-top:.22in">Starting benchmark from the 21 August audit</h3>
+  <div class="four">
+    <div class="metric"><span class="number">19</span><small>estimated ranking keywords<br><span class="status old">Semrush</span></small></div>
+    <div class="metric"><span class="number">2</span><small>tracked AI mentions<br><span class="status old">Semrush</span></small></div>
+    <div class="metric"><span class="number">29</span><small>mobile performance score<br><span class="status old">lab test</span></small></div>
+    <div class="metric"><span class="number">0.6</span><small>Ahrefs public Domain Rating<br><span class="status old">public</span></small></div>
+  </div>
+  <p class="fine" style="margin-top:.12in">These are dated third-party and lab snapshots, not owned analytics. Rerun them after access and compare directionally against the same definitions.</p>
+  <div class="page-no">03</div>
+</section>
+
+<section class="page">
+  <div class="rule"></div>
+  <div class="section-head">
+    <div class="label">Scope translated</div>
+    <h2>What the agreement means in practical weekly work.</h2>
+  </div>
+  <div class="scope-row"><b>Contract area</b><b>Work in practice</b><b>Proof we will show</b></div>
+  <div class="scope-row"><b>Website &amp; SEO</b><span>Initial edits, ongoing management, on-page and technical SEO, two new website pages per month, media and content updates.</span><span>Change log, crawl checks, Search Console queries, page-level movement.</span></div>
+  <div class="scope-row"><b>Local SEO</b><span>Google Business Profile management, weekly posting, NAP corrections, citations, profiles, and reputable listings.</span><span>Profile completeness, local actions, Maps visibility samples, citation ledger.</span></div>
+  <div class="scope-row"><b>AEO / GEO</b><span>Answer restructuring, FAQ and schema work, internal links, physician entity clarity, citable source signals, AI visibility sampling.</span><span>Structured-data validation, answer coverage, citations, correctness by prompt and engine.</span></div>
+  <div class="scope-row"><b>Google Ads</b><span>Account and campaign management with GT Clinic ownership and direct client billing; paid landing path after tracking passes.</span><span>Search terms, spend, qualified consultation signals, negative keywords, change history.</span></div>
+  <div class="band">
+    <div class="label">Client control is part of the operating model</div>
+    <p>GT Clinic retains its Google Ads account, campaigns, conversion tracking, audiences, data, content, and brand assets. Momentum works through management access. Additional charges require approval.</p>
+  </div>
+  <div class="two">
+    <div>
+      <h3>What this plan does commit to</h3>
+      <ul>
+        <li>A defined work queue and visible weekly progress.</li>
+        <li>Consistent local identity and stronger page ownership.</li>
+        <li>Measurement that separates Google, Maps, AI, and paid media.</li>
+        <li>Iteration based on verified signals.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>What it does not promise</h3>
+      <ul>
+        <li>A specific ranking position or deadline.</li>
+        <li>A fixed lead volume or return on ad spend.</li>
+        <li>A directory list before relevance and availability are checked.</li>
+        <li>Paid launch before tracking and approvals are ready.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="page-no">04</div>
+</section>
+
+<section class="page">
+  <div class="rule"></div>
+  <div class="section-head">
+    <div class="label">Growth system</div>
+    <h2>Five connected workstreams. One patient journey.</h2>
+  </div>
+  <div class="system">
+    <div class="step">1</div>
+    <div class="system-copy"><h3>Establish the source of truth</h3><p>Connect Search Console, GA4, Tag Manager, Business Profile, the form or Boulevard path, and privacy-safe outcome stages. Record exact owners and baselines.</p></div>
+  </div>
+  <div class="system">
+    <div class="step">2</div>
+    <div class="system-copy"><h3>Clarify page ownership</h3><p>Map priority services and locations so each valuable query has one best page. Protect strong pages, merge overlap, rewrite weak titles and headings, and simplify internal links.</p></div>
+  </div>
+  <div class="system">
+    <div class="step">3</div>
+    <div class="system-copy"><h3>Publish physician-reviewed answers</h3><p>Turn real consultation questions into concise answer sections, FAQs, comparisons, and new pages. Attach author, reviewer, revision date, source links, and valid schema where appropriate.</p></div>
+  </div>
+  <div class="system">
+    <div class="step">4</div>
+    <div class="system-copy"><h3>Earn independent corroboration</h3><p>Align the practice and physician profiles across trusted directories and professional sources. Pursue fewer, stronger mentions that validate the same facts.</p></div>
+  </div>
+  <div class="system">
+    <div class="step">5</div>
+    <div class="system-copy"><h3>Convert and learn</h3><p>Launch the first paid path only after measurement passes. Review search terms, pages, Maps, AI answers, and consultation quality together every week.</p></div>
+  </div>
+  <div class="band">
+    <div class="label">The monthly content rule</div>
+    <p><strong>Two new pages should fill proven gaps, not feed a calendar.</strong> Each page needs a defined query set, patient question, physician reviewer, consultation path, internal-link role, and measurement plan before drafting begins.</p>
+  </div>
+  <div class="page-no">05</div>
+</section>
+
+<section class="page dark">
+  <div class="rule"></div>
+  <div class="section-head" style="border-color:#4d507f">
+    <div class="label">Paid search</div>
+    <h2>Build Google Ads after the measurement path is credible.</h2>
+  </div>
+  <p class="thesis" style="margin:.24in 0">A clean paid launch is a controlled extension of the website strategy, not a shortcut around it.</p>
+  <div class="stack"><h3>Account structure</h3><p>Use a GT Clinic-owned Google Ads account with GT Clinic billing. Momentum receives management access and documents each material change.</p></div>
+  <div class="stack"><h3>First campaign</h3><p>Begin with one priority service and one local consultation intent. Keep brand protection, service intent, and exploratory queries separate.</p></div>
+  <div class="stack"><h3>Landing path</h3><p>Send traffic to one focused page with physician authority, service fit, clear expectations, and one consultation action. Preserve GCLID and UTMs.</p></div>
+  <div class="stack"><h3>Tracking gate</h3><p>Verify form or scheduling completion, deduplication, consent, referral exclusions, call handling, and source capture before enabling spend.</p></div>
+  <div class="stack"><h3>Optimization signal</h3><p>Use privacy-safe consultation milestones and clinic feedback about fit. Do not send symptoms, treatment details, or patient information to advertising or AI tools.</p></div>
+  <div class="band" style="background:#22265b;border-color:#5c6094;color:#f2f4ff">
+    <div class="label">Launch conditions</div>
+    <p>Priority service chosen · landing page approved · conversion path verified · monthly media budget confirmed in writing · account ownership and billing confirmed · campaign review completed.</p>
+  </div>
+  <div class="footer-lockup">
+    <div class="brand"><img src="assets/gt-clinic-logo.png" width="128" height="128" alt=""><div class="brand-name">GT Clinic × Momentum</div></div>
+    <div class="fine">Measurement before spend.<br>Quality before scale.</div>
+  </div>
+  <div class="page-no">06</div>
+</section>
+
+<section class="page">
+  <div class="rule"></div>
+  <div class="section-head">
+    <div class="label">90-day plan</div>
+    <h2>A sequence that closes the foundation before it adds volume.</h2>
+  </div>
+  <div class="timeline">
+    <div class="phase">
+      <div class="step">1</div><div class="phase-time">Days 1–14</div>
+      <div><h3>Instrument and stabilize</h3><ul class="check"><li>Confirm owners, goals, top services, and approvals.</li><li>Connect GSC, GA4, GTM, GBP, Ads, and outcomes.</li><li>Back up site and document rollback.</li><li>Rerun crawl, mobile, schema, and index checks.</li><li>Audit contact form and Boulevard decision.</li><li>Freeze ranking, Maps, and AI prompt baselines.</li></ul></div>
+    </div>
+    <div class="phase">
+      <div class="step">2</div><div class="phase-time">Days 15–30</div>
+      <div><h3>Correct high-intent paths</h3><ul class="check"><li>Resolve page ownership for priority services.</li><li>Protect and improve proven local pages.</li><li>Review high-risk medical and competitor claims.</li><li>Repair titles, headings, internal links, and schema.</li><li>Begin NAP and profile corrections.</li><li>Approve the first paid landing brief.</li></ul></div>
+    </div>
+    <div class="phase">
+      <div class="step">3</div><div class="phase-time">Days 31–60</div>
+      <div><h3>Build authority and the first paid path</h3><ul class="check"><li>Publish two reviewed pages against proven gaps.</li><li>Strengthen physician and practice entities.</li><li>Complete first citation and profile wave.</li><li>Launch the focused landing page.</li><li>Validate conversions end to end.</li><li>Launch Google Ads only after the gate passes.</li></ul></div>
+    </div>
+    <div class="phase">
+      <div class="step">4</div><div class="phase-time">Days 61–90</div>
+      <div><h3>Compound what earns trust</h3><ul class="check"><li>Expand pages gaining impressions or citations.</li><li>Improve queries sitting near page one.</li><li>Review search terms and consultation quality.</li><li>Retest Maps and AI answer visibility.</li><li>Reclaim mentions and strengthen trusted sources.</li><li>Set the next-quarter test portfolio.</li></ul></div>
+    </div>
+  </div>
+  <p class="fine">Timing assumes timely access, clinic review of medical content, and approvals. Search movement is measured and reported; specific ranking or lead outcomes are not guaranteed.</p>
+  <div class="page-no">07</div>
+</section>
+
+<section class="page">
+  <div class="rule"></div>
+  <div class="section-head">
+    <div class="label">Start here</div>
+    <h2>The kickoff closes decisions, access, and the first two-week work queue.</h2>
+  </div>
+  <div class="decision">
+    <div>
+      <h3>Decisions for Dr. Farooqui</h3>
+      <ol>
+        <li>Name the top three priority services for the next 90 days.</li>
+        <li>Choose the first service for the paid landing path.</li>
+        <li>Confirm whether the website form or Boulevard becomes the booking path.</li>
+        <li>Confirm the monthly Google media budget separately from the retainer.</li>
+        <li>Name the clinic reviewer for medical and outcome language.</li>
+      </ol>
+    </div>
+    <div>
+      <h3>Access for Momentum</h3>
+      <ol>
+        <li>SiteGround and WordPress</li>
+        <li>Domain and DNS registrar</li>
+        <li>Google Business Profile manager</li>
+        <li>Search Console, GA4, and Tag Manager</li>
+        <li>Google Ads with client billing</li>
+        <li>Approved brand photos and assets</li>
+        <li>Boulevard, if selected</li>
+      </ol>
+    </div>
+  </div>
+  <div class="band">
+    <div class="label">Weekly reporting</div>
+    <p><strong>One page, four views:</strong> work completed; website and Search Console movement; Maps and Business Profile movement; AI visibility and paid media results. Consultation reporting stays privacy-safe and separates volume from fit.</p>
+  </div>
+  <div class="two">
+    <div>
+      <h3>First 14-day definition of done</h3>
+      <ul>
+        <li>Access and ownership map complete.</li>
+        <li>Backup and rollback route documented.</li>
+        <li>Owned measurement baseline connected.</li>
+        <li>Priority-service map approved.</li>
+        <li>First fixes and first landing brief accepted.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Working cadence</h3>
+      <ul>
+        <li>One relationship owner and one delivery owner.</li>
+        <li>One review queue for site and medical content.</li>
+        <li>Weekly progress report.</li>
+        <li>Monthly strategy review.</li>
+        <li>Written approval for additional cost or spend.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="quote" style="font-size:18pt;margin-top:.28in">The first win is not more activity. It is a clean operating system that lets every page, listing, ad, and report reinforce the same physician-led promise.</p>
+  <div class="footer-lockup" style="border-color:var(--rule)">
+    <div class="brand"><img src="assets/gt-clinic-logo.png" width="128" height="128" alt=""><div class="brand-name">GT Aesthetic &amp; Functional Medicine</div></div>
+    <div class="fine">Prepared by Momentum Digital<br>12 September 2026</div>
+  </div>
+  <div class="page-no">08</div>
+</section>
+
+</body>
+</html>

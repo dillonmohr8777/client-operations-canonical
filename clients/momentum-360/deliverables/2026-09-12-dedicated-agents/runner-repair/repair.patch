@@ -1,0 +1,26 @@
+# Proposed patch, expressed as a git restore operation
+
+Source commit:
+
+`da33d74bebba5fd90b3b8a037e7d0f6ac4dcdaa1`
+
+Patch:
+
+```powershell
+git restore --source da33d74bebba5fd90b3b8a037e7d0f6ac4dcdaa1 -- `
+  clients/momentum-360/automation/daily-agent-health/Install-MomentumDailyAgentHealthTask.ps1 `
+  clients/momentum-360/automation/daily-agent-health/PROMPT.md `
+  clients/momentum-360/automation/daily-agent-health/README.md `
+  clients/momentum-360/automation/daily-agent-health/Repair-MomentumCodexModelCache.ps1 `
+  clients/momentum-360/automation/daily-agent-health/Run-MomentumDailyAgentHealth.ps1 `
+  clients/momentum-360/automation/daily-agent-health/Test-MomentumDailyAgentHealth.ps1 `
+  clients/momentum-360/automation/daily-agent-health/Test-MomentumDailyAgentHealthPreflight.ps1 `
+  clients/momentum-360/automation/daily-agent-health/expected-configuration.json `
+  clients/momentum-360/automation/daily-agent-health/state/delivery-ledger.json
+```
+
+Equivalent guarded local helper:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File clients/momentum-360/deliverables/2026-09-12-dedicated-agents/runner-repair/Restore-MomentumDailyAgentHealthRunner.ps1 -Apply
+```

@@ -1,0 +1,177 @@
+{
+  "state": "DRAFT",
+  "client": "momentum-360",
+  "observed_at": "2026-09-12",
+  "scope": "Momentum organizational bottlenecks; source-backed summaries, no raw communications. Slack claims require current provider checks before action.",
+  "cards": [
+    {
+      "id": "lead-duplicate",
+      "owner": "Jason Fallon",
+      "lane": "sales",
+      "observed_date": "2026-09-10",
+      "status": "observed_unresolved",
+      "summary": "A lead automation creates a HubSpot contact; a separate all-contact automation pushes it into Slack again. The second notification lacks campaign context. Thread participants explicitly identify this double trigger.",
+      "source_refs": [
+        "https://momentum3d.slack.com/archives/C05R2B1ULF6/p1789058361970009"
+      ],
+      "next_action": "Inspect exact two automation mappings, preserve campaign fields, and stage deduplication using stable source-event and CRM record identity. Verify actual current provider configuration before any mutation.",
+      "acceptance": "One canonical lead task with campaign, owner, next step and receipt after two source notifications; ambiguous matches held for review.",
+      "depends_on": []
+    },
+    {
+      "id": "lead-follow-through",
+      "owner": "Jason Fallon",
+      "lane": "sales",
+      "observed_date": "2026-09-10",
+      "status": "proposed_not_live",
+      "summary": "Jason describes task/email alerts and an after-hours AI caller as future safeguards against missed follow-up. Those statements do not prove deployment or call handling.",
+      "source_refs": [
+        "https://momentum3d.slack.com/archives/C05R2B1ULF6/p1789062122049379",
+        "https://momentum3d.slack.com/archives/C05R2B1ULF6/p1789062143533599"
+      ],
+      "next_action": "Stage a lead-to-owner-to-next-action checklist and controlled acceptance plan for existing HubSpot and CallRail integration.",
+      "acceptance": "Readback of owner/task plus controlled approved call test; no live claim from Slack discussion alone.",
+      "depends_on": [
+        "lead-duplicate"
+      ]
+    },
+    {
+      "id": "apollo-capacity",
+      "owner": "Sean Boyle",
+      "lane": "operations",
+      "observed_date": "2026-09-11",
+      "status": "observed_unresolved",
+      "summary": "Cold-email list import is blocked by insufficient Apollo credits. Sean requests a quantity to approve; thread contains no completed purchase or successful import.",
+      "source_refs": [
+        "https://momentum3d.slack.com/archives/C0B6UUBMW9M/p1789151088602009"
+      ],
+      "next_action": "Prepare deduplicated list count, required credits, current balance verification and exact purchase decision packet.",
+      "acceptance": "One quantity/cost/owner decision packet with documented balance; no inferred spend authority.",
+      "depends_on": []
+    },
+    {
+      "id": "production-brief",
+      "owner": "Sean Boyle",
+      "lane": "operations",
+      "observed_date": "2026-09-11",
+      "status": "observed_unresolved",
+      "summary": "Production coordination requests budget and video duration; Sean separately requests the shotlist and duration. Missing brief fields cause additional handoffs.",
+      "source_refs": [
+        "https://momentum3d.slack.com/archives/C0245CEKF16/p1789152985631049",
+        "https://momentum3d.slack.com/archives/C0245CEKF16/p1789131807738209"
+      ],
+      "next_action": "Draft one shoot readiness packet with project, accountable producer, shotlist, length, budget, due date and source-file receipt.",
+      "acceptance": "All required fields evidenced or explicitly missing before production assignment.",
+      "depends_on": []
+    },
+    {
+      "id": "report-reconciliation",
+      "owner": "Mac Frederick",
+      "lane": "revenue",
+      "observed_date": "2026-09-10",
+      "status": "observed_request",
+      "summary": "Mac asks for recurring Meta/GHL performance updates. Earlier August feedback says a report lacks actual GA4/GSC traffic evidence.",
+      "source_refs": [
+        "https://momentum3d.slack.com/archives/C09CU4AM8HJ/p1789059904745759",
+        "https://momentum3d.slack.com/archives/C0AEGE1V5KR/p1785881587417859"
+      ],
+      "next_action": "Prepare per-client report checklist mapping each claim to exact account, date window, source, qualified outcome and next action.",
+      "acceptance": "No cross-client totals or invented metrics; platform events distinguished from qualified leads and revenue.",
+      "depends_on": []
+    },
+    {
+      "id": "billing-handoff",
+      "owner": "Mac Frederick",
+      "lane": "revenue",
+      "observed_date": "2026-09-10",
+      "status": "observed_unresolved",
+      "summary": "Puttery project handoff requires account-manager next steps and deposit readiness; a charge attempt is reported unsuccessful and an invoice is planned.",
+      "source_refs": [
+        "https://momentum3d.slack.com/archives/C0BT1P1PGJF/p1789047050642349",
+        "https://momentum3d.slack.com/archives/C0BT1P1PGJF/p1789073287527119"
+      ],
+      "next_action": "Prepare milestone, invoice and payment-receipt reconciliation for human review. Keep payment collection and contract decisions with the authorized owner.",
+      "acceptance": "Project-ready and paid states have separate evidence; no card charge or invoice send from this pilot.",
+      "depends_on": []
+    },
+    {
+      "id": "marketing-dependencies",
+      "owner": "Melissa Silber",
+      "lane": "marketing",
+      "observed_date": "2026-09-11",
+      "status": "observed_unresolved",
+      "summary": "Melissa repeatedly asks for press-release outreach progress; September 3 also shows website work waiting on edits and account-manager surveys.",
+      "source_refs": [
+        "https://momentum3d.slack.com/archives/C0B6UUBMW9M/p1789133368107859",
+        "https://momentum3d.slack.com/archives/C1CFQBC79/p1788453649274459"
+      ],
+      "next_action": "Assemble current editorial/outreach deliverables, dependencies, review owner and next checkpoint; retrieve replies before classifying as overdue.",
+      "acceptance": "Each item names missing input and dependency owner; resolved replies suppress stale reminders.",
+      "depends_on": [
+        "apollo-capacity"
+      ]
+    },
+    {
+      "id": "lead-system-map",
+      "owner": "Melissa Silber",
+      "lane": "marketing",
+      "observed_date": "2026-09-02",
+      "status": "observed_unresolved",
+      "summary": "Melissa reports difficulty finding some Google Ads automations and asks whether GHL email follow-up owners have synchronized.",
+      "source_refs": [
+        "https://momentum3d.slack.com/archives/C09CU4AM8HJ/p1788298451873669",
+        "https://momentum3d.slack.com/archives/C09CU4AM8HJ/p1788358121535429"
+      ],
+      "next_action": "Map form/ad source to automation owner, CRM, notification and follow-up sequence, then verify each exact route read-only.",
+      "acceptance": "Every route has a named system owner, actual destination and test receipt or explicit gap.",
+      "depends_on": [
+        "lead-duplicate"
+      ]
+    },
+    {
+      "id": "delivery-specialist",
+      "owner": "Melissa Rigby",
+      "lane": "delivery",
+      "observed_date": "2026-09-03",
+      "status": "identity_pending",
+      "summary": "Melissa Rigby coordinates completed software milestones, client review scheduling and report delivery; earlier May work required Framer specialist help. Keep distinct from Melissa Silber until Dillon confirms focus.",
+      "source_refs": [
+        "https://momentum3d.slack.com/archives/C0BGWRK03B2/p1788445311858119",
+        "https://momentum3d.slack.com/archives/C8NF1N3NH/p1780069514327299"
+      ],
+      "next_action": "Draft milestone acceptance and specialist escalation packets, with calendar conflicts and client questions captured only as relevant to delivery.",
+      "acceptance": "Completed build, reviewed milestone and client acceptance remain separate; correct Melissa identity confirmed.",
+      "depends_on": []
+    },
+    {
+      "id": "scope-clarity",
+      "owner": "Sean Boyle",
+      "lane": "operations",
+      "observed_date": "2026-09-11",
+      "status": "observed_unresolved",
+      "summary": "Deborah Mara channel reports client confusion and an expansion from one page to multiple pages, with separate MLS pricing dependent on access.",
+      "source_refs": [
+        "https://momentum3d.slack.com/archives/C05UM2X3FQS/p1789134972817349",
+        "https://momentum3d.slack.com/archives/C05UM2X3FQS/p1789112940745139"
+      ],
+      "next_action": "Draft a single scope and responsibility clarification from current contract and emails, with cost changes explicitly awaiting decision.",
+      "acceptance": "One agreed page list, pricing boundary, access request and communication owner; no unapproved scope expansion.",
+      "depends_on": []
+    },
+    {
+      "id": "assistant-repeat-loop",
+      "owner": "Melissa Silber",
+      "lane": "marketing",
+      "observed_date": "2026-09-03",
+      "status": "observed_unresolved",
+      "summary": "AskRocco August 19 thread contains 63 replies, repeatedly re-asks answered creative-brief questions, and eventually returns creative links. In September, it answers Mac's question directed to Melissa as if it were a question about tagging. Evidence supports excessive interaction and trigger/context defects, not a claim that it never generated assets.",
+      "source_refs": [
+        "https://momentum3d.slack.com/archives/C0B3T401W77/p1787166794634639",
+        "https://momentum3d.slack.com/archives/C0B3T401W77/p1788444824755659"
+      ],
+      "next_action": "Define exact agent invocation, reuse answered fields from text or forms, ask only materially missing questions, and validate actual artifact output. Test stop propagation and ignore non-directed bot chatter.",
+      "acceptance": "No repeated question for a known field; artifact or exact tool blocker returned; human-to-human message does not trigger an unsolicited bot answer.",
+      "depends_on": []
+    }
+  ]
+}

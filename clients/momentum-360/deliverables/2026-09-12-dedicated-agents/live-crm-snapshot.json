@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "status": "live-read-only",
+  "readAt": "2026-09-12T22:47:53.9474049Z",
+  "route": {
+    "clientId": "momentum-360",
+    "accountAlias": "jason-momentum",
+    "portalId": "50612503",
+    "integrationKey": "hubspot-jason-momentum-50612503",
+    "identity": "valid",
+    "mode": "read-only",
+    "credentialPersisted": false
+  },
+  "accessLedger": {
+    "snapshotGeneratedAt": "2026-09-12T22:47:17.366Z",
+    "objects": {
+      "contacts": { "ok": true, "returned": 1 },
+      "companies": { "ok": true, "returned": 1 },
+      "deals": { "ok": true, "returned": 1 },
+      "owners": { "ok": true, "returned": 1 },
+      "pipelines": { "ok": true, "returned": 5 },
+      "forms": { "ok": true, "returned": 1 },
+      "calls": { "ok": true, "returned": 1 },
+      "meetings": { "ok": true, "returned": 1 },
+      "tasks": { "ok": true, "returned": 1 }
+    },
+    "connectionErrors": [
+      {
+        "pathFamily": "/conversations/v3/conversations/threads",
+        "status": 403,
+        "classification": "permission_denied",
+        "detail": "App lacks required conversations scopes"
+      }
+    ]
+  },
+  "records": [
+    {
+      "contactId": "247699043386",
+      "createdAt": "2026-09-10T16:38:33.451Z",
+      "lastModifiedAt": "2026-09-11T01:03:15.489Z",
+      "ownerId": "84251079",
+      "leadStatus": "NEW",
+      "lifecycleStage": null,
+      "source": {
+        "analyticsSource": "PAID_SOCIAL",
+        "utmSource": "Facebok",
+        "utmMedium": "cpc",
+        "utmCampaign": "2026 Suspension Ads",
+        "analyticsSourceData1": "",
+        "analyticsSourceData2": "",
+        "latestSource": "OFFLINE",
+        "latestSourceData1": "INTEGRATION",
+        "latestSourceData2": "25200"
+      },
+      "lastActivity": {
+        "notesLastUpdated": "2026-09-10T20:00:00Z",
+        "lastSalesActivityDate": null,
+        "lastSalesActivityTimestamp": null,
+        "taskIds": ["116697661742"],
+        "callIds": [],
+        "meetingIds": []
+      },
+      "task": {
+        "taskId": "116697661742",
+        "status": "NOT_STARTED",
+        "priority": "HIGH",
+        "timestamp": "2026-09-10T20:00:00Z",
+        "createdAt": "2026-09-10T17:48:51.293Z",
+        "lastModifiedAt": "2026-09-10T20:00:16.211Z",
+        "ownerId": "84251079"
+      }
+    },
+    {
+      "contactId": "247699997344",
+      "createdAt": "2026-09-10T16:50:00.635Z",
+      "lastModifiedAt": "2026-09-11T13:47:40.810Z",
+      "ownerId": "84251079",
+      "leadStatus": "NEW",
+      "lifecycleStage": null,
+      "source": {
+        "analyticsSource": "PAID_SOCIAL",
+        "utmSource": "Facebok",
+        "utmMedium": "cpc",
+        "utmCampaign": "2026 Suspension Ads",
+        "analyticsSourceData1": "",
+        "analyticsSourceData2": "",
+        "latestSource": "OFFLINE",
+        "latestSourceData1": "INTEGRATION",
+        "latestSourceData2": "25200"
+      },
+      "lastActivity": {
+        "notesLastUpdated": "2026-09-11T13:45:00Z",
+        "lastSalesActivityDate": null,
+        "lastSalesActivityTimestamp": null,
+        "taskIds": ["116694308362"],
+        "callIds": [],
+        "meetingIds": []
+      },
+      "task": {
+        "taskId": "116694308362",
+        "status": "IN_PROGRESS",
+        "priority": "HIGH",
+        "timestamp": "2026-09-11T13:45:00Z",
+        "createdAt": "2026-09-10T18:04:53.274Z",
+        "lastModifiedAt": "2026-09-11T13:45:02.156Z",
+        "ownerId": "84251079"
+      }
+    }
+  ],
+  "fieldSemantics": {
+    "null": "property returned and empty",
+    "omitted": "not requested in this bounded read",
+    "permissions": "conversation threads denied with HTTP 403",
+    "redaction": "names, emails, phones, and raw notes omitted"
+  },
+  "sourceRefs": [
+    "mcp://hubspot_jason_momentum/jason_hubspot_identity",
+    "mcp://hubspot_jason_momentum/jason_hubspot_snapshot",
+    "/crm/v3/objects/contacts/247699043386",
+    "/crm/v3/objects/contacts/247699997344",
+    "/crm/v3/objects/tasks/116697661742",
+    "/crm/v3/objects/tasks/116694308362",
+    "/conversations/v3/conversations/threads?limit=1"
+  ]
+}
