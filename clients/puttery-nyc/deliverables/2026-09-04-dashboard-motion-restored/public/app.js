@@ -269,9 +269,9 @@ function renderPlatforms() {
         <div class="platform-copy">
           <p>${platform.role}</p>
           <dl>
-            <div><dt>Evidence</dt><dd>${escapeText(platform.confirmed)}</dd></div>
-            <div><dt>Still unknown</dt><dd>${escapeText(platform.unknown)}</dd></div>
-            <div><dt>Fallback</dt><dd>${escapeText(platform.fallback)}</dd></div>
+            <div><dt>Connected</dt><dd>${escapeText(platform.confirmed)}</dd></div>
+            <div><dt>Outstanding</dt><dd>${escapeText(platform.unknown)}</dd></div>
+            <div><dt>If unavailable</dt><dd>${escapeText(platform.fallback)}</dd></div>
           </dl>
           <button class="platform-jump" type="button" data-platform-jump="${platform.key}">Review ${platform.name} notes</button>
         </div>
@@ -395,7 +395,7 @@ function updateProgress() {
   set('build-stage','Reporting'); set('mobile-build-stage','Reporting');
   set('current-gate',gate); set('mobile-current-gate',gate);
   set('readiness-explainer','The reservation reporting MVP is built. Campaign attribution and validated revenue reporting are the two major capabilities still to complete.');
-  set('discovery-summary-text',recorded ? `${recorded} worksheet answers recorded in this browser. These notes do not set the build status.` : 'No local worksheet answers recorded. The live build status is independent of these optional notes.');
+  set('discovery-summary-text',recorded ? `${recorded} answers recorded in this browser.` : 'No answers recorded yet.');
   set('rail-progress','Reservation reporting'); set('rail-gate',gate);
   document.querySelector('.status-dot')?.classList.toggle('ready',operational?.liveFeed==='Connected');
 }

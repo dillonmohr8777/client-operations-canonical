@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Puttery NYC operational readiness, attribution pilot dashboard, and integration discovery workspace." />
+    <meta name="description" content="Puttery NYC marketing and revenue dashboard: reservations, source verification, and attribution readiness." />
     <meta name="robots" content="noindex, nofollow, noarchive" />
-    <title>Puttery NYC · Attribution Pilot Control</title>
+    <title>Puttery NYC · Marketing &amp; Revenue Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Fugaz+One&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -14,14 +14,6 @@
     <script src="champion-intro.js"></script>
   </head>
   <body>
-    <!--
-      THESIS: A Puttery course marshal board turns attribution uncertainty into a playable route with explicit gates, refusing the generic executive KPI wall.
-      OWN-WORLD: Exact Puttery wordmark, black and white fields, hot pink action, teal verification, green readiness, and angular scorecard geometry.
-      STORY: Understand the pilot, inspect every source, answer the integration questions, then leave with a defensible go or blocked decision.
-      FIRST VIEWPORT: Brand rail above a split scoreboard where the marketing to revenue route and discovery progress are visible without scrolling.
-      FORM: Course marshal tee sheet, grounded candidate 4, seed 6c91a192.
-      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
-    -->
     <script>
       window.playPutteryIntro = function (force, bypassChampion) {
         if (!bypassChampion && window.PUTTERY_INTRO_MEDIA?.champion && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -89,16 +81,16 @@
 
     <div class="app-shell">
       <aside class="section-rail" aria-label="Dashboard sections">
-        <p class="rail-title">Pilot control</p>
+        <p class="rail-title">Puttery NYC</p>
         <nav>
-          <a class="rail-link active" href="#overview"><span>Overview</span><small>What we are proving</small></a>
-          <a class="rail-link" href="#live-status"><span>Current status</span><small>What is verified now</small></a>
+          <a class="rail-link active" href="#overview"><span>Overview</span><small>Where things stand</small></a>
+          <a class="rail-link" href="#live-status"><span>Current status</span><small>Live connections</small></a>
           <a class="rail-link" href="#reservations"><span>Reservations</span><small>Live Tock aggregates</small></a>
           <a class="rail-link" href="#outcomes"><span>Outcome map</span><small>What counts and why</small></a>
           <a class="rail-link" href="#integrations"><span>Integrations</span><small>Ten source lanes</small></a>
-          <a class="rail-link" href="#discovery"><span>Implementation notes</span><small>Optional working notes</small></a>
+          <a class="rail-link" href="#discovery"><span>Implementation notes</span><small>Account access detail</small></a>
           <a class="rail-link" href="#reconciliation"><span>Revenue truth</span><small>Prevent double counting</small></a>
-          <a class="rail-link" href="#rollout"><span>Build status</span><small>What remains to finish</small></a>
+          <a class="rail-link" href="#rollout"><span>Roadmap</span><small>What is next</small></a>
           <a class="rail-link" href="#next-action"><span>Next action</span><small>Who does what</small></a>
         </nav>
         <div class="rail-golf-loop" data-golf-loop-slot aria-hidden="true">
@@ -117,8 +109,8 @@
         <section id="overview" class="hero-section section-block" aria-labelledby="overview-title">
           <div class="hero-copy">
             <p class="venue-line">PUTTERY NYC · 446 W 14TH ST · PILOT VENUE</p>
-            <div class="mobile-scoreboard" aria-label="Current build stage">
-              <div><span>Build stage</span><strong id="mobile-build-stage">Reporting</strong></div>
+            <div class="mobile-scoreboard" aria-label="Current phase">
+              <div><span>Phase</span><strong id="mobile-build-stage">Reporting</strong></div>
               <div><span>Current gate</span><strong id="mobile-current-gate">Reconciliation pending</strong></div>
               
             </div>
@@ -131,8 +123,8 @@
             </div>
           </div>
 
-          <div class="pilot-scoreboard" aria-label="Verified build status">
-            <div class="scoreboard-head build-stage-head"><span>Current build stage</span><strong id="build-stage">Reporting</strong></div>
+          <div class="pilot-scoreboard" aria-label="Current phase">
+            <div class="scoreboard-head build-stage-head"><span>Current phase</span><strong id="build-stage">Reporting</strong></div>
             <dl class="score-grid">
               <div><dt>Available now</dt><dd>Reservation reporting</dd></div>
               <div><dt>Connected source</dt><dd id="connected-systems">Checking Tock</dd></div>
@@ -161,8 +153,8 @@
 
           <div class="status-scorecard" aria-label="Current Tock integration verification">
             <div><span>Account route</span><strong data-status-field="accountRoute">NYC 37824</strong><small data-status-field="accountRouteDetail">Business group 28086 · venue filter verified</small></div>
-            <div><span>Receiver test baseline</span><strong data-status-field="receiverTests">14 / 14</strong><small data-status-field="receiverTestsDetail">Receiver check baseline</small></div>
-            <div><span>Relay test baseline</span><strong data-status-field="relayTests">18 / 18</strong><small data-status-field="relayTestsDetail">Relay check baseline</small></div>
+            <div><span>Reservation intake</span><strong data-status-field="receiverTests">Healthy</strong><small data-status-field="receiverTestsDetail">All intake checks passing</small></div>
+            <div><span>Data delivery</span><strong data-status-field="relayTests">Healthy</strong><small data-status-field="relayTestsDetail">All delivery checks passing</small></div>
             <div><span>Reservation webhook</span><strong data-status-field="liveFeed">Receiving</strong><small data-status-field="liveFeedDetail">Reservation webhook · not performance reporting</small></div>
           </div>
 
@@ -278,13 +270,13 @@
           <div class="section-heading split-heading">
             <div>
               <h2 id="discovery-title">Implementation notes</h2>
-              <p>Optional working notes for account access and implementation. These are browser notes, not the build status. Existing answers are preserved.</p>
+              <p>Detail on account access and integration setup. Existing answers are preserved.</p>
             </div>
           </div>
           <details id="implementation-notes" class="implementation-notes">
-            <summary>Open the optional implementation worksheet</summary>
+            <summary>Open integration detail</summary>
             <p id="discovery-summary-text">Saved notes stay in this browser.</p>
-            <div class="aggregate-downloads"><button class="action-button secondary" id="export-answers" type="button">Export worksheet notes</button><button class="action-button secondary" id="reset-view" type="button">Reset worksheet filters</button></div>
+            <div class="aggregate-downloads"><button class="action-button secondary" id="export-answers" type="button">Export notes</button><button class="action-button secondary" id="reset-view" type="button">Reset filters</button></div>
           <div class="discovery-controls">
             <label for="platform-filter">Platform
               <select id="platform-filter"><option value="all">All platforms</option></select>
@@ -335,7 +327,7 @@
 
         <section id="rollout" class="section-block" aria-labelledby="rollout-title">
           <div class="section-heading">
-            <h2 id="rollout-title">Where the build stands</h2>
+            <h2 id="rollout-title">Roadmap</h2>
             <p>The reservation reporting MVP includes a refreshing Tock feed and a separately dated NYC GA4 extract. Campaign attribution and validated revenue reporting remain pending.</p>
           </div>
           <div class="phase-track">
@@ -347,7 +339,7 @@
 
           <div class="acceptance-board">
             <div>
-              <h3>Acceptance criteria</h3>
+              <h3>What each phase delivers</h3>
               <ul>
                 <li>Every source mapped to the correct Puttery location and timezone</li>
                 <li>Two venue days reconcile to approved source totals and definitions</li>
@@ -357,7 +349,7 @@
                 <li>No modeled value is uploaded as a production conversion</li>
               </ul>
             </div>
-            <div class="commercial-scope"><h3>What determines completion</h3><p>The remaining work depends on verified account access, a controlled booking and approved source definitions. A completion percentage or calendar promise would hide those dependencies.</p></div>
+            <div class="commercial-scope"><h3>What the next phase needs</h3><p>Advertising account access, one controlled test booking, and agreed definitions for booking value and revenue. Those three unlock end to end attribution.</p></div>
           </div>
         </section>
 
