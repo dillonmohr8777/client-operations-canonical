@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-09-08T21:57:08.556Z",
+  "checkedAt": "2026-09-13T15:20:20.228Z",
   "sources": [
     {
       "key": "Website",
       "state": "verify",
       "stateLabel": "Routes observed",
       "confirmed": "The NYC location page links to the Puttery New York Tock checkout and the Tripleseat event inquiry form. A Google Tag Manager container appears in the page source.",
-      "unknown": "Tag firing, cross-domain identifiers and consent behavior require a controlled journey.",
+      "unknown": "The current WordPress admin route requires login. No invited CMS user session is established on this host. Controlled consent and cross-domain tag firing remain unverified.",
       "fallback": "Use the existing NYC booking route for a tagged booking test.",
-      "checkedAt": "2026-09-08T17:34:21.495Z"
+      "checkedAt": "2026-09-13T15:20:20.228Z"
     },
     {
       "key": "Tripleseat",
@@ -23,38 +23,38 @@
     {
       "key": "GTM",
       "state": "verify",
-      "stateLabel": "Container observed",
-      "confirmed": "GTM-KMZKBB3 is present in the NYC page source.",
-      "unknown": "Container access, published configuration and actual event firing remain unverified.",
+      "stateLabel": "Access verified",
+      "confirmed": "Puttery account 6004183424: web GTM-KMZKBB3 workspace 89 readable with six existing changes untouched; server GTM-TDT2KKP9 workspace 2 has no tags. GA4 stream G-STZ72WP326 is verified; the older written measurement ID had a transposition.",
+      "unknown": "GTM flags additional domains and untagged pages. Controlled event firing, cross-domain continuity and publication remain unverified.",
       "fallback": "Inspect the mapped container and test consent and cross-domain behavior.",
-      "checkedAt": "2026-09-08T17:34:21.495Z"
+      "checkedAt": "2026-09-13T15:20:20.228Z"
     },
     {
       "key": "Google Ads",
       "state": "gated",
       "stateLabel": "Account pending",
-      "confirmed": "The existing account selector was inspected; an exact NYC reporting account was not identified.",
-      "unknown": "Campaign identifiers, spend and conversion configuration remain unverified.",
+      "confirmed": "GA4 links customer 9097587272. Direct API access and manager 7038673437 both return USER_PERMISSION_DENIED. Accessible-account identity and manager hierarchy checks found no verified Puttery reporting route.",
+      "unknown": "Exact NYC campaigns, spend and conversion definitions cannot yet be read through the checked routes.",
       "fallback": "Verify the exact Puttery account before retrieving reporting data.",
-      "checkedAt": "2026-09-08T17:34:21.495Z"
+      "checkedAt": "2026-09-13T15:20:20.228Z"
     },
     {
       "key": "GA4",
-      "state": "gated",
-      "stateLabel": "Property pending",
-      "confirmed": "The existing Analytics selector was inspected; an exact Puttery property was not identified.",
-      "unknown": "Property access, stream, cross-domain settings and event collection remain unverified.",
-      "fallback": "Verify the property and trace one tagged booking.",
-      "checkedAt": "2026-09-08T17:34:21.495Z"
+      "state": "verify",
+      "stateLabel": "NYC analytics integrated",
+      "confirmed": "Puttery GA4 property 276233773, stream 2658813519, measurement G-STZ72WP326 verified September 13. The NYC analytics board includes 20,019 website page views (location and menu pages), 24,200 NYC Tock page views, channels, daily activity and recorded events for August 14 through September 12 in America/Chicago.",
+      "unknown": "This is an independently dated extract, not an automatic GA4 feed. Purchase and reservation events are not deduplicated paid bookings. Central event dates and Eastern service dates must remain separate; consent and transaction-to-ledger matching are unverified.",
+      "fallback": "Refresh the existing connector queries and run prepare-ga4-report.mjs. Keep conversion feedback and revenue gated until a controlled booking and financial reconciliation pass.",
+      "checkedAt": "2026-09-13T15:14:08.820Z"
     },
     {
       "key": "Meta",
       "state": "gated",
       "stateLabel": "Account pending",
-      "confirmed": "The exact NYC ad account and Dataset have not been verified.",
+      "confirmed": "September 13: this Chrome session reaches Facebook login after Continue with Facebook. September 10 tag inventory observed Pixel 1474762070796886; exact NYC account ownership remains unverified.",
       "unknown": "Campaign reporting, event receipt, consent and matching remain unverified.",
       "fallback": "Confirm the existing NYC account and Dataset.",
-      "checkedAt": "2026-09-08T17:34:21.495Z"
+      "checkedAt": "2026-09-13T14:18:40.699Z"
     },
     {
       "key": "Toast",

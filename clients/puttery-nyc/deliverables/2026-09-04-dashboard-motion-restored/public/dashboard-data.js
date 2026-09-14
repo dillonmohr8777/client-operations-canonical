@@ -124,6 +124,10 @@
     loading = true;
     const button = document.getElementById('refresh-data');
     button.disabled = true; button.textContent = 'Refreshing…';
+    if (!dashboard.data) {
+      try { dashboard.data = await getData('tock-summary.json'); dashboard.source = 'saved'; }
+      catch { /* A missing saved snapshot does not block a live read. */ }
+    }
     try {
       const next = await getData(endpoint);
       if (dashboard.data && Date.parse(next.checkedAt) < Date.parse(dashboard.data.checkedAt)) throw new Error('Older snapshot');

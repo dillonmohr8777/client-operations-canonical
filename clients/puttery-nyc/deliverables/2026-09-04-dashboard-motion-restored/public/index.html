@@ -25,19 +25,12 @@
     <script>
       window.playPutteryIntro = function (force, bypassChampion) {
         if (!bypassChampion && window.PUTTERY_INTRO_MEDIA?.champion && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          var championKey = "putteryHanddrawnIntroSeen20260904v1";
-          try { if (!force && localStorage.getItem(championKey) === "1") return; } catch (_) {}
           var started = window.playPutteryChampionIntro({
-            onStarted: function () { try { localStorage.setItem(championKey, "1"); } catch (_) {} },
             onFallback: function () { window.playPutteryIntro(true, true); }
           });
           if (started) return;
         }
-        try {
-          if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-          if (!force && localStorage.getItem("putteryIntroSeenMotionRestored20260904") === "1") return;
-          localStorage.setItem("putteryIntroSeenMotionRestored20260904", "1");
-        } catch (e) { return; }
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
         var previousIntro = document.querySelector(".pilot-intro");
         if (previousIntro) previousIntro.remove();
@@ -130,7 +123,7 @@
               
             </div>
             <h1 id="overview-title" data-split>Know which marketing creates booked guests, completed visits, and collected revenue.</h1>
-            <p class="course-note">Reservation reporting is live. Attribution is next.</p>
+            <p class="course-note">Reservation reporting and NYC analytics. Attribution is next.</p>
             <p class="hero-summary">The Tock reservation feed is connected. Inspect service-date trends, source coverage and data quality here, then track the remaining steps from a tagged booking to verified campaign revenue.</p>
             <div class="hero-actions">
               <a class="action-button primary" href="#reservations">Explore reservation data</a>
@@ -240,6 +233,16 @@
           <div class="aggregate-downloads"><button id="download-csv" class="action-button primary" type="button" disabled>Download aggregate CSV</button><button id="download-json" class="action-button primary" type="button" disabled>Download aggregate JSON</button><p>Selected-period counts and source timestamps only. Implementation notes export separately below.</p></div>
         </section>
 
+        <section id="ga4-analytics" class="section-block light-section" aria-labelledby="ga4-title">
+          <div class="section-heading"><h2 id="ga4-title">NYC website and booking activity</h2><p>GA4 activity stays separate from reservation outcomes and revenue.</p></div>
+          <p id="ga4-freshness" role="status">Loading independently dated GA4 extract.</p><p id="ga4-binding"></p>
+          <div class="metric-scorecard reservation-summary"><div><span>NYC website pages</span><strong id="ga4-web-views">Pending</strong><small>Page views, including menu subpages</small></div><div><span>NYC Tock pages</span><strong id="ga4-tock-views">Pending</strong><small>Page views, not unique people</small></div><div><span>Tock purchase events</span><strong id="ga4-purchases">Pending</strong><small>Recorded events, not reconciled bookings</small></div></div>
+          <p id="ga4-definitions" class="aggregate-note"></p><p id="ga4-quality" class="aggregate-note"></p>
+          <h3>Traffic by GA4 session channel</h3><div class="aggregate-table-wrap" role="region" aria-label="GA4 channel activity" tabindex="0"><table class="aggregate-table"><thead><tr><th scope="col">Hostname</th><th scope="col">Channel</th><th scope="col">Page views</th><th scope="col">Users within row</th></tr></thead><tbody id="ga4-channels"></tbody></table></div>
+          <details class="aggregate-detail"><summary>Recorded event counts</summary><div class="aggregate-table-wrap" role="region" aria-label="GA4 events" tabindex="0"><table class="aggregate-table"><thead><tr><th scope="col">Hostname</th><th scope="col">Event</th><th scope="col">Event count</th></tr></thead><tbody id="ga4-events"></tbody></table></div></details>
+          <details class="aggregate-detail"><summary>Daily activity in Central time</summary><div class="aggregate-table-wrap" role="region" aria-label="GA4 daily activity" tabindex="0"><table class="aggregate-table"><thead><tr><th scope="col">Date YYYYMMDD</th><th scope="col">Hostname</th><th scope="col">Page views</th><th scope="col">Users within row</th></tr></thead><tbody id="ga4-daily"></tbody></table></div></details>
+          <a id="ga4-download" class="action-button primary" download="puttery-nyc-ga4-aggregate.json" hidden>Download GA4 aggregate JSON</a>
+        </section>
         <section id="outcomes" class="section-block light-section" aria-labelledby="outcomes-title">
           <div class="section-heading">
             <h2 id="outcomes-title">The pilot must answer three business questions</h2>
@@ -333,11 +336,11 @@
         <section id="rollout" class="section-block" aria-labelledby="rollout-title">
           <div class="section-heading">
             <h2 id="rollout-title">Where the build stands</h2>
-            <p>The reservation reporting MVP is live. Campaign attribution and validated revenue reporting are the two major capabilities still to complete.</p>
+            <p>The reservation reporting MVP includes a refreshing Tock feed and a separately dated NYC GA4 extract. Campaign attribution and validated revenue reporting remain pending.</p>
           </div>
           <div class="phase-track">
             <article><span>Built and operating</span><h3>Tock data connection</h3><p>Protected access, reservation webhooks, historical exports and automatic refresh are working.</p><strong>Walk-in normalization verified · zero rows excluded</strong></article>
-            <article><span>Built and live</span><h3>Reservation reporting</h3><p>Live counts, service-date filters, trends and downloads are available on desktop and mobile.</p><strong>Current usable MVP</strong></article>
+            <article><span>Reporting available</span><h3>Reservation reporting</h3><p>Source timestamps, service-date filters, trends and downloads show verified Tock aggregates. GA4 activity is separately dated and scoped to NYC.</p><strong>Attribution validation remains pending</strong></article>
             <article><span>Next milestone</span><h3>Campaign attribution</h3><p>Verify the exact analytics and ad accounts, consent and one tagged booking from campaign to reservation.</p><strong>Needs access and end-to-end proof</strong></article>
             <article><span>Still to complete</span><h3>Validated revenue</h3><p>Connect the approved revenue sources, agree attendance and financial definitions, then reconcile before calculating ROAS.</p><strong>Needs source access and approved definitions</strong></article>
           </div>
@@ -382,6 +385,7 @@
     <script src="status.js" defer></script>
     <script src="app.js" defer></script>
     <script src="dashboard-data.js" defer></script>
+    <script src="ga4-data.js" defer></script>
     <script src="integration-status.js" defer></script>
   </body>
 </html>
