@@ -1,66 +1,131 @@
-# Team FAQ bot, setup
+# Momentum Answers: team assistant setup
 
-Built 2026-09-15 from Mac's request in `#ai-tech-news`. Read
-`12_Brain/04_Decisions/2026-09-15 - Mac's FAQ bot is a second surface, not an opened Workmate.md`
-in the vault for why this is a separate bot instead of opening Workmate up.
+Updated September 15, 2026. State: STAGED, not installed in Slack.
 
-## What is done and proven
+## What employees can do
 
-`faq_bridge.py` answers questions from a corpus and nothing else. Verified live
-on 2026-09-15 through the Workmate venv:
+Ask for company processes, onboarding, templates and training with a source link.
+The reviewed catalog has 23 entries from the AM Master Hub and shared training
+resources. Linked videos/documents retain their current access permissions.
+The bot does not pretend to know a recording's contents from its title.
 
-| Test | Result |
-|---|---|
-| "What do I check when auditing a Facebook ads account?" | Answered correctly, cited `Facebook Ads Audit SOP.md` |
-| "How many vacation days do new hires get?" | "That is not in the SOPs yet." plus who to ask. Did not guess. |
-| 6 guard tests (`faq_bridge_test.py`) | All pass |
+The five existing role contracts power these commands:
 
-It runs on the Codex subscription like Workmate, so there is no per-message API
-charge.
+| Command | Useful output |
+| --- | --- |
+| draft jason: ... | Lead review and sales follow-up draft |
+| draft sean: ... | Operations plan, dependencies and decision packet draft |
+| draft mac: ... | Reporting or revenue review draft; missing metrics stay missing |
+| draft melissa-silber: ... | Production brief, asset count, next steps and missing inputs |
+| draft melissa-rigby: ... | Delivery, milestone, review and acceptance plan draft |
 
-## Corpus
+Mention the bot again in the same thread to add details to a draft. Context is
+separate for each channel, thread and employee. Use "ask: ..." to return to FAQ
+questions, "modes" for help, and "stop" to suppress your pending replies in that
+thread. A new message after stop starts a new request.
 
-`faq-config.json` line 2. Currently `04_SOPs` (9 files). **Everything in that
-folder is readable by everyone in the Slack channel.** That is the whole security
-model, so changing this line is a real decision, not config.
+Generated drafts require review. They are not completed campaigns, CRM changes,
+client deliveries, paid generation or approvals. The existing Workmate owner
+operator and five-mode shadow runtime are preserved. This entry point does not
+give every employee Dillon's operator authority.
 
-`04_SOPs` was chosen because it is the only folder in the vault that exists to
-hold process documentation, and because both files that tripped a secret scan
-turned out to be rules *about* handling secrets, not secrets. It deliberately is
-NOT the whole vault: `01_Clients`, `12_Brain` and `02_FullTimeJob` carry client
-intelligence, spend and the job-search lane.
+## Implementation
 
-Swap it by editing one line. Re-run `--list-corpus` and the guard tests after.
+- Reuses agent-contracts.json and the installed Workmate Python environment.
+- Uses the installed local llama3.2:3b through loopback Ollama. No paid model API.
+- No operator import, Codex subprocess, shell, filesystem or MCP tools for the model.
+- FAQ generation selects reviewed passage IDs. Only the corresponding curated
+  text and source links can leave the answer path.
+- The canonical JSON SHA-256 must match the reviewed configuration before each request.
+- Dedicated Slack app, exact team/app/bot identities and explicit channel allowlist.
+- Public, internal, unshared channels only. Workspace humans accepted; guests,
+  Slack Connect, bots, message edits and wrong-channel requests rejected.
+- One model worker, bounded queue, durable event deduplication and persisted stop.
+- Draft context stored under LOCALAPPDATA/Dillon/MomentumAnswers, not the repo.
+- Ambiguous sends become UNCERTAIN and are never automatically replayed.
+- POSTED means Slack acknowledged the message; live readback is a separate check.
 
-## What is NOT done: the Slack transport
+## Source coverage correction
 
-The bot needs **its own Slack app**. It must not reuse Workmate `A0C2K8ZU6AU`:
-that app's bot identity is bound to Dillon's owner DM inside
-`operator_bridge.py::receive()`, and sharing it would put a team-facing bot and
-a full-authority operator behind one token.
+The old claim that nine local SOP files supplied complete process knowledge was
+wrong. Most Facebook SOPs are empty outlines. The old Codex operator=False mode
+also allowed workspace writes. Both assumptions have been removed.
 
-That is a human step in Slack admin. Three things:
+The reviewed Master Hub contains real onboarding, Monday and Friday client
+communication guidance, reporting templates, Agency Analytics training and task
+organization. Some entries are unfinished, including the Friday template and
+quarterly-report example. Unknown answers name Melissa or Dillon instead of
+inventing policy. The AM Best Practices PDF points to an author's local file:
+that broken link was excluded, while the two Loom recordings were retained.
 
-1. Create a Slack app, name it something like "Momentum Answers". Bot scopes:
-   `app_mentions:read`, `channels:history`, `chat:write`. Enable Socket Mode and
-   generate an app-level token with `connections:write`.
-2. Store both tokens in Windows Credential Manager the same way Workmate does.
-   Never in a file. `Start-WorkmateOperator.ps1 -ConfigureCredentials` is the
-   pattern to copy.
-3. Invite the bot to one channel, put that channel ID in
-   `allowed_channels` in `faq-config.json`, and wire the Socket Mode listener
-   in `faq_bridge.py::main()` under `--serve`. It currently exits 2 with a
-   pointer to this file rather than pretending to be wired.
+## Slack authorization and installation
 
-Keep `allowed_channels` empty until step 1 and 2 are done. Empty means the bot
-answers nowhere, which is the correct default for a thing that has not been
-tested in front of the team.
+Review faq-app-manifest.json. App name: Momentum Answers. Workspace:
+Momentum Digital Agency, T066HGS7N. Proposed team channel: #momentum-help.
 
-## Try it now, without Slack
+Bot scopes:
+- app_mentions:read: receive explicit mentions.
+- channels:read: verify an allowed public channel is internal and unshared.
+- chat:write: return the requested answer in its source thread.
+- users:read: reject guests, external identities and bots.
 
-```
-$py = "$env:LOCALAPPDATA\Dillon\MomentumWorkmate\venv\Scripts\python.exe"
-& $py faq_bridge.py --list-corpus
-& $py faq_bridge.py --ask "What do I check when auditing a Facebook ads account?"
-& $py faq_bridge_test.py
-```
+Events: subscribe to app_mention, not just its OAuth scope.
+Enable Socket Mode; the app-level token needs connections:write.
+
+1. Create the separate app from faq-app-manifest.json in the verified workspace.
+2. The workspace administrator approves the OAuth scopes and installs the app.
+3. Record app_id and bot_user_id in faq-config.json. Never use Workmate A0C2K8ZU6AU.
+4. The user generates the two new credentials and enters them locally:
+   ../Start-MomentumAnswers.ps1 -ConfigureCredentials
+   This prompts for hidden values and stores them only in Windows Credential
+   Manager under MarketingChief-FAQ-* targets. Do not paste secrets into chat.
+5. Create or select the approved public internal FAQ channel, invite only this
+   bot, and enter its exact ID in allowed_channels. Empty means no processing.
+6. Set enabled=true only for the approved channel, then run the launcher -Start.
+   Preflight verifies auth.test, bots.info, the configured app and local model.
+7. A real team member mentions it with a training question. Verify the reply
+   through Slack readback and the local ledger. Repeat in the same thread with
+   a role draft and a follow-up. Test stop and a non-owner team member.
+8. Only after acceptance, use -RegisterTask and Start-ScheduledTask
+   Momentum360-TeamAnswers for automatic operation at user logon.
+
+No app, credentials, channel, invitations, live messages or scheduled task were
+created by preparing these files.
+
+## Availability and operation
+
+This host must remain on, signed in, connected to Slack and running Ollama.
+The prepared task is independent of the Codex app but is NOT a 24/7 service.
+A logon task does not solve sign-out or machine power loss. Production 24/7
+operation needs an approved always-on host and its own installation check.
+Do not move or broaden Workmate's credentials to solve availability.
+
+Stop: set enabled=false; it is rechecked before each outgoing reply.
+Then stop Momentum360-TeamAnswers if it has been registered.
+Rollback: keep the service disabled and restore the four original FAQ files
+from the session's faq-before-20260915 backup. Do not roll back Workmate.
+
+Review source changes before updating corpus_sha256. The catalog is a reviewed
+snapshot, not live monitoring of private channels. Refresh review by October 15,
+or sooner when Melissa updates the source process.
+
+## Runnable checks
+
+From org-modes:
+python faq_bridge_test.py
+python shadow_runtime.py --self-test
+python faq_bridge.py --probe
+python faq_bridge.py --ask "What should go in our Monday client update?"
+python faq_bridge.py --ask "draft jason: Draft a follow-up plan using these supplied facts..."
+
+## References
+
+- Mac's request and Melissa's reply:
+  https://momentum3d.slack.com/archives/C04HXSVN2CS/p1789479841450309
+- AM Master Hub: https://momentum3d.slack.com/canvas/C0223RR7R6D
+- Shared training directory:
+  https://momentum3d.slack.com/archives/C066HKJ2E/p1785948576639159
+- Slack Socket Mode:
+  https://docs.slack.dev/tools/bolt-python/concepts/socket-mode/
+- Mention event subscription:
+  https://docs.slack.dev/reference/events/app_mention/
