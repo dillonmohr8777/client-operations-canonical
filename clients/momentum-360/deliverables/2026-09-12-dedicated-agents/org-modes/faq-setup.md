@@ -1,6 +1,7 @@
 # Momentum Answers: team assistant setup
 
-Updated September 15, 2026. State: INSTALLED; credentials and live acceptance pending.
+Updated September 15, 2026. State: LIVE; owner FAQ and role-draft acceptance verified.
+Current evidence: faq-live-slack-check.json. Employee guide: ../TEAM-QUICKSTART.md.
 
 ## What employees can do
 
@@ -77,7 +78,9 @@ Enable Socket Mode; the app-level token needs connections:write.
 1. Create the separate app from faq-app-manifest.json in the verified workspace.
 2. The workspace administrator approves the OAuth scopes and installs the app.
 3. Record app_id and bot_user_id in faq-config.json. Never use Workmate A0C2K8ZU6AU.
-4. The user generates the two new credentials and enters them locally:
+4. After explicit authorization, generate the separate app credentials and store
+   them locally through the protected prompt or the existing one-use loopback
+   credential form, bound to this app's MarketingChief-FAQ-* targets:
    ../Start-MomentumAnswers.ps1 -ConfigureCredentials
    This prompts for hidden values and stores them only in Windows Credential
    Manager under MarketingChief-FAQ-* targets. Do not paste secrets into chat.
@@ -91,10 +94,12 @@ Enable Socket Mode; the app-level token needs connections:write.
 8. Only after acceptance, use -RegisterTask and Start-ScheduledTask
    Momentum360-TeamAnswers for automatic operation at user logon.
 
-Following Dillon's confirmation, the separate app was created and installed,
-the public internal channel was created, and this bot was added. Configuration
-remains disabled pending direct protected credential entry and live acceptance.
-No FAQ responses or scheduled service have been verified yet.
+Following Dillon's confirmation and delegated computer setup, the separate app,
+public internal channel and protected credentials are active. Independent Slack
+readback verified the Monday FAQ and three-concept role draft. The Windows logon
+task is Running. A delayed draft with an unsupported availability claim was
+withdrawn and corrected. Fourteen offline groups pass after the live fixes.
+A non-owner employee test remains unverified; no mass invitations were sent.
 
 ## Availability and operation
 

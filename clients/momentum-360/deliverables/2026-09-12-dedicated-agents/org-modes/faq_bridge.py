@@ -17,6 +17,7 @@ import urllib.request
 HERE = Path(__file__).resolve().parent
 CONFIG = HERE / 'faq-config.json'
 TEAM, WORKMATE = 'T066HGS7N', 'A0C2K8ZU6AU'
+CONNECTOR_ATTRIBUTION = re.compile(r'\s+\*Sent using\*\s+<@U0B7MCP01GT(?:\|ChatGPT)?>\s*$', re.I)
 OLLAMA = 'http://127.0.0.1:11434'
 PRIVATE = Path(os.environ.get('LOCALAPPDATA', str(Path.home()))) / 'Dillon/MomentumAnswers'
 MAX_QUESTION, MAX_ANSWER = 3000, 3500
@@ -156,6 +157,7 @@ def draft(mode, request, cfg, records, timeout):
     system = ('You are writing the deliverable NOW, not a promise to do work later. Write a useful internal DRAFT for the named Momentum role. '
               + DRAFT_TASKS[mode] + ' Use only supplied request facts and reviewed resources. Label creative suggestions as proposed. '
               'Do not invent client metrics, leads, revenue, approvals, deadlines, links, or completed work. '
+              'Momentum Answers itself covers reviewed resources and requires its Windows host online and signed in; never promise instant, comprehensive, or 24/7 service. '
               'Mark missing facts as INPUT NEEDED. Preserve supplied facts and exact requested asset counts. '
               'Never say I will prepare or repeat the request instead of doing it. Do not invent an approver or approval policy. '
               'Use clear sections for the actual deliverable, next steps, and missing inputs. '
@@ -167,6 +169,8 @@ def draft(mode, request, cfg, records, timeout):
         'request': request, 'reviewed_resources': candidates(request, records)}, cfg['draft_model'], timeout)
     if not text or SECRET.search(text):
         return 'Draft withheld: no safe output. Ask Dillon.'
+    if 'momentum answers' in request.lower() and re.search(r'\b(?:24/7|instant(?:ly)?|comprehensive|always[- ]on|around[- ]the[- ]clock)\b', text, re.I):
+        return 'Draft withheld: it claimed unsupported availability or coverage. Momentum Answers covers reviewed resources and requires its Windows host online and signed in. Request revised copy without those claims.'
     text = re.sub(r'https?://\S+', '[unverified link omitted]', text)
     return ('DRAFT FOR ' + role['owner'].upper() + '\nGenerated from your request and reviewed resources. Verify facts before use.\n\n'
         + html.escape(text, quote=False)[:2850] + '\n\nNo external work has been executed.')[:MAX_ANSWER]
@@ -245,7 +249,7 @@ class Bridge:
                 return 'REJECTED'
         except Exception:
             return 'REJECTED'
-        question = re.sub(r'<@' + re.escape(self.cfg['bot_user_id']) + r'>', '', e['text']).strip()
+        question = CONNECTOR_ATTRIBUTION.sub('', re.sub(r'<@' + re.escape(self.cfg['bot_user_id']) + r'>', '', e['text'])).strip()
         if not question or len(question) > MAX_QUESTION:
             return 'REJECTED'
         root, now = e.get('thread_ts', e['ts']), time.time()

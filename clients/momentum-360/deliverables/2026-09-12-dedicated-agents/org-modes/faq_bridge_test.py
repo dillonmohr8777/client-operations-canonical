@@ -135,6 +135,29 @@ def test_stream_completion_and_deadline():
             except TimeoutError: pass
             else: raise AssertionError('deadline not enforced')
 
+def test_assistant_availability_claims():
+    with patch.object(f, 'verify_local_model', return_value=True):
+        for claim in ('Answers 24/7', 'Instant answers', 'Comprehensive coverage', 'Always-on help'):
+            with patch.object(f, 'generate', return_value=claim):
+                assert f.draft('melissa-silber', 'Momentum Answers hero', ACTIVE, RESOURCES, 1).startswith('Draft withheld:')
+        with patch.object(f, 'generate', return_value='Find reviewed training resources.'):
+            assert f.draft('melissa-silber', 'Momentum Answers hero', ACTIVE, RESOURCES, 1).startswith('DRAFT FOR')
+        with patch.object(f, 'generate', return_value='Client provides 24/7 service.'):
+            assert f.draft('melissa-silber', 'Client confirmed 24/7 service.', ACTIVE, RESOURCES, 1).startswith('DRAFT FOR')
+
+
+def test_connector_commands():
+    for suffix in ('\n*Sent using* <@U0B7MCP01GT|ChatGPT>', '\n*Sent using* <@U0B7MCP01GT>'):
+        b, _ = bridge()
+        assert b.receive(body('mode', 'modes' + suffix)) == 'QUEUED'
+        assert b.jobs.get_nowait()[4] == 'modes'
+        assert b.receive(body('stop', 'stop' + suffix)) == 'STOPPED'
+    b, _ = bridge()
+    other = 'modes\n*Sent using* <@U5555555555|Other>'
+    assert b.receive(body('other', other)) == 'QUEUED'
+    assert b.jobs.get_nowait()[4] == other
+
+
 def test_stop_and_live_disable():
     b,s = bridge()
     b.receive(body())

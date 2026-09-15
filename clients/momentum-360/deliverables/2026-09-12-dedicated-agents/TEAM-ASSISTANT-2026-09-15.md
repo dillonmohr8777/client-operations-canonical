@@ -1,6 +1,6 @@
 # Momentum team assistant: September 15 implementation
 
-Status: SLACK APP INSTALLED; CHANNEL AND BOT MEMBERSHIP VERIFIED. CREDENTIAL HANDOFF AND LIVE ACCEPTANCE PENDING.
+Status: LIVE IN #momentum-help. OWNER ACCEPTANCE VERIFIED; NON-OWNER EMPLOYEE ACCEPTANCE NOT YET RUN.
 
 ## User outcome
 
@@ -29,11 +29,13 @@ https://momentum3d.slack.com/archives/C04HXSVN2CS/p1789479841450309
 
 ## What the checks prove
 
-12 offline acceptance groups pass. They exercise envelope and membership
+14 offline acceptance groups pass. They exercise envelope and membership
 rejection, empty allowlists, wrong app identity, source/path integrity, no
 operator import, credential handling, deduplication, ambiguous-send handling,
 restart behavior, stop, source-scoped rendering, role support, context isolation
-and streaming inference deadlines.
+and streaming inference deadlines. Live-discovered fixes cover the exact ChatGPT
+connector footer on commands and unsupported availability phrases in drafts
+about Momentum Answers.
 
 The existing five-mode shadow runtime also passes its 36 checks.
 
@@ -64,7 +66,7 @@ The AM Master Hub itself has gaps: its AM Best Practices PDF is a local-file
 link; the quarterly template is a request to Mel; the visible Friday template
 ends after its greeting. Those are identified rather than invented.
 
-## Slack installation and remaining activation
+## Slack installation and live acceptance
 
 Dillon confirmed the exact installation, public internal #momentum-help channel,
 two labeled test exchanges, and direct protected credential entry on September 15.
@@ -76,19 +78,33 @@ two labeled test exchanges, and direct protected credential entry on September 1
 - Bot user U0C1L5T8F47 (bot B0C256VP1HS) joined at 1789491653.158359;
   independent Slack connector readback verified membership.
 - Saved concise channel instructions naming all five drafting roles.
-- Socket Mode is enabled. The app-level credential form is prepared with only
-  connections:write; the user must click Generate and enter both credentials
-  directly into the hidden PowerShell prompt.
-- Config records the exact app, bot user and allowed channel; enabled remains
-  false. The updated configuration probe passes.
+- Socket Mode is enabled with connections:write. After Dillon explicitly
+  delegated setup, computer control transferred the new tokens through the
+  existing one-use loopback form into dedicated Windows Credential Manager
+  targets. No Workmate credential was changed; no secret entered repository files.
+- Config is enabled for the exact app, bot user and channel. Startup verified
+  Slack auth.test and bots.info plus the local model identity.
+- The Monday FAQ reply at 1789492354.189159 passed independent Slack readback:
+  actual Master Hub guidance and two source links, about 38 seconds after request.
+- The Melissa Silber reply at 1789494916.473049 passed independent readback:
+  three distinct concepts with headline, copy, direction, CTA and missing inputs,
+  about 91 seconds after the accepted retry.
+- The temporary worker stopped during task interruption. The persistent
+  Momentum360-TeamAnswers task now runs at user logon, with restart handling.
+  It was restarted after both command and availability fixes; fresh task,
+  process and established HTTPS-connection checks passed. Workmate remains Running.
+- A delayed setup request produced another draft containing an unsupported
+  24/7 claim. That reply, 1789495130.051929, was replaced with a clear correction
+  and its readback verified. The artifact preserves its original generation hash
+  separately from the corrected reply hash; it is not counted as a passing draft.
 
-After direct human credential entry, run token identity preflight and capture the
-two actual Slack exchanges. A real non-owner team-member test remains separate;
-no one is impersonated. Register/start Momentum360-TeamAnswers only after live
-acceptance. No FAQ response or scheduled service is claimed yet.
+Evidence: org-modes/faq-live-slack-check.json and
+https://momentum3d.slack.com/archives/C0C2VSTBQ9W/p1789492316385399
+Employee examples: TEAM-QUICKSTART.md.
+A real non-owner employee exchange has not been run; no one was impersonated.
 
-POSTED in the ledger means the API acknowledged a message. It does not mean
-independent Slack readback passed. No team deployment is claimed here.
+POSTED in the ledger means the API acknowledged the original message. Independent
+Slack readback and the later correction are recorded separately in the artifact.
 
 Role drafts are useful local work products. They do not execute the old lead
 adapter, reconcile CRM records, create rendered assets, operate client accounts,
