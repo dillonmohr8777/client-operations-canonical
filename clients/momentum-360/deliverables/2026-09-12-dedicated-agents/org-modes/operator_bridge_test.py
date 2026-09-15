@@ -29,6 +29,7 @@ class Slack:
 
     def chat_postMessage(self, **data):
         message = {**data, 'ts': f'{int(time.time())}.{len(self.messages)+1:06d}', 'user': 'UBOT'}
+        message['text'] = message['text'].replace('<', '&lt;').replace('>', '&gt;')
         self.messages.append(message)
         if self.fail:
             raise OSError('simulated ambiguous send')
@@ -95,6 +96,9 @@ def main():
     bridge.process(bridge.jobs.get_nowait())
     assert 'sean-operations' in Agent.calls[-1][0] and Agent.calls[-1][1] is None
     count = len(Agent.calls)
+    assert bridge.receive(body(10, 'modes\n*Sent using* <@U0B7MCP01GT|ChatGPT>')) == 'QUEUED'
+    bridge.process(bridge.jobs.get_nowait())
+    assert len(Agent.calls) == count and client.messages[-1]['text'].startswith('Active focus: marketing-chief')
     assert bridge.receive(body(4)) == 'QUEUED'
     active = bridge.current_cancel = threading.Event()
     assert bridge.receive(body(5, 'stop')) == 'STOPPED'
@@ -140,7 +144,7 @@ def main():
     replies = []; rpc.send = replies.append
     rpc.read()
     assert rpc.attention.is_set() and 'error' in replies[0] and 'result' not in replies[0]
-    print('PASS: identity, malformed input, private membership, secret screening, dedupe, continuity, modes, cancellation, uncertainty, approvals')
+    print('PASS: identity, malformed input, private membership, secret screening, dedupe, continuity, modes, connector attribution, cancellation, uncertainty, approvals')
 
 
 if __name__ == '__main__':

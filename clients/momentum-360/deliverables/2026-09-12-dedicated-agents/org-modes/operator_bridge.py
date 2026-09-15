@@ -20,6 +20,7 @@ TEAM, APP, OWNER = 'T066HGS7N', 'A0C2K8ZU6AU', 'U0A6MD920MA'
 CONTRACTS = json.loads((PACKAGE / 'agent-contracts.json').read_text(encoding='utf-8-sig'))['workers']
 MODES = ('marketing-chief',) + tuple(k for k in CONTRACTS if k != 'shared-verifier')
 SECRET = re.compile(r'(?i)(?:xox[baprs]-|xapp-|sk-(?:proj-)?|gh[pousr]_)[a-z0-9_-]{16,}|-----BEGIN .*PRIVATE KEY|(?:password|access_token|api_key)\s*[:=]\s*\S{8,}')
+CONNECTOR_ATTRIBUTION = re.compile(r'\s+\*Sent using\*\s+<@U0B7MCP01GT(?:\|ChatGPT)?>\s*$', re.I)
 
 
 def digest(value):
@@ -36,6 +37,7 @@ Complete the owner's task using real files and available tools. The selected foc
 All five modes are focuses, not a ceiling on operator capability. Discover and use installed skills,
 plugins, MCP tools, connected apps, workflows, and specialists as relevant. Verify actual tool and
 account access; do not claim a desktop-only tool is present because a manifest lists it.
+Use the Codex in-app browser for all browser work; do not route Workmate through Chrome.
 Read {VAULT / 'System/MASTER-ORCHESTRATOR.md'}, {ROOT / 'AGENTS.md'}, and relevant current source files.
 Reuse {ROOT / 'integrations/buzz/stack.bindings.json'}, skills.assignments.json in that same directory,
 and {ROOT / 'workflows'}. The transport is Slack; do not invoke the Buzz transport just because its
@@ -197,13 +199,14 @@ class Bridge:
                 or event.get('user') != OWNER or event.get('subtype') or event.get('bot_id')
                 or event.get('edited') or not isinstance(event.get('text'), str)):
             return 'REJECTED'
-        channel, ts, text = event.get('channel', ''), event.get('ts', ''), event['text'].strip()
+        channel, ts, raw_text = event.get('channel', ''), event.get('ts', ''), event['text'].strip()
+        text = CONNECTOR_ATTRIBUTION.sub('', raw_text).strip()
         root = event.get('thread_ts') or ts
         event_id = body.get('event_id', '')
         if (body.get('type') != 'event_callback' or not all(isinstance(v, str) for v in (channel, ts, root, event_id))
                 or not re.fullmatch(r'D[A-Z0-9]+', channel) or not re.fullmatch(r'Ev[A-Za-z0-9]+', event_id)
                 or not re.fullmatch(r'\d{10}\.\d{6}', ts) or not re.fullmatch(r'\d{10}\.\d{6}', root)
-                or not text or len(text) > 20000 or SECRET.search(text)
+                or not text or len(raw_text) > 20000 or SECRET.search(raw_text)
                 or abs(time.time() - float(ts)) > 300 or not self.private_dm(channel)):
             return 'REJECTED'
         scope = channel + ':' + (event.get('thread_ts') or 'dm')
@@ -305,7 +308,7 @@ class Bridge:
                         self.db.execute('INSERT OR REPLACE INTO operator_modes VALUES(?,?)', (alias, mode))
                     self.db.commit()
             if text.lower() in ('modes', 'help') or not text:
-                answer = 'Active focus: ' + mode + '\nModes: ' + ', '.join(MODES) + '\nUse: mode <name> followed by your task. Use stop or resume to control dispatch.'
+                answer = 'Active focus: ' + mode + '\nModes: ' + ', '.join(MODES) + '\nUse: mode [name] followed by your task. Use stop or resume to control dispatch.'
             else:
                 with self.lock:
                     row = self.db.execute('SELECT id FROM operator_threads WHERE scope=? AND mode=?', (scope, mode)).fetchone()
