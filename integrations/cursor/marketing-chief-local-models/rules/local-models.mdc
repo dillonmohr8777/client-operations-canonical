@@ -1,0 +1,29 @@
+---
+description: Use the canonical Marketing Chief local-model picker IDs in Cursor without pulling weights or exposing loopback.
+alwaysApply: true
+---
+
+# Local models in Cursor
+
+`registry/local-models.json` is the roster. `references/cursor-local-models.json` is the Cursor picker pack.
+
+Cursor does not auto-discover `/v1/models`. Cloud Agents and hosted Cursor sessions keep using Cursor-hosted models. Loopback Ollama (`http://127.0.0.1:11434/v1`) and OmniRoute (`http://127.0.0.1:20128/v1`) are desktop-only.
+
+Do not pull Ollama weights, change OmniRoute defaults, write API keys, edit `state.vscdb`, or enable tunnels from this roster.
+
+## Recommended picker IDs
+
+Add these exact IDs in Cursor Settings → Models → Add Custom Model:
+
+- Frontier cluster: `deepseek-v4-pro-0813`
+- Frontier workstation: `deepseek-v4-flash-0731`
+- Daily coding: `ornith:35b`
+- Daily general: `qwen3.8:27b`
+- Daily vision: `gemma4:31b`
+- Compact daily: `gpt-oss:20b`
+- Compact coding: `ornith:9b`
+- Also recommended: `qwen3.6:35b`, `qwen3.5:35b`, `qwen3.5:9b`, `gemma4:26b`, `gemma4:e4b`, `glm-4.7-flash`
+
+`nomic-embed-text` is embeddings only. Do not add it as a chat model.
+
+Collision-safe comparison IDs: `mc-kimi-k2.7-code`, `mc-glm-5.1`. Never add the Cursor built-in names `kimi-k2.7-code` or `glm-5.1` as custom models.
