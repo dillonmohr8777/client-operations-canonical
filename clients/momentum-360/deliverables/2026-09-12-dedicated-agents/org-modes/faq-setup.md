@@ -1,6 +1,6 @@
 # Momentum Answers: team assistant setup
 
-Updated September 15, 2026. State: STAGED, not installed in Slack.
+Updated September 15, 2026. State: INSTALLED; credentials and live acceptance pending.
 
 ## What employees can do
 
@@ -61,7 +61,9 @@ that broken link was excluded, while the two Loom recordings were retained.
 ## Slack authorization and installation
 
 Review faq-app-manifest.json. App name: Momentum Answers. Workspace:
-Momentum Digital Agency, T066HGS7N. Proposed team channel: #momentum-help.
+Momentum Digital Agency, T066HGS7N. Installed app: A0C23EC7TPB.
+Approved team channel: #momentum-help, C0C2VSTBQ9W.
+Verified channel bot member: U0C1L5T8F47 (bot B0C256VP1HS).
 
 Bot scopes:
 - app_mentions:read: receive explicit mentions.
@@ -89,8 +91,10 @@ Enable Socket Mode; the app-level token needs connections:write.
 8. Only after acceptance, use -RegisterTask and Start-ScheduledTask
    Momentum360-TeamAnswers for automatic operation at user logon.
 
-No app, credentials, channel, invitations, live messages or scheduled task were
-created by preparing these files.
+Following Dillon's confirmation, the separate app was created and installed,
+the public internal channel was created, and this bot was added. Configuration
+remains disabled pending direct protected credential entry and live acceptance.
+No FAQ responses or scheduled service have been verified yet.
 
 ## Availability and operation
 

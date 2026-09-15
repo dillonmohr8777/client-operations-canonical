@@ -1,6 +1,6 @@
 # Momentum team assistant: September 15 implementation
 
-Status: LOCAL IMPLEMENTATION VERIFIED. SLACK INSTALLATION AND TEAM ACCEPTANCE PENDING.
+Status: SLACK APP INSTALLED; CHANNEL AND BOT MEMBERSHIP VERIFIED. CREDENTIAL HANDOFF AND LIVE ACCEPTANCE PENDING.
 
 ## User outcome
 
@@ -64,17 +64,28 @@ The AM Master Hub itself has gaps: its AM Best Practices PDF is a local-file
 link; the quarterly template is a request to Mel; the visible Friday template
 ends after its greeting. Those are identified rather than invented.
 
-## Activation still required
+## Slack installation and remaining activation
 
-The separate Slack app does not exist yet; no FAQ credentials are present.
-Review org-modes/faq-app-manifest.json and follow org-modes/faq-setup.md.
-The pending request asks Dillon to approve installation in T066HGS7N, a new
-public internal #momentum-help channel, and two labeled acceptance exchanges.
+Dillon confirmed the exact installation, public internal #momentum-help channel,
+two labeled test exchanges, and direct protected credential entry on September 15.
 
-After OAuth approval and direct human credential entry, verify the new app and
-bot identities, set the exact channel allowlist, run preflight, and capture
-actual replies plus a non-owner team-member test. Only then register/start
-Momentum360-TeamAnswers.
+- Workspace: Momentum Digital Agency, T066HGS7N.
+- Created and installed Momentum Answers: A0C23EC7TPB. Slack showed Success and
+  Installed App Settings after OAuth approval of the four reviewed scopes.
+- Created #momentum-help: C0C2VSTBQ9W. It is public within the workspace.
+- Bot user U0C1L5T8F47 (bot B0C256VP1HS) joined at 1789491653.158359;
+  independent Slack connector readback verified membership.
+- Saved concise channel instructions naming all five drafting roles.
+- Socket Mode is enabled. The app-level credential form is prepared with only
+  connections:write; the user must click Generate and enter both credentials
+  directly into the hidden PowerShell prompt.
+- Config records the exact app, bot user and allowed channel; enabled remains
+  false. The updated configuration probe passes.
+
+After direct human credential entry, run token identity preflight and capture the
+two actual Slack exchanges. A real non-owner team-member test remains separate;
+no one is impersonated. Register/start Momentum360-TeamAnswers only after live
+acceptance. No FAQ response or scheduled service is claimed yet.
 
 POSTED in the ledger means the API acknowledged a message. It does not mean
 independent Slack readback passed. No team deployment is claimed here.
