@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cursor-local-models.schema.json",
+  "title": "Cursor local model picker pack",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generatedFrom",
+    "reviewedAt",
+    "title",
+    "purpose",
+    "authority",
+    "endpoints",
+    "howToAdd",
+    "models"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "generatedFrom": { "const": "registry/local-models.json" },
+    "reviewedAt": { "type": "string", "format": "date" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+    "purpose": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "writesCursorUserSecrets",
+        "enablesTunnels",
+        "editsCursorStateDb",
+        "pullsOllamaWeights",
+        "mutatesOmniRoute",
+        "mutatesCanonicalQueue",
+        "cloudAgentsUseHostedModels"
+      ],
+      "properties": {
+        "writesCursorUserSecrets": { "const": false },
+        "enablesTunnels": { "const": false },
+        "editsCursorStateDb": { "const": false },
+        "pullsOllamaWeights": { "const": false },
+        "mutatesOmniRoute": { "const": false },
+        "mutatesCanonicalQueue": { "const": false },
+        "cloudAgentsUseHostedModels": { "const": true }
+      }
+    },
+    "endpoints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ollama", "omniroute", "loopbackReachableFromCursorCloud"],
+      "properties": {
+        "ollama": { "const": "http://127.0.0.1:11434/v1" },
+        "omniroute": { "const": "http://127.0.0.1:20128/v1" },
+        "loopbackReachableFromCursorCloud": { "const": false }
+      }
+    },
+    "howToAdd": {
+      "type": "array",
+      "minItems": 5,
+      "items": { "type": "string", "minLength": 8, "maxLength": 400 }
+    },
+    "models": {
+      "type": "array",
+      "minItems": 8,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/pickerModel" }
+    }
+  },
+  "$defs": {
+    "pickerModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "displayName",
+        "status",
+        "pickerId",
+        "upstreamId",
+        "pickerEligible",
+        "serveClass",
+        "requiresGatewayAlias",
+        "hardwareClass"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9.-]{1,79}$" },
+        "displayName": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "status": { "type": "string", "enum": ["recommended", "watch", "reference-only"] },
+        "lane": { "type": ["string", "null"], "maxLength": 64 },
+        "pickerId": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "upstreamId": { "type": "string", "minLength": 2, "maxLength": 160 },
+        "pickerEligible": { "type": "boolean" },
+        "serveClass": {
+          "type": "string",
+          "enum": ["loopback-ollama", "cluster-vllm", "hosted-comparison", "not-chat"]
+        },
+        "requiresGatewayAlias": { "type": "boolean" },
+        "ollamaLocalTag": { "type": ["string", "null"], "maxLength": 80 },
+        "hardwareClass": {
+          "type": "string",
+          "enum": [
+            "edge-16gb",
+            "consumer-24gb",
+            "workstation-48-128gb",
+            "cluster-multi-gpu"
+          ]
+        }
+      }
+    }
+  }
+}

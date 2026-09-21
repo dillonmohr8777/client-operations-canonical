@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `09/01/2026 13:32:44`
-Queue revision: `423`
+Last reconciled: `09/03/2026 22:07:36`
+Queue revision: `425`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -17,9 +17,9 @@ Mode: `manual-pilot`
 **Next unblock:** **Correct VA Claims booking and lead routing rules** (`wi-20260725-0007`, score 210): Map and authenticate the exact authorized WordPress or Amelia administrator route, apply only the verified scheduling and routing corrections, then complete an approved synthetic booking test without contacting a prospect. Why: P0, portfolio rank 2 (critical), no evidenced deadline, current evidence, status blocked, routing verification is older than 14 days or invalid; evidence is stale or invalid; action class is approval-gated; automatic eligibility is false; external action is true; action is not reversible; approval state is not exactly automatic and not_required.
 <!-- marketing-chief:predictions:end -->
 
-## Active execution (normal 1/3; emergency 0/1)
+## Active execution (normal 0/3; emergency 0/1)
 
-- `wi-20260718-0003` Implement the Momentum caller auto-response workflow: After 10:00 PM Eastern, run one controlled unanswered call to a Momentum 360 tracking number and one to the GMB Suspension number; verify the approved missed-call text, equal Sean and Jason round-robin without voicemail interception, and one CallRail-associated HubSpot record per call.
+No client outcome currently consumes a normal WIP slot.
 
 ## Commitment queue
 
@@ -49,7 +49,7 @@ Mode: `manual-pilot`
 | `wi-20260717-0011` | `va-claims-edge` | Implement Obaid's Phase 2 VA Claims UI handoff | Done | P0 | Review the local integrated branch and QA evidence. Keep GitHub push, Vercel deployment, merge, and external handoff pending explicit approval. | No evidenced deadline |
 | `wi-20260718-0001` | `bigorange-marketing` | Confirm BigOrange paid-trial scope and compensation | Needs Approval | P1 | Keep the completed private WordPress pilot and exact review draft unsent; obtain final BigOrange factual sign-off and the exact invoice recipient, due date, and payment timing before publication or invoicing. | 2026-08-10 09:00 -04:00 |
 | `wi-20260718-0002` | `momentum-360` | Prepare the July 20 Momentum AI review | Done | P1 | Build and verify a redacted local decision packet from current canonical artifacts and communication evidence. | 2026-07-20 14:30 -04:00 |
-| `wi-20260718-0003` | `momentum-360` | Implement the Momentum caller auto-response workflow | Verification | P1 | After 10:00 PM Eastern, run one controlled unanswered call to a Momentum 360 tracking number and one to the GMB Suspension number; verify the approved missed-call text, equal Sean and Jason round-robin without voicemail interception, and one CallRail-associated HubSpot record per call. | 2026-07-20 15:00 -04:00 |
+| `wi-20260718-0003` | `momentum-360` | Implement the Momentum caller auto-response workflow | Blocked | P1 | Restore direct CallRail membership for the exact Momentum account recorded in Access Broker, unlock the approved vault or authenticated session, expose the approved in-app browser controller, and record the exact Track 360 and Google Suspension test destinations plus one approved controlled caller. Then rerun exactly one unanswered after-hours call per line. | 2026-07-20 15:00 -04:00 |
 | `wi-20260718-0004` | `momentum-360` | Prepare the July 22 Momentum AI and Fable training | Done | P1 | Build and verify the local training packet from approved Momentum examples and non-secret access prerequisites. | 2026-07-22 15:30 -04:00 |
 | `wi-20260718-0005` | `align-hcm` | Prepare Align Dayforce Discover exhibitor readiness | Done | P1 | Build and verify a local deadline and decision packet from the manual, marking each unknown, owner, dependency, and review date. | 2026-08-14 17:00 -04:00 |
 | `wi-20260718-0006` | `momentum-360` | Finish Mac law-firm local SEO audit builder | Done | P1 | Recover the current visual contract, implement the missing local audit and screenshot workflow in canonical local source, then verify both modes and PDF output. | No evidenced deadline |
@@ -489,6 +489,8 @@ Mode: `manual-pilot`
   Current evidence: A current read-only mailbox recheck found no newer activity or disposition in either exact canonical lead thread. Recent client correspondence concerns different outcomes, so both individual dispositions remain unknown and the canonical client mailbox or downstream-system evidence still requires human authentication.
 - **Implement Revive live site cleanup and sitemap submission:** Complete the human Google OAuth gate for the exact REVIVE Systems HighLevel location recorded in Access Broker, then back up the current pages, publish the reviewed changes, test the lead path, and submit the validated sitemap through the authorized Search Console identity.
   Current evidence: Current access recovery reached the correct Google account chooser and exact REVIVE Systems HighLevel route, but the OAuth chooser remained stuck in a loading state and did not complete. No site or account content was changed.
+- **Implement the Momentum caller auto-response workflow:** Restore direct CallRail membership for the exact Momentum account recorded in Access Broker, unlock the approved vault or authenticated session, expose the approved in-app browser controller, and record the exact Track 360 and Google Suspension test destinations plus one approved controlled caller. Then rerun exactly one unanswered after-hours call per line.
+  Current evidence: The 10:05 PM Eastern recheck failed closed before dialing. Direct membership for the exact mapped Momentum CallRail account remains unavailable, the approved vault remains locked, the browser-control runtime is unavailable despite the repaired package, and the exact two test destinations and controlled caller route remain absent from canonical artifacts. Zero calls, emails, or Slack messages were sent.
 - **Finish Align HCM HubSpot Customer Agent:** Reauthenticate the approved Align HubSpot connector and exact Align Microsoft identity recorded in Access Broker for portal 242825734 through the human password or MFA gate, then rerun the prepared Customer Agent acceptance suite and record live channel, handoff, credit, and activation evidence.
   Current evidence: Current verification is blocked at the exact Align identity gate: the approved HubSpot connector requires reauthentication, portal 242825734 opens the expired Align session, and the Microsoft flow reaches the password gate. The authenticated Momentum HubSpot session was not used, preserving client separation.
 - **Complete Mac AI operations and Slack enablement bundle:** Finish QRTIGER Google account selection and confirm any annual paid-plan commitment, then complete the PostGrid signup CAPTCHA and terms gate and provide the verified sender, return address, postcard template, and exact approved test recipient and quantity.
