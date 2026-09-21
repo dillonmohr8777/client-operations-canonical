@@ -91,3 +91,87 @@ else.
   That is deliberate and accurate — do not tighten it into an unqualified "it's ready."
 - Do not claim the daily cron or the Resend digest is verified. Neither was observed running
   from this side.
+
+---
+
+# Addendum 2026-09-21 — Draft 4
+
+**Status: DRAFT. Not sent.** Added after James Frederick asked on 2026-09-18 for an email
+giving David steps to try the demo before the rescheduled meeting, and chased it on
+2026-09-21 ("progress on the demo email to david?").
+
+Supersedes Draft 3, which asked David for the Resend sender domain. That decision was
+closed on 2026-09-15 when James and Obaid set the domain up.
+
+## Draft 4 — email to David Molod, copying James and Obaid
+
+Written so David can form an opinion alone, in about fifteen minutes, without a meeting.
+It walks one real claimant end to end rather than listing features, because the seven-stage
+journey is the thing he actually needs to judge.
+
+> **Subject: VA Claims Edge portal — 15 minutes to try it yourself before we meet**
+>
+> Hi David,
+>
+> Sorry we missed each other Friday. Rather than hold everything for the next meeting,
+> here's a way to go through the portal yourself whenever you have fifteen minutes. Then
+> the call becomes your questions instead of our walkthrough.
+>
+> **The portal:** https://vaclaims-portal.vercel.app — sign in at `/login`. If your sign-in
+> doesn't work, reply and we'll sort it before you spend any time on this.
+>
+> The most useful thing you can do is take one imaginary claimant all the way through, the
+> way your team actually would:
+>
+> **1. Add a client.** Clients → Add Client. Put in a test name so it's obvious it isn't
+> real. This is the intake path your staff will use day to day.
+>
+> **2. Open their record.** Click into them from the clients list. Everything about that
+> claimant lives on this one screen.
+>
+> **3. Leave a note.** Add a couple of lines the way your team would after a phone call.
+> Notes are append-only and stamped with who wrote them and when — nothing can be quietly
+> edited later.
+>
+> **4. Move them through the stages.** Advance them a stage or two. This is the seven-stage
+> journey we built around your process, so this is the part worth being picky about: do the
+> stage names and the order match how you actually work?
+>
+> **5. Flip the onus.** Switch between waiting on us and waiting on the client, and record
+> a contact date. This is what drives the alerts.
+>
+> **6. Stop the clock.** Close them out as successful or non-successful and watch them come
+> off the active list.
+>
+> Then have a look at **Alerts**, **Payment Watch** (the C&P exam timers), and **Advisors**,
+> where you can add and deactivate people and reassign their clients.
+>
+> Last one, and it's the part people tend to enjoy: the **AI assistant**. Ask it something
+> in plain English about your client base — "who haven't we contacted in two weeks?" or
+> "who's sitting in stage 4?" — and see whether the answers are the ones you'd want.
+>
+> **What we're really asking:** where does this not match how your firm actually runs? Stage
+> names, the order, what counts as contact, what should trigger an alert. Those are cheap to
+> change now and expensive to change after go-live, so be blunt.
+>
+> Two open items on our side, for visibility. The daily alert emails are built and the
+> sending domain was set up last week, so those should start landing. And we'd still like a
+> decision on whether claimants should be able to register themselves from the website, or
+> whether your team adds everyone — that one shapes the next phase.
+>
+> Whenever you've had a look, send over times and we'll get the walkthrough booked.
+>
+> Thanks,
+> Dillon
+
+## Notes for the sender
+
+- Do not claim the Resend digest is confirmed working. The domain was set up on 2026-09-15
+  and moved into authenticating; nobody has confirmed a real digest arriving. The draft says
+  "should start landing" deliberately — keep that hedge.
+- The draft assumes David has working credentials. Verify before sending, or the first step
+  fails and the whole exercise stalls again.
+- The self-registration question is carried over from 2026-09-01 and is still genuinely
+  undecided.
+- David trying the demo is **not** the acceptance gate. The authenticated seven-stage
+  walkthrough on Dillon's side still has to happen either way.
