@@ -175,3 +175,64 @@ journey is the thing he actually needs to judge.
   undecided.
 - David trying the demo is **not** the acceptance gate. The authenticated seven-stage
   walkthrough on Dillon's side still has to happen either way.
+
+---
+
+# Addendum 2026-09-22 — Draft 5 (supersedes Draft 4)
+
+**Status: DRAFT. Not sent.** Approval-gated.
+
+Draft 4 was written on 2026-09-21 before two things were known:
+
+1. **Obaid recorded a Loom demo** at 18:09 EDT that same evening and sent it to James.
+2. **David already sent availability on 2026-09-20**; nobody has booked against it.
+
+Draft 4 is now wrong to send as written. It duplicates the video, and it treats scheduling
+as stuck when in fact David has already given times. Sending a long self-serve walkthrough
+while sitting on his availability would read badly.
+
+Draft 5 is shorter on purpose. It books the call, hands over the video, and keeps only the
+part a recording cannot do — the hands-on pass and the one question we actually need
+answered.
+
+## Draft 5 — email to David Molod, copying James and Obaid
+
+> **Subject: Portal walkthrough — booking one of your times, plus a 5-minute video first**
+>
+> Hi David,
+>
+> Thanks for sending times on Saturday, and sorry for the delay coming back to you — that
+> one's on us. **[BOOK ONE OF HIS SENT TIMES HERE AND NAME IT EXPLICITLY.]**
+>
+> Before the call, Obaid recorded a short walkthrough of the portal: **[LOOM LINK]**. It
+> covers the whole claimant journey end to end, so the call can be your questions rather
+> than our demo.
+>
+> If you'd rather poke at it yourself, the portal is at
+> https://vaclaims-portal.vercel.app and you can sign in at `/login`. The single most useful
+> thing you could do is add one test claimant and walk them through the stages — advance
+> them a couple of steps, leave a note, flip the onus between waiting on us and waiting on
+> the client, then stop the clock.
+>
+> That's the part we most need your eye on: **do the seven stages match how your firm
+> actually runs?** The names, the order, what counts as contact, what should trigger an
+> alert. Those are cheap to change now and expensive after go-live, so please be blunt.
+>
+> One open question for the next phase: should claimants be able to register themselves from
+> the website, or does your team add everyone? Staff intake works today either way.
+>
+> See you on the call.
+>
+> Dillon
+
+## Notes for the sender
+
+- **Fill the two brackets before sending.** The booked time and the Loom link are the whole
+  point; without them this is just another email that asks David to do something.
+- Watch Obaid's video first. If it already covers the seven-stage question well, cut that
+  paragraph down to one line rather than asking David to do work the video answers.
+- Still do not claim the Resend digest is confirmed working. Draft 5 deliberately says
+  nothing about alerts — the domain was set up on 2026-09-15 but no real digest has been
+  observed landing.
+- The authenticated seven-stage walkthrough on Dillon's side is still owed regardless of
+  what David does. His pass is not internal verification.

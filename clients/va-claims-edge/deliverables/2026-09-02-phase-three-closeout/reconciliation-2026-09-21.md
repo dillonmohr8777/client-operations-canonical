@@ -8,9 +8,13 @@ Sources: `#va-claims` 2026-09-04 → 2026-09-21, and fresh unauthenticated probe
 
 ## Production re-verified, unchanged
 
-All eleven routes still return `200`, and every protected API route still returns `401`
-unauthenticated (`/api/clients`, `/api/advisors`, `/api/settings`). Nothing regressed in
-nineteen days.
+All eleven routes still respond as expected, and every protected API route still returns
+`401` unauthenticated (`/api/clients`, `/api/advisors`, `/api/settings`). Nothing regressed
+in nineteen days.
+
+> **Superseded 2026-09-22.** This paragraph originally read "all eleven routes still return
+> `200`". That was a measurement artefact — the probes followed redirects. See the
+> 2026-09-22 addendum at the end of this note for the corrected picture.
 
 ## Decision 1 — Resend sender domain: CLOSED
 
@@ -77,3 +81,50 @@ On 2026-09-15 a one-time verification code and a personal phone number were post
 needed now. Worth raising once as a practice point: one-time codes and phone numbers should
 move through the vault route rather than a client channel, the same rule already applied to
 the Resy credential on Puttery.
+
+---
+
+# Addendum 2026-09-22
+
+## Correction to the route evidence
+
+The 2026-09-02 probes followed redirects, so every route was recorded as `200`. That was
+the status of the final response after the redirect, not of the route. Re-measured without
+following redirects:
+
+| Routes | Result |
+|---|---|
+| `/`, `/login`, `/portal` | `200`, page served |
+| the eight `/dashboard/*` routes | `307` → `/login` |
+
+This is better news on security and worse news on verification. UI routes are auth-gated at
+the edge, not only the APIs — so the gating is stronger than the original note implied. But
+it also means **no protected screen was ever rendered from this session**, so nothing about
+the seven-stage journey, notes, advisors, Payment Watch or the AI assistant is verified
+here. "Reachable" was accurate; "returns 200" was not.
+
+The evidence file carries the correction under `methodologyCorrection`.
+
+## Two developments after the reconciliation was written
+
+**Obaid recorded a demo video.** On 2026-09-21 at 18:09 EDT he posted a Loom to James:
+"Please check this video I just recorded." This is him delivering what he proposed on
+09-18 — a recorded demonstration for David.
+
+This changes Draft 4. James asked *both* of them for something that lets David try the
+demo himself; Obaid answered with a recording. A written walkthrough that duplicates the
+video is waste, and worse, two unconnected artefacts arriving separately is more friction
+for David, not less. Draft 4 is revised below to lead with Obaid's video and keep only the
+part a video cannot do: the hands-on pass and the specific question we need answered.
+
+**David already sent availability.** Dillon's 2026-09-21 weekly report records that the
+call moved from 09-18, David sent times on the 20th, and no new slot is confirmed. So the
+bottleneck has shifted: it is no longer "David won't engage", it is that nobody has booked
+against the times he already gave. That is a smaller, more embarrassing blocker and it is
+entirely on our side.
+
+## Revised read of the critical path
+
+The demo email is no longer the whole critical path. Booking against David's sent
+availability is the faster move, and the email now supports the meeting rather than
+replacing it.
