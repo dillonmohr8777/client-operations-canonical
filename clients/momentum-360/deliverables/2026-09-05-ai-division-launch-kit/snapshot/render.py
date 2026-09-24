@@ -1,0 +1,133 @@
+"""Render an AI Search Snapshot report from runs/<host>/snapshot.json.
+
+Built on the Momentum print kit (../../_print), the same grammar as the radar
+audit report: paper cover band with the exact logo, a deep field, numbered
+sections and a finding rail. Every finding carries its state (verified /
+pending / not observed) and its evidence, and the report never scores, ranks
+or promises. Writes report.html and report.pdf (Letter, no browser headers).
+
+    python render.py runs/needmomentum.com [--html-only]
+"""
+from __future__ import annotations
+
+import html
+import json
+import pathlib
+import sys
+
+HERE = pathlib.Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parents[1] / "_print"))
+from momentum_print import LOGO, document, to_pdf  # noqa: E402
+
+E = html.escape
+STATE_LABEL = {"verified": "Verified now", "pending": "Pending access", "not_observed": "Not observed"}
+WEIGHT = {"high": ("Fix first", "signal"), "medium": ("Fix next", "brand"), "low": ("Tidy", "quiet"), "info": ("Observed", "ring")}
+CSS = """
+.stats span { font-size: var(--m-fs-xs); font-weight: 800; letter-spacing: var(--m-track-caps); text-transform: uppercase; }
+.facts th { width: 9rem; }
+.cover h1.host, .cover h1.host-xl { font-size: var(--m-fs-h1); line-height: var(--m-lh-head); max-width: none; overflow-wrap: normal; }
+.cover h1.host-xl { font-size: var(--m-fs-h2); }
+.next { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: var(--m-s-5); }
+.next .cta { font-size: var(--m-fs-body); white-space: nowrap; }
+"""
+
+
+def head(n: int, title: str, aside: str = "") -> str:
+    return (f'<header class="mod__head"><p class="mod__num" aria-hidden="true">{n:02d}</p><h2>{E(title)}</h2>'
+            + (f'<p class="mod__aside">{E(aside)}</p>' if aside else "") + "</header>")
+
+
+def fetch_table(fetches: dict) -> str:
+    rows = "".join(
+        f"<tr><td>{E(n)}</td><td>{E(str(v.get('status')))}</td>"
+        f"<td>{E(v.get('challenge') or '')}</td><td>{v.get('bytes', 0):,}</td></tr>"
+        for n, v in fetches.items())
+    return ('<table class="grid"><thead><tr><th>Fetched as</th><th>Status</th><th>Challenge</th><th>Bytes</th></tr></thead>'
+            f"<tbody>{rows}</tbody></table>")
+
+
+def finding_html(x: dict) -> str:
+    word, dot = WEIGHT[x["weight"]]
+    ev = f'<pre class="evidence">{E(json.dumps(x["evidence"], separators=(", ", ": "))[:1600])}</pre>' if x.get("evidence") is not None else ""
+    fix = f'<p class="callout"><span class="label">Fix</span>{E(x["fix"])}</p>' if x.get("fix") else ""
+    return f"""<article class="find">
+  <div><p class="tag"><span class="dot dot--{dot}" aria-hidden="true"></span>{E(word)}</p>
+    <p class="find__meta">{E(STATE_LABEL[x['state']])}</p></div>
+  <div><p class="claim">{E(x['headline'])}</p>{fix}{ev}</div>
+</article>"""
+
+
+def render(run_dir: pathlib.Path, pdf: bool = True) -> pathlib.Path:
+    snap = json.loads((run_dir / "snapshot.json").read_text(encoding="utf-8"))
+    pg = snap.get("page") or {}
+    s = snap["summary"]
+    host = snap["origin"].split("//", 1)[1]
+    order = {"high": 0, "medium": 1, "low": 2, "info": 3}
+    fs = sorted(snap["findings"], key=lambda x: ({"verified": 0, "not_observed": 1, "pending": 2}[x["state"]], order[x["weight"]]))
+    sections = ["What the site says it is", "Who can read it", "Findings", "What this does not do"]
+    facts = [("Title", pg.get("title") or "(not read)"), ("H1", "; ".join(pg.get("h1") or []) or "(none)"),
+             ("Entity types", ", ".join(pg.get("jsonld_types") or []) or "(none)"),
+             ("Canonical", pg.get("canonical") or "(none)"), ("lang", pg.get("lang") or "(none)")]
+    body = f"""
+<header class="cover">
+  <div class="cover__top">
+    <img class="brand-logo" src="{LOGO}" alt="Momentum Digital" width="260">
+    <div class="cover__stamp"><p class="cover__brand">Momentum AI &middot; AI Search Snapshot</p>
+      <p class="kicker">{E(snap['observed_at'][:10])}</p></div>
+  </div>
+  <div class="cover__main">
+    <p class="eyebrow">AI Search Snapshot &middot; Momentum AI</p>
+    <h1 class="{'host-xl' if len(host) > 20 else 'host'}">{E(host).replace('.', '.<wbr>')}</h1>
+    <p class="lede">Can the systems that write AI answers read this site, and do they know what the business is? Observed from outside, one fetch per crawler identity, nothing estimated.</p>
+    <div class="cover__foot">
+      <div class="stats">
+        <div><b>{s['high']}</b><span>fix first</span></div>
+        <div><b>{s['verified']}</b><span>verified findings</span></div>
+        <div><b>{s['pending']}</b><span>pending access</span></div>
+        <div><b>{s['not_observed']}</b><span>not observed</span></div>
+      </div>
+      <nav class="toc" aria-label="In this snapshot"><p class="eyebrow">In this snapshot</p>
+        <ol>{"".join(f'<li><b>{i:02d}</b>{E(t)}</li>' for i, t in enumerate(sections, 1))}</ol></nav>
+    </div>
+    <p class="ids">Generated by snapshot.py on {E(snap['observed_at'])} &middot; Method: {E(snap['method'])}</p>
+  </div>
+</header>
+<section class="mod"><div class="keep">{head(1, sections[0])}
+  <table class="grid facts"><tbody>{"".join(f'<tr><th scope="row">{E(k)}</th><td>{E(v)}</td></tr>' for k, v in facts)}</tbody></table></div>
+</section>
+<section class="mod"><div class="keep">{head(2, sections[1], f"{len(snap['fetches'])} identities")}{fetch_table(snap['fetches'])}</div></section>
+<section class="mod"><div class="keep">{head(3, sections[2], f"{len(fs)} findings")}{finding_html(fs[0]) if fs else ''}</div>
+  {"".join(finding_html(x) for x in fs[1:])}
+</section>
+<section class="mod"><div class="keep">{head(4, sections[3])}
+  <p class="callout callout--quiet prose"><strong>What this does not do.</strong> It does not score, rank, or predict. It does not scrape any AI engine. What ChatGPT, Perplexity or AI Overviews actually say is observed by a person, twenty frozen questions on two named engines, recorded with date and citations, as the first step of the AI Search Readiness sprint. Anything marked pending stays pending until access exists.</p>
+  <div class="deep next" style="margin-top:var(--m-s-6)">
+    <div><p class="eyebrow">Next step</p>
+      <p style="margin-top:var(--m-s-3)"><a class="cta" href="https://needmomentum.com/free-website-seo-audit/">needmomentum.com/free-website-seo-audit/</a></p></div>
+    <p class="muted" style="font-size:var(--m-fs-sm)">Momentum AI &middot; Momentum Digital, Philadelphia</p>
+  </div></div>
+</section>"""
+    doc = document(f"AI Search Snapshot: {E(host)}", body, CSS, foot="Momentum AI · AI Search Snapshot")
+    out = run_dir / "report.html"
+    out.write_text(doc, encoding="utf-8")
+    if pdf:
+        to_pdf(out, run_dir / "report.pdf", html=doc)
+    return out
+
+
+def main(argv=None) -> int:
+    argv = argv or sys.argv[1:]
+    args = [a for a in argv if not a.startswith("-")]
+    if not args:
+        print("usage: render.py runs/<host> [--html-only]", file=sys.stderr)
+        return 2
+    for a in args:
+        p = pathlib.Path(a)
+        if not p.is_absolute():
+            p = HERE / p
+        print(f"wrote {render(p, pdf='--html-only' not in argv)}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
