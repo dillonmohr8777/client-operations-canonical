@@ -29,6 +29,8 @@ DS = HERE.parent / "2026-09-05-momentum-design-system" / "tokens"
 TOKENS_SOURCE_OF_TRUTH = pathlib.Path(r"C:\Users\dillo\Documents\Codex\momentum-design-system\tokens.css")
 DATE = "2026-09-05"
 E = html.escape
+sys.path.insert(0, str(HERE.parent / "_print"))
+from momentum_print import LOGO, document, to_pdf  # noqa: E402
 
 # Fixed 2026-09-07: this kit's local tokens.css had forked into its own palette
 # (--m-brand #1e73be, --m-accent #f58320) instead of the decided source of
@@ -459,76 +461,114 @@ def build_index(offers, decisions, econ) -> str:
 </body></html>"""
 
 
+SHEET_CSS = """
+.sheet { break-after: page; padding: var(--m-s-7) var(--m-gutter) 0; }
+.sheet:last-child { break-after: auto; }
+.sheet__top { display: flex; justify-content: space-between; align-items: center; gap: var(--m-s-5); padding-bottom: var(--m-s-4); border-bottom: 2px solid var(--m-ink); }
+.sheet__top .brand-logo { width: 11rem; }
+.band { background: var(--m-signal); color: var(--m-on-signal); padding: var(--m-s-2) var(--m-s-4); border-radius: var(--m-r-pill); font-size: var(--m-fs-xs); font-weight: 800; letter-spacing: var(--m-track-caps); text-transform: uppercase; white-space: nowrap; }
+.sheet .eyebrow { color: var(--m-signal-ink); margin-top: var(--m-s-5); }
+.sheet h1 { font-size: var(--m-fs-h1); margin-top: var(--m-s-2); }
+.sheet h1 b { color: var(--m-brand); font-weight: 400; }
+.sheet .lead { margin-top: var(--m-s-3); max-width: 44rem; }
+.split { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: var(--m-s-6); margin-top: var(--m-s-2); align-items: start; }
+.sheet .label { color: var(--m-muted); display: block; margin-bottom: var(--m-s-2); }
+.sheet p + .label, .sheet ul + .label, .cols + .label { margin-top: var(--m-s-4); }
+.small { font-size: var(--m-fs-sm); }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--m-s-6); }
+.cols.rule { margin-top: var(--m-s-4); padding-top: var(--m-s-4); border-top: 1px solid var(--m-line); }
+.list { list-style: none; padding: 0; font-size: var(--m-fs-sm); }
+.list li { padding: 2px 0 2px 1rem; position: relative; line-height: 1.45; }
+.list li::before { content: ""; position: absolute; left: 0; top: .72em; width: .4rem; height: .4rem; border-radius: var(--m-r-pill); background: var(--m-brand); }
+.list.out li::before { background: none; box-shadow: inset 0 0 0 1.5px var(--m-line-strong); }
+.band3 { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: var(--m-s-6); align-items: start; margin-top: var(--m-s-5); padding: var(--m-s-5) var(--m-s-6); }
+.price { min-width: 7rem; }
+.price b { display: block; font-family: var(--m-font-display); font-weight: 400; font-size: var(--m-fs-h2); line-height: 1; }
+.price span { font-size: var(--m-fs-xs); font-weight: 800; letter-spacing: var(--m-track-caps); text-transform: uppercase; color: var(--m-on-deep-muted); }
+.agent { padding-left: var(--m-s-5); border-left: 1px solid var(--m-deep-raised); font-size: var(--m-fs-sm); line-height: 1.5; }
+.agent .eyebrow { margin: 0 0 var(--m-s-2); color: var(--m-signal); }
+.agent em { color: var(--m-signal); font-style: normal; font-weight: 800; }
+.sheet .callout { font-size: var(--m-fs-sm); }
+.sheet__foot { margin-top: var(--m-s-5); padding-top: var(--m-s-3); border-top: 1px solid var(--m-line); color: var(--m-muted); font-size: var(--m-fs-xs); }
+table.grid .min { white-space: nowrap; }
+table.grid .note { display: block; color: var(--m-muted); font-size: var(--m-fs-xs); }
+.k-skip { position: absolute; left: -9999px; }
+@page sheet { margin: 12mm 14mm 16mm; }
+@media print { html { font-size: 13px; } .sheet { padding: 0; page: sheet; } }
+@media (max-width: 640px) { .band3 { grid-template-columns: 1fr 1fr; } .agent { grid-column: 1 / -1; padding-left: 0; border-left: 0; } .sheet__top { flex-direction: column; align-items: flex-start; } .cols { grid-template-columns: minmax(0, 1fr); } }
+"""
+
+
+def items(xs, cls="list"):
+    return f'<ul class="{cls}">' + "".join(f"<li>{E(x)}</li>" for x in xs) + "</ul>"
+
+
+def sheet_top(band: str) -> str:
+    return (f'<div class="sheet__top"><img class="brand-logo" src="{LOGO}" alt="Momentum Digital" width="260">'
+            f'<span class="band">{band}</span></div>')
+
+
 def sheet_flagship(lane) -> str:
     f = lane["flagship"]
+    monthly = (f'<div><b>{E(f["monthly"])}</b><span>per month &middot; proposed</span></div>' if f["monthly"]
+               else f'<div><b>{E(f["monthly_note"])}</b><span>proposed</span></div>')
     return f"""
-<section class="s-sheet">
-  <div class="s-rule"></div>
-  <span class="s-band">Proposed scope &middot; not agreed &middot; {E(DATE)}</span>
-  <p class="k-h5">Lane {E(lane['n'])} &middot; {E(lane['name'])} &middot; {E(lane['line'])}</p>
-  <h1 class="m-h2">{E(f['name'])}</h1>
-  <p class="m-lead" style="margin-top:var(--m-s-4)">{E(f['outcome'])}</p>
-  {price_block(f)}
-  <div class="k-agent"><b>Ships with its agent</b>{E(f['agent'])}<br>
-    <span style="color:var(--m-accent-ink);font-weight:var(--m-weight-bold)">Target:</span> {E(f['hours_target'])}</div>
-  <div class="k-cols" style="margin-top:var(--m-s-5)">
-    <div><p class="k-h5">Included</p>{lis(f['included'])}</div>
-    <div><p class="k-h5">Not included</p>{lis(f['excluded'], 'k-list k-out')}</div>
+<section class="sheet">
+  {sheet_top(f"Proposed scope &middot; not agreed &middot; {E(DATE)}")}
+  <p class="eyebrow">Lane {E(lane['n'])} &middot; {E(lane['name'])} &middot; {E(lane['line'])}</p>
+  <h1>{E(f['name'])}</h1>
+  <p class="lead">{E(f['outcome'])}</p>
+  <div class="deep band3">
+    <div class="price"><b>{E(f['setup'])}</b><span>setup &middot; proposed</span></div>
+    {monthly.replace('<div>', '<div class="price">', 1)}
+    <div class="agent"><p class="eyebrow">Ships with its agent</p>{E(f['agent'])}<br><em>Target:</em> {E(f['hours_target'])}</div>
   </div>
-  <p class="k-h5" style="margin-top:var(--m-s-5)">Acceptance</p>
-  <p style="font-size:var(--m-fs-sm);margin:0">{E(f['acceptance'])}</p>
-  <p class="k-h5" style="margin-top:var(--m-s-4)">Customer dependencies</p>
-  <p style="font-size:var(--m-fs-sm);margin:0">{E(f['dependencies'])} {E(f['clock'])}</p>
-  <p class="k-honest"><strong>What we will not claim.</strong> {E(f['honesty'])}</p>
-  <p class="s-foot">Momentum AI &middot; Momentum Digital, Philadelphia &middot; {E(f['setup_hours'])}; then {E(f['recurring_hours'])} &middot;
-    Support Mon&ndash;Fri 9am&ndash;5pm Eastern, one business day to acknowledge a blocking incident: an acknowledgement commitment, not an SLA.</p>
+  <div class="cols rule">
+    <div><span class="label">Included</span>{items(f['included'])}</div>
+    <div><span class="label">Not included</span>{items(f['excluded'], 'list out')}</div>
+  </div>
+  <div class="cols rule">
+    <div><span class="label">Acceptance</span><p class="small">{E(f['acceptance'])}</p></div>
+    <div><span class="label">Customer dependencies</span><p class="small">{E(f['dependencies'])} {E(f['clock'])}</p></div>
+  </div>
+  <p class="callout callout--quiet"><strong>What we will not claim.</strong> {E(f['honesty'])}</p>
+  <p class="sheet__foot">Momentum AI &middot; Momentum Digital, Philadelphia &middot; {E(f['setup_hours'])}; then {E(f['recurring_hours'])} &middot;
+    Support Monday to Friday, 9am to 5pm Eastern, one business day to acknowledge a blocking incident: an acknowledgement commitment, not an SLA.</p>
 </section>"""
 
 
 def sheet_summary(offers) -> str:
     dv, op = offers["division"], offers["opener"]
     rows = "".join(
-        f"<tr><td class=\"min\">{E(l['n'])}</td><td><strong>{E(l['name'])}</strong><br><span class=\"k-note\">{E(l['line'])}</span></td>"
+        f"<tr><td class=\"min\">{E(l['n'])}</td><td><strong>{E(l['name'])}</strong><span class=\"note\">{E(l['line'])}</span></td>"
         f"<td>{E(l['flagship']['name'])}</td><td class=\"min\">{E(l['flagship']['setup'])}"
         f"{' + ' + E(l['flagship']['monthly']) + '/mo' if l['flagship']['monthly'] else ' fixed'}</td>"
-        f"<td>{E(l['next']['name'])}<br><span class=\"k-note\">{E(l['next']['price'])}</span></td></tr>"
+        f"<td>{E(l['next']['name'])}<span class=\"note\">{E(l['next']['price'])}</span></td></tr>"
         for l in offers["lanes"])
     return f"""
-<section class="s-sheet">
-  <div class="s-rule"></div>
-  <span class="s-band">Internal &middot; proposed &middot; not agreed &middot; {E(DATE)}</span>
-  <h1 class="m-h2">{lockup()}</h1>
-  <p class="m-lead" style="margin-top:var(--m-s-4)">{E(dv['positioning'])}</p>
-  <p class="k-note" style="margin-top:var(--m-s-3)">{E(dv['thesis'])}</p>
-  <table class="s-lanes">
+<section class="sheet">
+  {sheet_top(f"Internal &middot; proposed &middot; not agreed &middot; {E(DATE)}")}
+  <h1 style="margin-top:var(--m-s-6)">{lockup()}</h1>
+  <p class="lead">{E(dv['positioning'])}</p>
+  <p class="small muted" style="margin-top:var(--m-s-3);max-width:44rem">{E(dv['thesis'])}</p>
+  <table class="grid" style="margin-top:var(--m-s-6)">
     <caption class="k-skip">Four lanes with flagship and roadmap offers</caption>
     <thead><tr><th>#</th><th>Lane</th><th>Launch flagship</th><th>Proposed</th><th>Roadmap</th></tr></thead>
     <tbody>{rows}</tbody>
   </table>
-  <p class="k-h5" style="margin-top:var(--m-s-6)">Opener &middot; {E(op['price'])}</p>
-  <p style="font-size:var(--m-fs-sm);margin:0"><strong>{E(op['name'])}.</strong> {E(op['what'])}</p>
-  <p class="k-honest">{E(offers['finding_241']['title'])} {E(offers['finding_241']['contrast'])}</p>
-  <p class="s-foot">Every figure is a proposal for the Friday conversation. Twenty decisions are open; see the register.</p>
+  <div class="deep" style="margin-top:var(--m-s-6)">
+    <p class="eyebrow">Opener &middot; {E(op['price'])}</p>
+    <p class="small" style="margin-top:var(--m-s-2)"><strong>{E(op['name'])}.</strong> {E(op['what'])}</p>
+  </div>
+  <p class="callout callout--quiet">{E(offers['finding_241']['title'])} {E(offers['finding_241']['contrast'])}</p>
+  <p class="sheet__foot">Every figure is a proposal for the Friday conversation. Twenty decisions are open; see the register.</p>
 </section>"""
 
 
 def build_sheets(offers) -> str:
-    return f"""<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>Momentum AI: Service Sheets</title>
-{FONTS}
-<style>{css()}{PAGE_CSS}{PRINT_CSS}</style>
-</head>
-<body>
-<p class="k-status noprint">Five sheets, one per printed page: the division summary and four flagships. Print to PDF at Letter. Every figure is a proposal until agreed.</p>
-<main class="m-wrap" style="padding-block: var(--m-s-7)">
-{sheet_summary(offers)}
-{"".join(sheet_flagship(l) for l in offers['lanes'])}
-</main>
-</body></html>"""
+    body = sheet_summary(offers) + "".join(sheet_flagship(l) for l in offers["lanes"])
+    return document("Momentum AI: Service Sheets", body, SHEET_CSS,
+                    foot="Momentum AI · Service sheets · Proposed, not agreed")
 
 
 def main() -> int:
@@ -541,6 +581,8 @@ def main() -> int:
         assert "proposed" in doc.lower(), f"{name} lost its proposed marking"
         (HERE / name).write_text(doc, encoding="utf-8")
         print(f"wrote {name}  ({len(doc):,} bytes)")
+        if name == "one-pagers.html":
+            print(f"wrote {to_pdf(HERE / name, HERE / 'one-pagers.pdf', html=doc).name}")
     print(f"lanes: {len(offers['lanes'])}   open decisions: {len(decisions['decisions'])}")
     return 0
 
