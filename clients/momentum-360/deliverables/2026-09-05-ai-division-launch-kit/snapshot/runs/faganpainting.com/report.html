@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>AI Search Snapshot: faganpainting.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito+Sans:wght@400;600;800&family=Caveat:wght@700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>/* ==========================================================================
+   Momentum design tokens
+   Momentum Digital / Momentum 360 - Philadelphia
+   v1.0.0 - 2026-09-05
+
+   Every colour below is either MEASURED from something that ships
+   (needmomentum.com computed styles, the papaadvertising.com 1440x900 live
+   capture, or the ten radar builds at
+   momentum-prospect-radar-next10-2026-09-02c.netlify.app) or CHOSEN to fix a
+   measured failure. Which one it is, is written on the line.
+
+   Do not hand-edit a colour without re-running audit/contrast.py. That script
+   reads THIS FILE, not a copy of it, so a value that fails cannot ship.
+   Ratios in the comments are its output, not estimates.
+   ========================================================================== */
+
+:root {
+  /* --- ground ----------------------------------------------------------
+     CHOSEN. Warmer and lighter than the radar --paper (#fbf8f4) so a photo
+     sits on it without a cast, and lighter than needmomentum's #f5f5f5,
+     which is a grey the brand never chose - it is a WordPress default.  */
+  --m-paper:   #fbfaf7;
+  --m-surface: #eceae4;   /* CHOSEN. Cards, panels, table zebra.            */
+  --m-ink:     #14181b;   /* CHOSEN. 17.10:1 on paper, 14.84:1 on surface.  */
+  --m-muted:   #565f64;   /* CHOSEN. 6.25:1 on paper, 5.43:1 on surface.
+                             The radar kit derives --muted from --paper and
+                             then prints it on --panel, where it lands at
+                             4.28-4.49:1 on 9 of 10 sites. This value is
+                             validated on BOTH grounds, which is the fix.    */
+
+  /* --- brand -----------------------------------------------------------
+     MEASURED from needmomentum.com: rgb(30,115,190). It already clears AA
+     with white (4.94:1), so it is kept rather than "modernised".           */
+  --m-brand:            #1e73be;
+  --m-on-brand:         #ffffff;   /* 4.94:1                                */
+  --m-on-brand-muted:   #f2f6fa;   /* 4.55:1  CHOSEN - the dimmest white
+                                      that still clears AA on brand.        */
+  --m-accent-on-brand:  #ffc46b;   /* 3.14:1  LARGE TEXT ONLY. See note 1.  */
+
+  /* --- deep ------------------------------------------------------------
+     CHOSEN. The dark field the radar kit calls --brand-2. Its version is
+     derived per-site and lands at 1.78-2.86:1 against its own --brand, so
+     headings on the deep field are invisible on 7 of 10 sites. Here the
+     deep field is fixed and its on-colours are measured against it.        */
+  --m-deep:             #0e1a22;
+  --m-nav:              #22303a;   /* CHOSEN. Papa uses #40494e charcoal;
+                                      this is the same idea, cooler, so the
+                                      brand blue reads against it.          */
+  --m-on-deep:          #f2f6f8;   /* 16.24:1 on deep, 12.44:1 on nav       */
+  --m-on-deep-muted:    #b4c3cc;   /*  9.77:1 on deep,  7.49:1 on nav       */
+  --m-accent-on-deep:   #f9a03f;   /*  8.51:1 on deep,  6.53:1 on nav       */
+
+  /* --- accent ----------------------------------------------------------
+     MEASURED from needmomentum.com: rgb(245,131,32). The live site also
+     ships rgb(251,131,0) on the same page - two oranges, one brand. This
+     one wins because it is the one on the primary CTA.
+
+     Note 2: no single orange can be both a field and a text colour.
+     #f58320 with white is 2.58:1 and with near-black is 7.19:1. So the
+     accent is split by JOB, not by shade preference.                       */
+  --m-accent:      #f58320;   /* FIELD ONLY. Pill buttons, rules, marks.    */
+  --m-on-accent:   #1a1208;   /* 7.19:1 on accent. Never white on orange.   */
+  --m-accent-ink:  #96490b;   /* TEXT ONLY. 6.18:1 on paper, 5.36:1 on
+                                 surface. Same hue family, text-legal.      */
+
+  /* --- state -----------------------------------------------------------
+     CHOSEN, and validated on paper AND surface, because form errors get
+     rendered inside cards. Bridge shipped error text at 2.22:1 by checking
+     only one ground.                                                       */
+  --m-danger:   #b3261e;   /* 6.26:1 paper, 5.43:1 surface                  */
+  --m-success:  #16703c;   /* 5.89:1 paper, 5.11:1 surface                  */
+  --m-link:     #1a68ac;   /* 5.56:1 paper, 4.82:1 surface                  */
+
+  /* --- lines and focus -------------------------------------------------- */
+  --m-line:        #dcd9d2;  /* decorative hairline; NOT a contrast surface */
+  --m-line-strong: #767d83;  /* 4.00:1 vs paper - input borders, UI edges   */
+  --m-focus:       #1e73be;  /* 4.73:1 vs paper, 3.57:1 vs deep             */
+  --m-focus-halo:  #ffffff;  /* 4.94:1 vs focus - carries the ring when the
+                                control itself is brand-coloured            */
+
+  /* --- type ------------------------------------------------------------
+     MEASURED from the radar builds: Archivo Black / Nunito Sans / Caveat is
+     what all ten actually load and is the closest free stand-in for Papa's
+     Typekit stack (bebas-neue-pro / montserrat / verveine). Kept because it
+     ships. needmomentum.com renders five families on one page (Roboto,
+     Open Sans, Poppins, Hind, and bare sans-serif); that is the drift.     */
+  --m-font-display: "Archivo Black", "Anton", "Arial Black", system-ui, sans-serif;
+  --m-font-text:    "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --m-font-script:  "Caveat", "Segoe Script", cursive;
+  --m-font-mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Steps are ratio-spaced, not nudged: 1.333 at the display end so the
+     jumps are real (density 4 means type carries the page), 1.15 at the
+     small end where hierarchy is functional rather than expressive.        */
+  --m-fs-micro:   0.6875rem;                            /* 11px, caps only  */
+  --m-fs-xs:      0.79rem;
+  --m-fs-sm:      0.91rem;
+  --m-fs-body:    clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --m-fs-lead:    clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  --m-fs-h4:      clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
+  --m-fs-h3:      clamp(1.5rem, 1.25rem + 1.2vw, 2.25rem);
+  --m-fs-h2:      clamp(2.1rem, 1.4rem + 3.4vw, 4rem);
+  --m-fs-h1:      clamp(2.75rem, 1.6rem + 5.4vw, 5.5rem);
+  --m-fs-display: clamp(3.25rem, 1.4rem + 8.4vw, 7.5rem);  /* Papa h2 = 100px */
+
+  --m-lh-display: 0.92;
+  --m-lh-head:    1.06;
+  --m-lh-lead:    1.35;
+  --m-lh-body:    1.6;
+
+  --m-track-display: -0.02em;
+  --m-track-caps:     0.14em;   /* MEASURED: radar --pa-track-wide          */
+  --m-track-body:     0.005em;
+
+  --m-weight-body: 400;
+  --m-weight-mid:  600;
+  --m-weight-bold: 800;
+
+  /* --- space -----------------------------------------------------------
+     MEASURED base scale from the radar builds (--s-1 .. --s-10), kept
+     verbatim so existing markup ports without re-measuring.                */
+  --m-s-1: 0.25rem;  --m-s-2: 0.5rem;  --m-s-3: 0.75rem;  --m-s-4: 1rem;
+  --m-s-5: 1.5rem;   --m-s-6: 2rem;    --m-s-7: 3rem;     --m-s-8: 4rem;
+  --m-s-9: 6rem;     --m-s-10: 8rem;
+
+  --m-section-y: clamp(4.5rem, 9vw, 8rem);   /* MEASURED: radar --pa-section-y */
+  --m-gutter:    clamp(1.25rem, 4vw, 3rem);  /* MEASURED: radar --pa-gutter    */
+  --m-maxw:      1240px;                     /* MEASURED: radar --maxw
+                                                (Papa ships 1310px)            */
+  --m-measure:   66ch;
+
+  /* --- radius ----------------------------------------------------------
+     MEASURED from the radar builds: exactly six values ship, and they are
+     the same six on all ten sites. needmomentum.com renders twenty. The
+     kit is right; the marketing site is the outlier.                       */
+  --m-r-sm:   6px;
+  --m-r-md:   12px;
+  --m-r-lg:   18px;
+  --m-r-pill: 999px;     /* MEASURED: Papa button border-radius 50px at 60px
+                            tall is a pill; 999px is the same shape.        */
+
+  /* --- elevation -------------------------------------------------------
+     MEASURED: radar --pa-shadow. Two steps only. Shadow is depth, never
+     glow: no coloured or saturated shadows anywhere in this system.        */
+  --m-elev-1: 0 1px 2px rgba(14, 26, 34, 0.10),
+              0 6px 16px rgba(14, 26, 34, 0.07);
+  --m-elev-2: 0 18px 40px -22px rgba(10, 12, 16, 0.45);
+  --m-elev-inset: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* --- motion ----------------------------------------------------------
+     MEASURED. --m-ease is the radar kit's --pa-ease, on all ten sites.
+     --m-ease-swap is Papa's header caption/mark swap curve, measured frame
+     by frame in the desktop spec.                                          */
+  --m-ease:      cubic-bezier(0.2, 0.7, 0.2, 1);
+  --m-ease-swap: cubic-bezier(0.85, 0, 0.15, 1);
+  --m-ease-out:  ease-out;
+
+  --m-dur-1: 0.15s;   /* MEASURED: Papa button transition                   */
+  --m-dur-2: 0.25s;   /* MEASURED: radar hover / Papa header                */
+  --m-dur-3: 0.5s;    /* MEASURED: radar --pa-dur, scroll reveal            */
+  --m-dur-4: 0.8s;    /* MEASURED: Papa header swap                         */
+
+  --m-lift: 3px;      /* hover displacement - motion that moves, not tints  */
+}
+
+/*  Note 1 - the one pair that cannot reach AA at body size.
+    Orange text on the brand-blue field tops out at 3.44:1 for any orange
+    still recognisable as the brand orange. So --m-accent-on-brand is
+    declared LARGE-TEXT-ONLY (3.14:1 >= 3.0) and the system routes small
+    orange text onto --m-deep instead, where --m-accent-on-deep is 8.51:1.
+    This is the exact defect the radar batch ships: --accent on --brand at
+    1.01-2.72:1 on 6 of 10 sites, in the circular seal and the hero eyebrow. */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --m-dur-1: 0.01ms; --m-dur-2: 0.01ms;
+    --m-dur-3: 0.01ms; --m-dur-4: 0.01ms;
+    --m-lift: 0px;
+  }
+}
+/* ==========================================================================
+   Momentum components - built only from momentum.tokens.css
+   v1.0.0 - 2026-09-05
+
+   Rule: no literal colour, size, radius, duration or curve below this line.
+   Everything is a var(). If a component needs a value the tokens do not
+   have, the token file is wrong, not the component.
+
+   Section grammar matches what ships in the radar batch: nav / hero /
+   section / pill / card / accordion / logo wall / footer.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--m-paper);
+  color: var(--m-ink);
+  font-family: var(--m-font-text);
+  font-size: var(--m-fs-body);
+  line-height: var(--m-lh-body);
+  letter-spacing: var(--m-track-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { max-width: 100%; display: block; }
+
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--m-focus-halo), 0 0 0 5px var(--m-focus);
+  border-radius: var(--m-r-sm);
+}
+
+/* --- layout ------------------------------------------------------------- */
+.m-wrap    { width: min(var(--m-maxw), 100% - var(--m-gutter) * 2); margin-inline: auto; }
+.m-section { padding-block: var(--m-section-y); }
+:is(.m-section--deep, .m-hero)  { background: var(--m-deep);  color: var(--m-on-deep); }
+.m-section--brand { background: var(--m-brand); color: var(--m-on-brand); }
+.m-section--surface { background: var(--m-surface); }
+
+/* --- type --------------------------------------------------------------- */
+.m-display, .m-h1, .m-h2, .m-h3, .m-h4 {
+  font-family: var(--m-font-display);
+  font-weight: var(--m-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--m-track-display);
+  margin: 0;
+}
+.m-display { font-size: var(--m-fs-display); line-height: var(--m-lh-display); }
+.m-h1 { font-size: var(--m-fs-h1); line-height: var(--m-lh-display); }
+.m-h2 { font-size: var(--m-fs-h2); line-height: var(--m-lh-head); }
+.m-h3 { font-size: var(--m-fs-h3); line-height: var(--m-lh-head); }
+.m-h4 {
+  font-family: var(--m-font-text);
+  font-size: var(--m-fs-h4);
+  line-height: var(--m-lh-head);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.m-lead { font-size: var(--m-fs-lead); line-height: var(--m-lh-lead); max-width: var(--m-measure); margin: 0; }
+.m-body { max-width: var(--m-measure); margin: 0; }
+.m-muted { color: var(--m-muted); }
+:is(.m-section--deep, .m-hero) .m-muted, .m-section--brand .m-muted { color: var(--m-on-deep-muted); }
+
+.m-eyebrow {
+  font-family: var(--m-font-text);
+  font-size: var(--m-fs-micro);
+  font-weight: var(--m-weight-bold);
+  letter-spacing: var(--m-track-caps);
+  text-transform: uppercase;
+  margin: 0 0 var(--m-s-4);
+  color: var(--m-accent-ink);
+}
+:is(.m-section--deep, .m-hero) .m-eyebrow { color: var(--m-accent-on-deep); }
+.m-section--brand .m-eyebrow { color: var(--m-on-brand-muted); }
+
+.m-script {
+  font-family: var(--m-font-script);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: var(--m-fs-h3);
+  line-height: 1;
+  display: inline-block;
+  transform: rotate(-2.5deg);
+  color: var(--m-accent-ink);
+}
+:is(.m-section--deep, .m-hero) .m-script { color: var(--m-accent-on-deep); }
+
+/* Papa's struck-out-and-replaced heading. Reproduced as a real component
+   because it is the single most recognisable move in the house style. */
+.m-strike { position: relative; white-space: nowrap; }
+.m-strike > s { text-decoration: none; opacity: 0.42; }
+.m-strike > s::after {
+  content: ""; position: absolute; left: 0; right: 22%; top: 52%;
+  height: 0.07em; background: currentColor; transform: rotate(-3deg);
+}
+.m-strike > .m-script { margin-left: 0.25em; vertical-align: baseline; }
+
+.m-mono {
+  font-family: var(--m-font-mono);
+  font-size: var(--m-fs-xs);
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- pill button --------------------------------------------------------
+   Papa measured: 60px tall, 0 40px padding, 50px radius, uppercase 700,
+   150ms on colour only. Kept, plus a displacement on hover because motion
+   8/10 means a hover state moves rather than only tints.                   */
+.m-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--m-s-2);
+  min-height: 60px; padding-inline: var(--m-s-8);
+  border: 2px solid transparent; border-radius: var(--m-r-pill);
+  font-family: var(--m-font-text); font-size: var(--m-fs-body);
+  font-weight: var(--m-weight-bold); text-transform: uppercase;
+  letter-spacing: 0.04em; text-decoration: none; cursor: pointer;
+  background: var(--m-accent); color: var(--m-on-accent);
+  transition: transform var(--m-dur-2) var(--m-ease),
+              background-color var(--m-dur-1) var(--m-ease),
+              box-shadow var(--m-dur-2) var(--m-ease),
+              color var(--m-dur-1) var(--m-ease);
+}
+.m-btn:hover { transform: translateY(calc(var(--m-lift) * -1)); box-shadow: var(--m-elev-1); }
+.m-btn:active { transform: translateY(0); }
+
+.m-btn--ghost {
+  background: transparent; color: var(--m-ink); border-color: var(--m-line-strong);
+}
+.m-btn--ghost:hover { background: var(--m-surface); }
+:is(.m-section--deep, .m-hero) .m-btn--ghost { color: var(--m-on-deep); border-color: var(--m-on-deep-muted); }
+:is(.m-section--deep, .m-hero) .m-btn--ghost:hover { background: var(--m-nav); }
+
+.m-btn--sm { min-height: 44px; padding-inline: var(--m-s-5); font-size: var(--m-fs-sm); }
+
+/* --- nav ---------------------------------------------------------------
+   Papa measured: fixed 100px charcoal band, script caption that swaps for
+   the wordmark on scroll past the hero, 0.8s cubic-bezier(.85,0,.15,1).
+   Here as a static bar plus the swap, driven by a class the page toggles.  */
+.m-nav {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--m-nav); color: var(--m-on-deep);
+  box-shadow: var(--m-elev-2);
+}
+.m-nav__in {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--m-s-5);
+  min-height: 84px;
+}
+.m-nav__brand { position: relative; display: grid; align-items: center; min-width: 15rem; }
+.m-nav__brand > * { grid-area: 1 / 1; transition: opacity var(--m-dur-4) var(--m-ease-swap),
+                                                  transform var(--m-dur-4) var(--m-ease-swap); }
+.m-nav__caption { font-family: var(--m-font-script); font-size: var(--m-fs-h4);
+                  color: var(--m-accent-on-deep); white-space: nowrap; }
+.m-nav__mark { font-family: var(--m-font-display); font-size: var(--m-fs-h4);
+               text-transform: uppercase; letter-spacing: 0.02em;
+               opacity: 0; transform: translateX(-2rem); }
+.m-nav.is-swapped .m-nav__caption { opacity: 0; transform: translateX(-2rem); }
+.m-nav.is-swapped .m-nav__mark { opacity: 1; transform: translateX(0); }
+
+.m-nav__links { display: flex; gap: var(--m-s-6); list-style: none; margin: 0; padding: 0; }
+.m-nav__links a {
+  color: var(--m-on-deep); text-decoration: none;
+  font-size: var(--m-fs-sm); font-weight: var(--m-weight-bold);
+  text-transform: uppercase; letter-spacing: var(--m-track-caps);
+  padding-block: var(--m-s-2);
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--m-dur-2) var(--m-ease), color var(--m-dur-2) var(--m-ease);
+}
+.m-nav__links a:hover { color: var(--m-accent-on-deep); border-bottom-color: var(--m-accent); }
+/* Measured: brand column (15rem) + links + CTA needs ~790px of bar. Below
+   900 the links collapse and the brand column stops reserving width, which
+   is what kept 768 and 375 overflowing the document by 23px and 19px. */
+@media (max-width: 900px) {
+  .m-nav__links { display: none; }
+  .m-nav__brand { min-width: 0; }
+  .m-nav__in { gap: var(--m-s-3); }
+}
+
+/* --- hero --------------------------------------------------------------
+   Asymmetric by construction: 7/5 split, never centred, never symmetric.  */
+.m-hero { background: var(--m-deep); color: var(--m-on-deep); padding-block: var(--m-s-10) var(--m-s-9); position: relative; overflow: hidden; }
+.m-hero__grid { display: grid; gap: var(--m-s-7); grid-template-columns: 7fr 5fr; align-items: end; }
+@media (max-width: 900px) { .m-hero__grid { grid-template-columns: 1fr; } }
+.m-hero__rule { height: 6px; background: var(--m-accent); width: 7rem; margin-bottom: var(--m-s-5); }
+
+/* --- section head ------------------------------------------------------- */
+.m-head { display: grid; gap: var(--m-s-4); margin-bottom: var(--m-s-7); }
+.m-head--split { grid-template-columns: minmax(0, 1fr) minmax(0, 22rem); align-items: end; gap: var(--m-s-7); }
+@media (max-width: 860px) { .m-head--split { grid-template-columns: 1fr; } }
+
+/* --- card ---------------------------------------------------------------
+   One card component. It is never used three-across at equal weight - the
+   layouts that consume it are asymmetric on purpose.                       */
+.m-card {
+  background: var(--m-surface); color: var(--m-ink);
+  border: 1px solid var(--m-line); border-radius: var(--m-r-lg);
+  padding: var(--m-s-6);
+  transition: transform var(--m-dur-2) var(--m-ease), box-shadow var(--m-dur-2) var(--m-ease);
+}
+.m-card:hover { transform: translateY(calc(var(--m-lift) * -1)); box-shadow: var(--m-elev-1); }
+.m-card__k { font-family: var(--m-font-display); font-size: var(--m-fs-h2); line-height: 1;
+             color: var(--m-brand); margin: 0 0 var(--m-s-3); }
+.m-card--deep { background: var(--m-nav); color: var(--m-on-deep); border-color: transparent; }
+.m-card--deep .m-card__k { color: var(--m-accent-on-deep); }
+.m-card--accent { background: var(--m-accent); color: var(--m-on-accent); border-color: transparent; }
+.m-card--accent .m-card__k { color: var(--m-on-accent); }
+
+/* deliberately unequal: 7/5, and the second row offsets */
+.m-cards { display: grid; gap: var(--m-s-5); grid-template-columns: 7fr 5fr; }
+.m-cards > :last-child:nth-child(3) { grid-column: 1 / -1; }
+@media (max-width: 820px) { .m-cards { grid-template-columns: 1fr; } }
+
+/* --- accordion ---------------------------------------------------------
+   Papa measured: 80px rows on an 82px pitch, uppercase 28px, all closed by
+   default, no chrome but a hairline rule.                                  */
+.m-acc { border-top: 2px solid var(--m-line-strong); }
+.m-acc details { border-bottom: 2px solid var(--m-line-strong); }
+.m-acc summary {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--m-s-4);
+  min-height: 80px; padding-block: var(--m-s-4); cursor: pointer;
+  font-family: var(--m-font-text); font-size: var(--m-fs-h4);
+  font-weight: var(--m-weight-bold); text-transform: uppercase;
+  color: var(--m-ink); list-style: none;
+  transition: color var(--m-dur-2) var(--m-ease), padding-left var(--m-dur-2) var(--m-ease);
+}
+.m-acc summary::-webkit-details-marker { display: none; }
+.m-acc summary:hover { color: var(--m-accent-ink); padding-left: var(--m-s-3); }
+.m-acc summary::after {
+  content: "+"; font-family: var(--m-font-text); font-weight: var(--m-weight-body);
+  font-size: var(--m-fs-h3); line-height: 1; color: var(--m-accent-ink);
+  transition: transform var(--m-dur-2) var(--m-ease);
+}
+.m-acc details[open] summary::after { transform: rotate(45deg); }
+.m-acc__body { padding-bottom: var(--m-s-5); color: var(--m-muted); max-width: var(--m-measure); }
+:is(.m-section--deep, .m-hero) .m-acc { border-color: var(--m-on-deep-muted); }
+:is(.m-section--deep, .m-hero) .m-acc details { border-color: var(--m-on-deep-muted); }
+:is(.m-section--deep, .m-hero) .m-acc summary { color: var(--m-on-deep); }
+:is(.m-section--deep, .m-hero) .m-acc summary::after,
+:is(.m-section--deep, .m-hero) .m-acc summary:hover { color: var(--m-accent-on-deep); }
+:is(.m-section--deep, .m-hero) .m-acc__body { color: var(--m-on-deep-muted); }
+
+/* --- logo wall ---------------------------------------------------------
+   Papa measured: 269px pitch, greyscale at 40%, full colour on hover, one
+   grey full-bleed stripe behind. CSS marquee here rather than Owl, with a
+   real pause on hover and a full stop under reduced motion.                */
+.m-wall { background: var(--m-surface); padding-block: var(--m-s-6); overflow: hidden; }
+.m-wall__track { display: flex; gap: var(--m-s-7); width: max-content; align-items: center;
+                 animation: m-marquee 42s linear infinite; }
+.m-wall:hover .m-wall__track { animation-play-state: paused; }
+.m-wall__item {
+  flex: 0 0 auto; width: 210px; height: 88px;
+  display: grid; place-items: center; text-align: center;
+  font-family: var(--m-font-display); font-size: var(--m-fs-sm);
+  text-transform: uppercase; letter-spacing: var(--m-track-caps);
+  color: var(--m-ink); opacity: 0.4;
+  transition: opacity var(--m-dur-3) var(--m-ease), color var(--m-dur-3) var(--m-ease);
+}
+.m-wall__item:hover { opacity: 1; color: var(--m-brand); }
+@keyframes m-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .m-wall__track { animation: none; flex-wrap: wrap; width: 100%; justify-content: center; }
+}
+
+/* --- footer ------------------------------------------------------------
+   Papa measured: a blue gradient field, script line over a 100px display
+   line, one CTA, copyright at 11px.                                        */
+.m-footer {
+  background: linear-gradient(var(--m-brand) 0%, var(--m-deep) 96%);
+  color: var(--m-on-brand);
+  padding-block: var(--m-s-9) var(--m-s-6);
+}
+/* Footer on-colours are measured at the gradient's WORST stop (--m-brand),
+   not at the deep end, so every one of them holds across the whole field. */
+.m-footer .m-script { color: var(--m-accent-on-brand); font-size: var(--m-fs-h2); }
+.m-footer .m-muted, .m-footer .m-eyebrow { color: var(--m-on-brand-muted); }
+.m-footer .m-btn--ghost { color: var(--m-on-brand); border-color: var(--m-on-brand-muted); }
+.m-footer__rule { height: 1px; background: var(--m-on-brand); opacity: 0.28;
+                  margin-block: var(--m-s-7) var(--m-s-4); }
+.m-footer__fine { font-size: var(--m-fs-micro); color: var(--m-on-brand-muted);
+                  display: flex; flex-wrap: wrap; gap: var(--m-s-4); }
+
+/* --- scroll reveal -----------------------------------------------------
+   Motion with a job: it establishes reading order on entry, once. Content
+   is visible with no JS and with reduced motion - the class is additive.   */
+.m-rise { transition: opacity var(--m-dur-3) var(--m-ease), transform var(--m-dur-3) var(--m-ease); }
+/* The hidden state is opt-in and only exists once JS has set .js-reveal on
+   <html>. With JS off, or before the script runs, .m-rise content is simply
+   painted - a reveal must never be the reason something is invisible. */
+.js-reveal .m-rise { opacity: 0; transform: translateY(1.25rem); }
+.js-reveal .m-rise.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .m-rise { opacity: 1; transform: none; }
+}
+
+@page { size: Letter; margin: 14mm; }
+.r-wrap { max-width: 186mm; margin: 0 auto; padding-block: var(--m-s-7); }
+.r-band { display: inline-block; background: var(--m-accent); color: var(--m-on-accent); font-size: var(--m-fs-micro);
+  font-weight: var(--m-weight-bold); text-transform: uppercase; letter-spacing: var(--m-track-caps);
+  padding: var(--m-s-2) var(--m-s-4); border-radius: var(--m-r-sm); margin-bottom: var(--m-s-4); }
+.r-rule { height: 6px; background: var(--m-accent); width: 5rem; margin-bottom: var(--m-s-4); }
+.r-cover { background: var(--m-deep); color: var(--m-on-deep); padding: var(--m-s-8) var(--m-s-7); border-radius: var(--m-r-lg); margin-bottom: var(--m-s-7); }
+.r-cover .m-eyebrow { color: var(--m-accent-on-deep); }
+.r-cover .m-muted { color: var(--m-on-deep-muted); }
+.r-stats { display: flex; flex-wrap: wrap; gap: var(--m-s-6); margin-top: var(--m-s-6); }
+.r-stats div b { display: block; font-family: var(--m-font-display); font-size: var(--m-fs-h2); line-height: 1; }
+.r-stats div span { font-size: var(--m-fs-micro); text-transform: uppercase; letter-spacing: var(--m-track-caps); font-weight: var(--m-weight-bold); color: var(--m-on-deep-muted); }
+.r-f { display: grid; grid-template-columns: 7rem 1fr; gap: var(--m-s-5); padding-block: var(--m-s-4); border-bottom: 1px solid var(--m-line); }
+.r-f .tag { font-size: var(--m-fs-micro); text-transform: uppercase; letter-spacing: var(--m-track-caps); font-weight: var(--m-weight-bold); }
+.r-f .tag b { display: block; color: var(--m-accent-ink); }
+.r-f .tag.pending b { color: var(--m-muted); }
+.r-f h3 { margin: 0 0 var(--m-s-2); font-family: var(--m-font-text); font-size: var(--m-fs-body); font-weight: var(--m-weight-bold); text-transform: none; letter-spacing: 0; }
+.r-f p { margin: 0 0 var(--m-s-2); font-size: var(--m-fs-sm); }
+.r-f pre { margin: 0; font: 11px/1.45 var(--m-font-mono); background: var(--m-surface); padding: var(--m-s-3); border-radius: var(--m-r-sm); white-space: pre-wrap; word-break: break-word; max-height: 12rem; overflow: auto; }
+.r-fix { border-left: 3px solid var(--m-accent); padding-left: var(--m-s-3); color: var(--m-ink); }
+.r-honest { border-left: 3px solid var(--m-line-strong); padding: var(--m-s-3) 0 var(--m-s-3) var(--m-s-4); font-size: var(--m-fs-sm); color: var(--m-muted); margin-top: var(--m-s-6); }
+.r-foot { margin-top: var(--m-s-7); padding-top: var(--m-s-3); border-top: 1px solid var(--m-line); font-size: var(--m-fs-xs); color: var(--m-muted); }
+@media print { .r-cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .r-f { page-break-inside: avoid; } }
+@media (max-width: 640px) { .r-f { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main class="r-wrap">
+  <section class="r-cover">
+    <p class="m-eyebrow">AI Search Snapshot &middot; Momentum AI &middot; 2026-09-05</p>
+    <h1 class="m-h1">faganpainting.com</h1>
+    <p class="m-lead m-muted" style="margin-top:var(--m-s-4)">Can the systems that write AI answers read this site, and do they know what the business is? Observed from outside, one fetch per crawler identity, nothing estimated.</p>
+    <div class="r-stats">
+      <div><b>1</b><span>fix first</span></div>
+      <div><b>1</b><span>verified findings</span></div>
+      <div><b>3</b><span>pending access</span></div>
+      <div><b>4</b><span>not observed</span></div>
+    </div>
+  </section>
+
+  <p class="m-eyebrow">What the site says it is</p>
+  <p class="m-body" style="font-size:var(--m-fs-sm)"><strong>Title:</strong> (not read)<br>
+    <strong>H1:</strong> (none)<br>
+    <strong>Entity types:</strong> (none)<br>
+    <strong>Canonical:</strong> (none) &middot; <strong>lang:</strong> (none)</p>
+
+  <p class="m-eyebrow" style="margin-top:var(--m-s-6)">Who can read it</p>
+  <table class="p-t" style="width:100%;border-collapse:collapse;font-size:var(--m-fs-sm)"><thead><tr><th style="text-align:left">Fetched as</th><th style="text-align:left">Status</th><th style="text-align:left">Challenge</th><th style="text-align:left">Bytes</th></tr></thead><tbody><tr><td>browser</td><td class="num">202</td><td>siteground</td><td class="num">168</td></tr><tr><td>googlebot</td><td class="num">202</td><td>siteground</td><td class="num">168</td></tr><tr><td>gptbot</td><td class="num">202</td><td>siteground</td><td class="num">168</td></tr><tr><td>perplexitybot</td><td class="num">202</td><td>siteground</td><td class="num">168</td></tr><tr><td>claudebot</td><td class="num">202</td><td>siteground</td><td class="num">168</td></tr></tbody></table>
+
+  <p class="m-eyebrow" style="margin-top:var(--m-s-7)">Findings</p>
+  
+<article class="r-f">
+  <div class="tag verified"><b>Verified now</b>Fix first</div>
+  <div><h3>Host bot challenge (siteground) intercepts every identity tested, including a plain browser</h3><p class="r-fix">Crawlers that do not run JavaScript never get past a meta-refresh challenge. Confirm in the host&#x27;s bot-protection settings which AI crawlers are allowlisted, and check server logs for GPTBot, PerplexityBot and ClaudeBot hits and their status codes. Google Search Console is the authority for Googlebot.</p><pre>{
+ &quot;browser&quot;: {
+  &quot;status&quot;: 202,
+  &quot;challenge&quot;: &quot;siteground&quot;
+ },
+ &quot;googlebot&quot;: {
+  &quot;status&quot;: 202,
+  &quot;challenge&quot;: &quot;siteground&quot;
+ },
+ &quot;gptbot&quot;: {
+  &quot;status&quot;: 202,
+  &quot;challenge&quot;: &quot;siteground&quot;
+ },
+ &quot;perplexitybot&quot;: {
+  &quot;status&quot;: 202,
+  &quot;challenge&quot;: &quot;siteground&quot;
+ },
+ &quot;claudebot&quot;: {
+  &quot;status&quot;: 202,
+  &quot;challenge&quot;: &quot;siteground&quot;
+ }
+}</pre></div>
+</article>
+<article class="r-f">
+  <div class="tag not_observed"><b>Not observed</b>Fix first</div>
+  <div><h3>Whether real AI crawlers can read the homepage cannot be determined from this network</h3><p class="r-fix">Re-run from a second network, or read the host&#x27;s bot-protection allowlist and server logs.</p><pre>{
+ &quot;reason&quot;: &quot;browser identity was challenged too; AI-crawler blocking and IP-level challenge are indistinguishable here&quot;
+}</pre></div>
+</article>
+<article class="r-f">
+  <div class="tag not_observed"><b>Not observed</b>Fix first</div>
+  <div><h3>robots.txt sits behind the siteground challenge from this network (status 202)</h3><p class="r-fix">Read it from a browser or a second network; the AI-crawler policy cannot be assessed until then.</p></div>
+</article>
+<article class="r-f">
+  <div class="tag not_observed"><b>Not observed</b>Fix first</div>
+  <div><h3>Homepage could not be read by a browser or Googlebot from this vantage point</h3><p class="r-fix">Verify from a second network before concluding anything about the page.</p><pre>{
+ &quot;browser&quot;: 202,
+ &quot;googlebot&quot;: 202,
+ &quot;gptbot&quot;: 202,
+ &quot;perplexitybot&quot;: 202,
+ &quot;claudebot&quot;: 202
+}</pre></div>
+</article>
+<article class="r-f">
+  <div class="tag not_observed"><b>Not observed</b>Fix next</div>
+  <div><h3>Sitemap sits behind the siteground challenge from this network</h3><p class="r-fix">Read it from a browser or a second network.</p><pre>{
+ &quot;url&quot;: &quot;https://faganpainting.com/sitemap.xml&quot;,
+ &quot;status&quot;: 202,
+ &quot;challenge&quot;: &quot;siteground&quot;,
+ &quot;url_count&quot;: null,
+ &quot;is_index&quot;: false
+}</pre></div>
+</article>
+<article class="r-f">
+  <div class="tag pending"><b>Pending access</b>Observed</div>
+  <div><h3>Search Console: indexing status, rich-result types, crawl errors</h3><p class="r-fix">Needs Search Console access. Until then this stays pending, not assumed.</p></div>
+</article>
+<article class="r-f">
+  <div class="tag pending"><b>Pending access</b>Observed</div>
+  <div><h3>What ChatGPT, Perplexity or AI Overviews say about the business</h3><p class="r-fix">Human-run 20-question baseline on two named engines, recorded with date, engine, query and citations. Never scraped.</p></div>
+</article>
+<article class="r-f">
+  <div class="tag pending"><b>Pending access</b>Observed</div>
+  <div><h3>Referral traffic from AI surfaces</h3><p class="r-fix">Needs analytics access.</p></div>
+</article>
+
+  <p class="r-honest"><strong>What this does not do.</strong> It does not score, rank, or predict. It does not scrape any AI engine. What ChatGPT, Perplexity or AI Overviews actually say is observed by a person, twenty frozen questions on two named engines, recorded with date and citations, as the first step of the AI Search Readiness sprint. Anything marked pending stays pending until access exists.</p>
+
+  <p class="r-foot">Momentum AI &middot; Momentum Digital, Philadelphia &middot; Generated by snapshot.py on 2026-09-05T19:23:04+00:00 &middot;
+    Method: outside-in, single fetch per user agent, standard library, no scraping of any engine &middot; Next step: needmomentum.com/free-website-seo-audit/</p>
+</main>
+</body></html>
