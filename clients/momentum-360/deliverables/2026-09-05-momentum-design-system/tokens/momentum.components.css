@@ -1,0 +1,293 @@
+/* ==========================================================================
+   Momentum components - built only from momentum.tokens.css
+   v1.0.0 - 2026-09-05
+
+   Rule: no literal colour, size, radius, duration or curve below this line.
+   Everything is a var(). If a component needs a value the tokens do not
+   have, the token file is wrong, not the component.
+
+   Section grammar matches what ships in the radar batch: nav / hero /
+   section / pill / card / accordion / logo wall / footer.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--m-paper);
+  color: var(--m-ink);
+  font-family: var(--m-font-text);
+  font-size: var(--m-fs-body);
+  line-height: var(--m-lh-body);
+  letter-spacing: var(--m-track-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { max-width: 100%; display: block; }
+
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--m-focus-halo), 0 0 0 5px var(--m-focus);
+  border-radius: var(--m-r-sm);
+}
+
+/* --- layout ------------------------------------------------------------- */
+.m-wrap    { width: min(var(--m-maxw), 100% - var(--m-gutter) * 2); margin-inline: auto; }
+.m-section { padding-block: var(--m-section-y); }
+:is(.m-section--deep, .m-hero)  { background: var(--m-deep);  color: var(--m-on-deep); }
+.m-section--brand { background: var(--m-brand); color: var(--m-on-brand); }
+.m-section--surface { background: var(--m-surface); }
+
+/* --- type --------------------------------------------------------------- */
+.m-display, .m-h1, .m-h2, .m-h3, .m-h4 {
+  font-family: var(--m-font-display);
+  font-weight: var(--m-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--m-track-display);
+  margin: 0;
+}
+.m-display { font-size: var(--m-fs-display); line-height: var(--m-lh-display); }
+.m-h1 { font-size: var(--m-fs-h1); line-height: var(--m-lh-display); }
+.m-h2 { font-size: var(--m-fs-h2); line-height: var(--m-lh-head); }
+.m-h3 { font-size: var(--m-fs-h3); line-height: var(--m-lh-head); }
+.m-h4 {
+  font-family: var(--m-font-text);
+  font-size: var(--m-fs-h4);
+  line-height: var(--m-lh-head);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.m-lead { font-size: var(--m-fs-lead); line-height: var(--m-lh-lead); max-width: var(--m-measure); margin: 0; }
+.m-body { max-width: var(--m-measure); margin: 0; }
+.m-muted { color: var(--m-muted); }
+:is(.m-section--deep, .m-hero) .m-muted, .m-section--brand .m-muted { color: var(--m-on-deep-muted); }
+
+.m-eyebrow {
+  font-family: var(--m-font-text);
+  font-size: var(--m-fs-micro);
+  font-weight: var(--m-weight-bold);
+  letter-spacing: var(--m-track-caps);
+  text-transform: uppercase;
+  margin: 0 0 var(--m-s-4);
+  color: var(--m-accent-ink);
+}
+:is(.m-section--deep, .m-hero) .m-eyebrow { color: var(--m-accent-on-deep); }
+.m-section--brand .m-eyebrow { color: var(--m-on-brand-muted); }
+
+.m-script {
+  font-family: var(--m-font-script);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: var(--m-fs-h3);
+  line-height: 1;
+  display: inline-block;
+  transform: rotate(-2.5deg);
+  color: var(--m-accent-ink);
+}
+:is(.m-section--deep, .m-hero) .m-script { color: var(--m-accent-on-deep); }
+
+/* Papa's struck-out-and-replaced heading. Reproduced as a real component
+   because it is the single most recognisable move in the house style. */
+.m-strike { position: relative; white-space: nowrap; }
+.m-strike > s { text-decoration: none; opacity: 0.42; }
+.m-strike > s::after {
+  content: ""; position: absolute; left: 0; right: 22%; top: 52%;
+  height: 0.07em; background: currentColor; transform: rotate(-3deg);
+}
+.m-strike > .m-script { margin-left: 0.25em; vertical-align: baseline; }
+
+.m-mono {
+  font-family: var(--m-font-mono);
+  font-size: var(--m-fs-xs);
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- pill button --------------------------------------------------------
+   Papa measured: 60px tall, 0 40px padding, 50px radius, uppercase 700,
+   150ms on colour only. Kept, plus a displacement on hover because motion
+   8/10 means a hover state moves rather than only tints.                   */
+.m-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--m-s-2);
+  min-height: 60px; padding-inline: var(--m-s-8);
+  border: 2px solid transparent; border-radius: var(--m-r-pill);
+  font-family: var(--m-font-text); font-size: var(--m-fs-body);
+  font-weight: var(--m-weight-bold); text-transform: uppercase;
+  letter-spacing: 0.04em; text-decoration: none; cursor: pointer;
+  background: var(--m-accent); color: var(--m-on-accent);
+  transition: transform var(--m-dur-2) var(--m-ease),
+              background-color var(--m-dur-1) var(--m-ease),
+              box-shadow var(--m-dur-2) var(--m-ease),
+              color var(--m-dur-1) var(--m-ease);
+}
+.m-btn:hover { transform: translateY(calc(var(--m-lift) * -1)); box-shadow: var(--m-elev-1); }
+.m-btn:active { transform: translateY(0); }
+
+.m-btn--ghost {
+  background: transparent; color: var(--m-ink); border-color: var(--m-line-strong);
+}
+.m-btn--ghost:hover { background: var(--m-surface); }
+:is(.m-section--deep, .m-hero) .m-btn--ghost { color: var(--m-on-deep); border-color: var(--m-on-deep-muted); }
+:is(.m-section--deep, .m-hero) .m-btn--ghost:hover { background: var(--m-nav); }
+
+.m-btn--sm { min-height: 44px; padding-inline: var(--m-s-5); font-size: var(--m-fs-sm); }
+
+/* --- nav ---------------------------------------------------------------
+   Papa measured: fixed 100px charcoal band, script caption that swaps for
+   the wordmark on scroll past the hero, 0.8s cubic-bezier(.85,0,.15,1).
+   Here as a static bar plus the swap, driven by a class the page toggles.  */
+.m-nav {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--m-nav); color: var(--m-on-deep);
+  box-shadow: var(--m-elev-2);
+}
+.m-nav__in {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--m-s-5);
+  min-height: 84px;
+}
+.m-nav__brand { position: relative; display: grid; align-items: center; min-width: 15rem; }
+.m-nav__brand > * { grid-area: 1 / 1; transition: opacity var(--m-dur-4) var(--m-ease-swap),
+                                                  transform var(--m-dur-4) var(--m-ease-swap); }
+.m-nav__caption { font-family: var(--m-font-script); font-size: var(--m-fs-h4);
+                  color: var(--m-accent-on-deep); white-space: nowrap; }
+.m-nav__mark { font-family: var(--m-font-display); font-size: var(--m-fs-h4);
+               text-transform: uppercase; letter-spacing: 0.02em;
+               opacity: 0; transform: translateX(-2rem); }
+.m-nav.is-swapped .m-nav__caption { opacity: 0; transform: translateX(-2rem); }
+.m-nav.is-swapped .m-nav__mark { opacity: 1; transform: translateX(0); }
+
+.m-nav__links { display: flex; gap: var(--m-s-6); list-style: none; margin: 0; padding: 0; }
+.m-nav__links a {
+  color: var(--m-on-deep); text-decoration: none;
+  font-size: var(--m-fs-sm); font-weight: var(--m-weight-bold);
+  text-transform: uppercase; letter-spacing: var(--m-track-caps);
+  padding-block: var(--m-s-2);
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--m-dur-2) var(--m-ease), color var(--m-dur-2) var(--m-ease);
+}
+.m-nav__links a:hover { color: var(--m-accent-on-deep); border-bottom-color: var(--m-accent); }
+/* Measured: brand column (15rem) + links + CTA needs ~790px of bar. Below
+   900 the links collapse and the brand column stops reserving width, which
+   is what kept 768 and 375 overflowing the document by 23px and 19px. */
+@media (max-width: 900px) {
+  .m-nav__links { display: none; }
+  .m-nav__brand { min-width: 0; }
+  .m-nav__in { gap: var(--m-s-3); }
+}
+
+/* --- hero --------------------------------------------------------------
+   Asymmetric by construction: 7/5 split, never centred, never symmetric.  */
+.m-hero { background: var(--m-deep); color: var(--m-on-deep); padding-block: var(--m-s-10) var(--m-s-9); position: relative; overflow: hidden; }
+.m-hero__grid { display: grid; gap: var(--m-s-7); grid-template-columns: 7fr 5fr; align-items: end; }
+@media (max-width: 900px) { .m-hero__grid { grid-template-columns: 1fr; } }
+.m-hero__rule { height: 6px; background: var(--m-accent); width: 7rem; margin-bottom: var(--m-s-5); }
+
+/* --- section head ------------------------------------------------------- */
+.m-head { display: grid; gap: var(--m-s-4); margin-bottom: var(--m-s-7); }
+.m-head--split { grid-template-columns: minmax(0, 1fr) minmax(0, 22rem); align-items: end; gap: var(--m-s-7); }
+@media (max-width: 860px) { .m-head--split { grid-template-columns: 1fr; } }
+
+/* --- card ---------------------------------------------------------------
+   One card component. It is never used three-across at equal weight - the
+   layouts that consume it are asymmetric on purpose.                       */
+.m-card {
+  background: var(--m-surface); color: var(--m-ink);
+  border: 1px solid var(--m-line); border-radius: var(--m-r-lg);
+  padding: var(--m-s-6);
+  transition: transform var(--m-dur-2) var(--m-ease), box-shadow var(--m-dur-2) var(--m-ease);
+}
+.m-card:hover { transform: translateY(calc(var(--m-lift) * -1)); box-shadow: var(--m-elev-1); }
+.m-card__k { font-family: var(--m-font-display); font-size: var(--m-fs-h2); line-height: 1;
+             color: var(--m-brand); margin: 0 0 var(--m-s-3); }
+.m-card--deep { background: var(--m-nav); color: var(--m-on-deep); border-color: transparent; }
+.m-card--deep .m-card__k { color: var(--m-accent-on-deep); }
+.m-card--accent { background: var(--m-accent); color: var(--m-on-accent); border-color: transparent; }
+.m-card--accent .m-card__k { color: var(--m-on-accent); }
+
+/* deliberately unequal: 7/5, and the second row offsets */
+.m-cards { display: grid; gap: var(--m-s-5); grid-template-columns: 7fr 5fr; }
+.m-cards > :last-child:nth-child(3) { grid-column: 1 / -1; }
+@media (max-width: 820px) { .m-cards { grid-template-columns: 1fr; } }
+
+/* --- accordion ---------------------------------------------------------
+   Papa measured: 80px rows on an 82px pitch, uppercase 28px, all closed by
+   default, no chrome but a hairline rule.                                  */
+.m-acc { border-top: 2px solid var(--m-line-strong); }
+.m-acc details { border-bottom: 2px solid var(--m-line-strong); }
+.m-acc summary {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--m-s-4);
+  min-height: 80px; padding-block: var(--m-s-4); cursor: pointer;
+  font-family: var(--m-font-text); font-size: var(--m-fs-h4);
+  font-weight: var(--m-weight-bold); text-transform: uppercase;
+  color: var(--m-ink); list-style: none;
+  transition: color var(--m-dur-2) var(--m-ease), padding-left var(--m-dur-2) var(--m-ease);
+}
+.m-acc summary::-webkit-details-marker { display: none; }
+.m-acc summary:hover { color: var(--m-accent-ink); padding-left: var(--m-s-3); }
+.m-acc summary::after {
+  content: "+"; font-family: var(--m-font-text); font-weight: var(--m-weight-body);
+  font-size: var(--m-fs-h3); line-height: 1; color: var(--m-accent-ink);
+  transition: transform var(--m-dur-2) var(--m-ease);
+}
+.m-acc details[open] summary::after { transform: rotate(45deg); }
+.m-acc__body { padding-bottom: var(--m-s-5); color: var(--m-muted); max-width: var(--m-measure); }
+:is(.m-section--deep, .m-hero) .m-acc { border-color: var(--m-on-deep-muted); }
+:is(.m-section--deep, .m-hero) .m-acc details { border-color: var(--m-on-deep-muted); }
+:is(.m-section--deep, .m-hero) .m-acc summary { color: var(--m-on-deep); }
+:is(.m-section--deep, .m-hero) .m-acc summary::after,
+:is(.m-section--deep, .m-hero) .m-acc summary:hover { color: var(--m-accent-on-deep); }
+:is(.m-section--deep, .m-hero) .m-acc__body { color: var(--m-on-deep-muted); }
+
+/* --- logo wall ---------------------------------------------------------
+   Papa measured: 269px pitch, greyscale at 40%, full colour on hover, one
+   grey full-bleed stripe behind. CSS marquee here rather than Owl, with a
+   real pause on hover and a full stop under reduced motion.                */
+.m-wall { background: var(--m-surface); padding-block: var(--m-s-6); overflow: hidden; }
+.m-wall__track { display: flex; gap: var(--m-s-7); width: max-content; align-items: center;
+                 animation: m-marquee 42s linear infinite; }
+.m-wall:hover .m-wall__track { animation-play-state: paused; }
+.m-wall__item {
+  flex: 0 0 auto; width: 210px; height: 88px;
+  display: grid; place-items: center; text-align: center;
+  font-family: var(--m-font-display); font-size: var(--m-fs-sm);
+  text-transform: uppercase; letter-spacing: var(--m-track-caps);
+  color: var(--m-ink); opacity: 0.4;
+  transition: opacity var(--m-dur-3) var(--m-ease), color var(--m-dur-3) var(--m-ease);
+}
+.m-wall__item:hover { opacity: 1; color: var(--m-brand); }
+@keyframes m-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .m-wall__track { animation: none; flex-wrap: wrap; width: 100%; justify-content: center; }
+}
+
+/* --- footer ------------------------------------------------------------
+   Papa measured: a blue gradient field, script line over a 100px display
+   line, one CTA, copyright at 11px.                                        */
+.m-footer {
+  background: linear-gradient(var(--m-brand) 0%, var(--m-deep) 96%);
+  color: var(--m-on-brand);
+  padding-block: var(--m-s-9) var(--m-s-6);
+}
+/* Footer on-colours are measured at the gradient's WORST stop (--m-brand),
+   not at the deep end, so every one of them holds across the whole field. */
+.m-footer .m-script { color: var(--m-accent-on-brand); font-size: var(--m-fs-h2); }
+.m-footer .m-muted, .m-footer .m-eyebrow { color: var(--m-on-brand-muted); }
+.m-footer .m-btn--ghost { color: var(--m-on-brand); border-color: var(--m-on-brand-muted); }
+.m-footer__rule { height: 1px; background: var(--m-on-brand); opacity: 0.28;
+                  margin-block: var(--m-s-7) var(--m-s-4); }
+.m-footer__fine { font-size: var(--m-fs-micro); color: var(--m-on-brand-muted);
+                  display: flex; flex-wrap: wrap; gap: var(--m-s-4); }
+
+/* --- scroll reveal -----------------------------------------------------
+   Motion with a job: it establishes reading order on entry, once. Content
+   is visible with no JS and with reduced motion - the class is additive.   */
+.m-rise { transition: opacity var(--m-dur-3) var(--m-ease), transform var(--m-dur-3) var(--m-ease); }
+/* The hidden state is opt-in and only exists once JS has set .js-reveal on
+   <html>. With JS off, or before the script runs, .m-rise content is simply
+   painted - a reveal must never be the reason something is invisible. */
+.js-reveal .m-rise { opacity: 0; transform: translateY(1.25rem); }
+.js-reveal .m-rise.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .m-rise { opacity: 1; transform: none; }
+}
