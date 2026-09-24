@@ -9,6 +9,9 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib import colors
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Table, TableStyle, Image, KeepTogether
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / '_print'))
+from ebook import render as render_ebook  # one ebook renderer, shared with the Claude Design edition's manuscripts
 
 ROOT = Path(__file__).resolve().parent
 BASE = ROOT.parent
@@ -139,7 +142,8 @@ def make_pdf(src, filename, category, number):
             c.drawImage(str(LOGO),margin,42,width=105,height=24,mask='auto',preserveAspectRatio=True,anchor='sw')
         c.restoreState()
     doc=SimpleDocTemplate(str(target),pagesize=size,leftMargin=margin,rightMargin=margin,topMargin=43,bottomMargin=49,title=title,author='Dillon Mohr',allowSplitting=True)
-    doc.build(story,onFirstPage=page,onLaterPages=page)
+    if ebook: render_ebook(src, target, number)  # Momentum tokens + print kit; the QA below still applies
+    else: doc.build(story,onFirstPage=page,onLaterPages=page)
     with fitz.open(target) as pdf:
         extracted=' '.join(p.get_text() for p in pdf)
         assert len(extracted)>max(100,len(soup.get_text())*.85), (target,'text completeness')
@@ -162,6 +166,7 @@ def make_pdf(src, filename, category, number):
 
 def main():
     for i,p in enumerate(sorted((BATCH/'content/ebooks').glob('*.md')),1): make_pdf(p,'Ebook-'+p.stem+'.pdf','EBOOK',i)
+    if '--ebooks' in sys.argv: return print(json.dumps({'ebooks':len(records),'pages':sum(r['pages'] for r in records)}))
     for i,p in enumerate(sorted((BATCH/'content/blog').glob('[0-9]*.md')),1): make_pdf(p,'Article-'+p.stem+'.pdf','ARTICLE',i)
     plans=BASE/'2026-09-07-ai-division-claude-design'
     for i,name in enumerate(['MARKETING-PLAN','POSITIONING','PRICE','VIDEO-PLAN','MAC-ASKS'],1): make_pdf(plans/(name+'.md'),name+'.pdf','PLANNING',i)
