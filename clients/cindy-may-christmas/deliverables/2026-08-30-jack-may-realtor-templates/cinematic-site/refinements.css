@@ -1,0 +1,70 @@
+/* Preserve the approved film, logo and particle timing; clarify functional typography. */
+::selection{background:var(--blue);color:var(--white)}
+html{scrollbar-color:var(--muted) var(--ink)}
+.site-nav__action,.button,.scroll-cue,.beat-index,.section-kicker,.film-loader__readout,.scene-ready{font-size:.75rem}
+.jack-founder__contact a{min-height:44px;display:flex;align-items:center;overflow-wrap:anywhere}
+.jack-founder__contact a[href^="tel:"]{font-variant-numeric:lining-nums tabular-nums}
+@media(max-width:580px){.beat-copy h1,.beat-copy h2{font-size:clamp(2.5rem,11vw,3.2rem);line-height:.96}.site-nav__action{min-height:44px;font-size:.75rem}.brand--may{width:132px}.brand--may img{width:120px}.site-nav__action .ui-arrow{display:none}.jack-founder__copy h2{font-size:clamp(2.5rem,11vw,3.2rem);line-height:1}.jack-founder__contact{font-family:var(--body)}}
+
+/* Keep the approved alpha-bearing mark as direct artwork: no plate, border,
+   padding field, or shadow is attached to the logo link or image. The
+   intentional cream tint preserves contrast against the rain-dark film. */
+.jack-site .brand--may{
+  padding:0;
+  background:transparent;
+  border:0;
+  box-shadow:none;
+}
+.jack-site .brand--may img{
+  filter:brightness(0) saturate(100%) invert(94%) sepia(9%) saturate(391%) hue-rotate(332deg) brightness(105%) contrast(95%);
+}
+.jack-site .film-loader__mark--may{
+  filter:none;
+}
+.jack-site .may-logo-transparent{
+  background:transparent;
+}
+.jack-site .beat-body--note{
+  margin-top:22px;
+  padding-top:16px;
+  border-top:1px solid rgb(241 217 198 / 24%);
+  color:rgb(241 217 198 / 78%);
+  font-size:.86em;
+}
+
+/* Give the property film and Jack portrait a little photographic lift while
+   leaving the 44-particle loader and scroll-directed timing untouched. */
+.jack-site .scene-stage video{
+  filter:saturate(1.14) contrast(1.08) brightness(1.02);
+  animation:may-stage-breath 14s ease-in-out infinite alternate;
+}
+@keyframes may-stage-breath{
+  from{transform:scale(1.025) translate3d(-.24%,.12%,0)}
+  to{transform:scale(1.045) translate3d(.24%,-.12%,0)}
+}
+.jack-site .jack-founder__portrait{
+  overflow:hidden;
+}
+.jack-site [data-photo-focus] img{
+  filter:saturate(1.08) contrast(1.08) brightness(1.02);
+  transition:transform 900ms cubic-bezier(.16,1,.3,1),filter 700ms ease,clip-path 900ms cubic-bezier(.16,1,.3,1);
+}
+html[data-photo-motion-ready="true"] [data-photo-focus]:not(.is-visible) img{
+  clip-path:inset(7% 7% 7% 7%);
+  transform:scale(1.08);
+}
+html[data-photo-motion-ready="true"] [data-photo-focus].is-visible img{
+  clip-path:inset(0);
+  transform:scale(1.015);
+}
+@media (hover:hover){
+  .jack-site [data-photo-focus].is-visible:hover img,
+  .jack-site [data-photo-focus]:focus-within img{
+    transform:scale(1.07);
+    filter:saturate(1.16) contrast(1.1) brightness(1.04);
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  .jack-site .scene-stage video{animation:none;transform:scale(1.02)}
+  .jack-site [data-photo-focus] img{clip-path:none!important;transform:none!important;transition:none;will-change:auto}
+}

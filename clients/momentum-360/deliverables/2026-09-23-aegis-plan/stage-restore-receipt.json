@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-09-24T16:01:54.954Z",
+  "pass": true,
+  "syntheticOnly": true,
+  "source": {
+    "composeProject": "aegis-radar-staging",
+    "service": "postgres",
+    "imageMajor": 16,
+    "database": "aegis_stage",
+    "volume": "aegis_radar_staging_pg",
+    "loopback": "127.0.0.1:5433"
+  },
+  "backup": {
+    "fileName": "stage-restore-proof-20260924T160149537Z.dump",
+    "format": "custom",
+    "bytes": 57617,
+    "sha256": "3f086278079992444c459232c2181fa3ed8e1ce9cd4b21772367fa79d1a1ec84",
+    "storedPrivately": true
+  },
+  "restore": {
+    "database": "aegis_stage_restore_disposable_20260924t160149539z_0281f7",
+    "disposable": true,
+    "dropped": true
+  },
+  "keyTableCounts": {
+    "tables": [
+      "schema_migrations",
+      "campaigns",
+      "prospects",
+      "intake_submissions",
+      "jobs",
+      "audit_runs",
+      "reports",
+      "report_versions",
+      "events",
+      "evidence_items"
+    ],
+    "source": {
+      "schema_migrations": 3,
+      "campaigns": 1,
+      "prospects": 1,
+      "intake_submissions": 1,
+      "jobs": 1,
+      "audit_runs": 1,
+      "reports": 1,
+      "report_versions": 1,
+      "events": 14,
+      "evidence_items": 13
+    },
+    "restored": {
+      "schema_migrations": 3,
+      "campaigns": 1,
+      "prospects": 1,
+      "intake_submissions": 1,
+      "jobs": 1,
+      "audit_runs": 1,
+      "reports": 1,
+      "report_versions": 1,
+      "events": 14,
+      "evidence_items": 13
+    },
+    "equal": true
+  },
+  "boundaries": {
+    "existingDatabaseUntouched": true,
+    "appRestarted": false,
+    "providersUsed": false,
+    "externalDelivery": false,
+    "secretsIncluded": false
+  }
+}

@@ -59,6 +59,18 @@
     ]
   },
   "capabilities": {
+    "autonomousAgentRouting": {
+      "policy": "policies/autonomous-agent-routing-policy.json",
+      "workflow": "workflows/autonomous-agent-compounding.workflow.json",
+      "resolver": "scripts/Resolve-AutonomousAgentRoute.ps1",
+      "validator": "scripts/Test-AutonomousAgentRoutingPolicy.ps1",
+      "state": "state/ai-stack.json",
+      "pattern": "Marketing Chief orchestrator with separate collector, maker, independent checker, compiler, and observer roles.",
+      "routingRule": "Resolve by exact task lane, data class, live route status, and action class. For consequential work, the checker must use a different model family than the maker.",
+      "knowledgeRule": "Model output remains evidence or a proposal until verified and compiled into the strongest existing canonical owner by the Marketing Chief.",
+      "videoRule": "Seedance 2.5 is an interactive generator with a human gate, never an autonomous reasoning or publishing agent.",
+      "authorityBoundary": "Workers and models may not mutate canonical state or authorize external delivery, publishing, deployment, spend, account changes, destructive work, or human authentication."
+    },
     "omniRouteGateway": {
       "skill": "$omniroute-gateway",
       "controller": "C:\\Users\\dillo\\.codex\\skills\\omniroute-gateway\\scripts\\Invoke-OmniRoute.ps1",
@@ -163,6 +175,7 @@
   },
   "contextLoadOrder": [
     "AGENTS.md",
+    "policies/autonomous-agent-routing-policy.json and workflows/autonomous-agent-compounding.workflow.json before selecting a model or autonomous worker",
     "policies/cursor-communication-policy.json for Cursor-assisted communication and client-facing paid-media language",
     "registry/clients.json",
     "queue/work-items.json",

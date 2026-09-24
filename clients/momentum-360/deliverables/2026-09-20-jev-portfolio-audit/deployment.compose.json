@@ -1,0 +1,19 @@
+{
+  "services": {
+    "gateway": {
+      "image": "deer-flow-gateway:momentum-20260920-latest",
+      "build": {
+        "context": "C:/Users/dillo/Documents/Qwen/deer-flow-deploy-20260920"
+      }
+    },
+    "frontend": {
+      "image": "deer-flow-frontend:momentum-20260920-latest",
+      "build": {
+        "context": "C:/Users/dillo/Documents/Qwen/deer-flow-deploy-20260920",
+        "args": {
+          "APP_VERSION": "2.1.0-momentum-20260920-29d28573"
+        }
+      }
+    }
+  }
+}

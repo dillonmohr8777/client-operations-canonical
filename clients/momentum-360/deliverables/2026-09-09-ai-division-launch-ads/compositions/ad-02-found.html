@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link rel="stylesheet" href="assets/momentum.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      #three-layer {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        display: block;
+        z-index: 0;
+      }
+      #a2 {
+        padding: 0;
+      }
+      #a2-type {
+        position: absolute;
+        left: 148px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        max-width: 900px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="ad02"
+      data-start="0"
+      data-duration="15"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- A · deep · type left, icosahedron right -->
+      <div id="a2" class="slide s-deep clip" data-start="0" data-duration="5" data-track-index="1">
+        <canvas id="three-layer"></canvas>
+        <div id="a2-type">
+          <span class="d d-lg on-deep a2l">AI WRITES</span>
+          <span class="d d-lg on-deep a2l">THE ANSWER</span>
+          <span class="d d-lg on-deep-brand a2l">NOW.</span>
+          <span class="rule a2r"></span>
+        </div>
+      </div>
+
+      <!-- B · paper · left stack -->
+      <div id="b2" class="slide s-paper a-left clip" data-start="5" data-duration="5" data-track-index="2">
+        <span class="eyebrow on-light-brand b2e">The question that decides it</span>
+        <span class="d d-lg on-light b2l" style="margin-top: 40px">CAN IT READ</span>
+        <span class="d d-lg on-light b2l">YOUR SITE?</span>
+        <span class="rule rule-brand b2r"></span>
+      </div>
+
+      <!-- C · brand fill · payoff -->
+      <div id="c2" class="slide s-brand payoff clip" data-start="10" data-duration="5" data-track-index="3">
+        <span class="lockup on-brand c2m">MOMENTUM <em>AI</em></span>
+        <span class="lanes-rule lanes-rule-white c2r"></span>
+        <div class="lanes">
+          <span class="lane on-brand c2n">AEO / GEO</span>
+          <span class="lane on-brand c2n">AI DESIGN</span>
+          <span class="lane on-brand c2n">AI MARKETING</span>
+          <span class="lane on-brand c2n">AI AUTOMATION</span>
+        </div>
+        <span class="url on-brand c2u">needmomentum.com</span>
+      </div>
+
+      <!-- signature wipes, over the two slide cuts -->
+      <div id="wipe1" class="wipe clip" data-start="4.6" data-duration="0.8" data-track-index="9"></div>
+      <div id="wipe2" class="wipe clip" data-start="9.6" data-duration="0.8" data-track-index="9"></div>
+    </div>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.181.2/+esm";
+      import { mountHero } from "./assets/hero.js";
+
+      mountHero({
+        canvas: "three-layer",
+        geometry: new THREE.IcosahedronGeometry(1.75, 0),
+        x: 2.35,
+        scale: 1.0,
+        spin: 0.44,
+      });
+    </script>
+
+    <script>
+      const E = "expo.out";
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo(".a2l", { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.9, ease: E, stagger: 0.14 }, 0.15);
+      tl.fromTo(".a2r", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 0.85);
+      tl.to(".a2l", { yPercent: -18, opacity: 0, duration: 0.5, ease: "power2.in", stagger: 0.05 }, 4.4);
+      tl.to(".a2r", { scaleX: 0, duration: 0.4, ease: "power2.in" }, 4.4);
+
+      tl.fromTo(".b2e", { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E }, 5.15);
+      tl.fromTo(".b2l", { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.9, ease: E, stagger: 0.14 }, 5.35);
+      tl.fromTo(".b2r", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 6.1);
+      tl.to(".b2l", { yPercent: -18, opacity: 0, duration: 0.5, ease: "power2.in", stagger: 0.05 }, 9.4);
+      tl.to([".b2e", ".b2r"], { opacity: 0, duration: 0.4, ease: "power2.in" }, 9.4);
+
+      tl.fromTo(".c2m", { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.9, ease: E }, 10.15);
+      tl.fromTo(".c2r", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 10.6);
+      tl.fromTo(".c2n", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E, stagger: 0.08 }, 10.85);
+      tl.fromTo(".c2u", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E }, 11.6);
+
+      // signature wipe over each cut
+      tl.fromTo("#wipe1", { xPercent: -105 }, { xPercent: 0, duration: 0.22, ease: "power3.in" }, 4.78);
+      tl.to("#wipe1", { xPercent: 105, duration: 0.26, ease: "power3.out" }, 5.0);
+      tl.fromTo("#wipe2", { xPercent: -105 }, { xPercent: 0, duration: 0.22, ease: "power3.in" }, 9.78);
+      tl.to("#wipe2", { xPercent: 105, duration: 0.26, ease: "power3.out" }, 10.0);
+
+      window.__timelines["ad02"] = tl;
+    </script>
+  </body>
+</html>

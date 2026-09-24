@@ -452,7 +452,7 @@ function Invoke-CodexWorker {
         return [pscustomobject]@{ available = $false; success = $false; timedOut = $false; exitCode = $null }
     }
     $rootArgument = '"' + $CanonicalRoot.Replace('"', '""') + '"'
-    $arguments = 'exec -C {0} -s workspace-write -c approval_policy=never --ephemeral --color never -' -f $rootArgument
+    $arguments = 'exec -C {0} --add-dir "C:\Users\dillo\repos" --add-dir "C:\Users\dillo\Documents\Codex" -s workspace-write -c approval_policy=never --ephemeral --color never -' -f $rootArgument
     $result = Invoke-BoundedProcess -FilePath $codex.Source -Arguments $arguments -TimeoutSeconds $WorkerTimeoutSeconds -WorkingDirectory $CanonicalRoot -StandardInput (New-WorkerPrompt $Episode)
     return [pscustomobject]@{
         available = $true

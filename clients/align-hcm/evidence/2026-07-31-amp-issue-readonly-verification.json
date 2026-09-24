@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "workItemId": "wi-20260731-0001",
+  "clientId": "align-hcm",
+  "observedAt": "2026-07-31T13:55:00Z",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false,
+  "canonicalWriteAttempted": false,
+  "externalActionAttempted": false,
+  "sources": [
+    "agent-os-run:20260730-101244-5fb934cf/task.json",
+    "https://www.alignhcm.com/",
+    "https://www.alignhcm.com/robots.txt",
+    "https://www.alignhcm.com/sitemap.xml"
+  ],
+  "alert": {
+    "sourceClass": "exact Google Search Console transactional alert",
+    "observedAt": "2026-07-30T01:48:53Z",
+    "issueCount": 1,
+    "severity": "non-critical",
+    "issueType": "Image size smaller than recommended size",
+    "exactAffectedUrlsAvailableInAlert": false
+  },
+  "publicReadback": {
+    "homepageStatus": 200,
+    "robotsStatus": 200,
+    "sitemapStatus": 200,
+    "sitemapUrlCount": 123,
+    "sitemapUrlsReturning200": 123,
+    "normalPagesAdvertisingAmpVariant": 63,
+    "ampVariantPattern": "?hs_amp=true",
+    "ampVariantsConfirmed200BeforeRateLimit": 30,
+    "confirmedAmpVariantsWithAmpHtmlMarker": 30,
+    "confirmedAmpVariantsWithAmpRuntime": 30,
+    "confirmedAmpVariantsWithCanonicalLink": 30,
+    "remainingAmpVariantChecksRateLimited": 33,
+    "homepageAdvertisesAmpVariant": false,
+    "sitemapAdvertisesAmpVariants": false
+  },
+  "conclusion": {
+    "status": "verified-non-critical-scope-requires-gsc-example",
+    "summary": "Align HCM has active HubSpot-generated AMP variants across at least 63 sitemap-listed blog pages. The exact alert is a non-critical image-size recommendation, not a critical AMP validity failure. Public readback cannot identify the exact affected URL because the alert omitted examples and the authenticated Search Console report was not opened.",
+    "likelyRemediationClass": "HubSpot blog featured-image or Article structured-data image sizing",
+    "recommendedNextStep": "Use the authorized Search Console property to capture the exact example URL, then inspect that HubSpot post's featured or structured-data image and replace it with a correctly cropped source at least 1200 pixels wide before requesting validation. Keep any HubSpot edit and validation request approval-gated.",
+    "urgency": "routine-maintenance"
+  },
+  "limitations": [
+    "The transactional alert does not list the affected URL.",
+    "The public probe confirms AMP coverage and transport health but cannot reproduce Search Console's private enhancement report.",
+    "The host returned HTTP 429 after 30 AMP-variant checks; those responses are treated as probe throttling, not page failures.",
+    "No production setting, page, image, Search Console property, or HubSpot content was changed."
+  ]
+}

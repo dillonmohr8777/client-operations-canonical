@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-11T03:01:44.4137782Z",
+  "title": "Design System: Bar Crawl USA Seasonal Performance Field Book",
+  "extensions": {
+    "colorMeta": {
+      "near-black-ink": {"role":"neutral","displayName":"Near-Black Ink","canonical":"#111317","tonalRamp":["#08090b","#111317","#2b2e34","#4d515a","#747983","#a0a4ab","#cdd0d4","#f3f4f5"]},
+      "bone-paper": {"role":"neutral","displayName":"Bone Paper","canonical":"#f3eee4","tonalRamp":["#27231d","#4d4639","#746b59","#9b927d","#c0b8a6","#d9d2c4","#f3eee4","#fdfbf7"]},
+      "paper-white": {"role":"neutral","displayName":"Paper White","canonical":"#fffdf8","tonalRamp":["#292720","#504d42","#777367","#9f9b8f","#c6c2b8","#e2dfd7","#f5f2eb","#fffdf8"]},
+      "deep-ultraviolet": {"role":"primary","displayName":"Deep Ultraviolet","canonical":"#30207d","tonalRamp":["#10082d","#201451","#30207d","#5141a1","#7566c2","#9c90dd","#c5bdf0","#eeeaff"]},
+      "operations-cobalt": {"role":"primary","displayName":"Operations Cobalt","canonical":"#244fce","tonalRamp":["#07163f","#102c75","#244fce","#4e70dc","#7892e7","#a4b5f1","#ced8fa","#f2f5ff"]},
+      "status-coral": {"role":"secondary","displayName":"Status Coral","canonical":"#b83a2f","tonalRamp":["#3a0d09","#701e17","#b83a2f","#cf6257","#df8b82","#ecb3ac","#f6d9d5","#fff3f1"]},
+      "status-coral-light": {"role":"secondary","displayName":"Status Coral Light","canonical":"#ff9e8f","tonalRamp":["#48130c","#842b20","#c64d3d","#ef725f","#ff9e8f","#ffbdb3","#ffddd8","#fff5f3"]},
+      "quiet-ink": {"role":"neutral","displayName":"Quiet Ink","canonical":"#5c5a58","tonalRamp":["#171615","#302e2d","#494745","#5c5a58","#7d7a77","#a39f9b","#cac6c1","#f2efeb"]},
+      "paper-mist": {"role":"neutral","displayName":"Paper Mist","canonical":"#d8d0c4","tonalRamp":["#28231e","#4e473e","#746d62","#9b9488","#bdb6ab","#d8d0c4","#e8e3dc","#f8f5f1"]},
+      "data-blue-wash": {"role":"primary","displayName":"Data Blue Wash","canonical":"#dce4ff","tonalRamp":["#19203c","#303c6a","#4d5d99","#7585c3","#a0ade2","#c0caf2","#dce4ff","#f3f6ff"]},
+      "preview-canvas": {"role":"neutral","displayName":"Preview Canvas","canonical":"#d7d3cb","tonalRamp":["#272521","#4c4942","#716d65","#98948b","#bdb9b0","#d7d3cb","#e7e4de","#f7f5f1"]},
+      "table-rule": {"role":"neutral","displayName":"Table Rule","canonical":"#aaa49a","tonalRamp":["#201e1a","#413d36","#625e55","#858077","#aaa49a","#c5c0b8","#dfdcd6","#f8f6f3"]},
+      "bar-track": {"role":"neutral","displayName":"Bar Track","canonical":"#d4cec4","tonalRamp":["#28241e","#4d473e","#736c62","#999288","#bcb6ac","#d4cec4","#e6e1da","#f8f5f1"]},
+      "dark-divider": {"role":"neutral","displayName":"Dark Divider","canonical":"#77747b","tonalRamp":["#1a191c","#343238","#504e55","#77747b","#96939b","#b6b3bb","#d7d4db","#f5f3f7"]}
+    },
+    "typographyMeta": {
+      "display": {"displayName":"Field-Book Display","purpose":"Cover title and dominant sheet statements."},
+      "headline": {"displayName":"Evidence Headline","purpose":"The seven evidence and decision section openings."},
+      "title": {"displayName":"Operational Title","purpose":"Channels, rankings, gaps, and actions."},
+      "body": {"displayName":"Executive Interpretation","purpose":"Source context and concise business meaning."},
+      "label": {"displayName":"Ledger Label","purpose":"Brand bars, folios, stamps, dates, and metadata."}
+    },
+    "shadows": [
+      {"name":"screen-sheet-separation","value":"0 18px 46px rgba(17, 19, 23, 0.18)","purpose":"Separates portrait sheets on screen only and is removed in print."},
+      {"name":"coral-inset-band","value":"inset 0 7px 0 #b83a2f","purpose":"Marks the first white seasonal or gap field."},
+      {"name":"cobalt-inset-band","value":"inset 0 7px 0 #244fce","purpose":"Differentiates the paired seasonal field."}
+    ],
+    "motion": [],
+    "breakpoints": [
+      {"name":"portrait-stack","value":"850px"}
+    ]
+  },
+  "components": [
+    {
+      "name":"Seasonal Cover Monument","kind":"custom","description":"A cropped prior-season count that establishes scale before explanation.",
+      "html":"<div class=\"ds-season-monument\"><strong>237K</strong><span>Prior season sessions</span></div>",
+      "css":".ds-season-monument{display:flex;min-height:360px;flex-direction:column;justify-content:center;overflow:hidden;padding:36px;background:#30207d;color:#fffdf8}.ds-season-monument strong{color:#ff9e8f;font:800 126pt/.72 \"Barlow Condensed\",Arial,sans-serif;letter-spacing:-.045em}.ds-season-monument span{font:800 25pt/.94 \"Barlow Condensed\",Arial,sans-serif;text-transform:uppercase}"
+    },
+    {
+      "name":"Status Stamp","kind":"chip","refersTo":"status-stamp","description":"A written source-ready mark used on the cover.",
+      "html":"<div class=\"ds-status-stamp\">Source locked</div>",
+      "css":".ds-status-stamp{display:inline-block;border:2px solid #b83a2f;padding:9px 13px;transform:rotate(-3deg);background:transparent;color:#b83a2f;font:800 10.5pt/1 \"Barlow Condensed\",Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase}"
+    },
+    {
+      "name":"Metric Band","kind":"custom","refersTo":"metric-band-lead","description":"A ruled four-column strip that opens an evidence sheet.",
+      "html":"<div class=\"ds-metric-band\"><div class=\"ds-lead\"><b>3,350</b><span>Users</span></div><div><b>3,865</b><span>Sessions</span></div><div><b>53%</b><span>Engagement rate</span></div><div><b>01:47</b><span>Average engagement</span></div></div>",
+      "css":".ds-metric-band{display:grid;grid-template-columns:1.45fr repeat(3,1fr);border-top:2px solid #111317;border-bottom:2px solid #111317;background:#f3eee4;color:#111317}.ds-metric-band div{padding:16px 12px;border-right:1px solid #111317}.ds-metric-band div:last-child{border-right:0}.ds-metric-band .ds-lead{background:#30207d;color:#fffdf8}.ds-metric-band b{display:block;font:800 26pt/1 \"Barlow Condensed\",Arial,sans-serif}.ds-metric-band span{display:block;margin-top:5px;font:500 8pt/1.15 \"Barlow Condensed\",Arial,sans-serif;text-transform:uppercase}"
+    },
+    {
+      "name":"Analytics Table","kind":"custom","description":"A source-bound ledger with tabular values and sparse blue emphasis.",
+      "html":"<table class=\"ds-table\"><thead><tr><th>Channel</th><th>Users</th><th>Sessions</th></tr></thead><tbody><tr><td>Organic Search</td><td class=\"ds-win\">1,370</td><td>1,522</td></tr></tbody></table>",
+      "css":".ds-table{width:100%;border-collapse:collapse;table-layout:fixed;background:#f3eee4;color:#111317}.ds-table th{padding:7px;background:#111317;color:#fffdf8;text-align:right;font:800 7.5pt/1 \"Barlow Condensed\",Arial,sans-serif;text-transform:uppercase;letter-spacing:.03em}.ds-table th:first-child,.ds-table td:first-child{text-align:left}.ds-table td{padding:7px;border-bottom:1px solid #aaa49a;text-align:right;font:500 8.7pt/1.05 \"Barlow Condensed\",Arial,sans-serif;font-variant-numeric:tabular-nums}.ds-table td:first-child{font-weight:800;text-transform:uppercase}.ds-table tr:nth-child(even){background:rgba(36,79,206,.07)}.ds-table .ds-win{background:#dce4ff;color:#30207d;font-weight:800}"
+    },
+    {
+      "name":"Seasonal Evidence Box","kind":"card","refersTo":"season-box","description":"A square paper inset with a coral or cobalt top band for seasonal demand.",
+      "html":"<article class=\"ds-season-box\"><h3>Halloween now</h3><strong>1,858</strong><p>Current landing-page sessions.</p></article>",
+      "css":".ds-season-box{padding:23px 20px 18px;background:#fffdf8;color:#111317;box-shadow:inset 0 7px 0 #b83a2f}.ds-season-box h3{margin:0;font:800 20pt/1 \"Barlow Condensed\",Arial,sans-serif;text-transform:uppercase}.ds-season-box strong{display:block;margin-top:13px;color:#30207d;font:800 33pt/1 \"Barlow Condensed\",Arial,sans-serif}.ds-season-box p{margin:5px 0 0;color:#5c5a58;font:400 9.2pt/1.42 Arial,Helvetica,sans-serif}"
+    },
+    {
+      "name":"Ranking Proof Field","kind":"custom","description":"An ultraviolet rank block paired with written business meaning.",
+      "html":"<div class=\"ds-rank\"><b>01</b><span>Halloween keyword position</span></div>",
+      "css":".ds-rank{min-height:225px;padding:24px;background:#30207d;color:#fffdf8}.ds-rank b{display:block;color:#ff9e8f;font:800 78pt/.72 \"Barlow Condensed\",Arial,sans-serif}.ds-rank span{display:block;margin-top:15px;font:800 18pt/.95 \"Barlow Condensed\",Arial,sans-serif;text-transform:uppercase}"
+    },
+    {
+      "name":"Decision Action Row","kind":"custom","refersTo":"decision-field","description":"A ruled approval row joining timing, action, explanation, and outcome.",
+      "html":"<div class=\"ds-action\"><b>Now</b><div><h3>Protect the Halloween rank leaders</h3><p>Refresh proven seasonal destinations first.</p></div><span>Keep the strongest pages visible</span></div>",
+      "css":".ds-action{display:grid;grid-template-columns:112px 1fr 125px;gap:20px;padding:18px 0;border-top:1px solid #fffdf8;border-bottom:1px solid #fffdf8;background:#111317;color:#fffdf8}.ds-action b{color:#ff9e8f;font:800 20pt/1 \"Barlow Condensed\",Arial,sans-serif;text-transform:uppercase}.ds-action h3{margin:0;font:800 16pt/1 \"Barlow Condensed\",Arial,sans-serif;text-transform:uppercase}.ds-action p{margin:6px 0 0;font:400 9.2pt/1.42 Arial,Helvetica,sans-serif}.ds-action span{color:#dce4ff;font:500 9pt/1.2 \"Barlow Condensed\",Arial,sans-serif;text-align:right;text-transform:uppercase}"
+    },
+    {
+      "name":"Dossier Folio","kind":"nav","refersTo":"folio","description":"A structural print footer joining context to an exact sheet fraction.",
+      "html":"<footer class=\"ds-folio\"><span>Bar Crawl USA · Seasonal performance</span><i></i><span>03 / 08</span></footer>",
+      "css":".ds-folio{display:flex;align-items:center;gap:14px;color:#5c5a58;font:500 7.8pt/1 \"Barlow Condensed\",Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}.ds-folio i{height:1px;flex:1;background:currentColor;opacity:.4}"
+    }
+  ],
+  "narrative": {
+    "northStar":"The After-Hours Producer Dossier",
+    "overview":"The seasonal report feels like a premium event producer's field book opened after venue close: bone call sheets, near-black ledgers, ultraviolet evidence fields, cobalt operational cues, and coral decision marks. It is assertive, compact, and built for an executive reader who needs the business meaning first and the exact evidence immediately behind it.\n\nThe eight-sheet portrait book is one continuous proof sequence. A cropped seasonal count establishes scale, ruled metrics and tables carry the GA4 and Semrush evidence, and the final dark decision field converts the findings into five ordered approvals. Strong rules, condensed uppercase type, and hard field changes replace generic analytics cards.",
+    "keyCharacteristics":["Barlow Condensed at 500 and 800 for authority, labels, folios, and numeric evidence","Arial for explanatory copy and source-bound interpretation","Bone paper, near-black ink, deep ultraviolet, cobalt, and contrast-safe coral roles","Strict bands, one-pixel rules, tabular values, cropped numbers, and flat print surfaces","Eight US Letter portrait sheets that collapse without losing metrics below 850px"],
+    "rules":[
+      {"name":"The Coral Contrast Rule","body":"Use dark coral only on bone or white; use light coral on near-black or ultraviolet.","section":"colors"},
+      {"name":"The Field Discipline Rule","body":"Ultraviolet and cobalt create bounded evidence fields. Coral marks status and decisions. None becomes a decorative gradient.","section":"colors"},
+      {"name":"The Condensed Authority Rule","body":"Use Barlow Condensed for hierarchy, status, structured evidence, and numeric emphasis; use Arial for explanatory prose.","section":"typography"},
+      {"name":"The Tabular Evidence Rule","body":"Comparable analytics values use tabular numerals and right alignment until the mobile transformation.","section":"typography"},
+      {"name":"The Eight-Sheet Rule","body":"The proof sequence stays eight sheets: cover, current GA4, prior season, landing pages, Semrush baseline, Halloween rankings, Ugly Sweater gap, and approvals.","section":"layout"},
+      {"name":"The Evidence Retention Rule","body":"Responsive adaptation may reorganize evidence but never hide a metric, ranking, source window, or action.","section":"layout"},
+      {"name":"The Flat Print Rule","body":"If a shadow survives print, it is outside the system.","section":"elevation"},
+      {"name":"The One Irregular Mark Rule","body":"Rotation belongs to the status stamp only; evidence alignment and field geometry remain exact.","section":"shapes"}
+    ],
+    "dos":["Do preserve the bone, near-black, ultraviolet, cobalt, and surface-specific coral roles.","Do keep Barlow Condensed at 500 and 800 for hierarchy and evidence, with Arial for interpretation.","Do preserve the eight-sheet portrait proof sequence and every source window, metric, ranking, and action.","Do use written meaning alongside color, exact tabular values, and explicit GA4 versus Semrush boundaries.","Do let bands, rules, field changes, and cropped numerals create hierarchy."],
+    "donts":["Don't turn the report into a generic dashboard, rounded card stack, or pill system.","Don't use decorative gradients, print shadows, soft floating layers, or ornamental motion.","Don't use dark coral on dark fields or light coral as body copy on paper.","Don't substitute another display face for the supplied Barlow Condensed files.","Don't collapse detailed evidence into summaries that hide exact values or source periods."]
+  }
+}

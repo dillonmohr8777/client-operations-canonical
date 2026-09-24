@@ -1,0 +1,668 @@
+{
+    "schemaVersion":  1,
+    "graphRunId":  "mgr-20260802t163811z-wi-20260802-0001-alignsearch",
+    "graphRevision":  7,
+    "workflowId":  "marketing-chief-execution-graph",
+    "createdAt":  "2026-08-02T16:39:10.2008884+00:00",
+    "updatedAt":  "2026-08-02T16:42:34.3372576+00:00",
+    "status":  "handoff_ready",
+    "queueSnapshot":  {
+                          "locator":  "queue/work-items.json",
+                          "revision":  336,
+                          "sha256":  "CF22B637649BDE8EFBCFA3C254219191426113B31DDA65650857FB04641E4CB9",
+                          "capturedAt":  "2026-08-02T16:39:10.2008884+00:00"
+                      },
+    "workItem":  {
+                     "id":  "wi-20260802-0001",
+                     "expectedVersion":  1,
+                     "contentSha256":  "C1FA92F97A8C30270B6659687ADEACAF38B58A5028CF11D4AF5645BBCC1EDF79",
+                     "clientId":  "align-hcm",
+                     "title":  "Establish Align Google Search traffic monitoring baseline",
+                     "status":  "ready",
+                     "lane":  "normal",
+                     "priority":  "P1",
+                     "actionClass":  "read_only_verification",
+                     "nextAction":  "Inspect current authorized local and read-only analytics evidence for Google Search traffic to the canonical Align HCM website, document source coverage and freshness, and produce a local monitoring baseline without changing any account or live property.",
+                     "definitionOfDone":  [
+                                              "The canonical Align HCM website and active client route are verified.",
+                                              "Current authorized search-traffic evidence is inventoried with source locators, timeframes, and freshness.",
+                                              "A local monitoring baseline separates verified metrics from unavailable or unvalidated fields.",
+                                              "No analytics, search, website, account, or external-delivery mutation occurs."
+                                          ],
+                     "sourceLocator":  "agent-os-run:20260802-011238-f19758b7/task.json",
+                     "evidenceRefs":  [
+                                          "agent-os-run:20260802-011238-f19758b7/task.json"
+                                      ],
+                     "artifactRefs":  [
+
+                                      ],
+                     "dependencies":  [
+
+                                      ],
+                     "approval":  {
+                                      "tier":  "automatic",
+                                      "status":  "not_required",
+                                      "gate":  "none"
+                                  }
+                 },
+    "scope":  {
+                  "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+                  "clientRoot":  "clients/align-hcm",
+                  "graphLocator":  "state/execution-graphs/wi-20260802-0001/mgr-20260802t163811z-wi-20260802-0001-alignsearch/execution-graph.json",
+                  "canonicalWriteAllowed":  false,
+                  "externalActionAllowed":  false,
+                  "durableMemoryWriteAllowed":  false,
+                  "privacy":  "redacted"
+              },
+    "retrieval":  {
+                      "strategy":  "exact-plus-graph",
+                      "exactBindingRequired":  true,
+                      "semanticBindingAllowed":  false,
+                      "sourceCount":  1,
+                      "artifactCount":  0
+                  },
+    "nodes":  [
+                  {
+                      "id":  "scope-guard",
+                      "kind":  "scope_guard",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Validate immutable queue, work-item, client, and project scope.",
+                      "requires":  [
+
+                                   ],
+                      "produces":  [
+                                       "scoped_work_item"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Queue revision, work-item version, exact client route, and safety scope were validated.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "queue/work-items.json",
+                                                      "agent-os-run:20260802-011238-f19758b7/task.json"
+                                                  ],
+                                     "verification":  [
+                                                          "Queue revision 336 captured.",
+                                                          "Work-item version 1 captured.",
+                                                          "Client route align-hcm resolved exactly once and is active."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "source-intake",
+                      "kind":  "source_intake",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Capture safe exact source and evidence locators.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "provenance_slice"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Exact source and evidence locators were captured without raw communications.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "agent-os-run:20260802-011238-f19758b7/task.json"
+                                                  ],
+                                     "verification":  [
+                                                          "Evidence freshness evaluated at 2026-08-02T16:39:10.2008884+00:00."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "context-retrieval",
+                      "kind":  "context_retrieval",
+                      "owner":  "marketing-chief-context-loader",
+                      "status":  "completed",
+                      "task":  "Assemble the exact bounded context slice required by this item.",
+                      "requires":  [
+                                       "source-intake"
+                                   ],
+                      "produces":  [
+                                       "worker_context"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Bounded client, source, artifact, dependency, and definition-of-done context was assembled.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "agent-os-run:20260802-011238-f19758b7/task.json"
+                                                  ],
+                                     "verification":  [
+                                                          "Definition-of-done checks: 4.",
+                                                          "Artifact references: 0."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "worker-execution",
+                      "kind":  "worker_execution",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Inspect current authorized local and read-only analytics evidence for Google Search traffic to the canonical Align HCM website, document source coverage and freshness, and produce a local monitoring baseline without changing any account or live property.",
+                      "requires":  [
+                                       "context-retrieval"
+                                   ],
+                      "produces":  [
+                                       "local_artifacts",
+                                       "worker_evidence"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Created a redacted local Google Search traffic monitoring baseline from current authorized aggregate evidence and public read-only availability checks.",
+                                     "artifacts":  [
+                                                       "clients/align-hcm/deliverables/2026-08-02-google-search-traffic-monitoring-baseline.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "agent-os-run:20260802-011238-f19758b7/task.json",
+                                                      "clients/align-hcm/deliverables/2026-07-30-ytd-attribution-report/ytd-company-attribution.json",
+                                                      "clients/align-hcm/attribution/2026-07-18-weekend-attribution-knowledge-session.md",
+                                                      "clients/align-hcm/github/align-hcm-lead-intelligence/reports/latest-hubspot-kpi-report.md"
+                                                  ],
+                                     "verification":  [
+                                                          "The artifact records source windows and limitations, separates CRM attribution from Search Console and GA4 traffic, and attests that no external or canonical write was attempted by the worker."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-01",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "The canonical Align HCM website and active client route are verified.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_01"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Verified the active Align HCM route and canonical website against the graph scope and client record.",
+                                     "artifacts":  [
+                                                       "clients/align-hcm/deliverables/2026-08-02-google-search-traffic-monitoring-baseline.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/align-hcm/CLIENT.md",
+                                                      "agent-os-run:20260802-011238-f19758b7/task.json"
+                                                  ],
+                                     "verification":  [
+                                                          "The graph scope resolves align-hcm as active, and the artifact binds the canonical website https://www.alignhcm.com/."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-02",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Current authorized search-traffic evidence is inventoried with source locators, timeframes, and freshness.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_02"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Verified that the evidence inventory names each source, period, purpose, and limitation.",
+                                     "artifacts":  [
+                                                       "clients/align-hcm/deliverables/2026-08-02-google-search-traffic-monitoring-baseline.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/align-hcm/deliverables/2026-07-30-ytd-attribution-report/ytd-company-attribution.json",
+                                                      "clients/align-hcm/attribution/2026-07-18-weekend-attribution-knowledge-session.md",
+                                                      "clients/align-hcm/github/align-hcm-lead-intelligence/reports/latest-hubspot-kpi-report.md"
+                                                  ],
+                                     "verification":  [
+                                                          "The source table records evidence windows, verified coverage, freshness, and current limitations for every material claim."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-03",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "A local monitoring baseline separates verified metrics from unavailable or unvalidated fields.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_03"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Verified that the baseline separates CRM outcomes, public availability, and unavailable search-traffic fields.",
+                                     "artifacts":  [
+                                                       "clients/align-hcm/deliverables/2026-08-02-google-search-traffic-monitoring-baseline.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/align-hcm/deliverables/2026-08-02-google-search-traffic-monitoring-baseline.md"
+                                                  ],
+                                     "verification":  [
+                                                          "The artifact does not relabel HubSpot contacts as Search Console traffic and does not estimate clicks, impressions, rankings, or GA4 sessions."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-04",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "No analytics, search, website, account, or external-delivery mutation occurs.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_04"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Verified the local read-only safety boundary.",
+                                     "artifacts":  [
+                                                       "clients/align-hcm/deliverables/2026-08-02-google-search-traffic-monitoring-baseline.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "state/execution-graphs/wi-20260802-0001/mgr-20260802t163811z-wi-20260802-0001-alignsearch/execution-graph.json"
+                                                  ],
+                                     "verification":  [
+                                                          "Graph attestations and the artifact both record no account, analytics, website, external-delivery, or worker canonical mutation."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "approval-gate",
+                      "kind":  "approval_gate",
+                      "owner":  "marketing-chief",
+                      "status":  "completed",
+                      "task":  "Enforce the exact action-class and approval boundary.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "approval_verdict"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "This graph permits local reversible work only; no external action is authorized.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+
+                                                  ],
+                                     "verification":  [
+                                                          "Action class: read_only_verification.",
+                                                          "Approval tier/status: automatic/not_required."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "handoff-assembly",
+                      "kind":  "handoff_assembly",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Assemble a schema-valid redacted worker handoff from completed graph outputs.",
+                      "requires":  [
+                                       "verify-01",
+                                       "verify-02",
+                                       "verify-03",
+                                       "verify-04",
+                                       "approval-gate"
+                                   ],
+                      "produces":  [
+                                       "worker_handoff"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "state/worker-handoffs/handoff-align-search-baseline-20260802.json",
+                                                      "sha256:7989C039A582B413CC6BEBB20C068C9DA2EB4EE6459D90E587315C6AF3D86F4F"
+                                                  ],
+                                     "verification":  [
+
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "chief-reconciliation",
+                      "kind":  "chief_reconciliation",
+                      "owner":  "marketing-chief",
+                      "status":  "ready",
+                      "task":  "Revalidate live queue and item state, then accept or reject the handoff through the supported canonical mutation path.",
+                      "requires":  [
+                                       "handoff-assembly"
+                                   ],
+                      "produces":  [
+                                       "canonical_receipt"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  }
+              ],
+    "edges":  [
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "source-intake"
+                  },
+                  {
+                      "from":  "source-intake",
+                      "relation":  "precedes",
+                      "to":  "context-retrieval"
+                  },
+                  {
+                      "from":  "context-retrieval",
+                      "relation":  "precedes",
+                      "to":  "worker-execution"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-01"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-02"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-03"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-04"
+                  },
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "approval-gate"
+                  },
+                  {
+                      "from":  "verify-01",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-02",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-03",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-04",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "approval-gate",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "handoff-assembly",
+                      "relation":  "precedes",
+                      "to":  "chief-reconciliation"
+                  }
+              ],
+    "knowledgeGraph":  {
+                           "nodes":  [
+                                         {
+                                             "id":  "queue:canonical",
+                                             "type":  "queue",
+                                             "label":  "Canonical queue revision 336",
+                                             "locator":  "queue/work-items.json"
+                                         },
+                                         {
+                                             "id":  "client:align-hcm",
+                                             "type":  "client",
+                                             "label":  "align-hcm",
+                                             "locator":  "clients/align-hcm"
+                                         },
+                                         {
+                                             "id":  "work-item:wi-20260802-0001",
+                                             "type":  "work_item",
+                                             "label":  "Establish Align Google Search traffic monitoring baseline",
+                                             "locator":  "agent-os-run:20260802-011238-f19758b7/task.json"
+                                         },
+                                         {
+                                             "id":  "approval:none",
+                                             "type":  "approval",
+                                             "label":  "automatic/not_required/none",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "evidence:3f3c326698059200",
+                                             "type":  "evidence",
+                                             "label":  "agent-os-run:20260802-011238-f19758b7/task.json",
+                                             "locator":  "agent-os-run:20260802-011238-f19758b7/task.json"
+                                         },
+                                         {
+                                             "id":  "definition:01",
+                                             "type":  "definition",
+                                             "label":  "The canonical Align HCM website and active client route are verified.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:02",
+                                             "type":  "definition",
+                                             "label":  "Current authorized search-traffic evidence is inventoried with source locators, timeframes, and freshness.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:03",
+                                             "type":  "definition",
+                                             "label":  "A local monitoring baseline separates verified metrics from unavailable or unvalidated fields.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:04",
+                                             "type":  "definition",
+                                             "label":  "No analytics, search, website, account, or external-delivery mutation occurs.",
+                                             "locator":  null
+                                         }
+                                     ],
+                           "edges":  [
+                                         {
+                                             "from":  "queue:canonical",
+                                             "relation":  "contains",
+                                             "to":  "work-item:wi-20260802-0001"
+                                         },
+                                         {
+                                             "from":  "client:align-hcm",
+                                             "relation":  "owns",
+                                             "to":  "work-item:wi-20260802-0001"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260802-0001",
+                                             "relation":  "governed_by",
+                                             "to":  "approval:none"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260802-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:3f3c326698059200"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260802-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:01"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260802-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:02"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260802-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:03"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260802-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:04"
+                                         }
+                                     ],
+                           "nodeCount":  9,
+                           "edgeCount":  8
+                       },
+    "handoffContract":  {
+                            "schema":  "schemas/worker-handoff.schema.json",
+                            "validator":  "scripts/Test-MarketingHandoff.ps1",
+                            "reconciler":  "scripts/Accept-WorkerHandoff.ps1",
+                            "expectedWorkItemVersion":  1,
+                            "approvalGate":  "none",
+                            "graphEvidence":  "state/execution-graphs/wi-20260802-0001/mgr-20260802t163811z-wi-20260802-0001-alignsearch/execution-graph.json"
+                        },
+    "blockers":  [
+
+                 ],
+    "warnings":  [
+
+                 ],
+    "trace":  [
+                  {
+                      "eventId":  "evt-2f0c73074c724214820bb5a674cfe585",
+                      "at":  "2026-08-02T16:39:10.2008884+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "scope-guard",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-5b7f163561b24c8e81c898037a5931d2",
+                      "at":  "2026-08-02T16:39:10.2008884+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "source-intake",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-945ce4d093a445298cb8ad5e2b4e163b",
+                      "at":  "2026-08-02T16:39:10.2008884+00:00",
+                      "actor":  "marketing-chief-context-loader",
+                      "nodeId":  "context-retrieval",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-1e1b228fdeae4563bbf4327e824bac0e",
+                      "at":  "2026-08-02T16:39:10.2008884+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "approval-gate",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-13b287dee7e345c3bd3b77827dc1f013",
+                      "at":  "2026-08-02T16:40:30.3438601+00:00",
+                      "actor":  "bounded-worker",
+                      "nodeId":  "worker-execution",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Created a redacted local Google Search traffic monitoring baseline from current authorized aggregate evidence and public read-only availability checks."
+                  },
+                  {
+                      "eventId":  "evt-9a099872a0a24868b8a375d5d777729b",
+                      "at":  "2026-08-02T16:41:03.8417846+00:00",
+                      "actor":  "independent-verifier",
+                      "nodeId":  "verify-01",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Verified the active Align HCM route and canonical website against the graph scope and client record."
+                  },
+                  {
+                      "eventId":  "evt-2ca73a9527d449e9846cee8606007365",
+                      "at":  "2026-08-02T16:41:21.8792488+00:00",
+                      "actor":  "independent-verifier",
+                      "nodeId":  "verify-02",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Verified that the evidence inventory names each source, period, purpose, and limitation."
+                  },
+                  {
+                      "eventId":  "evt-d7290118f3a04fb696d1a84c60dcd041",
+                      "at":  "2026-08-02T16:41:24.0582279+00:00",
+                      "actor":  "independent-verifier",
+                      "nodeId":  "verify-03",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Verified that the baseline separates CRM outcomes, public availability, and unavailable search-traffic fields."
+                  },
+                  {
+                      "eventId":  "evt-3899684642a94dd8aac7a3f154c5a5d6",
+                      "at":  "2026-08-02T16:41:26.5554028+00:00",
+                      "actor":  "independent-verifier",
+                      "nodeId":  "verify-04",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Verified the local read-only safety boundary."
+                  },
+                  {
+                      "eventId":  "evt-1cea5dd605f94f4d9053f20c1a40d175",
+                      "at":  "2026-08-02T16:42:34.3372576+00:00",
+                      "actor":  "bounded-worker",
+                      "nodeId":  "handoff-assembly",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation."
+                  }
+              ],
+    "attestations":  {
+                         "canonicalWriteAttempted":  false,
+                         "externalActionAttempted":  false,
+                         "durableMemoryWriteAttempted":  false,
+                         "containsSecrets":  false,
+                         "containsDirectIdentifiers":  false,
+                         "containsRawCommunications":  false
+                     }
+}

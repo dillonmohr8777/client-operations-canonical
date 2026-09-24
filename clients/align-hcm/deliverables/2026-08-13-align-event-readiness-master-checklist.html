@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Align HCM Event Readiness Master Checklist</title>
+  <style>
+    @font-face {
+      font-family: "Plus Jakarta Sans";
+      src: url("file:///C:/Users/dillo/Documents/Codex/projects/client-operations/clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/assets/generated-static/fonts/plus-jakarta-sans-600.ttf") format("truetype");
+      font-weight: 600;
+    }
+    @font-face {
+      font-family: "Plus Jakarta Sans";
+      src: url("file:///C:/Users/dillo/Documents/Codex/projects/client-operations/clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/assets/generated-static/fonts/plus-jakarta-sans-800.ttf") format("truetype");
+      font-weight: 800;
+    }
+    @font-face {
+      font-family: "DM Sans";
+      src: url("file:///C:/Users/dillo/Documents/Codex/projects/client-operations/clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/assets/generated-static/fonts/dm-sans-400.ttf") format("truetype");
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: "DM Sans";
+      src: url("file:///C:/Users/dillo/Documents/Codex/projects/client-operations/clients/align-hcm/worktrees/align-hcm-vib-design-import-20260722/assets/generated-static/fonts/dm-sans-600.ttf") format("truetype");
+      font-weight: 600;
+    }
+
+    :root {
+      --navy: #0b1d2d;
+      --midnight: #071521;
+      --navy-2: #17324d;
+      --orange: #f05a28;
+      --orange-hot: #ff6b35;
+      --paper: #f4efe7;
+      --sky: #eaf6fc;
+      --green: #159b63;
+      --ink: #26394a;
+      --muted: #66798a;
+      --rule: #d7dfe5;
+      --white: #ffffff;
+      --amber: #a75b00;
+    }
+
+    @page {
+      size: Letter;
+      margin: 0.52in 0.55in 0.58in;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: #dfe6eb; }
+
+    body {
+      margin: 0;
+      background: var(--white);
+      color: var(--ink);
+      font: 9.2pt/1.38 "DM Sans", "Segoe UI", Arial, sans-serif;
+    }
+
+    .cover {
+      min-height: 9.9in;
+      margin: -0.52in -0.55in -0.58in;
+      padding: 0.7in 0.7in 0.62in;
+      position: relative;
+      overflow: hidden;
+      break-after: page;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 87% 15%, rgba(240, 90, 40, .52), transparent 28%),
+        radial-gradient(circle at 12% 88%, rgba(21, 155, 99, .24), transparent 31%),
+        linear-gradient(145deg, var(--midnight), var(--navy-2) 62%, #0a1723);
+    }
+
+    .cover::after {
+      content: "";
+      position: absolute;
+      width: 4.5in;
+      height: 4.5in;
+      right: -1.6in;
+      bottom: -1.9in;
+      border: 2px solid rgba(255,255,255,.15);
+      border-radius: 50%;
+      box-shadow: 0 0 0 .46in rgba(255,255,255,.04), 0 0 0 .92in rgba(255,255,255,.03);
+    }
+
+    .brand {
+      display: inline-block;
+      color: var(--white);
+      font: 800 14pt/1 "Plus Jakarta Sans", sans-serif;
+      letter-spacing: .4px;
+    }
+
+    .brand::after {
+      content: "";
+      display: block;
+      width: .48in;
+      height: 4px;
+      margin-top: 9px;
+      background: var(--orange);
+    }
+
+    .cover-main { margin-top: 1.25in; max-width: 6.5in; }
+
+    .kicker {
+      margin-bottom: .18in;
+      color: #ffb69a;
+      font: 600 8pt/1.2 "Plus Jakarta Sans", sans-serif;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .cover h1 {
+      margin: 0;
+      color: var(--white);
+      font: 800 31pt/1.05 "Plus Jakarta Sans", sans-serif;
+      letter-spacing: -1.2px;
+    }
+
+    .cover .subtitle {
+      margin-top: .28in;
+      padding-left: .18in;
+      border-left: 5px solid var(--orange);
+      color: #dfe8ef;
+      font-size: 13pt;
+      line-height: 1.42;
+    }
+
+    .cover .truth {
+      max-width: 5.8in;
+      margin-top: .46in;
+      padding: .18in .2in;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 12px;
+      background: rgba(255,255,255,.08);
+      color: #e8eef3;
+      font-size: 9.6pt;
+    }
+
+    .cover-meta {
+      position: absolute;
+      left: .7in;
+      right: .7in;
+      bottom: .62in;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: .14in;
+      z-index: 1;
+    }
+
+    .cover-meta div {
+      padding: .12in .14in;
+      border-top: 1px solid rgba(255,255,255,.22);
+      color: #b7c6d1;
+      font-size: 7.5pt;
+    }
+
+    .cover-meta strong {
+      display: block;
+      margin-top: 3px;
+      color: var(--white);
+      font: 600 9pt/1.3 "Plus Jakarta Sans", sans-serif;
+    }
+
+    main { max-width: 100%; }
+
+    .doc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: .2in;
+      padding-bottom: .1in;
+      border-bottom: 1px solid var(--rule);
+      color: var(--muted);
+      font-size: 7.3pt;
+      letter-spacing: .65px;
+      text-transform: uppercase;
+    }
+
+    .doc-header strong {
+      color: var(--navy);
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    .pagebreak { break-after: page; height: 0; }
+
+    h2, h3 {
+      color: var(--navy);
+      font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+      font-weight: 800;
+      break-after: avoid;
+      break-inside: avoid;
+    }
+
+    h2 {
+      margin: .08in 0 .14in;
+      padding-top: .02in;
+      font-size: 19pt;
+      line-height: 1.12;
+      letter-spacing: -.35px;
+    }
+
+    h2::before {
+      content: "";
+      display: block;
+      width: .42in;
+      height: 4px;
+      margin-bottom: .09in;
+      background: var(--orange);
+    }
+
+    h3 { margin: .18in 0 .08in; font-size: 11.5pt; line-height: 1.2; }
+
+    p { margin: 0 0 .1in; }
+
+    ul, ol { margin: .04in 0 .16in; padding-left: .24in; }
+    li { margin: 0 0 .065in; break-inside: avoid; }
+
+    ul li::marker { color: var(--orange); }
+
+    .check {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      margin: 0 7px 0 -1px;
+      vertical-align: -1px;
+      border: 1.5px solid #6f8495;
+      border-radius: 2px;
+      background: #fff;
+    }
+
+    strong { color: var(--navy); font-weight: 600; }
+
+    code {
+      color: #44586a;
+      font: 7.6pt/1.35 Consolas, monospace;
+      overflow-wrap: anywhere;
+    }
+
+    table {
+      width: 100%;
+      margin: .08in 0 .18in;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 7.45pt;
+      line-height: 1.3;
+    }
+
+    thead { display: table-header-group; }
+    tr { break-inside: avoid; }
+
+    th {
+      padding: 7px 7px;
+      border: 1px solid var(--navy-2);
+      background: var(--navy);
+      color: var(--white);
+      text-align: left;
+      font: 600 7.15pt/1.25 "Plus Jakarta Sans", sans-serif;
+      letter-spacing: .25px;
+      text-transform: uppercase;
+    }
+
+    td {
+      padding: 6px 7px;
+      border: 1px solid var(--rule);
+      vertical-align: top;
+      overflow-wrap: anywhere;
+    }
+
+    tbody tr:nth-child(even) td { background: #f7fafc; }
+
+    th:nth-child(1), td:nth-child(1) { width: 15%; }
+    th:nth-child(2), td:nth-child(2) { width: 14%; }
+    th:nth-child(4), td:nth-child(4) { width: 22%; }
+
+    blockquote {
+      margin: .14in 0;
+      padding: .12in .15in;
+      border-left: 4px solid var(--orange);
+      background: var(--paper);
+      color: #4e6171;
+    }
+
+    h2:first-of-type + ul {
+      padding: .16in .2in .12in .34in;
+      border: 1px solid #c8dde7;
+      border-radius: 12px;
+      background: var(--sky);
+    }
+
+    h2:last-of-type ~ p:last-child {
+      padding: .13in .16in;
+      border-left: 4px solid var(--orange);
+      background: #fff3ec;
+    }
+
+    @media print {
+      html, body { background: #fff; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <div class="brand">ALIGN HCM</div>
+    <div class="cover-main">
+      <div class="kicker">Event operations / master working checklist</div>
+      <h1>UKG GTMX +<br>Dayforce Discover 2026</h1>
+      <div class="subtitle">One decision sheet, deadline calendar, production checklist, onsite plan, and follow-up gate for both events.</div>
+      <div class="truth"><strong style="color:#fff">Dayforce is execution-ready.</strong> The current Silver booth plan and hard deadlines are confirmed. <strong style="color:#fff">GTMX still needs its 2026 source packet.</strong> The checklist begins by forcing those missing facts into the August 14 planning session.</div>
+    </div>
+    <div class="cover-meta">
+      <div>Prepared for<strong>Align HCM</strong></div>
+      <div>Prepared<strong>August 13, 2026</strong></div>
+      <div>Working session<strong>Aug 14 / 9:00 a.m.</strong></div>
+    </div>
+  </section>
+  <main>
+    <div class="doc-header"><strong>Align HCM</strong><span>Event readiness master checklist / August 13, 2026</span></div>
+    <h2>Current truth</h2>
+<ul>
+<li><strong>Dayforce Discover is confirmed and source-backed.</strong> Align HCM has the Silver sponsor package, a turnkey 5 ft x 10 ft booth, and an official exhibitor manual.</li>
+<li><strong>Dayforce’s immediate deadlines are August 21 and September 4.</strong> Paid booth upgrades should be ordered by August 21 for discount pricing. All booth graphics are due September 4; late graphics incur a 30 percent rush fee.</li>
+<li><strong>GTMX is the UKG Go-To-Market Experience.</strong> Public evidence establishes it as UKG’s kickoff for employees and partners, but the current 2026 date, venue, sponsorship tier, footprint, portal, and vendor deadlines were not present in the invite or accessible current sources.</li>
+<li><strong>The August 14 meeting must turn GTMX from an event name into an executable brief.</strong> No GTMX creative or paid order should be released until the current sponsor kit or exhibitor manual is obtained.</li>
+<li><strong>Keep the two events operationally separate.</strong> UKG messaging, proof, QR codes, lists, lead campaigns, and collateral must not be mixed with Dayforce materials.</li>
+</ul>
+<h2>Status key</h2>
+<ul>
+<li><strong>CONFIRMED</strong>: supported by the current Dayforce manual or a current supplied source.</li>
+<li><strong>DECIDE</strong>: requires an Align decision.</li>
+<li><strong>VERIFY</strong>: requires the current portal, sponsor kit, contract, or vendor confirmation.</li>
+<li><strong>PROPOSED</strong>: internal working date intended to create production buffer.</li>
+</ul>
+<div class="pagebreak"></div>
+
+<h2>The first 12 moves</h2>
+<ul>
+<li><span class="check" aria-hidden="true"></span> <strong>Assign one accountable event owner for each event.</strong> Owner: <strong><em>_</em></strong>_  Due: Aug 14  Status: DECIDE</li>
+<li><span class="check" aria-hidden="true"></span> <strong>Name the shared budget approver.</strong> Owner: <strong><em>_</em></strong>_  Due: Aug 14  Status: DECIDE</li>
+<li><span class="check" aria-hidden="true"></span> <strong>Confirm GTMX means the 2026 UKG Go-To-Market Experience and record the exact official event name.</strong> Owner: <strong><em>_</em></strong>_  Due: Aug 14  Status: VERIFY</li>
+<li><span class="check" aria-hidden="true"></span> <strong>Obtain the current GTMX sponsor kit, contract, exhibitor manual, portal link, and deadline calendar.</strong> Owner: <strong><em>_</em></strong>_  Due: Aug 14  Status: VERIFY</li>
+<li><span class="check" aria-hidden="true"></span> <strong>Record GTMX dates, venue, city, sponsorship tier, footprint, included passes, and total committed spend.</strong> Owner: <strong><em>_</em></strong>_  Due: Aug 14  Status: VERIFY</li>
+<li><span class="check" aria-hidden="true"></span> <strong>Confirm access to the Dayforce Elevation3D Exhibitor Resource Center.</strong> Credentials were scheduled for July 23 and should already exist. Owner: <strong><em>_</em></strong>_  Due: Aug 14  Status: VERIFY</li>
+<li><span class="check" aria-hidden="true"></span> <strong>Approve the Dayforce booth direction:</strong> printed SEG backwall, monitor or no monitor, and furniture or no furniture. Owner: <strong><em>_</em></strong>_  Due: Aug 14  Status: DECIDE</li>
+<li><span class="check" aria-hidden="true"></span> <strong>Approve or reject the Dayforce $500 printed backwall.</strong> Owner: <strong><em>_</em></strong>_  Due: Aug 14  Status: DECIDE</li>
+<li><span class="check" aria-hidden="true"></span> <strong>Lock separate event objectives and measurable outcomes.</strong> Owner: <strong><em>_</em></strong>_  Due: Aug 14  Status: DECIDE</li>
+<li><span class="check" aria-hidden="true"></span> <strong>Name creative, registration/travel, onsite, lead operations, and follow-up owners for each event.</strong> Owner: <strong><em>_</em></strong>_  Due: Aug 14  Status: DECIDE</li>
+<li><span class="check" aria-hidden="true"></span> <strong>Create separate UKG and Dayforce asset folders, campaign names, QR destinations, and CRM lists.</strong> Owner: <strong><em>_</em></strong>_  Due: Aug 17  Status: REQUIRED</li>
+<li><span class="check" aria-hidden="true"></span> <strong>Schedule a 30-minute readiness checkpoint before Dayforce discount pricing closes.</strong> Owner: <strong><em>_</em></strong>_  Due: Aug 18  Status: PROPOSED</li>
+</ul>
+<div class="pagebreak"></div>
+
+<h2>August 14 decision sheet</h2>
+<h3>GTMX facts to leave the meeting with</h3>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Official event name and year: <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>____</li>
+<li><span class="check" aria-hidden="true"></span> Event dates and timezone: <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong></li>
+<li><span class="check" aria-hidden="true"></span> City, venue, and hotel: <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>__</li>
+<li><span class="check" aria-hidden="true"></span> Event purpose: employee kickoff / partner summit / expo / other: <strong><em>_</em></strong>______</li>
+<li><span class="check" aria-hidden="true"></span> Align’s role: attendee / sponsor / exhibitor / activation partner: <strong><em>_</em></strong>______</li>
+<li><span class="check" aria-hidden="true"></span> Sponsorship tier and contract owner: <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>____</li>
+<li><span class="check" aria-hidden="true"></span> Booth or activation number, footprint, and included build: <strong><em>_</em></strong><strong><em>_</em></strong>_____</li>
+<li><span class="check" aria-hidden="true"></span> Included passes and additional-pass rules: <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>_____</li>
+<li><span class="check" aria-hidden="true"></span> Sponsor portal and current manual received: yes / no</li>
+<li><span class="check" aria-hidden="true"></span> Vendor, decorator, AV, electrical, freight, and lead-capture contacts: <strong><em>_</em></strong>___</li>
+<li><span class="check" aria-hidden="true"></span> Discount-order deadline: <strong><em>_</em></strong><strong><em>_</em></strong>____</li>
+<li><span class="check" aria-hidden="true"></span> Artwork deadline and template: <strong><em>_</em></strong><strong><em>_</em></strong>____</li>
+<li><span class="check" aria-hidden="true"></span> Shipping deadline and address: <strong><em>_</em></strong><strong><em>_</em></strong>____</li>
+<li><span class="check" aria-hidden="true"></span> Registration and hotel deadline: <strong><em>_</em></strong><strong><em>_</em></strong>____</li>
+<li><span class="check" aria-hidden="true"></span> Cancellation dates and penalties: <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>______</li>
+<li><span class="check" aria-hidden="true"></span> Budget committed: <strong><em>_</em></strong><strong><em>  Budget ceiling: </em></strong><strong><em>_</em></strong>  Approver: <strong><em>_</em></strong>___</li>
+<li><span class="check" aria-hidden="true"></span> Primary audience: UKG leaders / sellers / alliance team / partners / prospects</li>
+<li><span class="check" aria-hidden="true"></span> Primary outcome and target number: <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>_____</li>
+<li><span class="check" aria-hidden="true"></span> Current sponsor kit stored at: <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>___</li>
+</ul>
+<h3>Dayforce decisions to leave the meeting with</h3>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Accountable event owner: <strong><em>_</em></strong><strong><em>_</em></strong>____</li>
+<li><span class="check" aria-hidden="true"></span> Budget approver and ceiling: <strong><em>_</em></strong><strong><em>_</em></strong>____</li>
+<li><span class="check" aria-hidden="true"></span> Portal access confirmed: yes / no</li>
+<li><span class="check" aria-hidden="true"></span> Buy $500 full printed SEG backwall: yes / no</li>
+<li><span class="check" aria-hidden="true"></span> Add monitor: no / 32 in / 42 in</li>
+<li><span class="check" aria-hidden="true"></span> Add media player or use local playback device: <strong><em>_</em></strong><strong><em>_</em></strong>____</li>
+<li><span class="check" aria-hidden="true"></span> Furniture: none / slim pedestal / reception cabinet / other: <strong><em>_</em></strong><strong><em>_</em></strong>__</li>
+<li><span class="check" aria-hidden="true"></span> Exact portal dieline downloaded and confirmed: yes / no</li>
+<li><span class="check" aria-hidden="true"></span> Three staff-pass holders: <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong></li>
+<li><span class="check" aria-hidden="true"></span> Two prospect-pass candidates: <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>___</li>
+<li><span class="check" aria-hidden="true"></span> Passport to Prizes participation and giveaway: <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Booth promise or headline: <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>______</li>
+<li><span class="check" aria-hidden="true"></span> Demo or conversation path: <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>______</li>
+<li><span class="check" aria-hidden="true"></span> Lead follow-up owner and CRM campaign: <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>_</li>
+</ul>
+<div class="pagebreak"></div>
+
+<h2>Master calendar</h2>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Event</th>
+<th>Required action</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aug 14</td>
+<td>Both</td>
+<td>Assign owners, budget approver, objectives, and decision rights</td>
+<td>PROPOSED</td>
+</tr>
+<tr>
+<td>Aug 14</td>
+<td>GTMX</td>
+<td>Obtain sponsor kit/manual and record every current deadline</td>
+<td>PROPOSED</td>
+</tr>
+<tr>
+<td>Aug 14</td>
+<td>Dayforce</td>
+<td>Confirm portal access and booth configuration</td>
+<td>PROPOSED</td>
+</tr>
+<tr>
+<td>Aug 17</td>
+<td>Both</td>
+<td>Separate folders, asset registers, URLs, QR codes, and CRM campaign names</td>
+<td>PROPOSED</td>
+</tr>
+<tr>
+<td>Aug 18</td>
+<td>Dayforce</td>
+<td>Final internal quote and order review</td>
+<td>PROPOSED</td>
+</tr>
+<tr>
+<td><strong>Aug 21</strong></td>
+<td><strong>Dayforce</strong></td>
+<td><strong>Discount-pricing deadline for furniture, AV, and Elevation3D orders</strong></td>
+<td><strong>CONFIRMED</strong></td>
+</tr>
+<tr>
+<td>Aug 24</td>
+<td>Dayforce</td>
+<td>Approved message hierarchy and backwall content</td>
+<td>PROPOSED</td>
+</tr>
+<tr>
+<td>Aug 28</td>
+<td>Dayforce</td>
+<td>Final design review and preflight complete</td>
+<td>PROPOSED</td>
+</tr>
+<tr>
+<td><strong>Sep 1</strong></td>
+<td><strong>Dayforce</strong></td>
+<td><strong>Rental exhibit and graphic cancellations become 100 percent chargeable after this date</strong></td>
+<td><strong>CONFIRMED</strong></td>
+</tr>
+<tr>
+<td><strong>Sep 4</strong></td>
+<td><strong>Dayforce</strong></td>
+<td><strong>All booth graphics due; late files incur 30 percent rush fee</strong></td>
+<td><strong>CONFIRMED</strong></td>
+</tr>
+<tr>
+<td><strong>Sep 10</strong></td>
+<td><strong>Dayforce</strong></td>
+<td><strong>Last date to guarantee utilities and cabling can be concealed under carpet</strong></td>
+<td><strong>CONFIRMED</strong></td>
+</tr>
+<tr>
+<td><strong>Sep 18</strong></td>
+<td><strong>Dayforce</strong></td>
+<td><strong>Standard-pricing deadline</strong></td>
+<td><strong>CONFIRMED</strong></td>
+</tr>
+<tr>
+<td><strong>Sep 19</strong></td>
+<td><strong>Dayforce</strong></td>
+<td><strong>Late pricing begins</strong></td>
+<td><strong>CONFIRMED</strong></td>
+</tr>
+<tr>
+<td><strong>Sep 26</strong></td>
+<td><strong>Dayforce</strong></td>
+<td><strong>Furniture cancellations become 100 percent chargeable; shipping cancellations become nonrefundable</strong></td>
+<td><strong>CONFIRMED</strong></td>
+</tr>
+<tr>
+<td><strong>Sep 28</strong></td>
+<td><strong>Dayforce</strong></td>
+<td><strong>Conservative freight must-arrive date until Elevation3D resolves the manual conflict</strong></td>
+<td><strong>CONFIRMED WORKING DATE</strong></td>
+</tr>
+<tr>
+<td>End of Sep</td>
+<td>Dayforce</td>
+<td>Hotel reservations entered during registration transmitted to Wynn</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td><strong>Oct 23</strong></td>
+<td><strong>Dayforce</strong></td>
+<td><strong>Last date for full registration/hotel refund or registration transfer to 2027</strong></td>
+<td><strong>CONFIRMED</strong></td>
+</tr>
+<tr>
+<td>Oct 26 to 29</td>
+<td>Dayforce</td>
+<td>Conference at Wynn Las Vegas</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>Oct 27 to 29</td>
+<td>Dayforce</td>
+<td>Exploration Expo booth operation</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>TBD</td>
+<td>GTMX</td>
+<td>Insert every date from the current sponsor kit immediately after receipt</td>
+<td>VERIFY</td>
+</tr>
+</tbody>
+</table>
+<div class="pagebreak"></div>
+
+<h2>Dayforce Discover: ownership and budget</h2>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Assign executive sponsor. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> Assign accountable event owner. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> Assign budget approver. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> Assign creative and production owner. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> Assign registration and travel owner. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> Assign onsite booth lead. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> Assign lead operations and CRM owner. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> Confirm total sponsorship commitment and what has already been paid. Owner: <strong><em>_</em></strong>_  Due: Aug 17</li>
+<li><span class="check" aria-hidden="true"></span> Build a Dayforce-only budget with sponsorship, travel, hotel, booth upgrades, AV, furniture, freight, labor, collateral, giveaway, insurance, and contingency. Owner: <strong><em>_</em></strong>_  Due: Aug 18</li>
+<li><span class="check" aria-hidden="true"></span> Obtain written approval before any paid upgrade, order, shipment, or vendor commitment. Owner: <strong><em>_</em></strong>_</li>
+</ul>
+<h2>Dayforce Discover: package and portal</h2>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Confirm Silver sponsorship contract and 5 ft x 10 ft booth assignment. Owner: <strong><em>_</em></strong>_  Status: CONFIRMED IN CURRENT PLAN; VERIFY IN PORTAL</li>
+<li><span class="check" aria-hidden="true"></span> Confirm Exhibitor Resource Center access and reset only through the approved account workflow if needed. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> Download the current booth drawing, SEG dieline, order forms, colored freight label, vendor rules, and webinar recording. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> Confirm the included electrical drop, wireless internet, lead-retrieval device, mobile-app listing, webpage listing, Passport to Prizes participation, attendee list terms, three staff passes, and up to two prospect passes. Owner: <strong><em>_</em></strong>_  Due: Aug 17</li>
+<li><span class="check" aria-hidden="true"></span> Confirm whether any sponsor deliverables have already been submitted in the portal and preserve a readback. Owner: <strong><em>_</em></strong>_  Due: Aug 17</li>
+<li><span class="check" aria-hidden="true"></span> Create one source-of-truth tracker containing item, owner, due date, portal status, approval, filename, and final readback. Owner: <strong><em>_</em></strong>_  Due: Aug 17</li>
+</ul>
+<h2>Dayforce Discover: booth configuration and paid orders</h2>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Approve the printed SEG backwall or use the standard logo-only wall. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> If approved, order the $500 printed SEG backwall by Aug 21. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Add a 32 in monitor only if a concise, silent-friendly loop will be ready. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> If using a monitor, confirm mount, media player or local playback device, HDMI cabling, union installation, power, and placement. Owner: <strong><em>_</em></strong>_  Due: Aug 18</li>
+<li><span class="check" aria-hidden="true"></span> Avoid lounge furniture in the 5 ft-wide footprint. If a surface is required, select one slim pedestal or small reception cabinet. Owner: <strong><em>_</em></strong>_  Due: Aug 18</li>
+<li><span class="check" aria-hidden="true"></span> Keep all properties, signage, demos, and people inside the booth line. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Plan zero storage behind the backwall; it is prohibited. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Place all furniture, AV, and other paid orders by Aug 21 for discount pricing. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Preserve approved quotes, order confirmations, cancellation terms, and final portal readback. Owner: <strong><em>_</em></strong>_</li>
+</ul>
+<div class="pagebreak"></div>
+
+<h2>Dayforce Discover: required brand and listing assets</h2>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Primary Align HCM vector logo. Owner: <strong><em>_</em></strong>_  Due: Aug 18</li>
+<li><span class="check" aria-hidden="true"></span> Reversed or one-color logo variation. Owner: <strong><em>_</em></strong>_  Due: Aug 18</li>
+<li><span class="check" aria-hidden="true"></span> Company URL. Owner: <strong><em>_</em></strong>_  Due: Aug 18</li>
+<li><span class="check" aria-hidden="true"></span> Exactly 50 words of approved company profile copy. Owner: <strong><em>_</em></strong>_  Due: Aug 18</li>
+<li><span class="check" aria-hidden="true"></span> Mobile-app destination URL with event-specific UTM parameters. Owner: <strong><em>_</em></strong>_  Due: Aug 18</li>
+<li><span class="check" aria-hidden="true"></span> Sponsor webpage logo, profile, and URL submitted and read back. Owner: <strong><em>_</em></strong>_  Due: portal deadline</li>
+<li><span class="check" aria-hidden="true"></span> Three staff-pass names and registration details. Owner: <strong><em>_</em></strong>_  Due: Aug 21 proposed</li>
+<li><span class="check" aria-hidden="true"></span> Up to two prospect-pass names and Dayforce approval request. Owner: <strong><em>_</em></strong>_  Due: Aug 21 proposed</li>
+<li><span class="check" aria-hidden="true"></span> Passport to Prizes participation plan and giveaway. Owner: <strong><em>_</em></strong>_  Due: Aug 21 proposed</li>
+<li><span class="check" aria-hidden="true"></span> Dayforce-only one-sheet or landing page, QR code, and contact path. Owner: <strong><em>_</em></strong>_  Due: Sep 11 proposed</li>
+<li><span class="check" aria-hidden="true"></span> Dayforce-only talk track, qualification questions, objection responses, and meeting-booking CTA. Owner: <strong><em>_</em></strong>_  Due: Sep 25 proposed</li>
+</ul>
+<h2>Dayforce Discover: backwall artwork</h2>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Use the current portal dieline as final authority before design release. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Resolve the manual’s rounded 8 ft x 4 ft description against the exact 58 9/16 in x 95 3/16 in SEG face. Owner: <strong><em>_</em></strong>_  Due: Aug 17</li>
+<li><span class="check" aria-hidden="true"></span> Approve one headline, one proof point, one visual system, and one CTA for the narrow booth. Owner: <strong><em>_</em></strong>_  Due: Aug 24</li>
+<li><span class="check" aria-hidden="true"></span> Add at least 0.5 in bleed on every side. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Build at final size or proportionally at 50, 25, or 10 percent. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Use CMYK or specified PMS colors; do not release RGB or hexadecimal-color artwork. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Outline text or package fonts; include and flatten linked images. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Meet the required effective resolution: final-size raster 80 to 100 dpi; fabric 75 to 100 dpi; half-scale raster 160 to 200 dpi; quarter-scale raster 320 to 400 dpi. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Export an accepted high-resolution production format with bleed and crop marks. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Conduct content, brand, dimensions, bleed, color, font, image, and filename preflight. Owner: <strong><em>_</em></strong>_  Due: Aug 28</li>
+<li><span class="check" aria-hidden="true"></span> Obtain final approval and submit no later than Sep 4. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Save the submitted file, portal confirmation, timestamp, and screenshot readback. Owner: <strong><em>_</em></strong>_</li>
+</ul>
+<h2>Dayforce Discover: optional monitor package</h2>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Confirm official codec, resolution, aspect ratio, audio, loop behavior, and delivery method in the portal. Owner: <strong><em>_</em></strong>_  Due: Aug 18</li>
+<li><span class="check" aria-hidden="true"></span> Produce one short 16:9 silent-friendly demo loop. Owner: <strong><em>_</em></strong>_  Due: Sep 11 proposed</li>
+<li><span class="check" aria-hidden="true"></span> Produce one static fallback screen. Owner: <strong><em>_</em></strong>_  Due: Sep 11 proposed</li>
+<li><span class="check" aria-hidden="true"></span> Confirm HDMI-compatible playback. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Load a backup copy on local media and a second approved device. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Test the exact playback chain without internet. Owner: <strong><em>_</em></strong>_  Due: Oct 16 proposed</li>
+<li><span class="check" aria-hidden="true"></span> Record who brings, installs, starts, monitors, and removes the device. Owner: <strong><em>_</em></strong>_</li>
+</ul>
+<div class="pagebreak"></div>
+
+<h2>Dayforce Discover: registration, travel, and staffing</h2>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Register the three included staff-pass holders. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Submit prospect-pass candidates for approval, if used. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Determine whether additional passes are needed and obtain approval before purchase. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Enter hotel reservations during registration and verify Wynn confirmation. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Book travel only after attendee list and event dates are approved. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Create a booth-coverage schedule for every expo hour, with at least two people during peak periods if staffing permits. Owner: <strong><em>_</em></strong>_  Due: Oct 2 proposed</li>
+<li><span class="check" aria-hidden="true"></span> Assign move-in, opening, daily reset, inventory, lead-device, and move-out roles. Owner: <strong><em>_</em></strong>_  Due: Oct 2 proposed</li>
+<li><span class="check" aria-hidden="true"></span> Prepare a staff briefing with goals, talk track, lead criteria, meeting list, schedule, dress, venue logistics, escalation contacts, and follow-up promise. Owner: <strong><em>_</em></strong>_  Due: Oct 16 proposed</li>
+<li><span class="check" aria-hidden="true"></span> Reconfirm registration and hotel cancellation options before Oct 23. Owner: <strong><em>_</em></strong>_</li>
+</ul>
+<h2>Dayforce Discover: freight and onsite operations</h2>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Ask Elevation3D to resolve the conflicting freight windows and confirm the current colored label in writing. Owner: <strong><em>_</em></strong>_  Due: Aug 17</li>
+<li><span class="check" aria-hidden="true"></span> Until resolved, use Sep 28 as the conservative freight must-arrive date. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Do not ship advance freight or parcels to Wynn. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Use the current colored advance-shipment label on every package. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Create a package-level freight inventory with dimensions, weight, value, tracking, label, and return plan. Owner: <strong><em>_</em></strong>_  Due: Sep 11 proposed</li>
+<li><span class="check" aria-hidden="true"></span> Insure valuable property from departure through return. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Confirm material handling, union labor, monitor installation, electrical work, setup, and dismantling requirements. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Do not plan carts, dollies, loading dock use, freight-door access, or self-installed electrical/monitor work. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Confirm the pack-out and return-shipping plan before freight leaves. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Move in Oct 27, 7:30 a.m. to 1:00 p.m. PT. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Staff the expo Oct 27, 2:30 to 6:30 p.m.; Oct 28, 7:00 a.m. to 4:00 p.m.; and Oct 29, 7:30 a.m. to 1:30 p.m. PT. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Move out Oct 29, 1:30 to 4:00 p.m.; remove all materials by 5:00 p.m. PT. Owner: <strong><em>_</em></strong>_</li>
+</ul>
+<div class="pagebreak"></div>
+
+<h2>GTMX: discovery and source-of-truth checklist</h2>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Confirm GTMX is the 2026 UKG Go-To-Market Experience for this assignment. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> Obtain the current invitation thread, sponsor agreement, sponsor kit, exhibitor manual, floor plan, portal, and registration instructions. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> Record the exact event year, dates, city, venue, timezone, and hotel. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> Confirm whether this is a UKG employee kickoff, partner summit, expo, or combined program. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> Confirm Align’s role, tier, booth or activation number, footprint, included infrastructure, passes, lead capture, attendee data, listing benefits, speaking opportunities, and hospitality access. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> Extract every deadline, fee change, cancellation term, shipping rule, and approval requirement into the master calendar. Owner: <strong><em>_</em></strong>_  Due: same day kit is received</li>
+<li><span class="check" aria-hidden="true"></span> Identify the UKG event owner, partner manager, decorator, AV, electrical, freight, registration, hotel, and lead-retrieval contacts. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Create a GTMX-only source folder and mark the current manual as the controlling version. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Block production and paid orders until the current kit, tier, dimensions, and templates are confirmed. Owner: <strong><em>_</em></strong>_</li>
+</ul>
+<h2>GTMX: strategy and audience</h2>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Choose the primary objective: strengthen UKG alliance, build seller relationships, secure partner-sourced pipeline, meet target accounts, demonstrate delivery capability, recruit talent, or another named outcome. Owner: <strong><em>_</em></strong>_  Due: Aug 14</li>
+<li><span class="check" aria-hidden="true"></span> Set numeric targets for meetings, priority conversations, qualified leads, partner introductions, and follow-up opportunities. Owner: <strong><em>_</em></strong>_  Due: Aug 17</li>
+<li><span class="check" aria-hidden="true"></span> Define the priority audience: UKG executives, alliance leadership, sellers, solution consultants, customer success, product leaders, partners, customers, or prospects. Owner: <strong><em>_</em></strong>_  Due: Aug 17</li>
+<li><span class="check" aria-hidden="true"></span> Build a named target-account and stakeholder list using only approved current data. Owner: <strong><em>_</em></strong>_  Due: three weeks before event</li>
+<li><span class="check" aria-hidden="true"></span> Assign executive-to-executive, alliance, sales, technical, and recruiting coverage. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Define the one sentence Align value proposition for UKG audiences. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Select proof points and case studies that are specifically supported for UKG. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Create event-specific qualification questions and a clear next-step offer. Owner: <strong><em>_</em></strong>_</li>
+</ul>
+<h2>GTMX: sponsorship, booth, and activation</h2>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Confirm sponsorship price, paid status, budget ceiling, invoice owner, and cancellation terms. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Confirm included booth or activation build, furniture, power, internet, AV, signage, labor, storage, lead retrieval, and passes. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Decide whether Align needs a booth, sponsored activation, hosted meeting area, demo station, giveaway, or attendance-only plan. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Approve one experience concept based on the actual footprint and event objective. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Get current artwork templates and technical specifications before design. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Build an event-only budget covering sponsorship, build, AV, power, labor, freight, collateral, giveaway, travel, hotel, and contingency. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Obtain written approval before ordering, shipping, or committing spend. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Save every order confirmation and portal readback. Owner: <strong><em>_</em></strong>_</li>
+</ul>
+<div class="pagebreak"></div>
+
+<h2>GTMX: content and asset package</h2>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Approved Align HCM vector logo and alternate color version. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Approved company profile at the exact required word count. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> GTMX-specific destination page and UTM-tagged URL. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> GTMX-specific QR code tested on iOS and Android. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> UKG practice one-sheet or concise leave-behind. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> UKG-specific capabilities, delivery model, implementation proof, and supported case studies. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Short demo or silent-friendly loop only if the event configuration supports it. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Static fallback screen and offline backup. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Booth or activation graphics built from the current template. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Staff talk track, qualification questions, objection handling, meeting-booking CTA, and escalation answers. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Target meeting brief with person, company, role, relationship, objective, owner, and next step. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Giveaway or activation concept reviewed for event rules, shipping, brand fit, and lead value. Owner: <strong><em>_</em></strong>_</li>
+</ul>
+<h2>GTMX: registration, travel, staffing, and operations</h2>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Select attendees based on the event objective and included-pass limits. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Register each attendee and verify confirmation. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Book hotel through the approved block and travel after approval. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Create onsite coverage by session, booth or activation, meetings, hosted functions, and daily reset. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Confirm move-in, show hours, move-out, freight, labor, storage, and venue restrictions. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Build a packing list, shipment inventory, insurance plan, tracking sheet, and return plan. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Test power, internet, demo, playback, forms, QR codes, and lead capture before departure and onsite. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Prepare a printed and offline contact/escalation sheet. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Conduct a full staff briefing one week before the event. Owner: <strong><em>_</em></strong>_</li>
+</ul>
+<div class="pagebreak"></div>
+
+<h2>Separate-event controls</h2>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Use separate UKG and Dayforce folders, briefs, working files, proof sources, approvals, and final assets. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Use separate landing pages, UTMs, QR codes, forms, CRM campaigns, lists, lifecycle rules, dashboards, and follow-up sequences. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Do not place Dayforce logos, product claims, customer proof, or links in GTMX materials. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Do not place UKG logos, product claims, customer proof, or links in Dayforce materials. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Confirm vendor trademark and logo permissions for each event. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Use one shared asset register to identify what can be reused safely, such as Align’s own logo, approved headshots, and neutral corporate boilerplate. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Review booth and staff messaging for conflicts before production. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Maintain separate budget codes and final cost reports. Owner: <strong><em>_</em></strong>_</li>
+</ul>
+<h2>Lead capture, CRM, and follow-up for both events</h2>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Define a lead as scanned, conversation held, qualified, meeting booked, opportunity identified, partner introduction, or another explicit stage. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Confirm consent, privacy, and permitted use of attendee or lead lists. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Configure separate required fields for event, source, vendor ecosystem, persona, topic, qualification, owner, next action, and due date. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Test lead-retrieval export and CRM import before the event. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Assign every priority target and planned meeting to a named owner. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Log hot opportunities and committed next steps the same day. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Send personal priority follow-up within 24 hours. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Complete remaining qualified follow-up within three business days. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Reconcile scans, notes, meetings, and CRM records within five business days. Owner: <strong><em>_</em></strong>_</li>
+<li><span class="check" aria-hidden="true"></span> Report attendance, meetings, qualified leads, opportunities, partner introductions, follow-up completion, spend, and lessons learned. Owner: <strong><em>_</em></strong>_  Due: ten business days after event</li>
+<li><span class="check" aria-hidden="true"></span> Hold a 30-minute retrospective and capture reusable improvements separately for UKG and Dayforce. Owner: <strong><em>_</em></strong>_</li>
+</ul>
+<div class="pagebreak"></div>
+
+<h2>Final readiness gate</h2>
+<p>Do not mark an event ready until every applicable item is checked.</p>
+<ul>
+<li><span class="check" aria-hidden="true"></span> Current contract, sponsor kit, portal, and event manual are stored and versioned.</li>
+<li><span class="check" aria-hidden="true"></span> Dates, venue, footprint, included items, restrictions, and vendor contacts are confirmed.</li>
+<li><span class="check" aria-hidden="true"></span> Owners, approver, budget, objectives, and numeric targets are named.</li>
+<li><span class="check" aria-hidden="true"></span> Registration, travel, hotel, booth or activation, and staffing are confirmed.</li>
+<li><span class="check" aria-hidden="true"></span> Every production asset has factual, brand, technical, and owner approval.</li>
+<li><span class="check" aria-hidden="true"></span> Every order and submission has a readback or confirmation.</li>
+<li><span class="check" aria-hidden="true"></span> Shipping, insurance, labor, install, daily operation, teardown, and return logistics are assigned.</li>
+<li><span class="check" aria-hidden="true"></span> Lead capture, CRM routing, consent, meetings, and follow-up are tested.</li>
+<li><span class="check" aria-hidden="true"></span> Staff have the schedule, talk track, targets, contact sheet, and escalation path.</li>
+<li><span class="check" aria-hidden="true"></span> UKG and Dayforce materials have passed the separate-event conflict check.</li>
+</ul>
+<h2>Sources and limitations</h2>
+<ol>
+<li>User-provided Outlook screenshot titled “GTMX and DF discover planning,” supplied August 13, 2026. The meeting link and access details are intentionally omitted from this checklist.</li>
+<li>Dayforce Discover 2026 Exhibitor Manual, forwarded July 11, 2026; canonical attachment locator: <code>gmail-attachment:19f4eb1cfa931bdb:Dayforce-Discover-2026-Exhibitor-Manual.pdf</code>.</li>
+<li>Align HCM Dayforce Discover 2026 Silver Booth Plan, prepared July 27, 2026 from the official manual and current official Dayforce event pages.</li>
+<li>Official Dayforce Discover 2026 event site: <code>https://discover.dayforce.com/event/0cb29281-b552-4908-bf00-79f77be6dfa3/home</code>.</li>
+<li>UKG FY25 Global Impact Report, which identifies GTMX as UKG’s annual Go-To-Market Experience for employees and partners.</li>
+<li>Public recap of UKG GTMX 2025, used only to identify the event’s operating model. Its 2025 dates, venue, booth examples, and activation details are not treated as current 2026 logistics.</li>
+</ol>
+<p><strong>Limitation:</strong> No current 2026 GTMX sponsor kit, exhibitor manual, contract, date, venue, tier, footprint, or vendor deadline was available in the supplied invite, connected Gmail, visible Slack search, local Align records, Google Calendar, or public sources reviewed on August 13, 2026. Every GTMX item that depends on those facts is explicitly marked for confirmation.</p>
+  </main>
+</body>
+</html>

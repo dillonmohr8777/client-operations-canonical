@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "handoffId": "fagan-meta-shutdown-in-progress-20260806",
+  "workItemId": "wi-20260806-0001",
+  "expectedWorkItemVersion": 1,
+  "clientId": "fagan-painting",
+  "workerRole": "read-only-verifier",
+  "status": "partially_completed",
+  "startedAt": "2026-08-06T16:28:00Z",
+  "finishedAt": "2026-08-06T16:40:00Z",
+  "summary": "Started the residual Fagan Meta billing and shutdown verification. Exact active client route confirmed, roster exclusion confirmed, Gmail billing notices inspected, and live Ads Manager plus billing-hub readback captured without changing account state.",
+  "artifacts": [
+    "clients/fagan-painting/evidence/2026-08-06-meta-billing-shutdown-verification.json"
+  ],
+  "evidence": [
+    "clients/fagan-painting/evidence/2026-08-06-meta-billing-shutdown-verification.json",
+    "access-broker:fagan-painting/meta-ads-production"
+  ],
+  "verification": [
+    "Client route fagan-painting resolves exactly once and is active.",
+    "Queue revision 382 and work-item version 1 were current at handoff assembly.",
+    "Paid-media roster contains zero Fagan lanes.",
+    "No provider mutation, payment, publish, or send action was attempted."
+  ],
+  "assumptions": [],
+  "risks": [
+    "Execution-graph creation remains blocked because the work-item source locator uses an unsupported gmail message format."
+  ],
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false,
+  "approvalGate": "none",
+  "proposedTransition": "in_progress",
+  "canonicalWriteAttempted": false,
+  "externalActionAttempted": false
+}

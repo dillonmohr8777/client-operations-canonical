@@ -1,0 +1,25 @@
+{
+  "reviewedAt": "2026-09-05T00:38:00Z",
+  "artifact": "output/motion-proof/momentum-digital-design-motion-proof.pptx",
+  "sha256": "6A23617422672C0CD4F1720B22F6806EC5BBCFC648AC35EDFDBA0F6A190909A4",
+  "method": "Every slide exported through installed hidden PowerPoint COM helper at 1600x900, then inspected using view_image. One visual fix batch and one confirmation of the changed opener.",
+  "slidesInspected": [1, 2, 3, 4, 5, 6, 7, 8],
+  "visualFix": "Shortened opener subtitle to avoid a single-word second line.",
+  "remainingVisualFindings": [],
+  "fitWarnings": 0,
+  "contrastRatios": {
+    "originalBlueOnWhite": 4.23,
+    "smallTextBlueDeepOnWhite": 7.95,
+    "smallTextBlueLiftOnNavy": 6.87,
+    "footerSlateOnWhite": 5.8,
+    "footerOnDarkSoftOnNavy": 8.44
+  },
+  "semanticException": "Existing darker/lighter companion tokens replace low-contrast small blue text and static furniture only. The original brand JSON and logo artwork are unchanged.",
+  "implementationWorkaround": "Native table is added last on slide 7 to avoid installed PptxGenJS assigning its ID to the subsequent footer. All slide shape IDs are now unique and no footer target appears in the native animation timeline.",
+  "motionVerification": "PowerPoint COM opened the final file without a window and exposed 82 native effects in three types. Native timing XML confirms a maximum 1215 ms entrance envelope, transitions on every slide, 13 static furniture shapes and 8 source-note blocks.",
+  "limitations": [
+    "PDF and PNG are static review exports; no slide-show playback or MP4 was captured.",
+    "This artifact uses Momentum Digital / Need Momentum identity. It does not replace Momentum 360 corporate identity."
+  ],
+  "resolvedRegression": "The initial idempotence failure was fixed in installed choreograph.py with a bounded transition-removal expression. Two reapplications now preserve every uncompressed package entry byte-for-byte and the repeated deck opens in hidden PowerPoint. See motion-proof-choreographer-fix.json."
+}

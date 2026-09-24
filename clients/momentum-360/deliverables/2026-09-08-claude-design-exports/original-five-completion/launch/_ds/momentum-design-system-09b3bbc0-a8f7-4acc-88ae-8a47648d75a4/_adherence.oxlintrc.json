@@ -1,0 +1,448 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/core/**",
+              "components/editorial/**",
+              "components/forms/**",
+              "components/navigation/**",
+              "components/reading/**",
+              "ui_kits/brand-system/**",
+              "ui_kits/field-notes/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Archivo|Nunito))/i]",
+        "message": "Font not provided by the design system. Available: Archivo, Nunito."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BookCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|summary|series|topic|image|href|alt|onOpen|featured|cta|key|ref|className|style|children)$/]",
+        "message": "<BookCard> doesn't accept that prop. Declared props: title, summary, series, topic, image, href, alt, onOpen, featured, cta."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BookCover'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|deck|series|topic|image|alt|cta|href|key|ref|className|style|children)$/]",
+        "message": "<BookCover> doesn't accept that prop. Declared props: title, deck, series, topic, image, alt, cta, href."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|href|children|icon|disabled|onClick|style|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: variant, href, children, icon, disabled, onClick, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|secondary)$/]",
+        "message": "<Button> variant must be one of 'primary' | 'secondary'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ChapterArt'] > JSXAttribute > JSXIdentifier[name!=/^(?:src|alt|caption|contain|key|ref|className|style|children)$/]",
+        "message": "<ChapterArt> doesn't accept that prop. Declared props: src, alt, caption, contain."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ChapterNav'] > JSXAttribute > JSXIdentifier[name!=/^(?:heading|chapters|activeId|progress|children|key|ref|className|style|children)$/]",
+        "message": "<ChapterNav> doesn't accept that prop. Declared props: heading, chapters, activeId, progress, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Checklist'] > JSXAttribute > JSXIdentifier[name!=/^(?:items|checked|onToggle|status|key|ref|className|style|children)$/]",
+        "message": "<Checklist> doesn't accept that prop. Declared props: items, checked, onToggle, status."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='CitationRef'] > JSXAttribute > JSXIdentifier[name!=/^(?:n|href|key|ref|className|style|children)$/]",
+        "message": "<CitationRef> doesn't accept that prop. Declared props: n, href."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='DiagramSteps'] > JSXAttribute > JSXIdentifier[name!=/^(?:steps|index|onSelect|key|ref|className|style|children)$/]",
+        "message": "<DiagramSteps> doesn't accept that prop. Declared props: steps, index, onSelect."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='EngravingPanel'] > JSXAttribute > JSXIdentifier[name!=/^(?:src|alt|title|children|reverse|key|ref|className|style|children)$/]",
+        "message": "<EngravingPanel> doesn't accept that prop. Declared props: src, alt, title, children, reverse."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ExerciseField'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|name|type|options|rows|required|style|key|ref|className|style|children)$/]",
+        "message": "<ExerciseField> doesn't accept that prop. Declared props: label, name, type, options, rows, required, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ExerciseField'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:text|number|select|textarea)$/]",
+        "message": "<ExerciseField> type must be one of 'text' | 'number' | 'select' | 'textarea'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ExercisePanel'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|intro|fields|submitLabel|output|status|onSubmit|onDownload|key|ref|className|style|children)$/]",
+        "message": "<ExercisePanel> doesn't accept that prop. Declared props: title, intro, fields, submitLabel, output, status, onSubmit, onDownload."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Notice'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|style|key|ref|className|style|children)$/]",
+        "message": "<Notice> doesn't accept that prop. Declared props: children, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='PullQuote'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|cite|key|ref|className|style|children)$/]",
+        "message": "<PullQuote> doesn't accept that prop. Declared props: children, cite."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ReaderTools'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|intro|children|key|ref|className|style|children)$/]",
+        "message": "<ReaderTools> doesn't accept that prop. Declared props: title, intro, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ReadingProgress'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|label|key|ref|className|style|children)$/]",
+        "message": "<ReadingProgress> doesn't accept that prop. Declared props: value, label."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SearchField'] > JSXAttribute > JSXIdentifier[name!=/^(?:placeholder|value|onChange|compact|style|key|ref|className|style|children)$/]",
+        "message": "<SearchField> doesn't accept that prop. Declared props: placeholder, value, onChange, compact, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SegmentedTabs'] > JSXAttribute > JSXIdentifier[name!=/^(?:items|value|onChange|label|style|key|ref|className|style|children)$/]",
+        "message": "<SegmentedTabs> doesn't accept that prop. Declared props: items, value, onChange, label, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SiteFooter'] > JSXAttribute > JSXIdentifier[name!=/^(?:items|key|ref|className|style|children)$/]",
+        "message": "<SiteFooter> doesn't accept that prop. Declared props: items."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SourceDisclosure'] > JSXAttribute > JSXIdentifier[name!=/^(?:summary|children|id|open|key|ref|className|style|children)$/]",
+        "message": "<SourceDisclosure> doesn't accept that prop. Declared props: summary, children, id, open."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Swatch'] > JSXAttribute > JSXIdentifier[name!=/^(?:name|hex|role|color|style|key|ref|className|style|children)$/]",
+        "message": "<Swatch> doesn't accept that prop. Declared props: name, hex, role, color, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TextButton'] > JSXAttribute > JSXIdentifier[name!=/^(?:pressed|onToggle|children|style|key|ref|className|style|children)$/]",
+        "message": "<TextButton> doesn't accept that prop. Declared props: pressed, onToggle, children, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TopBar'] > JSXAttribute > JSXIdentifier[name!=/^(?:logoSrc|tagline|showLogo|links|paused|onToggleMotion|key|ref|className|style|children)$/]",
+        "message": "<TopBar> doesn't accept that prop. Declared props: logoSrc, tagline, showLogo, links, paused, onToggleMotion."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "BookCard": {
+        "replaces": []
+      },
+      "BookCover": {
+        "replaces": []
+      },
+      "Button": {
+        "replaces": []
+      },
+      "ChapterArt": {
+        "replaces": []
+      },
+      "ChapterNav": {
+        "replaces": []
+      },
+      "Checklist": {
+        "replaces": []
+      },
+      "CitationRef": {
+        "replaces": []
+      },
+      "DiagramSteps": {
+        "replaces": []
+      },
+      "EngravingPanel": {
+        "replaces": []
+      },
+      "ExerciseField": {
+        "replaces": []
+      },
+      "ExercisePanel": {
+        "replaces": []
+      },
+      "Notice": {
+        "replaces": []
+      },
+      "PullQuote": {
+        "replaces": []
+      },
+      "ReaderTools": {
+        "replaces": []
+      },
+      "ReadingProgress": {
+        "replaces": []
+      },
+      "SearchField": {
+        "replaces": []
+      },
+      "SegmentedTabs": {
+        "replaces": []
+      },
+      "SiteFooter": {
+        "replaces": []
+      },
+      "SourceDisclosure": {
+        "replaces": []
+      },
+      "Swatch": {
+        "replaces": []
+      },
+      "TextButton": {
+        "replaces": []
+      },
+      "TopBar": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--action-primary-bg",
+      "--action-primary-bg-hover",
+      "--action-primary-fg",
+      "--action-secondary-border",
+      "--action-secondary-fg",
+      "--blue",
+      "--body",
+      "--border-hairline",
+      "--border-hairline-dark",
+      "--caret",
+      "--container-editorial",
+      "--contents-col",
+      "--contents-col-md",
+      "--control-rest-bg",
+      "--control-selected-bg",
+      "--control-selected-fg",
+      "--display",
+      "--dur-identity",
+      "--dur-state",
+      "--dur-study",
+      "--ease",
+      "--focus",
+      "--focus-offset",
+      "--focus-ring",
+      "--gold",
+      "--gold-hover",
+      "--ink",
+      "--leading-body",
+      "--leading-control",
+      "--leading-display",
+      "--leading-note",
+      "--leading-reading",
+      "--leading-reading-mobile",
+      "--lift-hover",
+      "--line",
+      "--line-dark",
+      "--measure-body",
+      "--measure-cover-deck",
+      "--measure-headline",
+      "--measure-list",
+      "--muted",
+      "--navy",
+      "--night",
+      "--pale",
+      "--paper",
+      "--paper-dim",
+      "--progress",
+      "--radius",
+      "--radius-code",
+      "--radius-control",
+      "--radius-nav",
+      "--radius-pill",
+      "--radius-surface",
+      "--reader-max",
+      "--reading-gap",
+      "--reading-gap-md",
+      "--size-body",
+      "--size-brand-display",
+      "--size-card-title",
+      "--size-cover-title",
+      "--size-h2",
+      "--size-headline",
+      "--size-hero",
+      "--size-label",
+      "--size-micro",
+      "--size-note",
+      "--size-reading",
+      "--size-reading-mobile",
+      "--size-subtitle",
+      "--size-support",
+      "--size-title",
+      "--space-compact",
+      "--space-control",
+      "--space-detail",
+      "--space-grid",
+      "--space-inset",
+      "--space-panel",
+      "--space-section",
+      "--stagger-assembly",
+      "--state-rule",
+      "--surface-card",
+      "--surface-emphasis",
+      "--surface-identity",
+      "--surface-image-field",
+      "--surface-page",
+      "--surface-reading-field",
+      "--surface-tool",
+      "--text-body",
+      "--text-heading",
+      "--text-link",
+      "--text-meta-accent",
+      "--text-meta-accent-dark-field",
+      "--text-reversed",
+      "--text-reversed-dim",
+      "--text-secondary",
+      "--tool-inset",
+      "--topbar-h",
+      "--topbar-h-sm",
+      "--tracking-display",
+      "--tracking-meta",
+      "--tracking-tagline",
+      "--weight-body",
+      "--weight-nav",
+      "--weight-strong",
+      "--wrap-gutter",
+      "--wrap-gutter-md",
+      "--wrap-gutter-sm",
+      "--wrap-max"
+    ],
+    "tokenKinds": {
+      "--night": "color",
+      "--navy": "color",
+      "--blue": "color",
+      "--gold": "color",
+      "--paper": "color",
+      "--pale": "color",
+      "--ink": "color",
+      "--muted": "color",
+      "--line": "color",
+      "--paper-dim": "color",
+      "--gold-hover": "color",
+      "--line-dark": "color",
+      "--display": "font",
+      "--body": "font",
+      "--size-hero": "spacing",
+      "--size-h2": "spacing",
+      "--size-cover-title": "spacing",
+      "--size-headline": "spacing",
+      "--size-card-title": "spacing",
+      "--size-brand-display": "spacing",
+      "--size-title": "spacing",
+      "--size-subtitle": "spacing",
+      "--size-body": "spacing",
+      "--size-reading": "spacing",
+      "--size-reading-mobile": "spacing",
+      "--size-support": "spacing",
+      "--size-label": "spacing",
+      "--size-note": "spacing",
+      "--size-micro": "spacing",
+      "--leading-display": "font",
+      "--leading-body": "font",
+      "--leading-reading": "font",
+      "--leading-reading-mobile": "font",
+      "--leading-note": "font",
+      "--leading-control": "font",
+      "--tracking-display": "font",
+      "--tracking-meta": "font",
+      "--tracking-tagline": "font",
+      "--weight-body": "font",
+      "--weight-nav": "font",
+      "--weight-strong": "font",
+      "--measure-body": "spacing",
+      "--measure-headline": "spacing",
+      "--measure-list": "spacing",
+      "--measure-cover-deck": "spacing",
+      "--space-compact": "spacing",
+      "--space-control": "spacing",
+      "--space-detail": "spacing",
+      "--space-inset": "spacing",
+      "--space-panel": "spacing",
+      "--space-grid": "spacing",
+      "--space-section": "spacing",
+      "--wrap-max": "spacing",
+      "--wrap-gutter": "spacing",
+      "--wrap-gutter-md": "spacing",
+      "--wrap-gutter-sm": "spacing",
+      "--container-editorial": "spacing",
+      "--reader-max": "spacing",
+      "--contents-col": "spacing",
+      "--contents-col-md": "spacing",
+      "--reading-gap": "spacing",
+      "--reading-gap-md": "spacing",
+      "--topbar-h": "spacing",
+      "--topbar-h-sm": "spacing",
+      "--tool-inset": "spacing",
+      "--radius-control": "radius",
+      "--radius": "radius",
+      "--radius-surface": "radius",
+      "--radius-nav": "radius",
+      "--radius-pill": "radius",
+      "--radius-code": "radius",
+      "--ease": "other",
+      "--dur-identity": "other",
+      "--dur-state": "other",
+      "--dur-study": "other",
+      "--stagger-assembly": "other",
+      "--lift-hover": "spacing",
+      "--focus-ring": "color",
+      "--focus-offset": "spacing",
+      "--state-rule": "color",
+      "--surface-page": "color",
+      "--surface-reading-field": "color",
+      "--surface-tool": "color",
+      "--surface-emphasis": "color",
+      "--surface-identity": "color",
+      "--surface-image-field": "color",
+      "--surface-card": "color",
+      "--text-body": "font",
+      "--text-secondary": "font",
+      "--text-reversed": "font",
+      "--text-reversed-dim": "font",
+      "--text-link": "font",
+      "--text-heading": "font",
+      "--text-meta-accent": "font",
+      "--text-meta-accent-dark-field": "font",
+      "--border-hairline": "color",
+      "--border-hairline-dark": "color",
+      "--action-primary-bg": "color",
+      "--action-primary-fg": "color",
+      "--action-primary-bg-hover": "color",
+      "--action-secondary-fg": "color",
+      "--action-secondary-border": "color",
+      "--control-selected-bg": "color",
+      "--control-selected-fg": "color",
+      "--control-rest-bg": "color",
+      "--focus": "color",
+      "--caret": "color",
+      "--progress": "color"
+    },
+    "fontFamilies": [
+      "Archivo",
+      "Nunito"
+    ]
+  }
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <link rel="stylesheet" href="assets/momentum.css">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      /* Full-frame WebGL plate. Lives inside slide A so the framework's clip
+         window hides it outside 0-5s. Sits behind the type. */
+      #three-layer {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        display: block;
+        z-index: 0;
+      }
+      #a1 {
+        padding: 0;
+      }
+      /* Type column pinned left, object occupies the right of frame. */
+      #a1-type {
+        position: absolute;
+        left: 148px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        max-width: 900px;
+      }
+      #c1 {
+        gap: 44px;
+      }
+      /* Payoff slide rebuilt: lockup larger, lanes as a rule-separated row. */
+      #c1 .lockup {
+        font-size: 148px;
+      }
+      #c1-lanes-rule {
+        display: block;
+        height: 4px;
+        width: 880px;
+        background: var(--m-on-deep-muted);
+        opacity: 0.4;
+        transform-origin: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-kbh8" id="root" data-composition-id="main" data-start="0" data-duration="15" data-width="1920" data-height="1080">
+      <!-- A · deep · type left, dimensional hero right -->
+      <div data-hf-id="hf-fi7b" id="a1" class="slide s-deep clip" data-start="0" data-duration="5" data-track-index="1">
+        <canvas data-hf-id="hf-eogq" id="three-layer"></canvas>
+        <div data-hf-id="hf-vjlg" id="a1-type">
+          <span data-hf-id="hf-pomx" class="d d-lg on-deep a1l">MOMENTUM</span>
+          <span data-hf-id="hf-xvm2" class="d d-lg on-deep a1l">BUILT THE</span>
+          <span data-hf-id="hf-p1x6" class="d d-lg on-deep-brand a1l">MACHINE.</span>
+          <span data-hf-id="hf-8kof" class="rule a1r"></span>
+        </div>
+      </div>
+
+      <!-- B · brand fill · centred punch -->
+      <div data-hf-id="hf-hl7o" id="b1" class="slide s-brand a-center clip" data-start="5" data-duration="5" data-track-index="2">
+        <span data-hf-id="hf-c5wi" class="d d-xl on-brand b1l">NOW WE BUILD</span>
+        <span data-hf-id="hf-cx94" class="d d-xl on-brand b1l">YOURS.</span>
+      </div>
+
+      <!-- C · deep · payoff, rebuilt with weight -->
+      <div data-hf-id="hf-q085" id="c1" class="slide s-deep a-center clip" data-start="10" data-duration="5" data-track-index="3">
+        <span data-hf-id="hf-o7uu" class="lockup on-deep c1m">MOMENTUM <em data-hf-id="hf-vw99" class="on-deep-brand">AI</em></span>
+        <span data-hf-id="hf-baur" id="c1-lanes-rule"></span>
+        <div data-hf-id="hf-gdyh" class="lanes">
+          <span data-hf-id="hf-prgs" class="lane on-deep-muted c1n">AEO / GEO</span>
+          <span data-hf-id="hf-wvw7" class="lane on-deep-muted c1n">AI DESIGN</span>
+          <span data-hf-id="hf-ao7b" class="lane on-deep-muted c1n">AI MARKETING</span>
+          <span data-hf-id="hf-umoy" class="lane on-deep-muted c1n">AI AUTOMATION</span>
+        </div>
+        <span data-hf-id="hf-x0wm" class="url on-deep-brand c1u">needmomentum.com</span>
+      </div>
+      <div id="wipe1" class="wipe clip" data-start="4.6" data-duration="0.8" data-track-index="9"></div>
+      <div id="wipe2" class="wipe clip" data-start="9.6" data-duration="0.8" data-track-index="9"></div>
+    </div>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.181.2/+esm";
+
+      const canvas = document.getElementById("three-layer");
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setSize(1920, 1080, false);
+      renderer.setPixelRatio(1);
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.15;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(34, 1920 / 1080, 0.1, 100);
+      camera.position.set(0, 0, 8.0);
+
+      // Hero form sits right-of-centre so the type column owns the left third.
+      // x + (1.32 + 2*0.42) * HERO_SCALE must stay under the frustum half-width
+      // at z=0 (tan(17deg) * 8.0 * 16/9 = 4.35) or the knot crops on rotation.
+      const HERO_SCALE = 0.9;
+      const hero = new THREE.Group();
+      hero.position.set(2.3, 0, 0);
+      scene.add(hero);
+
+      const mesh = new THREE.Mesh(
+        new THREE.TorusKnotGeometry(1.32, 0.42, 260, 40, 2, 3),
+        new THREE.MeshStandardMaterial({
+          color: 0x1d6f9c, // brand blue, lifted slightly so specular reads on deep
+          metalness: 0.42,
+          roughness: 0.22,
+        })
+      );
+      hero.add(mesh);
+
+      // Key from top-left, cool rim from behind-right: gives real specular +
+      // occlusion rather than a flat silhouette with a blur behind it.
+      const key = new THREE.DirectionalLight(0xffffff, 3.1);
+      key.position.set(-4.5, 5.5, 4.5);
+      scene.add(key);
+
+      const rim = new THREE.DirectionalLight(0x3897cc, 4.4);
+      rim.position.set(4.2, -1.8, -3.4);
+      scene.add(rim);
+
+      scene.add(new THREE.HemisphereLight(0xdfefff, 0x0e1417, 0.75));
+
+      // All motion is a pure function of HyperFrames time — no rAF, no clock.
+      const easeOutExpo = (t) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t));
+      const clamp01 = (v) => Math.min(1, Math.max(0, v));
+
+      function renderAt(time) {
+        // Entrance 0.1-1.3s, hold, exit 4.35-5.0s
+        const inP = easeOutExpo(clamp01((time - 0.1) / 1.2));
+        const outP = clamp01((time - 4.35) / 0.65);
+        const scale = HERO_SCALE * inP * (1 - outP);
+
+        hero.scale.setScalar(Math.max(scale, 0.0001));
+        hero.position.y = (1 - inP) * -1.9 + Math.sin(time * 0.9) * 0.075;
+
+        mesh.rotation.y = time * 0.52;
+        mesh.rotation.x = Math.sin(time * 0.42) * 0.2;
+
+        renderer.render(scene, camera);
+      }
+
+      window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+      renderAt(window.__hfThreeTime || 0);
+    </script>
+
+    <script>
+      const E = "expo.out";
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo(".a1l", { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.9, ease: E, stagger: 0.14 }, 0.15);
+      tl.fromTo(".a1r", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 0.85);
+      tl.to(".a1l", { yPercent: -18, opacity: 0, duration: 0.5, ease: "power2.in", stagger: 0.05 }, 4.4);
+      tl.to(".a1r", { scaleX: 0, duration: 0.4, ease: "power2.in" }, 4.4);
+
+      tl.fromTo(".b1l", { scale: 0.74, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.7, ease: E, stagger: 0.18 }, 5.15);
+      tl.to(".b1l", { scale: 1.05, duration: 1.8, ease: "none" }, 6.4);
+      tl.to(".b1l", { opacity: 0, duration: 0.4, ease: "power2.in" }, 9.5);
+
+      tl.fromTo(".c1m", { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.9, ease: E }, 10.15);
+      tl.fromTo("#c1-lanes-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: E }, 10.6);
+      tl.fromTo(".c1n", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E, stagger: 0.08 }, 10.85);
+      tl.fromTo(".c1u", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: E }, 11.6);
+
+      tl.fromTo("#wipe1", { xPercent: -105 }, { xPercent: 0, duration: 0.22, ease: "power3.in" }, 4.78);
+      tl.to("#wipe1", { xPercent: 105, duration: 0.26, ease: "power3.out" }, 5.0);
+      tl.fromTo("#wipe2", { xPercent: -105 }, { xPercent: 0, duration: 0.22, ease: "power3.in" }, 9.78);
+      tl.to("#wipe2", { xPercent: 105, duration: 0.26, ease: "power3.out" }, 10.0);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

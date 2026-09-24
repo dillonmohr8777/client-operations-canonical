@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Momentum AI readiness diagnostic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito+Sans:wght@400;600;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep: #0e1a22; --nav: #22303a; --on: #f2f6f8; --on-muted: #b4c3cc;
+  --accent: #f58320; --on-accent: #1a1208; --accent-on: #f9a03f; --line: #2a3b47;
+  --display: "Archivo Black", system-ui, sans-serif; --text: "Nunito Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--deep); color: var(--on); font: 400 1.05rem/1.55 var(--text); padding: 1.5rem clamp(1.2rem, 4vw, 3rem) 4rem; }
+h1 { font-family: var(--display); text-transform: uppercase; font-size: clamp(2rem, 5vw, 3.4rem); line-height: .98; }
+.eye { font: 800 .7rem/1 var(--text); letter-spacing: .14em; text-transform: uppercase; color: var(--accent-on); }
+.banner { display: inline-block; background: var(--accent); color: var(--on-accent); font: 800 .68rem/1 var(--text); letter-spacing: .12em; text-transform: uppercase; border-radius: 999px; padding: .35rem .65rem; }
+.lead { color: var(--on-muted); max-width: 60ch; }
+.card { background: #12202a; border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.1rem; margin: 1rem 0; max-width: 760px; }
+.num { font-family: var(--mono); font-size: .75rem; color: var(--accent-on); letter-spacing: .08em; }
+.seg { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
+button { border: 0; border-radius: 999px; cursor: pointer; font: 800 .72rem/1 var(--text); letter-spacing: .08em; text-transform: uppercase; padding: .55rem .85rem; background: #0e1a22; color: var(--on-muted); border: 1px solid var(--line); }
+button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.cta { background: var(--accent); color: var(--on-accent); text-decoration: none; display: inline-block; margin-right: .4rem; }
+.muted { color: var(--on-muted); }
+:where(button, a):focus-visible { outline: none; box-shadow: 0 0 0 2px #fff, 0 0 0 5px #1e73be; }
+</style>
+</head>
+<body>
+<p class="banner">No score · no submit · draft</p>
+<p class="eye">Conversion tool</p>
+<h1>Readiness diagnostic</h1>
+<p class="lead">Six facts. Not a grade. The output is one next conversation, not a number you can game.</p>
+<div id="qs"></div>
+<article class="card" id="out"><p class="muted">Answer the six. We will not average them.</p></article>
+<p><a class="cta" href="ebook-ai-marketing.html" style="padding:.65rem .95rem;border-radius:999px">Open book 01</a>
+<a class="cta" href="index.html" style="padding:.65rem .95rem;border-radius:999px">Snapshot studio</a></p>
+<script>
+const items = [
+  ["q1", "Can you name the person who answers new leads?"],
+  ["q2", "Do you know whether GPTBot is allowed in robots.txt?"],
+  ["q3", "Is the business typed as what it actually is in Search Console?"],
+  ["q4", "Does every lead have a CRM or sheet it is supposed to land in?"],
+  ["q5", "Can you point to a lead that sat more than a day?"],
+  ["q6", "Do you have a verified logo and usable photos on hand?"]
+];
+const ans = {};
+const root = document.getElementById("qs");
+items.forEach(([id, text], i) => {
+  const el = document.createElement("article");
+  el.className = "card";
+  el.innerHTML = "<p class='num'>0" + (i + 1) + "</p><p>" + text + "</p><div class='seg'></div>";
+  const seg = el.querySelector(".seg");
+  [["yes", "Yes"], ["unsure", "Not sure"], ["no", "No"]].forEach(([v, label]) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = label;
+    b.addEventListener("click", () => {
+      ans[id] = v;
+      [...seg.children].forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      render();
+    });
+    seg.appendChild(b);
+  });
+  root.appendChild(el);
+});
+function render() {
+  if (Object.keys(ans).length < 6) {
+    document.getElementById("out").innerHTML = "<p class='muted'>" + Object.keys(ans).length + " of 6. No score will appear. Keep going.</p>";
+    return;
+  }
+  const fetchUnknown = ans.q2 !== "yes" || ans.q3 !== "yes";
+  const leadPain = ans.q1 === "no" || ans.q5 === "yes" || ans.q4 === "no";
+  const assets = ans.q6 === "yes";
+  let line, href, cta;
+  if (fetchUnknown) {
+    line = "Start with the Snapshot. You do not yet have a verified fetch or entity story. Do not buy a film or a chatbot first.";
+    href = "index.html";
+    cta = "Open the Snapshot studio";
+  } else if (leadPain) {
+    line = "Fetch may be fine. Handling is not. The conversation is Lead Ops: one intake, one destination, a receipt. Not more leads.";
+    href = "ebook-ai-marketing.html";
+    cta = "See the four jobs in book 01";
+  } else if (assets) {
+    line = "You have assets and a named operator. If the thing you want is a site, dashboard, or film you can look at this week, that is a spec build.";
+    href = "ebook-ai-marketing.html";
+    cta = "Open book 01";
+  } else {
+    line = "Gather the logo and photos before any prototype conversation. The clock starts when assets arrive.";
+    href = "ebook-ai-marketing.html";
+    cta = "Open book 01";
+  }
+  document.getElementById("out").innerHTML = "<p class='num'>NEXT CONVERSATION</p><p>" + line + "</p><p><a class='cta' href='" + href + "' style='padding:.65rem .95rem;border-radius:999px'>" + cta + "</a></p>";
+}
+</script>
+</body>
+</html>

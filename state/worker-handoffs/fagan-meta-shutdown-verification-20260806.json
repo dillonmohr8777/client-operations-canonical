@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "handoffId": "fagan-meta-shutdown-verification-20260806",
+  "workItemId": "wi-20260806-0001",
+  "expectedWorkItemVersion": 2,
+  "clientId": "fagan-painting",
+  "workerRole": "read-only-verifier",
+  "status": "completed",
+  "startedAt": "2026-08-06T16:40:00Z",
+  "finishedAt": "2026-08-06T16:41:00Z",
+  "summary": "Independent verification of the Fagan Meta shutdown package confirms roster exclusion, disabled account with payment failed, no active delivery under the Active ads filter, and the same-day residual charge comparison against the client reimbursement.",
+  "artifacts": [
+    "clients/fagan-painting/evidence/2026-08-06-meta-billing-shutdown-verification.json"
+  ],
+  "evidence": [
+    "clients/fagan-painting/evidence/2026-08-06-meta-billing-shutdown-verification.json",
+    "access-broker:fagan-painting/meta-ads-production"
+  ],
+  "verification": [
+    "Fagan remains excluded from every active paid-media roster lane.",
+    "Live billing-hub readback shows the exact account Disabled with payment failed.",
+    "Active ads filter shows no delivering campaigns; observed rows are draft or off.",
+    "Same-day residual Meta charge of 30.24 USD is distinct from the 84.00 USD client reimbursement that aligns to the prior 83.74 USD receipt.",
+    "No account, billing, campaign, payment, publish, or send mutation was performed."
+  ],
+  "assumptions": [],
+  "risks": [
+    "An unpaid Meta balance remains and still requires human financial handling outside this automatic episode."
+  ],
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false,
+  "approvalGate": "none",
+  "proposedTransition": "verification",
+  "canonicalWriteAttempted": false,
+  "externalActionAttempted": false
+}

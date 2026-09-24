@@ -1,0 +1,145 @@
+# Windows live session supplement 2026-09-01 to 2026-09-18
+Generated 2026-09-17T11:02:38.2088686-04:00
+
+## Claude (.claude shallow)
+- dir: .claude
+- dir: agents
+- dir: backups
+- dir: cache
+- dir: chrome
+- dir: daemon
+- dir: file-history
+- dir: hookify-shim
+- dir: jobs
+- dir: paste-cache
+- dir: plans
+- dir: plugins
+- dir: projects
+- dir: scheduled-tasks
+- dir: security
+- dir: session-data
+- dir: session-env
+- dir: sessions
+- dir: shell-snapshots
+- dir: skills
+- dir: tasks
+- dir: telemetry
+- dir: uploads
+### projects — 1951 files in range
+- 2026-09-17 11:02 | 702943 | ~\.claude\projects\C--Users-dillo-Documents-Codex-jev-api\d37417da-20f7-4d85-b514-46a3bfa49b0f.jsonl
+- 2026-09-17 10:56 | 5271577 | ~\.claude\projects\C--Users-dillo-Documents-Codex-orchestrator-2\e4b28286-adb1-43f1-81cf-4a67e9eb83f2.jsonl
+- 2026-09-17 10:56 | 37351489 | ~\.claude\projects\C--Users-dillo-Documents-Codex-daily-orchestrator\e5f7a04e-3b83-4e63-ae5f-6d59c06a8c1a.jsonl
+- 2026-09-17 10:56 | 8526019 | ~\.claude\projects\C--Users-dillo-Documents-Codex-gt-clinic-session\4e98379f-8ef8-4da4-b3d3-5c15108c2e1f.jsonl
+- 2026-09-17 10:16 | 53005 | ~\.claude\projects\C--Users-dillo-Documents-Codex-daily-orchestrator\e5f7a04e-3b83-4e63-ae5f-6d59c06a8c1a\tool-results\toolu_011MruDgfJQKN9HFM31v8PUx.json
+- 2026-09-17 10:07 | 216790 | ~\.claude\projects\C--Users-dillo-Documents-Codex-daily-orchestrator\e5f7a04e-3b83-4e63-ae5f-6d59c06a8c1a\tool-results\mcp-66d35644-b55f-4e2d-8eb7-942374ca3b21-slack_read_file-1789654028323.txt
+- 2026-09-17 10:06 | 231538 | ~\.claude\projects\C--Users-dillo-Documents-Codex-daily-orchestrator\e5f7a04e-3b83-4e63-ae5f-6d59c06a8c1a\tool-results\mcp-66d35644-b55f-4e2d-8eb7-942374ca3b21-slack_read_file-1789653969240.txt
+- 2026-09-17 09:23 | 2724052 | ~\.claude\projects\C--Users-dillo-Documents-Codex-projects-job-search-2026\34ad5126-c77d-4c10-bc26-e794bc51449f.jsonl
+- 2026-09-17 09:15 | 210081 | ~\.claude\projects\C--Users-dillo-Documents-Codex-projects-job-search-2026\34ad5126-c77d-4c10-bc26-e794bc51449f\tool-results\mcp-claude_ai_Gmail-list_drafts-1789650936891.txt
+- 2026-09-17 09:13 | 1170159 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\0a93cf30-f588-487e-8726-54e96e239555.jsonl
+- 2026-09-17 09:11 | 54003 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\6d7d88aa-d53a-4fcc-8c59-00c02d01a333.jsonl
+- 2026-09-17 08:44 | 2114660 | ~\.claude\projects\C--Users-dillo-Documents-Codex-weekend-review\8bb16ef7-e83a-4f15-b5df-2271d96cb742.jsonl
+- 2026-09-17 08:29 | 2860 | ~\.claude\projects\C--Users-dillo-Documents-Codex\memory\MEMORY.md
+- 2026-09-17 08:29 | 1071 | ~\.claude\projects\C--Users-dillo-Documents-Codex\memory\slack-read-channel-stale-page.md
+- 2026-09-17 08:14 | 2445363 | ~\.claude\projects\C--Users-dillo-Documents-Codex-weekend-review\8bb16ef7-e83a-4f15-b5df-2271d96cb742\tool-results\bwg8ii47f.txt
+- 2026-09-16 23:32 | 70171958 | ~\.claude\projects\C--Users-dillo-Documents-Codex-fresh-session\cc7c8058-13b4-4255-9c1f-376a82342d08.jsonl
+- 2026-09-16 23:24 | 226975 | ~\.claude\projects\C--Users-dillo-repos-bridge-software-frontend\7f1f0cda-2345-43a7-bddf-375b1c917976.jsonl
+- 2026-09-16 22:52 | 154506 | ~\.claude\projects\C--Users-dillo-repos-bridge-software-frontend\75cc5b11-aad1-4d17-ab80-42a4aed4c6ea.jsonl
+- 2026-09-16 21:40 | 54143 | ~\.claude\projects\C--Users-dillo-Documents-Codex-daily-orchestrator\e5f7a04e-3b83-4e63-ae5f-6d59c06a8c1a\tool-results\mcp-8fe1286c-8eb9-4c9e-ad3b-64323d75e0ec-get_message-1789609253707.txt
+- 2026-09-16 20:25 | 67132 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\3ba8c62c-2f04-4454-a420-4176d1de2780.jsonl
+- 2026-09-16 19:11 | 34 | ~\.claude\projects\C--Users-dillo-Documents-Codex-orchestrator-2\e4b28286-adb1-43f1-81cf-4a67e9eb83f2\custom-title.json
+- 2026-09-16 19:02 | 130116 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\ff7187f0-fd3a-4337-9cf1-e170594a4507.jsonl
+- 2026-09-16 19:02 | 189789 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\f4c99042-a52d-4362-8645-77f6d3be03d6.jsonl
+- 2026-09-16 19:00 | 1269088 | ~\.claude\projects\C--Users-dillo-Documents-Codex-gt-clinic-session\4e98379f-8ef8-4da4-b3d3-5c15108c2e1f\subagents\agent-a9cfd2a8d2ace9b8e.jsonl
+- 2026-09-16 18:56 | 1278014 | ~\.claude\projects\C--Users-dillo-Documents-Codex-gt-clinic-session\4e98379f-8ef8-4da4-b3d3-5c15108c2e1f\subagents\agent-a8ea0cc164db1187c.jsonl
+- 2026-09-16 18:56 | 84456 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\2153d664-7040-4f29-b50d-634a1d0352de.jsonl
+- 2026-09-16 18:55 | 47088 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\adf7a120-ca19-4743-9ce7-a77001407f77.jsonl
+- 2026-09-16 18:50 | 41879 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\be50338e-fb2a-481b-afcf-31f75b1118bb.jsonl
+- 2026-09-16 18:50 | 196082 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\b28ec60b-5cd5-4a7a-8444-a2b74ab29229.jsonl
+- 2026-09-16 18:49 | 1273737 | ~\.claude\projects\C--Users-dillo-Documents-Codex-gt-clinic-session\4e98379f-8ef8-4da4-b3d3-5c15108c2e1f\subagents\agent-a992b283a2547f834.jsonl
+- 2026-09-16 18:47 | 220 | ~\.claude\projects\C--Users-dillo-Documents-Codex-gt-clinic-session\4e98379f-8ef8-4da4-b3d3-5c15108c2e1f\subagents\agent-a8ea0cc164db1187c.meta.json
+- 2026-09-16 18:46 | 1283504 | ~\.claude\projects\C--Users-dillo-Documents-Codex-gt-clinic-session\4e98379f-8ef8-4da4-b3d3-5c15108c2e1f\subagents\agent-ad75735351ce9d963.jsonl
+- 2026-09-16 18:46 | 86006 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\d8cc6a1e-e9c7-43fc-9e7c-d97cd76eaca8.jsonl
+- 2026-09-16 18:45 | 1120799 | ~\.claude\projects\C--Users-dillo-Documents-Codex-gt-clinic-session\4e98379f-8ef8-4da4-b3d3-5c15108c2e1f\subagents\agent-a2ad751dcaa16b95f.jsonl
+- 2026-09-16 18:43 | 210 | ~\.claude\projects\C--Users-dillo-Documents-Codex-gt-clinic-session\4e98379f-8ef8-4da4-b3d3-5c15108c2e1f\subagents\agent-a9cfd2a8d2ace9b8e.meta.json
+- 2026-09-16 18:39 | 2378409 | ~\.claude\projects\C--Users-dillo-Documents-Codex-gt-clinic-session\4e98379f-8ef8-4da4-b3d3-5c15108c2e1f\tool-results\bvo1vjf6s.txt
+- 2026-09-16 18:39 | 127553 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\f932ba67-c864-42d8-8219-099d5bb4a531.jsonl
+- 2026-09-16 18:38 | 223 | ~\.claude\projects\C--Users-dillo-Documents-Codex-gt-clinic-session\4e98379f-8ef8-4da4-b3d3-5c15108c2e1f\subagents\agent-a992b283a2547f834.meta.json
+- 2026-09-16 18:38 | 222 | ~\.claude\projects\C--Users-dillo-Documents-Codex-gt-clinic-session\4e98379f-8ef8-4da4-b3d3-5c15108c2e1f\subagents\agent-a2ad751dcaa16b95f.meta.json
+- 2026-09-16 18:38 | 215 | ~\.claude\projects\C--Users-dillo-Documents-Codex-gt-clinic-session\4e98379f-8ef8-4da4-b3d3-5c15108c2e1f\subagents\agent-ad75735351ce9d963.meta.json
+- 2026-09-16 18:31 | 891802 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\d06a6b02-1753-482c-9931-5d633b312ae6.jsonl
+- 2026-09-16 18:30 | 893518 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\ee744428-f551-4a49-9a96-fc4ed931ac04.jsonl
+- 2026-09-16 18:26 | 64257 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\abe0ecc3-99b7-4423-8099-06340d20a0d0.jsonl
+- 2026-09-16 18:26 | 178627 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\75b9a2a6-7327-4f42-a61d-b1e5a7e702ee.jsonl
+- 2026-09-16 18:25 | 91289 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\67a394f5-602a-4cb0-8d66-cf98630d8fe7.jsonl
+- 2026-09-16 18:24 | 115110 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\49f81ff3-272f-4561-82b6-2e88998f15d9.jsonl
+- 2026-09-16 18:21 | 66129 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\a2c8e68d-ba4e-4b90-8f31-c4c1a2f9e385.jsonl
+- 2026-09-16 18:21 | 59382 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\8015f126-3c00-4d64-9775-08f265ad2b39.jsonl
+- 2026-09-16 18:21 | 74979 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\574a01d7-9ad8-481f-9ac5-49a9d4c3f27a.jsonl
+- 2026-09-16 18:21 | 72537 | ~\.claude\projects\C--Users-dillo-repos-dillon-os\c0d30982-8a60-4208-8256-681ef2de91cf.jsonl
+### sessions — 2 files in range
+- 2026-09-17 11:01 | 611 | ~\.claude\sessions\34904.json
+- 2026-09-17 10:56 | 567 | ~\.claude\sessions\22644.json
+### file-history — 0 files in range
+### session-env — 0 files in range
+
+## Codex Windows
+sessions jsonl in range: 97
+- 2026-09-17 10:00 | 15350191 | rollout-2026-09-12T12-57-18-01a0968d-4db0-7e91-b3c1-d15b503275be.jsonl
+- 2026-09-17 09:01 | 4656829 | rollout-2026-09-12T11-54-35-01a09653-e598-7251-9602-ec966f5f585e.jsonl
+- 2026-09-17 08:01 | 11202617 | rollout-2026-09-04T16-19-17-01a06e13-5ac0-7b80-868a-005078e88601.jsonl
+- 2026-09-17 07:02 | 163428 | rollout-2026-09-17T07-02-21-01a0af08-227b-7da0-bb3d-adc4dab796f6.jsonl
+- 2026-09-16 07:00 | 958758 | rollout-2026-09-16T07-00-44-01a0a9e0-4cfe-79b1-ad16-8896bb7f5d6a.jsonl
+- 2026-09-15 20:01 | 11196076 | rollout-2026-09-14T15-49-57-01a0a178-16d5-7ca1-8ad9-3e6337eaaf6d.jsonl
+- 2026-09-15 19:18 | 3230436 | rollout-2026-09-15T18-52-09-01a0a745-421a-7833-b75b-cd3111cd822a.jsonl
+- 2026-09-15 15:48 | 2629875 | rollout-2026-09-15T15-43-03-01a0a698-241d-72e1-93bf-a645070693f8.jsonl
+- 2026-09-15 15:23 | 23693793 | rollout-2026-09-15T15-22-33-01a0a685-5d60-77a2-a151-0973cb54b05c.jsonl
+- 2026-09-15 14:49 | 12907767 | rollout-2026-09-14T23-18-20-01a0a312-9b8b-76d2-a4fa-031f3be03c5a.jsonl
+- 2026-09-15 14:22 | 7768082 | rollout-2026-09-15T12-52-02-01a0a5fb-900d-7d73-9bcb-f677082dda52.jsonl
+- 2026-09-15 14:08 | 14057611 | rollout-2026-09-14T22-07-57-01a0a2d2-2a46-7ac1-a5e1-e337e512ba23.jsonl
+- 2026-09-15 13:45 | 15753056 | rollout-2026-09-15T13-44-45-01a0a62b-d349-7462-9e4e-25e7aa42544c.jsonl
+- 2026-09-15 12:20 | 8160698 | rollout-2026-09-15T12-20-03-01a0a5de-48b1-72d1-b6ef-187212b184da.jsonl
+- 2026-09-15 11:25 | 721799 | rollout-2026-09-15T10-58-30-01a0a593-9f4a-7b40-bce6-ad4b8410647f.jsonl
+- 2026-09-15 11:23 | 327277 | rollout-2026-09-15T11-23-10-01a0a5aa-3581-7b63-b26e-cdf49588027d.jsonl
+- 2026-09-15 11:15 | 250182 | rollout-2026-09-15T11-15-10-01a0a5a2-e05a-73e1-b51e-a5898c402212.jsonl
+- 2026-09-15 11:13 | 325197 | rollout-2026-09-15T11-13-39-01a0a5a1-7d11-7d02-b141-b07443826880.jsonl
+- 2026-09-15 11:12 | 322318 | rollout-2026-09-15T11-12-03-01a0a5a0-0552-7760-aff2-18e7e846bed8.jsonl
+- 2026-09-15 11:10 | 326438 | rollout-2026-09-15T11-10-36-01a0a59e-b13c-7962-843d-a3e06e0d290a.jsonl
+- 2026-09-15 11:01 | 1575508 | rollout-2026-09-14T17-04-42-01a0a1bc-8933-7792-8ff1-6b5fbea2713b.jsonl
+- 2026-09-15 10:03 | 266580272 | rollout-2026-09-07T22-52-27-01a07eee-6261-7543-9f35-d3704d4475da.jsonl
+- 2026-09-15 09:59 | 1459762 | rollout-2026-09-15T09-59-00-01a0a55d-27bd-7c93-9c94-8f309a0d77b7.jsonl
+- 2026-09-15 03:05 | 925368 | rollout-2026-09-15T03-00-11-01a0a3dd-b780-74c0-98ed-b43506009f91.jsonl
+- 2026-09-15 02:44 | 302563 | rollout-2026-09-15T02-44-15-01a0a3cf-1e7e-7ed2-966b-d5e6ef421393.jsonl
+- 2026-09-15 02:44 | 289137 | rollout-2026-09-15T02-44-00-01a0a3ce-e643-7492-89fd-74505b77c5f8.jsonl
+- 2026-09-14 22:12 | 20570120 | rollout-2026-09-14T22-12-00-01a0a2d5-dd58-75c3-bd15-fc6f17ac5d90.jsonl
+- 2026-09-14 21:58 | 5387902 | rollout-2026-09-14T16-45-12-01a0a1aa-aeb9-7a52-9dad-5510f093ebc1.jsonl
+- 2026-09-14 21:14 | 7203305 | rollout-2026-09-14T20-11-23-01a0a267-714f-7691-bd1f-786b0522947c.jsonl
+- 2026-09-14 19:33 | 1392386 | rollout-2026-09-14T19-33-24-01a0a244-aa24-7e32-97cc-1a03eacd086d.jsonl
+- 2026-09-14 19:28 | 299865 | rollout-2026-09-14T19-28-15-01a0a23f-f4d6-7d01-89b7-072ecdad79aa.jsonl
+- 2026-09-14 19:25 | 376250 | rollout-2026-09-14T19-25-29-01a0a23d-6c44-74c2-b8b0-780fdbda219d.jsonl
+- 2026-09-14 19:24 | 134429 | rollout-2026-09-14T19-24-46-01a0a23c-c232-7f90-9ef4-1c9fdd137a6b.jsonl
+- 2026-09-14 16:47 | 179362 | rollout-2026-09-14T16-47-51-01a0a1ad-1b76-74b1-bb0e-251d73122454.jsonl
+- 2026-09-14 16:39 | 11484651 | rollout-2026-09-14T16-39-08-01a0a1a5-1fb4-79d0-91cc-d7d6fec2476a.jsonl
+- 2026-09-14 16:38 | 20454053 | rollout-2026-09-14T16-37-38-01a0a1a3-c217-7ef0-a440-c1b251923317.jsonl
+- 2026-09-14 16:13 | 1595595 | rollout-2026-09-14T16-13-36-01a0a18d-c019-7ea3-9f0d-df886e7100d3.jsonl
+- 2026-09-14 16:10 | 4934502 | rollout-2026-09-14T15-42-06-01a0a170-e97a-7440-a155-05e84372d453.jsonl
+- 2026-09-14 16:10 | 6500093 | rollout-2026-09-14T15-43-56-01a0a172-94e7-70e0-811b-43a4c2ff589a.jsonl
+- 2026-09-14 16:08 | 740800 | rollout-2026-09-14T16-08-39-01a0a189-37db-7420-940e-251564c47186.jsonl
+### Documents\Codex dated folders
+- 2026-09-01 | mtime 2026-09-01 19:19
+- 2026-09-02 | mtime 2026-09-02 20:33
+- 2026-09-03 | mtime 2026-09-03 14:45
+- 2026-09-04 | mtime 2026-09-04 22:52
+- 2026-09-05 | mtime 2026-09-05 21:43
+- 2026-09-06 | mtime 2026-09-06 21:00
+- 2026-09-07 | mtime 2026-09-07 22:52
+- 2026-09-08 | mtime 2026-09-08 21:55
+- 2026-09-09 | mtime 2026-09-09 09:30
+- 2026-09-10 | mtime 2026-09-10 12:06
+- 2026-09-11 | mtime 2026-09-11 18:14
+- 2026-09-12 | mtime 2026-09-12 21:49
+- 2026-09-13 | mtime 2026-09-13 22:04
+- 2026-09-14 | mtime 2026-09-14 23:18
+- 2026-09-15 | mtime 2026-09-15 18:52
+- 2026-09-16 | mtime 2026-09-16 07:00
+- 2026-09-17 | mtime 2026-09-17 07:02
+

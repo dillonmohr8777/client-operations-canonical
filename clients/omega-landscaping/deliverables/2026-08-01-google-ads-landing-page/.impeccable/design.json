@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-02T00:56:51Z",
+  "title": "Design System: Omega Landscaping & Concrete",
+  "extensions": {
+    "colorMeta": {
+      "night": { "role": "neutral", "displayName": "Terrain Night", "tonalRamp": ["oklch(15% 0.025 270)", "oklch(26% 0.025 270)", "oklch(37% 0.025 270)", "oklch(49% 0.025 270)", "oklch(61% 0.025 270)", "oklch(73% 0.025 270)", "oklch(84% 0.025 270)", "oklch(95% 0.025 270)"] },
+      "blue": { "role": "primary", "displayName": "Survey Royal Blue", "tonalRamp": ["oklch(15% 0.16 265)", "oklch(26% 0.19 265)", "oklch(37% 0.2 265)", "oklch(49% 0.18 265)", "oklch(61% 0.15 265)", "oklch(73% 0.11 265)", "oklch(84% 0.07 265)", "oklch(95% 0.025 265)"] },
+      "cream": { "role": "neutral", "displayName": "Plan Cream", "tonalRamp": ["oklch(15% 0.025 99)", "oklch(26% 0.03 99)", "oklch(37% 0.035 99)", "oklch(49% 0.04 99)", "oklch(61% 0.045 99)", "oklch(73% 0.05 99)", "oklch(84% 0.055 99)", "oklch(95% 0.06 99)"] },
+      "paper": { "role": "neutral", "displayName": "Paper White", "tonalRamp": ["oklch(15% 0.012 95)", "oklch(26% 0.014 95)", "oklch(37% 0.016 95)", "oklch(49% 0.018 95)", "oklch(61% 0.02 95)", "oklch(73% 0.022 95)", "oklch(84% 0.024 95)", "oklch(95% 0.026 95)"] },
+      "red": { "role": "secondary", "displayName": "Decision Red", "tonalRamp": ["oklch(15% 0.09 25)", "oklch(26% 0.13 25)", "oklch(37% 0.17 25)", "oklch(49% 0.2 25)", "oklch(61% 0.18 25)", "oklch(73% 0.13 25)", "oklch(84% 0.08 25)", "oklch(95% 0.025 25)"] },
+      "red-deep": { "role": "secondary", "displayName": "Deep Decision Red", "tonalRamp": ["oklch(15% 0.08 25)", "oklch(26% 0.12 25)", "oklch(37% 0.16 25)", "oklch(49% 0.18 25)", "oklch(61% 0.16 25)", "oklch(73% 0.12 25)", "oklch(84% 0.07 25)", "oklch(95% 0.02 25)"] },
+      "ink": { "role": "neutral", "displayName": "Site Ink", "tonalRamp": ["oklch(15% 0.01 275)", "oklch(26% 0.01 275)", "oklch(37% 0.01 275)", "oklch(49% 0.01 275)", "oklch(61% 0.01 275)", "oklch(73% 0.01 275)", "oklch(84% 0.01 275)", "oklch(95% 0.006 275)"] },
+      "muted": { "role": "neutral", "displayName": "Field Note Gray", "tonalRamp": ["oklch(15% 0.008 275)", "oklch(26% 0.008 275)", "oklch(37% 0.008 275)", "oklch(49% 0.008 275)", "oklch(61% 0.008 275)", "oklch(73% 0.008 275)", "oklch(84% 0.008 275)", "oklch(95% 0.004 275)"] },
+      "cream-line": { "role": "neutral", "displayName": "Cream Rule", "tonalRamp": ["oklch(15% 0.012 99 / .24)", "oklch(26% 0.016 99 / .24)", "oklch(37% 0.02 99 / .24)", "oklch(49% 0.026 99 / .24)", "oklch(61% 0.032 99 / .24)", "oklch(73% 0.04 99 / .24)", "oklch(84% 0.05 99 / .24)", "oklch(95% 0.06 99 / .24)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Terrain Display", "purpose": "Hero statements only." },
+      "headline": { "displayName": "Section Headline", "purpose": "Major section claims and the estimate stage." },
+      "title": { "displayName": "Service Title", "purpose": "Compact service-panel arguments." },
+      "body": { "displayName": "Field Copy", "purpose": "Readable evidence, explanation, and form content." },
+      "label": { "displayName": "Survey Label", "purpose": "Actions, captions, locations, and form labels." }
+    },
+    "shadows": [
+      { "name": "terrain-lift", "value": "0 22px 64px rgba(0,0,0,.42)", "purpose": "Clipped hero project window." },
+      { "name": "control-lift", "value": "0 10px 24px rgba(3, 5, 15, .24)", "purpose": "Button hover feedback." },
+      { "name": "form-lift", "value": "0 20px 50px rgba(91, 9, 9, .24)", "purpose": "Estimate form on the red field." },
+      { "name": "mobile-shelf", "value": "0 -8px 28px rgba(0,0,0,.2)", "purpose": "Persistent mobile contact bar." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(.16, 1, .3, 1)", "purpose": "Entrances, line drawing, lifts, and image scaling." },
+      { "name": "control-state", "value": "220ms", "purpose": "Button lift and shadow feedback." },
+      { "name": "terrain-enter", "value": "1250ms", "purpose": "Hero image cutout opening when motion is allowed." },
+      { "name": "contour-draw", "value": "1800ms", "purpose": "Hero grade-line drawing when motion is allowed." }
+    ],
+    "breakpoints": [
+      { "name": "compact-desktop", "value": "1050px" },
+      { "name": "mobile", "value": "760px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Estimate Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The red action for estimate starts and form submission.",
+      "html": "<button class=\"ds-btn-primary\">START YOUR ESTIMATE</button>",
+      "css": ".ds-btn-primary { min-height: 50px; padding: .8rem 1.25rem; border: 0; border-radius: 0; background: var(--red); color: #fff; font: 800 .78rem/1.1 var(--body); cursor: pointer; transition: transform .22s var(--ease-out), box-shadow .22s var(--ease-out), background .22s; } .ds-btn-primary:hover { background: #c92424; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(3,5,15,.24); } .ds-btn-primary:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }"
+    },
+    {
+      "name": "Secondary Service Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "The royal-blue action inside a selected service path.",
+      "html": "<button class=\"ds-btn-secondary\">DISCUSS A LANDSCAPE PROJECT</button>",
+      "css": ".ds-btn-secondary { min-height: 50px; padding: .8rem 1.25rem; border: 0; border-radius: 0; background: var(--blue); color: #fff; font: 800 .78rem/1.1 var(--body); cursor: pointer; transition: transform .22s var(--ease-out), box-shadow .22s var(--ease-out); } .ds-btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(3,5,15,.24); } .ds-btn-secondary:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }"
+    },
+    {
+      "name": "Selected Service Path",
+      "kind": "custom",
+      "refersTo": "service-selector-active",
+      "description": "The large ruled choice that separates landscape and concrete intent.",
+      "html": "<button class=\"ds-service-choice\" aria-selected=\"true\"><strong>LANDSCAPE</strong><span>Shape water, grade, planting, and usable space.</span></button>",
+      "css": ".ds-service-choice { min-height: 160px; width: 100%; padding: 2rem; border: 0; border-radius: 0; background: var(--blue); color: var(--cream); text-align: left; cursor: pointer; } .ds-service-choice strong { display: block; font: 400 clamp(2.2rem,4vw,4.2rem)/1 var(--display); } .ds-service-choice span { display: block; max-width: 40ch; margin-top: .8rem; font: 400 .88rem/1.55 var(--body); } .ds-service-choice:hover { background: #2525cb; } .ds-service-choice:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }"
+    },
+    {
+      "name": "Estimate Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "A square, high-clarity field for project details.",
+      "html": "<label class=\"ds-field-label\">PROJECT LOCATION<input class=\"ds-field\" placeholder=\"City or neighborhood\"></label>",
+      "css": ".ds-field-label { display: block; color: var(--ink); font: 800 .78rem/1.1 var(--body); letter-spacing: .05em; } .ds-field { display: block; width: 100%; margin-top: .45rem; padding: .86rem .9rem; border: 1px solid #a9a794; border-radius: 0; background: #fff; color: var(--ink); font: 400 1rem/1.55 var(--body); } .ds-field:hover { border-color: var(--ink); } .ds-field:focus-visible { border-color: var(--blue); outline: 3px solid rgba(1,0,128,.16); }"
+    },
+    {
+      "name": "Project Proof Card",
+      "kind": "card",
+      "description": "A dark proof field with a ruled caption; the live page supplies verified project imagery.",
+      "html": "<figure class=\"ds-proof-card\"><div class=\"ds-proof-image\" aria-label=\"Verified Omega project image area\"></div><figcaption><strong>SITE WORK</strong>Grade, drainage, and rock</figcaption></figure>",
+      "css": ".ds-proof-card { margin: 0; overflow: hidden; border-radius: 0; background: var(--night); color: #fff; } .ds-proof-image { min-height: 180px; background: linear-gradient(135deg,var(--blue),var(--night)); } .ds-proof-card figcaption { padding: 1.1rem; background: rgba(5,8,21,.9); font: 400 .82rem/1.4 var(--body); } .ds-proof-card strong { display: block; color: var(--cream); font-weight: 800; letter-spacing: .07em; } .ds-proof-card:focus-within { outline: 3px solid var(--red); outline-offset: 4px; }"
+    },
+    {
+      "name": "Mobile Contact Bar",
+      "kind": "nav",
+      "description": "Two equal actions that keep phone and estimate paths reachable on mobile.",
+      "html": "<nav class=\"ds-mobile-actions\" aria-label=\"Quick contact actions\"><a href=\"#\">CALL</a><a href=\"#\">REQUEST ESTIMATE</a></nav>",
+      "css": ".ds-mobile-actions { display: grid; grid-template-columns: 1fr 1fr; min-height: 66px; background: var(--cream); box-shadow: 0 -8px 28px rgba(0,0,0,.2); } .ds-mobile-actions a { display: grid; place-items: center; padding: .8rem; color: var(--night); font: 800 .82rem/1.1 var(--body); text-decoration: none; } .ds-mobile-actions a:last-child { background: var(--red); color: #fff; } .ds-mobile-actions a:hover { text-decoration: underline; } .ds-mobile-actions a:focus-visible { outline: 3px solid var(--red); outline-offset: -4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Colorado Grade Line",
+    "overview": "This system follows the ground itself: midnight terrain, cream plan paper, royal-blue contour fields, and one red survey mark. It feels capable and site-aware rather than decorative, using open bands, ruled choices, and clipped photographic windows to connect landscape and concrete as one coordinated exterior scope.\n\nScale and contrast do the heavy work. Condensed display type makes decisive terrain-scale statements, while Public Sans carries practical detail. Verified project photography remains visible and materially grounded; contour lines, survey points, and process runways provide the recurring connective gesture.",
+    "keyCharacteristics": [
+      "Monumental condensed display type against dark terrain fields.",
+      "Cream plan-paper surfaces separated by precise blue or ink rules.",
+      "Royal blue carries structure; red marks decisions and action.",
+      "Clipped real-work imagery crossed by contour and grade-line geometry.",
+      "Square controls, open section bands, and explicit mobile action paths."
+    ],
+    "rules": [
+      { "name": "The Survey Mark Rule", "body": "Red identifies action or a single point of emphasis; it does not become a broad decorative wash outside the estimate stage.", "section": "colors" },
+      { "name": "The Terrain Scale Rule", "body": "Anton is reserved for decisive spatial hierarchy; paragraphs and interface detail stay in Public Sans.", "section": "typography" },
+      { "name": "The Follow-the-Grade Rule", "body": "Every layout shift must preserve the visual path from site condition to service choice, real work, process, and estimate action.", "section": "layout" },
+      { "name": "The Flat Plan Rule", "body": "Rules and color changes establish most hierarchy; shadows appear only where an object must visibly sit above its field.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use verified project imagery as primary proof and keep crops large enough to read the relationship between grade, structure, and finish.",
+      "Do preserve strong cream-on-night contrast, square controls, and red as the focused action marker.",
+      "Do translate the horizontal grade-line journey into a vertical, equally legible sequence on mobile.",
+      "Do keep reduced-motion users in the complete final visual state."
+    ],
+    "donts": [
+      "Don't replace the open bands and ruled service choice with a generic rounded-card grid.",
+      "Don't spread red across multiple competing decorative elements in the same field.",
+      "Don't round buttons, inputs, or proof containers into soft product-UI shapes.",
+      "Don't use stock imagery or decorative landscape photos in place of verified Omega project work."
+    ]
+  }
+}

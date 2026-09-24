@@ -1,0 +1,56 @@
+{
+  "investigated_at": "2026-08-12",
+  "mode": "read-only",
+  "target_site": {
+    "name": "momentum-prospect-radar",
+    "site_id": "33c30caa-af95-4dc0-82c3-b7594adbadf1",
+    "deploys_returned": 19,
+    "current_published_deploy_id": "6a7c25d3158466d94bfb60b6",
+    "current_published_kind": "Prospect Radar operational dashboard",
+    "current_root_gallery_cards": 0,
+    "current_root_child_site_routes": 0,
+    "current_root_html_bytes": 734843,
+    "current_dashboard_evidence": "The HTML says '166 briefed, none built'; 166 is a briefed-pipeline count, not a gallery card or deployed-route count."
+  },
+  "target_site_gallery_history": [
+    {
+      "deploy_id": "6a7c8258bd06b8bfb8e166f4",
+      "title": "Prospect Radar centralized next 20 builds 2026-08-12",
+      "published_at": "2026-08-12T14:25:46.055Z",
+      "root_cards": 20,
+      "distinct_child_routes_linked": 20,
+      "verified_live_routes": 20,
+      "route_failures": 0,
+      "status": "ready; immutable deploy URL remains available; no source zip"
+    }
+  ],
+  "prior_central_gallery": {
+    "site_name": "momentum-prospect-radar-next10-2026-08-08",
+    "site_id": "4c6ea488-5a2f-4bc7-ba54-7d3456784487",
+    "deploy_id": "6a7a58c723f1d74912d9234e",
+    "title": "Prospect Radar 3D scroll builds 169-178 release",
+    "published_at": "2026-08-10T23:03:37.795Z",
+    "root_cards": 50,
+    "distinct_site_routes_referenced": 50,
+    "heading": "Prospect Radar next 50",
+    "note": "This is the largest exact centralized gallery found. Its local composition contract starts from 30 routes, adds 20 non-colliding routes, and hard-fails unless the result is exactly 50 cards and 50 routes."
+  },
+  "no_166_gallery_finding": {
+    "found": false,
+    "exact_statement": "No Netlify deploy or local release manifest containing 166 gallery cards/routes was found. The number 166 was reused as (a) the operational dashboard's briefed count and (b) historical build numbering such as builds 166-168; neither is a route count.",
+    "largest_verified_central_gallery_count": 50,
+    "additional_separate_galleries": [
+      {"name": "philly-site-builder-hub-0711", "cards": 25},
+      {"name": "philly-25-homepage-concepts-batch-2", "cards": 25},
+      {"name": "philly-25-homepage-concepts-batch-3", "cards": 25, "routes": 25},
+      {"name": "philly-25-redesigns-batch-4", "cards": 25, "routes": 25},
+      {"name": "momentum-prospect-radar-next10-2026-08-10", "child_routes": 10},
+      {"name": "momentum-prospect-radar-next20-2026-08-11", "cards": 19}
+    ],
+    "local_manifest_inventory": {
+      "unique_qa_ready_slugs_across_scanned_manifests": 290,
+      "warning": "This is not a release-ready all-sites count: it spans separate batches/clones and must be reconciled for provenance, collisions, QA version, and route ownership before composition."
+    }
+  },
+  "safe_strategy": "Do not restore or deploy in place. Preserve current production deploy 6a7c25d3158466d94bfb60b6 and immutable gallery deploy 6a7c8258bd06b8bfb8e166f4. Build a new versioned release directory by copying a verified base snapshot, add only reconciled QA-ready slugs with a collision gate, generate RELEASE-MANIFEST.json with exact card/route/file hashes, and publish first as a non-production draft deploy to the explicit site ID. Verify root card count equals unique route count, every child returns HTTP 200, noindex headers/meta remain, and representative browser QA passes. Only then promote that exact immutable draft deploy; rollback remains a one-click publish of 6a7c25d3158466d94bfb60b6. Do not use bare netlify deploy from an unlinked directory and do not infer 166 routes from the dashboard's briefed metric."
+}

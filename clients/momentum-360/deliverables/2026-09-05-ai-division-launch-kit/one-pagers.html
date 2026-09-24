@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Momentum AI: Service Sheets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito+Sans:wght@400;600;800&family=Caveat:wght@700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>/* tokens: read in place from C:\Users\dillo\Documents\Codex\momentum-design-system\tokens.css */
+/* =========================================================================
+   MOMENTUM DESIGN SYSTEM — TOKEN LAYER
+   v1.0.0  ·  2026-09-05  ·  Momentum Digital / Momentum 360, Philadelphia
+
+   Rules of this file:
+   1. Every color is a LITERAL, MEASURED value. Nothing is derived at runtime.
+      The radar batch used color-mix() for --muted and --panel; because nobody
+      re-measured the result per site, secondary text landed at 4.28-4.49:1 on
+      panel in 9 of 10 shipped sites. Derivation hid the failure. Literals do not.
+   2. Every text-on-background pair in PAIRS.md is measured against WCAG 2.1 AA.
+      29 pairs, 0 failures, lowest text pair 4.695:1.
+   3. Foreground tokens are named for the surface they are legal on.
+      --m-signal is legal on deep. --m-signal-ink is legal on paper and panel.
+      They are different values because no single orange clears both.
+   ========================================================================= */
+
+:root {
+
+  /* ---------------------------------------------------------------------
+     COLOR — LIGHT SURFACES
+     --------------------------------------------------------------------- */
+  --m-paper:            #FBF8F4;  /* base light surface */
+  --m-panel:            #F0ECE5;  /* secondary light surface */
+  --m-ink:              #14181B;  /* headings + body on light   16.86 / 15.16 */
+  --m-muted:            #636465;  /* secondary text on light     5.60 /  5.04 */
+  --m-line:             #DCD6CC;  /* DECORATIVE hairline only. Not AA. Never a
+                                     border that carries meaning. */
+  --m-line-strong:      #8E8578;  /* meaningful border, inputs   3.43 /  3.09 */
+
+  /* ---------------------------------------------------------------------
+     COLOR — DARK SURFACES
+     --------------------------------------------------------------------- */
+  --m-deep:             #0E1417;  /* nav, hero, footer */
+  --m-deep-raised:      #1A2226;  /* raised card on deep */
+  --m-on-deep:          #F4F1EC;  /* text on deep               16.48 / 14.33 */
+  --m-on-deep-muted:    #8A9296;  /* secondary text on deep      5.86 /  5.10 */
+
+  /* ---------------------------------------------------------------------
+     COLOR — BRAND
+     --------------------------------------------------------------------- */
+  --m-brand:            #155E86;  /* legal on paper/panel        6.66 /  5.99 */
+  --m-brand-lift:       #3897CC;  /* legal on deep/raised        5.72 /  4.97
+                                     --m-brand on deep is 2.63:1. Use the lift. */
+  --m-on-brand:         #FFFFFF;  /* text on brand fill                   7.05 */
+
+  /* ---------------------------------------------------------------------
+     COLOR — SIGNAL (the orange)
+     Two values, three jobs. This split is the load-bearing fix.
+     --------------------------------------------------------------------- */
+  --m-signal:           #E27113;  /* FILLS, and text on dark     5.84 /  5.08
+                                     As text on paper it is 3.00:1. Never do that. */
+  --m-signal-ink:       #A35309;  /* text on light               5.22 /  4.70 */
+  --m-on-signal:        #14181B;  /* text on a signal fill                5.62
+                                     White on signal is 3.19:1. Do not use white. */
+
+  /* ---------------------------------------------------------------------
+     COLOR — STATE
+     --------------------------------------------------------------------- */
+  --m-focus:            #A35309;  /* one ring, legal on all three surfaces
+                                     paper 5.22 · panel 4.70 · deep 3.36 */
+  --m-focus-ring:       3px solid var(--m-focus);
+  --m-focus-offset:     2px;
+
+  /* ---------------------------------------------------------------------
+     TYPE — FAMILIES
+     Two families carry the page. Script is an accent, never a text face.
+     --------------------------------------------------------------------- */
+  --m-font-display: "Archivo Black", "Anton", "Arial Black", system-ui, sans-serif;
+  --m-font-text:    "Nunito Sans", "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --m-font-script:  "Caveat", "Kalam", "Segoe Script", cursive;
+  --m-font-mono:    ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* ---------------------------------------------------------------------
+     TYPE — SCALE
+     Density 4/10 means type carries the page, so the steps are large and
+     the jumps are real. h2, body and xs are preserved from kit-v2 because
+     they are already shipping correctly. display/h1/h3/lead/sm fill the
+     orphaned slots kit-v2 left dangling.
+     --------------------------------------------------------------------- */
+  --m-fs-display: clamp(3rem,    7vw,   6.5rem);
+  --m-fs-h1:      clamp(2.4rem,  5.2vw, 4.5rem);
+  --m-fs-h2:      clamp(1.9rem,  3.6vw, 3rem);      /* preserved from kit-v2 */
+  --m-fs-h3:      clamp(1.35rem, 2vw,   1.75rem);
+  --m-fs-lead:    clamp(1.15rem, 1.4vw, 1.4rem);
+  --m-fs-body:    clamp(1rem,    1.1vw, 1.125rem);  /* preserved from kit-v2 */
+  --m-fs-sm:      0.9375rem;
+  --m-fs-xs:      0.78rem;                          /* preserved from kit-v2 */
+
+  --m-lh-display: 0.92;
+  --m-lh-head:    1.08;
+  --m-lh-body:    1.6;
+  --m-track-display: -0.02em;
+  --m-track-caps:     0.14em;
+
+  --m-weight-display: 400;  /* Archivo Black is already 400-as-black */
+  --m-weight-body:    400;
+  --m-weight-bold:    700;
+
+  /* ---------------------------------------------------------------------
+     SPACE — preserved from the shipping kit. This scale was not broken.
+     --------------------------------------------------------------------- */
+  --m-s-1:  0.25rem;
+  --m-s-2:  0.5rem;
+  --m-s-3:  0.75rem;
+  --m-s-4:  1rem;
+  --m-s-5:  1.5rem;
+  --m-s-6:  2rem;
+  --m-s-7:  3rem;
+  --m-s-8:  4rem;
+  --m-s-9:  6rem;
+  --m-s-10: 8rem;
+
+  --m-section-y: clamp(72px, 9vw, 128px);
+  --m-gutter:    clamp(16px, 3vw, 32px);
+  --m-container: 1200px;
+  --m-measure:   68ch;
+
+  /* ---------------------------------------------------------------------
+     RADIUS
+     kit-v2 shipped --r-sm:8px and --r-md:10px. A 2px gap is not a step, it
+     is an accident. These are real steps.
+     --------------------------------------------------------------------- */
+  --m-r-sm:   8px;
+  --m-r-md:   16px;
+  --m-r-lg:   26px;
+  --m-r-pill: 999px;
+  --m-border: 1px;
+
+  /* ---------------------------------------------------------------------
+     ELEVATION — two families, used for different jobs.
+     SOFT lifts screens and photographs off the page.
+     BLOCK is a hard offset with zero blur. It is the house alternative to
+     the glow this system bans, and it reads as print, not as UI chrome.
+     --------------------------------------------------------------------- */
+  --m-shadow-1: 0 1px 2px rgba(14,20,23,.08), 0 6px 18px rgba(14,20,23,.06);
+  --m-shadow-2: 0 18px 40px -22px rgba(14,20,23,.45);   /* preserved from kit-v2 */
+  --m-shadow-3: 0 38px 90px -30px rgba(14,20,23,.50);
+
+  --m-block-sm: 8px 10px 0;
+  --m-block-md: 14px 16px 0;
+  --m-block-lg: 24px 28px 0;
+  --m-block-tint: rgba(226,113,19,.28);   /* signal at 28%, the BigOrange move */
+
+  /* ---------------------------------------------------------------------
+     MOTION — 8/10. Durations have jobs, not vibes.
+     --------------------------------------------------------------------- */
+  --m-dur-instant: 120ms;   /* tint, color, opacity swaps */
+  --m-dur-fast:    220ms;   /* hover displacement */
+  --m-dur-base:    500ms;   /* preserved from kit-v2 --pa-dur */
+  --m-dur-slow:    800ms;   /* measured off papaadvertising.com header swap */
+  --m-dur-marquee:  40s;    /* preserved from kit-v2 logo wall */
+
+  --m-ease-standard: cubic-bezier(.2, .7, .2, 1);   /* preserved from kit-v2 */
+  --m-ease-entrance: cubic-bezier(.16, 1, .3, 1);   /* expo-out, from BigOrange */
+  --m-ease-emphatic: cubic-bezier(.85, 0, .15, 1);  /* measured off Papa */
+  --m-stagger: 70ms;
+
+  --m-z-nav: 50;
+  --m-z-overlay: 100;
+}
+
+/* Motion tokens collapse rather than disappear, so layout never shifts. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --m-dur-instant: 1ms;
+    --m-dur-fast:    1ms;
+    --m-dur-base:    1ms;
+    --m-dur-slow:    1ms;
+    --m-dur-marquee: 0s;
+    --m-stagger:     0ms;
+  }
+}
+
+
+:root {
+  /* Alias to the source-of-truth tokens above; never redefine a hex here. */
+  --m-surface: var(--m-panel);
+  --m-on-brand-muted: var(--m-on-brand);
+  --m-accent: var(--m-signal);
+  --m-on-accent: var(--m-on-signal);
+  --m-accent-ink: var(--m-signal-ink);
+  --m-accent-on-deep: var(--m-signal);
+  --m-accent-on-brand: var(--m-on-brand);
+  --m-link: var(--m-brand);
+}
+
+/* components: read in place from tokens/ */
+/* ==========================================================================
+   Momentum components - built only from momentum.tokens.css
+   v1.0.0 - 2026-09-05
+
+   Rule: no literal colour, size, radius, duration or curve below this line.
+   Everything is a var(). If a component needs a value the tokens do not
+   have, the token file is wrong, not the component.
+
+   Section grammar matches what ships in the radar batch: nav / hero /
+   section / pill / card / accordion / logo wall / footer.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--m-paper);
+  color: var(--m-ink);
+  font-family: var(--m-font-text);
+  font-size: var(--m-fs-body);
+  line-height: var(--m-lh-body);
+  letter-spacing: var(--m-track-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { max-width: 100%; display: block; }
+
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--m-focus-halo), 0 0 0 5px var(--m-focus);
+  border-radius: var(--m-r-sm);
+}
+
+/* --- layout ------------------------------------------------------------- */
+.m-wrap    { width: min(var(--m-maxw), 100% - var(--m-gutter) * 2); margin-inline: auto; }
+.m-section { padding-block: var(--m-section-y); }
+:is(.m-section--deep, .m-hero)  { background: var(--m-deep);  color: var(--m-on-deep); }
+.m-section--brand { background: var(--m-brand); color: var(--m-on-brand); }
+.m-section--surface { background: var(--m-surface); }
+
+/* --- type --------------------------------------------------------------- */
+.m-display, .m-h1, .m-h2, .m-h3, .m-h4 {
+  font-family: var(--m-font-display);
+  font-weight: var(--m-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--m-track-display);
+  margin: 0;
+}
+.m-display { font-size: var(--m-fs-display); line-height: var(--m-lh-display); }
+.m-h1 { font-size: var(--m-fs-h1); line-height: var(--m-lh-display); }
+.m-h2 { font-size: var(--m-fs-h2); line-height: var(--m-lh-head); }
+.m-h3 { font-size: var(--m-fs-h3); line-height: var(--m-lh-head); }
+.m-h4 {
+  font-family: var(--m-font-text);
+  font-size: var(--m-fs-h4);
+  line-height: var(--m-lh-head);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.m-lead { font-size: var(--m-fs-lead); line-height: var(--m-lh-lead); max-width: var(--m-measure); margin: 0; }
+.m-body { max-width: var(--m-measure); margin: 0; }
+.m-muted { color: var(--m-muted); }
+:is(.m-section--deep, .m-hero) .m-muted, .m-section--brand .m-muted { color: var(--m-on-deep-muted); }
+
+.m-eyebrow {
+  font-family: var(--m-font-text);
+  font-size: var(--m-fs-micro);
+  font-weight: var(--m-weight-bold);
+  letter-spacing: var(--m-track-caps);
+  text-transform: uppercase;
+  margin: 0 0 var(--m-s-4);
+  color: var(--m-accent-ink);
+}
+:is(.m-section--deep, .m-hero) .m-eyebrow { color: var(--m-accent-on-deep); }
+.m-section--brand .m-eyebrow { color: var(--m-on-brand-muted); }
+
+.m-script {
+  font-family: var(--m-font-script);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: var(--m-fs-h3);
+  line-height: 1;
+  display: inline-block;
+  transform: rotate(-2.5deg);
+  color: var(--m-accent-ink);
+}
+:is(.m-section--deep, .m-hero) .m-script { color: var(--m-accent-on-deep); }
+
+/* Papa's struck-out-and-replaced heading. Reproduced as a real component
+   because it is the single most recognisable move in the house style. */
+.m-strike { position: relative; white-space: nowrap; }
+.m-strike > s { text-decoration: none; opacity: 0.42; }
+.m-strike > s::after {
+  content: ""; position: absolute; left: 0; right: 22%; top: 52%;
+  height: 0.07em; background: currentColor; transform: rotate(-3deg);
+}
+.m-strike > .m-script { margin-left: 0.25em; vertical-align: baseline; }
+
+.m-mono {
+  font-family: var(--m-font-mono);
+  font-size: var(--m-fs-xs);
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- pill button --------------------------------------------------------
+   Papa measured: 60px tall, 0 40px padding, 50px radius, uppercase 700,
+   150ms on colour only. Kept, plus a displacement on hover because motion
+   8/10 means a hover state moves rather than only tints.                   */
+.m-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--m-s-2);
+  min-height: 60px; padding-inline: var(--m-s-8);
+  border: 2px solid transparent; border-radius: var(--m-r-pill);
+  font-family: var(--m-font-text); font-size: var(--m-fs-body);
+  font-weight: var(--m-weight-bold); text-transform: uppercase;
+  letter-spacing: 0.04em; text-decoration: none; cursor: pointer;
+  background: var(--m-accent); color: var(--m-on-accent);
+  transition: transform var(--m-dur-2) var(--m-ease),
+              background-color var(--m-dur-1) var(--m-ease),
+              box-shadow var(--m-dur-2) var(--m-ease),
+              color var(--m-dur-1) var(--m-ease);
+}
+.m-btn:hover { transform: translateY(calc(var(--m-lift) * -1)); box-shadow: var(--m-elev-1); }
+.m-btn:active { transform: translateY(0); }
+
+.m-btn--ghost {
+  background: transparent; color: var(--m-ink); border-color: var(--m-line-strong);
+}
+.m-btn--ghost:hover { background: var(--m-surface); }
+:is(.m-section--deep, .m-hero) .m-btn--ghost { color: var(--m-on-deep); border-color: var(--m-on-deep-muted); }
+:is(.m-section--deep, .m-hero) .m-btn--ghost:hover { background: var(--m-nav); }
+
+.m-btn--sm { min-height: 44px; padding-inline: var(--m-s-5); font-size: var(--m-fs-sm); }
+
+/* --- nav ---------------------------------------------------------------
+   Papa measured: fixed 100px charcoal band, script caption that swaps for
+   the wordmark on scroll past the hero, 0.8s cubic-bezier(.85,0,.15,1).
+   Here as a static bar plus the swap, driven by a class the page toggles.  */
+.m-nav {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--m-nav); color: var(--m-on-deep);
+  box-shadow: var(--m-elev-2);
+}
+.m-nav__in {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--m-s-5);
+  min-height: 84px;
+}
+.m-nav__brand { position: relative; display: grid; align-items: center; min-width: 15rem; }
+.m-nav__brand > * { grid-area: 1 / 1; transition: opacity var(--m-dur-4) var(--m-ease-swap),
+                                                  transform var(--m-dur-4) var(--m-ease-swap); }
+.m-nav__caption { font-family: var(--m-font-script); font-size: var(--m-fs-h4);
+                  color: var(--m-accent-on-deep); white-space: nowrap; }
+.m-nav__mark { font-family: var(--m-font-display); font-size: var(--m-fs-h4);
+               text-transform: uppercase; letter-spacing: 0.02em;
+               opacity: 0; transform: translateX(-2rem); }
+.m-nav.is-swapped .m-nav__caption { opacity: 0; transform: translateX(-2rem); }
+.m-nav.is-swapped .m-nav__mark { opacity: 1; transform: translateX(0); }
+
+.m-nav__links { display: flex; gap: var(--m-s-6); list-style: none; margin: 0; padding: 0; }
+.m-nav__links a {
+  color: var(--m-on-deep); text-decoration: none;
+  font-size: var(--m-fs-sm); font-weight: var(--m-weight-bold);
+  text-transform: uppercase; letter-spacing: var(--m-track-caps);
+  padding-block: var(--m-s-2);
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--m-dur-2) var(--m-ease), color var(--m-dur-2) var(--m-ease);
+}
+.m-nav__links a:hover { color: var(--m-accent-on-deep); border-bottom-color: var(--m-accent); }
+/* Measured: brand column (15rem) + links + CTA needs ~790px of bar. Below
+   900 the links collapse and the brand column stops reserving width, which
+   is what kept 768 and 375 overflowing the document by 23px and 19px. */
+@media (max-width: 900px) {
+  .m-nav__links { display: none; }
+  .m-nav__brand { min-width: 0; }
+  .m-nav__in { gap: var(--m-s-3); }
+}
+
+/* --- hero --------------------------------------------------------------
+   Asymmetric by construction: 7/5 split, never centred, never symmetric.  */
+.m-hero { background: var(--m-deep); color: var(--m-on-deep); padding-block: var(--m-s-10) var(--m-s-9); position: relative; overflow: hidden; }
+.m-hero__grid { display: grid; gap: var(--m-s-7); grid-template-columns: 7fr 5fr; align-items: end; }
+@media (max-width: 900px) { .m-hero__grid { grid-template-columns: 1fr; } }
+.m-hero__rule { height: 6px; background: var(--m-accent); width: 7rem; margin-bottom: var(--m-s-5); }
+
+/* --- section head ------------------------------------------------------- */
+.m-head { display: grid; gap: var(--m-s-4); margin-bottom: var(--m-s-7); }
+.m-head--split { grid-template-columns: minmax(0, 1fr) minmax(0, 22rem); align-items: end; gap: var(--m-s-7); }
+@media (max-width: 860px) { .m-head--split { grid-template-columns: 1fr; } }
+
+/* --- card ---------------------------------------------------------------
+   One card component. It is never used three-across at equal weight - the
+   layouts that consume it are asymmetric on purpose.                       */
+.m-card {
+  background: var(--m-surface); color: var(--m-ink);
+  border: 1px solid var(--m-line); border-radius: var(--m-r-lg);
+  padding: var(--m-s-6);
+  transition: transform var(--m-dur-2) var(--m-ease), box-shadow var(--m-dur-2) var(--m-ease);
+}
+.m-card:hover { transform: translateY(calc(var(--m-lift) * -1)); box-shadow: var(--m-elev-1); }
+.m-card__k { font-family: var(--m-font-display); font-size: var(--m-fs-h2); line-height: 1;
+             color: var(--m-brand); margin: 0 0 var(--m-s-3); }
+.m-card--deep { background: var(--m-nav); color: var(--m-on-deep); border-color: transparent; }
+.m-card--deep .m-card__k { color: var(--m-accent-on-deep); }
+.m-card--accent { background: var(--m-accent); color: var(--m-on-accent); border-color: transparent; }
+.m-card--accent .m-card__k { color: var(--m-on-accent); }
+
+/* deliberately unequal: 7/5, and the second row offsets */
+.m-cards { display: grid; gap: var(--m-s-5); grid-template-columns: 7fr 5fr; }
+.m-cards > :last-child:nth-child(3) { grid-column: 1 / -1; }
+@media (max-width: 820px) { .m-cards { grid-template-columns: 1fr; } }
+
+/* --- accordion ---------------------------------------------------------
+   Papa measured: 80px rows on an 82px pitch, uppercase 28px, all closed by
+   default, no chrome but a hairline rule.                                  */
+.m-acc { border-top: 2px solid var(--m-line-strong); }
+.m-acc details { border-bottom: 2px solid var(--m-line-strong); }
+.m-acc summary {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--m-s-4);
+  min-height: 80px; padding-block: var(--m-s-4); cursor: pointer;
+  font-family: var(--m-font-text); font-size: var(--m-fs-h4);
+  font-weight: var(--m-weight-bold); text-transform: uppercase;
+  color: var(--m-ink); list-style: none;
+  transition: color var(--m-dur-2) var(--m-ease), padding-left var(--m-dur-2) var(--m-ease);
+}
+.m-acc summary::-webkit-details-marker { display: none; }
+.m-acc summary:hover { color: var(--m-accent-ink); padding-left: var(--m-s-3); }
+.m-acc summary::after {
+  content: "+"; font-family: var(--m-font-text); font-weight: var(--m-weight-body);
+  font-size: var(--m-fs-h3); line-height: 1; color: var(--m-accent-ink);
+  transition: transform var(--m-dur-2) var(--m-ease);
+}
+.m-acc details[open] summary::after { transform: rotate(45deg); }
+.m-acc__body { padding-bottom: var(--m-s-5); color: var(--m-muted); max-width: var(--m-measure); }
+:is(.m-section--deep, .m-hero) .m-acc { border-color: var(--m-on-deep-muted); }
+:is(.m-section--deep, .m-hero) .m-acc details { border-color: var(--m-on-deep-muted); }
+:is(.m-section--deep, .m-hero) .m-acc summary { color: var(--m-on-deep); }
+:is(.m-section--deep, .m-hero) .m-acc summary::after,
+:is(.m-section--deep, .m-hero) .m-acc summary:hover { color: var(--m-accent-on-deep); }
+:is(.m-section--deep, .m-hero) .m-acc__body { color: var(--m-on-deep-muted); }
+
+/* --- logo wall ---------------------------------------------------------
+   Papa measured: 269px pitch, greyscale at 40%, full colour on hover, one
+   grey full-bleed stripe behind. CSS marquee here rather than Owl, with a
+   real pause on hover and a full stop under reduced motion.                */
+.m-wall { background: var(--m-surface); padding-block: var(--m-s-6); overflow: hidden; }
+.m-wall__track { display: flex; gap: var(--m-s-7); width: max-content; align-items: center;
+                 animation: m-marquee 42s linear infinite; }
+.m-wall:hover .m-wall__track { animation-play-state: paused; }
+.m-wall__item {
+  flex: 0 0 auto; width: 210px; height: 88px;
+  display: grid; place-items: center; text-align: center;
+  font-family: var(--m-font-display); font-size: var(--m-fs-sm);
+  text-transform: uppercase; letter-spacing: var(--m-track-caps);
+  color: var(--m-ink); opacity: 0.4;
+  transition: opacity var(--m-dur-3) var(--m-ease), color var(--m-dur-3) var(--m-ease);
+}
+.m-wall__item:hover { opacity: 1; color: var(--m-brand); }
+@keyframes m-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .m-wall__track { animation: none; flex-wrap: wrap; width: 100%; justify-content: center; }
+}
+
+/* --- footer ------------------------------------------------------------
+   Papa measured: a blue gradient field, script line over a 100px display
+   line, one CTA, copyright at 11px.                                        */
+.m-footer {
+  background: linear-gradient(var(--m-brand) 0%, var(--m-deep) 96%);
+  color: var(--m-on-brand);
+  padding-block: var(--m-s-9) var(--m-s-6);
+}
+/* Footer on-colours are measured at the gradient's WORST stop (--m-brand),
+   not at the deep end, so every one of them holds across the whole field. */
+.m-footer .m-script { color: var(--m-accent-on-brand); font-size: var(--m-fs-h2); }
+.m-footer .m-muted, .m-footer .m-eyebrow { color: var(--m-on-brand-muted); }
+.m-footer .m-btn--ghost { color: var(--m-on-brand); border-color: var(--m-on-brand-muted); }
+.m-footer__rule { height: 1px; background: var(--m-on-brand); opacity: 0.28;
+                  margin-block: var(--m-s-7) var(--m-s-4); }
+.m-footer__fine { font-size: var(--m-fs-micro); color: var(--m-on-brand-muted);
+                  display: flex; flex-wrap: wrap; gap: var(--m-s-4); }
+
+/* --- scroll reveal -----------------------------------------------------
+   Motion with a job: it establishes reading order on entry, once. Content
+   is visible with no JS and with reduced motion - the class is additive.   */
+.m-rise { transition: opacity var(--m-dur-3) var(--m-ease), transform var(--m-dur-3) var(--m-ease); }
+/* The hidden state is opt-in and only exists once JS has set .js-reveal on
+   <html>. With JS off, or before the script runs, .m-rise content is simply
+   painted - a reveal must never be the reason something is invisible. */
+.js-reveal .m-rise { opacity: 0; transform: translateY(1.25rem); }
+.js-reveal .m-rise.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .m-rise { opacity: 1; transform: none; }
+}
+
+.k-status { background: var(--m-accent); color: var(--m-on-accent);
+  font-weight: var(--m-weight-bold); font-size: var(--m-fs-sm);
+  padding: var(--m-s-3) var(--m-gutter); text-align: center; letter-spacing: .02em; }
+.k-skip { position: absolute; left: -9999px; }
+.k-skip:focus { left: var(--m-s-4); top: var(--m-s-4); z-index: 40;
+  background: var(--m-accent); color: var(--m-on-accent);
+  padding: var(--m-s-3) var(--m-s-5); border-radius: var(--m-r-pill); }
+.k-h5 { font-size: var(--m-fs-micro); text-transform: uppercase;
+  letter-spacing: var(--m-track-caps); font-weight: var(--m-weight-bold);
+  color: var(--m-muted); margin: 0 0 var(--m-s-3); }
+.k-note { font-size: var(--m-fs-sm); color: var(--m-muted); max-width: var(--m-measure); }
+.k-list { margin: 0; padding-left: 1.1rem; display: grid; gap: var(--m-s-2); font-size: var(--m-fs-sm); }
+.k-list.k-out li::marker { color: var(--m-danger); }
+.k-honest { border-left: 3px solid var(--m-line-strong);
+  padding: var(--m-s-3) 0 var(--m-s-3) var(--m-s-4);
+  font-size: var(--m-fs-sm); color: var(--m-muted); margin-top: var(--m-s-5); }
+.k-cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--m-s-6); }
+@media (max-width: 700px) { .k-cols { grid-template-columns: 1fr; } }
+
+/* lockup: the verified mark is an image; the word AI is type. Never a new logo. */
+.k-lockup { display: inline-flex; align-items: baseline; gap: .35em;
+  font-family: var(--m-font-display); text-transform: uppercase; letter-spacing: .02em; }
+/* the AI word takes the accent that is legal on the ground it sits on:
+   accent-ink on paper (6.18:1), accent-on-deep on deep/nav (8.51:1),
+   accent-on-brand on the footer gradient's worst stop (3.14:1, large) */
+.k-lockup b { color: var(--m-accent-ink); font-weight: 400; }
+.m-nav .k-lockup b, .m-hero .k-lockup b, .m-section--deep .k-lockup b { color: var(--m-accent-on-deep); }
+.m-footer .k-lockup b { color: var(--m-accent-on-brand); }
+
+/* the finding: one big number, one sentence */
+.k-finding { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--m-s-7); align-items: end; }
+@media (max-width: 860px) { .k-finding { grid-template-columns: 1fr; } }
+.k-big { font-family: var(--m-font-display); font-size: var(--m-fs-display); line-height: .9;
+  color: var(--m-accent-on-deep); margin: 0; }
+.k-big small { display: block; font-family: var(--m-font-text); font-size: var(--m-fs-micro);
+  letter-spacing: var(--m-track-caps); text-transform: uppercase; color: var(--m-on-deep-muted); margin-top: var(--m-s-3); }
+
+/* lanes: each lane is a numbered band; the flagship split alternates */
+.k-lane { padding-block: var(--m-s-8); border-top: 3px solid var(--m-line-strong); }
+.k-lane__head { display: grid; grid-template-columns: 5rem 1fr; gap: var(--m-s-5); align-items: baseline; margin-bottom: var(--m-s-6); }
+.k-lane__n { font-family: var(--m-font-display); font-size: var(--m-fs-h1); line-height: 1; color: var(--m-accent-ink); }
+.k-lane__line { font-family: var(--m-font-script); font-size: var(--m-fs-h3); color: var(--m-accent-ink);
+  display: inline-block; transform: rotate(-2deg); margin-left: .4em; }
+.k-flag { display: grid; grid-template-columns: 4fr 6fr; gap: var(--m-s-7); align-items: start; }
+.k-lane:nth-of-type(even) .k-flag { grid-template-columns: 6fr 4fr; }
+.k-lane:nth-of-type(even) .k-flag__aside { order: 2; }
+@media (max-width: 900px) { .k-flag, .k-lane:nth-of-type(even) .k-flag { grid-template-columns: 1fr; }
+  .k-lane:nth-of-type(even) .k-flag__aside { order: 0; } .k-lane__head { grid-template-columns: 3.5rem 1fr; } }
+.k-price { display: flex; flex-wrap: wrap; gap: var(--m-s-5); margin: var(--m-s-5) 0; }
+.k-price div { border-left: 3px solid var(--m-accent); padding-left: var(--m-s-4); }
+.k-price b { display: block; font-family: var(--m-font-display); font-size: var(--m-fs-h3); line-height: 1; }
+.k-price span { font-size: var(--m-fs-micro); text-transform: uppercase; letter-spacing: var(--m-track-caps);
+  font-weight: var(--m-weight-bold); color: var(--m-muted); }
+.k-agent { background: var(--m-surface); border-radius: var(--m-r-md); padding: var(--m-s-4) var(--m-s-5);
+  font-size: var(--m-fs-sm); margin-top: var(--m-s-5); }
+.k-agent b { display: block; font-size: var(--m-fs-micro); text-transform: uppercase; letter-spacing: var(--m-track-caps); color: var(--m-accent-ink); margin-bottom: var(--m-s-2); }
+.k-next { margin-top: var(--m-s-7); display: grid; grid-template-columns: minmax(0, 12rem) 1fr auto; gap: var(--m-s-5);
+  align-items: center; padding: var(--m-s-4) 0; border-top: 1px dashed var(--m-line-strong); font-size: var(--m-fs-sm); }
+.k-next .k-h5 { margin: 0; }
+.k-next em { font-style: normal; font-weight: var(--m-weight-bold); }
+.k-next .price { font-family: var(--m-font-mono); white-space: nowrap; }
+@media (max-width: 760px) { .k-next { grid-template-columns: 1fr; } }
+
+.k-t { border-collapse: collapse; width: 100%; font-size: var(--m-fs-sm); }
+.k-t th, .k-t td { text-align: left; padding: var(--m-s-3) var(--m-s-4); border-bottom: 1px solid var(--m-line); vertical-align: top; }
+.k-t th { font-size: var(--m-fs-micro); text-transform: uppercase; letter-spacing: var(--m-track-caps); color: var(--m-muted); }
+.k-t td.min { white-space: nowrap; font-family: var(--m-font-mono); font-variant-numeric: tabular-nums; }
+.k-wrapx { overflow-x: auto; }
+
+.k-dec article { display: grid; grid-template-columns: 4rem 1fr 9rem; gap: var(--m-s-4); padding-block: var(--m-s-4);
+  border-bottom: 1px solid var(--m-line); align-items: start; }
+.k-dec .id { font-family: var(--m-font-mono); font-weight: 600; color: var(--m-accent-ink); }
+.k-dec .who { font-size: var(--m-fs-xs); color: var(--m-muted); text-align: right; }
+.k-dec h3 { font-size: var(--m-fs-body); margin: 0 0 var(--m-s-2); font-family: var(--m-font-text);
+  font-weight: var(--m-weight-bold); text-transform: none; letter-spacing: 0; }
+.k-dec p { margin: 0 0 var(--m-s-2); font-size: var(--m-fs-sm); }
+.k-open { display: inline-block; font-size: var(--m-fs-micro); text-transform: uppercase; letter-spacing: var(--m-track-caps);
+  font-weight: var(--m-weight-bold); color: var(--m-danger); border: 1px solid currentColor; border-radius: var(--m-r-sm); padding: .1rem .4rem; }
+@media (max-width: 760px) { .k-dec article { grid-template-columns: 3rem 1fr; } .k-dec .who { grid-column: 2; text-align: left; } }
+
+.k-obj { display: grid; gap: var(--m-s-5); }
+.k-obj div { display: grid; grid-template-columns: minmax(0, 20rem) 1fr; gap: var(--m-s-5); padding-bottom: var(--m-s-4); border-bottom: 1px solid var(--m-line); }
+.k-obj q { font-weight: var(--m-weight-bold); font-style: italic; }
+@media (max-width: 800px) { .k-obj div { grid-template-columns: 1fr; gap: var(--m-s-2); } }
+
+.k-timeline div { display: grid; grid-template-columns: 10rem 1fr; gap: var(--m-s-5); padding-block: var(--m-s-4); border-bottom: 1px solid var(--m-on-deep-muted); }
+.k-timeline b { font-family: var(--m-font-display); text-transform: uppercase; font-size: var(--m-fs-sm); letter-spacing: var(--m-track-caps); }
+@media (max-width: 700px) { .k-timeline div { grid-template-columns: 1fr; gap: var(--m-s-2); } }
+
+.k-opener { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--m-s-7); }
+@media (max-width: 860px) { .k-opener { grid-template-columns: 1fr; } }
+
+@page { size: Letter; margin: 14mm 14mm 16mm; }
+body { background: #fff; }
+.s-sheet { max-width: 186mm; margin: 0 auto var(--m-s-10); padding-bottom: var(--m-s-8); border-bottom: 2px solid var(--m-line-strong); }
+.s-sheet:last-child { border-bottom: 0; }
+.s-rule { height: 6px; background: var(--m-accent); width: 5rem; margin-bottom: var(--m-s-4); }
+.s-band { background: var(--m-accent); color: var(--m-on-accent); font-size: var(--m-fs-micro); font-weight: var(--m-weight-bold);
+  text-transform: uppercase; letter-spacing: var(--m-track-caps); padding: var(--m-s-2) var(--m-s-4); border-radius: var(--m-r-sm);
+  display: inline-block; margin-bottom: var(--m-s-4); }
+.s-foot { margin-top: var(--m-s-6); padding-top: var(--m-s-3); border-top: 1px solid var(--m-line); font-size: var(--m-fs-xs); color: var(--m-muted); }
+.s-lanes { border-collapse: collapse; width: 100%; font-size: var(--m-fs-sm); margin-top: var(--m-s-5); }
+.s-lanes th, .s-lanes td { text-align: left; padding: var(--m-s-3) var(--m-s-3); border-bottom: 1px solid var(--m-line); vertical-align: top; }
+.s-lanes th { font-size: var(--m-fs-micro); text-transform: uppercase; letter-spacing: var(--m-track-caps); color: var(--m-muted); }
+@media print {
+  .s-sheet { page-break-after: always; border-bottom: 0; margin-bottom: 0; }
+  .s-sheet:last-child { page-break-after: auto; }
+  .k-honest, .s-band, .k-agent { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .noprint { display: none !important; }
+}
+</style>
+</head>
+<body>
+<p class="k-status noprint">Five sheets, one per printed page: the division summary and four flagships. Print to PDF at Letter. Every figure is a proposal until agreed.</p>
+<main class="m-wrap" style="padding-block: var(--m-s-7)">
+
+<section class="s-sheet">
+  <div class="s-rule"></div>
+  <span class="s-band">Internal &middot; proposed &middot; not agreed &middot; 2026-09-05</span>
+  <h1 class="m-h2"><span class="k-lockup ">Momentum <b>AI</b></span></h1>
+  <p class="m-lead" style="margin-top:var(--m-s-4)">Momentum built the machine. Now we build yours.</p>
+  <p class="k-note" style="margin-top:var(--m-s-3)">Every offer ships with its agent. Delivery hours per client is an acceptance metric of the offer itself, and it is measured. An AI division whose product is Dillon&#x27;s hours is not an AI division.</p>
+  <table class="s-lanes">
+    <caption class="k-skip">Four lanes with flagship and roadmap offers</caption>
+    <thead><tr><th>#</th><th>Lane</th><th>Launch flagship</th><th>Proposed</th><th>Roadmap</th></tr></thead>
+    <tbody><tr><td class="min">01</td><td><strong>AEO / GEO</strong><br><span class="k-note">Get found by AI</span></td><td>AI Search Readiness sprint</td><td class="min">$1,500 + $750/mo</td><td>AI Visibility monitoring<br><span class="k-note">$500/month</span></td></tr><tr><td class="min">02</td><td><strong>AI Design</strong><br><span class="k-note">Prototype in a week</span></td><td>Spec build</td><td class="min">$3,500 fixed</td><td>Closed-loop site optimization<br><span class="k-note">$1,000/month</span></td></tr><tr><td class="min">03</td><td><strong>AI Marketing</strong><br><span class="k-note">Content that moves</span></td><td>Motion content system</td><td class="min">$1,500 + $1,250/mo</td><td>ChatGPT Ads management<br><span class="k-note">$500/month</span></td></tr><tr><td class="min">04</td><td><strong>AI Automation</strong><br><span class="k-note">The attribution spine</span></td><td>Lead Operations agent</td><td class="min">$3,500 + $1,500/mo</td><td>Attribution Spine<br><span class="k-note">$3,500 build + $1,000/month</span></td></tr></tbody>
+  </table>
+  <p class="k-h5" style="margin-top:var(--m-s-6)">Opener &middot; Free</p>
+  <p style="font-size:var(--m-fs-sm);margin:0"><strong>AI Search Snapshot.</strong> A generated, branded three-to-five page audit from one URL: can AI systems read the site, does it say what the business is, and what the models say when asked the questions its buyers ask.</p>
+  <p class="k-honest">Has outbound started? Yes. Two waves, 241 sends, zero verified human replies. In the same fortnight, two hand-built AI search audits sent to GT Clinic and Tuxedo Den both reached the quote stage.</p>
+  <p class="s-foot">Every figure is a proposal for the Friday conversation. Twenty decisions are open; see the register.</p>
+</section>
+
+<section class="s-sheet">
+  <div class="s-rule"></div>
+  <span class="s-band">Proposed scope &middot; not agreed &middot; 2026-09-05</span>
+  <p class="k-h5">Lane 01 &middot; AEO / GEO &middot; Get found by AI</p>
+  <h1 class="m-h2">AI Search Readiness sprint</h1>
+  <p class="m-lead" style="margin-top:var(--m-s-4)">Within 90 days the systems that write AI answers can read the site, know what the business is, and are measured monthly on the questions its buyers ask.</p>
+  <div class="k-price"><div><b>$1,500</b><span>setup &middot; proposed</span></div><div><b>$750</b><span>per month &middot; proposed</span></div></div>
+  <div class="k-agent"><b>Ships with its agent</b>The Snapshot generator, run monthly against the same frozen 20 questions, plus the readiness checks re-run after every deploy.<br>
+    <span style="color:var(--m-accent-ink);font-weight:var(--m-weight-bold)">Target:</span> Under 4 hours/month per client by month three, measured. The agent does the monitoring.</div>
+  <div class="k-cols" style="margin-top:var(--m-s-5)">
+    <div><p class="k-h5">Included</p><ul class="k-list"><li>Readiness fixes: AI-crawler allowlist (GPTBot, PerplexityBot, ClaudeBot, Google-Extended), robots and sitemap repair, canonical checks</li><li>Entity and schema correction so the business is typed as what it is, not as a Product</li><li>Answer architecture: FAQ and definition pages that mirror the visible page</li><li>Twenty buyer questions frozen by intent, baselined on two named engines, repeated monthly</li><li>Two useful page improvements per month</li><li>Source-linked observation report and one consolidated revision</li></ul></div>
+    <div><p class="k-h5">Not included</p><ul class="k-list k-out"><li>Paid placements</li><li>Broad PR or link procurement</li><li>Unlimited content</li><li>Unsupported automated scraping or account setup</li><li>Traditional SEO publishing and backlinks where another operator owns them</li></ul></div>
+  </div>
+  <p class="k-h5" style="margin-top:var(--m-s-5)">Acceptance</p>
+  <p style="font-size:var(--m-fs-sm);margin:0">AI crawlers can fetch the canonical pages (verified by non-Google user agents). Entity type is correct in Search Console rich results. Every reported observation carries engine, prompt, date and source. Baseline and checkpoint use matching questions and settings.</p>
+  <p class="k-h5" style="margin-top:var(--m-s-4)">Customer dependencies</p>
+  <p style="font-size:var(--m-fs-sm);margin:0">Customer approves source truth, CMS access and final factual claims. Where analytics are unavailable they stay pending rather than estimated. The delivery clock starts when CMS and Search Console access are granted.</p>
+  <p class="k-honest"><strong>What we will not claim.</strong> Three measures stay separate: observed mention and citation frequency, verified referral traffic, and validated lead or customer outcomes. Stochastic interfaces get three observations per question and the range is reported. We never cherry-pick, never infer causality from a before-and-after, and never promise rankings, mentions, leads or revenue.</p>
+  <p class="s-foot">Momentum AI &middot; Momentum Digital, Philadelphia &middot; 10 setup hours; then 4 hours/month including review &middot;
+    Support Mon&ndash;Fri 9am&ndash;5pm Eastern, one business day to acknowledge a blocking incident: an acknowledgement commitment, not an SLA.</p>
+</section>
+<section class="s-sheet">
+  <div class="s-rule"></div>
+  <span class="s-band">Proposed scope &middot; not agreed &middot; 2026-09-05</span>
+  <p class="k-h5">Lane 02 &middot; AI Design &middot; Prototype in a week</p>
+  <h1 class="m-h2">Spec build</h1>
+  <p class="m-lead" style="margin-top:var(--m-s-4)">Five working days after kickoff the client is looking at a working prototype of the thing they were describing: a site, a dashboard, or a film, built from real assets and real facts.</p>
+  <div class="k-price"><div><b>$3,500</b><span>setup &middot; proposed</span></div><div><b>fixed, one build</b><span>proposed</span></div></div>
+  <div class="k-agent"><b>Ships with its agent</b>The radar site engine, the Puttery dashboard pattern, the client-deck system and the Higgsfield film pipeline, each with its own QA gate.<br>
+    <span style="color:var(--m-accent-ink);font-weight:var(--m-weight-bold)">Target:</span> Under 24 hours per build, measured. The engines do the assembly; Dillon does the direction and the QA.</div>
+  <div class="k-cols" style="margin-top:var(--m-s-5)">
+    <div><p class="k-h5">Included</p><ul class="k-list"><li>One prototype: a homepage, a reporting dashboard, or a 15-second brand film</li><li>Built from the client&#x27;s verified logo, real photography and first-party facts</li><li>Measured contrast, responsive at seven widths, reduced-motion state, keyboard access</li><li>One consolidated revision round</li><li>Editable source and a written handoff</li></ul></div>
+    <div><p class="k-h5">Not included</p><ul class="k-list k-out"><li>Hosting, domains and production deployment</li><li>Copywriting beyond the visible prototype</li><li>Multi-page sites, apps, or integrations with live client systems</li><li>Invented testimonials, metrics, awards or team members</li></ul></div>
+  </div>
+  <p class="k-h5" style="margin-top:var(--m-s-5)">Acceptance</p>
+  <p style="font-size:var(--m-fs-sm);margin:0">Prototype opens locally with no build step. Zero WCAG AA failures measured. No horizontal overflow at 320 to 1920. Every fact traceable to a first-party source. The client&#x27;s mark is the exact asset, never redrawn.</p>
+  <p class="k-h5" style="margin-top:var(--m-s-4)">Customer dependencies</p>
+  <p style="font-size:var(--m-fs-sm);margin:0">Verified logo, usable photography, and the facts the prototype will state, supplied before kickoff. Five working days from the day the assets arrive, not from signature.</p>
+  <p class="k-honest"><strong>What we will not claim.</strong> A prototype is a prototype. It is not a launched site, a live feed, or a claim about results.</p>
+  <p class="s-foot">Momentum AI &middot; Momentum Digital, Philadelphia &middot; 24 delivery hours; then none; a second build is a second order &middot;
+    Support Mon&ndash;Fri 9am&ndash;5pm Eastern, one business day to acknowledge a blocking incident: an acknowledgement commitment, not an SLA.</p>
+</section>
+<section class="s-sheet">
+  <div class="s-rule"></div>
+  <span class="s-band">Proposed scope &middot; not agreed &middot; 2026-09-05</span>
+  <p class="k-h5">Lane 03 &middot; AI Marketing &middot; Content that moves</p>
+  <h1 class="m-h2">Motion content system</h1>
+  <p class="m-lead" style="margin-top:var(--m-s-4)">Every month the client gets a short brand film and a set of stills, in their identity, with a rights ledger, ready for every social placement, and their logo has never been touched by a model.</p>
+  <div class="k-price"><div><b>$1,500</b><span>setup &middot; proposed</span></div><div><b>$1,250</b><span>per month &middot; proposed</span></div></div>
+  <div class="k-agent"><b>Ships with its agent</b>The Higgsfield plate pipeline with the composite script: keyframe, one test leg, chain, local join, verified-logo overlay, four QA frames, receipt.<br>
+    <span style="color:var(--m-accent-ink);font-weight:var(--m-weight-bold)">Target:</span> Under 6 hours/month per client, measured. Plates are generated; the mark is composited; the QA frames are automatic.</div>
+  <div class="k-cols" style="margin-top:var(--m-s-5)">
+    <div><p class="k-h5">Included</p><ul class="k-list"><li>Setup: a verified brand kit from the client&#x27;s own site (logo cleaned, colours measured, contrast checked) and a logo motion treatment</li><li>Monthly: one film of 10 to 16 seconds in 16:9 and 9:16, plus up to six stills with type overlays</li><li>Asset manifest: client, campaign, file, dimensions, version, editable source, owner or licence, claim evidence, SHA256</li><li>One consolidated revision round</li></ul></div>
+    <div><p class="k-h5">Not included</p><ul class="k-list k-out"><li>Media spend and ad-account operation</li><li>Shoots, founder likenesses and custom animation</li><li>Unlimited video</li><li>Website construction</li></ul></div>
+  </div>
+  <p class="k-h5" style="margin-top:var(--m-s-5)">Acceptance</p>
+  <p style="font-size:var(--m-fs-sm);margin:0">Brand fidelity, message clarity, factual support, readability, exact dimensions and editable handoff, each scored 1 to 5 and each at least 4. Rendered exports verified, not source filenames. No missing right, unsupported claim or wrong-client asset. The logo is undeformed in the opening, middle, closing and final frame.</p>
+  <p class="k-h5" style="margin-top:var(--m-s-4)">Customer dependencies</p>
+  <p style="font-size:var(--m-fs-sm);margin:0">The customer returns one consolidated list within the review window. A change to audience, offer or channel is a new brief. Generation starts after the brand kit is accepted and credits are authorised.</p>
+  <p class="k-honest"><strong>What we will not claim.</strong> A missing rights record is a hold, not implied permission. No client&#x27;s palette, signature, testimonial or source bundle is ever shared by template inheritance. Credits are passed through at cost and shown on every invoice.</p>
+  <p class="s-foot">Momentum AI &middot; Momentum Digital, Philadelphia &middot; 8 setup hours; then 6 hours/month including one consolidated revision &middot;
+    Support Mon&ndash;Fri 9am&ndash;5pm Eastern, one business day to acknowledge a blocking incident: an acknowledgement commitment, not an SLA.</p>
+</section>
+<section class="s-sheet">
+  <div class="s-rule"></div>
+  <span class="s-band">Proposed scope &middot; not agreed &middot; 2026-09-05</span>
+  <p class="k-h5">Lane 04 &middot; AI Automation &middot; The attribution spine</p>
+  <h1 class="m-h2">Lead Operations agent</h1>
+  <p class="m-lead" style="margin-top:var(--m-s-4)">A named employee can account for every accepted lead, from one agreed intake source through one destination, including duplicates and exceptions, and the agent drafts the first reply.</p>
+  <div class="k-price"><div><b>$3,500</b><span>setup &middot; proposed</span></div><div><b>$1,500</b><span>per month &middot; proposed</span></div></div>
+  <div class="k-agent"><b>Ships with its agent</b>The intake agent: validation, idempotency, duplicate and conflicting-replay handling, reply draft, exception queue, destination readback, operator report.<br>
+    <span style="color:var(--m-accent-ink);font-weight:var(--m-weight-bold)">Target:</span> Under 6 hours/month per client, measured. The exception queue is the only thing a human touches.</div>
+  <div class="k-cols" style="margin-top:var(--m-s-5)">
+    <div><p class="k-h5">Included</p><ul class="k-list"><li>Documented field mapping and the exact account, source and destination route</li><li>Required-field validation and stable idempotency</li><li>Duplicate and conflicting-replay handling</li><li>Internal reply draft and a durable exception queue</li><li>Destination readback and a simple operator report</li><li>Rollback instructions and five supervised operator cases</li><li>One agreed improvement per recurring month</li></ul></div>
+    <div><p class="k-h5">Not included</p><ul class="k-list k-out"><li>Autonomous outbound and lead-generation guarantees</li><li>Extra CRM migrations and historical data cleanup</li><li>Multi-location routing and payment processing</li><li>Sensitive clinical or legal records</li><li>Unlimited revisions, 24/7 support, unapproved third-party charges</li></ul></div>
+  </div>
+  <p class="k-h5" style="margin-top:var(--m-s-5)">Acceptance</p>
+  <p style="font-size:var(--m-fs-sm);margin:0">Thirty named cases agreed before implementation, each with an executed receipt. No failed critical case, missing case, wrong-client result or unresolved data-loss or routing defect can pass. Five supervised operator cases and written customer acceptance are separate from automated tests.</p>
+  <p class="k-h5" style="margin-top:var(--m-s-4)">Customer dependencies</p>
+  <p style="font-size:var(--m-fs-sm);margin:0">Decision-maker and operator named; source and destination access approved; sample records with lawful use; authoritative mapping and retention policy; baseline volume and manual effort; approved reply claims and tone; testing window; recovery contact. The delivery clock starts only when the agreed dependencies are available.</p>
+  <p class="k-honest"><strong>What we will not claim.</strong> Customer-facing replies remain internal drafts unless separately authorised. This improves handling; it does not promise more leads.</p>
+  <p class="s-foot">Momentum AI &middot; Momentum Digital, Philadelphia &middot; 24 delivery hours; then 6 hours/month, including 2 support hours and one 30-minute review &middot;
+    Support Mon&ndash;Fri 9am&ndash;5pm Eastern, one business day to acknowledge a blocking incident: an acknowledgement commitment, not an SLA.</p>
+</section>
+</main>
+</body></html>

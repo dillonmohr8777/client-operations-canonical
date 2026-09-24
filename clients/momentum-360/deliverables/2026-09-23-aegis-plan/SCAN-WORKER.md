@@ -1,0 +1,9 @@
+# Public DOM scan worker packet
+
+User requested faster bulk scans in parallel. Read only public NeedMomentum pages using the existing authenticated in-app browser, keeping it hidden and never navigating a user tab or YouTube. No form submissions, CMS writes, messages, credentials or security changes.
+
+Your assigned inclusive array indices refer to bulk-scan-urls.json in this directory. Own only bulk-scan-part-N.json, where N is your assigned part. Parent owns the merge and offline analyzer. You are not alone; do not modify another part or any source code.
+
+Use mcp__cua_repl first entry cua.createBrowserTab('iab', firstAssignedUrl, {visible:false}); read returned docs. Reuse that one own tab. Read bulk-scan-dom-function.txt with shell; copy its function expression into a REPL variable. This function extracts public DOM attributes only, excluding the admin toolbar and all form values. For each assigned page, navigate using tab.goto, then read with tab.playwright.evaluate(theFunction), record requestedUrl plus returned facts. Do not export whole HTML, credentials, cookie data, or admin information. Sequential navigations within your part; at most11 pages. Capture navigation failures as {requestedUrl,blocked:true,error:'navigation failed'}; stop your lane on CAPTCHA/security challenges and do not bypass them. Do not guess more URLs or revisit pages. Normal embedded reCAPTCHA on contact forms is not a navigation block.
+
+Use a permitted filesystem write to save extracted JSON (node:fs/promises in REPL or apply_patch from tool output). Return just observed/blocked count and file path. Close your own tab after saving. No screenshots/full AX dumps beyond automatic initial state; DOM facts are the acceptance evidence. No model analysis pass per page. Parent runs all page checks once on the merged facts.

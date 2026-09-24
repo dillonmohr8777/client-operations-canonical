@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "policyId": "cursor-communication",
+  "updatedAt": "2026-07-25",
+  "operatingMode": "automatic_prepare_human_approved_send",
+  "triage": {
+    "urgent": {
+      "triggers": [
+        "direct question or explicit request with a current deadline",
+        "client risk, launch blocker, or time-sensitive correction",
+        "message where waiting is likely to materially harm the relationship or outcome"
+      ],
+      "notification": "immediate_preview"
+    },
+    "standard": {
+      "triggers": [
+        "actionable question or follow-up without immediate client risk",
+        "routine request for a report, deliverable, decision, or status"
+      ],
+      "notification": "next_digest"
+    },
+    "no_reply": {
+      "triggers": [
+        "announcement, FYI, bot message, casual chatter, or completed request",
+        "message Dillon already answered after the candidate",
+        "message with no ask or implied response obligation for Dillon"
+      ],
+      "notification": "none"
+    }
+  },
+  "preview": {
+    "requiredBeforeDelivery": true,
+    "fields": [
+      "recipient",
+      "channel_or_thread",
+      "one_sentence_ask",
+      "exact_proposed_reply",
+      "source_as_of",
+      "facts_as_of",
+      "material_uncertainty",
+      "delivery_effect"
+    ],
+    "decisions": {
+      "send_or_yes": "Approve only the exact preview shown.",
+      "edit": "Prepare and show a revised preview. Do not send.",
+      "hold": "Preserve the draft without sending."
+    }
+  },
+  "authority": {
+    "cursorMayTriage": true,
+    "cursorMayRetrieveBoundedCurrentContext": true,
+    "cursorMayDraft": true,
+    "cursorMayNotifyDillon": false,
+    "cursorMaySendWithoutApproval": false,
+    "cursorMayPost": false,
+    "marketingChiefOwnsNotification": true,
+    "deliveryRequiresExactPreviewApproval": true
+  },
+  "latestInformation": {
+    "required": true,
+    "communicationSources": [
+      "exact current source-message thread",
+      "full available thread when replying",
+      "canonical active client context",
+      "authorized redacted summaries of relevant private messages when needed"
+    ],
+    "paidMediaSources": [
+      "fresh read-only platform readback",
+      "exact reporting dates and account",
+      "conversion action definition and attribution window",
+      "tracking-health and platform-latency check",
+      "CRM, booking, or qualified-lead evidence when authorized and relevant"
+    ],
+    "failClosed": "If material facts are stale, unavailable, mixed-client, or ambiguous, draft only the smallest truthful acknowledgment or clarifying question and label the facts pending validation."
+  },
+  "paidMediaLanguage": {
+    "scope": "client_facing_reports_messages_and_drafts",
+    "prohibitedClaims": [
+      "zero conversions",
+      "no conversions",
+      "not enough conversions",
+      "insufficient conversions"
+    ],
+    "fallback": "Conversion reporting is pending validation.",
+    "requirements": [
+      "Do not alter raw source evidence.",
+      "Do not invent positive conversion results.",
+      "Use verified delivery, traffic, lead quality, tracking health, and next actions when conversion reporting is not defensible."
+    ]
+  }
+}

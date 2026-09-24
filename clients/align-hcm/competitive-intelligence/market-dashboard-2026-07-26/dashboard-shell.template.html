@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Align HCM Competitive Intelligence</title>
+  <style>
+    :root{
+      color-scheme:dark;
+      --page:#071321;--page-2:#0b1b2e;--card:rgba(10,24,41,.82);--card-solid:#0b1b2e;
+      --ink:#f7f0e2;--ink-2:#b1bfcc;--ink-3:#8ea0b1;--line:rgba(247,240,226,.13);
+      --hairline:rgba(247,240,226,.08);--orange:#f05a28;--orange-2:#f7a678;
+      --teal:#27a591;--green:#4cc38a;--amber:#f7c873;--focus:#fff1c9;
+      --head:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;
+      --body:"DM Sans","Segoe UI",system-ui,sans-serif;
+      --shadow:0 28px 80px rgba(2,8,16,.42);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;overflow-x:hidden}
+    body{margin:0;min-height:100vh;overflow-x:hidden;color:var(--ink);font:15px/1.6 var(--body);
+      background:
+        radial-gradient(circle at 86% -10%,rgba(240,90,40,.18),transparent 34rem),
+        radial-gradient(circle at -10% 48%,rgba(39,165,145,.13),transparent 30rem),
+        linear-gradient(160deg,#060f1b 0%,#0b1b2e 55%,#071321 100%);
+    }
+    a{color:var(--orange-2);text-underline-offset:3px}
+    a:hover{color:#ffd0b5}
+    a:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+    .skip{position:fixed;left:16px;top:-80px;z-index:100;padding:10px 14px;background:var(--ink);color:var(--page);border-radius:8px}
+    .skip:focus{top:16px}
+    .shell{width:min(1240px,calc(100% - 32px));margin:0 auto;padding:24px 0 64px}
+    .topbar{position:sticky;top:12px;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;
+      min-height:68px;padding:12px 16px;border:1px solid var(--line);border-radius:18px;background:rgba(7,19,33,.88);
+      box-shadow:0 12px 40px rgba(0,0,0,.25);backdrop-filter:blur(18px)}
+    .brand{display:flex;align-items:center;gap:13px;min-width:0}
+    .brand img{display:block;width:142px;height:auto}
+    .brand-copy{padding-left:13px;border-left:1px solid var(--line);color:var(--ink-2);font:600 12px/1.25 var(--head);letter-spacing:.08em;text-transform:uppercase}
+    .nav{display:flex;align-items:center;justify-content:flex-end;gap:7px;flex-wrap:wrap}
+    .nav a{padding:7px 11px;border:1px solid transparent;border-radius:999px;color:var(--ink-2);font:600 12px var(--head);text-decoration:none}
+    .nav a:hover{border-color:var(--line);color:var(--ink)}
+    .reading{width:min(860px,100%);margin-inline:auto}
+    .hero{padding:92px 0 34px}
+    .eyebrow{color:var(--orange-2);font:800 12px var(--head);letter-spacing:.22em;text-transform:uppercase}
+    h1,h2,h3{font-family:var(--head);color:var(--ink)}
+    h1{max-width:880px;margin:12px 0 20px;font-size:clamp(42px,7vw,76px);line-height:.98;letter-spacing:-.055em}
+    h2{font-size:clamp(27px,3vw,38px);line-height:1.1;letter-spacing:-.035em}
+    h3{font-size:19px;letter-spacing:-.02em}
+    .deck{max-width:730px;margin:0;color:var(--ink-2);font-size:clamp(17px,2vw,20px)}
+    .status-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+    .status{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(247,240,226,.04);color:var(--ink-2);font:600 12px var(--head)}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(76,195,138,.12)}
+    .dot.orange{background:var(--orange);box-shadow:0 0 0 4px rgba(240,90,40,.12)}
+    .summary{margin:22px 0 42px;padding:24px;border:1px solid rgba(240,90,40,.25);border-radius:20px;background:linear-gradient(135deg,rgba(240,90,40,.12),rgba(11,27,46,.55))}
+    .summary-label{margin-bottom:8px;color:var(--orange-2);font:800 11px var(--head);letter-spacing:.18em;text-transform:uppercase}
+    .summary p{margin:0;color:var(--ink);font-size:16px}
+    .metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:58px}
+    .metric{min-height:142px;padding:19px;border:1px solid var(--line);border-radius:18px;background:var(--card)}
+    .metric .label{color:var(--ink-3);font:700 10px var(--head);letter-spacing:.13em;text-transform:uppercase}
+    .metric .value{margin:10px 0 2px;color:var(--ink);font:800 38px/1 var(--head);letter-spacing:-.05em}
+    .metric .note{color:var(--ink-2);font-size:12px;line-height:1.4}
+    .section{padding:34px 0}
+    .section-intro{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);gap:28px;align-items:end;margin-bottom:22px}
+    .section-intro h2{margin:0}
+    .section-intro p{margin:0;color:var(--ink-2)}
+    .wide{width:100%;margin:0 auto 26px}
+    .card{border:1px solid var(--line);border-radius:22px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
+    .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:24px 24px 0}
+    .card-head h3{margin:0 0 5px}
+    .card-head p{max-width:760px;margin:0;color:var(--ink-3);font-size:13px}
+    .badge{flex:none;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--ink-2);font:700 10px var(--head);letter-spacing:.08em;text-transform:uppercase}
+    .chart-wrap{min-height:360px;padding:18px 18px 8px}
+    [data-recharts-chart]{min-height:330px}
+    [data-recharts-live]{min-height:330px;padding:0 18px 0 150px}
+    [data-recharts-live] svg{overflow:visible}
+    [data-recharts-live] text{fill:var(--ink-2)!important;font-family:var(--body)!important}
+    [data-recharts-live] .recharts-cartesian-grid line{stroke:rgba(247,240,226,.09)!important}
+    #capability-chart path.recharts-rectangle{fill:var(--teal)!important}
+    #opportunity-chart path.recharts-rectangle{fill:var(--orange)!important}
+    .chart-fallback{min-height:330px}
+    .fallback-bars{display:grid;gap:12px;padding:8px 10px 8px 0}
+    .fallback-bar{display:grid;grid-template-columns:145px minmax(100px,1fr) 42px;gap:13px;align-items:center}
+    .fallback-label{text-align:right;color:var(--ink-2);font-size:13px;white-space:nowrap}
+    .fallback-track{height:18px;background:rgba(247,240,226,.06);border-radius:0 5px 5px 0;overflow:hidden}
+    .fallback-fill{height:100%;width:var(--w);background:var(--c,var(--teal));border-radius:0 5px 5px 0}
+    .fallback-value{font:800 13px var(--head);color:var(--ink)}
+    .fallback-table{width:100%;border-collapse:separate;border-spacing:0 10px}
+    .fallback-table th{width:150px;border:0;text-align:right;text-transform:none;letter-spacing:0;font:400 13px var(--body);color:var(--ink-2)}
+    .fallback-table td{border:0;padding:0 8px}
+    .fallback-table td:last-child{width:44px;font:800 13px var(--head);color:var(--ink)}
+    .fallback-table .fallback-track{display:block}
+    .chart-note{margin:0;padding:0 24px 22px;color:var(--ink-3);font-size:12px}
+    .filters{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:18px 0}
+    .filters span{margin-right:4px;color:var(--ink-3);font:700 10px var(--head);letter-spacing:.12em;text-transform:uppercase}
+    .filter{appearance:none;padding:8px 13px;border:1px solid var(--line);border-radius:999px;background:rgba(247,240,226,.04);color:var(--ink-2);font:700 12px var(--head);cursor:pointer}
+    .filter[aria-pressed="true"]{border-color:var(--orange);background:var(--orange);color:#081522}
+    .table-card{padding-bottom:8px}
+    .table-scroll{overflow-x:auto;padding:14px 18px 18px}
+    table{width:100%;border-collapse:collapse;font-size:13px}
+    caption{padding:0 0 12px;text-align:left;color:var(--ink-3)}
+    th{padding:10px 11px;border-bottom:1px solid var(--line);color:var(--ink-3);font:700 10px var(--head);letter-spacing:.11em;text-align:left;text-transform:uppercase;white-space:nowrap}
+    td{padding:13px 11px;border-bottom:1px solid var(--hairline);color:var(--ink-2);vertical-align:top}
+    tbody tr:hover{background:rgba(247,240,226,.025)}
+    td strong{color:var(--ink);font-family:var(--head)}
+    .company-row[hidden]{display:none}
+    .platforms{display:flex;gap:5px;flex-wrap:wrap;min-width:140px}
+    .platform{padding:3px 7px;border:1px solid var(--line);border-radius:999px;color:var(--ink-2);font-size:10px;white-space:nowrap}
+    .yes{color:var(--green);font-weight:800}.no{color:#65788a}
+    .guidance-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .guidance{padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--card)}
+    .guidance:first-child{grid-column:1 / -1;border-color:rgba(240,90,40,.3)}
+    .guidance .rank{color:var(--orange-2);font:800 11px var(--head);letter-spacing:.13em;text-transform:uppercase}
+    .guidance h3{margin:7px 0 8px}
+    .guidance p{margin:0;color:var(--ink-2)}
+    .guidance .move{margin-top:12px;padding-top:12px;border-top:1px solid var(--hairline);color:var(--ink)}
+    .briefs{display:grid;gap:14px}
+    .brief{padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--card)}
+    .brief h3{margin:0 0 4px}
+    .brief-meta{color:var(--ink-3);font-size:12px}
+    .brief-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:15px}
+    .brief-block{padding:13px;border:1px solid var(--hairline);border-radius:12px;background:rgba(255,255,255,.018)}
+    .brief-block b{display:block;margin-bottom:4px;color:var(--orange-2);font:800 10px var(--head);letter-spacing:.1em;text-transform:uppercase}
+    .brief-block p{margin:0;color:var(--ink-2);font-size:13px}
+    .sources{columns:2;column-gap:28px;margin:0;padding:0;list-style:none}
+    .sources li{break-inside:avoid;margin:0 0 10px;padding:12px 14px;border:1px solid var(--hairline);border-radius:12px;background:rgba(255,255,255,.018)}
+    .sources b{display:block;color:var(--ink);font-family:var(--head)}
+    .caveat{margin-top:22px;padding:18px;border:1px solid rgba(247,200,115,.28);border-radius:14px;background:rgba(247,200,115,.07);color:var(--ink-2)}
+    footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:54px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink-3);font-size:12px}
+    .source-tooltip{position:relative;cursor:help;border-bottom:1px dotted currentColor}
+    .source-tooltip-content{position:absolute;left:50%;bottom:calc(100% + 10px);z-index:50;width:260px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#10243a;color:var(--ink);font:400 11px/1.45 var(--body);text-align:left;box-shadow:0 12px 30px rgba(0,0,0,.35);opacity:0;pointer-events:none;transform:translate(-50%,5px);transition:.15s}
+    .source-tooltip:hover .source-tooltip-content,.source-tooltip:focus .source-tooltip-content{opacity:1;transform:translate(-50%,0)}
+    .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+    @media (max-width:900px){
+      .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .section-intro{grid-template-columns:1fr}
+      .nav{display:none}
+      .guidance-grid{grid-template-columns:1fr}.guidance:first-child{grid-column:auto}
+    }
+    @media (max-width:640px){
+      .shell{width:min(100% - 20px,1240px);padding-top:10px}
+      .topbar{top:6px}.brand img{width:120px}.brand-copy{display:none}
+      .hero{padding:64px 4px 22px}h1{font-size:43px}
+      .metrics{grid-template-columns:1fr 1fr}.metric{min-height:126px;padding:16px}
+      .metric .value{font-size:32px}.card-head{padding:19px 17px 0}.badge{display:none}
+      .chart-wrap{padding:14px 8px 4px}.fallback-bar{grid-template-columns:105px minmax(80px,1fr) 34px;gap:8px}
+      body [data-recharts-chart][data-recharts-ready="true"] [data-recharts-live]{display:none!important}
+      body [data-recharts-chart][data-recharts-ready="true"] [data-recharts-fallback]{display:block!important}
+      .fallback-label{font-size:11px}.fallback-table th{width:105px;font-size:11px}.table-scroll{padding-inline:8px}
+      .brief-grid{grid-template-columns:1fr}.sources{columns:1}
+    }
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+    @media print{.topbar{position:static}.filter{display:none}.shell{width:100%}.card{box-shadow:none}body{background:#071321}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <img src="{{LOGO_DATA_URI}}" alt="Align HCM">
+        <span class="brand-copy">Market Intelligence</span>
+      </div>
+      <nav class="nav" aria-label="Dashboard sections">
+        <a href="#overview">Overview</a>
+        <a href="#competitors">Competitors</a>
+        <a href="#guidance">Guidance</a>
+        <a href="#sources">Sources</a>
+      </nav>
+    </header>
+    <main id="main" data-report-audience="executive">
+      <article class="reading hero" id="overview">
+        <div class="eyebrow">Align HCM • Executive Market Brief</div>
+        <header data-contract-section="title"><h1>Competitive intelligence, without the noise.</h1></header>
+        <p class="deck">A source-backed view of five HCM consulting competitors, the capabilities buyers can verify, and the market positions Align can own next.</p>
+        <div class="status-row">
+          <span class="status"><span class="dot"></span>Public-source monitor healthy</span>
+          <span class="status"><span class="dot orange"></span>Reviewed July 26, 2026</span>
+        </div>
+      </article>
+      <article class="reading">
+        <section class="summary" data-contract-section="executive-summary">
+          <div class="summary-label">Executive Summary</div>
+          <p>Align has the broadest confirmed service coverage in this reviewed set. The clearest opportunity is to turn that breadth into a sharper lifecycle story, package post-live continuity more concretely, strengthen comparable proof, and answer the market's growing data-integrity narrative.</p>
+        </section>
+        <section class="metrics" aria-label="Headline metrics">{{METRICS}}</section>
+      </article>
+
+      <section class="section" aria-labelledby="coverage-title">
+        <div class="section-intro reading">
+          <h2 id="coverage-title">Align's breadth is the strategic advantage.</h2>
+          <p>Coverage below means the capability appeared on a reviewed official page. It is useful evidence, not a complete audit of each company's total offering.</p>
+        </div>
+        <div class="wide">
+          <figure class="card">
+            <div class="card-head">
+              <div><h3>Confirmed capability coverage</h3><p>Count of 11 capability categories confirmed on reviewed official pages.</p></div>
+              <span class="badge">Official pages</span>
+            </div>
+            <div class="chart-wrap">
+              <div id="capability-chart" data-recharts-chart="capability-coverage">
+                <div class="chart-fallback" data-recharts-fallback>{{CAPABILITY_FALLBACK}}</div>
+                <div data-recharts-live aria-hidden="true"></div>
+              </div>
+            </div>
+            <figcaption class="chart-note">Source: nine reviewed official pages. Blank capability cells mean not confirmed in this review, not absent from the company.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" id="competitors" aria-labelledby="competitors-title">
+        <div class="section-intro reading">
+          <h2 id="competitors-title">Know the specialist's strongest ground.</h2>
+          <p>Each competitor is credible in a specific buying context. Filter by platform, then use the landmine and discovery question to shape a better conversation.</p>
+        </div>
+        <div class="reading filters" role="group" aria-label="Filter competitors by platform">
+          <span>Platform</span>
+          <button class="filter" type="button" data-filter="All" aria-pressed="true">All</button>
+          <button class="filter" type="button" data-filter="UKG" aria-pressed="false">UKG</button>
+          <button class="filter" type="button" data-filter="Dayforce" aria-pressed="false">Dayforce</button>
+          <button class="filter" type="button" data-filter="HiBob" aria-pressed="false">HiBob</button>
+          <span id="filter-status" aria-live="polite"></span>
+        </div>
+        <div class="card table-card">
+          <div class="card-head">
+            <div><h3>Competitor field guide</h3><p>Positioning, confirmed strengths, Align separation, and sales guidance.</p></div>
+            <span class="badge">Facts + guidance</span>
+          </div>
+          <div class="table-scroll">{{COMPETITOR_TABLE}}</div>
+        </div>
+        <div class="reading" style="margin-top:26px">
+          <div class="briefs">{{COMPETITOR_BRIEFS}}</div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="matrix-title">
+        <div class="section-intro reading">
+          <h2 id="matrix-title">The matrix keeps claims honest.</h2>
+          <p>Use it to locate confirmed market language and evidence gaps. Do not use it to claim a competitor cannot perform an unconfirmed service.</p>
+        </div>
+        <div class="card table-card">
+          <div class="card-head">
+            <div><h3>Reviewed-page capability matrix</h3><p>Confirmed means the service was visible in the reviewed official-page set.</p></div>
+            <span class="badge">11 dimensions</span>
+          </div>
+          <div class="table-scroll">{{CAPABILITY_MATRIX}}</div>
+        </div>
+      </section>
+
+      <section class="section" id="guidance" aria-labelledby="guidance-title">
+        <div class="section-intro reading">
+          <h2 id="guidance-title">Five moves can sharpen Align's position.</h2>
+          <p>Priority scores are operator inference on a 0 to 100 scale. They rank the opportunity, not market share or forecast value.</p>
+        </div>
+        <div class="wide">
+          <figure class="card">
+            <div class="card-head">
+              <div><h3>Strategic opportunity priority</h3><p>Judgment-based ordering from source evidence, competitive differentiation, and message urgency.</p></div>
+              <span class="badge">Operator inference</span>
+            </div>
+            <div class="chart-wrap">
+              <div id="opportunity-chart" data-recharts-chart="opportunity-priority">
+                <div class="chart-fallback" data-recharts-fallback>{{OPPORTUNITY_FALLBACK}}</div>
+                <div data-recharts-live aria-hidden="true"></div>
+              </div>
+            </div>
+            <figcaption class="chart-note">The score expresses strategic priority only. It is not a measured probability, revenue estimate, or external benchmark.</figcaption>
+          </figure>
+        </div>
+        <div class="reading guidance-grid">{{GUIDANCE_CARDS}}</div>
+      </section>
+
+      <section class="section" id="sources" aria-labelledby="sources-title">
+        <div class="section-intro reading">
+          <h2 id="sources-title">Primary sources and method.</h2>
+          <p>All capability confirmations come from public official pages reviewed on July 26, 2026. The local watchdog check completed with 11 successful sources and no failures.</p>
+        </div>
+        <article class="reading">
+          <ul class="sources">{{SOURCES}}</ul>
+          <div class="caveat" data-contract-section="caveats-and-assumptions"><strong>Caveat.</strong> Public website language changes, reviewed pages are selective, and absence from a page is not proof of absence from the firm. Proof claims remain attributed to the company that published them. SmartCare compatibility must be validated before making platform-specific claims.</div>
+        </article>
+      </section>
+    </main>
+    <footer>
+      <span>Align HCM • Internal competitive intelligence</span>
+      <span>Local, read-only system • No messages, publishing, or CRM writes</span>
+    </footer>
+  </div>
+  <script>
+    (() => {
+      const buttons = [...document.querySelectorAll('.filter')];
+      const rows = [...document.querySelectorAll('.company-row')];
+      const briefs = [...document.querySelectorAll('.brief[data-platforms]')];
+      const status = document.getElementById('filter-status');
+      function applyFilter(value) {
+        buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === value)));
+        let count = 0;
+        rows.forEach(row => {
+          const visible = value === 'All' || row.dataset.platforms.split('|').includes(value);
+          row.hidden = !visible;
+          if (visible) count += 1;
+        });
+        briefs.forEach(brief => {
+          brief.hidden = !(value === 'All' || brief.dataset.platforms.split('|').includes(value));
+        });
+        status.textContent = `${count} ${count === 1 ? 'company' : 'companies'} shown`;
+      }
+      buttons.forEach(button => button.addEventListener('click', () => applyFilter(button.dataset.filter)));
+      applyFilter('All');
+    })();
+  </script>
+  <!-- DATA_ANALYTICS_HTML_REPORT_RUNTIME -->
+</body>
+</html>

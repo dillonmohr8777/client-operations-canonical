@@ -1,0 +1,1067 @@
+<!doctype html><html><head><meta charset="utf-8"><title>BigOrange Custom Home Builder Authority Hub Pilot</title><style>
+  @page { size: Letter; margin: 0.72in 0.68in 0.7in; }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: #20201f; font-family: Arial, Helvetica, sans-serif; font-size: 10pt; line-height: 1.48; background: white; }
+  .cover { page-break-after: always; min-height: 9in; display: flex; flex-direction: column; justify-content: space-between; padding: 0.35in 0.22in 0.2in; position: relative; overflow: hidden; }
+  .cover:before { content: ''; position: absolute; width: 6.5in; height: 6.5in; border-radius: 50%; background: #f36b21; right: -3.3in; top: -2.1in; }
+  .cover:after { content: ''; position: absolute; width: 2.5in; height: 2.5in; border-radius: 50%; border: 18px solid #ffb66e; right: 0.25in; bottom: 0.35in; opacity: .35; }
+  .logo { width: 2.35in; position: relative; z-index: 2; }
+  .eyebrow { color: #c64f0e; text-transform: uppercase; letter-spacing: .16em; font-weight: 800; font-size: 9pt; }
+  .cover h1 { max-width: 6.2in; font-size: 34pt; line-height: 1.02; letter-spacing: -1.3px; margin: 0.18in 0 0.18in; position: relative; z-index: 2; }
+  .cover .subtitle { max-width: 5.6in; color: #5e5c57; font-size: 15pt; line-height: 1.35; }
+  .cover .meta { font-size: 9pt; color: #6c6962; text-transform: uppercase; letter-spacing: .08em; }
+  .toc { page-break-after: always; }
+  .toc h1 { font-size: 27pt; }
+  .toc ol { padding-left: 0; list-style: none; counter-reset: item; }
+  .toc li { counter-increment: item; border-bottom: 1px solid #e6dfd8; padding: 0.11in 0; display: flex; gap: .16in; font-size: 11pt; }
+  .toc li:before { content: counter(item, decimal-leading-zero); color: #f36b21; font-weight: 800; }
+  .chapter { page-break-before: always; }
+  .chapter:first-of-type { page-break-before: auto; }
+  .chapter-label { color: #f36b21; font-size: 8pt; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; margin-bottom: .08in; }
+  h1, h2, h3 { color: #20201f; page-break-after: avoid; }
+  h1 { font-size: 26pt; line-height: 1.08; letter-spacing: -.7px; margin: 0 0 .24in; padding-bottom: .16in; border-bottom: 4px solid #f36b21; }
+  h2 { font-size: 17pt; line-height: 1.18; margin: .3in 0 .1in; }
+  h3 { font-size: 12.5pt; line-height: 1.25; margin: .22in 0 .08in; color: #8d3b12; }
+  p { margin: 0 0 .12in; orphans: 3; widows: 3; }
+  .lede { font-size: 14pt; line-height: 1.4; color: #4f4d49; }
+  ul, ol { margin: .06in 0 .17in .22in; padding-left: .18in; }
+  li { margin: 0 0 .055in; }
+  a { color: #b6430a; text-decoration: none; }
+  blockquote, .callout { margin: .18in 0; padding: .17in .2in; border-left: 5px solid #f36b21; background: #fff3e9; color: #3f3a35; page-break-inside: avoid; }
+  table { width: 100%; border-collapse: collapse; margin: .14in 0 .2in; font-size: 8.5pt; page-break-inside: auto; }
+  th { text-align: left; color: #fff; background: #3b302a; padding: .075in; }
+  td { border-bottom: 1px solid #dfd8d2; padding: .075in; vertical-align: top; }
+  tr { page-break-inside: avoid; }
+  code { font-family: Consolas, monospace; font-size: 8.5pt; background: #f4f1ee; padding: 1px 3px; }
+  .decision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .12in; margin: .22in 0; }
+  .decision { border: 1px solid #e6dfd8; border-radius: 10px; padding: .15in; background: #fffaf5; page-break-inside: avoid; }
+  .decision span { display: block; color: #9b4b1e; text-transform: uppercase; letter-spacing: .08em; font-size: 7.5pt; font-weight: 800; }
+  .decision strong { display: block; font-size: 14pt; margin: 3px 0; }
+  .decision small { color: #67635f; }
+  .note { color: #625e59; font-size: 9pt; }
+  .source-footer { margin-top: .3in; border-top: 1px solid #ddd2c8; padding-top: .12in; color: #6f6b67; font-size: 8pt; }
+  .keyword-list { margin-top: .2in; }
+  .keyword-row { display: grid; grid-template-columns: .34in 1fr 1.35in; gap: .12in; border-bottom: 1px solid #e3d9d0; padding: .095in 0; page-break-inside: avoid; }
+  .keyword-row .pnum { color: #f36b21; font-weight: 800; font-size: 9pt; padding-top: 2px; }
+  .keyword-row > div { min-width: 0; }
+  .keyword-row strong { display: block; font-size: 10.5pt; }
+  .keyword-row small { display: block; color: #716b65; font-size: 7.8pt; line-height: 1.35; margin-top: 2px; }
+  .keyword-row .status { text-align: right; font-size: 8pt; overflow-wrap: anywhere; }
+  .keyword-row .status b { color: #8d3b12; }
+</style></head><body>
+<section class="cover"><img class="logo" src="data:image/png;base64,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" alt="BigOrange Marketing"><div><div class="eyebrow">Paid Pilot Project · Final Deliverable</div><h1>Custom Home Builder<br>Authority Hub</h1><div class="subtitle">Research, content system, WordPress-ready copy, technical SEO, AI-search strategy, and growth roadmap.</div></div><div class="meta">Prepared August 3, 2026 · BigOrange Marketing</div></section>
+<section class="toc"><div class="eyebrow">Contents</div><h1>The complete pilot package</h1><ol><li>Executive Recommendation</li><li>Market and Competitor Research</li><li>Keyword Opportunity Map</li><li>Content Architecture and Calendar</li><li>Technical SEO and AI Search Specification</li><li>90-Day Implementation Roadmap</li><li>12-Month Authority Roadmap</li><li>AI-Assisted Editorial Workflow</li><li>Janice SME Interview Guide</li><li>WordPress-Ready Authority Pillar</li><li>Supporting Article 1</li><li>Supporting Article 2</li></ol><div class="callout"><b>Evidence standard</b><br>Public and client-provided sources are dated and labeled. Missing SME, analytics, CRM, and WordPress evidence is marked for validation rather than estimated. Keyword metrics were refreshed in Semrush on August 4, 2026.</div></section>
+<section class="chapter"><div class="chapter-label">Section 01 · Executive Recommendation</div>
+<h1>Executive recommendation</h1>
+<p class="lede">Evolve BigOrange's existing builder page into the authority hub. Preserve its URL and useful proof, then connect it to a focused custom-home-builder cluster rather than launching a competing core page.</p>
+<div class="decision-grid">
+  <div class="decision"><span>URL decision</span><strong>Keep and evolve</strong><small>/marketing-agency-for-builders/</small></div>
+  <div class="decision"><span>Proof of concept</span><strong>1 pillar + 2 articles</strong><small>Complete production drafts</small></div>
+  <div class="decision"><span>Architecture</span><strong>3 subpillars + 9 articles</strong><small>Plus FAQ, cases, downloads, webinar</small></div>
+  <div class="decision"><span>Roadmap</span><strong>90 days + 12 months</strong><small>Foundation through authority compounding</small></div>
+</div>
+<h2>What the evidence says</h2>
+<ul>
+  <li>The live builder page already carries useful builder-specific proof and an established URL, but it targets a broad mix of builders, developers, and architects rather than owning the custom-home-builder decision journey.</li>
+  <li>The August 3 public inventory found about 2,057 visible words, 43 headings, 83 internal-link instances, 34 images, two missing-alt cases, and one structured-data block.</li>
+  <li>A single mobile Lighthouse lab run scored 26 for performance with a 28.6-second LCP and 2,650ms TBT. The desktop run scored 67 with a 2.6-second LCP. These are diagnostic lab snapshots, not field Core Web Vitals.</li>
+  <li>Six competitor reviews show a crowded category. BigOrange's defensible opening is a clearer buyer-decision blueprint, a source-backed AI-search position, and a human-reviewed SME-to-content system.</li>
+</ul>
+<div class="callout"><b>The central promise</b><br>Help the right homeowner understand the builder's fit, process, proof, and next step before another builder earns the call.</div>
+<h2>What is finished</h2>
+<p>The research, keyword decision map, content architecture, technical work order, AI-search strategy, editorial workflow, complete pillar draft, two complete article drafts, FAQ set, schema graph, 90-day plan, 12-month bonus roadmap, and review presentation are complete.</p>
+<h2>What remains external</h2>
+<ol>
+  <li>Janice's one-hour SME interview and factual review.</li>
+  <li>Apply the completed August 4 Semrush priority map during editorial and on-page implementation.</li>
+  <li>Verified WordPress staging access, production implementation, and final publish approval.</li>
+</ol>
+<p class="note">The remaining external dependencies are isolated as explicit gates. Semrush search metrics are source-labeled and date-stamped; no quotes, rankings, private performance, or publishing status were invented.</p></section>
+<section class="chapter"><div class="chapter-label">Section 02 · Market and Competitor Research</div><h1>Competitor Research</h1>
+<p>Research date: August 3, 2026<br>Market: United States custom home builder marketing<br>Purpose: identify category conventions, proof patterns, content gaps, and opportunities for a more useful BigOrange authority hub.</p>
+<h2>Executive finding</h2>
+<p>The category is crowded with agencies that say they understand builders. The clearest opportunities are not a longer service list or a louder promise. BigOrange can stand out by combining three things competitors rarely present together: a builder-specific growth blueprint, source-backed AI-search guidance, and a warm, low-pressure explanation of how marketing work becomes measurable qualified demand.</p>
+<h2>Comparison matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Competitor</th>
+<th>Strongest pattern</th>
+<th>Useful lesson</th>
+<th>Gap or risk</th>
+<th>BigOrange response</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Diamond Group</td>
+<td>Deep custom-builder specialization and long-sales-cycle framing</td>
+<td>Lead with the economics and trust requirements of a considered purchase</td>
+<td>The category story can feel agency-centered</td>
+<td>Put the builder&#39;s buyer journey first and make the operating blueprint visible</td>
+</tr>
+<tr>
+<td>Lasso Up</td>
+<td>Productized growth system and a large supporting-resource footprint</td>
+<td>Use repeatable stages and cluster navigation</td>
+<td>Broad or guarantee-heavy language can reduce credibility</td>
+<td>Use plain commitments, clear evidence, and no magic claims</td>
+</tr>
+<tr>
+<td>OuterBox</td>
+<td>Comprehensive service depth, accountability, FAQs, and case metrics</td>
+<td>Show how strategy, execution, and measurement connect</td>
+<td>Very dense page and more production-builder emphasis</td>
+<td>Build a readable custom-builder guide with progressive disclosure</td>
+</tr>
+<tr>
+<td>Savo Group</td>
+<td>Current AI-search framing, dates, authorship, pricing, and timelines</td>
+<td>Freshness and source transparency are trust signals</td>
+<td>Some aggressive claims need stronger substantiation</td>
+<td>Add dates, reviewers, sources, and cautious claims to every major asset</td>
+</tr>
+<tr>
+<td>Red Olive</td>
+<td>Concrete SEO case evidence and useful local-search guidance</td>
+<td>Case proof should show the starting point, work, timeframe, and result</td>
+<td>Narrower overall authority story</td>
+<td>Connect local SEO to positioning, site conversion, content, and measurement</td>
+</tr>
+<tr>
+<td>BuilderKick</td>
+<td>Former-builder authority and memorable proof headline</td>
+<td>Firsthand experience is persuasive</td>
+<td>Headline metrics can overpower the method</td>
+<td>Use Janice&#39;s SME perspective to make the process—not a single big number—the differentiator</td>
+</tr>
+</tbody></table>
+<h2>What the market already expects</h2>
+<ol>
+<li>Builder specialization stated above the fold.</li>
+<li>Proof from real construction or home-service work.</li>
+<li>Clear service coverage across website, SEO, content, paid media, and lead follow-up.</li>
+<li>A point of view on referrals, long sales cycles, local competition, and lead quality.</li>
+<li>A direct CTA for a review, strategy session, or plan.</li>
+</ol>
+<h2>White-space opportunity</h2>
+<h3>1. Explain the whole decision system</h3>
+<p>Most pages list tactics. BigOrange should show how a prospective homeowner moves from first exposure to shortlist to consultation, and what marketing evidence they need at each stage.</p>
+<h3>2. Make AI visibility concrete</h3>
+<p>Avoid vague claims about “ranking in ChatGPT.” Explain the controllable inputs: crawl access, indexability, visible answer-ready copy, consistent entity information, reputable citations, structured data that matches the page, strong internal linking, and independent proof.</p>
+<h3>3. Use a real editorial operating model</h3>
+<p>The proposal&#39;s one-hour SME interview should become a visible production advantage. Show how one recorded conversation becomes a validated pillar update, articles, FAQs, case-study prompts, video clips, emails, and sales-enablement answers—without allowing AI to invent expertise.</p>
+<h3>4. Own the quality-of-lead conversation</h3>
+<p>The category overuses traffic and lead volume. BigOrange can define a better scorecard: qualified consultations, service-area fit, project-type fit, budget readiness, source-assist, sales acceptance, and movement through the real buying process.</p>
+<h2>Page-level recommendation</h2>
+<p>Evolve the existing <code>/marketing-agency-for-builders/</code> page rather than creating a competing core URL. Preserve useful proof, award badges, case examples, package context, and established internal links. Replace the current broad sequence with a custom-home-builder authority structure, anchored table of contents, question-led sections, topic-cluster cards, cited FAQ answers, and a low-pressure strategy CTA.</p>
+<h2>Pages reviewed</h2>
+<p><a href="https://bigorange.marketing/marketing-agency-for-builders/">BigOrange</a>, <a href="https://www.diamond-group.co/industries/custom-home-builders">Diamond Group</a>, <a href="https://lasso-up.com/industries/home-builder-marketing/">Lasso Up</a>, <a href="https://www.outerboxdesign.com/digital-marketing-services/industries/housing/home-builder/">OuterBox</a>, <a href="https://home-builders.savogroup.com/">Savo Group</a>, <a href="https://www.redolive.com/industries/home-builder-seo/">Red Olive</a>, and <a href="https://builderkick.com/">BuilderKick</a> were reviewed. Their public pages are directional market evidence, not proof of private performance or client outcomes.</p>
+</section>
+<section class="chapter"><div class="chapter-label">Section 03 &middot; Keyword Opportunity Map</div><h1>Keyword opportunity map</h1><p class="lede">Live Semrush validation identified a focused builder-marketing cluster with several unusually accessible opportunities. The 16 highest-priority directions are summarized here; the attached CSV contains the complete 62-row selected, deferred, mapped, and rejected decision set with US volume, keyword difficulty, CPC, intent, source date, asset, rationale, and action.</p><div class="callout"><b>Recommended wedge</b><br>Lead with the 590-volume, 2% KD &ldquo;SEO for home builders&rdquo; subpillar and the 480-volume, 9% KD &ldquo;custom home builder marketing&rdquo; authority page. Support them with conversion-led website content, local SEO, audience segmentation, and a proof-rich examples gallery.</div><div class="keyword-list"><div class="keyword-row"><span class="pnum">1</span><div><strong>SEO for home builders</strong><small>SEO and visibility &middot; Informational<br>Subpillar</small></div><div class="status"><b>Build now</b><small>US volume: 590 &middot; KD: 2%<br>Semrush US desktop &middot; Aug 4, 2026</small></div></div><div class="keyword-row"><span class="pnum">2</span><div><strong>custom home builder marketing</strong><small>Core authority &middot; Informational<br>Pillar page</small></div><div class="status"><b>Build now</b><small>US volume: 480 &middot; KD: 9%<br>Semrush US desktop &middot; Aug 4, 2026</small></div></div><div class="keyword-row"><span class="pnum">3</span><div><strong>home builder website not generating leads</strong><small>Website conversion &middot; Informational<br>Supporting article</small></div><div class="status"><b>Build now</b><small>US volume: 880 &middot; KD: 4%<br>Semrush US desktop &middot; Aug 4, 2026</small></div></div><div class="keyword-row"><span class="pnum">4</span><div><strong>custom home builder target market segments</strong><small>Audience strategy &middot; Informational<br>Supporting guide</small></div><div class="status"><b>Build now</b><small>US volume: 1,000 &middot; KD: 17%<br>Semrush US desktop &middot; Aug 4, 2026</small></div></div><div class="keyword-row"><span class="pnum">5</span><div><strong>home builder marketing</strong><small>Strategy &middot; Informational<br>Core category hub</small></div><div class="status"><b>Pillar expansion</b><small>US volume: 1,000 &middot; KD: 28%<br>Semrush US desktop &middot; Aug 4, 2026</small></div></div><div class="keyword-row"><span class="pnum">6</span><div><strong>home builder website design</strong><small>Website conversion &middot; Commercial<br>Service-page support</small></div><div class="status"><b>Build now</b><small>US volume: 480 &middot; KD: 15%<br>Semrush US desktop &middot; Aug 4, 2026</small></div></div><div class="keyword-row"><span class="pnum">7</span><div><strong>home building marketing</strong><small>Core authority &middot; Informational<br>Pillar variation</small></div><div class="status"><b>Map to pillar</b><small>US volume: 390 &middot; KD: 12%<br>Semrush US desktop &middot; Aug 4, 2026</small></div></div><div class="keyword-row"><span class="pnum">8</span><div><strong>home builder digital marketing</strong><small>Digital strategy &middot; Informational<br>Subpillar</small></div><div class="status"><b>First 60 days</b><small>US volume: 320 &middot; KD: 23%<br>Semrush US desktop &middot; Aug 4, 2026</small></div></div><div class="keyword-row"><span class="pnum">9</span><div><strong>home builder marketing plan</strong><small>Strategy &middot; Informational<br>Guide and template</small></div><div class="status"><b>First 60 days</b><small>US volume: 320 &middot; KD: 15%<br>Semrush US desktop &middot; Aug 4, 2026</small></div></div><div class="keyword-row"><span class="pnum">10</span><div><strong>home builder lead generation</strong><small>Lead generation &middot; Mixed intent<br>Subpillar</small></div><div class="status"><b>First 60 days</b><small>US volume: 260 &middot; KD: 14%<br>Semrush US desktop &middot; Aug 4, 2026</small></div></div><div class="keyword-row"><span class="pnum">11</span><div><strong>custom home builder marketing strategies</strong><small>Core authority &middot; Informational<br>Supporting article</small></div><div class="status"><b>Build now</b><small>US volume: 260 &middot; KD: 10%<br>Semrush US desktop &middot; Aug 4, 2026</small></div></div><div class="keyword-row"><span class="pnum">12</span><div><strong>local SEO for home builders</strong><small>Local visibility &middot; Informational<br>Supporting article</small></div><div class="status"><b>Build now</b><small>US volume: 170 &middot; KD: 2%<br>Semrush US desktop &middot; Aug 4, 2026</small></div></div><div class="keyword-row"><span class="pnum">13</span><div><strong>home builder marketing solutions</strong><small>Service positioning &middot; Informational<br>Solution overview</small></div><div class="status"><b>First 60 days</b><small>US volume: 210 &middot; KD: 5%<br>Semrush US desktop &middot; Aug 4, 2026</small></div></div><div class="keyword-row"><span class="pnum">14</span><div><strong>home builder website examples</strong><small>Website conversion &middot; Mixed intent<br>Example gallery</small></div><div class="status"><b>First 60 days</b><small>US volume: 110 &middot; KD: 6%<br>Semrush US desktop &middot; Aug 4, 2026</small></div></div><div class="keyword-row"><span class="pnum">15</span><div><strong>home builder marketing automation</strong><small>Automation &middot; Informational<br>Automation guide</small></div><div class="status"><b>First 90 days</b><small>US volume: 170 &middot; KD: 5%<br>Semrush US desktop &middot; Aug 4, 2026</small></div></div><div class="keyword-row"><span class="pnum">16</span><div><strong>home builder website optimization</strong><small>Website conversion &middot; Informational<br>Technical conversion article</small></div><div class="status"><b>Build now</b><small>US volume: 40 &middot; KD: 0%<br>Semrush US desktop &middot; Aug 4, 2026</small></div></div></div><p class="note">Source: authenticated Semrush, United States desktop database, checked August 4, 2026. Semrush metrics are directional research inputs, not traffic or ranking guarantees. Generic agency and consumer-builder queries are explicitly rejected in the CSV.</p></section>
+<section class="chapter"><div class="chapter-label">Section 04 · Content Architecture and Calendar</div><h1>Content architecture and calendar</h1><p class="lede">The authority page is the root. Three subpillars organize nine supporting articles, with FAQs, proof, downloads, and a webinar extending the system without creating competing core pages.</p><table><thead><tr><th>Level</th><th>Asset</th><th>Primary query</th><th>Build window</th><th>Status</th></tr></thead><tbody><tr><td><b>Pillar</b></td><td>Custom Home Builder Marketing: A Practical System for More Qualified Leads</td><td>custom home builder marketing</td><td>Now</td><td>Complete draft</td></tr><tr><td><b>Subpillar</b></td><td>Builder Marketing Strategy and Positioning</td><td>home builder marketing plan</td><td>Days 31-60</td><td>Architecture complete</td></tr><tr><td><b>Subpillar</b></td><td>SEO Local Search and AI Visibility for Builders</td><td>SEO for custom home builders</td><td>Days 1-30</td><td>Architecture complete</td></tr><tr><td><b>Subpillar</b></td><td>Builder Website Conversion Proof and Measurement</td><td>custom home builder website</td><td>Days 1-30</td><td>Architecture complete</td></tr><tr><td><b>Article</b></td><td>How Custom Home Buyers Choose a Builder</td><td>how custom home buyers choose a builder</td><td>Days 61-90</td><td>Brief ready</td></tr><tr><td><b>Article</b></td><td>A Practical Marketing Plan for Custom Home Builders</td><td>marketing plan for custom home builders</td><td>Days 31-60</td><td>Brief ready</td></tr><tr><td><b>Article</b></td><td>Why Referrals Alone Eventually Stall Builder Growth</td><td>beyond referrals home builder marketing</td><td>Days 61-90</td><td>Brief ready</td></tr><tr><td><b>Article</b></td><td>SEO for Custom Home Builders: The Visibility Blueprint</td><td>SEO for custom home builders</td><td>Days 31-60</td><td>Brief ready</td></tr><tr><td><b>Article</b></td><td>Local SEO for Home Builders: Markets Reviews and Proof</td><td>local SEO for home builders</td><td>Days 31-60</td><td>Brief ready</td></tr><tr><td><b>Article</b></td><td>How Custom Home Builders Can Appear in AI Search</td><td>AI search optimization for home builders</td><td>Days 31-60</td><td>Brief ready</td></tr><tr><td><b>Article</b></td><td>What a Custom Home Builder Website Must Include</td><td>custom home builder website</td><td>Now</td><td>Complete draft</td></tr><tr><td><b>Article</b></td><td>5 Articles Every Custom Home Builder Blog Needs</td><td>home builder blog</td><td>Now</td><td>Complete draft</td></tr><tr><td><b>Article</b></td><td>Lead Qualification and Follow-Up for High-Consideration Builds</td><td>qualified leads for custom home builders</td><td>Days 61-90</td><td>Brief ready</td></tr><tr><td><b>FAQ Hub</b></td><td>Custom Home Builder Marketing Questions</td><td>custom home builder marketing FAQ</td><td>Now</td><td>Complete draft</td></tr><tr><td><b>Case Study Hub</b></td><td>Home Builder Marketing Results</td><td>home builder marketing case study</td><td>Days 61-90</td><td>Requires approved client proof</td></tr><tr><td><b>Download</b></td><td>90-Day Custom Home Builder Marketing Planner</td><td>home builder marketing plan template</td><td>Days 31-60</td><td>Concept complete</td></tr><tr><td><b>Download</b></td><td>Builder Website Trust Checklist</td><td>home builder website checklist</td><td>Days 1-30</td><td>Concept complete</td></tr><tr><td><b>Download</b></td><td>Local and AI Visibility Baseline Worksheet</td><td>AI search optimization for home builders</td><td>Days 31-60</td><td>Concept complete</td></tr><tr><td><b>Webinar</b></td><td>From Referral-Dependent to Search-Visible</td><td>home builder lead generation</td><td>Phase 2</td><td>Concept complete</td></tr></tbody></table></section>
+<section class="chapter"><div class="chapter-label">Section 05 · Technical SEO and AI Search Specification</div><h1>Technical SEO and AI Search Implementation Specification</h1>
+<p>Prepared August 3, 2026 for the existing BigOrange WordPress page at <code>https://bigorange.marketing/marketing-agency-for-builders/</code>.</p>
+<h2>Decision</h2>
+<p>Keep and evolve the existing URL. Do not publish a second page targeting the same central topic. Preserve the current page&#39;s useful builder proof and internal-link equity while replacing its architecture, metadata, copy hierarchy, and structured-data graph.</p>
+<h2>Current public baseline</h2>
+<ul>
+<li>Live status: HTTP 200.</li>
+<li>Canonical: self-referencing and correct.</li>
+<li>Visible body copy: approximately 2,057 words in the August 3 inventory.</li>
+<li>Headings: 43 H1–H3 elements; one H1.</li>
+<li>Internal-link instances: 83.</li>
+<li>Images: 34; two lacked alt text in the rendered inventory.</li>
+<li>Structured data: one JSON-LD block detected.</li>
+<li>Robots policy: OAI-SearchBot, ChatGPT-User, and PerplexityBot are allowed; GPTBot, ClaudeBot, and Google-Extended are disallowed. That is a defensible search-access versus model-training distinction and should be reviewed intentionally rather than changed reflexively.</li>
+</ul>
+<h2>Lighthouse lab baseline</h2>
+<p>Single lab runs captured August 3, 2026. These are diagnostic snapshots, not CrUX field data.</p>
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th align="right">Performance</th>
+<th align="right">Accessibility</th>
+<th align="right">Best practices</th>
+<th align="right">SEO</th>
+<th align="right">LCP</th>
+<th align="right">TBT</th>
+<th align="right">CLS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mobile</td>
+<td align="right">26</td>
+<td align="right">86</td>
+<td align="right">57</td>
+<td align="right">92</td>
+<td align="right">28.6s</td>
+<td align="right">2,650ms</td>
+<td align="right">0.007</td>
+</tr>
+<tr>
+<td>Desktop</td>
+<td align="right">67</td>
+<td align="right">86</td>
+<td align="right">56</td>
+<td align="right">92</td>
+<td align="right">2.6s</td>
+<td align="right">210ms</td>
+<td align="right">0.004</td>
+</tr>
+</tbody></table>
+<p>The immediate risk is mobile loading and main-thread work. Official good Core Web Vitals thresholds are LCP at or below 2.5 seconds, INP at or below 200 milliseconds, and CLS at or below 0.1 at the 75th percentile. Field data should determine the actual pass/fail status; Lighthouse TBT is only a lab proxy for responsiveness.</p>
+<h2>WordPress implementation requirements</h2>
+<h3>URL and publishing</h3>
+<ul>
+<li>Edit the existing page in staging or as an unpublished revision.</li>
+<li>Preserve the current slug and self-canonical.</li>
+<li>Do not change the URL unless a redirect map, internal-link update, canonical QA, and Search Console monitoring plan are approved.</li>
+<li>Record pre-launch HTML, screenshots, metadata, schema, and Lighthouse evidence for rollback.</li>
+</ul>
+<h3>Metadata</h3>
+<ul>
+<li>Proposed title: <code>Custom Home Builder Marketing Agency | BigOrange Marketing</code></li>
+<li>Proposed meta description: <code>A practical marketing system for custom home builders: positioning, website conversion, SEO, local and AI visibility, content, proof, and measurement.</code></li>
+<li>H1: <code>Custom Home Builder Marketing That Builds Trust Before the First Call</code></li>
+<li>Social title and description should match the page promise without unsupported result claims.</li>
+<li>Use a builder-specific Open Graph image with descriptive alt text.</li>
+</ul>
+<h3>Content and navigation</h3>
+<ul>
+<li>Add an anchored table of contents after the introduction.</li>
+<li>Use one H1 and a logical H2/H3 hierarchy.</li>
+<li>Put a short direct answer under every question-style heading before the detail.</li>
+<li>Add “last reviewed,” author, and SME reviewer fields.</li>
+<li>Link to the three subpillars and the first two supporting articles with descriptive anchor text.</li>
+<li>Preserve useful existing case examples, testimonials, awards, and package context only when their wording remains approved and attributable.</li>
+<li>Add a final source note distinguishing official guidance, BigOrange experience, and client-specific evidence.</li>
+</ul>
+<h3>Media and accessibility</h3>
+<ul>
+<li>Resize hero and case-study images to their rendered dimensions.</li>
+<li>Prefer AVIF or WebP with JPEG fallback where the existing stack supports it.</li>
+<li>Never lazy-load the LCP image; preload only the single real LCP candidate.</li>
+<li>Lazy-load below-the-fold media.</li>
+<li>Add meaningful alt text for informative images and empty alt text for decorative images.</li>
+<li>Preserve visible focus, semantic landmarks, keyboard access, sufficient contrast, and reduced-motion behavior.</li>
+<li>Re-run automated and manual accessibility checks before publishing.</li>
+</ul>
+<h3>Performance work order</h3>
+<ol>
+<li>Identify the mobile LCP element and its request chain.</li>
+<li>Remove any hero video, carousel, or background image from the critical path; use a lightweight poster or static image first.</li>
+<li>Eliminate render-blocking CSS and unused Elementor/widget CSS on this page.</li>
+<li>Delay nonessential third-party scripts until consent or interaction where appropriate.</li>
+<li>Reduce JavaScript execution and long tasks; audit sliders, animation libraries, chat, tracking duplication, and tag-manager containers.</li>
+<li>Serve critical fonts locally where licensing permits, subset weights, and use <code>font-display: swap</code>.</li>
+<li>Confirm WP Rocket and Cloudflare caching behavior on anonymous mobile requests.</li>
+<li>Test on a clean mobile connection after cache warm-up and cold-cache conditions.</li>
+<li>Validate with PageSpeed Insights/CrUX and Search Console Core Web Vitals after launch.</li>
+</ol>
+<h3>Internal linking</h3>
+<ul>
+<li>Pillar links down to every subpillar and primary supporting article.</li>
+<li>Every supporting asset links back to the pillar in the first meaningful third of the copy.</li>
+<li>Cross-link adjacent assets only where the link answers the reader&#39;s next question.</li>
+<li>Add breadcrumbs and keep link anchor text descriptive.</li>
+<li>Remove accidental duplicate links caused by desktop/mobile widget copies if both are present in the DOM.</li>
+</ul>
+<h2>Structured-data graph</h2>
+<p>Use a single coherent <code>@graph</code>, not disconnected duplicate objects from multiple plugins.</p>
+<ul>
+<li><code>Organization</code>: stable BigOrange identity and approved profiles.</li>
+<li><code>WebSite</code>: publisher relationship and site identity.</li>
+<li><code>WebPage</code>: canonical URL, title, description, dates, breadcrumb, and primary image.</li>
+<li><code>Article</code>: author, reviewer, dates, headline, image, publisher, and mainEntityOfPage where the final page qualifies as editorial content.</li>
+<li><code>BreadcrumbList</code>: Home → Industries or Services → Custom Home Builder Marketing.</li>
+<li><code>FAQPage</code>: only for questions and answers that are visible on the page. Do not expect or promise a Google rich result.</li>
+<li>Optional <code>VideoObject</code>: only when a public on-page video has a stable thumbnail, duration, upload date, and transcript.</li>
+</ul>
+<p>Schema must match visible content. Do not add review, rating, service-area, award, price, or result claims that are absent from or unsupported on the page.</p>
+<h2>AI-search implementation</h2>
+<p>There is no special “AI ranking” tag. Google states that its normal SEO foundations apply to AI features; OpenAI and Perplexity provide crawler controls for search discovery. The controllable program is:</p>
+<ol>
+<li>Keep the page indexable and snippet-eligible.</li>
+<li>Allow intended search crawlers through robots.txt and the CDN/WAF.</li>
+<li>Use clear entity names, audience, services, markets, and authorship.</li>
+<li>Answer specific builder questions in visible text.</li>
+<li>Support important claims with original evidence or reputable citations.</li>
+<li>Keep structured data consistent with the visible page.</li>
+<li>Build internal links and external corroboration around the same entity and topic.</li>
+<li>Track qualified referral traffic and assisted outcomes instead of promising placement.</li>
+</ol>
+<h2>Measurement plan</h2>
+<h3>Search and discovery</h3>
+<ul>
+<li>Search Console clicks, impressions, CTR, average position, indexed pages, and query mix for the cluster.</li>
+<li>Bing Webmaster Tools equivalent visibility.</li>
+<li>Organic landing sessions and engaged sessions in GA4.</li>
+<li>Referrals from ChatGPT, Perplexity, Gemini, Claude, Copilot, and other discoverable AI sources where referrer data is available.</li>
+<li>A monthly, versioned prompt set for directional mention/citation observation. Treat outputs as volatile samples, not rankings.</li>
+</ul>
+<h3>Business outcomes</h3>
+<ul>
+<li>Qualified consultation submissions.</li>
+<li>Sales-accepted leads.</li>
+<li>Service-area, project-type, budget, and timing fit.</li>
+<li>Assisted conversions and return visits across the long decision cycle.</li>
+<li>Pipeline and closed-won value only when attribution and CRM definitions are validated.</li>
+</ul>
+<p>Conversion reporting is pending validation until GA4, Search Console, HubSpot, form, call, booking, and CRM outcome definitions are reviewed together.</p>
+<h2>Pre-publish QA</h2>
+<ul>
+<li>Staging URL and noindex behavior verified.</li>
+<li>Approved content and Janice SME revisions applied.</li>
+<li>One H1; no skipped heading levels that impair comprehension.</li>
+<li>Metadata, canonical, robots, sitemap, and status code verified.</li>
+<li>Schema passes syntax checks and matches visible content.</li>
+<li>All internal and external links tested.</li>
+<li>Form, thank-you, call tracking, and consent behavior tested.</li>
+<li>390px, 768px, 1024px, and 1440px visual QA complete.</li>
+<li>Keyboard and screen-reader spot check complete.</li>
+<li>Fresh mobile and desktop performance captures archived.</li>
+<li>Rollback snapshot and responsible publisher recorded.</li>
+</ul>
+<h2>Official references</h2>
+<ul>
+<li>Google Search: <a href="https://developers.google.com/search/docs/appearance/ai-features">https://developers.google.com/search/docs/appearance/ai-features</a></li>
+<li>Google Core Web Vitals: <a href="https://web.dev/articles/vitals">https://web.dev/articles/vitals</a></li>
+<li>OpenAI publishers and crawler controls: <a href="https://help.openai.com/en/articles/12627856-publishers-and-developers-faq">https://help.openai.com/en/articles/12627856-publishers-and-developers-faq</a></li>
+<li>OpenAI crawler information: <a href="https://platform.openai.com/docs/bots">https://platform.openai.com/docs/bots</a></li>
+<li>Perplexity crawler guidance: <a href="https://docs.perplexity.ai/guides/bots">https://docs.perplexity.ai/guides/bots</a></li>
+<li>Anthropic crawler guidance: <a href="https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler">https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler</a></li>
+</ul>
+</section>
+<section class="chapter"><div class="chapter-label">Section 06 · 90-Day Implementation Roadmap</div><h1>90-Day Authority Hub Roadmap</h1>
+<h2>Objective</h2>
+<p>Turn BigOrange&#39;s existing builder page into the center of a measurable, maintainable custom-home-builder topic cluster without creating duplicate core pages or publishing unsupported claims.</p>
+<h2>Days 1–30: foundation and proof of concept</h2>
+<h3>Strategy and content</h3>
+<ul>
+<li>Complete Janice&#39;s SME interview and apply approved insights.</li>
+<li>Validate the keyword map with Moz or client-provided Semrush exports.</li>
+<li>Resolve final primary query, related query set, and cannibalization risks.</li>
+<li>Edit the existing builder URL into the authority pillar.</li>
+<li>Finalize and publish the two supporting articles after human review.</li>
+<li>Add the Builder Website Trust Checklist as the first downloadable asset.</li>
+</ul>
+<h3>Technical</h3>
+<ul>
+<li>Create a staging revision and rollback snapshot.</li>
+<li>Fix the mobile LCP request chain and highest-impact JavaScript long tasks.</li>
+<li>Resolve the two missing image-alt cases and accessibility findings.</li>
+<li>Implement the coherent schema graph and breadcrumbs.</li>
+<li>Verify analytics, consent, forms, thank-you behavior, and source capture.</li>
+</ul>
+<h3>Baseline</h3>
+<ul>
+<li>Record Search Console and GA4 landing-page baseline when access is available.</li>
+<li>Define qualified consultation, sales-accepted lead, and assisted outcome with the CRM owner.</li>
+<li>Create the first versioned AI-answer observation set.</li>
+</ul>
+<h3>Exit criteria</h3>
+<ul>
+<li>Pillar and two articles approved and live on the intended URLs.</li>
+<li>No competing page targeting the same primary query.</li>
+<li>Mobile lab LCP materially improved and field measurement plan active.</li>
+<li>Tracking definitions documented; conversion reporting remains pending until validated.</li>
+</ul>
+<h2>Days 31–60: cluster expansion</h2>
+<ul>
+<li>Publish the three subpillar guides.</li>
+<li>Publish articles on local SEO, AI search visibility, and the builder marketing plan.</li>
+<li>Add reciprocal internal links and breadcrumbs across the cluster.</li>
+<li>Launch the Local and AI Visibility Baseline Worksheet.</li>
+<li>Create an evidence-backed case-study intake template.</li>
+<li>Refresh GBP, directory, profile, and organization-entity consistency where access and approval exist.</li>
+<li>Review query emergence, indexation, crawl patterns, referral sources, and reader behavior.</li>
+<li>Run an editorial retrospective: which SME inputs created the strongest, most distinct answers?</li>
+</ul>
+<h2>Days 61–90: proof and optimization</h2>
+<ul>
+<li>Publish buyer-choice, referral-dependence, and lead-qualification articles.</li>
+<li>Publish the first approved builder case study or clearly label the dependency if client proof is not approved.</li>
+<li>Test one CTA variation on the pillar with a defined hypothesis and primary metric.</li>
+<li>Update weak or ambiguous sections using real Search Console queries and sales questions.</li>
+<li>Review content decay, broken links, schema consistency, Core Web Vitals field data, and accessibility.</li>
+<li>Present the first quarterly authority review and decide the next content wedge.</li>
+</ul>
+<h2>Scorecard</h2>
+<h3>Leading indicators</h3>
+<ul>
+<li>indexed cluster URLs;</li>
+<li>impressions and clicks from relevant builder-marketing queries;</li>
+<li>non-brand query breadth;</li>
+<li>engaged sessions and meaningful scroll or navigation behavior;</li>
+<li>downloads and consultation starts;</li>
+<li>citations and referrals from discoverable AI/search sources where observable;</li>
+<li>sales-team use of the pillar and supporting assets.</li>
+</ul>
+<h3>Business indicators</h3>
+<ul>
+<li>qualified consultations;</li>
+<li>sales acceptance rate;</li>
+<li>service-area and project-type fit;</li>
+<li>assisted pipeline;</li>
+<li>closed-won outcomes after attribution and CRM definitions are validated.</li>
+</ul>
+<h2>Owners and cadence</h2>
+<ul>
+<li>Strategy and SEO owner: weekly build review, monthly performance synthesis.</li>
+<li>Janice or assigned SME: source interview and factual review.</li>
+<li>Editor: voice, clarity, evidence, and originality.</li>
+<li>WordPress owner: staging, technical QA, publish, and rollback.</li>
+<li>Sales/CRM owner: lead-quality and downstream-outcome validation.</li>
+</ul>
+</section>
+<section class="chapter"><div class="chapter-label">Section 07 · 12-Month Authority Roadmap</div><h1>12-Month Builder Marketing Authority Roadmap</h1>
+<h2>North star</h2>
+<p>Become the most useful, most transparent marketing resource for growth-minded custom home builders in the United States—measured by qualified demand, market recognition, and repeat use, not by an unprovable “number one” claim.</p>
+<h2>Quarter 1: establish the authority hub</h2>
+<ul>
+<li>Launch the evolved pillar, two production articles, three subpillars, core FAQs, and two practical downloads.</li>
+<li>Correct performance, accessibility, schema, measurement, and publishing workflow gaps.</li>
+<li>Establish a monthly SME interview and update cadence.</li>
+<li>Define qualified lead and sales feedback loops.</li>
+</ul>
+<h2>Quarter 2: build evidence and local depth</h2>
+<ul>
+<li>Publish market-page and local-proof guidance without doorway-page duplication.</li>
+<li>Launch a builder case-study program with consistent before/work/timeframe/result documentation.</li>
+<li>Publish budget, KPI, review, portfolio, and project-story guidance.</li>
+<li>Create a quarterly “What We Are Seeing in Builder Marketing” briefing using approved aggregated evidence.</li>
+</ul>
+<h2>Quarter 3: expand the buyer-decision franchise</h2>
+<ul>
+<li>Produce a research-backed buyer trust report or survey with transparent methodology.</li>
+<li>Launch the “From Referral-Dependent to Search-Visible” webinar and companion toolkit.</li>
+<li>Add video transcripts, expert roundups, and builder sales-objection content.</li>
+<li>Form selective partnerships with builder associations, vendors, designers, architects, or finance specialists where editorial independence is clear.</li>
+</ul>
+<h2>Quarter 4: compound and prune</h2>
+<ul>
+<li>Update winning assets using real query, sales, and customer questions.</li>
+<li>Consolidate or retire thin and overlapping content.</li>
+<li>Publish an annual benchmark with methodology, limits, and date.</li>
+<li>Convert the authority system into sales enablement, nurture, and onboarding materials.</li>
+<li>Set the next year&#39;s market or service expansion based on qualified-pipeline evidence.</li>
+</ul>
+<h2>Sustainable publication rhythm</h2>
+<ul>
+<li>Monthly: one SME session, one substantial article, one existing-page refresh, and one short FAQ batch.</li>
+<li>Quarterly: one proof asset, webinar or briefing; one technical and accessibility audit; one executive performance review.</li>
+<li>Annually: one original benchmark or research asset and a full cluster consolidation review.</li>
+</ul>
+<h2>Primary opportunities</h2>
+<ul>
+<li>Builder-specific buyer-journey expertise.</li>
+<li>Honest AI-search education grounded in official platform guidance.</li>
+<li>Original evidence from BigOrange&#39;s work, with client approval.</li>
+<li>Warm, practical tools builders can use before they are ready to hire.</li>
+<li>Stronger connections between website, visibility, proof, lead qualification, and sales feedback.</li>
+</ul>
+<h2>Principal risks</h2>
+<ul>
+<li>Publishing AI-generated sameness without firsthand expertise.</li>
+<li>Creating multiple pages that compete for the same topic.</li>
+<li>Treating volatile AI answers as stable rankings.</li>
+<li>Claiming performance before CRM, analytics, and attribution definitions are reconciled.</li>
+<li>Letting Elementor, media, and third-party scripts erase the benefit of stronger content.</li>
+<li>Publishing case claims without source, timeframe, or approval.</li>
+</ul>
+<h2>When to expect qualified inbound leads</h2>
+<p>No responsible roadmap can guarantee a date. Initial leading indicators can change within weeks after crawl and indexation. Qualified organic demand commonly requires months of consistent technical, content, proof, and distribution work, with timing affected by current authority, competition, market reach, sales-cycle length, and implementation quality. BigOrange should evaluate the first 90 days as a validated foundation, months 4–6 as an evidence-building period, and months 7–12 as the first meaningful compounding window—not as a promise of a particular lead count.</p>
+</section>
+<section class="chapter"><div class="chapter-label">Section 08 · AI-Assisted Editorial Workflow</div><h1>AI-Assisted Editorial Workflow</h1>
+<h2>Operating principle</h2>
+<p>AI accelerates organization and variation. It does not supply BigOrange&#39;s experience, client proof, market facts, or final judgment. Every published asset must have a named human owner, traceable sources, and an approval record.</p>
+<h2>One-hour SME interview to multi-asset system</h2>
+<h3>Inputs</h3>
+<ul>
+<li>Approved content brief and search intent.</li>
+<li>Existing BigOrange pages, case evidence, and brand-voice rules.</li>
+<li>One recorded and transcribed 60-minute interview with Janice.</li>
+<li>Approved official and industry sources.</li>
+<li>Professional keyword export when available.</li>
+</ul>
+<h3>Production sequence</h3>
+<ol>
+<li><strong>Frame.</strong> Define audience, business question, primary query, reader outcome, CTA, prohibited claims, and source requirements.</li>
+<li><strong>Interview.</strong> Ask for decisions, mistakes, examples, objections, and the phrases builders actually use.</li>
+<li><strong>Extract.</strong> Separate the transcript into facts, opinions, examples, quotable lines, open questions, and confidential material.</li>
+<li><strong>Verify.</strong> Check every number, named example, result, timeline, regulation, and platform claim against its original source.</li>
+<li><strong>Architect.</strong> Build the answer-first outline, internal links, evidence slots, FAQ, and CTA before drafting prose.</li>
+<li><strong>Draft.</strong> Use AI for a sourced first draft, alternatives, summaries, metadata, and repurposing. Require it to mark missing evidence instead of filling gaps.</li>
+<li><strong>Human edit.</strong> Janice or the assigned SME checks technical truth; the editor checks voice, usefulness, originality, search intent, and reader flow.</li>
+<li><strong>QA.</strong> Run fact, plagiarism, link, accessibility, schema, metadata, visual, and mobile checks.</li>
+<li><strong>Publish.</strong> Use a named human publisher, version note, approved date, reviewer, and rollback path.</li>
+<li><strong>Learn.</strong> After 30, 60, and 90 days, compare actual query mix, engagement, qualified actions, and sales feedback; update the asset rather than producing near-duplicates.</li>
+</ol>
+<h2>Prompt contract</h2>
+<p>Every production prompt should include:</p>
+<ul>
+<li>audience and funnel stage;</li>
+<li>one primary job the content must do;</li>
+<li>approved source packet with dates and URLs;</li>
+<li>BigOrange voice rules;</li>
+<li>required heading and internal-link structure;</li>
+<li>claims that must not be made;</li>
+<li>explicit instruction to write <code>[SOURCE NEEDED]</code> or <code>[SME VALIDATION]</code> when evidence is absent;</li>
+<li>output format and length range;</li>
+<li>a claim table at the end of the working draft.</li>
+</ul>
+<h3>Example drafting instruction</h3>
+<blockquote>
+<p>Draft for a busy custom home builder evaluating marketing support. Use only the attached approved sources and transcript. Start each section with a direct answer. Do not invent a quote, metric, customer result, search volume, ranking, or platform capability. Mark unsupported statements <code>[SOURCE NEEDED]</code>. Preserve BigOrange&#39;s warm, practical, lightly playful voice. Return the article plus a claim-and-source table for human review.</p>
+</blockquote>
+<h2>Human-review gates</h2>
+<table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Owner</th>
+<th>Must verify</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Brief approval</td>
+<td>Strategist</td>
+<td>audience, intent, differentiation, CTA, scope</td>
+</tr>
+<tr>
+<td>SME truth review</td>
+<td>Janice or assigned SME</td>
+<td>process, examples, caveats, category accuracy</td>
+</tr>
+<tr>
+<td>Editorial review</td>
+<td>Editor</td>
+<td>voice, structure, usefulness, originality, clarity</td>
+</tr>
+<tr>
+<td>SEO review</td>
+<td>SEO owner</td>
+<td>query fit, cannibalization, internal links, metadata, sources</td>
+</tr>
+<tr>
+<td>Technical review</td>
+<td>Web owner</td>
+<td>responsive layout, schema, accessibility, performance, tracking</td>
+</tr>
+<tr>
+<td>Publication approval</td>
+<td>BigOrange owner</td>
+<td>final content, date, authorship, public claims</td>
+</tr>
+</tbody></table>
+<h2>Required working records</h2>
+<ul>
+<li>Content brief and version.</li>
+<li>Source register with title, URL, publisher, access date, and the claims it supports.</li>
+<li>Transcript and consent status.</li>
+<li>Claim table with <code>verified</code>, <code>SME opinion</code>, <code>client evidence</code>, or <code>remove</code> status.</li>
+<li>Human-review checklist and names.</li>
+<li>Final URL, publish date, update date, and rollback snapshot.</li>
+</ul>
+<h2>Repurposing map</h2>
+<p>One validated interview can support:</p>
+<ul>
+<li>one authority-page update;</li>
+<li>two full articles;</li>
+<li>five to eight FAQs;</li>
+<li>one downloadable checklist or worksheet;</li>
+<li>three short videos or webinar segments;</li>
+<li>four emails;</li>
+<li>six to ten social posts;</li>
+<li>a sales objection sheet;</li>
+<li>prompts for a future case study.</li>
+</ul>
+<p>The multiplier is a planning estimate, not a requirement to publish everything. Each output still passes the same source and human-review gates.</p>
+<h2>Quality scorecard</h2>
+<p>Score each published asset 0–2 on: direct answer, original expertise, source quality, audience specificity, internal-link value, scanability, accessibility, conversion clarity, fact-check completion, and human approval. Do not publish below 17/20 without an explicit documented exception.</p>
+</section>
+<section class="chapter"><div class="chapter-label">Section 09 · Janice SME Interview Guide</div><h1>Janice SME Interview Guide</h1>
+<p>Purpose: capture BigOrange&#39;s firsthand builder-marketing expertise and replace provisional language in the pillar and supporting content with reviewed, attributable insight.</p>
+<p>Duration: 60 minutes. Record and transcribe only with consent.</p>
+<h2>Preparation</h2>
+<ul>
+<li>Send the pillar outline and two article summaries at least one business day ahead.</li>
+<li>Ask Janice to bring one anonymizable builder example, one common failure pattern, and one sales objection.</li>
+<li>Confirm which comments may be quoted, paraphrased, anonymized, or kept internal.</li>
+<li>Do not request or record confidential client data that is unnecessary for the content.</li>
+</ul>
+<h2>Interview agenda</h2>
+<h3>0–5 minutes: audience and stakes</h3>
+<ol>
+<li>Which kind of custom home builder is the best fit for this guidance?</li>
+<li>What is usually happening in the business when they start looking for marketing help?</li>
+<li>What do builders misunderstand about the time between marketing activity and a qualified project?</li>
+</ol>
+<h3>5–15 minutes: buyer decision journey</h3>
+<ol start="4">
+<li>What makes a prospective homeowner trust one builder enough to make contact?</li>
+<li>What proof do buyers look for before a consultation?</li>
+<li>Which questions do strong prospects ask, and which questions reveal a poor fit?</li>
+<li>Where do buyers hesitate or disappear?</li>
+</ol>
+<h3>15–27 minutes: positioning and referrals</h3>
+<ol start="8">
+<li>What makes builder positioning sound interchangeable?</li>
+<li>How do you uncover a builder&#39;s real difference without forcing a slogan?</li>
+<li>When do referrals stop being a sufficient growth system?</li>
+<li>What is one mistake builders make when they try to broaden their audience?</li>
+</ol>
+<h3>27–39 minutes: website and content</h3>
+<ol start="12">
+<li>What must a builder website prove above the fold?</li>
+<li>Which project details or photography are most persuasive?</li>
+<li>What pages or answers are almost always missing?</li>
+<li>What makes a builder blog useful rather than filler?</li>
+<li>Which homeowner questions deserve a direct, public answer?</li>
+</ol>
+<h3>39–49 minutes: search, local, and AI discovery</h3>
+<ol start="17">
+<li>How do builders actually describe their markets and project types?</li>
+<li>What local proof is both honest and useful?</li>
+<li>What would you want an AI answer engine to understand about a BigOrange builder client?</li>
+<li>Which category claims should we avoid because the reality is more nuanced?</li>
+</ol>
+<h3>49–56 minutes: measurement and handoff</h3>
+<ol start="21">
+<li>What should count as a qualified builder lead?</li>
+<li>What can marketing own, and what still depends on sales follow-up?</li>
+<li>Which leading indicators matter before closed-project data is available?</li>
+<li>What does a healthy 90-day start look like?</li>
+</ol>
+<h3>56–60 minutes: distinctive point of view</h3>
+<ol start="25">
+<li>What advice do you give builders that other agencies often miss?</li>
+<li>Finish this sentence: “A builder does not need more marketing noise. They need…”</li>
+<li>What should a skeptical builder ask BigOrange before deciding to work together?</li>
+</ol>
+<h2>Extraction template</h2>
+<p>For every useful segment capture:</p>
+<ul>
+<li>transcript timestamp;</li>
+<li>exact language;</li>
+<li>approved use: quote, paraphrase, internal only, or exclude;</li>
+<li>topic and target asset;</li>
+<li>claim type: opinion, process, client example, metric, or prediction;</li>
+<li>source or verification needed;</li>
+<li>confidentiality and anonymization notes.</li>
+</ul>
+<h2>Required post-interview decisions</h2>
+<ol>
+<li>Confirm or revise the pillar&#39;s promise and five operating stages.</li>
+<li>Replace every <code>[JANICE SME VALIDATION]</code> marker.</li>
+<li>Select at least one publishable firsthand example without unsupported outcome claims.</li>
+<li>Approve five to eight FAQ answers.</li>
+<li>Identify one story suitable for a future case study with separate client approval.</li>
+</ol>
+</section>
+<section class="chapter"><div class="chapter-label">Section 10 · WordPress-Ready Authority Pillar</div><h1>Custom Home Builder Marketing That Builds Trust Before the First Call</h1>
+<p>Your best work may take a year to build. A buyer can decide whether to trust it in a few minutes.</p>
+<p>That is the real job of custom home builder marketing: make the right homeowner feel understood, show them why your process is credible, and give them a clear next step before another builder earns the call.</p>
+<p>BigOrange helps custom home builders turn a scattered collection of referrals, project photos, web pages, and marketing tactics into one practical growth system. We connect positioning, website conversion, search visibility, useful content, proof, and measurement—then keep a real human in charge of what gets said and published.</p>
+<p><strong>Ready to see where your builder marketing is helping or leaking trust?</strong> <a href="/book-appointment/">Book a low-pressure builder marketing strategy call.</a></p>
+<h2>The builder marketing blueprint</h2>
+<ol>
+<li><a href="#start-with-the-buyer-and-your-real-difference">Start with the buyer and your real difference</a></li>
+<li><a href="#build-a-website-that-answers-the-shortlist-questions">Build a website that answers the shortlist questions</a></li>
+<li><a href="#get-found-in-search-local-results-and-ai-answers">Get found in search, local results, and AI answers</a></li>
+<li><a href="#turn-expertise-into-useful-content">Turn expertise into useful content</a></li>
+<li><a href="#measure-qualified-demand-not-marketing-noise">Measure qualified demand, not marketing noise</a></li>
+<li><a href="#frequently-asked-questions">Frequently asked questions</a></li>
+</ol>
+<h2>Why custom home builder marketing is different</h2>
+<p>A custom home is not an impulse purchase. The decision is emotional, financial, local, and highly personal. Buyers are not only comparing floor plans or galleries. They are asking whether you will listen, communicate, protect the budget, navigate tradeoffs, and still be there when the easy part is over.</p>
+<p>That creates a longer trust journey:</p>
+<ul>
+<li>A referral or search result introduces the name.</li>
+<li>The website helps the buyer decide whether you fit their project and values.</li>
+<li>Reviews, project stories, and third-party proof reduce perceived risk.</li>
+<li>Helpful answers show how you think before the buyer shares private details.</li>
+<li>A clear consultation process makes the next step feel safe.</li>
+<li>Consistent follow-up carries trust through a decision that may take months.</li>
+</ul>
+<p>Marketing works when those moments reinforce one another. It struggles when each channel tells a different story—or when a beautiful website leaves the buyer with the same unanswered questions they had before visiting.</p>
+<h2>Start with the buyer and your real difference</h2>
+<p>The fastest way to sound like every other builder is to start with words such as quality, integrity, craftsmanship, and dreams. Those ideas matter. They also mean very little until you show what they look like in your process.</p>
+<p>A useful position answers five questions:</p>
+<ol>
+<li><strong>Who is the right client?</strong> Define project type, geography, investment range, design involvement, and working style without trying to appeal to everyone.</li>
+<li><strong>What moment brings them to you?</strong> They may be moving, rebuilding, aging in place, escaping a poor renovation experience, or finally acting on a long-held plan.</li>
+<li><strong>What do they fear?</strong> Common concerns include budget drift, silence, decision overload, quality uncertainty, and a process they cannot see.</li>
+<li><strong>How does your process reduce that risk?</strong> Name the checkpoints, communication rhythm, decision tools, and people involved.</li>
+<li><strong>What proof supports the promise?</strong> Use specific projects, client language, awards, credentials, partnerships, timelines, and documented practices—with permission and context.</li>
+</ol>
+<p>This is not a branding exercise that ends with a clever line. It becomes the filter for the website, photography, content, ads, sales conversations, and the leads you choose to pursue.</p>
+<blockquote>
+<p><strong>Janice SME review:</strong> add BigOrange&#39;s firsthand distinction between a builder&#39;s true operating difference and a generic brand claim. Do not publish this callout until reviewed.</p>
+</blockquote>
+<h3>Referrals are valuable. They are not a complete system.</h3>
+<p>Referrals can produce excellent projects because trust arrives early. The risk is control: volume, timing, project fit, and market reach depend on other people&#39;s conversations.</p>
+<p>A stronger system does not replace referrals. It helps every referred buyer verify what they heard, and it gives qualified buyers who do not know a past client a credible path to find you. The goal is a wider trust network, not a louder lead machine.</p>
+<h2>Build a website that answers the shortlist questions</h2>
+<p>A builder website should help the right buyer decide, “These people understand the kind of home and process I want.” It should also help the wrong-fit buyer recognize that early. Both outcomes save time.</p>
+<p>The essential elements are simple:</p>
+<ul>
+<li><strong>A clear first screen.</strong> Say who you help, where you work, what kind of work you do, and the next step.</li>
+<li><strong>Curated project proof.</strong> Show context, constraints, decisions, and outcomes—not only a wall of photos.</li>
+<li><strong>A visible process.</strong> Explain what happens before design, during pricing, through construction, and after handoff.</li>
+<li><strong>People and point of view.</strong> Buyers want to know who will guide the project and how your team thinks.</li>
+<li><strong>Qualification details.</strong> Carefully explain markets, project types, timing, and investment expectations where appropriate.</li>
+<li><strong>Trust evidence.</strong> Use attributable reviews, case stories, professional affiliations, awards, and clear policies.</li>
+<li><strong>Useful answers.</strong> Address the questions buyers ask before they are comfortable contacting a builder.</li>
+<li><strong>A low-pressure next step.</strong> Tell the buyer what happens after they click, how long it takes, and what they should prepare.</li>
+</ul>
+<p>Read the complete guide: <strong><a href="/custom-home-builder-website-must-haves/">What a Custom Home Builder Website Must Include</a></strong>.</p>
+<h3>Your portfolio should explain, not just impress</h3>
+<p>Strong photography earns attention. A project story earns understanding. For each featured home, add approved details such as the homeowner&#39;s goal, site or design challenge, key decisions, collaboration model, and the part of the process that made the outcome possible.</p>
+<p>Do not publish private addresses, budget details, names, or identifiable project information without permission. A useful anonymized story is better than a dramatic claim you cannot substantiate.</p>
+<h2>Get found in search, local results, and AI answers</h2>
+<p>Search visibility begins with the same thing buyers need: a fast, accessible site that clearly explains who you are, what you do, where you work, and why your guidance deserves trust.</p>
+<h3>SEO for custom home builders</h3>
+<p>The practical foundation includes:</p>
+<ul>
+<li>one primary page for each distinct service or audience need;</li>
+<li>market coverage that reflects real operating geography rather than copied city pages;</li>
+<li>useful project and process evidence;</li>
+<li>descriptive titles, headings, links, and image text;</li>
+<li>a logical path from the authority page to deeper guides;</li>
+<li>crawlable pages, correct canonicals, clean sitemaps, and no accidental indexation blocks;</li>
+<li>strong mobile page experience;</li>
+<li>consistent business identity and reputable mentions across the web.</li>
+</ul>
+<p>The objective is not to repeat a keyword until the copy tastes like sawdust. It is to become the clearest relevant result for the questions your best prospects actually ask.</p>
+<h3>Local visibility</h3>
+<p>Custom building is tied to real markets, permitting environments, architecture, land, and community expectations. Local content should reflect that reality.</p>
+<p>Use a complete Google Business Profile, consistent contact information, current categories and services, approved project photography, genuine review acquisition, and market pages with unique local expertise. Avoid mass-producing near-identical location pages. If the team has nothing distinct to say about a market, the page is not ready.</p>
+<h3>AI search visibility</h3>
+<p>There is no special switch that guarantees a brand will appear in Google AI Overviews, ChatGPT, Claude, Gemini, or Perplexity. Each system behaves differently and changes over time.</p>
+<p>The controllable work is more grounded:</p>
+<ul>
+<li>allow intended search crawlers while making an intentional decision about training crawlers;</li>
+<li>publish clear, visible answers that can stand on their own;</li>
+<li>identify the organization, authors, reviewers, services, and markets consistently;</li>
+<li>support important claims with original evidence or reputable sources;</li>
+<li>use structured data that matches the page;</li>
+<li>earn independent corroboration and citations;</li>
+<li>keep important information current;</li>
+<li>measure observable referral traffic and qualified actions without treating volatile answer snapshots as permanent rankings.</li>
+</ul>
+<p>BigOrange&#39;s current robots policy already permits OAI-SearchBot, ChatGPT-User, and PerplexityBot while blocking several training-oriented crawlers. That distinction should be preserved or changed intentionally after a policy review—not “fixed” simply because an automated checker prefers more access.</p>
+<h2>Turn expertise into useful content</h2>
+<p>Your team already answers valuable questions in consultations, project meetings, emails, and sales conversations. A content system turns those answers into durable assets without asking the subject-matter expert to become a full-time writer.</p>
+<p>The BigOrange pilot workflow starts with one focused interview. With permission, that conversation is transcribed and separated into verified facts, expert opinions, examples, questions, and confidential material. AI can help organize and draft. A human expert still checks the truth, an editor still shapes the voice, and a named owner still approves publication.</p>
+<p>One validated interview can support:</p>
+<ul>
+<li>an authority-page update;</li>
+<li>two full articles;</li>
+<li>a useful FAQ set;</li>
+<li>a checklist or planning worksheet;</li>
+<li>short videos, emails, and social posts;</li>
+<li>sales answers and future case-study prompts.</li>
+</ul>
+<p>That does not mean every fragment should be published. Each asset needs a clear reader job, source trail, human review, and useful place in the topic cluster.</p>
+<p>Start with <strong><a href="/custom-home-builder-blog-articles/">5 Articles Every Custom Home Builder Blog Needs</a></strong>.</p>
+<h2>Measure qualified demand, not marketing noise</h2>
+<p>Traffic can grow while the business stays stuck. A smaller number of right-fit conversations can matter more than a large number of anonymous visits.</p>
+<p>The scorecard should connect visibility to the real builder sales process:</p>
+<h3>Leading indicators</h3>
+<ul>
+<li>relevant non-brand impressions and clicks;</li>
+<li>qualified visitors reaching process, project, and contact content;</li>
+<li>guide downloads and consultation starts;</li>
+<li>branded search growth and direct return visits;</li>
+<li>observable referrals from search and AI discovery sources;</li>
+<li>sales-team use of the content in real conversations.</li>
+</ul>
+<h3>Business indicators</h3>
+<ul>
+<li>qualified consultations;</li>
+<li>fit by market, project type, investment, and timing;</li>
+<li>sales-accepted leads;</li>
+<li>movement through the consultation and preconstruction process;</li>
+<li>assisted pipeline and closed projects after CRM and attribution rules are validated.</li>
+</ul>
+<p>Conversion reporting is pending validation until the form, call, booking, analytics, consent, HubSpot, and downstream sales definitions agree. That is not a reporting inconvenience. It is the difference between a dashboard and a decision system.</p>
+<h2>A practical 90-day start</h2>
+<h3>Days 1–30</h3>
+<p>Interview the SME, apply the August 4 Semrush keyword map, evolve the existing authority page, publish the first two articles, address mobile performance and accessibility priorities, and confirm measurement definitions.</p>
+<h3>Days 31–60</h3>
+<p>Publish deeper guides for strategy, visibility, and website conversion. Add local and AI-search resources, reciprocal internal links, and the first downloadable worksheet.</p>
+<h3>Days 61–90</h3>
+<p>Publish buyer-decision and lead-quality content, add the first approved case study, test one meaningful CTA hypothesis, and update the hub using real query and sales feedback.</p>
+<h2>Frequently asked questions</h2>
+<h3>What is custom home builder marketing?</h3>
+<p>Custom home builder marketing is the coordinated work of positioning a builder, earning visibility, explaining the buying and building process, proving credibility, and turning right-fit interest into qualified conversations. It usually connects the website, search, local presence, content, reviews, project proof, paid distribution where appropriate, and sales follow-up.</p>
+<h3>How is custom home builder marketing different from general contractor marketing?</h3>
+<p>The buyer, economics, proof, project timeline, and decision risk are different. A custom-home strategy must support a longer, more personal consideration process and explain design collaboration, investment fit, communication, and trust—not only service availability.</p>
+<h3>Should a builder rely on referrals?</h3>
+<p>Referrals are valuable and often high quality, but they do not provide predictable control over timing, market reach, or project fit. Search, content, proof, and follow-up should strengthen referrals and create additional discovery paths.</p>
+<h3>How long does SEO take for a custom home builder?</h3>
+<p>There is no reliable universal timeline. Technical condition, current authority, competition, geography, content quality, implementation speed, and sales-cycle length all matter. Leading indicators may change within weeks of crawling, while meaningful qualified demand usually requires consistent work over months.</p>
+<h3>Can BigOrange guarantee placement in AI search answers?</h3>
+<p>No responsible agency can guarantee placement in a changing generated answer. BigOrange can improve the factors it controls—crawl access, indexability, clarity, evidence, entity consistency, structured data, corroboration, and measurement—and report what is actually observable.</p>
+<h3>What should a custom home builder website include?</h3>
+<p>At minimum: a clear audience and market statement, curated project stories, process, people, qualification guidance, reviews or other approved proof, useful FAQs, and a low-pressure next step. It must also work quickly and accessibly on a phone.</p>
+<h3>How should a builder measure marketing?</h3>
+<p>Track visibility and engagement, then connect them to qualified consultations, sales acceptance, project fit, assisted pipeline, and closed work once the analytics and CRM definitions are validated. Raw traffic and form counts are not enough.</p>
+<h3>Can one interview really produce months of content?</h3>
+<p>It can produce the source material for multiple assets when the conversation is focused and the outputs are planned. Every asset still requires fact-checking, expert review, editing, and approval. AI accelerates the workflow; it does not replace the source or the responsible publisher.</p>
+<h2>Build a marketing system that shows its work</h2>
+<p>You do not need more disconnected tactics on an already-full plate. You need a clear next step, an honest measurement plan, and content that sounds like people who understand the work.</p>
+<p>BigOrange can help you find the gaps, build the right sequence, and keep the system useful after launch.</p>
+<p><strong><a href="/book-appointment/">Book a builder marketing strategy call.</a></strong> We will show you what we would check first and why.</p>
+<h2>Editorial and source note</h2>
+<p>Prepared August 3 and keyword-validated August 4, 2026. Final publication requires Janice&#39;s SME review, WordPress staging, approved case evidence, and technical QA. Platform guidance references current official documentation from Google Search, OpenAI, Perplexity, and Anthropic. No ranking, lead, revenue, or AI-answer placement is guaranteed.</p>
+</section>
+<section class="chapter"><div class="chapter-label">Section 11 · Supporting Article 1</div><h1>What a Custom Home Builder Website Must Include</h1>
+<p>A custom home builder website has one serious job: help the right prospective client trust your process enough to take the next step.</p>
+<p>Pretty matters. But a gallery alone cannot answer the questions running through a buyer&#39;s head: Do they build in my area? Is my project a fit? Who will guide me? How do decisions work? Will they communicate? What happens if the budget and the wish list disagree?</p>
+<p>The strongest builder websites answer those questions clearly, prove the answers, and make contact feel like a sensible conversation rather than a funnel ambush.</p>
+<h2>1. A first screen that names the fit</h2>
+<p>Within a few seconds, a visitor should understand:</p>
+<ul>
+<li>what kind of builder you are;</li>
+<li>who you serve;</li>
+<li>where you work;</li>
+<li>the kind of project or relationship you are best suited for;</li>
+<li>the next reasonable step.</li>
+</ul>
+<p>“We build dreams” does not do enough work. A clearer opening might identify custom homes, a real service area, design-build or architect collaboration, and the consultation path.</p>
+<p>Keep the first screen focused. Large sliders, autoplay video, multiple competing buttons, and vague award claims can hide the message and slow the page—especially on a phone.</p>
+<h2>2. Projects that tell a decision story</h2>
+<p>Photography proves taste and capability. Context proves judgment.</p>
+<p>For selected projects, explain what the homeowner wanted, what made the site or design challenging, which choices mattered, and how the team moved the work forward. Use approved details. If a budget, location, or homeowner identity is confidential, protect it.</p>
+<p>A useful project story can include:</p>
+<ul>
+<li>project type and general market;</li>
+<li>the homeowner&#39;s goal;</li>
+<li>one meaningful constraint;</li>
+<li>a design or construction decision;</li>
+<li>the builder&#39;s role;</li>
+<li>approved photography and captions;</li>
+<li>a review or result with source and timeframe.</li>
+</ul>
+<p>This turns a portfolio from “look what we made” into “see how we think.”</p>
+<h2>3. A process buyers can picture themselves inside</h2>
+<p>Custom building feels risky when the process is invisible. Explain the major stages in plain language:</p>
+<ol>
+<li>fit and discovery;</li>
+<li>site, design, or feasibility review;</li>
+<li>scope and investment alignment;</li>
+<li>selections and planning;</li>
+<li>construction communication;</li>
+<li>handoff and follow-through.</li>
+</ol>
+<p>Do not invent certainty where the work is variable. The purpose is to show how decisions and communication are handled, not to make every project sound identical.</p>
+<blockquote>
+<p><strong>Janice SME review:</strong> add the two process questions BigOrange sees buyers ask most often and the point where builder websites usually create false expectations.</p>
+</blockquote>
+<h2>4. Real people and a real point of view</h2>
+<p>Buyers are choosing a working relationship, not only a set of services. Introduce the people who will guide the project. Use current photographs, useful roles, and short biographies that explain how each person helps the client.</p>
+<p>A clear point of view also helps. If the team believes early budget conversations protect the design, say so and explain why. If communication has a defined rhythm, show it. If certain project types are not a fit, clarity is kinder than a vague promise.</p>
+<h2>5. Qualification information that saves everyone time</h2>
+<p>Qualification does not have to feel cold. It can help a buyer understand whether a conversation is likely to be productive.</p>
+<p>Consider explaining:</p>
+<ul>
+<li>service geography;</li>
+<li>project types;</li>
+<li>typical planning horizon;</li>
+<li>design or architecture relationships;</li>
+<li>land or site expectations;</li>
+<li>investment guidance where the team is comfortable and the information can stay current;</li>
+<li>what the first conversation covers.</li>
+</ul>
+<p>If exact price ranges would mislead, explain the factors that shape investment and the point at which the team can responsibly discuss it.</p>
+<h2>6. Trust signals with enough context</h2>
+<p>Reviews, awards, credentials, partnerships, and press can reduce risk. They work best when the visitor can understand what they mean.</p>
+<ul>
+<li>Link to the source where appropriate.</li>
+<li>Name the awarding or reviewing organization.</li>
+<li>Add dates when relevance changes over time.</li>
+<li>Use exact customer language only with permission.</li>
+<li>Avoid blending unrelated clients or implying a result from one project applies to everyone.</li>
+</ul>
+<p>Trust is not a strip of logos at the bottom of a page. It is the consistency between the promise, the proof, and the process.</p>
+<h2>7. Answers for the research phase</h2>
+<p>Most prospects do not arrive ready to book. Give them useful answers before asking for personal information.</p>
+<p>Strong topics include:</p>
+<ul>
+<li>how to choose a custom home builder;</li>
+<li>what to prepare before the first builder conversation;</li>
+<li>how the design and budget process interact;</li>
+<li>how long planning may take;</li>
+<li>what makes a project a fit;</li>
+<li>how builders, architects, and designers collaborate;</li>
+<li>what local conditions shape a project.</li>
+</ul>
+<p>Answer directly, then add nuance. Avoid stretching a simple answer into a long article just to create word count.</p>
+<h2>8. A helpful next step</h2>
+<p>“Contact us” makes the visitor do too much guessing. A stronger CTA explains:</p>
+<ul>
+<li>who the conversation is for;</li>
+<li>what happens after the form;</li>
+<li>who responds;</li>
+<li>what information is useful;</li>
+<li>whether there is any obligation;</li>
+<li>the expected response window, if the team can support it.</li>
+</ul>
+<p>Offer a practical alternative for visitors who are not ready, such as a planning checklist or a short guide.</p>
+<h2>9. Mobile speed, accessibility, and technical trust</h2>
+<p>A credible story still fails if the page is painful to use.</p>
+<p>Test the live site on a real mobile viewport and connection. Compress images, keep the main visual out of an unnecessary slider or video dependency, reduce script work, avoid layout shifts, and make the text readable without pinching or zooming.</p>
+<p>Use one clear H1, descriptive headings, meaningful link text, keyboard access, visible focus, sufficient color contrast, accurate alt text, and form labels. Structured data should identify the page, organization, author, breadcrumb, and visible FAQ where appropriate—but it must match what people can see.</p>
+<h2>10. Measurement tied to lead quality</h2>
+<p>Track more than pageviews. A builder website should help the business understand:</p>
+<ul>
+<li>which pages qualified visitors use;</li>
+<li>which search questions introduce the brand;</li>
+<li>which CTAs start a meaningful action;</li>
+<li>whether submissions fit the market, project type, investment, and timing;</li>
+<li>which leads sales accepts;</li>
+<li>which content assists later conversations.</li>
+</ul>
+<p>Conversion reporting is pending validation until analytics, forms, calls, bookings, consent, and CRM outcomes use the same definitions.</p>
+<h2>Builder website checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> The first screen names audience, offer, geography, and next step.</li>
+<li><input disabled="" type="checkbox"> Project stories include context and approved proof.</li>
+<li><input disabled="" type="checkbox"> The process is visible and realistic.</li>
+<li><input disabled="" type="checkbox"> Team members and roles are current.</li>
+<li><input disabled="" type="checkbox"> Qualification guidance is clear and respectful.</li>
+<li><input disabled="" type="checkbox"> Reviews, awards, and claims are attributable.</li>
+<li><input disabled="" type="checkbox"> Research-stage questions are answered.</li>
+<li><input disabled="" type="checkbox"> The CTA explains what happens next.</li>
+<li><input disabled="" type="checkbox"> Mobile performance and accessibility are tested.</li>
+<li><input disabled="" type="checkbox"> Analytics connect actions to lead quality.</li>
+</ul>
+<h2>Your website should make the right conversation easier</h2>
+<p>If the site looks good but leaves buyers guessing, it is a cutie website with a very expensive hobby.</p>
+<p>BigOrange can review the message, proof, structure, mobile experience, search foundation, and measurement path—then show you the next right fixes in order.</p>
+<p><strong><a href="/book-appointment/">Book a low-pressure builder website clarity review.</a></strong></p>
+<p>Return to the complete <strong><a href="/marketing-agency-for-builders/">custom home builder marketing blueprint</a></strong>.</p>
+<p><em>Prepared August 3, 2026. Final publication requires SME review, approved client proof, internal-link verification, and WordPress staging QA.</em></p>
+</section>
+<section class="chapter"><div class="chapter-label">Section 12 · Supporting Article 2</div><h1>5 Articles Every Custom Home Builder Blog Needs</h1>
+<p>The best builder blog is not a pile of seasonal posts or a scrapbook of completed homes. It is a patient sales teammate.</p>
+<p>It answers the questions buyers are nervous to ask, shows how the team thinks, and gives a qualified prospect a reason to come back before they are ready for a consultation.</p>
+<p>If you are starting or cleaning up a custom home builder blog, these five articles create a useful foundation.</p>
+<h2>1. How our custom home process works</h2>
+<p>This is not a generic six-step graphic. Give the reader a practical view of how your process handles uncertainty.</p>
+<p>Explain:</p>
+<ul>
+<li>what happens before a formal engagement;</li>
+<li>when land, architecture, design, and construction expertise enter the process;</li>
+<li>how investment and scope are discussed;</li>
+<li>when major decisions happen;</li>
+<li>how communication works;</li>
+<li>what changes from project to project.</li>
+</ul>
+<p>The reader does not need every internal detail. They need enough visibility to decide whether your approach feels thoughtful and compatible.</p>
+<h3>Questions the article should answer</h3>
+<ul>
+<li>What should we prepare before the first conversation?</li>
+<li>Do we need land or plans already?</li>
+<li>Who owns design decisions?</li>
+<li>How do we know whether our goals and investment align?</li>
+<li>What happens after we decide to move forward?</li>
+</ul>
+<p>Use a real process owner to review the article. If your sales page and your actual process disagree, fix the gap before publishing.</p>
+<h2>2. What affects the investment in a custom home?</h2>
+<p>Avoiding every cost conversation does not make the concern disappear. It sends the buyer elsewhere for answers—and those answers may be misleading.</p>
+<p>A useful investment article can explain the variables without pretending to price a unique project online:</p>
+<ul>
+<li>site conditions and preparation;</li>
+<li>design complexity;</li>
+<li>size, geometry, and structural choices;</li>
+<li>finish and system selections;</li>
+<li>permitting and local conditions;</li>
+<li>schedule and market volatility;</li>
+<li>landscaping, external work, and allowances;</li>
+<li>the difference between an early estimate and a construction-ready price.</li>
+</ul>
+<p>If the team publishes ranges, add the geography, project assumptions, date, inclusions, and review cadence. If ranges would be unreliable, explain when a responsible number becomes possible and what information is required.</p>
+<blockquote>
+<p><strong>Janice SME review:</strong> add BigOrange&#39;s recommendation for how builders can discuss investment without creating a false promise or hiding the ball.</p>
+</blockquote>
+<h2>3. How to choose the right custom home builder</h2>
+<p>Yes, this article helps buyers compare you with competitors. That is the point.</p>
+<p>A confident builder can teach prospects to evaluate fit based on more than the lowest early number or the prettiest kitchen photo.</p>
+<p>Useful criteria include:</p>
+<ul>
+<li>relevant project and market experience;</li>
+<li>communication expectations;</li>
+<li>preconstruction depth;</li>
+<li>design and trade relationships;</li>
+<li>change and decision management;</li>
+<li>financial transparency;</li>
+<li>references and attributable reviews;</li>
+<li>warranty or follow-through practices;</li>
+<li>team capacity and schedule fit.</li>
+</ul>
+<p>Include questions a buyer should ask and explain what a strong answer sounds like without rigging every criterion around your own offer. Useful guidance earns more trust than a disguised sales pitch.</p>
+<h2>4. A project story with the decisions left in</h2>
+<p>Project reveals are attractive. Project stories are persuasive.</p>
+<p>Choose a home with an approved, teachable challenge. Structure the article around:</p>
+<ol>
+<li>the homeowner&#39;s goal;</li>
+<li>the site, design, schedule, or coordination challenge;</li>
+<li>the options considered;</li>
+<li>the decision and why it fit;</li>
+<li>the builder&#39;s role;</li>
+<li>the finished experience or approved outcome;</li>
+<li>what a future client can learn.</li>
+</ol>
+<p>Use photographs with informative captions and permission. Protect addresses, names, budgets, and sensitive details. Cite awards or outside proof accurately. If the client has not approved a testimonial or result, do not improvise one.</p>
+<p>This format also gives search and AI systems clearer context than a photo gallery with filenames such as <code>IMG_4821</code>.</p>
+<h2>5. What to do before the first builder consultation</h2>
+<p>This article removes friction from the conversion moment. It helps serious prospects organize their thinking and makes the first conversation more productive.</p>
+<p>Invite the reader to consider:</p>
+<ul>
+<li>why they want to build;</li>
+<li>preferred markets or land status;</li>
+<li>must-haves versus flexible ideas;</li>
+<li>household, accessibility, and lifestyle needs;</li>
+<li>architecture and design inspiration;</li>
+<li>timing constraints;</li>
+<li>investment expectations and financing questions;</li>
+<li>who needs to participate in major decisions;</li>
+<li>what a successful working relationship feels like.</li>
+</ul>
+<p>Do not turn the article into homework that intimidates the buyer. Make it clear that uncertainty is normal and the conversation is meant to help.</p>
+<p>A printable one-page checklist can become the article&#39;s CTA and a useful consultation tool.</p>
+<h2>How the five articles work together</h2>
+<p>These are not isolated posts:</p>
+<ul>
+<li>The <strong>process article</strong> reduces operational uncertainty.</li>
+<li>The <strong>investment article</strong> builds transparency.</li>
+<li>The <strong>selection guide</strong> defines trust and fit.</li>
+<li>The <strong>project story</strong> proves judgment.</li>
+<li>The <strong>consultation guide</strong> creates a clear next step.</li>
+</ul>
+<p>Link each article to the relevant process, project, team, FAQ, and contact pages. Link them all back to the central <strong><a href="/marketing-agency-for-builders/">custom home builder marketing blueprint</a></strong> where they support BigOrange&#39;s own authority cluster.</p>
+<h2>A simple editorial rhythm</h2>
+<p>Once these foundations are live, use a monthly subject-matter interview to answer new buyer and sales questions. One interview can create an article, FAQ updates, a short video, email copy, and social posts—but only after facts, examples, and public claims are reviewed.</p>
+<p>Avoid publishing on a calendar simply to fill a slot. Update a useful existing answer when that will serve buyers better than another overlapping article.</p>
+<h2>What to measure</h2>
+<p>Watch for:</p>
+<ul>
+<li>relevant search impressions and query breadth;</li>
+<li>readers moving from articles to process and project pages;</li>
+<li>checklist downloads or consultation starts;</li>
+<li>questions prospects mention on calls;</li>
+<li>sales-team use of the content;</li>
+<li>qualified outcomes after analytics and CRM definitions are validated.</li>
+</ul>
+<p>Do not call raw traffic a result. The blog earns its keep when it helps the right buyer understand, trust, and move forward.</p>
+<h2>Make the blog useful before making it busy</h2>
+<p>Start with the five questions that shape a real decision. Show your work. Keep the language human. Then use actual search and sales feedback to decide what deserves the next article.</p>
+<p>BigOrange can turn one expert conversation into a sourced, reviewable content plan without asking your team to feed the content beast every week.</p>
+<p><strong><a href="/book-appointment/">Book a builder content planning call.</a></strong></p>
+<p><em>Prepared August 3 and keyword-validated August 4, 2026. Final publication requires SME review, approved examples, internal-link verification, and WordPress staging QA.</em></p>
+</section>
+</body></html>

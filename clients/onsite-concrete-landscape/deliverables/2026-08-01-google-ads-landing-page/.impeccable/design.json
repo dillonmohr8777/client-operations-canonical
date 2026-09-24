@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-02T00:56:51Z",
+  "title": "Design System: Onsite Concrete & Landscape",
+  "extensions": {
+    "colorMeta": {
+      "red": { "role": "primary", "displayName": "Onsite Datum Red", "tonalRamp": ["oklch(15% 0.09 28)", "oklch(26% 0.13 28)", "oklch(37% 0.17 28)", "oklch(49% 0.2 28)", "oklch(61% 0.18 28)", "oklch(73% 0.13 28)", "oklch(84% 0.08 28)", "oklch(95% 0.025 28)"] },
+      "red-deep": { "role": "primary", "displayName": "Deep Datum Red", "tonalRamp": ["oklch(15% 0.08 28)", "oklch(26% 0.12 28)", "oklch(37% 0.16 28)", "oklch(49% 0.18 28)", "oklch(61% 0.16 28)", "oklch(73% 0.11 28)", "oklch(84% 0.07 28)", "oklch(95% 0.02 28)"] },
+      "orange-focus": { "role": "secondary", "displayName": "Focus Orange", "tonalRamp": ["oklch(15% 0.1 42)", "oklch(26% 0.15 42)", "oklch(37% 0.2 42)", "oklch(49% 0.23 42)", "oklch(61% 0.2 42)", "oklch(73% 0.14 42)", "oklch(84% 0.08 42)", "oklch(95% 0.025 42)"] },
+      "black": { "role": "neutral", "displayName": "Structural Black", "tonalRamp": ["oklch(15% 0.004 270)", "oklch(26% 0.004 270)", "oklch(37% 0.004 270)", "oklch(49% 0.004 270)", "oklch(61% 0.004 270)", "oklch(73% 0.004 270)", "oklch(84% 0.004 270)", "oklch(95% 0.002 270)"] },
+      "white": { "role": "neutral", "displayName": "Plan White", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(37% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(73% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
+      "paper": { "role": "neutral", "displayName": "Drawing Paper", "tonalRamp": ["oklch(15% 0.004 105)", "oklch(26% 0.005 105)", "oklch(37% 0.006 105)", "oklch(49% 0.007 105)", "oklch(61% 0.008 105)", "oklch(73% 0.009 105)", "oklch(84% 0.01 105)", "oklch(95% 0.012 105)"] },
+      "steel": { "role": "neutral", "displayName": "Metal Rule", "tonalRamp": ["oklch(15% 0.006 260)", "oklch(26% 0.006 260)", "oklch(37% 0.006 260)", "oklch(49% 0.006 260)", "oklch(61% 0.006 260)", "oklch(73% 0.006 260)", "oklch(84% 0.006 260)", "oklch(95% 0.003 260)"] },
+      "steel-dark": { "role": "neutral", "displayName": "Steel Note", "tonalRamp": ["oklch(15% 0.008 260)", "oklch(26% 0.008 260)", "oklch(37% 0.008 260)", "oklch(49% 0.008 260)", "oklch(61% 0.008 260)", "oklch(73% 0.008 260)", "oklch(84% 0.008 260)", "oklch(95% 0.004 260)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Constructed Display", "purpose": "Monumental hero statements." },
+      "headline": { "displayName": "Site Headline", "purpose": "Major section claims and the consultation stage." },
+      "title": { "displayName": "Operational Title", "purpose": "Condensed service arguments." },
+      "body": { "displayName": "Site Copy", "purpose": "Readable context, evidence, and form content." },
+      "label": { "displayName": "Stamped Label", "purpose": "Actions, captions, navigation, indexes, and fields." }
+    },
+    "shadows": [
+      { "name": "project-lift", "value": "0 24px 55px rgba(0,0,0,.22)", "purpose": "Clipped hero project window." },
+      { "name": "control-lift", "value": "0 12px 28px rgba(0,0,0,.2)", "purpose": "Button hover feedback." },
+      { "name": "form-lift", "value": "0 22px 55px rgba(0,0,0,.3)", "purpose": "Consultation form on Structural Black." },
+      { "name": "local-code-depth", "value": "0 18px 34px rgba(102,10,7,.24)", "purpose": "Oversized Vacaville location code." },
+      { "name": "mobile-shelf", "value": "0 -10px 30px rgba(0,0,0,.22)", "purpose": "Sticky mobile action bar." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(.16, 1, .3, 1)", "purpose": "Entrances, datum drawing, lifts, and image scaling." },
+      { "name": "control-state", "value": "220ms", "purpose": "Button lift and shadow feedback." },
+      { "name": "site-open", "value": "1050ms", "purpose": "Hero project cutout opening when motion is allowed." },
+      { "name": "datum-enter", "value": "1150ms", "purpose": "Primary red datum drawing when motion is allowed." }
+    ],
+    "breakpoints": [
+      { "name": "compact-desktop", "value": "1050px" },
+      { "name": "mobile", "value": "760px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Consultation Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The red action for consultation starts and form submission.",
+      "html": "<button class=\"ds-btn-primary\">START THE CONVERSATION</button>",
+      "css": ".ds-btn-primary { min-height: 52px; padding: .8rem 1.2rem; border: 0; border-radius: 0; background: var(--red); color: #fff; font: 800 .78rem/1.1 var(--condensed); letter-spacing: .04em; text-transform: uppercase; cursor: pointer; transition: transform .22s var(--ease-out), box-shadow .22s var(--ease-out), background .22s; } .ds-btn-primary:hover { background: #be2017; transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.2); } .ds-btn-primary:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }"
+    },
+    {
+      "name": "Header Consultation Button",
+      "kind": "button",
+      "refersTo": "button-header",
+      "description": "The compact black action anchored in the white desktop header.",
+      "html": "<button class=\"ds-btn-header\">REQUEST A CONSULTATION</button>",
+      "css": ".ds-btn-header { padding: .78rem 1rem; border: 0; border-radius: 0; background: var(--black); color: #fff; font: 800 .78rem/1.1 var(--condensed); letter-spacing: .04em; text-transform: uppercase; cursor: pointer; } .ds-btn-header:hover { background: var(--red); } .ds-btn-header:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }"
+    },
+    {
+      "name": "Selected Service Path",
+      "kind": "custom",
+      "refersTo": "service-selector-active",
+      "description": "The large binary choice that separates concrete and landscape intent.",
+      "html": "<button class=\"ds-service-choice\" aria-selected=\"true\"><strong>CONCRETE</strong><span>SURFACES, STRUCTURE, AND FINISH</span></button>",
+      "css": ".ds-service-choice { position: relative; min-height: 130px; width: 100%; padding: 1.6rem 2rem; border: 0; border-radius: 0; background: var(--black); color: #fff; text-align: left; cursor: pointer; } .ds-service-choice::after { content: ''; position: absolute; inset: auto 0 -4px; height: 4px; background: var(--red); } .ds-service-choice strong { display: block; font: 400 clamp(2rem,4vw,4rem)/1 var(--display); } .ds-service-choice span { font: 700 .78rem/1.1 var(--condensed); letter-spacing: .06em; } .ds-service-choice:hover::after { height: 8px; } .ds-service-choice:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }"
+    },
+    {
+      "name": "Consultation Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "A square plan-field input for project details.",
+      "html": "<label class=\"ds-field-label\">PROJECT LOCATION<input class=\"ds-field\" placeholder=\"Street, city, or neighborhood\"></label>",
+      "css": ".ds-field-label { display: block; color: var(--black); font: 800 .78rem/1.1 var(--condensed); letter-spacing: .05em; text-transform: uppercase; } .ds-field { display: block; width: 100%; margin-top: .42rem; padding: .88rem .9rem; border: 1px solid #9b9da1; border-radius: 0; background: #fff; color: var(--black); font: 400 1rem/1.55 var(--body); text-transform: none; } .ds-field:hover { border-color: var(--black); } .ds-field:focus-visible { border-color: var(--red); outline: 3px solid rgba(224,43,32,.15); }"
+    },
+    {
+      "name": "Indexed Service Panel",
+      "kind": "card",
+      "description": "A square service surface with a red vertical index rail and plan-paper content.",
+      "html": "<article class=\"ds-service-panel\"><span class=\"ds-service-index\">C</span><div><h3>BUILD THE SURFACE THE SITE CALLS FOR.</h3><p>Concrete considered as part of the surrounding property.</p></div></article>",
+      "css": ".ds-service-panel { display: grid; grid-template-columns: 66px 1fr; min-height: 220px; border-radius: 0; background: var(--paper); color: var(--black); } .ds-service-index { display: grid; place-items: center; background: var(--red); color: #fff; font: 400 3rem/1 var(--display); writing-mode: vertical-rl; } .ds-service-panel div { padding: 2rem; } .ds-service-panel h3 { margin: 0 0 .8rem; font: 700 2rem/1 var(--condensed); } .ds-service-panel p { color: var(--steel-dark); font: 400 1rem/1.55 var(--body); } .ds-service-panel:focus-within { outline: 3px solid var(--orange); outline-offset: 4px; }"
+    },
+    {
+      "name": "Mobile Contact Bar",
+      "kind": "nav",
+      "description": "Two equal actions that keep phone and consultation paths reachable on mobile.",
+      "html": "<nav class=\"ds-mobile-actions\" aria-label=\"Quick contact actions\"><a href=\"#\">CALL</a><a href=\"#\">FREE CONSULTATION</a></nav>",
+      "css": ".ds-mobile-actions { display: grid; grid-template-columns: 1fr 1fr; min-height: 66px; background: #fff; box-shadow: 0 -10px 30px rgba(0,0,0,.22); } .ds-mobile-actions a { display: grid; place-items: center; padding: .75rem; color: var(--black); font: 800 .78rem/1.1 var(--condensed); text-align: center; text-decoration: none; text-transform: uppercase; } .ds-mobile-actions a:last-child { background: var(--red); color: #fff; } .ds-mobile-actions a:hover { text-decoration: underline; } .ds-mobile-actions a:focus-visible { outline: 3px solid var(--orange); outline-offset: -4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Onsite Datum",
+    "overview": "This system reads like an active site plan moving toward a finished property: a white plan field, black structural blocks, metallic gray rules, and one continuous Onsite red datum. Cropped real-work photography, stamped labels, vertical indexes, and measuring marks make coordination visible without borrowing the interchangeable dark contractor template.\n\nThe voice is precise, direct, and physical. Monumental Bungee headlines establish the site, Encode Sans Condensed handles labels and workmanlike instruction, and Barlow keeps explanation readable. The red datum line is the reusable signature connecting service choice, evidence, sequence, location, and consultation.",
+    "keyCharacteristics": [
+      "White and light-gray plan fields cut by black structural stages.",
+      "Onsite red used as a continuous datum, index, caption, and action signal.",
+      "Bungee display statements paired with condensed operational labels.",
+      "Cropped verified work imagery annotated with stamped site markers.",
+      "Square components, metallic rules, and a measurable mobile action path."
+    ],
+    "rules": [
+      { "name": "The One Datum Rule", "body": "Red should read as one continuous system of action and sequence, not as unrelated decorative accents.", "section": "colors" },
+      { "name": "The Three-Voice Rule", "body": "Bungee announces, Encode Sans Condensed directs, and Barlow explains; do not exchange those jobs casually.", "section": "typography" },
+      { "name": "The Site Sequence Rule", "body": "Responsive layouts may rotate or stack the datum, but they must preserve the order from service fit to project proof to consultation.", "section": "layout" },
+      { "name": "The Structural Depth Rule", "body": "Use a shadow only where a surface physically lifts from the plan; rules and color fields establish ordinary hierarchy.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use verified work photography with assertive crops and clear project captions.",
+      "Do keep red connected to action, indexing, location, and sequence.",
+      "Do preserve the vertical service rail and vertical datum sequence on mobile.",
+      "Do keep reduced-motion users in the complete final visual state."
+    ],
+    "donts": [
+      "Don't replace the site-plan composition with a dark trade template or an equal rounded-card grid.",
+      "Don't use Bungee for paragraphs, form content, or small utility text.",
+      "Don't soften square controls and construction markers with generalized corner rounding.",
+      "Don't use stock imagery or decorative placeholders in place of verified Onsite project work."
+    ]
+  }
+}

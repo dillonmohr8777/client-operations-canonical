@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "workflowId": "autonomous-agent-compounding",
+  "title": "Evidence-First Multi-Model Compounding Loop",
+  "routingPolicy": "policies/autonomous-agent-routing-policy.json",
+  "stateSource": "state/ai-stack.json",
+  "canonicalWriter": "marketing-chief",
+  "maxConcurrentWorkers": 3,
+  "maxMakerCheckerCycles": 3,
+  "stages": [
+    {
+      "id": "capture",
+      "owner": "collector",
+      "input": "exact source locator or direct user request",
+      "output": "immutable or dated evidence receipt",
+      "rule": "Preserve provenance, observation time, scope, client route, and uncertainty. A capture is not canonical truth."
+    },
+    {
+      "id": "verify",
+      "owner": "independent-checker",
+      "input": "capture plus current exact source",
+      "output": "verified observation, contradiction, or explicit unavailable finding",
+      "rule": "Check authority, directness, freshness, scope, and conflicting evidence. Do not allow the maker to self-certify consequential work."
+    },
+    {
+      "id": "compile",
+      "owner": "marketing-chief",
+      "input": "verified observation",
+      "output": "proposed update to the strongest existing canonical owner",
+      "rule": "Update before duplicating. Preserve source references, freshness, limits, and contradictions. No worker writes canonical state."
+    },
+    {
+      "id": "decide",
+      "owner": "marketing-chief",
+      "input": "current canonical model plus verified evidence",
+      "output": "bounded action, experiment, human gate, or deliberate no-op",
+      "rule": "State the hypothesis, baseline, expected outcome, acceptance test, checker, rollback, and approval boundary."
+    },
+    {
+      "id": "execute",
+      "owner": "maker",
+      "input": "validated scope and targeted context slice",
+      "output": "local reversible artifact and evidence",
+      "rule": "Use the resolved task lane and live-ready route. Never infer external-action authority from tool or account access."
+    },
+    {
+      "id": "observe",
+      "owner": "observer",
+      "input": "actual artifact, test, rendered surface, or live readback",
+      "output": "measured result against the predeclared acceptance test",
+      "rule": "File existence and model claims are not outcomes. Inspect the actual output and record pass, fail, mixed, or inconclusive."
+    },
+    {
+      "id": "learn",
+      "owner": "marketing-chief",
+      "input": "verified result plus user decision or observed outcome",
+      "output": "at most one canonical correction, precedent, workflow change, or explicit non-finding",
+      "rule": "Retain only demonstrated reusable learning. Preserve history, never store secrets, and do not let the brain become a second operational queue."
+    }
+  ],
+  "requiredRunRecord": {
+    "fields": [
+      "taskLane",
+      "dataClass",
+      "sourceLocators",
+      "collectorRoute",
+      "makerRoute",
+      "checkerRoute",
+      "observerRoute",
+      "hypothesis",
+      "acceptanceTest",
+      "rollback",
+      "approvalGate",
+      "result",
+      "canonicalWriteAttempted",
+      "externalActionAttempted"
+    ],
+    "canonicalWriteAttemptedDefault": false,
+    "externalActionAttemptedDefault": false,
+    "containsSecrets": false
+  },
+  "failurePolicy": [
+    "No live-ready route means blocked, not guessed execution.",
+    "No independent checker means consequential completion cannot be claimed.",
+    "A stale or ambiguous source remains capture or research candidate.",
+    "A client or account ambiguity fails closed before any worker receives context.",
+    "A provider, quota, authentication, or human-interaction gate is surfaced without bypass.",
+    "A failed experiment restores only its own reversible changes and retains the evidence receipt."
+  ]
+}

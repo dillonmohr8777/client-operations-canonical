@@ -1,0 +1,325 @@
+{
+    "schemaVersion":  1,
+    "observedAt":  "2026-09-15T11:45:07.5064786-04:00",
+    "status":  "operational-with-human-gates",
+    "gateway":  {
+                    "name":  "OmniRoute",
+                    "version":  "3.8.48",
+                    "status":  "healthy",
+                    "loopbackOnly":  true,
+                    "doctorFailures":  0,
+                    "mcpToolCount":  99,
+                    "catalogRouteCount":  99,
+                    "providerModelRouteCount":  63,
+                    "aliasRouteCount":  36,
+                    "freeProviderCount":  7,
+                    "connectedProviderCount":  6,
+                    "dashboardUrl":  "http://127.0.0.1:20128",
+                    "apiUrl":  "http://127.0.0.1:20128/v1"
+                },
+    "localRuntime":  {
+                         "name":  "Ollama",
+                         "version":  "0.33.2",
+                         "status":  "healthy",
+                         "loopbackOnly":  true,
+                         "endpoint":  "http://127.0.0.1:11434",
+                         "modelCount":  37,
+                         "models":  [
+                                        {
+                                            "id":  "qwen2.5-coder:7b",
+                                            "role":  "Primary local coding and repository work",
+                                            "sizeGb":  4.36,
+                                            "status":  "ready",
+                                            "capabilities":  [
+                                                                 "code",
+                                                                 "tools",
+                                                                 "structured output"
+                                                             ]
+                                        },
+                                        {
+                                            "id":  "deepseek-r1:8b",
+                                            "role":  "Local reasoning and analytical review",
+                                            "sizeGb":  4.87,
+                                            "status":  "ready",
+                                            "capabilities":  [
+                                                                 "reasoning",
+                                                                 "analysis",
+                                                                 "code"
+                                                             ]
+                                        },
+                                        {
+                                            "id":  "gemma3:4b",
+                                            "role":  "Compact multimodal and general assistant lane",
+                                            "sizeGb":  3.11,
+                                            "status":  "ready",
+                                            "capabilities":  [
+                                                                 "text",
+                                                                 "vision",
+                                                                 "general"
+                                                             ]
+                                        },
+                                        {
+                                            "id":  "phi4-mini:latest",
+                                            "role":  "Fast local reasoning and function-calling lane",
+                                            "sizeGb":  2.32,
+                                            "status":  "ready",
+                                            "capabilities":  [
+                                                                 "reasoning",
+                                                                 "tools",
+                                                                 "multilingual"
+                                                             ]
+                                        },
+                                        {
+                                            "id":  "llama3.2:3b",
+                                            "role":  "Fast general chat and lightweight drafting",
+                                            "sizeGb":  1.88,
+                                            "status":  "ready",
+                                            "capabilities":  [
+                                                                 "chat",
+                                                                 "tools",
+                                                                 "general"
+                                                             ]
+                                        },
+                                        {
+                                            "id":  "mistral:7b",
+                                            "role":  "General instruction following and tool work",
+                                            "sizeGb":  4.07,
+                                            "status":  "ready",
+                                            "capabilities":  [
+                                                                 "chat",
+                                                                 "tools",
+                                                                 "general"
+                                                             ]
+                                        },
+                                        {
+                                            "id":  "granite3.3:8b",
+                                            "role":  "Enterprise writing, summarization, and code support",
+                                            "sizeGb":  4.6,
+                                            "status":  "ready",
+                                            "capabilities":  [
+                                                                 "enterprise",
+                                                                 "code",
+                                                                 "tools"
+                                                             ]
+                                        },
+                                        {
+                                            "id":  "nomic-embed-text-v2-moe:latest",
+                                            "role":  "Local multilingual retrieval and semantic memory",
+                                            "sizeGb":  0.89,
+                                            "status":  "ready",
+                                            "capabilities":  [
+                                                                 "embeddings",
+                                                                 "retrieval",
+                                                                 "multilingual"
+                                                             ]
+                                        }
+                                    ]
+                     },
+    "modelRoutes":  [
+                        {
+                            "id":  "gpt-5.6-sol",
+                            "family":  "OpenAI GPT-5.6",
+                            "model":  "gpt-5.6-sol",
+                            "harness":  "Codex",
+                            "status":  "ready",
+                            "verification":  "active-session-and-profile"
+                        },
+                        {
+                            "id":  "gpt-5.6-terra",
+                            "family":  "OpenAI GPT-5.6",
+                            "model":  "gpt-5.6-terra",
+                            "harness":  "Codex",
+                            "status":  "ready",
+                            "verification":  "configured-codex-profile"
+                        },
+                        {
+                            "id":  "gpt-5.6-luna",
+                            "family":  "OpenAI GPT-5.6",
+                            "model":  "gpt-5.6-luna",
+                            "harness":  "Codex",
+                            "status":  "ready",
+                            "verification":  "configured-codex-profile"
+                        },
+                        {
+                            "id":  "grok-4.5",
+                            "family":  "xAI Grok",
+                            "model":  "grok-4.5",
+                            "harness":  "Grok Build CLI",
+                            "status":  "ready",
+                            "verification":  "installed-subscription-harness"
+                        },
+                        {
+                            "id":  "kimi-k3-free",
+                            "family":  "Moonshot Kimi",
+                            "model":  "moonshotai/kimi-k3-free",
+                            "harness":  "OmniRoute",
+                            "status":  "unavailable",
+                            "verification":  "gateway-unavailable",
+                            "dataBoundary":  "public-and-internal-only"
+                        },
+                        {
+                            "id":  "qwen-local",
+                            "family":  "Alibaba Qwen",
+                            "model":  "qwen3.5:9b",
+                            "harness":  "Ollama",
+                            "status":  "ready",
+                            "verification":  "live-local-model-inventory"
+                        },
+                        {
+                            "id":  "deepseek-local",
+                            "family":  "DeepSeek",
+                            "model":  "deepseek-r1:8b",
+                            "harness":  "Ollama",
+                            "status":  "ready",
+                            "verification":  "live-local-model-inventory"
+                        },
+                        {
+                            "id":  "gemma3-local",
+                            "family":  "Google Gemma",
+                            "model":  "gemma3:4b",
+                            "harness":  "Ollama",
+                            "status":  "ready",
+                            "verification":  "live-local-model-inventory"
+                        },
+                        {
+                            "id":  "qwen-cloud",
+                            "family":  "Alibaba Qwen",
+                            "model":  "qwen/qwen3.7-max",
+                            "harness":  "Codex via OmniRoute",
+                            "status":  "blocked",
+                            "verification":  "no-active-upstream-credential"
+                        },
+                        {
+                            "id":  "deepseek-v4",
+                            "family":  "DeepSeek",
+                            "model":  "deepseek/deepseek-v4-flash-0731",
+                            "harness":  "Codex via OmniRoute",
+                            "status":  "blocked",
+                            "verification":  "no-active-upstream-credential"
+                        },
+                        {
+                            "id":  "glm-5.2",
+                            "family":  "Z.ai GLM",
+                            "model":  "z-ai/glm-5.2",
+                            "harness":  "Codex via OmniRoute",
+                            "status":  "blocked",
+                            "verification":  "no-active-upstream-credential"
+                        },
+                        {
+                            "id":  "minimax-m3",
+                            "family":  "MiniMax",
+                            "model":  "MiniMax-M3",
+                            "harness":  "Codex via OmniRoute",
+                            "status":  "blocked",
+                            "verification":  "provider-credit-unavailable"
+                        },
+                        {
+                            "id":  "seedance-2.5",
+                            "family":  "ByteDance Seedance",
+                            "model":  "Seedance 2.5",
+                            "harness":  "Dreamina",
+                            "status":  "human-gated",
+                            "verification":  "official-free-creator-route-sign-in-required"
+                        }
+                    ],
+    "clients":  [
+                    {
+                        "name":  "Codex CLI",
+                        "version":  "0.145.0",
+                        "status":  "ready",
+                        "connection":  "OmniRoute MCP plus native local filesystem access"
+                    },
+                    {
+                        "name":  "Claude Code",
+                        "version":  "2.1.220",
+                        "status":  "installed-auth-unverified",
+                        "connection":  "CLI installed; current account authentication must be verified before routing work"
+                    },
+                    {
+                        "name":  "Gemini CLI",
+                        "version":  "0.52.0",
+                        "status":  "installed-auth-unverified",
+                        "connection":  "CLI installed; no current successful authenticated canary is recorded"
+                    },
+                    {
+                        "name":  "OpenCode",
+                        "version":  "1.18.4",
+                        "status":  "installed-auth-unverified",
+                        "connection":  "CLI installed; no current provider credential is verified"
+                    },
+                    {
+                        "name":  "Qwen Code",
+                        "version":  "0.20.1",
+                        "status":  "installed-auth-unverified",
+                        "connection":  "User-level MCP profile exists; account and trusted-folder state require live verification"
+                    },
+                    {
+                        "name":  "Hermes Agent",
+                        "version":  "0.20.0",
+                        "status":  "ready",
+                        "connection":  "All OmniRoute, scoped filesystem, and private memory MCP tools enabled"
+                    },
+                    {
+                        "name":  "Cursor",
+                        "version":  "3.12.29",
+                        "status":  "configured-quota-gated",
+                        "connection":  "User MCP profile written; subscription quota and application reload remain gates"
+                    },
+                    {
+                        "name":  "Kimi Code",
+                        "version":  "0.26.0",
+                        "status":  "installed-unreliable",
+                        "connection":  "CLI present; prior requests timed out, so OmniRoute direct Kimi is the verified Kimi route"
+                    }
+                ],
+    "mcpServers":  [
+                       {
+                           "name":  "OmniRoute MCP",
+                           "version":  "3.8.48",
+                           "status":  "ready",
+                           "scope":  "99 routing, quota, resilience, memory, skill, plugin, and integration tools"
+                       },
+                       {
+                           "name":  "Marketing Chief Filesystem",
+                           "version":  "2026.7.10",
+                           "status":  "ready",
+                           "scope":  "Restricted to the canonical client-operations project"
+                       },
+                       {
+                           "name":  "Private Memory",
+                           "version":  "2026.7.4",
+                           "status":  "ready",
+                           "scope":  "Local MCP knowledge graph; no raw credential storage"
+                       },
+                       {
+                           "name":  "MCP Inspector",
+                           "version":  "1.0.0",
+                           "status":  "installed",
+                           "scope":  "Local protocol inspection and regression verification"
+                       }
+                   ],
+    "schedules":  [
+                      {
+                          "name":  "Marketing Chief twice-daily brief",
+                          "frequency":  "09:00 and 17:00 America/New_York",
+                          "status":  "enabled"
+                      },
+                      {
+                          "name":  "Marketing Chief Sites bridge",
+                          "frequency":  "09:00 and 17:00 America/New_York plus manual refresh",
+                          "status":  "enabled"
+                      }
+                  ],
+    "policy":  {
+                   "dataBoundary":  "Client evidence stays in the canonical allowlisted operating system. Local open-weight models may process approved local work; untrusted free or community providers never receive client-sensitive material.",
+                   "externalProviderGate":  "Provider login, API-key connection, model-default changes, public or LAN exposure, and cloud routing require an explicit approved route and verified account.",
+                   "updateCadence":  "9:00 AM and 5:00 PM America/New_York, with material changes delivered to Marketing Chief"
+               },
+    "pendingGates":  [
+                         "The only verified OmniRoute cloud route is TokenRouter Kimi K3 free and it is restricted to public or non-client-sensitive internal inputs.",
+                         "Qwen, DeepSeek, GLM, and MiniMax cloud candidates remain blocked until their exact upstream credentials or credits are verified.",
+                         "Qwen Code requires an explicit trusted-folder decision before MCP tools activate in a workspace.",
+                         "Cursor requires an application reload to read the new user-level MCP profile.",
+                         "Public, LAN, tunnel, and cloud endpoint exposure remain intentionally disabled."
+                     ]
+}

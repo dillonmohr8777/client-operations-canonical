@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 1,
+  "policyId": "marketing-chief-autonomous-agent-routing",
+  "status": "active",
+  "statePath": "state/ai-stack.json",
+  "maxStateAgeHours": 24,
+  "authority": {
+    "coordinator": "gpt-5.6-sol",
+    "canonicalWriter": "marketing-chief",
+    "workersMayMutateCanonicalState": false,
+    "modelsMayAuthorizeExternalActions": false,
+    "consequentialWorkRequiresIndependentChecker": true,
+    "maxMakerCheckerCycles": 3
+  },
+  "dataClasses": [
+    "public",
+    "internal",
+    "redacted-client",
+    "sensitive-client"
+  ],
+  "models": [
+    {
+      "id": "gpt-5.6-sol",
+      "family": "OpenAI GPT-5.6",
+      "harness": "Codex",
+      "model": "gpt-5.6-sol",
+      "availabilityKey": "gpt-5.6-sol",
+      "maxVerificationAgeHours": 24,
+      "verificationKindsAllowed": ["direct-canary"],
+      "trustClass": "authorized-cloud",
+      "executionMode": "agent",
+      "automatic": true,
+      "capabilities": ["orchestration", "reasoning", "synthesis", "canonical-reconciliation"],
+      "dataClassesAllowed": ["public", "internal", "redacted-client", "sensitive-client"]
+    },
+    {
+      "id": "gpt-5.6-terra",
+      "family": "OpenAI GPT-5.6",
+      "harness": "Codex",
+      "model": "gpt-5.6-terra",
+      "availabilityKey": "gpt-5.6-terra",
+      "maxVerificationAgeHours": 24,
+      "verificationKindsAllowed": ["direct-canary"],
+      "trustClass": "authorized-cloud",
+      "executionMode": "agent",
+      "automatic": true,
+      "capabilities": ["coding", "architecture", "implementation", "documents"],
+      "dataClassesAllowed": ["public", "internal", "redacted-client", "sensitive-client"]
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "family": "OpenAI GPT-5.6",
+      "harness": "Codex",
+      "model": "gpt-5.6-luna",
+      "availabilityKey": "gpt-5.6-luna",
+      "maxVerificationAgeHours": 24,
+      "verificationKindsAllowed": ["direct-canary"],
+      "trustClass": "authorized-cloud",
+      "executionMode": "agent",
+      "automatic": true,
+      "capabilities": ["verification", "qa", "contradiction-detection", "research"],
+      "dataClassesAllowed": ["public", "internal", "redacted-client", "sensitive-client"]
+    },
+    {
+      "id": "grok-4.5",
+      "family": "xAI Grok",
+      "harness": "Grok Build CLI",
+      "model": "grok-4.5",
+      "availabilityKey": "grok-4.5",
+      "maxVerificationAgeHours": 24,
+      "verificationKindsAllowed": ["direct-canary"],
+      "trustClass": "authorized-cloud",
+      "executionMode": "agent",
+      "automatic": true,
+      "capabilities": ["creative-direction", "social-intelligence", "current-culture", "visual-ideation"],
+      "dataClassesAllowed": ["public", "internal", "redacted-client"]
+    },
+    {
+      "id": "kimi-k3-free",
+      "family": "Moonshot Kimi",
+      "harness": "OmniRoute",
+      "model": "moonshotai/kimi-k3-free",
+      "availabilityKey": "kimi-k3-free",
+      "maxVerificationAgeHours": 24,
+      "verificationKindsAllowed": ["direct-canary"],
+      "trustClass": "public-free",
+      "executionMode": "agent",
+      "automatic": true,
+      "capabilities": ["long-context", "research", "multimodal", "repository-ingestion"],
+      "dataClassesAllowed": ["public", "internal"]
+    },
+    {
+      "id": "qwen-local",
+      "family": "Alibaba Qwen",
+      "harness": "Ollama",
+      "model": "qwen3.5:9b",
+      "availabilityKey": "qwen-local",
+      "maxVerificationAgeHours": 2,
+      "verificationKindsAllowed": ["live-local-inventory"],
+      "trustClass": "local",
+      "executionMode": "local-agent",
+      "automatic": true,
+      "capabilities": ["extraction", "classification", "translation", "structured-output"],
+      "dataClassesAllowed": ["public", "internal", "redacted-client", "sensitive-client"]
+    },
+    {
+      "id": "deepseek-local",
+      "family": "DeepSeek",
+      "harness": "Ollama",
+      "model": "deepseek-r1:8b",
+      "availabilityKey": "deepseek-local",
+      "maxVerificationAgeHours": 2,
+      "verificationKindsAllowed": ["live-local-inventory"],
+      "trustClass": "local",
+      "executionMode": "local-agent",
+      "automatic": true,
+      "capabilities": ["technical-reasoning", "code-review", "math", "adversarial-review"],
+      "dataClassesAllowed": ["public", "internal", "redacted-client", "sensitive-client"]
+    },
+    {
+      "id": "gemma3-local",
+      "family": "Google Gemma",
+      "harness": "Ollama",
+      "model": "gemma3:4b",
+      "availabilityKey": "gemma3-local",
+      "trustClass": "local",
+      "executionMode": "local-agent",
+      "automatic": true,
+      "capabilities": ["vision", "multimodal-review", "creative-qa", "visual-contradiction-detection"],
+      "dataClassesAllowed": ["public", "internal", "redacted-client", "sensitive-client"]
+    },
+    {
+      "id": "qwen-cloud",
+      "family": "Alibaba Qwen",
+      "harness": "Codex via OmniRoute",
+      "model": "qwen/qwen3.7-max",
+      "availabilityKey": "qwen-cloud",
+      "maxVerificationAgeHours": 24,
+      "verificationKindsAllowed": ["direct-canary", "provider-blocked"],
+      "trustClass": "authorized-cloud",
+      "executionMode": "agent",
+      "automatic": true,
+      "capabilities": ["generalist", "translation", "structured-output", "multilingual"],
+      "dataClassesAllowed": ["public", "internal", "redacted-client"]
+    },
+    {
+      "id": "deepseek-v4",
+      "family": "DeepSeek",
+      "harness": "Codex via OmniRoute",
+      "model": "deepseek/deepseek-v4-flash-0731",
+      "availabilityKey": "deepseek-v4",
+      "maxVerificationAgeHours": 24,
+      "verificationKindsAllowed": ["direct-canary", "provider-blocked"],
+      "trustClass": "authorized-cloud",
+      "executionMode": "agent",
+      "automatic": true,
+      "capabilities": ["coding", "debugging", "math", "adversarial-review"],
+      "dataClassesAllowed": ["public", "internal", "redacted-client"]
+    },
+    {
+      "id": "glm-5.2",
+      "family": "Z.ai GLM",
+      "harness": "Codex via OmniRoute",
+      "model": "z-ai/glm-5.2",
+      "availabilityKey": "glm-5.2",
+      "maxVerificationAgeHours": 24,
+      "verificationKindsAllowed": ["direct-canary", "provider-blocked"],
+      "trustClass": "authorized-cloud",
+      "executionMode": "agent",
+      "automatic": true,
+      "capabilities": ["long-running-agent", "documents", "coding", "alternate-reasoning"],
+      "dataClassesAllowed": ["public", "internal", "redacted-client"]
+    },
+    {
+      "id": "minimax-m3",
+      "family": "MiniMax",
+      "harness": "Codex via OmniRoute",
+      "model": "MiniMax-M3",
+      "availabilityKey": "minimax-m3",
+      "maxVerificationAgeHours": 24,
+      "verificationKindsAllowed": ["direct-canary", "provider-blocked"],
+      "trustClass": "authorized-cloud",
+      "executionMode": "agent",
+      "automatic": true,
+      "capabilities": ["multimodal", "creative-analysis", "video-understanding", "visual-qa"],
+      "dataClassesAllowed": ["public", "internal", "redacted-client"]
+    },
+    {
+      "id": "seedance-2.5",
+      "family": "ByteDance Seedance",
+      "harness": "Dreamina",
+      "model": "Seedance 2.5",
+      "availabilityKey": "seedance-2.5",
+      "maxVerificationAgeHours": 168,
+      "verificationKindsAllowed": ["human-gate-verified"],
+      "trustClass": "interactive-external",
+      "executionMode": "interactive-generator",
+      "automatic": false,
+      "capabilities": ["video-generation", "audio-video", "reference-animation", "camera-choreography"],
+      "dataClassesAllowed": ["public", "redacted-client"],
+      "humanGate": "Require exact verified asset provenance, account sign-in, preview review, and approval before external delivery or publication."
+    }
+  ],
+  "lanes": [
+    {
+      "id": "orchestration",
+      "description": "Scope, route, reconcile, and present one authoritative result.",
+      "collector": ["gpt-5.6-sol", "gpt-5.6-luna"],
+      "maker": ["gpt-5.6-sol"],
+      "checker": ["gpt-5.6-luna", "deepseek-local"],
+      "observer": ["gpt-5.6-luna", "qwen-local"]
+    },
+    {
+      "id": "research",
+      "description": "Current source research, large-context synthesis, and evidence packet construction.",
+      "collector": ["kimi-k3-free", "gpt-5.6-luna", "gpt-5.6-sol"],
+      "maker": ["kimi-k3-free", "gpt-5.6-sol", "glm-5.2"],
+      "checker": ["gpt-5.6-luna", "deepseek-local", "glm-5.2"],
+      "observer": ["qwen-local", "gpt-5.6-luna"]
+    },
+    {
+      "id": "code",
+      "description": "Repository analysis, implementation, debugging, tests, and technical review.",
+      "collector": ["gpt-5.6-terra", "kimi-k3-free", "qwen-local"],
+      "maker": ["gpt-5.6-terra", "deepseek-v4", "glm-5.2", "qwen-local"],
+      "checker": ["gpt-5.6-luna", "deepseek-local", "glm-5.2"],
+      "observer": ["gpt-5.6-luna", "qwen-local"]
+    },
+    {
+      "id": "documents",
+      "description": "Structured business documents, reports, spreadsheets, presentations, and revisions.",
+      "collector": ["qwen-local", "kimi-k3-free", "gpt-5.6-luna"],
+      "maker": ["glm-5.2", "gpt-5.6-terra", "gpt-5.6-sol"],
+      "checker": ["gpt-5.6-luna", "deepseek-local"],
+      "observer": ["qwen-local", "gpt-5.6-luna"]
+    },
+    {
+      "id": "creative",
+      "description": "Campaign concepts, social intelligence, visual direction, and brand-safe creative briefs.",
+      "collector": ["grok-4.5", "gpt-5.6-luna", "qwen-local"],
+      "maker": ["grok-4.5", "minimax-m3", "gpt-5.6-sol"],
+      "checker": ["gpt-5.6-luna", "gemma3-local", "gpt-5.6-sol"],
+      "observer": ["gpt-5.6-luna", "qwen-local"]
+    },
+    {
+      "id": "multimodal",
+      "description": "Image, video, interface, and visual-reference analysis before production.",
+      "collector": ["minimax-m3", "grok-4.5", "gpt-5.6-sol"],
+      "maker": ["minimax-m3", "grok-4.5", "gpt-5.6-sol"],
+      "checker": ["gpt-5.6-luna", "gemma3-local", "gpt-5.6-sol"],
+      "observer": ["gpt-5.6-luna", "qwen-local"]
+    },
+    {
+      "id": "video",
+      "description": "Reference-first video planning, generation, deterministic branding, and review.",
+      "collector": ["grok-4.5", "minimax-m3", "gpt-5.6-sol"],
+      "maker": ["seedance-2.5", "grok-4.5", "gpt-5.6-sol"],
+      "checker": ["gpt-5.6-luna", "minimax-m3", "gemma3-local"],
+      "observer": ["gpt-5.6-luna", "qwen-local"]
+    },
+    {
+      "id": "extraction",
+      "description": "High-volume normalization, classification, translation, and structured transformation.",
+      "collector": ["qwen-local", "qwen-cloud", "kimi-k3-free"],
+      "maker": ["qwen-local", "qwen-cloud", "minimax-m3"],
+      "checker": ["gpt-5.6-luna", "deepseek-local"],
+      "observer": ["qwen-local", "gpt-5.6-luna"]
+    },
+    {
+      "id": "verification",
+      "description": "Independent factual, technical, visual, policy, and live-state acceptance review.",
+      "collector": ["gpt-5.6-luna", "qwen-local"],
+      "maker": ["gpt-5.6-luna", "deepseek-local", "glm-5.2"],
+      "checker": ["deepseek-local", "gpt-5.6-sol", "glm-5.2"],
+      "observer": ["qwen-local", "gpt-5.6-luna"]
+    }
+  ],
+  "compounding": {
+    "stages": ["capture", "verify", "compile", "decide", "execute", "observe", "learn"],
+    "promotionRule": "Promote only a source-backed correction, decision, reusable lesson, or explicit non-finding into the strongest existing canonical owner after independent verification and an observed outcome.",
+    "dailyCanonicalChangeLimit": 1,
+    "sourceEvidenceNeverEqualsCanonicalTruth": true
+  },
+  "fallbackRules": [
+    "Select only routes whose live state is ready or healthy.",
+    "Filter routes by the requested data class before capability or cost ranking.",
+    "Never send sensitive-client material to public-free or interactive-external routes.",
+    "For consequential work, select a checker from a different model family than the maker.",
+    "If no independent checker is ready, return blocked rather than self-certifying completion.",
+    "Interactive generators may be planned automatically but may not be invoked as autonomous agents.",
+    "Only the Marketing Chief may compile verified output into canonical state or authorize a supported canonical mutation.",
+    "External delivery, publishing, deployment, spend, account changes, destructive work, and human authentication remain approval-gated regardless of model output."
+  ]
+}

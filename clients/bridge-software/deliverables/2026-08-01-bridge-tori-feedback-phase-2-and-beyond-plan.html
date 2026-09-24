@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bridge — Tori Feedback, Phase 2 and Beyond</title>
+  <style>
+    :root {
+      --purple: #4b0082;
+      --purple-bright: #8f4be8;
+      --purple-soft: #f2eafa;
+      --ink: #121015;
+      --charcoal: #1a1a1a;
+      --muted: #6c6673;
+      --line: #ddd6e5;
+      --paper: #ffffff;
+      --green: #19775b;
+      --gold: #9a6812;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #d9d6de; color: var(--ink); font-family: Inter, Arial, sans-serif; }
+    @page { size: Letter; margin: 0; }
+    .page {
+      width: 8.5in;
+      height: 11in;
+      margin: 0 auto 18px;
+      padding: .62in .68in .55in;
+      position: relative;
+      overflow: hidden;
+      background: var(--paper);
+      page-break-after: always;
+    }
+    .page:last-child { page-break-after: auto; }
+    .dark { color: white; background: radial-gradient(circle at 84% 12%, #3b0b59 0, #140c1a 31%, #050506 73%); }
+    .dark::before {
+      content: "";
+      position: absolute;
+      width: 6.2in;
+      height: 6.2in;
+      border: 2px solid rgba(143,75,232,.26);
+      border-radius: 50%;
+      top: -3.5in;
+      right: -2.1in;
+      box-shadow: 0 0 100px rgba(143,75,232,.18);
+    }
+    .kicker { color: var(--purple); font-size: 9px; font-weight: 800; letter-spacing: 2.1px; text-transform: uppercase; }
+    .dark .kicker { color: #c69cff; }
+    h1, h2, h3 { font-family: Poppins, Montserrat, Arial, sans-serif; margin: 0; }
+    h1 { font-size: 44px; line-height: .98; letter-spacing: -2.1px; }
+    h2 { font-size: 27px; line-height: 1.06; letter-spacing: -1px; margin-top: 10px; }
+    h3 { font-size: 14px; line-height: 1.2; }
+    p { font-size: 10.2px; line-height: 1.5; margin: 7px 0; }
+    .lead { font-size: 13px; line-height: 1.48; color: #39333f; }
+    .dark .lead { color: #ddd5e4; }
+    .cover-title { margin-top: 1.05in; max-width: 6.25in; }
+    .cover-title .accent { color: #a864ff; }
+    .bridge-lockup { display: flex; align-items: center; gap: 13px; }
+    .bridge-mark { width: 52px; height: 42px; position: relative; border: 6px solid #8f4be8; border-bottom: 0; border-radius: 40px 40px 0 0; }
+    .bridge-mark::before, .bridge-mark::after { content: ""; position: absolute; border: 5px solid #8f4be8; border-bottom: 0; border-radius: 30px 30px 0 0; left: 7px; right: 7px; top: 7px; height: 29px; }
+    .bridge-mark::after { left: 16px; right: 16px; top: 16px; height: 20px; }
+    .bridge-word { font-size: 24px; font-weight: 900; letter-spacing: 3px; }
+    .tagline { font-size: 9px; letter-spacing: 2.5px; color: #ba83ff; font-weight: 800; margin-top: 6px; }
+    .meta-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: .65in; }
+    .meta { border-top: 1px solid rgba(255,255,255,.25); padding-top: 10px; }
+    .meta span { display: block; font-size: 7.5px; letter-spacing: 1.4px; text-transform: uppercase; color: #a99eaf; }
+    .meta strong { display: block; margin-top: 5px; font-size: 10px; line-height: 1.35; }
+    .purpose-box { position: absolute; left: .68in; right: .68in; bottom: .72in; padding: 18px 20px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.06); border-radius: 14px; }
+    .purpose-box p { margin: 5px 0 0; color: #e7ddeb; }
+    .footer { position: absolute; bottom: .25in; left: .68in; right: .68in; display: flex; justify-content: space-between; font-size: 7.5px; letter-spacing: .8px; color: #8a8290; text-transform: uppercase; }
+    .dark .footer { color: #93879d; }
+    .rule { height: 3px; width: 66px; background: var(--purple); margin: 13px 0 16px; border-radius: 3px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; }
+    .card { padding: 14px; border: 1px solid var(--line); border-radius: 13px; background: white; break-inside: avoid; }
+    .card.purple { border-color: #cfb5ed; background: linear-gradient(145deg, #fbf9fe, #f1e7fb); }
+    .card.dark-card { background: var(--charcoal); border-color: #333; color: white; }
+    .card h3 { color: var(--purple); margin-bottom: 5px; }
+    .dark-card h3 { color: #b875ff; }
+    .card p, .card li { font-size: 9px; line-height: 1.4; }
+    ul { padding-left: 16px; margin: 7px 0 0; }
+    li { font-size: 9.5px; line-height: 1.42; margin: 4px 0; }
+    .quote { padding: 16px 18px; border-left: 4px solid var(--purple); background: var(--purple-soft); font-size: 15px; line-height: 1.34; font-weight: 700; color: #2f163f; border-radius: 0 12px 12px 0; }
+    .quote small { display: block; font-size: 8px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); margin-top: 8px; }
+    .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 18px 0 15px; }
+    .stat { padding: 12px; background: #17131c; color: white; border-radius: 12px; min-height: 76px; }
+    .stat strong { display: block; font-size: 20px; color: #b875ff; }
+    .stat span { font-size: 7.5px; text-transform: uppercase; letter-spacing: 1px; color: #c8becd; line-height: 1.3; }
+    .phase { display: grid; grid-template-columns: .72in 1fr; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+    .phase:last-child { border-bottom: 0; }
+    .phase-num { width: 48px; height: 48px; display: grid; place-items: center; background: var(--purple); color: white; border-radius: 14px; font-size: 17px; font-weight: 900; }
+    .phase p { margin: 3px 0; }
+    .phase .result { display: inline-block; margin-top: 4px; padding: 3px 7px; border-radius: 12px; background: var(--purple-soft); color: var(--purple); font-size: 7.5px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th { background: var(--charcoal); color: white; font-size: 8px; text-align: left; padding: 8px; letter-spacing: .7px; text-transform: uppercase; }
+    td { vertical-align: top; padding: 8px; border-bottom: 1px solid var(--line); font-size: 8.5px; line-height: 1.36; }
+    tr:nth-child(even) td { background: #faf8fc; }
+    .label { display: inline-block; border-radius: 10px; padding: 3px 7px; font-size: 7px; font-weight: 800; text-transform: uppercase; letter-spacing: .7px; }
+    .label.keep { background: #e1f4ec; color: var(--green); }
+    .label.refine { background: #f1e6fb; color: var(--purple); }
+    .label.decide { background: #fff0d2; color: var(--gold); }
+    .callout { padding: 12px 14px; border: 1px solid #cab0e9; border-radius: 12px; background: #f7f1fc; margin-top: 12px; }
+    .callout strong { color: var(--purple); }
+    .role-band { padding: 14px 16px; border-radius: 12px; color: white; background: linear-gradient(120deg, #240034, #4b0082); margin: 12px 0; }
+    .role-band p { margin: 4px 0 0; color: #eee4f3; }
+    .action { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; margin: 8px 0; }
+    .action b { width: 27px; height: 27px; display: grid; place-items: center; background: var(--purple-soft); color: var(--purple); border-radius: 8px; font-size: 10px; }
+    .action p { margin: 0; }
+    .appendix { padding: .35in; display: flex; flex-direction: column; background: #f4f2f6; }
+    .appendix img { width: 100%; max-height: 9.45in; object-fit: contain; background: white; border: 1px solid #ddd; box-shadow: 0 18px 44px rgba(30,15,42,.15); }
+    .source-note { font-size: 7.4px; color: #756e7b; line-height: 1.4; }
+    @media print { html, body { background: white; } .page { margin: 0; } }
+  </style>
+</head>
+<body>
+  <section class="page dark">
+    <div class="bridge-lockup">
+      <div class="bridge-mark"></div>
+      <div><div class="bridge-word">BRIDGE</div><div class="tagline">CONNECT. GROW. FIGHT TOGETHER.</div></div>
+    </div>
+    <div class="cover-title">
+      <div class="kicker">Client feedback · product roadmap</div>
+      <h1>Tori’s feedback,<br><span class="accent">Phase 2</span> and beyond.</h1>
+      <p class="lead">A detailed translation of Tori Patterson’s prototype response into Dillon’s product, UX, front-end, integration, QA, and launch-readiness plan.</p>
+    </div>
+    <div class="meta-row">
+      <div class="meta"><span>Prepared</span><strong>August 1, 2026</strong></div>
+      <div class="meta"><span>Source reviewed</span><strong>Full 39:17 meeting transcript</strong></div>
+      <div class="meta"><span>Current transition</span><strong>Feedback → Phase 2 refinement</strong></div>
+    </div>
+    <div class="purpose-box">
+      <div class="kicker">Purpose of this document</div>
+      <p>Confirm what Tori loves, capture what she wants changed, distinguish immediate work from later-phase ideas, and make Dillon’s responsibilities and next outputs clear enough for the team to build without losing the product owner’s intent.</p>
+    </div>
+    <div class="footer"><span>Bridge · Tori feedback and phased plan</span><span>01</span></div>
+  </section>
+
+  <section class="page">
+    <div class="kicker">Executive readout</div>
+    <h2>The direction is validated.<br>The next job is disciplined refinement.</h2>
+    <div class="rule"></div>
+    <div class="quote">“The prototype was BEAUTIFUL… it exceeded my expectations.”<small>Tori’s written response after reviewing the first working prototype</small></div>
+    <div class="stat-row">
+      <div class="stat"><strong>39:17</strong><span>Full transcript reviewed</span></div>
+      <div class="stat"><strong>344</strong><span>Timestamped transcript segments</span></div>
+      <div class="stat"><strong>5</strong><span>Product areas affirmed or refined</span></div>
+      <div class="stat"><strong>4</strong><span>Later-phase decision groups</span></div>
+    </div>
+    <div class="grid-2">
+      <div class="card purple">
+        <h3>What is clearly working</h3>
+        <ul>
+          <li>The deep-purple, black, and white direction feels like Bridge.</li>
+          <li>The Bridge metaphor, signal language, and “One industry, one network, one Bridge” framing resonate.</li>
+          <li>The Create experience and connected-product concept have strong product-owner energy behind them.</li>
+          <li>The product is understood as a nationwide industry network, not a local directory.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>What Phase 2 must improve</h3>
+        <ul>
+          <li>Clearer hierarchy, navigation, labels, search, and homepage focus.</li>
+          <li>More visual storytelling, imagery, interaction, and product specificity.</li>
+          <li>Explicit roles, audiences, verification, pricing visibility, and profile permissions.</li>
+          <li>Concrete discovery, filtering, favorites, publishing, profile, and feed behavior.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout"><strong>Working conclusion:</strong> Phase 2 is not a restart. It is the conversion of a successful directional prototype into an approved product system with clearer journeys, decisions, components, and acceptance criteria.</div>
+    <p class="source-note">Evidence note: Otter used automated speaker labels. Tori is identified as Speaker 2 from first-person ownership and self-reference in the conversation. Companion-originated ideas are treated separately unless Tori explicitly supported them.</p>
+    <div class="footer"><span>Bridge · Executive readout</span><span>02</span></div>
+  </section>
+
+  <section class="page">
+    <div class="kicker">What I heard · 1 of 2</div>
+    <h2>Tori’s product and design direction.</h2>
+    <div class="rule"></div>
+    <div class="grid-2">
+      <div class="card dark-card">
+        <h3>Brand and visual character</h3>
+        <ul>
+          <li>Keep purple and the dark foundation. It feels right and is easy to stay in.</li>
+          <li>Keep the Bridge and signal language, plus the strongest network positioning.</li>
+          <li>Add imagery, animation, hover behavior, motion, and more visual energy.</li>
+          <li>Reduce the hero typography’s dominance so supporting product value gets read.</li>
+          <li>Remove language that rejects metrics; Bridge should help users understand and improve marketing performance.</li>
+        </ul>
+      </div>
+      <div class="card purple">
+        <h3>Navigation and information architecture</h3>
+        <ul>
+          <li>Make the primary destinations obvious: profile or home, Explore, Create, and Community News or News Feed.</li>
+          <li>Rename “Exchange” to “Explore.”</li>
+          <li>Consider “My Profile” or “Home Base” for the business home.</li>
+          <li>Simplify search and introduce clear category pathways.</li>
+          <li>Prototype a Pinterest or newspaper-style feed against a simpler vertical feed before locking the pattern.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Creation and audience controls</h3>
+        <ul>
+          <li>Support uploads of existing PNG, PDF, and image assets.</li>
+          <li>Add Promotion as a clear content type.</li>
+          <li>Allow one post to reach multiple approved audiences.</li>
+          <li>Separate public promotion from protected wholesale pricing and business-only information.</li>
+          <li>Preserve the strengths of the current Create experience while making it more practical.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Profiles and verification</h3>
+        <ul>
+          <li>Show current sales and accounting contacts directly on business profiles.</li>
+          <li>Prompt organizations to re-verify contact information regularly.</li>
+          <li>Define public, consumer, professional, retailer, and EIN-verified business access.</li>
+          <li>Decide how vendor-to-vendor visibility works without pretending competitive information can be perfectly hidden.</li>
+          <li>Broaden the verified directory to qualified service providers across the cannabis ecosystem.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer"><span>Bridge · Tori’s product direction</span><span>03</span></div>
+  </section>
+
+  <section class="page">
+    <div class="kicker">What I heard · 2 of 2</div>
+    <h2>Network, commercial, and launch implications.</h2>
+    <div class="rule"></div>
+    <div class="grid-3">
+      <div class="card purple"><h3>Nationwide discovery</h3><p>Bridge should connect legal markets across the country. State, location, product, category, brand, strain, and favorites filters should help people see national movement without overwhelming the default feed.</p></div>
+      <div class="card"><h3>Consumer utility</h3><p>Dispensary profiles should connect people to live menus, ordering, directions, and relevant social or marketplace channels. The point is to make discovery useful and support real business outcomes.</p></div>
+      <div class="card"><h3>Industry directory</h3><p>The network can include qualified banks, transporters, testing labs, manufacturers, construction teams, HVAC providers, electricians, and other industry services, with appropriate credentials and references.</p></div>
+      <div class="card"><h3>Revenue hypothesis</h3><p>The conversation explored an early brand price near $349 to $350 per month, an introductory free period, annual commitment, and grandfathered pricing. These are testable hypotheses, not final commercial terms.</p></div>
+      <div class="card"><h3>Two-sided launch</h3><p>Brands and businesses must be recruited while consumer and industry awareness grows through events and street-level activation. The launch plan should avoid an empty-network problem on either side.</p></div>
+      <div class="card"><h3>Later-stage HR</h3><p>A future HR-support concept may create value, but employee handbooks, advice, privacy, role access, and legal exposure make it inappropriate for the MVP without a dedicated legal and operating model.</p></div>
+    </div>
+    <div class="callout"><strong>Sequencing principle:</strong> build the trusted network and its repeatable connection loops first. Test monetization and acquisition with evidence. Keep legally complex expansion concepts in a governed future backlog.</div>
+    <div class="role-band"><h3>Product North Star after Tori’s feedback</h3><p>Bridge becomes the verified, nationwide operating network where cannabis businesses, professionals, and consumers can discover the right people and products, publish to the right audiences, protect sensitive information, and move from signal to useful action.</p></div>
+    <div class="footer"><span>Bridge · Network and launch implications</span><span>04</span></div>
+  </section>
+
+  <section class="page">
+    <div class="kicker">Feedback translation</div>
+    <h2>What Tori said → what I will do.</h2>
+    <div class="rule"></div>
+    <table>
+      <thead><tr><th style="width:28%">Feedback signal</th><th style="width:18%">Disposition</th><th>Dillon’s product and front-end action</th></tr></thead>
+      <tbody>
+        <tr><td>Keep the purple, dark, Bridge-led direction</td><td><span class="label keep">Keep</span></td><td>Lock the official palette and mark as the design-system source, then improve hierarchy, imagery, motion, contrast, and component consistency.</td></tr>
+        <tr><td>Navigation feels jumbled</td><td><span class="label refine">Refine</span></td><td>Rework the application map around Home or Profile, Explore, Create, and Community News; test labels before build acceptance.</td></tr>
+        <tr><td>Exchange should be Explore</td><td><span class="label keep">Adopt</span></td><td>Update route language, wayfinding, page purpose, and future acceptance fixtures around Explore.</td></tr>
+        <tr><td>Homepage needs stronger visual hierarchy</td><td><span class="label refine">Refine</span></td><td>Reduce hero dominance, add purposeful imagery and interaction, and prove the page works at desktop and mobile widths.</td></tr>
+        <tr><td>Upload existing assets and post promotions</td><td><span class="label refine">Phase 2–4</span></td><td>Specify upload, asset, content-type, validation, audience, preview, save, and publishing states; align storage and permissions with Miraj.</td></tr>
+        <tr><td>Multiple audiences with protected information</td><td><span class="label decide">Decision</span></td><td>Produce the audience and field-visibility matrix, then encode it into page states, data contracts, tests, and review examples.</td></tr>
+        <tr><td>Nationwide discovery, filters, and favorites</td><td><span class="label refine">Phase 2–4</span></td><td>Design Explore filters, saved preferences, favorite views, state/category pathways, empty states, and ranking assumptions.</td></tr>
+        <tr><td>Verified profiles need current contacts</td><td><span class="label refine">Phase 2–4</span></td><td>Map profile ownership, contact roles, re-verification prompts, renewal, changes, and audit history.</td></tr>
+        <tr><td>Pinterest/news feed versus vertical feed</td><td><span class="label decide">Prototype</span></td><td>Create side-by-side responsive concepts and recommend the option that best supports comprehension, scanning, and accessible mobile use.</td></tr>
+        <tr><td>$349–$350 and two-sided launch</td><td><span class="label decide">Validate</span></td><td>Turn the pricing and launch concepts into research questions, landing-message tests, onboarding assumptions, and measurable pilot criteria.</td></tr>
+        <tr><td>HR support concept</td><td><span class="label decide">Later</span></td><td>Keep outside the MVP. Define only after legal review, privacy requirements, partner responsibility, and access controls are established.</td></tr>
+      </tbody>
+    </table>
+    <div class="footer"><span>Bridge · Feedback-to-action map</span><span>05</span></div>
+  </section>
+
+  <section class="page">
+    <div class="kicker">Phase 2</div>
+    <h2>Product definition and UX refinement.</h2>
+    <div class="rule"></div>
+    <p class="lead">My Phase 2 responsibility is to turn Tori’s enthusiasm and detailed feedback into one approved product package that the implementation team can use without guessing.</p>
+    <div class="phase"><div class="phase-num">01</div><div><h3>Lock the product language and application map</h3><p>Define Home or Profile, Explore, Create, Community News, verification, directory, consumer utility, and administration as named surfaces with a clear purpose and handoff path.</p><span class="result">Output: approved route and screen map</span></div></div>
+    <div class="phase"><div class="phase-num">02</div><div><h3>Produce the role, audience, and visibility matrix</h3><p>Map what consumers, industry professionals, retailers, dispensaries, brands, service providers, representatives, and administrators can see, publish, edit, verify, and manage.</p><span class="result">Output: role and field-permission contract</span></div></div>
+    <div class="phase"><div class="phase-num">03</div><div><h3>Refine priority journeys</h3><p>Detail the steps for discovering a business, viewing a verified profile, creating and targeting a post, uploading an asset, finding a product or service, ordering from a dispensary, and confirming profile contacts.</p><span class="result">Output: journey maps and acceptance criteria</span></div></div>
+    <div class="phase"><div class="phase-num">04</div><div><h3>Prototype the unresolved design choices</h3><p>Build a responsive feed comparison, revised homepage hierarchy, clearer navigation, simplified search, category controls, filter patterns, and favorites behavior.</p><span class="result">Output: review-ready responsive prototypes</span></div></div>
+    <div class="phase"><div class="phase-num">05</div><div><h3>Separate MVP, approved follow-on, and future concepts</h3><p>Prevent enthusiasm from becoming uncontrolled scope by giving every idea a phase, owner, dependency, acceptance signal, and review date.</p><span class="result">Output: phased backlog and decision record</span></div></div>
+    <div class="callout"><strong>Phase 2 exit standard:</strong> Tori and the team can explain what is being built first, who it serves, what each role can do, how it should look, and what evidence will prove each journey is ready.</div>
+    <div class="footer"><span>Bridge · Phase 2</span><span>06</span></div>
+  </section>
+
+  <section class="page">
+    <div class="kicker">Phase 3</div>
+    <h2>Frontend foundation and integration contracts.</h2>
+    <div class="rule"></div>
+    <div class="role-band"><h3>My job in Phase 3</h3><p>Translate the approved experience into a reusable purple product system and align every screen with Miraj’s authentication, data, storage, permissions, API, and environment work.</p></div>
+    <div class="grid-2">
+      <div class="card purple"><h3>Design system</h3><ul><li>Production color, type, spacing, radius, elevation, and motion tokens.</li><li>Responsive application shell and approved navigation.</li><li>Buttons, forms, cards, filters, feed items, profile modules, badges, uploaders, modals, tables, and status patterns.</li><li>Loading, empty, success, review, permission, and recovery states.</li></ul></div>
+      <div class="card"><h3>Product templates</h3><ul><li>Home or Profile, Explore, Create, Community News, directory, profile, verification, and administration templates.</li><li>Public, member, verified-business, and administrator variants.</li><li>Mobile and desktop feed treatments for direct comparison.</li><li>Reference screens that show actual industry context instead of generic placeholders.</li></ul></div>
+      <div class="card"><h3>Miraj alignment</h3><ul><li>Route and entity naming.</li><li>Authentication and role claims.</li><li>Profile, contact, audience, post, verification, favorites, and notification data shapes.</li><li>Upload, storage, API response, permission, and environment contracts.</li></ul></div>
+      <div class="card dark-card"><h3>AI-assisted implementation controls</h3><ul><li>Use Claude, Codex, and Cursor for bounded research, specification, code, testing, and QA.</li><li>Keep client secrets and sensitive verification data outside prompts.</li><li>Review generated work against approved components and acceptance criteria.</li><li>Preserve a decision and implementation record.</li></ul></div>
+    </div>
+    <div class="callout"><strong>Phase 3 exit evidence:</strong> approved purple design system, responsive shell, reusable component rules, integration contracts, tested development workflow, and one complete vertical slice.</div>
+    <div class="footer"><span>Bridge · Phase 3</span><span>07</span></div>
+  </section>
+
+  <section class="page">
+    <div class="kicker">Phases 4 and 5</div>
+    <h2>Build the MVP, integrate it, and prove it works.</h2>
+    <div class="rule"></div>
+    <div class="grid-2">
+      <div>
+        <div class="kicker">Phase 4 · Core MVP front end</div>
+        <div class="action"><b>1</b><p><strong>Onboarding and verification:</strong> age and location, role selection, profile setup, EIN or business evidence, review status, renewal, and recovery.</p></div>
+        <div class="action"><b>2</b><p><strong>Explore and profiles:</strong> state, category, product, brand, service, and favorites filters with public and verified-business views.</p></div>
+        <div class="action"><b>3</b><p><strong>Create and publish:</strong> direct asset uploads, Promotion content, audience selection, protected fields, preview, save, and publish states.</p></div>
+        <div class="action"><b>4</b><p><strong>Consumer utility:</strong> dispensary menu, ordering, directions, and approved external profile links.</p></div>
+        <div class="action"><b>5</b><p><strong>Operations:</strong> contact re-verification, notifications, reporting, moderation entry points, and administrator queues.</p></div>
+      </div>
+      <div>
+        <div class="kicker">Phase 5 · Integration, QA, acceptance</div>
+        <div class="action"><b>1</b><p>Connect approved APIs, authentication, storage, and data services in reviewed vertical slices.</p></div>
+        <div class="action"><b>2</b><p>Test every role and permission boundary, including protected pricing and business-only information.</p></div>
+        <div class="action"><b>3</b><p>Verify responsive behavior, keyboard access, screen-reader basics, contrast, motion preferences, and recovery states.</p></div>
+        <div class="action"><b>4</b><p>Test forms, uploads, search, filters, favorites, notifications, ordering handoffs, verification, and moderation workflows.</p></div>
+        <div class="action"><b>5</b><p>Turn failures into evidence-backed tickets and maintain a clean demo path for Tori and the team.</p></div>
+      </div>
+    </div>
+    <div class="callout"><strong>My acceptance standard:</strong> a polished screen is not complete until the workflow, role behavior, data expectation, error states, responsive behavior, and acceptance evidence are all covered.</div>
+    <div class="grid-3" style="margin-top:13px">
+      <div class="card"><h3>Review point</h3><p>Show one complete journey at the end of each vertical slice.</p></div>
+      <div class="card"><h3>Quality point</h3><p>Verify content, permissions, responsive states, and integration behavior.</p></div>
+      <div class="card purple"><h3>Approval point</h3><p>Record Tori’s outcome and select the next prioritized slice.</p></div>
+    </div>
+    <div class="footer"><span>Bridge · Phases 4 and 5</span><span>08</span></div>
+  </section>
+
+  <section class="page">
+    <div class="kicker">Phase 6 and beyond</div>
+    <h2>Pilot, launch, learn, then expand responsibly.</h2>
+    <div class="rule"></div>
+    <div class="grid-2">
+      <div class="card purple"><h3>Phase 6 · Pilot and launch readiness</h3><ul><li>Define the first launch market, participant mix, and first successful connection.</li><li>Prepare brand, retailer, service-provider, and consumer onboarding paths.</li><li>Support a two-sided acquisition plan across major brands, direct outreach, events, and field activation.</li><li>Establish analytics, consent, support, moderation, data-quality, and rollback procedures.</li><li>Test the $349–$350 hypothesis and introductory offer through a controlled pilot rather than treating it as final pricing.</li><li>Document the product, administrator workflows, release checklist, and next backlog.</li></ul></div>
+      <div class="card dark-card"><h3>Beyond the MVP</h3><ul><li>Deeper market and Signal intelligence with documented sources and methodology.</li><li>Advanced promotion, analytics, exports, paid entitlements, and business tools.</li><li>Expanded service-provider verification and industry-specific directories.</li><li>Richer collaboration, messaging, events, and community experiences.</li><li>Mobile-distribution decisions after platform-policy and transaction-boundary review.</li><li>HR support only after legal, privacy, partner, and role-access architecture is approved.</li></ul></div>
+    </div>
+    <div class="phase"><div class="phase-num">A</div><div><h3>Launch with density, not just availability</h3><p>The first market should contain enough brands, retailers, services, and active users to demonstrate a useful network instead of an empty platform.</p></div></div>
+    <div class="phase"><div class="phase-num">B</div><div><h3>Use evidence to sequence the marketplace</h3><p>I will translate acquisition assumptions into measurable activation, retention, content, connection, and conversion signals so the team can decide where to invest next.</p></div></div>
+    <div class="phase"><div class="phase-num">C</div><div><h3>Protect the product from ungoverned expansion</h3><p>New ideas enter the decision log with value, risk, owner, dependency, phase, and acceptance criteria before they become build commitments.</p></div></div>
+    <div class="callout"><strong>Launch-readiness principle:</strong> Bridge is ready to advance when its primary journeys are understandable, role-aware, integrated, tested, documented, supportable, and valuable to a real initial network.</div>
+    <div class="footer"><span>Bridge · Phase 6 and beyond</span><span>09</span></div>
+  </section>
+
+  <section class="page">
+    <div class="kicker">Dillon’s lane</div>
+    <h2>Product structure, UX, front end, and acceptance readiness.</h2>
+    <div class="rule"></div>
+    <div class="role-band"><h3>My role in one sentence</h3><p>I turn Tori’s product vision and prototype feedback into a usable, role-based product experience, then help carry that experience through requirements, front-end implementation, integration, QA, launch readiness, and the next-phase backlog.</p></div>
+    <div class="grid-2">
+      <div class="card purple"><h3>I own</h3><ul><li>Product structure and application map.</li><li>User journeys, role flows, screen direction, and phased backlog.</li><li>UX decisions and responsive front-end requirements.</li><li>Official purple design-system application.</li><li>AI-assisted design, implementation, testing, and documentation workflow.</li><li>Implementation review, visual QA, acceptance evidence, and client-ready walkthroughs.</li></ul></div>
+      <div class="card"><h3>I co-own with Miraj and the team</h3><ul><li>Front-end architecture and component structure.</li><li>Authentication, role claims, data shapes, APIs, storage, uploads, permissions, and environment contracts.</li><li>Onboarding, verification, profiles, discovery, publishing, notifications, and administration behavior.</li><li>Compliance and research findings translated into product behavior.</li><li>Integration sequencing, role testing, critical-path QA, and launch readiness.</li></ul></div>
+    </div>
+    <div class="grid-3" style="margin-top:14px">
+      <div class="card"><h3>Tori</h3><p>Product vision, brand direction, priority decisions, and milestone acceptance.</p></div>
+      <div class="card"><h3>Miraj</h3><p>Backend, platform architecture, authentication, data, storage, permissions, and APIs.</p></div>
+      <div class="card"><h3>Mac and Melissa</h3><p>Commercial scope, milestone review, coordination, communication, and feedback follow-through.</p></div>
+    </div>
+    <div class="callout"><strong>Definition of done for my lane:</strong> the product can be explained in plain language, every approved role has a clear path, the front end matches the agreed data and permission model, primary workflows are tested, and the team has a written, prioritized plan for what comes next.</div>
+    <div class="footer"><span>Bridge · Dillon’s execution role</span><span>10</span></div>
+  </section>
+
+  <section class="page">
+    <div class="kicker">Immediate next-step plan</div>
+    <h2>Ten actions that move Bridge into Phase 2.</h2>
+    <div class="rule"></div>
+    <div class="grid-2">
+      <div>
+        <div class="action"><b>01</b><p>Record Tori’s positive direction and the official purple system as the current working design source.</p></div>
+        <div class="action"><b>02</b><p>Update the application map around Home or Profile, Explore, Create, and Community News.</p></div>
+        <div class="action"><b>03</b><p>Create the role, audience, protected-field, and verification matrix.</p></div>
+        <div class="action"><b>04</b><p>Build the revised homepage hierarchy and side-by-side feed concepts.</p></div>
+        <div class="action"><b>05</b><p>Specify uploads, Promotion content, multi-audience publishing, and protected pricing states.</p></div>
+      </div>
+      <div>
+        <div class="action"><b>06</b><p>Specify nationwide Explore, state/category filters, favorites, and consumer profile utility.</p></div>
+        <div class="action"><b>07</b><p>Align the approved journeys and data contracts with Miraj.</p></div>
+        <div class="action"><b>08</b><p>Package the reusable purple design system and responsive component patterns.</p></div>
+        <div class="action"><b>09</b><p>Select and build the first complete Phase 3 vertical slice with acceptance fixtures.</p></div>
+        <div class="action"><b>10</b><p>Review the working journey with Tori, record acceptance, and choose the next prioritized slice.</p></div>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:22px">The prototype created excitement. Phase 2 turns that excitement into a precise product contract and a build sequence the entire team can execute.<small>Recommended transition outcome</small></div>
+    <p class="source-note" style="margin-top:18px">Working basis: the full July 23 Otter transcript, Tori’s July 31 written response, Dillon’s six-milestone execution plan, the official Bridge brand source, the July 27 current-state report, and the July 28 purple-direction milestone plan. Future commercial, legal, compliance, and platform-policy decisions remain subject to the responsible owner’s approval.</p>
+    <div class="footer"><span>Bridge · Immediate plan</span><span>11</span></div>
+  </section>
+
+  <section class="page appendix">
+    <div class="kicker">Appendix · Official client source</div>
+    <h2 style="margin:7px 0 14px">Bridge branding guide.</h2>
+    <img src="../artifacts/2026-07-20-tori-source-package/Bridge-Branding-Guide.png" alt="Official Bridge branding guide supplied by Tori Patterson">
+    <div class="footer"><span>Bridge · Official brand source</span><span>12</span></div>
+  </section>
+</body>
+</html>

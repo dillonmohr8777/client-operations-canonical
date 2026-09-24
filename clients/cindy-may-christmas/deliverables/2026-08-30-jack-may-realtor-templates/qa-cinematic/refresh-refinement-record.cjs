@@ -1,0 +1,11 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.resolve(__dirname, '..');
+const file = path.join(root, '.impeccable/design.json');
+const record = JSON.parse(fs.readFileSync(file, 'utf8'));
+const design = fs.readFileSync(path.join(root, 'DESIGN.md'), 'utf8');
+record.generatedAt = new Date().toISOString();
+record.narrative.rules = record.narrative.rules.filter(r => r.name !== 'The Mobile Reading Rule');
+record.narrative.rules.push({name:'The Mobile Reading Rule', body:design.match(/\*\*The Mobile Reading Rule\.\*\* ([^\r\n]+)/)[1], section:'typography'});
+record.extensions.typographyMeta['mobile-display'] = {displayName:'Mobile Film Display',purpose:'Readable phone-sized film statements without changing desktop display lettering.'};
+fs.writeFileSync(file, JSON.stringify(record, null, 2) + '\n');

@@ -1,0 +1,252 @@
+export const reportExpansions = {
+  "kimberly-james-bridal": {
+    analysis: [
+      "July generated eight total leads across Google and Meta while also improving the path from ad interaction to form submission and booked bridal consultation.",
+      "Google carried the larger reach and traffic load, while Meta introduced the new Higher Intent form with SMS verification and qualification questions. August will use appointment feedback to keep improving the strongest traffic and lead sources.",
+    ],
+    detailedWork: [
+      ["Appointments", "Built the lead-to-consultation reporting plan for Google and Meta inquiries.", "Connects July lead volume to the bridal appointments that matter most.", "Prepared"],
+      ["Lead tracking", "Created the form-submission and appointment match for source and timing.", "Makes follow-up and appointment quality easier to review.", "Ready"],
+      ["Reporting", "Documented a clean approach for duplicate events, missing IDs, and delayed appointment outcomes.", "Keeps appointment reporting clear as follow-up continues.", "Complete"],
+      ["Search", "Built and launched the Philadelphia Search replacement with location, negative-keyword, Search Partners, and AI Max controls.", "Creates a cleaner high-intent acquisition lane.", "Enabled"],
+      ["Meta form", "Published a Higher Intent instant form with SMS verification and four qualification questions.", "Adds lead-quality friction before agency follow-up.", "Published"],
+      ["Creative", "Prepared four approved images for the qualified-lead campaign.", "Gives the form campaign a complete native creative set.", "Complete"],
+      ["Monthly summary", "Built the July performance report and Google-versus-Meta follow-up plan.", "Keeps channel roles, leads, and August priorities easy to review.", "Complete"],
+    ],
+    additionalSources: [
+      "clients/kimberly-james-bridal/paid-media/correction-packet-2026-07-16-google-conversion-tracking.md",
+      "clients/kimberly-james-bridal/paid-media/measurement-qa-cases-2026-07-16.json",
+      "clients/kimberly-james-bridal/paid-media/search-draft-controls-2026-07-22.md",
+      "clients/kimberly-james-bridal/deliverables/2026-07-26-weekly-performance-dashboard/source-data.json",
+    ],
+  },
+  "onsite-concrete-landscape": {
+    analysis: [
+      "July combined demand generation, local-search content, and measurement cleanup. The paid account produced meaningful traffic and a large raw action value, but the reporting work correctly stopped short of calling that value qualified estimates.",
+      "The strongest operating asset is the combined form, call, CRM, and imported-event correction design. Once it is reconciled, the six-piece Vacaville content package and the active campaigns can be evaluated against estimate quality instead of surface activity.",
+    ],
+    detailedWork: [
+      ["Measurement", "Completed the form, call, CRM, and imported-event deduplication correction packet.", "Establishes one defensible action record per prospect.", "Complete"],
+      ["Paid media", "Separated the Smart traffic campaign from the Leads Performance Max action lane.", "Clarifies which campaign is generating reach versus contact signals.", "Verified"],
+      ["Reporting", "Built the July weekly performance dashboard with source-level caveats.", "Shows 44 whole-number Google leads while preserving the raw 43.99 attributed value and keeping business outcomes separate.", "Delivered"],
+      ["Content", "Produced three July Vacaville service drafts on contractor scope, repair decisions, and retaining walls.", "Targets high-intent local homeowner questions; approval remains separate.", "Review-ready"],
+      ["Content", "Completed the approved follow-up batch on pool decks, retaining walls, and yard drainage.", "Extends topical coverage into project-specific search demand.", "Approved"],
+      ["SEO", "Mapped service-area intent and internal-link opportunities across the six-article package.", "Connects educational content to estimate-oriented service paths.", "Ready"],
+      ["Creative", "Prepared the verified logo, service-reference pack, and motion-ad production direction.", "Keeps future creative and conversion tracking pointed at one outcome.", "Prepared"],
+    ],
+    additionalSources: [
+      "clients/onsite-concrete-landscape/content/blogs/2026-07/README.md",
+      "clients/onsite-concrete-landscape/content/blogs/2026-07-20-approved-slack-batch/README.md",
+      "clients/onsite-concrete-landscape/deliverables/2026-07-26-weekly-performance-dashboard/source-data.json",
+    ],
+  },
+  "omega-landscaping": {
+    analysis: [
+      "July kept Omega's paid program concentrated in Colorado Springs while building the measurement and local-proof systems around it. Performance Max carried nearly all delivery; the high-intent Search row remained a small structural test.",
+      "The work outside delivery matters just as much: a qualified-opportunity tracking file, a published qualified lead-form asset, four verified-live GBP posts, and a second four-post package now provide the evidence framework needed before budget changes.",
+    ],
+    detailedWork: [
+      ["Paid media", "Reviewed the Colorado Springs Performance Max and high-intent Search campaign rows.", "Defines the exact account structure without overstating creation timing.", "Verified"],
+      ["Measurement", "Completed the qualified-lead reconciliation correction packet.", "Defines how calls, forms, inbox records, and opportunities should join.", "Complete"],
+      ["Lead tracking", "Built the qualified-opportunity tracking file for named outcome review.", "Moves optimization toward project quality rather than event volume.", "Ready"],
+      ["Lead form", "Published Google lead-form asset 400863777374 using the More qualified setting.", "Adds service-fit information before follow-up.", "Published · under review"],
+      ["GBP batch 1", "Verified four posts live: driveway, turf, project spotlight, and drainage.", "Builds public local service and project proof for Colorado Springs.", "Verified live"],
+      ["GBP batch 2", "Produced retaining-wall, landscape-detail, patio-planning, and landscape-design graphics.", "Extends the repeatable local content rhythm; publication remains unverified.", "Produced"],
+      ["Lead export", "Documented the Standard-role limitation blocking automatic Zapier and Sheets export.", "Explains why downstream automation could not be completed.", "Blocked"],
+      ["Reporting", "Reconciled the exact July 1–31 Google Ads view.", "Establishes five full-month Google leads: two calls from ads and three form submissions.", "Verified"],
+      ["Landing path", "Reviewed service clarity, project proof, and form routing on the acquisition path.", "Prepares the account for lead-quality-based optimization.", "Reviewed"],
+    ],
+    additionalSources: [
+      "clients/omega-landscaping/content/google-business-profile/2026-07-14-20-live-batch/README.md",
+      "clients/omega-landscaping/content/google-business-profile/2026-07-24-30-batch/README.md",
+      "clients/omega-landscaping/deliverables/2026-07-26-weekly-performance-dashboard/source-data.json",
+    ],
+  },
+  "fagan-painting": {
+    analysis: [
+      "The corrected full-month Meta readback materially changes the July baseline: the named Fagan Painting LLC account recorded $1,320.11 in spend, 40,028 impressions, and 16 lead-form conversions. The portfolio's second ad account has no campaigns, so the account-level total is complete rather than a partial snapshot.",
+      "Meta advertising is no longer running. The active growth strategy is now the AEO and SEO feedback implementation, supported by the completed research brief, one-page offer, landing page, and email package.",
+    ],
+    detailedWork: [
+      ["July Meta summary", "Completed the full July campaign summary across every campaign that spent.", "Provides the final paid-media baseline before the channel was turned off.", "Complete"],
+      ["July leads", "Recorded 16 Meta form leads from the lead-driving campaign.", "Shows the final lead volume from the July paid program.", "Complete"],
+      ["Meta closeout", "Closed the paid-social lane and documented the final July spend, impressions, and lead results.", "Keeps the transition into organic growth clear.", "Complete"],
+      ["AEO feedback", "Prepared answer-ready service-page and homeowner FAQ improvements.", "Helps Fagan appear more clearly in AI-assisted and conversational search.", "Ready"],
+      ["SEO plan", "Prioritized local painting topics, internal links, and service-page improvements.", "Builds a stronger organic path for homeowners researching painting services.", "Ready"],
+      ["August package", "Completed the research brief, one-page offer, landing page, and client email package.", "Gives the August work a clear implementation path.", "Ready"],
+    ],
+    additionalSources: [
+      "clients/fagan-painting/evidence/2026-08-03-july-meta-ads-readback.json",
+      "clients/fagan-painting/paid-media/correction-packet-2026-07-16-meta-closed-loop-leads.md",
+      "clients/fagan-painting/evidence/2026-07-29-lead-disposition-recheck.json",
+      "clients/fagan-painting/deliverables/2026-07-31-aeo-geo-upsell/README.md",
+    ],
+  },
+  "fresh-blends-kwik-trip": {
+    analysis: [
+      "July's most important Fresh Blends result was control: the four Kwik Trip Ice Box campaigns were isolated from Replenish, reviewed as their own portfolio, and left paused while location scope, threshold, and measurement remained unapproved.",
+      "The prior account structure made blended reporting easy. The rebuilt lane now identifies exactly which four rows belong to Fresh Blends and prevents Replenish delivery from inflating or obscuring its performance story.",
+    ],
+    detailedWork: [
+      ["Account mapping", "Separated Fresh Blends from Replenish inside the shared Google child account.", "Prevents cross-brand spend and delivery blending.", "Verified"],
+      ["Campaign review", "Audited Ice Box Performance Max rows for stores 1110, 1161, 573, and 633.", "Defines the exact Fresh Blends reporting perimeter.", "Complete"],
+      ["Status control", "Verified all four Ice Box rows were paused at the current readback.", "Avoids describing a pending restart as active delivery.", "Verified"],
+      ["Reporting", "Built the Fresh Blends-specific weekly performance dashboard.", "Keeps row-level delivery and caveats in one client view.", "Delivered"],
+      ["Expansion scope", "Held future rollout behind exact location scope, per-location authority, landing destinations, and measurement.", "Identifies the commercial decisions required before restart.", "Pending"],
+      ["Measurement", "Kept the displayed platform field separate from store lift, purchases, and qualified actions.", "Protects future decisions from an undefined event count.", "Pending"],
+    ],
+    additionalSources: [
+      "clients/fresh-blends-kwik-trip/deliverables/2026-07-26-weekly-performance-dashboard/source-data.json",
+      "clients/fresh-blends-kwik-trip/paid-media/launch-config.json",
+    ],
+  },
+  "replenish-7-eleven": {
+    analysis: [
+      "July was a location-operations month as much as a media month. The work covered account isolation, location assets, San Diego campaign launches, lifetime caps, clicked-direction modeling, creative readiness, and a full billing reconciliation.",
+      "The delivery totals are useful, but the decision risk sits in mixed action definitions and unresolved billing questions. The report therefore keeps Purchase, Get directions, Page view, modeled directions, chargebacks, and actual store outcomes in separate evidence lanes.",
+    ],
+    detailedWork: [
+      ["Account control", "Kept Replenish rows separate from Fresh Blends inside the shared child account.", "Protects client-level spend and delivery totals.", "Verified"],
+      ["Location system", "Built the location-isolation matrix and location-asset correction packet.", "Reduces cross-store geography and asset leakage.", "Complete"],
+      ["Creative", "Prepared the Miami location asset draft and reviewed content and creative approval readiness.", "Creates a controlled asset path for expansion locations.", "Ready"],
+      ["San Diego launch", "Launched and reviewed Solana Beach, Miramar, Torrey Del Mar, and Carmel Mountain campaigns.", "Adds four named locations with explicit QA coverage.", "Reviewed"],
+      ["Pacing", "Verified CPC pacing, lifetime-cap pause behavior, and row-level campaign sums.", "Prevents delivery beyond intended ceilings.", "Complete"],
+      ["Reporting", "Built the weekly performance presentation and updated clicked-directions review slides.", "Separates modeled direction activity from native events.", "Delivered"],
+      ["Billing", "Completed the July billing audit and four-page balance reconciliation package.", "Surfaces gross cost, credits, payments, chargebacks, and open confirmations.", "Open"],
+      ["Decision support", "Documented four chargebacks and the remaining credit-allocation questions.", "Defines the exact billing decisions still required.", "Pending"],
+    ],
+    scopeCallout: {
+      value: "$2,148.43 displayed balance",
+      title: "July 29 account reconciliation",
+      detail: "The displayed balance is not presented as the final payable amount; credit allocation and chargeback intent still require confirmation.",
+      items: ["$6,102.69 gross campaign cost", "$558.78 credits and adjustments", "$3,395.48 retained payments", "4 chargebacks · $1,942.67"],
+    },
+    additionalSources: [
+      "clients/replenish-7-eleven/paid-media/location-isolation-matrix-2026-07-16.md",
+      "clients/replenish-7-eleven/paid-media/billing-audit-2026-07-28.md",
+      "clients/replenish-7-eleven/deliverables/2026-07-29-google-ads-balance-reconciliation/QA.md",
+      "clients/replenish-7-eleven/deliverables/2026-07-29-google-ads-balance-reconciliation/content-creative-approval-readiness-review.md",
+    ],
+  },
+  nkcdc: {
+    analysis: [
+      "July converted an SEO and AI concept into a complete Phase Two growth proposal. The final package integrated organic search, Google Grants, social, cold email, webinar promotion, and ChatGPT Ads under a single Momentum Digital narrative.",
+      "The commercial logic and presentation QA are complete. The remaining work is not more document production; it is client approval of the scope, pilot sequence, owners, and measurement contract.",
+    ],
+    detailedWork: [
+      ["Strategy", "Expanded the original SEO and AI concept into a coordinated Phase Two growth program.", "Gives the client one integrated plan instead of disconnected tactics.", "Complete"],
+      ["Organic", "Added SEO and GEO content strategy with answer-ready service and topic development.", "Defines the owned-search foundation.", "Complete"],
+      ["Acquisition", "Added Google Grants, social, cold email, webinar promotion, and ChatGPT Ads options.", "Creates multiple bounded acquisition lanes for client selection.", "Complete"],
+      ["Brand", "Rebranded the package from 360 to Momentum Digital and applied the approved color system.", "Aligns the client-facing proposal to the current agency identity.", "Complete"],
+      ["Commercial", "Set the custom package at $1,750 per month versus a $2,050 a la carte total.", "Makes the $300 monthly savings explicit.", "Complete"],
+      ["QA", "Reviewed all 12 proposal pages and removed residual legacy 360 text.", "Produces a coherent review-ready final PDF.", "Verified"],
+      ["Paid evidence", "Recorded the July Google account readback separately from the proposed Grants program.", "Avoids treating current account delivery as a grant result.", "Verified"],
+    ],
+    additionalSources: [
+      "clients/nkcdc/deliverables/2026-07-21-NKCDC-Phase-Two-Growth-Proposal-Momentum-Digital.pdf",
+      "clients/nkcdc/deliverables/2026-07-21-NKCDC-Phase-Two-Growth-Proposal-QA.md",
+    ],
+  },
+  "hope-wellness-center": {
+    analysis: [
+      "July created both the strategic diagnosis and the human-facing brand layer for Hope Wellness. The deeper analysis identified the site, search, conversion, duplication, booking, and local-search issues; the brand reel and visual direction made the recommended experience tangible.",
+      "The next constraint is implementation governance. The 15-item queue, seven leadership decisions, analytics access, booking ownership, and GBP visibility need to be resolved before the team can claim measurable search or booking improvement.",
+    ],
+    detailedWork: [
+      ["Deep analysis", "Completed the website, search, architecture, conversion-path, and duplication review.", "Identifies the highest-impact structural growth problems.", "Complete"],
+      ["Implementation", "Produced a 15-item queue: five P0, six P1, and four P2 actions.", "Gives the client an actionable release sequence.", "Ready"],
+      ["Leadership", "Separated seven leadership decisions from the implementation backlog.", "Makes approvals and ownership explicit.", "Pending"],
+      ["Booking", "Mapped open questions around booking destinations and measurement ownership.", "Prevents implementation from outrunning the real conversion path.", "Pending"],
+      ["Local search", "Reviewed GBP and search-presentation questions alongside the site architecture.", "Connects local discovery to the booking journey.", "Reviewed"],
+      ["Brand film", "Completed the 60-second vertical brand reel with supporting client material.", "Provides an emotional proof asset for the client experience.", "Complete"],
+      ["Creative system", "Completed a 17-illustration library and therapist-video system.", "Creates reusable visual consistency across channels.", "Complete"],
+      ["Handoff", "Delivered the deeper-analysis PDF and implementation queue for client review.", "Creates a single evidence package for approval.", "Delivered"],
+    ],
+    additionalSources: [
+      "clients/hope-wellness-center/deliverables/2026-07-15-hope-wellness-deeper-analysis.pdf",
+      "clients/hope-wellness-center/deliverables/2026-07-15-hope-wellness-implementation-queue.csv",
+    ],
+  },
+  "bar-crawl-usa": {
+    analysis: [
+      "July optimized 12 existing Boos & Booze event pages across SEO titles and descriptions, supporting copy, quick facts, FAQs, and internal links to related event, city, and hub pages.",
+      "August moves into the next ten evergreen WordPress pages already sent to the client. The goal is to strengthen pages with existing search demand, support upcoming fall and holiday events, and review page and query movement each week.",
+    ],
+    detailedWork: [
+      ["Event pages", "Reviewed the current WordPress event inventory and Boos & Booze page before beginning the July work.", "Keeps each page aligned with the event calendar.", "Complete"],
+      ["Page optimization", "Worked 12 existing Halloween event pages across current markets.", "Delivered a complete July SEO cycle across the seasonal page group.", "Complete"],
+      ["Metadata", "Improved SEO titles and descriptions on the confirmed event pages.", "Strengthens search presentation and page relevance.", "Complete"],
+      ["On-page content", "Completed supporting copy, quick facts, and FAQs on 11 pages; Portland needs an Elementor-specific body update.", "Adds useful event information and stronger direct answers.", "11 complete · 1 carryover"],
+      ["Internal links", "Connected event pages, city pages, and the Boos & Booze hub.", "Improves crawl paths and event discovery.", "Complete"],
+      ["SEO plan", "Rebuilt the July WordPress SEO plan around current pages and approved events.", "Keeps the seasonal work focused on the pages Bar Crawl USA is promoting.", "Complete"],
+      ["Schema review", "Identified the Birmingham year and Atlanta state details for correction.", "Keeps event information consistent for search engines and visitors.", "August"],
+      ["New inventory", "Added Beltline Bubbles & Bites and Alpharetta Bubbles & Bites to the July event inventory.", "Extends current event coverage without repeating existing pages.", "Complete"],
+      ["Monthly scope", "Kept the June ten-page batch, July Halloween work, and August evergreen plan as separate monthly cycles.", "Makes the progression clear and avoids repeating pages.", "Complete"],
+    ],
+    scopeCallout: {
+      value: "12 existing pages optimized",
+      title: "Boos & Booze July page scope",
+      detail: "SEO titles and descriptions, supporting copy, quick facts, FAQs, and internal links were improved across the confirmed live event inventory.",
+      items: ["Cincinnati", "Portland, Maine", "Cleveland West Park", "St. Pete", "Columbia", "Greenville", "Birmingham", "Sarasota", "Roswell", "Lakewood", "Macon", "Atlanta Beltline"],
+    },
+    additionalSources: [
+      "Slack #bar-crawl-usa confirmation, July 28-29, 2026: https://momentum3d.slack.com/archives/C0AEGE1V5KR/p1785294406597509",
+      "Live WordPress inventory audit and REST verification, July 29, 2026",
+      "Gmail thread: Bar Crawl USA next 10 SEO pages, July 27-30, 2026",
+      "Signed scope: 5-10 existing-page optimizations monthly; new landing pages separately priced",
+    ],
+  },
+  "va-claims-edge": {
+    analysis: [
+      "July moved VA Claims Edge from a signup concept into a complete Phase Two product handoff. The work covered brand fidelity, claimant onboarding, dashboard information architecture, secure files, messaging, internal operations, review tooling, and booking-route verification.",
+      "The distinction that matters is deployed versus fully operational. The initial Vercel access blocker was resolved and the approved Phase Two login is verified in production; four booking-rule mismatches and analytics instrumentation remain the implementation gates.",
+    ],
+    detailedWork: [
+      ["Signup", "Built the initial two-step signup wireframe for secure account and claimant-profile creation.", "Clarifies the first claimant journey and required information.", "Complete"],
+      ["Brand", "Applied the exact logo, shield artwork, Epilogue type, and navy, red, ivory, and cyan system.", "Creates a consistent and recognizable product identity.", "Complete"],
+      ["Client portal", "Designed the claimant dashboard, progress view, secure files, and messaging experience.", "Gives claimants one coherent service workspace.", "Complete"],
+      ["Internal workspace", "Mapped the operations-side workspace and integration responsibilities.", "Connects claimant-facing UX to internal handling.", "Complete"],
+      ["Handoff", "Produced the design system, integration map, developer checklist, and preflight report.", "Turns the visual direction into implementable specifications.", "Delivered"],
+      ["Feedback", "Integrated three dashboard refinements from David's review.", "Carries stakeholder feedback into the current surface.", "Complete"],
+      ["Review surface", "Published a unified portal review package for one feedback route.", "Reduces fragmented review across files and screenshots.", "Ready"],
+      ["Release", "Resolved the initial Vercel access blocker and verified the approved Phase Two login in production.", "Moves the approved product surface from review into a live release.", "Verified live"],
+      ["Routing", "Verified four booking mismatches: advance notice, horizon, owner availability, and duration.", "Defines what must change before the booking path is reliable.", "Open"],
+    ],
+    additionalSources: [
+      "clients/va-claims-edge/deliverables/2026-07-16-initial-signup-wireframe/README.md",
+      "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/design-system.md",
+      "clients/va-claims-edge/deliverables/2026-07-17-phase-two-ui-handoff/integration-map.md",
+      "clients/va-claims-edge/evidence/2026-07-22-vercel-release-attempt.md",
+      "clients/va-claims-edge/evidence/2026-07-24-dashboard-review-feedback.md",
+    ],
+  },
+  "revive-systems": {
+    analysis: [
+      "July built Revive's organic acquisition foundation before live paid activation. Five fully rendered AEO, GEO, and SEO articles, a validated sitemap snapshot, crawler recommendations, and an organic acquisition package now provide a measurable publication system.",
+      "Paid media remained a readiness lane. Meta access, pixel verification, remarketing structure, and exact Google or LSA routing were assessed, but no live campaign performance is claimed until the account and conversion route are directly mapped.",
+    ],
+    detailedWork: [
+      ["Content strategy", "Defined the five-piece AEO, GEO, and SEO cluster and target questions.", "Creates a coherent health and weight-loss topic system.", "Complete"],
+      ["Article 1", "Produced the weight-loss program selection guide.", "Targets high-intent program-comparison questions.", "Complete"],
+      ["Article 2", "Produced the coach, trainer, and dietitian role comparison.", "Clarifies service roles for prospective clients.", "Complete"],
+      ["Article 3", "Produced the minimum viable routine guide.", "Answers implementation and consistency questions.", "Complete"],
+      ["Article 4", "Produced the strength training after 40 guide.", "Extends the cluster into an age-specific demand lane.", "Complete"],
+      ["Article 5", "Produced the Chambersburg health coaching page.", "Adds a local-intent acquisition asset.", "Complete"],
+      ["Technical SEO", "Validated the current sitemap and prepared AI crawler recommendations.", "Creates a controlled technical baseline before publication.", "Ready"],
+      ["Acquisition", "Completed the organic acquisition and sitemap package for the public and funnel hosts.", "Connects content production to site architecture.", "Ready"],
+      ["Paid readiness", "Prepared the Meta access, pixel, remarketing, and approval-gate assessment.", "Defines what must be exact before paid activation.", "Pending"],
+    ],
+    scopeCallout: {
+      value: "5 completed articles",
+      title: "July AEO, GEO, and SEO content cluster",
+      detail: "All five pieces were produced with review artifacts; publication and measured outcomes remain separate states.",
+      items: ["How to Choose a Weight-Loss Program That Fits Real Life", "Getting Strong Again After 40", "The Minimum-Viable Routine for Stressful Weeks", "Health Coach, Personal Trainer, or Dietitian?", "What Health Coaching Looks Like in Chambersburg"],
+    },
+    additionalSources: [
+      "clients/revive-systems/deliverables/2026-07-16-aeo-geo-seo-blog-cluster/00-cluster-brief.md",
+      "clients/revive-systems/deliverables/2026-07-16-aeo-geo-seo-blog-cluster/sitemap-validated-current.xml",
+      "clients/revive-systems/deliverables/2026-07-16-aeo-geo-seo-blog-cluster/robots-ai-crawler-proposed.txt",
+      "clients/revive-systems/deliverables/2026-07-19-ads-readiness-response/ads-readiness-assessment.md",
+    ],
+  },
+};

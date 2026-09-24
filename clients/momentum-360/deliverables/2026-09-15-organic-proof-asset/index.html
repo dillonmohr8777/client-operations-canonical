@@ -1,0 +1,309 @@
+<title>Organic Growth Evidence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Public+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --bg:#0D1317;
+  --panel:#141C22;
+  --panel-2:#19232A;
+  --line:#22303A;
+  --line-2:#2E3F4B;
+  --ink:#E9EFF3;
+  --muted:#93A5B2;
+  --faint:#6B7D8A;
+  --blue:#52A9E8;
+  --blue-dim:#2C6C9C;
+  --gold:#F2B84B;
+  --pos:#5FD39A;
+  --neg:#E8836B;
+
+  --display:'Archivo',system-ui,sans-serif;
+  --body:'Public Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#FAFBFC; --panel:#FFFFFF; --panel-2:#F2F5F7; --line:#E1E7EB; --line-2:#CBD5DC;
+    --ink:#101A21; --muted:#55666F; --faint:#7D8D97;
+    --blue:#12628F; --blue-dim:#7FB4D6; --gold:#A9761A; --pos:#1E7A52; --neg:#A8442C;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#FAFBFC; --panel:#FFFFFF; --panel-2:#F2F5F7; --line:#E1E7EB; --line-2:#CBD5DC;
+  --ink:#101A21; --muted:#55666F; --faint:#7D8D97;
+  --blue:#12628F; --blue-dim:#7FB4D6; --gold:#A9761A; --pos:#1E7A52; --neg:#A8442C;
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding-inline:22px;padding-block:0 80px}
+p{margin:0 0 15px;max-width:68ch}
+a{color:var(--blue)}
+
+/* masthead */
+.masthead{padding-block:52px 32px;border-bottom:1px solid var(--line-2)}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 22px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(36px,7vw,68px);line-height:.98;letter-spacing:-.03em;margin:0;text-wrap:balance;max-width:16ch}
+.stand{font-size:clamp(16px,2.2vw,19px);line-height:1.5;color:var(--muted);margin:20px 0 0;max-width:58ch}
+.meta{display:flex;flex-wrap:wrap;gap:6px 26px;margin-top:26px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--faint)}
+
+section{padding-block:46px 8px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.slabel{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin:0 0 12px}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(25px,3.6vw,36px);line-height:1.12;letter-spacing:-.02em;margin:0 0 10px;text-wrap:balance;max-width:24ch}
+h3{font-family:var(--display);font-weight:600;font-size:18px;letter-spacing:-.01em;margin:28px 0 6px}
+.note{color:var(--muted);font-size:15px}
+
+/* metric grid */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin:26px 0 0}
+.m{background:var(--panel);padding:20px 18px 18px}
+.m .lab{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin:0 0 10px;line-height:1.4}
+.m .val{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.4vw,40px);line-height:1;letter-spacing:-.03em;color:var(--pos);font-variant-numeric:tabular-nums}
+.m .val.neutral{color:var(--ink)}
+.m .sub{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:9px;font-variant-numeric:tabular-nums}
+
+/* table */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:4px;margin:24px 0 0}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:14px}
+caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding:13px 16px 11px;background:var(--panel-2);border-bottom:1px solid var(--line)}
+th,td{padding:10px 16px;text-align:left;border-top:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:500;border-top:0}
+td.n{font-family:var(--mono);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr:hover{background:var(--panel-2)}
+tr.hl td{background:var(--panel-2);color:var(--gold);font-weight:500}
+tr.hl td.n{color:var(--gold)}
+.up{color:var(--pos);font-weight:500}
+.dn{color:var(--neg);font-weight:500}
+
+/* callout */
+.call{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:4px;padding:22px 24px;margin:26px 0 0}
+.call h3{margin-top:0}
+.call p:last-child{margin-bottom:0}
+
+/* funnel */
+.funnel{display:grid;gap:10px;margin:24px 0 0}
+.fr{display:grid;grid-template-columns:130px 1fr auto;gap:16px;align-items:center}
+.fr .fl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.fbar{height:30px;background:var(--panel-2);border-radius:2px;overflow:hidden;border:1px solid var(--line)}
+.fbar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue-dim),var(--blue))}
+.fr .fv{font-family:var(--mono);font-size:12.5px;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* capability list */
+.caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin:24px 0 0}
+.cap{background:var(--panel);padding:22px}
+.cap .t{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:9px}
+.cap .h{font-family:var(--display);font-weight:600;font-size:17px;margin:0 0 9px;line-height:1.25}
+.cap p{font-size:14.5px;line-height:1.55;color:var(--muted);margin:0}
+.cap code{font-family:var(--mono);font-size:12.5px;color:var(--gold);background:var(--panel-2);padding:1px 5px;border-radius:2px}
+
+.query{font-family:var(--mono);font-size:12.5px;line-height:1.7;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:15px 17px;margin:16px 0 0;color:var(--muted)}
+.query b{color:var(--gold);font-weight:500}
+
+footer{border-top:1px solid var(--line);margin-top:56px;padding-top:24px;font-family:var(--mono);font-size:11.5px;line-height:1.85;color:var(--faint)}
+footer b{color:var(--muted);font-weight:500}
+
+@media (max-width:560px){
+  .fr{grid-template-columns:1fr;gap:5px}
+  .fr .fv{text-align:left}
+}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">Momentum Digital &nbsp;/&nbsp; Organic and AI search</p>
+  <h1>What the work actually produced</h1>
+  <p class="stand">Measured results from live client properties. Every figure comes from the client's own Google Search Console, not from an estimate tool, and every one is reproducible.</p>
+  <div class="meta">
+    <span>Measured 15 September 2026</span>
+    <span>53,392 page and keyword pairs</span>
+    <span>8 properties</span>
+  </div>
+</header>
+
+<section>
+  <p class="slabel">Case one &nbsp;&middot;&nbsp; national live events operator</p>
+  <h2>Top ten rankings more than doubled in twelve months</h2>
+  <p>Same property, same month of the year, full history on both sides. August against August, so seasonality cannot flatter it.</p>
+
+  <div class="metrics">
+    <div class="m"><p class="lab">Keywords in top 10</p><p class="val">+121%</p><p class="sub">522 &rarr; 1,152</p></div>
+    <div class="m"><p class="lab">Keywords in top 3</p><p class="val">+73%</p><p class="sub">180 &rarr; 312</p></div>
+    <div class="m"><p class="lab">Keywords at position 1</p><p class="val">+62%</p><p class="sub">99 &rarr; 160</p></div>
+    <div class="m"><p class="lab">Organic clicks</p><p class="val">+83%</p><p class="sub">1,254 &rarr; 2,300</p></div>
+    <div class="m"><p class="lab">Average position</p><p class="val">18.6 &rarr; 12.0</p><p class="sub">6.6 places better</p></div>
+  </div>
+
+  <div class="call">
+    <h3>Why the ranking numbers matter more than the traffic number</h3>
+    <p>Clicks rose 83 percent. Top ten rankings rose 121 percent. The gap between those two is the point: the footprint grew faster than the traffic, which means the compounding is still ahead of the business rather than behind it. A brand holding 160 keywords at position one owns its category in search, and that position is far harder for a competitor to buy than a single ranking is.</p>
+  </div>
+</section>
+
+<section>
+  <p class="slabel">Case two &nbsp;&middot;&nbsp; enterprise HR technology consultancy</p>
+  <h2>Two and a half thousand ranking keywords inside 24 days</h2>
+  <p>A different shape of result. Measured across a single 24 day programme window, the property holds:</p>
+
+  <div class="metrics">
+    <div class="m"><p class="lab">Distinct ranking keywords</p><p class="val neutral">2,651</p><p class="sub">in 24 days</p></div>
+    <div class="m"><p class="lab">In the top 10</p><p class="val neutral">1,089</p><p class="sub">41% of the footprint</p></div>
+    <div class="m"><p class="lab">In the top 3</p><p class="val neutral">329</p><p class="sub">12% of the footprint</p></div>
+    <div class="m"><p class="lab">Page and keyword pairs</p><p class="val neutral">3,385</p><p class="sub">across the content library</p></div>
+    <div class="m"><p class="lab">Impressions from AI shaped queries</p><p class="val">29.1%</p><p class="sub">highest in the portfolio</p></div>
+  </div>
+
+  <p class="note" style="margin-top:22px">Individual long form pieces carry the load. One buyer's guide ranks for 352 separate queries on its own, 74 of them inside the top three, in that same 24 day window. That is what a page built to answer a whole category question does, and it is why the content programme is structured around guides rather than posts.</p>
+
+  <div class="tw">
+    <table>
+      <caption>Single pages, 24 day window</caption>
+      <thead><tr><th>Page</th><th class="n">Impressions</th><th class="n">Keywords</th><th class="n">Top 3</th><th class="n">Top 10</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>Platform buyer's guide, vendor A</td><td class="n">3,653</td><td class="n">352</td><td class="n">74</td><td class="n">238</td></tr>
+        <tr><td>Partner platform page</td><td class="n">3,253</td><td class="n">175</td><td class="n">8</td><td class="n">36</td></tr>
+        <tr><td>Implementation best practice guide</td><td class="n">2,671</td><td class="n">115</td><td class="n">3</td><td class="n">17</td></tr>
+        <tr><td>Data conversion checklist</td><td class="n">1,268</td><td class="n">137</td><td class="n">20</td><td class="n">46</td></tr>
+        <tr><td>Platform buyer's guide, vendor B</td><td class="n">1,021</td><td class="n">146</td><td class="n">19</td><td class="n">69</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <p class="slabel">Case three &nbsp;&middot;&nbsp; community development nonprofit</p>
+  <h2>Owning an entire category, not a single keyword</h2>
+  <p>The clearest demonstration of what category ownership looks like in practice. This organisation holds position two or three on eight separate phrasings of the same high volume search, which means it captures the demand however the searcher happens to word it.</p>
+
+  <div class="tw">
+    <table>
+      <caption>Third party index data, United States, September 2026</caption>
+      <thead><tr><th>Search term</th><th class="n">Position</th><th class="n">Monthly volume</th></tr></thead>
+      <tbody>
+        <tr><td>Neighbourhood name, generic</td><td class="n">3</td><td class="n">14,800</td></tr>
+        <tr class="hl"><td>low income apartments [city]</td><td class="n">2</td><td class="n">6,600</td></tr>
+        <tr class="hl"><td>low income housing in [city]</td><td class="n">2</td><td class="n">6,600</td></tr>
+        <tr class="hl"><td>low income housing [city]</td><td class="n">2</td><td class="n">6,600</td></tr>
+        <tr><td>affordable housing in [city]</td><td class="n">3</td><td class="n">6,600</td></tr>
+        <tr><td>subsidized housing in [city]</td><td class="n">3</td><td class="n">6,600</td></tr>
+        <tr><td>housing for low income in [city]</td><td class="n">3</td><td class="n">6,600</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="metrics">
+    <div class="m"><p class="lab">Keywords in the top 3</p><p class="val neutral">114</p><p class="sub">of 500 returned</p></div>
+    <div class="m"><p class="lab">Phrasings of one term held at 2 or 3</p><p class="val neutral">8</p><p class="sub">6,600 searches a month each</p></div>
+  </div>
+
+  <p class="note" style="margin-top:22px">Competitors chase one version of a term. Holding every phrasing is what makes the position defensible, because a rival has to displace all eight to take the traffic rather than one.</p>
+</section>
+
+<section>
+  <p class="slabel">The differentiator</p>
+  <h2>We can show when an answer engine is reading the page</h2>
+  <p>Most agencies claim AI search visibility. Almost none can evidence it. Here is the evidence, taken across every ranking query on every property and classified by the shape of the query itself.</p>
+
+  <div class="tw">
+    <table>
+      <caption>53,392 page and keyword pairs, classified by query shape</caption>
+      <thead><tr><th>Query shape</th><th class="n">Keywords</th><th class="n">Impressions</th><th class="n">Clicks</th><th class="n">CTR</th><th class="n">Avg position</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>Persona prompt</td><td class="n">725</td><td class="n">4,194</td><td class="n">0</td><td class="n">0.00%</td><td class="n">13.6</td></tr>
+        <tr class="hl"><td>Question form</td><td class="n">1,168</td><td class="n">12,255</td><td class="n">2</td><td class="n">0.02%</td><td class="n">13.4</td></tr>
+        <tr><td>Conversational</td><td class="n">3,327</td><td class="n">88,191</td><td class="n">70</td><td class="n">0.08%</td><td class="n">19.0</td></tr>
+        <tr><td>Ordinary typed keyword</td><td class="n">48,172</td><td class="n">1,723,352</td><td class="n">9,003</td><td class="n">0.52%</td><td class="n">28.3</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="call">
+    <h3>Two facts that only reconcile one way</h3>
+    <p>AI shaped queries rank <b>better</b> than ordinary keywords, average position 13.4 against 28.3. They convert at <b>nearly zero</b>, 0.00 to 0.08 percent against 0.52 percent.</p>
+    <p>A human who sees a result at position five clicks it at a measurable rate. These do not. Ranking higher while receiving no clicks is the signature of a machine reading the page and answering on the searcher's behalf. The client is winning the answer and never seeing the visit.</p>
+  </div>
+
+  <p style="margin-top:24px">The query text settles any remaining doubt. These are real ranking queries, taken verbatim:</p>
+
+  <div class="query">
+    position <b>2.1</b> &nbsp; "i am a chief human resources officer. my job seniority is at the executive, vp, director or manager level. i work at a company with 1k to 10k employees..." <i>(90 words)</i><br>
+    position <b>5.3</b> &nbsp; "what are the biggest mistakes companies make during hcm implementation?"<br>
+    position <b>5.2</b> &nbsp; "does ukg connect with other systems?"<br>
+    position <b>3.1</b> &nbsp; "is it where can i find expert help for ai driven search visibility?"<br>
+    position <b>1.9</b> &nbsp; "what are some easy cocktails to prepare for halloween pregaming?"
+  </div>
+
+  <p style="margin-top:20px" class="note">Nobody types a ninety word professional persona into a search box. That is a model's own framing being issued as a search, and our clients' pages are what it finds.</p>
+</section>
+
+<section>
+  <p class="slabel">Method</p>
+  <h2>Mapping the buyer journey, not just the keyword list</h2>
+  <p>A ranking list tells you nothing about where a buyer is. We classify every ranking query by the stage it represents, then judge whether the site actually holds ground at each one. A site that ranks only at the decision stage has no pipeline. A site that ranks only at the awareness stage has no revenue.</p>
+
+  <div class="funnel">
+    <div class="fr"><span class="fl">Awareness</span><div class="fbar"><i style="width:38%"></i></div><span class="fv">19% of impressions</span></div>
+    <div class="fr"><span class="fl">Comparison</span><div class="fbar"><i style="width:14%"></i></div><span class="fv">7% of impressions</span></div>
+    <div class="fr"><span class="fl">Decision</span><div class="fbar"><i style="width:58%"></i></div><span class="fv">29% of impressions</span></div>
+    <div class="fr"><span class="fl">Brand and other</span><div class="fbar"><i style="width:90%"></i></div><span class="fv">45% of impressions</span></div>
+  </div>
+
+  <p style="margin-top:22px" class="note">The consultancy above, mapped. A genuine full funnel presence: it is found by people who do not yet know they have a problem, by people comparing two vendors, and by people ready to hire. Each of those needs a different page, and knowing the split is what tells you which page to build next.</p>
+</section>
+
+<section>
+  <p class="slabel">Infrastructure</p>
+  <h2>The tracking that makes any of this provable</h2>
+  <p>None of the above is claimable without measurement that was installed correctly and then verified. That verification is the part most agencies skip, and it is the reason most reporting quietly overstates.</p>
+
+  <div class="caps">
+    <div class="cap">
+      <p class="t">Event layer</p>
+      <p class="h">Named events, not page views</p>
+      <p>Every commercial action on the site becomes its own tracked event. A booking click, a private enquiry open, an enquiry submit, a phone tap, a menu view. Page views tell you traffic. Named events tell you intent.</p>
+    </div>
+    <div class="cap">
+      <p class="t">Source persistence</p>
+      <p class="h">Campaign data survives the handoff</p>
+      <p>Where a booking or enquiry hands off to a third party system, the campaign and click identifiers are carried through with it. Without that step the lead arrives with its origin stripped and every downstream report guesses.</p>
+    </div>
+    <div class="cap">
+      <p class="t">Verification</p>
+      <p class="h">Trigger level audit, not a smoke test</p>
+      <p>We read the live container version and confirm which triggers fire each conversion tag, so a form submit cannot be counted twice by two overlapping rules. Double counted conversions are the most common cause of a reported result that never appears in the bank.</p>
+    </div>
+    <div class="cap">
+      <p class="t">Answer engine attribution</p>
+      <p class="h">Separating machine reads from people</p>
+      <p>Search Console does not label which queries came from an assistant. We classify by query shape and corroborate with the click signature, which lets a client see AI driven visibility as its own line rather than buried inside an organic total that looks flat.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="slabel">Build</p>
+  <h2>Pages designed to be the answer</h2>
+  <p>Ranking follows structure. The pages that carry the results above were built or rebuilt to a consistent pattern, and the pattern is deliberate rather than stylistic.</p>
+
+  <h3>One page, one question, answered completely</h3>
+  <p>The buyer's guide that ranks for 465 queries does so because it answers the whole category question in one place instead of splitting it across six thin posts. Depth on a single URL beats breadth across many.</p>
+
+  <h3>Written so a machine can quote a passage</h3>
+  <p>Clear question headings, direct answers immediately beneath them, and defined terms. An assistant lifting an answer needs a self contained passage it can quote. A page that only makes sense read top to bottom gives it nothing to work with.</p>
+
+  <h3>Technical ground cleared first</h3>
+  <p>A site can carry perfect content and still be invisible. We check the unglamorous layer before writing a word: does the domain resolve without the www, is there a sitemap, do old redirects still point somewhere live, is anything blocking a crawler. These are usually small fixes and they are usually outstanding for years.</p>
+
+  <h3>Location and intent get their own pages</h3>
+  <p>The events operator holds 160 position one rankings because each city and each recurring event has a page that earns its own ranking. One page cannot rank for twenty cities. Twenty pages can.</p>
+</section>
+
+<footer>
+  <b>Method.</b> Cases one and two, and the query shape analysis, are measured from client owned Google Search Console properties via the Search Analytics API on 15 September 2026. Comparison periods are matched calendar months where a full baseline exists. Where a property has a short measurement history, a single window is reported and no growth claim is made. Case three is third party search index data, which estimates position rather than measuring it, and is labelled as such.<br>
+  <b>Client identities.</b> Withheld. Figures are unaltered.<br>
+  <b>Limits.</b> The AI attribution above is an inference from query shape and click behaviour, not a labelled source field, because Search Console does not expose one. It evidences that pages rank for the queries answer engines issue and that those appearances behave like machine reads. It is not a count of named citations inside any specific assistant. That is a separate measurement and it is stated separately whenever it is taken.
+</footer>
+
+</div>

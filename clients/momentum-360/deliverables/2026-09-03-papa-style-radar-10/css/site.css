@@ -1,0 +1,1512 @@
+/* ==========================================================================
+   Prospect preview stylesheet - desktop (1440x900 reference)
+   Geometry transcribed from the reference theme measured for this build;
+   colour, artwork and every foreground are this build's own.
+   WordPress / Elementor / Nitro / accessiBe cruft stripped.
+   ========================================================================== */
+
+:root {
+  --f-display: "bebas-neue-pro", "Bebas Neue", sans-serif;   /* Adobe kit; Google fallback */
+  --f-script:  "verveine", "Caveat", cursive;                /* Adobe kit; Google fallback */
+  --f-body:    "montserrat", "Montserrat", sans-serif;
+  /* defaults; every page overrides these via [data-site] below */
+  --brand: #214b63;
+  --brand-lt: #356d88;
+  --brand-dp: #163344;
+  --hero: #4a90ae;
+  --accent: #a04c1b;
+  --accent-ui: #a04c1b;
+  --script: #e5a46f;
+  --header: #17272f;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #214b63;
+  --accent-ink: #a04c1b;
+  --field: #eff5f8;
+  --wash: #e2e8eb;
+  --wash-2: #f0e2db;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+  --charcoal:  #40494e;
+  --ink:       #2c2927;
+  --cdn: "";
+}
+
+/* --- reset (Eric Meyer, as shipped in theme-style.css) -------------------- */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
+font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b,
+u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table,
+caption, tbody, tfoot, thead, tr, th, td, figure, footer, header, section,
+nav, article, aside, main, button {
+  margin: 0; padding: 0; border: 0; vertical-align: baseline; background: transparent;
+}
+*, *::before, *::after { box-sizing: border-box; }
+article, aside, figure, footer, header, main, nav, section { display: block; }
+
+html { scroll-behavior: smooth; --scrollbarBG: rgba(0,0,0,.8); --thumbBG: dimgray; }
+body { line-height: 1; font-family: var(--f-body); color: #666; font-size: 12px; }
+body, input, textarea { color: #666; font-size: 12px; line-height: 18px; }
+h1, h2, h3, h4, h5, h6 { font-weight: normal; clear: both; }
+a { transition: .15s ease-in; }
+img { max-width: 100%; }
+button { font: inherit; cursor: pointer; }
+
+/* --- layout primitives (the theme's Bootstrap subset) -------------------- */
+.wrapper   { margin: 0 auto; overflow: hidden; transition: .25s ease-in; padding-top: 100px; }
+.container { max-width: 1310px; margin: 0 auto; padding: 0 15px; }
+.row       { display: flex; flex-wrap: wrap; margin: 0 -15px; }
+.row > [class*="col-"] { padding: 0 15px; }
+.col-md-12 { width: 100%; }
+.col-md-6  { width: 50%; }
+.col-lg-4  { width: 33.333333%; }
+.col-lg-10 { width: 83.333333%; }
+.d-flex { display: flex; }
+.align-items-center { align-items: center; }
+.justify-content-between { justify-content: space-between; }
+.text-center { text-align: center; }
+.m-auto { margin: auto; }
+/* measured: statement column content box is 1190 wide at x:118 => 60px inline pad */
+.px-sm-5 { padding-left: 60px !important; padding-right: 60px !important; }
+
+/* --- typography --------------------------------------------------------- */
+h2 { color: var(--brand-ink); font-size: 100px; font-family: var(--f-display); font-weight: 700;
+     line-height: 1; text-transform: uppercase; padding-bottom: 42px; }
+h3 { color: var(--brand-ink); font-size: 72px; font-family: var(--f-display); font-weight: 700;
+     line-height: 1; text-transform: uppercase; letter-spacing: -1px; padding-bottom: 20px; }
+h4 { color: var(--ink); font-size: 34px; font-family: var(--f-body); font-weight: 700; line-height: normal; }
+h5 { color: var(--ink); font-size: 28px; font-family: var(--f-body); font-weight: 700; line-height: normal; }
+p  { color: #000; font-size: 18px; font-family: var(--f-body); font-weight: 400; line-height: 1.44; margin-bottom: 0; }
+
+/* --- buttons ------------------------------------------------------------- */
+.btn {
+  border: none; border-radius: 50px; box-shadow: none; -webkit-appearance: none;
+  outline: none !important; display: inline-flex; align-items: center; justify-content: center;
+  height: 60px; color: var(--on-accent); font-size: 20px; font-family: var(--f-body); font-weight: 700;
+  line-height: normal; text-transform: uppercase; text-align: center; padding: 0 40px;
+  min-width: 300px; text-decoration: none;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out,
+              border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.btn-warning { background-color: var(--accent-ui) !important; color: var(--on-accent) !important; }
+.btn-warning:hover { color: var(--on-accent) !important;
+  background-color: color-mix(in srgb, var(--accent-ui) 86%, #000) !important; }
+
+/* ==========================================================================
+   1. HEADER  (fixed 100px charcoal band + the scroll swap)
+   ========================================================================== */
+.header {
+  background: var(--header); position: fixed; left: 0; top: 0; width: 100%; height: 100px;
+  box-shadow: 0 6px 13px rgba(0,0,0,.15); transition: .25s ease-in; z-index: 9999;
+}
+.header .d-flex { position: relative; height: 100px; transition: .25s ease-in; }
+.header a[href^="tel"] { color: var(--on-header); text-decoration: none; }
+
+.logo { position: relative; }
+.logo .logo_caption { transition: .8s cubic-bezier(.85,0,.15,1); }
+.logo .logo_caption h4 { color: var(--script); font-size: 40px; font-family: var(--f-script);
+  font-weight: 400; line-height: 1.05; padding-bottom: 0; white-space: nowrap; }
+.logo .logo_caption h4 a { color: var(--script); text-decoration: none; }
+.logo > a {
+  position: absolute; left: 0; top: 50%; display: block; width: 140px; margin-top: -12px;
+  transform: translate(-500px, -50%); opacity: 0;
+  transition: .8s cubic-bezier(.85,0,.15,1);
+}
+.logo a img { display: block; max-width: 100%; }
+/* offscreen a11y label - keeps the 18px line box that pushes the mark to y:10 */
+span#header_logo { text-indent: -99999px; color: var(--on-header); display: block; }
+/* vector mount: 1254x666 source, 140px wide => 74.35 tall */
+
+.animated .logo .logo_caption { opacity: 0; transform: translate(-500px, 0); }
+.animated .logo a { opacity: 1; transform: translate(0, -50%); }
+
+/* --- menu button --------------------------------------------------------- */
+.mobile_menubtn { position: relative; right: 0; display: flex; align-items: center; cursor: pointer;
+  transition: .6s cubic-bezier(.215,.61,.355,1); z-index: 9999999; }
+.mobile_menubtn strong { color: var(--on-header); font-size: 20px; font-family: var(--f-body); font-weight: 700;
+  line-height: 40px; text-transform: uppercase; margin-right: 25px; transition: .25s ease-in-out; }
+.mobile_menubtn:hover strong { color: var(--script); }
+.mobile_menubtn:hover #nav-icon3 span { background: var(--script); }
+#nav-icon3 { position: relative; display: block; width: 44px; height: 44px;
+  background: transparent; border: 0; padding: 8px 5px; }
+#nav-icon3 span { display: block; position: absolute; height: 3px; width: 100%;
+  background: var(--script); border-radius: 4px; opacity: 1; left: 0; transform: rotate(0deg);
+  transition: .25s ease-in-out; }
+#nav-icon3 span:nth-child(1) { display: none; }
+#nav-icon3 span { width: calc(100% - 10px); left: 5px; }
+#nav-icon3 span:nth-child(2), #nav-icon3 span:nth-child(3) { top: 20px; }
+#nav-icon3 span:nth-child(4) { top: 32px; }
+.mobile_menubtn.open #nav-icon3 span { background: var(--on-accent); }
+.mobile_menubtn.open #nav-icon3 span:nth-child(1) { top: 20px; width: 0; left: 50%; }
+.mobile_menubtn.open #nav-icon3 span:nth-child(2) { transform: rotate(45deg); }
+.mobile_menubtn.open #nav-icon3 span:nth-child(3) { transform: rotate(-45deg); }
+.mobile_menubtn.open #nav-icon3 span:nth-child(4) { top: 20px; width: 0; left: 50%; }
+.mobile_menubtn.open #nav-icon3 span:nth-child(2),
+.mobile_menubtn.open #nav-icon3 span:nth-child(3) { top: 26px; }
+.mobile_menubtn.open strong { color: var(--on-accent); }
+.menuopen .mobile_menubtn { right: calc((-100vw / 2 + 1310px / 2) + 85px); }
+
+/* --- right-hand nav overlay panel --------------------------------------- */
+.mainnav_wrapper {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  position: fixed; right: 0; top: 0; width: 624px; height: 100%;
+  padding: 170px 100px 65px; overflow-x: hidden;
+  clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+  transition: .6s cubic-bezier(.215,.61,.355,1);
+  background: var(--accent-ui);
+  filter: drop-shadow(-10px 0 13px rgba(0,0,0,.25));
+  visibility: hidden; z-index: 999999;
+}
+.mainnav_wrapper nav { width: 100%; padding-bottom: 40px;
+  border-bottom: 3px solid var(--on-accent); margin-bottom: 46px; }
+.mainnav_wrapper nav ul { list-style: none; margin: 0; padding: 0; }
+.mainnav_wrapper nav > ul > li { position: relative; margin-bottom: 25px; }
+.mainnav_wrapper nav ul li a { display: block; color: var(--on-accent); font-size: 74px; font-family: var(--f-display);
+  font-weight: 700; line-height: .9; text-transform: uppercase; text-decoration: none; text-align: center; }
+.mainnav_wrapper nav ul li a:hover { color: var(--on-accent); font-weight: 200; }
+.mainnav_wrapper .anime { margin: 0 auto 20px; width: 100%; }
+.menuopen .mainnav_wrapper { clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%); opacity: 1; visibility: visible; }
+.menuopen { overflow: hidden; }
+
+.social_list { margin-bottom: 34px; }
+.social_list ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; justify-content: center; }
+.social_list ul li { padding: 0 9px; }
+.social_list ul li a { display: flex; align-items: center; justify-content: center; width: 64px; height: 64px;
+  background: var(--on-accent) !important; border-radius: 50%; color: var(--accent-ui); font-size: 34px; text-align: center;
+  padding: 0; text-decoration: none; }
+.social_list ul li a:hover { opacity: .8; }
+.social_list ul li a i { line-height: 0; }
+.tel_link { color: var(--on-accent); font-size: 20px; font-family: var(--f-body); font-weight: 700; line-height: 2.1; text-decoration: none; }
+
+.olay { visibility: hidden; position: fixed; width: 100%; height: 100%; left: 0; top: 0;
+  background: rgba(0,0,0,.75); transition: .6s cubic-bezier(.215,.61,.355,1); opacity: 0; z-index: -1; }
+.menuopen .olay { visibility: visible; opacity: 1; z-index: 9999; }
+
+/* ==========================================================================
+   2. HERO
+   ========================================================================== */
+.homeslider_wrapper { position: relative; }
+.homeslider .backbgbox { position: relative; height: calc(100vh - 100px); min-height: 600px;
+  background: var(--field); background-size: cover; background-repeat: no-repeat; background-position: center; }
+.homeslider .backvid { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: hidden; }
+.homeslider_wrapper .home_logo { position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center; padding-bottom: 285px; }
+.homeslider_wrapper .home_logo figure { width: 858px; margin: 0; }
+
+.homevideo_box { position: relative; margin-top: -136px; margin-bottom: 135px; z-index: 40; }
+.homevideo { position: relative; background: #c7c8ca; box-shadow: 8px 8px 21px rgba(0,0,0,.25); }
+/* live markup is an inline <iframe> (1062 x 597.375); the inline line box is what makes
+   the section 602 tall rather than 597, so keep the replacement element inline. */
+.homevideo { font-size: 12px; line-height: 18px; }
+.homevideo .video_frame { display: inline-block; width: 100%; aspect-ratio: 16 / 9; }
+.homevideo .video_man { position: absolute; left: 200px; top: -116px; width: 220px; z-index: 20; }
+.homevideo .video_man svg { display: block; width: 100%; height: auto; }
+
+/* ==========================================================================
+   3. STATEMENT
+   ========================================================================== */
+.aboutinfo_box { padding-bottom: 215px; }
+.aboutinfo_box .container { position: relative; padding-top: 175px; }
+.aboutinfo_box p { color: var(--brand-ink); font-size: 36px; font-family: var(--f-body); font-weight: 700;
+  line-height: 1.38; text-transform: uppercase; margin-bottom: 34px; }
+.aboutinfo_box .design_left   { position: absolute; top: 72px; left: -50px; width: 500px; }
+.aboutinfo_box .design_middle { position: absolute; top: 0; left: 50%; transform: translate(-50%, 0); width: 249px; }
+.aboutinfo_box .design_right  { position: absolute; top: 75px; right: -20px; width: 500px; }
+.design svg { display: block; height: auto; }
+.design_left  svg { width: 41%; }
+.design_middle svg { width: 60%; margin: 0 auto; }
+.design_right svg { width: 41%; margin-left: auto; }
+
+/* ==========================================================================
+   4. RECENT WORK
+   ========================================================================== */
+.recent_work_wrapper { padding-bottom: 162px; }
+.recent_work_wrapper .container { position: relative; }
+.recent_work_wrapper .recent_man { position: absolute; left: 0; right: 75px; top: -83px;
+  pointer-events: none; z-index: -1; }
+.recent_work_wrapper .recent_man svg { display: block; width: 35.5%; height: auto; margin-left: auto; }
+
+.section_title { position: relative; }
+.recent_work_list { margin: 0 -8px; padding-bottom: 14px; }
+.recent_work_list [class*="col-"] { padding: 0 8px; margin-bottom: 30px; }
+.recent_work { position: relative; font-size: 12px; line-height: 18px; }
+.recent_work figure { background: #fff; margin: 0 0 10px; height: 316px; padding: 10px;
+  box-shadow: 7px 7px 13px rgba(0,0,0,.2); }
+.recent_work figure img { display: block; width: 100%; height: 100%; object-fit: cover;
+  box-shadow: 7px 7px 6px rgba(0,0,0,.15); }
+.recent_work h5 { display: inline-flex; position: relative; color: #7b8388; font-size: 20px;
+  font-family: var(--f-body); font-weight: 700; line-height: 27px; text-transform: uppercase;
+  padding-right: 20px; transition: .25s ease-in; }
+.recent_work h5:after { display: block; content: ">"; color: var(--brand-ink); font-size: 30px;
+  font-family: var(--f-script); font-weight: 400; line-height: 1; opacity: 0; position: absolute;
+  top: -3px; right: 0; transform: translate(-8px, 0); transition: .25s ease-in; }
+.recent_work > a { display: block; position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.recent_work a.whole_box_link { text-indent: -999999px; overflow: hidden; }
+.recent_work .star_box { position: absolute; top: -21px; left: -52px; z-index: 20; }
+.recent_work:hover h5 { color: var(--brand-ink); }
+.recent_work:hover h5:after { opacity: 1; transform: translate(0, 0); }
+.recent_work:hover .star_box .st1,
+.recent_work:hover .star_box .st2,
+.recent_work:hover .star_box .st3 { animation-name: bounceIn; animation-duration: 1s;
+  animation-fill-mode: both; animation-direction: normal; }
+
+/* ==========================================================================
+   5. CLIENT LOGO WALL  (Owl Carousel)
+   ========================================================================== */
+.client_wrapper { position: relative; }
+.client_carousel { position: relative; width: calc(100% + 50px) !important; left: -25px; }
+.client_carousel:before { display: block; content: ""; position: absolute; left: -3000px; top: 50%;
+  transform: translate(0, -50%); width: 8000px; height: 250px; background: #e8edf0; z-index: -1; }
+.client_carousel .item { position: relative; display: flex !important; align-items: center;
+  justify-content: center; height: 265px; }
+.client_carousel figure { width: 100%; max-width: 210px; height: 110px; margin: 0; display: flex;
+  align-items: center; justify-content: center; }
+.client_carousel figure a { display: flex; height: 100%; align-items: center; justify-content: center; }
+.client_carousel figure img { display: block; max-width: 100%; max-height: none;
+  filter: grayscale(1); opacity: .4; transition: filter .4s ease-in, opacity .4s ease-in; }
+.client_carousel figure:hover img { filter: grayscale(0); opacity: 1; }
+.client_carousel figure .heart_box { position: absolute; top: 0; left: 50%; transform: translate(-50%, 0); margin-left: 20px; }
+.client_carousel figure:hover .heart_box .ht1,
+.client_carousel figure:hover .heart_box .ht2 { animation-name: bounceIn; animation-duration: 1s;
+  animation-fill-mode: both; animation-direction: normal; }
+/* Owl writes only `transition: <speed>s` inline (slideTransition defaults to ""),
+   which computes to `all Xs ease`. The live page computes `transform 3s ease`, so pin
+   the property and easing here and let Owl supply the 3s duration. */
+
+
+/* ==========================================================================
+   6. SERVICES
+   ========================================================================== */
+.our_services_wrapper { padding-top: 175px; padding-bottom: 135px; }
+.our_services_wrapper .content { padding-right: 100px; }
+.our_services_wrapper .content h2 { padding-bottom: 30px; }
+.our_services_wrapper .content p { color: var(--charcoal); font-size: 18px; font-family: var(--f-body);
+  font-weight: 400; line-height: 1.44; letter-spacing: .55px; margin-bottom: 44px; }
+.our_services_wrapper .accordion { margin-left: -20px; }
+
+.strike_out { position: relative; }
+.strike_out:before { display: block; content: ""; position: absolute; left: -10px; bottom: 2px;
+  width: calc(100% + 66px); height: 90px;
+  background-color: var(--accent-ink); -webkit-mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 90' preserveAspectRatio='none'%3e%3cpath d='M6,50 C70,28 150,60 220,32 C250,20 274,24 294,16' fill='none' stroke='%23000' stroke-width='13' stroke-linecap='round'/%3e%3cpath d='M10,62 C80,46 160,72 232,46 C258,37 278,38 292,32' fill='none' stroke='%23000' stroke-width='7' stroke-linecap='round' opacity='.75'/%3e%3c/svg%3e");mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 90' preserveAspectRatio='none'%3e%3cpath d='M6,50 C70,28 150,60 220,32 C250,20 274,24 294,16' fill='none' stroke='%23000' stroke-width='13' stroke-linecap='round'/%3e%3cpath d='M10,62 C80,46 160,72 232,46 C258,37 278,38 292,32' fill='none' stroke='%23000' stroke-width='7' stroke-linecap='round' opacity='.75'/%3e%3c/svg%3e");-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:100% 100%;mask-size:100% 100%;
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  transition: .5s cubic-bezier(.215,.61,.355,1); transition-delay: .5s; }
+.strike_out .strike_replace { color: var(--accent-ink); font-size: 85px; font-family: var(--f-script);
+  font-weight: 400; line-height: 1.2; text-transform: none; position: absolute; left: 8px; bottom: 100%;
+  overflow: hidden; border-right: none; white-space: nowrap; letter-spacing: 0; margin: 0 auto;
+  width: 0; margin-bottom: -22px; opacity: 0; }
+.animated .strike_out:before { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+.animated .strike_out .strike_replace {
+  animation: typing 1.25s steps(30, end) forwards, blink-caret .5s step-end 8 forwards;
+  animation-delay: .9s; border-right: 1px solid var(--accent-ink); opacity: 1; transition-delay: .9s; }
+@keyframes typing { from { width: 0 } to { width: var(--type-w, 236px) } }
+@keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--accent-ink) } }
+
+/* --- accordion ----------------------------------------------------------- */
+.accordion { border-top: 2px solid #c7c8ca; }
+.accordion-item { border-top: 1px solid rgba(0,0,0,.125); border-bottom: 1px solid rgba(0,0,0,.125); }
+.accordion-item:first-of-type { border-top: 0; }
+.accordion .accordion-button { background: none !important; color: var(--ink); font-size: 28px;
+  font-family: var(--f-body); font-weight: 700; line-height: normal; text-transform: uppercase;
+  padding: 15px; display: flex; align-items: center; justify-content: space-between; width: 100%;
+  height: 80px; /* pinned: live buttons measure exactly 80px (82px item pitch) */
+  box-shadow: none !important; transition: .15s ease-in; text-align: left; }
+.accordion .accordion-button:hover { color: var(--accent-ink); }
+.accordion .accordion-button:after { flex-shrink: 0; width: 20px; height: 20px; margin-left: auto;
+  content: ""; background-repeat: no-repeat; background-size: 20px;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%232c2927'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  transition: transform .2s ease-in-out; }
+.accordion .accordion-button:not(.collapsed):after { transform: rotate(-180deg); }
+.accordion-collapse { overflow: hidden; height: 0; transition: height .35s ease; }
+.accordion-collapse.show { height: auto; }
+.accordion .accordion-body { padding: 6px 15px 12px; }
+.accordion .accordion-body p { color: var(--charcoal); font-size: 18px; font-family: var(--f-body);
+  font-weight: 400; line-height: 1.33; letter-spacing: .55px; margin-bottom: 22px; }
+.accordion .accordion-body ul { list-style: none; margin: 0 0 22px; padding: 0; display: flex; flex-wrap: wrap; }
+.accordion .accordion-body ul li { color: var(--ink); font-size: 18px; font-family: var(--f-body);
+  font-weight: 600; line-height: normal; letter-spacing: .75px; text-transform: uppercase; }
+.accordion .accordion-body ul li:after { display: inline; content: "\2022"; color: var(--accent-ink); margin: 0 8px; }
+.accordion .accordion-body ul li:last-child:after { display: none; }
+
+/* ==========================================================================
+   7. FOOTER
+   ========================================================================== */
+.footer { position: relative; padding-bottom: 24px;
+  background-image: linear-gradient(var(--brand-lt) 0%, var(--brand-dp) 42%, var(--brand-dp) 100%);
+  background-size: cover; background-repeat: no-repeat; background-position: center center; }
+.footer .container { position: relative; z-index: 40; }
+.footer .content { padding-bottom: 116px; }
+.footer .content figure { margin: -18px 0 0; }
+.footer .content figure svg { display: block; width: 12%; height: auto; margin: 0 auto; }
+.footer .content h3 { color: var(--on-footer); font-size: 102px; font-family: var(--f-script); font-weight: 400;
+  line-height: .78; text-transform: capitalize; }
+.footer .content h2 { color: var(--on-footer); text-shadow: 5px 5px 7px rgba(0,0,0,.15); padding-bottom: 28px; }
+.footer .content p { color: var(--on-footer); font-size: 18px; font-family: var(--f-body); font-weight: 400;
+  line-height: 1.33; letter-spacing: .55px; margin-bottom: 35px; }
+.footer .content .btn { min-width: 270px; }
+.footer_links { padding-bottom: 22px; }
+.footer_links ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap;
+  align-items: center; justify-content: center; }
+.footer_links ul li:not(:last-child) { margin-right: 62px; }
+.footer_links ul li a { color: var(--on-footer); font-size: 22px; font-family: var(--f-body); font-weight: 700;
+  line-height: 1.64; text-transform: uppercase; text-decoration: none; }
+.footer_links ul li a:hover { color: var(--on-footer); text-decoration: underline; }
+.copyright_box p { color: var(--on-footer); font-size: 11px; font-family: var(--f-body); font-weight: 400;
+  line-height: normal; margin-bottom: 0; }
+.copyright_box p a { color: var(--on-footer); text-decoration: underline; }
+.copyright_box p a:hover { color: var(--on-footer); text-decoration: underline; }
+.footer .footer_man { position: absolute; bottom: 0; right: 104px; width: 450px; z-index: -1; }
+.footer .footer_man svg { display: block; width: 40%; height: auto; margin-left: auto; }
+
+/* ==========================================================================
+   8. decorative sprites
+   ========================================================================== */
+.zigzag { position: relative; width: 276px; height: 60px; }
+.section_title .zigzag { position: absolute; left: 50%; transform: translate(-50%, 0); bottom: -28px;
+  margin-left: 12px; z-index: 20; }
+.zigzag .zz1, .zigzag .zz2, .zigzag .zz3 { display: block; }
+.zigzag .zz1 { width: 276px; height: 11px; transition: .25s linear; clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  background-color: var(--accent-ink); -webkit-mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 276 11'%3e%3cpolyline points='0.0,2.0 15.3,9.0 30.7,2.0 46.0,9.0 61.3,2.0 76.7,9.0 92.0,2.0 107.3,9.0 122.7,2.0 138.0,9.0 153.3,2.0 168.7,9.0 184.0,2.0 199.3,9.0 214.7,2.0 230.0,9.0 245.3,2.0 260.7,9.0 276.0,2.0' fill='none' stroke='%23000' stroke-width='3.0' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 276 11'%3e%3cpolyline points='0.0,2.0 15.3,9.0 30.7,2.0 46.0,9.0 61.3,2.0 76.7,9.0 92.0,2.0 107.3,9.0 122.7,2.0 138.0,9.0 153.3,2.0 168.7,9.0 184.0,2.0 199.3,9.0 214.7,2.0 230.0,9.0 245.3,2.0 260.7,9.0 276.0,2.0' fill='none' stroke='%23000' stroke-width='3.0' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:100% 100%;mask-size:100% 100%; }
+.zigzag .zz2 { width: 223px; height: 35px; position: absolute; right: 0; top: 10px; transition: .25s linear;
+  clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); transition-delay: .25s;
+  background-color: var(--accent-ink); -webkit-mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 223 35'%3e%3cpolyline points='0.0,3.0 22.3,32.0 44.6,3.0 66.9,32.0 89.2,3.0 111.5,32.0 133.8,3.0 156.1,32.0 178.4,3.0 200.7,32.0 223.0,3.0' fill='none' stroke='%23000' stroke-width='5.0' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 223 35'%3e%3cpolyline points='0.0,3.0 22.3,32.0 44.6,3.0 66.9,32.0 89.2,3.0 111.5,32.0 133.8,3.0 156.1,32.0 178.4,3.0 200.7,32.0 223.0,3.0' fill='none' stroke='%23000' stroke-width='5.0' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:100% 100%;mask-size:100% 100%; }
+.zigzag .zz3 { width: 140px; height: 15px; position: absolute; right: 83px; bottom: 1px;
+  transition: .5s cubic-bezier(.215,.61,.355,1); clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); transition-delay: .5s;
+  background-color: var(--accent-ink); -webkit-mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 15'%3e%3cpolyline points='0.0,2.2 17.5,12.8 35.0,2.2 52.5,12.8 70.0,2.2 87.5,12.8 105.0,2.2 122.5,12.8 140.0,2.2' fill='none' stroke='%23000' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 15'%3e%3cpolyline points='0.0,2.2 17.5,12.8 35.0,2.2 52.5,12.8 70.0,2.2 87.5,12.8 105.0,2.2 122.5,12.8 140.0,2.2' fill='none' stroke='%23000' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:100% 100%;mask-size:100% 100%; }
+.animated .zigzag .zz1, .animated .zigzag .zz2, .animated .zigzag .zz3 { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+
+.star_box { position: relative; width: 91px; height: 105px; pointer-events: none; }
+.star_box span { display: block; background-repeat: no-repeat; background-position: center; position: absolute; transform: scale(0); }
+.star_box .st1 { width: 59px; height: 59px; right: 0; bottom: 0;
+  background-color: var(--accent-ink); -webkit-mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 59 59'%3e%3cpath d='M29.5,0 C38.9,20.1 38.9,20.1 59,29.5 C38.9,38.9 20.1,38.9 29.5,59 C20.1,38.9 20.1,20.1 0,29.5 C20.1,20.1 38.9,20.1 29.5,0 Z' fill='%23000'/%3e%3c/svg%3e");mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 59 59'%3e%3cpath d='M29.5,0 C38.9,20.1 38.9,20.1 59,29.5 C38.9,38.9 20.1,38.9 29.5,59 C20.1,38.9 20.1,20.1 0,29.5 C20.1,20.1 38.9,20.1 29.5,0 Z' fill='%23000'/%3e%3c/svg%3e");-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:100% 100%;mask-size:100% 100%; }
+.star_box .st2 { width: 36px; height: 37px; right: 0; top: 0; animation-delay: .2s;
+  background-color: var(--accent-ink); -webkit-mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3e%3cpath d='M18.0,0 C23.8,12.2 23.8,12.2 36,18.0 C23.8,23.8 12.2,23.8 18.0,36 C12.2,23.8 12.2,12.2 0,18.0 C12.2,12.2 23.8,12.2 18.0,0 Z' fill='%23000'/%3e%3c/svg%3e");mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3e%3cpath d='M18.0,0 C23.8,12.2 23.8,12.2 36,18.0 C23.8,23.8 12.2,23.8 18.0,36 C12.2,23.8 12.2,12.2 0,18.0 C12.2,12.2 23.8,12.2 18.0,0 Z' fill='%23000'/%3e%3c/svg%3e");-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:100% 100%;mask-size:100% 100%; }
+.star_box .st3 { width: 33px; height: 32px; left: 0; top: 0; animation-delay: .4s;
+  background-color: var(--accent-ink); -webkit-mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 33 33'%3e%3cpath d='M16.5,0 C21.8,11.2 21.8,11.2 33,16.5 C21.8,21.8 11.2,21.8 16.5,33 C11.2,21.8 11.2,11.2 0,16.5 C11.2,11.2 21.8,11.2 16.5,0 Z' fill='%23000'/%3e%3c/svg%3e");mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 33 33'%3e%3cpath d='M16.5,0 C21.8,11.2 21.8,11.2 33,16.5 C21.8,21.8 11.2,21.8 16.5,33 C11.2,21.8 11.2,11.2 0,16.5 C11.2,11.2 21.8,11.2 16.5,0 Z' fill='%23000'/%3e%3c/svg%3e");-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:100% 100%;mask-size:100% 100%; }
+
+.heart_box { position: relative; width: 65px; height: 71px; }
+.heart_box span { display: block; background-repeat: no-repeat; background-position: center; position: absolute; transform: scale(0); }
+.heart_box .ht1 { width: 29px; height: 31px; left: 0; bottom: 0;
+  background-color: var(--accent-ink); -webkit-mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 31'%3e%3cpath d='M14.5,29.8 C1.7,19.2 0,13.0 0,8.1 C0,2.5 5.8,0.6 14.5,6.8 C23.2,0.6 29,2.5 29,8.1 C29,13.0 27.3,19.2 14.5,29.8 Z' fill='%23000'/%3e%3c/svg%3e");mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 31'%3e%3cpath d='M14.5,29.8 C1.7,19.2 0,13.0 0,8.1 C0,2.5 5.8,0.6 14.5,6.8 C23.2,0.6 29,2.5 29,8.1 C29,13.0 27.3,19.2 14.5,29.8 Z' fill='%23000'/%3e%3c/svg%3e");-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:100% 100%;mask-size:100% 100%; }
+.heart_box .ht2 { width: 39px; height: 42px; right: 0; top: 0; animation-delay: .2s;
+  background-color: var(--accent-ink); -webkit-mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 39 42'%3e%3cpath d='M19.5,40.3 C2.3,26.0 0,17.6 0,10.9 C0,3.4 7.8,0.8 19.5,9.2 C31.2,0.8 39,3.4 39,10.9 C39,17.6 36.7,26.0 19.5,40.3 Z' fill='%23000'/%3e%3c/svg%3e");mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 39 42'%3e%3cpath d='M19.5,40.3 C2.3,26.0 0,17.6 0,10.9 C0,3.4 7.8,0.8 19.5,9.2 C31.2,0.8 39,3.4 39,10.9 C39,17.6 36.7,26.0 19.5,40.3 Z' fill='%23000'/%3e%3c/svg%3e");-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:100% 100%;mask-size:100% 100%; }
+
+@keyframes bounceIn {
+  0%, 20%, 40%, 60%, 80%, 100% { animation-timing-function: cubic-bezier(.215,.61,.355,1); }
+  0%   { opacity: 0; transform: scale3d(.3,.3,.3); }
+  20%  { transform: scale3d(1.1,1.1,1.1); }
+  40%  { transform: scale3d(.9,.9,.9); }
+  60%  { opacity: 1; transform: scale3d(1.03,1.03,1.03); }
+  80%  { transform: scale3d(.97,.97,.97); }
+  100% { opacity: 1; transform: scale3d(1,1,1); }
+}
+
+/* ==========================================================================
+   9. scroll reveals  (WOW.js behaviour, driven by ScrollTrigger in site.js)
+   ========================================================================== */
+.wow { visibility: hidden; }
+.wow.animated { visibility: visible; }
+
+/* footer figure - animate.css fadeInRight, 1s, as on the live site */
+@keyframes fadeInRight { from { opacity: 0; transform: translate3d(100%,0,0); } to { opacity: 1; transform: none; } }
+.footer_man.wow.animated { animation: fadeInRight 1s both; }
+
+/* letter-split section headings */
+h2 .ch { display: inline-block; opacity: 0; transform: translate3d(0, .35em, 0);
+  transition: opacity .45s ease-out, transform .45s cubic-bezier(.215,.61,.355,1); }
+.animated h2 .ch { opacity: 1; transform: none; }
+
+/* ==========================================================================
+   10. per-site variables (colour only - no geometry below this line)
+   Each block is emitted by palettes.derive(); the on-* values are
+   measured, not assumed, and check_static.py re-measures them.
+   ========================================================================== */
+[data-site="anthony-gueriera-jr-insurance-agency-llc"] {
+  --brand: #214b63;
+  --brand-lt: #356d88;
+  --brand-dp: #163344;
+  --hero: #4a90ae;
+  --accent: #a04c1b;
+  --accent-ui: #a04c1b;
+  --script: #e5a46f;
+  --header: #17272f;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #214b63;
+  --accent-ink: #a04c1b;
+  --field: #eff5f8;
+  --wash: #e2e8eb;
+  --wash-2: #f0e2db;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="b-n-b-n-asian-bistro"] {
+  --brand: #6b3b24;
+  --brand-lt: #8c5132;
+  --brand-dp: #452416;
+  --hero: #b9794f;
+  --accent: #bb6b1d;
+  --accent-ui: #ae641b;
+  --script: #f0b26a;
+  --header: #2b1a14;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #6b3b24;
+  --accent-ink: #ae641b;
+  --field: #f9f3ef;
+  --wash: #ece6e3;
+  --wash-2: #f4e7db;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="p-c-insurance-agency-llc"] {
+  --brand: #214b63;
+  --brand-lt: #356d88;
+  --brand-dp: #163344;
+  --hero: #4a90ae;
+  --accent: #a04c1b;
+  --accent-ui: #a04c1b;
+  --script: #e5a46f;
+  --header: #17272f;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #214b63;
+  --accent-ink: #a04c1b;
+  --field: #eff5f8;
+  --wash: #e2e8eb;
+  --wash-2: #f0e2db;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="rice-rice-ltd"] {
+  --brand: #214b63;
+  --brand-lt: #356d88;
+  --brand-dp: #163344;
+  --hero: #4a90ae;
+  --accent: #a04c1b;
+  --accent-ui: #a04c1b;
+  --script: #e5a46f;
+  --header: #17272f;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #214b63;
+  --accent-ink: #a04c1b;
+  --field: #eff5f8;
+  --wash: #e2e8eb;
+  --wash-2: #f0e2db;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="ward-insurance-associates-inc"] {
+  --brand: #214b63;
+  --brand-lt: #356d88;
+  --brand-dp: #163344;
+  --hero: #4a90ae;
+  --accent: #a04c1b;
+  --accent-ui: #a04c1b;
+  --script: #e5a46f;
+  --header: #17272f;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #214b63;
+  --accent-ink: #a04c1b;
+  --field: #eff5f8;
+  --wash: #e2e8eb;
+  --wash-2: #f0e2db;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="centurion-construction-group"] {
+  --brand: #2f5d55;
+  --brand-lt: #477b72;
+  --brand-dp: #1b3833;
+  --hero: #639e94;
+  --accent: #bd681d;
+  --accent-ui: #b2621b;
+  --script: #efb164;
+  --header: #172825;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #2f5d55;
+  --accent-ink: #b2621b;
+  --field: #f1f6f5;
+  --wash: #e4eae9;
+  --wash-2: #f4e7db;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="e-s-autoparts"] {
+  --brand: #2f5d55;
+  --brand-lt: #477b72;
+  --brand-dp: #1b3833;
+  --hero: #639e94;
+  --accent: #bd681d;
+  --accent-ui: #b2621b;
+  --script: #efb164;
+  --header: #172825;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #2f5d55;
+  --accent-ink: #b2621b;
+  --field: #f1f6f5;
+  --wash: #e4eae9;
+  --wash-2: #f4e7db;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="jarman-sales-service-inc"] {
+  --brand: #2f5d55;
+  --brand-lt: #477b72;
+  --brand-dp: #1b3833;
+  --hero: #639e94;
+  --accent: #bd681d;
+  --accent-ui: #b2621b;
+  --script: #efb164;
+  --header: #172825;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #2f5d55;
+  --accent-ink: #b2621b;
+  --field: #f1f6f5;
+  --wash: #e4eae9;
+  --wash-2: #f4e7db;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="ansarispharma-com"] {
+  --brand: #405466;
+  --brand-lt: #5d7086;
+  --brand-dp: #293846;
+  --hero: #8497ad;
+  --accent: #b05f24;
+  --accent-ui: #b05f24;
+  --script: #e8ab73;
+  --header: #1e2b35;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #405466;
+  --accent-ink: #b05f24;
+  --field: #f4f6f8;
+  --wash: #e6e9eb;
+  --wash-2: #f2e5dc;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="havercrown-dental"] {
+  --brand: #2f5e76;
+  --brand-lt: #467c97;
+  --brand-dp: #1a3747;
+  --hero: #639dbb;
+  --accent: #b45b25;
+  --accent-ui: #b45b25;
+  --script: #eeb07a;
+  --header: #163044;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #2f5e76;
+  --accent-ink: #b45b25;
+  --field: #f1f6f9;
+  --wash: #e4eaed;
+  --wash-2: #f3e5dc;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="4-4-architecture"] {
+  --brand: #214b63;
+  --brand-lt: #356d88;
+  --brand-dp: #163344;
+  --hero: #4a90ae;
+  --accent: #a04c1b;
+  --accent-ui: #a04c1b;
+  --script: #e5a46f;
+  --header: #17272f;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #214b63;
+  --accent-ink: #a04c1b;
+  --field: #eff5f8;
+  --wash: #e2e8eb;
+  --wash-2: #f0e2db;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="a-new-dawn-therapeutic-massage"] {
+  --brand: #6c4b62;
+  --brand-lt: #8b6380;
+  --brand-dp: #3e2838;
+  --hero: #aa829b;
+  --accent: #b45b2a;
+  --accent-ui: #b45b2a;
+  --script: #edb185;
+  --header: #30202e;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #6c4b62;
+  --accent-ink: #b45b2a;
+  --field: #f7f4f6;
+  --wash: #ece8eb;
+  --wash-2: #f3e5dd;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="advanced-specialty-flooring"] {
+  --brand: #2f5d55;
+  --brand-lt: #477b72;
+  --brand-dp: #1b3833;
+  --hero: #639e94;
+  --accent: #bd681d;
+  --accent-ui: #b2621b;
+  --script: #efb164;
+  --header: #172825;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #2f5d55;
+  --accent-ink: #b2621b;
+  --field: #f1f6f5;
+  --wash: #e4eae9;
+  --wash-2: #f4e7db;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="allure-skincare-nails-body"] {
+  --brand: #6c4b62;
+  --brand-lt: #8b6380;
+  --brand-dp: #3e2838;
+  --hero: #aa829b;
+  --accent: #b45b2a;
+  --accent-ui: #b45b2a;
+  --script: #edb185;
+  --header: #30202e;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #6c4b62;
+  --accent-ink: #b45b2a;
+  --field: #f7f4f6;
+  --wash: #ece8eb;
+  --wash-2: #f3e5dd;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="always-dental-care"] {
+  --brand: #2f5e76;
+  --brand-lt: #467c97;
+  --brand-dp: #1a3747;
+  --hero: #639dbb;
+  --accent: #b45b25;
+  --accent-ui: #b45b25;
+  --script: #eeb07a;
+  --header: #163044;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #2f5e76;
+  --accent-ink: #b45b25;
+  --field: #f1f6f9;
+  --wash: #e4eaed;
+  --wash-2: #f3e5dc;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="andorra-family-dentistry"] {
+  --brand: #2f5e76;
+  --brand-lt: #467c97;
+  --brand-dp: #1a3747;
+  --hero: #639dbb;
+  --accent: #b45b25;
+  --accent-ui: #b45b25;
+  --script: #eeb07a;
+  --header: #163044;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #2f5e76;
+  --accent-ink: #b45b25;
+  --field: #f1f6f9;
+  --wash: #e4eaed;
+  --wash-2: #f3e5dc;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="attitude-alley-motorcycle-co-llc"] {
+  --brand: #365b77;
+  --brand-lt: #4d7c99;
+  --brand-dp: #1d3447;
+  --hero: #6d9fbe;
+  --accent: #b44f2c;
+  --accent-ui: #b44f2c;
+  --script: #edaa80;
+  --header: #182936;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #365b77;
+  --accent-ink: #b44f2c;
+  --field: #f2f6f9;
+  --wash: #e5eaed;
+  --wash-2: #f3e3dd;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="big-head-transport-llc"] {
+  --brand: #365b77;
+  --brand-lt: #4d7c99;
+  --brand-dp: #1d3447;
+  --hero: #6d9fbe;
+  --accent: #b44f2c;
+  --accent-ui: #b44f2c;
+  --script: #edaa80;
+  --header: #182936;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #365b77;
+  --accent-ink: #b44f2c;
+  --field: #f2f6f9;
+  --wash: #e5eaed;
+  --wash-2: #f3e3dd;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="bray-auto"] {
+  --brand: #365b77;
+  --brand-lt: #4d7c99;
+  --brand-dp: #1d3447;
+  --hero: #6d9fbe;
+  --accent: #b44f2c;
+  --accent-ui: #b44f2c;
+  --script: #edaa80;
+  --header: #182936;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #365b77;
+  --accent-ink: #b44f2c;
+  --field: #f2f6f9;
+  --wash: #e5eaed;
+  --wash-2: #f3e3dd;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="coco-nails"] {
+  --brand: #6c4b62;
+  --brand-lt: #8b6380;
+  --brand-dp: #3e2838;
+  --hero: #aa829b;
+  --accent: #b45b2a;
+  --accent-ui: #b45b2a;
+  --script: #edb185;
+  --header: #30202e;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #6c4b62;
+  --accent-ink: #b45b2a;
+  --field: #f7f4f6;
+  --wash: #ece8eb;
+  --wash-2: #f3e5dd;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #2c2927;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+[data-site="hub"] {
+  --brand: #233240;
+  --brand-lt: #33495c;
+  --brand-dp: #16222c;
+  --hero: #4a6a86;
+  --accent: #a8500f;
+  --accent-ui: #a8500f;
+  --script: #e6b06a;
+  --header: #141c24;
+  --paper: #ffffff;
+  --ink: #2c2927;
+  --stripe: #e8edf0;
+  --brand-ink: #233240;
+  --accent-ink: #a8500f;
+  --field: #eff2f4;
+  --wash: #e2e4e6;
+  --wash-2: #f1e3d9;
+  --on-brand: #ffffff;
+  --on-accent: #ffffff;
+  --on-header: #ffffff;
+  --on-hero: #ffffff;
+  --on-footer: #ffffff;
+  --on-field: #2c2927;
+}
+
+/* ==========================================================================
+   11. prospect content in the reference theme's slots
+   ========================================================================== */
+
+/* The template never declares a page background - it inherits the browser's
+   default canvas. That is white on most setups and BLACK on a user agent in
+   dark mode, which turns every statement block into red-on-black. The whole
+   contrast table is computed against paper, so paper is stated here rather
+   than assumed. */
+html { background: var(--paper); color-scheme: light; }
+
+/* --- header layout contract --------------------------------------------
+   The tagline used to be laid out as if it were the only thing in the band:
+   nowrap, no ceiling, and a .logo max-width that a nowrap child simply
+   overflows. At 375 that put the caption's right edge at 240px and the menu
+   button's left edge at 240px - zero clearance - and on a 393-430px phone the
+   script ran straight through the MENU label.
+
+   The fix is a contract rather than a smaller font. The menu button is a fixed
+   object, so it reserves its own column first and a hard 16px gap after it;
+   the caption is a flexible one, so it gets exactly what is left and nothing
+   more. .logo is size-contained, which means it CANNOT be widened by its own
+   text - it can only take the leftover the flex line gives it - and the
+   caption is then set from its own character count against that column via
+   container units, so the longest tagline in the batch ("The Smile Is The
+   International Language", 39 characters) obeys the same rule as the shortest.
+   0.39 is the advance constant, and it is measured rather than guessed: the
+   harness reports the real cap advance per character of the script face for
+   every tagline (adv= in /audit.html), which came back 0.309-0.369 across the
+   eleven. 0.39 leaves the longest line at about 92% of its column. The wrap is
+   left enabled underneath as the failure mode, so if that constant is ever
+   wrong - a different face, a longer tagline - the caption takes a second line
+   instead of taking the menu. Golden Sea's 39-character tagline genuinely does
+   not fit one line above the 13px floor below about 400px wide, and takes two
+   there by design.                                                          */
+.header .d-flex { gap: 16px; }
+.logo { flex: 1 1 0%; min-width: 0; container-type: inline-size; }
+.mobile_menubtn { flex: 0 0 auto; }
+.logo .logo_caption { max-width: 100%; }
+.logo .logo_caption h4 { max-width: 100%; white-space: normal;
+  overflow-wrap: break-word;
+  font-size: clamp(13px, calc(100cqw / (var(--cap-ch, 24) * 0.39)), 40px); }
+
+/* --- marks -------------------------------------------------------------
+   Header logos use their real aspect ratio instead of being squeezed through
+   one 140px slot. The 400px frame collapses to its flex column on phones;
+   each image may use up to 1.4x its cleaned source pixels and 70px of height.
+   No mark sits on a panel: transparent pixels reveal the header surface.   */
+.markbox { display: block; width: 100%; aspect-ratio: 1254 / 666; }
+.markbox img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.logo > a { width: min(400px, 100%); height: 74px; margin-top: 0; }
+span#header_logo { position: absolute; width: 1px; height: 1px; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+.logo > a .markbox { display: flex; align-items: center; justify-content: flex-start;
+  width: 100%; height: 74px; aspect-ratio: auto; }
+.logo > a .markbox img { width: min(100%, var(--header-w)); height: auto;
+  max-width: var(--cap); max-height: 70px; object-fit: contain;
+  object-position: left center; }
+
+/* --- the upscale cap -----------------------------------------------------
+   Every logo file here was captured small: 102x88 at the smallest, 400x41 at
+   the widest. A raster mark shown above about 1.4x its native pixel width is
+   visibly destroyed, so every placement carries an inline max-width computed
+   from the FILE (round(1.4 * naturalWidth)) and no rule anywhere may push a
+   mark past it. The hero keeps the exact mark at that honest size instead of
+   replacing it with a synthetic logo.                                      */
+.markbox img, .cardmark img { max-width: var(--cap); }
+
+/* Legacy typographic lockup for source-backed prospects without a logo file. */
+.wordmark { display: flex; flex-direction: column; align-items: flex-start;
+  justify-content: center; height: 100%; font-family: var(--f-display);
+  line-height: .84; text-transform: uppercase; letter-spacing: .01em; }
+.wordmark span { display: block; }
+.logo > a .wordmark { color: var(--on-header); font-size: 30px; }
+.logo > a .wordmark .rule { width: 46px; height: 3px; margin-top: 5px;
+  background: var(--script); }
+.home_logo .wordmark { align-items: center; color: var(--brand-ink);
+  text-align: center; }
+.home_logo .wordmark .rule { width: 34%; height: 10px; margin-top: 20px;
+  background: var(--accent-ink); }
+[data-site]:not([data-site="hub"]) .home_logo .wordmark { color: var(--on-header); }
+[data-site]:not([data-site="hub"]) .home_logo .wordmark .rule { background: var(--script); }
+.pending_mark { display: flex; align-items: center; justify-content: flex-start;
+  width: 100%; height: 74px; color: var(--on-header); }
+.pending_mark_label { display: inline-block; padding: 9px 12px; border: 1px solid
+  color-mix(in srgb, var(--on-header) 48%, transparent); font-family: var(--f-body);
+  font-size: 11px; font-weight: 700; letter-spacing: .12em; line-height: 1.2;
+  text-transform: uppercase; }
+
+/* --- hero: one generated industry scene, with no centered logo -----------
+   Each prospect gets one full-bleed editorial image. The empty anchor keeps
+   the reference scroll-swap geometry intact without putting a mark on top of
+   the photograph. Grain is a separate reusable surface, not baked into art. */
+.homeslider .backbgbox { background: var(--field); }
+[data-site]:not([data-site="hub"]) .homeslider .backbgbox { background: var(--header); }
+.homeslider .backvid .industry_hero { display: block; width: 100%; height: 100%;
+  object-fit: cover; object-position: center; }
+.homeslider .backvid .industry_hero_pending { display: flex; align-items: center;
+  justify-content: center; background: var(--header); color: var(--on-header);
+  border: 1px solid color-mix(in srgb, var(--on-header) 22%, transparent);
+  text-align: center; }
+.pending_hero_label { padding: 16px 24px; border: 1px solid currentColor;
+  font-family: var(--f-body); font-size: 15px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; }
+.source_notice { max-width: 760px; margin: 0 auto 28px; color: var(--on-field);
+  font-family: var(--f-body); font-size: 14px; line-height: 1.55; }
+.source_notice strong { color: var(--brand-ink); letter-spacing: .08em;
+  text-transform: uppercase; }
+.source_notice a { color: var(--accent-ink); text-decoration: underline;
+  text-underline-offset: 3px; }
+.pending_label { fill: var(--brand-ink); font-family: var(--f-body);
+  font-size: 18px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; }
+.homeslider .backvid .industry_grain { position: absolute; inset: 0;
+  pointer-events: none; background-image: url("/assets/grain.svg");
+  background-size: 220px 220px; opacity: .22; mix-blend-mode: soft-light; }
+.homeslider_wrapper .home_logo figure { position: relative; z-index: 2;
+  width: min(1180px, 88vw); }
+.home_logo .hero_anchor { display: block; width: 100%; height: 455.68px; }
+.home_logo .markbox { display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 455.68px; aspect-ratio: auto; }
+.home_logo .markbox { --gpad: 120px; box-sizing: border-box; padding: 0 60px; }
+.home_logo .markbox img { display: block; width: var(--markw, 100%);
+  max-width: 100%; min-width: 0; height: auto; object-fit: contain; }
+.home_logo .markbox .wordmark { width: auto; height: auto; min-width: 0; }
+/* The lockup is set to the panel, not to a fixed step: panel width divided by
+   the longest line, capped at the display size the desktop spec uses. 0.405 is
+   the measured average cap advance of the display face across the selected names
+   (the widest of them runs 0.375em per character), so every lockup lands at
+   about 90% of its panel and none of them can overflow it. */
+.home_logo .wordmark { font-size: clamp(34px,
+  calc((min(1180px, 88vw) - var(--gpad, 120px)) / (var(--wm-ch, 14) * 0.405)), 150px); }
+
+/* --- the reference theme's video panel, carrying the headline -------------------------
+   the reference theme runs a Vimeo background here. There is no footage for these
+   businesses and none will be generated, so the panel keeps its 16/9 box,
+   its -136px overlap and its shadow, and carries the prospect's own H1. */
+.homevideo { background: var(--brand); }
+.homevideo .video_frame { display: flex; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center; padding: 6% 8%; }
+.homevideo .eyebrow { color: var(--on-brand); font-size: 16px; font-family: var(--f-body);
+  font-weight: 700; line-height: 1.2; letter-spacing: .2em; text-transform: uppercase;
+  margin-bottom: 26px; }
+.homevideo h1 { color: var(--on-brand); font-size: 76px; font-family: var(--f-display);
+  font-weight: 700; line-height: .96; text-transform: uppercase; letter-spacing: -1px; }
+.homevideo .rule { display: block; width: 120px; height: 7px; background: var(--accent);
+  margin-top: 32px; }
+
+/* --- work grid: two large drawings, then typographic tiles --------------
+   Three drawings cycled across five or six equal cards meant every drawing
+   appeared twice on the page. The grid is now two rows: the first carries
+   the two card drawings at half-width and nearly a third taller, the second
+   carries the remaining services as numbered typographic tiles. Combined
+   with the hero taking the third drawing, each of a site's three drawings
+   appears exactly once.                                                     */
+.recent_work figure { background: transparent; padding: 0; box-shadow: none;
+  overflow: hidden; }
+.recent_work figure.tile { background: var(--wash); height: 420px; }
+.work_tiles { margin-top: 6px; }
+.work_tiles .recent_work figure { display: flex; align-items: center;
+  justify-content: center; gap: 18px; height: 188px; background: var(--wash); }
+.work_tiles .recent_work figure.alt { background: var(--wash-2); }
+.work_tiles .recent_work figure.alt2 { background: var(--field); }
+.work_tiles .idx { color: var(--brand-ink); font-family: var(--f-display);
+  font-size: 82px; font-weight: 700; line-height: .8; }
+.work_tiles .bar { display: block; width: 46px; height: 7px;
+  background: var(--accent-ink); }
+.col-lg-3 { width: 25%; }
+.recent_work figure.tile .illo { --illo-bg: var(--wash); }
+.recent_work figure.tile.alt .illo { --illo-bg: var(--wash-2); }
+.recent_work figure.tile.alt2 .illo { --illo-bg: var(--field); }
+.recent_work figure .illo { transition: transform .4s ease-in; }
+.recent_work:hover figure .illo { transform: scale(1.035); }
+
+/* hub cards: the prospect's real mark, straight on the page, nothing behind it */
+.recent_work figure.mark { display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 20px; background: transparent;
+  border: 0; }
+.recent_work figure.mark .cardmark { display: block; width: 100%; }
+.recent_work figure.mark img { width: 100%; max-width: var(--cap, 100%); max-height: 210px;
+  height: auto; object-fit: contain; box-shadow: none; }
+.recent_work figure.mark .wordmark { align-items: center; color: var(--brand-ink);
+  font-size: 54px; height: auto; text-align: center; }
+.recent_work figure.mark .wordmark .rule { width: 96px; height: 6px;
+  margin: 12px auto 0; background: var(--accent-ink); }
+.recent_work figure.mark small { color: #5f6a70; font-size: 13px;
+  font-family: var(--f-body); font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; }
+
+/* the hero copy sits under the mark, so it steps back a little; the work
+   cards and the band carry the drawings at full strength */
+.homeslider .backvid .illo { --illo-bg: var(--field); opacity: .66; }
+
+.hubhero .field { fill: var(--field); }
+
+/* --- the stripe band: typographic, static, nothing repeated -------------
+   This slot used to be an Owl marquee that padded a short list of marks back
+   up to a full cycle by duplicating them, so the same item passed twice.
+   The mechanism is gone (with it jQuery and Owl entirely); the band is now
+   the site's own lines set once each over the same 8000x250 stripe. The
+   strip paints the stripe colour itself as well, so a wrapped set on a phone
+   still sits on ground rather than off the end of the 250px band.           */
+.mark_strip { display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: center; gap: 4px 34px; margin: 0; padding: 92px 25px;
+  background: var(--stripe); list-style: none; }
+.mark_strip li { display: flex; align-items: center; gap: 34px;
+  color: var(--charcoal); font-size: 15px; font-family: var(--f-body);
+  font-weight: 700; line-height: 2.1; letter-spacing: .1em;
+  text-transform: uppercase; }
+.mark_strip li:not(:last-child)::after { content: ""; display: block; width: 8px;
+  height: 8px; transform: rotate(45deg); background: var(--accent-ink); }
+
+/* --- fluid type + collision fixes ---------------------------------------
+   The desktop capture pins several boxes to fixed pixel heights. That is
+   correct at 1440 where every string fits on one line, but any heading that
+   wraps then overflows its locked box and collides with the next row. These
+   rules keep the exact desktop measurement (content still fits in the pinned
+   height, so min-height resolves to the same number) while letting small
+   viewports grow instead of overlap.                                        */
+.accordion .accordion-button {
+  height: auto; min-height: 80px;        /* was a hard 80px -> wrap collided */
+  align-items: center; gap: 14px;
+  line-height: 1.12; hyphens: auto; overflow-wrap: anywhere;
+}
+.accordion .accordion-button > span { display: block; min-width: 0; }
+.accordion-item + .accordion-item { margin-top: 0; }
+
+/* headings: never let a locked line-height stack lines on top of each other */
+h2, h3, .aboutinfo_box h1, .footer .content h3 { overflow-wrap: break-word; }
+h2 { line-height: 1.0; }
+h1 { line-height: 1.02; }
+
+@media (max-width: 900px) {
+  .accordion .accordion-button { font-size: 21px; min-height: 68px; padding: 16px 4px; }
+  /* .row cancels the container gutter with margin:0 -15px; on phones that
+     puts copy flush against the glass. Restore the gutter below 900.      */
+  .row { margin-left: 0; margin-right: 0; }
+  /* Phone hero mark. The desktop box is a fixed 455.68px tall because the
+     scroll swap depends on it; below 900 nothing depends on it, so the mark
+     is sized off the viewport WIDTH and the box follows the mark. A 400x23
+     wordmark logo rendered 197px wide before this; it now renders ~88vw.  */
+  .homeslider_wrapper .home_logo figure { width: 88vw; max-width: 700px; }
+  .home_logo .markbox { height: auto; aspect-ratio: auto; }
+  .home_logo .markbox { --gpad: 52px; padding: 0 26px; }
+  .homeslider_wrapper .home_logo { padding-bottom: 140px; }
+  /* letter-split reveals are scroll-triggered; if the trigger never fires
+     (short viewport, reduced motion, bfcache restore) the heading is left
+     half-revealed. On small screens show the glyphs and skip the reveal.  */
+  h2 .ch, h3 .ch { opacity: 1 !important; transform: none !important; }
+  h1, .video_frame h1, .homevideo_box h1 { font-size: 46px; line-height: 1.04; }
+  .accordion .accordion-body p { font-size: 16px; line-height: 1.6; }
+  .recent_work figure { height: 260px; }
+  .recent_work figure.tile { height: 300px; }
+  .recent_work figure.mark { height: auto; min-height: 200px; }
+  .recent_work figure.mark img { max-height: 150px; }
+  .work_tiles .recent_work figure { height: 150px; }
+  .work_tiles .idx { font-size: 62px; }
+  .mark_strip { gap: 4px 22px; padding: 60px 25px; }
+  .mark_strip li { gap: 22px; font-size: 13px; }
+}
+@media (max-width: 640px) {
+  .accordion .accordion-button { font-size: 18px; min-height: 60px; letter-spacing: 0; }
+  h1, .video_frame h1, .homevideo_box h1 { font-size: 34px; line-height: 1.12; }
+  h2 { font-size: 38px; padding-bottom: 22px; }
+  h3, .aboutinfo_box h1 { font-size: 30px; }
+  .aboutinfo_box p { font-size: 19px; line-height: 1.45; }
+  .footer .content h3 { font-size: 44px; line-height: .9; }
+  .markbox { max-width: 100%; }
+  .recent_work figure { height: 220px; }
+  .recent_work figure.tile { height: 250px; }
+  .recent_work figure.mark { min-height: 170px; }
+  .recent_work figure.mark img { max-height: 120px; }
+  .work_tiles .recent_work figure { height: 130px; }
+  .work_tiles .idx { font-size: 52px; }
+  .home_logo .markbox { --gpad: 32px; padding: 0 16px; }
+  .btn { height: 54px; font-size: 16px; }
+}
+@media (max-width: 420px) {
+  .accordion .accordion-button { font-size: 16px; }
+  h1, .video_frame h1, .homevideo_box h1 { font-size: 28px; line-height: 1.14; }
+  h2 { font-size: 31px; }
+}
+
+
+/* --- mark motion: the reference theme's vector cadence, reproduced for a raster mark ------
+   Source logo-header.json: 30fps, 180 frames = 6.00s loop. Letter layers key
+   scale at f37/46/55/72 (squash-stretch ripple); one A also keys position at
+   f72/75/86 (the hop); pills swap at f81. A PNG has no separable letters, so
+   the whole mark carries the same timeline instead of four staggered layers.
+   Percentages below are those frame numbers over 180.                       */
+@keyframes mark_hop {
+  0%,   20.5% { transform: translateY(0)     scale(1,    1);    }  /* f0-37  rest   */
+  25.6%       { transform: translateY(3%)    scale(1.07,  .93); }  /* f46    squash */
+  30.6%       { transform: translateY(-5%)   scale(.955, 1.06); }  /* f55    stretch*/
+  40.0%       { transform: translateY(0)     scale(1,    1);    }  /* f72    settle */
+  41.7%       { transform: translateY(4%)    scale(1.06,  .94); }  /* f75    crouch */
+  47.8%       { transform: translateY(-24%)  scale(.97,  1.05); }  /* f86    jump   */
+  53.0%       { transform: translateY(0)     scale(1.05,  .95); }  /*        land   */
+  57.0%       { transform: translateY(-5%)   scale(.99,  1.02); }  /*        rebound*/
+  61.0%, 100% { transform: translateY(0)     scale(1,    1);    }  /*        rest   */
+}
+.markbox > img, .markbox > .wordmark {
+  transform-origin: 50% 100%;
+  animation: mark_hop 6s cubic-bezier(.34,.06,.28,1) infinite both;
+  will-change: transform;
+}
+/* The hero mark runs the same clock, offset so it does not fire in lockstep
+   with the header mark once that has swapped in - but translate only. The
+   squash-and-stretch scales to 1.07, and a hero mark already sitting at
+   exactly 1.4x its native width would spend part of every cycle past the cap
+   the whole build is gated on. */
+@keyframes hero_hop {
+  0%, 20.5% { transform: translateY(0);    }
+  25.6%     { transform: translateY(1.4%); }
+  30.6%     { transform: translateY(-2%);  }
+  40.0%     { transform: translateY(0);    }
+  41.7%     { transform: translateY(1.8%); }
+  47.8%     { transform: translateY(-11%); }
+  53.0%     { transform: translateY(0);    }
+  57.0%     { transform: translateY(-2.4%);}
+  61.0%, 100% { transform: translateY(0);  }
+}
+.home_logo .markbox > img, .home_logo .markbox > .wordmark {
+  transform-origin: 50% 100%;
+  animation: hero_hop 6s cubic-bezier(.34,.06,.28,1) -1.6s infinite both;
+  will-change: transform;
+}
+
+/* --- accordion / footer additions -------------------------------------- */
+.accordion .accordion-body ul.plain li { display: block; width: 100%; }
+.accordion .accordion-body ul.plain li:after { display: none; }
+.footer .content .addr { color: var(--on-footer); font-size: 16px; font-family: var(--f-body);
+  font-weight: 600; line-height: 1.6; letter-spacing: .04em; margin-bottom: 30px; }
+.footer .content .addr a { color: var(--on-footer); text-decoration: underline; }
+.backlink { display: inline-flex; align-items: center; height: 44px; color: var(--on-footer);
+  font-size: 14px; font-family: var(--f-body); font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; text-decoration: underline; }
+
+.skip-link:focus { position: static !important; left: auto !important; display: block;
+  background: var(--accent); color: var(--on-accent); font-family: var(--f-body);
+  font-weight: 700; padding: 12px 18px; text-align: center; text-decoration: none; }
+
+/* --- keyboard focus (the reference theme ships none) ---------------------------------- */
+a:focus-visible, button:focus-visible { outline: 3px solid var(--script);
+  outline-offset: 3px; }
+.footer a:focus-visible { outline-color: var(--on-footer); }
+.header a:focus-visible { outline-color: var(--on-header); }
+.mainnav_wrapper a:focus-visible { outline-color: var(--on-accent); }
+
+/* --- reduced motion ----------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .logo .logo_caption, .logo > a, h2 .ch, .zigzag .zz1, .zigzag .zz2, .zigzag .zz3,
+  .strike_out:before { transition-duration: .01ms !important; }
+  .footer_man.wow.animated, .strike_out .strike_replace { animation: none !important; }
+  .strike_out .strike_replace { width: auto !important; opacity: 1; }
+  .markbox > img, .markbox > .wordmark { animation: none !important; }
+  .bridge .illo * { animation: none !important; }
+  .recent_work:hover figure .illo { transform: none; }
+}
+
+/* --- responsive: the desktop spec is 1440x900; below that the the reference theme
+       breakpoints collapse the fixed 1310 grid ------------------------- */
+@media (max-width: 1200px) {
+  .container { max-width: 100%; }
+  h2 { font-size: 68px; padding-bottom: 30px; }
+  h3, .aboutinfo_box h1 { font-size: 48px; }
+  .homeslider_wrapper .home_logo figure { width: 88vw; }
+  .aboutinfo_box p { font-size: 28px; }
+  .our_services_wrapper .content { padding-right: 40px; }
+}
+@media (max-width: 900px) {
+  .col-md-6, .col-lg-4, .col-lg-10 { width: 100%; }
+  .col-lg-3 { width: 50%; }
+  .mainnav_wrapper { width: 100%; padding: 140px 24px 48px; }
+  .menuopen .mobile_menubtn { right: 0; }
+  .aboutinfo_box .container { padding-top: 90px; }
+  .aboutinfo_box { padding-bottom: 90px; }
+  .px-sm-5 { padding-left: 0 !important; padding-right: 0 !important; }
+  .our_services_wrapper { padding-top: 80px; padding-bottom: 70px; }
+  .our_services_wrapper .content { padding-right: 0; }
+  .our_services_wrapper .accordion { margin-left: 0; margin-top: 40px; }
+  .recent_work_wrapper { padding-bottom: 70px; }
+  .homevideo_box { margin-top: -60px; margin-bottom: 70px; }
+  .footer .content h3 { font-size: 64px; }
+  .footer_links ul li:not(:last-child) { margin-right: 26px; }
+  .design, .recent_man, .footer_man { display: none; }
+  h2 { font-size: 46px; }
+  h3, .aboutinfo_box h1 { font-size: 36px; }
+  .aboutinfo_box p { font-size: 22px; }
+  .btn { min-width: 0; width: 100%; max-width: 320px; font-size: 17px; }
+}
+/* Four service tiles go 2-up at tablet width and 1-up on a phone: at 375 two
+   long service names in adjacent 180px columns ran into each other. This has
+   to sit after the block above, which re-widens .col-lg-3 back to 50%. */
+@media (max-width: 640px) { .col-lg-3 { width: 100%; } }
+
+/* ==========================================================================
+   12b. the lower half
+   Three more drawings per page, below the green section, so the bottom of the
+   page carries as much as the top does. Each figure is a 3:2 box on one of the
+   three grounds the contrast table already measures; nothing here introduces a
+   colour pair that is not gated.
+   ========================================================================== */
+.proof_wrapper { background: var(--paper); padding: 104px 0 112px; }
+.proof_wrapper .section_title { margin-bottom: 66px; }
+.proof_row { row-gap: 40px; }
+.proof_row figure { position: relative; margin: 0 0 18px; aspect-ratio: 3 / 2;
+  overflow: hidden; background: var(--wash); }
+.proof_row figure.alt { background: var(--wash-2); }
+.proof_row figure.alt2 { background: var(--field); }
+.proof_row figure .illo { --illo-bg: var(--wash); }
+.proof_row figure.alt .illo { --illo-bg: var(--wash-2); }
+.proof_row figure.alt2 .illo { --illo-bg: var(--field); }
+.proof_cap { display: block; color: var(--brand-ink); font-size: 26px;
+  font-family: var(--f-display); font-weight: 700; line-height: 1.06;
+  text-transform: uppercase; letter-spacing: .01em; }
+.proof_cap:before { display: block; width: 46px; height: 6px; margin-bottom: 14px;
+  background: var(--accent-ink); content: ""; }
+@media (max-width: 900px) {
+  .proof_wrapper { padding: 76px 0 80px; }
+  .proof_wrapper .section_title { margin-bottom: 48px; }
+  .proof_cap { font-size: 24px; }
+}
+@media (max-width: 640px) {
+  .proof_wrapper { padding: 62px 0 66px; }
+  .proof_row { row-gap: 32px; }
+  .proof_cap { font-size: 22px; }
+}
+
+
+/* ==========================================================================
+   13. the green section
+   Deep-green ground, Inter/Poppins, its own restrained rhythm. Every value
+   below is the client's Bridge palette verbatim. It is declared last so it
+   survives the responsive blocks above without needing a copy in each of
+   them, and it redeclares the illustration custom properties inside itself,
+   which is the whole reason the two drawings in here come out in this
+   palette without a second drawing system.
+   ========================================================================== */
+.bridge {
+  --bridge-brand: #173c2c; --bridge-strong: #0d2d20; --bridge-accent: #4f6f57;
+  --bridge-soft: #e5eee4;  --bridge-surface: #fffefa; --bridge-signal: #b45f2a;
+  --bridge-signal-soft: #f9e8da; --bridge-border: #d4d9cd; --bridge-radius: 18px;
+  /* the drawings inside this section, repainted by variable only */
+  --illo-bg: transparent; --wash: #1f4a37; --wash-2: #1f4a37;
+  --brand-ink: #e5eee4; --accent-ink: #dd9a63; --brand-dp: #0d2d20;
+  --accent: #4f6f57; --hero: #b45f2a; --paper: #fffefa;
+  position: relative; padding: 124px 0; margin-bottom: 40px;
+  background-image: linear-gradient(var(--bridge-brand) 0%, var(--bridge-strong) 100%);
+  font-family: "Inter", var(--f-body);
+}
+.bridge .row { align-items: center; row-gap: 56px; }
+.bridge_eyebrow { color: var(--bridge-signal-soft); font-family: "Inter", var(--f-body);
+  font-size: 14px; font-weight: 700; line-height: 1.2; letter-spacing: .24em;
+  text-transform: uppercase; margin-bottom: 26px; }
+.bridge h2 { color: var(--bridge-surface); font-family: "Poppins", var(--f-display);
+  font-size: clamp(31px, 3.8vw, 52px); font-weight: 600; line-height: 1.08;
+  letter-spacing: -.4px; text-transform: none; padding-bottom: 28px; }
+.bridge_body { color: var(--bridge-soft); font-family: "Inter", var(--f-body);
+  font-size: clamp(17px, 1.5vw, 20px); font-weight: 400; line-height: 1.62;
+  max-width: 34em; margin-bottom: 38px; }
+.bridge_points { margin: 0; padding: 0; list-style: none;
+  border-top: 1px solid var(--bridge-accent); }
+.bridge_points li { display: flex; align-items: center; gap: 16px; padding: 17px 0;
+  border-bottom: 1px solid var(--bridge-accent); color: var(--bridge-soft);
+  font-family: "Inter", var(--f-body); font-size: 15px; font-weight: 600;
+  line-height: 1.4; letter-spacing: .1em; text-transform: uppercase; }
+.bridge_points li::before { content: ""; flex: 0 0 auto; width: 9px; height: 9px;
+  border-radius: 50%; background: var(--bridge-signal); }
+.bridge_art { position: relative; display: flex; align-items: center;
+  justify-content: center; min-height: 400px; }
+.bridge_art figure { margin: 0; }
+.bridge_art .seal_fig { width: min(340px, 72%); transform: translate(-8%, -6%); }
+.bridge_art .motif_fig { position: absolute; right: 0; bottom: 4%; width: 208px;
+  box-sizing: border-box; padding: 18px; background: var(--bridge-strong);
+  border: 1px solid var(--bridge-accent); border-radius: var(--bridge-radius);
+  box-shadow: 0 18px 50px #173c2c1c; }
+.bridge .illo { width: 100%; height: auto; }
+.bridge .seal_mono { fill: var(--bridge-surface); font-family: "Poppins", var(--f-display);
+  font-size: 92px; font-weight: 600; letter-spacing: .02em; }
+@media (max-width: 900px) {
+  .bridge { padding: 116px 0 84px; }
+  .bridge_eyebrow { margin-bottom: 30px; }
+  .bridge_art { min-height: 320px; }
+  .bridge_art .motif_fig { width: 168px; right: 4%; }
+}
+@media (max-width: 640px) {
+  /* The heading sat 66px off the top of the section with margin-top:0, which
+     on a phone reads as the wording being pushed against the colour change.
+     Doubled, and the eyebrow-to-heading gap opened with it: at 375 the eyebrow
+     takes three lines, so the two need daylight between them to read as two
+     things rather than one block. */
+  .bridge { padding: 132px 0 74px; }
+  .bridge_eyebrow { font-size: 13px; line-height: 1.5; margin-bottom: 34px; }
+  .bridge h2 { line-height: 1.16; padding-bottom: 30px; }
+  .bridge_body { margin-bottom: 32px; }
+  .bridge_art { min-height: 260px; }
+  .bridge_art .seal_fig { width: 64%; }
+  .bridge_art .motif_fig { width: 132px; right: 2%; padding: 12px; }
+  .bridge .seal_mono { font-size: 96px; }
+}
+
+/* ==========================================================================
+   12. illustrations  (drawn in build/illustrations.py)
+   ========================================================================== */
+.illo { display: block; width: 100%; height: 100%; }
+.illo .field { fill: var(--illo-bg, transparent); }
+.illo .wash  { fill: var(--wash-2); }
+.illo .wash2 { fill: var(--wash); }
+.illo .line  { fill: none; stroke: var(--brand-ink); stroke-width: 7;
+               stroke-linecap: round; stroke-linejoin: round; }
+.illo .thin  { fill: none; stroke: var(--brand-ink); stroke-width: 4;
+               stroke-linecap: round; stroke-linejoin: round; }
+.illo .aline { fill: none; stroke: var(--accent-ink); stroke-width: 7;
+               stroke-linecap: round; stroke-linejoin: round; }
+.illo .athin { fill: none; stroke: var(--accent-ink); stroke-width: 4;
+               stroke-linecap: round; stroke-linejoin: round; }
+.illo .pline { fill: none; stroke: var(--paper); stroke-width: 4;
+               stroke-linecap: round; stroke-linejoin: round; }
+.illo .solid { fill: var(--brand-ink); }
+.illo .deep  { fill: var(--brand-dp); }
+.illo .acc   { fill: var(--accent); }
+.illo .accd  { fill: var(--accent-ink); }
+.illo .hot   { fill: var(--hero); }
+.illo .pap   { fill: var(--paper); }
+.illo .glass { fill: var(--paper); opacity: .58; }
+.illo .soft  { opacity: .5; }
+
+/* --- the motion vocabulary: sixteen loops, 4-14s, shared across all thirty */
+@keyframes il-spin   { to { transform: rotate(360deg); } }
+@keyframes il-spinr  { to { transform: rotate(-360deg); } }
+@keyframes il-rise   { 0%   { transform: translateY(16px) scaleX(.8); opacity: 0; }
+                       22%  { opacity: .85; }
+                       100% { transform: translateY(-96px) scaleX(1.25); opacity: 0; } }
+@keyframes il-sway   { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+@keyframes il-sweep  { 0%, 100% { transform: rotate(-22deg); } 50% { transform: rotate(22deg); } }
+@keyframes il-bob    { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+@keyframes il-pulse  { 0%, 100% { opacity: .24; } 50% { opacity: .7; } }
+@keyframes il-flick  { 0%, 100% { transform: scale(1.04, .93); } 50% { transform: scale(.96, 1.09); } }
+@keyframes il-dash   { to { stroke-dashoffset: -64; } }
+@keyframes il-drop   { 0%   { transform: translateY(-10px); opacity: 0; }
+                       18%  { opacity: 1; }
+                       100% { transform: translateY(76px); opacity: 0; } }
+@keyframes il-slide  { 0%       { transform: translateX(-34px); opacity: 0; }
+                       24%, 70% { transform: translateX(0); opacity: 1; }
+                       100%     { transform: translateX(28px); opacity: 0; } }
+@keyframes il-press  { 0%, 100% { transform: translateY(0); } 45%, 60% { transform: translateY(24px); } }
+@keyframes il-lift   { 0%, 100% { transform: translateY(14px); } 45%, 62% { transform: translateY(-12px); } }
+@keyframes il-drift  { 0%   { transform: translateX(-26px); opacity: 0; }
+                       28%  { opacity: .85; }
+                       100% { transform: translateX(52px); opacity: 0; } }
+@keyframes il-glint  { 0%, 68%, 100% { opacity: 0; transform: scale(.6); }
+                       80% { opacity: 1; transform: scale(1); } }
+@keyframes il-nudge  { 0%, 100% { transform: translateX(-7px); } 50% { transform: translateX(7px); } }
+
+.illo .spin  { animation: il-spin  14s linear infinite; }
+.illo .spinf { animation: il-spin   6s linear infinite; }
+.illo .spinr { animation: il-spinr 11s linear infinite; }
+.illo .rise  { animation: il-rise   7s ease-out infinite; }
+.illo .sway  { animation: il-sway   6s ease-in-out infinite; }
+.illo .sweep { animation: il-sweep  8s ease-in-out infinite; }
+.illo .bob   { animation: il-bob    5s ease-in-out infinite; }
+.illo .pulse { animation: il-pulse  5s ease-in-out infinite; }
+.illo .flick { animation: il-flick  4s ease-in-out infinite; }
+.illo .dash  { stroke-dasharray: 18 14; animation: il-dash 5s linear infinite; }
+.illo .drop  { animation: il-drop   4s linear infinite; }
+.illo .slide { animation: il-slide  8s ease-in-out infinite; }
+.illo .press { animation: il-press  6s ease-in-out infinite; }
+.illo .lift  { animation: il-lift   9s ease-in-out infinite; }
+.illo .drift { animation: il-drift  9s ease-in-out infinite; }
+.illo .glint { animation: il-glint  6s ease-in-out infinite; }
+.illo .nudge { animation: il-nudge 10s ease-in-out infinite; }
+.illo .d1 { animation-delay: -1.3s; } .illo .d2 { animation-delay: -2.6s; }
+.illo .d3 { animation-delay: -3.9s; } .illo .d4 { animation-delay: -5.2s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .illo * { animation: none !important; }
+  .illo .rise, .illo .drop, .illo .drift, .illo .slide, .illo .glint { opacity: .55; }
+}

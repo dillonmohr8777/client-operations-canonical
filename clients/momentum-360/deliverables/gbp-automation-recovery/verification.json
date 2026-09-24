@@ -1,0 +1,116 @@
+{
+  "verifiedAtUtc": "2026-09-05T01:43:03Z",
+  "runtime": "Official PHP 8.3.33 NTS x64 CLI, SHA256-verified distribution; task-local runtime only",
+  "syntax": "pass",
+  "offline": {
+    "passed": true,
+    "checks": 36,
+    "tests": [
+      "route requires POST and permission callback",
+      "disabled by default",
+      "different site rejected",
+      "explicit site required",
+      "anonymous denied before provider call",
+      "non-administrator denied",
+      "invalid nonce denied",
+      "invalid JSON shape 7",
+      "invalid JSON shape 8",
+      "invalid JSON shape 9",
+      "empty sanitized businessName rejected",
+      "empty sanitized businessType rejected",
+      "empty sanitized facts rejected",
+      "empty sanitized postType rejected",
+      "field limit enforced",
+      "body limit enforced",
+      "unknown type denied",
+      "missing protected key fails closed",
+      "successful draft only",
+      "response not cached",
+      "fixed provider and current model",
+      "redirects disabled and bounded response",
+      "key absent from client response",
+      "second batch rate limited",
+      "expired lock reclaimed",
+      "database error fails closed",
+      "initial insertion database error fails closed",
+      "different initial expiry cannot overwrite existing claim in database double",
+      "all four existing draft types supported",
+      "network error sanitized",
+      "provider error body withheld",
+      "incomplete provider response 31",
+      "incomplete provider response 32",
+      "incomplete provider response 33",
+      "incomplete provider response 34",
+      "HTML tags removed from text"
+    ],
+    "scope": "offline PHP contract tests with WordPress and provider doubles; not live WordPress integration",
+    "networkCalls": 0,
+    "realCredentialsUsed": false
+  },
+  "files": [
+    {
+      "Path": "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations\\clients\\momentum-360\\deliverables\\gbp-automation-recovery\\m360-gbp-pilot.php",
+      "Hash": "2B1A512F95F12FE16BD3D058ACFE8109AA52CF997DF0F43C844BF9CEDDDF8FA8"
+    },
+    {
+      "Path": "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations\\clients\\momentum-360\\deliverables\\gbp-automation-recovery\\test-pilot.php",
+      "Hash": "93EF5646D3345DF13334A73423B0D1B2E7C34860F609A25CE3F50D35502D5F4A"
+    }
+  ],
+  "independentReview": {
+    "reviewer": "gbp_pilot_review",
+    "verdict": "pass for local disabled draft",
+    "initialFinding": "add_option was not a reliably atomic insert-only lock",
+    "resolution": "prepared INSERT IGNORE with strict affected-row check and conditional expiry UPDATE; 36 tests independently rerun",
+    "limits": [
+      "No actual WordPress auth integration",
+      "No real database concurrency test",
+      "No hosting compatibility verification",
+      "No live provider test"
+    ]
+  },
+  "production": {
+    "installed": false,
+    "frontEndAdapted": false,
+    "exposedKeyRotated": false,
+    "googleConnected": false,
+    "posted": false,
+    "seanMessaged": false
+  },
+  "googleCloud": {
+    "account": "dillonmohr8777@gmail.com",
+    "projectName": "Momentum 360",
+    "projectId": "momentum-360-489301",
+    "projectNumber": "150963436905",
+    "enabledApiCount": 22,
+    "gbpApisPresentInEnabledList": false,
+    "gbpApiApproval": "unverified",
+    "oauthClientName": "Momentum 360 GBP Connect",
+    "oauthClientType": "Web application",
+    "createdDate": "2026-03-04",
+    "authorizedOrigin": "https://momentumvirtualtours.com",
+    "registeredCallback": "https://momentumvirtualtours.com/wp-json/m360/v1/oauth/callback",
+    "callbackDeployment": "unverified; in-app browser navigation returned ERR_BLOCKED_BY_CLIENT before useful route evidence",
+    "publishingStatus": "Testing",
+    "userType": "External",
+    "testUsers": 0,
+    "configuredScopes": 0,
+    "oauthWarning": "OAuth configuration incomplete; branding must be finished",
+    "unusedClientWarning": "Client unused for 5 months; console warns subject to deletion if not used in next 30 days",
+    "appName": "Momentum 360",
+    "authorizedDomain": "momentumvirtualtours.com",
+    "blankBrandingFields": [
+      "Application home page",
+      "Application privacy policy link",
+      "Application terms of service link"
+    ],
+    "mutationsPerformed": false,
+    "secretsRead": false
+  },
+  "login": {
+    "route": "https://www.momentumvirtualtours.com/login-bypass-secured928592/",
+    "iab": "normal empty login; not authenticated",
+    "chrome": "latest read shows normal empty login; earlier challenge cleared without bypass",
+    "secureItemMapping": "no exact Momentum WordPress bw://item locator found in bounded Access Broker recovery"
+  }
+}

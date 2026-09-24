@@ -3,8 +3,8 @@
 > Deterministic projection of `queue/work-items.json`. The Marketing Chief is the only canonical writer.
 > Local reversible work may proceed automatically. External delivery, publishing, deployment, spend, account changes, destructive changes, and human authentication gates require approval or handoff.
 
-Last reconciled: `2026-08-20T12:34:45.9380270+00:00`
-Queue revision: `415`
+Last reconciled: `2026-09-01T22:32:01.0801175+00:00`
+Queue revision: `434`
 Mode: `manual-pilot`
 
 <!-- marketing-chief:predictions:start -->
@@ -133,6 +133,13 @@ Mode: `manual-pilot`
 | `wi-20260810-0002` | `va-claims-edge` | Finish Phase 3 final-product acceptance details | Done | P1 | Deploy the verified acceptance corrections to the already mapped VA Claims Edge Netlify review site and reconcile the evidence artifacts. | No evidenced deadline |
 | `wi-20260811-0001` | `fagan-painting` | Verify routing and ownership of August 10 Fagan website lead | Done | P0 | Perform a read-only check of the approved mailbox, CRM, or Zapier record for routing, duplicate status, owner, and current disposition without contacting the prospect. | No evidenced deadline |
 | `wi-20260820-0001` | `va-claims-edge` | Prepare current VA Claims portal meeting-readiness packet | Done | P1 | Build a local redacted portal meeting-readiness packet from current canonical VA Claims artifacts, separating verified completed work, open issues, decisions, owners, and demo checks. | No evidenced deadline |
+| `wi-20260901-0001` | `momentum-360` | Deliver SNAP Fitness franchise email list and shared HubSpot import sheet | Done | P1 | No further action unless an approved HubSpot import or outreach step is requested. | No evidenced deadline |
+| `wi-20260901-0002` | `momentum-360` | Complete AI Tech News site review workflow and reusable SEO AEO audit prompt | Done | P1 | No further action unless the operator records an edit request or outreach is separately approved. | No evidenced deadline |
+| `wi-20260901-0003` | `momentum-360` | Deliver music revisions for both Momentum 360 Future City films | Done | P1 | No further action is required; the music revisions and separately tracked brand-match color variants are verified and delivered. | No evidenced deadline |
+| `wi-20260901-0004` | `momentum-360` | Resolve the approved color palette for the Future City video variants | Done | P1 | No further action. Brand-match variants are verified and delivered. | No evidenced deadline |
+| `wi-20260901-0005` | `puttery-nyc` | Complete Puttery NYC production attribution integration after launch gates clear | Blocked | P1 | Obtain the signed agreement; rotate and store the reservation-vendor credential through the approved vault route before any use; then verify the exact reservation business identifiers and webhook authorization, analytics and tag-manager access, advertising and CMS access, a test booking path, and the approved privacy, consent, and booking-value decisions. | No evidenced deadline |
+| `wi-20260901-0006` | `hope-wellness-center` | Deliver the promised Hope Wellness gentle-pause review video | Cancelled | P1 | No further action is required; Dillon confirmed the needed Hope Wellness video is already available in Gmail. | No evidenced deadline |
+| `wi-20260901-0007` | `momentum-360` | Garage-door missed-call rescue POC and Jason update | Done | P1 | Verify the posted Jason Fallon DM readback and preserve the live activation gates. | No evidenced deadline |
 
 ## Waiting on Dillon
 
@@ -482,6 +489,21 @@ Mode: `manual-pilot`
 
 - The exact recurring invoice account and advertising account are separately identified through safe account references.,The authorized requester, effective date, and payment-method scope are confirmed.,Bar Crawl remains excluded from paid-media planning, optimization, provider packets, and launch work unless separately added to the canonical roster.,No payment method, campaign, budget, invoice, or account setting is changed without exact approval.,Any approved mutation is independently read back from the exact account.
 
+### Complete Puttery NYC production attribution integration after launch gates clear
+
+**Decision:** Authorize and execute the Puttery NYC production attribution integration after every listed launch gate is verified.
+
+**Next action:** Obtain the signed agreement; rotate and store the reservation-vendor credential through the approved vault route before any use; then verify the exact reservation business identifiers and webhook authorization, analytics and tag-manager access, advertising and CMS access, a test booking path, and the approved privacy, consent, and booking-value decisions.
+
+**Definition of done:**
+
+- Signed agreement is verified
+- Exact production reservation-platform identifiers and webhook authorization are verified
+- Exact analytics, tag-manager, advertising, and CMS accounts are mapped
+- A real test-booking path and evidence are available
+- Privacy, consent, and booking-value decisions are approved
+- Production integration is deployed, tested, and read back against the exact Puttery NYC accounts
+
 ## Blocked or at risk
 
 - **Reconcile two Fagan Painting website leads:** Obtain lead-level disposition for the two exact canonical records from the approved client mailbox, CRM, or Zapier record; do not infer individual outcomes from aggregate batch feedback.
@@ -502,6 +524,7 @@ Mode: `manual-pilot`
   Current evidence: The active Gmail filter now labels future KJB appointment-request notifications as KJB Daily Leads. The requested automatic forwarding route to Kim was retried and Google returned a secure verification error again, so daily email delivery is not yet confirmed. The existing readable digest format remains the interim path.
 - **Map Tags 2 Go Google Ads access and produce redacted audit baseline:** Map Tags 2 Go Google Ads through Access Broker or Bitwarden, confirm whether an agency admin invite is already active, then capture a redacted account-health baseline under the client evidence folder.
   Current evidence: Local Tags 2 Go Google Ads access-mapping research is complete and blocked on human vault or admin-invite mapping. No Access Broker or Bitwarden locator exists. A redacted account-health baseline is stored under the client evidence folder. No live login, credential import, spend, or account change was attempted.
+- **Complete Puttery NYC production attribution integration after launch gates clear:** Obtain the signed agreement; rotate and store the reservation-vendor credential through the approved vault route before any use; then verify the exact reservation business identifiers and webhook authorization, analytics and tag-manager access, advertising and CMS access, a test booking path, and the approved privacy, consent, and booking-value decisions.
 
 ## Intake quarantine
 
@@ -528,7 +551,7 @@ Mode: `manual-pilot`
 
 - **accessBroker:** `valid`
 - **agentOsSlackBridge:** `enabled-prepare-only-canonical-intake-sync`
-- **asOf:** `2026-07-16T15:58:37.2107567+00:00`
+- **asOf:** `2026-07-16T11:58:37.2107567-04:00`
 - **browserPolicy:** `persistent-remote-chrome-only-never-edge`
 - **canonicalIntake:** `live-exact-route-deduplicated-redacted-no-task-no-notification`
 - **canonicalRepository:** `dirty-user-work-preserved-no-outer-remote`
@@ -545,13 +568,13 @@ Mode: `manual-pilot`
 
 ## Live health probe
 
-- **As of:** `2026-08-20T12:35:08.4510189+00:00`
+- **As of:** `2026-09-21T12:15:05.2681153+00:00`
 - **Overall:** `degraded`
-- **Queue:** revision `415`, `107` work items, normal `2/3`, emergency `0/1` active
+- **Queue:** revision `434`, `114` work items, normal `2/3`, emergency `0/1` active
 - **Client registry:** `valid`
 - **Access Broker:** `valid`
-- **Access coverage:** `8/21` canonical clients registered, `2/65` systems verified, `6` exact Bitwarden item locators
-- **Gmail client history:** `24` records audited, `23` active promoted, `0` quarantined; `2555` distinct messages across `897` threads
+- **Access coverage:** `15/28` canonical clients registered, `23/100` systems verified, `6` exact Bitwarden item locators
+- **Gmail client history:** `28` records audited, `26` active promoted, `0` quarantined; `2555` distinct messages across `897` threads
 - **Slack client history:** `complete`; conversation inventory established `True`; scope upgrade required `False`; requested upload scope `files:write`
 - **Credential bridge:** `unknown`, secure bootstrap present `False`, review `unverified-integrity-mismatch`
 - **Scheduled mechanisms:**
@@ -561,11 +584,11 @@ Mode: `manual-pilot`
   - `DillonAgentOS-DailyBrief`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `DillonAgentOS-WeeklyCloseout`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
   - `Codex-Chrome-Watchdog`: enabled `False`, state `Disabled`, prepare-only `False`, last result `0`
-  - `MarketingChief-DailyCalibration`: enabled `True`, state `Ready`, prepare-only `False`, last result `0`
-  - `MarketingChief-SitesBridge`: enabled `True`, state `Ready`, prepare-only `False`, last result `1`
+  - `MarketingChief-DailyCalibration`: enabled `True`, state `Running`, prepare-only `False`, last result `267009`
+  - `MarketingChief-SitesBridge`: enabled `False`, state `Disabled`, prepare-only `False`, last result `1`
 - **Human gates:** `active_client_exact_bw_item_mapping`
 - **Deferred actions:** `secondary_exposed_password_rotation`
-- **Warnings:** MarketingChief-SitesBridge last result is 1; Bitwarden bridge integrity does not match the independently reviewed build; execution was refused; Gmail base audit plus exact-route supplements do not cover the canonical registry exactly once
+- **Warnings:** MarketingChief-SitesBridge is missing or disabled; Bitwarden bridge integrity does not match the independently reviewed build; execution was refused; Gmail base audit plus exact-route supplements do not cover the canonical registry exactly once
 
 ## Standing operating contract
 

@@ -1,0 +1,83 @@
+{
+    "schemaVersion":  1,
+    "reportId":  "M360-DAILY-2026-09-13",
+    "state":  "LOCAL_SHADOW_HEALTH_PASS",
+    "checkedAt":  "2026-09-13T17:08:18.3375967+00:00",
+    "runDateEt":  "2026-09-13",
+    "liveDeliveryRequested":  false,
+    "senderReachability":  "blocked-by-default-local-shadow",
+    "historicalRecordedDeliveryCount":  19,
+    "latestHistoricalReportId":  "M360-DAILY-2026-09-01",
+    "scheduledTask":  {
+                          "name":  "Momentum360-Daily-Agent-Health",
+                          "state":  "Disabled",
+                          "actionContainsLiveDeliveryFlag":  false,
+                          "hiddenManifestCommand":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File \"C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations\\clients\\momentum-360\\automation\\daily-agent-health\\Run-MomentumDailyAgentHealth.ps1\"",
+                          "hiddenManifestActionContainsLiveDeliveryFlag":  false
+                      },
+    "checks":  [
+                   {
+                       "name":  "prompt",
+                       "ok":  true,
+                       "detail":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations\\clients\\momentum-360\\automation\\daily-agent-health\\PROMPT.md"
+                   },
+                   {
+                       "name":  "preflight-script",
+                       "ok":  true,
+                       "detail":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations\\clients\\momentum-360\\automation\\daily-agent-health\\Test-MomentumDailyAgentHealthPreflight.ps1"
+                   },
+                   {
+                       "name":  "cache-guard-script",
+                       "ok":  true,
+                       "detail":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations\\clients\\momentum-360\\automation\\daily-agent-health\\Repair-MomentumCodexModelCache.ps1"
+                   },
+                   {
+                       "name":  "expected-configuration",
+                       "ok":  true,
+                       "detail":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations\\clients\\momentum-360\\automation\\daily-agent-health\\expected-configuration.json"
+                   },
+                   {
+                       "name":  "delivery-ledger",
+                       "ok":  true,
+                       "detail":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations\\clients\\momentum-360\\automation\\daily-agent-health\\state\\delivery-ledger.json"
+                   },
+                   {
+                       "name":  "expected-account-boundaries",
+                       "ok":  true,
+                       "detail":  "HubSpot portal 50612503, CallRail account 671942387, excluded CallRail account 906396198."
+                   },
+                   {
+                       "name":  "prompt-contract-markers",
+                       "ok":  true,
+                       "detail":  "Report id, preflight placeholder, and delivery receipt markers are present."
+                   },
+                   {
+                       "name":  "historical-delivery-ledger",
+                       "ok":  true,
+                       "detail":  "19 historical recorded delivery row(s); no live Slack readback performed by this local shadow check."
+                   },
+                   {
+                       "name":  "live-delivery-gate",
+                       "ok":  true,
+                       "detail":  "Default execution exits through local shadow health unless -LiveDelivery is explicitly supplied."
+                   },
+                   {
+                       "name":  "scheduled-task-default-is-shadow",
+                       "ok":  true,
+                       "detail":  "Task state Disabled; scheduled action does not include -LiveDelivery."
+                   },
+                   {
+                       "name":  "hidden-wrapper-manifest-default-is-shadow",
+                       "ok":  true,
+                       "detail":  "hidden-scheduled-tasks.tsv has exactly one Momentum360-Daily-Agent-Health row, points to this runner, and omits -LiveDelivery."
+                   },
+                   {
+                       "name":  "sender-blocked-by-default",
+                       "ok":  true,
+                       "detail":  "This branch returns before delivery ledger sync, cache repair, live preflight, Codex exec, fallback sender, or Slack delivery."
+                   }
+               ],
+    "blockers":  [
+
+                 ]
+}

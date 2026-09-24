@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bar Crawl USA August 2026 eight landing page build plan.">
+  <title>Bar Crawl USA | Eight landing pages, one fall runway</title>
+  <style>
+    @font-face{font-family:SpaceGrotesk;src:url("SpaceGrotesk.woff2") format("woff2");font-display:swap}
+    :root{--ink:#061225;--ink-2:#0a1c36;--blue:#35a8ff;--blue-deep:#173f73;--gold:#f0bd64;--gold-soft:#ffe0a6;--paper:#f7f4ee;--white:#f8fbff;--mist:#b9c7da;--line:#284666;--green:#8fe0b5;--red:#ff9f93}
+    *{box-sizing:border-box}
+    html,body{margin:0;background:#020814;color:var(--white);font-family:Arial,Helvetica,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    body{font-size:9.6pt;line-height:1.42}
+    h1,h2,h3,p,ul{margin:0}
+    h1,h2,h3,.big-number,.route-title,.page-name,.month{font-family:SpaceGrotesk,Arial,Helvetica,sans-serif}
+    h1{font-size:34pt;line-height:.96;letter-spacing:-.04em;max-width:6.5in}
+    h2{font-size:20pt;line-height:1.02;letter-spacing:-.03em}
+    h3{font-size:11.3pt;line-height:1.15;letter-spacing:-.012em}
+    p{max-width:72ch}
+    a{color:inherit;text-decoration:none}
+    .report{width:8.5in;margin:0 auto}
+    .page{position:relative;width:8.5in;height:11in;padding:.45in .5in .48in;overflow:hidden;page-break-after:always;break-after:page;background:var(--ink)}
+    .page:last-child{page-break-after:auto;break-after:auto}
+    .page:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 94% 8%,rgba(53,168,255,.17),transparent 2.8in),linear-gradient(150deg,transparent 0 64%,rgba(23,63,115,.38) 100%);pointer-events:none}
+    .page:after{content:"";position:absolute;width:2.3in;height:2.3in;border:1px solid rgba(240,189,100,.22);border-radius:50%;right:-1.2in;bottom:-1.15in;pointer-events:none}
+    .page>*{position:relative;z-index:1}
+    .light{background:var(--paper);color:#101d30}
+    .light:before{background:radial-gradient(circle at 98% 0,rgba(53,168,255,.14),transparent 2.8in),linear-gradient(150deg,transparent 0 70%,rgba(240,189,100,.12) 100%)}
+    .light:after{border-color:rgba(23,63,115,.18)}
+    .masthead{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:13px;border-bottom:1px solid var(--line)}
+    .light .masthead{border-color:#c8d1dc}
+    .agency{display:flex;align-items:center;gap:10px}
+    .agency-mark{width:30px;height:30px;border-radius:9px;background:#1e73be;padding:5px}
+    .agency strong{display:block;font:700 10pt/1 SpaceGrotesk,Arial,sans-serif}
+    .agency span,.meta span{display:block;margin-top:4px;color:var(--mist);font-size:7pt;letter-spacing:.07em;text-transform:uppercase}
+    .light .agency span,.light .meta span{color:#587087}
+    .meta{text-align:right}
+    .meta strong{display:block;color:var(--gold);font:700 9pt/1 SpaceGrotesk,Arial,sans-serif}
+    .light .meta strong{color:#82510f}
+    .brand-row{display:flex;align-items:center;gap:16px;margin-top:.38in}
+    .brand-lockup{width:2.6in;height:.66in;display:flex;align-items:center;background:#02050b;padding:10px 13px;border-radius:13px}
+    .brand-lockup img{max-width:100%;max-height:100%;object-fit:contain}
+    .decision-chip{padding:8px 12px;border:1px solid rgba(240,189,100,.55);border-radius:999px;color:var(--gold-soft);font-size:7.4pt;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+    .hero-title{margin-top:.42in}
+    .hero-title .accent{color:var(--blue)}
+    .hero-copy{margin-top:18px;color:#d8e2ef;font-size:12pt;line-height:1.45;max-width:6.6in}
+    .hero-stat{display:grid;grid-template-columns:1.38in 1fr;align-items:stretch;margin-top:.38in;border-top:1px solid rgba(240,189,100,.8);border-bottom:1px solid rgba(240,189,100,.38)}
+    .big-number{font-size:52pt;line-height:.9;letter-spacing:-.06em;color:var(--gold);padding:17px 18px 16px 0}
+    .stat-copy{padding:17px 0 16px 21px;border-left:1px solid rgba(240,189,100,.38)}
+    .stat-copy strong{display:block;font:700 15pt/1.1 SpaceGrotesk,Arial,sans-serif}
+    .stat-copy span{display:block;margin-top:7px;color:var(--mist);font-size:9pt;max-width:4.9in}
+    .decision-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;margin-top:.28in}
+    .decision-row{padding-top:10px;border-top:1px solid var(--line)}
+    .decision-row strong{display:block;color:var(--gold-soft);font:700 8pt/1.2 SpaceGrotesk,Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em}
+    .decision-row span{display:block;margin-top:5px;color:#d4dfed;font-size:8.7pt;line-height:1.35}
+    .folio{position:absolute;left:.5in;right:.5in;bottom:.2in;display:flex;align-items:center;justify-content:space-between;gap:15px;padding-top:8px;border-top:1px solid var(--line);color:#8ea3bd;font-size:6.7pt}
+    .light .folio{border-color:#c8d1dc;color:#52687d}
+    .route{display:flex;align-items:center;gap:7px}
+    .route i{display:block;width:5px;height:5px;border-radius:50%;background:#496481}
+    .route i.on{width:17px;border-radius:999px;background:var(--gold)}
+    .section-head{display:grid;grid-template-columns:1fr 2.2in;gap:22px;align-items:end;margin-top:.32in}
+    .section-head p{font-size:8.8pt;color:var(--mist);line-height:1.4}
+    .light .section-head p{color:#536981}
+    .call-logic{margin-top:.27in;display:grid;grid-template-columns:1.18fr .82fr;gap:24px}
+    .timeline{border-top:1px solid rgba(240,189,100,.7)}
+    .time-row{display:grid;grid-template-columns:.82in 1fr;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
+    .time-row .month{color:var(--gold);font-size:10.6pt}
+    .time-row strong{display:block;font:700 10.2pt/1.2 SpaceGrotesk,Arial,sans-serif}
+    .time-row span{display:block;margin-top:5px;color:#c8d5e5;font-size:8.3pt;line-height:1.35}
+    .page-map{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:rgba(10,28,54,.74)}
+    .page-map .map-head{padding:12px 13px;background:var(--blue-deep);font:700 9.5pt/1.2 SpaceGrotesk,Arial,sans-serif}
+    .map-item{display:grid;grid-template-columns:23px 1fr;gap:9px;padding:8px 12px;border-top:1px solid var(--line)}
+    .map-item b{color:var(--gold);font:700 8.4pt/1 SpaceGrotesk,Arial,sans-serif}
+    .map-item strong{display:block;font:700 8.4pt/1.1 SpaceGrotesk,Arial,sans-serif}
+    .map-item span{display:block;margin-top:3px;color:#9fb3ca;font-size:6.8pt;line-height:1.2;overflow-wrap:anywhere}
+    .backlog{margin-top:13px;padding:11px 13px;border-radius:12px;background:var(--paper);color:#18283e}
+    .backlog strong{font-family:SpaceGrotesk,Arial,sans-serif}
+    .backlog p{margin-top:4px;font-size:7.7pt;line-height:1.35;color:#41576e}
+    .nonduplicate{margin-top:14px;padding:12px 14px;border:1px solid rgba(240,189,100,.6);border-radius:13px;color:#e7edf5;font-size:8.4pt}
+    .blueprint-intro{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-top:.29in;padding-bottom:13px;border-bottom:1px solid #c8d1dc}
+    .blueprint-intro h2{max-width:4.7in}
+    .blueprint-intro p{color:#566c83;font-size:8.2pt;text-align:right;max-width:2.1in}
+    .brief{position:relative;display:grid;grid-template-columns:1.35in 1fr;gap:20px;padding:.28in 0 .25in;border-bottom:1px solid #c8d1dc}
+    .brief:last-of-type{border-bottom:0}
+    .brief-index{position:relative}
+    .brief-index:after{content:"";position:absolute;top:.41in;left:16px;bottom:-.28in;width:1px;background:#b8c5d2}
+    .brief:last-of-type .brief-index:after{display:none}
+    .brief-number{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--ink-2);color:var(--gold);font:700 10pt/1 SpaceGrotesk,Arial,sans-serif}
+    .priority{display:inline-block;margin-top:11px;padding:5px 8px;border-radius:999px;background:#d9e9f7;color:#184a72;font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+    .page-name{font-size:17pt;line-height:1.05;letter-spacing:-.025em;color:#07182d}
+    .url{display:block;margin-top:5px;color:#2c638f;font-size:7.5pt;overflow-wrap:anywhere}
+    .purpose{margin-top:10px;color:#344b62;font-size:8.8pt;line-height:1.42}
+    .brief-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:13px}
+    .brief-col{padding-top:9px;border-top:1px solid #ccd6df}
+    .brief-col h3{font-size:8.5pt;color:#0f2b4c;text-transform:uppercase;letter-spacing:.055em}
+    .brief-col ul{list-style:none;padding:0;margin-top:7px}
+    .brief-col li{position:relative;padding-left:10px;margin:0 0 5px;color:#3f5469;font-size:7.75pt;line-height:1.3}
+    .brief-col li:before{content:"";position:absolute;left:0;top:.52em;width:4px;height:4px;border-radius:50%;background:#2d7db9}
+    .pathway{margin-top:12px;display:flex;align-items:center;gap:7px;color:#3d5770;font-size:7.4pt;font-weight:700}
+    .pathway i{height:1px;flex:1;background:linear-gradient(90deg,#2d7db9,#d9a54c)}
+    .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;margin-top:.28in}
+    .spec-block{padding-top:12px;border-top:2px solid var(--gold)}
+    .spec-block h3{font-size:10.5pt}
+    .spec-block ul{list-style:none;padding:0;margin-top:9px}
+    .spec-block li{padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);color:#d2deeb;font-size:8.2pt;line-height:1.3}
+    .spec-block li:last-child{border-bottom:0}
+    .definition{margin-top:.3in;display:grid;grid-template-columns:1.65in 1fr;gap:20px;align-items:stretch;border:1px solid rgba(240,189,100,.5);border-radius:15px;overflow:hidden}
+    .definition strong{display:flex;align-items:center;padding:18px;background:var(--gold);color:#17263a;font:700 14pt/1.05 SpaceGrotesk,Arial,sans-serif}
+    .definition p{padding:16px 17px;color:#e4ebf4;font-size:8.7pt;line-height:1.42}
+    .qa-strip{display:grid;grid-template-columns:repeat(5,1fr);margin-top:.27in;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .qa{padding:11px 8px;border-right:1px solid var(--line);text-align:center}
+    .qa:last-child{border-right:0}
+    .qa strong{display:block;color:var(--gold);font:700 10pt/1 SpaceGrotesk,Arial,sans-serif}
+    .qa span{display:block;margin-top:5px;color:#b7c5d6;font-size:6.8pt;line-height:1.2}
+    .runway{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:.28in}
+    .week{min-height:1.75in;padding:14px 13px;border-top:3px solid var(--blue);background:rgba(10,28,54,.74)}
+    .week:nth-child(even){border-color:var(--gold)}
+    .week .month{color:var(--gold);font-size:8pt;text-transform:uppercase;letter-spacing:.06em}
+    .week h3{margin-top:9px;font-size:10pt}
+    .week p{margin-top:8px;color:#cbd7e4;font-size:7.6pt;line-height:1.35}
+    .owners{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;margin-top:.28in}
+    .owner-list{border-top:1px solid var(--line)}
+    .owner{display:grid;grid-template-columns:1.2in 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+    .owner strong{font:700 8.7pt/1.2 SpaceGrotesk,Arial,sans-serif;color:var(--gold-soft)}
+    .owner span{color:#d0dbe8;font-size:7.8pt;line-height:1.32}
+    .inputs{padding:15px 16px;border-radius:15px;background:var(--paper);color:#14243a}
+    .inputs h3{font-size:11pt}
+    .inputs ul{list-style:none;padding:0;margin-top:9px}
+    .inputs li{padding:6px 0;border-bottom:1px solid #d3dbe3;font-size:7.7pt;color:#40576d}
+    .inputs li:last-child{border-bottom:0}
+    .close{margin-top:.25in;padding:13px 15px;border:1px solid rgba(240,189,100,.55);border-radius:13px;display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .close strong{font:700 11pt/1.15 SpaceGrotesk,Arial,sans-serif}
+    .close span{color:#c8d4e2;font-size:7.8pt;max-width:4.1in;text-align:right}
+    @page{size:Letter;margin:0}
+    @media print{.page{box-shadow:none}}
+    @media screen and (max-width:900px){.report{width:100%}.page{width:100%;height:auto;min-height:100vh;overflow:hidden;padding:28px 20px 62px;margin-bottom:16px}.masthead{display:grid;grid-template-columns:1fr}.meta{text-align:left}.hero-title h1{font-size:38px}.brand-row,.section-head,.call-logic,.blueprint-intro,.brief,.brief-cols,.spec-grid,.definition,.owners{grid-template-columns:1fr;display:grid}.brand-lockup{width:100%;max-width:2.6in}.decision-chip{width:100%;border-radius:14px;overflow-wrap:anywhere}.hero-copy{font-size:10.5pt}.hero-stat{grid-template-columns:76px minmax(0,1fr)}.big-number{font-size:44pt;padding-right:12px}.stat-copy{min-width:0;padding-left:14px}.stat-copy strong,.stat-copy span{overflow-wrap:anywhere}.decision-grid,.runway{grid-template-columns:1fr}.time-row{grid-template-columns:1fr;gap:6px}.qa-strip{grid-template-columns:1fr 1fr}.qa{border-bottom:1px solid var(--line)}.brief-index:after{display:none}.pathway{flex-wrap:wrap}.folio{position:static;margin-top:24px}.blueprint-intro p,.close span{text-align:left}.close{align-items:flex-start;flex-direction:column}.page:after{display:none}}
+  </style>
+</head>
+<body>
+  <!-- THESIS: Eight canonical pages become one measurable fall runway; refuse a generic report cover and duplicate-page thinking.
+  OWN-WORLD: Deep navy field, electric blue route markers, warm gold decisions, cream blueprint sheets, and circular crawl checkpoints.
+  STORY: Understand the call decision, see the exact eight, inspect every brief, approve the common build standard, then act on owners and inputs.
+  FIRST VIEWPORT: Bar Crawl USA lockup, decisive two-line title, eight-page count, and the August-to-October operating choice.
+  FORM: Reference-pinned editorial route map; seed key pinned-reference-2026-08-10.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md -->
+  <main class="report">
+    <section class="page">
+      <header class="masthead">
+        <div class="agency"><img class="agency-mark" src="momentum-360-m-circle.png" alt="Momentum 360"><div><strong>Momentum 360</strong><span>August 2026 client delivery plan</span></div></div>
+        <div class="meta"><strong>Prepared August 10, 2026</strong><span>Decision ready build brief</span></div>
+      </header>
+      <div class="brand-row"><div class="brand-lockup"><img src="bar-crawl-usa.webp" alt="Bar Crawl USA"></div><div class="decision-chip">Call decisions translated into production</div></div>
+      <div class="hero-title"><h1>Eight landing pages.<br><span class="accent">One fall runway.</span></h1></div>
+      <p class="hero-copy">A practical August build plan based on the full August 10 call record, the live event inventory, the existing evergreen queue, and the site's current canonical structure.</p>
+      <div class="hero-stat"><div class="big-number">8</div><div class="stat-copy"><strong>recommended canonical pages to rebuild</strong><span>Not eight duplicate URLs. Each page becomes a clearer city or category hub with stronger search answers, local proof, event paths, and measurement.</span></div></div>
+      <div class="decision-grid">
+        <div class="decision-row"><strong>Build</strong><span>August, in two-page production waves</span></div>
+        <div class="decision-row"><strong>Pause</strong><span>September paid activity</span></div>
+        <div class="decision-row"><strong>Review</strong><span>Fall campaigns ready for October 1</span></div>
+        <div class="decision-row"><strong>Activate</strong><span>Around approved October events</span></div>
+      </div>
+      <footer class="folio"><span>Bar Crawl USA · August 2026 · Momentum 360</span><div class="route" aria-label="Page 1 of 8"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>01 / 08</span></footer>
+    </section>
+
+    <section class="page">
+      <header class="masthead"><div class="agency"><img class="agency-mark" src="momentum-360-m-circle.png" alt="Momentum 360"><div><strong>Decision map</strong><span>What the call changed</span></div></div><div class="meta"><strong>Eight priorities</strong><span>Two pages move to backlog</span></div></header>
+      <div class="section-head"><h2>Why these eight, now</h2><p>The call aligned content, indexing, cash preservation, and fall activation into one operating rhythm.</p></div>
+      <div class="call-logic">
+        <div>
+          <div class="timeline">
+            <div class="time-row"><div class="month">August</div><div><strong>Build and request indexing</strong><span>Strengthen metadata, structured data, direct answers, FAQs, local proof, internal links, and ticket paths before the fall demand window.</span></div></div>
+            <div class="time-row"><div class="month">September</div><div><strong>Hold paid spend</strong><span>Preserve cash while the pages age, indexing is checked, and event facts, assets, budgets, and tracking are finalized.</span></div></div>
+            <div class="time-row"><div class="month">Oct 1</div><div><strong>Make campaigns review ready</strong><span>Prepare approved markets and events with final destinations, sitelinks, copy, creative, and measurement.</span></div></div>
+            <div class="time-row"><div class="month">October</div><div><strong>Activate around real events</strong><span>Launch only after city, date, ticket, budget, media rights, and conversion readiness are confirmed.</span></div></div>
+          </div>
+          <div class="nonduplicate"><strong>Architecture rule:</strong> city pages remain the parent discovery hubs. Neighborhood and event variants sit beneath them. Existing canonical URLs are improved rather than multiplied.</div>
+        </div>
+        <div>
+          <div class="backlog"><strong>Recommendation boundary</strong><p>The call set the eight-page consolidation rule but did not name eight final URLs. This list is the evidence-based recommendation for approval.</p></div>
+          <div class="page-map" style="margin-top:13px">
+            <div class="map-head">Recommended August page set</div>
+            <div class="map-item"><b>01</b><div><strong>What Is a Bar Crawl?</strong><span>/what-is-a-bar-crawl-with-bar-crawl-usa/</span></div></div>
+            <div class="map-item"><b>02</b><div><strong>Macon</strong><span>/macon-bar-crawl/</span></div></div>
+            <div class="map-item"><b>03</b><div><strong>Atlanta</strong><span>/bar-crawls-atlanta/</span></div></div>
+            <div class="map-item"><b>04</b><div><strong>Columbia</strong><span>/columbia-bar-crawls/</span></div></div>
+            <div class="map-item"><b>05</b><div><strong>Greenville</strong><span>/greenville-bar-crawls/</span></div></div>
+            <div class="map-item"><b>06</b><div><strong>Alpharetta</strong><span>/alpharetta-bar-crawls/</span></div></div>
+            <div class="map-item"><b>07</b><div><strong>Sarasota</strong><span>/sarasota-bar-crawls/</span></div></div>
+            <div class="map-item"><b>08</b><div><strong>St. Pete</strong><span>/st-pete-bar-crawls/</span></div></div>
+          </div>
+          <div class="backlog"><strong>Backlog, not deleted</strong><p>Duluth and Gainesville stay in the evergreen queue. They move behind the eight pages with the clearest current fall support.</p></div>
+        </div>
+      </div>
+      <footer class="folio"><span>Bar Crawl USA · August 2026 · Decision map</span><div class="route" aria-label="Page 2 of 8"><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>02 / 08</span></footer>
+    </section>
+
+    <section class="page light">
+      <header class="masthead"><div class="agency"><img class="agency-mark" src="momentum-360-m-circle.png" alt="Momentum 360"><div><strong>Page blueprints</strong><span>National explainer and Macon</span></div></div><div class="meta"><strong>Priority 01–02</strong><span>Build wave one</span></div></header>
+      <div class="blueprint-intro"><h2>Start with the answer page and a high-value city hub</h2><p>One page explains the category. One turns existing Macon demand into a current event path.</p></div>
+      <article class="brief">
+        <div class="brief-index"><div class="brief-number">01</div><span class="priority">National explainer</span></div>
+        <div><h3 class="page-name">What Is a Bar Crawl?</h3><a class="url" href="https://barcrawlusa.com/what-is-a-bar-crawl-with-bar-crawl-usa/">barcrawlusa.com/what-is-a-bar-crawl-with-bar-crawl-usa/</a><p class="purpose">Own the basic question with a direct, trustworthy answer, then move new visitors from category education into a city, live event, and ticket path.</p><div class="brief-cols"><div class="brief-col"><h3>Build into the page</h3><ul><li>Plain-language definition and how the experience works</li><li>What a ticket can include and what varies by event</li><li>First-timer checklist, safety, timing, and group guidance</li><li>How Bar Crawl USA organizes the experience</li></ul></div><div class="brief-col"><h3>Search and conversion</h3><ul><li>FAQ schema from real first-timer questions</li><li>Concise answer blocks for AI and featured results</li><li>Browse by city and current event modules</li><li>Primary path: learn, choose a city, view event, buy ticket</li></ul></div></div><div class="pathway"><span>Understand</span><i></i><span>Choose city</span><i></i><span>View event</span><i></i><span>Ticket</span></div></div>
+      </article>
+      <article class="brief">
+        <div class="brief-index"><div class="brief-number">02</div><span class="priority">City hub</span></div>
+        <div><h3 class="page-name">Macon Bar Crawls</h3><a class="url" href="https://barcrawlusa.com/macon-bar-crawl/">barcrawlusa.com/macon-bar-crawl/</a><p class="purpose">Turn existing Macon visibility into a durable local hub supporting the current Boos &amp; Booze and Ugly Sweater event records without replacing their individual event pages.</p><div class="brief-cols"><div class="brief-col"><h3>Build into the page</h3><ul><li>Local overview and what makes the Macon route distinctive</li><li>Current fall event modules with approved facts</li><li>Past-event photo proof and organizer credibility</li><li>First-timer FAQs, parking guidance, and planning cues</li></ul></div><div class="brief-col"><h3>Search and conversion</h3><ul><li>Macon bar crawl, Halloween, and holiday intent clusters</li><li>Internal links to both current fall event pages</li><li>LocalBusiness and Event relationships where valid</li><li>Primary path: city hub, chosen theme, ticket destination</li></ul></div></div><div class="pathway"><span>Discover Macon</span><i></i><span>Choose theme</span><i></i><span>Confirm details</span><i></i><span>Ticket</span></div></div>
+      </article>
+      <footer class="folio"><span>Bar Crawl USA · August 2026 · Page blueprints</span><div class="route" aria-label="Page 3 of 8"><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div><span>03 / 08</span></footer>
+    </section>
+
+    <section class="page light">
+      <header class="masthead"><div class="agency"><img class="agency-mark" src="momentum-360-m-circle.png" alt="Momentum 360"><div><strong>Page blueprints</strong><span>Atlanta and Columbia</span></div></div><div class="meta"><strong>Priority 03–04</strong><span>Build wave two</span></div></header>
+      <div class="blueprint-intro"><h2>Organize a major market and sharpen a seasonal city hub</h2><p>Atlanta needs clean parent-child architecture. Columbia needs direct local proof and fall paths.</p></div>
+      <article class="brief">
+        <div class="brief-index"><div class="brief-number">03</div><span class="priority">Parent city hub</span></div>
+        <div><h3 class="page-name">Atlanta Bar Crawls</h3><a class="url" href="https://barcrawlusa.com/bar-crawls-atlanta/">barcrawlusa.com/bar-crawls-atlanta/</a><p class="purpose">Create the authoritative Atlanta parent hub so Beltline, Midtown, and other neighborhood or event variants support one discoverable city structure instead of competing with it.</p><div class="brief-cols"><div class="brief-col"><h3>Build into the page</h3><ul><li>City overview with clear neighborhood navigation</li><li>Current Atlanta event modules, including Beltline inventory</li><li>Real crowd, venue, and route proof from approved media</li><li>Neighborhood chooser and event calendar</li></ul></div><div class="brief-col"><h3>Search and conversion</h3><ul><li>Atlanta bar crawl hub with neighborhood sub-intents</li><li>Breadcrumb and internal-link architecture</li><li>One canonical city answer for AI discovery</li><li>Primary path: Atlanta, neighborhood, event, ticket</li></ul></div></div><div class="pathway"><span>Atlanta</span><i></i><span>Neighborhood</span><i></i><span>Event</span><i></i><span>Ticket</span></div></div>
+      </article>
+      <article class="brief">
+        <div class="brief-index"><div class="brief-number">04</div><span class="priority">City hub</span></div>
+        <div><h3 class="page-name">Columbia Bar Crawls</h3><a class="url" href="https://barcrawlusa.com/columbia-bar-crawls/">barcrawlusa.com/columbia-bar-crawls/</a><p class="purpose">Give Columbia one evergreen discovery page that carries current Halloween and holiday demand while remaining useful between seasonal event windows.</p><div class="brief-cols"><div class="brief-col"><h3>Build into the page</h3><ul><li>Local crawl overview and route-area context</li><li>Current Boos &amp; Booze and Ugly Sweater modules</li><li>Approved attendee imagery and event experience proof</li><li>Practical FAQs and what-to-expect guidance</li></ul></div><div class="brief-col"><h3>Search and conversion</h3><ul><li>Columbia bar crawl plus seasonal intent coverage</li><li>Direct answers with FAQ and breadcrumb structure</li><li>Links to current event records and relevant guides</li><li>Primary path: local intent, event match, ticket</li></ul></div></div><div class="pathway"><span>Find Columbia</span><i></i><span>Compare events</span><i></i><span>Plan</span><i></i><span>Ticket</span></div></div>
+      </article>
+      <footer class="folio"><span>Bar Crawl USA · August 2026 · Page blueprints</span><div class="route" aria-label="Page 4 of 8"><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i></div><span>04 / 08</span></footer>
+    </section>
+
+    <section class="page light">
+      <header class="masthead"><div class="agency"><img class="agency-mark" src="momentum-360-m-circle.png" alt="Momentum 360"><div><strong>Page blueprints</strong><span>Greenville and Alpharetta</span></div></div><div class="meta"><strong>Priority 05–06</strong><span>Build wave three</span></div></header>
+      <div class="blueprint-intro"><h2>Strengthen one proof gap and one year-round market</h2><p>Greenville needs disciplined use of existing media. Alpharetta spans evergreen and seasonal demand.</p></div>
+      <article class="brief">
+        <div class="brief-index"><div class="brief-number">05</div><span class="priority">City hub</span></div>
+        <div><h3 class="page-name">Greenville Bar Crawls</h3><a class="url" href="https://barcrawlusa.com/greenville-bar-crawls/">barcrawlusa.com/greenville-bar-crawls/</a><p class="purpose">Build a durable Greenville hub for the current Halloween and holiday events while acknowledging the call's media-coverage gap instead of masking it.</p><div class="brief-cols"><div class="brief-col"><h3>Build into the page</h3><ul><li>Local overview and confirmed event modules</li><li>Best approved photo proof available now</li><li>Clear first-timer and route-area guidance</li><li>Visible content slot for the future recap reel</li></ul></div><div class="brief-col"><h3>Search and conversion</h3><ul><li>Greenville bar crawl and seasonal event intent</li><li>FAQ answers that do not depend on unconfirmed details</li><li>Internal links to current fall event records</li><li>Media note: new recap footage remains a production task</li></ul></div></div><div class="pathway"><span>Discover</span><i></i><span>See real proof</span><i></i><span>Choose event</span><i></i><span>Ticket</span></div></div>
+      </article>
+      <article class="brief">
+        <div class="brief-index"><div class="brief-number">06</div><span class="priority">Year-round hub</span></div>
+        <div><h3 class="page-name">Alpharetta Bar Crawls</h3><a class="url" href="https://barcrawlusa.com/alpharetta-bar-crawls/">barcrawlusa.com/alpharetta-bar-crawls/</a><p class="purpose">Organize year-round Alpharetta discovery across current Bubbles &amp; Bites and Ugly Sweater inventory, then leave a clean structure for future themes.</p><div class="brief-cols"><div class="brief-col"><h3>Build into the page</h3><ul><li>Local hub introduction and theme selector</li><li>Current Bubbles &amp; Bites and holiday modules</li><li>Approved local galleries, inclusions, and planning guidance</li><li>Evergreen FAQs that work across event types</li></ul></div><div class="brief-col"><h3>Search and conversion</h3><ul><li>Alpharetta bar crawl plus theme-specific intent</li><li>Clear relationship between hub and event pages</li><li>Structured answers for dates, formats, and ticket flow</li><li>Primary path: city, theme, event details, ticket</li></ul></div></div><div class="pathway"><span>Alpharetta</span><i></i><span>Choose theme</span><i></i><span>Review inclusions</span><i></i><span>Ticket</span></div></div>
+      </article>
+      <footer class="folio"><span>Bar Crawl USA · August 2026 · Page blueprints</span><div class="route" aria-label="Page 5 of 8"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i></div><span>05 / 08</span></footer>
+    </section>
+
+    <section class="page light">
+      <header class="masthead"><div class="agency"><img class="agency-mark" src="momentum-360-m-circle.png" alt="Momentum 360"><div><strong>Page blueprints</strong><span>Sarasota and St. Pete</span></div></div><div class="meta"><strong>Priority 07–08</strong><span>Build wave four</span></div></header>
+      <div class="blueprint-intro"><h2>Complete the Florida fall path with two distinct city hubs</h2><p>Each market keeps its own local proof, FAQs, event links, and measurement.</p></div>
+      <article class="brief">
+        <div class="brief-index"><div class="brief-number">07</div><span class="priority">City hub</span></div>
+        <div><h3 class="page-name">Sarasota Bar Crawls</h3><a class="url" href="https://barcrawlusa.com/sarasota-bar-crawls/">barcrawlusa.com/sarasota-bar-crawls/</a><p class="purpose">Create a reliable Sarasota discovery hub supporting current Halloween and holiday inventory while keeping the page useful for future local event themes.</p><div class="brief-cols"><div class="brief-col"><h3>Build into the page</h3><ul><li>Sarasota-specific introduction and route-area context</li><li>Current Boos &amp; Booze and Ugly Sweater modules</li><li>Approved galleries, host proof, and event expectations</li><li>Local planning and first-timer FAQs</li></ul></div><div class="brief-col"><h3>Search and conversion</h3><ul><li>Sarasota bar crawl and seasonal intent coverage</li><li>Direct answer blocks and relevant FAQ structure</li><li>Event links with verified ticket destinations</li><li>Separate analytics for hub, event, and ticket clicks</li></ul></div></div><div class="pathway"><span>Find Sarasota</span><i></i><span>Choose event</span><i></i><span>Plan</span><i></i><span>Ticket</span></div></div>
+      </article>
+      <article class="brief">
+        <div class="brief-index"><div class="brief-number">08</div><span class="priority">City hub</span></div>
+        <div><h3 class="page-name">St. Pete Bar Crawls</h3><a class="url" href="https://barcrawlusa.com/st-pete-bar-crawls/">barcrawlusa.com/st-pete-bar-crawls/</a><p class="purpose">Build a distinct St. Pete hub for current Halloween and holiday demand, with local language and proof that do not collapse the market into a generic Florida page.</p><div class="brief-cols"><div class="brief-col"><h3>Build into the page</h3><ul><li>St. Pete-specific positioning and area guidance</li><li>Current Boos &amp; Booze and Ugly Sweater modules</li><li>Approved local event imagery and attendee proof</li><li>Practical FAQs and event expectations</li></ul></div><div class="brief-col"><h3>Search and conversion</h3><ul><li>St. Pete and St. Petersburg query variants</li><li>Canonical wording that avoids competing local pages</li><li>Internal links to current fall event records</li><li>Primary path: city hub, event, ticket destination</li></ul></div></div><div class="pathway"><span>Find St. Pete</span><i></i><span>See local proof</span><i></i><span>Choose event</span><i></i><span>Ticket</span></div></div>
+      </article>
+      <footer class="folio"><span>Bar Crawl USA · August 2026 · Page blueprints</span><div class="route" aria-label="Page 6 of 8"><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i></div><span>06 / 08</span></footer>
+    </section>
+
+    <section class="page">
+      <header class="masthead"><div class="agency"><img class="agency-mark" src="momentum-360-m-circle.png" alt="Momentum 360"><div><strong>Universal build standard</strong><span>What every page must include</span></div></div><div class="meta"><strong>One definition of done</strong><span>Across all eight pages</span></div></header>
+      <div class="section-head"><h2>Build once. Apply consistently. Measure separately.</h2><p>The city story changes. The quality bar, source discipline, and measurement path do not.</p></div>
+      <div class="spec-grid">
+        <div class="spec-block"><h3>Search foundation</h3><ul><li>One verified canonical URL, title, description, and H1</li><li>Breadcrumbs, page hierarchy, sitemap inclusion, and indexing request</li><li>Valid structured data tied to facts visible on the page</li><li>No duplicate city or neighborhood targets</li></ul></div>
+        <div class="spec-block"><h3>Answer quality</h3><ul><li>Direct summary near the top for human and AI retrieval</li><li>Local context a generic competitor cannot reuse</li><li>Useful FAQs based on real visitor questions</li><li>Event facts sourced from approved live records</li></ul></div>
+        <div class="spec-block"><h3>Proof and experience</h3><ul><li>Approved real event photos or video with reuse rights</li><li>Clear expectations, inclusions, route-area cues, and organizer credibility</li><li>Accessible image text and readable mobile composition</li><li>No placeholder venue, date, price, or sold-out claims</li></ul></div>
+        <div class="spec-block"><h3>Conversion and measurement</h3><ul><li>Current event modules with working ticket destinations</li><li>Internal links from hub to event and relevant guides</li><li>UTM governance for paid paths and separate ticket-click events</li><li>Search Console and GA4 baseline captured after indexing</li></ul></div>
+      </div>
+      <div class="definition"><strong>Done means live and evidenced.</strong><p>A page is complete only when the canonical target, copy, schema, media rights, event links, mobile layout, accessibility, analytics, and indexing request have all passed review. A draft in WordPress is progress, not completion.</p></div>
+      <div class="qa-strip" aria-label="Quality assurance checks"><div class="qa"><strong>01</strong><span>Source facts</span></div><div class="qa"><strong>02</strong><span>Search structure</span></div><div class="qa"><strong>03</strong><span>Mobile and access</span></div><div class="qa"><strong>04</strong><span>Links and tracking</span></div><div class="qa"><strong>05</strong><span>Index request</span></div></div>
+      <footer class="folio"><span>Bar Crawl USA · August 2026 · Build standard</span><div class="route" aria-label="Page 7 of 8"><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i></div><span>07 / 08</span></footer>
+    </section>
+
+    <section class="page">
+      <header class="masthead"><div class="agency"><img class="agency-mark" src="momentum-360-m-circle.png" alt="Momentum 360"><div><strong>August execution</strong><span>Owners, inputs, and review timing</span></div></div><div class="meta"><strong>Start after confirmation</strong><span>Four two-page waves</span></div></header>
+      <div class="section-head"><h2>The next three weeks</h2><p>Lock the source of truth first, then move through four focused build waves and one indexing pass.</p></div>
+      <div class="runway">
+        <div class="week"><div class="month">Wave 1</div><h3>Lock + build 01–02</h3><p>Confirm canonical targets and source inputs. Build the explainer and Macon pages.</p></div>
+        <div class="week"><div class="month">Wave 2</div><h3>Build 03–04</h3><p>Resolve Atlanta hierarchy. Build Atlanta and Columbia with current event paths.</p></div>
+        <div class="week"><div class="month">Wave 3</div><h3>Build 05–06</h3><p>Handle Greenville's media gap honestly. Build Greenville and Alpharetta.</p></div>
+        <div class="week"><div class="month">Wave 4</div><h3>Build 07–08 + index</h3><p>Finish Sarasota and St. Pete. QA all eight, request indexing, and capture the baseline.</p></div>
+      </div>
+      <div class="owners">
+        <div class="owner-list">
+          <div class="owner"><strong>Dillon</strong><span>Build the eight pages, implement metadata, structured data, FAQs, internal links, ticket paths, and indexing; return with GSC and GA4 evidence after indexing.</span></div>
+          <div class="owner"><strong>Mac</strong><span>Provide the short video proof of concept, attempt the SEMrush visibility view, and coordinate the call follow-through.</span></div>
+          <div class="owner"><strong>Sean</strong><span>Follow up with Andy, include Dillon, and coordinate the end-of-August production call with Jenny and the assigned videographer.</span></div>
+          <div class="owner"><strong>Team</strong><span>Confirm whether last year's Halloween reels are on YouTube, link approved videos to the relevant landing pages, and reconnect at the end of August or beginning of September.</span></div>
+        </div>
+        <aside class="inputs"><h3>Needed to begin cleanly</h3><ul><li>Approval of the exact eight-page set</li><li>Confirmed event facts and ticket destinations</li><li>Venue, inclusion, and sold-out language</li><li>Media folders, YouTube reel status, and reuse rights</li><li>Market priorities and paid budget</li><li>Tracking and conversion definition</li></ul></aside>
+      </div>
+      <div class="close"><strong>Recommended decision</strong><span>Approve this eight-page set and its canonical URLs, provide the listed inputs, and start the first two-page build wave immediately.</span></div>
+      <footer class="folio"><span>Bar Crawl USA · August 2026 · August execution</span><div class="route" aria-label="Page 8 of 8"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i></div><span>08 / 08</span></footer>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive"><title>Radar Next-10 Batch C v2 | House Style Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito+Sans:wght@400;700;800&family=Caveat:wght@700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#0468b6;--blue-dark:#005d9f;--blue-ink:#005a9d;--blue-mid:#1491cc;
+  --orange:#e17f1e;--orange-btn:#d96f12;--charcoal:#363f45;
+  --paper:#f7f8fa;--surface:#e3e8ec;--ink:#1a1a1a;--muted:#5c666b;--white:#ffffff;
+  --border:#d7dde1;--good:#1f8a4c;--warn:#a5680c;--bad:#c23b3b;
+  --r-pill:999px;--font-display:"Archivo Black","Arial Black",sans-serif;
+  --font-text:"Nunito Sans",system-ui,sans-serif;--font-script:"Caveat",cursive;
+  --font-mono:"IBM Plex Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--paper:#14181b;--surface:#1c2226;--ink:#eef2f4;--muted:#9aa7ac;--white:#1b2226;--border:#2c383f;}
+}
+:root[data-theme="dark"]{--paper:#14181b;--surface:#1c2226;--ink:#eef2f4;--muted:#9aa7ac;--white:#1b2226;--border:#2c383f;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--font-text);-webkit-font-smoothing:antialiased}
+.wrap{width:min(1280px,calc(100% - 40px));margin:auto}
+a{color:inherit}
+
+/* header */
+header.top{background:var(--charcoal);color:#fff;padding:56px 0 40px}
+.eyebrow{font:800 11px/1 var(--font-text);letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin:0 0 14px}
+h1{font-family:var(--font-display);font-size:clamp(2rem,4.8vw,3.4rem);line-height:1.05;letter-spacing:-.01em;text-transform:uppercase;margin:0 0 18px;max-width:22ch}
+.script{font-family:var(--font-script);font-size:clamp(1.2rem,2vw,1.7rem);color:var(--orange);display:inline-block;transform:rotate(-2deg);margin:0 0 18px}
+header.top p{max-width:760px;color:#dfe6ea;margin:0 0 12px}
+.badge-row{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 26px}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--r-pill);background:#ffffff14;border:1px solid #ffffff2a;font:700 12px var(--font-text);color:#fff}
+.badge.deploy{background:#ffffff14;border-color:var(--orange);color:#ffd9ad}
+.conditions{margin:0;padding:18px 20px;border:1px solid #ffffff26;border-radius:14px;background:#ffffff0d;color:#dfe6ea;font-size:.9rem}
+.conditions strong{color:#fff;display:block;margin-bottom:10px;font:800 11px var(--font-text);letter-spacing:.1em;text-transform:uppercase}
+.conditions ol{margin:0;padding-left:18px}
+.conditions li{margin:5px 0}
+.stats{display:flex;flex-wrap:wrap;gap:26px;margin-top:30px;padding-top:24px;border-top:1px solid #ffffff26}
+.stats div{min-width:100px}
+.stats strong{display:block;font-family:var(--font-display);font-size:1.8rem;color:#fff}
+.stats span{font:700 11px var(--font-text);letter-spacing:.1em;text-transform:uppercase;color:#b9c3c8}
+
+/* controls */
+.controls{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.controls .wrap{display:flex;gap:10px;flex-wrap:wrap;padding:14px 0;align-items:center}
+.controls button{min-height:42px;padding:0 16px;border-radius:var(--r-pill);border:1px solid var(--border);background:transparent;color:var(--ink);font:700 12px var(--font-text);cursor:pointer}
+.controls button.active{border-color:var(--blue);background:var(--blue);color:#fff}
+.controls input{flex:1;min-width:200px;min-height:42px;padding:0 16px;border-radius:var(--r-pill);border:1px solid var(--border);background:var(--white);color:var(--ink);font:14px var(--font-text)}
+
+/* grid & cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:18px;padding:32px 0 90px}
+.card{display:flex;flex-direction:column;gap:10px;padding:22px;border:1px solid var(--border);border-radius:16px;background:var(--white);box-shadow:0 10px 30px -18px rgba(10,20,35,.25)}
+.card[hidden]{display:none}
+.meta{display:flex;justify-content:space-between;gap:10px;font:800 11px var(--font-text);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.card h2{margin:0;font-family:var(--font-display);font-size:1.05rem;line-height:1.2;text-transform:uppercase;letter-spacing:-.01em}
+.town{margin:0;color:var(--muted);font-size:.85rem}
+.shots{display:grid;grid-template-columns:2fr 1fr;gap:8px;margin:4px 0}
+.shots a{display:block}
+.shots img{width:100%;height:130px;object-fit:cover;object-position:top;border-radius:10px;border:1px solid var(--border);background:var(--surface)}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center;font:800 11px var(--font-text);letter-spacing:.05em;flex-wrap:wrap}
+.good{color:var(--good)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+.spec{color:var(--muted);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:var(--r-pill);font:800 10.5px var(--font-text);letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--border);color:var(--muted)}
+.chip.logo-real{color:var(--good);border-color:color-mix(in srgb,var(--good) 40%,var(--border))}
+.chip.logo-designed{color:#fff;background:var(--bad);border-color:var(--bad)}
+.chip.seal-yes{color:var(--blue-ink);border-color:color-mix(in srgb,var(--blue) 40%,var(--border))}
+.chip.seal-no{color:var(--muted)}
+.chip.ph{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 40%,var(--border))}
+.chip.ph.zero{color:var(--good);border-color:color-mix(in srgb,var(--good) 40%,var(--border))}
+.verdict{margin:2px 0 0;color:var(--muted);font-size:.85rem;text-wrap:pretty;border-top:1px dashed var(--border);padding-top:10px}
+.verdict.flag{color:var(--warn)}
+.open{margin-top:6px;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:0 18px;border-radius:var(--r-pill);background:var(--blue);color:#fff;text-decoration:none;font:800 12px var(--font-text);letter-spacing:.04em;text-transform:uppercase;transition:background .2s}
+.open:hover{background:var(--blue-dark)}
+footer{padding:36px 0 70px;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem}
+</style></head><body>
+
+<header class="top"><div class="wrap">
+<p class="eyebrow">Philadelphia metro / South-Central PA &middot; Week of 2026-09-02</p>
+<h1>Radar Next-10, Batch C</h1>
+<p class="script">v2: the Papa house style, finally on the record</p>
+<p>v2 house style: home pages only, Papa-derived design layer authored by the lead
+seat, Sonnet copy, exact real logos. All 10 businesses rebuilt on the shared
+Papa-derived house layer (kit-v2, section grammar, pill buttons, dark nav, script
+accents, doodles) &mdash; every design element authored by the lead seat, copy
+expanded by Sonnet writers from each business's own site, real logos harvested
+and kept byte-identical on 8 of 10.</p>
+<div class="badge-row">
+<span class="badge deploy">Deploy status: queued in System/approval-queue.md, not live</span>
+<span class="badge">10/10 approved</span>
+<span class="badge">QA 10/10 pass, 390 &amp; 1440</span>
+<span class="badge">Weights 61&ndash;109 KB</span>
+</div>
+<div class="conditions"><strong>Verdict conditions carried into the deploy line</strong><ol>
+<li>Two sites carry designed placeholder logos (the-juice-merchant, advance-exterior-solutions) and must not be mailed until a real logo or confirmed source exists.</li>
+<li>Webfont rendering unverified in the sandbox (Archivo Black, Nunito Sans, Caveat).</li>
+<li>The Papa reference was captured from a mobile screen recording; desktop rhythm is inferred, documented in the spec's Confidence section.</li>
+</ol></div>
+<div class="stats">
+<div><strong>10</strong><span>Prospects</span></div>
+<div><strong>10/10</strong><span>QA pass</span></div>
+<div><strong>10/10</strong><span>Approved</span></div>
+<div><strong>Queued</strong><span>Deploy status</span></div>
+</div>
+</div></header>
+
+<div class="controls"><div class="wrap">
+<button data-filter="all" class="active">All</button>
+<button data-filter="car">car</button>
+<button data-filter="car-parts">car-parts</button>
+<button data-filter="dentist">dentist</button>
+<button data-filter="hvac">hvac</button>
+<button data-filter="restaurant">restaurant</button>
+<button data-filter="roofer">roofer</button>
+<button data-filter="tyres">tyres</button>
+<input id="q" type="search" placeholder="Search business">
+</div></div>
+
+<main class="wrap"><div class="grid">
+
+<div class="card" data-kind="hvac" data-name="f m berkheimer inc">
+<span class="meta"><span>RN10C001</span><span>hvac</span></span>
+<h2>F M Berkheimer Inc</h2>
+<p class="town">Mechanicsburg, Cumberland County, PA</p>
+<div class="shots">
+<a href='/sites/f-m-berkheimer-inc/'><img src="qa/f-m-berkheimer-inc-1440.png" alt="F M Berkheimer Inc desktop screenshot" loading="lazy"></a>
+<a href='/sites/f-m-berkheimer-inc/'><img src="qa/f-m-berkheimer-inc-390.png" alt="F M Berkheimer Inc mobile screenshot" loading="lazy"></a>
+</div>
+<span class="row"><span class="good">QA PASS</span><span class="spec">76.9 KB</span></span>
+<div class="chips">
+<span class="chip logo-real">Logo: real</span>
+<span class="chip seal-yes">Seal: yes &middot; 1950</span>
+<span class="chip ph">1 placeholder</span>
+</div>
+<p class="verdict">approve &mdash; real logo and copy from fmberkheimer.com, seal 1950, 77 KB</p>
+<a class='open' href='/sites/f-m-berkheimer-inc/'>Open homepage</a>
+</div>
+
+<div class="card" data-kind="restaurant" data-name="the juice merchant">
+<span class="meta"><span>RN10C002</span><span>restaurant</span></span>
+<h2>The Juice Merchant</h2>
+<p class="town">Narberth, PA</p>
+<div class="shots">
+<a href='/sites/the-juice-merchant/'><img src="qa/the-juice-merchant-1440.png" alt="The Juice Merchant desktop screenshot" loading="lazy"></a>
+<a href='/sites/the-juice-merchant/'><img src="qa/the-juice-merchant-390.png" alt="The Juice Merchant mobile screenshot" loading="lazy"></a>
+</div>
+<span class="row"><span class="good">QA PASS</span><span class="spec">62.5 KB</span></span>
+<div class="chips">
+<span class="chip logo-designed">Logo placeholder</span>
+<span class="chip seal-no">Seal: no</span>
+<span class="chip ph">6 placeholders</span>
+</div>
+<p class="verdict flag">approve with flag &mdash; no verifiable logo, designed placeholder; confirm business is operating</p>
+<a class='open' href='/sites/the-juice-merchant/'>Open homepage</a>
+</div>
+
+<div class="card" data-kind="restaurant" data-name="golden sea chinese restaurant">
+<span class="meta"><span>RN10C003</span><span>restaurant</span></span>
+<h2>Golden Sea Chinese Restaurant</h2>
+<p class="town">Blue Bell, PA</p>
+<div class="shots">
+<a href='/sites/golden-sea/'><img src="qa/golden-sea-1440.png" alt="Golden Sea desktop screenshot" loading="lazy"></a>
+<a href='/sites/golden-sea/'><img src="qa/golden-sea-390.png" alt="Golden Sea mobile screenshot" loading="lazy"></a>
+</div>
+<span class="row"><span class="good">QA PASS</span><span class="spec">85.4 KB</span></span>
+<div class="chips">
+<span class="chip logo-real">Logo: real</span>
+<span class="chip seal-yes">Seal: yes &middot; 1992</span>
+<span class="chip ph zero">0 placeholders</span>
+</div>
+<p class="verdict">approve &mdash; real logo, zero placeholders, seal 1992, 85 KB</p>
+<a class='open' href='/sites/golden-sea/'>Open homepage</a>
+</div>
+
+<div class="card" data-kind="restaurant" data-name="specks broasted chicken">
+<span class="meta"><span>RN10C004</span><span>restaurant</span></span>
+<h2>Speck's Broasted Chicken</h2>
+<p class="town">Collegeville, PA</p>
+<div class="shots">
+<a href='/sites/specks-broasted-chicken/'><img src="qa/specks-broasted-chicken-1440.png" alt="Speck's Broasted Chicken desktop screenshot" loading="lazy"></a>
+<a href='/sites/specks-broasted-chicken/'><img src="qa/specks-broasted-chicken-390.png" alt="Speck's Broasted Chicken mobile screenshot" loading="lazy"></a>
+</div>
+<span class="row"><span class="good">QA PASS</span><span class="spec">85.2 KB</span></span>
+<div class="chips">
+<span class="chip logo-real">Logo: real</span>
+<span class="chip seal-yes">Seal: yes &middot; 1953</span>
+<span class="chip ph">1 placeholder</span>
+</div>
+<p class="verdict">approve &mdash; real logo, seal 1953, 85 KB</p>
+<a class='open' href='/sites/specks-broasted-chicken/'>Open homepage</a>
+</div>
+
+<div class="card" data-kind="car" data-name="weathers motors and auto sales">
+<span class="meta"><span>RN10C005</span><span>car</span></span>
+<h2>Weathers Motors &amp; Auto Sales</h2>
+<p class="town">Media, Delaware County, PA</p>
+<div class="shots">
+<a href='/sites/weathers-motors-and-auto-sales/'><img src="qa/weathers-motors-and-auto-sales-1440.png" alt="Weathers Motors desktop screenshot" loading="lazy"></a>
+<a href='/sites/weathers-motors-and-auto-sales/'><img src="qa/weathers-motors-and-auto-sales-390.png" alt="Weathers Motors mobile screenshot" loading="lazy"></a>
+</div>
+<span class="row"><span class="good">QA PASS</span><span class="spec">79.3 KB</span></span>
+<div class="chips">
+<span class="chip logo-real">Logo: real</span>
+<span class="chip seal-yes">Seal: yes &middot; 1922</span>
+<span class="chip ph">2 placeholders</span>
+</div>
+<p class="verdict">approve &mdash; real logo, seal 1922, timeline hero, 79 KB</p>
+<a class='open' href='/sites/weathers-motors-and-auto-sales/'>Open homepage</a>
+</div>
+
+<div class="card" data-kind="car-parts" data-name="nolts auto parts">
+<span class="meta"><span>RN10C006</span><span>car-parts</span></span>
+<h2>Nolt's Auto Parts #2</h2>
+<p class="town">Denver, Lancaster County, PA</p>
+<div class="shots">
+<a href='/sites/nolts-auto-parts/'><img src="qa/nolts-auto-parts-1440.png" alt="Nolt's Auto Parts desktop screenshot" loading="lazy"></a>
+<a href='/sites/nolts-auto-parts/'><img src="qa/nolts-auto-parts-390.png" alt="Nolt's Auto Parts mobile screenshot" loading="lazy"></a>
+</div>
+<span class="row"><span class="good">QA PASS</span><span class="spec">69 KB</span></span>
+<div class="chips">
+<span class="chip logo-real">Logo: real</span>
+<span class="chip seal-yes">Seal: yes &middot; 1959</span>
+<span class="chip ph">2 placeholders</span>
+</div>
+<p class="verdict">approve &mdash; real logo, seal 1959, B2B positioning kept, 69 KB</p>
+<a class='open' href='/sites/nolts-auto-parts/'>Open homepage</a>
+</div>
+
+<div class="card" data-kind="hvac" data-name="union chill mat company">
+<span class="meta"><span>RN10C007</span><span>hvac</span></span>
+<h2>Union Chill Mat Company</h2>
+<p class="town">Zelienople, Butler County, PA</p>
+<div class="shots">
+<a href='/sites/union-chill-mat-company/'><img src="qa/union-chill-mat-company-1440.png" alt="Union Chill Mat Company desktop screenshot" loading="lazy"></a>
+<a href='/sites/union-chill-mat-company/'><img src="qa/union-chill-mat-company-390.png" alt="Union Chill Mat Company mobile screenshot" loading="lazy"></a>
+</div>
+<span class="row"><span class="good">QA PASS</span><span class="spec">71.4 KB</span></span>
+<div class="chips">
+<span class="chip logo-real">Logo: real</span>
+<span class="chip seal-yes">Seal: yes &middot; 1946</span>
+<span class="chip ph">2 placeholders</span>
+</div>
+<p class="verdict">approve &mdash; real logo, seal 1946, industrial hero, 71 KB</p>
+<a class='open' href='/sites/union-chill-mat-company/'>Open homepage</a>
+</div>
+
+<div class="card" data-kind="tyres" data-name="sangillo tire center">
+<span class="meta"><span>RN10C008</span><span>tyres</span></span>
+<h2>Sangillo Tire Center</h2>
+<p class="town">Folsom, Delaware County, PA</p>
+<div class="shots">
+<a href='/sites/sangillo-tire-center/'><img src="qa/sangillo-tire-center-1440.png" alt="Sangillo Tire Center desktop screenshot" loading="lazy"></a>
+<a href='/sites/sangillo-tire-center/'><img src="qa/sangillo-tire-center-390.png" alt="Sangillo Tire Center mobile screenshot" loading="lazy"></a>
+</div>
+<span class="row"><span class="good">QA PASS</span><span class="spec">109.1 KB</span></span>
+<div class="chips">
+<span class="chip logo-real">Logo: real</span>
+<span class="chip seal-no">Seal: no</span>
+<span class="chip ph">1 placeholder</span>
+</div>
+<p class="verdict">approve &mdash; real logo, brand purple, 109 KB (largest, under budget)</p>
+<a class='open' href='/sites/sangillo-tire-center/'>Open homepage</a>
+</div>
+
+<div class="card" data-kind="dentist" data-name="smile culture dental">
+<span class="meta"><span>RN10C009</span><span>dentist</span></span>
+<h2>Smile Culture Dental</h2>
+<p class="town">Huntingdon Valley, PA</p>
+<div class="shots">
+<a href='/sites/smile-culture-dental/'><img src="qa/smile-culture-dental-1440.png" alt="Smile Culture Dental desktop screenshot" loading="lazy"></a>
+<a href='/sites/smile-culture-dental/'><img src="qa/smile-culture-dental-390.png" alt="Smile Culture Dental mobile screenshot" loading="lazy"></a>
+</div>
+<span class="row"><span class="good">QA PASS</span><span class="spec">90.9 KB</span></span>
+<div class="chips">
+<span class="chip logo-real">Logo: real</span>
+<span class="chip seal-no">Seal: no</span>
+<span class="chip ph">2 placeholders</span>
+</div>
+<p class="verdict">approve &mdash; real logo, no clinical claims, 91 KB</p>
+<a class='open' href='/sites/smile-culture-dental/'>Open homepage</a>
+</div>
+
+<div class="card" data-kind="roofer" data-name="advance exterior solutions">
+<span class="meta"><span>RN10C010</span><span>roofer</span></span>
+<h2>Advance Exterior Solutions</h2>
+<p class="town">Macungie, Lehigh County, PA</p>
+<div class="shots">
+<a href='/sites/advance-exterior-solutions/'><img src="qa/advance-exterior-solutions-1440.png" alt="Advance Exterior Solutions desktop screenshot" loading="lazy"></a>
+<a href='/sites/advance-exterior-solutions/'><img src="qa/advance-exterior-solutions-390.png" alt="Advance Exterior Solutions mobile screenshot" loading="lazy"></a>
+</div>
+<span class="row"><span class="good">QA PASS</span><span class="spec">60.6 KB</span></span>
+<div class="chips">
+<span class="chip logo-designed">Logo placeholder</span>
+<span class="chip seal-no">Seal: no</span>
+<span class="chip ph">7 placeholders</span>
+</div>
+<p class="verdict flag">approve with flag &mdash; no verifiable logo, contact placeholders, CTA has no phone yet</p>
+<a class='open' href='/sites/advance-exterior-solutions/'>Open homepage</a>
+</div>
+
+</div></main>
+
+<footer><div class="wrap">
+Batch <code>radar-next10-2026-09-02c</code>, v2 house style. Not live &mdash; deploy
+queued in <code>System/approval-queue.md</code>. Source of record:
+<code>02_Campaigns/AI Site Builder Outreach Engine/batches/radar-next10-2026-09-02c/verdict.md</code>.
+</div></footer>
+
+<script>
+(function(){
+  var buttons = document.querySelectorAll('.controls button');
+  var cards = document.querySelectorAll('.card');
+  var input = document.getElementById('q');
+  var activeFilter = 'all';
+  function apply(){
+    var q = (input.value || '').trim().toLowerCase();
+    cards.forEach(function(c){
+      var matchesFilter = activeFilter === 'all' || c.dataset.kind === activeFilter;
+      var matchesQuery = !q || (c.dataset.name || '').indexOf(q) !== -1;
+      c.hidden = !(matchesFilter && matchesQuery);
+    });
+  }
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){
+      buttons.forEach(function(x){ x.classList.remove('active'); });
+      b.classList.add('active');
+      activeFilter = b.dataset.filter;
+      apply();
+    });
+  });
+  input.addEventListener('input', apply);
+})();
+</script>
+
+</body></html>

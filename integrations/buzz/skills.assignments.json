@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "policy": {
+    "assignmentStyle": "narrow-role-packs",
+    "maxCoreSkillsPerAgent": 8,
+    "onDemandSkillAccess": "Every installed and enabled skill may be discovered and used when it is relevant to the scoped task.",
+    "connectorAccess": "Every connected Codex app, plugin, MCP tool, authenticated browser route, and protected access route may be used after live account and capability verification.",
+    "consequentialActionPolicy": "Secrets remain non-visible. Marketing Chief remains the sole canonical writer, and external delivery, publishing outside an exact standing site envelope, spend, account changes, and destructive actions retain their approval gates.",
+    "readSkillInstructionsBeforeUse": true,
+    "verifyLiveToolAndAccountState": true,
+    "modelRoutingPolicy": "policies/autonomous-agent-routing-policy.json",
+    "modelRouteResolver": "scripts/Resolve-AutonomousAgentRoute.ps1",
+    "compoundingWorkflow": "workflows/autonomous-agent-compounding.workflow.json",
+    "requireLiveRouteResolutionBeforeWorkerLaunch": true,
+    "consequentialMakerCheckerRule": "The maker and checker must resolve to different model families. A worker never self-certifies material completion.",
+    "modelOutputRemainsEvidenceUntilChiefCompilation": true,
+    "skillRoots": [
+      "C:\\Users\\dillo\\.codex\\skills",
+      "C:\\Users\\dillo\\.codex\\skills\\.system",
+      "C:\\Users\\dillo\\.agents\\skills",
+      "C:\\Users\\dillo\\Documents\\Codex\\.agents\\skills",
+      "C:\\Users\\dillo\\Documents\\Codex\\2026-07-29\\monitor-this-session-on-cursor-i\\work\\pr226-site-factory\\.claude\\skills"
+    ],
+    "claudeRule": "Package the relevant procedure into the persona or task context; do not assume Codex skill discovery transfers across harnesses."
+  },
+  "agents": [
+    {
+      "id": "marketing-chief",
+      "preferredTaskLanes": ["orchestration", "research", "verification"],
+      "coreSkills": ["chief-of-staff", "company-os", "context-engine", "decision-logger", "agent-workflow-designer", "strategic-alignment"],
+      "defaultBindings": ["canonical-operations", "buzz", "watchtower", "mcp"]
+    },
+    {
+      "id": "client-access-router",
+      "preferredTaskLanes": ["research", "extraction", "verification"],
+      "coreSkills": ["context-engine", "customer-success-manager", "crm-maintenance", "browser-automation", "ai-security", "cloud-security"],
+      "defaultBindings": ["canonical-operations", "access", "gmail", "slack", "hubspot"]
+    },
+    {
+      "id": "evidence-research",
+      "preferredTaskLanes": ["research", "documents", "verification"],
+      "coreSkills": ["competitive-intel", "customer-research", "analytics", "campaign-intel", "adversarial-reviewer"],
+      "defaultBindings": ["browser", "gmail", "slack", "mcp", "operator-clients"]
+    },
+    {
+      "id": "content-creative",
+      "preferredTaskLanes": ["creative", "multimodal", "video"],
+      "coreSkills": ["content-strategy", "content-creator", "copywriting", "copy-editing", "brand-guidelines", "ad-creative", "imagegen"],
+      "defaultBindings": ["browser", "gmail", "slack", "operator-clients", "source-deploy"]
+    },
+    {
+      "id": "web-product",
+      "preferredTaskLanes": ["code", "multimodal", "verification"],
+      "coreSkills": ["impeccable", "browser-automation", "a11y-audit", "code-reviewer", "api-test-suite-builder", "imagegen", "ci-cd-pipeline-builder", "site-batch"],
+      "capabilityMode": "all-installed-and-connected-on-demand",
+      "standingMission": ["dillon-owned-websites", "mac-apple-ai-tech-news", "momentum-360-ai-tech-news-25-sites-weekly", "build", "maintenance", "qa", "accessibility", "performance", "seo", "deployment-readiness"],
+      "defaultBindings": ["canonical-operations", "operator-studio", "watchtower", "buzz", "codex-claude", "omniroute-ollama", "operator-clients", "mcp", "access", "browser", "gmail", "slack", "hubspot", "paid-media", "source-deploy"],
+      "referenceFiles": ["integrations/buzz/references/buzz-product-flow-patterns.md", "integrations/buzz/references/ai-tech-news-site-factory.md"]
+    },
+    {
+      "id": "growth-ops",
+      "preferredTaskLanes": ["research", "documents", "extraction"],
+      "coreSkills": ["ads", "campaign-analytics", "analytics-tracking", "analytics", "crm-maintenance", "crm-cleanup", "content-management-systems", "customer-success-manager"],
+      "defaultBindings": ["hubspot", "gmail", "slack", "browser", "canonical-operations"]
+    },
+    {
+      "id": "independent-verifier",
+      "preferredTaskLanes": ["verification", "code", "multimodal"],
+      "coreSkills": ["adversarial-reviewer", "code-reviewer", "a11y-audit", "api-test-suite-builder", "ai-security", "coverage"],
+      "defaultBindings": ["canonical-operations", "source-deploy", "browser", "watchtower"]
+    },
+    {
+      "id": "watchtower-checker",
+      "preferredTaskLanes": ["verification", "extraction"],
+      "coreSkills": ["business-pulse", "coverage", "ci-cd-pipeline-builder", "analytics"],
+      "defaultBindings": ["watchtower", "canonical-operations", "buzz"]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+# AuthorizationConfig fragment for an isolated, synthetic Aegis rehearsal only.
+# Do not merge into the shared gateway config: RBAC applies by role, not thread/site.
+authorization:
+  enabled: true
+  fail_closed: true
+  default_role: aegis_rehearsal
+  provider:
+    use: deerflow.authz.rbac:RbacAuthorizationProvider
+    config:
+      roles:
+        aegis_rehearsal:
+          tools:
+            allow: [ls, glob, grep, read_file, present_files]
+          routes:
+            allow: []
+          skills:
+            allow: []
+          mcp_servers:
+            allow: []

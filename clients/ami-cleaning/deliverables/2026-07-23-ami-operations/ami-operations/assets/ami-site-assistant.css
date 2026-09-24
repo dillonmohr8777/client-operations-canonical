@@ -1,0 +1,268 @@
+.ami-assistant {
+  --ami-ink: #14231d;
+  --ami-green: #1f5c43;
+  --ami-green-dark: #174733;
+  --ami-cream: #f8f6ef;
+  --ami-line: #d9e0da;
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 99999;
+  color: var(--ami-ink);
+  font-family: inherit;
+}
+
+.ami-assistant *,
+.ami-assistant *::before,
+.ami-assistant *::after {
+  box-sizing: border-box;
+}
+
+.ami-assistant__launcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ami-green);
+  color: #fff;
+  box-shadow: 0 0.75rem 2rem rgba(20, 35, 29, 0.22);
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.ami-assistant__launcher:hover,
+.ami-assistant__launcher:focus-visible,
+.ami-assistant__submit:hover,
+.ami-assistant__submit:focus-visible {
+  background: var(--ami-green-dark);
+}
+
+.ami-assistant__launcher:focus-visible,
+.ami-assistant__close:focus-visible,
+.ami-assistant__choices :is(button, a):focus-visible,
+.ami-assistant__submit:focus-visible,
+.ami-assistant :is(input, select, textarea):focus-visible {
+  outline: 3px solid #eaa94b;
+  outline-offset: 2px;
+}
+
+.ami-assistant__panel {
+  position: absolute;
+  right: 0;
+  bottom: 4rem;
+  width: min(25rem, calc(100vw - 2rem));
+  max-height: min(42rem, calc(100vh - 7rem));
+  overflow: hidden;
+  border: 1px solid var(--ami-line);
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 1.25rem 3.5rem rgba(20, 35, 29, 0.24);
+}
+
+.ami-assistant__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.15rem;
+  background: var(--ami-green);
+  color: #fff;
+}
+
+.ami-assistant__eyebrow {
+  margin: 0 0 0.25rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ami-assistant__header h2 {
+  margin: 0;
+  color: inherit;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.ami-assistant__close {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font: inherit;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ami-assistant__conversation {
+  max-height: calc(min(42rem, 100vh - 7rem) - 4.5rem);
+  overflow-y: auto;
+  padding: 1.15rem;
+  background: var(--ami-cream);
+}
+
+.ami-assistant__message,
+.ami-assistant__answer {
+  margin: 0 0 1rem;
+  padding: 0.9rem;
+  border: 1px solid var(--ami-line);
+  border-radius: 0.75rem;
+  background: #fff;
+  line-height: 1.55;
+}
+
+.ami-assistant__answer h3 {
+  margin: 0.9rem 0 0.2rem;
+  font-size: 0.95rem;
+}
+
+.ami-assistant__answer h3:first-child {
+  margin-top: 0;
+}
+
+.ami-assistant__answer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.ami-assistant__choices {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ami-assistant__choices :is(button, a) {
+  width: 100%;
+  min-height: 2.65rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--ami-green);
+  border-radius: 0.65rem;
+  background: #fff;
+  color: var(--ami-green-dark);
+  font: inherit;
+  font-weight: 720;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ami-assistant__choices :is(button, a):hover {
+  background: #edf4f0;
+}
+
+.ami-assistant__form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.ami-assistant__form[hidden] {
+  display: none;
+}
+
+.ami-assistant__form label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.82rem;
+  font-weight: 760;
+}
+
+.ami-assistant :is(input, select, textarea) {
+  width: 100%;
+  min-height: 2.65rem;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid #aebbb3;
+  border-radius: 0.5rem;
+  background: #fff;
+  color: var(--ami-ink);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.ami-assistant textarea {
+  min-height: 5.5rem;
+  resize: vertical;
+}
+
+.ami-assistant__submit {
+  min-height: 2.85rem;
+  border: 0;
+  border-radius: 0.55rem;
+  background: var(--ami-green);
+  color: #fff;
+  font: inherit;
+  font-weight: 780;
+  cursor: pointer;
+}
+
+.ami-assistant__submit:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.ami-assistant__status {
+  min-height: 1.4em;
+  margin: 0;
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.ami-assistant__trap {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+}
+
+.ami-ops-static-status {
+  margin: 0.85rem 0 0;
+  min-height: 1.5em;
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
+.ami-ops-static-status.is-sending {
+  color: #44536a;
+}
+
+.ami-ops-static-status.is-success {
+  color: #146c43;
+}
+
+.ami-ops-static-status.is-error {
+  color: #a12622;
+}
+
+@media (max-width: 36rem) {
+  .ami-assistant {
+    right: 0.75rem;
+    bottom: 0.75rem;
+  }
+
+  .ami-assistant__panel {
+    position: fixed;
+    inset: 0.75rem;
+    width: auto;
+    max-height: none;
+  }
+
+  .ami-assistant__conversation {
+    max-height: calc(100vh - 6rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ami-assistant *,
+  .ami-assistant *::before,
+  .ami-assistant *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,70 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Momentum AI — Google batch, 2026-09-07</title>
+<style>
+  :root { --paper:#F2EFE9; --ink:#1A1510; --navy:#0B4A75; --blue:#2A7FC2; --gold:#FACD00; --muted:#6B6A66; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.45 Poppins, "Segoe UI", system-ui, sans-serif; }
+  header { padding:40px 48px 16px; }
+  h1 { font: 800 40px/1 Montserrat, Arial Black, sans-serif; letter-spacing:-.02em; margin:0 0 8px; }
+  h1 span { color:var(--blue); }
+  .eyebrow { font-size:12px; letter-spacing:.22em; color:var(--navy); text-transform:uppercase; }
+  .eyebrow::after { content:""; display:block; width:64px; height:3px; background:var(--gold); margin-top:8px; }
+  section { padding:24px 48px; }
+  h2 { font: 800 22px/1.1 Montserrat, sans-serif; margin:0 0 14px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:16px; }
+  figure { margin:0; background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 8px 24px rgba(20,24,27,.08); }
+  figure img, figure video { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; background:#000; }
+  figure.sq img { aspect-ratio:1; }
+  figcaption { padding:10px 12px; font-size:12px; color:var(--muted); }
+  figcaption b { color:var(--ink); display:block; font-weight:600; }
+  .hero video { width:100%; border-radius:12px; box-shadow:0 20px 60px rgba(20,24,27,.18); }
+  .note { font-size:13px; color:var(--muted); max-width:70ch; }
+  code { font-family: ui-monospace, Consolas, monospace; font-size:12px; }
+</style>
+<header>
+  <div class="eyebrow">Momentum AI · Google AI Studio batch · 2026-09-07</div>
+  <h1>Built, not <span>prompted.</span></h1>
+  <p class="note">Everything below was generated on Dillon's Gemini key today — 28 stills on <code>gemini-2.5-flash-image</code>, 12 clips on Veo 3.1, one composite, one cut. Google generated; this machine orchestrated and edited. Files live on this disk; AI Studio keeps nothing.</p>
+</header>
+
+<section class="hero">
+  <h2>The spot — :30, v5 master</h2>
+  <video controls playsinline src="spot/momentum_ai_launch_30s_v5_music.mp4"></video>
+  <p class="note">Silent-first copy, Montserrat / Poppins / Caveat, exact mark. Score: Lyria 3 Clip, 30s instrumental. Four shots are stills with motion until their generated clips land. Ending rebuilt in v5: particles converge, then one clean MOMENTUM AI lockup. <a href="https://claude.ai/code/artifact/e9ce7032-81b1-4970-9aca-4d39a23eafc0">Launch collateral canvas</a> — hero, one-pager, ebook covers, carousel.</p>
+  <div class="grid" style="margin-top:16px">
+    <figure><video controls playsinline src="spot/momentum_ai_launch_15s_v3_music.mp4"></video><figcaption><b>:15 cutdown</b>opener · polyhedron · fireworks · mark</figcaption></figure>
+    <figure><video controls playsinline src="spot/momentum_ai_launch_6s_v3_music.mp4"></video><figcaption><b>:06 bumper</b>bird lifts off · mark lands</figcaption></figure>
+    <figure><video controls playsinline src="spot/momentum_ai_launch_30s_v3_music.mp4"></video><figcaption><b>:30 v3</b>earlier ending, for comparison</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <h2>Clips — Veo 3.1 Fast, 8s, 1080p</h2>
+  <div class="grid" id="clips"></div>
+</section>
+
+<section>
+  <h2>Composite — the mark, from atoms</h2>
+  <div class="grid">
+    <figure><video controls muted loop playsinline src="composites/momentum_logo_particles_v1.mp4"></video><figcaption><b>momentum_logo_particles_v1</b>Veo particles + exact mark PNG + wordmark PNG, ffmpeg overlay</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <h2>Stills — gemini-2.5-flash-image</h2>
+  <div class="grid" id="stills"></div>
+</section>
+
+<section>
+  <h2>Documents</h2>
+  <p class="note"><a href="docs/DELIVERY.md">Delivery sheet</a> · <a href="docs/SPOT-EDL.md">EDL</a> · <a href="docs/SPOT-SCRIPT.md">Script</a> · <a href="docs/PRODUCTION-BATCH.md">Production batch</a> · <a href="docs/30s_v3_director_review.md">Gemini 3.8 Flash director's review</a></p>
+</section>
+
+<script>
+const clips = ['momentum_05_launch_clip_a','momentum_05_launch_clip_b','momentum_01_launch_clip_a_v2','momentum_01_launch_clip_b','momentum_02_services_clip_a','momentum_02_services_clip_b','momentum_x3_the_fold_clip','momentum_x4_page_writes_clip.7s','momentum_x5_particles_converge','momentum_04_bumper_clip_a','momentum_01_launch_clip_a.tail3s'];
+const stills = ['momentum_01_launch_hero','momentum_01_launch_detail','momentum_01_launch_module','momentum_02_services_hero','momentum_02_services_detail','momentum_02_services_props','momentum_03_momo_character','momentum_03_momo_hero','momentum_03_momo_endcard','momentum_03_momo_phone','momentum_04_bumper_character','momentum_04_bumper_hero','momentum_04_bumper_rest','momentum_05_launch_hero','momentum_05_launch_burst','momentum_x1_momo_machine','momentum_x2_paper_city','momentum_x3_the_fold','momentum_x4_page_writes','momentum_x5_particles_dark','momentum_x6_particles_cream','momentum_x7_bird_plate','momentum_x8_scrapbook_opener'];
+const refs = [['ailaunchfinal','Launch film — origami, glass, gold'],['higgsfield292070e9433446ae93672eecc3bcae59','Services — flat-lay paper UI'],['higgsfieldf628dba4c5c04188a1f1078aefd7097b','Momo — sphere, gold bead antenna'],['higgsfieldfb393c2f6ca94ff48263e812e95707bb','M-disc mascot — one take'],['higgsfield07bc4f2ebe1641a99b07435928557275','Fireworks — live plate + composites']];
+const fig = (inner, title, cap, cls='') => `<figure class="${cls}">${inner}<figcaption><b>${title}</b>${cap||''}</figcaption></figure>`;
+document.getElementById('clips').innerHTML = clips.map(c => fig(`<video controls muted loop playsinline preload="metadata" src="clips/${c}.mp4"></video>`, c.replace('momentum_',''), '')).join('');
+document.getElementById('stills').innerHTML = stills.map(s => fig(`<img loading="lazy" src="stills/${s}.png">`, s.replace('momentum_',''), '', /character|module|props|phone/.test(s)?'sq':'')).join('');
+</script>

@@ -1,0 +1,26 @@
+{
+  "volumes": {
+    "gateway-data": {
+      "name": "deer-flow-gateway-backup-20260920-latest",
+      "external": true
+    },
+    "redis-data": {
+      "name": "deer-flow-redis-backup-20260920-latest",
+      "external": true
+    }
+  },
+  "services": {
+    "redis": {
+      "image": "deer-flow-rollback/redis:20260920-pre-latest"
+    },
+    "frontend": {
+      "image": "deer-flow-rollback/frontend:20260920-pre-latest"
+    },
+    "gateway": {
+      "image": "deer-flow-rollback/gateway:20260920-pre-latest"
+    },
+    "nginx": {
+      "image": "deer-flow-rollback/nginx:20260920-pre-latest"
+    }
+  }
+}

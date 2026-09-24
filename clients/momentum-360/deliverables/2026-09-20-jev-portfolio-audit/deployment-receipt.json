@@ -1,0 +1,114 @@
+{
+  "state": "DEPLOYED",
+  "checkedAt": "2026-09-21T01:09:59.7616590Z",
+  "sourceCommit": "4c5327527691a77d50299b1cecfd4dff60d858fc",
+  "upstreamCommit": "29d285731b326a728a9df33d3641f73b68bbe48b",
+  "sourceCheckout": "C:/Users/dillo/Documents/Qwen/deer-flow-deploy-20260920",
+  "containers": [
+    {
+      "service": "gateway",
+      "image": "sha256:52f233b24755c688ca71573cfcb9ff078ffcd2186a5fe04f3e8f5405b15d51b2",
+      "status": "running",
+      "health": "healthy",
+      "startedAt": "2026-09-21T01:08:47.98721381Z",
+      "ports": {
+        "8001/tcp": null
+      }
+    },
+    {
+      "service": "frontend",
+      "image": "sha256:5a47a4104d2ba38d5ccf12c1925159af19959c562b50330cf29556ca4f53943d",
+      "status": "running",
+      "health": null,
+      "startedAt": "2026-09-21T01:00:54.413493378Z",
+      "ports": {
+        "3000/tcp": null
+      }
+    },
+    {
+      "service": "nginx",
+      "image": "sha256:62ff2089abf5a9ed33bd232895bef5e22f7bb4b200675cec49a5ebc48e3d4ac8",
+      "status": "running",
+      "health": null,
+      "startedAt": "2026-09-21T00:57:43.850664113Z",
+      "ports": {
+        "2026/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "2026"
+          }
+        ]
+      }
+    },
+    {
+      "service": "redis",
+      "image": "sha256:520775a41a63e77e06c73e35d2fd9cc15921a609516818796b4ecbb813078bc7",
+      "status": "running",
+      "health": "healthy",
+      "startedAt": "2026-09-21T00:57:06.713002685Z",
+      "ports": {
+        "6379/tcp": null
+      }
+    }
+  ],
+  "api": {
+    "state": "PASS",
+    "checked_at": "2026-09-20T21:09:23.143415-04:00",
+    "project_id": "70d0a5eaf2f54e65accdc224227b124c",
+    "documents_verified": 47,
+    "foreign_owner_statuses": [
+      404,
+      404,
+      404
+    ],
+    "configured_models": 40,
+    "migration_revision": "0028_merge_org_mcp",
+    "sqlite_integrity": "ok",
+    "readiness": {
+      "status": "ready",
+      "service": "deer-flow-gateway",
+      "database": "ok",
+      "checkpointer": "ok"
+    }
+  },
+  "nativeRetrieval": {
+    "foreignOwnerDenied": true,
+    "hashes": "PASS",
+    "documents": 47,
+    "pages": 107
+  },
+  "tests": {
+    "finalImageWeChatStrict": 4,
+    "frontend": 53,
+    "backendFocused": 97,
+    "fullSuite": "NOT_RUN"
+  },
+  "ui": {
+    "escapeClosesAndRestoresFocus": true,
+    "commandCenterTheme": "branded light",
+    "projectDarkTheme": "PASS",
+    "recordedOwnerRuns": 12,
+    "receiptDrawer": "PASS",
+    "documentShelf": "Showing 47 of 47",
+    "temporaryEmulationReset": true,
+    "receiptWidth": 320,
+    "mobileScrollWidth": 320,
+    "mobileWidth": 320,
+    "forcedColors": "PASS",
+    "authenticatedWorkspace": "PASS"
+  },
+  "rollback": {
+    "redisVolume": "deer-flow-redis-backup-20260920-latest",
+    "redisBytes": 6860332,
+    "byteHashesVerified": true,
+    "gatewayVolume": "deer-flow-gateway-backup-20260920-latest",
+    "gatewayBytes": 31625767,
+    "gatewayFiles": 225,
+    "redisFiles": 4
+  },
+  "limitations": [
+    "Slack snapshot Aug21-Sep20; no continuous synchronization added",
+    "Full backend suite and live model-answer quality were not rerun",
+    "Phone HTTPS routing confirmed to login; authenticated UI verified locally"
+  ]
+}

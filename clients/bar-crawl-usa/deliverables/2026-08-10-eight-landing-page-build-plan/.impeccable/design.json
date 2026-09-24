@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-10T19:55:00Z",
+  "title": "Design System: Bar Crawl USA August Build Plan",
+  "extensions": {
+    "colorMeta": {
+      "night": { "role": "neutral", "displayName": "Event Night", "canonical": "#061225", "tonalRamp": ["#020711", "#061225", "#102640", "#29415a", "#52677a", "#8191a0", "#b5bec7", "#eef1f3"] },
+      "night-layer": { "role": "neutral", "displayName": "Night Layer", "canonical": "#0a1c36", "tonalRamp": ["#030914", "#0a1c36", "#173653", "#31516d", "#597388", "#879baa", "#bcc7cf", "#f0f3f5"] },
+      "route-blue": { "role": "primary", "displayName": "Route Blue", "canonical": "#35a8ff", "tonalRamp": ["#03253e", "#06456e", "#0969a3", "#178ed7", "#35a8ff", "#72c1ff", "#addcff", "#e7f5ff"] },
+      "route-blue-deep": { "role": "primary", "displayName": "Route Blue Deep", "canonical": "#173f73", "tonalRamp": ["#061221", "#0c2748", "#173f73", "#2e5b8f", "#587ca6", "#86a4be", "#b9ccdc", "#eef4f8"] },
+      "decision-gold": { "role": "secondary", "displayName": "Decision Gold", "canonical": "#f0bd64", "tonalRamp": ["#382605", "#68470c", "#9a6d1c", "#c59239", "#f0bd64", "#f5d08d", "#fae4b9", "#fff7e8"] },
+      "decision-gold-soft": { "role": "secondary", "displayName": "Decision Gold Soft", "canonical": "#ffe0a6", "tonalRamp": ["#392b12", "#6a5123", "#9d7838", "#cda45c", "#f3c982", "#ffe0a6", "#ffedcf", "#fff9ef"] },
+      "blueprint-paper": { "role": "neutral", "displayName": "Blueprint Paper", "canonical": "#f7f4ee", "tonalRamp": ["#282621", "#4d4941", "#746f65", "#9d978d", "#c5c0b7", "#dedad3", "#eeeae4", "#f7f4ee"] },
+      "white": { "role": "neutral", "displayName": "Plan White", "canonical": "#f8fbff", "tonalRamp": ["#25282c", "#4b4f54", "#73777d", "#9ca1a7", "#c3c8ce", "#dde1e6", "#eef1f5", "#f8fbff"] },
+      "mist": { "role": "neutral", "displayName": "Secondary Mist", "canonical": "#b9c7da", "tonalRamp": ["#1d252f", "#394858", "#586d80", "#7992a8", "#9eb5c8", "#b9c7da", "#d8e0e9", "#f2f5f8"] },
+      "route-line": { "role": "neutral", "displayName": "Route Line", "canonical": "#284666", "tonalRamp": ["#07111c", "#142b43", "#284666", "#466381", "#6d849a", "#98aaba", "#c5d0d9", "#f1f4f6"] },
+      "ink-on-paper": { "role": "neutral", "displayName": "Blueprint Ink", "canonical": "#101d30", "tonalRamp": ["#060b12", "#101d30", "#27384d", "#46566a", "#6d7a8b", "#9ca6b1", "#cbd1d7", "#f3f5f6"] },
+      "light-folio": { "role": "neutral", "displayName": "Light Folio Ink", "canonical": "#52687d", "tonalRamp": ["#111820", "#293a4b", "#52687d", "#71869a", "#93a6b6", "#b7c4cf", "#d9e0e6", "#f5f7f8"] },
+      "light-gold": { "role": "secondary", "displayName": "Blueprint Gold", "canonical": "#82510f", "tonalRamp": ["#241403", "#4e2c07", "#82510f", "#a9752b", "#c89a52", "#dfbd83", "#efdab5", "#fbf3e5"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Route Display", "purpose": "Cover thesis only." },
+      "headline": { "displayName": "Decision Headline", "purpose": "Section decisions and blueprint openings." },
+      "title": { "displayName": "Page Title", "purpose": "Page names, owners, and structured subheads." },
+      "body": { "displayName": "Operational Body", "purpose": "Dense client-facing explanation." },
+      "label": { "displayName": "Route Label", "purpose": "Metadata, waves, and folios." }
+    },
+    "shadows": [],
+    "motion": [],
+    "breakpoints": [
+      { "name": "stack", "value": "900px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Decision Chip",
+      "kind": "chip",
+      "refersTo": "decision-chip",
+      "description": "A compact cover status statement outlined in decision gold.",
+      "html": "<span class=\"ds-decision-chip\">CALL DECISIONS TRANSLATED INTO PRODUCTION</span>",
+      "css": ".ds-decision-chip{display:inline-block;padding:8px 12px;border:1px solid rgba(240,189,100,.55);border-radius:999px;color:#ffe0a6;background:transparent;font:700 11px/1.2 Arial,Helvetica,sans-serif;letter-spacing:.05em;text-transform:uppercase}.ds-decision-chip:focus-visible{outline:2px solid #35a8ff;outline-offset:3px}"
+    },
+    {
+      "name": "Page Map",
+      "kind": "custom",
+      "refersTo": "page-map",
+      "description": "The exact eight-page recommendation presented as a compact route list.",
+      "html": "<div class=\"ds-page-map\"><strong>Recommended August page set</strong><div><b>01</b><span>What Is a Bar Crawl?</span></div><div><b>02</b><span>Macon</span></div></div>",
+      "css": ".ds-page-map{overflow:hidden;border:1px solid #284666;border-radius:15px;background:#0a1c36;color:#f8fbff;font-family:Arial,Helvetica,sans-serif}.ds-page-map>strong{display:block;padding:12px 13px;background:#173f73;font:700 15px/1.2 SpaceGrotesk,Arial,sans-serif}.ds-page-map>div{display:grid;grid-template-columns:24px 1fr;gap:9px;padding:9px 12px;border-top:1px solid #284666}.ds-page-map b{color:#f0bd64}"
+    },
+    {
+      "name": "Approval Callout",
+      "kind": "card",
+      "refersTo": "approval-callout",
+      "description": "A material-switch panel for recommendation boundaries and human approvals.",
+      "html": "<aside class=\"ds-approval\"><strong>Recommendation boundary</strong><p>This list is the evidence-based recommendation for approval.</p></aside>",
+      "css": ".ds-approval{padding:11px 13px;border-radius:13px;background:#f7f4ee;color:#101d30;font-family:Arial,Helvetica,sans-serif}.ds-approval strong{font:700 15px/1.2 SpaceGrotesk,Arial,sans-serif}.ds-approval p{margin:5px 0 0;color:#40576d;font-size:12px;line-height:1.35}"
+    },
+    {
+      "name": "Blueprint Checkpoint",
+      "kind": "custom",
+      "refersTo": "checkpoint",
+      "description": "The circular number and vertical rail that anchor each implementation brief.",
+      "html": "<div class=\"ds-checkpoint\"><span>01</span><i></i></div>",
+      "css": ".ds-checkpoint{position:relative;width:42px;min-height:110px}.ds-checkpoint span{display:flex;width:32px;height:32px;align-items:center;justify-content:center;border-radius:999px;background:#0a1c36;color:#f0bd64;font:700 13px/1 SpaceGrotesk,Arial,sans-serif}.ds-checkpoint i{position:absolute;top:42px;left:16px;bottom:0;width:1px;background:#b8c5d2}"
+    },
+    {
+      "name": "Route Folio",
+      "kind": "nav",
+      "description": "A quiet footer with current-page emphasis across eight checkpoints.",
+      "html": "<footer class=\"ds-folio\"><span>Bar Crawl USA · August 2026</span><div><i></i><i class=\"on\"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>02 / 08</span></footer>",
+      "css": ".ds-folio{display:flex;align-items:center;justify-content:space-between;gap:15px;padding-top:8px;border-top:1px solid #284666;color:#b9c7da;font:400 10px/1.2 Arial,Helvetica,sans-serif}.ds-folio div{display:flex;gap:7px}.ds-folio i{display:block;width:5px;height:5px;border-radius:999px;background:#496481}.ds-folio i.on{width:17px;background:#f0bd64}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Lit Route Map",
+    "overview": "The system treats the plan as a route from call decision to indexed page to fall activation. Dark pages feel like a controlled event-night environment, while cream blueprint pages create a brighter working surface for the eight implementation briefs. Electric blue marks motion and navigation; warm gold marks decisions, checkpoints, and approval. It is an evolution of the prior Momentum 360 client plan, not a new Bar Crawl USA identity.",
+    "keyCharacteristics": [
+      "Alternating night decision pages and cream blueprint pages",
+      "Visible route checkpoints that make an eight-page plan feel continuous",
+      "Gold reserved for decisions and blue reserved for movement",
+      "Dense but readable client information with a firm source-of-truth hierarchy"
+    ],
+    "rules": [
+      { "name": "The Two Jobs Rule", "body": "Blue means movement or structure. Gold means decision or priority. Do not swap those roles for decoration.", "section": "colors" },
+      { "name": "The Reference Voice Rule", "body": "Space Grotesk is a pinned-reference exception, not a default choice for unrelated Momentum 360 work.", "section": "typography" },
+      { "name": "The One Route Rule", "body": "Every page advances the same story. Progress dots, checkpoint numbers, and build waves may change state, but they never become separate navigation systems.", "section": "layout" },
+      { "name": "The Tonal Depth Rule", "body": "Separate surfaces with color and one-pixel rules before considering elevation. Shadows do not belong in this document system.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use gold only for decisions, priorities, and the active route state.",
+      "Do keep every named URL readable in print and selectable in the PDF.",
+      "Do alternate dark decision pages with light working pages when the content changes from strategy to execution detail.",
+      "Do preserve the source boundary between confirmed facts and recommendations awaiting approval."
+    ],
+    "donts": [
+      "Don't create generic same-size cards as the document's primary structure.",
+      "Don't add duplicate page URLs or present recommendations as decisions already made on the call.",
+      "Don't introduce shadows, decorative gradients, or extra accent colors.",
+      "Don't reuse Space Grotesk as an automatic font choice outside this pinned reference system."
+    ]
+  }
+}

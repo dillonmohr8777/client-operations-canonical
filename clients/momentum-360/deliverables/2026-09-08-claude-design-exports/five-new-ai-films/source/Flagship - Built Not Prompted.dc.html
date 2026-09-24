@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/colors.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/typography.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/radius.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/motion.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/semantic.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/tokens/base.css">
+<link rel="stylesheet" href="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/styles.css">
+<script src="_ds/momentum-design-system-09b3bbc0-a8f7-4acc-88ae-8a47648d75a4/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap">
+<style>
+html,body{margin:0;padding:0;background:#fff}
+body{color:var(--ink);font-family:var(--body);font-size:var(--size-body);line-height:var(--leading-body)}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--navy);text-decoration:underline}
+::selection{background:var(--gold);color:var(--night)}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:5px}
+input[type=range]{accent-color:var(--gold)}
+</style>
+</helmet>
+<div style="max-width:1440px;margin:0 auto;padding:36px clamp(20px,4vw,48px) 72px">
+
+  <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:20px">
+    <div style="max-width:22ch">
+      <p style="margin:0 0 10px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Flagship film · 28 seconds · WebGL</p>
+      <h1 style="margin:0;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:clamp(2.1rem,3.6vw,3.2rem);line-height:1.02;letter-spacing:-.03em;color:var(--navy);text-wrap:balance">Built, not prompted.</h1>
+    </div>
+    <p style="margin:0;max-width:52ch;font-size:var(--size-support);color:var(--muted);text-wrap:pretty">Five beats, one continuous camera move, each effect given its own moment: a shard breaks open, the headline assembles as real extruded letters, a light shaft finds Momo, four service cards curl in on paper weight, then a rack focus lands on the mark.</p>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:18px 0 14px">
+    <p ref="{{ beatLine }}" style="margin:0;font-size:var(--size-note);font-weight:900;color:var(--muted)">Beat 01 · The shard · 0.0–3.6 s</p>
+    <div style="flex:1"></div>
+    <button type="button" onClick="{{ onSound }}" ref="{{ btnSound }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Sound off</button>
+    <button type="button" onClick="{{ onStatic }}" ref="{{ btnStatic }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 18px;border-radius:24px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Static version</button>
+  </div>
+
+  <div ref="{{ stageWrap }}" style="position:relative">
+    <div ref="{{ stage }}" tabindex="0" data-om-exportable-video-with-duration-secs="28" data-screen-label="Flagship · 00.0s" style="position:relative;width:100%;aspect-ratio:16/9;background:#03172e;border-radius:var(--radius);overflow:hidden;container-type:size;touch-action:pan-y;cursor:grab;outline-offset:4px">
+      <canvas ref="{{ canvas }}" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+
+      <div ref="{{ meta }}" style="position:absolute;left:6cqw;top:8cqh;opacity:0">
+        <p style="margin:0;font-family:var(--body);font-weight:900;font-size:1.2cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">Momentum Digital · AI division</p>
+        <p style="margin:.9cqh 0 0;font-family:var(--body);font-weight:400;font-size:1.15cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#8fa8bd">Private concept film · September 2026</p>
+      </div>
+
+      <div ref="{{ momoPlate }}" style="position:absolute;left:6cqw;bottom:11cqh;opacity:0;max-width:34cqw">
+        <p style="margin:0 0 1.3cqh;font-family:var(--body);font-weight:900;font-size:1.2cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">Beat 03 · Your guide</p>
+        <h2 style="margin:0 0 1.6cqh;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:3.8cqw;line-height:1.02;letter-spacing:-.03em;color:#fff">Momo<span style="color:#efb928">.</span></h2>
+        <p style="margin:0;font-family:var(--body);font-weight:400;font-size:1.3cqw;line-height:1.55;color:#d5e4f1">Keeps the system legible — one voice across every proposed workflow, and nothing moves without your approval.</p>
+      </div>
+
+      <div ref="{{ cardCap }}" style="position:absolute;left:6cqw;top:9cqh;opacity:0">
+        <p style="margin:0 0 1.2cqh;font-family:var(--body);font-weight:900;font-size:1.2cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">Beat 04 · Four proposed workflows</p>
+        <h2 style="margin:0;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:3.1cqw;line-height:1.04;letter-spacing:-.03em;color:#fff;max-width:26cqw">One system<span style="color:#efb928">.</span><br>All of it yours<span style="color:#efb928">.</span></h2>
+      </div>
+
+      <div ref="{{ endcard }}" style="position:absolute;left:7cqw;top:50%;transform:translateY(-50%);opacity:0;max-width:48cqw">
+        <img src="assets/momentum-logo.png" alt="Momentum" style="display:block;width:21cqw;height:auto;margin-bottom:3.4cqh">
+        <p style="margin:0 0 1.8cqh;font-family:var(--body);font-weight:900;font-size:1.3cqw;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#efb928">Need momentum?</p>
+        <p style="margin:0;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:3.5cqw;line-height:1.04;letter-spacing:-.03em;color:#fff;text-wrap:balance">Let’s build your first workflow<span style="color:#efb928">.</span></p>
+      </div>
+
+      <div ref="{{ hint }}" style="position:absolute;right:3.2cqw;top:3.6cqh;padding:.9cqh 1.8cqw;border:1px solid rgb(255 255 255 / 14%);border-radius:24px;font-size:1.15cqw;font-weight:900;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#d5e4f1;opacity:0">Drag to shuttle · ← → for beats</div>
+
+      <div ref="{{ loading }}" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:var(--size-label);font-weight:900;letter-spacing:var(--tracking-meta);text-transform:uppercase;color:#52677c">Building the scene</div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:16px 0 0">
+      <button type="button" onClick="{{ onToggle }}" ref="{{ btnPlay }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);width:96px;padding:9px 0;border-radius:8px;border:1px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer">Pause</button>
+      <button type="button" onClick="{{ onReplay }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-label);padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">Replay</button>
+      <input type="range" min="0" max="1000" defaultValue="0" ref="{{ scrub }}" onInput="{{ onScrub }}" aria-label="Scrub the film" style="flex:1;min-width:200px;height:22px">
+      <span ref="{{ timeLabel }}" style="font-size:var(--size-note);font-weight:900;color:var(--muted);font-variant-numeric:tabular-nums;min-width:80px;text-align:right">0.0 / 28.0s</span>
+      <label style="display:flex;align-items:center;gap:8px;font-size:var(--size-note);font-weight:900;color:var(--muted)">Duration
+        <select ref="{{ durSel }}" defaultValue="28" onChange="{{ onDur }}" aria-label="Playback duration" style="font-family:var(--body);font-size:var(--size-note);font-weight:900;color:var(--navy);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="22">22 s</option>
+          <option value="28">28 s</option>
+          <option value="36">36 s</option>
+        </select>
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:var(--size-note);font-weight:900;color:var(--muted)">Frame
+        <select ref="{{ frameSel }}" defaultValue="16:9" onChange="{{ onFrame }}" aria-label="Composition frame" style="font-family:var(--body);font-size:var(--size-note);font-weight:900;color:var(--navy);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff">
+          <option value="16:9">16:9</option>
+          <option value="9:16">9:16 mobile</option>
+        </select>
+      </label>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:8px;padding:14px 0 0">
+      <button type="button" onClick="{{ onB0 }}" ref="{{ b0 }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-note);padding:8px 14px;border-radius:8px;border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer">01 Shard</button>
+      <button type="button" onClick="{{ onB1 }}" ref="{{ b1 }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-note);padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">02 Extruded type</button>
+      <button type="button" onClick="{{ onB2 }}" ref="{{ b2 }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-note);padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">03 Light shaft</button>
+      <button type="button" onClick="{{ onB3 }}" ref="{{ b3 }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-note);padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">04 Paper cards</button>
+      <button type="button" onClick="{{ onB4 }}" ref="{{ b4 }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-note);padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">05 Rack focus</button>
+      <button type="button" onClick="{{ onB5 }}" ref="{{ b5 }}" style="font-family:var(--body);font-weight:900;font-size:var(--size-note);padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer">06 The mark</button>
+    </div>
+
+    <p ref="{{ runtimeNote }}" style="margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:var(--size-note);color:var(--muted);line-height:var(--leading-note)">Real WebGL throughout: the headline is genuine extruded geometry (each letter a stacked slice solid, so it occludes and catches a gold edge light as the camera passes between the letters), the light shaft is additive cone geometry with drifting dust, the cards bend per-vertex on landing, and depth of field is a true second pass sampling the depth buffer — not a blur filter over a flat image. Momo stays a lit ceramic plate set into a beveled niche; no character geometry is faked from the PNG. Drag to shuttle, ← → for beats, space to play or pause.</p>
+  </div>
+
+  <div ref="{{ staticBoard }}" style="display:none;padding-top:32px">
+    <p style="margin:0 0 8px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Static version · no motion</p>
+    <h2 style="margin:0 0 26px;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:clamp(1.8rem,2.8vw,2.6rem);line-height:1.04;letter-spacing:-.03em;color:var(--navy)">Five beats, read straight through.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:30px">
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Beat 01 · 0.0–3.6 s</p>
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:1.5rem;line-height:1.06;letter-spacing:-.03em;color:var(--navy)">The shard breaks open.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">One lit ceramic shard in a dark void splits on a hard edge — gold sparks, no cross-fade.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Beat 02 · 3.6–9.0 s</p>
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:1.5rem;line-height:1.06;letter-spacing:-.03em;color:var(--navy)">Built, not prompted.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">The headline assembles as extruded letters and the camera travels between them.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <div style="background:#03172e;border-radius:var(--radius);overflow:hidden">
+          <img src="assets/artwork/hero-mascot.png" alt="Momo, the collection guide" style="width:100%;height:auto;display:block">
+        </div>
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Beat 03 · 9.0–15.0 s</p>
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:1.5rem;line-height:1.06;letter-spacing:-.03em;color:var(--navy)">Momo.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">A light shaft finds the ceramic plate on its plinth. Dust drifts; the plinth turns once.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Beat 04 · 15.0–21.5 s</p>
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:1.5rem;line-height:1.06;letter-spacing:-.03em;color:var(--navy)">One system. All of it yours.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">Four proposed workflows curl in on paper weight: be there when they ask · make it recognizably yours · answer the first call · keep the work connected.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line)">
+        <p style="margin:0;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--blue);font-weight:900">Beats 05–06 · 21.5–28.0 s</p>
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:1.5rem;line-height:1.06;letter-spacing:-.03em;color:var(--navy)">Rack focus to the mark.</h3>
+        <p style="margin:0;font-size:var(--size-note);color:var(--muted)">The camera dollies the card corridor, focus pulls to the back, and the exact logo holds.</p>
+      </div>
+    </div>
+    <div style="margin-top:34px;padding:28px 32px;background:#072d53;border-radius:var(--radius)">
+      <img src="assets/momentum-logo.png" alt="Momentum" style="display:block;width:210px;height:auto;margin-bottom:18px">
+      <p style="margin:0 0 8px;font-size:var(--size-micro);letter-spacing:var(--tracking-meta);text-transform:uppercase;color:var(--gold);font-weight:900">Need momentum?</p>
+      <p style="margin:0;font-family:'Bricolage Grotesque',var(--display);font-weight:800;font-size:clamp(1.6rem,2.5vw,2.3rem);line-height:1.04;letter-spacing:-.03em;color:#fff">Let’s build your first workflow<span style="color:var(--gold)">.</span></p>
+    </div>
+  </div>
+
+  <p style="margin:34px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:var(--size-note);color:var(--muted);line-height:var(--leading-note);max-width:74ch">Private concept film · September 2026. The four workflows are proposed packaging for review, not deployed products, and no client result, metric or availability claim is made. Momo and the ceramic props are existing Momentum masters used unmodified; the wordmark is the exact master. <strong style="color:var(--ink)">Stated type exception:</strong> display type in this film is Bricolage Grotesque, one face added beyond the system’s Archivo Black + Nunito Sans pairing at Dillon’s direction; Nunito Sans still carries all reading and meta type, and the logo is never typeset.</p>
+</div>
+</x-dc>
+</body>
+</html>

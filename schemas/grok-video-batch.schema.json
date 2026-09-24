@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.dm-marketing/grok-video-batch.schema.json",
+  "title": "Grok Video Factory Client Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "batchId",
+    "clientId",
+    "clientDisplayName",
+    "productionState",
+    "sourceAudit",
+    "videos",
+    "approval"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "batchId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{2,79}$"
+    },
+    "clientId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,79}$"
+    },
+    "clientDisplayName": {
+      "type": "string",
+      "minLength": 2
+    },
+    "productionState": {
+      "const": "draft-local"
+    },
+    "sourceAudit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceMode",
+        "availableSources",
+        "missingSources",
+        "truthBoundary"
+      ],
+      "properties": {
+        "sourceMode": {
+          "enum": [
+            "real-client-media",
+            "licensed-stock",
+            "synthetic-broll",
+            "mixed",
+            "concept-only"
+          ]
+        },
+        "availableSources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missingSources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "truthBoundary": {
+          "type": "string",
+          "minLength": 20
+        }
+      }
+    },
+    "videos": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "videoId",
+          "title",
+          "objective",
+          "hook",
+          "durationSeconds",
+          "aspectRatio",
+          "sourceMode",
+          "disclosure",
+          "voiceover",
+          "onScreenText",
+          "shots",
+          "cta",
+          "safetyChecks"
+        ],
+        "properties": {
+          "videoId": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]{2,99}$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 4
+          },
+          "objective": {
+            "type": "string",
+            "minLength": 10
+          },
+          "hook": {
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 120
+          },
+          "durationSeconds": {
+            "type": "integer",
+            "minimum": 15,
+            "maximum": 45
+          },
+          "aspectRatio": {
+            "const": "9:16"
+          },
+          "sourceMode": {
+            "enum": [
+              "real-client-media",
+              "licensed-stock",
+              "synthetic-broll",
+              "mixed",
+              "concept-only"
+            ]
+          },
+          "disclosure": {
+            "type": "string",
+            "minLength": 4
+          },
+          "voiceover": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 900
+          },
+          "onScreenText": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 8,
+            "items": {
+              "type": "string",
+              "maxLength": 90
+            }
+          },
+          "shots": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 12,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "shotId",
+                "seconds",
+                "sourceRef",
+                "requiresGeneration",
+                "generationPrompt",
+                "negativePrompt"
+              ],
+              "properties": {
+                "shotId": {
+                  "type": "string"
+                },
+                "seconds": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 15
+                },
+                "sourceRef": {
+                  "type": "string"
+                },
+                "requiresGeneration": {
+                  "type": "boolean"
+                },
+                "generationPrompt": {
+                  "type": "string"
+                },
+                "negativePrompt": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "cta": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "status",
+              "text"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "verified",
+                  "placeholder-blocked",
+                  "none"
+                ]
+              },
+              "text": {
+                "type": "string"
+              }
+            }
+          },
+          "safetyChecks": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "renderApproved",
+        "sendApproved",
+        "publishApproved"
+      ],
+      "properties": {
+        "renderApproved": {
+          "const": false
+        },
+        "sendApproved": {
+          "const": false
+        },
+        "publishApproved": {
+          "const": false
+        }
+      }
+    }
+  }
+}

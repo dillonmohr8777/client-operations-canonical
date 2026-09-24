@@ -1,0 +1,323 @@
+/* Shared release floor for the private Authored 100 review collection. */
+:root {
+  --review-ease: cubic-bezier(.16, 1, .3, 1);
+}
+
+html {
+  scroll-padding-top: 6rem;
+}
+
+body[data-review-build="authored-100"] {
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+}
+
+body[data-review-build="authored-100"] :is(p, li) {
+  overflow-wrap: break-word;
+}
+
+body[data-review-build="authored-100"] :is(h1, h2, h3) {
+  letter-spacing: max(-.04em, var(--review-heading-tracking, -.025em));
+}
+
+body[data-review-build="authored-100"] :is(.hero, [class*="hero-"]) h1 {
+  max-width: 15ch;
+  line-height: .98;
+}
+
+body[data-review-build="authored-100"] :is(.hero, [class*="hero-"]) p {
+  max-width: 68ch;
+  line-height: 1.65;
+}
+
+/* Use the page's own hero photograph as a quiet full-bleed layer only when
+   the authored composition pushes every hero image below the opening screen. */
+body[data-review-build="authored-100"] :is(.hero, [class*="hero-"]):has(> .review-opening-media) {
+  position: relative;
+  isolation: isolate;
+}
+
+body[data-review-build="authored-100"] :is(.hero, [class*="hero-"]) > .review-opening-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: auto;
+  height: auto;
+  aspect-ratio: auto !important;
+  align-self: stretch;
+  justify-self: stretch;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+body[data-review-build="authored-100"] :is(.hero, [class*="hero-"]) > .review-opening-media img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  filter: saturate(.82) contrast(.92);
+}
+
+body[data-review-build="authored-100"] :is(.hero, [class*="hero-"]) > .review-opening-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--review-hero-surface, #fff) 68%, transparent);
+}
+
+body[data-review-build="authored-100"] :is(.hero, [class*="hero-"]):has(> .review-opening-media) > :not(.review-opening-media) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Opening content is never held behind a long blur or invisible default. */
+body[data-review-build="authored-100"] :is(.hero, [class*="hero-"]) :is([data-rv], .reveal, [data-reveal]) {
+  opacity: 1;
+  filter: none;
+  clip-path: none;
+}
+
+body[data-review-build="authored-100"] :is(.hero, [class*="hero-"]) h1 {
+  animation: review-opening-rise 820ms var(--review-ease) both;
+}
+
+body[data-review-build="authored-100"] :is(.hero, [class*="hero-"]) p,
+body[data-review-build="authored-100"] :is(.hero, [class*="hero-"]) :is(.cta, .hero-actions, .button-row) {
+  animation: review-opening-copy 760ms 90ms var(--review-ease) both;
+}
+
+body[data-review-opening="focus"] :is(.hero, [class*="hero-"]) h1 {
+  animation-name: review-opening-focus;
+}
+
+body[data-review-opening="wipe"] :is(.hero, [class*="hero-"]) h1 {
+  animation-name: review-opening-wipe;
+}
+
+body[data-review-opening="settle"] :is(.hero, [class*="hero-"]) h1 {
+  animation-name: review-opening-settle;
+}
+
+@keyframes review-opening-rise {
+  from { opacity: .01; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes review-opening-copy {
+  from { opacity: .01; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes review-opening-focus {
+  from { opacity: .01; filter: blur(8px); transform: scale(.985); }
+  to { opacity: 1; filter: none; transform: none; }
+}
+
+@keyframes review-opening-wipe {
+  from { opacity: .01; clip-path: inset(0 100% 0 0); }
+  to { opacity: 1; clip-path: inset(0); }
+}
+
+@keyframes review-opening-settle {
+  from { opacity: .01; transform: translateY(-16px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Only the top and bottom identity marks remain visible. */
+body[data-review-build="authored-100"] main :is(.heromark, .hero-logo, .logo-hero) {
+  display: none !important;
+}
+
+body[data-review-build="authored-100"] :is(
+  .brand,
+  .brandmark,
+  .footmark,
+  .logo-finale,
+  .review-footer-logo
+) {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+body[data-review-build="authored-100"] :is(
+  header,
+  footer,
+  .logo-finale,
+  .review-footer-logo
+) img[src*="logo"] {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(320px, 62vw);
+  max-height: 96px;
+  object-fit: contain !important;
+  object-position: center !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+body[data-review-build="authored-100"] header img[src*="logo"] {
+  max-width: min(260px, 45vw);
+  max-height: 76px;
+}
+
+body[data-review-build="authored-100"] :is(.logo-finale, .review-footer-logo) {
+  min-height: 22vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(56px, 8vw, 112px) 5vw;
+}
+
+body[data-review-build="authored-100"] :is(main > section, main > article) {
+  scroll-margin-top: 6rem;
+}
+
+body[data-review-build="authored-100"] img:not([src*="logo"]) {
+  color: transparent;
+}
+
+@media (max-width: 760px) {
+  body[data-review-build="authored-100"] :is(.hero, [class*="hero-"]) h1 {
+    max-width: 12ch;
+    font-size: clamp(2.6rem, 13vw, 5rem);
+  }
+
+  body[data-review-build="authored-100"] :is(.hero, [class*="hero-"]) p {
+    font-size: clamp(1rem, 4.2vw, 1.15rem);
+  }
+
+  body[data-review-build="authored-100"] header img[src*="logo"] {
+    max-width: min(230px, 54vw);
+    max-height: 68px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  body[data-review-build="authored-100"] *,
+  body[data-review-build="authored-100"] *::before,
+  body[data-review-build="authored-100"] *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+
+  body[data-review-build="authored-100"] :is(.hero, [class*="hero-"]) :is(h1, p, .cta, .hero-actions, .button-row) {
+    animation: none !important;
+  }
+}
+
+/* WCAG AA contrast repairs proven by the final rendered audit. These are
+   deliberately scoped to exact authored slugs so each original art direction
+   remains intact. */
+body[data-review-slug="marthas-sophisticated-shine"] :is(.eyebrow, .kick) { color: #6b541c !important; }
+body[data-review-slug="philly-medical-and-rehab-associates"] .eyebrow { color: #a5262d !important; }
+body[data-review-slug="philly-medical-and-rehab-associates"] .tabrow > span:first-child { background: #a51f29 !important; color: #fff !important; }
+body[data-review-slug="scrc-accident-and-injury-center"] :is(.eyebrow, .fin h4) { color: #8bb8ff !important; opacity: 1 !important; }
+body[data-review-slug="scrc-accident-and-injury-center"] :is(#services, .tone, #gallery, #visit) .idx { color: #164c9f !important; opacity: 1 !important; }
+body[data-review-slug="scrc-accident-and-injury-center"] .dark .idx { color: #8bb8ff !important; opacity: 1 !important; }
+body[data-review-slug="scrc-accident-and-injury-center"] .figs :is(b, span) { color: #fff !important; opacity: 1 !important; }
+body[data-review-slug="scrc-accident-and-injury-center"] .bar { background: #1554ad !important; }
+body[data-review-slug="scrc-accident-and-injury-center"] .bar span { color: #fff !important; opacity: 1 !important; }
+body[data-review-slug="bill-frusco-plumbing-heating-cooling"] .facts :is(b, span) { color: #29110b !important; }
+body[data-review-slug="brandon-electric-inc"] dt { color: #34373b !important; opacity: 1 !important; }
+body[data-review-slug="brandon-electric-inc"] .fbot { color: #34373b !important; opacity: 1 !important; }
+body[data-review-slug="brandon-electric-inc"] .fbot span { color: inherit !important; opacity: 1 !important; }
+body[data-review-slug="brandon-electric-inc"] .plate figcaption { color: #34373b !important; opacity: 1 !important; }
+body[data-review-slug="ernest-d-menold-inc"] .kick { color: #8f3422 !important; }
+body[data-review-slug="jdv-electric-llc"] .eyebrow { color: #8c3827 !important; }
+body[data-review-slug="jdv-electric-llc"] .tabrow > span:first-child { color: #000 !important; }
+body[data-review-slug="k-a-m-sheet-metal-fab"] :is(.eyebrow, .kick, article .n) { color: #284f48 !important; opacity: 1 !important; }
+body[data-review-slug="young-s-electrical-services-inc"] .eyebrow { color: #6b5412 !important; }
+body[data-review-slug="young-s-electrical-services-inc"] :is(.coords b, .coords span, .head .idx) { color: #303735 !important; opacity: 1 !important; }
+body[data-review-slug="metalmorphose-iron-studio"] .section-kicker { color: #a93508 !important; }
+
+body[data-review-slug="pt-in-philly"] .eyebrow { color: #aa1f2b !important; }
+body[data-review-slug="pt-in-philly"] :is(#services, #visit) .bignum { color: #94404d !important; }
+body[data-review-slug="pt-in-philly"] #story .bignum { color: #f0d8d8 !important; }
+body[data-review-slug="pt-in-philly"] #gallery .bignum { color: #fff !important; }
+body[data-review-slug="pt-in-philly"] .card h4 { color: #8fc1ff !important; }
+body[data-review-slug="pt-in-philly"] :is(#services, #visit) .lead { color: #544945 !important; opacity: 1 !important; }
+body[data-review-slug="pt-in-philly"] #services article :is(.n, h3, p) { color: #544945 !important; opacity: 1 !important; }
+
+body[data-review-slug="peking-gourmet"] { color: #650000 !important; }
+body[data-review-slug="peking-gourmet"] :is(h1, p, li, a, strong, .section-kicker, .disclosure) { color: #650000 !important; }
+body[data-review-slug="peking-gourmet"] .proof-grid span { color: #650000 !important; opacity: 1 !important; }
+body[data-review-slug="peking-gourmet"] .button:not(.button-quiet) { color: #fff !important; background: #a00000 !important; }
+body[data-review-slug="peking-gourmet"] .skip-link { color: #fff !important; background: #750000 !important; }
+
+body[data-review-slug="bustleton-services"] :is(.eyebrow, .head .idx) { color: #675a00 !important; }
+body[data-review-slug="bustleton-services"] .coords :is(b, span) { color: #183b63 !important; opacity: 1 !important; }
+body[data-review-slug="bustleton-services"] dt { color: #d2e5fb !important; opacity: 1 !important; }
+
+body[data-review-slug="h-g-sign-company"] .eyebrow { color: #812f16 !important; }
+body[data-review-slug="h-g-sign-company"] :is(#services, #visit) :is(.bignum, .h2, .lead, .n) { color: #30383a !important; opacity: 1 !important; }
+body[data-review-slug="h-g-sign-company"] #story .bignum { color: #9fb5c0 !important; opacity: 1 !important; }
+body[data-review-slug="h-g-sign-company"] #gallery .bignum { color: #4a190d !important; opacity: 1 !important; }
+body[data-review-slug="dunryte-electric-inc"] .kick { color: #762f23 !important; opacity: 1 !important; }
+body[data-review-slug="dunryte-electric-inc"] .dark .kick { color: #f4aa91 !important; opacity: 1 !important; }
+body[data-review-slug="mayfair-fence"] #gallery .h2 { color: #252525 !important; opacity: 1 !important; }
+body[data-review-slug="patriot-fence-and-ironworks"] :is(.two, #services, #gallery, #visit) .kick { color: #65152c !important; opacity: 1 !important; }
+body[data-review-slug="mayfair-family-chiropractic"] :is(.node span, .stack article .n, .stack article p) { color: #334d59 !important; opacity: 1 !important; }
+body[data-review-slug="centrum-mechanical-services"] .stack article .n { color: #9a3d1d !important; opacity: 1 !important; }
+body[data-review-slug="centrum-mechanical-services"] .node span { color: #8c3215 !important; opacity: 1 !important; }
+body[data-review-slug="cleaned-by-d-d-llc"] .wrap > .eyebrow { color: #96381f !important; opacity: 1 !important; }
+body[data-review-slug="cleaned-by-d-d-llc"] .rows li { opacity: 1 !important; }
+body[data-review-slug="cleaned-by-d-d-llc"] .rows p { color: #343a3d !important; opacity: 1 !important; }
+body[data-review-slug="e-and-e-cleaning"] .rows p { color: #625d58 !important; opacity: 1 !important; }
+body[data-review-slug="charles-schillinger-company"] .figs :is(b, span) { color: #000 !important; opacity: 1 !important; }
+body[data-review-slug="charles-schillinger-company"] .kick { color: #315e59 !important; opacity: 1 !important; }
+
+/* Final independent release review found nine solid CTA fills below 4.5:1.
+   Darken only those authored primary controls; ghost controls retain their
+   original material treatment. */
+body[data-review-slug="dunryte-electric-inc"] .btn:not(.ghost) { background: #8b3123 !important; border-color: #8b3123 !important; color: #fff !important; }
+body[data-review-slug="mayfair-fence"] .btn:not(.ghost) { background: #8b3b00 !important; border-color: #8b3b00 !important; color: #fff !important; }
+body[data-review-slug="philly-medical-and-rehab-associates"] .btn:not(.ghost) { background: #98202b !important; border-color: #98202b !important; color: #fff !important; }
+body[data-review-slug="marthas-sophisticated-shine"] .btn:not(.ghost) { background: #6b4f0f !important; border-color: #6b4f0f !important; color: #fff !important; }
+body[data-review-slug="pt-in-philly"] .btn:not(.ghost) { background: #95182a !important; border-color: #95182a !important; color: #fff !important; }
+body[data-review-slug="bustleton-services"] .btn:not(.ghost) { background: #183b63 !important; border-color: #183b63 !important; color: #fff !important; }
+body[data-review-slug="patriot-fence-and-ironworks"] .btn:not(.ghost) { background: #00557d !important; border-color: #00557d !important; color: #fff !important; }
+body[data-review-slug="jdv-electric-llc"] .btn:not(.ghost) { background: #7d3022 !important; border-color: #7d3022 !important; color: #fff !important; }
+body[data-review-slug="lawrence-kassan-podiatry"] .btn:not(.ghost) { background: #006487 !important; border-color: #006487 !important; color: #fff !important; }
+
+/* The release review also exercises content revealed only on pointer hover.
+   These two caption fills preserve the original accent family while meeting
+   WCAG AA for their small white labels. */
+body[data-review-slug="h-g-sign-company"] .strip figcaption { background: #8b3b22 !important; color: #fff !important; }
+body[data-review-slug="pt-in-philly"] .strip figcaption { background: #95182a !important; color: #fff !important; }
+
+@media (min-width: 640px) and (max-width: 900px) {
+  body[data-review-slug="borden-heating-cooling-inc"] .hero {
+    position: relative;
+    isolation: isolate;
+  }
+
+  body[data-review-slug="borden-heating-cooling-inc"] .hero-t {
+    position: relative;
+    z-index: 1;
+    background: color-mix(in srgb, var(--paper) 82%, transparent);
+  }
+
+  body[data-review-slug="borden-heating-cooling-inc"] .hero-m {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    min-height: 0;
+  }
+}

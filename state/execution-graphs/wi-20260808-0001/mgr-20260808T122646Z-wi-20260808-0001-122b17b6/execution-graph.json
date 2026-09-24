@@ -1,0 +1,421 @@
+{
+    "schemaVersion":  1,
+    "graphRunId":  "mgr-20260808T122646Z-wi-20260808-0001-122b17b6",
+    "graphRevision":  1,
+    "workflowId":  "marketing-chief-execution-graph",
+    "createdAt":  "2026-08-08T12:26:46.2537616+00:00",
+    "updatedAt":  "2026-08-08T12:26:46.2537616+00:00",
+    "status":  "planned",
+    "queueSnapshot":  {
+                          "locator":  "queue/work-items.json",
+                          "revision":  396,
+                          "sha256":  "3959E64B2EC64E6816078A124B6F2CFB1E8AB3BBFAFC8ADD993D2AB426D52D5A",
+                          "capturedAt":  "2026-08-08T12:26:46.2537616+00:00"
+                      },
+    "workItem":  {
+                     "id":  "wi-20260808-0001",
+                     "expectedVersion":  1,
+                     "contentSha256":  "64EBA8C6F69BD4D9B42C82FBBDCA3AFC52F1162BB778547976A2C17C3E7BB30E",
+                     "clientId":  "align-hcm",
+                     "title":  "Verify new Align indexation exclusions and prepare remediation brief",
+                     "status":  "ready",
+                     "lane":  "normal",
+                     "priority":  "P1",
+                     "actionClass":  "read_only_verification",
+                     "nextAction":  "Inspect current public URL behavior and authorized read-only Search Console evidence, classify affected URLs and causes, and prepare a local remediation brief with no live changes.",
+                     "definitionOfDone":  [
+                                              "The exact affected URL set and reported exclusion categories are captured from current read-only evidence.,Redirect, canonical, alternate-page, robots, sitemap, and status-code behavior are verified for the affected sample.,A local remediation brief separates expected exclusions from defects and lists prioritized safe fixes.,No Search Console, website, hosting, DNS, or account setting is changed."
+                                          ],
+                     "sourceLocator":  "agent-os-run:20260808-061243-99986abd/task.json",
+                     "evidenceRefs":  [
+                                          "agent-os-run:20260808-061243-99986abd/task.json"
+                                      ],
+                     "artifactRefs":  [
+
+                                      ],
+                     "dependencies":  [
+
+                                      ],
+                     "approval":  {
+                                      "tier":  "automatic",
+                                      "status":  "not_required",
+                                      "gate":  "none"
+                                  }
+                 },
+    "scope":  {
+                  "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+                  "clientRoot":  "clients/align-hcm",
+                  "graphLocator":  "state/execution-graphs/wi-20260808-0001/mgr-20260808T122646Z-wi-20260808-0001-122b17b6/execution-graph.json",
+                  "canonicalWriteAllowed":  false,
+                  "externalActionAllowed":  false,
+                  "durableMemoryWriteAllowed":  false,
+                  "privacy":  "redacted"
+              },
+    "retrieval":  {
+                      "strategy":  "exact-plus-graph",
+                      "exactBindingRequired":  true,
+                      "semanticBindingAllowed":  false,
+                      "sourceCount":  1,
+                      "artifactCount":  0
+                  },
+    "nodes":  [
+                  {
+                      "id":  "scope-guard",
+                      "kind":  "scope_guard",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Validate immutable queue, work-item, client, and project scope.",
+                      "requires":  [
+
+                                   ],
+                      "produces":  [
+                                       "scoped_work_item"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Queue revision, work-item version, exact client route, and safety scope were validated.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "queue/work-items.json",
+                                                      "agent-os-run:20260808-061243-99986abd/task.json"
+                                                  ],
+                                     "verification":  [
+                                                          "Queue revision 396 captured.",
+                                                          "Work-item version 1 captured.",
+                                                          "Client route align-hcm resolved exactly once and is active."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "source-intake",
+                      "kind":  "source_intake",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Capture safe exact source and evidence locators.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "provenance_slice"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Exact source and evidence locators were captured without raw communications.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "agent-os-run:20260808-061243-99986abd/task.json"
+                                                  ],
+                                     "verification":  [
+                                                          "Evidence freshness evaluated at 2026-08-08T12:26:46.2537616+00:00."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "context-retrieval",
+                      "kind":  "context_retrieval",
+                      "owner":  "marketing-chief-context-loader",
+                      "status":  "completed",
+                      "task":  "Assemble the exact bounded context slice required by this item.",
+                      "requires":  [
+                                       "source-intake"
+                                   ],
+                      "produces":  [
+                                       "worker_context"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Bounded client, source, artifact, dependency, and definition-of-done context was assembled.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "agent-os-run:20260808-061243-99986abd/task.json"
+                                                  ],
+                                     "verification":  [
+                                                          "Definition-of-done checks: 1.",
+                                                          "Artifact references: 0."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "worker-execution",
+                      "kind":  "worker_execution",
+                      "owner":  "bounded-worker",
+                      "status":  "ready",
+                      "task":  "Inspect current public URL behavior and authorized read-only Search Console evidence, classify affected URLs and causes, and prepare a local remediation brief with no live changes.",
+                      "requires":  [
+                                       "context-retrieval"
+                                   ],
+                      "produces":  [
+                                       "local_artifacts",
+                                       "worker_evidence"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "verify-01",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "pending",
+                      "task":  "The exact affected URL set and reported exclusion categories are captured from current read-only evidence.,Redirect, canonical, alternate-page, robots, sitemap, and status-code behavior are verified for the affected sample.,A local remediation brief separates expected exclusions from defects and lists prioritized safe fixes.,No Search Console, website, hosting, DNS, or account setting is changed.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_01"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "approval-gate",
+                      "kind":  "approval_gate",
+                      "owner":  "marketing-chief",
+                      "status":  "completed",
+                      "task":  "Enforce the exact action-class and approval boundary.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "approval_verdict"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "This graph permits local reversible work only; no external action is authorized.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+
+                                                  ],
+                                     "verification":  [
+                                                          "Action class: read_only_verification.",
+                                                          "Approval tier/status: automatic/not_required."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "handoff-assembly",
+                      "kind":  "handoff_assembly",
+                      "owner":  "bounded-worker",
+                      "status":  "pending",
+                      "task":  "Assemble a schema-valid redacted worker handoff from completed graph outputs.",
+                      "requires":  [
+                                       "verify-01",
+                                       "approval-gate"
+                                   ],
+                      "produces":  [
+                                       "worker_handoff"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "chief-reconciliation",
+                      "kind":  "chief_reconciliation",
+                      "owner":  "marketing-chief",
+                      "status":  "pending",
+                      "task":  "Revalidate live queue and item state, then accept or reject the handoff through the supported canonical mutation path.",
+                      "requires":  [
+                                       "handoff-assembly"
+                                   ],
+                      "produces":  [
+                                       "canonical_receipt"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  }
+              ],
+    "edges":  [
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "source-intake"
+                  },
+                  {
+                      "from":  "source-intake",
+                      "relation":  "precedes",
+                      "to":  "context-retrieval"
+                  },
+                  {
+                      "from":  "context-retrieval",
+                      "relation":  "precedes",
+                      "to":  "worker-execution"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-01"
+                  },
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "approval-gate"
+                  },
+                  {
+                      "from":  "verify-01",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "approval-gate",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "handoff-assembly",
+                      "relation":  "precedes",
+                      "to":  "chief-reconciliation"
+                  }
+              ],
+    "knowledgeGraph":  {
+                           "nodes":  [
+                                         {
+                                             "id":  "queue:canonical",
+                                             "type":  "queue",
+                                             "label":  "Canonical queue revision 396",
+                                             "locator":  "queue/work-items.json"
+                                         },
+                                         {
+                                             "id":  "client:align-hcm",
+                                             "type":  "client",
+                                             "label":  "align-hcm",
+                                             "locator":  "clients/align-hcm"
+                                         },
+                                         {
+                                             "id":  "work-item:wi-20260808-0001",
+                                             "type":  "work_item",
+                                             "label":  "Verify new Align indexation exclusions and prepare remediation brief",
+                                             "locator":  "agent-os-run:20260808-061243-99986abd/task.json"
+                                         },
+                                         {
+                                             "id":  "approval:none",
+                                             "type":  "approval",
+                                             "label":  "automatic/not_required/none",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "evidence:cfbf7a8c81e439ac",
+                                             "type":  "evidence",
+                                             "label":  "agent-os-run:20260808-061243-99986abd/task.json",
+                                             "locator":  "agent-os-run:20260808-061243-99986abd/task.json"
+                                         },
+                                         {
+                                             "id":  "definition:01",
+                                             "type":  "definition",
+                                             "label":  "The exact affected URL set and reported exclusion categories are captured from current read-only evidence.,Redirect, canonical, alternate-page, robots, sitemap, and status-code behavior are verified for the affected sample.,A local remediation brief separates expected exclusions from defects and lists prioritized safe fixes.,No Search Console, website, hosting, DNS, or account setting is changed.",
+                                             "locator":  null
+                                         }
+                                     ],
+                           "edges":  [
+                                         {
+                                             "from":  "queue:canonical",
+                                             "relation":  "contains",
+                                             "to":  "work-item:wi-20260808-0001"
+                                         },
+                                         {
+                                             "from":  "client:align-hcm",
+                                             "relation":  "owns",
+                                             "to":  "work-item:wi-20260808-0001"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260808-0001",
+                                             "relation":  "governed_by",
+                                             "to":  "approval:none"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260808-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:cfbf7a8c81e439ac"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260808-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:01"
+                                         }
+                                     ],
+                           "nodeCount":  6,
+                           "edgeCount":  5
+                       },
+    "handoffContract":  {
+                            "schema":  "schemas/worker-handoff.schema.json",
+                            "validator":  "scripts/Test-MarketingHandoff.ps1",
+                            "reconciler":  "scripts/Accept-WorkerHandoff.ps1",
+                            "expectedWorkItemVersion":  1,
+                            "approvalGate":  "none",
+                            "graphEvidence":  "state/execution-graphs/wi-20260808-0001/mgr-20260808T122646Z-wi-20260808-0001-122b17b6/execution-graph.json"
+                        },
+    "blockers":  [
+
+                 ],
+    "warnings":  [
+
+                 ],
+    "trace":  [
+                  {
+                      "eventId":  "evt-abcb474f246a4e85a2c94b999841abeb",
+                      "at":  "2026-08-08T12:26:46.2537616+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "scope-guard",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-85581982ae304d92ab2880d2d2d13839",
+                      "at":  "2026-08-08T12:26:46.2537616+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "source-intake",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-dad63945c6454659a53932eec622a610",
+                      "at":  "2026-08-08T12:26:46.2537616+00:00",
+                      "actor":  "marketing-chief-context-loader",
+                      "nodeId":  "context-retrieval",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-e8ef5b27b4454c719ddf89682e18a019",
+                      "at":  "2026-08-08T12:26:46.2537616+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "approval-gate",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  }
+              ],
+    "attestations":  {
+                         "canonicalWriteAttempted":  false,
+                         "externalActionAttempted":  false,
+                         "durableMemoryWriteAttempted":  false,
+                         "containsSecrets":  false,
+                         "containsDirectIdentifiers":  false,
+                         "containsRawCommunications":  false
+                     }
+}

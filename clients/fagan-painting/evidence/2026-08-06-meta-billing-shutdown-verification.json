@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "clientId": "fagan-painting",
+  "workItemId": "wi-20260806-0001",
+  "observedAt": "2026-08-06T16:39:00Z",
+  "timezone": "America/New_York",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false,
+  "externalActionTaken": false,
+  "readOnly": true,
+  "canonicalPaidMediaState": {
+    "rosterExcluded": true,
+    "activeRosterLaneCount": 0,
+    "rosterPathChecked": "registry/paid-media-roster.json",
+    "note": "Client remains absent from every active paid-media roster lane. No roster mutation was made."
+  },
+  "exactAccount": {
+    "accessBrokerRef": "access-broker:fagan-painting/meta-ads-production",
+    "accountIdSha256": "3143855d5a6af0b9b4e45c72032ef033ff91177da453f988d6626fc7ed365c8f",
+    "accountId": "892789268275012",
+    "accountDisplayName": "Fagan Painting LLC",
+    "businessPortfolioId": "2447062248938184"
+  },
+  "liveMetaReadback": {
+    "surface": "persistent-chrome-cdp",
+    "campaignsUrl": "https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=892789268275012",
+    "billingUrl": "https://business.facebook.com/latest/billing_hub/accounts/?payment_account_id=892789268275012&asset_id=892789268275012&business_id=2447062248938184",
+    "accountStatus": "Disabled",
+    "paymentStatus": "Payment failed",
+    "currentBalanceUsd": 146.37,
+    "paymentMethodPresent": true,
+    "activeAdsFilter": {
+      "deliveringCampaigns": 0,
+      "visibleRows": [
+        {
+          "name": "PRIMARY Fagan Traffic + Leads Campaign",
+          "delivery": "In draft"
+        }
+      ],
+      "conclusion": "No actively delivering campaigns or ads remain under the Active ads filter."
+    },
+    "allAdsSample": {
+      "observedCampaignStates": [
+        "In draft",
+        "Off"
+      ],
+      "conclusion": "Visible campaign rows are draft or off; no live delivery was observed."
+    }
+  },
+  "gmailEvidence": {
+    "sources": [
+      {
+        "opaqueMessageId": "19fd7873688e2d78",
+        "observedAt": "2026-08-06T14:43:08Z",
+        "subjectClass": "account-disabled-ads-paused",
+        "summary": "Meta notified that payment for the exact Fagan ad account was declined and that the account was disabled with ads paused."
+      },
+      {
+        "opaqueMessageId": "19fd7bf62941f902",
+        "observedAt": "2026-08-06T15:44:26Z",
+        "subjectClass": "meta-ads-receipt",
+        "summary": "Meta billed 30.24 USD for residual delivery on 2026-08-06 from 00:00 through 10:42 local account time."
+      },
+      {
+        "opaqueMessageId": "19fd7a8f84ca7d27",
+        "observedAt": "2026-08-06T15:20:02Z",
+        "subjectClass": "client-cash-app-payment",
+        "summary": "Same-day client payment of 84.00 USD arrived with a Facebook memo."
+      },
+      {
+        "opaqueMessageId": "19fd33086c2d8b63",
+        "observedAt": "2026-08-05T18:29:58Z",
+        "subjectClass": "meta-ads-receipt",
+        "summary": "Prior Meta receipt billed 83.74 USD for 2026-07-23 through 2026-07-24."
+      }
+    ]
+  },
+  "billingComparison": {
+    "residualSameDayChargeUsd": 30.24,
+    "clientReimbursementUsd": 84.0,
+    "priorReceiptUsd": 83.74,
+    "reimbursementMatchesPriorReceipt": true,
+    "reimbursementCoversResidualCharge": false,
+    "outstandingBalanceUsd": 146.37,
+    "conclusion": "The 84.00 USD client payment aligns with the prior 83.74 USD Meta receipt, not the 30.24 USD same-day residual charge. The account is disabled with payment failed and an unpaid balance remains. This is a shutdown and account-safety record, not authorization to resume ads."
+  },
+  "definitionOfDone": {
+    "rosterExclusionPreserved": true,
+    "deliveryAbsentConfirmed": true,
+    "residualChargeComparedWithoutMutation": true,
+    "redactedEvidenceSaved": true
+  },
+  "supersedes": [
+    "clients/fagan-painting/evidence/2026-08-06-meta-billing-shutdown-alert.json"
+  ]
+}

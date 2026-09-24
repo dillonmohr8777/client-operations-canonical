@@ -1,0 +1,91 @@
+﻿START 2026-08-11T11:47:36.2620928-04:00
+Run date ET: 2026-08-11
+Prompt: C:\Users\dillo\Documents\Codex\projects\client-operations\clients\momentum-360\automation\daily-agent-health\PROMPT.md
+Workspace: C:\Users\dillo\Documents\Codex\projects\client-operations
+Dry run: True
+Scheduled run started: 2026-08-11T11:47:36.2574182-04:00
+This run has standing approval for exactly one daily Slack delivery to group DM C0B2N20A0SW as defined below.
+Do not ask for confirmation. Complete the live checks, send once, and read the result back.
+# Momentum 360 daily AI and lead-response health report
+
+This is a recurring delivery explicitly authorized by Dillon Mohr on August 11, 2026. Send one verified morning update every day to the exact Slack group DM below. The report exists so Jason Fallon and Sean Boyle do not have to ask for HubSpot agent, alerting, contact-record, or CallRail status.
+
+## Exact destination
+
+- Slack conversation ID: `C0B2N20A0SW`
+- Participants to notify in the message: Sean Boyle `<@UAK3WSY15>` and Jason Fallon `<@U05MUGHN031>`
+- Daily report ID: `M360-DAILY-2026-08-11`
+- Delivery time: 9:00 AM America/New_York
+- Send exactly one message. Do not also post the daily report to `#calls`.
+
+Before doing any collection, read the latest messages in `C0B2N20A0SW` and search for the exact daily report ID. If the report ID is already present, do not send another message. Read it back and finish with `DELIVERY_CONFIRMED` plus the existing Slack timestamp or link.
+
+## Source checks
+
+Use current live evidence. Never substitute an older report for a current check.
+
+### HubSpot customer agent
+
+1. Use only Momentum 360 HubSpot portal `50612503`. Never use Align HCM portal `242825734`.
+2. Validate the authorized Momentum session before relying on it. Prefer the authenticated in-app browser. If browser access is unavailable, use the protected Jason/Momentum read-only launcher where it covers the requested field and mark UI-only fields unavailable.
+3. Inspect `Customer Agent, Momentum 360 Assistant`, website chatflow `Momentum 360 Website Assistant` (`96377499`), and alert workflow `Momentum 360 - Customer Agent - Immediate Alerts` (`1865051017`).
+4. Verify and report:
+   - customer agent and website channel status;
+   - whether email capture is at conversation start;
+   - whether First Name, Last Name, and Phone Number have view/edit permission;
+   - current published-guideline time and any unpublished changes or validation failures;
+   - Help Desk handoff ticket creation, owner, and availability-only setting;
+   - prior-24-hour conversations, newly created or updated contact records, handoffs, tickets, and follow-up tasks when the live UI exposes defensible counts;
+   - prior-24-hour workflow enrollments and success/failure for internal email, task creation, and in-app notification actions.
+5. Read the latest 48 hours of the exact Slack group DM and recent canonical Momentum evidence to identify issues reported, debugging performed, configurations changed, resolutions verified, and promises or approvals still open. A Slack claim is evidence to verify, not proof by itself.
+6. Never include a visitor's name, email address, phone number, message text, or other lead-level identifier in the report.
+
+### CallRail and HubSpot ingestion
+
+1. Use the existing authorized session for CallRail account `Momentum Digital LLC`, account ID `671942387`.
+2. Treat all timestamps as America/New_York and calculate the exact prior 24-hour window ending at the run time.
+3. Include only rows belonging to `Momentum 360` or `Momentum Digital LLC`.
+4. Verify and report:
+   - total, connected, unanswered, abandoned, and voicemail calls;
+   - calls during 10:00 PM through 6:00 AM;
+   - after-hours routed to Sean, routed to Jason, and unresolved;
+   - verified Mia missed-call autoresponses and failed SMS;
+   - material tracking, routing, or SMS alerts.
+5. Run the protected read-only HubSpot report for the covering dates:
+
+   `C:\Users\dillo\Documents\Codex\2026-07-12\hubspot-agent-set-jasonhubspottoken-ps1-hubspot\hubspot-agent\Invoke-HubSpotAgent.ps1 jason-report --from YYYY-MM-DD --to YYYY-MM-DD --format json`
+
+6. Report CallRail ingestion count, contact-association coverage, and owner coverage. Explain briefly when HubSpot's date grain differs from the exact CallRail 24-hour window.
+
+### Automation health
+
+Check Windows scheduled task `Momentum360-Daily-Agent-Health`, its most recent result, and the latest runner log. Mention a material runner failure or retry in the debugging/configuration section. Do not include command-line secrets or private log content.
+
+## Slack message contract
+
+Keep the message concise and easy to scan, using this order:
+
+`<@UAK3WSY15> <@U05MUGHN031> Morning Momentum 360 AI & lead-response update â€” [timestamp] ET`
+
+`Report ID: M360-DAILY-2026-08-11`
+
+- `Agent status:` live or degraded, contact-capture state, and handoff owner.
+- `Last 24 hours:` conversations, contacts created/updated, handoffs/tickets/tasks, and email/in-app alert action status.
+- `Resolved / configured:` only verified issues fixed, debugging performed, and configuration changes since the prior report. If none, say `No configuration changes since the prior report.`
+- `CallRail:` verified prior-24-hour call, after-hours, Mia SMS, and HubSpot-ingestion metrics.
+- `Exceptions / decisions:` current failures, unavailable fields, controlled tests, owner-routing decisions, or approvals still needed.
+- `Next:` the next concrete monitoring or repair action.
+
+Use whole integers for lead, contact, ticket, task, and event counts. Do not make conversion claims unless the exact definition, dates, attribution, latency, tracking, and CRM evidence are validated. When they are not, use `Conversion reporting is pending validation` if conversion status must be mentioned.
+
+## Failure behavior
+
+- The daily notification itself is mandatory. If one source is unavailable, still send one clearly labeled `DEGRADED` report with every verified section and name the unavailable source. Never fill an unavailable field with zero.
+- If CallRail is unavailable, say `CallRail live data unavailable; metrics withheld` and include the verified HubSpot and configuration sections.
+- If HubSpot is unavailable, say `HubSpot live data unavailable; metrics withheld` and include the verified CallRail and automation sections.
+- Never invent research, metrics, successful delivery, contact creation, or alert receipt.
+- Do not change HubSpot, CallRail, Slack, routing, SMS, ownership, or workflow settings during this reporting run.
+
+After sending, read the exact Slack conversation again and verify that the daily report ID, both mentions, and the message body are present. Close or finalize task browser tabs while preserving authentication. Your final response must contain `DELIVERY_CONFIRMED` and the verified Slack message timestamp or link. If delivery cannot be verified, do not print `DELIVERY_CONFIRMED`.
+
+

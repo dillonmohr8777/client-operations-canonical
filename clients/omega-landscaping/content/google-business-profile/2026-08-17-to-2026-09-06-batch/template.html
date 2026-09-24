@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    :root {
+      --navy: #0b223d;
+      --navy-deep: #061628;
+      --blue: #1d5fb9;
+      --blue-bright: #2c75d4;
+      --cream: #f4edcf;
+      --paper: #f7f3e4;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html, body { width: 1080px; height: 1080px; margin: 0; overflow: hidden; }
+    body { background: var(--navy); font-family: Arial, Helvetica, sans-serif; }
+    .post { position: relative; width: 1080px; height: 1080px; overflow: hidden; background: var(--navy); color: var(--white); }
+    .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--photo-x, 50%) var(--photo-y, 50%); transform: scale(var(--photo-scale, 1.01)); }
+    .logo-wrap { position: absolute; z-index: 12; display: grid; place-items: center; width: 132px; height: 132px; border-radius: 50%; background: rgba(11,34,61,.96); box-shadow: 0 10px 30px rgba(0,0,0,.28); }
+    .logo { width: 112px; height: 112px; object-fit: contain; }
+    .eyebrow { font-size: 18px; font-weight: 900; letter-spacing: 3.4px; line-height: 1; text-transform: uppercase; }
+    .headline { margin: 0; font-family: Georgia, "Times New Roman", serif; font-weight: 700; white-space: pre-line; text-wrap: balance; }
+    .subhead { margin: 0; font-weight: 500; line-height: 1.35; }
+    .proof { font-size: 15px; font-weight: 900; letter-spacing: 1.8px; line-height: 1.35; }
+    .rule { width: 74px; height: 7px; background: var(--blue-bright); }
+    .url { position: absolute; z-index: 15; font-size: 15px; font-weight: 900; letter-spacing: 1.55px; }
+    .index { position: absolute; z-index: 8; font-family: Georgia, serif; font-size: 160px; font-weight: 700; line-height: .8; color: rgba(244,237,207,.11); }
+
+    .split-left::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6,22,40,.99) 0 51%, rgba(6,22,40,.78) 57%, rgba(6,22,40,.08) 76%); }
+    .split-left .photo { left: 410px; width: 670px; }
+    .split-left .content { position: absolute; z-index: 10; left: 72px; top: 118px; width: 520px; }
+    .split-left .eyebrow { color: #7db4ff; margin-bottom: 27px; }
+    .split-left .headline { max-width: 520px; font-size: 76px; line-height: .91; letter-spacing: -3.7px; color: var(--cream); }
+    .split-left .rule { margin: 35px 0 26px; }
+    .split-left .subhead { max-width: 450px; font-size: 25px; color: #e7e4dc; }
+    .split-left .proof { margin-top: 31px; max-width: 450px; color: #9dc4f6; }
+    .split-left .logo-wrap { left: 72px; bottom: 73px; }
+    .split-left .url { right: 62px; bottom: 48px; color: var(--white); text-shadow: 0 2px 8px rgba(0,0,0,.7); }
+    .split-left .index { left: 505px; bottom: 124px; }
+
+    .photo-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,22,40,.08) 0 35%, rgba(6,22,40,.88) 74%, rgba(6,22,40,.99) 100%); }
+    .photo-hero .photo { height: 760px; }
+    .photo-hero .content { position: absolute; z-index: 10; left: 75px; right: 75px; bottom: 95px; }
+    .photo-hero .eyebrow { display: inline-block; padding: 12px 17px 10px; margin-bottom: 18px; background: var(--blue); color: var(--white); }
+    .photo-hero .headline { max-width: 720px; font-size: 72px; line-height: .9; letter-spacing: -3px; color: var(--cream); }
+    .photo-hero .subhead { max-width: 740px; margin-top: 20px; font-size: 23px; color: #ece8df; }
+    .photo-hero .proof { margin-top: 21px; color: #8fbff8; }
+    .photo-hero .logo-wrap { right: 66px; bottom: 81px; }
+    .photo-hero .url { right: 73px; top: 49px; color: var(--white); text-shadow: 0 2px 8px rgba(0,0,0,.7); }
+    .photo-hero .index { right: 45px; top: 610px; }
+
+    .diagonal { background: var(--paper); color: var(--navy); }
+    .diagonal::before { content: ""; position: absolute; z-index: 3; inset: 0; background: linear-gradient(123deg, var(--paper) 0 48%, transparent 48.1%); }
+    .diagonal::after { content: ""; position: absolute; z-index: 4; left: 500px; top: -40px; width: 15px; height: 1180px; background: var(--blue); transform: rotate(33deg); transform-origin: top; }
+    .diagonal .photo { left: 392px; width: 688px; }
+    .diagonal .content { position: absolute; z-index: 10; left: 70px; top: 125px; width: 520px; }
+    .diagonal .eyebrow { margin-bottom: 26px; color: var(--blue); }
+    .diagonal .headline { font-size: 74px; line-height: .91; letter-spacing: -3.4px; color: var(--navy); }
+    .diagonal .rule { margin: 32px 0 24px; }
+    .diagonal .subhead { max-width: 420px; font-size: 24px; color: #304660; }
+    .diagonal .proof { margin-top: 28px; max-width: 410px; color: var(--blue); }
+    .diagonal .logo-wrap { left: 72px; bottom: 68px; }
+    .diagonal .url { right: 55px; bottom: 44px; color: var(--white); text-shadow: 0 2px 8px rgba(0,0,0,.75); }
+    .diagonal .index { right: 58px; top: 77px; color: rgba(255,255,255,.22); }
+
+    .gallery { background: var(--navy-deep); }
+    .gallery .photo { inset: 46px 46px auto; width: 988px; height: 630px; border: 1px solid rgba(255,255,255,.18); }
+    .gallery::after { content: ""; position: absolute; z-index: 2; left: 46px; top: 46px; width: 988px; height: 630px; background: linear-gradient(180deg, rgba(6,22,40,.02) 45%, rgba(6,22,40,.84) 100%); }
+    .gallery .content { position: absolute; z-index: 10; left: 78px; right: 220px; bottom: 86px; }
+    .gallery .eyebrow { display: inline-block; margin-bottom: 18px; color: #87baff; }
+    .gallery .headline { font-size: 68px; line-height: .91; letter-spacing: -3px; color: var(--cream); }
+    .gallery .subhead { max-width: 690px; margin-top: 16px; font-size: 22px; color: #ebe7df; }
+    .gallery .proof { margin-top: 18px; color: #88b9f4; }
+    .gallery .logo-wrap { right: 67px; bottom: 78px; }
+    .gallery .url { left: 71px; top: 71px; color: var(--white); text-shadow: 0 2px 8px rgba(0,0,0,.7); }
+    .gallery .index { right: 78px; top: 535px; }
+  </style>
+</head>
+<body>
+  <main class="post">
+    <img class="photo" alt="">
+    <div class="index"></div>
+    <section class="content">
+      <div class="eyebrow"></div>
+      <h1 class="headline"></h1>
+      <div class="rule"></div>
+      <p class="subhead"></p>
+      <div class="proof"></div>
+    </section>
+    <div class="logo-wrap"><img class="logo" src="assets/omega-logo-official.png" alt="Omega Landscaping and Concrete"></div>
+    <div class="url">OMEGALANDSCAPINGANDCONCRETE.COM</div>
+  </main>
+</body>
+</html>

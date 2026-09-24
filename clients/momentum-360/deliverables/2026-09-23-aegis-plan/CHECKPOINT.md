@@ -1,0 +1,8 @@
+# Aegis checkpoint — September 24
+- Claude Opus 5.5 master coordinator; Codex bounded worker, draft/stage only. No Mac message sent; exclude AI video, DeerFlow and Pritzker.
+- Updated MAC-CONSOLIDATED-UPDATE-DRAFT.md supersedes stale unsent Slack draft Dr0C52S1MRNC; Slack version requires replacement before sending.
+- Nine canonical fixes saved/browser verified before authority change; AI Marketing28525/AEO28721/Email28419/Lawyer23498 untouched. CANONICAL-27496-RELEASE.md and CANONICAL-SERVICE-RELEASES.md; anonymous fetch challenged, no recrawl/ranking claim.
+- Nouveau HOSTED DRAFT VERIFIED: https://6ab54e19cadebcbf8c301bc4--need-momentum-signal-20260803.netlify.app; ten anonymous HTTP200/hash matches, production still Aug13. nouveau-hosted-verification.json and NOUVEAU-PREVIEW-DEPLOYMENT.md; fresh browser visual check timed out.
+- Momentum Answers live receipt: FAQ-LAUNCH-RECEIPT.md, Muse Spark1.3/OpenRouter, Windows host dependency. Private intake https://desktop-4ahkec4.tailade026.ts.net:8446/intake -> loopback4343; PostgreSQL5433; reboot recovery unverified.
+- staging-flow-receipt.json and stage-restore-receipt.json PASS on synthetic data; QA gate and separate DB restore verified. Email/CRM disabled; providerDeliveryVerified:false. WP draft29608 revision29613 points to private form; public5894 unchanged.
+- Remaining gates: browser control repeatedly times out; Zap123578416 access/mapping, production Cloudflare, real delivery/conversion and host recovery unresolved. INTAKE-RELEASE-READINESS.md corrected to current staging receipts and draft-only authority. Existing coordinator owns access follow-up; direct Claude handoff unconfirmed.

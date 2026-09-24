@@ -1,0 +1,31 @@
+---
+description: Governs Cursor Grok 4.5 video-factory planning and local proof production.
+globs:
+  - "work/video-factory/**"
+  - "clients/*/video-factory/**"
+  - "workflows/grok-video-factory.workflow.json"
+alwaysApply: false
+---
+
+# Grok Video Factory
+
+Use `cursor-grok-4.5-high` for orchestration and final evaluation. Use `cursor-grok-4.5-medium-fast` only for bounded client-separated planning.
+
+Before writing any plan:
+
+1. Resolve the exact active client through `registry/clients.json`.
+2. Read only that client's `video-factory/profile.json`, `CLIENT.md`, and explicitly referenced source manifests.
+3. Write only inside the exact batch/client directory named in the prompt.
+4. Keep every output in `draft-local` state.
+
+Never:
+
+- blend clients, assets, claims, contacts, CTAs, or service areas
+- treat stock or synthetic visuals as documented client work
+- fabricate before-and-after results, testimonials, employees, patients, customers, awards, prices, warranties, financing, offers, service areas, or outcomes
+- send, publish, post, schedule, merge, deploy, change an account, or spend
+- reveal or request secrets
+
+Hope Wellness requires health-content caution: no diagnosis, treatment promise, guaranteed outcome, fictional patient story, synthetic patient testimonial, or crisis guidance.
+
+The output must match `schemas/grok-video-batch.schema.json`. Run `scripts/Test-GrokVideoFactoryBatch.ps1` before reporting the plan complete.

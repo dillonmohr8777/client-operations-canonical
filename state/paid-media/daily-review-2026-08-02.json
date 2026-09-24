@@ -1,0 +1,751 @@
+{
+    "schemaVersion":  1,
+    "manifestId":  "paid-media-daily-review-2026-08-02",
+    "reviewDate":  "2026-08-02",
+    "timezone":  "America/New_York",
+    "reviewWindow":  {
+                         "start":  "2026-08-02T00:00:00.0000000-04:00",
+                         "endExclusive":  "2026-08-03T00:00:00.0000000-04:00"
+                     },
+    "status":  "ready-for-read-only-review",
+    "source":  {
+                   "rosterPath":  "registry/paid-media-roster.json",
+                   "rosterSha256":  "47d8f66f75c478d4a09ee962ab16ec691d36c62b7673cb4ea0f2c53491d9224d",
+                   "clientRegistryPath":  "registry/clients.json",
+                   "clientRegistrySha256":  "fbac98fded44b71bcde746dcf91cf39ebe6b2a42deee78ff3aa26c729d1296a1"
+               },
+    "policy":  {
+                   "exactRosterOnly":  true,
+                   "oneReviewPerEasternDay":  true,
+                   "providerCallsAttempted":  false,
+                   "canonicalQueueMutationAttempted":  false,
+                   "externalActionAttempted":  false,
+                   "historicalMetricsAreAuthority":  false,
+                   "missingOrInvalidRouteState":  "fail-closed",
+                   "externalMutation":  "requires exact active authority for the client, platform account, action, requester, limits, validation, and rollback"
+               },
+    "summary":  {
+                    "laneCount":  7,
+                    "readyLaneCount":  7,
+                    "blockedLaneCount":  0,
+                    "googleAdsLaneCount":  5,
+                    "metaAdsLaneCount":  2,
+                    "materialFindingCandidateCount":  0
+                },
+    "materialFindingCandidateContract":  {
+                                             "contractVersion":  1,
+                                             "candidateOnly":  true,
+                                             "manifestGeneratorMayMutateQueue":  false,
+                                             "chiefMayMaterializeOnlyWhenMaterial":  true,
+                                             "requiredFields":  [
+                                                                    "candidateId",
+                                                                    "manifestId",
+                                                                    "reviewKey",
+                                                                    "clientId",
+                                                                    "platform",
+                                                                    "findingClass",
+                                                                    "severity",
+                                                                    "summary",
+                                                                    "observedAt",
+                                                                    "evidenceRefs",
+                                                                    "freshness",
+                                                                    "confidence",
+                                                                    "recommendedActionClass",
+                                                                    "externalMutationRequested",
+                                                                    "approvalGate",
+                                                                    "privacy",
+                                                                    "containsSecrets",
+                                                                    "containsDirectIdentifiers",
+                                                                    "containsRawCommunications",
+                                                                    "queueMutationAttempted"
+                                                                ],
+                                             "allowedFindingClasses":  [
+                                                                           "account-or-session-mismatch",
+                                                                           "unexpected-delivery-state",
+                                                                           "material-pacing-anomaly",
+                                                                           "tracking-or-dedup-failure",
+                                                                           "landing-page-failure",
+                                                                           "material-channel-waste-or-fatigue",
+                                                                           "unexplained-change",
+                                                                           "material-budget-recommendation",
+                                                                           "stale-or-missing-readback"
+                                                                       ],
+                                             "allowedSeverity":  [
+                                                                     "medium",
+                                                                     "high",
+                                                                     "critical"
+                                                                 ],
+                                             "evidenceRule":  "Use current exact-account readback and downstream outcome evidence; historical metrics alone cannot support a candidate.",
+                                             "queueRule":  "The Marketing Chief separately deduplicates and materializes a candidate. This manifest never creates or mutates queue/work-items.json.",
+                                             "externalMutationRule":  "A candidate never authorizes a provider mutation. Any external change requires exact active authority and a separate verified execution contract.",
+                                             "privacyDefaults":  {
+                                                                     "privacy":  "redacted",
+                                                                     "containsSecrets":  false,
+                                                                     "containsDirectIdentifiers":  false,
+                                                                     "containsRawCommunications":  false,
+                                                                     "queueMutationAttempted":  false
+                                                                 }
+                                         },
+    "lanes":  [
+                  {
+                      "order":  1,
+                      "reviewKey":  "2026-08-02::google-ads--kimberly-james-bridal",
+                      "laneId":  "google-ads--kimberly-james-bridal",
+                      "clientId":  "kimberly-james-bridal",
+                      "platform":  "google-ads",
+                      "expectedDeliveryState":  "active",
+                      "currentStateAsOf":  "2026-07-16",
+                      "currentStateNote":  "Persistent Chrome verified the primary KJB account and excluded a cancelled duplicate. Campaign #1 was enabled as Performance Max at an observed $20 per day, with 54,814 impressions, $585.42 spend, and zero conversions in the last 30 days. This supersedes stale pause context but does not authorize a provider change.",
+                      "metricsPolicy":  "historical-observations-never-authority",
+                      "configPath":  "clients/kimberly-james-bridal/paid-media/launch-config.json",
+                      "configSha256":  "cdace6d28fcae812ece635810347eaccb6560ebbfc1d1b005390791fa8b82d6a",
+                      "routeState":  {
+                                         "clientRegistry":  "active-exact",
+                                         "paidMediaConfig":  "ready",
+                                         "accountReference":  "present-opaque",
+                                         "reviewEligibility":  "ready-for-read-only-review"
+                                     },
+                      "blockers":  [
+
+                                   ],
+                      "reviewFocus":  [
+                                          "Confirm the primary account and keep the cancelled duplicate excluded.",
+                                          "Investigate enabled delivery with zero recorded conversions before any optimization recommendation.",
+                                          "Keep conversion tracking, appointment quality, and landing-page health observable without treating current spend as authority."
+                                      ],
+                      "checks":  [
+                                     {
+                                         "id":  "session_account",
+                                         "label":  "Session and exact account",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Live read-only identity, account, client, platform, and authorization readback.",
+                                         "materialFindingRule":  "Candidate when the expected account cannot be verified, the route is mismatched, or authentication blocks the review.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "delivery_pacing",
+                                         "label":  "Delivery and pacing",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current delivery state, spend and budget pacing against the configured guardrails; expected state is active.",
+                                         "materialFindingRule":  "Candidate when delivery differs from the client-approved state or pacing breaches a current configured guardrail.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "conversion_tracking_dedup",
+                                         "label":  "Conversion tracking and deduplication",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current primary and secondary conversion definitions, event health, attribution settings, CRM or appointment reconciliation, and duplicate-event evidence.",
+                                         "materialFindingRule":  "Candidate when tracking is broken, duplicated, misclassified, stale, or materially disconnected from qualified outcomes.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "landing_page_health",
+                                         "label":  "Landing-page health",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current destination URL readback, status, mobile usability, form or call path, message match, and tracking continuity.",
+                                         "materialFindingRule":  "Candidate when a destination is unavailable, materially degraded, mismatched, or unable to preserve conversion measurement.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "search-terms-and-negatives",
+                                         "label":  "Channel-specific optimization evidence",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current read-only search-term or search-category evidence, match behavior, negative-keyword coverage, and campaign-type limitations.",
+                                         "materialFindingRule":  "Candidate only when irrelevant intent, preventable query waste, missing negatives, or opaque Performance Max query coverage is material and currently evidenced.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "change_history",
+                                         "label":  "Change history",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current platform change history and the exact actor, timestamp, object, and before or after state for material changes.",
+                                         "materialFindingRule":  "Candidate when an unexplained, unauthorized, or materially harmful change is currently evidenced.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "budget_recommendation",
+                                         "label":  "Budget recommendation",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current outcome quality, pacing, marginal efficiency, learning state, configured ceilings, and explicit uncertainty.",
+                                         "materialFindingRule":  "Candidate only as a recommendation with evidence; no budget mutation is authorized by this manifest.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "readback_freshness",
+                                         "label":  "Readback freshness",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Timestamped live readback from the exact platform account and any required downstream lead-quality source.",
+                                         "materialFindingRule":  "Candidate when the evidence is too stale to support today\u0027s decision or a required downstream source is unavailable.",
+                                         "providerMutationAllowed":  false
+                                     }
+                                 ],
+                      "materialFindingCandidate":  null
+                  },
+                  {
+                      "order":  2,
+                      "reviewKey":  "2026-08-02::google-ads--replenish-7-eleven",
+                      "laneId":  "google-ads--replenish-7-eleven",
+                      "clientId":  "replenish-7-eleven",
+                      "platform":  "google-ads",
+                      "expectedDeliveryState":  "active-four-san-diego-campaigns",
+                      "currentStateAsOf":  "2026-07-26",
+                      "currentStateNote":  "Persistent Chrome verified the exact Replenish child-account mapping and applied Dillon\u0027s $500 lifetime-spend rule. Pampano, Miami 56, and Coral Springs were paused after verified lifetime spend of $958.69, $623.52, and $579.17. The four remaining enabled campaigns are Torrey Del Mar, Miramar, Carmel Mountain, and Solana Beach; all are San Diego-area campaigns and below $500 lifetime. Fresh Blends remains separately routed and paused.",
+                      "metricsPolicy":  "historical-observations-never-authority",
+                      "configPath":  "clients/replenish-7-eleven/paid-media/launch-config.json",
+                      "configSha256":  "4e9c87e453fe5bea8b7ce58e02aeb7a992055f8b0962fba767a75de295321fe8",
+                      "routeState":  {
+                                         "clientRegistry":  "active-exact",
+                                         "paidMediaConfig":  "ready",
+                                         "accountReference":  "present-opaque",
+                                         "reviewEligibility":  "ready-for-read-only-review"
+                                     },
+                      "blockers":  [
+
+                                   ],
+                      "reviewFocus":  [
+                                          "Keep every location campaign and its budget separately attributable.",
+                                          "Verify billing health and current pause or restart state.",
+                                          "Reject historical delivery or conversion metrics as activation authority."
+                                      ],
+                      "checks":  [
+                                     {
+                                         "id":  "session_account",
+                                         "label":  "Session and exact account",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Live read-only identity, account, client, platform, and authorization readback.",
+                                         "materialFindingRule":  "Candidate when the expected account cannot be verified, the route is mismatched, or authentication blocks the review.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "delivery_pacing",
+                                         "label":  "Delivery and pacing",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current delivery state, spend and budget pacing against the configured guardrails; expected state is active-four-san-diego-campaigns.",
+                                         "materialFindingRule":  "Candidate when delivery differs from the client-approved state or pacing breaches a current configured guardrail.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "conversion_tracking_dedup",
+                                         "label":  "Conversion tracking and deduplication",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current primary and secondary conversion definitions, event health, attribution settings, CRM or appointment reconciliation, and duplicate-event evidence.",
+                                         "materialFindingRule":  "Candidate when tracking is broken, duplicated, misclassified, stale, or materially disconnected from qualified outcomes.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "landing_page_health",
+                                         "label":  "Landing-page health",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current destination URL readback, status, mobile usability, form or call path, message match, and tracking continuity.",
+                                         "materialFindingRule":  "Candidate when a destination is unavailable, materially degraded, mismatched, or unable to preserve conversion measurement.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "search-terms-and-negatives",
+                                         "label":  "Channel-specific optimization evidence",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current read-only search-term or search-category evidence, match behavior, negative-keyword coverage, and campaign-type limitations.",
+                                         "materialFindingRule":  "Candidate only when irrelevant intent, preventable query waste, missing negatives, or opaque Performance Max query coverage is material and currently evidenced.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "change_history",
+                                         "label":  "Change history",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current platform change history and the exact actor, timestamp, object, and before or after state for material changes.",
+                                         "materialFindingRule":  "Candidate when an unexplained, unauthorized, or materially harmful change is currently evidenced.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "budget_recommendation",
+                                         "label":  "Budget recommendation",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current outcome quality, pacing, marginal efficiency, learning state, configured ceilings, and explicit uncertainty.",
+                                         "materialFindingRule":  "Candidate only as a recommendation with evidence; no budget mutation is authorized by this manifest.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "readback_freshness",
+                                         "label":  "Readback freshness",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Timestamped live readback from the exact platform account and any required downstream lead-quality source.",
+                                         "materialFindingRule":  "Candidate when the evidence is too stale to support today\u0027s decision or a required downstream source is unavailable.",
+                                         "providerMutationAllowed":  false
+                                     }
+                                 ],
+                      "materialFindingCandidate":  null
+                  },
+                  {
+                      "order":  3,
+                      "reviewKey":  "2026-08-02::google-ads--fresh-blends-kwik-trip",
+                      "laneId":  "google-ads--fresh-blends-kwik-trip",
+                      "clientId":  "fresh-blends-kwik-trip",
+                      "platform":  "google-ads",
+                      "expectedDeliveryState":  "paused-unless-live-readback",
+                      "currentStateAsOf":  "2026-07-16",
+                      "currentStateNote":  "Persistent Chrome verified the Fresh Blends route inside the same child account that also displays Replenish. Ice Box Performance Max campaigns #1110, #1161, #573, and #633 were observed paused, so the lane remains paused unless a fresh exact-account readback proves otherwise. Shared child-account visibility never permits cross-client blending.",
+                      "metricsPolicy":  "historical-observations-never-authority",
+                      "configPath":  "clients/fresh-blends-kwik-trip/paid-media/launch-config.json",
+                      "configSha256":  "be5f5b1384c8b9c02b6ad534bc70737406b230b1b1f0b2279b83f9b59585714d",
+                      "routeState":  {
+                                         "clientRegistry":  "active-exact",
+                                         "paidMediaConfig":  "ready",
+                                         "accountReference":  "present-opaque",
+                                         "reviewEligibility":  "ready-for-read-only-review"
+                                     },
+                      "blockers":  [
+
+                                   ],
+                      "reviewFocus":  [
+                                          "Match campaign names exactly to Fresh Blends x Kwik Trip #{Store} | Ice Box | PMax.",
+                                          "Verify every store campaign remains paused unless current live readback proves a different approved state.",
+                                          "Keep Fresh Blends campaign, conversion, location, and budget evidence separate from Replenish even inside a shared child account."
+                                      ],
+                      "checks":  [
+                                     {
+                                         "id":  "session_account",
+                                         "label":  "Session and exact account",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Live read-only identity, account, client, platform, and authorization readback.",
+                                         "materialFindingRule":  "Candidate when the expected account cannot be verified, the route is mismatched, or authentication blocks the review.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "delivery_pacing",
+                                         "label":  "Delivery and pacing",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current delivery state, spend and budget pacing against the configured guardrails; expected state is paused-unless-live-readback.",
+                                         "materialFindingRule":  "Candidate when delivery differs from the client-approved state or pacing breaches a current configured guardrail.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "conversion_tracking_dedup",
+                                         "label":  "Conversion tracking and deduplication",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current primary and secondary conversion definitions, event health, attribution settings, CRM or appointment reconciliation, and duplicate-event evidence.",
+                                         "materialFindingRule":  "Candidate when tracking is broken, duplicated, misclassified, stale, or materially disconnected from qualified outcomes.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "landing_page_health",
+                                         "label":  "Landing-page health",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current destination URL readback, status, mobile usability, form or call path, message match, and tracking continuity.",
+                                         "materialFindingRule":  "Candidate when a destination is unavailable, materially degraded, mismatched, or unable to preserve conversion measurement.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "search-terms-and-negatives",
+                                         "label":  "Channel-specific optimization evidence",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current read-only search-term or search-category evidence, match behavior, negative-keyword coverage, and campaign-type limitations.",
+                                         "materialFindingRule":  "Candidate only when irrelevant intent, preventable query waste, missing negatives, or opaque Performance Max query coverage is material and currently evidenced.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "change_history",
+                                         "label":  "Change history",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current platform change history and the exact actor, timestamp, object, and before or after state for material changes.",
+                                         "materialFindingRule":  "Candidate when an unexplained, unauthorized, or materially harmful change is currently evidenced.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "budget_recommendation",
+                                         "label":  "Budget recommendation",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current outcome quality, pacing, marginal efficiency, learning state, configured ceilings, and explicit uncertainty.",
+                                         "materialFindingRule":  "Candidate only as a recommendation with evidence; no budget mutation is authorized by this manifest.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "readback_freshness",
+                                         "label":  "Readback freshness",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Timestamped live readback from the exact platform account and any required downstream lead-quality source.",
+                                         "materialFindingRule":  "Candidate when the evidence is too stale to support today\u0027s decision or a required downstream source is unavailable.",
+                                         "providerMutationAllowed":  false
+                                     }
+                                 ],
+                      "materialFindingCandidate":  null
+                  },
+                  {
+                      "order":  4,
+                      "reviewKey":  "2026-08-02::google-ads--omega-landscaping",
+                      "laneId":  "google-ads--omega-landscaping",
+                      "clientId":  "omega-landscaping",
+                      "platform":  "google-ads",
+                      "expectedDeliveryState":  "active",
+                      "currentStateAsOf":  "2026-07-16",
+                      "currentStateNote":  "Persistent Chrome verified the exact Omega account. Omega Landscaping \u0026 Concrete | Colorado Springs | PMax was enabled at an observed $50 per day with 13 conversions, while seven Search campaigns were paused. Platform state and conversions remain evidence only; lead quality gates optimization and budget recommendations.",
+                      "metricsPolicy":  "historical-observations-never-authority",
+                      "configPath":  "clients/omega-landscaping/paid-media/launch-config.json",
+                      "configSha256":  "08c23d83be8f4be1eaadc34c4c32d8d3a9e2cceec56ade5adfe7639cffb21cc8",
+                      "routeState":  {
+                                         "clientRegistry":  "active-exact",
+                                         "paidMediaConfig":  "ready",
+                                         "accountReference":  "present-opaque",
+                                         "reviewEligibility":  "ready-for-read-only-review"
+                                     },
+                      "blockers":  [
+
+                                   ],
+                      "reviewFocus":  [
+                                          "Verify the enabled Colorado Springs Performance Max campaign and keep the seven observed Search campaigns separately attributable.",
+                                          "Reconcile the 13 observed platform conversions to qualified lead outcomes.",
+                                          "Review search intent and negative-keyword opportunities.",
+                                          "Hold budget recommendations when lead quality or disposition is unverified."
+                                      ],
+                      "checks":  [
+                                     {
+                                         "id":  "session_account",
+                                         "label":  "Session and exact account",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Live read-only identity, account, client, platform, and authorization readback.",
+                                         "materialFindingRule":  "Candidate when the expected account cannot be verified, the route is mismatched, or authentication blocks the review.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "delivery_pacing",
+                                         "label":  "Delivery and pacing",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current delivery state, spend and budget pacing against the configured guardrails; expected state is active.",
+                                         "materialFindingRule":  "Candidate when delivery differs from the client-approved state or pacing breaches a current configured guardrail.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "conversion_tracking_dedup",
+                                         "label":  "Conversion tracking and deduplication",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current primary and secondary conversion definitions, event health, attribution settings, CRM or appointment reconciliation, and duplicate-event evidence.",
+                                         "materialFindingRule":  "Candidate when tracking is broken, duplicated, misclassified, stale, or materially disconnected from qualified outcomes.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "landing_page_health",
+                                         "label":  "Landing-page health",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current destination URL readback, status, mobile usability, form or call path, message match, and tracking continuity.",
+                                         "materialFindingRule":  "Candidate when a destination is unavailable, materially degraded, mismatched, or unable to preserve conversion measurement.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "search-terms-and-negatives",
+                                         "label":  "Channel-specific optimization evidence",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current read-only search-term or search-category evidence, match behavior, negative-keyword coverage, and campaign-type limitations.",
+                                         "materialFindingRule":  "Candidate only when irrelevant intent, preventable query waste, missing negatives, or opaque Performance Max query coverage is material and currently evidenced.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "change_history",
+                                         "label":  "Change history",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current platform change history and the exact actor, timestamp, object, and before or after state for material changes.",
+                                         "materialFindingRule":  "Candidate when an unexplained, unauthorized, or materially harmful change is currently evidenced.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "budget_recommendation",
+                                         "label":  "Budget recommendation",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current outcome quality, pacing, marginal efficiency, learning state, configured ceilings, and explicit uncertainty.",
+                                         "materialFindingRule":  "Candidate only as a recommendation with evidence; no budget mutation is authorized by this manifest.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "readback_freshness",
+                                         "label":  "Readback freshness",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Timestamped live readback from the exact platform account and any required downstream lead-quality source.",
+                                         "materialFindingRule":  "Candidate when the evidence is too stale to support today\u0027s decision or a required downstream source is unavailable.",
+                                         "providerMutationAllowed":  false
+                                     }
+                                 ],
+                      "materialFindingCandidate":  null
+                  },
+                  {
+                      "order":  5,
+                      "reviewKey":  "2026-08-02::google-ads--onsite-concrete-landscape",
+                      "laneId":  "google-ads--onsite-concrete-landscape",
+                      "clientId":  "onsite-concrete-landscape",
+                      "platform":  "google-ads",
+                      "expectedDeliveryState":  "active",
+                      "currentStateAsOf":  "2026-07-16",
+                      "currentStateNote":  "Persistent Chrome verified the exact Onsite account and an active Smart campaign at an observed $4.39 per day with a $133 monthly maximum. Two web conversions were visible, but conversion setup was incomplete, so lead quality and deduplication remain gates before any optimization or budget recommendation.",
+                      "metricsPolicy":  "historical-observations-never-authority",
+                      "configPath":  "clients/onsite-concrete-landscape/paid-media/launch-config.json",
+                      "configSha256":  "efdc1e47aed5fb061f450328d12d486e3ad0e9d8ec4f424456b28261baf93ddc",
+                      "routeState":  {
+                                         "clientRegistry":  "active-exact",
+                                         "paidMediaConfig":  "ready",
+                                         "accountReference":  "present-opaque",
+                                         "reviewEligibility":  "ready-for-read-only-review"
+                                     },
+                      "blockers":  [
+
+                                   ],
+                      "reviewFocus":  [
+                                          "Verify the active Smart campaign, daily pacing, monthly cap, and available search-intent evidence.",
+                                          "Complete conversion setup and reconcile lead quality before treating the two observed web conversions as outcomes.",
+                                          "Verify deduplication across forms, calls, CRM, and imported conversions."
+                                      ],
+                      "checks":  [
+                                     {
+                                         "id":  "session_account",
+                                         "label":  "Session and exact account",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Live read-only identity, account, client, platform, and authorization readback.",
+                                         "materialFindingRule":  "Candidate when the expected account cannot be verified, the route is mismatched, or authentication blocks the review.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "delivery_pacing",
+                                         "label":  "Delivery and pacing",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current delivery state, spend and budget pacing against the configured guardrails; expected state is active.",
+                                         "materialFindingRule":  "Candidate when delivery differs from the client-approved state or pacing breaches a current configured guardrail.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "conversion_tracking_dedup",
+                                         "label":  "Conversion tracking and deduplication",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current primary and secondary conversion definitions, event health, attribution settings, CRM or appointment reconciliation, and duplicate-event evidence.",
+                                         "materialFindingRule":  "Candidate when tracking is broken, duplicated, misclassified, stale, or materially disconnected from qualified outcomes.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "landing_page_health",
+                                         "label":  "Landing-page health",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current destination URL readback, status, mobile usability, form or call path, message match, and tracking continuity.",
+                                         "materialFindingRule":  "Candidate when a destination is unavailable, materially degraded, mismatched, or unable to preserve conversion measurement.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "search-terms-and-negatives",
+                                         "label":  "Channel-specific optimization evidence",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current read-only search-term or search-category evidence, match behavior, negative-keyword coverage, and campaign-type limitations.",
+                                         "materialFindingRule":  "Candidate only when irrelevant intent, preventable query waste, missing negatives, or opaque Performance Max query coverage is material and currently evidenced.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "change_history",
+                                         "label":  "Change history",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current platform change history and the exact actor, timestamp, object, and before or after state for material changes.",
+                                         "materialFindingRule":  "Candidate when an unexplained, unauthorized, or materially harmful change is currently evidenced.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "budget_recommendation",
+                                         "label":  "Budget recommendation",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current outcome quality, pacing, marginal efficiency, learning state, configured ceilings, and explicit uncertainty.",
+                                         "materialFindingRule":  "Candidate only as a recommendation with evidence; no budget mutation is authorized by this manifest.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "readback_freshness",
+                                         "label":  "Readback freshness",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Timestamped live readback from the exact platform account and any required downstream lead-quality source.",
+                                         "materialFindingRule":  "Candidate when the evidence is too stale to support today\u0027s decision or a required downstream source is unavailable.",
+                                         "providerMutationAllowed":  false
+                                     }
+                                 ],
+                      "materialFindingCandidate":  null
+                  },
+                  {
+                      "order":  6,
+                      "reviewKey":  "2026-08-02::meta-ads--shadow-heating-cooling",
+                      "laneId":  "meta-ads--shadow-heating-cooling",
+                      "clientId":  "shadow-heating-cooling",
+                      "platform":  "meta-ads",
+                      "expectedDeliveryState":  "off-excluded-from-client-facing-reporting",
+                      "currentStateAsOf":  "2026-07-27",
+                      "currentStateNote":  "A live exact-account readback verified both named Shadow summer campaigns off, with no active campaigns and no active ads. Shadow remains excluded from client-facing reporting; this internal lane exists only for read-only shutdown safety and account continuity checks unless Dillon explicitly requests a new review.",
+                      "metricsPolicy":  "historical-observations-never-authority",
+                      "configPath":  "clients/shadow-heating-cooling/paid-media/launch-config.json",
+                      "configSha256":  "dce37f02bdae8d87a80032cf2393f7d31b7416fa7cefffa87dd0f481e6af7b63",
+                      "routeState":  {
+                                         "clientRegistry":  "active-exact",
+                                         "paidMediaConfig":  "ready",
+                                         "accountReference":  "present-opaque",
+                                         "reviewEligibility":  "ready-for-read-only-review"
+                                     },
+                      "blockers":  [
+
+                                   ],
+                      "reviewFocus":  [
+                                          "Confirm the exact Shadow Meta account remains fully off without changing provider state.",
+                                          "Keep Shadow excluded from client-facing reporting and optimization while the shutdown instruction remains current.",
+                                          "Treat any unexpected delivery, billing, or change-history activity as a material safety finding."
+                                      ],
+                      "checks":  [
+                                     {
+                                         "id":  "session_account",
+                                         "label":  "Session and exact account",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Live read-only identity, account, client, platform, and authorization readback.",
+                                         "materialFindingRule":  "Candidate when the expected account cannot be verified, the route is mismatched, or authentication blocks the review.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "delivery_pacing",
+                                         "label":  "Delivery and pacing",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current delivery state, spend and budget pacing against the configured guardrails; expected state is off-excluded-from-client-facing-reporting.",
+                                         "materialFindingRule":  "Candidate when delivery differs from the client-approved state or pacing breaches a current configured guardrail.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "conversion_tracking_dedup",
+                                         "label":  "Conversion tracking and deduplication",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current primary and secondary conversion definitions, event health, attribution settings, CRM or appointment reconciliation, and duplicate-event evidence.",
+                                         "materialFindingRule":  "Candidate when tracking is broken, duplicated, misclassified, stale, or materially disconnected from qualified outcomes.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "landing_page_health",
+                                         "label":  "Landing-page health",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current destination URL readback, status, mobile usability, form or call path, message match, and tracking continuity.",
+                                         "materialFindingRule":  "Candidate when a destination is unavailable, materially degraded, mismatched, or unable to preserve conversion measurement.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "creative-fatigue-and-placements",
+                                         "label":  "Channel-specific optimization evidence",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current read-only creative age, frequency, reach, CTR or result-rate trend, and placement-level delivery evidence.",
+                                         "materialFindingRule":  "Candidate only when fatigue, frequency, placement concentration, or creative deterioration is material and currently evidenced.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "change_history",
+                                         "label":  "Change history",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current platform change history and the exact actor, timestamp, object, and before or after state for material changes.",
+                                         "materialFindingRule":  "Candidate when an unexplained, unauthorized, or materially harmful change is currently evidenced.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "budget_recommendation",
+                                         "label":  "Budget recommendation",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current outcome quality, pacing, marginal efficiency, learning state, configured ceilings, and explicit uncertainty.",
+                                         "materialFindingRule":  "Candidate only as a recommendation with evidence; no budget mutation is authorized by this manifest.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "readback_freshness",
+                                         "label":  "Readback freshness",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Timestamped live readback from the exact platform account and any required downstream lead-quality source.",
+                                         "materialFindingRule":  "Candidate when the evidence is too stale to support today\u0027s decision or a required downstream source is unavailable.",
+                                         "providerMutationAllowed":  false
+                                     }
+                                 ],
+                      "materialFindingCandidate":  null
+                  },
+                  {
+                      "order":  7,
+                      "reviewKey":  "2026-08-02::meta-ads--kimberly-james-bridal",
+                      "laneId":  "meta-ads--kimberly-james-bridal",
+                      "clientId":  "kimberly-james-bridal",
+                      "platform":  "meta-ads",
+                      "expectedDeliveryState":  "active",
+                      "currentStateAsOf":  "2026-07-16",
+                      "currentStateNote":  "Persistent Chrome verified the exact KJB Meta ad account and four campaigns. Website Carousel Traffic and Website Retargeting were active, while a Leads carousel was in draft; no state was changed. Appointment-outcome and tracking gates still apply, and Meta evidence remains separate from Google.",
+                      "metricsPolicy":  "historical-observations-never-authority",
+                      "configPath":  "clients/kimberly-james-bridal/paid-media/launch-config.json",
+                      "configSha256":  "cdace6d28fcae812ece635810347eaccb6560ebbfc1d1b005390791fa8b82d6a",
+                      "routeState":  {
+                                         "clientRegistry":  "active-exact",
+                                         "paidMediaConfig":  "ready",
+                                         "accountReference":  "present-opaque",
+                                         "reviewEligibility":  "ready-for-read-only-review"
+                                     },
+                      "blockers":  [
+
+                                   ],
+                      "reviewFocus":  [
+                                          "Verify active website traffic and retargeting delivery while preserving the observed Leads carousel draft unless exact authority covers a change.",
+                                          "Reconcile lead events to booked and qualified appointments.",
+                                          "Verify pixel, form, CRM, and appointment tracking continuity.",
+                                          "Review creative fatigue and placements without inferring authority over the separate Google lane."
+                                      ],
+                      "checks":  [
+                                     {
+                                         "id":  "session_account",
+                                         "label":  "Session and exact account",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Live read-only identity, account, client, platform, and authorization readback.",
+                                         "materialFindingRule":  "Candidate when the expected account cannot be verified, the route is mismatched, or authentication blocks the review.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "delivery_pacing",
+                                         "label":  "Delivery and pacing",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current delivery state, spend and budget pacing against the configured guardrails; expected state is active.",
+                                         "materialFindingRule":  "Candidate when delivery differs from the client-approved state or pacing breaches a current configured guardrail.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "conversion_tracking_dedup",
+                                         "label":  "Conversion tracking and deduplication",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current primary and secondary conversion definitions, event health, attribution settings, CRM or appointment reconciliation, and duplicate-event evidence.",
+                                         "materialFindingRule":  "Candidate when tracking is broken, duplicated, misclassified, stale, or materially disconnected from qualified outcomes.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "landing_page_health",
+                                         "label":  "Landing-page health",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current destination URL readback, status, mobile usability, form or call path, message match, and tracking continuity.",
+                                         "materialFindingRule":  "Candidate when a destination is unavailable, materially degraded, mismatched, or unable to preserve conversion measurement.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "creative-fatigue-and-placements",
+                                         "label":  "Channel-specific optimization evidence",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current read-only creative age, frequency, reach, CTR or result-rate trend, and placement-level delivery evidence.",
+                                         "materialFindingRule":  "Candidate only when fatigue, frequency, placement concentration, or creative deterioration is material and currently evidenced.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "change_history",
+                                         "label":  "Change history",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current platform change history and the exact actor, timestamp, object, and before or after state for material changes.",
+                                         "materialFindingRule":  "Candidate when an unexplained, unauthorized, or materially harmful change is currently evidenced.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "budget_recommendation",
+                                         "label":  "Budget recommendation",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Current outcome quality, pacing, marginal efficiency, learning state, configured ceilings, and explicit uncertainty.",
+                                         "materialFindingRule":  "Candidate only as a recommendation with evidence; no budget mutation is authorized by this manifest.",
+                                         "providerMutationAllowed":  false
+                                     },
+                                     {
+                                         "id":  "readback_freshness",
+                                         "label":  "Readback freshness",
+                                         "status":  "pending-read-only-evidence",
+                                         "evidenceRequired":  "Timestamped live readback from the exact platform account and any required downstream lead-quality source.",
+                                         "materialFindingRule":  "Candidate when the evidence is too stale to support today\u0027s decision or a required downstream source is unavailable.",
+                                         "providerMutationAllowed":  false
+                                     }
+                                 ],
+                      "materialFindingCandidate":  null
+                  }
+              ]
+}

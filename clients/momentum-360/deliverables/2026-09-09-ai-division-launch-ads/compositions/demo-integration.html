@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link rel="stylesheet" href="assets/momentum.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      /* INTEGRATION DEMO
+         The artwork is a PHYSICAL CARD inside the 3D scene, not a backdrop:
+         a real camera push moves past it, so its perspective shifts and its
+         edges change shape across the shot. A flat backplate can only scale.
+
+         An earlier pass put a second plane IN FRONT of the headline. It looked
+         cinematic and the layout audit correctly rejected it: burying a
+         headline word behind an object is a defect in an ad, whatever it does
+         for a film. Depth here comes from perspective, parallax and
+         micro-motion instead — all of which keep the type fully legible. */
+      #back {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        display: block;
+        pointer-events: none;
+      }
+      #back { z-index: 0; }
+      #type {
+        position: absolute;
+        left: 148px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+      }
+      .mask {
+        display: block;
+        overflow: hidden;
+        padding-bottom: 0.09em;
+        margin-bottom: -0.09em;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="demo"
+      data-start="0"
+      data-duration="6"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div id="s" class="slide s-deep clip" data-start="0" data-duration="6" data-track-index="1">
+        <canvas id="back"></canvas>
+        <div id="type">
+          <span class="mask" data-layout-allow-overflow><span class="d d-lg on-deep tl">BUILT,</span></span>
+          <span class="mask" data-layout-allow-overflow><span class="d d-lg on-deep tl">NOT</span></span>
+          <span class="mask" data-layout-allow-overflow><span class="d d-lg on-deep-brand tl">PROMPTED.</span></span>
+          <span class="rule tr"></span>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.181.2/+esm";
+
+      const FOV = 34, ASPECT = 1920 / 1080;
+      const clamp01 = (v) => Math.min(1, Math.max(0, v));
+      const easeOutExpo = (t) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t));
+
+      // One shared camera path drives BOTH layers. This is what makes them
+      // parallax against each other instead of sliding as one flat image.
+      const camZ = (t) => 9.0 - 1.35 * easeOutExpo(clamp01(t / 5.5));
+
+      function layer(canvasId, build) {
+        const canvas = document.getElementById(canvasId);
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setSize(1920, 1080, false);
+        renderer.setPixelRatio(1);
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.06;
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(FOV, ASPECT, 0.1, 100);
+
+        // Same light direction as the artwork's own key: top-left. Shadow
+        // continuity across real and generated elements is most of what makes
+        // a composite read as one photograph.
+        const key = new THREE.DirectionalLight(0xffffff, 2.5);
+        key.position.set(-5, 5.5, 4);
+        scene.add(key);
+        scene.add(new THREE.HemisphereLight(0xdfefff, 0x16323f, 0.9));
+
+        const api = build(scene, THREE);
+        return { renderer, scene, camera, api };
+      }
+
+      const tex = new THREE.TextureLoader();
+      const art = tex.load("assets/scrapbook.jpg");
+      art.colorSpace = THREE.SRGBColorSpace;
+
+      // BACK — the artwork as a physical card, tilted in space and set deep.
+      const back = layer("back", (scene) => {
+        const m = new THREE.Mesh(
+          new THREE.PlaneGeometry(6.4, 3.66),
+          new THREE.MeshStandardMaterial({ map: art, roughness: 0.92, metalness: 0.0 })
+        );
+        m.position.set(2.55, 0.15, -2.2);
+        m.rotation.set(-0.05, -0.26, 0.015);
+        scene.add(m);
+        return { m };
+      });
+
+
+      function renderAt(t) {
+        const z = camZ(t);
+        back.camera.position.set(0, 0, z);
+
+        // Micro-motion: the card breathes and settles. Stills that hold
+        // perfectly still are what read as pasted.
+        back.api.m.rotation.y = -0.26 + Math.sin(t * 0.55) * 0.022;
+        back.api.m.position.y = 0.15 + Math.sin(t * 0.75) * 0.035;
+
+
+        back.renderer.render(back.scene, back.camera);
+      }
+
+      window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+      renderAt(window.__hfThreeTime || 0);
+    </script>
+
+    <script>
+      const E = "expo.out";
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo(".tl", { yPercent: 115 }, { yPercent: 0, duration: 1.0, ease: E, stagger: 0.16 }, 0.35);
+      tl.fromTo(".tr", { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: E }, 1.3);
+      window.__timelines["demo"] = tl;
+    </script>
+  </body>
+</html>

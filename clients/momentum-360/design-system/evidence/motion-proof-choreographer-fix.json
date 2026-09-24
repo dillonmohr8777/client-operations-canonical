@@ -1,0 +1,37 @@
+{
+  "verifiedAt": "2026-09-05T00:41:11.396839Z",
+  "file": "C:/Users/dillo/.claude/skills/client-deck/scripts/choreograph.py",
+  "beforeSha256": "EE2918083A414E50EAC9A91524565F2478513BE731AF19183554422DAD08F685",
+  "afterSha256": "9A6284327253196608116A4D322E3612B83893CD9933F6843ACD152ECC8056F9",
+  "changes": [
+    {
+      "line": 242,
+      "before": "xml = re.sub(r\"<p:transition\\b.*?(?:/>|</p:transition>)\", \"\", xml, flags=re.S)",
+      "after": "xml = re.sub(r\"<p:transition\\b[^>]*(?:/>|>.*?</p:transition>)\", \"\", xml, flags=re.S)",
+      "reason": "The old lazy expression stopped at the nested fade self-close, leaving an unmatched transition close on repeated application. The replacement bounds the opening tag and removes the complete transition."
+    },
+    {
+      "line": 251,
+      "before": "return xml.replace(\"</p:sld>\", block + \"</p:sld>\"), len(steps)",
+      "after": "return xml.replace(\"</p:sld>\", block + \"</p:sld>\"), 0 if style == \"none\" else len(steps)",
+      "reason": "Transition-only mode writes no entrance timing and must report zero entrance effects."
+    }
+  ],
+  "regressionCommand": "python C:/Users/dillo/.claude/skills/client-deck/scripts/test_choreograph.py",
+  "regressionResult": "PASS: one standard-library unittest, 15 subcases across 3 styles and 5 initial transition forms, each rewritten three times; valid XML, one transition, expected timing/effect count, unchanged shape count, no footer animation.",
+  "realDeckReapplications": 2,
+  "realDeckPackageContentsUnchanged": true,
+  "reappliedDeckOpenedHiddenInPowerPoint": true,
+  "realDeckSlides": 8,
+  "realDeckEffects": 82,
+  "effectCountUnchanged": true,
+  "shapeCountUnchanged": true,
+  "sourceNotesUnchanged": true,
+  "duplicateTransitionsOrTimings": 0,
+  "finalVerificationSeconds": 9.23,
+  "sourceFilesChanged": [
+    "C:/Users/dillo/.claude/skills/client-deck/scripts/choreograph.py",
+    "C:/Users/dillo/.claude/skills/client-deck/scripts/test_choreograph.py"
+  ],
+  "separateExistingLimitation": "Deck.save skips choreography entirely for animationStyle none. The fixed direct choreograph.py --style none command is transition-only. deck-kit.mjs was not changed."
+}

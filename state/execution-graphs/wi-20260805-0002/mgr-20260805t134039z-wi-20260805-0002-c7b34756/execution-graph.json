@@ -1,0 +1,726 @@
+{
+    "schemaVersion":  1,
+    "graphRunId":  "mgr-20260805t134039z-wi-20260805-0002-c7b34756",
+    "graphRevision":  8,
+    "workflowId":  "marketing-chief-execution-graph",
+    "createdAt":  "2026-08-05T13:41:39.2570043+00:00",
+    "updatedAt":  "2026-08-05T13:43:06.2270036+00:00",
+    "status":  "handoff_ready",
+    "queueSnapshot":  {
+                          "locator":  "queue/work-items.json",
+                          "revision":  347,
+                          "sha256":  "F8950B8EE6533C4F994574F625191209895DF11B01693E1AAD75A077ADF08AB5",
+                          "capturedAt":  "2026-08-05T13:41:39.2570043+00:00"
+                      },
+    "workItem":  {
+                     "id":  "wi-20260805-0002",
+                     "expectedVersion":  1,
+                     "contentSha256":  "C1E4FA65C23C65E4A19B37D7FA391CCF79A5FDBD62CC743F3FD026A79D674F7A",
+                     "clientId":  "bridge-software",
+                     "title":  "Align Bridge Phase 2 plan to Milestone 2 and draft Miraj reply",
+                     "status":  "ready",
+                     "lane":  "normal",
+                     "priority":  "P1",
+                     "actionClass":  "local_draft",
+                     "nextAction":  "Review the local scope map and reply draft, then bind confirmed account status to the next working slice.",
+                     "definitionOfDone":  [
+                                              "Current Bridge channel messages are read and summarized using opaque source locators.",
+                                              "The five phase plan is mapped to the six contracted milestones and MVP boundaries.",
+                                              "A concise reply draft is stored in the Bridge deliverables folder.",
+                                              "The GitHub and Supabase account path remains explicitly unverified until confirmed.",
+                                              "Nothing was posted to Slack or sent externally."
+                                          ],
+                     "sourceLocator":  "slack://channel/C0BGWRK03B2/message/1785905321.250469",
+                     "evidenceRefs":  [
+                                          "slack://channel/C0BGWRK03B2/message/1785905321.250469"
+                                      ],
+                     "artifactRefs":  [
+
+                                      ],
+                     "dependencies":  [
+
+                                      ],
+                     "approval":  {
+                                      "tier":  "automatic",
+                                      "status":  "not_required",
+                                      "gate":  "none"
+                                  }
+                 },
+    "scope":  {
+                  "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+                  "clientRoot":  "clients/bridge-software",
+                  "graphLocator":  "state/execution-graphs/wi-20260805-0002/mgr-20260805t134039z-wi-20260805-0002-c7b34756/execution-graph.json",
+                  "canonicalWriteAllowed":  false,
+                  "externalActionAllowed":  false,
+                  "durableMemoryWriteAllowed":  false,
+                  "privacy":  "redacted"
+              },
+    "retrieval":  {
+                      "strategy":  "exact-plus-graph",
+                      "exactBindingRequired":  true,
+                      "semanticBindingAllowed":  false,
+                      "sourceCount":  1,
+                      "artifactCount":  0
+                  },
+    "nodes":  [
+                  {
+                      "id":  "scope-guard",
+                      "kind":  "scope_guard",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Validate immutable queue, work-item, client, and project scope.",
+                      "requires":  [
+
+                                   ],
+                      "produces":  [
+                                       "scoped_work_item"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Queue revision, work-item version, exact client route, and safety scope were validated.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "queue/work-items.json",
+                                                      "slack://channel/C0BGWRK03B2/message/1785905321.250469"
+                                                  ],
+                                     "verification":  [
+                                                          "Queue revision 347 captured.",
+                                                          "Work-item version 1 captured.",
+                                                          "Client route bridge-software resolved exactly once and is active."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "source-intake",
+                      "kind":  "source_intake",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Capture safe exact source and evidence locators.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "provenance_slice"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Exact source and evidence locators were captured without raw communications.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "slack://channel/C0BGWRK03B2/message/1785905321.250469"
+                                                  ],
+                                     "verification":  [
+                                                          "Evidence freshness evaluated at 2026-08-05T13:41:39.2570043+00:00."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "context-retrieval",
+                      "kind":  "context_retrieval",
+                      "owner":  "marketing-chief-context-loader",
+                      "status":  "completed",
+                      "task":  "Assemble the exact bounded context slice required by this item.",
+                      "requires":  [
+                                       "source-intake"
+                                   ],
+                      "produces":  [
+                                       "worker_context"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Bounded client, source, artifact, dependency, and definition-of-done context was assembled.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "slack://channel/C0BGWRK03B2/message/1785905321.250469"
+                                                  ],
+                                     "verification":  [
+                                                          "Definition-of-done checks: 5.",
+                                                          "Artifact references: 0."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "worker-execution",
+                      "kind":  "worker_execution",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Review the local scope map and reply draft, then bind confirmed account status to the next working slice.",
+                      "requires":  [
+                                       "context-retrieval"
+                                   ],
+                      "produces":  [
+                                       "local_artifacts",
+                                       "worker_evidence"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Created the Bridge scope alignment artifact and approval-ready reply draft from the current channel readback.",
+                                     "artifacts":  [
+                                                       "clients/bridge-software/deliverables/2026-08-05-milestone-2-alignment-and-reply-draft.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "slack://channel/C0BGWRK03B2/message/1785905321.250469",
+                                                      "slack://channel/C0BGWRK03B2/message/1785918994.970229",
+                                                      "slack://channel/C0BGWRK03B2/message/1785919183.427409",
+                                                      "slack://channel/C0BGWRK03B2/message/1785935328.700849",
+                                                      "slack://channel/C0BGWRK03B2/message/1785934668.375839"
+                                                  ],
+                                     "verification":  [
+
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-01",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Current Bridge channel messages are read and summarized using opaque source locators.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_01"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Verified the current Bridge channel readback and preserved only opaque source locators in the artifact.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "slack://channel/C0BGWRK03B2/message/1785905321.250469"
+                                                  ],
+                                     "verification":  [
+                                                          "Readback coverage is recorded with an opaque channel message locator."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-02",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "The five phase plan is mapped to the six contracted milestones and MVP boundaries.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_02"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Verified the five phase plan is mapped to the six contracted milestones and the MVP boundaries are explicit.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/bridge-software/deliverables/2026-08-05-milestone-2-alignment-and-reply-draft.md"
+                                                  ],
+                                     "verification":  [
+                                                          "The scope alignment table records the milestone mapping and MVP exclusions."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-03",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "A concise reply draft is stored in the Bridge deliverables folder.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_03"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Verified the concise Miraj reply draft is present in the Bridge deliverables folder.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/bridge-software/deliverables/2026-08-05-milestone-2-alignment-and-reply-draft.md"
+                                                  ],
+                                     "verification":  [
+                                                          "The artifact contains a clearly marked draft reply and delivery gate."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-04",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "The GitHub and Supabase account path remains explicitly unverified until confirmed.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_04"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Verified the GitHub and Supabase account path is explicitly marked unverified pending confirmation.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/bridge-software/deliverables/2026-08-05-milestone-2-alignment-and-reply-draft.md"
+                                                  ],
+                                     "verification":  [
+                                                          "The artifact keeps the account dependency open and makes no access claim."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-05",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Nothing was posted to Slack or sent externally.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_05"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Verified the draft boundary: no Slack post, external send, or external delivery was performed.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/bridge-software/deliverables/2026-08-05-milestone-2-alignment-and-reply-draft.md"
+                                                  ],
+                                     "verification":  [
+                                                          "The artifact states that the reply remains local and unposted."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "approval-gate",
+                      "kind":  "approval_gate",
+                      "owner":  "marketing-chief",
+                      "status":  "completed",
+                      "task":  "Enforce the exact action-class and approval boundary.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "approval_verdict"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "This graph permits local reversible work only; no external action is authorized.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+
+                                                  ],
+                                     "verification":  [
+                                                          "Action class: local_draft.",
+                                                          "Approval tier/status: automatic/not_required."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "handoff-assembly",
+                      "kind":  "handoff_assembly",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Assemble a schema-valid redacted worker handoff from completed graph outputs.",
+                      "requires":  [
+                                       "verify-01",
+                                       "verify-02",
+                                       "verify-03",
+                                       "verify-04",
+                                       "verify-05",
+                                       "approval-gate"
+                                   ],
+                      "produces":  [
+                                       "worker_handoff"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "state/worker-handoffs/handoff-bridge-m2-draft-20260805.json",
+                                                      "sha256:14CA66CC84E1A10FD8981102A3F34D28C14F1E03086BAF1996A5299787173B48"
+                                                  ],
+                                     "verification":  [
+
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "chief-reconciliation",
+                      "kind":  "chief_reconciliation",
+                      "owner":  "marketing-chief",
+                      "status":  "ready",
+                      "task":  "Revalidate live queue and item state, then accept or reject the handoff through the supported canonical mutation path.",
+                      "requires":  [
+                                       "handoff-assembly"
+                                   ],
+                      "produces":  [
+                                       "canonical_receipt"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  }
+              ],
+    "edges":  [
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "source-intake"
+                  },
+                  {
+                      "from":  "source-intake",
+                      "relation":  "precedes",
+                      "to":  "context-retrieval"
+                  },
+                  {
+                      "from":  "context-retrieval",
+                      "relation":  "precedes",
+                      "to":  "worker-execution"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-01"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-02"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-03"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-04"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-05"
+                  },
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "approval-gate"
+                  },
+                  {
+                      "from":  "verify-01",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-02",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-03",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-04",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-05",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "approval-gate",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "handoff-assembly",
+                      "relation":  "precedes",
+                      "to":  "chief-reconciliation"
+                  }
+              ],
+    "knowledgeGraph":  {
+                           "nodes":  [
+                                         {
+                                             "id":  "queue:canonical",
+                                             "type":  "queue",
+                                             "label":  "Canonical queue revision 347",
+                                             "locator":  "queue/work-items.json"
+                                         },
+                                         {
+                                             "id":  "client:bridge-software",
+                                             "type":  "client",
+                                             "label":  "bridge-software",
+                                             "locator":  "clients/bridge-software"
+                                         },
+                                         {
+                                             "id":  "work-item:wi-20260805-0002",
+                                             "type":  "work_item",
+                                             "label":  "Align Bridge Phase 2 plan to Milestone 2 and draft Miraj reply",
+                                             "locator":  "slack://channel/C0BGWRK03B2/message/1785905321.250469"
+                                         },
+                                         {
+                                             "id":  "approval:none",
+                                             "type":  "approval",
+                                             "label":  "automatic/not_required/none",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "evidence:7119c41443ce5647",
+                                             "type":  "evidence",
+                                             "label":  "slack://channel/C0BGWRK03B2/message/1785905321.250469",
+                                             "locator":  "slack://channel/C0BGWRK03B2/message/1785905321.250469"
+                                         },
+                                         {
+                                             "id":  "definition:01",
+                                             "type":  "definition",
+                                             "label":  "Current Bridge channel messages are read and summarized using opaque source locators.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:02",
+                                             "type":  "definition",
+                                             "label":  "The five phase plan is mapped to the six contracted milestones and MVP boundaries.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:03",
+                                             "type":  "definition",
+                                             "label":  "A concise reply draft is stored in the Bridge deliverables folder.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:04",
+                                             "type":  "definition",
+                                             "label":  "The GitHub and Supabase account path remains explicitly unverified until confirmed.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:05",
+                                             "type":  "definition",
+                                             "label":  "Nothing was posted to Slack or sent externally.",
+                                             "locator":  null
+                                         }
+                                     ],
+                           "edges":  [
+                                         {
+                                             "from":  "queue:canonical",
+                                             "relation":  "contains",
+                                             "to":  "work-item:wi-20260805-0002"
+                                         },
+                                         {
+                                             "from":  "client:bridge-software",
+                                             "relation":  "owns",
+                                             "to":  "work-item:wi-20260805-0002"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260805-0002",
+                                             "relation":  "governed_by",
+                                             "to":  "approval:none"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260805-0002",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:7119c41443ce5647"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260805-0002",
+                                             "relation":  "requires",
+                                             "to":  "definition:01"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260805-0002",
+                                             "relation":  "requires",
+                                             "to":  "definition:02"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260805-0002",
+                                             "relation":  "requires",
+                                             "to":  "definition:03"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260805-0002",
+                                             "relation":  "requires",
+                                             "to":  "definition:04"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260805-0002",
+                                             "relation":  "requires",
+                                             "to":  "definition:05"
+                                         }
+                                     ],
+                           "nodeCount":  10,
+                           "edgeCount":  9
+                       },
+    "handoffContract":  {
+                            "schema":  "schemas/worker-handoff.schema.json",
+                            "validator":  "scripts/Test-MarketingHandoff.ps1",
+                            "reconciler":  "scripts/Accept-WorkerHandoff.ps1",
+                            "expectedWorkItemVersion":  1,
+                            "approvalGate":  "none",
+                            "graphEvidence":  "state/execution-graphs/wi-20260805-0002/mgr-20260805t134039z-wi-20260805-0002-c7b34756/execution-graph.json"
+                        },
+    "blockers":  [
+
+                 ],
+    "warnings":  [
+
+                 ],
+    "trace":  [
+                  {
+                      "eventId":  "evt-4ffee59f664d42bebb0a9f5cb56679ac",
+                      "at":  "2026-08-05T13:41:39.2570043+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "scope-guard",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-307d4aa2abc74b72b89da14dd5d3ebb5",
+                      "at":  "2026-08-05T13:41:39.2570043+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "source-intake",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-16f3718d0f0e47cfbcbe0ed1457efec0",
+                      "at":  "2026-08-05T13:41:39.2570043+00:00",
+                      "actor":  "marketing-chief-context-loader",
+                      "nodeId":  "context-retrieval",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-73ce97d53f25431489c2941fa36624ee",
+                      "at":  "2026-08-05T13:41:39.2570043+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "approval-gate",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-f01eb534274b4c6cbd7d934a85734c41",
+                      "at":  "2026-08-05T13:41:54.4238281+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "worker-execution",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Created the Bridge scope alignment artifact and approval-ready reply draft from the current channel readback."
+                  },
+                  {
+                      "eventId":  "evt-c16bbc73cc884f6886793c15b6ccedb7",
+                      "at":  "2026-08-05T13:42:10.0899591+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "verify-01",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Verified the current Bridge channel readback and preserved only opaque source locators in the artifact."
+                  },
+                  {
+                      "eventId":  "evt-8a503dd4230f45b49b470adeea3eed91",
+                      "at":  "2026-08-05T13:42:12.6861419+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "verify-02",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Verified the five phase plan is mapped to the six contracted milestones and the MVP boundaries are explicit."
+                  },
+                  {
+                      "eventId":  "evt-1e6457f342e948c6976c2efe4255ebc3",
+                      "at":  "2026-08-05T13:42:14.8206222+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "verify-03",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Verified the concise Miraj reply draft is present in the Bridge deliverables folder."
+                  },
+                  {
+                      "eventId":  "evt-ad5e263c983f4d1b97aa6ed140efa5d1",
+                      "at":  "2026-08-05T13:42:17.2127427+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "verify-04",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Verified the GitHub and Supabase account path is explicitly marked unverified pending confirmation."
+                  },
+                  {
+                      "eventId":  "evt-da6284c6850249fa93d06cde7e2bc126",
+                      "at":  "2026-08-05T13:42:19.5370603+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "verify-05",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Verified the draft boundary: no Slack post, external send, or external delivery was performed."
+                  },
+                  {
+                      "eventId":  "evt-8db6c589128440d0a84ec1d58602afe2",
+                      "at":  "2026-08-05T13:43:06.2270036+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "handoff-assembly",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation."
+                  }
+              ],
+    "attestations":  {
+                         "canonicalWriteAttempted":  false,
+                         "externalActionAttempted":  false,
+                         "durableMemoryWriteAttempted":  false,
+                         "containsSecrets":  false,
+                         "containsDirectIdentifiers":  false,
+                         "containsRawCommunications":  false
+                     }
+}

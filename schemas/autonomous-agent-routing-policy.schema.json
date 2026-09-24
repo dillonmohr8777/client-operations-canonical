@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "autonomous-agent-routing-policy.schema.json",
+  "title": "Marketing Chief autonomous agent routing policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "policyId",
+    "status",
+    "statePath",
+    "maxStateAgeHours",
+    "authority",
+    "dataClasses",
+    "models",
+    "lanes",
+    "compounding",
+    "fallbackRules"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "policyId": { "const": "marketing-chief-autonomous-agent-routing" },
+    "status": { "enum": ["active", "draft", "retired"] },
+    "statePath": { "const": "state/ai-stack.json" },
+    "maxStateAgeHours": { "type": "integer", "minimum": 1, "maximum": 168 },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "coordinator",
+        "canonicalWriter",
+        "workersMayMutateCanonicalState",
+        "modelsMayAuthorizeExternalActions",
+        "consequentialWorkRequiresIndependentChecker",
+        "maxMakerCheckerCycles"
+      ],
+      "properties": {
+        "coordinator": { "const": "gpt-5.6-sol" },
+        "canonicalWriter": { "const": "marketing-chief" },
+        "workersMayMutateCanonicalState": { "const": false },
+        "modelsMayAuthorizeExternalActions": { "const": false },
+        "consequentialWorkRequiresIndependentChecker": { "const": true },
+        "maxMakerCheckerCycles": { "type": "integer", "minimum": 1, "maximum": 3 }
+      }
+    },
+    "dataClasses": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": { "enum": ["public", "internal", "redacted-client", "sensitive-client"] }
+    },
+    "models": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "family",
+          "harness",
+          "model",
+          "availabilityKey",
+          "maxVerificationAgeHours",
+          "verificationKindsAllowed",
+          "trustClass",
+          "executionMode",
+          "automatic",
+          "capabilities",
+          "dataClassesAllowed"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9.-]{2,79}$" },
+          "family": { "type": "string", "minLength": 2, "maxLength": 80 },
+          "harness": { "type": "string", "minLength": 2, "maxLength": 80 },
+          "model": { "type": "string", "minLength": 2, "maxLength": 160 },
+          "availabilityKey": { "type": "string", "pattern": "^[a-z0-9][a-z0-9.-]{2,79}$" },
+          "maxVerificationAgeHours": { "type": "integer", "minimum": 1, "maximum": 720 },
+          "verificationKindsAllowed": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "enum": ["direct-canary", "live-local-inventory", "provider-blocked", "human-gate-verified"] }
+          },
+          "trustClass": { "enum": ["authorized-cloud", "local", "public-free", "interactive-external"] },
+          "executionMode": { "enum": ["agent", "local-agent", "interactive-generator"] },
+          "automatic": { "type": "boolean" },
+          "capabilities": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 2, "maxLength": 60 }
+          },
+          "dataClassesAllowed": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "enum": ["public", "internal", "redacted-client", "sensitive-client"] }
+          },
+          "humanGate": { "type": "string", "maxLength": 300 }
+        }
+      }
+    },
+    "lanes": {
+      "type": "array",
+      "minItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "description", "collector", "maker", "checker", "observer"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,59}$" },
+          "description": { "type": "string", "minLength": 10, "maxLength": 300 },
+          "collector": { "$ref": "#/$defs/modelCandidates" },
+          "maker": { "$ref": "#/$defs/modelCandidates" },
+          "checker": { "$ref": "#/$defs/modelCandidates" },
+          "observer": { "$ref": "#/$defs/modelCandidates" }
+        }
+      }
+    },
+    "compounding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stages", "promotionRule", "dailyCanonicalChangeLimit", "sourceEvidenceNeverEqualsCanonicalTruth"],
+      "properties": {
+        "stages": {
+          "const": ["capture", "verify", "compile", "decide", "execute", "observe", "learn"]
+        },
+        "promotionRule": { "type": "string", "minLength": 20, "maxLength": 500 },
+        "dailyCanonicalChangeLimit": { "const": 1 },
+        "sourceEvidenceNeverEqualsCanonicalTruth": { "const": true }
+      }
+    },
+    "fallbackRules": {
+      "type": "array",
+      "minItems": 5,
+      "items": { "type": "string", "minLength": 10, "maxLength": 400 }
+    }
+  },
+  "$defs": {
+    "modelCandidates": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9.-]{2,79}$" }
+    }
+  }
+}

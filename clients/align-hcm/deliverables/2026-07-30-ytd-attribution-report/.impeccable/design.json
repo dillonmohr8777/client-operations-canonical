@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-30T22:47:22.882Z",
+  "title": "Design System: Align HCM Attribution Report",
+  "extensions": {
+    "colorMeta": {
+      "align-orange": {
+        "role": "primary",
+        "displayName": "Align Orange",
+        "canonical": "#f05a28",
+        "tonalRamp": ["#3a1508", "#67240f", "#943517", "#bd451f", "#f05a28", "#f4845c", "#f8b19a", "#fde1d5"]
+      },
+      "evidence-teal": {
+        "role": "secondary",
+        "displayName": "Evidence Teal",
+        "canonical": "#27a591",
+        "tonalRamp": ["#092824", "#10463e", "#17665a", "#1f8575", "#27a591", "#54b9a8", "#8ed1c5", "#d2eee9"]
+      },
+      "midnight-page": {
+        "role": "neutral",
+        "displayName": "Midnight Page",
+        "canonical": "#071321",
+        "tonalRamp": ["#03080e", "#071321", "#0b1b2e", "#16304b", "#31506c", "#647b91", "#aab7c3", "#eef3f7"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Executive Display",
+        "purpose": "Report title and major numerical statements."
+      },
+      "body": {
+        "displayName": "Evidence Body",
+        "purpose": "Narrative analysis, tables, controls, and supporting detail."
+      }
+    },
+    "shadows": [
+      {
+        "name": "proof-ambient",
+        "value": "0 20px 60px rgba(0,0,0,.2)",
+        "purpose": "The primary YTD revenue proof block only."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "500px"
+      },
+      {
+        "name": "stack",
+        "value": "760px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Company Search",
+      "kind": "input",
+      "refersTo": "search-field",
+      "description": "Searches company, channel, evidence, and deal copy in the YTD ledger.",
+      "html": "<input class=\"ds-company-search\" type=\"search\" placeholder=\"Search company, channel, evidence, or deal\">",
+      "css": ".ds-company-search{min-height:42px;border:1px solid rgba(247,240,226,.12);border-radius:10px;background:#071522;color:#f7f0e2;font:600 13px 'DM Sans',system-ui,sans-serif;padding:10px 13px}.ds-company-search::placeholder{color:#aeb7bd}.ds-company-search:focus-visible{outline:2px solid #27a591;outline-offset:2px}"
+    },
+    {
+      "name": "Download Ledger",
+      "kind": "button",
+      "refersTo": "data-link",
+      "description": "Primary utility action for exporting the company-level evidence table.",
+      "html": "<a class=\"ds-download-ledger\" href=\"#\">Download the company ledger</a>",
+      "css": ".ds-download-ledger{display:inline-flex;align-items:center;min-height:40px;padding:9px 13px;border-radius:9px;background:#f05a28;color:#2a0f05;font:800 12.5px 'Plus Jakarta Sans',system-ui,sans-serif;text-decoration:none}.ds-download-ledger:hover{filter:brightness(1.08)}.ds-download-ledger:focus-visible{outline:2px solid #27a591;outline-offset:3px}"
+    },
+    {
+      "name": "Organic Search Tag",
+      "kind": "chip",
+      "description": "Evidence label for organic-search company records.",
+      "html": "<span class=\"ds-channel-search\">Organic Search</span>",
+      "css": ".ds-channel-search{display:inline-block;padding:4px 7px;border-radius:6px;background:rgba(240,90,40,.16);color:#ff9f73;font:800 10.5px 'DM Sans',system-ui,sans-serif;letter-spacing:.025em}"
+    },
+    {
+      "name": "Evidence Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "The standard narrative container used for interpretation and configuration guidance.",
+      "html": "<section class=\"ds-evidence-panel\"><h3>Evidence panel</h3><p>Interpretation remains adjacent to the supporting metric.</p></section>",
+      "css": ".ds-evidence-panel{background:#0b1b2e;color:#f7f0e2;border:1px solid rgba(247,240,226,.12);border-radius:16px;padding:24px}.ds-evidence-panel h3{margin:0 0 14px;font:800 16px 'Plus Jakarta Sans',system-ui,sans-serif}.ds-evidence-panel p{margin:0;color:#9fb0c1;font:400 14.5px/1.6 'DM Sans',system-ui,sans-serif}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Revenue Evidence Room",
+    "overview": "A dark, high-density executive surface built to move from marketing claim to CRM evidence without changing tools. Warm ink supports long-form reading; controlled accents distinguish evidence type rather than decorate the page.",
+    "keyCharacteristics": [
+      "Evidence and definitions sit next to every consequential number.",
+      "Orange carries Align identity; teal carries verification and active-state meaning.",
+      "Tables are dense by design and paired with narrative interpretation.",
+      "Personal contact details stay out of the client-facing surface."
+    ],
+    "rules": [
+      {
+        "name": "The Evidence Color Rule",
+        "body": "Accent color always carries meaning: brand emphasis, channel identity, confirmation, or caution.",
+        "section": "colors"
+      },
+      {
+        "name": "The Numbers Lead Rule",
+        "body": "Numerical values use strong weight and tabular alignment; their definitions remain adjacent and readable.",
+        "section": "typography"
+      },
+      {
+        "name": "The Quiet Depth Rule",
+        "body": "A surface earns elevation through information priority; most containers use one border or one shadow, not both.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do distinguish native, recovered, and unresolved attribution in plain language.",
+      "Do keep explicit won revenue separate from open pipeline and unpriced opportunities.",
+      "Do provide a downloadable CSV beside the interactive ledger."
+    ],
+    "donts": [
+      "Don't expose individual contact names, emails, phone numbers, or lost-deal detail.",
+      "Don't turn unknown deal amounts into modeled dollars.",
+      "Don't use color as the only indicator of deal or evidence state."
+    ]
+  }
+}

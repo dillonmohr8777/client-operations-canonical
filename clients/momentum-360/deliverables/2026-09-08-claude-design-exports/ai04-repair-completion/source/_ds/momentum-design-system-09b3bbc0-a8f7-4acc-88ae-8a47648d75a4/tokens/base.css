@@ -1,0 +1,23 @@
+/* Global element defaults, ported from the source shell. Class-level surface
+   patterns live in the components; this file only sets element-level truth. */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px;scrollbar-color:var(--blue) var(--pale)}
+body{margin:0;background:var(--surface-page);color:var(--text-body);font:var(--size-body)/var(--leading-body) var(--body)}
+::selection{background:var(--gold);color:var(--night)}
+a{color:inherit;text-underline-offset:.25em}
+a:hover{color:var(--text-link)}
+button,input,select{font:inherit}
+button,a{touch-action:manipulation}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.5}
+img{max-width:100%;height:auto;display:block}
+button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:var(--focus-ring);outline-offset:var(--focus-offset)}
+h1,h2,h3,h4,p{margin:0}
+h1,h2,h3{line-height:var(--leading-display);text-wrap:balance;letter-spacing:var(--tracking-display)}
+h1,h2,.display{font-family:var(--display);font-weight:900}
+h1{font-size:var(--size-hero)}
+h2{font-size:var(--size-h2)}
+p{max-width:var(--measure-body)}
+svg{display:block;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+progress{width:100%;height:5px;accent-color:var(--gold)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link rel="stylesheet" href="assets/momentum.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      #mark {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+      }
+      #sweep {
+        position: absolute;
+        inset: 0;
+        background: var(--m-brand);
+        will-change: transform;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="stingclose"
+      data-start="0"
+      data-duration="3"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div id="s" class="slide s-deep clip" data-start="0" data-duration="3" data-track-index="1">
+        <div id="mark">
+          <span class="lockup on-deep" id="lock">MOMENTUM <em class="on-deep-brand">AI</em></span>
+          <span class="lanes-rule" id="lr" style="width: 620px"></span>
+          <div class="lanes">
+            <span class="lane on-deep-muted ln">AEO / GEO</span>
+            <span class="lane on-deep-muted ln">AI DESIGN</span>
+            <span class="lane on-deep-muted ln">AI MARKETING</span>
+            <span class="lane on-deep-muted ln">AI AUTOMATION</span>
+          </div>
+          <span class="url on-deep-brand" id="u" style="margin-top: 12px">needmomentum.com</span>
+        </div>
+        <!-- the campaign wipe, used once as a close -->
+        <div id="sweep"></div>
+      </div>
+    </div>
+
+    <script>
+      const E = "expo.out";
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo("#sweep", { xPercent: -100 }, { xPercent: -100, duration: 0.01, ease: "none" }, 0);
+      tl.fromTo("#lock", { scale: 0.88, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: E }, 0.1);
+      tl.fromTo("#lr", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: E }, 0.45);
+      tl.fromTo(".ln", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: E, stagger: 0.07 }, 0.65);
+      tl.fromTo("#u", { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: E }, 1.1);
+      tl.to("#mark", { opacity: 0, duration: 0.18, ease: "power2.in" }, 2.56);
+      tl.to("#sweep", { xPercent: 0, duration: 0.4, ease: "power3.in" }, 2.5);
+
+      window.__timelines["stingclose"] = tl;
+    </script>
+  </body>
+</html>

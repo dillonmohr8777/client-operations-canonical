@@ -1,0 +1,299 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Nunito+Sans:wght@400;700;800&amp;family=Caveat:wght@600&amp;display=swap">
+  <style>
+    body { margin: 0; background: #FBF8F4; }
+    a { color: #155E86; text-decoration: none; } a:hover { color: #3897CC; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; transition: transform 220ms cubic-bezier(.2,.7,.2,1), background 120ms cubic-bezier(.2,.7,.2,1); }
+    .btn:hover { transform: translateY(-2px); }
+
+    /* header: logo hops and the handwritten caption slides away as the page scrolls */
+    @keyframes capOut  { to { transform: translateX(-140px); opacity: 0; } }
+    @keyframes markHop { 0% { transform: translateY(0); } 40% { transform: translateY(-6px); } 100% { transform: translateY(0) scale(.92); transform-origin: left center; } }
+    @keyframes barTight { to { height: 72px; } }
+    .hdr-bar  { animation: barTight 1ms linear both; animation-timeline: scroll(root); animation-range: 0 220px; }
+    .hdr-cap  { animation: capOut 1ms cubic-bezier(.85,0,.15,1) both; animation-timeline: scroll(root); animation-range: 0 220px; }
+    .hdr-mark { animation: markHop 1ms cubic-bezier(.16,1,.3,1) both; animation-timeline: scroll(root); animation-range: 0 220px; }
+    .hdr-menu strong { transition: color 120ms cubic-bezier(.2,.7,.2,1); }
+    .hdr-menu:hover strong { color: #A35309; }
+    .hdr-menu:hover .bar { background: #A35309; }
+    .bar { transition: background 120ms cubic-bezier(.2,.7,.2,1); }
+
+    /* menu panel wipes in from the right edge it lives on */
+    .panel { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); transition: clip-path 600ms cubic-bezier(.215,.61,.355,1); }
+    .panel.open { clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%); }
+    .panel a { transition: letter-spacing 220ms cubic-bezier(.2,.7,.2,1); }
+    .panel a:hover { letter-spacing: 0.02em; color: #FFFFFF; }
+
+    /* entrances */
+    @keyframes mRise   { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+    @keyframes mSettle { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
+    .rise   { animation: mRise 800ms cubic-bezier(.16,1,.3,1) both; }
+    .settle { animation: mSettle 800ms cubic-bezier(.16,1,.3,1) both; }
+    .d1 { animation-delay: 70ms; } .d2 { animation-delay: 140ms; } .d3 { animation-delay: 210ms; } .d4 { animation-delay: 280ms; } .d5 { animation-delay: 420ms; }
+
+    /* lane icons: single stroke, and each one moves the way its metaphor does */
+    .ico { width: 88px; height: 88px; display: block; }
+    .ico path, .ico rect { fill: none; stroke: #155E86; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+    @keyframes waveIn { 0%, 100% { opacity: .15; } 50% { opacity: 1; } }
+    .w1 { animation: waveIn 2400ms ease-in-out infinite; } .w2 { animation: waveIn 2400ms ease-in-out infinite 300ms; } .w3 { animation: waveIn 2400ms ease-in-out infinite 600ms; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    .draw { stroke-dasharray: 160; stroke-dashoffset: 160; animation: draw 2200ms cubic-bezier(.16,1,.3,1) infinite alternate; }
+    @keyframes drift { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(4px, -4px); } }
+    .f1 { animation: drift 3000ms ease-in-out infinite; } .f2 { animation: drift 3000ms ease-in-out infinite 400ms; } .f3 { animation: drift 3000ms ease-in-out infinite 800ms; }
+    @keyframes tick { 0%, 30% { stroke-dashoffset: 40; } 70%, 100% { stroke-dashoffset: 0; } }
+    .tick { stroke-dasharray: 40; stroke-dashoffset: 40; stroke: #A35309; animation: tick 2600ms cubic-bezier(.16,1,.3,1) infinite; }
+
+    .lane { transition: background 120ms cubic-bezier(.2,.7,.2,1); }
+    .lane:hover { background: #F0ECE5; }
+
+    
+    html, body { overflow-x: hidden; }
+    @media (max-width: 640px) {
+      div[style*="min-width: 1024px"] { min-width: 0; }
+      div[style*="grid-template-columns: 1.5fr 1fr"] { grid-template-columns: 1fr !important; }
+      div[style*="grid-template-columns: 1fr 1.3fr"] { grid-template-columns: 1fr !important; }
+      div[style*="grid-template-columns: repeat(5, minmax(0, 1fr))"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+      div[style*="grid-template-columns: 120px 280px minmax(0, 1fr) 220px"] {
+        grid-template-columns: 1fr !important; row-gap: 10px !important; text-align: left;
+      }
+      .panel { width: 100vw !important; right: 0 !important; left: auto !important; box-sizing: border-box; padding-left: 32px !important; padding-right: 32px !important; }
+      div[style*="width: min(400px, 100%); height: 74px"] {}
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rise, .settle, .w1, .w2, .w3, .draw, .f1, .f2, .f3, .tick, .hdr-bar, .hdr-cap, .hdr-mark { animation-duration: 1ms; animation-delay: 0ms; animation-iteration-count: 1; }
+      .btn, .panel, .lane { transition-duration: 1ms; }
+    }
+  </style>
+</helmet>
+
+<div style="width: 100%; min-width: 1024px; background: #FBF8F4; color: #14181B; font-family: 'Nunito Sans', 'Segoe UI', system-ui, sans-serif; position: relative;">
+
+  <!-- HEADER · fixed, paper, 100px; tightens to 72px as the page scrolls -->
+  <div class="hdr-bar" style="position: fixed; left: 0; top: 0; width: 100%; height: 100px; background: #FBF8F4; border-bottom: 1px solid #DCD6CC; z-index: 50; box-shadow: 0 1px 2px rgba(14,20,23,.08), 0 6px 18px rgba(14,20,23,.06);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 32px; height: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px;">
+      <div style="display: flex; align-items: center; gap: 22px; min-width: 0;">
+        <a class="hdr-mark" href="#top" style="display: flex; align-items: center; gap: 12px; flex: 0 0 auto;">
+          <img src="momentum-logo.png" alt="Momentum" style="width: 176px; height: 38px; object-fit: contain; object-position: left center; display: block;">
+          <span style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 26px; line-height: 1; color: #A35309; letter-spacing: -0.02em; padding-left: 12px; border-left: 2px solid #DCD6CC;">AI</span>
+        </a>
+        <div class="hdr-cap" style="font-family: Caveat, 'Segoe Script', cursive; font-size: 34px; font-weight: 600; color: #14181B; white-space: nowrap; line-height: 1;">need momentum?</div>
+      </div>
+      <div class="hdr-menu" onClick="{{ toggle }}" style="display: flex; align-items: center; gap: 18px; cursor: pointer; flex: 0 0 auto;">
+        <strong style="font-size: 18px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #14181B;">{{ menuLabel }}</strong>
+        <div style="display: flex; flex-direction: column; gap: 5px; width: 34px;">
+          <span class="bar" style="display: block; height: 3px; background: #14181B;"></span>
+          <span class="bar" style="display: block; height: 3px; background: #14181B;"></span>
+          <span class="bar" style="display: block; height: 3px; background: #14181B;"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENU PANEL · brand fill, wipes from the right -->
+  <div class="panel {{ panelClass }}" style="position: fixed; right: 0; top: 0; width: 560px; height: 100%; background: #155E86; color: #FFFFFF; z-index: 60; padding: 150px 72px 64px; box-sizing: border-box; display: flex; flex-direction: column; gap: 0;">
+    <div onClick="{{ toggle }}" style="position: absolute; top: 36px; right: 40px; cursor: pointer; font-size: 14px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF;">Close</div>
+    <div style="display: flex; flex-direction: column; gap: 26px; padding-bottom: 40px; border-bottom: 3px solid #FFFFFF;">
+      <a href="#lanes" style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 54px; line-height: .92; text-transform: uppercase; color: #FFFFFF;">Get found by AI</a>
+      <a href="#lanes" style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 54px; line-height: .92; text-transform: uppercase; color: #FFFFFF;">Prototype in a week</a>
+      <a href="#lanes" style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 54px; line-height: .92; text-transform: uppercase; color: #FFFFFF;">Content that moves</a>
+      <a href="#lanes" style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 54px; line-height: .92; text-transform: uppercase; color: #FFFFFF;">The attribution spine</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 36px; font-size: 18px; font-weight: 700;">
+      <a href="#snapshot" style="color: #FFFFFF;">Free AI Search Snapshot</a>
+      <a href="#proof" style="color: #FFFFFF;">Proof</a>
+      <a href="#how" style="color: #FFFFFF;">How it runs</a>
+    </div>
+    <div style="margin-top: auto; font-family: Caveat, 'Segoe Script', cursive; font-size: 30px; font-weight: 600; color: #FFFFFF;">(215) 876-2954</div>
+  </div>
+
+  <!-- HERO · deep -->
+  <div id="top" style="background: #0E1417; color: #F4F1EC; padding: 196px 0 120px;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 64px; align-items: end;">
+      <div>
+        <div class="rise" style="font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #3897CC;">Momentum AI · a division of Momentum Digital, Philadelphia</div>
+        <div class="rise d1" style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 92px; line-height: 0.92; letter-spacing: -0.02em; margin-top: 24px;">Momentum built the machine.<br>Now we build yours.</div>
+        <div class="rise d2" style="font-size: 21px; line-height: 1.5; margin-top: 30px; max-width: 640px;">Over a thousand Philadelphia-region businesses since 2015. The AI division sells what already runs inside Momentum, in four lanes, and every offer ships with its agent.</div>
+        <div class="rise d3" style="display: flex; align-items: center; gap: 28px; margin-top: 40px;">
+          <a class="btn" href="#snapshot" style="background: #E27113; color: #14181B; padding: 18px 28px; font-size: 17px; font-weight: 800;">
+            Get the free AI Search Snapshot
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#14181B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h12M10 4l5 5-5 5"></path></svg>
+          </a>
+          <a href="#lanes" style="color: #F4F1EC; font-size: 16px; font-weight: 700; border-bottom: 2px solid #3897CC; padding-bottom: 2px;">See the four lanes</a>
+        </div>
+      </div>
+      <div class="settle d4" style="background: #1A2226; padding: 40px 40px 36px; box-shadow: 24px 28px 0 rgba(226,113,19,.28);">
+        <div style="font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #3897CC;">One client, six months</div>
+        <div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 132px; line-height: 0.9; letter-spacing: -0.02em; color: #E27113; margin-top: 14px;">35</div>
+        <div style="font-size: 18px; font-weight: 700; line-height: 1.35; margin-top: 12px;">AI visibility score for a B2B equipment manufacturer, from zero tracked.</div>
+        <div style="display: flex; gap: 28px; margin-top: 24px; padding-top: 20px; border-top: 1px solid #0E1417;">
+          <div><div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 30px; color: #F4F1EC;">1,000+</div><div style="font-size: 13px; color: #8A9296; margin-top: 2px;">visibility keywords</div></div>
+          <div><div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 30px; color: #F4F1EC;">+129%</div><div style="font-size: 13px; color: #8A9296; margin-top: 2px;">organic clicks, year on year</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATEMENT · panel, centred, with the collection's zigzag rule -->
+  <div style="background: #F0ECE5; padding: 96px 0;">
+    <div style="max-width: 880px; margin: 0 auto; padding: 0 32px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 22px;">
+      <div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 40px; line-height: 1.08; letter-spacing: -0.02em;">Your customers ask ChatGPT, Google and Perplexity who to call. Either the answer is you, or it is someone else.</div>
+      <svg width="120" height="14" viewBox="0 0 120 14" fill="none" stroke="#E27113" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 11 L22 3 L42 11 L62 3 L82 11 L102 3 L118 11"></path></svg>
+      <div style="font-size: 18px; line-height: 1.6; color: #636465; max-width: 640px;">We do not promise citations, rankings, leads or revenue. We measure what the machines say about you every month, and we change what they read.</div>
+    </div>
+  </div>
+
+  <!-- LANES · paper ledger, one row per lane, icon moving the way its metaphor does -->
+  <div id="lanes" style="background: #FBF8F4; padding: 112px 0;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 32px;">
+      <div style="font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #155E86;">Four lanes</div>
+      <div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 52px; line-height: 1.02; letter-spacing: -0.02em; margin-top: 16px; max-width: 820px;">One flagship per lane. One free way in.</div>
+
+      <div style="display: flex; flex-direction: column; gap: 0; margin-top: 56px; border-bottom: 1px solid #DCD6CC;">
+
+        <div class="lane" style="display: grid; grid-template-columns: 120px 280px minmax(0, 1fr) 220px; gap: 32px; align-items: center; padding: 34px 16px; border-top: 1px solid #DCD6CC;">
+          <svg class="ico" viewBox="0 0 80 80" aria-hidden="true"><path d="M22 60a18 18 0 0 1 36 0"></path><path d="M40 60V44"></path><path class="w1" d="M30 32a14 14 0 0 1 20 0"></path><path class="w2" d="M23 25a24 24 0 0 1 34 0"></path><path class="w3" d="M16 18a34 34 0 0 1 48 0"></path></svg>
+          <div><div style="font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #A35309;">01 · AEO / GEO</div><div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 30px; line-height: 1.02; margin-top: 8px;">Get found by AI</div></div>
+          <div><div style="font-size: 19px; font-weight: 800;">AI Search Readiness sprint</div><div style="font-size: 16px; line-height: 1.55; color: #636465; margin-top: 6px;">Within 90 days the systems that write AI answers can read your site, know what the business is, and are measured monthly on the twenty questions your buyers ask.</div></div>
+          <div style="text-align: right;"><div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 22px; color: #155E86;">Get a quote</div><div style="font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #A35309; margin-top: 4px;">90-day sprint</div></div>
+        </div>
+
+        <div class="lane" style="display: grid; grid-template-columns: 120px 280px minmax(0, 1fr) 220px; gap: 32px; align-items: center; padding: 34px 16px; border-top: 1px solid #DCD6CC;">
+          <svg class="ico" viewBox="0 0 80 80" aria-hidden="true"><path d="M14 70h52"></path><rect class="draw" x="22" y="30" width="36" height="40"></rect><path d="M30 40h6M44 40h6M30 50h6M44 50h6M30 60h6M44 60h6"></path><path d="M40 30V14M40 14l12 6"></path></svg>
+          <div><div style="font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #A35309;">02 · AI Design</div><div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 30px; line-height: 1.02; margin-top: 8px;">Prototype in a week</div></div>
+          <div><div style="font-size: 19px; font-weight: 800;">Spec build</div><div style="font-size: 16px; line-height: 1.55; color: #636465; margin-top: 6px;">Five working days after kickoff you are looking at a working prototype of the thing you described: a site, a dashboard or a film, built from your real assets and first-party facts.</div></div>
+          <div style="text-align: right;"><div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 22px; color: #155E86;">Get a quote</div><div style="font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #A35309; margin-top: 4px;">One build, five days</div></div>
+        </div>
+
+        <div class="lane" style="display: grid; grid-template-columns: 120px 280px minmax(0, 1fr) 220px; gap: 32px; align-items: center; padding: 34px 16px; border-top: 1px solid #DCD6CC;">
+          <svg class="ico" viewBox="0 0 80 80" aria-hidden="true"><rect class="f1" x="14" y="20" width="34" height="26"></rect><rect class="f2" x="23" y="28" width="34" height="26"></rect><rect class="f3" x="32" y="36" width="34" height="26"></rect><path d="M44 47l8 5-8 5z"></path></svg>
+          <div><div style="font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #A35309;">03 · AI Marketing</div><div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 30px; line-height: 1.02; margin-top: 8px;">Content that moves</div></div>
+          <div><div style="font-size: 19px; font-weight: 800;">Motion content system</div><div style="font-size: 16px; line-height: 1.55; color: #636465; margin-top: 6px;">Every month, a short brand film and a set of stills in your identity, with a rights ledger, ready for every placement. Your logo is never touched by a model.</div></div>
+          <div style="text-align: right;"><div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 22px; color: #155E86;">Get a quote</div><div style="font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #A35309; margin-top: 4px;">Monthly, credits at cost</div></div>
+        </div>
+
+        <div class="lane" style="display: grid; grid-template-columns: 120px 280px minmax(0, 1fr) 220px; gap: 32px; align-items: center; padding: 34px 16px; border-top: 1px solid #DCD6CC;">
+          <svg class="ico" viewBox="0 0 80 80" aria-hidden="true"><path d="M24 12h32v52l-6-4-6 4-6-4-6 4-8-4z"></path><path d="M32 26h16M32 34h16"></path><path class="tick" d="M31 47l6 6 12-13"></path></svg>
+          <div><div style="font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #A35309;">04 · AI Automation</div><div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 30px; line-height: 1.02; margin-top: 8px;">The attribution spine</div></div>
+          <div><div style="font-size: 19px; font-weight: 800;">Lead Operations agent</div><div style="font-size: 16px; line-height: 1.55; color: #636465; margin-top: 6px;">A named employee can account for every accepted lead, from one intake to one destination, duplicates and exceptions included, and the agent drafts the first reply.</div></div>
+          <div style="text-align: right;"><div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 22px; color: #155E86;">Get a quote</div><div style="font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #A35309; margin-top: 4px;">Monthly, after handoff</div></div>
+        </div>
+
+      </div>
+      <div style="font-size: 14px; color: #636465; margin-top: 18px;">Every engagement is quoted from a written scope. Delivery hours per client are measured and printed on your monthly scorecard.</div>
+    </div>
+  </div>
+
+  <!-- PROOF · brand fill, lead and follow -->
+  <div id="proof" style="background: #155E86; color: #FFFFFF; padding: 96px 0;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 32px;">
+      <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 64px; align-items: end;">
+        <div>
+          <div style="font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF;">Published proof</div>
+          <div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 120px; line-height: 0.9; letter-spacing: -0.02em; margin-top: 18px;">+314%</div>
+          <div style="font-size: 18px; font-weight: 700; margin-top: 14px;">Phone-call conversions, 2025 against 2024</div>
+          <div style="font-size: 14px; margin-top: 4px; color: #DCE9F4;">The Kind Insurance · Google Ads</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="padding-bottom: 26px;">
+            <div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 64px; line-height: 1;">+816%</div>
+            <div style="font-size: 16px; font-weight: 700; margin-top: 12px;">Conversions after a mobile-first rebuild</div>
+            <div style="font-size: 14px; margin-top: 4px; color: #DCE9F4;">Nenner Law · design and web</div>
+          </div>
+          <div style="padding-top: 26px; border-top: 1px solid #3897CC;">
+            <div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 64px; line-height: 1;">1,130</div>
+            <div style="font-size: 16px; font-weight: 700; margin-top: 12px;">Form conversions on $44K of ad spend</div>
+            <div style="font-size: 14px; margin-top: 4px; color: #DCE9F4;">Bedford Corporate Housing · Google Ads</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size: 14px; margin-top: 48px; color: #DCE9F4;">Every figure is published on needmomentum.com with its source page.</div>
+    </div>
+  </div>
+
+  <!-- SNAPSHOT · paper split, the free opener -->
+  <div id="snapshot" style="background: #FBF8F4; padding: 112px 0;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 1.3fr; gap: 64px; align-items: center;">
+      <div>
+        <div style="font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #155E86;">Start free</div>
+        <div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 52px; line-height: 1.02; letter-spacing: -0.02em; margin-top: 16px;">The AI Search Snapshot.</div>
+        <div style="font-size: 18px; line-height: 1.6; margin-top: 22px; color: #14181B;">A three-to-five page branded audit from one URL. Can AI systems read your site? Does it say what your business is? What do the models say when asked the questions your buyers ask?</div>
+        <div style="font-family: Caveat, 'Segoe Script', cursive; font-size: 30px; font-weight: 600; color: #A35309; margin-top: 24px; transform: rotate(-2deg); display: inline-block;">fifteen minutes to make, free to you</div>
+      </div>
+      <div style="background: #0E1417; color: #F4F1EC; padding: 40px 44px; box-shadow: 14px 16px 0 rgba(226,113,19,.28);">
+        <div style="font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #3897CC;">What the Snapshot checks</div>
+        <div style="display: flex; flex-direction: column; gap: 0; margin-top: 14px; border-bottom: 1px solid #1A2226;">
+          <div style="padding: 12px 0; border-top: 1px solid #1A2226; font-size: 16px; line-height: 1.45;">AI crawlers allowed: GPTBot, PerplexityBot, ClaudeBot, Google-Extended</div>
+          <div style="padding: 12px 0; border-top: 1px solid #1A2226; font-size: 16px; line-height: 1.45;">Sitemap, canonical, entity and schema: is the business typed as what it is</div>
+          <div style="padding: 12px 0; border-top: 1px solid #1A2226; font-size: 16px; line-height: 1.45;">Name, address, phone, FAQ presence, mobile overflow</div>
+          <div style="padding: 12px 0; border-top: 1px solid #1A2226; font-size: 16px; line-height: 1.45;">A human-run twenty-question baseline on two named engines</div>
+        </div>
+        <a class="btn" href="https://www.needmomentum.com/free-website-seo-audit/" style="background: #E27113; color: #14181B; padding: 16px 24px; font-size: 16px; font-weight: 800; margin-top: 26px;">Request your Snapshot</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT RUNS · panel -->
+  <div id="how" style="background: #F0ECE5; padding: 104px 0;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 32px;">
+      <div style="font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #155E86;">How an engagement runs</div>
+      <div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 44px; line-height: 1.06; letter-spacing: -0.02em; margin-top: 16px; max-width: 820px;">It starts with the Snapshot, and nothing is guessed after that.</div>
+      <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; margin-top: 56px;">
+        <div style="border-top: 3px solid #155E86; padding-top: 18px;"><div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 28px; color: #155E86;">01</div><div style="font-size: 17px; font-weight: 800; margin-top: 10px;">Snapshot</div><div style="font-size: 14.5px; line-height: 1.5; color: #636465; margin-top: 6px;">Free, from one URL, before any quote.</div></div>
+        <div style="border-top: 3px solid #DCD6CC; padding-top: 18px;"><div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 28px; color: #155E86;">02</div><div style="font-size: 17px; font-weight: 800; margin-top: 10px;">Twenty-minute discovery</div><div style="font-size: 14.5px; line-height: 1.5; color: #636465; margin-top: 6px;">One process, one owner, one concrete example.</div></div>
+        <div style="border-top: 3px solid #DCD6CC; padding-top: 18px;"><div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 28px; color: #155E86;">03</div><div style="font-size: 17px; font-weight: 800; margin-top: 10px;">One finite scope</div><div style="font-size: 14.5px; line-height: 1.5; color: #636465; margin-top: 6px;">Exclusions, acceptance tests, price and support boundary in writing.</div></div>
+        <div style="border-top: 3px solid #DCD6CC; padding-top: 18px;"><div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 28px; color: #155E86;">04</div><div style="font-size: 17px; font-weight: 800; margin-top: 10px;">Build and accept</div><div style="font-size: 14.5px; line-height: 1.5; color: #636465; margin-top: 6px;">Named test cases, readback, your operator runs five supervised cases.</div></div>
+        <div style="border-top: 3px solid #DCD6CC; padding-top: 18px;"><div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 28px; color: #155E86;">05</div><div style="font-size: 17px; font-weight: 800; margin-top: 10px;">Monthly scorecard</div><div style="font-size: 14.5px; line-height: 1.5; color: #636465; margin-top: 6px;">Named leads, the AI visibility number, hours spent, the next move.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA · signal fill -->
+  <div style="background: #E27113; color: #14181B; padding: 96px 0;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 48px; align-items: center;">
+      <div>
+        <div style="font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; font-size: 56px; line-height: 1.0; letter-spacing: -0.02em;">Ask ChatGPT for the best [your service] in Philadelphia.</div>
+        <div style="font-size: 21px; font-weight: 700; margin-top: 20px;">If the answer isn't you, start with the Snapshot.</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 18px; align-items: flex-start;">
+        <a class="btn" href="#snapshot" style="background: #0E1417; color: #F4F1EC; padding: 20px 30px; font-size: 18px; font-weight: 800;">Request your Snapshot</a>
+        <div style="font-size: 17px; font-weight: 800;">(215) 876-2954 · hi@needmomentum.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER · deep -->
+  <div style="background: #0E1417; color: #F4F1EC; padding: 56px 0;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: flex-end; gap: 32px;">
+      <div>
+        <img src="momentum-logo-white.png" alt="Momentum" style="width: 150px; height: 32px; object-fit: contain; object-position: left center;">
+        <div style="font-size: 14px; color: #8A9296; margin-top: 16px; line-height: 1.6;">1635 Market St. #1601, Philadelphia, PA 19103<br>Mon to Fri, 9:00am to 7:00pm</div>
+      </div>
+      <div style="font-size: 13px; color: #8A9296; text-align: right; line-height: 1.6;">Momentum Digital, founded 2015<br>Inc. 5000, three consecutive years · Google Partner · Meta Business Partner</div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":4000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const open = !!(this.state && this.state.open);
+    return {
+      toggle: () => this.setState({ open: !open }),
+      panelClass: open ? 'open' : '',
+      menuLabel: open ? 'Close' : 'Menu'
+    };
+  }
+}
+</script>
+</body>
+</html>

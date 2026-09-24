@@ -1,0 +1,33 @@
+<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;color:#202124;max-width:680px">
+<p>Hi David,</p>
+
+<p>We ran a full code-level review of the platform at the Phase 3 commit. Every API route under the application &mdash; clients, advisors, notes, documents, signed URLs, evidence, lifecycle, messages, notifications, payment watch, settings and appointments &mdash; requires an authenticated user, and we confirmed that from the outside against production: each one returns a 401 to an unauthenticated request. Enforcement runs through database row-level security rather than a bypass key, and a scan of the entire git history for leaked keys and credentials came back clean.</p>
+
+<p>From there we built the Phase 4 package. The automated test suite went from 18 passing tests to 131, with line coverage measured at 92.47 percent, and lint and build are clean across all 28 routes. The substantive fixes: the session-refresh middleware was in a directory Next 16 never reads, so staff were being dropped back to the login screen mid-session &mdash; that now runs; the storage API shipped without a front end, so we built the client Documents interface on top of it; document download links are now issued by document ID with an ownership check instead of by file path; the Settings page is wired to its endpoints with the settings table as the single source of truth for the notification thresholds; and closed or terminal client records are reachable again in the directory filters and the history tile.</p>
+
+<p>Alongside those, the package includes an accessibility and mobile device pass, error messages that tell a duplicate email apart from a genuine failure instead of collapsing everything into one line, and a correction to the portal's advertised upload limits so they match what the API actually accepts. It is assembled as one reviewable release, ready to walk through with you and Obaid.</p>
+
+<p>Your full report is here:<br>
+<a href="https://momentum-weekly-client-reports.netlify.app/reports/va-claims-edge/" style="color:rgb(7,92,168)">https://momentum-weekly-client-reports.netlify.app/reports/va-claims-edge/</a></p>
+
+<p>Thanks,</p>
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:20px;color:rgb(20,49,79)">
+  <tbody><tr>
+    <td style="padding:0px 14px 0px 0px;vertical-align:middle">
+      <a href="https://www.needmomentum.com/" style="text-decoration:none" target="_blank">
+        <img src="https://momentum-workshop-pilot.netlify.app/assets/momentum-360-logo.png?v=20260727-momentum-signature" width="72" height="72" alt="Momentum 360" style="display:block;width:72px;height:72px;border:0px;border-radius:50%">
+      </a>
+    </td>
+    <td style="padding:0px 0px 0px 14px;vertical-align:middle;border-left:3px solid rgb(242,184,75)">
+      <div style="font-size:17px;line-height:21px;font-weight:700;color:rgb(7,92,168)">Dillon Mohr</div>
+      <div style="margin-top:2px;font-size:13px;line-height:18px;font-weight:700">AI Marketing Director <span style="color:rgb(242,184,75)">|</span> Account Manager</div>
+      <div style="margin-top:5px;font-size:13px;line-height:18px;color:rgb(82,102,121)">
+        <a href="tel:+18148735333" style="color:rgb(82,102,121);text-decoration:none" target="_blank">814.873.5333</a>
+        <span style="color:rgb(242,184,75)"> | </span>
+        <a href="https://www.needmomentum.com/" style="color:rgb(7,92,168);text-decoration:none;font-weight:700" target="_blank">needmomentum.com</a>
+      </div>
+      <div style="font-size:12px;line-height:17px;color:rgb(114,130,148)">Momentum 360 · Philadelphia</div>
+    </td>
+  </tr>
+</tbody></table>
+</div>

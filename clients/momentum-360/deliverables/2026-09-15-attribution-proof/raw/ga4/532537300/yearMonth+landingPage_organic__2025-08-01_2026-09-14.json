@@ -1,0 +1,165 @@
+{
+ "_meta": {
+  "property": "properties/532537300",
+  "account": "Ironic Ineptocracy",
+  "propertyName": "ironicineptocracy.com",
+  "pulled_at_utc": "2026-09-15T21:05:48+00:00",
+  "endpoint": "POST https://analyticsdata.googleapis.com/v1beta/properties/{id}:runReport",
+  "auth": "gcloud ADC, Cloud project 150963436905 (momentum-360-489301), analytics.readonly",
+  "quota_project": "momentum-360-489301"
+ },
+ "request": {
+  "dimensions": [
+   {
+    "name": "yearMonth"
+   },
+   {
+    "name": "landingPagePlusQueryString"
+   }
+  ],
+  "metrics": [
+   {
+    "name": "sessions"
+   },
+   {
+    "name": "engagedSessions"
+   },
+   {
+    "name": "keyEvents"
+   }
+  ],
+  "limit": 10000,
+  "dimensionFilter": {
+   "filter": {
+    "fieldName": "sessionDefaultChannelGroup",
+    "stringFilter": {
+     "matchType": "EXACT",
+     "value": "Organic Search"
+    }
+   }
+  },
+  "dateRanges": [
+   {
+    "startDate": "2025-08-01",
+    "endDate": "2026-09-14"
+   }
+  ],
+  "keepEmptyRows": false
+ },
+ "response": {
+  "dimensionHeaders": [
+   {
+    "name": "yearMonth"
+   },
+   {
+    "name": "landingPagePlusQueryString"
+   }
+  ],
+  "metricHeaders": [
+   {
+    "name": "sessions",
+    "type": "TYPE_INTEGER"
+   },
+   {
+    "name": "engagedSessions",
+    "type": "TYPE_INTEGER"
+   },
+   {
+    "name": "keyEvents",
+    "type": "TYPE_FLOAT"
+   }
+  ],
+  "rows": [
+   {
+    "dimensionValues": [
+     {
+      "value": "202608"
+     },
+     {
+      "value": "/"
+     }
+    ],
+    "metricValues": [
+     {
+      "value": "6"
+     },
+     {
+      "value": "5"
+     },
+     {
+      "value": "0"
+     }
+    ]
+   },
+   {
+    "dimensionValues": [
+     {
+      "value": "202608"
+     },
+     {
+      "value": "/dispatches/books-like-1984-but-funny"
+     }
+    ],
+    "metricValues": [
+     {
+      "value": "1"
+     },
+     {
+      "value": "1"
+     },
+     {
+      "value": "0"
+     }
+    ]
+   },
+   {
+    "dimensionValues": [
+     {
+      "value": "202608"
+     },
+     {
+      "value": "/reader-guide"
+     }
+    ],
+    "metricValues": [
+     {
+      "value": "1"
+     },
+     {
+      "value": "0"
+     },
+     {
+      "value": "0"
+     }
+    ]
+   },
+   {
+    "dimensionValues": [
+     {
+      "value": "202609"
+     },
+     {
+      "value": "/"
+     }
+    ],
+    "metricValues": [
+     {
+      "value": "1"
+     },
+     {
+      "value": "1"
+     },
+     {
+      "value": "0"
+     }
+    ]
+   }
+  ],
+  "rowCount": 4,
+  "metadata": {
+   "currencyCode": "USD",
+   "timeZone": "America/New_York"
+  },
+  "kind": "analyticsData#runReport"
+ }
+}

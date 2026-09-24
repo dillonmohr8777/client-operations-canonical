@@ -1,0 +1,572 @@
+<title>Organic Growth Evidence</title>
+<meta name="description" content="Measured organic and AI search results from live client properties. Momentum Digital.">
+<link rel="icon" href="assets/momentum-360-m-circle.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap">
+
+<style>
+:root{
+  --f-display:"Bebas Neue",Impact,sans-serif;
+  --f-script:"Caveat",cursive;
+  --f-body:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+
+  --brand:#155E86;
+  --brand-lt:#2A7CAC;
+  --brand-dp:#0E3E5C;
+  --brand-ink:#155E86;
+  --accent:#E27113;
+  --accent-ink:#A35309;
+  --script:#F2B63D;
+  --header:#0E1417;
+  --paper:#FBF8F4;
+  --ink:#14181B;
+  --muted:#636465;
+  --field:#EAF0F4;
+  --wash:#E2E8EC;
+  --wash-2:#F7EBDD;
+  --line:#DCD6CC;
+  --on-header:#F4F1EC;
+  --on-brand:#FFFFFF;
+  --pos:#1E7A52;
+
+  --ease-emph:cubic-bezier(.85,0,.15,1);
+  --ease-bounce:cubic-bezier(.215,.61,.355,1);
+  --gutter:clamp(16px,3vw,32px);
+  --container:1200px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.container{max-width:var(--container);margin:0 auto;padding-inline:var(--gutter)}
+p{margin:0 0 15px;max-width:68ch}
+a{color:var(--brand)}
+
+/* ============ header with logo swipe ============ */
+.site_header{background:var(--header);color:var(--on-header);position:relative;overflow:hidden}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:100px}
+.logo{position:relative;flex:1 1 0%;min-width:0;height:74px}
+.logo .logo_caption{position:absolute;left:0;top:50%;transform:translate(0,-50%);opacity:1;transition:.8s var(--ease-emph)}
+.logo .logo_caption h4{margin:0;color:var(--script);font-size:clamp(20px,4vw,38px);font-family:var(--f-script);font-weight:700;line-height:1.05;white-space:nowrap}
+.logo > .mark{position:absolute;left:0;top:50%;display:flex;align-items:center;gap:13px;transform:translate(-500px,-50%);opacity:0;transition:.8s var(--ease-emph);text-decoration:none}
+.logo .plaque{width:58px;height:58px;flex:0 0 58px;border-radius:50%;background:#fff;display:grid;place-items:center}
+.logo .plaque img{width:47px;height:47px;display:block}
+.logo .wordmark{color:var(--on-header);font-family:var(--f-display);font-size:29px;letter-spacing:.02em;line-height:1}
+.logo .wordmark .rule{width:46px;height:3px;margin-top:6px;background:var(--script)}
+.animated .logo .logo_caption{opacity:0;transform:translate(-500px,-50%)}
+.animated .logo > .mark{opacity:1;transform:translate(0,-50%)}
+.hdr_meta{font-family:var(--f-display);font-size:15px;letter-spacing:.14em;color:var(--script);white-space:nowrap}
+
+/* ============ hero ============ */
+.hero{background:var(--header);color:var(--on-header);padding-block:clamp(44px,6vw,78px) clamp(56px,7vw,92px);position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:auto -10% -40% 55%;height:80%;background:radial-gradient(closest-side,rgba(21,94,134,.5),transparent 70%)}
+.hero .container{position:relative}
+.eyebrow{font-family:var(--f-display);font-size:16px;letter-spacing:.2em;color:var(--script);margin:0 0 18px}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(46px,9vw,112px);line-height:.92;letter-spacing:.005em;margin:0;text-transform:uppercase;max-width:15ch}
+h1 em{font-style:normal;color:var(--script)}
+.stand{font-size:clamp(16px,1.6vw,19px);line-height:1.55;color:#C9D2D8;margin:22px 0 0;max-width:58ch}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}
+.chip{font-family:var(--f-display);font-size:14px;letter-spacing:.09em;border:1px solid rgba(244,241,236,.26);border-radius:999px;padding:7px 15px;color:#C9D2D8}
+.chip b{color:var(--script);font-weight:400}
+
+/* hero headline number */
+.hero_stat{margin-top:clamp(34px,4.5vw,56px);display:flex;align-items:flex-end;gap:clamp(16px,3vw,34px);flex-wrap:wrap}
+.hero_stat .big{font-family:var(--f-display);font-size:clamp(96px,19vw,240px);line-height:.78;color:var(--script);letter-spacing:-.01em}
+.hero_stat .cap{padding-bottom:10px}
+.hero_stat .cap .t{font-family:var(--f-display);font-size:clamp(20px,2.6vw,32px);letter-spacing:.04em;text-transform:uppercase;line-height:1.05;max-width:16ch}
+.hero_stat .cap .s{font-family:var(--f-body);font-size:14px;color:#9FB0C7;margin-top:7px}
+
+/* ============ section titles ============ */
+section.band{padding-block:clamp(62px,8vw,104px)}
+section.band.alt{background:var(--field)}
+section.band.deep{background:var(--header);color:var(--on-header)}
+.section_title{position:relative;margin-bottom:62px}
+.section_title h2{font-family:var(--f-display);font-weight:400;font-size:clamp(34px,5.4vw,68px);line-height:.98;letter-spacing:.01em;text-transform:uppercase;margin:0;max-width:20ch}
+.deep .section_title h2{color:var(--on-header)}
+h2 .ch{display:inline-block;opacity:0;transform:translate3d(0,.35em,0);transition:opacity .45s ease-out,transform .45s var(--ease-bounce)}
+.animated h2 .ch{opacity:1;transform:none}
+.kicker{font-family:var(--f-display);font-size:15px;letter-spacing:.2em;color:var(--accent-ink);margin:0 0 12px}
+.deep .kicker{color:var(--script)}
+.zigzag{position:relative;width:236px;height:11px;margin-top:20px}
+.zigzag span{position:absolute;left:0;top:0;display:block;height:11px;background:var(--accent-ink);clip-path:polygon(0 0,0 0,0 100%,0 100%);transition:.3s linear;
+  -webkit-mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 236 11'%3e%3cpolyline points='0,2 13,9 26,2 39,9 52,2 65,9 78,2 91,9 104,2 117,9 130,2 143,9 156,2 169,9 182,2 195,9 208,2 221,9 234,2' fill='none' stroke='%23000' stroke-width='4'/%3e%3c/svg%3e");
+  mask-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 236 11'%3e%3cpolyline points='0,2 13,9 26,2 39,9 52,2 65,9 78,2 91,9 104,2 117,9 130,2 143,9 156,2 169,9 182,2 195,9 208,2 221,9 234,2' fill='none' stroke='%23000' stroke-width='4'/%3e%3c/svg%3e")}
+.zigzag .zz1{width:236px}
+.zigzag .zz2{width:150px;transition-delay:.25s;background:var(--accent)}
+.zigzag .zz3{width:78px;transition-delay:.5s;background:var(--script)}
+.deep .zigzag span{background:var(--script)}
+.animated .zigzag span{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+
+/* ============ the star: big number cards ============ */
+.stat_row{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:clamp(16px,2.4vw,30px)}
+.stat{position:relative;padding-top:24px}
+.stat:before{content:"";display:block;width:46px;height:6px;background:var(--accent-ink);margin-bottom:18px}
+.deep .stat:before{background:var(--script)}
+.stat .v{
+  font-family:var(--f-display);font-weight:400;
+  font-size:clamp(62px,9.4vw,124px);line-height:.82;letter-spacing:-.005em;
+  color:var(--brand-ink);font-variant-numeric:tabular-nums;display:block;
+  opacity:0;
+}
+.deep .stat .v{color:var(--script)}
+.stat .v.up{color:var(--pos)}
+.animated .stat .v{animation:bounceIn .95s var(--ease-bounce) both}
+.animated .stat:nth-child(2) .v{animation-delay:.09s}
+.animated .stat:nth-child(3) .v{animation-delay:.18s}
+.animated .stat:nth-child(4) .v{animation-delay:.27s}
+.animated .stat:nth-child(5) .v{animation-delay:.36s}
+.stat .t{font-family:var(--f-display);font-size:clamp(17px,1.9vw,22px);letter-spacing:.05em;text-transform:uppercase;line-height:1.1;margin-top:16px;max-width:17ch}
+.stat .s{font-size:13.5px;color:var(--muted);margin-top:7px;font-variant-numeric:tabular-nums}
+.deep .stat .s{color:#9FB0C7}
+
+@keyframes bounceIn{
+  0%,20%,40%,60%,80%,100%{animation-timing-function:cubic-bezier(.215,.61,.355,1)}
+  0%{opacity:0;transform:scale3d(.3,.3,.3)}
+  20%{transform:scale3d(1.1,1.1,1.1)}
+  40%{transform:scale3d(.9,.9,.9)}
+  60%{opacity:1;transform:scale3d(1.03,1.03,1.03)}
+  80%{transform:scale3d(.97,.97,.97)}
+  100%{opacity:1;transform:scale3d(1,1,1)}
+}
+
+/* ============ proof figures ============ */
+.proof_row{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:clamp(20px,2.6vw,34px);margin-top:14px}
+.proof figure{position:relative;margin:0 0 18px;aspect-ratio:3/2;overflow:hidden;background:var(--wash)}
+.proof.alt figure{background:var(--wash-2)}
+.proof.alt2 figure{background:var(--field)}
+.proof figure .illo{--illo-bg:var(--wash)}
+.proof.alt figure .illo{--illo-bg:var(--wash-2)}
+.proof.alt2 figure .illo{--illo-bg:var(--field)}
+.proof_cap{display:block;color:var(--brand-ink);font-size:25px;font-family:var(--f-display);line-height:1.06;text-transform:uppercase;letter-spacing:.015em}
+.proof_cap:before{display:block;width:46px;height:6px;margin-bottom:13px;background:var(--accent-ink);content:""}
+.proof p{font-size:14.5px;color:var(--muted);margin:10px 0 0}
+
+.illo{display:block;width:100%;height:100%}
+.illo .field{fill:var(--illo-bg,transparent)}
+.illo .wash{fill:var(--wash-2)}
+.illo .wash2{fill:var(--wash)}
+.illo .line{fill:none;stroke:var(--brand-ink);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.illo .thin{fill:none;stroke:var(--brand-ink);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.illo .aline{fill:none;stroke:var(--accent-ink);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.illo .athin{fill:none;stroke:var(--accent-ink);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.illo .solid{fill:var(--brand-ink)}
+.illo .acc{fill:var(--accent)}
+.illo .accd{fill:var(--accent-ink)}
+.illo .pap{fill:var(--paper)}
+
+/* ============ tables ============ */
+.tw{overflow-x:auto;border:1px solid var(--line);background:#fff;margin-top:26px}
+.deep .tw{border-color:rgba(244,241,236,.18);background:rgba(255,255,255,.04)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:14.5px}
+caption{caption-side:top;text-align:left;font-family:var(--f-display);font-size:15px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);padding:15px 18px 13px;border-bottom:1px solid var(--line)}
+.deep caption{color:var(--script);border-color:rgba(244,241,236,.18)}
+th,td{padding:12px 18px;text-align:left;border-top:1px solid var(--line);vertical-align:top}
+.deep th,.deep td{border-color:rgba(244,241,236,.12)}
+thead th{font-family:var(--f-display);font-size:13.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:400;border-top:0}
+.deep thead th{color:#9FB0C7}
+td.n{font-family:var(--f-display);font-size:18px;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:.02em}
+tr.hl td{background:var(--wash-2);color:var(--accent-ink)}
+.deep tr.hl td{background:rgba(242,182,61,.12);color:var(--script)}
+
+/* ============ callout ============ */
+.call{background:var(--wash-2);border-left:6px solid var(--accent-ink);padding:26px 28px;margin-top:30px}
+.deep .call{background:rgba(255,255,255,.05);border-left-color:var(--script)}
+.call h3{font-family:var(--f-display);font-size:26px;letter-spacing:.02em;text-transform:uppercase;margin:0 0 10px;color:var(--brand-ink)}
+.deep .call h3{color:var(--script)}
+.call p:last-child{margin-bottom:0}
+.call b{color:var(--accent-ink)}
+.deep .call b{color:var(--script)}
+
+/* ============ funnel ============ */
+.funnel{display:grid;gap:12px;margin-top:26px}
+.fr{display:grid;grid-template-columns:150px 1fr auto;gap:18px;align-items:center}
+.fr .fl{font-family:var(--f-display);font-size:18px;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-ink)}
+.fbar{height:34px;background:var(--wash);overflow:hidden}
+.fbar i{display:block;height:100%;background:var(--brand);border-right:5px solid var(--accent)}
+.fr .fv{font-family:var(--f-display);font-size:19px;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:.02em}
+
+/* ============ query readout ============ */
+.query{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.9;background:rgba(255,255,255,.05);border:1px solid rgba(244,241,236,.16);padding:18px 20px;margin-top:20px;color:#C9D2D8;overflow-x:auto}
+.query b{color:var(--script);font-weight:400}
+
+/* ============ build list ============ */
+.builds{display:grid;gap:0;margin-top:26px;border-top:1px solid var(--line)}
+.build{padding:26px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:58px 1fr;gap:20px;align-items:start}
+.build .bn{font-family:var(--f-display);font-size:34px;color:var(--accent-ink);line-height:.9}
+.build h3{font-family:var(--f-display);font-size:25px;letter-spacing:.02em;text-transform:uppercase;margin:0 0 7px;color:var(--brand-ink)}
+.build p{margin:0;color:var(--muted);font-size:15px}
+
+/* ============ footer ============ */
+.site_footer{background:var(--header);color:#9FB0C7;padding-block:48px 40px}
+.fnote{font-size:13px;line-height:1.85;max-width:none}
+.fnote b{color:var(--on-header)}
+.flock{display:flex;align-items:center;gap:14px;margin-top:30px;padding-top:24px;border-top:1px solid rgba(244,241,236,.14)}
+.flock .plaque{width:46px;height:46px;flex:0 0 46px;border-radius:50%;background:#fff;display:grid;place-items:center}
+.flock .plaque img{width:38px;height:38px}
+.flock .t{font-family:var(--f-display);font-size:21px;color:var(--on-header);letter-spacing:.03em}
+.flock .u{font-size:12px;margin-top:2px}
+
+.wow{visibility:hidden}
+.wow.animated{visibility:visible}
+
+@media (prefers-reduced-motion:reduce){
+  .wow{visibility:visible!important}
+  .logo .logo_caption,.logo > .mark,h2 .ch,.zigzag span{transition-duration:.01ms!important}
+  h2 .ch{opacity:1!important;transform:none!important}
+  .stat .v{opacity:1!important;animation:none!important}
+  .zigzag span{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)!important}
+  .logo > .mark{opacity:1!important;transform:translate(0,-50%)!important}
+  .logo .logo_caption{opacity:0!important}
+  *{scroll-behavior:auto!important}
+}
+@media (max-width:620px){
+  .fr{grid-template-columns:1fr;gap:6px}
+  .fr .fv{text-align:left}
+  .hdr_meta{display:none}
+}
+</style>
+
+<header class="site_header wow" id="hdr">
+  <div class="container">
+    <div class="hdr">
+      <div class="logo">
+        <div class="logo_caption"><h4>Measured, not claimed</h4></div>
+        <a class="mark" href="https://www.needmomentum.com/">
+          <span class="plaque"><img src="assets/momentum-360-m-circle.png" alt="Momentum 360" width="47" height="47"></span>
+          <span class="wordmark">Momentum Digital<span class="rule"></span></span>
+        </a>
+      </div>
+      <div class="hdr_meta">Organic and AI search</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero wow">
+  <div class="container">
+    <p class="eyebrow">Evidence report &nbsp;&middot;&nbsp; 15 September 2026</p>
+    <h1>What the work <em>actually</em> produced</h1>
+    <p class="stand">Measured from live client properties. Every figure comes from the client's own Google Search Console, not from an estimate tool, and every one is reproducible.</p>
+    <div class="chips">
+      <span class="chip"><b>53,392</b> page and keyword pairs</span>
+      <span class="chip"><b>8</b> properties</span>
+      <span class="chip"><b>Clients</b> anonymised</span>
+    </div>
+    <div class="hero_stat">
+      <span class="big">+121%</span>
+      <span class="cap">
+        <span class="t">Growth in top ten rankings, year over year</span>
+        <span class="s">522 to 1,152 keywords. Same property, August against August.</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<section class="band wow">
+  <div class="container">
+    <div class="section_title">
+      <p class="kicker">Case one &nbsp;&middot;&nbsp; national live events operator</p>
+      <h2 data-split>Top ten rankings more than doubled</h2>
+      <div class="zigzag"><span class="zz1"></span><span class="zz2"></span><span class="zz3"></span></div>
+    </div>
+    <p>Same property, same month of the year, full history on both sides. August against August, so seasonality cannot flatter it.</p>
+
+    <div class="stat_row" style="margin-top:38px">
+      <div class="stat"><span class="v up">+121%</span><span class="t">Keywords in top 10</span><span class="s">522 to 1,152</span></div>
+      <div class="stat"><span class="v up">+73%</span><span class="t">Keywords in top 3</span><span class="s">180 to 312</span></div>
+      <div class="stat"><span class="v up">+62%</span><span class="t">Keywords at position 1</span><span class="s">99 to 160</span></div>
+      <div class="stat"><span class="v up">+83%</span><span class="t">Organic clicks</span><span class="s">1,254 to 2,300</span></div>
+      <div class="stat"><span class="v">6.6</span><span class="t">Places better on average</span><span class="s">position 18.6 to 12.0</span></div>
+    </div>
+
+    <div class="call">
+      <h3>Why rankings matter more than the traffic number</h3>
+      <p>Clicks rose 83 percent. Top ten rankings rose 121 percent. The gap between those two is the point: the footprint grew faster than the traffic, which means the compounding is still ahead of the business rather than behind it.</p>
+      <p>A brand holding <b>160 keywords at position one</b> owns its category in search, and that position is far harder for a competitor to buy than a single ranking is.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band alt wow">
+  <div class="container">
+    <div class="section_title">
+      <p class="kicker">Case two &nbsp;&middot;&nbsp; enterprise HR technology consultancy</p>
+      <h2 data-split>Ranking footprint built in 24 days</h2>
+      <div class="zigzag"><span class="zz1"></span><span class="zz2"></span><span class="zz3"></span></div>
+    </div>
+    <p>A different shape of result. Measured across a single 24 day programme window.</p>
+
+    <div class="stat_row" style="margin-top:38px">
+      <div class="stat"><span class="v">2,651</span><span class="t">Distinct ranking keywords</span><span class="s">in 24 days</span></div>
+      <div class="stat"><span class="v">1,089</span><span class="t">In the top 10</span><span class="s">41% of the footprint</span></div>
+      <div class="stat"><span class="v">329</span><span class="t">In the top 3</span><span class="s">12% of the footprint</span></div>
+      <div class="stat"><span class="v up">29.1%</span><span class="t">Of impressions from AI shaped queries</span><span class="s">highest in the portfolio</span></div>
+    </div>
+
+    <p style="margin-top:34px">Individual long form pieces carry the load. One buyer's guide ranks for 352 separate queries on its own, 74 of them inside the top three, in that same window. That is what a page built to answer a whole category question does, and it is why the content programme is structured around guides rather than posts.</p>
+
+    <div class="tw">
+      <table>
+        <caption>Single pages, 24 day window</caption>
+        <thead><tr><th>Page</th><th class="n">Impressions</th><th class="n">Keywords</th><th class="n">Top 3</th><th class="n">Top 10</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td>Platform buyer's guide, vendor A</td><td class="n">3,653</td><td class="n">352</td><td class="n">74</td><td class="n">238</td></tr>
+          <tr><td>Partner platform page</td><td class="n">3,253</td><td class="n">175</td><td class="n">8</td><td class="n">36</td></tr>
+          <tr><td>Implementation best practice guide</td><td class="n">2,671</td><td class="n">115</td><td class="n">3</td><td class="n">17</td></tr>
+          <tr><td>Data conversion checklist</td><td class="n">1,268</td><td class="n">137</td><td class="n">20</td><td class="n">46</td></tr>
+          <tr><td>Platform buyer's guide, vendor B</td><td class="n">1,021</td><td class="n">146</td><td class="n">19</td><td class="n">69</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="band wow">
+  <div class="container">
+    <div class="section_title">
+      <p class="kicker">Case three &nbsp;&middot;&nbsp; community development nonprofit</p>
+      <h2 data-split>Owning a category, not a keyword</h2>
+      <div class="zigzag"><span class="zz1"></span><span class="zz2"></span><span class="zz3"></span></div>
+    </div>
+    <p>This organisation holds position two or three on eight separate phrasings of the same high volume search, which means it captures the demand however the searcher happens to word it.</p>
+
+    <div class="stat_row" style="margin-top:38px;max-width:760px">
+      <div class="stat"><span class="v">8</span><span class="t">Phrasings held at position 2 or 3</span><span class="s">6,600 searches a month each</span></div>
+      <div class="stat"><span class="v">114</span><span class="t">Keywords in the top 3</span><span class="s">of 500 returned</span></div>
+      <div class="stat"><span class="v">14,800</span><span class="t">Monthly volume on its best term</span><span class="s">held at position 3</span></div>
+    </div>
+
+    <div class="tw">
+      <table>
+        <caption>Third party index data, United States, September 2026</caption>
+        <thead><tr><th>Search term</th><th class="n">Position</th><th class="n">Monthly volume</th></tr></thead>
+        <tbody>
+          <tr><td>Neighbourhood name, generic</td><td class="n">3</td><td class="n">14,800</td></tr>
+          <tr class="hl"><td>low income apartments [city]</td><td class="n">2</td><td class="n">6,600</td></tr>
+          <tr class="hl"><td>low income housing in [city]</td><td class="n">2</td><td class="n">6,600</td></tr>
+          <tr class="hl"><td>low income housing [city]</td><td class="n">2</td><td class="n">6,600</td></tr>
+          <tr><td>affordable housing in [city]</td><td class="n">3</td><td class="n">6,600</td></tr>
+          <tr><td>subsidized housing in [city]</td><td class="n">3</td><td class="n">6,600</td></tr>
+          <tr><td>housing for low income in [city]</td><td class="n">3</td><td class="n">6,600</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:24px;color:var(--muted)">Competitors chase one version of a term. Holding every phrasing is what makes the position defensible, because a rival has to displace all eight to take the traffic rather than one.</p>
+  </div>
+</section>
+
+<section class="band deep wow">
+  <div class="container">
+    <div class="section_title">
+      <p class="kicker">The differentiator</p>
+      <h2 data-split>We can show when an answer engine reads the page</h2>
+      <div class="zigzag"><span class="zz1"></span><span class="zz2"></span><span class="zz3"></span></div>
+    </div>
+    <p style="color:#C9D2D8">Most agencies claim AI search visibility. Almost none can evidence it. Here is the evidence, taken across every ranking query on every property and classified by the shape of the query itself.</p>
+
+    <div class="stat_row" style="margin-top:38px;max-width:900px">
+      <div class="stat"><span class="v">0.00%</span><span class="t">Click rate on persona prompts</span><span class="s">725 keywords, 4,194 impressions, zero clicks</span></div>
+      <div class="stat"><span class="v">13.4</span><span class="t">Average position on AI shaped queries</span><span class="s">against 28.3 on typed keywords</span></div>
+      <div class="stat"><span class="v">5,200</span><span class="t">AI shaped queries identified</span><span class="s">of 53,392 pairs</span></div>
+    </div>
+
+    <div class="tw">
+      <table>
+        <caption>53,392 page and keyword pairs, by query shape</caption>
+        <thead><tr><th>Query shape</th><th class="n">Keywords</th><th class="n">Impressions</th><th class="n">Clicks</th><th class="n">CTR</th><th class="n">Avg pos</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td>Persona prompt</td><td class="n">725</td><td class="n">4,194</td><td class="n">0</td><td class="n">0.00%</td><td class="n">13.6</td></tr>
+          <tr class="hl"><td>Question form</td><td class="n">1,168</td><td class="n">12,255</td><td class="n">2</td><td class="n">0.02%</td><td class="n">13.4</td></tr>
+          <tr><td>Conversational</td><td class="n">3,327</td><td class="n">88,191</td><td class="n">70</td><td class="n">0.08%</td><td class="n">19.0</td></tr>
+          <tr><td>Ordinary typed keyword</td><td class="n">48,172</td><td class="n">1,723,352</td><td class="n">9,003</td><td class="n">0.52%</td><td class="n">28.3</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="call">
+      <h3>Two facts that only reconcile one way</h3>
+      <p style="color:#C9D2D8">AI shaped queries rank <b>better</b> than ordinary keywords, average position 13.4 against 28.3. They convert at <b>nearly zero</b>, 0.00 to 0.08 percent against 0.52 percent.</p>
+      <p style="color:#C9D2D8">A human who sees a result at position five clicks it at a measurable rate. These do not. Ranking higher while receiving no clicks is the signature of a machine reading the page and answering on the searcher's behalf. The client is winning the answer and never seeing the visit.</p>
+    </div>
+
+    <div class="query">
+      position <b>2.1</b> &nbsp; "i am a chief human resources officer. my job seniority is at the executive, vp, director or manager level. i work at a company with 1k to 10k employees..." (90 words)<br>
+      position <b>5.3</b> &nbsp; "what are the biggest mistakes companies make during hcm implementation?"<br>
+      position <b>5.2</b> &nbsp; "does ukg connect with other systems?"<br>
+      position <b>3.1</b> &nbsp; "is it where can i find expert help for ai driven search visibility?"<br>
+      position <b>1.9</b> &nbsp; "what are some easy cocktails to prepare for halloween pregaming?"
+    </div>
+    <p style="margin-top:20px;color:#9FB0C7;font-size:14.5px">Nobody types a ninety word professional persona into a search box. That is a model's own framing being issued as a search, and our clients' pages are what it finds.</p>
+  </div>
+</section>
+
+<section class="band alt wow">
+  <div class="container">
+    <div class="section_title">
+      <p class="kicker">A closer look</p>
+      <h2 data-split>How the measurement actually works</h2>
+      <div class="zigzag"><span class="zz1"></span><span class="zz2"></span><span class="zz3"></span></div>
+    </div>
+
+    <div class="proof_row">
+      <div class="proof">
+        <figure><svg class="illo" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" role="img" focusable="false"><title>A ranked list of search results with the top three highlighted</title>
+          <rect class="field" x="-40" y="-40" width="680" height="480"/>
+          <path class="wash" d="M0,330 C120,312 200,344 320,326 C430,310 520,340 600,320 L600,400 L0,400 Z"/>
+          <rect class="pap" x="120" y="60" width="360" height="272" rx="12"/><rect class="line" x="120" y="60" width="360" height="272" rx="12"/>
+          <rect class="accd" x="150" y="94" width="160" height="15" rx="7"/><rect class="athin" x="150" y="122" width="250" height="9" rx="4"/>
+          <rect class="solid" x="150" y="158" width="130" height="14" rx="7"/><rect class="thin" x="150" y="185" width="240" height="9" rx="4"/>
+          <rect class="solid" x="150" y="221" width="145" height="14" rx="7"/><rect class="thin" x="150" y="248" width="215" height="9" rx="4"/>
+          <path class="thin" d="M150,286 L330,286"/>
+          <circle class="acc" cx="452" cy="96" r="17"/><path class="pline" d="M446,96 L451,101 L459,91"/>
+        </svg></figure>
+        <span class="proof_cap">Every query, every page</span>
+        <p>We pull the full query and page pairing from Search Console rather than a top twenty summary. That is where the 53,392 pairs come from.</p>
+      </div>
+
+      <div class="proof alt">
+        <figure><svg class="illo" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" role="img" focusable="false"><title>A rising bar chart with the tallest bar marked</title>
+          <rect class="field" x="-40" y="-40" width="680" height="480"/>
+          <path class="wash2" d="M300,44 C392,44 452,104 452,196 C452,288 392,348 300,348 C208,348 148,288 148,196 C148,104 208,44 300,44 Z"/>
+          <path class="line" d="M130,300 L470,300"/>
+          <rect class="solid" x="160" y="238" width="44" height="62" rx="5"/>
+          <rect class="solid" x="222" y="206" width="44" height="94" rx="5"/>
+          <rect class="solid" x="284" y="170" width="44" height="130" rx="5"/>
+          <rect class="accd" x="346" y="116" width="44" height="184" rx="5"/>
+          <rect class="acc" x="408" y="84" width="44" height="216" rx="5"/>
+          <path class="aline" d="M168,246 C230,220 300,178 444,96"/>
+          <path class="aline" d="M414,92 L446,90 L444,122"/>
+        </svg></figure>
+        <span class="proof_cap">Matched windows only</span>
+        <p>Growth is compared August against August. Where a property has too little history for a fair baseline, we report the current state and make no growth claim.</p>
+      </div>
+
+      <div class="proof alt2">
+        <figure><svg class="illo" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" role="img" focusable="false"><title>A magnifier over a document with a conversational query bubble</title>
+          <rect class="field" x="-40" y="-40" width="680" height="480"/>
+          <path class="wash" d="M0,340 C140,322 220,350 340,332 C440,318 520,346 600,328 L600,400 L0,400 Z"/>
+          <rect class="pap" x="108" y="66" width="250" height="256" rx="12"/><rect class="line" x="108" y="66" width="250" height="256" rx="12"/>
+          <path class="thin" d="M140,116 L300,116 M140,150 L300,150 M140,184 L262,184 M140,218 L300,218 M140,252 L236,252"/>
+          <circle class="line" cx="404" cy="182" r="76"/><circle class="pap" cx="404" cy="182" r="70"/><circle class="line" cx="404" cy="182" r="76"/>
+          <path class="aline" d="M458,238 L512,296"/>
+          <path class="athin" d="M372,166 C372,150 388,142 404,146 C420,150 424,166 414,176 C406,184 404,188 404,198"/>
+          <circle class="accd" cx="404" cy="216" r="6"/>
+        </svg></figure>
+        <span class="proof_cap">Classified by query shape</span>
+        <p>Each query is sorted into persona prompt, question, conversational or typed keyword, which is what separates machine reads from human visits.</p>
+      </div>
+
+      <div class="proof">
+        <figure><svg class="illo" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" role="img" focusable="false"><title>A funnel sorting results into three stages</title>
+          <rect class="field" x="-40" y="-40" width="680" height="480"/>
+          <path class="wash" d="M300,50 C388,50 446,108 446,196 C446,284 388,342 300,342 C212,342 154,284 154,196 C154,108 212,50 300,50 Z"/>
+          <path class="line" d="M170,92 L430,92 L330,206 L330,306 L270,336 L270,206 Z"/>
+          <path class="thin" d="M196,128 L404,128"/><path class="thin" d="M228,164 L372,164"/>
+          <circle class="acc" cx="240" cy="70" r="11"/><circle class="accd" cx="300" cy="66" r="13"/><circle class="acc" cx="360" cy="70" r="11"/>
+          <circle class="accd" cx="300" cy="360" r="15"/>
+        </svg></figure>
+        <span class="proof_cap">Mapped to the buyer journey</span>
+        <p>Rankings are sorted into awareness, comparison and decision so a client can see where the pipeline is thin rather than just how many keywords they hold.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band wow">
+  <div class="container">
+    <div class="section_title">
+      <p class="kicker">Method</p>
+      <h2 data-split>Mapping the buyer journey</h2>
+      <div class="zigzag"><span class="zz1"></span><span class="zz2"></span><span class="zz3"></span></div>
+    </div>
+    <p>A ranking list tells you nothing about where a buyer is. A site that ranks only at the decision stage has no pipeline. A site that ranks only at the awareness stage has no revenue.</p>
+
+    <div class="funnel">
+      <div class="fr"><span class="fl">Awareness</span><div class="fbar"><i style="width:38%"></i></div><span class="fv">19% of impressions</span></div>
+      <div class="fr"><span class="fl">Comparison</span><div class="fbar"><i style="width:14%"></i></div><span class="fv">7% of impressions</span></div>
+      <div class="fr"><span class="fl">Decision</span><div class="fbar"><i style="width:58%"></i></div><span class="fv">29% of impressions</span></div>
+      <div class="fr"><span class="fl">Brand and other</span><div class="fbar"><i style="width:90%"></i></div><span class="fv">45% of impressions</span></div>
+    </div>
+
+    <p style="margin-top:26px;color:var(--muted)">The consultancy above, mapped. A genuine full funnel presence: found by people who do not yet know they have a problem, by people comparing two vendors, and by people ready to hire. Each needs a different page, and knowing the split is what tells you which page to build next.</p>
+  </div>
+</section>
+
+<section class="band alt wow">
+  <div class="container">
+    <div class="section_title">
+      <p class="kicker">Build</p>
+      <h2 data-split>Pages designed to be the answer</h2>
+      <div class="zigzag"><span class="zz1"></span><span class="zz2"></span><span class="zz3"></span></div>
+    </div>
+    <p>Ranking follows structure. The pages that carry the results above were built to a consistent pattern, and the pattern is deliberate rather than stylistic.</p>
+
+    <div class="builds">
+      <div class="build"><span class="bn">01</span><div>
+        <h3>One page, one question, answered completely</h3>
+        <p>The buyer's guide that ranks for 352 queries does so because it answers the whole category question in one place instead of splitting it across six thin posts. Depth on a single URL beats breadth across many.</p></div></div>
+      <div class="build"><span class="bn">02</span><div>
+        <h3>Written so a machine can quote a passage</h3>
+        <p>Clear question headings, direct answers immediately beneath them, and defined terms. An assistant lifting an answer needs a self contained passage it can quote. A page that only makes sense read top to bottom gives it nothing to work with.</p></div></div>
+      <div class="build"><span class="bn">03</span><div>
+        <h3>Technical ground cleared first</h3>
+        <p>A site can carry perfect content and still be invisible. We check the unglamorous layer before writing a word: does the domain resolve without the www, is there a sitemap, do old redirects still point somewhere live, is anything blocking a crawler. These are usually small fixes and usually outstanding for years.</p></div></div>
+      <div class="build"><span class="bn">04</span><div>
+        <h3>Location and intent get their own pages</h3>
+        <p>The events operator holds 160 position one rankings because each city and each recurring event has a page that earns its own ranking. One page cannot rank for twenty cities. Twenty pages can.</p></div></div>
+      <div class="build"><span class="bn">05</span><div>
+        <h3>Tracking installed, then verified</h3>
+        <p>Named events for every commercial action, campaign identifiers carried through third party handoffs, and a trigger level audit of the live container so a form submit cannot be counted twice. Double counted conversions are the most common cause of a reported result that never appears in the bank.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site_footer">
+  <div class="container">
+    <p class="fnote">
+      <b>Method.</b> Cases one and two, and the query shape analysis, are measured from client owned Google Search Console properties via the Search Analytics API on 15 September 2026. Comparison periods are matched calendar months where a full baseline exists. Where a property has a short measurement history, a single window is reported and no growth claim is made. Case three is third party search index data, which estimates position rather than measuring it, and is labelled as such.<br>
+      <b>Client identities.</b> Withheld. Figures are unaltered.<br>
+      <b>Limits.</b> The AI attribution is an inference from query shape and click behaviour, not a labelled source field, because Search Console does not expose one. It evidences that pages rank for the queries answer engines issue and that those appearances behave like machine reads. It is not a count of named citations inside any specific assistant. That is a separate measurement and it is stated separately whenever it is taken.
+    </p>
+    <div class="flock">
+      <span class="plaque"><img src="assets/momentum-360-m-circle.png" alt="Momentum 360" width="38" height="38"></span>
+      <span>
+        <span class="t">Momentum Digital</span>
+        <span class="u" style="display:block">1635 Market St #1601, Philadelphia PA &nbsp;&middot;&nbsp; needmomentum.com</span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // letter split, mirrors the reference build's data-split headings
+  document.querySelectorAll('h2[data-split]').forEach(function(h){
+    var txt = h.textContent, out = '';
+    for (var i=0;i<txt.length;i++){
+      var c = txt[i];
+      out += (c === ' ') ? ' ' : '<span class="ch" style="transition-delay:' + (i*22) + 'ms">' + c + '</span>';
+    }
+    h.innerHTML = out;
+  });
+
+  if (reduce){
+    document.querySelectorAll('.wow').forEach(function(el){ el.classList.add('animated'); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('animated'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  document.querySelectorAll('.wow').forEach(function(el){ io.observe(el); });
+
+  // the header logo swipe fires on load, not on scroll, so the swap is the first thing seen
+  var hdr = document.getElementById('hdr');
+  if (hdr){ setTimeout(function(){ hdr.classList.add('animated'); }, 900); }
+})();
+</script>

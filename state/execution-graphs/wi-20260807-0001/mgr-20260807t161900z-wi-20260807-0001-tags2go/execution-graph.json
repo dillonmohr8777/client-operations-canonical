@@ -1,0 +1,624 @@
+{
+    "schemaVersion":  1,
+    "graphRunId":  "mgr-20260807t161900z-wi-20260807-0001-tags2go",
+    "graphRevision":  7,
+    "workflowId":  "marketing-chief-execution-graph",
+    "createdAt":  "2026-08-07T16:26:08.1495331+00:00",
+    "updatedAt":  "2026-08-07T16:28:24.9167608+00:00",
+    "status":  "handoff_ready",
+    "queueSnapshot":  {
+                          "locator":  "queue/work-items.json",
+                          "revision":  389,
+                          "sha256":  "D27DF001C2C3ACF2C2C0DB62E77011D08B39C38C130321D41B1E0DE6E7C082CF",
+                          "capturedAt":  "2026-08-07T16:26:08.1495331+00:00"
+                      },
+    "workItem":  {
+                     "id":  "wi-20260807-0001",
+                     "expectedVersion":  1,
+                     "contentSha256":  "667D316A64A4AD6011FAC7110523E2670503DA3839AD94A31768BD7C535E70F5",
+                     "clientId":  "tags-2-go",
+                     "title":  "Map Tags 2 Go Google Ads access and produce redacted audit baseline",
+                     "status":  "ready",
+                     "lane":  "normal",
+                     "priority":  "P1",
+                     "actionClass":  "local_research",
+                     "nextAction":  "Map Tags 2 Go Google Ads through Access Broker or Bitwarden, confirm whether an agency admin invite is already active, then capture a redacted account-health baseline under the client evidence folder.",
+                     "definitionOfDone":  [
+                                              "Access Broker or Bitwarden locator exists for Tags 2 Go Google Ads",
+                                              "Admin-invite or authorized login path is documented without secrets",
+                                              "Redacted account-health baseline artifact exists under clients/tags-2-go/evidence"
+                                          ],
+                     "sourceLocator":  "slack://channel/C0BMDSVT4JG/message/1786110229.200619",
+                     "evidenceRefs":  [
+                                          "slack://channel/C0BMDSVT4JG/message/1786110229.200619"
+                                      ],
+                     "artifactRefs":  [
+
+                                      ],
+                     "dependencies":  [
+
+                                      ],
+                     "approval":  {
+                                      "tier":  "automatic",
+                                      "status":  "not_required",
+                                      "gate":  "none"
+                                  }
+                 },
+    "scope":  {
+                  "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+                  "clientRoot":  "clients/tags-2-go",
+                  "graphLocator":  "state/execution-graphs/wi-20260807-0001/mgr-20260807t161900z-wi-20260807-0001-tags2go/execution-graph.json",
+                  "canonicalWriteAllowed":  false,
+                  "externalActionAllowed":  false,
+                  "durableMemoryWriteAllowed":  false,
+                  "privacy":  "redacted"
+              },
+    "retrieval":  {
+                      "strategy":  "exact-plus-graph",
+                      "exactBindingRequired":  true,
+                      "semanticBindingAllowed":  false,
+                      "sourceCount":  1,
+                      "artifactCount":  0
+                  },
+    "nodes":  [
+                  {
+                      "id":  "scope-guard",
+                      "kind":  "scope_guard",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Validate immutable queue, work-item, client, and project scope.",
+                      "requires":  [
+
+                                   ],
+                      "produces":  [
+                                       "scoped_work_item"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Queue revision, work-item version, exact client route, and safety scope were validated.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "queue/work-items.json",
+                                                      "slack://channel/C0BMDSVT4JG/message/1786110229.200619"
+                                                  ],
+                                     "verification":  [
+                                                          "Queue revision 389 captured.",
+                                                          "Work-item version 1 captured.",
+                                                          "Client route tags-2-go resolved exactly once and is active."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "source-intake",
+                      "kind":  "source_intake",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Capture safe exact source and evidence locators.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "provenance_slice"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Exact source and evidence locators were captured without raw communications.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "slack://channel/C0BMDSVT4JG/message/1786110229.200619"
+                                                  ],
+                                     "verification":  [
+                                                          "Evidence freshness evaluated at 2026-08-07T16:26:08.1495331+00:00."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "context-retrieval",
+                      "kind":  "context_retrieval",
+                      "owner":  "marketing-chief-context-loader",
+                      "status":  "completed",
+                      "task":  "Assemble the exact bounded context slice required by this item.",
+                      "requires":  [
+                                       "source-intake"
+                                   ],
+                      "produces":  [
+                                       "worker_context"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Bounded client, source, artifact, dependency, and definition-of-done context was assembled.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "slack://channel/C0BMDSVT4JG/message/1786110229.200619"
+                                                  ],
+                                     "verification":  [
+                                                          "Definition-of-done checks: 3.",
+                                                          "Artifact references: 0."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "worker-execution",
+                      "kind":  "worker_execution",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Map Tags 2 Go Google Ads through Access Broker or Bitwarden, confirm whether an agency admin invite is already active, then capture a redacted account-health baseline under the client evidence folder.",
+                      "requires":  [
+                                       "context-retrieval"
+                                   ],
+                      "produces":  [
+                                       "local_artifacts",
+                                       "worker_evidence"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Local research completed: no Access Broker or Bitwarden locator exists; preferred admin-invite path documented; redacted account-health baseline written. Live login and vault import remain human-gated.",
+                                     "artifacts":  [
+                                                       "clients/tags-2-go/evidence/2026-08-07-google-ads-access-mapping-baseline.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/tags-2-go/evidence/2026-08-07-google-ads-access-mapping-baseline.md",
+                                                      "clients/tags-2-go/evidence/2026-08-07-slack-handoff-redacted.md",
+                                                      "clients/tags-2-go/paid-media/launch-config.json",
+                                                      "slack://channel/C0BMDSVT4JG/message/1786110229.200619"
+                                                  ],
+                                     "verification":  [
+                                                          "Access Broker has no tags-2-go client route.",
+                                                          "No exact Bitwarden item locator is available on this host.",
+                                                          "Redacted baseline artifact exists under the client evidence folder.",
+                                                          "No external Google Ads mutation or credential import was attempted."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-01",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Access Broker or Bitwarden locator exists for Tags 2 Go Google Ads",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_01"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Definition-of-done check failed closed: no Access Broker or Bitwarden locator exists for Tags 2 Go Google Ads.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/tags-2-go/evidence/2026-08-07-google-ads-access-mapping-baseline.md",
+                                                      "clients/tags-2-go/paid-media/launch-config.json"
+                                                  ],
+                                     "verification":  [
+                                                          "Access Broker registry contains no tags-2-go client id.",
+                                                          "No opaque bw item locator is recorded for this client Google Ads system.",
+                                                          "Check remains unsatisfied until a human creates and maps an authorized vault or OAuth locator."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-02",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Admin-invite or authorized login path is documented without secrets",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_02"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Preferred admin-invite and authorized login path is documented without secrets; live invite status remains human-gated.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/tags-2-go/evidence/2026-08-07-google-ads-access-mapping-baseline.md",
+                                                      "clients/tags-2-go/evidence/2026-08-07-slack-handoff-redacted.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Preferred path is agency Google identity plus admin invite, then opaque Access Broker registration.",
+                                                          "Live admin-invite acceptance was not verified in the Google Ads UI during this episode.",
+                                                          "MFA and provider consent remain human gates."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-03",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Redacted account-health baseline artifact exists under clients/tags-2-go/evidence",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_03"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Redacted account-health baseline artifact exists under the exact client evidence folder.",
+                                     "artifacts":  [
+                                                       "clients/tags-2-go/evidence/2026-08-07-google-ads-access-mapping-baseline.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/tags-2-go/evidence/2026-08-07-google-ads-access-mapping-baseline.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Artifact path resolves under clients/tags-2-go/evidence.",
+                                                          "Artifact records access gap, policy-risk history, and safe next human actions without secrets."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "approval-gate",
+                      "kind":  "approval_gate",
+                      "owner":  "marketing-chief",
+                      "status":  "completed",
+                      "task":  "Enforce the exact action-class and approval boundary.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "approval_verdict"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "This graph permits local reversible work only; no external action is authorized.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+
+                                                  ],
+                                     "verification":  [
+                                                          "Action class: local_research.",
+                                                          "Approval tier/status: automatic/not_required."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "handoff-assembly",
+                      "kind":  "handoff_assembly",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Assemble a schema-valid redacted worker handoff from completed graph outputs.",
+                      "requires":  [
+                                       "verify-01",
+                                       "verify-02",
+                                       "verify-03",
+                                       "approval-gate"
+                                   ],
+                      "produces":  [
+                                       "worker_handoff"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "state/worker-handoffs/handoff-tags2go-ads-access-map-20260807.json",
+                                                      "sha256:0EBB02D269D4CFBAEE10186E02240036BBB4DF6A162288AD080EC87C43642311"
+                                                  ],
+                                     "verification":  [
+
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "chief-reconciliation",
+                      "kind":  "chief_reconciliation",
+                      "owner":  "marketing-chief",
+                      "status":  "ready",
+                      "task":  "Revalidate live queue and item state, then accept or reject the handoff through the supported canonical mutation path.",
+                      "requires":  [
+                                       "handoff-assembly"
+                                   ],
+                      "produces":  [
+                                       "canonical_receipt"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  }
+              ],
+    "edges":  [
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "source-intake"
+                  },
+                  {
+                      "from":  "source-intake",
+                      "relation":  "precedes",
+                      "to":  "context-retrieval"
+                  },
+                  {
+                      "from":  "context-retrieval",
+                      "relation":  "precedes",
+                      "to":  "worker-execution"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-01"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-02"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-03"
+                  },
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "approval-gate"
+                  },
+                  {
+                      "from":  "verify-01",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-02",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-03",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "approval-gate",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "handoff-assembly",
+                      "relation":  "precedes",
+                      "to":  "chief-reconciliation"
+                  }
+              ],
+    "knowledgeGraph":  {
+                           "nodes":  [
+                                         {
+                                             "id":  "queue:canonical",
+                                             "type":  "queue",
+                                             "label":  "Canonical queue revision 389",
+                                             "locator":  "queue/work-items.json"
+                                         },
+                                         {
+                                             "id":  "client:tags-2-go",
+                                             "type":  "client",
+                                             "label":  "tags-2-go",
+                                             "locator":  "clients/tags-2-go"
+                                         },
+                                         {
+                                             "id":  "work-item:wi-20260807-0001",
+                                             "type":  "work_item",
+                                             "label":  "Map Tags 2 Go Google Ads access and produce redacted audit baseline",
+                                             "locator":  "slack://channel/C0BMDSVT4JG/message/1786110229.200619"
+                                         },
+                                         {
+                                             "id":  "approval:none",
+                                             "type":  "approval",
+                                             "label":  "automatic/not_required/none",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "evidence:1574d328d2dbc18f",
+                                             "type":  "evidence",
+                                             "label":  "slack://channel/C0BMDSVT4JG/message/1786110229.200619",
+                                             "locator":  "slack://channel/C0BMDSVT4JG/message/1786110229.200619"
+                                         },
+                                         {
+                                             "id":  "definition:01",
+                                             "type":  "definition",
+                                             "label":  "Access Broker or Bitwarden locator exists for Tags 2 Go Google Ads",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:02",
+                                             "type":  "definition",
+                                             "label":  "Admin-invite or authorized login path is documented without secrets",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:03",
+                                             "type":  "definition",
+                                             "label":  "Redacted account-health baseline artifact exists under clients/tags-2-go/evidence",
+                                             "locator":  null
+                                         }
+                                     ],
+                           "edges":  [
+                                         {
+                                             "from":  "queue:canonical",
+                                             "relation":  "contains",
+                                             "to":  "work-item:wi-20260807-0001"
+                                         },
+                                         {
+                                             "from":  "client:tags-2-go",
+                                             "relation":  "owns",
+                                             "to":  "work-item:wi-20260807-0001"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260807-0001",
+                                             "relation":  "governed_by",
+                                             "to":  "approval:none"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260807-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:1574d328d2dbc18f"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260807-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:01"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260807-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:02"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260807-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:03"
+                                         }
+                                     ],
+                           "nodeCount":  8,
+                           "edgeCount":  7
+                       },
+    "handoffContract":  {
+                            "schema":  "schemas/worker-handoff.schema.json",
+                            "validator":  "scripts/Test-MarketingHandoff.ps1",
+                            "reconciler":  "scripts/Accept-WorkerHandoff.ps1",
+                            "expectedWorkItemVersion":  1,
+                            "approvalGate":  "none",
+                            "graphEvidence":  "state/execution-graphs/wi-20260807-0001/mgr-20260807t161900z-wi-20260807-0001-tags2go/execution-graph.json"
+                        },
+    "blockers":  [
+
+                 ],
+    "warnings":  [
+
+                 ],
+    "trace":  [
+                  {
+                      "eventId":  "evt-a421fd61f7c44f158ae14b34b2c062e0",
+                      "at":  "2026-08-07T16:26:08.1495331+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "scope-guard",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-c13fbf0ae36448d583c7cc8492070a8d",
+                      "at":  "2026-08-07T16:26:08.1495331+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "source-intake",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-3ea7e92d6a5e46c2a8224e14fe3a4a1a",
+                      "at":  "2026-08-07T16:26:08.1495331+00:00",
+                      "actor":  "marketing-chief-context-loader",
+                      "nodeId":  "context-retrieval",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-314e1772515f4cf1a34572e79e9c24f0",
+                      "at":  "2026-08-07T16:26:08.1495331+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "approval-gate",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-cfdb6a909bf64cd18b05d9bae9fd2f16",
+                      "at":  "2026-08-07T16:27:17.7342977+00:00",
+                      "actor":  "bounded-worker",
+                      "nodeId":  "worker-execution",
+                      "fromStatus":  "ready",
+                      "toStatus":  "running",
+                      "summary":  "Started local reversible Google Ads access-mapping research for tags-2-go."
+                  },
+                  {
+                      "eventId":  "evt-1384b698feca4338aac85e70c0b94c4f",
+                      "at":  "2026-08-07T16:27:19.3419729+00:00",
+                      "actor":  "bounded-worker",
+                      "nodeId":  "worker-execution",
+                      "fromStatus":  "running",
+                      "toStatus":  "completed",
+                      "summary":  "Local research completed: no Access Broker or Bitwarden locator exists; preferred admin-invite path documented; redacted account-health baseline written. Live login and vault import remain human-gated."
+                  },
+                  {
+                      "eventId":  "evt-75dca8f3726f4892a0054936b3fffd73",
+                      "at":  "2026-08-07T16:27:50.0812400+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-01",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Definition-of-done check failed closed: no Access Broker or Bitwarden locator exists for Tags 2 Go Google Ads."
+                  },
+                  {
+                      "eventId":  "evt-0f6472ff320345c9aa110a31775926d3",
+                      "at":  "2026-08-07T16:27:51.5879417+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-02",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Preferred admin-invite and authorized login path is documented without secrets; live invite status remains human-gated."
+                  },
+                  {
+                      "eventId":  "evt-e3b47313b2e54197bbfff600d061a62c",
+                      "at":  "2026-08-07T16:27:53.1196622+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-03",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Redacted account-health baseline artifact exists under the exact client evidence folder."
+                  },
+                  {
+                      "eventId":  "evt-453a29d65f8d4d658976c11de4ae99c6",
+                      "at":  "2026-08-07T16:28:24.9167608+00:00",
+                      "actor":  "marketing-operations",
+                      "nodeId":  "handoff-assembly",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation."
+                  }
+              ],
+    "attestations":  {
+                         "canonicalWriteAttempted":  false,
+                         "externalActionAttempted":  false,
+                         "durableMemoryWriteAttempted":  false,
+                         "containsSecrets":  false,
+                         "containsDirectIdentifiers":  false,
+                         "containsRawCommunications":  false
+                     }
+}

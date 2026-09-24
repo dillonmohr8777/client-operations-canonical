@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "clientId": "fagan-painting",
+  "workItemId": "wi-20260715-0002",
+  "evidenceType": "read_only_lead_disposition_recheck",
+  "observedAt": "2026-07-30T03:58:07.4959123+00:00",
+  "localObservationDate": "2026-07-29",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false,
+  "externalActionTaken": false,
+  "canonicalWriteAttempted": false,
+  "scope": {
+    "mailboxClass": "connected-operator-mailbox",
+    "canonicalLeadCount": 2,
+    "exactLeadThreadsRead": 2,
+    "aggregateFeedbackThreadRead": true,
+    "exactLeadIdentifierSearchesCompleted": 2,
+    "prospectContactAttempted": false
+  },
+  "observedFacts": [
+    {
+      "title": "Canonical client route",
+      "locator": "registry/clients.json#client=fagan-painting",
+      "observedAt": "2026-07-30T03:58:07.4959123+00:00",
+      "paraphrase": "The current registry contains exactly one Fagan Painting record with canonical ID fagan-painting and status active.",
+      "confidence": "high"
+    },
+    {
+      "title": "First exact canonical lead thread",
+      "locator": "gmail://thread/19f63d38529ca576",
+      "observedAt": "2026-07-30T03:58:07.4959123+00:00",
+      "paraphrase": "The thread contains the original notification only and no newer reply, sent follow-up, or disposition.",
+      "confidence": "high"
+    },
+    {
+      "title": "Second exact canonical lead thread",
+      "locator": "gmail://thread/19f65bc99e5aa93a",
+      "observedAt": "2026-07-30T03:58:07.4959123+00:00",
+      "paraphrase": "The thread contains the original notification plus a non-sent draft in Trash; it contains no client reply or verified disposition.",
+      "confidence": "high"
+    },
+    {
+      "title": "Later client outcome feedback",
+      "locator": "gmail://thread/19f811fe324b1b1d",
+      "observedAt": "2026-07-30T03:58:07.4959123+00:00",
+      "paraphrase": "The client reported aggregate campaign outcomes and one unspecified estimate, but did not bind an outcome to either exact canonical lead.",
+      "confidence": "high"
+    },
+    {
+      "title": "Exact lead identifier searches",
+      "locator": "gmail://search/fagan-lead-identifiers-2026-07-29",
+      "observedAt": "2026-07-30T03:58:07.4959123+00:00",
+      "paraphrase": "Current exact-identifier searches returned the known notification and aggregate-feedback threads only; no newer thread established either lead's disposition.",
+      "confidence": "high"
+    }
+  ],
+  "inferences": [
+    {
+      "statement": "Neither lead can be classified as qualified, lost, booked, estimated, unreachable, or spam from the currently authorized operator-mailbox evidence.",
+      "basis": [
+        "Both exact lead threads remain without verified follow-up or disposition.",
+        "The later feedback is aggregate and does not identify which lead became an estimate."
+      ],
+      "confidence": "high"
+    }
+  ],
+  "unavailableFields": [
+    {
+      "field": "firstCanonicalLeadDisposition",
+      "status": "unknown",
+      "reason": "No exact lead-level outcome is present in the connected operator mailbox."
+    },
+    {
+      "field": "secondCanonicalLeadDisposition",
+      "status": "unknown",
+      "reason": "No exact lead-level outcome is present in the connected operator mailbox."
+    },
+    {
+      "field": "canonicalClientMailboxProcessing",
+      "status": "not_verified",
+      "reason": "The connected operator mailbox cannot prove handling inside the canonical client mailbox."
+    },
+    {
+      "field": "crmOrZapierDisposition",
+      "status": "not_verified",
+      "reason": "No exact authorized downstream record was available in this evidence lane."
+    }
+  ],
+  "blocker": {
+    "class": "human_authentication_or_exact_downstream_access",
+    "summary": "Completion requires read-only access to the canonical Fagan mailbox or an exact CRM/Zapier destination record. Aggregate feedback must not be used to invent individual dispositions."
+  },
+  "marketingChiefHandoff": {
+    "recommendedState": "blocked",
+    "recommendedNextAction": "Route the exact canonical mailbox or downstream-system read-only access through the Client and Access Router, then reconcile only source-bound lead-level outcomes.",
+    "queueMutationRequested": false
+  }
+}

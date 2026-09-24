@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "workItemId": "wi-20260808-0001",
+  "clientId": "align-hcm",
+  "observedAt": "2026-08-08T12:30:00Z",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false,
+  "canonicalWriteAttempted": false,
+  "externalActionAttempted": false,
+  "sources": [
+    "agent-os-run:20260808-061243-99986abd/task.json",
+    "https://www.alignhcm.com/",
+    "https://www.alignhcm.com/robots.txt",
+    "https://www.alignhcm.com/sitemap.xml"
+  ],
+  "alert": {
+    "sourceClass": "exact Google Search Console transactional alert",
+    "observedAt": "2026-08-07T23:32:26Z",
+    "site": "https://www.alignhcm.com/",
+    "reportedExclusionCategories": [
+      "Page with redirect",
+      "Alternate page"
+    ],
+    "exactAffectedUrlsAvailableInAlert": false,
+    "authenticatedSearchConsoleReportOpened": false
+  },
+  "publicReadback": {
+    "homepageWwwStatus": 200,
+    "hostCanonicalization": {
+      "httpsApexToWwwRedirect": true,
+      "httpWwwToHttpsWwwRedirect": true,
+      "httpApexToHttpsWwwRedirect": true,
+      "canonicalHost": "www.alignhcm.com"
+    },
+    "robotsStatus": 200,
+    "robotsDisallowsPreviewAndPreferencePaths": true,
+    "sitemapStatus": 200,
+    "sitemapUrlCount": 124,
+    "sitemapPathGroups": {
+      "blog": 65,
+      "industry-solutions": 14,
+      "partners": 13,
+      "case-studies": 12,
+      "services": 11
+    },
+    "sampleProbeCount": 37,
+    "sampleProbeStatus200": 37,
+    "sampleProbeNon200": 0,
+    "trailingSlashToNonSlash301Observed": true,
+    "blogPagesCheckedForAmphtml": 64,
+    "blogPagesAdvertisingAmphtml": 64,
+    "ampVariantPattern": "?hs_amp=true",
+    "ampVariantsProbed": 8,
+    "ampVariantsStatus200": 8,
+    "ampVariantsConfirmedAmpDocument": 8,
+    "ampVariantsCanonicalBackToNormalArticle": 8,
+    "ampVariantsListedInSitemap": false,
+    "sitemapUuidPathRedirectsToHomepage": true,
+    "sitemapUuidPathExampleClass": "guid-slug-homepage-redirect"
+  },
+  "classification": {
+    "pageWithRedirect": {
+      "likelyExpected": [
+        "HTTP to HTTPS host redirects",
+        "apex to www host redirects",
+        "trailing-slash to non-trailing-slash 301 redirects on several content paths"
+      ],
+      "possibleDefect": [
+        "One sitemap-listed GUID path returns 301 to the homepage and should be reviewed for sitemap cleanup if it remains a soft 200-class discovery target after redirect resolution"
+      ]
+    },
+    "alternatePage": {
+      "likelyExpected": [
+        "HubSpot AMP alternate pages advertised by amphtml on all 64 sitemap-listed blog articles",
+        "AMP variants return 200 with AMP markers and canonical links back to the normal article"
+      ],
+      "possibleDefect": []
+    }
+  },
+  "conclusion": {
+    "status": "verified-mostly-expected-exclusions-gsc-url-set-pending",
+    "summary": "The Search Console alert reports Page with redirect and Alternate page exclusions for the canonical Align site. Public readback shows expected host, protocol, and trailing-slash redirects plus HubSpot AMP alternate pages across the full blog set. Exact Search Console URL counts remain unavailable without the authenticated coverage report.",
+    "recommendedNextStep": "Open the authorized Search Console indexing exclusions report, capture the exact URL examples and counts for each category, confirm whether redirects and AMP alternates match the expected classes above, then remove any confirmed stale sitemap entries such as the GUID homepage redirect if still listed.",
+    "urgency": "routine-verification"
+  },
+  "limitations": [
+    "The transactional alert does not list the exact affected URLs.",
+    "The authenticated Search Console coverage report was not opened in this episode.",
+    "Public probes confirm transport, redirect, canonical, robots, sitemap, and AMP alternate behavior but cannot reproduce private Google exclusion counts.",
+    "No Search Console, website, hosting, DNS, or account setting was changed."
+  ]
+}

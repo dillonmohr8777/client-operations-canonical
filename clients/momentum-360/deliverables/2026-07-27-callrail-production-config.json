@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 2,
+  "client": "momentum-360",
+  "verifiedAt": "2026-07-27",
+  "hubspotPortalId": "50612503",
+  "callRail": {
+    "accountId": "671942387",
+    "timeZone": "America/New_York",
+    "routing": {
+      "businessHours": {
+        "start": "06:00",
+        "end": "22:00",
+        "days": "any-day",
+        "action": "existing-call-flow"
+      },
+      "afterHours": {
+        "implementation": "any-other-time",
+        "effectiveStart": "22:00",
+        "effectiveEnd": "06:00",
+        "action": "round-robin",
+        "distribution": "equal",
+        "weightedDistribution": false,
+        "stickyPreviousCaller": false,
+        "preventVoicemailOrAutomatedSystem": true,
+        "ringSeconds": 20,
+        "destinations": [
+          "Sean Boyle",
+          "Jason Fallon"
+        ]
+      }
+    },
+    "targets": [
+      {
+        "companyName": "Momentum 360",
+        "companyId": "201943356",
+        "callFlowName": "Callrail Revision of M360 Updated CallFlow 2023",
+        "callFlowId": "e2250418-c1e7-4128-a15d-14e5b76c5b90",
+        "assignedTrackingNumberCount": 7,
+        "missedCallSms": {
+          "enabled": true,
+          "backupNumberName": "360 - Philly"
+        }
+      },
+      {
+        "companyName": "GMB Suspension",
+        "companyId": "316963465",
+        "callFlowName": "GMB Suspension",
+        "callFlowId": "fdbc854e-301e-4d75-90d1-182ffcf95c9b",
+        "assignedTrackingNumberCount": 1,
+        "missedCallSms": {
+          "enabled": true,
+          "backupNumberName": "Main Momentum Agency Line"
+        }
+      }
+    ],
+    "missedCallSms": {
+      "enabled": true,
+      "trigger": "missed-call",
+      "copy": "Hi, this is Mia, Momentum 360's AI assistant. Sorry we missed your call. Reply with your name, company, and what you need help with, and Sean or Jason will follow up during business hours. Reply STOP to unsubscribe.",
+      "approvalStatus": "approved-by-sean-2026-07-27T10:25:48-04:00",
+      "approvalEvidence": {
+        "channelId": "C06CL0R09A4",
+        "messageTs": "1785162348.899519",
+        "response": "That's good"
+      },
+      "liveVerification": "saved-and-reopened-in-callrail"
+    }
+  },
+  "hubspotOwnerReferences": {
+    "status": "reference-only-not-callrail-writeback",
+    "owners": [
+      {
+        "ownerId": "84251086",
+        "name": "Sean Boyle"
+      },
+      {
+        "ownerId": "84251079",
+        "name": "Jason Fallon"
+      }
+    ]
+  },
+  "security": {
+    "credentialStatus": "user-approved-current-credential-used-no-local-storage",
+    "rawCredentialStored": false,
+    "clipboardCleared": true
+  },
+  "remainingVerification": [
+    "After 10:00 PM Eastern, place one controlled call to a Momentum 360 tracking number and one to the GMB Suspension number.",
+    "Confirm the two after-hours calls reach the expected round-robin recipients and do not terminate at voicemail.",
+    "Confirm the approved missed-call SMS is received when a controlled call is left unanswered.",
+    "Confirm each test call appears once in HubSpot with its CallRail call-to-contact association."
+  ]
+}

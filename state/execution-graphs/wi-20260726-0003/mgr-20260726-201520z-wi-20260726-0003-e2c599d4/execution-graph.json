@@ -1,0 +1,701 @@
+{
+    "schemaVersion":  1,
+    "graphRunId":  "mgr-20260726-201520z-wi-20260726-0003-e2c599d4",
+    "graphRevision":  1,
+    "workflowId":  "marketing-chief-execution-graph",
+    "createdAt":  "2026-07-26T20:15:52.2477248+00:00",
+    "updatedAt":  "2026-07-26T20:15:52.2477248+00:00",
+    "status":  "planned",
+    "queueSnapshot":  {
+                          "locator":  "queue/work-items.json",
+                          "revision":  289,
+                          "sha256":  "AE78774FE3DE1D801ABCE00CD575D09C3A5DC3C3C8A7512F947ABCF6556583A8",
+                          "capturedAt":  "2026-07-26T20:15:52.2477248+00:00"
+                      },
+    "workItem":  {
+                     "id":  "wi-20260726-0003",
+                     "expectedVersion":  1,
+                     "contentSha256":  "4CA9309C9C75301A45F12BEF466DA4749EA2306A0ED1DC5B8A4631FE9D00CE90",
+                     "clientId":  "momentum-360",
+                     "title":  "Produce the canonical eight-lane paid-media reporting package",
+                     "status":  "ready",
+                     "lane":  "normal",
+                     "priority":  "P1",
+                     "actionClass":  "local_artifact",
+                     "nextAction":  "Use the canonical reporting contract to collect a fresh exact-period readback for all eight lanes, assemble the first complete weekly packet, run QA, and prepare exact delivery drafts for approval.",
+                     "definitionOfDone":  [
+                                              "All eight canonical lanes use verified opaque account routes and exact client separation.",
+                                              "Each client has an executive report in dashboard or HTML and PDF form.",
+                                              "Each lane has a platform appendix and source-freshness metadata.",
+                                              "Platform events are reconciled separately from deduplicated qualified and booked or won outcomes.",
+                                              "Google search terms and change history or Meta creative fatigue placements and change history are reviewed.",
+                                              "Every recommendation states owner timing expected impact and approval status.",
+                                              "Exact email or Slack delivery drafts are prepared but not sent.",
+                                              "The full packet passes the canonical reporting acceptance checklist."
+                                          ],
+                     "sourceLocator":  "clients/momentum-360/deliverables/2026-07-26-paid-media-reporting-contract.md",
+                     "evidenceRefs":  [
+                                          "clients/momentum-360/deliverables/2026-07-26-paid-media-reporting-contract.md"
+                                      ],
+                     "artifactRefs":  [
+
+                                      ],
+                     "dependencies":  [
+
+                                      ],
+                     "approval":  {
+                                      "tier":  "automatic",
+                                      "status":  "not_required",
+                                      "gate":  "none"
+                                  }
+                 },
+    "scope":  {
+                  "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+                  "clientRoot":  "clients/momentum-360",
+                  "graphLocator":  "state/execution-graphs/wi-20260726-0003/mgr-20260726-201520z-wi-20260726-0003-e2c599d4/execution-graph.json",
+                  "canonicalWriteAllowed":  false,
+                  "externalActionAllowed":  false,
+                  "durableMemoryWriteAllowed":  false,
+                  "privacy":  "redacted"
+              },
+    "retrieval":  {
+                      "strategy":  "exact-plus-graph",
+                      "exactBindingRequired":  true,
+                      "semanticBindingAllowed":  false,
+                      "sourceCount":  1,
+                      "artifactCount":  0
+                  },
+    "nodes":  [
+                  {
+                      "id":  "scope-guard",
+                      "kind":  "scope_guard",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Validate immutable queue, work-item, client, and project scope.",
+                      "requires":  [
+
+                                   ],
+                      "produces":  [
+                                       "scoped_work_item"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Queue revision, work-item version, exact client route, and safety scope were validated.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "queue/work-items.json",
+                                                      "clients/momentum-360/deliverables/2026-07-26-paid-media-reporting-contract.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Queue revision 289 captured.",
+                                                          "Work-item version 1 captured.",
+                                                          "Client route momentum-360 resolved exactly once and is active."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "source-intake",
+                      "kind":  "source_intake",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Capture safe exact source and evidence locators.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "provenance_slice"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Exact source and evidence locators were captured without raw communications.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/momentum-360/deliverables/2026-07-26-paid-media-reporting-contract.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Evidence freshness evaluated at 2026-07-26T20:15:52.2477248+00:00."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "context-retrieval",
+                      "kind":  "context_retrieval",
+                      "owner":  "marketing-chief-context-loader",
+                      "status":  "completed",
+                      "task":  "Assemble the exact bounded context slice required by this item.",
+                      "requires":  [
+                                       "source-intake"
+                                   ],
+                      "produces":  [
+                                       "worker_context"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Bounded client, source, artifact, dependency, and definition-of-done context was assembled.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/momentum-360/deliverables/2026-07-26-paid-media-reporting-contract.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Definition-of-done checks: 8.",
+                                                          "Artifact references: 0."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "worker-execution",
+                      "kind":  "worker_execution",
+                      "owner":  "bounded-worker",
+                      "status":  "ready",
+                      "task":  "Use the canonical reporting contract to collect a fresh exact-period readback for all eight lanes, assemble the first complete weekly packet, run QA, and prepare exact delivery drafts for approval.",
+                      "requires":  [
+                                       "context-retrieval"
+                                   ],
+                      "produces":  [
+                                       "local_artifacts",
+                                       "worker_evidence"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "verify-01",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "pending",
+                      "task":  "All eight canonical lanes use verified opaque account routes and exact client separation.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_01"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "verify-02",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "pending",
+                      "task":  "Each client has an executive report in dashboard or HTML and PDF form.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_02"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "verify-03",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "pending",
+                      "task":  "Each lane has a platform appendix and source-freshness metadata.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_03"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "verify-04",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "pending",
+                      "task":  "Platform events are reconciled separately from deduplicated qualified and booked or won outcomes.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_04"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "verify-05",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "pending",
+                      "task":  "Google search terms and change history or Meta creative fatigue placements and change history are reviewed.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_05"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "verify-06",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "pending",
+                      "task":  "Every recommendation states owner timing expected impact and approval status.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_06"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "verify-07",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "pending",
+                      "task":  "Exact email or Slack delivery drafts are prepared but not sent.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_07"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "verify-08",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "pending",
+                      "task":  "The full packet passes the canonical reporting acceptance checklist.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_08"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "approval-gate",
+                      "kind":  "approval_gate",
+                      "owner":  "marketing-chief",
+                      "status":  "completed",
+                      "task":  "Enforce the exact action-class and approval boundary.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "approval_verdict"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "This graph permits local reversible work only; no external action is authorized.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+
+                                                  ],
+                                     "verification":  [
+                                                          "Action class: local_artifact.",
+                                                          "Approval tier/status: automatic/not_required."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "handoff-assembly",
+                      "kind":  "handoff_assembly",
+                      "owner":  "bounded-worker",
+                      "status":  "pending",
+                      "task":  "Assemble a schema-valid redacted worker handoff from completed graph outputs.",
+                      "requires":  [
+                                       "verify-01",
+                                       "verify-02",
+                                       "verify-03",
+                                       "verify-04",
+                                       "verify-05",
+                                       "verify-06",
+                                       "verify-07",
+                                       "verify-08",
+                                       "approval-gate"
+                                   ],
+                      "produces":  [
+                                       "worker_handoff"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  },
+                  {
+                      "id":  "chief-reconciliation",
+                      "kind":  "chief_reconciliation",
+                      "owner":  "marketing-chief",
+                      "status":  "pending",
+                      "task":  "Revalidate live queue and item state, then accept or reject the handoff through the supported canonical mutation path.",
+                      "requires":  [
+                                       "handoff-assembly"
+                                   ],
+                      "produces":  [
+                                       "canonical_receipt"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  }
+              ],
+    "edges":  [
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "source-intake"
+                  },
+                  {
+                      "from":  "source-intake",
+                      "relation":  "precedes",
+                      "to":  "context-retrieval"
+                  },
+                  {
+                      "from":  "context-retrieval",
+                      "relation":  "precedes",
+                      "to":  "worker-execution"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-01"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-02"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-03"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-04"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-05"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-06"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-07"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-08"
+                  },
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "approval-gate"
+                  },
+                  {
+                      "from":  "verify-01",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-02",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-03",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-04",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-05",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-06",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-07",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-08",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "approval-gate",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "handoff-assembly",
+                      "relation":  "precedes",
+                      "to":  "chief-reconciliation"
+                  }
+              ],
+    "knowledgeGraph":  {
+                           "nodes":  [
+                                         {
+                                             "id":  "queue:canonical",
+                                             "type":  "queue",
+                                             "label":  "Canonical queue revision 289",
+                                             "locator":  "queue/work-items.json"
+                                         },
+                                         {
+                                             "id":  "client:momentum-360",
+                                             "type":  "client",
+                                             "label":  "momentum-360",
+                                             "locator":  "clients/momentum-360"
+                                         },
+                                         {
+                                             "id":  "work-item:wi-20260726-0003",
+                                             "type":  "work_item",
+                                             "label":  "Produce the canonical eight-lane paid-media reporting package",
+                                             "locator":  "clients/momentum-360/deliverables/2026-07-26-paid-media-reporting-contract.md"
+                                         },
+                                         {
+                                             "id":  "approval:none",
+                                             "type":  "approval",
+                                             "label":  "automatic/not_required/none",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "evidence:7491fd60e6238f87",
+                                             "type":  "evidence",
+                                             "label":  "clients/momentum-360/deliverables/2026-07-26-paid-media-reporting-contract.md",
+                                             "locator":  "clients/momentum-360/deliverables/2026-07-26-paid-media-reporting-contract.md"
+                                         },
+                                         {
+                                             "id":  "definition:01",
+                                             "type":  "definition",
+                                             "label":  "All eight canonical lanes use verified opaque account routes and exact client separation.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:02",
+                                             "type":  "definition",
+                                             "label":  "Each client has an executive report in dashboard or HTML and PDF form.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:03",
+                                             "type":  "definition",
+                                             "label":  "Each lane has a platform appendix and source-freshness metadata.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:04",
+                                             "type":  "definition",
+                                             "label":  "Platform events are reconciled separately from deduplicated qualified and booked or won outcomes.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:05",
+                                             "type":  "definition",
+                                             "label":  "Google search terms and change history or Meta creative fatigue placements and change history are reviewed.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:06",
+                                             "type":  "definition",
+                                             "label":  "Every recommendation states owner timing expected impact and approval status.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:07",
+                                             "type":  "definition",
+                                             "label":  "Exact email or Slack delivery drafts are prepared but not sent.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:08",
+                                             "type":  "definition",
+                                             "label":  "The full packet passes the canonical reporting acceptance checklist.",
+                                             "locator":  null
+                                         }
+                                     ],
+                           "edges":  [
+                                         {
+                                             "from":  "queue:canonical",
+                                             "relation":  "contains",
+                                             "to":  "work-item:wi-20260726-0003"
+                                         },
+                                         {
+                                             "from":  "client:momentum-360",
+                                             "relation":  "owns",
+                                             "to":  "work-item:wi-20260726-0003"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260726-0003",
+                                             "relation":  "governed_by",
+                                             "to":  "approval:none"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260726-0003",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:7491fd60e6238f87"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260726-0003",
+                                             "relation":  "requires",
+                                             "to":  "definition:01"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260726-0003",
+                                             "relation":  "requires",
+                                             "to":  "definition:02"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260726-0003",
+                                             "relation":  "requires",
+                                             "to":  "definition:03"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260726-0003",
+                                             "relation":  "requires",
+                                             "to":  "definition:04"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260726-0003",
+                                             "relation":  "requires",
+                                             "to":  "definition:05"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260726-0003",
+                                             "relation":  "requires",
+                                             "to":  "definition:06"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260726-0003",
+                                             "relation":  "requires",
+                                             "to":  "definition:07"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260726-0003",
+                                             "relation":  "requires",
+                                             "to":  "definition:08"
+                                         }
+                                     ],
+                           "nodeCount":  13,
+                           "edgeCount":  12
+                       },
+    "handoffContract":  {
+                            "schema":  "schemas/worker-handoff.schema.json",
+                            "validator":  "scripts/Test-MarketingHandoff.ps1",
+                            "reconciler":  "scripts/Accept-WorkerHandoff.ps1",
+                            "expectedWorkItemVersion":  1,
+                            "approvalGate":  "none",
+                            "graphEvidence":  "state/execution-graphs/wi-20260726-0003/mgr-20260726-201520z-wi-20260726-0003-e2c599d4/execution-graph.json"
+                        },
+    "blockers":  [
+
+                 ],
+    "warnings":  [
+
+                 ],
+    "trace":  [
+                  {
+                      "eventId":  "evt-3ec3abd91b8241a29e29f58015d85159",
+                      "at":  "2026-07-26T20:15:52.2477248+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "scope-guard",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-5efe1aba7ba743c3868dac1e0d01ef33",
+                      "at":  "2026-07-26T20:15:52.2477248+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "source-intake",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-73045412fb0c4fe5bb8c4ccb820cec65",
+                      "at":  "2026-07-26T20:15:52.2477248+00:00",
+                      "actor":  "marketing-chief-context-loader",
+                      "nodeId":  "context-retrieval",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-933b517579ef4ac3855d949f05b406b5",
+                      "at":  "2026-07-26T20:15:52.2477248+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "approval-gate",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  }
+              ],
+    "attestations":  {
+                         "canonicalWriteAttempted":  false,
+                         "externalActionAttempted":  false,
+                         "durableMemoryWriteAttempted":  false,
+                         "containsSecrets":  false,
+                         "containsDirectIdentifiers":  false,
+                         "containsRawCommunications":  false
+                     }
+}

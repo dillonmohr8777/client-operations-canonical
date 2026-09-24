@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "workflowId": "grok-video-value-add-factory",
+  "name": "Cursor Grok 4.5 Video Value-Add Factory",
+  "pattern": "orchestrator-with-evaluator-loop",
+  "status": "active-local-draft-production",
+  "models": {
+    "orchestrator": "cursor-grok-4.5-high",
+    "parallelPlanner": "cursor-grok-4.5-medium-fast",
+    "evaluator": "cursor-grok-4.5-high",
+    "videoRenderer": "grok-imagine-video-1.5"
+  },
+  "creativeSystem": {
+    "defaultStyle": "animated-comic-book",
+    "allowedSubstyles": [
+      "kinetic-superhero",
+      "premium-graphic-novel",
+      "retro-pop-art",
+      "clean-editorial-comic",
+      "gentle-wellness-comic"
+    ],
+    "textOnlyGenerationAllowed": false,
+    "requiredReferenceRoles": [
+      "verified-client-logo",
+      "approved-client-or-style-reference"
+    ],
+    "logoLock": {
+      "preserveSpelling": true,
+      "preserveGeometry": true,
+      "preserveColors": true,
+      "animateLogo": false,
+      "fallback": "exact-logo-end-card-or-post-production-overlay"
+    },
+    "renderSequence": [
+      "validate-reference-provenance",
+      "generate-comic-keyframe",
+      "review-keyframe",
+      "animate-keyframe",
+      "review-opening-middle-closing-frames",
+      "apply-exact-logo-end-card",
+      "inspect-media",
+      "package-local-review"
+    ]
+  },
+  "execution": {
+    "dependencyMode": "dag",
+    "maxParallelClients": 4,
+    "completionPolicy": "all-required-local-artifacts",
+    "defaultMode": "plan-and-local-proof",
+    "liveVideoGenerationEnabled": false,
+    "liveVideoGenerationRequires": [
+      "verified XAI_API_KEY route",
+      "explicit spend approval",
+      "exact client asset approval",
+      "passed preflight plan",
+      "ephemeral output copied into the canonical client folder"
+    ]
+  },
+  "steps": [
+    {
+      "id": "resolve-clients",
+      "agent": "deterministic-router",
+      "dependsOn": [],
+      "output": "batch-request.json",
+      "timeoutSeconds": 30
+    },
+    {
+      "id": "audit-sources",
+      "agent": "cursor-grok-4.5-high",
+      "dependsOn": [
+        "resolve-clients"
+      ],
+      "output": "<client-id>/source-audit.json",
+      "timeoutSeconds": 240
+    },
+    {
+      "id": "validate-reference-bundle",
+      "agent": "deterministic-reference-validator",
+      "dependsOn": [
+        "audit-sources"
+      ],
+      "output": "<client-id>/reference-manifest.json",
+      "timeoutSeconds": 120
+    },
+    {
+      "id": "plan-client-videos",
+      "agent": "cursor-grok-4.5-medium-fast",
+      "dependsOn": [
+        "validate-reference-bundle"
+      ],
+      "fanOut": "one bounded task per client",
+      "output": "<client-id>/plan.json",
+      "timeoutSeconds": 600
+    },
+    {
+      "id": "evaluate-plans",
+      "agent": "cursor-grok-4.5-high",
+      "dependsOn": [
+        "plan-client-videos"
+      ],
+      "output": "<client-id>/evaluation.json",
+      "timeoutSeconds": 300,
+      "loop": {
+        "maxIterations": 2,
+        "passThreshold": 0.9,
+        "onFail": "revise-plan-only"
+      }
+    },
+    {
+      "id": "deterministic-preflight",
+      "agent": "powershell-validator",
+      "dependsOn": [
+        "evaluate-plans"
+      ],
+      "output": "qa/preflight.json",
+      "timeoutSeconds": 60
+    },
+    {
+      "id": "render-local-proof",
+      "agent": "ffmpeg-storyboard-renderer",
+      "dependsOn": [
+        "deterministic-preflight"
+      ],
+      "condition": "approved local licensed assets exist",
+      "output": "<client-id>/renders/*-NOT-FOR-PUBLISH.mp4",
+      "timeoutSeconds": 900
+    },
+    {
+      "id": "render-grok-paid-plan",
+      "agent": "authenticated-grok-imagine-browser",
+      "dependsOn": [
+        "deterministic-preflight"
+      ],
+      "condition": "paid Grok session is verified, the exact local draft concept is selected, and the client reference manifest contains a verified logo plus an approved visual reference",
+      "output": "<client-id>/generated-clips",
+      "timeoutSeconds": 1800
+    },
+    {
+      "id": "render-grok-imagine",
+      "agent": "xai-video-adapter",
+      "dependsOn": [
+        "deterministic-preflight"
+      ],
+      "condition": "liveVideoGenerationEnabled and all live generation requirements are satisfied",
+      "output": "<client-id>/generated-clips",
+      "timeoutSeconds": 1800
+    },
+    {
+      "id": "package-review",
+      "agent": "deterministic-packager",
+      "dependsOn": [
+        "render-local-proof"
+      ],
+      "output": "review-manifest.json",
+      "timeoutSeconds": 120
+    }
+  ],
+  "handoffContract": {
+    "requiredFields": [
+      "workflowId",
+      "batchId",
+      "stepId",
+      "clientId",
+      "task",
+      "constraints",
+      "upstreamArtifacts",
+      "budgetTokens",
+      "timeoutSeconds"
+    ],
+    "contextPolicy": "pass exact client profile and referenced source manifests only",
+    "crossClientContext": "prohibited"
+  },
+  "authority": {
+    "cursorMayCreateLocalDrafts": true,
+    "cursorMayReadExactRoutedRepoContext": true,
+    "cursorMayInvokeLocalFFmpeg": true,
+    "cursorMayPreparePaidPlanImaginePrompts": true,
+    "cursorMustAttachVerifiedClientLogo": true,
+    "cursorMustAttachApprovedVisualReference": true,
+    "cursorMayRunTextOnlyClientGeneration": false,
+    "paidPlanImagineGenerationConsumesPlanAllowance": true,
+    "cursorMaySpend": false,
+    "cursorMayGeneratePaidVideoWithoutApproval": false,
+    "cursorMayPublish": false,
+    "cursorMaySend": false,
+    "cursorMayAlterLiveAccounts": false,
+    "marketingChiefOwnsCanonicalQueue": true,
+    "exactPreviewApprovalRequiredForDelivery": true
+  }
+}

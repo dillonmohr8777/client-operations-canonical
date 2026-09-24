@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 1080px; height: 1080px; overflow: hidden; }
+    body { font-family: Arial, Helvetica, sans-serif; }
+    .card {
+      --paper: #102a43;
+      --ink: #f4efd9;
+      --muted: #d8d3c0;
+      --blue: #2868ba;
+      position: relative;
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      background: var(--paper);
+      color: var(--ink);
+    }
+    .hero {
+      position: absolute;
+      inset: 0 0 auto;
+      width: 1080px;
+      height: 460px;
+      object-fit: cover;
+      object-position: var(--photo-position);
+      transform: scale(var(--photo-scale));
+      transform-origin: var(--photo-origin);
+    }
+    .shade {
+      position: absolute;
+      inset: 0 0 auto;
+      height: 460px;
+      background: linear-gradient(180deg, transparent 64%, rgba(4, 17, 30, .42));
+    }
+    .wave {
+      position: absolute;
+      top: 414px;
+      left: -40px;
+      width: 1160px;
+      height: 98px;
+      background: var(--paper);
+      border-radius: 50% 50% 0 0 / 42% 42% 0 0;
+      transform: rotate(-1.2deg);
+      border-top: 13px solid var(--blue);
+    }
+    .content {
+      position: absolute;
+      top: 445px;
+      left: 0;
+      width: 1080px;
+      height: 635px;
+      padding: 49px 74px 0;
+      text-align: center;
+    }
+    .tag {
+      display: inline-block;
+      margin-bottom: 21px;
+      padding: 13px 29px 11px;
+      border-radius: 9px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+    }
+    .headline {
+      max-width: 910px;
+      margin: 0 auto 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 45px;
+      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: -1.9px;
+      text-wrap: balance;
+    }
+    .deck {
+      max-width: 840px;
+      margin: 0 auto 24px;
+      color: var(--muted);
+      font-size: 19px;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+    .points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      max-width: 930px;
+      margin: 0 auto 12px;
+    }
+    .point { padding: 0 12px; }
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 43px;
+      height: 43px;
+      margin: 0 auto 9px;
+      border: 2px solid #527fae;
+      border-radius: 50%;
+      background: #173854;
+      color: #7db2f0;
+      font-family: Georgia, serif;
+      font-size: 22px;
+      font-weight: 800;
+    }
+    .point strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 15px;
+      line-height: 1.15;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+    }
+    .point span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.23;
+    }
+    .brandrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 150px;
+      margin-top: 0;
+    }
+    .logo {
+      display: block;
+      width: 130px;
+      height: 130px;
+      padding: 4px;
+      border-radius: 50%;
+      background: #102a43;
+      object-fit: contain;
+      transform: translateY(24px);
+    }
+    .strap {
+      position: absolute;
+      bottom: 52px;
+      left: 0;
+      width: 100%;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .8px;
+    }
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      width: 100%;
+      height: 48px;
+      background: #f4efd9;
+      color: #102a43;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 1.8px;
+    }
+    .footer i {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+    .compact .headline { font-size: 42px; }
+    .compact .deck { margin-bottom: 19px; font-size: 18px; }
+    .compact .points { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <img class="hero" alt="">
+    <div class="shade"></div>
+    <div class="wave"></div>
+    <section class="content">
+      <div class="tag"></div>
+      <h1 class="headline"></h1>
+      <p class="deck"></p>
+      <div class="points"></div>
+      <div class="brandrow"><img class="logo" alt="Omega Landscaping &amp; Concrete"></div>
+    </section>
+    <div class="strap"></div>
+    <div class="footer">
+      <span>OMEGALANDSCAPINGANDCONCRETE.COM</span>
+      <i></i>
+      <span>719-896-0663</span>
+    </div>
+  </main>
+  <script>
+    const data = [
+      {
+        photo: "../assets/omega-job-04.png",
+        tag: "Retaining Walls",
+        head: "A GOOD RETAINING WALL SOLVES THE SLOPE AND FINISHES THE LANDSCAPE",
+        deck: "Structure, drainage, and clean transitions should be planned together from the start.",
+        points: [
+          ["01", "Respect the grade", "Design the wall around the real slope and soil."],
+          ["02", "Manage water", "Drainage behind the wall protects the structure."],
+          ["03", "Finish the edges", "Beds and walks should connect cleanly."]
+        ],
+        strap: "BUILT FOR THE SITE. FINISHED FOR THE HOME.",
+        position: "50% 54%",
+        scale: "1",
+        origin: "center"
+      },
+      {
+        photo: "../assets/omega-job-03.png",
+        tag: "Landscape Details",
+        head: "THE TRANSITIONS ARE WHAT MAKE A LANDSCAPE FEEL FINISHED",
+        deck: "Rock, edging, grade, and planting areas work best when every boundary has a purpose.",
+        points: [
+          ["01", "Define the space", "Clean edges separate beds, paths, and lawn."],
+          ["02", "Guide the flow", "Grade and rock help water move intentionally."],
+          ["03", "Match the setting", "Materials should belong with the property."]
+        ],
+        strap: "THOUGHTFUL DETAILS. A MORE COMPLETE YARD.",
+        position: "50% 50%",
+        scale: "1",
+        origin: "center"
+      },
+      {
+        photo: "../assets/omega-job-05.png",
+        tag: "Patio Planning",
+        head: "A GREAT PATIO SHOULD CONNECT THE WHOLE BACKYARD",
+        deck: "The best outdoor spaces coordinate steps, concrete, pavers, planting beds, and circulation.",
+        points: [
+          ["01", "Plan the route", "Movement from the house should feel natural."],
+          ["02", "Coordinate surfaces", "Materials need clean, durable transitions."],
+          ["03", "Use every zone", "Connect gathering, lawn, and access areas."]
+        ],
+        strap: "ONE PLAN. ONE CONNECTED OUTDOOR SPACE.",
+        position: "50% 58%",
+        scale: "1",
+        origin: "center"
+      },
+      {
+        photo: "../assets/omega-job-06.png",
+        tag: "Colorado Landscape Design",
+        head: "PUT EVERY MATERIAL WHERE IT WORKS BEST",
+        deck: "A balanced Colorado yard can combine lawn, rock, plants, and paths without feeling pieced together.",
+        points: [
+          ["01", "Use lawn with purpose", "Keep green space where it adds real value."],
+          ["02", "Choose durable zones", "Rock and paths reduce upkeep in key areas."],
+          ["03", "Tie it together", "Repeating materials creates one cohesive plan."]
+        ],
+        strap: "SMART MATERIALS. A YARD THAT WORKS.",
+        position: "50% 57%",
+        scale: "1",
+        origin: "center"
+      }
+    ];
+    const index = Math.max(0, Math.min(3, Number(new URLSearchParams(location.search).get("i") || 0)));
+    const item = data[index];
+    const card = document.querySelector(".card");
+    if (index === 0) card.classList.add("compact");
+    const hero = document.querySelector(".hero");
+    hero.src = item.photo;
+    card.style.setProperty("--photo-position", item.position);
+    card.style.setProperty("--photo-scale", item.scale);
+    card.style.setProperty("--photo-origin", item.origin);
+    document.querySelector(".logo").src = "../assets/omega-logo-official.png";
+    document.querySelector(".tag").textContent = item.tag;
+    document.querySelector(".headline").textContent = item.head;
+    document.querySelector(".deck").textContent = item.deck;
+    document.querySelector(".points").innerHTML = item.points.map(point =>
+      `<div class="point"><div class="icon">${point[0]}</div><strong>${point[1]}</strong><span>${point[2]}</span></div>`
+    ).join("");
+    document.querySelector(".strap").textContent = item.strap;
+  </script>
+</body>
+</html>

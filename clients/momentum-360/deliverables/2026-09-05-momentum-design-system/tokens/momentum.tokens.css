@@ -1,0 +1,180 @@
+/* ==========================================================================
+   Momentum design tokens
+   Momentum Digital / Momentum 360 - Philadelphia
+   v1.0.0 - 2026-09-05
+
+   Every colour below is either MEASURED from something that ships
+   (needmomentum.com computed styles, the papaadvertising.com 1440x900 live
+   capture, or the ten radar builds at
+   momentum-prospect-radar-next10-2026-09-02c.netlify.app) or CHOSEN to fix a
+   measured failure. Which one it is, is written on the line.
+
+   Do not hand-edit a colour without re-running audit/contrast.py. That script
+   reads THIS FILE, not a copy of it, so a value that fails cannot ship.
+   Ratios in the comments are its output, not estimates.
+   ========================================================================== */
+
+:root {
+  /* --- ground ----------------------------------------------------------
+     CHOSEN. Warmer and lighter than the radar --paper (#fbf8f4) so a photo
+     sits on it without a cast, and lighter than needmomentum's #f5f5f5,
+     which is a grey the brand never chose - it is a WordPress default.  */
+  --m-paper:   #fbfaf7;
+  --m-surface: #eceae4;   /* CHOSEN. Cards, panels, table zebra.            */
+  --m-ink:     #14181b;   /* CHOSEN. 17.10:1 on paper, 14.84:1 on surface.  */
+  --m-muted:   #565f64;   /* CHOSEN. 6.25:1 on paper, 5.43:1 on surface.
+                             The radar kit derives --muted from --paper and
+                             then prints it on --panel, where it lands at
+                             4.28-4.49:1 on 9 of 10 sites. This value is
+                             validated on BOTH grounds, which is the fix.    */
+
+  /* --- brand -----------------------------------------------------------
+     MEASURED from needmomentum.com: rgb(30,115,190). It already clears AA
+     with white (4.94:1), so it is kept rather than "modernised".           */
+  --m-brand:            #1e73be;
+  --m-on-brand:         #ffffff;   /* 4.94:1                                */
+  --m-on-brand-muted:   #f2f6fa;   /* 4.55:1  CHOSEN - the dimmest white
+                                      that still clears AA on brand.        */
+  --m-accent-on-brand:  #ffc46b;   /* 3.14:1  LARGE TEXT ONLY. See note 1.  */
+
+  /* --- deep ------------------------------------------------------------
+     CHOSEN. The dark field the radar kit calls --brand-2. Its version is
+     derived per-site and lands at 1.78-2.86:1 against its own --brand, so
+     headings on the deep field are invisible on 7 of 10 sites. Here the
+     deep field is fixed and its on-colours are measured against it.        */
+  --m-deep:             #0e1a22;
+  --m-nav:              #22303a;   /* CHOSEN. Papa uses #40494e charcoal;
+                                      this is the same idea, cooler, so the
+                                      brand blue reads against it.          */
+  --m-on-deep:          #f2f6f8;   /* 16.24:1 on deep, 12.44:1 on nav       */
+  --m-on-deep-muted:    #b4c3cc;   /*  9.77:1 on deep,  7.49:1 on nav       */
+  --m-accent-on-deep:   #f9a03f;   /*  8.51:1 on deep,  6.53:1 on nav       */
+
+  /* --- accent ----------------------------------------------------------
+     MEASURED from needmomentum.com: rgb(245,131,32). The live site also
+     ships rgb(251,131,0) on the same page - two oranges, one brand. This
+     one wins because it is the one on the primary CTA.
+
+     Note 2: no single orange can be both a field and a text colour.
+     #f58320 with white is 2.58:1 and with near-black is 7.19:1. So the
+     accent is split by JOB, not by shade preference.                       */
+  --m-accent:      #f58320;   /* FIELD ONLY. Pill buttons, rules, marks.    */
+  --m-on-accent:   #1a1208;   /* 7.19:1 on accent. Never white on orange.   */
+  --m-accent-ink:  #96490b;   /* TEXT ONLY. 6.18:1 on paper, 5.36:1 on
+                                 surface. Same hue family, text-legal.      */
+
+  /* --- state -----------------------------------------------------------
+     CHOSEN, and validated on paper AND surface, because form errors get
+     rendered inside cards. Bridge shipped error text at 2.22:1 by checking
+     only one ground.                                                       */
+  --m-danger:   #b3261e;   /* 6.26:1 paper, 5.43:1 surface                  */
+  --m-success:  #16703c;   /* 5.89:1 paper, 5.11:1 surface                  */
+  --m-link:     #1a68ac;   /* 5.56:1 paper, 4.82:1 surface                  */
+
+  /* --- lines and focus -------------------------------------------------- */
+  --m-line:        #dcd9d2;  /* decorative hairline; NOT a contrast surface */
+  --m-line-strong: #767d83;  /* 4.00:1 vs paper - input borders, UI edges   */
+  --m-focus:       #1e73be;  /* 4.73:1 vs paper, 3.57:1 vs deep             */
+  --m-focus-halo:  #ffffff;  /* 4.94:1 vs focus - carries the ring when the
+                                control itself is brand-coloured            */
+
+  /* --- type ------------------------------------------------------------
+     MEASURED from the radar builds: Archivo Black / Nunito Sans / Caveat is
+     what all ten actually load and is the closest free stand-in for Papa's
+     Typekit stack (bebas-neue-pro / montserrat / verveine). Kept because it
+     ships. needmomentum.com renders five families on one page (Roboto,
+     Open Sans, Poppins, Hind, and bare sans-serif); that is the drift.     */
+  --m-font-display: "Archivo Black", "Anton", "Arial Black", system-ui, sans-serif;
+  --m-font-text:    "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --m-font-script:  "Caveat", "Segoe Script", cursive;
+  --m-font-mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Steps are ratio-spaced, not nudged: 1.333 at the display end so the
+     jumps are real (density 4 means type carries the page), 1.15 at the
+     small end where hierarchy is functional rather than expressive.        */
+  --m-fs-micro:   0.6875rem;                            /* 11px, caps only  */
+  --m-fs-xs:      0.79rem;
+  --m-fs-sm:      0.91rem;
+  --m-fs-body:    clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --m-fs-lead:    clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  --m-fs-h4:      clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
+  --m-fs-h3:      clamp(1.5rem, 1.25rem + 1.2vw, 2.25rem);
+  --m-fs-h2:      clamp(2.1rem, 1.4rem + 3.4vw, 4rem);
+  --m-fs-h1:      clamp(2.75rem, 1.6rem + 5.4vw, 5.5rem);
+  --m-fs-display: clamp(3.25rem, 1.4rem + 8.4vw, 7.5rem);  /* Papa h2 = 100px */
+
+  --m-lh-display: 0.92;
+  --m-lh-head:    1.06;
+  --m-lh-lead:    1.35;
+  --m-lh-body:    1.6;
+
+  --m-track-display: -0.02em;
+  --m-track-caps:     0.14em;   /* MEASURED: radar --pa-track-wide          */
+  --m-track-body:     0.005em;
+
+  --m-weight-body: 400;
+  --m-weight-mid:  600;
+  --m-weight-bold: 800;
+
+  /* --- space -----------------------------------------------------------
+     MEASURED base scale from the radar builds (--s-1 .. --s-10), kept
+     verbatim so existing markup ports without re-measuring.                */
+  --m-s-1: 0.25rem;  --m-s-2: 0.5rem;  --m-s-3: 0.75rem;  --m-s-4: 1rem;
+  --m-s-5: 1.5rem;   --m-s-6: 2rem;    --m-s-7: 3rem;     --m-s-8: 4rem;
+  --m-s-9: 6rem;     --m-s-10: 8rem;
+
+  --m-section-y: clamp(4.5rem, 9vw, 8rem);   /* MEASURED: radar --pa-section-y */
+  --m-gutter:    clamp(1.25rem, 4vw, 3rem);  /* MEASURED: radar --pa-gutter    */
+  --m-maxw:      1240px;                     /* MEASURED: radar --maxw
+                                                (Papa ships 1310px)            */
+  --m-measure:   66ch;
+
+  /* --- radius ----------------------------------------------------------
+     MEASURED from the radar builds: exactly six values ship, and they are
+     the same six on all ten sites. needmomentum.com renders twenty. The
+     kit is right; the marketing site is the outlier.                       */
+  --m-r-sm:   6px;
+  --m-r-md:   12px;
+  --m-r-lg:   18px;
+  --m-r-pill: 999px;     /* MEASURED: Papa button border-radius 50px at 60px
+                            tall is a pill; 999px is the same shape.        */
+
+  /* --- elevation -------------------------------------------------------
+     MEASURED: radar --pa-shadow. Two steps only. Shadow is depth, never
+     glow: no coloured or saturated shadows anywhere in this system.        */
+  --m-elev-1: 0 1px 2px rgba(14, 26, 34, 0.10),
+              0 6px 16px rgba(14, 26, 34, 0.07);
+  --m-elev-2: 0 18px 40px -22px rgba(10, 12, 16, 0.45);
+  --m-elev-inset: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* --- motion ----------------------------------------------------------
+     MEASURED. --m-ease is the radar kit's --pa-ease, on all ten sites.
+     --m-ease-swap is Papa's header caption/mark swap curve, measured frame
+     by frame in the desktop spec.                                          */
+  --m-ease:      cubic-bezier(0.2, 0.7, 0.2, 1);
+  --m-ease-swap: cubic-bezier(0.85, 0, 0.15, 1);
+  --m-ease-out:  ease-out;
+
+  --m-dur-1: 0.15s;   /* MEASURED: Papa button transition                   */
+  --m-dur-2: 0.25s;   /* MEASURED: radar hover / Papa header                */
+  --m-dur-3: 0.5s;    /* MEASURED: radar --pa-dur, scroll reveal            */
+  --m-dur-4: 0.8s;    /* MEASURED: Papa header swap                         */
+
+  --m-lift: 3px;      /* hover displacement - motion that moves, not tints  */
+}
+
+/*  Note 1 - the one pair that cannot reach AA at body size.
+    Orange text on the brand-blue field tops out at 3.44:1 for any orange
+    still recognisable as the brand orange. So --m-accent-on-brand is
+    declared LARGE-TEXT-ONLY (3.14:1 >= 3.0) and the system routes small
+    orange text onto --m-deep instead, where --m-accent-on-deep is 8.51:1.
+    This is the exact defect the radar batch ships: --accent on --brand at
+    1.01-2.72:1 on 6 of 10 sites, in the circular seal and the hero eyebrow. */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --m-dur-1: 0.01ms; --m-dur-2: 0.01ms;
+    --m-dur-3: 0.01ms; --m-dur-4: 0.01ms;
+    --m-lift: 0px;
+  }
+}

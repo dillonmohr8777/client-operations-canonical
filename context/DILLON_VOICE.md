@@ -66,7 +66,7 @@ Use one to four short paragraphs. Sound warm, fast, and practical. Put the answe
 - Use clean mobile-readable HTML, not literal Markdown.
 - Avoid hyphens, en dashes, em dashes, asterisks, and dash-style punctuation in the rendered body.
 - Keep routine replies short and use a list only when grouped information benefits from one.
-- Append the exact DM Marketing Specialist signature from `C:\Users\dillo\.codex\email-assets\dm-marketing-specialist\signature.html`.
+- Select a signature only after verifying the exact From mailbox and client identity. `C:\Users\dillo\.codex\email-assets\dm-marketing-specialist\signature.html` is reserved for `dillon@immohrtalmarketing.com` and IMMOHRTAL communications only. Never use it for Momentum 360, Need Momentum, Jason Fallon, a Momentum client, `dillonmohr8777@gmail.com`, or any other mailbox. If the correct mailbox-specific signature is not verified, omit the custom footer and keep the message in draft rather than substituting IMMOHRTAL branding.
 - Draft proactively, but never send without explicit approval for that delivery.
 
 ### Executive reports and recommendations

@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "clientId": "fagan-painting",
+  "workItemId": "wi-20260715-0002",
+  "evidenceType": "read_only_lead_disposition_recheck",
+  "observedAt": "2026-08-06T16:01:11.7724659+00:00",
+  "localObservationDate": "2026-08-06",
+  "privacy": "redacted",
+  "containsSecrets": false,
+  "containsDirectIdentifiers": false,
+  "containsRawCommunications": false,
+  "externalActionTaken": false,
+  "canonicalWriteAttempted": false,
+  "scope": {
+    "mailboxClass": "connected-operator-mailbox",
+    "canonicalLeadCount": 2,
+    "exactLeadThreadsRead": 2,
+    "aggregateFeedbackThreadRead": true,
+    "exactLeadIdentifierSearchesCompleted": 1,
+    "prospectContactAttempted": false
+  },
+  "observedFacts": [
+    {
+      "title": "Canonical client route",
+      "locator": "registry/clients.json#client=fagan-painting",
+      "observedAt": "2026-08-06T16:01:11.7724659+00:00",
+      "paraphrase": "The current registry contains exactly one active Fagan Painting route with canonical ID fagan-painting.",
+      "confidence": "high"
+    },
+    {
+      "title": "First exact canonical lead thread",
+      "locator": "gmail://thread/19f63d38529ca576",
+      "observedAt": "2026-08-06T16:01:11.7724659+00:00",
+      "paraphrase": "The exact lead thread still contains the original notification only and no newer reply, sent follow-up, or disposition.",
+      "confidence": "high"
+    },
+    {
+      "title": "Second exact canonical lead thread",
+      "locator": "gmail://thread/19f65bc99e5aa93a",
+      "observedAt": "2026-08-06T16:01:11.7724659+00:00",
+      "paraphrase": "The exact lead thread still contains the original notification plus a non-sent draft in Trash and no client reply or verified disposition.",
+      "confidence": "high"
+    },
+    {
+      "title": "Forwarded delivery record",
+      "locator": "gmail://message/FMfcgzQhVNbtJRGfHXfwHVzgVnDXMQjx",
+      "observedAt": "2026-08-06T16:01:11.7724659+00:00",
+      "paraphrase": "A same-day forward confirms the second notification was copied into the connected operator mailbox, but it does not establish client handling or outcome.",
+      "confidence": "high"
+    },
+    {
+      "title": "Later client outcome feedback",
+      "locator": "gmail://thread/19f811fe324b1b1d",
+      "observedAt": "2026-08-06T16:01:11.7724659+00:00",
+      "paraphrase": "The client reported aggregate campaign dispositions and one unspecified estimate, but the feedback does not bind an outcome to either exact canonical lead.",
+      "confidence": "high"
+    },
+    {
+      "title": "Current exact-identifier search",
+      "locator": "gmail://search/fagan-two-canonical-lead-identifiers-2026-08-06",
+      "observedAt": "2026-08-06T16:01:11.7724659+00:00",
+      "paraphrase": "The current combined exact-identifier search returned only the known notifications, operator copies, one forwarded delivery record, and the aggregate feedback thread; no newer source established either disposition.",
+      "confidence": "high"
+    }
+  ],
+  "inferences": [
+    {
+      "statement": "Neither lead can be classified as qualified, lost, booked, estimated, unreachable, or spam from the currently authorized operator-mailbox evidence.",
+      "basis": [
+        "Both exact lead threads remain without verified follow-up or disposition.",
+        "The later feedback is aggregate and does not identify which exact lead became an estimate."
+      ],
+      "confidence": "high"
+    }
+  ],
+  "unavailableFields": [
+    {
+      "field": "firstCanonicalLeadDisposition",
+      "status": "unknown",
+      "reason": "No exact lead-level outcome is present in the connected operator mailbox."
+    },
+    {
+      "field": "secondCanonicalLeadDisposition",
+      "status": "unknown",
+      "reason": "No exact lead-level outcome is present in the connected operator mailbox."
+    },
+    {
+      "field": "canonicalClientMailboxProcessing",
+      "status": "not_verified",
+      "reason": "The connected operator mailbox cannot prove handling inside the canonical client mailbox."
+    },
+    {
+      "field": "crmOrZapierDisposition",
+      "status": "not_verified",
+      "reason": "No exact authorized downstream record was available in this evidence lane."
+    }
+  ],
+  "blocker": {
+    "class": "human_authentication_or_exact_downstream_access",
+    "summary": "Completion still requires read-only access to the canonical Fagan mailbox or an exact CRM or Zapier destination record. Aggregate feedback must not be used to invent individual dispositions."
+  },
+  "marketingChiefHandoff": {
+    "recommendedState": "blocked",
+    "recommendedNextAction": "Route the exact canonical mailbox or downstream-system read-only access through the approved access workflow, then reconcile only source-bound lead-level outcomes.",
+    "queueMutationRequested": false,
+    "queueMutationDeferredReason": "The canonical worktree currently contains uncommitted queue revisions 336 through 380; this recheck does not change the work-item state and should not absorb unrelated pending queue changes."
+  }
+}

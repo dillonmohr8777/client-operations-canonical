@@ -1,0 +1,75 @@
+{
+  "state": "DRAFT",
+  "client": "momentum-360",
+  "pilot": "offline-review-only",
+  "workers": {
+    "sean-operations": {
+      "owner": "Sean Boyle",
+      "lanes": ["operations"],
+      "public_worker": true,
+      "may_emit": ["draft_packet"],
+      "must_stop_for": ["send", "post", "publish", "spend", "mfa", "destructive", "client_message"]
+    },
+    "mac-revenue-reporting": {
+      "owner": "Mac Frederick",
+      "lanes": ["revenue", "reporting"],
+      "public_worker": true,
+      "may_emit": ["draft_packet"],
+      "must_stop_for": ["send", "post", "publish", "spend", "payment", "client_message"]
+    },
+    "melissa-silber-marketing": {
+      "owner": "Melissa Silber",
+      "lanes": ["marketing"],
+      "public_worker": true,
+      "may_emit": ["draft_packet"],
+      "must_stop_for": ["send", "post", "publish", "spend", "client_message"]
+    },
+    "melissa-rigby-delivery": {
+      "owner": "Melissa Rigby",
+      "lanes": ["delivery"],
+      "public_worker": true,
+      "identity_state": "pending_confirmation",
+      "may_emit": ["draft_packet"],
+      "must_stop_for": ["client_message", "calendar_send", "scope_commitment"]
+    },
+    "jason-sales": {
+      "owner": "Jason Fallon",
+      "lanes": ["sales"],
+      "public_worker": true,
+      "may_emit": ["draft_packet"],
+      "must_stop_for": ["send", "call", "sms", "crm_mutation", "client_message"]
+    },
+    "shared-verifier": {
+      "owner": "Shared Verifier",
+      "lanes": ["verification"],
+      "public_worker": false,
+      "may_emit": ["validation_result"],
+      "must_stop_for": ["send", "post", "publish", "spend", "mutation"]
+    }
+  },
+  "schema": {
+    "top_required": ["state", "client", "observed_at", "scope", "cards"],
+    "card_required": ["id", "owner", "lane", "observed_date", "status", "summary", "source_refs", "next_action", "acceptance", "depends_on"],
+    "source_ref_prefix": "https://momentum3d.slack.com/archives/",
+    "source_ref_pattern": "^https://momentum3d\\.slack\\.com/archives/C[A-Z0-9]+/p[0-9]{16}$",
+    "draft_statuses": ["observed_unresolved", "observed_request", "proposed_not_live", "identity_pending"],
+    "suppress_statuses": ["resolved_evidenced"],
+    "forbidden_statuses": ["completed", "sent", "posted", "published", "charged", "purchased", "live", "done"]
+  },
+  "policies": {
+    "offline_only": true,
+    "network_allowed": false,
+    "live_actions_allowed": false,
+    "output_state": "DRAFT",
+    "source_dedup": "Replay is deterministic for the same input and normalizes source refs for comparison. It does not implement a durable delivery ledger or prove duplicate-delivery prevention. Do not merge different card ids just because they share a source ref.",
+    "lead_entity_dedup": "Lead/entity deduplication requires stable CRM IDs or source-event IDs. Do not infer duplicate leads from names, emails hidden in summaries, or shared Slack source refs.",
+    "assistant_acceptance": "For assistant-loop evidence, acceptance requires no repeat of already answered fields, exact invocation triggers, freeform answers accepted when plain text supplies the field, artifact completion proven by links or receipts, and tool blockers named exactly. This replay carries that contract; it does not implement NLP detection.",
+    "cost_routing": {
+      "routine": {"model": "gpt-5.6-luna", "reasoning_effort": "medium"},
+      "demanding": {"model": "gpt-5.5", "reasoning_effort": "xhigh"},
+      "forbidden_without_explicit_request": ["gpt-6-astra"],
+      "max_workers": 3,
+      "cost_claims": "No dollar claims without measured usage receipts."
+    }
+  }
+}

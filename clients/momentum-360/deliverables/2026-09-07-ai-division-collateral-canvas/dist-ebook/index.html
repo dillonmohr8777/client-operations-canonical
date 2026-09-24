@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Show up in the answer &mdash; Momentum AI</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito+Sans:wght@400;700;800&family=Caveat:wght@600&display=swap">
+<style>
+  :root {
+    --paper:#FBF8F4; --panel:#F0ECE5; --deep:#0E1417; --deep-raised:#1A2226;
+    --ink:#14181B; --muted:#636465; --line:#DCD6CC; --line-strong:#8E8578;
+    --brand:#155E86; --brand-lift:#3897CC; --on-brand:#FFFFFF;
+    --signal:#E27113; --signal-ink:#A35309; --on-signal:#14181B;
+    --on-deep:#F4F1EC; --on-deep-muted:#8A9296;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; overflow-x: hidden; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Nunito Sans', 'Segoe UI', system-ui, sans-serif; }
+  a { color: var(--brand); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  h1, h2, .display { font-family: 'Archivo Black', 'Arial Black', Impact, sans-serif; letter-spacing: -0.02em; margin: 0; }
+  .eyebrow { font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand); }
+  .eyebrow.on-dark { color: var(--brand-lift); }
+  .script { font-family: Caveat, cursive; font-weight: 600; color: var(--signal-ink); }
+
+  /* cover */
+  .cover { background: var(--deep); color: var(--on-deep); padding: 64px 0 72px; position: relative; overflow: hidden; }
+  .cover::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 90px; background: var(--signal); }
+  .cover .wrap { position: relative; }
+  .cover h1 { font-size: clamp(48px, 11vw, 96px); line-height: 0.92; margin-top: 20px; }
+  .cover p.lead { font-size: clamp(17px, 2.4vw, 21px); line-height: 1.5; max-width: 520px; margin-top: 24px; }
+  .cover .script { font-size: clamp(20px, 3vw, 28px); display: inline-block; transform: rotate(-2deg); margin-top: 18px; }
+  .cover .byline { display: flex; gap: 40px; flex-wrap: wrap; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--deep-raised); }
+  .cover .byline b { display: block; font-size: 15px; } .cover .byline span { font-size: 13px; color: var(--on-deep-muted); }
+
+  /* contents */
+  .contents { padding: 56px 0; }
+  .contents ol { list-style: none; margin: 24px 0 0; padding: 0; border-top: 1px solid var(--line); }
+  .contents li { display: grid; grid-template-columns: 56px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .contents .n { font-family: 'Archivo Black', sans-serif; font-size: 28px; color: var(--brand); }
+  .contents .t { font-weight: 800; font-size: 18px; } .contents .d { color: var(--muted); font-size: 14.5px; margin-top: 2px; }
+
+  /* chapter spread */
+  .spread { background: var(--panel); padding: 64px 0; }
+  .spread h2 { font-size: clamp(30px, 5vw, 44px); line-height: 1.05; margin-top: 12px; }
+  .spread p { font-size: clamp(16px, 1.8vw, 19px); line-height: 1.55; max-width: 62ch; margin-top: 18px; }
+  .stat-row { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 32px; }
+  .stat { background: var(--deep); color: var(--on-deep); padding: 22px 26px; box-shadow: 10px 12px 0 rgba(226,113,19,.28); flex: 1 1 260px; }
+  .stat .num { font-family: 'Archivo Black', sans-serif; font-size: 44px; color: var(--signal); line-height: 1; }
+  .stat p { color: var(--on-deep); font-size: 14px; margin-top: 8px; max-width: none; }
+  .stat .src { color: var(--on-deep-muted); font-size: 12px; margin-top: 6px; }
+
+  /* scorecard */
+  .scorecard { padding: 64px 0 80px; }
+  .scorecard h2 { font-size: clamp(28px, 4.5vw, 40px); margin-top: 12px; }
+  .rows { margin-top: 24px; border-bottom: 1px solid var(--line); }
+  .row { display: grid; grid-template-columns: 28px 32px 1fr; gap: 12px; align-items: center; padding: 10px 8px; border-top: 1px solid var(--line); cursor: pointer; transition: background .12s ease; }
+  .row:hover { background: var(--panel); }
+  .row.checked { background: var(--panel); }
+  .box { width: 24px; height: 24px; border: 2px solid var(--line-strong); display: flex; align-items: center; justify-content: center; }
+  .row.checked .box { background: var(--brand); border-color: var(--brand); }
+  .box svg { display: none; } .row.checked .box svg { display: block; }
+  .num2 { font-family: 'Archivo Black', sans-serif; font-size: 14px; color: var(--muted); }
+  .row.checked .num2 { color: var(--brand); }
+  .qtext { font-size: 14.5px; font-weight: 700; line-height: 1.35; }
+  .verdict { margin-top: 28px; background: var(--deep); color: var(--on-deep); padding: 22px 26px; display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center; box-shadow: 10px 12px 0 rgba(226,113,19,.28); }
+  .verdict .score { font-family: 'Archivo Black', sans-serif; font-size: 52px; color: var(--signal); }
+  .verdict .score small { font-size: 18px; color: var(--on-deep-muted); }
+  .verdict .label { font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand-lift); }
+  .verdict .title { font-size: 19px; font-weight: 800; margin-top: 2px; }
+  .verdict .desc { font-size: 13.5px; color: var(--on-deep-muted); margin-top: 4px; }
+  .bar-track { height: 6px; background: var(--deep-raised); margin-top: 12px; }
+  .bar-fill { height: 6px; background: var(--signal); width: 0%; transition: width .4s cubic-bezier(.16,1,.3,1); }
+
+  .cta-band { background: var(--brand); color: #fff; padding: 44px 0; text-align: center; }
+  .cta-band a { color: #fff; font-weight: 800; text-decoration: underline; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition-duration: 1ms !important; } }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="wrap">
+    <div class="eyebrow on-dark">Momentum AI Division &middot; Philadelphia</div>
+    <h1>Show up<br>in the<br>answer.</h1>
+    <p class="lead">How Philadelphia businesses get recommended by ChatGPT, Google AI Overviews and Perplexity &mdash; and what it costs when they don't.</p>
+    <div class="script">the answer is the new first page</div>
+    <div class="byline">
+      <div><b>Dillon Mohr</b><span>AI Marketing Director, Momentum Digital</span></div>
+      <div><b>needmomentum.com</b><span>Inc. 5000, three consecutive years</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="contents">
+  <div class="wrap">
+    <div class="eyebrow">What's inside</div>
+    <ol>
+      <li><span class="n">01</span><div><div class="t">Search moved.</div><div class="d">Where your customers ask now, and why the answer has no page two.</div></div></li>
+      <li><span class="n">02</span><div><div class="t">How an answer gets written.</div><div class="d">What ChatGPT, Google AI Overviews and Perplexity pull from before they name a business.</div></div></li>
+      <li><span class="n">03</span><div><div class="t">The Philadelphia test.</div><div class="d">Ten prompts to run tonight &mdash; try the interactive version below.</div></div></li>
+      <li><span class="n">04</span><div><div class="t">Ten fixes that move you into the answer.</div><div class="d">From Google Business Profile parity to a page that answers in plain sentences.</div></div></li>
+      <li><span class="n">05</span><div><div class="t">What it costs.</div><div class="d">To ignore it, and to fix it. Real numbers, no mystery retainer.</div></div></li>
+      <li><span class="n">06</span><div><div class="t">Proof.</div><div class="d">A B2B manufacturer's AI visibility score of 35, 1,000+ visibility keywords, organic clicks up 129% in a year.</div></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="spread">
+  <div class="wrap">
+    <div class="eyebrow">Chapter one</div>
+    <h2>Search moved.<br>Did your business?</h2>
+    <p>For twenty years, being found meant ranking on a page of ten links. In 2026 a growing share of your customers ask a question and read one answer. There is no page two. Either your business is in the answer, or a competitor is.</p>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="num">+1,324%</div>
+        <p>AI referral traffic to US retail websites, October 2024 to May 2026.</p>
+        <div class="src">Semrush 2026 AI Visibility Index, 126M US prompts analyzed.</div>
+      </div>
+      <div class="stat">
+        <div class="num">81%</div>
+        <p>of businesses managing search and AI visibility together report more leads from AI, vs. 36% managing them apart.</p>
+        <div class="src">Same index, June 2026.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scorecard">
+  <div class="wrap">
+    <div class="eyebrow">Chapter three &middot; the Philadelphia test</div>
+    <h2>Are you in the answer?</h2>
+    <p style="color:var(--muted); font-size:15px; margin-top:8px;">Ten yes-or-no questions. Tap the ones that are true for your business today. Nothing you check here leaves your browser.</p>
+    <div class="rows" id="rows"></div>
+    <div class="verdict">
+      <div>
+        <div class="score" id="score">0<small> / 10</small></div>
+        <div class="bar-track"><div class="bar-fill" id="bar"></div></div>
+      </div>
+      <div>
+        <div class="label">Your verdict</div>
+        <div class="title" id="vTitle">Invisible</div>
+        <div class="desc" id="vDesc">AI engines have little to cite yet. Start with fixes one, two and nine in chapter four.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">Want the full breakdown for your business? <a href="https://www.needmomentum.com/free-website-seo-audit/">Request the free AI Search Snapshot &rarr;</a></div>
+
+<script>
+var ITEMS = [
+  "When you ask ChatGPT for the best [your service] in Philadelphia, your business is named.",
+  "Your Google Business Profile name, address, phone and hours match your website exactly.",
+  "Your site answers the ten questions customers ask most, in plain sentences, one per section.",
+  "Every service page carries structured data (FAQ or service schema) that a machine can read.",
+  "You have Google reviews from the last thirty days, and every review has a reply.",
+  "At least three third-party sites mention your business by name: directories, press, associations.",
+  "Your site loads in under three seconds on a phone.",
+  "Someone checks monthly which AI engines cite you, and writes the number down.",
+  "Your robots file lets AI crawlers in, and you publish an llms.txt.",
+  "Your prices, service area and who you are not for are stated on the site."
+];
+var checkSvg = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"></path></svg>';
+var rowsEl = document.getElementById('rows');
+var state = {};
+ITEMS.forEach(function (text, i) {
+  var row = document.createElement('div');
+  row.className = 'row';
+  row.innerHTML = '<div class="box">' + checkSvg + '</div><div class="num2">' + String(i + 1).padStart(2, '0') + '</div><div class="qtext">' + text + '</div>';
+  row.addEventListener('click', function () { state[i] = !state[i]; row.classList.toggle('checked', state[i]); update(); });
+  rowsEl.appendChild(row);
+});
+function update() {
+  var score = Object.keys(state).filter(function (k) { return state[k]; }).length;
+  document.getElementById('score').innerHTML = score + '<small> / 10</small>';
+  document.getElementById('bar').style.width = (score * 10) + '%';
+  var title = 'Invisible', desc = 'AI engines have little to cite yet. Start with fixes one, two and nine in chapter four.';
+  if (score >= 8) { title = 'Recommended'; desc = 'Protect it. Track the number monthly and keep third-party mentions growing.'; }
+  else if (score >= 5) { title = 'Mentioned'; desc = 'You appear, inconsistently. Tracking plus an answer-first page gets you recommended.'; }
+  document.getElementById('vTitle').textContent = title;
+  document.getElementById('vDesc').textContent = desc;
+}
+</script>
+</body>
+</html>

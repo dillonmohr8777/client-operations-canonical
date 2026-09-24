@@ -1,10 +1,10 @@
 const KEYS = {
-  event: "momentum-workshop-event-v3",
+  event: "momentum-workshop-event-v4",
   registrations: "momentum-workshop-registrations-v2",
 };
 const defaults = {
   title: "Build a Business That Grows Without You",
-  date: "2026-08-06",
+  date: "2026-08-27",
   time: "12:00",
   duration: "60",
   timezone: "America/New_York",
@@ -58,7 +58,7 @@ registrationForm.addEventListener("submit", async (event) => {
     company: clean(form.get("company")),
     constraint: clean(form.get("constraint")),
     reminders: form.get("reminders") === "on",
-    calendarConsent: form.get("calendar_consent") === "on",
+    calendarConsent: form.get("calendar_open") === "on",
     calendarProvider: clean(form.get("calendar_provider")),
     createdAt: new Date().toISOString(),
   };
@@ -93,7 +93,7 @@ registrationForm.addEventListener("submit", async (event) => {
   if (calendarWindow) {
     calendarWindow.opener = null;
   }
-  setSubmitState("loading", "Queuing your calendar invitation", "…");
+  setSubmitState("loading", "Saving your registration", "…");
   try {
     if (hostedSubmission) {
       await submitRegistration(form);
@@ -182,6 +182,7 @@ document
   .addEventListener("click", () => previewDialog.close());
 
 setupShell();
+setupEmbedMode();
 setupReveal();
 setupExperience();
 setupAgendaControls();
@@ -193,6 +194,14 @@ updateEventDetails();
 renderRegistrants();
 updateMetrics();
 showView(window.location.hash === "#operator" ? "operator" : "register");
+
+function setupEmbedMode() {
+  if (new URLSearchParams(window.location.search).get("embed") !== "1") return;
+  document.documentElement.classList.add("embed-mode");
+  document.querySelectorAll('[data-route="operator"]').forEach((control) => {
+    control.hidden = true;
+  });
+}
 
 function showView(name) {
   const updateView = () => {

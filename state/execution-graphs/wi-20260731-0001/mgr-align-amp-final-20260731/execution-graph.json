@@ -1,0 +1,770 @@
+{
+    "schemaVersion":  1,
+    "graphRunId":  "mgr-align-amp-final-20260731",
+    "graphRevision":  6,
+    "workflowId":  "marketing-chief-execution-graph",
+    "createdAt":  "2026-07-31T14:00:29.2940745+00:00",
+    "updatedAt":  "2026-07-31T14:01:05.5937562+00:00",
+    "status":  "handoff_ready",
+    "queueSnapshot":  {
+                          "locator":  "queue/work-items.json",
+                          "revision":  332,
+                          "sha256":  "BF3E98EEAF50E0C3B2FAFD75637346906D41ECF86745AD0488A45867EBD43FEA",
+                          "capturedAt":  "2026-07-31T14:00:29.2940745+00:00"
+                      },
+    "workItem":  {
+                     "id":  "wi-20260731-0001",
+                     "expectedVersion":  3,
+                     "contentSha256":  "886194E0BD9C05E53FC64FE9A1030E169430FEA3C5D7A7BA066D4371AF63C573",
+                     "clientId":  "align-hcm",
+                     "title":  "Verify Align HCM AMP issue and remediation scope",
+                     "status":  "verification",
+                     "lane":  "normal",
+                     "priority":  "P1",
+                     "actionClass":  "local_research",
+                     "nextAction":  "Perform a read-only public and local-source verification of Align HCM AMP usage, capture current evidence, and prepare a local remediation brief without changing the live site.",
+                     "definitionOfDone":  [
+                                              "The exact active Align client route and alert source are preserved.",
+                                              "Current public AMP signals and affected scope are checked without mutating production.",
+                                              "A redacted local evidence artifact records findings, uncertainty, and recommended remediation.",
+                                              "An independent verification check confirms that no external action or canonical write was attempted by the worker."
+                                          ],
+                     "sourceLocator":  "agent-os-run:20260730-101244-5fb934cf/task.json",
+                     "evidenceRefs":  [
+                                          "agent-os-run:20260730-101244-5fb934cf/task.json",
+                                          "clients/align-hcm/evidence/2026-07-31-amp-issue-readonly-verification.json",
+                                          "state/execution-graphs/wi-20260731-0001/mgr-align-amp-review-20260731/execution-graph.json",
+                                          "sha256:0CA1F9889242A6E69D5B7E6F00D075FE0BB1E779ECF57ECAB9237744E687D36B",
+                                          "state/execution-graphs/wi-20260731-0001/mgr-align-amp-verify-20260731/execution-graph.json",
+                                          "sha256:D521C2EBD623579FE907DBCFAB7242291D9D71C09FFC53593F3B83CC5B3DB0BC"
+                                      ],
+                     "artifactRefs":  [
+                                          "clients/align-hcm/evidence/2026-07-31-amp-issue-readonly-verification.json",
+                                          "clients/align-hcm/deliverables/2026-07-31-amp-issue-remediation-brief.md"
+                                      ],
+                     "dependencies":  [
+
+                                      ],
+                     "approval":  {
+                                      "tier":  "automatic",
+                                      "status":  "not_required",
+                                      "gate":  "none"
+                                  }
+                 },
+    "scope":  {
+                  "canonicalProject":  "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
+                  "clientRoot":  "clients/align-hcm",
+                  "graphLocator":  "state/execution-graphs/wi-20260731-0001/mgr-align-amp-final-20260731/execution-graph.json",
+                  "canonicalWriteAllowed":  false,
+                  "externalActionAllowed":  false,
+                  "durableMemoryWriteAllowed":  false,
+                  "privacy":  "redacted"
+              },
+    "retrieval":  {
+                      "strategy":  "exact-plus-graph",
+                      "exactBindingRequired":  true,
+                      "semanticBindingAllowed":  false,
+                      "sourceCount":  6,
+                      "artifactCount":  2
+                  },
+    "nodes":  [
+                  {
+                      "id":  "scope-guard",
+                      "kind":  "scope_guard",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Validate immutable queue, work-item, client, and project scope.",
+                      "requires":  [
+
+                                   ],
+                      "produces":  [
+                                       "scoped_work_item"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Queue revision, work-item version, exact client route, and safety scope were validated.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "queue/work-items.json",
+                                                      "agent-os-run:20260730-101244-5fb934cf/task.json"
+                                                  ],
+                                     "verification":  [
+                                                          "Queue revision 332 captured.",
+                                                          "Work-item version 3 captured.",
+                                                          "Client route align-hcm resolved exactly once and is active."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "source-intake",
+                      "kind":  "source_intake",
+                      "owner":  "graph-generator",
+                      "status":  "completed",
+                      "task":  "Capture safe exact source and evidence locators.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "provenance_slice"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Exact source and evidence locators were captured without raw communications.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "agent-os-run:20260730-101244-5fb934cf/task.json",
+                                                      "clients/align-hcm/evidence/2026-07-31-amp-issue-readonly-verification.json",
+                                                      "state/execution-graphs/wi-20260731-0001/mgr-align-amp-review-20260731/execution-graph.json",
+                                                      "sha256:0CA1F9889242A6E69D5B7E6F00D075FE0BB1E779ECF57ECAB9237744E687D36B",
+                                                      "state/execution-graphs/wi-20260731-0001/mgr-align-amp-verify-20260731/execution-graph.json",
+                                                      "sha256:D521C2EBD623579FE907DBCFAB7242291D9D71C09FFC53593F3B83CC5B3DB0BC"
+                                                  ],
+                                     "verification":  [
+                                                          "Evidence freshness evaluated at 2026-07-31T14:00:29.2940745+00:00."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "context-retrieval",
+                      "kind":  "context_retrieval",
+                      "owner":  "marketing-chief-context-loader",
+                      "status":  "completed",
+                      "task":  "Assemble the exact bounded context slice required by this item.",
+                      "requires":  [
+                                       "source-intake"
+                                   ],
+                      "produces":  [
+                                       "worker_context"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Bounded client, source, artifact, dependency, and definition-of-done context was assembled.",
+                                     "artifacts":  [
+                                                       "clients/align-hcm/evidence/2026-07-31-amp-issue-readonly-verification.json",
+                                                       "clients/align-hcm/deliverables/2026-07-31-amp-issue-remediation-brief.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "agent-os-run:20260730-101244-5fb934cf/task.json",
+                                                      "clients/align-hcm/evidence/2026-07-31-amp-issue-readonly-verification.json",
+                                                      "state/execution-graphs/wi-20260731-0001/mgr-align-amp-review-20260731/execution-graph.json",
+                                                      "sha256:0CA1F9889242A6E69D5B7E6F00D075FE0BB1E779ECF57ECAB9237744E687D36B",
+                                                      "state/execution-graphs/wi-20260731-0001/mgr-align-amp-verify-20260731/execution-graph.json",
+                                                      "sha256:D521C2EBD623579FE907DBCFAB7242291D9D71C09FFC53593F3B83CC5B3DB0BC"
+                                                  ],
+                                     "verification":  [
+                                                          "Definition-of-done checks: 4.",
+                                                          "Artifact references: 2."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "worker-execution",
+                      "kind":  "worker_execution",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Perform a read-only public and local-source verification of Align HCM AMP usage, capture current evidence, and prepare a local remediation brief without changing the live site.",
+                      "requires":  [
+                                       "context-retrieval"
+                                   ],
+                      "produces":  [
+                                       "local_artifacts",
+                                       "worker_evidence"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Completed and independently verified the read-only Align HCM AMP issue audit and local remediation brief.",
+                                     "artifacts":  [
+                                                       "clients/align-hcm/evidence/2026-07-31-amp-issue-readonly-verification.json",
+                                                       "clients/align-hcm/deliverables/2026-07-31-amp-issue-remediation-brief.md"
+                                                   ],
+                                     "evidence":  [
+                                                      "agent-os-run:20260730-101244-5fb934cf/task.json",
+                                                      "clients/align-hcm/evidence/2026-07-31-amp-issue-readonly-verification.json",
+                                                      "state/execution-graphs/wi-20260731-0001/mgr-align-amp-review-20260731/execution-graph.json",
+                                                      "sha256:0CA1F9889242A6E69D5B7E6F00D075FE0BB1E779ECF57ECAB9237744E687D36B",
+                                                      "state/execution-graphs/wi-20260731-0001/mgr-align-amp-verify-20260731/execution-graph.json",
+                                                      "sha256:D521C2EBD623579FE907DBCFAB7242291D9D71C09FFC53593F3B83CC5B3DB0BC"
+                                                  ],
+                                     "verification":  [
+
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-01",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "The exact active Align client route and alert source are preserved.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_01"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Final route and source verification passed.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/align-hcm/CLIENT.md",
+                                                      "queue/work-items.json",
+                                                      "agent-os-run:20260730-101244-5fb934cf/task.json"
+                                                  ],
+                                     "verification":  [
+                                                          "Align HCM remains active and exactly routed.",
+                                                          "The exact source locator remains preserved."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-02",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "Current public AMP signals and affected scope are checked without mutating production.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_02"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Final public AMP scope verification passed.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/align-hcm/evidence/2026-07-31-amp-issue-readonly-verification.json"
+                                                  ],
+                                     "verification":  [
+                                                          "The non-critical image recommendation is correctly recorded.",
+                                                          "Current HubSpot AMP coverage and public readback limits are recorded."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-03",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "A redacted local evidence artifact records findings, uncertainty, and recommended remediation.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_03"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Final artifact verification passed.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "clients/align-hcm/evidence/2026-07-31-amp-issue-readonly-verification.json",
+                                                      "clients/align-hcm/deliverables/2026-07-31-amp-issue-remediation-brief.md"
+                                                  ],
+                                     "verification":  [
+                                                          "Evidence JSON parses.",
+                                                          "The remediation brief is present and client-scoped."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "verify-04",
+                      "kind":  "verification",
+                      "owner":  "verifier",
+                      "status":  "completed",
+                      "task":  "An independent verification check confirms that no external action or canonical write was attempted by the worker.",
+                      "requires":  [
+                                       "worker-execution"
+                                   ],
+                      "produces":  [
+                                       "verification_04"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Final safety verification passed.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "state/execution-graphs/wi-20260731-0001/mgr-align-amp-final-20260731/execution-graph.json"
+                                                  ],
+                                     "verification":  [
+                                                          "No external action occurred.",
+                                                          "No worker canonical write occurred.",
+                                                          "No production system changed."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "approval-gate",
+                      "kind":  "approval_gate",
+                      "owner":  "marketing-chief",
+                      "status":  "completed",
+                      "task":  "Enforce the exact action-class and approval boundary.",
+                      "requires":  [
+                                       "scope-guard"
+                                   ],
+                      "produces":  [
+                                       "approval_verdict"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "This graph permits local reversible work only; no external action is authorized.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+
+                                                  ],
+                                     "verification":  [
+                                                          "Action class: local_research.",
+                                                          "Approval tier/status: automatic/not_required."
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "handoff-assembly",
+                      "kind":  "handoff_assembly",
+                      "owner":  "bounded-worker",
+                      "status":  "completed",
+                      "task":  "Assemble a schema-valid redacted worker handoff from completed graph outputs.",
+                      "requires":  [
+                                       "verify-01",
+                                       "verify-02",
+                                       "verify-03",
+                                       "verify-04",
+                                       "approval-gate"
+                                   ],
+                      "produces":  [
+                                       "worker_handoff"
+                                   ],
+                      "attempts":  1,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  {
+                                     "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation.",
+                                     "artifacts":  [
+
+                                                   ],
+                                     "evidence":  [
+                                                      "state/worker-handoffs/handoff-align-amp-done-20260731.json",
+                                                      "sha256:78C139ABB316D29401E9DBAAE9EA43C98702D64B2486FDD91BA93D956CDBB96F"
+                                                  ],
+                                     "verification":  [
+
+                                                      ]
+                                 }
+                  },
+                  {
+                      "id":  "chief-reconciliation",
+                      "kind":  "chief_reconciliation",
+                      "owner":  "marketing-chief",
+                      "status":  "ready",
+                      "task":  "Revalidate live queue and item state, then accept or reject the handoff through the supported canonical mutation path.",
+                      "requires":  [
+                                       "handoff-assembly"
+                                   ],
+                      "produces":  [
+                                       "canonical_receipt"
+                                   ],
+                      "attempts":  0,
+                      "maxAttempts":  3,
+                      "approvalGate":  "none",
+                      "output":  null
+                  }
+              ],
+    "edges":  [
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "source-intake"
+                  },
+                  {
+                      "from":  "source-intake",
+                      "relation":  "precedes",
+                      "to":  "context-retrieval"
+                  },
+                  {
+                      "from":  "context-retrieval",
+                      "relation":  "precedes",
+                      "to":  "worker-execution"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-01"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-02"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-03"
+                  },
+                  {
+                      "from":  "worker-execution",
+                      "relation":  "precedes",
+                      "to":  "verify-04"
+                  },
+                  {
+                      "from":  "scope-guard",
+                      "relation":  "precedes",
+                      "to":  "approval-gate"
+                  },
+                  {
+                      "from":  "verify-01",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-02",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-03",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "verify-04",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "approval-gate",
+                      "relation":  "precedes",
+                      "to":  "handoff-assembly"
+                  },
+                  {
+                      "from":  "handoff-assembly",
+                      "relation":  "precedes",
+                      "to":  "chief-reconciliation"
+                  }
+              ],
+    "knowledgeGraph":  {
+                           "nodes":  [
+                                         {
+                                             "id":  "queue:canonical",
+                                             "type":  "queue",
+                                             "label":  "Canonical queue revision 332",
+                                             "locator":  "queue/work-items.json"
+                                         },
+                                         {
+                                             "id":  "client:align-hcm",
+                                             "type":  "client",
+                                             "label":  "align-hcm",
+                                             "locator":  "clients/align-hcm"
+                                         },
+                                         {
+                                             "id":  "work-item:wi-20260731-0001",
+                                             "type":  "work_item",
+                                             "label":  "Verify Align HCM AMP issue and remediation scope",
+                                             "locator":  "agent-os-run:20260730-101244-5fb934cf/task.json"
+                                         },
+                                         {
+                                             "id":  "approval:none",
+                                             "type":  "approval",
+                                             "label":  "automatic/not_required/none",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "evidence:f1abd2b19da52c45",
+                                             "type":  "evidence",
+                                             "label":  "agent-os-run:20260730-101244-5fb934cf/task.json",
+                                             "locator":  "agent-os-run:20260730-101244-5fb934cf/task.json"
+                                         },
+                                         {
+                                             "id":  "evidence:80bcd9b21eed47c2",
+                                             "type":  "evidence",
+                                             "label":  "clients/align-hcm/evidence/2026-07-31-amp-issue-readonly-verification.json",
+                                             "locator":  "clients/align-hcm/evidence/2026-07-31-amp-issue-readonly-verification.json"
+                                         },
+                                         {
+                                             "id":  "evidence:c4cc88550a08a9cb",
+                                             "type":  "evidence",
+                                             "label":  "state/execution-graphs/wi-20260731-0001/mgr-align-amp-review-20260731/execution-graph.json",
+                                             "locator":  "state/execution-graphs/wi-20260731-0001/mgr-align-amp-review-20260731/execution-graph.json"
+                                         },
+                                         {
+                                             "id":  "evidence:87c7ee696f1a3fdb",
+                                             "type":  "evidence",
+                                             "label":  "sha256:0CA1F9889242A6E69D5B7E6F00D075FE0BB1E779ECF57ECAB9237744E687D36B",
+                                             "locator":  "sha256:0CA1F9889242A6E69D5B7E6F00D075FE0BB1E779ECF57ECAB9237744E687D36B"
+                                         },
+                                         {
+                                             "id":  "evidence:8d15a835872ab2b8",
+                                             "type":  "evidence",
+                                             "label":  "state/execution-graphs/wi-20260731-0001/mgr-align-amp-verify-20260731/execution-graph.json",
+                                             "locator":  "state/execution-graphs/wi-20260731-0001/mgr-align-amp-verify-20260731/execution-graph.json"
+                                         },
+                                         {
+                                             "id":  "evidence:0511399418307b65",
+                                             "type":  "evidence",
+                                             "label":  "sha256:D521C2EBD623579FE907DBCFAB7242291D9D71C09FFC53593F3B83CC5B3DB0BC",
+                                             "locator":  "sha256:D521C2EBD623579FE907DBCFAB7242291D9D71C09FFC53593F3B83CC5B3DB0BC"
+                                         },
+                                         {
+                                             "id":  "artifact:80bcd9b21eed47c2",
+                                             "type":  "artifact",
+                                             "label":  "clients/align-hcm/evidence/2026-07-31-amp-issue-readonly-verification.json",
+                                             "locator":  "clients/align-hcm/evidence/2026-07-31-amp-issue-readonly-verification.json"
+                                         },
+                                         {
+                                             "id":  "artifact:301dce56b3f1446a",
+                                             "type":  "artifact",
+                                             "label":  "clients/align-hcm/deliverables/2026-07-31-amp-issue-remediation-brief.md",
+                                             "locator":  "clients/align-hcm/deliverables/2026-07-31-amp-issue-remediation-brief.md"
+                                         },
+                                         {
+                                             "id":  "definition:01",
+                                             "type":  "definition",
+                                             "label":  "The exact active Align client route and alert source are preserved.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:02",
+                                             "type":  "definition",
+                                             "label":  "Current public AMP signals and affected scope are checked without mutating production.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:03",
+                                             "type":  "definition",
+                                             "label":  "A redacted local evidence artifact records findings, uncertainty, and recommended remediation.",
+                                             "locator":  null
+                                         },
+                                         {
+                                             "id":  "definition:04",
+                                             "type":  "definition",
+                                             "label":  "An independent verification check confirms that no external action or canonical write was attempted by the worker.",
+                                             "locator":  null
+                                         }
+                                     ],
+                           "edges":  [
+                                         {
+                                             "from":  "queue:canonical",
+                                             "relation":  "contains",
+                                             "to":  "work-item:wi-20260731-0001"
+                                         },
+                                         {
+                                             "from":  "client:align-hcm",
+                                             "relation":  "owns",
+                                             "to":  "work-item:wi-20260731-0001"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260731-0001",
+                                             "relation":  "governed_by",
+                                             "to":  "approval:none"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260731-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:f1abd2b19da52c45"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260731-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:80bcd9b21eed47c2"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260731-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:c4cc88550a08a9cb"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260731-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:87c7ee696f1a3fdb"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260731-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:8d15a835872ab2b8"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260731-0001",
+                                             "relation":  "supported_by",
+                                             "to":  "evidence:0511399418307b65"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260731-0001",
+                                             "relation":  "produces",
+                                             "to":  "artifact:80bcd9b21eed47c2"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260731-0001",
+                                             "relation":  "produces",
+                                             "to":  "artifact:301dce56b3f1446a"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260731-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:01"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260731-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:02"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260731-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:03"
+                                         },
+                                         {
+                                             "from":  "work-item:wi-20260731-0001",
+                                             "relation":  "requires",
+                                             "to":  "definition:04"
+                                         }
+                                     ],
+                           "nodeCount":  16,
+                           "edgeCount":  15
+                       },
+    "handoffContract":  {
+                            "schema":  "schemas/worker-handoff.schema.json",
+                            "validator":  "scripts/Test-MarketingHandoff.ps1",
+                            "reconciler":  "scripts/Accept-WorkerHandoff.ps1",
+                            "expectedWorkItemVersion":  3,
+                            "approvalGate":  "none",
+                            "graphEvidence":  "state/execution-graphs/wi-20260731-0001/mgr-align-amp-final-20260731/execution-graph.json"
+                        },
+    "blockers":  [
+
+                 ],
+    "warnings":  [
+
+                 ],
+    "trace":  [
+                  {
+                      "eventId":  "evt-803f8665fcf84fa6b834fe6b2584b11a",
+                      "at":  "2026-07-31T14:00:29.2940745+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "scope-guard",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-d392c8d15d1e468bb89a11b21ab1958c",
+                      "at":  "2026-07-31T14:00:29.2940745+00:00",
+                      "actor":  "graph-generator",
+                      "nodeId":  "source-intake",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-e1611b55970b4d629cfe2cdb0c815001",
+                      "at":  "2026-07-31T14:00:29.2940745+00:00",
+                      "actor":  "marketing-chief-context-loader",
+                      "nodeId":  "context-retrieval",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-e445a83fdc554c92976b42f790b096dd",
+                      "at":  "2026-07-31T14:00:29.2940745+00:00",
+                      "actor":  "queue-state-import",
+                      "nodeId":  "worker-execution",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-408a48eeb45e4ee7aa3f5769e86cd4e8",
+                      "at":  "2026-07-31T14:00:29.2940745+00:00",
+                      "actor":  "marketing-chief",
+                      "nodeId":  "approval-gate",
+                      "fromStatus":  null,
+                      "toStatus":  "completed",
+                      "summary":  "Node initialized from validated current state."
+                  },
+                  {
+                      "eventId":  "evt-77f42f2b5c1344478835aeb0d596e1f5",
+                      "at":  "2026-07-31T14:00:44.4431940+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-01",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Final route and source verification passed."
+                  },
+                  {
+                      "eventId":  "evt-ecf7038515764f5d8f4d28532443818f",
+                      "at":  "2026-07-31T14:00:45.9101521+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-02",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Final public AMP scope verification passed."
+                  },
+                  {
+                      "eventId":  "evt-3dcf1ef805574a789133aaea57c85853",
+                      "at":  "2026-07-31T14:00:47.3755795+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-03",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Final artifact verification passed."
+                  },
+                  {
+                      "eventId":  "evt-5fbe0d51e2aa4651a4c430591bb8cc76",
+                      "at":  "2026-07-31T14:00:48.8291278+00:00",
+                      "actor":  "verifier",
+                      "nodeId":  "verify-04",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Final safety verification passed."
+                  },
+                  {
+                      "eventId":  "evt-5c3ce7a21f024282963a58fec610e0ad",
+                      "at":  "2026-07-31T14:01:05.5937562+00:00",
+                      "actor":  "bounded-worker",
+                      "nodeId":  "handoff-assembly",
+                      "fromStatus":  "ready",
+                      "toStatus":  "completed",
+                      "summary":  "Validated worker handoff assembled for Marketing Chief reconciliation."
+                  }
+              ],
+    "attestations":  {
+                         "canonicalWriteAttempted":  false,
+                         "externalActionAttempted":  false,
+                         "durableMemoryWriteAttempted":  false,
+                         "containsSecrets":  false,
+                         "containsDirectIdentifiers":  false,
+                         "containsRawCommunications":  false
+                     }
+}

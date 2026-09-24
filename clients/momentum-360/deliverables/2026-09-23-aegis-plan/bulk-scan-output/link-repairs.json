@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "public-link-repair-draft",
+  "status": "review-only-not-applied",
+  "site": "https://www.needmomentum.com/",
+  "sourceEvidence": {
+    "captureFilesRead": [
+      "../bulk-scan-pages.json",
+      "../bulk-scan-part-1.json",
+      "../bulk-scan-part-2.json",
+      "../bulk-scan-part-3.json",
+      "../bulk-scan-part-4.json",
+      "../bulk-scan-part-6.json",
+      "../bulk-scan-part-7.json",
+      "../bulk-scan-part-8.json"
+    ],
+    "pageCaptureCount": 73,
+    "part5Present": false,
+    "evidenceLocator": "Capture file, requested page URL, capturedAt, and one-based links[] index identify the exact captured anchor."
+  },
+  "summary": {
+    "records": 5,
+    "deterministicDraftHref": 1,
+    "ownerClarificationRequired": 4,
+    "publishedChanges": 0
+  },
+  "records": [
+    {
+      "id": "LINK-001",
+      "issueType": "malformed-concatenated-external-url",
+      "pageUrl": "https://www.needmomentum.com/",
+      "linkText": "Instagram",
+      "oldHref": "https://www.instagram.com/needmomentum/https://www.instagram.com/needmomentum/",
+      "newHref": "https://www.instagram.com/needmomentum/",
+      "evidence": [
+        {
+          "captureFile": "../bulk-scan-pages.json",
+          "capturedAt": "2026-09-23T21:21:01.172Z",
+          "linkIndex": 211,
+          "text": "Instagram",
+          "href": "https://www.instagram.com/needmomentum/https://www.instagram.com/needmomentum/"
+        },
+        {
+          "captureFile": "../bulk-scan-pages.json",
+          "capturedAt": "2026-09-23T21:21:01.172Z",
+          "linkIndex": 6,
+          "text": "Instagram",
+          "href": "https://www.instagram.com/needmomentum/",
+          "use": "Same-page clean destination supporting the exact replacement."
+        },
+        {
+          "captureFile": "../bulk-scan-pages.json",
+          "capturedAt": "2026-09-23T21:21:01.172Z",
+          "linkIndex": 229,
+          "text": "Instagram",
+          "href": "https://www.instagram.com/needmomentum/?hl=en",
+          "use": "Independent same-page corroboration of the same account."
+        }
+      ],
+      "reviewGate": {
+        "status": "draft-candidate",
+        "required": "Review the anchor in the CMS draft and click-test the replacement before any approved publish."
+      }
+    },
+    {
+      "id": "LINK-002",
+      "issueType": "call-label-points-to-webpage",
+      "pageUrl": "https://www.needmomentum.com/local-seo-services/",
+      "linkText": "CALL 215-297-6184",
+      "oldHref": "https://www.needmomentum.com/free-marketing-audit/",
+      "newHref": null,
+      "candidateNewHrefFromVisibleLabel": "tel:215-297-6184",
+      "evidence": [
+        {
+          "captureFile": "../bulk-scan-pages.json",
+          "capturedAt": "2026-09-23T21:21:55.960Z",
+          "linkIndex": 195,
+          "text": "CALL 215-297-6184",
+          "href": "https://www.needmomentum.com/free-marketing-audit/"
+        },
+        {
+          "captureFile": "../bulk-scan-pages.json",
+          "capturedAt": "2026-09-23T21:21:55.960Z",
+          "linkIndex": 209,
+          "text": "CALL 215-297-6184",
+          "href": "tel:215-297-6184",
+          "use": "Same-page matching call CTA exists; retained as evidence, not treated as owner confirmation."
+        },
+        {
+          "captureFile": "../bulk-scan-pages.json",
+          "capturedAt": "2026-09-23T21:21:55.960Z",
+          "linkIndex": 8,
+          "text": "(215) 297-6193",
+          "href": "tel:2152976193",
+          "use": "The same capture also exposes a different phone number, so the call target requires owner confirmation."
+        }
+      ],
+      "reviewGate": {
+        "status": "blocked-waiting-for-owner-clarification",
+        "required": "Confirm which number this specific CTA should dial before setting newHref; do not publish the candidate based only on the visible label."
+      }
+    },
+    {
+      "id": "LINK-003",
+      "issueType": "call-label-points-to-webpage",
+      "pageUrl": "https://www.needmomentum.com/google-business-profile-management/",
+      "linkText": "CALL 215-297-6190",
+      "oldHref": "https://www.needmomentum.com/free-marketing-audit/",
+      "newHref": null,
+      "candidateNewHrefFromVisibleLabel": "tel:215-297-6190",
+      "evidence": [
+        {
+          "captureFile": "../bulk-scan-part-1.json",
+          "capturedAt": "2026-09-23T21:25:13.303Z",
+          "linkIndex": 195,
+          "text": "CALL 215-297-6190",
+          "href": "https://www.needmomentum.com/free-marketing-audit/"
+        },
+        {
+          "captureFile": "../bulk-scan-part-1.json",
+          "capturedAt": "2026-09-23T21:25:13.303Z",
+          "linkIndex": 8,
+          "text": "(215) 297-6193",
+          "href": "tel:2152976193",
+          "use": "Same-page phone link uses a different number; owner must resolve the intended CTA destination."
+        },
+        {
+          "captureFile": "../bulk-scan-part-1.json",
+          "capturedAt": "2026-09-23T21:25:13.303Z",
+          "linkIndex": 266,
+          "text": "215-297-6193",
+          "href": "tel:2152976193",
+          "use": "Second same-page instance of the different number."
+        }
+      ],
+      "reviewGate": {
+        "status": "blocked-waiting-for-owner-clarification",
+        "required": "Confirm which number this specific CTA should dial before setting newHref; do not publish the candidate based only on the visible label."
+      }
+    },
+    {
+      "id": "LINK-004",
+      "issueType": "call-label-and-tel-destination-disagree",
+      "pageUrl": "https://www.needmomentum.com/about-us/",
+      "linkText": "CALL: 215 297-6172",
+      "oldHref": "tel:2152976190",
+      "newHref": null,
+      "candidateNewHrefIfVisibleLabelIsAuthoritative": "tel:2152976172",
+      "evidence": [
+        {
+          "captureFile": "../bulk-scan-part-8.json",
+          "capturedAt": "2026-09-23T21:30:14.976Z",
+          "linkIndex": 196,
+          "text": "CALL: 215 297-6172",
+          "href": "tel:2152976190"
+        },
+        {
+          "captureFile": "../bulk-scan-part-8.json",
+          "capturedAt": "2026-09-23T21:30:14.976Z",
+          "linkIndex": 8,
+          "text": "(215) 297-6172",
+          "href": "tel:2152976172",
+          "use": "Same-page phone link supports the displayed number, while the CTA href dials 6190. Owner must choose which value is authoritative."
+        }
+      ],
+      "reviewGate": {
+        "status": "blocked-waiting-for-owner-clarification",
+        "required": "Confirm whether this CTA should dial 6172 or 6190; if 6190 is intended, the visible label also needs correction."
+      }
+    },
+    {
+      "id": "LINK-005",
+      "issueType": "call-label-and-tel-destination-disagree",
+      "pageUrl": "https://www.needmomentum.com/web-design/",
+      "linkText": "CALL: 215 297-6172",
+      "oldHref": "tel:2152976190",
+      "newHref": null,
+      "candidateNewHrefIfVisibleLabelIsAuthoritative": "tel:2152976172",
+      "evidence": [
+        {
+          "captureFile": "../bulk-scan-part-2.json",
+          "capturedAt": "2026-09-23T21:25:28.779Z",
+          "linkIndex": 196,
+          "text": "CALL: 215 297-6172",
+          "href": "tel:2152976190"
+        },
+        {
+          "captureFile": "../bulk-scan-part-2.json",
+          "capturedAt": "2026-09-23T21:25:28.779Z",
+          "linkIndex": 8,
+          "text": "(215) 297-6172",
+          "href": "tel:2152976172",
+          "use": "Same-page phone link supports the displayed number, while the CTA href dials 6190. Owner must choose which value is authoritative."
+        }
+      ],
+      "reviewGate": {
+        "status": "blocked-waiting-for-owner-clarification",
+        "required": "Confirm whether this CTA should dial 6172 or 6190; if 6190 is intended, the visible label also needs correction."
+      }
+    }
+  ],
+  "notes": [
+    "The exact Instagram replacement is supported by two clean Instagram destinations in the same homepage capture.",
+    "Phone-related records deliberately leave newHref null where captured numbers conflict. Candidate hrefs are evidence for owner review, not approved destinations.",
+    "Facebook and LinkedIn share URLs that contain the page URL in a query parameter were excluded; the embedded URL is intentional."
+  ]
+}

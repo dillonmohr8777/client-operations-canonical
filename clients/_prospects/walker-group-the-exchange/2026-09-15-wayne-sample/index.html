@@ -1,0 +1,499 @@
+<title>The Exchange Visibility Sample</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Public+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --paper:#FCFCFA;
+  --panel:#F5F4EF;
+  --ink:#12171D;
+  --muted:#5C6570;
+  --faint:#8C939C;
+  --rule:#E3E1DA;
+  --rule-hard:#CFCCC2;
+  --navy:#16436B;
+  --navy-soft:#2C6899;
+  --amber:#8E5413;
+  --amber-bg:#F7EFE2;
+  --green:#2A6045;
+  --green-bg:#EAF1EC;
+
+  --display:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --body:'Public Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+  --measure:66ch;
+}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#101418;
+    --panel:#171C22;
+    --ink:#E8E6E0;
+    --muted:#A0A7B0;
+    --faint:#7C848D;
+    --rule:#262C33;
+    --rule-hard:#39414A;
+    --navy:#8FBEE4;
+    --navy-soft:#6FA6D0;
+    --amber:#DDA662;
+    --amber-bg:#231C12;
+    --green:#7FBE9C;
+    --green-bg:#12201A;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101418;
+  --panel:#171C22;
+  --ink:#E8E6E0;
+  --muted:#A0A7B0;
+  --faint:#7C848D;
+  --rule:#262C33;
+  --rule-hard:#39414A;
+  --navy:#8FBEE4;
+  --navy-soft:#6FA6D0;
+  --amber:#DDA662;
+  --amber-bg:#231C12;
+  --green:#7FBE9C;
+  --green-bg:#12201A;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{
+  max-width:860px;
+  margin:0 auto;
+  padding-inline:22px;
+  padding-block:0 72px;
+}
+p,li{max-width:var(--measure)}
+
+/* masthead */
+.masthead{
+  border-bottom:2px solid var(--ink);
+  padding-block:44px 20px;
+  margin-bottom:0;
+}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--navy);
+  margin:0 0 20px;
+}
+h1{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(34px,6vw,54px);
+  line-height:1.04;
+  letter-spacing:-.015em;
+  margin:0;
+  text-wrap:balance;
+}
+.standfirst{
+  font-family:var(--display);
+  font-size:clamp(17px,2.4vw,21px);
+  line-height:1.5;
+  color:var(--muted);
+  margin:14px 0 0;
+  max-width:54ch;
+}
+.docmeta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 28px;
+  margin-top:26px;
+  font-family:var(--mono);
+  font-size:11.5px;
+  letter-spacing:.04em;
+  color:var(--faint);
+}
+.docmeta b{color:var(--muted);font-weight:500}
+
+/* sections */
+section{
+  border-top:1px solid var(--rule);
+  padding-block:40px 6px;
+}
+section:first-of-type{border-top:0}
+h2{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(23px,3.4vw,30px);
+  line-height:1.2;
+  letter-spacing:-.01em;
+  margin:0 0 6px;
+  text-wrap:balance;
+  max-width:30ch;
+}
+.sublabel{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--faint);
+  margin:0 0 14px;
+}
+h3{
+  font-family:var(--body);
+  font-weight:700;
+  font-size:16px;
+  letter-spacing:-.005em;
+  margin:30px 0 4px;
+}
+p{margin:0 0 15px}
+a{color:var(--navy);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+a:focus-visible{outline:2px solid var(--navy);outline-offset:3px;border-radius:2px}
+
+.lede{
+  font-family:var(--display);
+  font-size:19px;
+  line-height:1.55;
+  color:var(--ink);
+}
+
+/* translated options */
+.opt{
+  border-left:3px solid var(--rule-hard);
+  padding:2px 0 2px 20px;
+  margin:26px 0;
+}
+.opt .tag{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--navy);
+  display:block;
+  margin-bottom:5px;
+}
+.opt .name{
+  font-family:var(--display);
+  font-size:21px;
+  font-weight:600;
+  line-height:1.25;
+  margin:0 0 8px;
+}
+.opt p{margin-bottom:10px}
+.opt p:last-child{margin-bottom:0}
+
+/* diagnostics */
+.check{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:0 18px;
+  align-items:start;
+  padding-block:22px;
+  border-top:1px solid var(--rule);
+}
+.check:first-of-type{border-top:1px solid var(--rule-hard)}
+.num{
+  font-family:var(--mono);
+  font-size:12px;
+  font-weight:500;
+  color:var(--faint);
+  padding-top:5px;
+  letter-spacing:.06em;
+}
+.check h3{margin:0 0 6px}
+.check p{margin:0 0 10px;max-width:58ch}
+.check p:last-child{margin-bottom:0}
+
+.verdict{
+  display:inline-block;
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  padding:3px 9px;
+  border-radius:2px;
+  margin-bottom:9px;
+}
+.v-issue{background:var(--amber-bg);color:var(--amber)}
+.v-ok{background:var(--green-bg);color:var(--green)}
+
+.readout{
+  font-family:var(--mono);
+  font-size:12.5px;
+  line-height:1.85;
+  background:var(--panel);
+  border:1px solid var(--rule);
+  border-radius:3px;
+  padding:13px 15px;
+  margin:12px 0 0;
+  overflow-x:auto;
+  white-space:pre;
+  color:var(--muted);
+}
+.readout b{color:var(--ink);font-weight:500}
+.readout .flag{color:var(--amber);font-weight:500}
+.readout .good{color:var(--green);font-weight:500}
+
+/* serp table */
+.tablewrap{overflow-x:auto;margin:18px 0 0;border:1px solid var(--rule);border-radius:3px}
+table{border-collapse:collapse;width:100%;min-width:480px;font-size:14px}
+caption{
+  caption-side:top;
+  text-align:left;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--faint);
+  padding:12px 15px 10px;
+  background:var(--panel);
+  border-bottom:1px solid var(--rule);
+}
+th,td{padding:9px 15px;text-align:left;vertical-align:top;border-top:1px solid var(--rule)}
+thead th{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--faint);
+  font-weight:500;
+  border-top:0;
+}
+td.pos{font-family:var(--mono);font-size:12.5px;color:var(--faint);width:1%;font-variant-numeric:tabular-nums}
+td.kind{color:var(--muted);font-size:13px}
+tr.absent td{background:var(--amber-bg);color:var(--amber);font-weight:500}
+tr.absent td.pos{color:var(--amber)}
+
+/* paths */
+.paths{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:0;
+  margin:22px 0 0;
+  border:1px solid var(--rule-hard);
+  border-radius:3px;
+  overflow:hidden;
+}
+.path{padding:22px 22px 24px;border-left:1px solid var(--rule)}
+.path:first-child{border-left:0}
+.path .tag{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--navy);
+  display:block;
+  margin-bottom:8px;
+}
+.path .name{
+  font-family:var(--display);
+  font-size:20px;
+  font-weight:600;
+  line-height:1.25;
+  margin:0 0 12px;
+}
+.path ul{margin:0;padding-left:18px}
+.path li{margin-bottom:8px;font-size:14.5px;line-height:1.55;max-width:none}
+.path li:last-child{margin-bottom:0}
+.path li::marker{color:var(--faint)}
+
+/* closing */
+.close{
+  background:var(--panel);
+  border:1px solid var(--rule);
+  border-left:3px solid var(--navy);
+  border-radius:3px;
+  padding:26px 26px 28px;
+  margin-top:34px;
+}
+.close h2{margin-top:0;font-size:24px}
+.close ol{margin:0;padding-left:20px}
+.close li{margin-bottom:10px;max-width:56ch}
+.close li:last-child{margin-bottom:0}
+
+footer{
+  border-top:1px solid var(--rule);
+  margin-top:52px;
+  padding-top:20px;
+  font-family:var(--mono);
+  font-size:11.5px;
+  line-height:1.8;
+  color:var(--faint);
+  letter-spacing:.02em;
+}
+footer b{color:var(--muted);font-weight:500}
+
+@media (max-width:520px){
+  .check{grid-template-columns:1fr;gap:0}
+  .num{padding-top:0;margin-bottom:4px}
+  .path{border-left:0;border-top:1px solid var(--rule)}
+  .path:first-child{border-top:0}
+}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Momentum Digital &nbsp;/&nbsp; Prepared for The Exchange</p>
+    <h1>What this actually looks like</h1>
+    <p class="standfirst">You asked for a sample. This is one, built on your own properties, with every check run today and the raw result shown next to it.</p>
+    <div class="docmeta">
+      <span><b>For</b> Wayne Brown, The Walker Group</span>
+      <span><b>From</b> Dillon Mohr, Momentum Digital</span>
+      <span><b>Date</b> 15 September 2026</span>
+    </div>
+  </header>
+
+  <section>
+    <p class="sublabel">Section one</p>
+    <h2>What Jesse put in front of you, in plain language</h2>
+    <p class="lede">Jesse gave you two starting points and a recommendation. Both are real options. Here is what each one actually means once the shorthand comes off.</p>
+
+    <div class="opt">
+      <span class="tag">Option A &nbsp;&middot;&nbsp; Jesse's recommendation</span>
+      <p class="name">Organic, meaning Google and AI search</p>
+      <p>Today a bank executive or a fintech founder who does not already know you cannot find The Exchange. They find listicles, LinkedIn profiles and university speaker pages. Organic work is the process of making The Exchange the answer to the questions those people are already typing, in Google and in the AI assistants that now sit on top of Google.</p>
+      <p>The output is a membership pipeline that runs when you are not in the room. Right now every member arrives through you or through Jonathan. That is a ceiling, and it is the ceiling standing between you and the doubling target you set for 2026.</p>
+    </div>
+
+    <div class="opt">
+      <span class="tag">Option B</span>
+      <p class="name">Platform build</p>
+      <p>A working member platform for The Exchange. Cohorts, member profiles, event registration, the directory, the introductions you currently make by hand. Fifty percent deposit, scope agreed first, then a functional beta you can put in front of members.</p>
+      <p>Jesse's sequencing note matters here and he is right about it. Sending new demand to a site that cannot convert it is waste. The question is only whether your current site is good enough to receive traffic while the platform gets built. Section two answers that.</p>
+    </div>
+
+    <p>Those two are not either or forever. They are a question of which one comes first. Everything below exists so that you can answer that question with evidence rather than with a hunch.</p>
+  </section>
+
+  <section>
+    <p class="sublabel">Section two &nbsp;&middot;&nbsp; the sample</p>
+    <h2>Three checks we ran on your properties today</h2>
+    <p class="lede">This is the shape of the work. We look, we record exactly what came back, and we tell you what it costs you. Nothing here is an estimate.</p>
+
+    <div class="check">
+      <p class="num">01</p>
+      <div>
+        <h3>Your apex domain does not resolve</h3>
+        <span class="verdict v-issue">Breaks silently</span>
+        <p>Anyone who types your address without the www, or repeats it from a business card, a podcast or a LinkedIn bio, gets nothing. No error page, no redirect, no site. The www version is healthy. The bare version simply fails to connect.</p>
+        <div class="readout"><b>GET https://www.theexchangenyc.com</b>   <span class="good">200 OK</span>   2,748 bytes
+<b>GET https://theexchangenyc.com</b>       <span class="flag">no response</span>  connection failed</div>
+        <p style="margin-top:12px">This is a single DNS record. It is the cheapest fix on this page and it is quietly costing you every referral that is spoken rather than clicked.</p>
+      </div>
+    </div>
+
+    <div class="check">
+      <p class="num">02</p>
+      <div>
+        <h3>The Walker Group site is a 2019 redirect to a dead address</h3>
+        <span class="verdict v-issue">Dead end</span>
+        <p>walkergroupnyc.com answers, so every automated checker calls it healthy. It is not. The entire page is ninety five bytes of instruction telling the browser to go somewhere else, and the somewhere else refuses the connection. The file has not been touched since March 2019.</p>
+        <div class="readout"><b>GET https://walkergroupnyc.com</b>    <span class="flag">200 OK</span>   95 bytes
+   Last-Modified: <span class="flag">Fri, 29 Mar 2019</span>
+   Body: meta refresh to http://waynebrown.nyc
+<b>GET http://waynebrown.nyc</b>         <span class="flag">403 Forbidden</span></div>
+        <p style="margin-top:12px">Your email address is on that domain. It sits in every proposal, every introduction and every signature you have sent for seven years. When a prospective member or a bank partner checks it, that is what they find.</p>
+      </div>
+    </div>
+
+    <div class="check">
+      <p class="num">03</p>
+      <div>
+        <h3>Your positioning is good. Search engines are not being told where to look.</h3>
+        <span class="verdict v-ok">Foundation is sound</span>
+        <p>Credit where it is due. Your title and description are clear, specific and correctly aimed at senior leaders. That is more than most sites in your category manage, and it means this is a distribution problem rather than a message problem.</p>
+        <div class="readout">Title:       <span class="good">The Exchange | Private Advisory Network for Senior Leaders</span>
+Description: <span class="good">A private advisory network where senior leaders build trust,
+             insight and long-term value...</span>
+robots.txt:  <span class="good">crawling allowed</span>
+sitemap.xml: <span class="flag">not found</span></div>
+        <p style="margin-top:12px">No sitemap means Google is left to guess at your structure, and the page itself is small enough that there is very little for an AI assistant to quote. The words are right. There is just not enough of them, in enough places, for anything to cite.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="sublabel">Section three</p>
+    <h2>What the demand looks like right now</h2>
+    <p>We pulled the live results page for a query your ideal member would plausibly type. Google is already generating an AI summary for it, which means an assistant is answering this question for people whether or not you participate.</p>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Google, United States, 15 September 2026 &nbsp;&middot;&nbsp; "fintech founder peer advisory network new york"</caption>
+        <thead>
+          <tr><th>Pos</th><th>What ranks</th><th>What it is</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="pos">1</td><td>linkedin.com profile</td><td class="kind">One person's LinkedIn page</td></tr>
+          <tr><td class="pos">2</td><td>builtinnyc.com</td><td class="kind">Listicle of 88 fintech companies</td></tr>
+          <tr><td class="pos">3</td><td>stern.nyu.edu</td><td class="kind">Conference speaker bios</td></tr>
+          <tr><td class="pos">4</td><td>linkedin.com post</td><td class="kind">Fintech Week recap post</td></tr>
+          <tr><td class="pos">5</td><td>linkedin.com post</td><td class="kind">Company award announcement</td></tr>
+          <tr><td class="pos">6</td><td>withum.com</td><td class="kind">Accounting firm service page</td></tr>
+          <tr><td class="pos">7</td><td>fintechinnovationlab.com</td><td class="kind">Mentor roster</td></tr>
+          <tr><td class="pos">8</td><td>100women.org</td><td class="kind">Event recap from 2023</td></tr>
+          <tr><td class="pos">9</td><td>blog.technyc.org</td><td class="kind">Companies to watch article</td></tr>
+          <tr class="absent"><td class="pos">none</td><td>theexchangenyc.com</td><td class="kind">Not present in the top ten</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:20px">Read that list again. Not one of those results is a network a founder could actually join. A LinkedIn profile, a list of companies, a speaker page and an accounting firm are what Google has to work with, because the thing that genuinely answers the question has not given it anything to point at.</p>
+    <p>That is the opportunity, and it is why Jesse led with organic. You are not fighting an incumbent for this ground. The ground is empty.</p>
+  </section>
+
+  <section>
+    <p class="sublabel">Section four</p>
+    <h2>What each path produces</h2>
+
+    <div class="paths">
+      <div class="path">
+        <span class="tag">If organic goes first</span>
+        <p class="name">Discoverability</p>
+        <ul>
+          <li>Apex domain and Walker Group redirect fixed in week one</li>
+          <li>Pages built for the questions your members actually ask, one per cohort and per program</li>
+          <li>Structured markup so assistants can quote The Exchange by name rather than paraphrase a listicle</li>
+          <li>Your existing material, the newsletter, the Virtual Lunch archive and the Revenue Accelerator, turned into pages that can rank instead of posts that expire</li>
+          <li>Monthly reporting on which queries you now appear for and which members arrived through them</li>
+        </ul>
+      </div>
+      <div class="path">
+        <span class="tag">If the platform goes first</span>
+        <p class="name">Somewhere to send them</p>
+        <ul>
+          <li>Scope agreed and fixed before anything is built</li>
+          <li>Functional beta covering member profiles, the seven cohorts, event registration and the directory</li>
+          <li>The introductions you make by hand become something members can initiate themselves</li>
+          <li>A real application flow, so membership interest stops living in your inbox</li>
+          <li>Built so organic work can be layered on top without a rebuild</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="margin-top:22px">Our read, and it is only a read until you tell us what matters most this quarter: the three fixes in section two are worth doing regardless of which path you choose, and they are small. They are not a phase. They are housekeeping that has been outstanding since 2019.</p>
+  </section>
+
+  <div class="close">
+    <h2>What we would suggest next</h2>
+    <ol>
+      <li>Give us thirty minutes. Jesse, Mac and myself. Bring Jonathan if he runs the member experience day to day, because the platform scope is really his question.</li>
+      <li>We walk this document live and answer the one thing it cannot: which of the seven cohorts you most want to grow. That single answer decides whether organic or platform goes first.</li>
+      <li>We fix the apex domain and the Walker Group redirect either way, before any agreement is signed. Those two are ours to close out as a show of good faith.</li>
+    </ol>
+  </div>
+
+  <footer>
+    <b>Method.</b> Every status code, byte count, header and search result on this page was observed live on 15 September 2026 and is reproducible by anyone reading it.<br>
+    <b>Scope note.</b> The Google result above is one query in one location on one day. Search results vary by person and by day, so treat it as directional evidence of an open position rather than a fixed ranking.<br>
+    <b>Not measured.</b> We have not yet run a citation audit across ChatGPT, Claude, Gemini or Perplexity. That is a separate exercise and we will not claim a result we have not taken.<br>
+    <br>
+    <b>Dillon Mohr</b> &nbsp;&middot;&nbsp; AI Marketing Director, Momentum Digital &nbsp;&middot;&nbsp; needmomentum.com
+  </footer>
+
+</div>

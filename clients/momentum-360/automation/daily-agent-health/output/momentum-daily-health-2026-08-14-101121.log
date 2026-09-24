@@ -1,0 +1,74 @@
+﻿START 2026-08-14T10:11:25.4557394-04:00
+Run date ET: 2026-08-14
+Prompt: C:\Users\dillo\Documents\Codex\projects\client-operations\clients\momentum-360\automation\daily-agent-health\PROMPT.md
+Workspace: C:\Users\dillo\Documents\Codex\projects\client-operations
+Dry run: False
+Codex cache compatibility: {"changed":false,"cliVersion":"0.147.0","state":"compatible","modelCount":9}
+Preflight: {"schemaVersion":1,"checkedAt":"2026-08-14T14:11:25.4344077+00:00","portalId":"50612503","callRailAccountId":"671942387","status":"DEGRADED","blockers":[{"name":"callrail-direct-access","category":"CALLRAIL_DIRECT_ACCESS","detail":"Direct CallRail access remains blocked at the exact account boundary; fallback telemetry cannot prove routing or Mia SMS."},{"name":"hubspot-conversations-read","category":"HUBSPOT_CONVERSATIONS_SCOPE","detail":"The valid Momentum private app lacks conversations.read; channels and threads return HTTP 403."}],"checks":[{"name":"prompt-encoding","ok":true,"category":"LOCAL_CONFIGURATION","detail":"Prompt text is UTF-8 clean.","blocksFullVerification":false},{"name":"codex-skill-metadata","ok":true,"category":"CODEX_STARTUP","detail":"All active Codex SKILL.md files have YAML frontmatter.","blocksFullVerification":false},{"name":"codex-model-cache","ok":true,"category":"CODEX_STARTUP","detail":"Model cache JSON and base_instructions compatibility fields are valid.","blocksFullVerification":false},{"name":"hubspot-route","ok":true,"category":"ACCESS","detail":"Access Broker resolves Momentum HubSpot portal 50612503.","blocksFullVerification":false},{"name":"callrail-route","ok":true,"category":"ACCESS","detail":"Access Broker resolves only Momentum Digital LLC account 671942387.","blocksFullVerification":false},{"name":"callrail-direct-access","ok":false,"category":"CALLRAIL_DIRECT_ACCESS","detail":"Direct CallRail access remains blocked at the exact account boundary; fallback telemetry cannot prove routing or Mia SMS.","blocksFullVerification":true},{"name":"scheduled-task","ok":true,"category":"AUTOMATION","detail":"Task is enabled, console-free, and configured for three retries. Last result: 0.","blocksFullVerification":false},{"name":"hubspot-private-token","ok":true,"category":"HUBSPOT_API","detail":"Protected private token validates against portal 50612503.","blocksFullVerification":false},{"name":"hubspot-conversations-read","ok":false,"category":"HUBSPOT_CONVERSATIONS_SCOPE","detail":"The valid Momentum private app lacks conversations.read; channels and threads return HTTP 403.","blocksFullVerification":true}]}
+ATTEMPT 1 2026-08-14T10:11:25.4694923-04:00
+error: unexpected argument 'CallRail' found
+System.Management.Automation.RemoteException
+Usage: codex exec [OPTIONS] [PROMPT]
+       codex exec [OPTIONS] <COMMAND> [ARGS]
+System.Management.Automation.RemoteException
+For more information, try '--help'.
+ATTEMPT_RESULT attempt=1 exit=2
+MAIN_REPORT_FAILED 2026-08-14T10:11:25.8311617-04:00
+Reading additional input from stdin...
+2026-08-14T14:11:26.172678Z  WARN codex_core_plugins::manifest: ignoring interface.defaultPrompt: maximum of 3 prompts is supported path=file:///C:/Users/dillo/.codex/plugins/cache/chatcut-inc/chatcut/0.2.18/.codex-plugin/plugin.json
+2026-08-14T14:11:26.199832Z  WARN codex_core_plugins::manifest: ignoring interface.defaultPrompt: maximum of 3 prompts is supported path=file:///C:/Users/dillo/.codex/plugins/cache/chatcut-inc/chatcut/0.2.18/.codex-plugin/plugin.json
+2026-08-14T14:11:26.229156Z  WARN codex_core_plugins::manifest: ignoring interface.defaultPrompt: prompt must be at most 128 characters path=file:///C:/Users/dillo/.codex/plugins/cache/personal/never-cutoff/0.1.0+codex.20260808160858/.codex-plugin/plugin.json
+2026-08-14T14:11:26.234401Z  WARN codex_core_plugins::manifest: ignoring interface.defaultPrompt: prompt must be at most 128 characters path=file:///C:/Users/dillo/.codex/plugins/cache/personal/never-cutoff/0.1.0+codex.20260808160858/.codex-plugin/plugin.json
+2026-08-14T14:11:26.348860Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-08-14T14:11:26.348920Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+2026-08-14T14:11:26.369042Z  WARN codex_core::shell_snapshot: Failed to create shell snapshot for powershell: Shell snapshot not supported yet for PowerShell
+2026-08-14T14:11:26.558176Z ERROR codex_models_manager::manager: failed to write models cache: The process cannot access the file because it is being used by another process. (os error 32)
+2026-08-14T14:11:27.287427Z  WARN codex_core_plugins::remote::remote_installed_plugin_sync: failed to download remote installed plugin bundle remote_plugin_id=plugin_asdk_app_694a52cfaa3c819192bea84eaa254968 plugin=windsor-ai marketplace=openai-curated-remote error=plugin.json name `app-694a52cfaa3c819192bea84eaa254968` does not match marketplace plugin name `windsor-ai`
+2026-08-14T14:11:27.724218Z  WARN codex_core_plugins::manifest: ignoring interface.defaultPrompt: maximum of 3 prompts is supported path=file:///C:/Users/dillo/.codex/plugins/cache/chatcut-inc/chatcut/0.2.18/.codex-plugin/plugin.json
+2026-08-14T14:11:27.741754Z  WARN codex_core_plugins::manifest: ignoring interface.defaultPrompt: maximum of 3 prompts is supported path=file:///C:/Users/dillo/.codex/plugins/cache/chatcut-inc/chatcut/0.2.18/.codex-plugin/plugin.json
+2026-08-14T14:11:27.937805Z  WARN codex_core_plugins::manifest: ignoring interface.defaultPrompt: prompt must be at most 128 characters path=file:///C:/Users/dillo/.codex/plugins/cache/personal/never-cutoff/0.1.0+codex.20260808160858/.codex-plugin/plugin.json
+2026-08-14T14:11:27.941280Z  WARN codex_core_plugins::manifest: ignoring interface.defaultPrompt: prompt must be at most 128 characters path=file:///C:/Users/dillo/.codex/plugins/cache/personal/never-cutoff/0.1.0+codex.20260808160858/.codex-plugin/plugin.json
+2026-08-14T14:11:28.095096Z  WARN codex_skills::interface: ignoring interface.icon_small: icon path with '..' must resolve under plugin assets/
+2026-08-14T14:11:28.095131Z  WARN codex_skills::interface: ignoring interface.icon_large: icon path with '..' must resolve under plugin assets/
+OpenAI Codex v0.147.0
+--------
+workdir: C:\Users\dillo\Documents\Codex\projects\client-operations
+model: gpt-5.6-sol
+provider: openai
+approval: never
+sandbox: danger-full-access
+reasoning effort: high
+reasoning summaries: none
+session id: 01a0009d-0754-7341-ae24-c954d767547f
+--------
+user
+Dillon Mohr explicitly authorized a recurring daily Momentum 360 status notice. The full report runner could not verify delivery after 1 attempt(s).
+System.Management.Automation.RemoteException
+Use the Slack connector only. In group DM C0B2N20A0SW, first search for exact report ID M360-DAILY-2026-08-14. If it already exists, do not duplicate it and verify the existing message. Otherwise send exactly one message:
+System.Management.Automation.RemoteException
+<@UAK3WSY15> <@U05MUGHN031> Morning Momentum 360 AI & lead-response update: DEGRADED
+Report ID: M360-DAILY-2026-08-14
+The automated live health check could not complete this morning, so HubSpot and CallRail metrics are withheld rather than guessed. The runner is configured to retry and Dillon is being given the failure evidence. No customer-level data is included.
+System.Management.Automation.RemoteException
+Read C0B2N20A0SW back and verify the report ID and both mentions. Your final response must contain FAILURE_NOTICE_CONFIRMED and the Slack timestamp or link. Do not print that marker unless delivery is verified.
+warning: Exceeded skills context budget. All skill descriptions were removed and 601 additional skills were not included in the model-visible skills list.
+codex
+I’ll check the specified group DM for the exact report ID, send the authorized notice only if absent, then read it back and verify both mentions.
+mcp: codex_apps/slack.slack_search_public_and_private started
+mcp: codex_apps/slack.slack_search_public_and_private (completed)
+codex
+The exact report ID is not present in the specified group DM. I’m sending the single authorized notice now, then I’ll verify it from channel history.
+mcp: codex_apps/slack.slack_send_message started
+mcp: codex_apps/slack.slack_send_message (completed)
+mcp: codex_apps/slack.slack_read_channel started
+mcp: codex_apps/slack.slack_read_channel (completed)
+codex
+FAILURE_NOTICE_CONFIRMED — verified report ID and both mentions in Slack at timestamp `1786716737.552399`.
+System.Management.Automation.RemoteException
+[Open verified message](https://momentum3d.slack.com/archives/C0B2N20A0SW/p1786716737552399)
+tokens used
+45,495
+FAILURE_NOTICE_CONFIRMED — verified report ID and both mentions in Slack at timestamp `1786716737.552399`.
+
+[Open verified message](https://momentum3d.slack.com/archives/C0B2N20A0SW/p1786716737552399)
+SUCCESS 2026-08-14T10:12:32.4215107-04:00

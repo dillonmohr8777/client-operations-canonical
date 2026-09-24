@@ -1,0 +1,174 @@
+{
+  "schema": "momentum-video-plan/2",
+  "prepared": "2026-09-05",
+  "revised": "v2 - reconsidered division: one opener film, four lane films, eight stills. Dark-first Momentum Digital palette. Pixel outro NOT reused (it carries the Momentum 360 circular mark and tagline; verified from its preview frame). The close card is the outro.",
+
+  "authority": {
+    "granted": "Dillon, 2026-09-05: full permission to use Higgsfield for the division launch videos and social content. Stated budget roughly 600 to 800 credits.",
+    "scope": "Momentum AI division launch collateral and social. The earlier 'Higgsfield prohibited' rule applied only to prospect spec web designs and is not in conflict.",
+    "connector": "Higgsfield MCP is NOT authorised in this session as of 2026-09-05 (ToolSearch loads only the free-tool finder, which excludes Higgsfield). No generation has run. No credit spent. Authorise via claude.ai connector settings or `claude mcp`, then run the pipeline below."
+  },
+
+  "measured_rates": {
+    "source": [
+      "clients/momentum-360/deliverables/2026-08-30-3d-scroll-site/higgsfield-v3/manifest.json",
+      "clients/momentum-360/deliverables/2026-08-31-future-city-campaign/HIGGSFIELD-PROMPT-PACK.md and FINAL-REPORT.md",
+      "Codex/Higgsfield/outputs/bridge-og-20260904/generate-receipt.json"
+    ],
+    "keyframe_gpt_image_2_2k": 8.5,
+    "seedance_2_0_mini_per_4s_leg_720p": 10,
+    "seedance_2_0_1080p_per_leg": 36,
+    "seedance_2_5_15s_1080p_omni_reference": 135,
+    "walkthrough_20s_actual_total": 94.5,
+    "two_4k_founder_films_actual_total": 278,
+    "note": "Receipts, not a price list. Reverify against the live account before submitting a paid job."
+  },
+
+  "model_decision": {
+    "use": "gpt_image_2 for keyframes; Seedance 2.0 Mini for every motion leg.",
+    "why": "The walkthrough receipt records a head-to-head: the 1080p Seedance 2.0 leg was rejected for weakening the shot; the accepted chain is Mini. Mini is 3.6x cheaper and won the one comparison on record. No founders or faces appear in any division shot, so the Seedance 2.5 omni_reference identity path (135/render) is not needed.",
+    "continuity": "Use the actual last frame of each leg as the start image of the next leg. That lock produced the faithful camera path on the walkthrough.",
+    "preflight": [
+      "Confirm Mini accepts a 9:16 aspect ratio. If it does not, generate 16:9 with the subject centred and derive 9:16 by centre crop in composite.ps1; do not pay for a 2.5 render to get vertical.",
+      "Generate ONE keyframe and ONE test leg per film, review, then chain. Assume at least one reject per film."
+    ]
+  },
+
+  "visual_direction": {
+    "palette": "Momentum Digital tokens, dark-first: deep field #0e1a22 as the ground, brand blue #1e73be as cool light, accent orange #f58320 as the single warm signal, paper #fbfaf7 only as highlight. No cyan, no yellow, no purple, no neon.",
+    "technique": "Borrowed from the Momentum 360 films: one real environment held inside a suspended photogrammetry fragment on a clean negative field; particles that mean something (sample a surface, trace a route, resolve a shape); controlled dolly and one orbit; no handheld shake; photographic, high bitrate.",
+    "type": "Archivo Black display, Nunito Sans text, Caveat for one script line. Composited from title-cards.html, never generated.",
+    "lockup": "The verified Momentum Digital wordmark (video/assets/momentum-logo-white.png, sha256 in PROVENANCE.json) plus the word AI set in Archivo Black. Decision D19.",
+    "negative_constraints_all_shots": "No text, letters, captions, logos, watermarks, UI, charts, readable screens, faces, hands, people, product labels, lens flare, neon, purple or violet light, cyberpunk, particle explosion, dirty grey void, full-frame synthetic city."
+  },
+
+  "logo_rule": {
+    "statement": "No video model ever draws, redraws, lights, extrudes or animates the Momentum mark.",
+    "how": "Higgsfield generates plates only. composite.ps1 overlays the verified PNG; only position, opacity and scale are animated. The four QA frames (open, mid, close, final) are inspected for deformation before a piece is accepted.",
+    "reduced_motion": "Every title card renders its complete final state with no transform under prefers-reduced-motion."
+  },
+
+  "films": [
+    {
+      "id": "F01",
+      "name": "Division opener",
+      "aspect": "16:9 master, 9:16 derived",
+      "target_seconds": 16,
+      "keyframes": 1,
+      "legs": 4,
+      "credits": 48.5,
+      "keyframe_prompt": "A Philadelphia rowhouse block at blue hour, held inside a single suspended torn photogrammetry fragment on a clean deep navy-black field. Fibrous torn edges, sparse point-cloud gaps, folded depth. Cool blue daylight inside the fragment; one warm amber-orange practical light in a single storefront window. Photographic, 35mm, high detail. No text, no signs, no logos, no people, no UI.",
+      "motion_prompt": "Slow dolly toward the suspended fragment as it rotates a few degrees. Inside, warm amber-orange particles sample the storefront surface, trace a clean route along the block, and gather into a single orbit around the corner building. The fragment folds inward and settles. End on a stable frame with clean negative space on the left third for composited type. Controlled camera, no shake, no handheld.",
+      "overlay": "Card A: script 'need momentum?' then display 'Four lanes. One machine.' then the Momentum AI lockup. Composited.",
+      "close": "Card Z as outro: 'Let's build' / 'Something measurable' / lockup. Hold 2.0s."
+    },
+    {
+      "id": "F02",
+      "name": "Lane 01 - Get found by AI",
+      "aspect": "9:16 master, 1:1 derived",
+      "target_seconds": 12,
+      "keyframes": 1,
+      "legs": 3,
+      "credits": 38.5,
+      "keyframe_prompt": "A tall radio mast on a dark hillside at dusk, inside a suspended photogrammetry fragment on a deep navy-black field. Cool blue atmosphere. One small warm amber-orange beacon at the mast tip, unlit. Photographic, vertical composition, high detail. No text, no logos, no people.",
+      "motion_prompt": "Slow rise up the mast. Cool blue particles drift past, unreceived. The amber beacon lights. The blue particles bend toward it, gather, and resolve into a single clean signal line reaching the top of frame. Fragment holds steady. End with negative space in the upper third for type.",
+      "overlay": "Lane card 01: 'AEO / GEO' / 'Get found by AI' / flagship + PROPOSED price.",
+      "close": "Card Z outro, 1.5s hold."
+    },
+    {
+      "id": "F03",
+      "name": "Lane 02 - Prototype in a week",
+      "aspect": "9:16 master, 1:1 derived",
+      "target_seconds": 12,
+      "keyframes": 1,
+      "legs": 3,
+      "credits": 38.5,
+      "keyframe_prompt": "A drafting table seen from above, a large architectural blueprint in cool blue linework, inside a suspended photogrammetry fragment on a deep navy-black field. One warm amber-orange desk lamp at the edge. Photographic, vertical, high detail. No text, no legible drawing labels, no hands, no logos.",
+      "motion_prompt": "Slow push in. The blueprint linework lifts off the paper as thin blue particles and extrudes upward into a small, clean three-dimensional building model, storey by storey, in five beats. The amber lamp light catches the finished model. Fragment steady. End with negative space in the upper third.",
+      "overlay": "Lane card 02: 'AI Design' / 'Prototype in a week' / flagship + PROPOSED price.",
+      "close": "Card Z outro, 1.5s hold."
+    },
+    {
+      "id": "F04",
+      "name": "Lane 03 - Content that moves",
+      "aspect": "9:16 master, 1:1 derived",
+      "target_seconds": 12,
+      "keyframes": 1,
+      "legs": 3,
+      "credits": 38.5,
+      "keyframe_prompt": "A wall of matte black picture frames hung in a grid inside a suspended photogrammetry fragment on a deep navy-black field, each frame holding a still of cool blue abstract light. One frame near centre holds a warm amber-orange still. Photographic, vertical, high detail. No text, no faces, no logos, no recognisable artwork.",
+      "motion_prompt": "Slow lateral dolly along the wall. One by one the stills inside the frames begin to move, blue light drifting inside each frame while the frames stay fixed. The amber frame's light swells and spills a thin amber line along the wall connecting the frames. Fragment steady. End with negative space in the upper third.",
+      "overlay": "Lane card 03: 'AI Marketing' / 'Content that moves' / flagship + PROPOSED price.",
+      "close": "Card Z outro, 1.5s hold."
+    },
+    {
+      "id": "F05",
+      "name": "Lane 04 - The attribution spine",
+      "aspect": "9:16 master, 1:1 derived",
+      "target_seconds": 12,
+      "keyframes": 1,
+      "legs": 3,
+      "credits": 38.5,
+      "keyframe_prompt": "A long row of paper receipts on a spike, seen close and low, inside a suspended photogrammetry fragment on a deep navy-black field. Cool blue side light. The spike is a thin warm amber-orange line. Photographic, vertical, macro, high detail. No legible text on the receipts, no logos, no hands.",
+      "motion_prompt": "Slow orbit around the spike. Blue particles arrive from the edges of the fragment one at a time, each landing on the spike as a new receipt and settling into the stack in order. One particle arrives twice and is deflected away. The amber spine glows steadily through the whole stack. Fragment steady. End with negative space in the upper third.",
+      "overlay": "Lane card 04: 'AI Automation' / 'The attribution spine' / flagship + PROPOSED price.",
+      "close": "Card Z outro, 1.5s hold."
+    }
+  ],
+
+  "stills": {
+    "model": "gpt_image_2",
+    "resolution": "2k",
+    "aspect": "16:9 generated; 4:5 and 1:1 crops derived locally",
+    "credits_each": 8.5,
+    "count": 8,
+    "credits": 68,
+    "use": "LinkedIn carousel (8 frames) and Instagram feed. Type overlays from the tokens are added locally; the lockup is composited.",
+    "frames": [
+      {"id": "S01", "text": "Momentum built the machine.", "prompt": "Wide still of the Philadelphia rowhouse fragment from F01, night, one amber window."},
+      {"id": "S02", "text": "Now we build yours.", "prompt": "The same block, the fragment opened flat like a blueprint, amber route traced across it."},
+      {"id": "S03", "text": "Get found by AI.", "prompt": "The radio mast from F02, beacon lit, blue signal line resolved."},
+      {"id": "S04", "text": "Prototype in a week.", "prompt": "The finished blueprint model from F03 under the amber lamp."},
+      {"id": "S05", "text": "Content that moves.", "prompt": "The frame wall from F04, one amber frame, thin amber line connecting."},
+      {"id": "S06", "text": "The attribution spine.", "prompt": "The receipt spike from F05, stack complete, amber spine glowing."},
+      {"id": "S07", "text": "Every offer ships with its agent.", "prompt": "Four small fragments floating in a row on the navy-black field, each holding one of the four scenes, evenly lit."},
+      {"id": "S08", "text": "need momentum?", "prompt": "Empty deep navy-black field with one amber horizontal rule low in frame, nothing else. Negative space for the lockup."}
+    ],
+    "shared_negative": "No text, letters, logos, watermarks, UI, faces, hands, people, neon, purple, cyberpunk."
+  },
+
+  "budget": {
+    "films_base": 202.5,
+    "stills_base": 68,
+    "base_total": 270.5,
+    "reject_allowance_pct": 35,
+    "planned_total": 365,
+    "hard_stop": 450,
+    "stated_available": "600 to 800",
+    "rule": "One keyframe and one test leg per film before chaining. Report the running total after every piece. Stop at 450 regardless of completion. Do not spend into the 3D world's allowance without asking."
+  },
+
+  "three_d_world_handoff": {
+    "owner": "Dillon's Codex session, in progress.",
+    "boundary": "This kit does not build a 3D world and must not start one.",
+    "contract": [
+      "Palette from momentum.tokens.css: ground #0e1a22, brand #1e73be, accent #f58320 as a field or signal colour only, paper #fbfaf7 as highlight. Not the 360 cyan/yellow.",
+      "Any text rendered in 3D uses Archivo Black or Nunito Sans and clears 4.5:1 body / 3:1 large against the actually rendered background.",
+      "The logo enters as the verified 2D layer (video/assets/momentum-logo-white.png) composited over the render. It is not modelled, extruded, re-lettered or lit so that its colour changes.",
+      "Deliver a 16:9 H.264 master with no audio plus the frame range where a title card can sit without competing with motion, and a 9:16 variant or a safe centre crop.",
+      "Reduced-motion viewers get a still from the same master, not a different composition.",
+      "Same visual technique as the films: a real environment inside a suspended photogrammetry fragment on a clean negative field, particles that mean something."
+    ]
+  },
+
+  "pipeline": [
+    "0. Authorise the Higgsfield MCP connector. Reverify credit rates and remaining balance in the live account.",
+    "1. Keyframes: five gpt_image_2 renders (42.5). Review each. Reject and regenerate at most once per film before escalating to Dillon.",
+    "2. One Seedance Mini test leg per film (50). Review midpoint and last frame. Only then chain the remaining legs from each leg's actual last frame.",
+    "3. Stills: eight gpt_image_2 renders (68). Review as a set for consistency.",
+    "4. Join legs locally with composite.ps1. No model joins clips.",
+    "5. Render title cards (build_cards.py, ?card=N&still=1) and composite the verified lockup. Derive 9:16 and 1:1.",
+    "6. Record every job: id, model, credits, prompt hash, output sha256, accepted or rejected, into video/ledger.json before the piece is called done.",
+    "7. QA: four frames per film, no logo deformation; duration and dimensions match; reduced-motion still exists; running credit total under the hard stop."
+  ]
+}
