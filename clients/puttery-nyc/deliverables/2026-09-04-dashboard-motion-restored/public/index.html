@@ -126,12 +126,12 @@
           <div class="pilot-scoreboard" aria-label="Current phase">
             <div class="scoreboard-head build-stage-head"><span>Current phase</span><strong id="build-stage">Reporting</strong></div>
             <dl class="score-grid">
-              <div><dt>Available now</dt><dd>Reservation reporting</dd></div>
-              <div><dt>Connected source</dt><dd id="connected-systems">Checking Tock</dd></div>
+              <div><dt>Available now</dt><dd>Reservation + POS reporting</dd></div>
+              <div><dt>Connected source</dt><dd id="connected-systems">Checking Tock + Toast</dd></div>
               <div><dt>Next milestone</dt><dd id="current-gate">Tagged booking proof</dd></div>
-              <div><dt>Revenue reporting</dt><dd>Validation pending</dd></div>
+              <div><dt>Revenue reporting</dt><dd>Toast operational only</dd></div>
             </dl>
-            <p id="readiness-explainer">Reservation ingestion is connected. Tracking, attendance and booking-value definitions, consent, and remaining account access still gate attribution.</p>
+            <p id="readiness-explainer">Reservation ingestion and read-only Toast reporting are connected. Tracking, attendance, consent, transaction matching, and remaining account access still gate attribution.</p>
           </div>
 
           <div class="course-band" aria-hidden="true">
@@ -191,7 +191,7 @@
             </li>
             <li>
               <span class="route-marker">D</span>
-              <div><strong>Toast collected revenue</strong><p>Net sales, payments, refunds, tax, tips, and venue revenue centers close the operating loop.</p><small>Restaurant GUID · check GUID · payment GUID</small></div>
+              <div><strong>Toast operational revenue</strong><p>Dated net sales, payments, refunds, and voids provide a separate POS operating total.</p><small>Restaurant ID · business date · aggregate totals</small></div>
             </li>
           </ol>
         </section>
@@ -209,7 +209,7 @@
             <div><span>Imported history</span><strong data-aggregate="allRecords">Pending</strong><small>All dates, including future reservations</small></div>
             <div><span>Campaign attribution</span><strong>Pending</strong><small>Requires a verified tagged booking</small></div>
           </div>
-          <p class="aggregate-note">Reservation records are not completed visits or attributed ad conversions. Revenue reporting remains pending validation.</p>
+          <p class="aggregate-note">Reservation records are not completed visits or attributed ad conversions. Dated Toast operational totals appear separately below.</p>
           <div class="aggregate-two-column">
             <div class="aggregate-module"><h3>Service-date trend</h3><p id="trend-description">Reservation states per service day.</p><div id="reservation-trend" class="reservation-trend" aria-label="Reservation states by service date"></div><details class="aggregate-detail"><summary>Open exact trend counts</summary><div class="aggregate-table-wrap" tabindex="0" role="region" aria-label="Service trend data"><table class="aggregate-table"><thead><tr><th scope="col">Service date</th><th scope="col">Records</th></tr></thead><tbody id="trend-table"></tbody></table></div></details></div>
             <div class="aggregate-module"><h3>From records to reporting</h3><p id="selected-readiness">Waiting for the selected period’s data-readiness counts.</p><ol><li>Verify the exact website, analytics and advertising accounts.</li><li>Trace a consented tagged booking from the campaign into Tock.</li><li>Approve attendance and finance definitions before reporting outcomes or revenue.</li></ol><p class="aggregate-note">Attendance detail stays in the protected source records.</p></div>
@@ -221,8 +221,19 @@
             <div class="aggregate-module"><h3>Value readiness</h3><p>Only field-presence and consistency counts are published. Revenue amounts stay pending until finance definitions, refunds and payment reconciliation are approved.</p><div class="aggregate-table-wrap" role="region" aria-label="Financial field availability" tabindex="0"><table class="aggregate-table"><thead><tr><th scope="col">Financial field</th><th scope="col">Records with field</th></tr></thead><tbody id="financial-fields"></tbody></table></div><p id="value-readiness" class="aggregate-note"></p></div>
           </div>
           </details>
-          <div class="pending-measures"><h3>Attribution and revenue</h3><dl><div><dt>Ad spend</dt><dd>Pending source validation</dd></div><div><dt>Tagged website visits</dt><dd>Pending GA4 validation</dd></div><div><dt>Attributed reservations</dt><dd>Pending tracked-booking proof</dd></div><div><dt>Completed visits</dt><dd>Pending attendance definition</dd></div><div><dt>Revenue and ROAS</dt><dd>Pending finance reconciliation</dd></div><div><dt>Exact match coverage</dt><dd>Pending identifiers and consent</dd></div></dl></div>
+          <div class="pending-measures"><h3>Attribution and revenue</h3><dl><div><dt>Ad spend</dt><dd>Pending source validation</dd></div><div><dt>Tagged website visits</dt><dd>Pending GA4 validation</dd></div><div><dt>Attributed reservations</dt><dd>Pending tracked-booking proof</dd></div><div><dt>Completed visits</dt><dd>Pending attendance definition</dd></div><div><dt>Revenue and ROAS</dt><dd>Toast operational only · attribution pending</dd></div><div><dt>Exact match coverage</dt><dd>Pending identifiers and consent</dd></div></dl></div>
           <div class="aggregate-downloads"><button id="download-csv" class="action-button primary" type="button" disabled>Download aggregate CSV</button><button id="download-json" class="action-button primary" type="button" disabled>Download aggregate JSON</button><p>Selected-period counts and source timestamps only. Implementation notes export separately below.</p></div>
+        </section>
+
+        <section id="toast-operations" class="section-block light-section" aria-labelledby="toast-title">
+          <div class="section-heading split-heading"><div><h2 id="toast-title">NYC operational reconciliation</h2><p>Closed-day Toast POS totals aligned to the same dated Tock aggregate window. The two source grains remain separate.</p></div><span class="platform-state ready">Read-only source</span></div>
+          <p id="toast-freshness" class="aggregate-period" role="status">Loading the dated Toast reconciliation.</p>
+          <div class="metric-scorecard reservation-summary" aria-label="Toast and Tock operational totals">
+            <div><span>Tock reservation records</span><strong id="toast-tock-records">Pending</strong><small>Distinct source records, not visits</small></div>
+            <div><span>Toast orders</span><strong id="toast-orders">Pending</strong><small>Closed-day POS orders</small></div>
+            <div><span>Toast net sales</span><strong id="toast-net-sales">Pending</strong><small>Operational, not attributed revenue</small></div>
+          </div>
+          <div class="aggregate-module"><h3>Toast source checks</h3><dl id="toast-source-quality" class="source-quality"><div><dt>Source</dt><dd>Pending</dd></div></dl><p class="aggregate-note">Tock reservation records and Toast orders are not added together and no guest identifiers are published. This is operational reconciliation only; it does not establish completed visits, transaction matches, marketing attribution, revenue by campaign, or ROAS.</p></div>
         </section>
 
         <section id="ga4-analytics" class="section-block light-section" aria-labelledby="ga4-title">
@@ -243,7 +254,7 @@
           <div class="decision-lines">
             <article><img class="outcome-mark" src="assets/outcome-booking.svg" alt="" aria-hidden="true" width="120" height="120" /><span>BOOKING</span><h3>Which campaigns create real Tock reservations?</h3><p>Separate clicks and checkout starts from completed bookings, then account for edits, transfers, cancellations, and refunds.</p></article>
             <article><img class="outcome-mark" src="assets/outcome-visit.svg" alt="" aria-hidden="true" width="120" height="120" /><span>VISIT</span><h3>Which reservations become completed Puttery visits?</h3><p>Keep reservation creation and service completion as separate conversion events so paid media is not optimized toward future cancellations.</p></article>
-            <article><img class="outcome-mark" src="assets/outcome-revenue.svg" alt="" aria-hidden="true" width="120" height="120" /><span>REVENUE</span><h3>What collected Toast revenue can be joined exactly?</h3><p>Report exact matches, platform-level outcomes, and unmatched value separately. Never turn a timing guess into a person-level match.</p></article>
+            <article><img class="outcome-mark" src="assets/outcome-revenue.svg" alt="" aria-hidden="true" width="120" height="120" /><span>REVENUE</span><h3>What Toast revenue is operationally verified?</h3><p>Report dated POS totals separately from exact matches, platform-level outcomes, and unmatched value. Never turn a timing guess into a person-level match.</p></article>
           </div>
           <div class="truth-callout">
             <strong>Truth rule</strong>
@@ -255,7 +266,7 @@
           <div class="section-heading split-heading">
             <div>
               <h2 id="integrations-title">Puttery integration map</h2>
-              <p>Ten source lanes support the pilot. The NYC reservation webhook and daily exports are connected. Financial reconciliation, campaign tracking and additional venue access still require confirmation.</p>
+              <p>Ten source lanes support the pilot. NYC reservation ingestion and read-only Toast reporting are connected. Transaction matching, campaign tracking and additional venue access still require confirmation.</p>
             </div>
             <div class="legend" aria-label="Integration status legend">
               <span><i class="legend-dot ready"></i>Verified access</span>

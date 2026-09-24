@@ -2,7 +2,9 @@
   'use strict';
   const endpoint = 'https://puttery-tock-relay.netlify.app/tock/dashboard';
   const count = value => Number.isSafeInteger(value) && value >= 0;
+  const cents = value => Number.isSafeInteger(value) && Math.abs(value) <= 1_000_000_000_000;
   const fmt = value => count(value) ? value.toLocaleString('en-US') : 'Pending';
+  const money = value => cents(value) ? new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(value / 100) : 'Pending';
   const text = (id, value) => { const node = document.getElementById(id); if (node) node.textContent = value; };
   const escape = value => String(value).replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
   const fieldKeys = ['gclid','gbraid','wbraid','fbclid','fbc','fbp','utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
@@ -10,7 +12,7 @@
   let loading = false;
   let period = '30d';
   let lastAttempt = null;
-  const dashboard = window.PUTTERY_DASHBOARD = {data:null, source:null, refreshState:'loading', render, refresh};
+  const dashboard = window.PUTTERY_DASHBOARD = {data:null, toast:null, source:null, refreshState:'loading', render, refresh};
   const dateOnly = value => /^\d{4}-\d{2}-\d{2}$/.test(value || '') && Number.isFinite(Date.parse(value));
   function timestamp(value) {
     const time = Date.parse(value);
@@ -41,6 +43,27 @@
     }
     return data;
   }
+  function validateToast(data) {
+    const exact = (value,keys) => value && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === keys.length && keys.every(key => Object.hasOwn(value,key));
+    const rootKeys = ['schemaVersion','purpose','marketingAttributionIncluded','businessId','restaurantId','timeZone','checkedAt','sourceCheckedAt','period','totals','daily'];
+    const totalKeys = ['tockReservationRecords','toastOrders','toastPayments','toastNetSalesCents','toastRefundsCents','toastVoidsCents'];
+    const dailyKeys = ['date',...totalKeys];
+    if (!exact(data,rootKeys) || data.schemaVersion !== 1 || data.purpose !== 'operational_reconciliation' || data.marketingAttributionIncluded !== false || data.businessId !== '37824' || data.restaurantId !== '154035' || data.timeZone !== 'America/New_York' || !Number.isFinite(Date.parse(data.checkedAt)) || Date.parse(data.checkedAt) > Date.now() + 60000) throw new Error('Invalid Toast scope');
+    if (!exact(data.sourceCheckedAt,['toast','tock']) || !Number.isFinite(Date.parse(data.sourceCheckedAt.toast)) || !Number.isFinite(Date.parse(data.sourceCheckedAt.tock))) throw new Error('Invalid Toast timestamps');
+    if (!exact(data.period,['start','end','completeDays']) || !dateOnly(data.period.start) || !dateOnly(data.period.end) || data.period.start > data.period.end || !count(data.period.completeDays)) throw new Error('Invalid Toast period');
+    if (!exact(data.totals,totalKeys) || !count(data.totals.tockReservationRecords) || !count(data.totals.toastOrders) || !count(data.totals.toastPayments) || !cents(data.totals.toastNetSalesCents) || !count(data.totals.toastRefundsCents) || !count(data.totals.toastVoidsCents)) throw new Error('Invalid Toast totals');
+    if (!Array.isArray(data.daily) || data.daily.length !== data.period.completeDays || data.daily.some(row => !exact(row,dailyKeys) || !dateOnly(row.date) || !count(row.tockReservationRecords) || !count(row.toastOrders) || !count(row.toastPayments) || !cents(row.toastNetSalesCents) || !count(row.toastRefundsCents) || !count(row.toastVoidsCents))) throw new Error('Invalid Toast daily rows');
+    for (const key of totalKeys) if (data.daily.reduce((sum,row) => sum + row[key],0) !== data.totals[key]) throw new Error('Toast totals do not reconcile');
+    return data;
+  }
+  function renderToast(data) {
+    text('toast-tock-records',fmt(data.totals.tockReservationRecords));
+    text('toast-orders',fmt(data.totals.toastOrders));
+    text('toast-net-sales',money(data.totals.toastNetSalesCents));
+    text('toast-freshness',`${data.period.start} closed business day · Toast checked ${timestamp(data.sourceCheckedAt.toast)} · Tock checked ${timestamp(data.sourceCheckedAt.tock)}.`);
+    const quality = [['Toast restaurant','154035'],['Complete days',data.period.completeDays],['Toast payments',data.totals.toastPayments],['Toast refunds',money(data.totals.toastRefundsCents)],['Toast voids',money(data.totals.toastVoidsCents)],['Marketing attribution','Not included']];
+    document.getElementById('toast-source-quality').innerHTML = quality.map(([label,value]) => `<div><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>`).join('');
+  }
   function selectedTrend() {
     const data = dashboard.data;
     const view = data.windows[period];
@@ -51,7 +74,7 @@
     if (!data) {
       text('aggregate-state', loading ? 'Loading reservation aggregates' : 'Reservation data unavailable');
       text('aggregate-checked', loading ? 'Checking the live feed and saved snapshot…' : 'The live feed and saved snapshot could not be loaded. Use Refresh data to retry.');
-      text('connected-systems','Verification pending');
+      text('connected-systems',dashboard.toast ? 'Toast operational · Tock pending' : 'Verification pending');
       return;
     }
     const fresh = ageValid(data.checkedAt,15 * 60000);
@@ -60,7 +83,7 @@
     const label = offline ? 'Refresh unavailable · last verified snapshot' : dashboard.source === 'saved' ? 'Saved snapshot · live refresh unavailable' : !fresh ? 'Stale source snapshot' : !exportFresh ? 'Webhook current · export refresh pending' : 'Live reservation aggregates';
     text('aggregate-state', label);
     text('aggregate-checked', `Source checked ${timestamp(data.checkedAt)}. Exports checked ${timestamp(data.exportCheckedAt)}.${lastAttempt ? ` Page checked ${timestamp(lastAttempt)}.` : ''}`);
-    text('connected-systems', offline || !fresh || dashboard.source === 'saved' ? 'Tock · dated snapshot' : '1 · Tock');
+    text('connected-systems', dashboard.toast ? (offline || !fresh || dashboard.source === 'saved' ? 'Tock dated · Toast operational' : 'Tock · Toast operational') : (offline || !fresh || dashboard.source === 'saved' ? 'Tock · dated snapshot' : '1 · Tock'));
     document.querySelector('.aggregate-status')?.classList.toggle('needs-review', offline || !fresh || !exportFresh || dashboard.source === 'saved');
   }
   function render(value) {
@@ -179,6 +202,17 @@
       }
     } catch { /* Retain the explicit baseline pending evidence. */ }
   }
+  async function loadToastOperational() {
+    try {
+      const response = await fetch('toast-reconciliation.json',{cache:'no-store'});
+      if (!response.ok) throw new Error('Toast source unavailable');
+      dashboard.toast = validateToast(await response.json());
+      renderToast(dashboard.toast);
+      renderFreshness();
+    } catch {
+      text('toast-freshness','Dated Toast operational reconciliation unavailable. No value is estimated.');
+    }
+  }
   document.addEventListener('DOMContentLoaded',() => {
     if (typeof ResizeObserver !== 'undefined') {
       const strip = document.querySelector('.truth-strip');
@@ -187,7 +221,7 @@
     document.getElementById('refresh-data').addEventListener('click',() => { refresh(); document.dispatchEvent(new CustomEvent('puttery:refresh')); });
     document.getElementById('download-csv').addEventListener('click',() => download('csv'));
     document.getElementById('download-json').addEventListener('click',() => download('json'));
-    refresh(); loadSourceVerification(); setInterval(() => { renderFreshness(); refresh(); },60000);
+    refresh(); loadToastOperational(); loadSourceVerification(); setInterval(() => { renderFreshness(); refresh(); },60000);
   });
   document.addEventListener('visibilitychange',() => { if (!document.hidden) refresh(); });
 })();

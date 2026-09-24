@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param()
+param([switch]$PublishStatus)
 $ErrorActionPreference = 'Stop'
 $manifestPath = 'C:\Users\dillo\.codex\tools\hidden-scheduled-tasks.tsv'
 $wrapper = 'C:\Users\dillo\.codex\tools\Run-HiddenScheduledTask.vbs'
@@ -18,6 +18,7 @@ foreach ($spec in $specs) {
     $scriptPath = Join-Path $PSScriptRoot $spec.Script
     if (!(Test-Path -LiteralPath $scriptPath)) { throw 'integration_script_missing' }
     $command = '"{0}" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass -File "{1}"' -f $pwsh,$scriptPath
+    if ($spec.Name -eq 'Codex-PutteryNYC-TockOperationalStatus' -and !$PublishStatus) { $command += ' -LocalOnly' }
     $lines.Add($spec.Name + "`t" + $command)
 }
 [IO.File]::WriteAllLines($manifestPath + '.puttery.tmp', $lines, [Text.UTF8Encoding]::new($false))

@@ -1,8 +1,9 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {join} from 'node:path';
-const root='C:/Users/dillo/Documents/Codex/projects/client-operations/clients/puttery-nyc/deliverables/2026-09-04-dashboard-motion-restored/public';
-const data=JSON.parse(fs.readFileSync(join(process.env.LOCALAPPDATA,'Codex/ClientAccess/PutteryNYC/tock-dashboard-latest.json'),'utf8'));
+import {fileURLToPath} from 'node:url';
+const root=fileURLToPath(new URL('../2026-09-04-dashboard-motion-restored/public/',import.meta.url));
+const data=JSON.parse(fs.readFileSync(join(process.env.LOCALAPPDATA,'Codex/ClientAccess/PutteryNYC',process.argv.includes('--local-only')?'tock-dashboard-staged.json':'tock-dashboard-latest.json'),'utf8'));
 const sandbox={window:{}};vm.runInNewContext(fs.readFileSync(join(root,'status.js'),'utf8'),sandbox);
 const t=data.totals,fmt=n=>n.toLocaleString('en-US');
 const old=sandbox.window.PUTTERY_OPERATIONAL_STATUS;
