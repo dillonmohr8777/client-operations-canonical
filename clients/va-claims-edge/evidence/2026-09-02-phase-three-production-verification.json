@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "evidenceId": "va-claims-phase-three-production-verification-2026-09-02",
+  "clientId": "va-claims-edge",
+  "observedAtUtc": "2026-09-03T01:00:00Z",
+  "purpose": "Independent verification of Obaid's 2026-09-02 Phase 3 development-complete claim on the production portal. Read-only, unauthenticated probes only.",
+  "claimUnderTest": {
+    "source": "slack",
+    "channel": "#va-claims",
+    "author": "Obaidullah Shaikh",
+    "messageTs": "1788390625.269229",
+    "claim": "Phase 3 is complete from the development side. Everything is live and verified on production at vaclaims-portal.vercel.app."
+  },
+  "origin": "https://vaclaims-portal.vercel.app",
+  "routeChecks": [
+    {
+      "route": "/",
+      "statusCode": 200,
+      "result": "public-page-served"
+    },
+    {
+      "route": "/login",
+      "statusCode": 200,
+      "result": "public-page-served"
+    },
+    {
+      "route": "/portal",
+      "statusCode": 200,
+      "result": "public-page-served"
+    },
+    {
+      "route": "/dashboard",
+      "statusCode": 307,
+      "redirectsTo": "/login",
+      "result": "auth-gated-redirect"
+    },
+    {
+      "route": "/dashboard/clients",
+      "statusCode": 307,
+      "redirectsTo": "/login",
+      "result": "auth-gated-redirect"
+    },
+    {
+      "route": "/dashboard/clients/new",
+      "statusCode": 307,
+      "redirectsTo": "/login",
+      "result": "auth-gated-redirect"
+    },
+    {
+      "route": "/dashboard/alerts",
+      "statusCode": 307,
+      "redirectsTo": "/login",
+      "result": "auth-gated-redirect"
+    },
+    {
+      "route": "/dashboard/advisors",
+      "statusCode": 307,
+      "redirectsTo": "/login",
+      "result": "auth-gated-redirect"
+    },
+    {
+      "route": "/dashboard/payment-watch",
+      "statusCode": 307,
+      "redirectsTo": "/login",
+      "result": "auth-gated-redirect"
+    },
+    {
+      "route": "/dashboard/settings",
+      "statusCode": 307,
+      "redirectsTo": "/login",
+      "result": "auth-gated-redirect"
+    },
+    {
+      "route": "/dashboard/ai",
+      "statusCode": 307,
+      "redirectsTo": "/login",
+      "result": "auth-gated-redirect"
+    }
+  ],
+  "authEnforcementChecks": [
+    {
+      "route": "/api/clients",
+      "method": "GET",
+      "authenticated": false,
+      "statusCode": 401,
+      "body": "{\"error\":\"Authentication required.\"}",
+      "result": "rejected-as-expected"
+    },
+    {
+      "route": "/api/payment-watch",
+      "method": "GET",
+      "authenticated": false,
+      "statusCode": 401,
+      "body": "{\"error\":\"Authentication required.\"}",
+      "result": "rejected-as-expected"
+    },
+    {
+      "route": "/api/advisors",
+      "method": "GET",
+      "authenticated": false,
+      "statusCode": 401,
+      "body": "{\"error\":\"Authentication required.\"}",
+      "result": "rejected-as-expected"
+    },
+    {
+      "route": "/api/settings",
+      "method": "GET",
+      "authenticated": false,
+      "statusCode": 401,
+      "body": "{\"error\":\"Authentication required.\"}",
+      "result": "rejected-as-expected"
+    },
+    {
+      "route": "/api/ai",
+      "method": "GET",
+      "authenticated": false,
+      "statusCode": 405,
+      "result": "method-not-allowed-consistent-with-post-only-route"
+    }
+  ],
+  "findings": [
+    "Three public routes serve content; all eight protected /dashboard/* routes redirect to /login when unauthenticated, so UI-level auth gating is working alongside the API 401s.",
+    "Every protected API route tested rejects unauthenticated requests with 401, consistent with the security patch confirmed on 2026-08-31.",
+    "The staff intake route /dashboard/clients/new exists and is auth-gated, which is the capability that was missing when client intake was raised on 2026-09-01.",
+    "No protected screen was rendered from this session. Route existence and auth gating are verified; feature behaviour is not."
+  ],
+  "limitations": [
+    "Unauthenticated verification only. Authenticated behaviour behind login was not exercised: stage transitions, onus toggle, stop clock, note append, advisor CRUD, and AI assistant responses are unverified from this session.",
+    "The vaclaims-dev/vace-platform repository is not attached to this session, so no code-level review of the Phase 3 backend was performed.",
+    "The daily cron job and Resend notification engine were not observed running; both are reported complete by Obaid but are not externally observable."
+  ],
+  "verificationState": "routes-exist-and-auth-gated; no protected screen observed",
+  "openItemsRequiringDavid": [
+    "Confirm the Resend sender domain, most likely vaclaimsedge.com, so the daily alert engine can leave test-sender mode.",
+    "Confirm whether website self-registration is in scope for a later phase. Staff intake is live now; James Frederick asked for both self and staff onboarding on 2026-09-01."
+  ],
+  "methodologyCorrection": {
+    "correctedAtUtc": "2026-09-22T05:00:00Z",
+    "what": "The original probes followed redirects (curl -L), so every route was recorded as statusCode 200. That was the status of the final response after the redirect, not of the route itself.",
+    "actual": "Three public routes (/, /login, /portal) serve a page with 200. The eight /dashboard/* routes return 307 to /login when unauthenticated.",
+    "effect": "This strengthens the security finding: UI routes are auth-gated, not only the APIs. It also means no protected screen was ever observed from this session, so nothing about the seven-stage journey, notes, advisors, Payment Watch or the AI assistant is verified here."
+  }
+}

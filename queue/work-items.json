@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 425,
-  "updatedAt": "2026-09-04T02:07:36.5176431+00:00",
+  "revision": 426,
+  "updatedAt": "2026-09-21T20:50:00.0000000+00:00",
   "updatedBy": "marketing-chief",
   "mode": "manual-pilot",
   "canonicalProject": "C:\\Users\\dillo\\Documents\\Codex\\projects\\client-operations",
@@ -8322,6 +8322,89 @@
       },
       "createdAt": "2026-09-01T13:07:19.0625035-04:00",
       "updatedAt": "2026-09-01T13:17:28.7725757-04:00"
+    },
+    {
+      "id": "wi-20260902-0001",
+      "version": 2,
+      "dedupeKey": "va-claims-edge/phase-three-closeout-2026-09-02",
+      "scope": "client",
+      "clientId": "va-claims-edge",
+      "routing": {
+        "status": "resolved",
+        "matchedBy": "registry-resolver",
+        "registryStatus": "active",
+        "verifiedAt": "2026-09-03T01:00:00.0000000+00:00"
+      },
+      "title": "Close out VA Claims Phase 3 after Obaid's development-complete handoff",
+      "requestedOutcome": "Phase 3 is verified end to end from Dillon's side, David has answered the sender-domain and self-registration decisions, and the tracker reflects merged production state.",
+      "source": {
+        "type": "slack",
+        "locator": "slack://channel/C0AU6GMGY73/message/1788390625.269229",
+        "observedAt": "2026-09-02T23:10:25Z",
+        "redactedSummary": "Obaid declared Phase 3 complete on the development side and live on production. Dillon replied that he would check what was left to clean up on his side. Two items still need David: the Resend sender domain and whether website self-registration is in scope."
+      },
+      "status": "in_progress",
+      "lane": "normal",
+      "emergencyRationale": null,
+      "priority": {
+        "level": "P1",
+        "rationale": "Active client phase gate. The alert engine cannot leave test-sender mode until David confirms the sending domain."
+      },
+      "owner": "marketing-chief",
+      "nextAction": "Send the demo-steps email to David (Draft 4) that James asked for on 2026-09-18 and chased on 2026-09-21, then run the authenticated seven-stage walkthrough, which remains the acceptance gate regardless of whether David self-serves the demo.",
+      "execution": {
+        "actionClass": "local_research",
+        "automaticEligible": true,
+        "externalAction": false,
+        "reversible": true,
+        "classifiedAt": "2026-09-03T01:00:00.0000000+00:00"
+      },
+      "definitionOfDone": [
+        "Demo-steps email sent to David so he can evaluate the portal without a meeting",
+        "Authenticated walkthrough of all seven stages recorded under clients/va-claims-edge/evidence",
+        "Operations dashboard confirmed on the seven-stage model, not the retired four-stage grouping",
+        "Large-text accessibility pass confirmed intact after the Phase 3 merges",
+        "Recorded decision on website self-registration (scoped or deferred)",
+        "Phase 3 tracker rows updated to merged production state"
+      ],
+      "dueAt": null,
+      "reviewAt": null,
+      "evidence": {
+        "asOf": "2026-09-21T20:00:00.0000000+00:00",
+        "freshness": "current",
+        "refs": [
+          "slack://channel/C0AU6GMGY73/message/1788390625.269229",
+          "clients/va-claims-edge/evidence/2026-09-02-phase-three-production-verification.json",
+          "clients/va-claims-edge/deliverables/2026-09-02-phase-three-closeout/closeout.md",
+          "clients/va-claims-edge/deliverables/2026-09-02-phase-three-closeout/slack-drafts.md",
+          "clients/va-claims-edge/deliverables/2026-09-02-phase-three-closeout/reconciliation-2026-09-21.md"
+        ]
+      },
+      "approval": {
+        "tier": "gated",
+        "action": "Send the demo-steps email to David (Draft 4), plus the earlier replies to Obaid and James.",
+        "status": "pending",
+        "approvalRef": null
+      },
+      "dependencies": [],
+      "assumptions": [
+        "Obaid's report that the daily cron job and Resend notification engine are working is taken at face value; neither is externally observable from this session."
+      ],
+      "confidence": 0.85,
+      "artifactRefs": [
+        "clients/va-claims-edge/deliverables/2026-09-02-phase-three-closeout/closeout.md",
+        "clients/va-claims-edge/deliverables/2026-09-02-phase-three-closeout/slack-drafts.md",
+        "clients/va-claims-edge/evidence/2026-09-02-phase-three-production-verification.json",
+        "clients/va-claims-edge/deliverables/2026-09-02-phase-three-closeout/reconciliation-2026-09-21.md"
+      ],
+      "outcome": {
+        "status": "in_progress",
+        "verifiedAt": "2026-09-21T20:00:00.0000000+00:00",
+        "summary": "Re-verified 2026-09-21: all eleven routes still 200, protected APIs still 401. The Resend sender-domain decision closed on 2026-09-15 when James and Obaid set the domain up. Website self-registration remains undecided on the record. The acceptance gate has not moved in nineteen days: the seven-stage walkthrough agreed on 2026-09-04 never happened, two scheduling attempts failed, and the demo-steps email James proposed as the workaround was chased again on 2026-09-21 and is now the critical path.",
+        "externalActionTaken": false
+      },
+      "createdAt": "2026-09-03T01:00:00.0000000+00:00",
+      "updatedAt": "2026-09-21T20:00:00.0000000+00:00"
     }
   ],
   "intakeQuarantine": [
