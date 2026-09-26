@@ -1,0 +1,49 @@
+/* Last-pass home fixes for animated lyric spacing and sticky-nav anchor jumps. */
+#listen,
+#tracks,
+#story {
+  scroll-margin-top: 96px;
+}
+
+.opening-line .ink-word {
+  margin-right: 0.2em;
+}
+
+.opening-line .opening-quote-mark + .ink-word,
+.opening-line .ink-word:first-of-type {
+  margin-left: 0.04em;
+}
+
+.opening-line .ink-word:last-of-type {
+  margin-right: 0.04em;
+}
+
+.earth-zoom-shot {
+  position: relative;
+  overflow: hidden;
+  background: #05070c;
+}
+
+.earth-zoom-poster,
+.earth-zoom-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.earth-zoom-video {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.earth-zoom-shot .duality-layer {
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .earth-zoom-video {
+    display: none;
+  }
+}
