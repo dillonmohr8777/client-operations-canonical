@@ -17,7 +17,7 @@ $reasons=New-Object System.Collections.Generic.List[string]
 $gates=New-Object System.Collections.Generic.List[string]
 if(-not(Test-Path -LiteralPath $RequestPath -PathType Leaf)){throw "Request not found: $RequestPath"}
 $requestFull=[IO.Path]::GetFullPath($RequestPath)
-$fixturePrefix=([IO.Path]::GetFullPath($env:TEMP).TrimEnd('\')+'\marketing-os-tests-')
+$fixturePrefix=(Get-MarketingPathPrefix ([IO.Path]::GetTempPath()))+'marketing-os-tests-'
 if($AllowFixturePaths-and-not$requestFull.StartsWith($fixturePrefix,[StringComparison]::OrdinalIgnoreCase)){throw 'Fixture overrides must remain under an isolated marketing-os-tests directory.'}
 try{$request=Get-Content -LiteralPath $RequestPath -Raw -Encoding UTF8|ConvertFrom-Json}catch{throw 'Request is not valid JSON.'}
 $required=@('schemaVersion','requestId','createdAt','clientId','source','triggerClass','platforms','locations','objective','landingPage','tracking','budget','schedule','accountRefs','blueprintRefs','authorityRef','currentEvidenceAt','state','privacy','containsSecrets','containsDirectIdentifiers','containsRawCommunications')
@@ -27,10 +27,10 @@ if([string](Get-Value $request 'requestId' '')-notmatch'^alr-[a-z0-9-]{8,100}$')
 if([string](Get-Value $request 'privacy' '')-ne'redacted'){$reasons.Add('request privacy is not redacted')}
 foreach($flag in @('containsSecrets','containsDirectIdentifiers','containsRawCommunications')){$value=Get-Value $request $flag $null;if($value-isnot[bool]-or[bool]$value){$reasons.Add("$flag must be Boolean false")}}
 $clientId=[string](Get-Value $request 'clientId' '')
-$registry=Get-Content -LiteralPath (Join-Path $projectRoot 'registry\clients.json') -Raw -Encoding UTF8|ConvertFrom-Json
+$registry=Get-Content -LiteralPath (Resolve-MarketingChildPath -Root $projectRoot -Child 'registry/clients.json') -Raw -Encoding UTF8|ConvertFrom-Json
 $client=@($registry.clients|Where-Object{$_.id-ceq$clientId})
 if($client.Count-ne1-or[string]$client[0].status-ne'active'){$reasons.Add('client route is not exact and active')}
-if(-not$AllowFixturePaths){$canonicalLaunchRoot=[IO.Path]::GetFullPath((Join-Path $projectRoot "clients\$clientId\paid-media\launches"));if(-not$requestFull.StartsWith($canonicalLaunchRoot+'\',[StringComparison]::OrdinalIgnoreCase)){$reasons.Add('request is outside the selected client launch directory')}}
+if(-not$AllowFixturePaths){$canonicalLaunchRoot=Resolve-MarketingChildPath -Root $projectRoot -Child "clients/$clientId/paid-media/launches";if(-not$requestFull.StartsWith((Get-MarketingPathPrefix $canonicalLaunchRoot),[StringComparison]::OrdinalIgnoreCase)){$reasons.Add('request is outside the selected client launch directory')}}
 $source=Get-Value $request 'source' $null
 $sourceChannel=[string](Get-Value $source 'channel' '')
 $sourceLocator=[string](Get-Value $source 'locator' '')
@@ -44,7 +44,7 @@ if($sourceChannel-eq'slack'-and($sourceLocator-notlike'slack-message:*'-or$reque
 if($requesterRef-like'registry-contact:*'){$refClient=($requesterRef-split':')[1];$contactIndex=[int]($requesterRef-split':')[-1];if($refClient-cne$clientId-or$client.Count-ne1-or$contactIndex-lt0-or$contactIndex-ge@($client[0].contacts).Count){$reasons.Add('requester reference does not resolve to the selected client contact')}}
 $platforms=@(Get-Value $request 'platforms' @())
 if($platforms.Count-lt1-or@($platforms|Where-Object{$_-notin@('google_ads','meta_ads')}).Count-gt0-or@($platforms|Select-Object -Unique).Count-ne$platforms.Count){$reasons.Add('platform set is invalid')}
-$paidMediaRosterPath=Join-Path $projectRoot 'registry\paid-media-roster.json'
+$paidMediaRosterPath=Resolve-MarketingChildPath -Root $projectRoot -Child 'registry/paid-media-roster.json'
 $paidMediaRoster=$null
 if(-not(Test-Path -LiteralPath $paidMediaRosterPath -PathType Leaf)){$reasons.Add('canonical paid-media roster is missing')}
 else{try{$paidMediaRoster=Get-Content -LiteralPath $paidMediaRosterPath -Raw -Encoding UTF8|ConvertFrom-Json}catch{$reasons.Add('canonical paid-media roster is invalid JSON')}}
@@ -75,7 +75,7 @@ if($null-ne$start-and$null-ne$end-and$end-le$start){$reasons.Add('schedule endAt
 $configReasons=New-Object System.Collections.Generic.List[string]
 $blueprintReasons=New-Object System.Collections.Generic.List[string]
 $deploymentConfigReasons=New-Object System.Collections.Generic.List[string]
-$canonicalLaunchConfigPath=Join-Path $projectRoot ("clients\$clientId\paid-media\launch-config.json")
+$canonicalLaunchConfigPath=Resolve-MarketingChildPath -Root $projectRoot -Child "clients/$clientId/paid-media/launch-config.json"
 if([string]::IsNullOrWhiteSpace($LaunchConfigPath)){$LaunchConfigPath=$canonicalLaunchConfigPath}
 elseif(-not$AllowFixturePaths-and[IO.Path]::GetFullPath($LaunchConfigPath)-cne[IO.Path]::GetFullPath($canonicalLaunchConfigPath)){throw 'LaunchConfigPath overrides are permitted only for isolated fixtures.'}
 $launchConfig=$null
@@ -105,7 +105,7 @@ if($null-ne$launchConfig){
         if($blueprintRef-cne$expectedBlueprintRef){$blueprintReasons.Add("$platform launch blueprint is not the canonical client blueprint");continue}
         $expectedBlueprintRefs.Add($blueprintRef)
         if($blueprintRef-notin$requestBlueprintRefs){$blueprintReasons.Add("$platform request does not use the configured launch blueprint")}
-        $blueprintPath=Join-Path $projectRoot ($blueprintRef-replace'/','\')
+        $blueprintPath=Resolve-MarketingChildPath -Root $projectRoot -Child $blueprintRef
         if(-not(Test-Path -LiteralPath $blueprintPath -PathType Leaf)){$blueprintReasons.Add("$platform launch blueprint is missing");continue}
         try{$blueprint=Get-Content -LiteralPath $blueprintPath -Raw -Encoding UTF8|ConvertFrom-Json}catch{$blueprintReasons.Add("$platform launch blueprint is invalid JSON");continue}
         if([int](Get-Value $blueprint 'schemaVersion' 0)-ne1-or[string](Get-Value $blueprint 'clientId' '')-cne$clientId-or[string](Get-Value $blueprint 'platform' '')-cne$platform){$blueprintReasons.Add("$platform launch blueprint does not match the selected route")}
@@ -133,7 +133,7 @@ $deploymentRoutingReady=$null-ne$launchConfig-and$deploymentConfigReasons.Count-
 
 $authorityRelative=[string](Get-Value $request 'authorityRef' '')
 $canonicalAuthorityPath=$null
-try{$canonicalAuthorityPath=Resolve-MarketingChildPath -Root $projectRoot -Child ($authorityRelative.Replace('/','\'))}catch{$reasons.Add('authority reference escapes the canonical project')}
+try{$canonicalAuthorityPath=Resolve-MarketingChildPath -Root $projectRoot -Child $authorityRelative}catch{$reasons.Add('authority reference escapes the canonical project')}
 if([string]::IsNullOrWhiteSpace($AuthorityPath)){$AuthorityPath=$canonicalAuthorityPath}
 elseif(-not$AllowFixturePaths-and$null-ne$canonicalAuthorityPath-and[IO.Path]::GetFullPath($AuthorityPath)-cne[IO.Path]::GetFullPath($canonicalAuthorityPath)){throw 'AuthorityPath overrides are permitted only for isolated fixtures.'}
 $authority=$null;$authorityReasons=New-Object System.Collections.Generic.List[string]
@@ -166,7 +166,7 @@ if($null-ne$authority){
 }
 
 $providerReasons=New-Object System.Collections.Generic.List[string]
-$canonicalProviderReadinessPath=Join-Path $projectRoot 'state\ad-provider-readiness.json'
+$canonicalProviderReadinessPath=Resolve-MarketingChildPath -Root $projectRoot -Child 'state/ad-provider-readiness.json'
 if(-not[string]::IsNullOrWhiteSpace($ProviderReadinessPath)-and-not$AllowFixturePaths-and[IO.Path]::GetFullPath($ProviderReadinessPath)-cne[IO.Path]::GetFullPath($canonicalProviderReadinessPath)){throw 'ProviderReadinessPath overrides are permitted only for isolated fixtures.'}
 try{$providerReadinessText=& (Join-Path $PSScriptRoot 'Test-AdProviderReadiness.ps1') -ReadinessPath $ProviderReadinessPath -Format Json;$providerReadiness=$providerReadinessText|ConvertFrom-Json}catch{$providerReadiness=$null;$providerReasons.Add(('provider readiness could not be validated: '+$_.Exception.Message))}
 $providerReady=$null-ne$providerReadiness

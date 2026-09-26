@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0.0",
+  "launchRequestId": "alr-20260831-213600-finder01",
+  "clientId": "replenish-7-eleven",
+  "institutedAtUtc": "2026-08-31T21:36:00Z",
+  "source": {
+    "type": "owner_instruction",
+    "locator": "user-instruction:2026-08-31-replenish-finder-url-launch",
+    "gmailThreadId": "1a0593b144d21129"
+  },
+  "finalUrlRule": {
+    "onlyAllowedFinalUrl": "https://7eleven.getreplenish.com",
+    "allowPerStoreLandingPages": false,
+    "allowRedirectHop": false,
+    "reason": "Owner destination is first party. A hop would reopen multiple URLs and would miss Get Directions on the finder page."
+  },
+  "campaignScope": {
+    "includeExactCampaignNames": [
+      "Replenish | PMAX | Torrey Del Mar 3458 | Consumer Foot Traffic",
+      "Replenish | PMAX | Miramar 43130 | Consumer Foot Traffic",
+      "Replenish | PMAX | Carmel Mountain 19223 | Consumer Foot Traffic",
+      "Replenish | PMAX | Solana Beach 4344 | Consumer Foot Traffic"
+    ],
+    "includeNameAliases": [
+      "Replenish 7-11 Smoothies - Torrey Del Mar - 3458",
+      "Replenish 7-11 Smoothies - Miramar - 43130",
+      "Replenish 7-11 Smoothies - Carmel Mountain - 19223",
+      "Replenish 7-11 Smoothies - Solana Beach - 4344"
+    ],
+    "excludeExactCampaignNames": [
+      "Replenish | PMAX | Miami 56 | Consumer Foot Traffic",
+      "Replenish | PMAX | Coral Springs | Consumer Foot Traffic",
+      "Pampano Campaign"
+    ],
+    "excludeNameAliases": [
+      "Replenish 7-11 Smoothies - Pampano - 38236",
+      "Replenish 7-11 Smoothies - Miami 56th - 30025",
+      "Replenish 7-11 Smoothies - Coral Springs - 32773"
+    ],
+    "excludeAnyFloridaMarket": [
+      "Pompano",
+      "Pampano",
+      "Miami 56",
+      "Coral Springs",
+      "Howard",
+      "Boca"
+    ],
+    "excludeReason": "Florida campaigns remain paused under the $500 lifetime cap. July 26 verification left only the four San Diego campaigns enabled. Howard and Boca stay out of scope even if they still exist in the account.",
+    "nameSource": "clients/replenish-7-eleven/paid-media/2026-07-26-lifetime-cap-pause-verification.json",
+    "doNotTouch": [
+      "Fresh Blends / Kwik Trip Ice Box campaigns in the shared Google Ads account"
+    ]
+  },
+  "tracking": {
+    "primaryConversion": "get_directions",
+    "secondaryConversion": "view_location",
+    "pageAlreadyRecordsStoreId": true,
+    "googleTagPresentOnPage": false,
+    "googleTagRequiredOn": [
+      "https://7eleven.getreplenish.com",
+      "https://7eleven.getreplenish.com/locations/*"
+    ],
+    "conversionReportingUntilTagLive": "pending_validation"
+  },
+  "authority": {
+    "launchAuthorityStatus": "draft",
+    "enableCampaigns": false,
+    "createPausedObjects": false,
+    "adjustBudget": false,
+    "liveAdsMutationFromThisHost": false
+  },
+  "nextDesktopAction": {
+    "machine": "DESKTOP-4AHKEC4 or AHCM-3LCQVF4",
+    "session": "persistent_chrome",
+    "accountRef": "access-broker:replenish-7-eleven/google-ads-production",
+    "adsUiHint": "Open the mapped Replenish child account in persistent Chrome, then the four San Diego Performance Max campaigns only.",
+    "steps": [
+      "Open only the four included San Diego campaigns.",
+      "Set every asset group final URL to https://7eleven.getreplenish.com.",
+      "Do not change daily budget.",
+      "Do not enable Florida campaigns, including Pompano, Miami 56, Coral Springs, Howard, and Boca.",
+      "Do not touch Fresh Blends campaigns.",
+      "Read back the live final URL and status on each included campaign and store the readback under this folder."
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0.0",
+  "clientId": "replenish-7-eleven",
+  "launchRequestId": "alr-20260831-213600-finder01",
+  "destination": "https://7eleven.getreplenish.com",
+  "question": "How do we track conversions on the location finder without a Fresh Blends style redirect hop?",
+  "answer": "Keep the finder URL as the only ad destination. Install the Replenish Google tag on that page. Mark get_directions as the primary conversion. Do not add a Netlify hop.",
+  "pageEvidence": {
+    "checkedAtUtc": "2026-08-31T21:41:00Z",
+    "assets": ["assets/analytics.js", "assets/locator.js"],
+    "eventsAlreadyCoded": ["get_directions", "view_location", "region_switch"],
+    "eventsIncludeStoreId": true,
+    "gclidPersisted": true,
+    "gtagPresent": false,
+    "gtmPresent": false,
+    "awPresent": false,
+    "staleComingCopy": [
+      "hero locpin: Now in San Diego County · South Florida coming soon",
+      "locator.js Florida region status: Coming this August",
+      "Florida store-card badge: Coming August",
+      "footer: Now in San Diego County, CA · South Florida coming this August",
+      "each Florida /locations/ page: Coming soon / Coming this August"
+    ]
+  },
+  "requiredProgrammerWork": [
+    "Add the Replenish Google tag (GA4 and or Google Ads) to the finder page and every /locations/ page.",
+    "Keep the existing get_directions fire with store_id.",
+    "Keep gclid gbraid wbraid and UTM persistence."
+  ],
+  "requiredAdsWork": [
+    "Import or create get_directions as a primary conversion in the Replenish Google Ads account only.",
+    "Point every in-scope campaign final URL at https://7eleven.getreplenish.com."
+  ],
+  "qa": [
+    "Click a San Diego ad.",
+    "Land on https://7eleven.getreplenish.com with gclid present.",
+    "Click Get Directions on one store.",
+    "Confirm the Google tag fires get_directions with that store_id.",
+    "Confirm Google Ads records the conversion after the usual delay."
+  ],
+  "doNotUse": [
+    "https://7-11-smoothies-boca.netlify.app",
+    "https://7-11-smoothies-miami56.netlify.app",
+    "https://7-11-smoothies-pompano.netlify.app",
+    "https://7-11-smoothies-coral-springs.netlify.app",
+    "https://7-11-smoothies-torrey.netlify.app",
+    "https://7-11-smoothies-carmel.netlify.app",
+    "https://7-11-smoothies-solana.netlify.app",
+    "Any Kwik Trip Ice Box redirect hop"
+  ]
+}
