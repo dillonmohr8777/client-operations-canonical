@@ -27,10 +27,21 @@ Assert-True ([string]$roster.authority.canonicalQueueMutationByRoster -eq 'forbi
 Assert-True ([string]$roster.authority.cursorUserSecretsByRoster -eq 'forbidden') 'Roster must not write Cursor API keys.'
 Assert-True ([string]$roster.authority.cursorTunnelsByRoster -eq 'forbidden') 'Roster must not enable Cursor tunnels.'
 Assert-True ([string]$roster.authority.cursorStateDbByRoster -eq 'forbidden') 'Roster must not edit Cursor state.vscdb.'
+Assert-True ([string]$roster.authority.cursorLoopbackByok -eq 'forbidden') 'Roster must not authorize localhost Cursor BYOK.'
+Assert-True ([string]$roster.authority.downloadOrLaunchNewLocalModels -eq 'forbidden') 'Roster must not download or launch new local models.'
+Assert-True ([string]$roster.authority.purchaseByRoster -eq 'forbidden') 'Roster must not purchase anything.'
 Assert-True (-not [bool]$roster.authority.cloudOllamaTagsCountAsLocal) 'Cloud Ollama tags must not count as local.'
 Assert-True ([bool]$roster.authority.vendorBenchmarksAreObservations) 'Vendor scores must stay observations.'
 Assert-True ([string]$roster.cursor.pickerCollisionPrefix -eq 'mc-') 'Cursor picker collisions must use the mc- prefix.'
 Assert-True ([bool]$roster.cursor.cloudAgentsUseHostedModels) 'Cloud Agents must stay on hosted Cursor models.'
+Assert-True ([bool]$roster.cursor.cloudAgentsCannotReachLoopback) 'Cloud Agents must not claim loopback Ollama or OmniRoute.'
+Assert-True ([bool]$roster.cursor.cursorBackendCannotReachLoopback) 'Cursor backend cannot reach desktop loopback.'
+Assert-True ([bool]$roster.cursor.cursorByokLoopbackForbidden) 'Localhost Cursor BYOK must stay forbidden.'
+Assert-True ([string]$roster.cursor.authorizedCloudOwner -eq 'codex') 'Ollama Cloud MCP owner must stay Codex.'
+Assert-True ([string]$roster.cursor.authorizedCloudMcp -eq 'local-ai-worker') 'Authorized cloud MCP must stay local-ai-worker.'
+Assert-True ('ollama_cloud_status' -in @($roster.cursor.authorizedCloudTools)) 'Authorized cloud tools must include ollama_cloud_status.'
+Assert-True ('ollama_cloud_run' -in @($roster.cursor.authorizedCloudTools)) 'Authorized cloud tools must include ollama_cloud_run.'
+Assert-True (@($roster.cursor.pullHosts) -contains 'DESKTOP' -and @($roster.cursor.pullHosts) -contains 'AHCM') 'Ollama pulls belong on DESKTOP or AHCM.'
 Assert-True ([bool]$roster.cursor.doNotWriteApiKeys) 'Cursor pack must not write API keys.'
 Assert-True ([bool]$roster.cursor.doNotEnableTunnels) 'Cursor pack must not enable tunnels.'
 Assert-True ([bool]$roster.cursor.doNotEditStateDb) 'Cursor pack must not edit state.vscdb.'
@@ -93,6 +104,37 @@ foreach ($recommendation in $recommendations) {
     $target = @($models | Where-Object { [string]$_.id -eq [string]$recommendation.modelId })[0]
     Assert-True ([string]$target.status -eq 'recommended') ("Recommendation lane {0} must use a recommended model." -f $recommendation.lane)
 }
+
+$localTags = @(
+    $models |
+        Where-Object { -not [string]::IsNullOrWhiteSpace([string]$_.ollamaLocalTag) } |
+        ForEach-Object { [string]$_.ollamaLocalTag }
+)
+$pullSets = $roster.pullSets
+Assert-True ($null -ne $pullSets) 'Pull sets are required.'
+Assert-True (-not [bool]$pullSets.cloudAgentMayPull) 'Cloud Agents must not pull Ollama weights.'
+Assert-True ([bool]$pullSets.doNotPull) 'Current scope must not pull catalog tags.'
+Assert-True ([bool]$pullSets.doNotLaunch) 'Current scope must not launch new local models.'
+Assert-True ([bool]$pullSets.doNotPurchase) 'Current scope must not purchase anything.'
+Assert-True ([string]$pullSets.authorizedPath -eq 'ollama-cloud-via-local-ai-worker-mcp') 'Authorized path must stay Ollama Cloud through local-ai-worker MCP.'
+Assert-True ([bool]$pullSets.confirmLocalNotCloud) 'Installed tags must be confirmed local, not :cloud.'
+Assert-True (@($pullSets.hosts) -contains 'DESKTOP' -and @($pullSets.hosts) -contains 'AHCM') 'Pull hosts must be DESKTOP and AHCM.'
+foreach ($setName in @('daily24gb', 'edge16gb', 'recommendedIfFits')) {
+    foreach ($tag in @($pullSets.$setName)) {
+        Assert-True ([string]$tag -notmatch '(?i)(:cloud($|-)|-cloud$)') ("Pull set {0} cannot include a cloud alias: {1}" -f $setName, $tag)
+        Assert-True ($tag -in $localTags) ("Pull set {0} tag is not a roster local Ollama tag: {1}" -f $setName, $tag)
+    }
+}
+Assert-True (@($pullSets.daily24gb).Count -eq 5) '24 GB daily set must contain five exact tags.'
+Assert-True (@($pullSets.edge16gb).Count -eq 4) '16 GB class set must contain four exact tags.'
+Assert-True ('ornith:35b' -in @($pullSets.daily24gb)) '24 GB daily set must include ornith:35b.'
+Assert-True ('qwen3.8:27b' -in @($pullSets.daily24gb)) '24 GB daily set must include qwen3.8:27b.'
+Assert-True ('gemma4:31b' -in @($pullSets.daily24gb)) '24 GB daily set must include gemma4:31b.'
+Assert-True ('gpt-oss:20b' -in @($pullSets.daily24gb)) '24 GB daily set must include gpt-oss:20b.'
+Assert-True ('ornith:9b' -in @($pullSets.daily24gb)) '24 GB daily set must include ornith:9b.'
+Assert-True ('qwen3.5:9b' -in @($pullSets.edge16gb)) '16 GB class set must include qwen3.5:9b.'
+Assert-True ('gemma4:e4b' -in @($pullSets.edge16gb)) '16 GB class set must include gemma4:e4b.'
+Assert-True ('glm-4.7-flash' -in @($pullSets.recommendedIfFits)) 'Recommended-if-fits set must include glm-4.7-flash.'
 
 $localDaily = @($models | Where-Object {
     [string]$_.status -eq 'recommended' -and

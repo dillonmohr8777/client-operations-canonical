@@ -31,7 +31,8 @@
         "pullsOllamaWeights",
         "mutatesOmniRoute",
         "mutatesCanonicalQueue",
-        "cloudAgentsUseHostedModels"
+        "cloudAgentsUseHostedModels",
+        "cursorByokLoopbackForbidden"
       ],
       "properties": {
         "writesCursorUserSecrets": { "const": false },
@@ -40,17 +41,19 @@
         "pullsOllamaWeights": { "const": false },
         "mutatesOmniRoute": { "const": false },
         "mutatesCanonicalQueue": { "const": false },
-        "cloudAgentsUseHostedModels": { "const": true }
+        "cloudAgentsUseHostedModels": { "const": true },
+        "cursorByokLoopbackForbidden": { "const": true }
       }
     },
     "endpoints": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["ollama", "omniroute", "loopbackReachableFromCursorCloud"],
+      "required": ["ollama", "omniroute", "loopbackReachableFromCursorCloud", "cursorBackendCannotReachLoopback"],
       "properties": {
         "ollama": { "const": "http://127.0.0.1:11434/v1" },
         "omniroute": { "const": "http://127.0.0.1:20128/v1" },
-        "loopbackReachableFromCursorCloud": { "const": false }
+        "loopbackReachableFromCursorCloud": { "const": false },
+        "cursorBackendCannotReachLoopback": { "const": true }
       }
     },
     "howToAdd": {

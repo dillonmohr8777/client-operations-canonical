@@ -47,6 +47,11 @@ try {
     Assert-True ($null -ne $health) 'AI stack health must return an object.'
     Assert-True ([string]$health.status -in @('ready', 'degraded')) 'AI stack health must be ready or degraded when the roster is valid.'
     Assert-True ([string]$health.roster.deepseekPro -eq 'deepseek-v4-pro-0813') 'Health output must surface DeepSeek Pro.'
+    Assert-True (-not [bool]$health.cloudAgentMayPull) 'Health output must keep Cloud Agent pulls closed.'
+    Assert-True (@($health.pullHosts) -contains 'DESKTOP' -and @($health.pullHosts) -contains 'AHCM') 'Health output must name DESKTOP and AHCM as pull hosts.'
+    Assert-True (@($health.pullSets.daily24gb.requested) -contains 'ornith:35b') 'Health output must report the 24 GB daily pull set.'
+    Assert-True (@($health.pullSets.edge16gb.requested) -contains 'qwen3.5:9b') 'Health output must report the 16 GB class pull set.'
+    Assert-True (@($health.pullSets.recommendedIfFits.requested) -contains 'glm-4.7-flash') 'Health output must report recommended-if-fits tags.'
     Assert-True (-not [bool]$health.probes.pullAttempted) 'Health check must not pull models.'
     Assert-True (-not [bool]$health.probes.omnirouteMutated) 'Health check must not mutate OmniRoute.'
     Assert-True (-not [bool]$health.probes.canonicalQueueMutated) 'Health check must not mutate the queue.'
@@ -70,10 +75,38 @@ try {
     Assert-True $failed 'A cloud Ollama tag marked local must be rejected.'
     Assert-True ($failureText -match 'Local Ollama tag cannot be a cloud alias') ("Cloud-as-local fixture must fail on the cloud-tag rule: {0}" -f $failureText)
 
+    $cloudPullPath = New-TempPath 'cloud-pull-set.json'
+    $cloudPull = $roster | ConvertTo-Json -Depth 20 | ConvertFrom-Json
+    $cloudPull.pullSets.daily24gb[0] = 'ornith:35b-cloud'
+    [IO.File]::WriteAllText($cloudPullPath, (($cloudPull | ConvertTo-Json -Depth 20) + "`n"), [Text.UTF8Encoding]::new($false))
+    $cloudPullFailed = $false
+    $cloudPullText = ''
+    try {
+        [void](& $validatorPath -RosterPath $cloudPullPath -SchemaPath $schemaPath)
+    }
+    catch {
+        $cloudPullFailed = $true
+        $cloudPullText = [string]$_.Exception.Message
+    }
+    Assert-True $cloudPullFailed 'A :cloud tag in a pull set must be rejected.'
+    Assert-True ($cloudPullText -match 'cannot include a cloud alias') ("Cloud pull-set fixture must fail on the cloud-tag rule: {0}" -f $cloudPullText)
+
     $docs = Get-Content -LiteralPath $docsPath -Raw -Encoding UTF8
     Assert-True ($docs -match 'DeepSeek-V4-Pro-0813') 'Docs must name the official Pro release.'
     Assert-True ($docs -match 'does not pull') 'Docs must say the roster does not pull weights.'
     Assert-True ($docs -match 'Install-CursorLocalModels') 'Docs must name the Cursor installer.'
+    Assert-True ($docs -match 'ollama_cloud_run') 'Docs must name the Codex Ollama Cloud MCP tool.'
+    Assert-True ($docs -match 'local-ai-worker') 'Docs must name desktop local-ai-worker as the cloud MCP owner.'
+    Assert-True ($docs -match 'gemma4:31b-cloud') 'Docs must record the desktop ollama_cloud_run alias.'
+    Assert-True ($docs -match 'skipApproval') 'Docs must record skipApproval false for the desktop CLI cloud call.'
+    Assert-True ($docs -match 'hosted web agent') 'Docs must keep the hosted web agent separate from desktop CLI.'
+    Assert-True ($docs -match 'Cursor backend cannot reach desktop loopback') 'Docs must say Cursor backend cannot reach loopback.'
+    Assert-True ($docs -notmatch 'Enable OpenAI API Key and Override OpenAI Base URL') 'Docs must not propagate localhost Cursor BYOK.'
+    Assert-True ($docs -notmatch 'click Add Custom Model') 'Docs must not tell Cursor to add localhost custom models.'
+    Assert-True ($docs -match 'ornith:35b') 'Docs must keep the 24 GB catalog tag ornith:35b.'
+    Assert-True ($docs -match 'DESKTOP') 'Docs must keep DESKTOP as a catalog host.'
+    Assert-True ($docs -match 'AHCM') 'Docs must keep AHCM as a catalog host.'
+    Assert-True ($docs -match 'deepseek-v4-pro:cloud') 'Docs must call out the DeepSeek Pro cloud alias.'
 
     Write-Output ("local-model-roster tests passed ({0} assertions)" -f $script:AssertionCount)
     exit 0

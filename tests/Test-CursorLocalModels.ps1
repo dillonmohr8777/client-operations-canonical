@@ -32,6 +32,25 @@ try {
         Assert-True (@($parseErrors).Count -eq 0) ("Parser errors in {0}" -f [IO.Path]::GetFileName($script))
     }
 
+    $mixedHowToAdd = @(
+        'Authorized inference is Ollama Cloud through ollama_cloud_run.'
+        'Enable OpenAI API Key and Override OpenAI Base URL only for that desktop session.'
+        'Cloud Agents keep hosted models.'
+    )
+    Assert-True ((@($mixedHowToAdd) -notmatch 'Enable OpenAI API Key and Override OpenAI Base URL').Count -gt 0) 'Sanity: array -notmatch returns nonmatching items and must not be used as a negative assertion.'
+    Assert-True ((@($mixedHowToAdd | Where-Object { $_ -match 'Enable OpenAI API Key and Override OpenAI Base URL' }).Count) -eq 1) 'Sanity: matching-count must find the BYOK instruction.'
+    Assert-True (((@($mixedHowToAdd) -join "`n") -match 'Enable OpenAI API Key and Override OpenAI Base URL')) 'Sanity: joined instructions must surface the BYOK line.'
+
+    $generatorPath = Join-Path $root 'scripts\New-CursorLocalModelPack.ps1'
+    $pluginReferencePath = Join-Path $root 'integrations\cursor\marketing-chief-local-models\references\cursor-local-models.json'
+    [void](& $generatorPath -Write -OutputPath $packPath -PluginReferencePath $pluginReferencePath)
+    $generatedAfterWrite = & $generatorPath | ConvertFrom-Json
+    $committedAfterWrite = Get-Content -LiteralPath $packPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    $referenceAfterWrite = Get-Content -LiteralPath $pluginReferencePath -Raw -Encoding UTF8 | ConvertFrom-Json
+    Assert-True (((@($committedAfterWrite.howToAdd) | ForEach-Object { [string]$_ }) -join "`n") -eq ((@($generatedAfterWrite.howToAdd) | ForEach-Object { [string]$_ }) -join "`n")) 'Tests must regenerate the committed pack from the generator before validation.'
+    Assert-True (((@($referenceAfterWrite.howToAdd) | ForEach-Object { [string]$_ }) -join "`n") -eq ((@($generatedAfterWrite.howToAdd) | ForEach-Object { [string]$_ }) -join "`n")) 'Tests must regenerate the plugin reference from the generator before validation.'
+    Assert-True ((@($committedAfterWrite.howToAdd | Where-Object { $_ -match 'Enable OpenAI API Key and Override OpenAI Base URL' }).Count) -eq 0) 'Regenerated pack matching-count for localhost BYOK must be 0.'
+
     $validation = & $validatorPath | ConvertFrom-Json
     Assert-True ([string]$validation.status -eq 'valid') 'Cursor pack must validate.'
     Assert-True ([int]$validation.modelCount -ge 8) 'Cursor pack must keep the full roster.'
@@ -64,6 +83,11 @@ try {
     Assert-True ($docs -match 'Install-CursorLocalModels') 'Docs must name the Cursor installer.'
     Assert-True ($docs -match 'deepseek-v4-pro-0813') 'Docs must keep the DeepSeek Pro picker ID.'
     Assert-True ($docs -match 'ornith:35b') 'Docs must keep the Ornith daily-coding picker ID.'
+    Assert-True ($docs -match 'ollama_cloud_run') 'Docs must name the Codex Ollama Cloud MCP tool.'
+    Assert-True ($docs -match 'gemma4:31b-cloud') 'Docs must record the desktop ollama_cloud_run alias.'
+    Assert-True ($docs -match 'skipApproval') 'Docs must record skipApproval false for the desktop CLI cloud call.'
+    Assert-True ($docs -match 'hosted web agent') 'Docs must keep the hosted web agent separate from desktop CLI.'
+    Assert-True ($docs -notmatch 'Enable OpenAI API Key and Override OpenAI Base URL') 'Docs must not propagate localhost Cursor BYOK.'
 
     Write-Output ("cursor-local-models tests passed ({0} assertions)" -f $script:AssertionCount)
     exit 0

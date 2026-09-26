@@ -1,20 +1,19 @@
 ---
 name: local-models
-description: List the Marketing Chief local open-weight Cursor picker IDs and the desktop add-model steps.
+description: List the Marketing Chief local open-weight catalog IDs and the Ollama Cloud MCP path.
 ---
 
 # Local models
 
-Read `references/cursor-local-models.json` if this plugin is installed, or `registry/cursor-local-models.json` in the Marketing Chief repo. Do not pull weights or change OmniRoute.
+Read `references/cursor-local-models.json` if this plugin is installed, or `registry/cursor-local-models.json` in the Marketing Chief repo. Use Ollama Cloud through Codex desktop `local-ai-worker` tools `ollama_cloud_status` and `ollama_cloud_run`. Do not download or launch new local models or purchase anything. Cursor backend cannot reach desktop loopback, so do not enable Override OpenAI Base URL or localhost BYOK. Do not change OmniRoute.
 
-## Add in Cursor desktop
+## Authorized path
 
-1. Settings → Models
-2. Enable OpenAI API Key and Override OpenAI Base URL
-3. `http://127.0.0.1:11434/v1` for Ollama or `http://127.0.0.1:20128/v1` for OmniRoute
-4. Type each ID below and click Add Custom Model
+1. `ollama_cloud_status` for exact registered aliases
+2. `ollama_cloud_run` with that exact alias, `instruction`, and `cloudAuthorized: true`
+3. Keep Cloud Agents on Cursor-hosted models
 
-## Recommended chat IDs
+## Catalog chat IDs
 
 - `deepseek-v4-pro-0813`
 - `deepseek-v4-flash-0731`

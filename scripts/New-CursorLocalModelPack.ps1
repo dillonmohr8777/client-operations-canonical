@@ -106,7 +106,7 @@ $pack = [ordered]@{
     generatedFrom = 'registry/local-models.json'
     reviewedAt = [string]$roster.reviewedAt
     title = 'Cursor local model picker pack'
-    purpose = 'Register the canonical local and open-weight roster as unique Cursor custom-model IDs. This pack does not pull weights, write API keys, edit state.vscdb, enable tunnels, or change OmniRoute defaults.'
+    purpose = 'Register the canonical local and open-weight roster as unique Cursor catalog IDs. This pack does not pull weights, write API keys, edit state.vscdb, enable tunnels, change OmniRoute defaults, or authorize localhost Cursor BYOK.'
     authority = [ordered]@{
         writesCursorUserSecrets = $false
         enablesTunnels = $false
@@ -115,19 +115,21 @@ $pack = [ordered]@{
         mutatesOmniRoute = $false
         mutatesCanonicalQueue = $false
         cloudAgentsUseHostedModels = $true
+        cursorByokLoopbackForbidden = $true
     }
     endpoints = [ordered]@{
         ollama = [string]$roster.cursor.loopbackOllamaBaseUrl
         omniroute = [string]$roster.cursor.loopbackOmnirouteBaseUrl
         loopbackReachableFromCursorCloud = $false
+        cursorBackendCannotReachLoopback = $true
     }
     howToAdd = @(
-        'On the desktop that can reach loopback, open Cursor Settings, then Models.'
-        'Enable OpenAI API Key and Override OpenAI Base URL only for that desktop session.'
-        'Set the base URL to http://127.0.0.1:11434/v1 for Ollama or http://127.0.0.1:20128/v1 for OmniRoute. The path must include /v1.'
-        'Type each pickerId exactly and click Add Custom Model. Cursor does not auto-discover /v1/models.'
+        'Do not enable Override OpenAI Base URL or localhost Cursor BYOK. Cursor backend cannot reach desktop loopback.'
+        'Authorized inference is Ollama Cloud through Codex desktop local-ai-worker tools ollama_cloud_status and ollama_cloud_run.'
+        'Call ollama_cloud_run only with an exact alias from ollama_cloud_status, instruction, and cloudAuthorized true.'
+        'Do not download or launch new local models or purchase anything.'
         'Do not add an ID that matches a Cursor built-in. Collision IDs already use the mc- prefix.'
-        'Cloud Agents and this hosted Cursor session keep using Cursor-hosted models. Loopback URLs are not reachable from Cursor Cloud.'
+        'Cloud Agents and this hosted Cursor session keep using Cursor-hosted models.'
         'Tunnels, LAN binds, Cloud Endpoint, and OmniRoute default changes stay approval-gated.'
     )
     models = @($models.ToArray())

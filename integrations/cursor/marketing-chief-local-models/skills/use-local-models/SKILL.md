@@ -1,6 +1,6 @@
 ---
 name: use-local-models
-description: Select and register Marketing Chief local open-weight models in Cursor without pulling weights, writing API keys, or exposing loopback.
+description: Select Marketing Chief catalog model IDs and use Codex Ollama Cloud MCP without localhost Cursor BYOK or new local pulls.
 ---
 
 # Use local models
@@ -8,18 +8,19 @@ description: Select and register Marketing Chief local open-weight models in Cur
 ## Instructions
 
 1. Read `references/cursor-local-models.json` or `registry/cursor-local-models.json`.
-2. Pick one recommended lane. Default daily coding is `ornith:35b`. Default daily general is `qwen3.8:27b`. DeepSeek Pro is `deepseek-v4-pro-0813` and needs vLLM or SGLang.
-3. On a desktop that can reach loopback, open Cursor Settings → Models. Enable OpenAI API Key and Override OpenAI Base URL. Set `http://127.0.0.1:11434/v1` or `http://127.0.0.1:20128/v1`.
-4. Type the exact `pickerId` and click Add Custom Model. Cursor does not refresh custom models from `/v1/models`.
-5. If a picker ID uses the `mc-` prefix, the gateway must already understand that alias. Do not create OmniRoute aliases from this skill.
-6. Cloud Agents stay on Cursor-hosted models. Do not claim a loopback model is serving this session.
-7. Never pull weights, write secrets, edit `state.vscdb`, enable tunnels, or mutate the canonical queue.
+2. Authorized inference is Ollama Cloud through Codex desktop `local-ai-worker` tools `ollama_cloud_status` and `ollama_cloud_run`.
+3. Call `ollama_cloud_run` only with an exact alias from `ollama_cloud_status`, `instruction`, and `cloudAuthorized: true`.
+4. Do not download or launch new local models or purchase anything.
+5. Do not enable Override OpenAI Base URL or add custom models as localhost BYOK. Cursor backend cannot reach desktop loopback.
+6. If a catalog ID uses the `mc-` prefix, the gateway must already understand that alias. Do not create OmniRoute aliases from this skill.
+7. Cloud Agents stay on Cursor-hosted models. Do not claim a loopback model is serving this session.
+8. Never pull weights from a Cloud Agent, write secrets, edit `state.vscdb`, enable tunnels, or mutate the canonical queue.
 
 ## Examples
 
-- User asks to code locally on a 24 GB box: use `ornith:35b`.
-- User asks for DeepSeek Pro in Cursor: add `deepseek-v4-pro-0813` only on a cluster desktop; do not treat `deepseek-v4-pro:0813-cloud` as local.
-- User asks for Kimi K2.7 Code as a custom model: add `mc-kimi-k2.7-code`, not `kimi-k2.7-code`.
+- User asks for Ollama Cloud: run `ollama_cloud_status`, then `ollama_cloud_run` with an exact listed alias.
+- User asks for DeepSeek Pro locally: keep `deepseek-v4-pro-0813` as catalog only; do not treat `deepseek-v4-pro:0813-cloud` as a local pull and do not launch vLLM from this skill.
+- User asks for Kimi K2.7 Code as a custom model: keep `mc-kimi-k2.7-code`, not `kimi-k2.7-code`, and do not add it as localhost BYOK.
 
 ## Performance Notes
 
@@ -28,5 +29,5 @@ Keep one chat model selected. Embedding work uses `nomic-embed-text` outside the
 ## Troubleshooting
 
 - Model already available: the ID collides with a Cursor built-in. Use the `mc-` picker ID.
-- Connection failed from Cloud Agent: expected. Loopback is not reachable from Cursor Cloud.
-- Empty model list after Refresh: expected. Add the `pickerId` manually.
+- Connection failed from Cloud Agent: expected. Cursor backend cannot reach desktop loopback.
+- Empty model list after Refresh: expected. This pack is catalog only, not a hosted Cursor picker.
