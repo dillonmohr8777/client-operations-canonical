@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "higgsfield-capability.schema.json",
+  "title": "Higgsfield Marketing Chief Capability",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "updatedAt",
+    "productionRank",
+    "mcp",
+    "cli",
+    "officialSkills",
+    "surfaces",
+    "workflows",
+    "approvalGates",
+    "clientCreativeRules",
+    "containsSecrets"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "const": "higgsfield" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "productionRank": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "role", "production"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "role": { "type": "string", "minLength": 1 },
+          "production": { "type": "boolean" }
+        }
+      }
+    },
+    "mcp": {
+      "type": "object",
+      "required": ["url", "transport"],
+      "properties": {
+        "url": { "const": "https://mcp.higgsfield.ai/mcp" },
+        "transport": { "const": "http" }
+      }
+    },
+    "cli": { "type": "object" },
+    "officialSkills": { "type": "object" },
+    "surfaces": { "type": "array", "minItems": 4 },
+    "workflows": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "required": ["id", "use"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "use": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "approvalGates": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "clientCreativeRules": { "type": "object" },
+    "containsSecrets": { "const": false }
+  }
+}

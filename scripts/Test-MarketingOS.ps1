@@ -45,7 +45,8 @@ try{
         'clients\onsite-concrete-landscape\paid-media\launch-authority.json','clients\onsite-concrete-landscape\paid-media\launch-config.json','clients\onsite-concrete-landscape\paid-media\blueprints\google_ads.json',
         'clients\fagan-painting\paid-media\launch-authority.json','clients\fagan-painting\paid-media\launch-config.json','clients\fagan-painting\paid-media\blueprints\meta_ads.json',
         'clients\shadow-heating-cooling\paid-media\launch-authority.json','clients\shadow-heating-cooling\paid-media\launch-config.json','clients\shadow-heating-cooling\paid-media\blueprints\meta_ads.json',
-        'intake\index.json','state\intake-sync.json','state\system-health.json','state\task-continuity.json','state\access-coverage.json','state\ad-provider-readiness.json'
+        'intake\index.json','state\intake-sync.json','state\system-health.json','state\task-continuity.json','state\access-coverage.json','state\ad-provider-readiness.json',
+        'integrations\higgsfield\capability.json','schemas\higgsfield-capability.schema.json'
     )
     foreach ($path in $jsonPaths){
         $full=Join-Path $projectRoot $path
@@ -60,6 +61,7 @@ try{
         Add-Check ("powershell-parse:providers/{0}"-f$script.Name) (@($parseErrors).Count-eq0) ("errors={0}"-f@($parseErrors).Count)
     }
 
+    Add-ExitCheck 'higgsfield:capability' (Invoke-Script (Join-Path $PSScriptRoot 'Test-HiggsfieldCapability.ps1') @())
     Add-ExitCheck 'client-registry' (Invoke-Script (Join-Path $PSScriptRoot 'Test-ClientRegistry.ps1') @())
     Add-ExitCheck 'local-models:roster' (Invoke-Script (Join-Path $PSScriptRoot 'Test-LocalModelRoster.ps1') @())
     Add-ExitCheck 'local-models:cursor-pack' (Invoke-Script (Join-Path $PSScriptRoot 'Test-CursorLocalModels.ps1') @())

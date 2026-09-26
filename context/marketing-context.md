@@ -1,6 +1,6 @@
 # Dillon Marketing Context
 
-Last updated: 2026-07-16
+Last updated: 2026-08-29
 Freshness: current for operating rules; portfolio economics and client strategy remain incomplete
 Scope: Dillon's multi-client marketing operation and the Marketing Chief control room. This is not a substitute for a client-specific brand context.
 
@@ -74,6 +74,10 @@ Verified from the July 15 audit and current system state:
 OmniRoute is an optional local Marketing Chief capability, not a replacement control plane. Use `$omniroute-gateway` when provider or model routing, quota visibility, fallback combinations, compression, an OpenAI-compatible local endpoint, or OmniRoute MCP is directly relevant. The Chief must inspect live Status and Doctor results first and verify loopback-only binding before relying on it.
 
 The non-secret routes are `http://127.0.0.1:20128` for the dashboard and `http://127.0.0.1:20128/v1` for the API. The recommended local and open-weight models live in `registry/local-models.json`, with Cursor picker IDs in `registry/cursor-local-models.json`. Institute the desktop plugin with `scripts/Install-CursorLocalModels.ps1 -Apply`. Cloud Agents keep Cursor-hosted models. Normal Codex and OpenAI authentication stays unchanged until a healthy provider, a scoped endpoint key, and an explicit Dillon request support a separate OmniRoute client profile. Provider connection, model or route changes, compression policy changes, MCP mutations, cloud features, tunnels, and LAN or public exposure are never inferred from installation alone.
+
+Higgsfield is the production studio capability for Cursor, the local CLI, and official `higgsfield-ai/skills`. The ChatGPT plugin is not the production path: it lacks audio and website building, and it lets agents stop after a plan for a 16-second clip. A single Higgsfield clip is typically 15 seconds or less; longer work uses a bundled workflow. Credit spend, publishing, TikTok, and Higgsfield website deploy remain approval-gated. Supercomputer slash skills are not a second queue.
+
+The 2026-08-29 Higgsfield baseline confirmed Cursor Cloud MCP connected on the Pro plan with 16 bundled workflows at `https://mcp.higgsfield.ai/mcp`. Recheck Status and Doctor on every use. Do not store Higgsfield tokens in this repository.
 
 The 2026-07-23 integration baseline verified OmniRoute `3.8.48`, HTTP 200, loopback-only port `20128`, zero Doctor failures, and a successful direct MCP stdio handshake exposing 99 tools. The packaged missing-`undici` MCP defect was repaired locally, so every reinstall or update must re-run the MCP regression check. No provider account was connected. The production dependency audit reported 6 high and 4 moderate advisories and no critical advisories, so the version remains pinned and update work requires provenance, lifecycle-script, dependency-audit, backup, liveness, loopback, and MCP-handshake review. OmniRoute status belongs in the existing Chief evidence and queue conventions; it never creates another queue, project, or control center.
 

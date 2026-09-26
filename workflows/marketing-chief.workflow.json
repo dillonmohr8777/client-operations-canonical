@@ -59,6 +59,42 @@
     ]
   },
   "capabilities": {
+    "higgsfield": {
+      "skill": "integrations/higgsfield/skills/higgsfield-marketing-chief/SKILL.md",
+      "controller": "scripts/Invoke-Higgsfield.ps1",
+      "installer": "scripts/Install-HiggsfieldCapability.ps1",
+      "capability": "integrations/higgsfield/capability.json",
+      "mcpUrl": "https://mcp.higgsfield.ai/mcp",
+      "cursorMcpConfig": ".cursor/mcp.json",
+      "officialSkills": "https://github.com/higgsfield-ai/skills",
+      "activation": "Use for image, video, audio, UGC, faceless, product, thumbnail, Soul, and Higgsfield website generation. The ChatGPT plugin is not the production path.",
+      "preflight": [
+        "run Status read-only",
+        "run Doctor read-only",
+        "run Mcp read-only when hosted-endpoint liveness matters",
+        "load get_workflow_instructions before any generate_* call",
+        "require a verified client logo and one approved reference before client generation",
+        "never stop after announcing a plan"
+      ],
+      "approvalGates": [
+        "credit spend and paid generation",
+        "Soul character training from real-person photos",
+        "voice cloning or voice creation",
+        "TikTok connect, reconnect, prepare, or publish",
+        "website deploy or publish",
+        "billing purchase, trial cancel, or plan change",
+        "client delivery, posting, scheduling, or paid-media upload"
+      ],
+      "queuePolicy": "Material Higgsfield work uses the existing Marketing Chief queue, action classes, execution graph, and approval gates. Higgsfield never creates a second queue, Supercomputer inbox, or autonomous spend source.",
+      "integrationBaseline": {
+        "verifiedAt": "2026-08-29",
+        "cursorCloudMcpConnected": true,
+        "planObserved": "pro",
+        "officialSkillsVersion": "0.12.0",
+        "bundledWorkflowCount": 16,
+        "chatgptPluginIsProduction": false
+      }
+    },
     "omniRouteGateway": {
       "skill": "$omniroute-gateway",
       "controller": "C:\\Users\\dillo\\.codex\\skills\\omniroute-gateway\\scripts\\Invoke-OmniRoute.ps1",
@@ -171,6 +207,7 @@
     "state/system-health.json",
     "state/corrections.jsonl",
     "context/marketing-context.md",
+    "integrations/higgsfield/skills/higgsfield-marketing-chief/SKILL.md when Higgsfield or studio generation is relevant",
     "C:\\Users\\dillo\\.codex\\skills\\omniroute-gateway\\SKILL.md when OmniRoute is relevant",
     "C:\\Users\\dillo\\.codex\\automations\\marketing-chief-twice-daily-brief\\automation.toml when evaluating the scheduled operational brief",
     "context/DILLON_VOICE.md",

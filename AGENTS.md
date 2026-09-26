@@ -167,6 +167,36 @@ account changes.
 - Grok renders are local review drafts. Sending, posting, scheduling, or
   publishing still requires the exact preview and approval.
 
+## Higgsfield creative capability
+
+- Treat Higgsfield as a first-class Marketing Chief studio capability for
+  image, video, audio, UGC, faceless, product, and website generation. The
+  ChatGPT plugin is not the production path. Use Cursor MCP at
+  `https://mcp.higgsfield.ai/mcp`, the Cursor Marketplace Higgsfield plugin,
+  and the local Higgsfield CLI plus official `higgsfield-ai/skills` on
+  `DESKTOP-4AHKEC4` and `AHCM-3LCQVF4`.
+- Start every Higgsfield-dependent action read-only. Run
+  `scripts/Invoke-Higgsfield.ps1 -Action Status`, then `-Action Doctor`, and
+  run `-Action Mcp` when hosted-endpoint liveness matters. Load
+  `get_workflow_instructions` before any `generate_*` call. Never stop after
+  saying `I have a good plan`.
+- A single Higgsfield video clip is typically 15 seconds or less. A 16-second
+  or longer request is a bundled workflow plus edit, not one oversized
+  `generate_video` call.
+- Higgsfield Supercomputer slash skills are a separate product. They are not
+  interchangeable with CLI skills and must not become a second queue.
+- Client generations still require a verified logo plus one approved
+  reference. Do not substitute another portfolio client's assets. Outputs are
+  local review drafts. Credit spend, Soul training, voice cloning, TikTok
+  publish, website deploy or publish, and billing changes are approval-gated.
+- Store no Higgsfield tokens, cookies, or session material in this repository.
+  `higgsfield auth login` remains a human authentication handoff. The
+  2026-08-29 baseline confirmed Cursor Cloud MCP connected on the Pro plan
+  with 16 bundled workflows. Recheck live Status and Doctor on every use.
+- Momentum 360 `AI Tech News` still uses the existing `dillon-os` site
+  factory. Do not invent a parallel Higgsfield website generator for that
+  program.
+
 ## OmniRoute gateway capability
 
 - Treat `$omniroute-gateway` as an available Marketing Chief capability when model or provider routing, quota visibility, fallback combinations, prompt compression, an OpenAI-compatible local endpoint, or OmniRoute MCP tools are relevant.
